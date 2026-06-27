@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Accenture – slide_007 – Figure 1 stacked bar chart</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .slide {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+    font-family: 'Calibri', 'Arial', 'Helvetica', sans-serif;
+    color: #1a1a1a;
+  }
+  .section-label { position: absolute; left: 64px; top: 28px; font-size: 13px; font-weight: 700; color: #7b2d8b; }
+  .section-sub   { position: absolute; left: 64px; top: 46px; font-size: 12px; color: #555; }
+
+  .chart-title {
+    position: absolute; left: 200px; top: 75px; right: 240px;
+    font-size: 15px; font-weight: 700; color: #1a1a1a; text-align: center; line-height: 1.3;
+  }
+  .chart-sub {
+    position: absolute; left: 200px; top: 110px; right: 240px;
+    font-size: 11px; color: #666; text-align: center;
+  }
+  /* Column headers */
+  .col-headers {
+    position: absolute; left: 220px; top: 128px; right: 240px;
+    display: grid; grid-template-columns: repeat(3,1fr);
+    font-size: 10.5px; font-weight: 600; color: #333; text-align: center; line-height: 1.3;
+  }
+  /* Chart area */
+  .chart {
+    position: absolute; left: 220px; top: 168px; right: 195px; bottom: 48px;
+  }
+  /* Each row */
+  .bar-row {
+    display: flex; align-items: center;
+    height: 26px; margin-bottom: 3px;
+  }
+  .bar-label {
+    width: 148px; text-align: right; padding-right: 10px;
+    font-size: 10.5px; color: #333; flex-shrink: 0;
+  }
+  .bar-track { flex: 1; display: flex; height: 18px; }
+  .seg { display: flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 600; color: #fff; }
+  .seg-auto  { background: #9c27b0; }
+  .seg-aug   { background: #e91e8c; }
+  .seg-low   { background: #f06292; }
+
+  /* Note */
+  .note {
+    position: absolute; right: 16px; top: 340px; width: 160px;
+    font-size: 8.5px; color: #666; line-height: 1.5;
+  }
+  .footer {
+    position: absolute; bottom: 16px; left: 64px; right: 64px;
+    display: flex; justify-content: space-between;
+    font-size: 10px; color: #888;
+    border-top: 1px solid #ddd; padding-top: 6px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="section-label">Trend 1</div>
+  <div class="section-sub">The rise of gen AI</div>
+
+  <div class="chart-title">Figure 1. Banking is likely to be more profoundly impacted by gen AI than any other industry.</div>
+  <div class="chart-sub">Work time distribution by industry and potential impact of LLMs.</div>
+
+  <div class="col-headers">
+    <span>Higher potential<br>for automation</span>
+    <span>Higher potential<br>for augmentation</span>
+    <span>Low potential for<br>automation or augmentation</span>
+  </div>
+
+  <div class="chart">
+    <!-- rows: label | auto% | aug% | low% -->
+    <!-- Banking 39 34 27 -->
+    <div class="bar-row"><div class="bar-label">Banking</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:39%">39%</div>
+      <div class="seg seg-aug"  style="width:34%">34%</div>
+      <div class="seg seg-low"  style="width:27%">27%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Insurance</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:33%">33%</div>
+      <div class="seg seg-aug"  style="width:37%">37%</div>
+      <div class="seg seg-low"  style="width:30%">30%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Capital Markets</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:32%">32%</div>
+      <div class="seg seg-aug"  style="width:37%">37%</div>
+      <div class="seg seg-low"  style="width:31%">31%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Software &amp; Platforms</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:31%">31%</div>
+      <div class="seg seg-aug"  style="width:37%">37%</div>
+      <div class="seg seg-low"  style="width:32%">32%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Health</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:42%">42%</div>
+      <div class="seg seg-aug"  style="width:25%">25%</div>
+      <div class="seg seg-low"  style="width:33%">33%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Communications &amp; Media</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:34%">34%</div>
+      <div class="seg seg-aug"  style="width:31%">31%</div>
+      <div class="seg seg-low"  style="width:35%">35%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Retail</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:36%">36%</div>
+      <div class="seg seg-aug"  style="width:28%">28%</div>
+      <div class="seg seg-low"  style="width:36%">36%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Life Sciences</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:34%">34%</div>
+      <div class="seg seg-aug"  style="width:29%">29%</div>
+      <div class="seg seg-low"  style="width:37%">37%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">High Tech</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:31%">31%</div>
+      <div class="seg seg-aug"  style="width:31%">31%</div>
+      <div class="seg seg-low"  style="width:38%">38%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Travel</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:35%">35%</div>
+      <div class="seg seg-aug"  style="width:27%">27%</div>
+      <div class="seg seg-low"  style="width:38%">38%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Automotive</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:34%">34%</div>
+      <div class="seg seg-aug"  style="width:27%">27%</div>
+      <div class="seg seg-low"  style="width:39%">39%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Public Service</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:34%">34%</div>
+      <div class="seg seg-aug"  style="width:26%">26%</div>
+      <div class="seg seg-low"  style="width:40%">40%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Energy</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:35%">35%</div>
+      <div class="seg seg-aug"  style="width:23%">23%</div>
+      <div class="seg seg-low"  style="width:42%">42%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Utilities</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:34%">34%</div>
+      <div class="seg seg-aug"  style="width:23%">23%</div>
+      <div class="seg seg-low"  style="width:43%">43%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Industrial</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:33%">33%</div>
+      <div class="seg seg-aug"  style="width:24%">24%</div>
+      <div class="seg seg-low"  style="width:43%">43%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Consumer Goods &amp; Services</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:32%">32%</div>
+      <div class="seg seg-aug"  style="width:24%">24%</div>
+      <div class="seg seg-low"  style="width:44%">44%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Aerospace &amp; Defense</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:30%">30%</div>
+      <div class="seg seg-aug"  style="width:26%">26%</div>
+      <div class="seg seg-low"  style="width:44%">44%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Chemicals</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:31%">31%</div>
+      <div class="seg seg-aug"  style="width:22%">22%</div>
+      <div class="seg seg-low"  style="width:47%">47%</div>
+    </div></div>
+    <div class="bar-row"><div class="bar-label">Natural Resources</div><div class="bar-track">
+      <div class="seg seg-auto" style="width:31%">31%</div>
+      <div class="seg seg-aug"  style="width:19%">19%</div>
+      <div class="seg seg-low"  style="width:50%">50%</div>
+    </div></div>
+  </div>
+
+  <div class="note">Note: Weighted by employment levels in the US in 2022. Estimates are based on human + machine identification of the exposure of work tasks to the impact of generative AI.<br><br>Source: Accenture Research based on US BLS and O*Net.</div>
+
+  <div class="footer">
+    <span>Banking on AI | Banking Top 10 Trends for 2024</span>
+    <span>7</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>IMF F&D – slide_009 – Kaleidoscope (continued: charts + quotes)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .slide {
+    width: 1280px; height: 720px;
+    position: relative; overflow: hidden;
+    background: #ffffff;
+    font-family: 'Calibri', 'Arial', 'Helvetica', sans-serif;
+    color: #1a1a1a;
+  }
+  .nav { position: absolute; left: 0; top: 0; right: 0; height: 28px; border-bottom: 1px solid #ddd; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; font-size: 9px; color: #888; }
+  .nav .section { font-weight: 700; color: #006666; }
+  .nav .fd { font-weight: 700; color: #1a1a1a; }
+
+  /* Left: pull quotes column */
+  .left-col {
+    position: absolute; left: 0; top: 28px; width: 280px; height: 692px;
+    background: #f8f8f8; padding: 20px 20px;
+  }
+  .overheard { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .overheard::before { content: ''; display: inline-block; width: 28px; height: 28px; background: #e8f0fb; border-radius: 50%; }
+
+  .quote-block { margin-bottom: 18px; border-left: 3px solid #006666; padding-left: 10px; }
+  .quote-text { font-size: 11px; font-style: italic; color: #1a1a1a; line-height: 1.5; font-family: 'Georgia', serif; margin-bottom: 4px; }
+  .quote-attr { font-size: 9px; color: #888; }
+
+  /* Center: news item + photo */
+  .center {
+    position: absolute; left: 290px; top: 28px; width: 440px; height: 692px;
+    padding: 16px 20px;
+  }
+  .news-photo {
+    width: 100%; height: 200px;
+    background: linear-gradient(135deg, #1a6040 0%, #2a8050 30%, #c8a020 60%, #e0b830 80%, #3060a0 100%);
+    border-radius: 2px; margin-bottom: 8px;
+  }
+  .news-label { font-size: 9px; font-weight: 700; color: #006666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .news-text { font-size: 9.5px; line-height: 1.6; color: #444; font-family: 'Georgia', serif; }
+
+  /* Right: chart section */
+  .right-col {
+    position: absolute; left: 750px; top: 28px; right: 0; height: 692px;
+    padding: 16px 24px;
+  }
+  .chart-head { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; font-family: 'Calibri', sans-serif; }
+  .chart-sub  { font-size: 10px; color: #888; margin-bottom: 16px; font-family: 'Georgia', serif; }
+
+  /* Legend */
+  .legend { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; font-size: 9px; color: #555; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot-april { background: #1a3a7a; }
+  .dot-adverse { background: #e87820; }
+  .dot-severe  { background: #c02010; }
+  .dot-jan    { background: #aaa; }
+
+  /* Dual bar chart: GDP Growth + Headline Inflation */
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; height: 320px; }
+  .chart-panel { display: flex; flex-direction: column; }
+  .chart-label { font-size: 10px; font-weight: 700; color: #333; text-align: center; margin-bottom: 8px; font-family: 'Calibri', sans-serif; }
+
+  /* Y axis area */
+  .chart-area { flex: 1; position: relative; border-left: 1px solid #ccc; border-bottom: 1px solid #ccc; }
+  .y-label { position: absolute; left: -22px; top: 50%; transform: translateY(-50%) rotate(-90deg); font-size: 8px; color: #999; white-space: nowrap; }
+  .x-tick  { position: absolute; bottom: -14px; font-size: 7.5px; color: #888; transform: translateX(-50%); }
+
+  /* Bar groups */
+  .bar-group { position: absolute; bottom: 0; display: flex; gap: 2px; align-items: flex-end; }
+
+  /* simple bars for GDP growth (%) and inflation (%) */
+  .bar { width: 14px; border-radius: 1px 1px 0 0; }
+
+  /* Source note */
+  .source { font-size: 8px; color: #aaa; margin-top: 12px; font-family: 'Georgia', serif; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="nav">
+    <span class="section">Kaleidoscope</span>
+    <span class="fd">F&amp;D</span>
+  </div>
+
+  <div class="left-col">
+    <div class="overheard">Overheard</div>
+
+    <div class="quote-block">
+      <div class="quote-text">"The response to fragmentation should not be isolation, but deeper regional integration."</div>
+      <div class="quote-attr">—Mehmet Şimşek, minister of finance, Türkiye</div>
+    </div>
+
+    <div class="quote-block">
+      <div class="quote-text">"Resilience is not built when there is a shock. Resilience is built in good times, and you only see the benefit in bad times."</div>
+      <div class="quote-attr">—Mohammed Al-Jadaan, minister of finance, Saudi Arabia</div>
+    </div>
+
+    <div class="quote-block">
+      <div class="quote-text">"Some might wonder why the Fund is spending time on these issues. But the links between anti-money laundering, and other financial crimes are macro-critical."</div>
+      <div class="quote-attr">—IMF First Deputy Managing Director Dan Kato</div>
+    </div>
+  </div>
+
+  <div class="center">
+    <div class="news-photo"></div>
+    <div class="news-label">In the News:</div>
+    <div class="news-text">The IMF said on April 14 that it was resuming relations with Venezuela. Managing Director Georgieva told reporters that the Fund was committed to helping the people of Venezuela. The IMF began working with Venezuela on economic programs since 1996, but relations were suspended in 2019. <em>Above: A Venezuelan flag flies under a gleaming sky. Bloomberg/Carlos Becerra.</em></div>
+  </div>
+
+  <div class="right-col">
+    <div class="chart-head">By the numbers</div>
+    <div class="chart-sub">The duration and scale of the conflict will shape the global outlook.</div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="dot dot-april"></div> April 2025 (pesos/%). <div class="dot dot-adverse" style="margin-left:8px;"></div> Adverse scenario</div>
+      <div class="legend-item"><div class="dot dot-severe"></div> Severe scenario <div class="dot dot-jan" style="margin-left:8px;"></div> January 2026</div>
+    </div>
+
+    <!-- GDP Growth chart -->
+    <div class="charts">
+      <div class="chart-panel">
+        <div class="chart-label">GDP Growth</div>
+        <div class="chart-area" style="height:220px;">
+          <!-- 2026, 2026, 2027 groups -->
+          <!-- bars: approx 3%, 3.1%, 2.8%, 2.5%, 2.2% for different scenarios -->
+          <div class="bar-group" style="left:30px;">
+            <div class="bar" style="height:132px; background:#1a3a7a;"></div><!-- 3.3% April -->
+            <div class="bar" style="height:128px; background:#aaa;"></div><!-- Jan -->
+          </div>
+          <div class="bar-group" style="left:80px;">
+            <div class="bar" style="height:120px; background:#1a3a7a;"></div>
+            <div class="bar" style="height:100px; background:#e87820;"></div>
+            <div class="bar" style="height:80px; background:#c02010;"></div>
+          </div>
+          <div class="bar-group" style="left:140px;">
+            <div class="bar" style="height:112px; background:#1a3a7a;"></div>
+            <div class="bar" style="height:92px; background:#e87820;"></div>
+            <div class="bar" style="height:72px; background:#c02010;"></div>
+          </div>
+          <span class="x-tick" style="left:37px; bottom:-14px;">2026</span>
+          <span class="x-tick" style="left:97px; bottom:-14px;">2026</span>
+          <span class="x-tick" style="left:157px; bottom:-14px;">2027</span>
+        </div>
+      </div>
+
+      <div class="chart-panel">
+        <div class="chart-label">Headline Inflation</div>
+        <div class="chart-area" style="height:220px;">
+          <div class="bar-group" style="left:30px;">
+            <div class="bar" style="height:110px; background:#1a3a7a;"></div>
+            <div class="bar" style="height:116px; background:#aaa;"></div>
+          </div>
+          <div class="bar-group" style="left:80px;">
+            <div class="bar" style="height:120px; background:#1a3a7a;"></div>
+            <div class="bar" style="height:140px; background:#e87820;"></div>
+            <div class="bar" style="height:165px; background:#c02010;"></div>
+          </div>
+          <div class="bar-group" style="left:140px;">
+            <div class="bar" style="height:100px; background:#1a3a7a;"></div>
+            <div class="bar" style="height:125px; background:#e87820;"></div>
+            <div class="bar" style="height:155px; background:#c02010;"></div>
+          </div>
+          <span class="x-tick" style="left:37px; bottom:-14px;">2026</span>
+          <span class="x-tick" style="left:97px; bottom:-14px;">2026</span>
+          <span class="x-tick" style="left:157px; bottom:-14px;">2027</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="source">Sources: IMF, April 2025 World Economic Outlook; April 2026 World Economic Outlook; and IMF staff calculations.</div>
+  </div>
+</div>
+</body>
+</html>
