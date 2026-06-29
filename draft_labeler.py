@@ -52,6 +52,12 @@ def source_company(filename: str) -> str:
         return "Oliver Wyman"
     if lower.startswith("strategy_and"):
         return "Strategy&"
+    if lower.startswith("kpmg"):
+        return "KPMG"
+    if lower.startswith("pwc"):
+        return "PwC"
+    if lower.startswith("kearney"):
+        return "Kearney"
     if lower.startswith("trend_compendium"):
         return "Roland Berger"
     return "Unknown"

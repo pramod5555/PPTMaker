@@ -107,6 +107,11 @@ SEED_PDFS: list[tuple[str, str, str | None]] = [
     # ── Accenture (static PDF paths) ──
     ("accenture", "https://www.accenture.com/content/dam/accenture/final/accenture-com/document/Accenture-Technology-Vision-2024.pdf", None),
     ("accenture", "https://www.accenture.com/content/dam/accenture/final/industry/banking/document/Accenture-Banking-Top-10-Trends-2024.pdf", None),
+    # ── Bain — direct landscape deck PDFs (curated from slideworks.io and bain.com) ──
+    ("bain", "https://www.bain.com/globalassets/about/2023-global-pe-report---roadshow-deck.pdf",                "bain_global_pe_report_2023.pdf"),
+    ("bain", "https://media.bain.com/Images/2011%20Bain%20China%20Luxury%20Market%20Study.pdf",                 "bain_china_luxury_2011.pdf"),
+    ("bain", "https://news.syr.edu/wp-content/uploads/2017/04/Innovation-and-Opportunities-Assessment-Report-April-2014.pdf", "bain_syracuse_innovation_2014.pdf"),
+    ("bain", "https://bot.unc.edu/wp-content/uploads/sites/160/archives/PP%20709%20Bain%20Report.pdf",          "bain_unc_cost_diagnostic_2009.pdf"),
 ]
 
 
@@ -740,52 +745,125 @@ def scrape_wef(limit: int = 20) -> int:
     return collected
 
 
-def scrape_bain(limit: int = 15) -> int:
-    """Bain & Company — https://www.bain.com/insights/"""
+def scrape_bain(limit: int = 50) -> int:
+    """Bain & Company — landscape reports, briefs, and industry decks."""
     log.info("=== Bain & Company ===")
     base = "https://www.bain.com"
-    index = f"{base}/insights/"
 
-    soup = fetch_page(index)
-    if not soup:
-        log.error("Bain: index page unreachable")
-        return 0
-
-    pdf_urls = find_pdf_links(soup, base)
-    insight_urls = list(dict.fromkeys(
-        u for u in find_page_links(soup, base, "/insights/")
-        if u.rstrip("/") != index.rstrip("/")
-    ))
-
-    log.info(f"Bain: {len(pdf_urls)} direct PDFs, {len(insight_urls)} insight pages")
+    # Seed pages known to host landscape 16:9 PDF decks
+    seed_pages = [
+        f"{base}/insights/",
+        f"{base}/insights/topics/technology/",
+        f"{base}/insights/topics/private-equity/",
+        f"{base}/insights/topics/consumer-products/",
+        f"{base}/insights/topics/financial-services/",
+        f"{base}/insights/topics/retail/",
+        f"{base}/insights/topics/telecommunications/",
+        f"{base}/insights/topics/media-entertainment/",
+        f"{base}/insights/topics/healthcare/",
+        f"{base}/insights/topics/sustainability/",
+        f"{base}/insights/operations/global-private-equity-report/",
+        f"{base}/insights/topics/digital-transformation/",
+        f"{base}/insights/topics/customer-strategy-and-marketing/",
+        f"{base}/insights/topics/strategy/",
+    ]
 
     collected = 0
     visited: set[str] = set()
 
-    for url in pdf_urls:
+    for index in seed_pages:
         if collected >= limit:
             break
-        if url not in visited:
-            visited.add(url)
-            if download_pdf(url, "bain"):
-                collected += 1
-
-    for insight_url in insight_urls:
-        if collected >= limit:
-            break
-        insight_soup = fetch_page(insight_url)
-        if not insight_soup:
+        soup = fetch_page(index)
+        if not soup:
             continue
-        for pdf_url in find_pdf_links(insight_soup, base):
-            if pdf_url not in visited:
-                visited.add(pdf_url)
-                if download_pdf(pdf_url, "bain", make_filename("bain", insight_url)):
+
+        pdf_urls = find_pdf_links(soup, base)
+        insight_urls = list(dict.fromkeys(
+            u for u in find_page_links(soup, base, "/insights/")
+            if u.rstrip("/") != index.rstrip("/")
+        ))
+
+        for url in pdf_urls:
+            if collected >= limit:
+                break
+            if url not in visited:
+                visited.add(url)
+                if download_pdf(url, "bain"):
                     collected += 1
-                    break
+
+        for insight_url in insight_urls:
+            if collected >= limit:
+                break
+            insight_soup = fetch_page(insight_url)
+            if not insight_soup:
+                continue
+            for pdf_url in find_pdf_links(insight_soup, base):
+                if pdf_url not in visited:
+                    visited.add(pdf_url)
+                    if download_pdf(pdf_url, "bain", make_filename("bain", insight_url)):
+                        collected += 1
+                        break
 
     if collected == 0:
         log.warning("Bain: 0 PDFs - likely JS-rendered. Try --seeds.")
     log.info(f"Bain: {collected} PDFs collected")
+    return collected
+
+
+def scrape_lek(limit: int = 30) -> int:
+    """L.E.K. Consulting — https://www.lek.com/insights"""
+    log.info("=== L.E.K. Consulting ===")
+    base = "https://www.lek.com"
+
+    seed_pages = [
+        f"{base}/insights",
+        f"{base}/insights/publications",
+        f"{base}/insights/case-studies",
+        f"{base}/insights/publications/white-papers",
+        f"{base}/insights/publications/reports",
+    ]
+
+    collected = 0
+    visited: set[str] = set()
+
+    for index in seed_pages:
+        if collected >= limit:
+            break
+        soup = fetch_page(index)
+        if not soup:
+            continue
+
+        pdf_urls = find_pdf_links(soup, base)
+        page_urls = list(dict.fromkeys(
+            u for u in find_page_links(soup, base, "/insights/")
+            if u.rstrip("/") != index.rstrip("/")
+        ))
+
+        for url in pdf_urls:
+            if collected >= limit:
+                break
+            if url not in visited:
+                visited.add(url)
+                if download_pdf(url, "lek"):
+                    collected += 1
+
+        for page_url in page_urls:
+            if collected >= limit:
+                break
+            page_soup = fetch_page(page_url)
+            if not page_soup:
+                continue
+            for pdf_url in find_pdf_links(page_soup, base):
+                if pdf_url not in visited:
+                    visited.add(pdf_url)
+                    if download_pdf(pdf_url, "lek", make_filename("lek", page_url)):
+                        collected += 1
+                        break
+
+    if collected == 0:
+        log.warning("L.E.K.: 0 PDFs found. Site may require JS or auth.")
+    log.info(f"L.E.K.: {collected} PDFs collected")
     return collected
 
 
@@ -834,6 +912,297 @@ def scrape_deloitte(limit: int = 15) -> int:
 
     log.info(f"Deloitte: {collected} PDFs collected")
     return collected
+
+
+# ─── New high-quality landscape sources ──────────────────────────────────────
+
+def scrape_ey(limit: int = 25) -> int:
+    """
+    EY (Ernst & Young) — ey.com/en_gl/insights
+    Sector reports (Technology, Financial Services, Consumer) are landscape slide decks.
+    Crawls the insights index and follows report detail pages for direct PDF hrefs.
+    """
+    log.info("=== EY ===")
+    base = "https://www.ey.com"
+    index_pages = [
+        f"{base}/en_gl/insights",
+        f"{base}/en_gl/industries/technology",
+        f"{base}/en_gl/industries/financial-services",
+        f"{base}/en_gl/consulting",
+    ]
+    collected = 0
+    visited: set[str] = set()
+
+    for index_url in index_pages:
+        if collected >= limit:
+            break
+        soup = fetch_page(index_url)
+        if not soup:
+            continue
+        for pdf_url in find_pdf_links(soup, base):
+            if collected >= limit:
+                break
+            if pdf_url not in visited:
+                visited.add(pdf_url)
+                if download_pdf(pdf_url, "ey"):
+                    collected += 1
+        insight_urls = list(dict.fromkeys(
+            u for u in find_page_links(soup, base, "/insights/")
+            if u.rstrip("/") != index_url.rstrip("/")
+        ))
+        log.info(f"EY {index_url.split('/')[-1]}: {len(insight_urls)} insight pages")
+        for insight_url in insight_urls[:25]:
+            if collected >= limit:
+                break
+            insight_soup = fetch_page(insight_url)
+            if not insight_soup:
+                continue
+            for pdf_url in find_pdf_links(insight_soup, base):
+                if pdf_url not in visited:
+                    visited.add(pdf_url)
+                    if download_pdf(pdf_url, "ey", make_filename("ey", insight_url)):
+                        collected += 1
+                        break
+
+    if collected == 0:
+        log.warning("EY: 0 PDFs — site may be JS-rendered.")
+    log.info(f"EY: {collected} PDFs collected")
+    return collected
+
+
+def _capgemini_pdf_urls(soup: BeautifulSoup | None, raw_html: str = "") -> list[str]:
+    """
+    Capgemini PDFs live at wp-content/uploads/... but are often revealed only
+    after form submission. We scan both anchor hrefs AND raw HTML for the pattern.
+    """
+    import re as _re
+    found: list[str] = []
+    base = "https://www.capgemini.com"
+    if soup:
+        found += [
+            urljoin(base, a["href"])
+            for a in soup.find_all("a", href=True)
+            if ".pdf" in a["href"].lower()
+        ]
+    # Scan raw HTML for wp-content PDF paths (catches JS-injected URLs)
+    for m in _re.finditer(r'["\'](/wp-content/uploads/[^"\']+\.pdf)["\']', raw_html, _re.IGNORECASE):
+        found.append(urljoin(base, m.group(1)))
+    return list(dict.fromkeys(found))
+
+
+def scrape_capgemini(limit: int = 25) -> int:
+    """
+    Capgemini Research Institute — capgemini.com/insights/research-library/
+    High-quality landscape reports on AI, digital transformation, sustainability.
+    PDFs at wp-content/uploads/ are often JS-injected; we scan raw HTML too.
+    """
+    log.info("=== Capgemini Research Institute ===")
+    base = "https://www.capgemini.com"
+    index_pages = [
+        f"{base}/insights/research-library/",
+        f"{base}/insights/research-library/?type=report",
+    ]
+    collected = 0
+    visited: set[str] = set()
+
+    for index_url in index_pages:
+        if collected >= limit:
+            break
+        try:
+            time.sleep(DELAY)
+            resp = session.get(index_url, timeout=20)
+            resp.raise_for_status()
+            soup = BeautifulSoup(resp.text, "html.parser")
+            raw = resp.text
+        except Exception as e:
+            log.error(f"Capgemini index fetch failed: {e}")
+            continue
+
+        for pdf_url in _capgemini_pdf_urls(soup, raw):
+            if collected >= limit:
+                break
+            if pdf_url not in visited:
+                visited.add(pdf_url)
+                if download_pdf(pdf_url, "capgemini"):
+                    collected += 1
+
+        report_urls = list(dict.fromkeys(
+            u for u in find_page_links(soup, base, "/insights/research-library/")
+            if u.rstrip("/") != index_url.rstrip("/")
+        ))
+        log.info(f"Capgemini {index_url.split('/')[-2]}: {len(report_urls)} report pages")
+        for report_url in report_urls[:30]:
+            if collected >= limit:
+                break
+            try:
+                time.sleep(DELAY)
+                r = session.get(report_url, timeout=20)
+                r.raise_for_status()
+                rsoup = BeautifulSoup(r.text, "html.parser")
+                rraw = r.text
+            except Exception:
+                continue
+            for pdf_url in _capgemini_pdf_urls(rsoup, rraw):
+                if pdf_url not in visited:
+                    visited.add(pdf_url)
+                    if download_pdf(pdf_url, "capgemini", make_filename("capgemini", report_url)):
+                        collected += 1
+                        break
+
+    if collected == 0:
+        log.warning("Capgemini: 0 PDFs — PDFs may require form submission.")
+    log.info(f"Capgemini: {collected} PDFs collected")
+    return collected
+
+
+def scrape_edelman(limit: int = 10) -> int:
+    """
+    Edelman — edelman.com/research
+    The annual Trust Barometer and sector trust reports are landscape slide decks.
+    Well-structured HTML with direct PDF download links.
+    """
+    log.info("=== Edelman ===")
+    base = "https://www.edelman.com"
+    index_pages = [
+        f"{base}/research",
+        f"{base}/trust/2025/trust-barometer",
+        f"{base}/trust/2024/trust-barometer",
+    ]
+    collected = 0
+    visited: set[str] = set()
+
+    for index_url in index_pages:
+        if collected >= limit:
+            break
+        soup = fetch_page(index_url)
+        if not soup:
+            continue
+        for pdf_url in find_pdf_links(soup, base):
+            if collected >= limit:
+                break
+            if pdf_url not in visited:
+                visited.add(pdf_url)
+                if download_pdf(pdf_url, "edelman"):
+                    collected += 1
+        report_urls = list(dict.fromkeys(
+            u for u in find_page_links(soup, base, "/research")
+            if u.rstrip("/") != index_url.rstrip("/")
+        ))
+        for report_url in report_urls[:15]:
+            if collected >= limit:
+                break
+            report_soup = fetch_page(report_url)
+            if not report_soup:
+                continue
+            for pdf_url in find_pdf_links(report_soup, base):
+                if pdf_url not in visited:
+                    visited.add(pdf_url)
+                    if download_pdf(pdf_url, "edelman", make_filename("edelman", report_url)):
+                        collected += 1
+                        break
+
+    log.info(f"Edelman: {collected} PDFs collected")
+    return collected
+
+
+def scrape_kpmg(limit: int = 25) -> int:
+    """
+    KPMG — kpmg.com insights and reports.
+    Technology, financial services and ESG reports use landscape slide format.
+    """
+    log.info("=== KPMG ===")
+    base = "https://kpmg.com"
+    index_pages = [
+        f"{base}/xx/en/home/insights.html",
+        f"{base}/us/en/home/insights.html",
+        f"{base}/xx/en/home/industries/technology.html",
+        f"{base}/xx/en/home/insights/2024/01/global-tech-report.html",
+    ]
+    collected = 0
+    visited: set[str] = set()
+
+    for index_url in index_pages:
+        if collected >= limit:
+            break
+        soup = fetch_page(index_url)
+        if not soup:
+            continue
+        for pdf_url in find_pdf_links(soup, base):
+            if collected >= limit:
+                break
+            if pdf_url not in visited:
+                visited.add(pdf_url)
+                if download_pdf(pdf_url, "kpmg"):
+                    collected += 1
+        insight_urls = list(dict.fromkeys(
+            u for u in find_page_links(soup, base, "/insights/")
+            if u.rstrip("/") != index_url.rstrip("/")
+        ))
+        for insight_url in insight_urls[:20]:
+            if collected >= limit:
+                break
+            insight_soup = fetch_page(insight_url)
+            if not insight_soup:
+                continue
+            for pdf_url in find_pdf_links(insight_soup, base):
+                if pdf_url not in visited:
+                    visited.add(pdf_url)
+                    if download_pdf(pdf_url, "kpmg", make_filename("kpmg", insight_url)):
+                        collected += 1
+                        break
+
+    log.info(f"KPMG: {collected} PDFs collected")
+    return collected
+
+
+def scrape_strategy_and(limit: int = 20) -> int:
+    """
+    Strategy& (PwC's strategy consulting arm) — strategyand.pwc.com
+    Publishes landscape slide-style industry studies and CEO surveys.
+    """
+    log.info("=== Strategy& ===")
+    base = "https://www.strategyand.pwc.com"
+    index_pages = [
+        f"{base}/gx/en/insights.html",
+        f"{base}/gx/en/industries.html",
+        f"{base}/us/en/industries.html",
+    ]
+    collected = 0
+    visited: set[str] = set()
+
+    for index_url in index_pages:
+        if collected >= limit:
+            break
+        soup = fetch_page(index_url)
+        if not soup:
+            continue
+        for pdf_url in find_pdf_links(soup, base):
+            if collected >= limit:
+                break
+            if pdf_url not in visited:
+                visited.add(pdf_url)
+                if download_pdf(pdf_url, "strategy_and"):
+                    collected += 1
+        insight_urls = list(dict.fromkeys(
+            u for u in find_page_links(soup, base, "/insights/")
+            if u.rstrip("/") != index_url.rstrip("/")
+        ))
+        for insight_url in insight_urls[:20]:
+            if collected >= limit:
+                break
+            s = fetch_page(insight_url)
+            if not s:
+                continue
+            for pdf_url in find_pdf_links(s, base):
+                if pdf_url not in visited:
+                    visited.add(pdf_url)
+                    if download_pdf(pdf_url, "strategy_and", make_filename("strategy_and", insight_url)):
+                        collected += 1
+                        break
+
+    log.info(f"Strategy&: {collected} PDFs collected")
+    return collected
+
 
 
 # ─── Sitemap fallback ────────────────────────────────────────────────────────
@@ -891,6 +1260,8 @@ def main():
                         help="Only scrape Roland Berger (highest priority source)")
     parser.add_argument("--mgi-only", action="store_true",
                         help="Only scrape McKinsey Global Institute")
+    parser.add_argument("--new-sources", action="store_true",
+                        help="Only scrape new sources: EY, Capgemini, Edelman, KPMG, Strategy&")
     args = parser.parse_args()
 
     if args.seeds_only:
@@ -908,17 +1279,41 @@ def main():
         print(f"\nMcKinsey MGI PDFs downloaded: {n}")
         return
 
-    # Roland Berger and McKinsey MGI first — highest quality landscape slides
+    if args.new_sources:
+        new_scrapers = [
+            ("Bain",         scrape_bain,          50),
+            ("L.E.K.",       scrape_lek,           30),
+            ("EY",           scrape_ey,            25),
+            ("Capgemini",    scrape_capgemini,      25),
+            ("Edelman",      scrape_edelman,        10),
+            ("KPMG",         scrape_kpmg,           25),
+            ("Strategy&",    scrape_strategy_and,   20),
+        ]
+        results: dict[str, int] = {}
+        for name, fn, lim in tqdm(new_scrapers, desc="New sources", position=0):
+            results[name] = fn(lim)
+        print("\nNew sources results:")
+        for name, n in results.items():
+            print(f"  {name}: {n} PDFs")
+        return
+
+    # Full run — priority order (Bain and L.E.K. first per brief)
     scrapers = [
+        ("Bain",          scrape_bain,           50),
+        ("L.E.K.",        scrape_lek,            30),
         ("Roland Berger", scrape_roland_berger,  40),
         ("McKinsey MGI",  scrape_mckinsey_mgi,   20),
-        ("World Bank",    scrape_world_bank,      25),
-        ("ADB",           scrape_adb,             20),
-        ("BCG",           scrape_bcg,             15),
-        ("McKinsey",      scrape_mckinsey,        15),
-        ("WEF",           scrape_wef,             20),
-        ("Bain",          scrape_bain,            15),
-        ("Deloitte",      scrape_deloitte,        15),
+        ("EY",            scrape_ey,             25),
+        ("Capgemini",     scrape_capgemini,      25),
+        ("Edelman",       scrape_edelman,        10),
+        ("KPMG",          scrape_kpmg,           25),
+        ("Strategy&",     scrape_strategy_and,   20),
+        ("World Bank",    scrape_world_bank,     25),
+        ("ADB",           scrape_adb,            20),
+        ("BCG",           scrape_bcg,            15),
+        ("McKinsey",      scrape_mckinsey,       15),
+        ("WEF",           scrape_wef,            20),
+        ("Deloitte",      scrape_deloitte,       15),
     ]
 
     results: dict[str, int] = {}

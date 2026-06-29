@@ -36,7 +36,7 @@ def already_converted(stem: str) -> set[str]:
     return {p.name for p in SLIDES_DIR.glob(f"{stem}_slide_*.png")}
 
 
-def convert_one(pdf_path: Path, dpi: int, max_pages: int, new_only: bool) -> int:
+def convert_one(pdf_path: Path, dpi: int, max_pages: int, new_only: bool, overwrite: bool = False) -> int:
     stem     = pdf_stem(pdf_path)
     existing = already_converted(stem)
 
@@ -56,7 +56,7 @@ def convert_one(pdf_path: Path, dpi: int, max_pages: int, new_only: bool) -> int
 
     for page_num in range(1, pages + 1):
         out_name = f"{stem}_slide_{page_num:03d}.png"
-        if out_name in existing:
+        if out_name in existing and not overwrite:
             continue
         page = doc[page_num - 1]
         pix  = page.get_pixmap(matrix=mat, alpha=False)
@@ -65,7 +65,7 @@ def convert_one(pdf_path: Path, dpi: int, max_pages: int, new_only: bool) -> int
 
     doc.close()
     if new_count:
-        print(f"  [done]  {pdf_path.name}: {new_count} new PNGs  ({pages} pages total)")
+        print(f"  [done]  {pdf_path.name}: {new_count} PNGs at {dpi} DPI  ({pages} pages total)")
     else:
         print(f"  [skip]  {pdf_path.name}: all {pages} pages already exist")
     return new_count
@@ -78,6 +78,11 @@ def main() -> None:
     parser.add_argument("--max-pages", type=int, default=0, help="0 = no limit")
     parser.add_argument("--new-only",  action="store_true",
                         help="Skip PDFs that already have any converted slides")
+    parser.add_argument("--overwrite", action="store_true",
+                        help="Re-render pages that already have PNGs (use with --dpi to upgrade resolution).")
+    parser.add_argument("--prefix",    default=None,
+                        help="Only convert PDFs whose filename starts with this prefix, "
+                             "e.g. 'roland_berger' or 'trend_compendium'.")
     args = parser.parse_args()
 
     if args.pdf:
@@ -90,6 +95,9 @@ def main() -> None:
             sys.exit(1)
     else:
         pdf_files = sorted(PDFS_DIR.glob("*.pdf"))
+        if args.prefix:
+            pdf_files = [p for p in pdf_files if p.name.lower().startswith(args.prefix.lower())]
+            print(f"Prefix filter '{args.prefix}' -> {len(pdf_files)} PDF(s)")
 
     if not pdf_files:
         print(f"No PDFs found in {PDFS_DIR}")
@@ -101,7 +109,7 @@ def main() -> None:
 
     total_new = 0
     for p in pdf_files:
-        total_new += convert_one(p, args.dpi, args.max_pages, args.new_only)
+        total_new += convert_one(p, args.dpi, args.max_pages, args.new_only, args.overwrite)
 
     existing_total = len(list(SLIDES_DIR.glob("*.png")))
     print(f"\nNew PNGs created : {total_new}")

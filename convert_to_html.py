@@ -12,11 +12,21 @@ Usage
     # Convert a specific slide
     python convert_to_html.py --slide accenture_Accenture-Banking-Top-10-Trends-2024_slide_001
 
+    # High-quality 2-pass mode (generate + self-review): recommended for complex slides
+    python convert_to_html.py --source "Roland Berger,Deloitte" --overwrite --passes 2
+
     # Dry-run: show what would be converted
     python convert_to_html.py --limit 5 --dry-run
 
     # Re-convert already-done slides (overwrite)
     python convert_to_html.py --limit 5 --overwrite
+
+    # Re-convert slides whose HTML is truncated (missing </html>)
+    python convert_to_html.py --truncated
+
+    # Tip: re-render source PDFs at higher DPI before re-converting for best quality:
+    #   python convert_pymupdf.py --pdf <file>.pdf --dpi 200
+    #   python convert_to_html.py --source "Roland Berger" --overwrite --passes 2
 """
 
 from __future__ import annotations
@@ -36,70 +46,240 @@ from PIL import Image
 
 load_dotenv()
 
-ROOT = Path(__file__).parent.parent
-DATASET = Path(__file__).parent / "dataset.json"
+ROOT       = Path(__file__).parent.parent
+DATASET    = Path(__file__).parent / "dataset.json"
 SLIDES_DIR = Path(__file__).parent / "slides"
-HTML_DIR = ROOT / "html_slides"
+HTML_DIR   = ROOT / "html_slides"
 HTML_DIR.mkdir(exist_ok=True)
 
 VIEWPORT_W, VIEWPORT_H = 1280, 720
 
-SYSTEM_PROMPT = f"""You are an expert front-end developer who converts presentation slide screenshots into clean, self-contained HTML/CSS.
+# ─────────────────────────────────────────────────────────────────────────────
+# SYSTEM PROMPT — production-grade instructions for complex consulting slides
+# ─────────────────────────────────────────────────────────────────────────────
+SYSTEM_PROMPT = f"""You are a senior front-end developer who specialises in pixel-perfect replication of consulting firm presentation slides as self-contained HTML/CSS documents.
 
-COORDINATE SCALING — READ THIS FIRST:
-The screenshot you receive was rendered from a source slide that is LARGER than the 1280×720 output viewport.
-Every pixel value you observe in the image must be scaled down before writing CSS.
-The user message provides the exact source dimensions and pre-computed scale factors — apply them to
-EVERY `left`, `top`, `width`, `height`, `font-size`, `border-radius`, `padding`, and `margin` value.
-A value observed at position X in a {'{SOURCE_W}'}px-wide image becomes: X × x_scale in CSS.
-Never write a `left` or `width` value larger than {VIEWPORT_W}, or a `top` / `height` larger than {VIEWPORT_H}.
+Your goal: produce HTML that is visually indistinguishable from the original slide at first glance. Do not simplify. Do not omit elements because they seem complex. Every visible element in the screenshot must appear in your output.
 
-STRICT REQUIREMENTS — every file must satisfy all of these:
-1. Start with <!DOCTYPE html>
-2. Include all CSS inside a <style> block in <head> — no external stylesheets
-3. The slide root element must be exactly {VIEWPORT_W}px wide and {VIEWPORT_H}px tall
-4. The slide root must have: position: relative; overflow: hidden;
-5. Use absolute positioning for all child elements to faithfully replicate the layout
-6. NO <script> tags
-7. NO <img> tags — recreate images/icons with CSS shapes, gradients, or Unicode characters
-8. NO external URLs (no http:// or https:// anywhere)
-9. Use only web-safe fonts or CSS @font-face with data URIs — prefer system fonts
-10. Output ONLY the complete HTML document — no explanation, no markdown fences"""
+══════════════════════════════════════════════════════════════════
+COORDINATE SCALING — NON-NEGOTIABLE
+══════════════════════════════════════════════════════════════════
+The PNG is rendered from a source larger than {VIEWPORT_W}×{VIEWPORT_H}px.
+The user message provides exact source dimensions and pre-computed scale factors.
+Apply them to EVERY numeric CSS value without exception:
+  left, top, width, height, font-size, border-radius,
+  padding, margin, border-width, gap, line-height (when in px),
+  transform: translate(), SVG coordinates (cx, cy, r, x, y, width, height).
+
+Vertical stacking rule — calculate, never guess:
+  If element A starts at top:T and has height:H, element B directly below it
+  must start at top:(T + H + gap_px). Compute this explicitly for every stack.
+
+Hard limits: left/width ≤ {VIEWPORT_W}px · top/height ≤ {VIEWPORT_H}px.
+
+══════════════════════════════════════════════════════════════════
+LAYER ARCHITECTURE — USE z-index FOR COMPLEX SLIDES
+══════════════════════════════════════════════════════════════════
+  z-index 0–5   : background fills, full-bleed color bands, gradient washes
+  z-index 10–15 : decorative geometry (diagonal shapes, coloured panels)
+  z-index 20–25 : card and panel backgrounds (white/light boxes)
+  z-index 30–40 : primary content (text blocks, charts, tables)
+  z-index 50+   : overlaid labels, callout badges, page numbers, logos
+
+All elements: position:absolute. Root: position:relative; overflow:hidden.
+Never use CSS grid or flexbox on the root — only on interior containers.
+
+══════════════════════════════════════════════════════════════════
+DECORATIVE ELEMENTS — replicate all structural chrome
+══════════════════════════════════════════════════════════════════
+Coloured header/footer bands  → position:absolute div, full-width, background-color, z-index:5
+Vertical left-edge accent bar → position:absolute div, width:4–8px, height:100%, left:0, background
+Diagonal/angled background    → CSS clip-path:polygon(...) on a positioned div
+Gradient wash                 → background:linear-gradient(direction, #color1, #color2)
+Card with shadow              → background:#fff; border-radius:4px; box-shadow:2px 4px 12px rgba(0,0,0,.10)
+Dotted/dashed rule            → border-top:1px dashed #ccc (or solid)
+Thin separator line           → height:1px or width:1px div with background-color
+Circle badge / KPI callout    → border-radius:50% div, explicit width=height, centered text
+Number superscript footnote   → position:absolute, font-size:10px, top:Xpx
+
+══════════════════════════════════════════════════════════════════
+TYPOGRAPHY PRECISION
+══════════════════════════════════════════════════════════════════
+Font weights: 300 light · 400 regular · 500 medium · 600 semibold · 700 bold · 800 extrabold
+Always set:
+  font-weight  — match exactly; never default to 400 for bold text
+  line-height  — set explicitly (e.g. 1.2, 1.35, 1.5, or in px)
+  letter-spacing — uppercase kickers/labels: 0.05em–0.15em
+  text-transform — UPPERCASE for kicker lines, category tags, axis labels
+  width        — set on every text block so line-wrapping matches the original
+
+Consulting headline pattern (replicate when present):
+  • Thin uppercase kicker (12–14px, letter-spacing:0.1em, muted colour) — e.g. "MARKET OUTLOOK"
+  • Bold assertion headline (22–36px, dark colour, width constrained) — the "so what"
+  • Thin body text (13–15px, line-height:1.5) below with 8–12px gap
+
+══════════════════════════════════════════════════════════════════
+DATA VISUALISATION — approximate every chart with CSS/SVG
+══════════════════════════════════════════════════════════════════
+Inline SVG is allowed and encouraged for any chart shape. No <canvas>, no <script>.
+
+Vertical bar chart:
+  Outer container: position:absolute, display:flex, align-items:flex-end, gap:Xpx
+  Each bar: div with explicit width and height (height = value/max × chart_height px)
+  Labels below: positioned div under each bar
+
+Horizontal bar chart:
+  Each row: label div (fixed width) + bar div (height:Xpx, width:Y%, background-color)
+
+Line / area chart:
+  Use inline <svg> with <polyline points="x1,y1 x2,y2 ..."> or <path d="M...L...">
+  Compute SVG coordinates directly from data values scaled to chart px dimensions
+
+Pie / donut chart:
+  SVG <circle> stroke-dasharray technique:
+  circumference = 2π×r; stroke-dasharray = "share×circ rest×circ"
+
+Scatter plot:
+  SVG <circle cx="..." cy="..." r="4" fill="..."> for each point, axes as <line> elements
+
+Progress ring / KPI circle:
+  SVG circle with stroke-dasharray, stroke-dashoffset for partial fill
+
+Data table:
+  HTML <table> with border-collapse:collapse, explicit cell widths and padding
+  Alternate row shading via background-color on <tr>
+
+Sparkline:
+  Small inline <svg> with a <polyline>, no axes needed
+
+Annotation / callout arrow:
+  CSS border trick or SVG <path> with marker-end arrowhead
+
+When exact data values are not visible: estimate proportions from the image and use them.
+
+══════════════════════════════════════════════════════════════════
+ICONS AND ILLUSTRATIONS — CSS/Unicode/SVG only
+══════════════════════════════════════════════════════════════════
+Arrows          → Unicode ↑ ↓ → ← ▲ ▼ ▶ ◀ or SVG path
+Checkmarks      → ✓ ✗ in correct colour
+Bullets/dots    → • ◆ ● ○ ◯
+Circular icon   → border-radius:50% div + background + centred Unicode or letter
+Abstract shape  → border-radius combinations, e.g. border-radius:60% 40% 30% 70%/60% 30% 70% 40%
+Number badge    → 40×40px circle div, bold number, high-contrast text
+Person icon     → circle (head) + rounded rectangle (body), stacked divs
+
+══════════════════════════════════════════════════════════════════
+COLUMN LAYOUT RULES
+══════════════════════════════════════════════════════════════════
+Three-column layout:
+  Each column ≈ {VIEWPORT_W//3 - 20}px wide; left offsets ≈ 60, {VIEWPORT_W//3 + 40}, {2*VIEWPORT_W//3 + 20}px
+
+Two-column layout (content + chart):
+  Left column ≈ 55% width; right column ≈ 40% width; gap ≈ 5%
+
+Cards in a row:
+  Equal-width divs, border:1px solid #e0e0e0, border-radius:4px, padding inside
+
+══════════════════════════════════════════════════════════════════
+STRICT REQUIREMENTS — all ten must be met
+══════════════════════════════════════════════════════════════════
+1.  Start with <!DOCTYPE html>
+2.  All CSS inside a <style> block in <head> — no external stylesheets
+3.  Root element: exactly {VIEWPORT_W}px × {VIEWPORT_H}px
+4.  Root element: position:relative; overflow:hidden;
+5.  All direct children of root: position:absolute
+6.  NO <script> tags
+7.  NO <img> tags — recreate visually with CSS / SVG / Unicode
+8.  NO external URLs in src, href, url(), or @import
+9.  System fonts only: Arial, Helvetica, 'Segoe UI', Georgia, 'Times New Roman', monospace
+10. Output ONLY the complete HTML document — no explanation, no markdown fences, no truncation
+    The final line must be </html>. Never stop mid-output."""
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# REVIEW PROMPT — pass 2: compare against original and fix discrepancies
+# ─────────────────────────────────────────────────────────────────────────────
+REVIEW_SYSTEM = """You are a meticulous QA engineer reviewing HTML slide replications against their original screenshots.
+Your job is to compare the HTML rendering against the original image and produce a corrected, complete HTML document.
+Output ONLY the corrected complete HTML document — no explanation, no markdown fences. The final line must be </html>."""
+
+REVIEW_USER_TEMPLATE = """The HTML below was generated to replicate the presentation slide shown in the image above.
+
+Compare the HTML against the original slide carefully. Check every element:
+  • Elements that are missing entirely from the HTML
+  • Elements that overlap text they should not overlap (check vertical stacking math)
+  • Wrong colours compared to the original (background, text, accent)
+  • Text that is cut off or overflows outside the {w}×{h}px boundary
+  • Font sizes, weights, or letter-spacing that don't match
+  • Charts or data visualisations that are absent, wrong shape, or wrong proportions
+  • Decorative structure (coloured bands, vertical rules, card borders) that is missing
+  • Elements positioned too high or too low relative to the original
+
+Fix all issues you find. Preserve everything that is already correct.
+Output the complete corrected HTML document — do not truncate.
+
+Current HTML:
+{html}"""
 
 
 def build_user_prompt(slide: dict, src_w: int, src_h: int) -> str:
-    lbl = slide.get("label", {})
+    lbl     = slide.get("label", {})
     palette = lbl.get("color_palette", {})
 
     x_scale = VIEWPORT_W / src_w
     y_scale = VIEWPORT_H / src_h
 
+    layout  = lbl.get("layout_type", "unknown")
+    chart   = lbl.get("chart_type", "none")
+    company = lbl.get("source_company", "unknown")
+    columns = lbl.get("column_count", 1)
+    icons   = lbl.get("has_icons_illustrations", False)
+    callouts= lbl.get("has_data_callouts", False)
+    purpose = lbl.get("slide_purpose", "unknown")
+    density = lbl.get("text_density", "medium")
+    bg      = palette.get("background", "#FFFFFF")
+    accent  = palette.get("primary_accent", "#000000")
+
+    layout_hint = layout
+    if columns > 1:
+        layout_hint += f", {columns} columns"
+    if chart and chart not in ("none", "unknown"):
+        layout_hint += f", {chart} chart"
+
+    extra = []
+    if icons:
+        extra.append("Slide contains icons or illustrations — replicate with CSS shapes / Unicode.")
+    if callouts:
+        extra.append("Slide contains data callout boxes or KPI numbers — include them prominently.")
+    if company in ("Roland Berger", "BCG", "McKinsey", "Bain"):
+        extra.append(
+            f"This is a {company} slide. Replicate their precise corporate style: "
+            "structured layout, exact colour bands, crisp typography, complete chart detail."
+        )
+
     meta_lines = [
         f"Source image size : {src_w}×{src_h}px",
         f"Output viewport   : {VIEWPORT_W}×{VIEWPORT_H}px",
         f"X scale factor    : {x_scale:.4f}  — multiply every observed x-position and width by this",
-        f"Y scale factor    : {y_scale:.4f}  — multiply every observed y-position, height, and font-size by this",
-        f"Layout type       : {lbl.get('layout_type', 'unknown')}",
-        f"Chart type        : {lbl.get('chart_type', 'none')}",
-        f"Text density      : {lbl.get('text_density', 'medium')}",
-        f"Source company    : {lbl.get('source_company', 'unknown')}",
-        f"Slide purpose     : {lbl.get('slide_purpose', 'unknown')}",
-        f"Column count      : {lbl.get('column_count', 1)}",
-        f"Has icons         : {lbl.get('has_icons_illustrations', False)}",
-        f"Has callouts      : {lbl.get('has_data_callouts', False)}",
-        f"BG color          : {palette.get('background', '#FFFFFF')}",
-        f"Accent color      : {palette.get('primary_accent', '#000000')}",
+        f"Y scale factor    : {y_scale:.4f}  — multiply every observed y-position, height, font-size by this",
+        f"Layout            : {layout_hint}",
+        f"Slide purpose     : {purpose}",
+        f"Text density      : {density}",
+        f"Source company    : {company}",
+        f"Background colour : {bg}",
+        f"Primary accent    : {accent}",
     ]
+    if extra:
+        meta_lines.append("Notes             : " + " | ".join(extra))
 
     return (
-        "Convert this presentation slide screenshot into a complete HTML/CSS document.\n\n"
-        "IMPORTANT: The screenshot comes from a source slide larger than the output viewport. "
-        "Use the scale factors below to convert every pixel measurement before writing CSS. "
-        "No CSS value should exceed the output viewport dimensions.\n\n"
-        "Scaling and metadata:\n"
+        "Convert this presentation slide screenshot into a complete, pixel-faithful HTML/CSS document.\n\n"
+        "SCALING: every CSS pixel value must be derived from the scale factors below — do not eyeball.\n"
+        "COMPLETENESS: replicate every visible element including decorative chrome, charts, and icons.\n"
+        "STACKING: compute vertical positions explicitly — never let text blocks overlap.\n\n"
+        "Metadata:\n"
         + "\n".join(meta_lines)
-        + "\n\nThe screenshot is the visual ground truth. "
-        "Faithfully replicate all layout, typography, colors, and structure — scaled to the output viewport."
+        + "\n\nThe screenshot is the ground truth. Match it exactly, scaled to the output viewport."
     )
 
 
@@ -108,19 +288,16 @@ def encode_image(path: Path) -> str:
 
 
 def extract_html(raw: str) -> str:
-    # Strip markdown fences if the model wrapped the output
     match = re.search(r"```(?:html)?\s*(<!DOCTYPE.*?</html>)\s*```", raw, re.DOTALL | re.IGNORECASE)
     if match:
         return match.group(1).strip()
-    # Try to extract bare DOCTYPE block
     match = re.search(r"(<!DOCTYPE.*?</html>)", raw, re.DOTALL | re.IGNORECASE)
     if match:
         return match.group(1).strip()
     return raw.strip()
 
 
-def validate(html: str, slide_id: str) -> list[str]:
-    import re as _re
+def validate(html: str) -> list[str]:
     lower = html.lower()
     issues = []
     if "<!doctype html>" not in lower:
@@ -139,13 +316,10 @@ def validate(html: str, slide_id: str) -> list[str]:
         issues.append("contains <script>")
     if "<img" in lower:
         issues.append("contains <img>")
-    # Only flag URLs in functional positions (src=, href=, url(), @import).
-    # Text-node URLs (bibliography citations, footnotes) and the SVG namespace
-    # (w3.org/2000/svg) are harmless and must not be flagged.
-    functional_url = _re.search(
-        r'(?:src|href)\s*=\s*["\']https?://'   # src="..." or href="..."
-        r'|url\s*\(\s*["\']?https?://'          # url("...") in CSS
-        r'|@import\s+["\']https?://',            # @import "..."
+    functional_url = re.search(
+        r'(?:src|href)\s*=\s*["\']https?://'
+        r'|url\s*\(\s*["\']?https?://'
+        r'|@import\s+["\']https?://',
         lower
     )
     if functional_url:
@@ -153,7 +327,7 @@ def validate(html: str, slide_id: str) -> list[str]:
     return issues
 
 
-def convert_slide(client: AzureOpenAI, slide: dict, dry_run: bool = False) -> bool:
+def convert_slide(client: AzureOpenAI, slide: dict, passes: int = 1, dry_run: bool = False) -> bool:
     slide_id = slide["slide_id"]
     img_path = SLIDES_DIR / f"{slide_id}.png"
 
@@ -168,9 +342,12 @@ def convert_slide(client: AzureOpenAI, slide: dict, dry_run: bool = False) -> bo
     with Image.open(img_path) as img:
         src_w, src_h = img.size
 
-    print(f"  Converting {slide_id} ({src_w}x{src_h} -> {VIEWPORT_W}x{VIEWPORT_H}) ...", end=" ", flush=True)
+    pass_label = f" [2-pass]" if passes >= 2 else ""
+    print(f"  Converting {slide_id} ({src_w}x{src_h} -> {VIEWPORT_W}x{VIEWPORT_H}){pass_label} ...", end=" ", flush=True)
 
     b64 = encode_image(img_path)
+
+    # ── Pass 1: initial generation ────────────────────────────────────────────
     response = client.chat.completions.create(
         model="gpt-5.4",
         messages=[
@@ -178,21 +355,44 @@ def convert_slide(client: AzureOpenAI, slide: dict, dry_run: bool = False) -> bo
             {
                 "role": "user",
                 "content": [
-                    {
-                        "type": "image_url",
-                        "image_url": {"url": f"data:image/png;base64,{b64}"},
-                    },
-                    {"type": "text", "text": build_user_prompt(slide, src_w, src_h)},
+                    {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{b64}"}},
+                    {"type": "text",      "text": build_user_prompt(slide, src_w, src_h)},
                 ],
             },
         ],
         max_completion_tokens=8192,
     )
 
-    raw = response.choices[0].message.content or ""
+    raw  = response.choices[0].message.content or ""
     html = extract_html(raw)
-    issues = validate(html, slide_id)
 
+    # ── Pass 2: self-review and correction ────────────────────────────────────
+    if passes >= 2 and "</html>" in html.lower():
+        print("p1-OK ", end="", flush=True)
+        review_user = REVIEW_USER_TEMPLATE.format(w=VIEWPORT_W, h=VIEWPORT_H, html=html)
+        review_resp = client.chat.completions.create(
+            model="gpt-5.4",
+            messages=[
+                {"role": "system", "content": REVIEW_SYSTEM},
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{b64}"}},
+                        {"type": "text",      "text": review_user},
+                    ],
+                },
+            ],
+            max_completion_tokens=16384,
+        )
+        raw2  = review_resp.choices[0].message.content or ""
+        html2 = extract_html(raw2)
+        if "</html>" in html2.lower():
+            html = html2
+            print("p2-OK ", end="", flush=True)
+        else:
+            print("p2-trunc(kept p1) ", end="", flush=True)
+
+    issues = validate(html)
     out_path = HTML_DIR / f"{slide_id}.html"
     out_path.write_text(html, encoding="utf-8")
 
@@ -211,18 +411,22 @@ def load_slides() -> list[dict]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Convert slide PNGs to HTML via gpt-5.4.")
-    parser.add_argument("--limit", type=int, default=None,
+    parser.add_argument("--limit",    type=int,   default=None,
                         help="Max number of slides to convert in this run.")
-    parser.add_argument("--slide", default=None,
+    parser.add_argument("--slide",    default=None,
                         help="Convert a single slide by slide_id.")
     parser.add_argument("--overwrite", action="store_true",
                         help="Re-convert slides that already have HTML.")
-    parser.add_argument("--dry-run", action="store_true",
+    parser.add_argument("--dry-run",  action="store_true",
                         help="Print what would be converted without calling the API.")
     parser.add_argument("--truncated", action="store_true",
                         help="Re-convert only slides whose HTML is truncated (missing </html>).")
-    parser.add_argument("--delay", type=float, default=1.0,
-                        help="Seconds to wait between API calls (default 1.0).")
+    parser.add_argument("--source",   default=None,
+                        help="Comma-separated source companies, e.g. 'Roland Berger,Deloitte'.")
+    parser.add_argument("--delay",    type=float, default=1.0,
+                        help="Seconds to wait between slides (default 1.0).")
+    parser.add_argument("--passes",   type=int,   default=1, choices=[1, 2],
+                        help="1 = single-pass (default). 2 = generate + self-review (higher quality, ~2x cost).")
     args = parser.parse_args()
 
     client = AzureOpenAI(
@@ -233,11 +437,9 @@ def main() -> None:
 
     slides = load_slides()
 
-    # Exclude low-quality or disallowed sources
     EXCLUDED_SOURCES = {"IMF"}
     slides = [s for s in slides if s.get("label", {}).get("source_company") not in EXCLUDED_SOURCES]
 
-    # Only use landscape slides (width > height) — portrait slides are document scans
     def is_landscape(slide: dict) -> bool:
         p = SLIDES_DIR / f"{slide['slide_id']}.png"
         if not p.exists():
@@ -248,10 +450,15 @@ def main() -> None:
 
     slides = [s for s in slides if is_landscape(s)]
 
+    if args.source:
+        allowed = {s.strip() for s in args.source.split(",")}
+        slides = [s for s in slides if s.get("label", {}).get("source_company") in allowed]
+        print(f"Source filter: {allowed} -> {len(slides)} slides")
+
     if args.slide:
         slides = [s for s in slides if s["slide_id"] == args.slide]
         if not slides:
-            print(f"Slide '{args.slide}' not found in dataset.json (or excluded due to icon overlays)")
+            print(f"Slide '{args.slide}' not found in dataset.json")
             sys.exit(1)
     elif args.truncated:
         slides = [
@@ -267,14 +474,15 @@ def main() -> None:
     if args.limit:
         slides = slides[: args.limit]
 
-    print(f"Slides to convert: {len(slides)}")
+    mode = f"{args.passes}-pass"
+    print(f"Slides to convert: {len(slides)}  mode: {mode}")
     if not slides:
         print("Nothing to do.")
         return
 
     converted = 0
     for i, slide in enumerate(slides):
-        ok = convert_slide(client, slide, dry_run=args.dry_run)
+        ok = convert_slide(client, slide, passes=args.passes, dry_run=args.dry_run)
         if ok:
             converted += 1
         if not args.dry_run and i < len(slides) - 1:
