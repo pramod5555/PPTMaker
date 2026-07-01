@@ -48,9 +48,14 @@ SLIDE_SPECS = {
     # ── Cover ────────────────────────────────────────────────────────────────────
     0: {
         "ref_keys": [
+            "bain_global_pe_report_2023_slide_001",
+            "bain_china_luxury_2011_slide_001",
             "roland_berger_trend_compendium_2050_technology_and_innovation_slide_001",
-            "roland_berger_trend_compendium_2050_technology_and_innovation_slide_005",
-            "roland_berger_trend_compendium_2030___trend_5_dynamic_technology_and_innovation_slide_001",
+        ],
+        # PNG-only refs (portrait L.E.K. slides — no HTML but strong visual style)
+        "png_only": [
+            "lek_womens-health-200b-opportunity-pharma-has-left-table_slide_001",
+            "lek_overcoming-biopharma-growth-gap_slide_001",
         ],
         "brief": """Premium consulting cover slide. 1280x720px.
 Topic: 'Digital Megatrends 2025&#x2013;2030: Five Forces Reshaping Industry'
@@ -108,10 +113,14 @@ NO overlapping elements. Verify all top positions are non-overlapping before out
     # ── Executive Summary ────────────────────────────────────────────────────────
     2: {
         "ref_keys": [
+            "bain_global_pe_report_2023_slide_003",
+            "bain_global_pe_report_2023_slide_005",
+            "bain_china_luxury_2011_slide_003",
             "roland_berger_trend_compendium_2050_technology_and_innovation_slide_013",
-            "roland_berger_european_pe_outlook_1_slide_003",
-            "deloitte_2026-summer-travel-trends-survey_html_slide_003",
-            "accenture_tech-vision-2025_slide_003",
+        ],
+        "png_only": [
+            "lek_overcoming-biopharma-growth-gap_slide_003",
+            "lek_us-warehouse-automations-next-act-broadening-automation-opportunity_slide_002",
         ],
         "brief": """Premium consulting executive summary slide. 1280x720px. White background #ffffff.
 
@@ -187,27 +196,49 @@ def collect_refs(slide_ids: list[str]) -> list[dict]:
         if not p.exists():
             continue
         refs.append({
-            "sid":  sid,
-            "html": p.read_text(encoding="utf-8", errors="ignore"),
-            "b64":  encode_png(sid),
+            "sid":   sid,
+            "html":  p.read_text(encoding="utf-8", errors="ignore"),
+            "b64":   encode_png(sid),
+            "type":  "full",
         })
     return refs
 
 
-def generate_slide(brief: str, refs: list[dict], label: str) -> str:
-    print(f"  Generating {label} ({len(refs)} refs) ...", end=" ", flush=True)
+def collect_png_refs(slide_ids: list[str]) -> list[dict]:
+    """PNG-only refs for portrait slides — no HTML, visual inspiration only."""
+    refs = []
+    for sid in slide_ids:
+        b64 = encode_png(sid)
+        if b64:
+            refs.append({"sid": sid, "b64": b64, "type": "png_only"})
+    return refs
+
+
+def generate_slide(brief: str, refs: list[dict], png_refs: list[dict], label: str) -> str:
+    total = len(refs) + len(png_refs)
+    print(f"  Generating {label} ({len(refs)} full + {len(png_refs)} PNG refs) ...", end=" ", flush=True)
 
     content: list[dict] = []
+
+    # Full refs first (HTML + PNG)
     for i, ref in enumerate(refs):
         if ref.get("b64"):
             content.append({"type": "image_url", "image_url": {"url": f"data:image/png;base64,{ref['b64']}"}})
-        lbl = f"STYLE REFERENCE {i+1}/{len(refs)}"
-        content.append({"type": "text", "text": f"{lbl} (id: {ref['sid']}):\nStudy its visual language — color palette, typography weight contrast, spacing, header treatment, information density.\nHTML:\n{ref['html'][:5000]}\n"})
+        lbl = f"STYLE REFERENCE {i+1}/{total} (full — use color tokens, spacing, typography from this)"
+        content.append({"type": "text", "text": f"{lbl} (id: {ref['sid']}):\nHTML source:\n{ref['html'][:5000]}\n"})
+
+    # PNG-only refs (L.E.K. style — visual inspiration, no HTML)
+    for j, ref in enumerate(png_refs):
+        content.append({"type": "image_url", "image_url": {"url": f"data:image/png;base64,{ref['b64']}"}})
+        lbl = f"VISUAL INSPIRATION {len(refs)+j+1}/{total} (L.E.K. Consulting — study the typography, white space, color restraint, and information hierarchy)"
+        content.append({"type": "text", "text": f"{lbl} (id: {ref['sid']}): No HTML available — use this image purely for visual style inspiration.\n"})
 
     content.append({"type": "text", "text": (
         f"Generate a brand-new {W}x{H}px HTML/CSS presentation slide.\n"
-        f"Inherit the visual sophistication from the references — exact color tokens, spacing rhythm, font hierarchy.\n"
-        f"Do NOT copy content or layout — generate fresh content per the brief.\n\n"
+        f"PRIMARY STYLE DIRECTION: Bain & Company's clean, data-forward design — bold typography, "
+        f"restrained color palette, strong data callouts, generous white space.\n"
+        f"SECONDARY INSPIRATION: L.E.K. Consulting's precise typographic hierarchy and clean layouts (see visual references above).\n"
+        f"Do NOT copy content or layout structure — generate fresh content per the brief.\n\n"
         f"SLIDE BRIEF:\n{brief}"
     )})
 
@@ -272,8 +303,9 @@ def main():
             print(f"  No spec defined for slide index {idx}, skipping")
             continue
         spec = SLIDE_SPECS[idx]
-        refs = collect_refs(spec["ref_keys"])
-        html = generate_slide(spec["brief"], refs, f"slide {idx + 1}")
+        refs     = collect_refs(spec["ref_keys"])
+        png_refs = collect_png_refs(spec.get("png_only", []))
+        html = generate_slide(spec["brief"], refs, png_refs, f"slide {idx + 1}")
         patch_deck(deck_path, idx, html)
 
     print("Done.")

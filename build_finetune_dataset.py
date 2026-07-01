@@ -29,6 +29,7 @@ ROOT     = Path(__file__).parent.parent
 DATASET  = Path(__file__).parent / "dataset.json"
 HTML_DIR = ROOT / "html_slides"
 REPORT   = ROOT / "audit_layout_report.json"
+QUALITY  = Path(__file__).parent / "quality_exclusions.json"  # from validate_dataset.py
 OUT_DIR  = Path(__file__).parent / "finetune"
 
 VIEWPORT_W, VIEWPORT_H = 1280, 720
@@ -115,10 +116,20 @@ def main():
     with open(DATASET, encoding="utf-8") as f:
         all_slides = json.load(f)["slides"]
 
-    with open(REPORT, encoding="utf-8") as f:
-        report = json.load(f)
+    # Legacy audit exclusions (collapsed/severe overflow from old audit tool)
+    excluded = set()
+    if REPORT.exists():
+        with open(REPORT, encoding="utf-8") as f:
+            report = json.load(f)
+        excluded = get_excluded(report)
 
-    excluded = get_excluded(report)
+    # Layout-validation exclusions from validate_dataset.py (takes priority)
+    if QUALITY.exists():
+        with open(QUALITY, encoding="utf-8") as f:
+            q = json.load(f)
+        quality_excluded = set(q.get("excluded_slide_ids", []))
+        excluded = excluded | quality_excluded
+        print(f"Quality gate: {len(quality_excluded)} slides excluded by validate_dataset.py")
     meta = {s["slide_id"]: s for s in all_slides}
 
     pairs = []
