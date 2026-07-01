@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>BCG – slide_011 – Q5 Tech stack + Exhibit 7</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .slide {
+    width: 1280px; height: 720px;
+    position: relative; overflow: hidden;
+    background: #ffffff;
+    font-family: 'Calibri', 'Arial', 'Helvetica', sans-serif;
+    color: #1a1a1a;
+  }
+  .divider { position: absolute; left: 640px; top: 24px; bottom: 36px; width: 1px; background: #ddd; }
+
+  /* Q5 — left col */
+  .q-left { position: absolute; left: 56px; top: 28px; width: 540px; }
+  .q-num-big { font-size: 36px; font-weight: 900; color: #005b9a; }
+  .q-title   { font-size: 17px; font-weight: 700; color: #1a1a1a; margin: 6px 0 12px; line-height: 1.25; }
+  .q-body    { font-size: 11px; line-height: 1.7; color: #333; }
+  .q-body p + p { margin-top: 10px; }
+  .q-body strong { color: #1a1a1a; }
+
+  /* Exhibit 7 — right col: stack layers */
+  .ex-right { position: absolute; left: 696px; top: 28px; width: 520px; }
+  .ex-label { font-size: 11px; font-weight: 700; color: #555; }
+  .ex-title  { font-size: 13px; font-weight: 700; color: #1a1a1a; margin: 4px 0 14px; }
+
+  /* Stack rows */
+  .stack { display: flex; flex-direction: column; gap: 8px; }
+  .layer {
+    display: grid; grid-template-columns: 36px 1fr;
+    gap: 10px; align-items: start;
+    padding: 10px 12px; border-left: 4px solid #005b9a; background: #f4f8fc;
+  }
+  .layer-icon { font-size: 20px; margin-top: 2px; }
+  .layer-name { font-size: 12px; font-weight: 700; color: #005b9a; margin-bottom: 4px; }
+  .layer-sub  { font-size: 10px; color: #555; line-height: 1.45; }
+  .layer-note { font-size: 9.5px; color: #777; margin-top: 3px; font-style: italic; }
+  .layer.green { border-color: #00aa55; background: #f0faf4; }
+  .layer.green .layer-name { color: #00aa55; }
+  .layer.amber { border-color: #cc8800; background: #fdf8f0; }
+  .layer.amber .layer-name { color: #cc8800; }
+
+  .src { position: absolute; bottom: 38px; left: 56px; right: 56px; font-size: 8.5px; color: #bbb; }
+  .footer {
+    position: absolute; bottom: 16px; left: 56px; right: 56px;
+    display: flex; justify-content: space-between; font-size: 9px; color: #aaa;
+    border-top: 1px solid #eee; padding-top: 5px;
+  }
+  .accent { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: #00cc66; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="divider"></div>
+
+  <div class="q-left">
+    <div class="q-num-big">Q5:</div>
+    <div class="q-title">How should we think about our data assets and tech partnerships?</div>
+    <div class="q-body">
+      <p>The orchestrator role will be key moving forward. For example, in marketing, these capabilities are crucial: orchestration (in charge of campaigns), the science role (analytical talent in charge of measurement and optimization, now self-labeling as "engineering" capabilities), and art concept creation). Companies have made substantial investments in analytical talent, given the increasing performance bar of campaigns. Centralizing all these orchestrations more leverage, condensing expertise. The art layer most functions for smaller brands, which often do not have a full bench of specialists.</p>
+      <p><strong>Companies should monitor cost inflation.</strong> As AI scales, token spending and model usage can become a significant recurring operating cost. The risk profile, however, is not uniform across AI transformations. At the deploy level, broad workforce access can create material costs at a time when productivity benefits remain diffuse, so leaders need to carefully track adoption and cost per utilization type and user group.</p>
+      <p><strong>Proprietary knowledge and enterprise context provide deeper advantage.</strong> Including this layer requires business owners and tech teams to translate know-how and industry rhythm into structured knowledge assets and guardrails (See Exhibit 7.).</p>
+    </div>
+  </div>
+
+  <div class="ex-right">
+    <div class="ex-label">EXHIBIT 7</div>
+    <div class="ex-title">What Leaders Do on the Stack</div>
+    <div class="stack">
+      <div class="layer">
+        <div class="layer-icon">&#127970;</div>
+        <div>
+          <div class="layer-name">Enterprise Orchestration</div>
+          <div class="layer-sub">Orchestrate end-to-end value delivery with <strong>"single accountability"</strong> mindset</div>
+        </div>
+      </div>
+      <div class="layer green">
+        <div class="layer-icon">&#10024;</div>
+        <div>
+          <div class="layer-name">Value creation &amp; experience</div>
+          <div class="layer-sub">Fit-for-purpose: as LLMs commoditize, you can be <strong>flexible</strong> to support reshaped workflows</div>
+        </div>
+      </div>
+      <div class="layer green">
+        <div class="layer-icon">&#129302;</div>
+        <div>
+          <div class="layer-name">AI &amp; Agentic Orchestration</div>
+          <div class="layer-sub">Stick to an ecosystem once you move to autopilot — 75% of the leaders in our survey <strong>codify tech</strong> in their existing stack</div>
+        </div>
+      </div>
+      <div class="layer green">
+        <div class="layer-icon">&#128202;</div>
+        <div>
+          <div class="layer-name">Data &amp; Knowledge</div>
+          <div class="layer-sub"><strong>Competitive advantage edge:</strong> Leaders don't start from better data, but 50% of the leaders in our survey <strong>codify tech knowledge</strong></div>
+        </div>
+      </div>
+      <div class="layer amber">
+        <div class="layer-icon">&#128187;</div>
+        <div>
+          <div class="layer-name">Enterprise Applications (Core logic)</div>
+          <div class="layer-sub">SAP, Oracle, Salesforce, Legacy</div>
+          <div class="layer-note">Decouple: Focus on architecture and cost management</div>
+        </div>
+      </div>
+      <div class="layer">
+        <div class="layer-icon">&#9729;</div>
+        <div>
+          <div class="layer-name">Infrastructure &amp; Cloud</div>
+          <div class="layer-sub">AWS, Azure, GCP, NVIDIA</div>
+          <div class="layer-note">No critical differentiation driver: multi-cloud possible</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="src">Sources: CGF + BCG, "AI for Growth, Productivity, and Advantage" Survey, April 2026 (n = 59); BCG case experiences; BCG analysis.</div>
+  <div class="footer">
+    <span>Boston Consulting Group | The Consumer Goods Forum</span>
+    <span>AI in CPG and Retail  11</span>
+  </div>
+  <div class="accent"></div>
+</div>
+</body>
+</html>

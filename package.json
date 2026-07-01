@@ -1,0 +1,37 @@
+{
+  "scripts": {
+    "deck:pptxgen": "node prototypes/generate_pptxgenjs_deck.js",
+    "deck:topic-sample": "node prototypes/generate_topic_sample_deck.js",
+    "deck:html-corpus-sample": "node prototypes/generate_html_corpus_sample_deck.js",
+    "deck:from-plan": "python prototypes/materialize_plan_spec.py",
+    "plan:hybrid-sample": "python prototypes/plan_prompt_deck.py \"AI transformation in Indian banking\" --slides 12 --style-profile hybrid_consulting --density-mode evidence_dense",
+    "research:hybrid-sample": "python prototypes/research_synthesis.py \"AI transformation in Indian banking\" --plan prototypes/output/deck_plan_ai_transformation_in_indian_banking.json --out prototypes/output/research_data_pack_ai_transformation_in_indian_banking.json",
+    "deck:hybrid-sample": "python prototypes/materialize_plan_spec.py prototypes/output/deck_plan_ai_transformation_in_indian_banking.json --data-pack prototypes/output/research_data_pack_ai_transformation_in_indian_banking.json --model gemma3:27b-cloud --out hybrid_dense_ai_banking_v4.pptx --render",
+    "deck:qc": "python prototypes/deck_quality_gate.py --pptx prototypes/output/hybrid_dense_ai_banking_v4.pptx --spec prototypes/output/materialized_deck_plan_ai_transformation_in_indian_banking.json",
+    "deck:hybrid-sample:qced": "npm run plan:hybrid-sample && npm run research:hybrid-sample && npm run deck:hybrid-sample && npm run deck:qc",
+    "preview:topic-sample": "python prototypes/render_topic_sample_preview.py",
+    "preview:html-corpus-sample": "python prototypes/render_html_corpus_sample_preview.py",
+    "deck:rb-infographic": "node prototypes/generate_rb_infographic_experiment.js && python prototypes/fix_pptx_bubble_charts.py",
+    "preview:rb-infographic": "python prototypes/render_rb_infographic_preview.py",
+    "features:extract": "python prototypes/extract_fidelity_features.py --priority all",
+    "dataset:normalize": "python normalize_dataset.py",
+    "gold:build": "python prototypes/build_gold_style_bank.py --limit 240",
+    "plan:deck": "python prototypes/plan_prompt_deck.py",
+    "index:build": "python prototypes/retrieval.py --build",
+    "index:eval": "python prototypes/retrieval.py --eval --k 5",
+    "pipeline:refresh": "python prototypes/extract_fidelity_features.py --priority all && python prototypes/retrieval.py --build",
+    "style:refresh": "python normalize_dataset.py && python prototypes/retrieval.py --build && python prototypes/build_gold_style_bank.py --limit 240",
+    "style:report": "python prototypes/style_readiness_report.py",
+    "classify": "python prototypes/recipe_classifier.py",
+    "html:status": "python prototypes/slides_to_html.py --status",
+    "html:pending": "python prototypes/slides_to_html.py --list-pending --limit 20",
+    "html:validate": "python prototypes/slides_to_html.py --validate",
+    "html:breakdown": "python prototypes/slides_to_html.py --breakdown",
+    "html:render": "node prototypes/render_html_slides.js --skip-existing",
+    "html:render:sample": "node prototypes/render_html_slides.js --limit 5"
+  },
+  "dependencies": {
+    "pptxgenjs": "^4.0.1",
+    "puppeteer": "^22.0.0"
+  }
+}
