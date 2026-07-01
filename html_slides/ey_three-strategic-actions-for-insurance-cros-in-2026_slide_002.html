@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Executive summary</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d9d8de;
+    margin:0 auto;
+  }
+
+  .bg-svg{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:720px;
+    z-index:1;
+    opacity:0.98;
+  }
+
+  .title{
+    position:absolute;
+    left:48px;
+    top:48px;
+    font-size:63px;
+    line-height:1;
+    font-weight:600;
+    color:#121320;
+    z-index:20;
+    letter-spacing:-1.5px;
+    white-space:nowrap;
+  }
+
+  .top-rule{
+    position:absolute;
+    left:48px;
+    top:135px;
+    width:1208px;
+    height:3px;
+    z-index:25;
+    background:linear-gradient(90deg,#e5d200 0%, #e5d200 48%, #f49b00 53%, #dc38ff 69%, #5f79ff 84%, #29e1f8 100%);
+  }
+
+  .left-label{
+    position:absolute;
+    left:-10px;
+    top:339px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    font-size:12px;
+    line-height:12px;
+    font-weight:500;
+    color:#23242a;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    z-index:30;
+    white-space:nowrap;
+  }
+
+  .left-line{
+    position:absolute;
+    left:14px;
+    top:358px;
+    width:1px;
+    height:34px;
+    background:#3a3b40;
+    z-index:30;
+  }
+
+  .page{
+    position:absolute;
+    left:19px;
+    bottom:14px;
+    font-size:11px;
+    line-height:1;
+    color:#2f3136;
+    z-index:30;
+  }
+
+  .jump{
+    position:absolute;
+    right:13px;
+    top:28px;
+    width:68px;
+    height:62px;
+    z-index:40;
+  }
+  .jump .circle{
+    position:absolute;
+    right:0;
+    top:0;
+    width:52px;
+    height:52px;
+    border:1px solid #6e6f74;
+    border-radius:50%;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .jump .txt{
+    position:absolute;
+    right:8px;
+    top:15px;
+    width:36px;
+    font-size:9px;
+    line-height:10px;
+    text-align:center;
+    color:#24252b;
+  }
+  .jump .arrow{
+    position:absolute;
+    right:32px;
+    top:1px;
+    font-size:12px;
+    line-height:12px;
+    color:#24252b;
+  }
+  .jump .dot{
+    position:absolute;
+    right:18px;
+    top:3px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#e4d000;
+  }
+
+  .col{
+    position:absolute;
+    top:190px;
+    z-index:20;
+    color:#4a4b54;
+    font-size:16px;
+    line-height:1.43;
+    font-weight:400;
+  }
+  .col p{
+    margin:0 0 10px 0;
+  }
+  .col ul{
+    margin:0 0 10px 0;
+    padding-left:0;
+    list-style:none;
+  }
+  .col li{
+    position:relative;
+    margin:0 0 9px 0;
+    padding-left:13px;
+  }
+  .col li::before{
+    content:"■";
+    position:absolute;
+    left:0;
+    top:1px;
+    font-size:8px;
+    line-height:16px;
+    color:#2e3037;
+  }
+  .col strong{
+    font-weight:700;
+    color:#2e3037;
+  }
+
+  .c1{ left:48px; width:262px; }
+  .c2{ left:345px; width:268px; }
+  .c3{ left:650px; width:258px; }
+  .c4{ left:957px; width:250px; }
+
+</style>
+</head>
+<body>
+<div class="slide">
+  <svg class="bg-svg" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="soft1" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/>
+        <stop offset="35%" stop-color="#f4d9ff" stop-opacity="0.70"/>
+        <stop offset="68%" stop-color="#c8dbff" stop-opacity="0.45"/>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
+      </linearGradient>
+      <linearGradient id="soft2" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+        <stop offset="45%" stop-color="#f4d5ff" stop-opacity="0.62"/>
+        <stop offset="80%" stop-color="#dce8ff" stop-opacity="0.30"/>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
+      </linearGradient>
+    </defs>
+
+    <rect x="0" y="0" width="1280" height="720" fill="#d9d8de"/>
+
+    <!-- left decorative burst -->
+    <g opacity="0.55" stroke="#ffffff" stroke-linecap="round">
+      <path d="M48 140 Q90 55 135 12" fill="none" stroke-width="1.2"/>
+      <path d="M58 150 Q104 54 152 10" fill="none" stroke-width="1.1"/>
+      <path d="M70 158 Q118 52 168 8" fill="none" stroke-width="1.1"/>
+      <path d="M84 166 Q132 50 184 6" fill="none" stroke-width="1.0"/>
+      <path d="M98 174 Q147 51 200 7" fill="none" stroke-width="1.0"/>
+      <path d="M112 182 Q162 55 218 10" fill="none" stroke-width="1.0"/>
+      <path d="M126 188 Q176 60 234 13" fill="none" stroke-width="0.95"/>
+      <path d="M141 194 Q191 65 251 18" fill="none" stroke-width="0.95"/>
+      <path d="M156 200 Q207 72 269 24" fill="none" stroke-width="0.9"/>
+      <path d="M172 205 Q225 80 287 30" fill="none" stroke-width="0.9"/>
+      <path d="M188 209 Q242 88 305 36" fill="none" stroke-width="0.9"/>
+      <path d="M205 213 Q260 96 323 42" fill="none" stroke-width="0.85"/>
+      <path d="M222 216 Q279 104 342 48" fill="none" stroke-width="0.85"/>
+      <path d="M240 219 Q299 112 361 54" fill="none" stroke-width="0.82"/>
+      <path d="M258 221 Q319 119 380 60" fill="none" stroke-width="0.82"/>
+      <path d="M276 222 Q339 124 399 66" fill="none" stroke-width="0.8"/>
+      <path d="M294 222 Q359 128 418 71" fill="none" stroke-width="0.8"/>
+      <path d="M312 221 Q378 131 437 77" fill="none" stroke-width="0.8"/>
+      <path d="M330 219 Q397 133 456 82" fill="none" stroke-width="0.8"/>
+      <path d="M348 216 Q416 133 475 87" fill="none" stroke-width="0.8"/>
+      <path d="M366 212 Q435 131 494 91" fill="none" stroke-width="0.8"/>
+      <path d="M384 207 Q454 127 513 95" fill="none" stroke-width="0.78"/>
+      <path d="M402 201 Q473 121 531 98" fill="none" stroke-width="0.76"/>
+    </g>
+
+    <g opacity="0.56" stroke="#ffffff" stroke-linecap="round">
+      <path d="M255 0 L255 205" fill="none" stroke-width="1"/>
+      <path d="M264 0 L264 220" fill="none" stroke-width="0.95"/>
+      <path d="M273 0 L273 210" fill="none" stroke-width="0.92"/>
+      <path d="M282 0 L282 200" fill="none" stroke-width="0.9"/>
+      <path d="M291 0 L291 175" fill="none" stroke-width="0.9"/>
+      <path d="M300 0 L300 228" fill="none" stroke-width="0.9"/>
+      <path d="M309 0 L309 205" fill="none" stroke-width="0.86"/>
+      <path d="M318 0 L318 218" fill="none" stroke-width="0.86"/>
+      <path d="M327 0 L327 200" fill="none" stroke-width="0.84"/>
+      <path d="M336 0 L336 170" fill="none" stroke-width="0.84"/>
+      <path d="M345 0 L345 226" fill="none" stroke-width="0.82"/>
+      <path d="M355 0 L355 214" fill="none" stroke-width="0.82"/>
+      <path d="M366 0 L366 197" fill="none" stroke-width="0.82"/>
+      <path d="M377 0 L377 228" fill="none" stroke-width="0.8"/>
+      <path d="M388 0 L388 214" fill="none" stroke-width="0.8"/>
+      <path d="M400 0 L400 228" fill="none" stroke-width="0.8"/>
+      <path d="M414 0 L414 226" fill="none" stroke-width="0.78"/>
+      <path d="M428 0 L428 220" fill="none" stroke-width="0.78"/>
+      <path d="M442 0 L442 208" fill="none" stroke-width="0.78"/>
+      <path d="M456 0 L456 196" fill="none" stroke-width="0.76"/>
+    </g>
+
+    <!-- bottom center / lower middle bloom -->
+    <g opacity="0.68" stroke="url(#soft2)" fill="none" stroke-linecap="round">
+      <path d="M565 720 Q565 610 520 475" stroke-width="1.7"/>
+      <path d="M565 720 Q555 600 540 466" stroke-width="1.55"/>
+      <path d="M565 720 Q575 595 563 455" stroke-width="1.6"/>
+      <path d="M565 720 Q590 600 590 468" stroke-width="1.45"/>
+      <path d="M565 720 Q608 610 620 490" stroke-width="1.3"/>
+      <path d="M565 720 Q630 620 646 515" stroke-width="1.2"/>
+      <path d="M640 720 Q632 602 590 470" stroke-width="1.55"/>
+      <path d="M640 720 Q648 596 618 460" stroke-width="1.5"/>
+      <path d="M640 720 Q662 598 652 455" stroke-width="1.5"/>
+      <path d="M640 720 Q684 607 688 472" stroke-width="1.3"/>
+      <path d="M640 720 Q708 618 730 495" stroke-width="1.18"/>
+      <path d="M735 720 Q730 604 702 488" stroke-width="1.45"/>
+      <path d="M735 720 Q748 602 744 482" stroke-width="1.4"/>
+      <path d="M735 720 Q768 606 786 498" stroke-width="1.28"/>
+      <path d="M772 720 Q770 610 750 500" stroke-width="1.28"/>
+      <path d="M772 720 Q792 608 810 500" stroke-width="1.22"/>
+    </g>
+
+    <!-- right major bloom -->
+    <g opacity="0.78" stroke="url(#soft1)" fill="none" stroke-linecap="round">
+      <path d="M980 610 Q930 468 960 250" stroke-width="1.35"/>
+      <path d="M992 615 Q948 468 976 232" stroke-width="1.4"/>
+      <path d="M1005 618 Q964 462 992 216" stroke-width="1.4"/>
+      <path d="M1018 621 Q980 456 1006 200" stroke-width="1.42"/>
+      <path d="M1031 624 Q995 448 1020 184" stroke-width="1.42"/>
+      <path d="M1044 627 Q1010 442 1033 170" stroke-width="1.42"/>
+      <path d="M1057 630 Q1024 436 1047 160" stroke-width="1.4"/>
+      <path d="M1070 632 Q1038 430 1060 150" stroke-width="1.4"/>
+      <path d="M1083 634 Q1052 425 1073 142" stroke-width="1.4"/>
+      <path d="M1096 636 Q1066 421 1088 136" stroke-width="1.4"/>
+      <path d="M1109 637 Q1080 418 1101 132" stroke-width="1.38"/>
+      <path d="M1122 638 Q1093 416 1115 132" stroke-width="1.38"/>
+      <path d="M1135 639 Q1106 414 1128 135" stroke-width="1.38"/>
+      <path d="M1148 639 Q1119 414 1142 140" stroke-width="1.38"/>
+      <path d="M1161 638 Q1132 416 1156 148" stroke-width="1.38"/>
+      <path d="M1174 636 Q1145 420 1169 159" stroke-width="1.38"/>
+      <path d="M1187 634 Q1158 426 1182 172" stroke-width="1.38"/>
+      <path d="M1200 631 Q1171 434 1195 188" stroke-width="1.38"/>
+      <path d="M1212 628 Q1184 444 1207 206" stroke-width="1.38"/>
+      <path d="M1224 624 Q1196 456 1218 226" stroke-width="1.38"/>
+      <path d="M1235 620 Q1208 470 1229 247" stroke-width="1.36"/>
+      <path d="M1245 615 Q1220 488 1239 270" stroke-width="1.34"/>
+      <path d="M1254 608 Q1232 508 1247 295" stroke-width="1.28"/>
+      <path d="M1262 600 Q1244 530 1254 320" stroke-width="1.2"/>
+      <path d="M1268 590 Q1252 548 1260 343" stroke-width="1.12"/>
+    </g>
+
+    <g opacity="0.62" stroke="#ffffff" fill="none" stroke-linecap="round">
+      <path d="M976 45 L976 258" stroke-width="1"/>
+      <path d="M984 52 L984 246" stroke-width="0.95"/>
+      <path d="M992 46 L992 266" stroke-width="0.95"/>
+      <path d="M1001 43 L1001 252" stroke-width="0.95"/>
+      <path d="M1010 57 L1010 238" stroke-width="0.95"/>
+      <path d="M1020 49 L1020 256" stroke-width="0.95"/>
+      <path d="M1030 45 L1030 250" stroke-width="0.93"/>
+      <path d="M1040 56 L1040 244" stroke-width="0.93"/>
+      <path d="M1050 50 L1050 258" stroke-width="0.93"/>
+      <path d="M1060 62 L1060 264" stroke-width="0.93"/>
+      <path d="M1070 49 L1070 254" stroke-width="0.93"/>
+      <path d="M1080 54 L1080 245" stroke-width="0.93"/>
+      <path d="M1090 46 L1090 239" stroke-width="0.93"/>
+      <path d="M1100 52 L1100 255" stroke-width="0.93"/>
+      <path d="M1110 48 L1110 261" stroke-width="0.93"/>
+      <path d="M1120 57 L1120 251" stroke-width="0.93"/>
+      <path d="M1130 44 L1130 241" stroke-width="0.93"/>
+      <path d="M1140 49 L1140 258" stroke-width="0.93"/>
+      <path d="M1150 53 L1150 268" stroke-width="0.93"/>
+      <path d="M1160 46 L1160 250" stroke-width="0.93"/>
+      <path d="M1170 55 L1170 258" stroke-width="0.93"/>
+      <path d="M1180 61 L1180 270" stroke-width="0.93"/>
+      <path d="M1190 50 L1190 258" stroke-width="0.93"/>
+      <path d="M1200 58 L1200 248" stroke-width="0.93"/>
+      <path d="M1210 52 L1210 262" stroke-width="0.93"/>
+      <path d="M1220 63 L1220 274" stroke-width="0.93"/>
+      <path d="M1230 55 L1230 263" stroke-width="0.93"/>
+      <path d="M1240 60 L1240 275" stroke-width="0.93"/>
+      <path d="M1250 54 L1250 262" stroke-width="0.93"/>
+      <path d="M1260 62 L1260 282" stroke-width="0.93"/>
+    </g>
+
+    <g opacity="0.58" stroke="url(#soft2)" fill="none" stroke-linecap="round">
+      <path d="M748 545 Q930 592 1092 560 Q1186 544 1268 472" stroke-width="1.18"/>
+      <path d="M732 560 Q915 608 1082 580 Q1182 564 1270 492" stroke-width="1.18"/>
+      <path d="M718 576 Q902 623 1072 599 Q1181 584 1272 514" stroke-width="1.18"/>
+      <path d="M706 591 Q891 637 1062 618 Q1181 603 1272 536" stroke-width="1.18"/>
+      <path d="M695 605 Q883 650 1053 636 Q1180 621 1271 559" stroke-width="1.18"/>
+      <path d="M685 618 Q876 661 1046 652 Q1180 637 1269 582" stroke-width="1.18"/>
+      <path d="M676 631 Q870 672 1040 668 Q1180 653 1266 605" stroke-width="1.18"/>
+      <path d="M668 644 Q864 682 1035 682 Q1180 668 1263 628" stroke-width="1.14"/>
+    </g>
+
+    <g fill="#ffffff" opacity="0.88">
+      <!-- left burst dots -->
+      <circle cx="60" cy="152" r="1.7"/><circle cx="86" cy="164" r="1.5"/><circle cx="108" cy="176" r="1.4"/>
+      <circle cx="130" cy="190" r="1.5"/><circle cx="154" cy="202" r="1.45"/><circle cx="172" cy="206" r="1.4"/>
+      <circle cx="190" cy="210" r="1.45"/><circle cx="222" cy="216" r="1.5"/><circle cx="258" cy="221" r="1.5"/>
+      <circle cx="312" cy="221" r="1.45"/><circle cx="348" cy="216" r="1.45"/><circle cx="384" cy="207" r="1.45"/>
+      <circle cx="90" cy="62" r="1.35"/><circle cx="120" cy="46" r="1.35"/><circle cx="152" cy="11" r="1.35"/>
+      <circle cx="184" cy="6" r="1.35"/><circle cx="218" cy="10" r="1.35"/><circle cx="251" cy="18" r="1.35"/>
+      <circle cx="287" cy="30" r="1.35"/><circle cx="323" cy="42" r="1.35"/><circle cx="361" cy="54" r="1.35"/>
+      <circle cx="399" cy="66" r="1.35"/><circle cx="437" cy="77" r="1.35"/><circle cx="475" cy="87" r="1.35"/>
+      <circle cx="513" cy="95" r="1.35"/>
+
+      <!-- vertical top dots -->
+      <circle cx="255" cy="10" r="1.3"/><circle cx="264" cy="18" r="1.3"/><circle cx="273" cy="12" r="1.3"/>
+      <circle cx="282" cy="22" r="1.3"/><circle cx="291" cy="9" r="1.3"/><circle cx="300" cy="17" r="1.3"/>
+      <circle cx="309" cy="31" r="1.3"/><circle cx="318" cy="11" r="1.3"/><circle cx="327" cy="26" r="1.3"/>
+      <circle cx="336" cy="19" r="1.3"/><circle cx="345" cy="32" r="1.3"/><circle cx="355" cy="20" r="1.3"/>
+      <circle cx="366" cy="34" r="1.3"/><circle cx="377" cy="21" r="1.3"/><circle cx="388" cy="27" r="1.3"/>
+      <circle cx="400" cy="15" r="1.3"/><circle cx="414" cy="28" r="1.3"/><circle cx="428" cy="18" r="1.3"/>
+
+      <!-- bottom center dots -->
+      <circle cx="565" cy="718" r="4"/><circle cx="640" cy="714" r="4"/><circle cx="673" cy="717" r="4"/>
+      <circle cx="691" cy="716" r="4"/><circle cx="735" cy="718" r="4"/><circle cx="754" cy="716" r="4"/>
+      <circle cx="772" cy="718" r="4"/><circle cx="790" cy="717" r="4"/>
+
+      <!-- right top dots -->
+      <circle cx="976" cy="45" r="1.4"/><circle cx="984" cy="52" r="1.35"/><circle cx="992" cy="46" r="1.4"/>
+      <circle cx="1001" cy="43" r="1.4"/><circle cx="1010" cy="57" r="1.4"/><circle cx="1020" cy="49" r="1.4"/>
+      <circle cx="1030" cy="45" r="1.4"/><circle cx="1040" cy="56" r="1.4"/><circle cx="1050" cy="50" r="1.4"/>
+      <circle cx="1060" cy="62" r="1.4"/><circle cx="1070" cy="49" r="1.4"/><circle cx="1080" cy="54" r="1.4"/>
+      <circle cx="1090" cy="46" r="1.4"/><circle cx="1100" cy="52" r="1.4"/><circle cx="1110" cy="48" r="1.4"/>
+      <circle cx="1120" cy="57" r="1.4"/><circle cx="1130" cy="44" r="1.4"/><circle cx="1140" cy="49" r="1.4"/>
+      <circle cx="1150" cy="53" r="1.4"/><circle cx="1160" cy="46" r="1.4"/><circle cx="1170" cy="55" r="1.4"/>
+      <circle cx="1180" cy="61" r="1.4"/><circle cx="1190" cy="50" r="1.4"/><circle cx="1200" cy="58" r="1.4"/>
+      <circle cx="1210" cy="52" r="1.4"/><circle cx="1220" cy="63" r="1.4"/><circle cx="1230" cy="55" r="1.4"/>
+      <circle cx="1240" cy="60" r="1.4"/><circle cx="1250" cy="54" r="1.4"/><circle cx="1260" cy="62" r="1.4"/>
+
+      <!-- right bloom scatter -->
+      <circle cx="950" cy="255" r="1.55"/><circle cx="968" cy="243" r="1.55"/><circle cx="986" cy="232" r="1.55"/>
+      <circle cx="1004" cy="217" r="1.55"/><circle cx="1022" cy="206" r="1.55"/><circle cx="1040" cy="192" r="1.55"/>
+      <circle cx="1060" cy="181" r="1.55"/><circle cx="1080" cy="171" r="1.55"/><circle cx="1100" cy="165" r="1.55"/>
+      <circle cx="1120" cy="160" r="1.55"/><circle cx="1140" cy="163" r="1.55"/><circle cx="1158" cy="169" r="1.55"/>
+      <circle cx="1176" cy="177" r="1.55"/><circle cx="1194" cy="191" r="1.55"/><circle cx="1211" cy="208" r="1.55"/>
+      <circle cx="1228" cy="226" r="1.55"/><circle cx="1243" cy="246" r="1.55"/><circle cx="1256" cy="268" r="1.55"/>
+
+      <circle cx="1010" cy="420" r="1.45"/><circle cx="1036" cy="430" r="1.45"/><circle cx="1062" cy="440" r="1.45"/>
+      <circle cx="1088" cy="448" r="1.45"/><circle cx="1114" cy="453" r="1.45"/><circle cx="1140" cy="457" r="1.45"/>
+      <circle cx="1165" cy="459" r="1.45"/><circle cx="1190" cy="455" r="1.45"/><circle cx="1212" cy="447" r="1.45"/>
+      <circle cx="1231" cy="437" r="1.45"/><circle cx="1248" cy="421" r="1.45"/>
+    </g>
+  </svg>
+
+  <div class="title">Executive summary</div>
+  <div class="top-rule"></div>
+
+  <div class="left-label">EXECUTIVE SUMMARY</div>
+  <div class="left-line"></div>
+  <div class="page">2</div>
+
+  <div class="jump">
+    <div class="circle"></div>
+    <div class="arrow">↶</div>
+    <div class="dot"></div>
+    <div class="txt">Jump to<br>contents</div>
+  </div>
+
+  <div class="col c1">
+    <p>The world of risk has fundamentally changed. The patterns that once guided risk management no longer hold. Insurance chief risk officers (CROs) are navigating a NAVI environment where shocks arrive faster, spread further and compound more often:</p>
+    <ul>
+      <li><strong>Nonlinear:</strong> risks do not build gradually; they erupt and trigger tipping points</li>
+      <li><strong>Accelerated:</strong> decision windows are shorter and response times matter more</li>
+      <li><strong>Volatile:</strong> direction shifts quickly, testing organizational agility</li>
+      <li><strong>Interconnected:</strong> a single disruption can cascade across technology, third parties, operations and markets</li>
+    </ul>
+    <p>Those dynamics were on full display in 2025. Inflation eased but stayed elevated; geopolitical fragmentation persisted; and macroeconomic volatility continued to shape decision-making.</p>
+    <p>Non-life carriers faced heightened natural catastrophes, climate risks and social inflation. Life insurers benefited from improved</p>
+  </div>
+
+  <div class="col c2">
+    <p>investment yields but contended with lapses, guarantees and aging populations. Across the sector, strong capitalization and liquidity, alongside the expanding use of AI and advanced analytics, reflect the industry’s underlying resilience. At the same time, greater reliance on these technologies introduces new and evolving risks that organizations must proactively manage. Meanwhile, supervisors increased their focus on private credit, climate and cyber as emerging systemic risk channels.</p>
+    <p>In this environment, the CRO role becomes more central – not only to identify risk, but to drive timely decisions under uncertainty. CROs are expected to embed risk management into business decision-making, draw on more real-time risk insights and establish clear escalation paths to quickly address emerging risks and safeguard the organization.</p>
+    <p>The third annual EY-IIF (Institute of International Finance) global insurance CRO survey reveals how this shift is reshaping CRO agendas, operating models and investment priorities. This</p>
+  </div>
+
+  <div class="col c3">
+    <p>year’s findings highlight the ongoing evolution of the CRO role, which is both reinforcing risk discipline and empowering the organization to act with confidence on growth and transformation decisions:</p>
+    <ul>
+      <li>Cyber remains the top, near-term priority, accelerated by geopolitical risks, with rising expectations for measurable resilience in prevention, containment and recovery</li>
+      <li>AI and automation have moved from experimentation to operating model impact, becoming a headline priority in risk technology roadmaps alongside stronger governance and controls</li>
+      <li>Operating models are shifting from capacity to capability, as risk teams redesign workflows and skill mix to focus on insight, judgment and partnership with the business</li>
+    </ul>
+    <p>This report brings together insights from insurance CROs across geographies, business models and organizational sizes, comparing current and prior-year results, to highlight what is changing and what is proving durable.</p>
+  </div>
+
+  <div class="col c4">
+    <p>It also examines how CROs are strengthening foundations, modernizing capabilities and repositioning risk management to operate at the pace today’s environment demands.</p>
+    <p>CROs who embrace NAVI principles will position their organizations for readiness, resilience and sustained confidence amid an evolving risk landscape.</p>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Executive summary - Roland Berger</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1280px;
+    height: 720px;
+    background: #f4f4f4;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f4f4f4;
+  }
+  .slide * {
+    box-sizing: border-box;
+    position: absolute;
+  }
+
+  .title {
+    left: 46px;
+    top: 468px;
+    font-size: 37px;
+    line-height: 1;
+    color: #111;
+    font-weight: 400;
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+  }
+
+  .rb-logo {
+    left: 1124px;
+    top: 24px;
+    width: 118px;
+    height: 54px;
+  }
+  .rb-logo .roland {
+    right: 38px;
+    top: 0;
+    font-size: 20px;
+    line-height: 1;
+    color: #2a2a2a;
+    font-weight: 400;
+    text-align: right;
+    letter-spacing: -0.02em;
+  }
+  .rb-logo .berger {
+    right: 38px;
+    top: 17px;
+    font-size: 28px;
+    line-height: 1;
+    color: #222;
+    font-weight: 400;
+    text-align: right;
+    letter-spacing: -0.04em;
+  }
+  .rb-logo .mark {
+    right: 0;
+    top: 0;
+    width: 36px;
+    height: 52px;
+    background: linear-gradient(180deg, #d6dbde 0%, #9aa1a7 55%, #687179 100%);
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    overflow: hidden;
+  }
+  .rb-logo .mark:before,
+  .rb-logo .mark:after {
+    content: "";
+    position: absolute;
+    left: 11px;
+    width: 17px;
+    height: 23px;
+    background: #f4f4f4;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  .rb-logo .mark:before { top: 0; }
+  .rb-logo .mark:after { top: 26px; }
+
+  .hero {
+    left: 449px;
+    top: 180px;
+    width: 410px;
+    height: 413px;
+    overflow: hidden;
+  }
+
+  .hero-top {
+    left: 0;
+    top: 0;
+    width: 268px;
+    height: 198px;
+    border-top-right-radius: 108px;
+    border-bottom-right-radius: 108px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0.1)),
+      radial-gradient(circle at 77% 38%, rgba(87,92,98,0.55) 0 3.5%, rgba(137,142,148,0.22) 5.5%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 80% 52%, rgba(82,88,94,0.55) 0 3.8%, rgba(137,142,148,0.22) 5.7%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 82% 66%, rgba(82,88,94,0.55) 0 3.8%, rgba(137,142,148,0.22) 5.7%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 75% 73%, rgba(92,98,105,0.3) 0 2.4%, rgba(0,0,0,0) 6%),
+      linear-gradient(173deg, #e8e8e8 0%, #f0f0f0 45%, #ebebeb 100%);
+  }
+  .hero-top:before {
+    content: "";
+    position: absolute;
+    left: -18px;
+    top: 145px;
+    width: 235px;
+    height: 26px;
+    background: linear-gradient(180deg, rgba(189,198,203,0.6), rgba(211,217,220,0.15));
+    transform: rotate(7deg);
+    filter: blur(1px);
+    opacity: 0.55;
+  }
+
+  .hero-bottom {
+    left: 0;
+    top: 197px;
+    width: 345px;
+    height: 216px;
+    border-top-right-radius: 110px;
+    border-bottom-right-radius: 110px;
+    overflow: hidden;
+    background:
+      linear-gradient(168deg, rgba(255,255,255,0) 0 43%, #edf0f1 43.2%, #bcc2c7 43.8%, #f7f7f7 45.1%, rgba(255,255,255,0) 46%),
+      linear-gradient(168deg, rgba(255,255,255,0) 0 57%, #eef1f2 57.2%, #bcc2c7 57.8%, #f7f7f7 59.1%, rgba(255,255,255,0) 60%),
+      linear-gradient(168deg, rgba(255,255,255,0) 0 70%, #eef1f2 70.2%, #bcc2c7 70.8%, #f7f7f7 72.1%, rgba(255,255,255,0) 73%),
+      linear-gradient(168deg, rgba(255,255,255,0) 0 82%, #eef1f2 82.2%, #bcc2c7 82.8%, #f7f7f7 84.1%, rgba(255,255,255,0) 85%),
+      linear-gradient(180deg, #f9f9f9 0%, #efefef 100%);
+  }
+
+  .label1 {
+    left: 123px;
+    top: 42px;
+    font-size: 16px;
+    line-height: 1;
+    color: #383838;
+    font-weight: 600;
+    font-style: italic;
+    transform: rotate(12deg);
+    transform-origin: left top;
+    letter-spacing: -0.01em;
+  }
+  .label2 {
+    left: 140px;
+    top: 148px;
+    font-size: 18px;
+    line-height: 1;
+    color: #303030;
+    font-weight: 600;
+    font-style: italic;
+    transform: rotate(14deg);
+    transform-origin: left top;
+    letter-spacing: -0.01em;
+  }
+
+  .bar1 {
+    left: 0;
+    top: 49px;
+    width: 155px;
+    height: 121px;
+    background: linear-gradient(180deg, #007697 0%, #0787aa 58%, #16a2c8 100%);
+    clip-path: polygon(28% 3%, 97% 10%, 69% 92%, 0 84%);
+    opacity: 0.98;
+  }
+
+  .bar2 {
+    left: 47px;
+    top: 160px;
+    width: 133px;
+    height: 72px;
+    background: linear-gradient(180deg, #33b9ee 0%, #66d5ff 100%);
+    clip-path: polygon(22% 0, 100% 8%, 80% 100%, 0 91%);
+    opacity: 0.98;
+  }
+
+  .pen {
+    left: 182px;
+    top: 4px;
+    width: 162px;
+    height: 122px;
+    transform: rotate(-13deg);
+    transform-origin: 82px 61px;
+  }
+  .pen .body {
+    left: 38px;
+    top: 39px;
+    width: 98px;
+    height: 34px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #7c5b32 0%, #d7ba89 20%, #f6e8c8 39%, #8a6535 60%, #b89f7b 77%, #e7dfd3 100%);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.7), inset 0 -1px 2px rgba(0,0,0,0.2);
+  }
+  .pen .ring {
+    left: 24px;
+    top: 34px;
+    width: 28px;
+    height: 43px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #8f6129 0%, #d7bb8a 32%, #f8ecd2 50%, #8c602a 100%);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.55);
+  }
+  .pen .metal {
+    left: 127px;
+    top: 43px;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(180deg, #8c9198 0%, #eeeeee 40%, #888d93 100%);
+    clip-path: polygon(0 14%, 72% 0, 72% 100%, 0 86%);
+  }
+  .pen .tip {
+    left: 143px;
+    top: 47px;
+    width: 19px;
+    height: 16px;
+    background: linear-gradient(180deg, #c6cacf 0%, #ffffff 45%, #8a8f95 100%);
+    clip-path: polygon(0 50%, 78% 0, 100% 50%, 78% 100%);
+  }
+  .pen .point {
+    left: 158px;
+    top: 52px;
+    width: 8px;
+    height: 7px;
+    background: linear-gradient(180deg, #73787e 0%, #2c3137 100%);
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  }
+
+  .bottom-band {
+    left: 0;
+    bottom: 0;
+    width: 1280px;
+    height: 27px;
+    background: #000;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title">B.&nbsp;&nbsp;&nbsp;Executive summary</div>
+
+    <div class="hero">
+      <div class="hero-top"></div>
+      <div class="hero-bottom">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="label1">48.4</div>
+        <div class="label2">15.4</div>
+        <div class="pen">
+          <div class="body"></div>
+          <div class="ring"></div>
+          <div class="metal"></div>
+          <div class="tip"></div>
+          <div class="point"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rb-logo">
+      <div class="roland">Roland</div>
+      <div class="berger">Berger</div>
+      <div class="mark"></div>
+    </div>
+
+    <div class="bottom-band"></div>
+  </div>
+</body>
+</html>

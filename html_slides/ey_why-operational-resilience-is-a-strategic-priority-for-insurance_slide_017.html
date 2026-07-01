@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Chapter 3 Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f4;
+    color:#2f3140;
+  }
+  .slide *{ box-sizing:border-box; position:absolute; }
+
+  .top-left-num{
+    left:60px;
+    top:52px;
+    font-size:18px;
+    line-height:1;
+    color:#6b6e7c;
+    font-weight:400;
+  }
+  .top-left-divider{
+    left:101px;
+    top:0;
+    width:1px;
+    height:92px;
+    background:#b8bac1;
+  }
+  .top-left-meta{
+    left:114px;
+    top:58px;
+    width:180px;
+    font-size:8px;
+    line-height:10px;
+    color:#7b7e88;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+  }
+
+  .left-vertical{
+    left:12px;
+    top:349px;
+    width:20px;
+    height:74px;
+  }
+  .left-vertical .text{
+    left:2px;
+    top:46px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    font-size:11px;
+    line-height:11px;
+    color:#767985;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    white-space:nowrap;
+  }
+  .left-vertical .mark{
+    left:0;
+    top:60px;
+    width:12px;
+    height:12px;
+    background:#e7d400;
+  }
+
+  .jump{
+    right:0;
+    top:0;
+    width:69px;
+    height:46px;
+    background:#7b7c85;
+    border-bottom-left-radius:16px;
+    color:#fff;
+    font-size:9px;
+    line-height:10px;
+    text-align:center;
+    padding-top:17px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+  }
+
+  .chapter{
+    left:100px;
+    top:129px;
+    font-size:52px;
+    line-height:1;
+    font-weight:700;
+    color:#2d3040;
+  }
+
+  .accent-line{
+    left:100px;
+    top:214px;
+    width:248px;
+    height:3px;
+    background:linear-gradient(90deg,#efcd00 0%, #efcd00 52%, #cb35ff 72%, #2e89ff 100%);
+  }
+
+  .left-body{
+    left:100px;
+    top:252px;
+    width:265px;
+    font-size:12px;
+    line-height:19px;
+    color:#5b5e69;
+    font-weight:400;
+  }
+  .left-body p{
+    position:static;
+    margin:0 0 12px 0;
+  }
+
+  .figure-title{
+    left:464px;
+    top:131px;
+    width:748px;
+    font-size:12px;
+    line-height:20px;
+    color:#3f424b;
+    font-weight:400;
+  }
+  .figure-title b{ font-weight:700; }
+
+  .labels{
+    left:485px;
+    top:180px;
+    width:393px;
+    font-size:12px;
+    line-height:15px;
+    color:#585b66;
+    text-align:right;
+  }
+  .labels .row1{ left:0; top:0; width:393px; }
+  .labels .row2{ left:0; top:53px; width:393px; }
+  .labels .row3{ left:0; top:106px; width:393px; }
+  .labels .row4{ left:0; top:161px; width:393px; }
+  .labels .bold{
+    font-weight:700;
+    color:#3c3f48;
+  }
+
+  .chart{
+    left:802px;
+    top:182px;
+    width:326px;
+    height:186px;
+  }
+  .bar-row{
+    left:0;
+    width:326px;
+    height:24px;
+  }
+  .bar1{ top:0; }
+  .bar2{ top:54px; }
+  .bar3{ top:108px; }
+  .bar4{ top:161px; }
+
+  .bar-box{
+    left:0;
+    top:0;
+    width:326px;
+    height:24px;
+    border:1px solid #adb0ba;
+    background:transparent;
+  }
+  .fill{
+    left:1px;
+    top:1px;
+    height:22px;
+    background:#4b1c9a;
+  }
+  .fill1{ width:47px; }
+  .fill2{ width:195px; }
+  .fill3{ width:31px; }
+  .fill4{ width:1px; }
+
+  .pct{
+    top:4px;
+    right:12px;
+    font-size:11px;
+    line-height:15px;
+    color:#5e616b;
+    text-align:right;
+  }
+
+  .quote-box{
+    left:464px;
+    top:473px;
+    width:497px;
+    height:248px;
+    background:linear-gradient(90deg,#181927 0%, #121422 100%);
+    border-radius:15px;
+  }
+  .quote-accent{
+    left:23px;
+    top:30px;
+    width:451px;
+    height:3px;
+    background:linear-gradient(90deg,#eed100 0%, #eed100 33%, #c53cff 67%, #3390ff 100%);
+  }
+  .quote-title{
+    left:24px;
+    top:46px;
+    font-size:13px;
+    line-height:16px;
+    color:#f4f4f7;
+    font-weight:700;
+  }
+  .quote-mark{
+    left:22px;
+    top:67px;
+    color:#eed100;
+    font-size:41px;
+    line-height:1;
+    font-weight:700;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .quote-col1{
+    left:24px;
+    top:89px;
+    width:190px;
+    font-size:12px;
+    line-height:14px;
+    color:#f1f1f4;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .quote-col2{
+    left:266px;
+    top:89px;
+    width:188px;
+    font-size:12px;
+    line-height:14px;
+    color:#f1f1f4;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left-num">17</div>
+    <div class="top-left-divider"></div>
+    <div class="top-left-meta">SECOND ANNUAL EY/IIF GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+    <div class="left-vertical">
+      <div class="text">CHAPTER 3</div>
+      <div class="mark"></div>
+    </div>
+
+    <div class="jump">JUMP TO<br>CONTENTS</div>
+
+    <div class="chapter">Chapter 3</div>
+    <div class="accent-line"></div>
+
+    <div class="left-body">
+      <p>A large majority (75%) of CROs say risk's involvement with major change initiatives is increasing and virtually no survey respondents report a reduction in risk's involvement. That's very good news, confirming our theory from last year about CROs' expanding strategic role. As one CRO told us, "We think about every piece of transformation and innovation as a partnership opportunity between the business and risk." Another commented: “If you aren’t an active participant, that’s a problem. This should be a requirement of every CRO in the future."</p>
+      <p>Business-first perspectives such as these will continue to drive the evolution of the CRO role, though they are not the rule at every insurer. However, raising independent challenges when appropriate remains a critical part of CROs' jobs, which may be more challenging if they are involved in formulating strategies.</p>
+    </div>
+
+    <div class="figure-title"><b>Figure 7:</b> Please describe the evolution of risk management's involvement in your organization's major enterprise-wide change initiatives over the past year.</div>
+
+    <div class="labels">
+      <div class="row1"><span class="bold">Significantly increased:</span> Risk management has become much more involved,<br>playing a key role in the planning and execution of change initiatives</div>
+      <div class="row2"><span class="bold">Moderately increased:</span> There has been a noticeable uptick in risk management's<br>participation, with more input and collaboration than in the past</div>
+      <div class="row3"><span class="bold">Remained the same:</span> The level of risk management involvement has stayed<br>consistent with previous years, with no significant changes in its role or influence</div>
+      <div class="row4"><span class="bold">Moderately decreased:</span> Risk management's involvement has slightly declined,<br>with less influence or fewer resources dedicated to change initiatives</div>
+    </div>
+
+    <div class="chart">
+      <div class="bar-row bar1">
+        <div class="bar-box"></div>
+        <div class="fill fill1"></div>
+        <div class="pct">15%</div>
+      </div>
+      <div class="bar-row bar2">
+        <div class="bar-box"></div>
+        <div class="fill fill2"></div>
+        <div class="pct">60%</div>
+      </div>
+      <div class="bar-row bar3">
+        <div class="bar-box"></div>
+        <div class="fill fill3"></div>
+        <div class="pct">24%</div>
+      </div>
+      <div class="bar-row bar4">
+        <div class="bar-box"></div>
+        <div class="fill fill4"></div>
+        <div class="pct">1%</div>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <div class="quote-accent"></div>
+      <div class="quote-title">What CROs say about change initiatives</div>
+      <div class="quote-mark">“</div>
+      <div class="quote-col1">
+        Risk management plays a pivotal role<br>
+        in fostering discussions at the board<br>
+        level, ensuring that strategic decisions<br>
+        are informed by a comprehensive<br>
+        understanding of potential risks.<br>
+        However, the business areas sometimes<br>
+        feel discomforted by this dynamic.
+      </div>
+      <div class="quote-col2">
+        The relationship is evolving toward<br>
+        greater integration, but there is a desire<br>
+        for risk to be more involved in the<br>
+        conceptualization and development of<br>
+        the overall business strategy.
+      </div>
+    </div>
+  </div>
+</body>
+</html>

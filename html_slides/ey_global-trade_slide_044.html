@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>EY Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#efeff1;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efeff1;
+    color:#55555d;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .top-left-block{
+    left:0;
+    top:0;
+    width:55px;
+    height:79px;
+    background:#bfc0c8;
+  }
+  .top-rule{
+    left:0;
+    top:78px;
+    width:1280px;
+    height:2px;
+    background:#c8c9d0;
+  }
+  .title{
+    left:56px;
+    top:50px;
+    font-size:16px;
+    line-height:18px;
+    color:#787883;
+    font-weight:400;
+    letter-spacing:0.1px;
+    white-space:nowrap;
+  }
+  .nav-circle{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#c1c1c9;
+    color:#3e3e4a;
+    text-align:center;
+    line-height:35px;
+    font-size:20px;
+    font-weight:700;
+  }
+  .body-copy{
+    font-size:14px;
+    line-height:1.34;
+    color:#57575f;
+    font-weight:400;
+  }
+  .section-head{
+    font-size:17px;
+    line-height:20px;
+    color:#2f2f38;
+    font-weight:700;
+  }
+  .summary-box{
+    left:629px;
+    top:120px;
+    width:547px;
+    height:381px;
+  }
+  .summary-top-line{
+    left:0;
+    top:0;
+    width:547px;
+    height:1px;
+    background:#bfc0c7;
+  }
+  .summary-title{
+    left:5px;
+    top:11px;
+    font-size:16px;
+    line-height:20px;
+    color:#34343c;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .row-line{
+    left:0;
+    width:547px;
+    height:1px;
+    background:#cdced3;
+  }
+  .check-row-text{
+    font-size:14px;
+    line-height:18px;
+    color:#55555d;
+    font-weight:400;
+  }
+  .right-menu{
+    left:1193px;
+    top:120px;
+    width:87px;
+    height:289px;
+  }
+  .menu-item{
+    left:0;
+    width:87px;
+    background:#2b2b3a;
+    color:#f5f5f7;
+    font-size:12px;
+    line-height:14px;
+    font-weight:400;
+    padding-left:8px;
+    display:flex;
+    align-items:center;
+  }
+  .menu-item.gray{
+    background:#7a7a88;
+  }
+  .menu-sep-yellow{
+    left:0;
+    width:87px;
+    height:2px;
+    background:#f2db00;
+  }
+  .contact-wrap{
+    left:629px;
+    top:529px;
+    width:651px;
+    height:127px;
+  }
+  .contact-header{
+    left:0;
+    top:0;
+    width:651px;
+    height:35px;
+    background:#f2db00;
+  }
+  .contact-header-text{
+    left:12px;
+    top:10px;
+    font-size:13px;
+    line-height:16px;
+    color:#24242a;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .contact-body{
+    left:0;
+    top:35px;
+    width:651px;
+    height:92px;
+    background:#ededee;
+  }
+  .contact-name{
+    font-size:13px;
+    line-height:16px;
+    color:#2f2f37;
+    font-weight:700;
+  }
+  .contact-meta{
+    font-size:13px;
+    line-height:16px;
+    color:#5f5f69;
+    font-weight:400;
+  }
+  .contact-link{
+    font-size:13px;
+    line-height:16px;
+    color:#1f66b3;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .footer{
+    left:56px;
+    top:731px;
+    transform:translateY(-100%);
+    font-size:11px;
+    line-height:13px;
+    color:#73737d;
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .back-wrap{
+    left:984px;
+    top:679px;
+    width:190px;
+    height:32px;
+  }
+  .back-circle{
+    left:0;
+    top:0;
+    width:33px;
+    height:33px;
+    border-radius:50%;
+    background:#bdbdc5;
+    color:#3c3c48;
+    text-align:center;
+    line-height:33px;
+    font-size:18px;
+    font-weight:700;
+  }
+  .back-text{
+    left:38px;
+    top:14px;
+    font-size:14px;
+    line-height:16px;
+    color:#4b4b55;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .back-line{
+    left:39px;
+    top:30px;
+    width:135px;
+    height:1px;
+    background:#c5c5cb;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="top-left-block"></div>
+  <div class="top-rule"></div>
+
+  <div class="title">Insights: Europe, Middle East, India and Africa</div>
+
+  <div class="nav-circle" style="left:1120px;top:33px;">◀</div>
+  <div class="nav-circle" style="left:1164px;top:33px;">▶</div>
+
+  <div class="body-copy" style="left:56px;top:116px;width:510px;">
+    establishment. Under customs law, a permanent business establishment (PBE)<br>
+    can, in certain circumstances, make a non-EU company established in the EU.<br>
+    However, under general company law principles, a branch is typically regarded as<br>
+    a mere extension of the company and does not, by itself, create an establishment<br>
+    in the country where the branch is located. In the unlikely event that the position<br>
+    is taken that an EU branch can make a non-EU company EU-established, the<br>
+    conditions under which such establishment is granted should be clarified – for<br>
+    example, whether it is needed that the name of the relevant branch appears on<br>
+    invoices or customs documentation, or that its personnel be directly involved in<br>
+    negotiating or concluding the relevant transactions. Such considerations will also<br>
+    bear important implications on direct and indirect tax.
+  </div>
+
+  <div class="section-head" style="left:55px;top:316px;">Looking ahead</div>
+
+  <div class="body-copy" style="left:56px;top:349px;width:510px;">
+    The EUDR is more than a regulatory obligation; it is reshaping how companies<br>
+    understand their supply chains, manage risk and engage with suppliers.<br>
+    Organizations that invest early in robust processes and enabling technologies will<br>
+    be best placed to meet the expectations of regulators and customers and to turn<br>
+    compliance into a long-term competitive advantage.
+  </div>
+
+  <div class="body-copy" style="left:56px;top:440px;width:513px;">
+    As companies move from design to implementation, the ability to link product<br>
+    flows to accurate HS classifications, ensure supplier-level traceability and embed<br>
+    due-diligence responsibilities into the operating model becomes decisive. On<br>
+    the customs side, operators will need to manage DDS submissions as part of<br>
+    their clearance workflows and prepare for scenarios involving re-imports or<br>
+    mixed batches, where evidencing prior EU placement may be critical. Tax and<br>
+    transfer pricing teams will likewise need to align functional responsibilities<br>
+    and documentation so that the entities performing EUDR-related tasks are<br>
+    properly considered in the group’s operating model. Against this backdrop, a<br>
+    coherent roadmap that strengthens data foundations, formalizes roles around<br>
+    due-diligence tasks and anticipates future regulatory clarifications will help<br>
+    organizations navigate the next phase of EUDR implementation with greater<br>
+    confidence and consistency. Aligning EUDR efforts with broader due-diligence<br>
+    frameworks such as the Corporate Sustainability Due Diligence Directive (CSD3)<br>
+    and Corporate Sustainability Reporting Directive (CSRD) is also key to reduce<br>
+    duplication and strengthen enterprise-wide risk management.
+  </div>
+
+  <div class="summary-box">
+    <div class="summary-top-line"></div>
+    <div class="summary-title">Summary: priority checklist for EUDR compliance</div>
+
+    <div class="row-line" style="top:35px;"></div>
+
+    <svg style="left:2px;top:43px;width:27px;height:27px;" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="14" fill="#ff4b3e"></circle>
+      <line x1="10" y1="10" x2="22" y2="22" stroke="#ffffff" stroke-width="3"></line>
+      <line x1="22" y1="10" x2="10" y2="22" stroke="#ffffff" stroke-width="3"></line>
+    </svg>
+    <div class="check-row-text" style="left:43px;top:42px;width:485px;">Do not clear goods without DDS reference numbers or valid “TARIC<br>Document Code”</div>
+    <div class="row-line" style="top:76px;"></div>
+
+    <svg style="left:2px;top:84px;width:27px;height:27px;" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="14" fill="#08b357"></circle>
+      <path d="M8 17 L14 23 L24 9" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    <div class="check-row-text" style="left:43px;top:83px;width:485px;">Embed DDS/TARIC codes into customs declaration workflows and<br>broker instructions</div>
+    <div class="row-line" style="top:117px;"></div>
+
+    <svg style="left:2px;top:123px;width:27px;height:27px;" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="14" fill="#08b357"></circle>
+      <path d="M8 17 L14 23 L24 9" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    <div class="check-row-text" style="left:43px;top:126px;width:485px;">Align HS classifications with EUDR Annex I</div>
+    <div class="row-line" style="top:156px;"></div>
+
+    <svg style="left:2px;top:162px;width:27px;height:27px;" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="14" fill="#08b357"></circle>
+      <path d="M8 17 L14 23 L24 9" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    <div class="check-row-text" style="left:43px;top:165px;width:485px;">Address re-import complexities and evidence requirements</div>
+    <div class="row-line" style="top:195px;"></div>
+
+    <svg style="left:2px;top:201px;width:27px;height:27px;" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="14" fill="#08b357"></circle>
+      <path d="M8 17 L14 23 L24 9" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    <div class="check-row-text" style="left:43px;top:204px;width:485px;">Build ERP-Customs-Broker connectivity for EUDR data</div>
+    <div class="row-line" style="top:234px;"></div>
+
+    <svg style="left:2px;top:240px;width:27px;height:27px;" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="14" fill="#08b357"></circle>
+      <path d="M8 17 L14 23 L24 9" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    <div class="check-row-text" style="left:43px;top:243px;width:485px;">Implement training, governance and process boundaries</div>
+    <div class="row-line" style="top:273px;"></div>
+
+    <svg style="left:2px;top:279px;width:27px;height:27px;" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="14" fill="#08b357"></circle>
+      <path d="M8 17 L14 23 L24 9" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    <div class="check-row-text" style="left:43px;top:282px;width:485px;">Prepare for the TRACES and Customs Portal digital integration</div>
+    <div class="row-line" style="top:312px;"></div>
+
+    <svg style="left:2px;top:318px;width:27px;height:27px;" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="14" fill="#08b357"></circle>
+      <path d="M8 17 L14 23 L24 9" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    <div class="check-row-text" style="left:43px;top:321px;width:485px;">Support cross-functional scoping, master data and risk assessments</div>
+    <div class="row-line" style="top:351px;"></div>
+
+    <svg style="left:2px;top:357px;width:27px;height:27px;" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="14" fill="#08b357"></circle>
+      <path d="M8 17 L14 23 L24 9" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    <div class="check-row-text" style="left:43px;top:359px;width:485px;">Ensure additional planning for non-EU-established companies operating<br>in the EU</div>
+    <div class="row-line" style="top:389px;"></div>
+
+    <svg style="left:2px;top:396px;width:27px;height:27px;" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="14" fill="#08b357"></circle>
+      <path d="M8 17 L14 23 L24 9" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    <div class="check-row-text" style="left:43px;top:399px;width:485px;">Update sourcing policies and contracts with suppliers, and review<br>intercompany service-level agreements</div>
+    <div class="row-line" style="top:430px;"></div>
+  </div>
+
+  <div class="right-menu">
+    <div class="menu-item" style="top:0;height:36px;">Contents</div>
+    <div class="menu-sep-yellow" style="top:36px;"></div>
+
+    <div class="menu-item" style="top:50px;height:36px;">Insights</div>
+    <div class="menu-sep-yellow" style="top:86px;"></div>
+
+    <div class="menu-item" style="top:99px;height:42px;padding-top:7px;align-items:flex-start;">New on<br>ey.com</div>
+    <div class="menu-sep-yellow" style="top:141px;"></div>
+
+    <div class="menu-item" style="top:154px;height:36px;">Tax alerts</div>
+    <div class="menu-sep-yellow" style="top:190px;"></div>
+
+    <div class="menu-item gray" style="top:203px;height:47px;padding-top:8px;align-items:flex-start;">Additional<br>resources</div>
+    <div class="menu-sep-yellow" style="top:250px;"></div>
+
+    <div class="menu-item gray" style="top:263px;height:36px;">Contacts</div>
+  </div>
+
+  <div class="contact-wrap">
+    <div class="contact-header"></div>
+    <div class="contact-header-text">For additional information, please contact:</div>
+    <div class="contact-body"></div>
+
+    <div class="contact-name" style="left:12px;top:48px;">Christophe George</div>
+    <div class="contact-meta" style="left:128px;top:48px;">|&nbsp;&nbsp;+ 41 795 776 088&nbsp;&nbsp;|</div>
+    <div class="contact-link" style="left:261px;top:48px;">christophe.george@ch.ey.com</div>
+
+    <div class="contact-name" style="left:12px;top:74px;">Jeroen Truin</div>
+    <div class="contact-meta" style="left:103px;top:74px;">|&nbsp;&nbsp;+ 41 797 010 807&nbsp;&nbsp;|</div>
+    <div class="contact-link" style="left:232px;top:74px;">jeroen.truin@ch.ey.com</div>
+
+    <div class="contact-name" style="left:12px;top:100px;">Ashish Sinha</div>
+    <div class="contact-meta" style="left:99px;top:100px;">|&nbsp;&nbsp;+ 41 799 374 536&nbsp;&nbsp;|</div>
+    <div class="contact-link" style="left:228px;top:100px;">ashish.sinha@ch.ey.com</div>
+  </div>
+
+  <div class="footer">41&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+
+  <div class="back-wrap">
+    <div class="back-circle">◀</div>
+    <div class="back-text">Back to Welcome</div>
+    <div class="back-line"></div>
+  </div>
+</div>
+</body>
+</html>

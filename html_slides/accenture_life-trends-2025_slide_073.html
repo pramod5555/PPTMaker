@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Pre-digital nostalgia</title>
+<style>
+  body{
+    margin:0;
+    background:#d7d7d7;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d9d9d9;
+    color:#222;
+    margin:0 auto;
+  }
+
+  .photo-top{
+    position:absolute;
+    left:63px;
+    top:0px;
+    width:365px;
+    height:129px;
+    background:
+      radial-gradient(circle at 18% 22%, rgba(255,255,255,.7) 0 18%, rgba(255,255,255,0) 35%),
+      linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,0) 25%, rgba(255,255,255,.06) 55%, rgba(0,0,0,.08) 100%),
+      linear-gradient(180deg, #d6e5c8 0%, #9bc255 28%, #a8c95b 45%, #5a6b24 72%, #8cc4d9 73%, #87bad1 100%);
+    filter: blur(1px) saturate(1.1);
+  }
+  .photo-top:before,
+  .photo-top:after{
+    content:"";
+    position:absolute;
+    top:-8px;
+    width:34px;
+    height:150px;
+    background:rgba(56,72,20,.75);
+    filter:blur(1px);
+  }
+  .photo-top:before{ left:96px; }
+  .photo-top:after{ left:330px; width:36px; }
+
+  .title{
+    position:absolute;
+    left:63px;
+    top:157px;
+    font-size:37px;
+    line-height:1;
+    color:#7e22ce;
+    font-weight:300;
+    letter-spacing:-0.5px;
+  }
+
+  .photo-main{
+    position:absolute;
+    left:63px;
+    top:233px;
+    width:365px;
+    height:488px;
+    background:
+      radial-gradient(circle at 17% 25%, rgba(255,255,255,.55) 0 5%, rgba(210,230,230,.15) 8%, rgba(0,0,0,0) 14%),
+      radial-gradient(circle at 74% 31%, rgba(5,10,18,.9) 0 8%, rgba(15,23,32,.95) 12%, rgba(0,0,0,.35) 20%, rgba(0,0,0,0) 24%),
+      radial-gradient(circle at 71% 69%, rgba(180,220,255,.45) 0 7%, rgba(40,90,130,.55) 10%, rgba(0,0,0,0) 15%),
+      linear-gradient(135deg, rgba(255,255,255,.35), rgba(255,255,255,0) 20%),
+      linear-gradient(180deg, #22c0ea 0%, #1098cf 16%, #0f7db3 35%, #0b3146 63%, #111b12 85%, #5f8aa2 100%);
+    filter: blur(1.2px) saturate(1.15);
+  }
+  .photo-main:before{
+    content:"";
+    position:absolute;
+    left:16px;
+    top:73px;
+    width:84px;
+    height:84px;
+    border-radius:50%;
+    border:7px solid rgba(214,233,239,.55);
+    box-shadow: inset 0 0 0 7px rgba(133,170,176,.35);
+  }
+  .photo-main:after{
+    content:"";
+    position:absolute;
+    left:223px;
+    top:131px;
+    width:97px;
+    height:270px;
+    border-radius:48px 48px 60px 60px;
+    box-shadow:
+      inset 0 0 0 3px rgba(90,120,150,.45),
+      0 0 0 1px rgba(255,255,255,.05);
+    border:7px solid rgba(80,120,155,.22);
+  }
+  .bumper{
+    position:absolute;
+    left:7px;
+    top:170px;
+    width:111px;
+    height:14px;
+    border-radius:8px;
+    background:linear-gradient(180deg, rgba(210,226,226,.8), rgba(112,131,134,.8));
+    box-shadow:0 0 8px rgba(255,255,255,.15);
+  }
+
+  .col1{
+    position:absolute;
+    left:485px;
+    top:95px;
+    width:360px;
+    font-size:18px;
+    line-height:1.32;
+    color:#222;
+  }
+  .col1 p{
+    margin:0 0 16px 0;
+  }
+  .sup{
+    font-size:11px;
+    vertical-align:super;
+    line-height:0;
+  }
+
+  .divider{
+    position:absolute;
+    left:905px;
+    top:104px;
+    width:1px;
+    height:189px;
+    background:#c7c7c7;
+  }
+
+  .quote{
+    position:absolute;
+    left:930px;
+    top:96px;
+    width:335px;
+    color:#8a35d9;
+    font-size:24px;
+    line-height:1.35;
+    font-weight:300;
+  }
+  .quote-author{
+    position:absolute;
+    left:930px;
+    top:275px;
+    font-size:16px;
+    line-height:1.2;
+    color:#111;
+    font-weight:700;
+  }
+
+  .col2{
+    position:absolute;
+    left:905px;
+    top:314px;
+    width:330px;
+    font-size:18px;
+    line-height:1.32;
+    color:#222;
+  }
+  .col2 p{
+    margin:0;
+  }
+
+  .right-rail{
+    position:absolute;
+    right:18px;
+    top:37px;
+    height:598px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-size:17px;
+    color:#6b6b6b;
+    letter-spacing:0;
+  }
+  .right-rail .purple{
+    color:#8a35d9;
+    font-weight:600;
+  }
+
+  .footer-left{
+    position:absolute;
+    right:88px;
+    bottom:17px;
+    font-size:14px;
+    color:#7a7a7a;
+  }
+  .footer-left .year{
+    color:#8a35d9;
+    font-weight:700;
+  }
+  .footer-page{
+    position:absolute;
+    right:32px;
+    bottom:17px;
+    font-size:14px;
+    color:#7a7a7a;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="photo-top"></div>
+
+  <div class="title">Pre-digital nostalgia</div>
+
+  <div class="photo-main">
+    <div class="bumper"></div>
+  </div>
+
+  <div class="col1">
+    <p>Nostalgia is part of this story. While people have always shared an affinity for simpler times, digitally native generations are seeking textures from the past that hold valuable novelty for them. For them, the pre-digital era reveals artifacts of textured experiences, which they are culturally retrofitting into their modern existence. For instance, Gen Z and Gen Alpha are looking back to the 1990s&ndash;before they were born&ndash;and perceiving an existence unencumbered by 24/7 connectivity.</p>
+
+    <p>One YouTube video entitled &ldquo;Class of &rsquo;98 Last Day at Solon High School &ndash; Part 1&rdquo; has been watched over a million times and has garnered comments that celebrate the pre-digital richness of the event.<span class="sup">125</span> One user wrote, &ldquo;Simpler times... everyone looked to be &lsquo;living in the moment.&rsquo; A photograph was to be cherished. Friendship was not a mere Add Friend button.</p>
+
+    <p>Everyone looked &lsquo;alive&rsquo;.&rdquo; Another commented, &ldquo;There&rsquo;s so much more social confidence here. I think social media has made everyone care way too much about what others think. This is how we were meant to interact with one another.&rdquo;</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="quote">&ldquo;Definitely, for me, the most important remains in the real world, because the virtual world is good, but in the end, it is something that we appreciate less.&rdquo;</div>
+  <div class="quote-author">Emine, 33, France</div>
+
+  <div class="col2">
+    <p>Meanwhile, a niche group of under-30s is finding the joy of driving modern classic cars from the &rsquo;80s and &rsquo;90s. Scott Linford, one of those enthusiasts from the United Kingdom, remarked, &ldquo;I paid &pound;1,500 for it in 2020, it&rsquo;s worth at least &pound;2,000 now&mdash;but the pleasure it gives is priceless. Modern cars are bland. The Minx makes me feel connected to the road, it&rsquo;s fun to drive, does 30-35mpg, costs &pound;100 to insure and easily keeps up with modern traffic.&rdquo;<span class="sup">126</span></p>
+  </div>
+
+  <div class="right-rail">Cost of hesitations &nbsp;/&nbsp; The parent trap &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; <span class="purple">Social rewilding</span></div>
+
+  <div class="footer-left">Accenture Life Trends <span class="year">2025</span></div>
+  <div class="footer-page">73</div>
+</div>
+</body>
+</html>

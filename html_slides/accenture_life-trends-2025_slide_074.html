@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Recreated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#fcfcfc;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#fcfcfc;
+    color:#222;
+  }
+
+  .col{
+    position:absolute;
+    font-size:17px;
+    line-height:1.38;
+    color:#252525;
+    font-weight:400;
+    letter-spacing:0;
+  }
+  .col p{ margin:0 0 14px 0; }
+  .sup{
+    font-size:10px;
+    vertical-align:super;
+    line-height:0;
+  }
+
+  .left{
+    left:60px;
+    top:126px;
+    width:356px;
+  }
+  .middle{
+    left:484px;
+    top:126px;
+    width:375px;
+  }
+
+  .panel{
+    position:absolute;
+    left:905px;
+    top:125px;
+    width:305px;
+    color:#1f1f1f;
+  }
+  .panel .title{
+    font-size:18px;
+    line-height:1.28;
+    font-weight:700;
+    margin-bottom:23px;
+  }
+
+  .item{
+    position:relative;
+    margin-bottom:21px;
+    min-height:58px;
+  }
+  .pct{
+    position:absolute;
+    left:0;
+    top:-2px;
+    font-size:39px;
+    line-height:1;
+    font-weight:300;
+    color:#8f2cff;
+    letter-spacing:-0.5px;
+  }
+  .icon{
+    position:absolute;
+    left:67px;
+    top:2px;
+    width:34px;
+    height:34px;
+    color:#8f2cff;
+  }
+  .label{
+    position:absolute;
+    left:0;
+    top:34px;
+    width:300px;
+    font-size:16px;
+    line-height:1.3;
+    color:#444;
+    font-weight:400;
+  }
+
+  .foot{
+    margin-top:8px;
+    font-size:14px;
+    font-weight:700;
+    color:#1f1f1f;
+  }
+
+  .side-note{
+    position:absolute;
+    right:13px;
+    top:39px;
+    height:603px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-size:16px;
+    color:#767676;
+    letter-spacing:0.1px;
+  }
+  .side-note .accent{
+    color:#8f2cff;
+    font-weight:600;
+  }
+
+  .bottom{
+    position:absolute;
+    right:24px;
+    bottom:16px;
+    font-size:14px;
+    color:#7c7c7c;
+  }
+  .bottom .year{
+    color:#8f2cff;
+  }
+  .page{
+    position:absolute;
+    right:10px;
+    bottom:16px;
+    font-size:14px;
+    color:#6e6e6e;
+  }
+
+  /* Icons */
+  .sun:before, .sun:after,
+  .friends:before, .friends:after,
+  .basket:before, .basket:after,
+  .bag:before, .bag:after,
+  .book:before, .book:after{
+    content:"";
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .sun:before{
+    left:9px; top:9px;
+    width:16px; height:16px;
+    border:2px solid #8f2cff;
+    border-radius:50%;
+  }
+  .sun:after{
+    left:0; top:0;
+    width:34px; height:34px;
+    background:
+      radial-gradient(circle at 17px 3px, #8f2cff 0 2px, transparent 2.5px),
+      radial-gradient(circle at 17px 31px, #8f2cff 0 2px, transparent 2.5px),
+      radial-gradient(circle at 3px 17px, #8f2cff 0 2px, transparent 2.5px),
+      radial-gradient(circle at 31px 17px, #8f2cff 0 2px, transparent 2.5px),
+      radial-gradient(circle at 6px 6px, #8f2cff 0 2px, transparent 2.5px),
+      radial-gradient(circle at 28px 6px, #8f2cff 0 2px, transparent 2.5px),
+      radial-gradient(circle at 6px 28px, #8f2cff 0 2px, transparent 2.5px),
+      radial-gradient(circle at 28px 28px, #8f2cff 0 2px, transparent 2.5px);
+  }
+
+  .friends:before{
+    left:4px; top:5px;
+    width:26px; height:24px;
+    background:
+      radial-gradient(circle at 9px 5px, transparent 0 4px, #8f2cff 4px 5.7px, transparent 6px),
+      radial-gradient(circle at 21px 5px, transparent 0 4px, #8f2cff 4px 5.7px, transparent 6px),
+      linear-gradient(#8f2cff,#8f2cff) 6px 13px/7px 11px no-repeat,
+      linear-gradient(#8f2cff,#8f2cff) 18px 13px/7px 11px no-repeat,
+      linear-gradient(#8f2cff,#8f2cff) 3px 15px/13px 2px no-repeat,
+      linear-gradient(#8f2cff,#8f2cff) 15px 15px/13px 2px no-repeat;
+    background-repeat:no-repeat;
+  }
+  .friends:after{
+    left:8px; top:17px;
+    width:4px; height:11px;
+    border-left:2px solid #fcfcfc;
+    border-right:2px solid #fcfcfc;
+    opacity:.9;
+  }
+
+  .basket:before{
+    left:5px; top:11px;
+    width:24px; height:15px;
+    border:2px solid #8f2cff;
+    border-top:none;
+    border-radius:0 0 3px 3px;
+  }
+  .basket:after{
+    left:8px; top:5px;
+    width:18px; height:10px;
+    border:2px solid #8f2cff;
+    border-bottom:none;
+    border-radius:9px 9px 0 0;
+    box-shadow:
+      -6px 17px 0 -7px #8f2cff,
+      -2px 17px 0 -7px #8f2cff,
+      2px 17px 0 -7px #8f2cff,
+      6px 17px 0 -7px #8f2cff;
+  }
+
+  .bag:before{
+    left:7px; top:12px;
+    width:18px; height:17px;
+    border:2px solid #8f2cff;
+    border-radius:1px;
+  }
+  .bag:after{
+    left:10px; top:1px;
+    width:12px; height:13px;
+    border:2px solid #8f2cff;
+    border-bottom:none;
+    border-radius:7px 7px 0 0;
+    box-shadow:
+      17px 4px 0 -11px #8f2cff,
+      17px 4px 0 -9px #8f2cff;
+  }
+  .bag .spark{
+    position:absolute;
+    right:0;
+    top:4px;
+    width:8px; height:8px;
+    transform:rotate(45deg);
+    border:2px solid #8f2cff;
+    border-left:none;
+    border-bottom:none;
+  }
+
+  .book:before{
+    left:4px; top:5px;
+    width:12px; height:22px;
+    border:2px solid #8f2cff;
+    border-right:1px solid #8f2cff;
+    border-radius:2px 0 0 2px;
+  }
+  .book:after{
+    left:16px; top:5px;
+    width:12px; height:22px;
+    border:2px solid #8f2cff;
+    border-left:1px solid #8f2cff;
+    border-radius:0 2px 2px 0;
+  }
+  .book .mid{
+    position:absolute;
+    left:16px; top:6px;
+    width:2px; height:20px;
+    background:#8f2cff;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="col left">
+    <p>People are finding a purity of joy in making memories through experiences that are tactile and finite—enjoying it while it lasts and then moving on. This is illustrated by a rise in demand for so-called “simple technology,” which includes devices designed to perform limited functions and to perform them well.<span class="sup">127, 128</span> In some cases, the experience surrounding simple technology is as valuable as the use of it. For example, vinyl records are not just appealing for the music they host but also for the ritual of going to a record store (which are flourishing all over the world), spending time flipping through covers, absorbing the artwork, maybe talking to fellow enthusiasts, then buying a tangible product to treasure, collect or pass on to loved ones.<span class="sup">129</span></p>
+  </div>
+
+  <div class="col middle">
+    <p>Disposable cameras are enjoying a resurgence, too. Again, it’s not just the device, but also the experience—the physical memento of a moment that can be printed, kept, thumbed through and displayed. People are also seeking out dumbphones that offer necessary avenues of communication without the temptation of other apps.<span class="sup">130, 131, 132</span> The ad campaign for the Light Phone III explains all the things the device cannot do as its major selling point, to “give you the space you need to take your passions seriously.”<span class="sup">133</span></p>
+    <p>Touch is an important factor in social rewilding—along with sound, smell and taste—as sensory enrichment is something people have lacked for a while. For instance, some shoppers are adjusting the balance of their online/high street habits and reviving the ritual of visiting a store to enjoy the atmosphere, engage with people and physically examine, smell and touch products before deciding what to buy.<span class="sup">134</span></p>
+  </div>
+
+  <div class="panel">
+    <div class="title">Top physical activities people say they’ve done more of over the past 12 months:</div>
+
+    <div class="item">
+      <div class="pct">48%</div>
+      <div class="icon sun"></div>
+      <div class="label">Spending time outdoor/in nature</div>
+    </div>
+
+    <div class="item">
+      <div class="pct">47%</div>
+      <div class="icon friends"></div>
+      <div class="label">Hanging out with friends in real life</div>
+    </div>
+
+    <div class="item">
+      <div class="pct">46.9%</div>
+      <div class="icon basket"></div>
+      <div class="label">Shopping in physical grocery stores</div>
+    </div>
+
+    <div class="item">
+      <div class="pct">36%</div>
+      <div class="icon bag"><div class="spark"></div></div>
+      <div class="label">Shopping in other retail stores (non-grocery)</div>
+    </div>
+
+    <div class="item" style="margin-bottom:16px;">
+      <div class="pct">30.1%</div>
+      <div class="icon book"><div class="mid"></div></div>
+      <div class="label">Reading physical books or magazines</div>
+    </div>
+
+    <div class="foot">Accenture Life Trends survey, 2024</div>
+  </div>
+
+  <div class="side-note">
+    Cost of hesitations &nbsp;/&nbsp; The parent trap &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; <span class="accent">Social rewilding</span>
+  </div>
+
+  <div class="bottom">Accenture Life Trends <span class="year">2025</span></div>
+  <div class="page">74</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Contents Slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #f0f0f0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #FEFDFE;
+    color: #2f2f2f;
+  }
+
+  .top-left {
+    position: absolute;
+    left: 64px;
+    top: 38px;
+    font-size: 13px;
+    color: #475353;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .top-left .accent {
+    color: #AB1AE4;
+  }
+
+  .top-right {
+    position: absolute;
+    right: 60px;
+    top: 38px;
+    font-size: 13px;
+    color: #475353;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .top-right .num {
+    display: inline-block;
+    margin-left: 18px;
+    font-size: 21px;
+  }
+
+  .title {
+    position: absolute;
+    left: 64px;
+    top: 177px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #6f19d1;
+    line-height: 1.1;
+  }
+
+  .grid {
+    position: absolute;
+    left: 63px;
+    top: 264px;
+    width: 1160px;
+    height: 330px;
+  }
+
+  .card {
+    position: absolute;
+    width: 223px;
+    height: 320px;
+  }
+
+  .img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 223px;
+    height: 141px;
+    background: #ece7ef;
+    overflow: hidden;
+  }
+
+  .card .kicker {
+    position: absolute;
+    left: 0;
+    top: 171px;
+    font-size: 11px;
+    color: #333;
+  }
+
+  .card .heading {
+    position: absolute;
+    left: 0;
+    top: 185px;
+    width: 223px;
+    font-size: 16px;
+    line-height: 1.15;
+    color: #2f2f2f;
+    font-weight: 400;
+  }
+
+  .card .desc {
+    position: absolute;
+    left: 0;
+    top: 235px;
+    width: 223px;
+    font-size: 11px;
+    line-height: 1.15;
+    color: #8d16d8;
+    font-weight: 700;
+  }
+
+  .card .page {
+    position: absolute;
+    left: 0;
+    top: 301px;
+    font-size: 11px;
+    color: #333;
+  }
+
+  .bottom-mark {
+    position: absolute;
+    left: 57px;
+    bottom: 23px;
+    font-size: 52px;
+    line-height: 1;
+    color: #9d18ff;
+    font-weight: 700;
+  }
+
+  .c1 { left: 0; top: 0; }
+  .c2 { left: 254px; top: 0; }
+  .c3 { left: 507px; top: 0; }
+  .c4 { left: 761px; top: 0; }
+  .c5 { left: 1016px; top: 0; }
+
+  .img1 {
+    background:
+      radial-gradient(circle at 26% 38%, rgba(68,8,102,0.95) 0 16%, transparent 17%),
+      radial-gradient(circle at 49% 61%, rgba(145,51,219,0.85) 0 14%, transparent 15%),
+      linear-gradient(25deg, rgba(171,26,228,0.88) 0%, rgba(104,25,181,0.72) 33%, rgba(250,240,250,0.18) 55%, rgba(172,26,228,0.55) 73%, rgba(92,56,212,0.52) 100%),
+      linear-gradient(145deg, #f8f6f8 0%, #f0e7ef 100%);
+  }
+  .img1:before, .img1:after {
+    content: "";
+    position: absolute;
+    border-radius: 999px;
+    transform: rotate(-30deg);
+  }
+  .img1:before {
+    width: 171px;
+    height: 25px;
+    left: 26px;
+    top: 17px;
+    border: 4px solid rgba(210,154,237,0.9);
+    border-left-color: rgba(160,18,220,0.95);
+    border-right-color: rgba(250,250,250,0.7);
+    background: transparent;
+  }
+  .img1:after {
+    width: 168px;
+    height: 4px;
+    left: -6px;
+    top: 87px;
+    background: linear-gradient(90deg, rgba(163,13,217,0.95), rgba(247,209,246,0.75), rgba(160,22,224,0.9));
+    box-shadow: 18px 10px 0 0 rgba(199,74,232,0.5);
+  }
+
+  .img2 {
+    background:
+      radial-gradient(circle at 13% 56%, rgba(75,7,107,0.92) 0 14%, transparent 15%),
+      radial-gradient(circle at 46% 51%, rgba(130,20,196,0.8) 0 18%, transparent 19%),
+      radial-gradient(circle at 51% 34%, rgba(235,190,242,0.8) 0 25%, transparent 26%),
+      radial-gradient(circle at 84% 39%, rgba(133,6,191,0.95) 0 36%, transparent 37%),
+      linear-gradient(0deg, rgba(175,21,229,0.98), rgba(175,21,229,0.98)),
+      linear-gradient(135deg, #f8f4f7 0%, #efe6ef 100%);
+  }
+  .img2:before, .img2:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+  }
+  .img2:before {
+    width: 68px;
+    height: 68px;
+    left: 52px;
+    top: 30px;
+    background: radial-gradient(circle at 40% 40%, rgba(239,170,245,0.95) 0 30%, rgba(153,26,214,0.85) 45%, rgba(74,6,109,0.88) 70%, transparent 72%);
+  }
+  .img2:after {
+    width: 98px;
+    height: 98px;
+    left: 175px;
+    top: -14px;
+    background: radial-gradient(circle at 45% 55%, rgba(95,15,145,0.15) 0 24%, rgba(65,12,106,0.55) 45%, rgba(125,15,184,0.9) 70%, rgba(83,25,133,0.95) 100%);
+  }
+
+  .img3 {
+    background:
+      linear-gradient(140deg, rgba(248,245,249,0.95) 0 28%, rgba(220,196,237,0.9) 42%, rgba(194,131,235,0.8) 58%, rgba(244,235,246,0.85) 100%);
+  }
+  .img3:before {
+    content: "";
+    position: absolute;
+    width: 137px;
+    height: 151px;
+    left: 56px;
+    top: -5px;
+    background:
+      radial-gradient(circle at 43% 28%, rgba(154,61,204,0.85) 0 10%, transparent 11%),
+      radial-gradient(circle at 45% 43%, rgba(238,228,242,0.95) 0 22%, rgba(191,170,205,0.75) 23%, transparent 24%),
+      radial-gradient(circle at 42% 35%, rgba(111,92,125,0.9) 0 30%, rgba(156,125,180,0.5) 31%, transparent 32%);
+    clip-path: polygon(28% 4%, 50% 0%, 72% 8%, 86% 30%, 80% 57%, 76% 79%, 69% 97%, 47% 100%, 28% 94%, 17% 77%, 10% 54%, 13% 31%);
+    filter: saturate(1.1);
+  }
+  .img3:after {
+    content: "";
+    position: absolute;
+    left: -11px;
+    top: 85px;
+    width: 247px;
+    height: 59px;
+    background:
+      repeating-linear-gradient(-34deg, rgba(161,31,220,0.72) 0 3px, rgba(242,230,247,0.18) 3px 11px);
+    transform: rotate(-14deg);
+    opacity: 0.8;
+  }
+
+  .img4 {
+    background:
+      linear-gradient(160deg, rgba(248,244,248,1) 0%, rgba(236,230,239,1) 100%);
+  }
+  .img4:before {
+    content: "";
+    position: absolute;
+    width: 208px;
+    height: 108px;
+    left: 8px;
+    top: 23px;
+    background:
+      radial-gradient(circle at 44% 34%, rgba(88,19,128,0.95) 0 10%, rgba(249,138,80,0.8) 10.5%, transparent 14%),
+      linear-gradient(20deg, rgba(107,30,171,0.85), rgba(192,92,235,0.72) 40%, rgba(236,219,245,0.6) 70%, rgba(130,59,204,0.8)),
+      linear-gradient(180deg, rgba(52,53,54,0.95), rgba(84,86,88,0.92));
+    clip-path: polygon(8% 53%, 18% 40%, 36% 27%, 49% 16%, 65% 14%, 81% 23%, 95% 39%, 100% 58%, 87% 67%, 72% 65%, 59% 60%, 45% 52%, 28% 54%, 16% 65%);
+    transform: rotate(8deg);
+    box-shadow: 45px 39px 0 0 rgba(121,61,206,0.65);
+  }
+  .img4:after {
+    content: "";
+    position: absolute;
+    width: 104px;
+    height: 13px;
+    left: 38px;
+    top: 27px;
+    background:
+      radial-gradient(circle at 10px 6px, rgba(154,44,220,0.95) 0 6px, transparent 7px),
+      radial-gradient(circle at 27px 5px, rgba(154,44,220,0.95) 0 6px, transparent 7px),
+      radial-gradient(circle at 45px 5px, rgba(154,44,220,0.95) 0 6px, transparent 7px),
+      radial-gradient(circle at 64px 6px, rgba(154,44,220,0.95) 0 6px, transparent 7px);
+    transform: rotate(-10deg);
+  }
+
+  .img5 {
+    background:
+      linear-gradient(180deg, rgba(248,243,247,1) 0%, rgba(241,232,241,1) 100%);
+  }
+  .img5:before, .img5:after {
+    content: "";
+    position: absolute;
+    border-radius: 48% 45% 44% 42% / 40% 42% 46% 48%;
+    background:
+      radial-gradient(circle at 43% 33%, rgba(130,45,115,0.65) 0 28%, transparent 29%),
+      linear-gradient(180deg, rgba(173,66,175,0.95), rgba(228,120,212,0.72) 58%, rgba(240,226,233,0.55) 100%);
+  }
+  .img5:before {
+    width: 79px;
+    height: 102px;
+    left: 28px;
+    top: 8px;
+    box-shadow: 20px 11px 0 0 rgba(177,35,233,0.55);
+  }
+  .img5:after {
+    width: 79px;
+    height: 102px;
+    left: 135px;
+    top: 5px;
+    box-shadow: -18px 10px 0 0 rgba(170,28,229,0.45);
+  }
+  .img5 .ring1,
+  .img5 .ring2 {
+    position: absolute;
+    border-radius: 999px;
+    border: 4px solid rgba(182,98,225,0.75);
+    background: transparent;
+  }
+  .img5 .ring1 {
+    width: 83px;
+    height: 32px;
+    left: 11px;
+    top: 31px;
+    transform: rotate(28deg);
+  }
+  .img5 .ring2 {
+    width: 86px;
+    height: 33px;
+    left: 144px;
+    top: 31px;
+    transform: rotate(28deg);
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+    <div class="top-right">Contents <span class="num">3</span></div>
+
+    <div class="title">Contents</div>
+
+    <div class="grid">
+      <div class="card c1">
+        <div class="img img1"></div>
+        <div class="kicker">Introduction</div>
+        <div class="heading">AI: A Declaration<br>of Autonomy</div>
+        <div class="desc">Is trust the limit of AI's<br>limitless possibilities?</div>
+        <div class="page">Page 04-08</div>
+      </div>
+
+      <div class="card c2">
+        <div class="img img2"></div>
+        <div class="heading">01 The Binary Big Bang</div>
+        <div class="desc">When AI expands exponentially,<br>systems are upended</div>
+        <div class="page">Page 09-21</div>
+      </div>
+
+      <div class="card c3">
+        <div class="img img3"></div>
+        <div class="heading">02 Your Face, in the Future</div>
+        <div class="desc">Differentiating when every interface<br>looks the same</div>
+        <div class="page">Page 22-33</div>
+      </div>
+
+      <div class="card c4">
+        <div class="img img4"></div>
+        <div class="heading">03 When LLMs get<br>their Bodies</div>
+        <div class="desc">How foundation models<br>reinvent robotics</div>
+        <div class="page">Page 34-46</div>
+      </div>
+
+      <div class="card c5">
+        <div class="img img5">
+          <div class="ring1"></div>
+          <div class="ring2"></div>
+        </div>
+        <div class="heading">04 The New Learning Loop</div>
+        <div class="desc">How people and AI are defining<br>a virtuous cycle of learning, leading,<br>and creating</div>
+        <div class="page">Page 47-58</div>
+      </div>
+    </div>
+
+    <div class="bottom-mark">&gt;</div>
+  </div>
+</body>
+</html>

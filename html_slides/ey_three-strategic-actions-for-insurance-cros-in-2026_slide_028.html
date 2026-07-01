@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9dc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dbdbde;
+  }
+
+  .left-panel{
+    position:absolute;
+    left:31px;
+    top:31px;
+    width:595px;
+    height:706px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 10% 2%, rgba(255,255,255,0.42) 0, rgba(255,255,255,0.10) 52px, rgba(255,255,255,0) 96px),
+      radial-gradient(circle at 91% 0%, rgba(255,255,255,0.32) 0, rgba(255,255,255,0.08) 40px, rgba(255,255,255,0) 88px),
+      radial-gradient(circle at 16% 45%, rgba(255,163,0,0.72) 0, rgba(255,163,0,0.28) 36px, rgba(255,163,0,0) 76px),
+      radial-gradient(circle at 41% 34%, rgba(193,0,255,0.52) 0, rgba(193,0,255,0.18) 44px, rgba(193,0,255,0) 95px),
+      radial-gradient(circle at 67% 24%, rgba(255,255,255,0.22) 0, rgba(255,255,255,0.08) 34px, rgba(255,255,255,0) 84px),
+      radial-gradient(circle at 82% 23%, rgba(255,255,255,0.18) 0, rgba(255,255,255,0.07) 29px, rgba(255,255,255,0) 80px),
+      linear-gradient(180deg, rgba(18,37,58,0.76) 0%, rgba(42,60,79,0.42) 36%, rgba(22,45,71,0.50) 68%, rgba(11,46,83,0.88) 100%),
+      linear-gradient(90deg, #586a76 0%, #445063 18%, #20334a 53%, #0f2032 72%, #35677e 100%);
+  }
+
+  .chapter-pill{
+    position:absolute;
+    left:31px;
+    top:14px;
+    width:69px;
+    height:18px;
+    border-radius:12px 12px 0 0;
+    background:#70727b;
+    color:#fff;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.08em;
+    line-height:18px;
+    text-align:center;
+    text-transform:uppercase;
+    z-index:20;
+  }
+
+  .chapter-side{
+    position:absolute;
+    left:8px;
+    top:329px;
+    width:16px;
+    height:118px;
+    z-index:20;
+  }
+  .chapter-side .txt{
+    position:absolute;
+    left:-23px;
+    top:42px;
+    width:64px;
+    color:#2d2f35;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+  }
+  .chapter-side .line{
+    position:absolute;
+    left:5px;
+    top:70px;
+    width:1px;
+    height:42px;
+    background:#5a5b61;
+  }
+
+  .big-stat{
+    position:absolute;
+    left:79px;
+    top:71px;
+    font-size:142px;
+    line-height:108px;
+    font-weight:700;
+    letter-spacing:-0.075em;
+    color:transparent;
+    -webkit-text-stroke:2.5px #ffe100;
+    text-stroke:2.5px #ffe100;
+    z-index:5;
+  }
+
+  .stat-body{
+    position:absolute;
+    left:80px;
+    top:189px;
+    width:328px;
+    color:#eef0f2;
+    font-size:17px;
+    line-height:1.42;
+    font-weight:300;
+    z-index:5;
+  }
+  .stat-body b{font-weight:700;color:#f4f4f6;}
+  .stat-body .purple{color:#ef8dff;}
+
+  .pedestal-glow{
+    position:absolute;
+    left:214px;
+    top:578px;
+    width:352px;
+    height:110px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(0,235,255,.22) 0%, rgba(0,170,255,.10) 38%, rgba(0,0,0,0) 74%);
+    filter:blur(8px);
+    z-index:2;
+  }
+  .pedestal{
+    position:absolute;
+    left:220px;
+    top:638px;
+    width:414px;
+    height:82px;
+    border-radius:50%;
+    background:linear-gradient(180deg, rgba(27,52,72,.92) 0%, rgba(6,13,23,.98) 68%, rgba(0,0,0,1) 100%);
+    box-shadow: inset 0 6px 14px rgba(114,219,255,.12), 0 10px 20px rgba(0,0,0,.45);
+    z-index:3;
+  }
+  .pedestal-top{
+    position:absolute;
+    left:220px;
+    top:622px;
+    width:414px;
+    height:42px;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 54% 42%, rgba(52,208,255,.16), rgba(0,0,0,0) 56%),
+      linear-gradient(180deg, #284861 0%, #13273c 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
+    z-index:4;
+  }
+  .pedestal-dash{
+    position:absolute;
+    height:3px;
+    border-radius:3px;
+    background:#2ee7ff;
+    opacity:.65;
+    z-index:5;
+    box-shadow:0 0 6px rgba(46,231,255,.45);
+  }
+
+  svg.fibers{
+    position:absolute;
+    left:164px;
+    top:224px;
+    width:458px;
+    height:432px;
+    overflow:visible;
+    z-index:4;
+  }
+
+  .page-num{
+    position:absolute;
+    left:49px;
+    bottom:16px;
+    color:#ffffff;
+    font-size:11px;
+    line-height:1;
+    z-index:20;
+  }
+
+  .right-intro{
+    position:absolute;
+    left:772px;
+    top:73px;
+    width:428px;
+    color:#4f5058;
+    font-size:13px;
+    line-height:1.42;
+    font-weight:400;
+  }
+
+  .jump{
+    position:absolute;
+    right:34px;
+    top:58px;
+    width:43px;
+    height:43px;
+    border-radius:50%;
+    border:1px solid #67686d;
+    color:#4f5056;
+    box-sizing:border-box;
+  }
+  .jump:before,
+  .jump:after{
+    content:"";
+    position:absolute;
+    width:9px;
+    height:9px;
+    background:#dbd11a;
+    border-radius:50%;
+    right:-1px;
+    top:4px;
+  }
+  .jump:after{
+    background:#dbd11a;
+    width:0;
+    height:0;
+    right:7px;
+    top:2px;
+    border-left:4px solid transparent;
+    border-right:4px solid transparent;
+    border-bottom:6px solid #dbd11a;
+    border-radius:0;
+    transform:rotate(34deg);
+  }
+  .jump .t{
+    position:absolute;
+    left:7px;
+    top:12px;
+    width:29px;
+    font-size:9px;
+    line-height:1.1;
+    text-align:center;
+  }
+
+  .figure-title{
+    position:absolute;
+    left:772px;
+    top:187px;
+    width:468px;
+    color:#3f4047;
+    font-size:14px;
+    line-height:1.34;
+    font-weight:400;
+  }
+  .figure-title b{font-weight:700;}
+
+  .chart{
+    position:absolute;
+    left:772px;
+    top:256px;
+    width:388px;
+    height:402px;
+  }
+  .row{
+    position:absolute;
+    left:0;
+    width:388px;
+    height:52px;
+  }
+  .label{
+    position:absolute;
+    left:0;
+    top:0;
+    width:168px;
+    color:#5a5b63;
+    font-size:11px;
+    line-height:1.2;
+    text-align:right;
+    font-weight:400;
+  }
+  .barbox{
+    position:absolute;
+    left:181px;
+    top:4px;
+    width:198px;
+    height:26px;
+    border:1px solid #a6a6ab;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:24px;
+    background:#7a0057;
+  }
+  .pct{
+    position:absolute;
+    right:5px;
+    top:4px;
+    color:#5a5b63;
+    font-size:16px;
+    line-height:16px;
+    font-weight:400;
+  }
+  .sub{z-index:1;
+    position:absolute;
+    left:181px;
+    top:36px;
+    width:205px;
+    color:#6a6b71;
+    font-size:7px;
+    line-height:1.12;
+    font-weight:400;
+    white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="chapter-pill">CHAPTER 5</div>
+  <div class="left-panel"></div>
+
+  <div class="chapter-side">
+    <div class="txt">CHAPTER 5</div>
+    <div class="line"></div>
+  </div>
+
+  <div class="big-stat">62%</div>
+
+  <div class="stat-body">
+    of respondents cited <b>technology<br>advancements and automation</b><br>
+    as the leading driver of <span class="purple">expected</span><br>
+    workforce changes.
+  </div>
+
+  <div class="pedestal-glow"></div>
+  <div class="pedestal"></div>
+  <div class="pedestal-top"></div>
+
+  <div class="pedestal-dash" style="left:292px;top:631px;width:22px;"></div>
+  <div class="pedestal-dash" style="left:341px;top:632px;width:18px;"></div>
+  <div class="pedestal-dash" style="left:389px;top:640px;width:16px;"></div>
+  <div class="pedestal-dash" style="left:426px;top:646px;width:12px;"></div>
+  <div class="pedestal-dash" style="left:458px;top:648px;width:20px;"></div>
+  <div class="pedestal-dash" style="left:501px;top:644px;width:17px;"></div>
+  <div class="pedestal-dash" style="left:539px;top:642px;width:15px;"></div>
+  <div class="pedestal-dash" style="left:582px;top:624px;width:18px;"></div>
+  <div class="pedestal-dash" style="left:615px;top:633px;width:20px;"></div>
+  <div class="pedestal-dash" style="left:302px;top:646px;width:10px;"></div>
+  <div class="pedestal-dash" style="left:331px;top:652px;width:9px;"></div>
+  <div class="pedestal-dash" style="left:356px;top:645px;width:11px;"></div>
+
+  <svg class="fibers" viewBox="0 0 470 430" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow1" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="1.6" result="b"/>
+        <feMerge>
+          <feMergeNode in="b"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <linearGradient id="g1" x1="0" y1="1" x2="0.8" y2="0">
+        <stop offset="0%" stop-color="#25dfff"/>
+        <stop offset="55%" stop-color="#78b7ff"/>
+        <stop offset="100%" stop-color="#ff83d5"/>
+      </linearGradient>
+      <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0%" stop-color="#59f1ff"/>
+        <stop offset="70%" stop-color="#ca75ff"/>
+        <stop offset="100%" stop-color="#ffbe47"/>
+      </linearGradient>
+    </defs>
+
+    <g stroke-linecap="round" fill="none" filter="url(#glow1)" opacity="0.72">
+      <path d="M266 395 C255 346, 211 262, 36 135" stroke="url(#g1)" stroke-width="2"/>
+      <path d="M270 396 C258 343, 217 273, 72 183" stroke="url(#g1)" stroke-width="2"/>
+      <path d="M274 397 C262 340, 225 270, 93 165" stroke="url(#g2)" stroke-width="2"/>
+      <path d="M278 398 C266 339, 236 268, 130 150" stroke="url(#g1)" stroke-width="2"/>
+      <path d="M282 397 C271 340, 245 275, 124 192" stroke="url(#g2)" stroke-width="2"/>
+      <path d="M286 397 C274 337, 255 267, 156 167" stroke="url(#g1)" stroke-width="2"/>
+      <path d="M290 396 C281 333, 269 263, 170 144" stroke="url(#g1)" stroke-width="2"/>
+      <path d="M294 395 C285 334, 276 263, 182 124" stroke="url(#g2)" stroke-width="2"/>
+      <path d="M298 394 C289 334, 287 267, 200 150" stroke="url(#g1)" stroke-width="2"/>
+      <path d="M302 395 C295 337, 296 270, 211 132" stroke="url(#g2)" stroke-width="2"/>
+      <path d="M306 393 C301 337, 305 263, 228 122" stroke="url(#g1)" stroke-width="2"/>
+      <path d="M310 392 C306 337, 314 262, 243 156" stroke="url(#g1)" stroke-width="2"/>
+      <path d="M314 391 C311 336, 321 255, 259 121" stroke="url(#g2)" stroke-width="2"/>
+      <path d="M318 390 C317 334, 329 253, 273 110" stroke="url(#g1)" stroke-width="2"/>
+      <path d="M322 389 C321 335, 335 255, 292 124" stroke="url(#g2)" stroke-width="2"/>
+      <path d="M326 388 C326 337, 343 260, 308 111" stroke="url(#g1)" stroke-width="2"/>
+      <path d="M330 388 C332 339, 353 257, 335 121" stroke="url(#g2)" stroke-width="2"/>
+      <path d="M334 387 C337 340, 364 260, 365 101" stroke="url(#g1)" stroke-width="2"/>
+      <path d="M338 387 C343 338, 372 253, 388 112" stroke="url(#g2)" stroke-width="2"/>
+      <path d="M342 388 C349 339, 382 257, 411 103" stroke="url(#g1)" stroke-width="2"/>
+      <path d="M346 390 C356 341, 393 262, 440 110" stroke="url(#g2)" stroke-width="2"/>
+      <path d="M350 391 C365 346, 410 267, 463 104" stroke="url(#g1)" stroke-width="2"/>
+
+      <path d="M263 394 C252 344, 226 280, 69 134" stroke="#d8b0a4" stroke-width="1.8" opacity="0.62"/>
+      <path d="M268 396 C258 347, 235 287, 102 183" stroke="#efc6b6" stroke-width="1.6" opacity="0.56"/>
+      <path d="M272 395 C264 344, 247 287, 140 165" stroke="#d7b7b8" stroke-width="1.6" opacity="0.56"/>
+      <path d="M276 396 C270 345, 259 292, 171 180" stroke="#d9cad4" stroke-width="1.6" opacity="0.48"/>
+      <path d="M280 395 C275 343, 271 285, 193 147" stroke="#e0c6d4" stroke-width="1.6" opacity="0.46"/>
+      <path d="M284 395 C281 343, 283 282, 220 167" stroke="#e2ccd7" stroke-width="1.6" opacity="0.46"/>
+      <path d="M288 394 C287 343, 295 279, 240 153" stroke="#d5d0de" stroke-width="1.6" opacity="0.46"/>
+      <path d="M292 394 C292 342, 305 278, 259 145" stroke="#dfb2d9" stroke-width="1.6" opacity="0.46"/>
+      <path d="M296 393 C297 341, 317 273, 285 116" stroke="#dbbdc6" stroke-width="1.6" opacity="0.44"/>
+      <path d="M300 393 C304 342, 326 272, 304 125" stroke="#edc6ad" stroke-width="1.6" opacity="0.44"/>
+      <path d="M304 392 C311 343, 338 273, 327 116" stroke="#e3bcc8" stroke-width="1.6" opacity="0.44"/>
+      <path d="M308 391 C317 342, 350 270, 349 109" stroke="#ebc9ad" stroke-width="1.6" opacity="0.44"/>
+      <path d="M312 390 C324 344, 365 270, 377 118" stroke="#e7ccd5" stroke-width="1.6" opacity="0.42"/>
+      <path d="M316 389 C332 346, 378 274, 402 107" stroke="#e9c9b1" stroke-width="1.6" opacity="0.42"/>
+      <path d="M320 389 C339 349, 391 281, 429 111" stroke="#e5c9cb" stroke-width="1.6" opacity="0.42"/>
+    </g>
+
+    <g fill="#f0b55c" opacity="0.85" filter="url(#glow1)">
+      <circle cx="36" cy="135" r="3.5"/>
+      <circle cx="72" cy="183" r="3.3"/>
+      <circle cx="93" cy="165" r="3.3"/>
+      <circle cx="130" cy="150" r="3.1"/>
+      <circle cx="156" cy="167" r="3.0"/>
+      <circle cx="170" cy="144" r="3.0"/>
+      <circle cx="182" cy="124" r="2.8"/>
+      <circle cx="211" cy="132" r="2.8"/>
+      <circle cx="228" cy="122" r="2.8"/>
+      <circle cx="243" cy="156" r="2.8"/>
+      <circle cx="259" cy="121" r="3.4"/>
+      <circle cx="273" cy="110" r="3.0"/>
+      <circle cx="292" cy="124" r="3.4"/>
+      <circle cx="308" cy="111" r="3.0"/>
+      <circle cx="335" cy="121" r="3.0"/>
+      <circle cx="365" cy="101" r="3.6"/>
+      <circle cx="388" cy="112" r="3.2"/>
+      <circle cx="411" cy="103" r="3.5"/>
+      <circle cx="440" cy="110" r="3.2"/>
+      <circle cx="463" cy="104" r="3.4"/>
+      <circle cx="69" cy="134" r="2.8"/>
+      <circle cx="102" cy="183" r="2.8"/>
+      <circle cx="140" cy="165" r="2.7"/>
+      <circle cx="220" cy="167" r="2.6"/>
+      <circle cx="285" cy="116" r="2.5"/>
+      <circle cx="327" cy="116" r="2.6"/>
+      <circle cx="377" cy="118" r="2.5"/>
+      <circle cx="429" cy="111" r="2.6"/>
+    </g>
+
+    <g fill="#29e2ff" opacity="0.35">
+      <ellipse cx="302" cy="398" rx="68" ry="8"/>
+    </g>
+  </svg>
+
+  <div class="right-intro">
+    While automation and digitalization &ndash; including AI &ndash; are enabling<br>
+    risk teams to manage greater workloads with the same or fewer<br>
+    staff, factors like regulatory requirements, expansion of business<br>
+    operations and enhanced focus on strategic initiatives are also<br>
+    significant contributors to expected shifts in risk function staffing.
+  </div>
+
+  <div class="jump">
+    <div class="t">Jump to<br>contents</div>
+  </div>
+
+  <div class="figure-title">
+    <b>Figure 16:</b> What factors are driving your organization's expected<br>
+    changes in the number of FTEs across the second-line risk<br>
+    function over the next three years?
+  </div>
+
+  <div class="chart">
+    <div class="row" style="top:0px;">
+      <div class="label">Technological advancements<br>and automation (e.g., AI)</div>
+      <div class="barbox">
+        <div class="fill" style="width:122px;"></div>
+        <div class="pct">62%</div>
+      </div>
+      <div class="sub">70% Asia-Pacific | 57% EMEIA | 65% Americas</div>
+    </div>
+
+    <div class="row" style="top:62px;">
+      <div class="label">Increased regulatory<br>requirements</div>
+      <div class="barbox">
+        <div class="fill" style="width:77px;"></div>
+        <div class="pct">39%</div>
+      </div>
+      <div class="sub">60% Asia-Pacific | 45% EMEIA | 29% Americas</div>
+    </div>
+
+    <div class="row" style="top:124px;">
+      <div class="label" style="top:5px;">Expansion of business operations</div>
+      <div class="barbox">
+        <div class="fill" style="width:67px;"></div>
+        <div class="pct">34%</div>
+      </div>
+      <div class="sub">70% Asia-Pacific | 30% EMEIA | 31% Americas</div>
+    </div>
+
+    <div class="row" style="top:186px;">
+      <div class="label" style="top:5px;">Cost-cutting measures</div>
+      <div class="barbox">
+        <div class="fill" style="width:57px;"></div>
+        <div class="pct">29%</div>
+      </div>
+      <div class="sub">40% Asia-Pacific | 32% EMEIA | 25% Americas</div>
+    </div>
+
+    <div class="row" style="top:248px;">
+      <div class="label">Enhanced focus on strategic<br>initiatives (e.g., M&amp;A activity, joint<br>ventures)</div>
+      <div class="barbox">
+        <div class="fill" style="width:37px;"></div>
+        <div class="pct">19%</div>
+      </div>
+      <div class="sub">20% Asia-Pacific | 11% EMEIA | 25% Americas</div>
+    </div>
+
+    <div class="row" style="top:330px;">
+      <div class="label">Evolution of risk operating models<br>to leverage talent in GCCs (Global<br>Capability Centers)</div>
+      <div class="barbox">
+        <div class="fill" style="width:33px;"></div>
+        <div class="pct">17%</div>
+      </div>
+      <div class="sub">40% Asia-Pacific | 16% EMEIA | 13% Americas</div>
+    </div>
+
+    <div class="row" style="top:392px;">
+      <div class="label" style="top:5px;">New products and distribution</div>
+      <div class="barbox">
+        <div class="fill" style="width:31px;"></div>
+        <div class="pct">16%</div>
+      </div>
+      <div class="sub">10% Asia-Pacific | 20% EMEIA | 13% Americas</div>
+    </div>
+  </div>
+
+  <div class="page-num">28</div>
+</div>
+</body>
+</html>

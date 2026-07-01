@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{margin:0;background:#9c9da1;font-family:Arial,Helvetica,'Segoe UI',sans-serif;}
+  .slide{position:relative;overflow:hidden;width:1280px;height:720px;background:#efefef;}
+  .left-panel{position:absolute;left:0;top:0;width:180px;height:720px;background:#34373d;z-index:5;}
+  .left-divider{position:absolute;left:179px;top:0;width:2px;height:720px;background:#7e63b6;z-index:6;}
+  .title-top{position:absolute;left:12px;top:31px;width:150px;color:#f3f3f4;font-size:23px;line-height:1.06;font-weight:700;z-index:30;}
+  .hex{position:absolute;width:58px;height:66px;z-index:20;}
+  .hex svg{position:absolute;left:0;top:0;width:58px;height:66px;}
+  .hex .num{position:absolute;left:86px;top:2px;font-size:28px;font-weight:700;color:#737980;line-height:1;}
+  .hex .label{position:absolute;left:86px;top:28px;width:82px;font-size:15px;line-height:1.08;color:#666c73;font-weight:400;}
+  .hex.active .num{color:#8a67c7;}
+  .hex.active .label{color:#8a67c7;font-weight:700;}
+  .bottom-icon{position:absolute;left:67px;top:667px;width:84px;height:45px;z-index:20;opacity:.9;}
+  .footer-page{position:absolute;left:9px;top:751px;width:20px;font-size:12px;line-height:1;color:#f0f0f0;z-index:50;top:751px;}
+  .footer-page{top:751px;}
+  .footer-page{top:708px;}
+  .main-title{position:absolute;left:220px;top:29px;width:995px;color:#202124;font-size:29px;line-height:1.08;font-weight:700;z-index:30;letter-spacing:0.1px;}
+  .sub-title{position:absolute;left:220px;top:138px;width:770px;color:#8f959d;font-size:24px;line-height:1.12;font-weight:400;z-index:30;}
+  .sub-title sup{font-size:12px;vertical-align:super;}
+  .chart-area{position:absolute;left:220px;top:212px;width:830px;height:443px;z-index:20;}
+  .chart-bg{position:absolute;left:9px;top:0;width:760px;height:435px;overflow:hidden;background:
+    linear-gradient(180deg, rgba(196,210,225,.48) 0%, rgba(233,237,242,.30) 52%, rgba(233,237,242,.18) 100%);}
+  .chart-bg svg{position:absolute;left:0;top:0;width:760px;height:435px;}
+  .chart-baseline{position:absolute;left:0;top:402px;width:830px;height:2px;background:#808286;z-index:25;}
+  .bars{position:absolute;left:13px;top:46px;width:800px;height:356px;z-index:30;}
+  .bar-group{position:absolute;bottom:0;width:64px;height:356px;}
+  .bar-dark,.bar-light{position:absolute;bottom:0;}
+  .bar-dark{left:0;width:32px;background:#4f2f7f;}
+  .bar-light{left:32px;width:32px;background:#816cb5;}
+  .value{position:absolute;font-size:16px;line-height:1;color:#2f3034;font-weight:400;white-space:nowrap;}
+  .xlabel{position:absolute;top:408px;width:86px;font-size:15px;line-height:1.08;color:#38393d;text-align:center;font-weight:400;z-index:30;}
+  .legend{position:absolute;left:5px;top:462px;width:220px;height:18px;z-index:30;}
+  .legend-item{position:absolute;top:0;height:18px;font-size:16px;line-height:18px;color:#403f45;font-weight:400;}
+  .swatch{position:absolute;left:0;top:2px;width:21px;height:14px;}
+  .footnote{position:absolute;left:220px;top:709px;width:823px;height:22px;font-size:10px;line-height:1.12;color:#4a4b4f;font-weight:400;z-index:30;}
+  .rhs{position:absolute;left:1077px;top:140px;width:203px;height:579px;background:#d7d7d9;z-index:20;}
+  .rhs p{position:absolute;left:14px;width:176px;margin:0;font-size:16px;line-height:1.18;color:#242529;font-weight:400;}
+  .rhs b{font-weight:700;}
+  .rb-logo{position:absolute;left:1236px;top:689px;width:37px;height:26px;z-index:50;}
+  .rb-text{position:absolute;left:1194px;top:703px;width:39px;font-size:10px;line-height:1;color:#6f7176;font-weight:400;z-index:50;text-align:right;}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-panel"></div>
+  <div class="left-divider"></div>
+
+  <div class="title-top">Technology &amp;<br>Innovation</div>
+
+  <div class="hex" style="left:6px;top:141px;">
+    <svg viewBox="0 0 58 66" aria-hidden="true">
+      <polygon points="15,4 43,4 57,33 43,61 15,61 1,33" fill="none" stroke="#8b8f95" stroke-width="3"/>
+      <polygon points="15,7 43,7 53,33 43,58 15,58 5,33" fill="#efefef"/>
+      <defs>
+        <clipPath id="c1"><polygon points="15,7 43,7 53,33 43,58 15,58 5,33"/></clipPath>
+      </defs>
+      <g clip-path="url(#c1)">
+        <rect x="0" y="0" width="58" height="66" fill="#71757a"/>
+        <rect x="0" y="34" width="58" height="32" fill="#5f6368"/>
+        <circle cx="19" cy="20" r="4" fill="#cfd3d7"/>
+        <circle cx="26" cy="24" r="4" fill="#aeb4bb"/>
+        <circle cx="35" cy="20" r="5" fill="#c7ccd1"/>
+        <circle cx="42" cy="29" r="4" fill="#9fa5ac"/>
+        <line x1="19" y1="20" x2="26" y2="24" stroke="#ffffff" stroke-width="1"/>
+        <line x1="26" y1="24" x2="35" y2="20" stroke="#ffffff" stroke-width="1"/>
+        <line x1="35" y1="20" x2="42" y2="29" stroke="#ffffff" stroke-width="1"/>
+        <rect x="11" y="35" width="32" height="15" fill="#555b60"/>
+        <line x1="11" y1="38" x2="43" y2="38" stroke="#e5e7ea" stroke-width="1"/>
+        <line x1="11" y1="42" x2="43" y2="42" stroke="#e5e7ea" stroke-width="1"/>
+        <line x1="11" y1="46" x2="43" y2="46" stroke="#e5e7ea" stroke-width="1"/>
+      </g>
+    </svg>
+    <div class="num">1</div>
+    <div class="label">Value of<br>Innovation</div>
+  </div>
+
+  <div class="hex" style="left:6px;top:274px;">
+    <svg viewBox="0 0 58 66" aria-hidden="true">
+      <polygon points="15,4 43,4 57,33 43,61 15,61 1,33" fill="none" stroke="#8b8f95" stroke-width="3"/>
+      <polygon points="15,7 43,7 53,33 43,58 15,58 5,33" fill="#efefef"/>
+      <defs>
+        <clipPath id="c2"><polygon points="15,7 43,7 53,33 43,58 15,58 5,33"/></clipPath>
+      </defs>
+      <g clip-path="url(#c2)">
+        <rect x="0" y="0" width="58" height="66" fill="#6d7277"/>
+        <circle cx="18" cy="24" r="13" fill="none" stroke="#d4d8dc" stroke-width="1"/>
+        <circle cx="18" cy="24" r="2" fill="#ffffff"/>
+        <circle cx="33" cy="18" r="2" fill="#ffffff"/>
+        <circle cx="39" cy="31" r="2" fill="#ffffff"/>
+        <line x1="18" y1="24" x2="33" y2="18" stroke="#ffffff" stroke-width="1"/>
+        <line x1="18" y1="24" x2="39" y2="31" stroke="#ffffff" stroke-width="1"/>
+        <line x1="33" y1="18" x2="39" y2="31" stroke="#ffffff" stroke-width="1"/>
+        <circle cx="28" cy="38" r="10" fill="none" stroke="#949aa0" stroke-width="1"/>
+      </g>
+    </svg>
+    <div class="num">2</div>
+    <div class="label">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="hex active" style="left:6px;top:375px;">
+    <svg viewBox="0 0 58 66" aria-hidden="true">
+      <polygon points="15,4 43,4 57,33 43,61 15,61 1,33" fill="none" stroke="#8a67c7" stroke-width="4"/>
+      <polygon points="15,7 43,7 53,33 43,58 15,58 5,33" fill="#f8f5fc"/>
+      <defs>
+        <clipPath id="c3"><polygon points="15,7 43,7 53,33 43,58 15,58 5,33"/></clipPath>
+      </defs>
+      <g clip-path="url(#c3)">
+        <rect x="0" y="0" width="58" height="66" fill="#f1c9bd"/>
+        <rect x="0" y="30" width="58" height="36" fill="#e5e8ed"/>
+        <circle cx="22" cy="31" r="7" fill="#f1c4ae"/>
+        <circle cx="36" cy="31" r="7" fill="#f1c4ae"/>
+        <rect x="15" y="25" width="9" height="15" rx="3" fill="#91abd1"/>
+        <rect x="35" y="25" width="9" height="15" rx="3" fill="#91abd1"/>
+        <rect x="17" y="32" width="12" height="5" rx="2" fill="#ffffff"/>
+        <rect x="29" y="32" width="12" height="5" rx="2" fill="#ffffff"/>
+        <path d="M28 33 L30 33 L32 35 L30 37 L28 37 L26 35 Z" fill="#d3d7dc"/>
+      </g>
+    </svg>
+    <div class="num">3</div>
+    <div class="label">Humans &amp;<br>Machines</div>
+  </div>
+
+  <div class="bottom-icon">
+    <svg viewBox="0 0 84 45" width="84" height="45">
+      <g fill="none" stroke="#7f8388" stroke-width="2.5" stroke-linecap="round">
+        <circle cx="52" cy="22" r="11"></circle>
+        <circle cx="52" cy="22" r="4" fill="#7f8388" stroke="none"></circle>
+        <line x1="52" y1="5" x2="52" y2="0"></line>
+        <line x1="52" y1="44" x2="52" y2="39"></line>
+        <line x1="35" y1="22" x2="30" y2="22"></line>
+        <line x1="74" y1="22" x2="79" y2="22"></line>
+        <line x1="40" y1="10" x2="36" y2="6"></line>
+        <line x1="64" y1="34" x2="68" y2="38"></line>
+        <line x1="64" y1="10" x2="68" y2="6"></line>
+        <line x1="40" y1="34" x2="36" y2="38"></line>
+      </g>
+      <g fill="none" stroke="#7f8388" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 34 C10 29,9 22,12 16 C15 10,23 9,28 12"></path>
+        <path d="M17 34 C18 39,22 42,28 43"></path>
+        <path d="M21 13 C22 8,26 6,31 6"></path>
+        <path d="M24 29 L18 36 L11 27"></path>
+      </g>
+    </svg>
+  </div>
+
+  <div class="footer-page">70</div>
+
+  <div class="main-title">In terms of societal aspects under global sustainable development goals to<br>2030, AI is seen as more of an enabler than an inhibitor</div>
+
+  <div class="sub-title">The role of AI as an enabler or inhibitor under sustainable development<br>goals to 2030 along defined societal categories<sup>1)</sup></div>
+
+  <div class="chart-area">
+    <div class="chart-bg">
+      <svg viewBox="0 0 760 435" aria-hidden="true">
+        <rect x="0" y="0" width="760" height="435" fill="rgba(255,255,255,0.04)"/>
+        <ellipse cx="112" cy="92" rx="71" ry="56" fill="rgba(255,255,255,0.55)"/>
+        <ellipse cx="110" cy="120" rx="62" ry="76" fill="rgba(215,220,227,0.35)"/>
+        <path d="M91 76 C110 58,145 58,157 84 C166 103,165 138,153 163 C140 188,111 196,90 178 C72 164,60 130,64 104 C67 90,79 84,91 76Z" fill="rgba(233,236,239,0.58)"/>
+        <rect x="109" y="118" width="17" height="76" rx="8" fill="rgba(224,227,232,0.7)"/>
+        <circle cx="80" cy="102" r="4" fill="rgba(190,196,202,0.75)"/>
+        <circle cx="112" cy="87" r="3" fill="rgba(190,196,202,0.75)"/>
+        <circle cx="154" cy="99" r="3" fill="rgba(190,196,202,0.75)"/>
+        <path d="M60 168 C95 161,131 163,156 169" stroke="rgba(190,196,203,0.65)" stroke-width="3" fill="none"/>
+        <path d="M101 136 C118 124,137 122,150 129" stroke="rgba(176,182,188,0.7)" stroke-width="3" fill="none"/>
+        <path d="M323 353 L490 329 L495 390 L329 414 Z" fill="rgba(255,255,255,0.46)"/>
+        <path d="M531 135 C564 155,576 198,573 248 C570 298,549 343,517 377" stroke="rgba(255,255,255,0.18)" stroke-width="2" fill="none"/>
+        <circle cx="580" cy="171" r="17" fill="rgba(225,230,235,0.18)"/>
+        <line x1="580" y1="154" x2="580" y2="188" stroke="rgba(225,230,236,0.32)" stroke-width="2"/>
+        <line x1="563" y1="171" x2="597" y2="171" stroke="rgba(225,230,236,0.32)" stroke-width="2"/>
+        <circle cx="636" cy="44" r="28" fill="rgba(214,220,227,0.10)"/>
+        <ellipse cx="720" cy="34" rx="21" ry="27" fill="rgba(214,220,227,0.12)"/>
+      </svg>
+    </div>
+    <div class="chart-baseline"></div>
+
+    <div class="bars">
+      <div class="bar-group" style="left:0px;">
+        <div class="bar-dark" style="height:356px;"></div>
+        <div class="bar-light" style="height:307px;"></div>
+        <div class="value" style="left:5px;top:-23px;">7/7</div>
+        <div class="value" style="left:39px;top:18px;">6/7</div>
+      </div>
+      <div class="bar-group" style="left:93px;">
+        <div class="bar-dark" style="height:278px;"></div>
+        <div class="bar-light" style="height:79px;"></div>
+        <div class="value" style="left:4px;top:29px;">7/9</div>
+        <div class="value" style="left:39px;top:239px;">2/9</div>
+      </div>
+      <div class="bar-group" style="left:186px;">
+        <div class="bar-dark" style="height:302px;"></div>
+        <div class="bar-light" style="height:24px;"></div>
+        <div class="value" style="left:-3px;top:8px;">11/13</div>
+        <div class="value" style="left:36px;top:291px;">1/13</div>
+      </div>
+      <div class="bar-group" style="left:279px;">
+        <div class="bar-dark" style="height:356px;"></div>
+        <div class="bar-light" style="height:249px;"></div>
+        <div class="value" style="left:-4px;top:-23px;">10/10</div>
+        <div class="value" style="left:34px;top:74px;">7/10</div>
+      </div>
+      <div class="bar-group" style="left:372px;">
+        <div class="bar-dark" style="height:198px;"></div>
+        <div class="bar-light" style="height:99px;"></div>
+        <div class="value" style="left:6px;top:136px;">5/9</div>
+        <div class="value" style="left:39px;top:240px;">4/9</div>
+      </div>
+      <div class="bar-group" style="left:465px;">
+        <div class="bar-dark" style="height:356px;"></div>
+        <div class="bar-light" style="height:257px;"></div>
+        <div class="value" style="left:6px;top:-23px;">8/8</div>
+        <div class="value" style="left:39px;top:75px;">5/8</div>
+      </div>
+      <div class="bar-group" style="left:558px;">
+        <div class="bar-dark" style="height:356px;"></div>
+        <div class="bar-light" style="height:142px;"></div>
+        <div class="value" style="left:6px;top:-23px;">5/5</div>
+        <div class="value" style="left:39px;top:195px;">2/5</div>
+      </div>
+      <div class="bar-group" style="left:651px;">
+        <div class="bar-dark" style="height:356px;"></div>
+        <div class="bar-light" style="height:71px;"></div>
+        <div class="value" style="left:6px;top:-23px;">5/5</div>
+        <div class="value" style="left:39px;top:280px;">1/5</div>
+      </div>
+      <div class="bar-group" style="left:744px;">
+        <div class="bar-dark" style="height:207px;"></div>
+        <div class="bar-light" style="height:99px;"></div>
+        <div class="value" style="left:5px;top:117px;">7/12</div>
+        <div class="value" style="left:39px;top:239px;">3/12</div>
+      </div>
+    </div>
+
+    <div class="xlabel" style="left:2px;">No<br>poverty</div>
+    <div class="xlabel" style="left:95px;">Zero<br>hunger</div>
+    <div class="xlabel" style="left:186px;">Good health<br>&amp; well-being</div>
+    <div class="xlabel" style="left:279px;">Quality<br>education</div>
+    <div class="xlabel" style="left:372px;">Gender<br>equality</div>
+    <div class="xlabel" style="left:458px;">Clean water<br>&amp; sanitation</div>
+    <div class="xlabel" style="left:551px;">Affordable<br>&amp; clean<br>energy</div>
+    <div class="xlabel" style="left:643px;">Sustainable<br>cities &amp;<br>communities</div>
+    <div class="xlabel" style="left:736px;">Peace, justice<br>&amp; strong<br>institutions</div>
+
+    <div class="legend">
+      <div class="legend-item" style="left:0;width:82px;">
+        <div class="swatch" style="background:#4f2f7f;"></div>
+        <div style="position:absolute;left:26px;top:0;">Enabler</div>
+      </div>
+      <div class="legend-item" style="left:82px;width:95px;">
+        <div class="swatch" style="background:#816cb5;"></div>
+        <div style="position:absolute;left:26px;top:0;">Inhibitor</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footnote">1) Based on a study of how AI can either enable or inhibit the delivery of all 17 goals and 169 targets recognized in the 2030 Agenda for Sustainable Development. Reading example: For the SDG "No poverty" the study found evidence that for 7 of the 7 targets of this SDG AI is an enabler, and for 6 of the 7 targets AI is an inhibitor (i.e. AI can be an enabler and an inhibitor for the same target).</div>
+
+  <div class="rhs">
+    <p style="top:12px;">&gt; In 2015, the UN outlined 17 global <b>Sustainable<br>Development Goals</b> (SDGs)<br>across <b>social, environmental<br>and economic categories</b><br>with a horizon to <b>2030</b>;<br>progress is measured against<br>a defined set of targets for<br>each goal – for example, the<br>societal "no poverty" SDG<br>consists of 7 targets</p>
+    <p style="top:243px;">&gt; In the context of Humans &amp;<br>Machines, we focus on the<br><b>consensus</b> regarding the <b>role<br>of AI</b> vis-a-vis <b>societal SDGs<br>to 2030</b></p>
+    <p style="top:347px;">&gt; According to extensive<br>academic literature in this<br>regard, AI is seen rather more<br>of an enabler than an<br>inhibitor: <b>82% of the societal<br>targets could potentially<br>benefit from AI-based<br>technologies</b>, whereas 38%<br>of targets can be negatively<br>impacted by AI</p>
+  </div>
+
+  <div class="rb-text">Roland<br>Berger</div>
+  <div class="rb-logo">
+    <svg viewBox="0 0 39 26" width="37" height="26" aria-hidden="true">
+      <defs>
+        <linearGradient id="glogo" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#b8bcc1"/>
+          <stop offset="100%" stop-color="#6f7379"/>
+        </linearGradient>
+      </defs>
+      <path d="M21 1 L29 1 C35 1 38 4 38 9 C38 13 35 16 31 17 C36 18 39 21 39 26 L21 26 Z" fill="url(#glogo)"/>
+      <path d="M22 1 C26 5 27 9 27 14 C27 19 26 22 22 26 L16 26 L16 1 Z" fill="#9ea3a9"/>
+      <path d="M0 1 L15 1 L15 26 L0 26 C5 21 7 17 7 13 C7 9 5 5 0 1Z" fill="#d2d5d9"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

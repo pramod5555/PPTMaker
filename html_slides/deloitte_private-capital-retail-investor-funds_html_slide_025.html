@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>JPMF: How to tender shares</title>
+<style>
+  body{
+    margin:0;
+    background:#f1f1f1;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f1f1f1;
+    color:#111;
+  }
+  #slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .title{
+    left:30px;
+    top:58px;
+    font-size:28px;
+    line-height:32px;
+    font-weight:700;
+    color:#0d0d0d;
+  }
+
+  .rule{
+    left:30px;
+    width:1212px;
+    height:1px;
+    background:#7e7e7e;
+  }
+  .top-rule{ top:102px; }
+  .mid-rule{ top:307px; }
+  .bottom-rule{
+    top:688px;
+    background:#c8c8c8;
+  }
+
+  .timeline-box{
+    left:30px;
+    top:138px;
+    width:1212px;
+    height:132px;
+    border-left:1px solid #a7a7a7;
+    border-right:1px solid #a7a7a7;
+  }
+  .vline{
+    top:138px;
+    width:1px;
+    height:44px;
+    background:#8f8f8f;
+  }
+
+  .label{
+    top:144px;
+    font-size:15px;
+    line-height:18px;
+    font-weight:700;
+    color:#171717;
+    white-space:nowrap;
+  }
+  .label .normal{
+    font-weight:400;
+  }
+
+  .blue-bar{
+    left:30px;
+    top:182px;
+    width:602px;
+    height:42px;
+    background:#1d8fe5;
+  }
+  .yellow-bar{
+    left:30px;
+    top:228px;
+    width:302px;
+    height:41px;
+    background:#f4b633;
+  }
+  .green-bar{
+    left:332px;
+    top:228px;
+    width:910px;
+    height:41px;
+    background:#08a472;
+  }
+
+  .bar-text{
+    font-size:15px;
+    font-weight:700;
+    color:#fff;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .bar-text.blue{
+    left:30px;
+    top:182px;
+    width:602px;
+    line-height:42px;
+  }
+  .bar-text.green{
+    left:332px;
+    top:228px;
+    width:910px;
+    line-height:41px;
+  }
+  .bar-text.yellow{
+    left:30px;
+    top:232px;
+    width:302px;
+    color:#111;
+    font-size:16px;
+    line-height:18px;
+    text-align:right;
+    padding-right:12px;
+  }
+
+  .section-title{
+    left:30px;
+    top:329px;
+    font-size:19px;
+    line-height:24px;
+    font-weight:700;
+    color:#171717;
+  }
+
+  .date-card{
+    width:155px;
+    height:46px;
+    background:#1d8fe5;
+  }
+  .date-card.light{
+    background:#d0e3e6;
+  }
+  .date-text{
+    width:100%;
+    text-align:center;
+    font-size:22px;
+    line-height:46px;
+    font-weight:700;
+    color:#fff;
+  }
+  .date-card.light .date-text{
+    color:#111;
+  }
+
+  .label-card{
+    width:155px;
+    height:68px;
+    background:#e6e6e6;
+  }
+  .label-card-text{
+    width:100%;
+    padding:7px 8px 0 8px;
+    text-align:center;
+    font-size:16px;
+    line-height:19px;
+    font-weight:400;
+    color:#1a1a1a;
+  }
+
+  .body-card{
+    width:155px;
+    height:165px;
+    background:#efefef;
+    border:1px solid #b6b6b6;
+  }
+  .body-card-text{
+    padding:10px 12px 0 12px;
+    text-align:center;
+    font-size:17px;
+    line-height:19px;
+    font-weight:400;
+    color:#1a1a1a;
+  }
+  .body-card-text.left{
+    text-align:left;
+    padding-left:10px;
+    padding-right:10px;
+  }
+  .bold{ font-weight:700; }
+
+  .page{
+    left:31px;
+    top:730px;
+    transform:translateY(-100%);
+    font-size:16px;
+    line-height:16px;
+    font-weight:700;
+    color:#222;
+  }
+
+  .logo{
+    left:1100px;
+    top:700px;
+    transform:translateY(-100%);
+    width:150px;
+    color:#222;
+  }
+  .logo .jp{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:28px;
+    line-height:26px;
+    font-weight:400;
+    letter-spacing:-0.03em;
+  }
+  .logo .am{
+    margin-top:6px;
+    font-size:12px;
+    line-height:12px;
+    font-weight:700;
+    letter-spacing:0.02em;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">JPMF: How to tender shares</div>
+  <div class="rule top-rule"></div>
+
+  <div class="timeline-box"></div>
+  <div class="vline" style="left:270px;"></div>
+  <div class="vline" style="left:511px;"></div>
+  <div class="vline" style="left:751px;"></div>
+
+  <div class="label" style="left:40px;">Commencement date</div>
+  <div class="label" style="left:281px;">Expiration date</div>
+  <div class="label" style="left:522px;">Valuation date <span class="normal">(Quarter-End)</span></div>
+  <div class="label" style="left:1102px;">Payment Date</div>
+
+  <div class="blue-bar"></div>
+  <div class="bar-text blue">Tender Offers are sent ~ 45 days prior to quarter-end &#9658;</div>
+
+  <div class="yellow-bar"></div>
+  <div class="bar-text yellow">Offer open for 20<br>business days&#9658;</div>
+
+  <div class="green-bar"></div>
+  <div class="bar-text green">Investors must receive at least the initial proceeds within 65 days of Tender Offer expiration date&#9658;</div>
+
+  <div class="rule mid-rule"></div>
+
+  <div class="section-title">Subscription timeline example</div>
+
+  <div class="date-card" style="left:30px; top:366px;"><div class="date-text">2.17.26</div></div>
+  <div class="date-card" style="left:192px; top:366px;"><div class="date-text">3.16.26</div></div>
+  <div class="date-card" style="left:356px; top:366px;"><div class="date-text">3.31.26</div></div>
+  <div class="date-card" style="left:519px; top:366px;"><div class="date-text">5.15.26</div></div>
+  <div class="date-card light" style="left:675px; top:366px;"><div class="date-text">5.30.26</div></div>
+  <div class="date-card light" style="left:839px; top:366px;"><div class="date-text">6.5.26</div></div>
+
+  <div class="label-card" style="left:30px; top:421px;"><div class="label-card-text">Tender Offer<br>Commencement<br>Date</div></div>
+  <div class="label-card" style="left:192px; top:421px;"><div class="label-card-text">Tender Offer<br>Expiration Date</div></div>
+  <div class="label-card" style="left:356px; top:421px;"><div class="label-card-text">Tender Offer<br>Valuation Date</div></div>
+  <div class="label-card" style="left:519px; top:421px;"><div class="label-card-text">Tender Offer<br>Payment Date</div></div>
+  <div class="label-card" style="left:675px; top:421px;"><div class="label-card-text">Audit Completion<br>Date</div></div>
+  <div class="label-card" style="left:839px; top:421px;"><div class="label-card-text">Audit Holdback<br>Payment Date</div></div>
+
+  <div class="body-card" style="left:30px; top:499px;"><div class="body-card-text">~45 days prior to<br>quarter-end</div></div>
+  <div class="body-card" style="left:192px; top:499px;"><div class="body-card-text">Open a minimum<br>of 20 business<br>days</div></div>
+  <div class="body-card" style="left:356px; top:499px;"><div class="body-card-text">Quarter-end</div></div>
+  <div class="body-card" style="left:519px; top:499px;"><div class="body-card-text left"><span class="bold">Partial Tender</span> –<br>100% of proceeds<br>paid within 65 days<br>of Expiration Date<br><span class="bold">Full Tender</span> - 95%<br>of proceeds paid<br>within 65 days of<br>Expiration Date</div></div>
+  <div class="body-card" style="left:675px; top:499px;"><div class="body-card-text">Completed within<br>60 days of fund’s<br>fiscal year-end<br>(March 31<sup style="font-size:10px; line-height:0;">st</sup>)</div></div>
+  <div class="body-card" style="left:839px; top:499px;"><div class="body-card-text">Full Tender – 5%<br>Audit holdback<br>paid within 5<br>business days of<br>audit completion</div></div>
+
+  <div class="rule bottom-rule"></div>
+
+  <div class="page">25</div>
+
+  <div class="logo">
+    <div class="jp">J.P.Morgan</div>
+    <div class="am">ASSET MANAGEMENT</div>
+  </div>
+</div>
+</body>
+</html>

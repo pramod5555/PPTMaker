@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e8e8e8;
+  }
+  .slide > *{ position:absolute; box-sizing:border-box; }
+
+  .title{
+    left:50px;
+    top:80px;
+    width:865px;
+    font-size:38px;
+    line-height:1.14;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    color:#000;
+  }
+
+  .section1-icon{
+    left:51px;
+    top:197px;
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#d7cb43;
+  }
+  .section1-icon svg{
+    width:75px;
+    height:75px;
+    display:block;
+  }
+
+  .section2-icon{
+    left:538px;
+    top:197px;
+    width:79px;
+    height:79px;
+    border-radius:50%;
+    background:#5a2d7f;
+  }
+  .section2-icon svg{
+    width:79px;
+    height:79px;
+    display:block;
+  }
+
+  .sec1-head{
+    left:162px;
+    top:202px;
+    width:345px;
+    font-size:18px;
+    line-height:1.06;
+    font-weight:700;
+    color:#d6ca3f;
+  }
+  .sec1-sub{
+    left:162px;
+    top:264px;
+    width:348px;
+    font-size:18px;
+    line-height:1.05;
+    font-weight:700;
+    color:#111;
+  }
+  .sec1-body{
+    left:162px;
+    top:318px;
+    width:345px;
+    font-size:19px;
+    line-height:1.14;
+    font-weight:400;
+    color:#222;
+  }
+  .sec1-body strong{ font-weight:700; color:#111; }
+
+  .sec2-head{
+    left:632px;
+    top:196px;
+    width:355px;
+    font-size:18px;
+    line-height:1.06;
+    font-weight:700;
+    color:#4f2a75;
+  }
+  .sec2-sub{
+    left:632px;
+    top:259px;
+    width:360px;
+    font-size:18px;
+    line-height:1.05;
+    font-weight:700;
+    color:#111;
+  }
+  .sec2-body{
+    left:632px;
+    top:336px;
+    width:364px;
+    font-size:18px;
+    line-height:1.14;
+    font-weight:400;
+    color:#222;
+  }
+  .sec2-body strong{ font-weight:700; color:#111; }
+
+  .photo{
+    left:1025px;
+    top:0;
+    width:255px;
+    height:666px;
+    overflow:hidden;
+    clip-path:polygon(0 0,100% 0,100% 94%,88% 100%,0 100%);
+    background:
+      linear-gradient(180deg,#163784 0%,#3657a6 12%,#243f8b 24%,#d8d6cf 58%,#e7e6e1 100%);
+  }
+  .beam{
+    position:absolute;
+    left:-25px;
+    height:8px;
+    background:rgba(255,255,255,0.34);
+    transform:skewX(-18deg);
+  }
+  .b1{ top:18px; width:240px; }
+  .b2{ top:90px; width:230px; }
+  .b3{ top:160px; width:214px; }
+  .b4{ top:228px; width:190px; }
+
+  .ceiling-strip{
+    position:absolute;
+    left:0;
+    top:0;
+    width:255px;
+    height:18px;
+    background:rgba(12,30,92,0.55);
+  }
+
+  .green-wall{
+    position:absolute;
+    right:0;
+    top:0;
+    width:97px;
+    height:632px;
+    background:linear-gradient(180deg,#d3edd7 0%,#b9ddb9 100%);
+    border-left:3px solid rgba(71,126,93,0.35);
+  }
+  .green-wall:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        rgba(85,150,105,0.28) 0 3px,
+        transparent 3px 10px
+      );
+    opacity:.55;
+  }
+  .window{
+    position:absolute;
+    right:6px;
+    top:62px;
+    width:84px;
+    height:478px;
+    border-left:2px solid rgba(50,63,76,0.45);
+    border-right:1px solid rgba(255,255,255,0.25);
+    background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.02));
+  }
+  .window:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:123px;
+    width:84px;
+    height:2px;
+    background:rgba(50,63,76,0.32);
+    box-shadow:0 118px 0 rgba(50,63,76,0.29), 0 236px 0 rgba(50,63,76,0.22);
+  }
+
+  .floor{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:255px;
+    height:108px;
+    background:linear-gradient(180deg,#e6e1dc 0%,#d9d4cf 100%);
+  }
+
+  .person1,.person2{ position:absolute; }
+
+  .person1{ left:1038px; top:146px; width:104px; height:490px; z-index:2; }
+  .person2{ left:1168px; top:156px; width:100px; height:504px; z-index:2; }
+
+  .p1-head{ position:absolute; left:29px; top:6px; width:31px; height:33px; border-radius:50%; background:#2b1c19; }
+  .p1-hair{ position:absolute; left:23px; top:0; width:41px; height:24px; background:#1d1615; border-radius:45% 55% 30% 45%; }
+  .p1-neck{ position:absolute; left:40px; top:35px; width:12px; height:12px; background:#845943; border-radius:4px; }
+  .p1-torso{
+    position:absolute; left:10px; top:45px; width:72px; height:150px;
+    background:#c7a255; border-radius:10px 10px 18px 18px; transform:skewX(3deg);
+  }
+  .p1-shirt{
+    position:absolute; left:36px; top:61px; width:27px; height:86px;
+    background:#a35d37; border-radius:6px;
+  }
+  .p1-arm1{
+    position:absolute; left:6px; top:92px; width:22px; height:102px;
+    background:#c7a255; border-radius:14px; transform:rotate(10deg);
+  }
+  .p1-arm2{
+    position:absolute; left:61px; top:83px; width:22px; height:100px;
+    background:#c7a255; border-radius:14px; transform:rotate(-18deg);
+  }
+  .p1-hand1,.p1-hand2{
+    position:absolute; width:14px; height:14px; border-radius:50%; background:#835944;
+  }
+  .p1-hand1{ left:17px; top:149px; }
+  .p1-hand2{ left:66px; top:136px; }
+  .p1-leg1,.p1-leg2{
+    position:absolute; top:188px; width:29px; height:193px;
+    background:linear-gradient(180deg,#88abd1 0%,#e8f0f7 100%);
+    border-radius:11px;
+  }
+  .p1-leg1{ left:24px; transform:rotate(2deg); }
+  .p1-leg2{ left:52px; transform:rotate(-3deg); }
+  .p1-shoe1,.p1-shoe2{
+    position:absolute; top:377px; width:29px; height:14px;
+    background:#fff; border-radius:11px;
+  }
+  .p1-shoe1{ left:18px; transform:rotate(6deg); }
+  .p1-shoe2{ left:53px; transform:rotate(-3deg); }
+
+  .p2-head{ position:absolute; left:24px; top:9px; width:33px; height:34px; border-radius:50%; background:#d7ab96; }
+  .p2-hair{ position:absolute; left:19px; top:3px; width:41px; height:19px; background:#7e6047; border-radius:50%; }
+  .p2-neck{ position:absolute; left:36px; top:38px; width:11px; height:13px; background:#c98f75; border-radius:4px; }
+  .p2-coat{
+    position:absolute; left:6px; top:53px; width:65px; height:154px;
+    background:#6f8f62; border-radius:10px 10px 20px 20px; transform:skewX(-4deg);
+  }
+  .p2-shirt{
+    position:absolute; left:29px; top:63px; width:34px; height:88px;
+    background:#cf6344; border-radius:6px;
+  }
+  .p2-arm1{
+    position:absolute; left:1px; top:96px; width:20px; height:87px;
+    background:#6f8f62; border-radius:14px; transform:rotate(20deg);
+  }
+  .p2-arm2{
+    position:absolute; left:62px; top:93px; width:20px; height:88px;
+    background:#6f8f62; border-radius:14px; transform:rotate(-18deg);
+  }
+  .p2-hand1,.p2-hand2{
+    position:absolute; width:13px; height:13px; border-radius:50%; background:#d7ab96;
+  }
+  .p2-hand1{ left:6px; top:156px; }
+  .p2-hand2{ left:69px; top:150px; }
+  .p2-leg1,.p2-leg2{
+    position:absolute; top:196px; width:25px; height:209px;
+    background:linear-gradient(180deg,#8aa8cb 0%,#e9eff5 100%);
+    border-radius:10px;
+  }
+  .p2-leg1{ left:25px; transform:rotate(2deg); }
+  .p2-leg2{ left:48px; transform:rotate(-2deg); }
+  .p2-shoe1,.p2-shoe2{
+    position:absolute; top:401px; width:26px; height:14px; background:#fff; border-radius:10px;
+  }
+  .p2-shoe1{ left:18px; transform:rotate(8deg); }
+  .p2-shoe2{ left:49px; transform:rotate(-7deg); }
+
+  .footer{
+    left:49px;
+    bottom:18px;
+    font-size:12px;
+    line-height:1;
+    font-weight:400;
+    color:#3b3b3b;
+  }
+
+  .logo{
+    right:12px;
+    bottom:10px;
+    width:56px;
+    height:50px;
+  }
+  .logo-box{
+    position:absolute;
+    inset:0;
+    background:#2c4b9d;
+    clip-path:polygon(0 0,100% 0,100% 68%,90% 100%,0 100%);
+  }
+  .logo-green{
+    position:absolute;
+    left:24px;
+    top:0;
+    width:20px;
+    height:50px;
+    background:#18a89c;
+    clip-path:polygon(28% 0,100% 0,100% 68%,80% 100%,0 100%,0 24%);
+  }
+  .logo-text{
+    position:absolute;
+    left:6px;
+    top:27px;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+    color:#fff;
+  }
+  .logo-mark{
+    position:absolute;
+    left:18px;
+    top:5px;
+    width:17px;
+    height:17px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">Unease about the role of technology and world security isn’t going away</div>
+
+  <div class="section1-icon">
+    <svg viewBox="0 0 75 75" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="37.5" cy="37.5" r="28" fill="none" stroke="#2d2a1f" stroke-width="2"/>
+      <rect x="25" y="24" width="25" height="28" rx="2" fill="none" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="29" y1="24" x2="29" y2="18" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="37.5" y1="24" x2="37.5" y2="16" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="46" y1="24" x2="46" y2="18" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="29" y1="52" x2="29" y2="57" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="37.5" y1="52" x2="37.5" y2="59" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="46" y1="52" x2="46" y2="57" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="25" y1="29" x2="18" y2="29" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="25" y1="37.5" x2="16" y2="37.5" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="25" y1="46" x2="18" y2="46" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="50" y1="29" x2="57" y2="29" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="50" y1="37.5" x2="59" y2="37.5" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="50" y1="46" x2="57" y2="46" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="24" y1="24" x2="19" y2="19" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="51" y1="24" x2="56" y2="19" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="24" y1="51" x2="19" y2="56" stroke="#2d2a1f" stroke-width="2"/>
+      <line x1="51" y1="51" x2="56" y2="56" stroke="#2d2a1f" stroke-width="2"/>
+      <text x="37.5" y="42" text-anchor="middle" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#2d2a1f">AI</text>
+    </svg>
+  </div>
+
+  <div class="sec1-head">The public outlook for technology<br>for 2025</div>
+  <div class="sec1-sub">Navigating a world of technological<br>dualities.</div>
+  <div class="sec1-body">
+    The global public continues to hold a<br>
+    complex and often contradictory view of<br>
+    technology's future, marked by both<br>
+    anticipation and apprehension. Globally,<br>
+    the <strong>fear of AI-driven job losses</strong> (65%)<br>
+    continues to outweigh the expectation of<br>
+    AI-driven job creation (43%). This trend<br>
+    echoes previous years, but the gap<br>
+    appears to be slightly narrowing.<br><br>
+    Optimism shines in China, where 77%<br>
+    foresee AI creating jobs, while concerns<br>
+    dominate in Japan, with 65% predicting<br>
+    job losses.
+  </div>
+
+  <div class="section2-icon">
+    <svg viewBox="0 0 79 79" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="39.5" cy="39.5" r="19" fill="none" stroke="#ffffff" stroke-width="2.4"/>
+      <circle cx="28" cy="39" r="3.3" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="51" cy="39" r="3.3" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="39.5" cy="27.5" r="3.3" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="39.5" cy="50.5" r="3.3" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <line x1="39.5" y1="20.5" x2="39.5" y2="11" stroke="#ffffff" stroke-width="2"/>
+      <line x1="51.5" y1="23.5" x2="57.5" y2="16.5" stroke="#ffffff" stroke-width="2"/>
+      <line x1="57.5" y1="35.5" x2="67" y2="35.5" stroke="#ffffff" stroke-width="2"/>
+      <line x1="57" y1="48" x2="64" y2="54" stroke="#ffffff" stroke-width="2"/>
+      <line x1="39.5" y1="58.5" x2="39.5" y2="68" stroke="#ffffff" stroke-width="2"/>
+      <line x1="22" y1="48" x2="15" y2="54" stroke="#ffffff" stroke-width="2"/>
+      <line x1="21.5" y1="35.5" x2="12" y2="35.5" stroke="#ffffff" stroke-width="2"/>
+      <line x1="27.5" y1="23.5" x2="21.5" y2="16.5" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="39.5" cy="11" r="2.2" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="57.5" cy="16.5" r="2.2" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="67" cy="35.5" r="2.2" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="64" cy="54" r="2.2" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="39.5" cy="68" r="2.2" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="15" cy="54" r="2.2" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="12" cy="35.5" r="2.2" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="21.5" cy="16.5" r="2.2" fill="none" stroke="#ffffff" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="sec2-head">The public outlook for world security<br>for 2025</div>
+  <div class="sec2-sub">A sense of unease permeates as people<br>grapple with a complex and uncertain<br>future.</div>
+  <div class="sec2-body">
+    <strong>A prevailing sense of unease</strong><br>
+    characterises global expectations for<br>
+    world security in 2025. While pandemic<br>
+    fears have slightly subsided (47% globally,<br>
+    down 1 percentage point from 2023), the<br>
+    threat of nuclear conflict (49% likely) looms<br>
+    large, with Indonesians (79%) and<br>
+    Malaysians (67%) feeling particularly<br>
+    worried.<br><br>
+    Anxiety around <strong>rogue AI</strong> remains<br>
+    unchanged from last year with 35% globally<br>
+    fearing significant disruption – a surprising<br>
+    response given this year's CrowdStrike<br>
+    global outage event. This suggests a<br>
+    potential link between technological<br>
+    advancement and perceived security risks.
+  </div>
+
+  <div class="photo">
+    <div class="ceiling-strip"></div>
+    <div class="beam b1"></div>
+    <div class="beam b2"></div>
+    <div class="beam b3"></div>
+    <div class="beam b4"></div>
+    <div class="green-wall"></div>
+    <div class="window"></div>
+    <div class="floor"></div>
+  </div>
+
+  <div class="person1">
+    <div class="p1-hair"></div>
+    <div class="p1-head"></div>
+    <div class="p1-neck"></div>
+    <div class="p1-torso"></div>
+    <div class="p1-shirt"></div>
+    <div class="p1-arm1"></div>
+    <div class="p1-arm2"></div>
+    <div class="p1-hand1"></div>
+    <div class="p1-hand2"></div>
+    <div class="p1-leg1"></div>
+    <div class="p1-leg2"></div>
+    <div class="p1-shoe1"></div>
+    <div class="p1-shoe2"></div>
+  </div>
+
+  <div class="person2">
+    <div class="p2-hair"></div>
+    <div class="p2-head"></div>
+    <div class="p2-neck"></div>
+    <div class="p2-coat"></div>
+    <div class="p2-shirt"></div>
+    <div class="p2-arm1"></div>
+    <div class="p2-arm2"></div>
+    <div class="p2-hand1"></div>
+    <div class="p2-hand2"></div>
+    <div class="p2-leg1"></div>
+    <div class="p2-leg2"></div>
+    <div class="p2-shoe1"></div>
+    <div class="p2-shoe2"></div>
+  </div>
+
+  <div class="footer">© Ipsos Predictions 2025 Report</div>
+
+  <div class="logo">
+    <div class="logo-box"></div>
+    <div class="logo-green"></div>
+    <svg class="logo-mark" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M5 3 C9 1, 14 4, 12 8 C11 10, 11 13, 6 13 C4 13, 3 12, 3 10 C3 8, 4 7, 5 6 C6 5, 6 4, 5 3 Z" fill="#2f7eaf" opacity="0.9"/>
+      <path d="M7 1 C10 1, 13 3, 13 7 C13 10, 11 12, 8 13 C9 10, 9 7, 8 1 Z" fill="#31b07b" opacity="0.95"/>
+    </svg>
+    <div class="logo-text">Ipsos</div>
+  </div>
+</div>
+</body>
+</html>

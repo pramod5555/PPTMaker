@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>Key takeaways</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #d9d9d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #02030a;
+    margin: 0;
+  }
+  .slide > * {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  .bg-base {
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background:
+      radial-gradient(ellipse at 80% 36%, rgba(65,185,135,0.18) 0%, rgba(19,63,99,0.10) 24%, rgba(5,8,28,0.00) 52%),
+      radial-gradient(ellipse at 70% 49%, rgba(27,38,140,0.48) 0%, rgba(11,16,67,0.72) 22%, rgba(3,5,18,0.95) 49%, #02030a 72%),
+      linear-gradient(90deg, #000105 0%, #02040d 44%, #07133e 72%, #081338 100%);
+    z-index: 0;
+  }
+
+  .fiber-svg {
+    left: 665px;
+    top: 0;
+    width: 615px;
+    height: 720px;
+    z-index: 2;
+    opacity: 0.97;
+  }
+
+  .dark-overlay {
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background:
+      radial-gradient(ellipse at 50% 49%, rgba(8,10,34,0.92) 0%, rgba(5,6,22,0.84) 24%, rgba(2,4,12,0.62) 43%, rgba(0,0,0,0.14) 59%, rgba(0,0,0,0) 69%);
+    z-index: 3;
+  }
+
+  .tag {
+    left: 1px;
+    top: 0;
+    width: 90px;
+    height: 18px;
+    background: #8b8d96;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 9px;
+    line-height: 18px;
+    text-align: center;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    text-transform: uppercase;
+    z-index: 50;
+  }
+
+  .title {
+    left: 48px;
+    top: 48px;
+    width: 500px;
+    color: #f4f4f5;
+    font-size: 64px;
+    line-height: 1.03;
+    font-weight: 300;
+    z-index: 40;
+  }
+
+  .accent-line {
+    left: 46px;
+    top: 135px;
+    width: 418px;
+    height: 3px;
+    background: linear-gradient(90deg, #f0de00 0%, #f0de00 38%, #ff46da 68%, #00ebff 100%);
+    z-index: 40;
+  }
+
+  .number-circle {
+    left: 46px;
+    top: 161px;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: conic-gradient(#f3e400 0deg, #f3e400 150deg, #f025ff 265deg, #00eaff 360deg);
+    z-index: 40;
+  }
+  .number-circle::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #02030a;
+  }
+  .number-circle span {
+    position: absolute;
+    inset: 0;
+    color: #fff;
+    font-size: 44px;
+    line-height: 68px;
+    text-align: center;
+    font-weight: 700;
+    z-index: 2;
+  }
+
+  .headline {
+    left: 122px;
+    top: 176px;
+    width: 660px;
+    color: #f1f1f1;
+    font-size: 18px;
+    line-height: 1.18;
+    font-weight: 600;
+    z-index: 40;
+  }
+
+  .col {
+    color: #ececec;
+    font-size: 15px;
+    line-height: 1.42;
+    font-weight: 400;
+    z-index: 40;
+  }
+  .col p { margin: 0 0 10px 0; }
+
+  .col1 { left: 46px; top: 257px; width: 222px; }
+  .col2 { left: 307px; top: 257px; width: 233px; }
+  .col3 { left: 580px; top: 257px; width: 228px; }
+
+  .quote-box {
+    left: 558px;
+    top: 444px;
+    width: 238px;
+    height: 174px;
+    z-index: 42;
+  }
+  .quote-box .line-tl-h,
+  .quote-box .line-tl-v,
+  .quote-box .line-tr-h,
+  .quote-box .line-tr-v,
+  .quote-box .line-bl-h,
+  .quote-box .line-bl-v,
+  .quote-box .line-br-h,
+  .quote-box .line-br-v {
+    position: absolute;
+    background: rgba(255,255,255,0.72);
+  }
+  .quote-box .line-tl-h { left: 16px; top: 0; width: 33px; height: 1px; }
+  .quote-box .line-tl-v { left: 16px; top: 0; width: 1px; height: 32px; }
+  .quote-box .line-tr-h { right: 0; top: 0; width: 33px; height: 1px; }
+  .quote-box .line-tr-v { right: 0; top: 0; width: 1px; height: 32px; }
+  .quote-box .line-bl-h { left: 16px; bottom: 0; width: 33px; height: 1px; }
+  .quote-box .line-bl-v { left: 16px; bottom: 0; width: 1px; height: 32px; }
+  .quote-box .line-br-h { right: 0; bottom: 0; width: 33px; height: 1px; }
+  .quote-box .line-br-v { right: 0; bottom: 0; width: 1px; height: 32px; }
+
+  .quote-mark {
+    left: 50px;
+    top: 16px;
+    color: #f3e300;
+    font-size: 38px;
+    line-height: 1;
+    font-weight: 700;
+  }
+  .quote-title {
+    left: 52px;
+    top: 40px;
+    width: 130px;
+    color: #fff;
+    font-size: 13px;
+    line-height: 1.25;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+  }
+  .quote-text {
+    left: 52px;
+    top: 64px;
+    width: 150px;
+    color: #f3f3f3;
+    font-size: 13px;
+    line-height: 1.38;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+  }
+
+  .kpi {
+    left: 960px;
+    top: 178px;
+    width: 275px;
+    color: #fff;
+    z-index: 45;
+  }
+  .kpi .pct {
+    left: 0;
+    top: 0;
+    width: 230px;
+    color: #f7e100;
+    font-size: 128px;
+    line-height: 0.88;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+  }
+  .kpi .copy {
+    left: 10px;
+    top: 112px;
+    width: 255px;
+    color: #f2f2f2;
+    font-size: 15px;
+    line-height: 1.35;
+    font-weight: 400;
+  }
+  .kpi .copy strong {
+    font-weight: 700;
+  }
+
+  .jump {
+    left: 1192px;
+    top: 28px;
+    width: 60px;
+    height: 40px;
+    z-index: 55;
+  }
+  .jump .ring {
+    left: 18px;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(255,255,255,0.88);
+    border-radius: 50%;
+    background: rgba(0,0,0,0.14);
+  }
+  .jump .dot {
+    left: 42px;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    background: #f3e300;
+    border-radius: 50%;
+  }
+  .jump .text {
+    left: 0;
+    top: 10px;
+    width: 60px;
+    color: #fff;
+    font-size: 9px;
+    line-height: 1.08;
+    text-align: center;
+    font-weight: 400;
+  }
+
+  .vertical-label {
+    left: -18px;
+    top: 372px;
+    width: 150px;
+    color: rgba(255,255,255,0.82);
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 400;
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    z-index: 45;
+  }
+
+  .vertical-tick {
+    left: 14px;
+    top: 404px;
+    width: 1px;
+    height: 35px;
+    background: rgba(255,255,255,0.55);
+    z-index: 45;
+  }
+
+  .page {
+    left: 18px;
+    top: 699px;
+    width: 10px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 400;
+    z-index: 55;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bg-base"></div>
+
+  <svg class="fiber-svg" viewBox="0 0 615 720" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#89ffd0" stop-opacity="0.95"/>
+        <stop offset="100%" stop-color="#89ffd0" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#6bb7ff" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="#6bb7ff" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="glow3" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#fff2a8" stop-opacity="0.75"/>
+        <stop offset="100%" stop-color="#fff2a8" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="blurSoft">
+        <feGaussianBlur stdDeviation="2.8"/>
+      </filter>
+      <filter id="blurBig">
+        <feGaussianBlur stdDeviation="9"/>
+      </filter>
+    </defs>
+
+    <g opacity="0.30" filter="url(#blurBig)">
+      <circle cx="570" cy="70" r="23" fill="#5b4fd4"/>
+      <circle cx="590" cy="130" r="16" fill="#4f58d8"/>
+      <circle cx="598" cy="250" r="15" fill="#7252c8"/>
+      <circle cx="578" cy="390" r="18" fill="#9a56d8"/>
+      <circle cx="596" cy="506" r="22" fill="#5a4fd9"/>
+      <circle cx="545" cy="640" r="24" fill="#5447c4"/>
+      <circle cx="506" cy="690" r="18" fill="#5b4fd4"/>
+    </g>
+
+    <g stroke-linecap="round" fill="none" opacity="0.88">
+      <path d="M78 0 C102 95, 142 170, 178 238 C217 315, 238 417, 261 509 C276 572, 297 650, 320 720" stroke="#46dc8b" stroke-width="2.2"/>
+      <path d="M112 4 C138 94, 158 176, 184 245 C221 340, 234 452, 248 563 C253 610, 268 674, 282 720" stroke="#4ad98d" stroke-width="1.6"/>
+      <path d="M160 0 C188 90, 212 182, 234 275 C256 362, 282 450, 308 548 C326 620, 344 685, 362 720" stroke="#2fcd85" stroke-width="1.8"/>
+      <path d="M188 0 C196 80, 208 144, 228 240 C249 339, 276 450, 303 540 C328 622, 364 683, 398 720" stroke="#54e39a" stroke-width="1.2"/>
+      <path d="M230 0 C242 72, 260 150, 282 228 C310 328, 341 447, 374 548 C391 600, 419 666, 440 720" stroke="#1dbcc0" stroke-width="1.6"/>
+      <path d="M274 0 C291 86, 313 171, 330 246 C356 358, 387 491, 415 609 C424 646, 436 687, 446 720" stroke="#3fe1df" stroke-width="1.5"/>
+      <path d="M310 0 C327 81, 347 160, 367 246 C386 330, 413 456, 443 566 C461 634, 480 686, 498 720" stroke="#22a0ff" stroke-width="1.3"/>
+      <path d="M362 0 C376 84, 392 168, 410 240 C435 339, 461 454, 487 548 C501 601, 523 662, 536 720" stroke="#2dd1ff" stroke-width="1.7"/>
+      <path d="M408 0 C420 75, 438 138, 461 236 C481 324, 512 451, 538 547 C552 602, 573 663, 589 720" stroke="#63e16d" stroke-width="1.4"/>
+      <path d="M452 0 C464 94, 484 187, 510 281 C528 347, 553 455, 580 562 C593 617, 607 681, 615 720" stroke="#5ce2b9" stroke-width="1.2"/>
+
+      <path d="M54 55 C135 85, 210 135, 282 189 C376 261, 474 332, 615 404" stroke="#4adf8b" stroke-width="1.1" opacity="0.75"/>
+      <path d="M86 96 C154 124, 229 182, 310 248 C415 334, 517 414, 615 486" stroke="#2ec3ff" stroke-width="1.1" opacity="0.72"/>
+      <path d="M70 174 C160 222, 220 286, 298 349 C388 421, 493 494, 615 571" stroke="#5be688" stroke-width="1.2" opacity="0.68"/>
+      <path d="M60 256 C138 301, 218 360, 308 432 C412 514, 527 593, 615 652" stroke="#55b6ff" stroke-width="1.2" opacity="0.68"/>
+      <path d="M122 10 C162 75, 214 152, 274 234 C322 301, 385 373, 449 448 C518 530, 571 608, 603 685" stroke="#1dc3a8" stroke-width="1.0" opacity="0.75"/>
+      <path d="M175 28 C210 96, 250 169, 306 250 C353 318, 416 393, 471 472 C530 555, 581 638, 612 720" stroke="#2fc5ff" stroke-width="1.0" opacity="0.65"/>
+      <path d="M44 122 C96 154, 158 201, 212 254 C291 329, 375 437, 455 546 C521 635, 564 691, 592 720" stroke="#79efaa" stroke-width="1.0" opacity="0.66"/>
+    </g>
+
+    <g opacity="0.34" stroke-linecap="round">
+      <line x1="240" y1="22" x2="615" y2="215" stroke="#b4a8ff" stroke-width="14"/>
+      <line x1="270" y1="70" x2="615" y2="265" stroke="#6aa5ff" stroke-width="11"/>
+      <line x1="304" y1="126" x2="615" y2="325" stroke="#77ffc6" stroke-width="12"/>
+      <line x1="332" y1="188" x2="615" y2="392" stroke="#8a7cff" stroke-width="13"/>
+      <line x1="344" y1="262" x2="615" y2="470" stroke="#55b7ff" stroke-width="12"/>
+      <line x1="364" y1="338" x2="615" y2="550" stroke="#5ee2bf" stroke-width="13"/>
+      <line x1="398" y1="418" x2="615" y2="628" stroke="#6f8dff" stroke-width="12"/>
+      <line x1="430" y1="500" x2="615" y2="708" stroke="#76ffcd" stroke-width="12"/>
+      <line x1="446" y1="0" x2="615" y2="138" stroke="#6aff9a" stroke-width="11"/>
+      <line x1="502" y1="0" x2="615" y2="102" stroke="#9c7aff" stroke-width="10"/>
+      <line x1="518" y1="212" x2="615" y2="286" stroke="#68b4ff" stroke-width="10"/>
+    </g>
+
+    <g opacity="0.92">
+      <g fill="#d7d3b0">
+        <circle cx="68" cy="10" r="2.3"/><circle cx="92" cy="20" r="2.0"/><circle cx="119" cy="34" r="2.2"/><circle cx="142" cy="45" r="2.1"/>
+        <circle cx="156" cy="62" r="3.1"/><circle cx="182" cy="84" r="3.0"/><circle cx="198" cy="102" r="2.2"/><circle cx="217" cy="130" r="2.7"/>
+        <circle cx="231" cy="156" r="2.1"/><circle cx="256" cy="186" r="3.3"/><circle cx="270" cy="219" r="2.4"/><circle cx="286" cy="246" r="2.6"/>
+        <circle cx="303" cy="282" r="2.2"/><circle cx="317" cy="323" r="2.8"/><circle cx="326" cy="350" r="3.4"/><circle cx="339" cy="385" r="2.6"/>
+        <circle cx="348" cy="420" r="3.2"/><circle cx="359" cy="454" r="2.4"/><circle cx="367" cy="491" r="2.7"/><circle cx="376" cy="525" r="2.9"/>
+        <circle cx="388" cy="556" r="2.2"/><circle cx="398" cy="587" r="2.5"/><circle cx="409" cy="619" r="2.3"/><circle cx="418" cy="654" r="2.8"/>
+        <circle cx="430" cy="687" r="2.1"/>
+      </g>
+
+      <g fill="#c5f5d6">
+        <circle cx="135" cy="90" r="5.2"/><circle cx="151" cy="131" r="4.5"/><circle cx="179" cy="174" r="4.8"/><circle cx="210" cy="229" r="4.2"/>
+        <circle cx="239" cy="302" r="4.9"/><circle cx="256" cy="363" r="4.4"/><circle cx="277" cy="447" r="5.0"/><circle cx="293" cy="510" r="4.6"/>
+        <circle cx="313" cy="589" r="4.7"/><circle cx="328" cy="653" r="4.0"/>
+      </g>
+
+      <g fill="#b7c3ff">
+        <circle cx="321" cy="28" r="3.4"/><circle cx="342" cy="72" r="3.0"/><circle cx="358" cy="112" r="3.2"/><circle cx="378" cy="163" r="3.0"/>
+        <circle cx="392" cy="217" r="3.6"/><circle cx="411" cy="286" r="3.1"/><circle cx="438" cy="380" r="3.7"/><circle cx="458" cy="465" r="3.2"/>
+        <circle cx="480" cy="558" r="3.6"/><circle cx="506" cy="647" r="3.1"/>
+      </g>
+
+      <g fill="#d9d4af">
+        <circle cx="612" cy="517" r="3.3"/><circle cx="590" cy="578" r="4.1"/><circle cx="571" cy="616" r="3.8"/><circle cx="547" cy="658" r="4.4"/>
+        <circle cx="524" cy="682" r="3.3"/><circle cx="495" cy="696" r="3.0"/><circle cx="461" cy="706" r="2.7"/><circle cx="426" cy="696" r="3.6"/>
+        <circle cx="391" cy="684" r="4.5"/><circle cx="358" cy="664" r="3.9"/><circle cx="333" cy="647" r="4.6"/><circle cx="309" cy="620" r="3.4"/>
+        <circle cx="291" cy="601" r="3.1"/><circle cx="273" cy="568" r="4.1"/><circle cx="257" cy="541" r="3.0"/><circle cx="245" cy="508" r="4.2"/>
+        <circle cx="232" cy="473" r="3.2"/><circle cx="221" cy="442" r="3.9"/><circle cx="206" cy="397" r="4.5"/><circle cx="192" cy="352" r="3.2"/>
+      </g>
+
+      <g fill="#c1ffd0" opacity="0.9">
+        <circle cx="189" cy="239" r="7.3"/><circle cx="256" cy="314" r="8.2"/><circle cx="336" cy="417" r="7.5"/><circle cx="390" cy="497" r="8.8"/>
+        <circle cx="438" cy="587" r="7.6"/><circle cx="474" cy="646" r="7.9"/>
+      </g>
+
+      <g fill="#bdd2ff" opacity="0.8">
+        <circle cx="302" cy="123" r="5.4"/><circle cx="424" cy="259" r="5.1"/><circle cx="498" cy="399" r="5.9"/><circle cx="555" cy="498" r="5.2"/>
+        <circle cx="582" cy="607" r="5.8"/>
+      </g>
+    </g>
+
+    <g filter="url(#blurSoft)" opacity="0.75">
+      <circle cx="144" cy="132" r="15" fill="url(#glow1)"/>
+      <circle cx="189" cy="240" r="18" fill="url(#glow1)"/>
+      <circle cx="256" cy="313" r="20" fill="url(#glow1)"/>
+      <circle cx="336" cy="418" r="18" fill="url(#glow1)"/>
+      <circle cx="390" cy="496" r="21" fill="url(#glow1)"/>
+      <circle cx="498" cy="399" r="17" fill="url(#glow2)"/>
+      <circle cx="555" cy="500" r="17" fill="url(#glow2)"/>
+      <circle cx="581" cy="609" r="16" fill="url(#glow2)"/>
+      <circle cx="461" cy="706" r="14" fill="url(#glow3)"/>
+      <circle cx="547" cy="658" r="16" fill="url(#glow3)"/>
+      <circle cx="604" cy="70" r="17" fill="url(#glow2)"/>
+    </g>
+  </svg>
+
+  <div class="dark-overlay"></div>
+  <div class="tag">KEY TAKEAWAYS</div>
+  <div class="title">Key takeaways</div>
+  <div class="accent-line"></div>
+
+  <div class="number-circle"><span>1</span></div>
+
+  <div class="headline">Cyber risk is expanding across multiple dimensions of enterprise exposure</div>
+
+  <div class="col col1">
+    <p>Cyber is no longer a standalone technology issue; it is a complex, integrated risk with strategic, operational, geopolitical and reputational implications.</p>
+    <p>Eighty percent of insurance CROs rank cyber among their top-five risks, driven by escalating threats from geopolitics, third-party exposure and AI. Nearly four out of five CROs (78%) cite cybersecurity threats and digital hostilities as the most significant geopolitical impact on their organizations.</p>
+    <p>As one CRO reflected on this evolving risk landscape, “Our risk priorities have fundamentally shifted in the past five years; we now approach geopolitical risks with more structured scenario analysis and involve senior management in these discussions.”</p>
+  </div>
+
+  <div class="col col2">
+    <p>Insurers are responding by proactively strengthening cyber defenses and resilience plans, with heightened attention on third-party cyber risk, phishing and business email compromise, data protection and cyber resiliency.</p>
+    <p>Board engagement continues to rise, with greater scrutiny on key risk indicators (KRIs), testing results, incident insights and service continuity. The industry standard is evolving: the ability to prevent, contain and recover from cyber incidents is now seen as a core measure of enterprise trust and stability, not just a regulatory requirement.</p>
+    <p>CROs must continue to treat cyber as a multidimensional enterprise risk, ensuring clear ownership, governance and monitoring across third-party exposure, data protection, fraud, social</p>
+  </div>
+
+  <div class="col col3">
+    <p>engineering and resiliency. The focus must move beyond risk identification to demonstrating robust prevention, impact resistance and rapid recovery, while preparing for new disruptions from emerging technologies, nation-state actors and weaknesses in traditional infrastructure.</p>
+  </div>
+
+  <div class="quote-box">
+    <div class="line-tl-h"></div>
+    <div class="line-tl-v"></div>
+    <div class="line-tr-h"></div>
+    <div class="line-tr-v"></div>
+    <div class="line-bl-h"></div>
+    <div class="line-bl-v"></div>
+    <div class="line-br-h"></div>
+    <div class="line-br-v"></div>
+    <div class="quote-mark">“</div>
+    <div class="quote-title">What CROs say:</div>
+    <div class="quote-text">The growing complexity of IT security and third-party risk is demanding more of our attention and resources than ever before.</div>
+  </div>
+
+  <div class="kpi">
+    <div class="pct">78%</div>
+    <div class="copy">of CROs cite cybersecurity threats and digital hostilities as the <strong>most significant geopolitical impact</strong> on their organizations.</div>
+  </div>
+
+  <div class="jump">
+    <div class="ring"></div>
+    <div class="dot"></div>
+    <div class="text">Jump to<br>contents</div>
+  </div>
+
+  <div class="vertical-label">KEY TAKEAWAYS</div>
+  <div class="vertical-tick"></div>
+  <div class="page">4</div>
+</div>
+</body>
+</html>

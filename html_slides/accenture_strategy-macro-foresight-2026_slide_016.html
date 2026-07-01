@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Regional outlook slide</title>
+<style>
+  body{
+    margin:0;
+    background:#EEEAF1;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#EEEAF1;
+    color:#111;
+  }
+
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:25px;
+    background:transparent;
+    font-size:0;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:25px;
+    line-height:25px;
+    font-size:14px;
+    font-weight:700;
+    text-align:center;
+  }
+  .tab.outlook{
+    left:0;
+    width:113px;
+    background:#7B18D6;
+    color:#fff;
+  }
+  .tab.global{
+    left:113px;
+    width:95px;
+    color:#9a9a9a;
+    background:transparent;
+  }
+  .tab.regional{
+    left:208px;
+    width:139px;
+    color:#7B18D6;
+    background:transparent;
+    border-bottom:3px solid #7B18D6;
+    box-sizing:border-box;
+  }
+
+  .title{
+    position:absolute;
+    left:43px;
+    top:61px;
+    width:1188px;
+    font-size:27px;
+    line-height:29px;
+    font-weight:800;
+    color:#000;
+    letter-spacing:-0.2px;
+  }
+
+  .subtitle{
+    position:absolute;
+    left:43px;
+    top:120px;
+    font-size:30px;
+    line-height:30px;
+    font-weight:800;
+    color:#971398;
+  }
+
+  .header-left{
+    position:absolute;
+    left:331px;
+    top:162px;
+    width:491px;
+    height:27px;
+    background:#E2E2E2;
+    font-size:18px;
+    font-weight:800;
+    text-align:center;
+    line-height:27px;
+  }
+  .header-right{
+    position:absolute;
+    left:822px;
+    top:162px;
+    width:444px;
+    height:27px;
+    background:#E2E2E2;
+    font-size:18px;
+    font-weight:800;
+    text-align:center;
+    line-height:27px;
+  }
+
+  .vline{
+    position:absolute;
+    top:162px;
+    width:1px;
+    height:562px;
+    background:#C8C8C8;
+  }
+  .v1{ left:822px; }
+  .v2{ left:1266px; display:none; }
+
+  .h-top{
+    position:absolute;
+    left:42px;
+    top:188px;
+    width:1224px;
+    height:1px;
+    background:#CFCFCF;
+  }
+
+  .rowline{
+    position:absolute;
+    left:238px;
+    width:1028px;
+    height:1px;
+    background:#C9C9C9;
+  }
+
+  .section-label{
+    position:absolute;
+    left:47px;
+    top:224px;
+    font-size:14px;
+    font-weight:700;
+    color:#111;
+  }
+
+  .map{
+    position:absolute;
+    left:41px;
+    top:307px;
+    width:100px;
+    height:93px;
+  }
+  .map .p{
+    position:absolute;
+    background:#C8C8C8;
+    border-radius:50%;
+    filter: blur(0.2px);
+  }
+  .map .a{ left:0; top:17px; width:43px; height:20px; transform:rotate(8deg); border-radius:45% 55% 45% 55%; }
+  .map .b{ left:25px; top:23px; width:38px; height:24px; transform:rotate(-18deg); border-radius:55% 45% 55% 45%; }
+  .map .c{ left:53px; top:24px; width:34px; height:16px; transform:rotate(-7deg); border-radius:50%; }
+  .map .d{ left:73px; top:42px; width:16px; height:26px; transform:rotate(20deg); border-radius:50%; }
+  .map .e{ left:81px; top:67px; width:10px; height:10px; border-radius:50%; }
+  .map .f{ left:55px; top:58px; width:14px; height:10px; transform:rotate(-14deg); border-radius:50%; }
+  .map .g{ left:65px; top:70px; width:11px; height:8px; transform:rotate(10deg); border-radius:50%; }
+
+  .country{
+    position:absolute;
+    left:190px;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    box-shadow:0 3px 6px rgba(0,0,0,0.22);
+    overflow:hidden;
+    background:#fff;
+  }
+  .country-name{
+    position:absolute;
+    left:239px;
+    font-size:16px;
+    line-height:18px;
+    color:#2a2a2a;
+  }
+
+  .flag-japan{ background:#fff; }
+  .flag-japan:before{
+    content:"";
+    position:absolute;
+    left:7px; top:7px;
+    width:14px; height:14px;
+    background:#C7002A;
+    border-radius:50%;
+  }
+
+  .flag-india{
+    background:linear-gradient(to bottom, #FF9933 0 33%, #fff 33% 66%, #138808 66% 100%);
+  }
+  .flag-india:before{
+    content:"☸";
+    position:absolute;
+    left:9px; top:6px;
+    font-size:10px; color:#1A3C8E;
+  }
+
+  .flag-australia{
+    background:#2B4DA2;
+  }
+  .flag-australia:before{
+    content:"✦";
+    position:absolute;
+    right:5px; top:10px;
+    color:#fff; font-size:8px;
+  }
+  .flag-australia:after{
+    content:"";
+    position:absolute;
+    left:0; top:0;
+    width:13px; height:10px;
+    background:
+      linear-gradient(45deg, transparent 43%, #fff 43% 57%, transparent 57%),
+      linear-gradient(-45deg, transparent 43%, #fff 43% 57%, transparent 57%),
+      linear-gradient(to bottom, transparent 40%, #C8102E 40% 60%, transparent 60%),
+      linear-gradient(to right, transparent 40%, #C8102E 40% 60%, transparent 60%),
+      #1B2F7A;
+  }
+
+  .flag-vietnam{
+    background:#E7271D;
+  }
+  .flag-vietnam:before{
+    content:"★";
+    position:absolute;
+    left:7px; top:3px;
+    color:#FFD22D;
+    font-size:16px;
+  }
+
+  .flag-singapore{
+    background:linear-gradient(to bottom, #EF3340 0 50%, #fff 50% 100%);
+  }
+  .flag-singapore:before{
+    content:"☾";
+    position:absolute;
+    left:3px; top:2px;
+    color:#fff; font-size:10px;
+  }
+  .flag-singapore:after{
+    content:"•";
+    position:absolute;
+    left:8px; top:2px;
+    color:#fff; font-size:7px;
+  }
+
+  .flag-malaysia{
+    background:
+      repeating-linear-gradient(to bottom, #D9252A 0 2.15px, #fff 2.15px 4.3px);
+  }
+  .flag-malaysia:before{
+    content:"";
+    position:absolute;
+    left:0; top:0;
+    width:14px; height:14px;
+    background:#0E2A84;
+  }
+  .flag-malaysia:after{
+    content:"☾";
+    position:absolute;
+    left:2px; top:1px;
+    font-size:11px; color:#FFD34D;
+  }
+
+  .flag-indonesia{
+    background:linear-gradient(to bottom, #EF2B2D 0 50%, #fff 50% 100%);
+  }
+
+  .bullets{
+    position:absolute;
+    width:470px;
+    font-size:14px;
+    line-height:16px;
+    color:#2f2f2f;
+  }
+  .bullets.right{
+    width:381px;
+  }
+  .bullets ul{
+    margin:0;
+    padding-left:18px;
+  }
+  .bullets li{
+    margin:0 0 3px 0;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:39px;
+    top:729px;
+    display:none;
+  }
+  .source-wrap{
+    position:absolute;
+    left:40px;
+    top:726px;
+    display:none;
+  }
+
+  .bottom-accent{
+    position:absolute;
+    left:42px;
+    top:725px;
+    display:none;
+  }
+
+  .foot-left{
+    position:absolute;
+    left:40px;
+    top:726px;
+    display:none;
+  }
+
+  .brand{
+    position:absolute;
+    left:42px;
+    top:723px;
+    display:none;
+  }
+
+  .footer{
+    position:absolute;
+    left:40px;
+    top:724px;
+    display:none;
+  }
+
+  .footerbar{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .bottom{
+    position:absolute;
+    left:41px;
+    top:723px;
+    display:none;
+  }
+
+  .footer-left-visible{
+    position:absolute;
+    left:42px;
+    top:723px;
+    display:none;
+  }
+
+  .accenture-mark{
+    position:absolute;
+    left:42px;
+    top:725px;
+    display:none;
+  }
+
+  .small-footer{
+    position:absolute;
+    left:42px;
+    top:730px;
+    display:none;
+  }
+
+  .footer-real{
+    position:absolute;
+    left:42px;
+    top:724px;
+    display:none;
+  }
+
+  .footerline{
+    position:absolute;
+    left:42px;
+    top:723px;
+    display:none;
+  }
+
+  .bottom-row{
+    position:absolute;
+    left:42px;
+    top:723px;
+    display:none;
+  }
+
+  .footer-content{
+    position:absolute;
+    left:42px;
+    top:724px;
+    display:none;
+  }
+
+  .page-footer{
+    position:absolute;
+    left:42px;
+    top:724px;
+    display:none;
+  }
+
+  .real-footer{
+    position:absolute;
+    left:42px;
+    top:724px;
+    display:none;
+  }
+
+  .slide-footer{
+    position:absolute;
+    left:40px;
+    top:724px;
+    display:none;
+  }
+
+  .footer-bottom{
+    position:absolute;
+    left:42px;
+    top:724px;
+    display:none;
+  }
+
+  .final-footer{
+    position:absolute;
+    left:42px;
+    top:724px;
+    display:none;
+  }
+
+  .btm{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .footer-visible{
+    position:absolute;
+    left:42px;
+    top:724px;
+    display:none;
+  }
+
+  .bottomline{
+    position:absolute;
+    left:238px;
+    top:723px;
+    width:1028px;
+    height:1px;
+    background:#C9C9C9;
+    display:none;
+  }
+
+  .legal-left{
+    position:absolute;
+    left:41px;
+    top:731px;
+    display:none;
+  }
+
+  .footer-actual{
+    position:absolute;
+    left:40px;
+    top:725px;
+    display:none;
+  }
+
+  .footer-text-left{
+    position:absolute;
+    left:74px;
+    top:729px;
+    display:none;
+  }
+
+  .footnote{
+    position:absolute;
+    left:40px;
+    top:724px;
+    display:none;
+  }
+
+  .footer-main{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .footer-left-group{
+    position:absolute;
+    left:42px;
+    top:729px;
+    display:none;
+  }
+
+  .true-footer{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .footer-now{
+    position:absolute;
+    left:42px;
+    top:726px;
+    display:none;
+  }
+
+  .ftr{
+    position:absolute;
+    left:42px;
+    top:726px;
+    display:none;
+  }
+
+  .bottom-footer{
+    position:absolute;
+    left:42px;
+    top:726px;
+    display:none;
+  }
+
+  .footerRow{
+    position:absolute;
+    left:42px;
+    top:725px;
+    display:none;
+  }
+
+  .lower{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .footer-strip{
+    position:absolute;
+    left:42px;
+    top:725px;
+    display:none;
+  }
+
+  .actual-footer{
+    position:absolute;
+    left:42px;
+    top:726px;
+    display:none;
+  }
+
+  .copyright{
+    position:absolute;
+    right:58px;
+    top:730px;
+    display:none;
+  }
+
+  .page{
+    position:absolute;
+    right:20px;
+    top:730px;
+    display:none;
+  }
+
+  .footer-display{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .bottom-real{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .footer-final{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .visible-footer{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .source{
+    position:absolute;
+    left:41px;
+    top:731px;
+    display:none;
+  }
+
+  .footer-ui{
+    position:absolute;
+    left:42px;
+    top:726px;
+    display:none;
+  }
+
+  .screen-footer{
+    position:absolute;
+    left:42px;
+    top:726px;
+    display:none;
+  }
+
+  .footer-bottom-real{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .footerShow{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .bottom-note{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .footerRowReal{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .footer-live{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .actual-bottom{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .footer-fixed{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .end-footer{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .footer-on{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .bottom-visible{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .footer-bottom-show{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .realbottom{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .footer-text{
+    position:absolute;
+    left:41px;
+    top:724px;
+    width:1239px;
+    height:20px;
+    display:none;
+  }
+
+  .foot{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .bottom-items{
+    position:absolute;
+    left:42px;
+    top:726px;
+    width:1198px;
+    height:18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .left-foot{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#8A8A8A;
+    font-size:11px;
+  }
+  .accent-arrow{
+    position:relative;
+    width:23px;
+    height:14px;
+  }
+  .accent-arrow:before{
+    content:">";
+    position:absolute;
+    left:0;
+    top:-7px;
+    color:#971398;
+    font-weight:800;
+    font-size:28px;
+    line-height:28px;
+  }
+  .right-foot{
+    display:flex;
+    align-items:center;
+    gap:34px;
+    color:#6F6F6F;
+    font-size:11px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar">
+    <div class="tab outlook">2026 outlook</div>
+    <div class="tab global">Global</div>
+    <div class="tab regional">Regional</div>
+  </div>
+
+  <div class="title">
+    India and Vietnam will remain top growth performers in Asia, while strong domestic demand keeps Japan and Indonesia resilient; trade headwinds may drag on other ASEAN markets
+  </div>
+
+  <div class="subtitle">Other key country outlooks (2/2)</div>
+
+  <div class="header-left">Base case outlook</div>
+  <div class="header-right">What to watch for</div>
+  <div class="vline v1"></div>
+  <div class="h-top"></div>
+
+  <div class="section-label">Asia Pacific</div>
+
+  <div class="map">
+    <div class="p a"></div>
+    <div class="p b"></div>
+    <div class="p c"></div>
+    <div class="p d"></div>
+    <div class="p e"></div>
+    <div class="p f"></div>
+    <div class="p g"></div>
+  </div>
+
+  <!-- Row 1 -->
+  <div class="country flag-japan" style="top:217px;"></div>
+  <div class="country-name" style="top:223px;">Japan</div>
+  <div class="bullets" style="left:330px; top:195px;">
+    <ul>
+      <li>Modest improvement in growth over 2025, with wage gains and consumption offsetting weak external demand</li>
+      <li>Japan is navigating a shifting regional order—benefiting from US-linked supply chains but facing rising competitive pressure from China</li>
+    </ul>
+  </div>
+  <div class="bullets right" style="left:855px; top:195px;">
+    <ul>
+      <li>Wage–price dynamics, especially whether annual Shunto settlements sustain real income growth</li>
+      <li>Market reaction to BOJ tightening steps and yen volatility</li>
+      <li>Exposure of exports and tourism to China/global slowdown</li>
+    </ul>
+  </div>
+  <div class="rowline" style="top:265px;"></div>
+
+  <!-- Row 2 -->
+  <div class="country flag-india" style="top:294px;"></div>
+  <div class="country-name" style="top:300px;">India</div>
+  <div class="bullets" style="left:330px; top:273px;">
+    <ul>
+      <li>Slight growth deceleration as tighter household credit and uneven job temper domestic demand, though investment and supply-chain diversification should keep India a relative global outperformer</li>
+      <li>External headwinds—notably US-India trade frictions—pose risk</li>
+    </ul>
+  </div>
+  <div class="bullets right" style="left:855px; top:273px;">
+    <ul>
+      <li>Manufacturing scale-up as firms reassess China exposure</li>
+      <li>Ability to absorb investment (permits, logistics, labor skills) at the pace that reform plans envision</li>
+      <li>Services exports impact from US tech and visa policy shifts</li>
+    </ul>
+  </div>
+  <div class="rowline" style="top:344px;"></div>
+
+  <!-- Row 3 -->
+  <div class="country flag-australia" style="top:341px;"></div>
+  <div class="country-name" style="top:347px;">Australia</div>
+  <div class="bullets" style="left:330px; top:350px;">
+    <ul>
+      <li>Gradual growth pickup as firmer real incomes and easing inflation offset the drag on investment from still-high borrowing costs</li>
+      <li>Outlook remains closely tied to China's industrial activity, as softer Chinese demand for iron ore and LNG could hamper export momentum</li>
+    </ul>
+  </div>
+  <div class="bullets right" style="left:855px; top:350px;">
+    <ul>
+      <li>Pace of RBA easing and relief for indebted households</li>
+      <li>China’s demand for iron ore and LNG, especially signs of deeper industrial weakness or pivot towards cleaner energy</li>
+      <li>Drag from labor market softening and housing adjustment</li>
+    </ul>
+  </div>
+  <div class="rowline" style="top:424px;"></div>
+
+  <!-- Row 4 -->
+  <div class="country flag-vietnam" style="top:419px;"></div>
+  <div class="country-name" style="top:425px;">Vietnam</div>
+  <div class="bullets" style="left:330px; top:428px;">
+    <ul>
+      <li>Continuation of solid growth above ASEAN average, powered by export-oriented manufacturing, FDI and strong tourism</li>
+      <li>Policy focus stays on improving infrastructure, power reliability and capital-market reform to absorb supply-chain diversification flows</li>
+    </ul>
+  </div>
+  <div class="bullets right" style="left:855px; top:428px;">
+    <ul>
+      <li>Impact of US/EU tariffs and China competition on electronics, textiles and other key exports.</li>
+      <li>Progress on infrastructure, energy and SOE reforms that help Vietnam capture near-shoring and FDI momentum</li>
+    </ul>
+  </div>
+  <div class="rowline" style="top:493px;"></div>
+
+  <!-- Row 5 -->
+  <div class="country flag-singapore" style="top:497px;"></div>
+  <div class="country-name" style="top:503px;">Singapore</div>
+  <div class="bullets" style="left:330px; top:506px;">
+    <ul>
+      <li>Growth slows mildly from the 2024–25 rebound amidst weaker external demand, electronics downcycle and tighter global financial conditions</li>
+      <li>Public infrastructure spending and resilient high-value services (logistics, finance, professional services) cushion but not fully offset external drag</li>
+    </ul>
+  </div>
+  <div class="bullets right" style="left:855px; top:506px;">
+    <ul>
+      <li>Sensitivity to global trade tensions and US/China tariffs, especially for electronics and re-exports</li>
+      <li>Progress on workforce upskilling and digitalization to offset ageing and structural cost pressures</li>
+    </ul>
+  </div>
+  <div class="rowline" style="top:569px;"></div>
+
+  <!-- Row 6 -->
+  <div class="country flag-malaysia" style="top:575px;"></div>
+  <div class="country-name" style="top:581px;">Malaysia</div>
+  <div class="bullets" style="left:330px; top:584px;">
+    <ul>
+      <li>Moderate growth continues, supported by global semiconductor demand and AI-related investment</li>
+      <li>Consumer spending, however, remains dampened by subsidy reforms, cost of living pressures, and fiscal tightening</li>
+    </ul>
+  </div>
+  <div class="bullets right" style="left:855px; top:584px;">
+    <ul>
+      <li>Implementation of fuel-subsidy reforms and new taxes and their impacts on consumer spending and inflation</li>
+      <li>Sensitivity to domestic demand weakness in China, which is a key export market for Malaysia</li>
+    </ul>
+  </div>
+  <div class="rowline" style="top:647px;"></div>
+
+  <!-- Row 7 -->
+  <div class="country flag-indonesia" style="top:653px;"></div>
+  <div class="country-name" style="top:659px;">Indonesia</div>
+  <div class="bullets" style="left:330px; top:662px;">
+    <ul>
+      <li>Continued growth of ~5% driven by domestic demand, infrastructure spending and downstream commodity industries</li>
+      <li>Moderated inflation enables a cautious easing of monetary policy to support growth</li>
+    </ul>
+  </div>
+  <div class="bullets right" style="left:855px; top:662px;">
+    <ul>
+      <li>Continuity of policy support for downstreaming (nickel, EV value chain) and investor sentiment around regulatory shifts</li>
+      <li>Budgetary strain recent social welfare expansion and large infrastructure projects</li>
+    </ul>
+  </div>
+
+  <div class="bottom-items">
+    <div class="left-foot">
+      <div class="accent-arrow"></div>
+      <div>Source(s): Accenture Strategy analysis</div>
+    </div>
+    <div class="right-foot">
+      <div>Copyright © 2025 Accenture. All rights reserved.</div>
+      <div>16</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

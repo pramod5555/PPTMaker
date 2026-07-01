@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Slide DSL Demo Deck</title>
+<style>
+body { margin: 0; background: #1a1a1a; padding: 30px; font-family: Arial, sans-serif; }
+h1 { color: #fff; font-size: 16px; margin-bottom: 24px; font-weight: 400; opacity: 0.6; }
+.wrap { margin: 0 auto 24px auto; width: 1280px; box-shadow: 0 4px 24px rgba(0,0,0,0.6); }
+iframe { display: block; width: 1280px; height: 720px; border: none; }
+.label { color: rgba(255,255,255,0.3); font-size: 11px; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<h1>Slide DSL — Demo Deck (9 slides)</h1>
+<div class="label">Slide 1 — cover</div>
+<div class="wrap"><iframe srcdoc="&#60;!DOCTYPE html&#62;
+&#60;html lang=&quot;en&quot;&#62;
+&#60;head&#62;
+&#60;meta charset=&quot;utf-8&quot;&#62;
+&#60;style&#62;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+&#60;/style&#62;
+&#60;/head&#62;
+&#60;body&#62;&#60;div class=&quot;slide&quot;&#62;
+&#60;div style=&quot;position:absolute;left:0px;top:0px;width:800px;height:720px;background:#fff;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:0px;top:0px;width:800px;height:4px;background:#00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:160px;width:696px;height:20px;font-size:11px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1.5px;&quot;&#62;Private Capital Series&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:190px;width:696px;height:160px;font-size:38px;font-weight:700;color:#1A1A1A;line-height:1.25;&quot;&#62;Private Capital in Transition:&#60;br&#62;Navigating the New Normal&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:370px;width:696px;height:50px;font-size:15px;color:#666;&quot;&#62;Strategic Outlook 2024–2026&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:800px;top:0px;width:480px;height:720px;background:#004355;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:830px;top:640px;width:420px;height:40px;font-size:12px;color:rgba(255,255,255,0.5);&quot;&#62;Confidential — For Discussion Purposes Only&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:686px;width:700px;height:16px;font-size:9px;color:#999;&quot;&#62;McKinsey Global Private Markets Review 2024&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;color:#999;text-align:right;&quot;&#62;1&#60;/div&#62;
+&#60;/div&#62;&#60;/body&#62;&#60;/html&#62;"></iframe></div>
+<div class="label">Slide 2 — chapter</div>
+<div class="wrap"><iframe srcdoc="&#60;!DOCTYPE html&#62;
+&#60;html lang=&quot;en&quot;&#62;
+&#60;head&#62;
+&#60;meta charset=&quot;utf-8&quot;&#62;
+&#60;style&#62;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+&#60;/style&#62;
+&#60;/head&#62;
+&#60;body&#62;&#60;div class=&quot;slide&quot;&#62;
+&#60;div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:720px;background:#004355;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:230px;width:300px;height:20px;font-size:13px;font-weight:700;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:2px;&quot;&#62;Section 01&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:252px;width:70px;height:3px;background:#00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:262px;width:900px;height:160px;font-size:42px;font-weight:700;color:#fff;line-height:1.2;&quot;&#62;Market Dynamics&#60;br&#62;and Capital Flows&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;color:rgba(255,255,255,0.3);text-align:right;&quot;&#62;3&#60;/div&#62;
+&#60;/div&#62;&#60;/body&#62;&#60;/html&#62;"></iframe></div>
+<div class="label">Slide 3 — content / two-column</div>
+<div class="wrap"><iframe srcdoc="&#60;!DOCTYPE html&#62;
+&#60;html lang=&quot;en&quot;&#62;
+&#60;head&#62;
+&#60;meta charset=&quot;utf-8&quot;&#62;
+&#60;style&#62;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+&#60;/style&#62;
+&#60;/head&#62;
+&#60;body&#62;&#60;div class=&quot;slide&quot;&#62;
+&#60;div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:4px;background:#00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:18px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;&#62;Market Overview&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:36px;width:1152px;height:26px;font-size:20px;font-weight:700;color:#1A1A1A;overflow:hidden;white-space:nowrap;&quot;&#62;Private Credit Reaches $2.1T AUM&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:66px;width:1152px;height:1px;background:#DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:72px;width:1152px;height:30px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;&#62;Four-year CAGR of 18%, driven by bank retreat from middle-market lending&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:110px;width:268px;height:281px;background:#EFF7FA;border-radius:4px;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:110px;width:268px;height:3px;background:#00677F;border-radius:4px 4px 0 0;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:78px;top:138px;width:240px;height:95px;font-size:40px;font-weight:700;color:#00677F;line-height:1;&quot;&#62;$2.1T&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:78px;top:233px;width:240px;height:78px;font-size:11px;color:#666;line-height:1.4;&quot;&#62;Total AUM&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:78px;top:340px;width:240px;height:39px;font-size:10px;font-weight:700;color:#2E7D32;&quot;&#62;+18% CAGR (4yr)&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:346px;top:110px;width:268px;height:281px;background:#EFF7FA;border-radius:4px;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:346px;top:110px;width:268px;height:3px;background:#00677F;border-radius:4px 4px 0 0;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:360px;top:138px;width:240px;height:95px;font-size:40px;font-weight:700;color:#00677F;line-height:1;&quot;&#62;847&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:360px;top:233px;width:240px;height:78px;font-size:11px;color:#666;line-height:1.4;&quot;&#62;Active Funds&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:360px;top:340px;width:240px;height:39px;font-size:10px;font-weight:700;color:#2E7D32;&quot;&#62;+23 new in 2024&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:405px;width:268px;height:281px;background:#EFF7FA;border-radius:4px;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:405px;width:268px;height:3px;background:#00677F;border-radius:4px 4px 0 0;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:78px;top:433px;width:240px;height:95px;font-size:40px;font-weight:700;color:#00677F;line-height:1;&quot;&#62;12.4%&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:78px;top:528px;width:240px;height:78px;font-size:11px;color:#666;line-height:1.4;&quot;&#62;Avg Net IRR&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:78px;top:635px;width:240px;height:39px;font-size:10px;font-weight:700;color:#C62828;&quot;&#62;-0.8pp vs 2022&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:346px;top:405px;width:268px;height:281px;background:#EFF7FA;border-radius:4px;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:346px;top:405px;width:268px;height:3px;background:#00677F;border-radius:4px 4px 0 0;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:360px;top:433px;width:240px;height:95px;font-size:40px;font-weight:700;color:#00677F;line-height:1;&quot;&#62;6.2x&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:360px;top:528px;width:240px;height:78px;font-size:11px;color:#666;line-height:1.4;&quot;&#62;Avg MOIC&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:360px;top:635px;width:240px;height:39px;font-size:10px;font-weight:700;color:#888;&quot;&#62;stable YoY&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:666px;top:110px;width:550px;height:576px;&quot;&#62;&#60;svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;&#62;&#60;text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;AUM by Strategy ($B)&#60;/text&#62;
+&#60;line x1=&quot;48&quot; y1=&quot;538.0&quot; x2=&quot;544&quot; y2=&quot;538.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;44.0&quot; y=&quot;542.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;0&#60;/text&#62;
+&#60;line x1=&quot;48&quot; y1=&quot;434.8&quot; x2=&quot;544&quot; y2=&quot;434.8&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;44.0&quot; y=&quot;438.8&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;300&#60;/text&#62;
+&#60;line x1=&quot;48&quot; y1=&quot;331.6&quot; x2=&quot;544&quot; y2=&quot;331.6&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;44.0&quot; y=&quot;335.6&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;600&#60;/text&#62;
+&#60;line x1=&quot;48&quot; y1=&quot;228.4&quot; x2=&quot;544&quot; y2=&quot;228.4&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;44.0&quot; y=&quot;232.4&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;900&#60;/text&#62;
+&#60;line x1=&quot;48&quot; y1=&quot;125.2&quot; x2=&quot;544&quot; y2=&quot;125.2&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;44.0&quot; y=&quot;129.2&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;1,200&#60;/text&#62;
+&#60;line x1=&quot;48&quot; y1=&quot;22.0&quot; x2=&quot;544&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;44.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;1,500&#60;/text&#62;
+&#60;line x1=&quot;48&quot; y1=&quot;538.0&quot; x2=&quot;544&quot; y2=&quot;538.0&quot; stroke=&quot;#999&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;rect x=&quot;61.9&quot; y=&quot;393.5&quot; width=&quot;35.7&quot; height=&quot;144.5&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/&#62;
+&#60;text x=&quot;79.7&quot; y=&quot;390.5&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;420&#60;/text&#62;
+&#60;rect x=&quot;161.1&quot; y=&quot;338.5&quot; width=&quot;35.7&quot; height=&quot;199.5&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/&#62;
+&#60;text x=&quot;178.9&quot; y=&quot;335.5&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;580&#60;/text&#62;
+&#60;rect x=&quot;260.3&quot; y=&quot;293.8&quot; width=&quot;35.7&quot; height=&quot;244.2&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/&#62;
+&#60;text x=&quot;278.1&quot; y=&quot;290.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;710&#60;/text&#62;
+&#60;rect x=&quot;359.5&quot; y=&quot;231.8&quot; width=&quot;35.7&quot; height=&quot;306.2&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/&#62;
+&#60;text x=&quot;377.3&quot; y=&quot;228.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;890&#60;/text&#62;
+&#60;rect x=&quot;458.7&quot; y=&quot;176.8&quot; width=&quot;35.7&quot; height=&quot;361.2&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/&#62;
+&#60;text x=&quot;476.5&quot; y=&quot;173.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;1,050&#60;/text&#62;
+&#60;rect x=&quot;97.6&quot; y=&quot;476.1&quot; width=&quot;35.7&quot; height=&quot;61.9&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/&#62;
+&#60;text x=&quot;115.5&quot; y=&quot;473.1&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;180&#60;/text&#62;
+&#60;rect x=&quot;196.8&quot; y=&quot;465.8&quot; width=&quot;35.7&quot; height=&quot;72.2&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/&#62;
+&#60;text x=&quot;214.7&quot; y=&quot;462.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;210&#60;/text&#62;
+&#60;rect x=&quot;296.0&quot; y=&quot;472.6&quot; width=&quot;35.7&quot; height=&quot;65.4&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/&#62;
+&#60;text x=&quot;313.9&quot; y=&quot;469.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;190&#60;/text&#62;
+&#60;rect x=&quot;395.2&quot; y=&quot;455.4&quot; width=&quot;35.7&quot; height=&quot;82.6&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/&#62;
+&#60;text x=&quot;413.1&quot; y=&quot;452.4&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;240&#60;/text&#62;
+&#60;rect x=&quot;494.4&quot; y=&quot;441.7&quot; width=&quot;35.7&quot; height=&quot;96.3&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/&#62;
+&#60;text x=&quot;512.3&quot; y=&quot;438.7&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;280&#60;/text&#62;
+&#60;text x=&quot;97.6&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2019&#60;/text&#62;
+&#60;text x=&quot;196.8&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2020&#60;/text&#62;
+&#60;text x=&quot;296.0&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2021&#60;/text&#62;
+&#60;text x=&quot;395.2&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2022&#60;/text&#62;
+&#60;text x=&quot;494.4&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2023&#60;/text&#62;
+&#60;rect x=&quot;48&quot; y=&quot;564&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#00677F&quot;/&#62;
+&#60;text x=&quot;61.0&quot; y=&quot;573.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Direct Lending&#60;/text&#62;
+&#60;rect x=&quot;296&quot; y=&quot;564&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#5097AB&quot;/&#62;
+&#60;text x=&quot;309.0&quot; y=&quot;573.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Distressed&#60;/text&#62;&#60;/svg&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:686px;width:780px;height:16px;font-size:9px;color:#999;overflow:hidden;white-space:nowrap;&quot;&#62;Preqin 2024; McKinsey analysis&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;font-weight:400;color:#666;text-align:right;&quot;&#62;5&#60;/div&#62;
+&#60;/div&#62;&#60;/body&#62;&#60;/html&#62;"></iframe></div>
+<div class="label">Slide 4 — content / two-column</div>
+<div class="wrap"><iframe srcdoc="&#60;!DOCTYPE html&#62;
+&#60;html lang=&quot;en&quot;&#62;
+&#60;head&#62;
+&#60;meta charset=&quot;utf-8&quot;&#62;
+&#60;style&#62;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+&#60;/style&#62;
+&#60;/head&#62;
+&#60;body&#62;&#60;div class=&quot;slide&quot;&#62;
+&#60;div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:4px;background:#00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:18px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;&#62;Strategy Allocation&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:36px;width:1152px;height:26px;font-size:20px;font-weight:700;color:#1A1A1A;overflow:hidden;white-space:nowrap;&quot;&#62;Direct Lending Dominates at 58% of Total AUM&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:66px;width:1152px;height:1px;background:#DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:72px;width:1152px;height:30px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;&#62;Driven by superior risk-adjusted returns and structural tailwinds from bank regulation&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:20px;font-size:13px;font-weight:700;color:#00677F;&quot;&#62;Key Structural Drivers&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:143px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:80px;top:138px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.45;&quot;&#62;Banking sector retreat post-Basel III&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:80px;top:160px;width:534px;height:32px;font-size:11px;color:#666;line-height:1.45;&quot;&#62;Regulatory capital requirements raised cost of middle-market lending by 40–60bps&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:211px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:80px;top:206px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.45;&quot;&#62;Floating rate structures provide inflation hedge&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:80px;top:228px;width:534px;height:32px;font-size:11px;color:#666;line-height:1.45;&quot;&#62;SOFR + spread model benefits investors in rising rate environment&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:279px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:80px;top:274px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.45;&quot;&#62;Covenant-lite erosion in syndicated markets&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:80px;top:296px;width:534px;height:32px;font-size:11px;color:#666;line-height:1.45;&quot;&#62;Private credit retains stronger lender protections and direct management access&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:347px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:80px;top:342px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.45;&quot;&#62;Longer hold periods reward patient capital&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:80px;top:364px;width:534px;height:32px;font-size:11px;color:#666;line-height:1.45;&quot;&#62;Illiquidity premium of 100–150bps over equivalent public debt&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:666px;top:110px;width:550px;height:576px;&quot;&#62;&#60;svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;&#62;&#60;path d=&quot;M 195.0 103.0 A 185 185 0 1 1 105.9 450.1 L 143.5 381.8 A 107 107 0 1 0 195.0 181.0 Z&quot; fill=&quot;#00677F&quot;/&#62;
+&#60;text x=&quot;336.4&quot; y=&quot;328.3&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;58%&#60;/text&#62;
+&#60;path d=&quot;M 105.9 450.1 A 185 185 0 0 1 23.0 219.9 L 95.5 248.6 A 107 107 0 0 0 143.5 381.8 Z&quot; fill=&quot;#5097AB&quot;/&#62;
+&#60;text x=&quot;57.6&quot; y=&quot;341.5&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;23%&#60;/text&#62;
+&#60;path d=&quot;M 23.0 219.9 A 185 185 0 0 1 105.9 125.9 L 143.5 194.2 A 107 107 0 0 0 95.5 248.6 Z&quot; fill=&quot;#79AEBF&quot;/&#62;
+&#60;text x=&quot;85.5&quot; y=&quot;195.4&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;11%&#60;/text&#62;
+&#60;path d=&quot;M 105.9 125.9 A 185 185 0 0 1 195.0 103.0 L 195.0 181.0 A 107 107 0 0 0 143.5 194.2 Z&quot; fill=&quot;#004355&quot;/&#62;
+&#60;text x=&quot;158.7&quot; y=&quot;150.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;8%&#60;/text&#62;
+&#60;text x=&quot;195&quot; y=&quot;286&quot; text-anchor=&quot;middle&quot; font-size=&quot;20&quot; font-weight=&quot;700&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;$2.1T&#60;/text&#62;
+&#60;text x=&quot;195&quot; y=&quot;304&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Total AUM&#60;/text&#62;
+&#60;rect x=&quot;400&quot; y=&quot;232&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#00677F&quot; rx=&quot;2&quot;/&#62;
+&#60;text x=&quot;416.0&quot; y=&quot;242.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Direct Lending&#60;/text&#62;
+&#60;text x=&quot;416.0&quot; y=&quot;254.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;58.0%&#60;/text&#62;
+&#60;rect x=&quot;400&quot; y=&quot;262&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#5097AB&quot; rx=&quot;2&quot;/&#62;
+&#60;text x=&quot;416.0&quot; y=&quot;272.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Distressed&#60;/text&#62;
+&#60;text x=&quot;416.0&quot; y=&quot;284.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;23.0%&#60;/text&#62;
+&#60;rect x=&quot;400&quot; y=&quot;292&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#79AEBF&quot; rx=&quot;2&quot;/&#62;
+&#60;text x=&quot;416.0&quot; y=&quot;302.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Mezzanine&#60;/text&#62;
+&#60;text x=&quot;416.0&quot; y=&quot;314.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;11.0%&#60;/text&#62;
+&#60;rect x=&quot;400&quot; y=&quot;322&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#004355&quot; rx=&quot;2&quot;/&#62;
+&#60;text x=&quot;416.0&quot; y=&quot;332.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Other&#60;/text&#62;
+&#60;text x=&quot;416.0&quot; y=&quot;344.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;8.0%&#60;/text&#62;&#60;/svg&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:686px;width:780px;height:16px;font-size:9px;color:#999;overflow:hidden;white-space:nowrap;&quot;&#62;Preqin Q4 2024&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;font-weight:400;color:#666;text-align:right;&quot;&#62;7&#60;/div&#62;
+&#60;/div&#62;&#60;/body&#62;&#60;/html&#62;"></iframe></div>
+<div class="label">Slide 5 — content / full</div>
+<div class="wrap"><iframe srcdoc="&#60;!DOCTYPE html&#62;
+&#60;html lang=&quot;en&quot;&#62;
+&#60;head&#62;
+&#60;meta charset=&quot;utf-8&quot;&#62;
+&#60;style&#62;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+&#60;/style&#62;
+&#60;/head&#62;
+&#60;body&#62;&#60;div class=&quot;slide&quot;&#62;
+&#60;div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:4px;background:#00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:18px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;&#62;Performance Trends&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:36px;width:1152px;height:26px;font-size:20px;font-weight:700;color:#1A1A1A;overflow:hidden;white-space:nowrap;&quot;&#62;Net IRR Has Compressed But Remains Above Public Market Equivalents&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:66px;width:1152px;height:1px;background:#DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:72px;width:1152px;height:30px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;&#62;10-year horizon returns by strategy, net of fees (%)&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:110px;width:1152px;height:576px;&quot;&#62;&#60;svg width=&quot;1152&quot; height=&quot;576&quot; viewBox=&quot;0 0 1152 576&quot; style=&quot;overflow:visible;&quot;&#62;&#60;line x1=&quot;48&quot; y1=&quot;540.0&quot; x2=&quot;1144&quot; y2=&quot;540.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;44.0&quot; y=&quot;544.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;0.0&#60;/text&#62;
+&#60;line x1=&quot;48&quot; y1=&quot;433.6&quot; x2=&quot;1144&quot; y2=&quot;433.6&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;44.0&quot; y=&quot;437.6&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;4.0&#60;/text&#62;
+&#60;line x1=&quot;48&quot; y1=&quot;327.2&quot; x2=&quot;1144&quot; y2=&quot;327.2&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;44.0&quot; y=&quot;331.2&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;8.0&#60;/text&#62;
+&#60;line x1=&quot;48&quot; y1=&quot;220.8&quot; x2=&quot;1144&quot; y2=&quot;220.8&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;44.0&quot; y=&quot;224.8&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;12.0&#60;/text&#62;
+&#60;line x1=&quot;48&quot; y1=&quot;114.4&quot; x2=&quot;1144&quot; y2=&quot;114.4&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;44.0&quot; y=&quot;118.4&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;16.0&#60;/text&#62;
+&#60;line x1=&quot;48&quot; y1=&quot;8.0&quot; x2=&quot;1144&quot; y2=&quot;8.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;44.0&quot; y=&quot;12.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;20.0&#60;/text&#62;
+&#60;path d=&quot;M 48.0,188.9 L 185.0,172.9 L 322.0,164.9 L 459.0,178.2 L 596.0,196.9 L 733.0,226.1 L 870.0,183.6 L 1007.0,162.3 L 1144.0,210.2 L 1144.0,540 L 48.0,540 Z&quot; fill=&quot;#00677F&quot; opacity=&quot;0.12&quot;/&#62;
+&#60;path d=&quot;M 48.0,188.9 L 185.0,172.9 L 322.0,164.9 L 459.0,178.2 L 596.0,196.9 L 733.0,226.1 L 870.0,183.6 L 1007.0,162.3 L 1144.0,210.2&quot; stroke=&quot;#00677F&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/&#62;
+&#60;circle cx=&quot;48.0&quot; cy=&quot;188.9&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;185.0&quot; cy=&quot;172.9&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;322.0&quot; cy=&quot;164.9&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;459.0&quot; cy=&quot;178.2&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;596.0&quot; cy=&quot;196.9&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;733.0&quot; cy=&quot;226.1&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;870.0&quot; cy=&quot;183.6&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;1007.0&quot; cy=&quot;162.3&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;1144.0&quot; cy=&quot;210.2&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;path d=&quot;M 48.0,138.3 L 185.0,109.1 L 322.0,146.3 L 459.0,170.3 L 596.0,218.1 L 733.0,79.8 L 870.0,55.9 L 1007.0,164.9 L 1144.0,226.1 L 1144.0,540 L 48.0,540 Z&quot; fill=&quot;#5097AB&quot; opacity=&quot;0.12&quot;/&#62;
+&#60;path d=&quot;M 48.0,138.3 L 185.0,109.1 L 322.0,146.3 L 459.0,170.3 L 596.0,218.1 L 733.0,79.8 L 870.0,55.9 L 1007.0,164.9 L 1144.0,226.1&quot; stroke=&quot;#5097AB&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/&#62;
+&#60;circle cx=&quot;48.0&quot; cy=&quot;138.3&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;185.0&quot; cy=&quot;109.1&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;322.0&quot; cy=&quot;146.3&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;459.0&quot; cy=&quot;170.3&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;596.0&quot; cy=&quot;218.1&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;733.0&quot; cy=&quot;79.8&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;870.0&quot; cy=&quot;55.9&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;1007.0&quot; cy=&quot;164.9&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;1144.0&quot; cy=&quot;226.1&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;path d=&quot;M 48.0,242.1 L 185.0,252.7 L 322.0,218.1 L 459.0,236.8 L 596.0,188.9 L 733.0,271.3 L 870.0,135.7 L 1007.0,279.3 L 1144.0,231.4 L 1144.0,540 L 48.0,540 Z&quot; fill=&quot;#79AEBF&quot; opacity=&quot;0.12&quot;/&#62;
+&#60;path d=&quot;M 48.0,242.1 L 185.0,252.7 L 322.0,218.1 L 459.0,236.8 L 596.0,188.9 L 733.0,271.3 L 870.0,135.7 L 1007.0,279.3 L 1144.0,231.4&quot; stroke=&quot;#79AEBF&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/&#62;
+&#60;circle cx=&quot;48.0&quot; cy=&quot;242.1&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;185.0&quot; cy=&quot;252.7&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;322.0&quot; cy=&quot;218.1&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;459.0&quot; cy=&quot;236.8&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;596.0&quot; cy=&quot;188.9&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;733.0&quot; cy=&quot;271.3&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;870.0&quot; cy=&quot;135.7&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;1007.0&quot; cy=&quot;279.3&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;circle cx=&quot;1144.0&quot; cy=&quot;231.4&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;text x=&quot;48.0&quot; y=&quot;554.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2015&#60;/text&#62;
+&#60;text x=&quot;185.0&quot; y=&quot;554.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2016&#60;/text&#62;
+&#60;text x=&quot;322.0&quot; y=&quot;554.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2017&#60;/text&#62;
+&#60;text x=&quot;459.0&quot; y=&quot;554.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2018&#60;/text&#62;
+&#60;text x=&quot;596.0&quot; y=&quot;554.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2019&#60;/text&#62;
+&#60;text x=&quot;733.0&quot; y=&quot;554.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2020&#60;/text&#62;
+&#60;text x=&quot;870.0&quot; y=&quot;554.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2021&#60;/text&#62;
+&#60;text x=&quot;1007.0&quot; y=&quot;554.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2022&#60;/text&#62;
+&#60;text x=&quot;1144.0&quot; y=&quot;554.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2023&#60;/text&#62;
+&#60;rect x=&quot;48&quot; y=&quot;566&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#00677F&quot;/&#62;
+&#60;text x=&quot;73.0&quot; y=&quot;572.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Direct Lending&#60;/text&#62;
+&#60;rect x=&quot;413&quot; y=&quot;566&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#5097AB&quot;/&#62;
+&#60;text x=&quot;438.0&quot; y=&quot;572.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Distressed&#60;/text&#62;
+&#60;rect x=&quot;778&quot; y=&quot;566&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#79AEBF&quot;/&#62;
+&#60;text x=&quot;803.0&quot; y=&quot;572.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;S&amp;amp;P 500 PME&#60;/text&#62;&#60;/svg&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:686px;width:780px;height:16px;font-size:9px;color:#999;overflow:hidden;white-space:nowrap;&quot;&#62;Cambridge Associates; Preqin 2024&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;font-weight:400;color:#666;text-align:right;&quot;&#62;9&#60;/div&#62;
+&#60;/div&#62;&#60;/body&#62;&#60;/html&#62;"></iframe></div>
+<div class="label">Slide 6 — content / full</div>
+<div class="wrap"><iframe srcdoc="&#60;!DOCTYPE html&#62;
+&#60;html lang=&quot;en&quot;&#62;
+&#60;head&#62;
+&#60;meta charset=&quot;utf-8&quot;&#62;
+&#60;style&#62;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+&#60;/style&#62;
+&#60;/head&#62;
+&#60;body&#62;&#60;div class=&quot;slide&quot;&#62;
+&#60;div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:4px;background:#00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:18px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;&#62;Geographic Distribution&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:36px;width:1152px;height:26px;font-size:20px;font-weight:700;color:#1A1A1A;overflow:hidden;white-space:nowrap;&quot;&#62;North America Leads at 58% But APAC Share Growing Fastest&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:66px;width:1152px;height:1px;background:#DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:72px;width:1152px;height:30px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;&#62;AUM by geography, 2024 (% of total)&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:110px;width:1152px;height:576px;&quot;&#62;&#60;svg width=&quot;1152&quot; height=&quot;576&quot; viewBox=&quot;0 0 1152 576&quot; style=&quot;overflow:visible;&quot;&#62;&#60;line x1=&quot;120.0&quot; y1=&quot;4&quot; x2=&quot;120.0&quot; y2=&quot;572&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;120.0&quot; y=&quot;586.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;0%&#60;/text&#62;
+&#60;line x1=&quot;364.2&quot; y1=&quot;4&quot; x2=&quot;364.2&quot; y2=&quot;572&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;364.2&quot; y=&quot;586.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;25%&#60;/text&#62;
+&#60;line x1=&quot;608.5&quot; y1=&quot;4&quot; x2=&quot;608.5&quot; y2=&quot;572&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;608.5&quot; y=&quot;586.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;50%&#60;/text&#62;
+&#60;line x1=&quot;852.8&quot; y1=&quot;4&quot; x2=&quot;852.8&quot; y2=&quot;572&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;852.8&quot; y=&quot;586.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;75%&#60;/text&#62;
+&#60;line x1=&quot;1097.0&quot; y1=&quot;4&quot; x2=&quot;1097.0&quot; y2=&quot;572&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;1097.0&quot; y=&quot;586.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;100%&#60;/text&#62;
+&#60;rect x=&quot;120&quot; y=&quot;28.9&quot; width=&quot;566.7&quot; height=&quot;92.3&quot; fill=&quot;#00677F&quot; rx=&quot;2&quot;/&#62;
+&#60;text x=&quot;114.0&quot; y=&quot;79.0&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;North America&#60;/text&#62;
+&#60;text x=&quot;690.7&quot; y=&quot;79.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;58%&#60;/text&#62;
+&#60;rect x=&quot;120&quot; y=&quot;170.8&quot; width=&quot;263.8&quot; height=&quot;92.3&quot; fill=&quot;#5097AB&quot; rx=&quot;2&quot;/&#62;
+&#60;text x=&quot;114.0&quot; y=&quot;221.0&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Europe&#60;/text&#62;
+&#60;text x=&quot;387.8&quot; y=&quot;221.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#5097AB&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;27%&#60;/text&#62;
+&#60;rect x=&quot;120&quot; y=&quot;312.9&quot; width=&quot;107.5&quot; height=&quot;92.3&quot; fill=&quot;#79AEBF&quot; rx=&quot;2&quot;/&#62;
+&#60;text x=&quot;114.0&quot; y=&quot;363.0&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Asia Pacific&#60;/text&#62;
+&#60;text x=&quot;231.5&quot; y=&quot;363.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#79AEBF&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;11%&#60;/text&#62;
+&#60;rect x=&quot;120&quot; y=&quot;454.9&quot; width=&quot;39.1&quot; height=&quot;92.3&quot; fill=&quot;#004355&quot; rx=&quot;2&quot;/&#62;
+&#60;text x=&quot;114.0&quot; y=&quot;505.0&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Rest of World&#60;/text&#62;
+&#60;text x=&quot;163.1&quot; y=&quot;505.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#004355&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;4%&#60;/text&#62;&#60;/svg&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:686px;width:780px;height:16px;font-size:9px;color:#999;overflow:hidden;white-space:nowrap;&quot;&#62;Preqin 2024; McKinsey analysis&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;font-weight:400;color:#666;text-align:right;&quot;&#62;11&#60;/div&#62;
+&#60;/div&#62;&#60;/body&#62;&#60;/html&#62;"></iframe></div>
+<div class="label">Slide 7 — content / full</div>
+<div class="wrap"><iframe srcdoc="&#60;!DOCTYPE html&#62;
+&#60;html lang=&quot;en&quot;&#62;
+&#60;head&#62;
+&#60;meta charset=&quot;utf-8&quot;&#62;
+&#60;style&#62;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+&#60;/style&#62;
+&#60;/head&#62;
+&#60;body&#62;&#60;div class=&quot;slide&quot;&#62;
+&#60;div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:4px;background:#00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:18px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;&#62;AUM Bridge&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:36px;width:1152px;height:26px;font-size:20px;font-weight:700;color:#1A1A1A;overflow:hidden;white-space:nowrap;&quot;&#62;Net New Commitments and Portfolio Appreciation Drive $360B Growth&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:66px;width:1152px;height:1px;background:#DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:72px;width:1152px;height:30px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;&#62;AUM movement 2022 to 2024 ($B)&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:110px;width:1152px;height:576px;&quot;&#62;&#60;svg width=&quot;1152&quot; height=&quot;576&quot; viewBox=&quot;0 0 1152 576&quot; style=&quot;overflow:visible;&quot;&#62;&#60;text x=&quot;576.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;AUM Bridge 2022–2024 ($B)&#60;/text&#62;
+&#60;line x1=&quot;50&quot; y1=&quot;538.0&quot; x2=&quot;1144&quot; y2=&quot;538.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;46.0&quot; y=&quot;542.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;0&#60;/text&#62;
+&#60;line x1=&quot;50&quot; y1=&quot;409.0&quot; x2=&quot;1144&quot; y2=&quot;409.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;46.0&quot; y=&quot;413.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;625&#60;/text&#62;
+&#60;line x1=&quot;50&quot; y1=&quot;280.0&quot; x2=&quot;1144&quot; y2=&quot;280.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;46.0&quot; y=&quot;284.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;1,250&#60;/text&#62;
+&#60;line x1=&quot;50&quot; y1=&quot;151.0&quot; x2=&quot;1144&quot; y2=&quot;151.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;46.0&quot; y=&quot;155.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;1,875&#60;/text&#62;
+&#60;line x1=&quot;50&quot; y1=&quot;22.0&quot; x2=&quot;1144&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;46.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2,500&#60;/text&#62;
+&#60;line x1=&quot;50&quot; y1=&quot;538.0&quot; x2=&quot;1144&quot; y2=&quot;538.0&quot; stroke=&quot;#999&quot; stroke-width=&quot;1.5&quot;/&#62;
+&#60;rect x=&quot;81.3&quot; y=&quot;183.0&quot; width=&quot;93.8&quot; height=&quot;355.0&quot; fill=&quot;#007A93&quot;/&#62;
+&#60;text x=&quot;128.1&quot; y=&quot;179.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;1,720&#60;/text&#62;
+&#60;text x=&quot;128.1&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2022 AUM&#60;/text&#62;
+&#60;rect x=&quot;237.5&quot; y=&quot;410.0&quot; width=&quot;93.8&quot; height=&quot;128.0&quot; fill=&quot;#5097AB&quot;/&#62;
+&#60;text x=&quot;284.4&quot; y=&quot;406.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;+620&#60;/text&#62;
+&#60;text x=&quot;284.4&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;New Commitments&#60;/text&#62;
+&#60;line x1=&quot;362.6&quot; y1=&quot;410.0&quot; x2=&quot;393.8&quot; y2=&quot;410.0&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/&#62;
+&#60;rect x=&quot;393.8&quot; y=&quot;410.0&quot; width=&quot;93.8&quot; height=&quot;78.4&quot; fill=&quot;#C62828&quot;/&#62;
+&#60;text x=&quot;440.7&quot; y=&quot;406.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;-380&#60;/text&#62;
+&#60;text x=&quot;440.7&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Distributions&#60;/text&#62;
+&#60;line x1=&quot;518.9&quot; y1=&quot;488.5&quot; x2=&quot;550.1&quot; y2=&quot;488.5&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/&#62;
+&#60;rect x=&quot;550.1&quot; y=&quot;445.1&quot; width=&quot;93.8&quot; height=&quot;43.3&quot; fill=&quot;#5097AB&quot;/&#62;
+&#60;text x=&quot;597.0&quot; y=&quot;441.1&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;+210&#60;/text&#62;
+&#60;text x=&quot;597.0&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Appreciation&#60;/text&#62;
+&#60;line x1=&quot;675.1&quot; y1=&quot;445.1&quot; x2=&quot;706.4&quot; y2=&quot;445.1&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/&#62;
+&#60;rect x=&quot;706.4&quot; y=&quot;445.1&quot; width=&quot;93.8&quot; height=&quot;14.4&quot; fill=&quot;#C62828&quot;/&#62;
+&#60;text x=&quot;753.3&quot; y=&quot;441.1&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;-70&#60;/text&#62;
+&#60;text x=&quot;753.3&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Fees &amp;amp; Expenses&#60;/text&#62;
+&#60;line x1=&quot;831.4&quot; y1=&quot;459.6&quot; x2=&quot;862.7&quot; y2=&quot;459.6&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/&#62;
+&#60;rect x=&quot;862.7&quot; y=&quot;459.6&quot; width=&quot;93.8&quot; height=&quot;4.1&quot; fill=&quot;#C62828&quot;/&#62;
+&#60;text x=&quot;909.6&quot; y=&quot;455.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;-20&#60;/text&#62;
+&#60;text x=&quot;909.6&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;FX Impact&#60;/text&#62;
+&#60;rect x=&quot;1019.0&quot; y=&quot;108.7&quot; width=&quot;93.8&quot; height=&quot;429.3&quot; fill=&quot;#004355&quot;/&#62;
+&#60;text x=&quot;1065.9&quot; y=&quot;104.7&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2,080&#60;/text&#62;
+&#60;text x=&quot;1065.9&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;2024 AUM&#60;/text&#62;&#60;/svg&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:686px;width:780px;height:16px;font-size:9px;color:#999;overflow:hidden;white-space:nowrap;&quot;&#62;Preqin; company reports; McKinsey analysis&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;font-weight:400;color:#666;text-align:right;&quot;&#62;14&#60;/div&#62;
+&#60;/div&#62;&#60;/body&#62;&#60;/html&#62;"></iframe></div>
+<div class="label">Slide 8 — content / full</div>
+<div class="wrap"><iframe srcdoc="&#60;!DOCTYPE html&#62;
+&#60;html lang=&quot;en&quot;&#62;
+&#60;head&#62;
+&#60;meta charset=&quot;utf-8&quot;&#62;
+&#60;style&#62;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+&#60;/style&#62;
+&#60;/head&#62;
+&#60;body&#62;&#60;div class=&quot;slide&quot;&#62;
+&#60;div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:4px;background:#00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:18px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;&#62;Implementation Roadmap&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:36px;width:1152px;height:26px;font-size:20px;font-weight:700;color:#1A1A1A;overflow:hidden;white-space:nowrap;&quot;&#62;Three-Phase Transformation Delivers Full Operating Model in 18 Months&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:66px;width:1152px;height:1px;background:#DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:72px;width:1152px;height:30px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;&#62;Indicative timeline — subject to board approval Q1 2025&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:110px;width:1152px;height:576px;&quot;&#62;&#60;svg width=&quot;1152&quot; height=&quot;576&quot; viewBox=&quot;0 0 1152 576&quot; style=&quot;overflow:visible;&quot;&#62;&#60;text x=&quot;214.7&quot; y=&quot;20.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Q1 2025&#60;/text&#62;
+&#60;line x1=&quot;130.0&quot; y1=&quot;26&quot; x2=&quot;130.0&quot; y2=&quot;216&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;384.0&quot; y=&quot;20.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Q2 2025&#60;/text&#62;
+&#60;line x1=&quot;299.3&quot; y1=&quot;26&quot; x2=&quot;299.3&quot; y2=&quot;216&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;553.3&quot; y=&quot;20.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Q3 2025&#60;/text&#62;
+&#60;line x1=&quot;468.7&quot; y1=&quot;26&quot; x2=&quot;468.7&quot; y2=&quot;216&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;722.7&quot; y=&quot;20.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Q4 2025&#60;/text&#62;
+&#60;line x1=&quot;638.0&quot; y1=&quot;26&quot; x2=&quot;638.0&quot; y2=&quot;216&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;892.0&quot; y=&quot;20.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Q1 2026&#60;/text&#62;
+&#60;line x1=&quot;807.3&quot; y1=&quot;26&quot; x2=&quot;807.3&quot; y2=&quot;216&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;1061.3&quot; y=&quot;20.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Q2 2026&#60;/text&#62;
+&#60;line x1=&quot;976.7&quot; y1=&quot;26&quot; x2=&quot;976.7&quot; y2=&quot;216&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/&#62;
+&#60;text x=&quot;124.0&quot; y=&quot;49.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Diagnostic &amp;amp; Design&#60;/text&#62;
+&#60;rect x=&quot;130&quot; y=&quot;26&quot; width=&quot;1016&quot; height=&quot;38&quot; fill=&quot;#EFF7FA&quot;/&#62;
+&#60;rect x=&quot;130.0&quot; y=&quot;33.6&quot; width=&quot;254.0&quot; height=&quot;22.8&quot; fill=&quot;#00677F&quot; rx=&quot;3&quot;/&#62;
+&#60;text x=&quot;257.0&quot; y=&quot;49.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;6 wks&#60;/text&#62;
+&#60;text x=&quot;124.0&quot; y=&quot;87.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Platform Selection&#60;/text&#62;
+&#60;rect x=&quot;214.7&quot; y=&quot;71.6&quot; width=&quot;254.0&quot; height=&quot;22.8&quot; fill=&quot;#5097AB&quot; rx=&quot;3&quot;/&#62;
+&#60;text x=&quot;341.7&quot; y=&quot;87.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;6 wks&#60;/text&#62;
+&#60;text x=&quot;124.0&quot; y=&quot;125.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Pilot Launch&#60;/text&#62;
+&#60;rect x=&quot;130&quot; y=&quot;102&quot; width=&quot;1016&quot; height=&quot;38&quot; fill=&quot;#EFF7FA&quot;/&#62;
+&#60;rect x=&quot;468.7&quot; y=&quot;109.6&quot; width=&quot;254.0&quot; height=&quot;22.8&quot; fill=&quot;#79AEBF&quot; rx=&quot;3&quot;/&#62;
+&#60;text x=&quot;595.7&quot; y=&quot;125.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Pilot&#60;/text&#62;
+&#60;text x=&quot;124.0&quot; y=&quot;163.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Investor Onboarding&#60;/text&#62;
+&#60;rect x=&quot;553.3&quot; y=&quot;147.6&quot; width=&quot;338.7&quot; height=&quot;22.8&quot; fill=&quot;#004355&quot; rx=&quot;3&quot;/&#62;
+&#60;text x=&quot;124.0&quot; y=&quot;201.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Full Scale Rollout&#60;/text&#62;
+&#60;rect x=&quot;130&quot; y=&quot;178&quot; width=&quot;1016&quot; height=&quot;38&quot; fill=&quot;#EFF7FA&quot;/&#62;
+&#60;rect x=&quot;807.3&quot; y=&quot;185.6&quot; width=&quot;338.7&quot; height=&quot;22.8&quot; fill=&quot;#007A93&quot; rx=&quot;3&quot;/&#62;
+&#60;text x=&quot;976.7&quot; y=&quot;201.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Scale&#60;/text&#62;
+&#60;polygon points=&quot;299.33333333333337,16 304.33333333333337,22 299.33333333333337,28 294.33333333333337,22&quot; fill=&quot;#00677F&quot;/&#62;
+&#60;text x=&quot;299.3&quot; y=&quot;230.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Board Approval&#60;/text&#62;
+&#60;polygon points=&quot;722.6666666666667,16 727.6666666666667,22 722.6666666666667,28 717.6666666666667,22&quot; fill=&quot;#00677F&quot;/&#62;
+&#60;text x=&quot;722.7&quot; y=&quot;230.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;&#62;Go-Live&#60;/text&#62;&#60;/svg&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:686px;width:780px;height:16px;font-size:9px;color:#999;overflow:hidden;white-space:nowrap;&quot;&#62;McKinsey transformation office&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;font-weight:400;color:#666;text-align:right;&quot;&#62;17&#60;/div&#62;
+&#60;/div&#62;&#60;/body&#62;&#60;/html&#62;"></iframe></div>
+<div class="label">Slide 9 — content / sidebar-right</div>
+<div class="wrap"><iframe srcdoc="&#60;!DOCTYPE html&#62;
+&#60;html lang=&quot;en&quot;&#62;
+&#60;head&#62;
+&#60;meta charset=&quot;utf-8&quot;&#62;
+&#60;style&#62;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+&#60;/style&#62;
+&#60;/head&#62;
+&#60;body&#62;&#60;div class=&quot;slide&quot;&#62;
+&#60;div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:4px;background:#00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:18px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;&#62;Investment Process&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:36px;width:1152px;height:26px;font-size:20px;font-weight:700;color:#1A1A1A;overflow:hidden;white-space:nowrap;&quot;&#62;Five-Step Process Ensures Consistent Underwriting Across All Strategies&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:66px;width:1152px;height:1px;background:#DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:72px;width:1152px;height:30px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;&#62;End-to-end deal cycle from origination to portfolio monitoring&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:115px;width:720px;height:104px;background:#EFF7FA;border-radius:6px;border-left:4px solid #00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:76px;top:123px;width:28px;height:28px;background:#00677F;border-radius:50%;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:28px;&quot;&#62;1&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:114px;top:123px;width:650px;height:22px;font-size:12px;font-weight:700;color:#1A1A1A;&quot;&#62;Origination&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:114px;top:145px;width:650px;height:50px;font-size:11px;color:#666;line-height:1.4;&quot;&#62;Direct sponsor relationships; proprietary pipeline of 200+ deals/year&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:225px;width:720px;height:104px;background:#EFF7FA;border-radius:6px;border-left:4px solid #00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:76px;top:233px;width:28px;height:28px;background:#00677F;border-radius:50%;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:28px;&quot;&#62;2&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:114px;top:233px;width:650px;height:22px;font-size:12px;font-weight:700;color:#1A1A1A;&quot;&#62;Screening&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:114px;top:255px;width:650px;height:50px;font-size:11px;color:#666;line-height:1.4;&quot;&#62;Sector fit, leverage tolerance, minimum EBITDA $10M&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:335px;width:720px;height:104px;background:#EFF7FA;border-radius:6px;border-left:4px solid #00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:76px;top:343px;width:28px;height:28px;background:#00677F;border-radius:50%;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:28px;&quot;&#62;3&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:114px;top:343px;width:650px;height:22px;font-size:12px;font-weight:700;color:#1A1A1A;&quot;&#62;Underwriting&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:114px;top:365px;width:650px;height:50px;font-size:11px;color:#666;line-height:1.4;&quot;&#62;Full credit analysis, downside scenarios, peer benchmarking&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:445px;width:720px;height:104px;background:#EFF7FA;border-radius:6px;border-left:4px solid #00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:76px;top:453px;width:28px;height:28px;background:#00677F;border-radius:50%;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:28px;&quot;&#62;4&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:114px;top:453px;width:650px;height:22px;font-size:12px;font-weight:700;color:#1A1A1A;&quot;&#62;IC Review&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:114px;top:475px;width:650px;height:50px;font-size:11px;color:#666;line-height:1.4;&quot;&#62;Investment committee unanimous approval required&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:555px;width:720px;height:104px;background:#EFF7FA;border-radius:6px;border-left:4px solid #00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:76px;top:563px;width:28px;height:28px;background:#00677F;border-radius:50%;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:28px;&quot;&#62;5&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:114px;top:563px;width:650px;height:22px;font-size:12px;font-weight:700;color:#1A1A1A;&quot;&#62;Monitoring&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:114px;top:585px;width:650px;height:50px;font-size:11px;color:#666;line-height:1.4;&quot;&#62;Quarterly reporting, covenant tracking, board observer rights&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:836px;top:110px;width:199px;height:32px;background:#004355;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:844px;top:118px;width:184px;height:24px;font-size:11px;font-weight:700;color:#fff;overflow:hidden;white-space:nowrap;&quot;&#62;Metric&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1036px;top:110px;width:169px;height:32px;background:#00677F;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1044px;top:118px;width:154px;height:24px;font-size:11px;font-weight:700;color:#fff;overflow:hidden;white-space:nowrap;&quot;&#62;2023&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:836px;top:142px;width:199px;height:28px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:844px;top:148px;width:184px;height:22px;font-size:11px;color:#333;overflow:hidden;white-space:nowrap;&quot;&#62;Deals screened&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1036px;top:142px;width:169px;height:28px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1044px;top:148px;width:154px;height:22px;font-size:11px;font-weight:700;color:#00677F;overflow:hidden;white-space:nowrap;&quot;&#62;847&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:836px;top:170px;width:199px;height:28px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:844px;top:176px;width:184px;height:22px;font-size:11px;color:#333;overflow:hidden;white-space:nowrap;&quot;&#62;IC submissions&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1036px;top:170px;width:169px;height:28px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1044px;top:176px;width:154px;height:22px;font-size:11px;font-weight:700;color:#00677F;overflow:hidden;white-space:nowrap;&quot;&#62;112&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:836px;top:198px;width:199px;height:28px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:844px;top:204px;width:184px;height:22px;font-size:11px;color:#333;overflow:hidden;white-space:nowrap;&quot;&#62;Deals closed&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1036px;top:198px;width:169px;height:28px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1044px;top:204px;width:154px;height:22px;font-size:11px;font-weight:700;color:#00677F;overflow:hidden;white-space:nowrap;&quot;&#62;43&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:836px;top:226px;width:199px;height:28px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:844px;top:232px;width:184px;height:22px;font-size:11px;color:#333;overflow:hidden;white-space:nowrap;&quot;&#62;Conversion rate&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1036px;top:226px;width:169px;height:28px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1044px;top:232px;width:154px;height:22px;font-size:11px;font-weight:700;color:#00677F;overflow:hidden;white-space:nowrap;&quot;&#62;5.1%&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:836px;top:254px;width:199px;height:28px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:844px;top:260px;width:184px;height:22px;font-size:11px;color:#333;overflow:hidden;white-space:nowrap;&quot;&#62;Avg ticket size&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1036px;top:254px;width:169px;height:28px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1044px;top:260px;width:154px;height:22px;font-size:11px;font-weight:700;color:#00677F;overflow:hidden;white-space:nowrap;&quot;&#62;$180M&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:836px;top:282px;width:199px;height:28px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:844px;top:288px;width:184px;height:22px;font-size:11px;color:#333;overflow:hidden;white-space:nowrap;&quot;&#62;Avg LTV&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1036px;top:282px;width:169px;height:28px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;&#62;&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1044px;top:288px;width:154px;height:22px;font-size:11px;font-weight:700;color:#00677F;overflow:hidden;white-space:nowrap;&quot;&#62;48%&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:64px;top:686px;width:780px;height:16px;font-size:9px;color:#999;overflow:hidden;white-space:nowrap;&quot;&#62;Internal deal log; McKinsey analysis&#60;/div&#62;
+&#60;div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;font-weight:400;color:#666;text-align:right;&quot;&#62;20&#60;/div&#62;
+&#60;/div&#62;&#60;/body&#62;&#60;/html&#62;"></iframe></div>
+</body></html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Data and AI Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#f8f9f9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f8f9f9;
+    color:#1f3f8f;
+  }
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:50px;
+    background:#e6e5e5;
+  }
+  .nav{
+    position:absolute;
+    top:19px;
+    font-size:12px;
+    color:#7d7d7d;
+    white-space:nowrap;
+  }
+  .nav.active{
+    color:#1d4ed8;
+    font-weight:700;
+  }
+  .nav1{ left:87px; }
+  .nav2{ left:262px; }
+  .nav3{ left:345px; }
+  .nav4{ left:491px; }
+  .nav5{ left:609px; }
+  .nav6{ left:816px; }
+  .nav7{ left:981px; }
+
+  .top-icons{
+    position:absolute;
+    right:40px;
+    top:15px;
+    color:#8e8e8e;
+    font-size:24px;
+    letter-spacing:10px;
+  }
+
+  .left-text{
+    position:absolute;
+    left:90px;
+    top:104px;
+    width:352px;
+    color:#3b64b3;
+    font-size:13px;
+    line-height:1.2;
+  }
+
+  .callout{
+    position:absolute;
+    left:89px;
+    top:351px;
+    width:370px;
+    height:226px;
+    border:1px solid #b8c9e7;
+    box-sizing:border-box;
+    color:#3b64b3;
+  }
+  .callout .lead{
+    position:absolute;
+    left:22px;
+    top:13px;
+    width:290px;
+    font-size:13px;
+    line-height:1.2;
+  }
+  .circle-wrap{
+    position:absolute;
+    left:22px;
+    top:70px;
+    width:155px;
+    height:155px;
+  }
+  .circle{
+    position:absolute;
+    left:0;
+    top:0;
+    width:135px;
+    height:135px;
+    border:2px solid #d9d9d9;
+    border-radius:68px;
+    box-sizing:border-box;
+    top:6px;
+    left:0;
+  }
+  .arc{
+    position:absolute;
+    left:66px;
+    top:-3px;
+    width:72px;
+    height:72px;
+    border:7px solid transparent;
+    border-top-color:#5a33d6;
+    border-right-color:#5a33d6;
+    border-radius:72px;
+    transform:rotate(-43deg);
+  }
+  .percent{
+    position:absolute;
+    left:20px;
+    top:48px;
+    font-size:39px;
+    font-weight:700;
+    color:#5a33d6;
+    letter-spacing:-1px;
+  }
+  .callout .desc{
+    position:absolute;
+    left:180px;
+    top:95px;
+    width:168px;
+    font-size:13px;
+    line-height:1.2;
+  }
+
+  .title{
+    position:absolute;
+    left:496px;
+    top:105px;
+    width:690px;
+    font-size:15px;
+    line-height:1.25;
+    color:#0c3f93;
+    font-weight:700;
+  }
+
+  .chart{
+    position:absolute;
+    left:496px;
+    top:160px;
+    width:744px;
+    height:420px;
+  }
+  .row{
+    position:absolute;
+    left:0;
+    width:744px;
+    height:35px;
+  }
+  .label{
+    position:absolute;
+    left:0;
+    top:7px;
+    width:180px;
+    text-align:right;
+    font-size:12px;
+    color:#556eb4;
+  }
+  .bars{
+    position:absolute;
+    left:188px;
+    top:3px;
+    width:556px;
+    height:28px;
+  }
+  .bar{
+    position:absolute;
+    left:0;
+    height:13px;
+  }
+  .bar.total{ top:0; background:#2f52db; }
+  .bar.fs{ top:17px; background:#18ade8; }
+  .val{
+    position:absolute;
+    font-size:11px;
+    color:#5b74b6;
+    top:-2px;
+  }
+
+  .r1{ top:0; }
+  .r2{ top:43px; }
+  .r3{ top:86px; }
+  .r4{ top:130px; }
+  .r5{ top:174px; }
+  .r6{ top:218px; }
+  .r7{ top:261px; }
+  .r8{ top:304px; }
+  .r9{ top:347px; }
+
+  .legend{
+    position:absolute;
+    left:682px;
+    top:555px;
+    font-size:12px;
+    color:#5b74b6;
+  }
+  .swatch{
+    display:inline-block;
+    width:12px;
+    height:10px;
+    margin-right:6px;
+    vertical-align:middle;
+  }
+  .sw1{ background:#2f52db; }
+  .sw2{ background:#18ade8; margin-left:65px; }
+
+  .footnote{
+    position:absolute;
+    left:497px;
+    top:594px;
+    font-size:9px;
+    color:#5b74b6;
+  }
+
+  .copyright{
+    position:absolute;
+    left:88px;
+    bottom:15px;
+    width:720px;
+    font-size:9px;
+    color:#b5b5b5;
+    line-height:1.15;
+  }
+
+  .pagenum{
+    position:absolute;
+    right:6px;
+    bottom:14px;
+    font-size:12px;
+    color:#0c3f93;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar"></div>
+
+  <div class="nav nav1">Executive summary</div>
+  <div class="nav nav2">Key findings</div>
+  <div class="nav nav3">Risk and regulation</div>
+  <div class="nav nav4 active">Data and AI</div>
+  <div class="nav nav5">Simplification and modernization</div>
+  <div class="nav nav6">How KPMG can help</div>
+  <div class="nav nav7">Methodology</div>
+
+  <div class="top-icons">◁⌂▷</div>
+
+  <div class="left-text">
+    Discussions with business and technology leaders, and our<br>
+    experience leading AI programs, have highlighted the critical<br>
+    role that data management plays in enabling enterprise-wide<br>
+    transformation, in particular when moving beyond point solutions<br>
+    and isolated AI use cases. David DiCristofaro, KPMG Line of<br>
+    Business leader for Financial Services, KPMG in the US, explains<br>
+    that, while many companies are making considerable progress,<br>
+    they often struggle to define their desired end state. “Ultimately,<br>
+    they should aim for a closer integration of data management with<br>
+    their overall business strategy and growth objectives,” he says.<br>
+    This likely means embedding this initiative into every interaction,<br>
+    decision, and process—and, critically, delivering it through a<br>
+    marketplace of accessible data products that can easily be<br>
+    discovered and served up.”
+  </div>
+
+  <div class="callout">
+    <div class="lead">
+      Our research finds that this has been an area of focus<br>
+      for the financial services sector over the past 12 months.<br>
+      When it comes to data accessibility, there has been a
+    </div>
+    <div class="circle-wrap">
+      <div class="circle"></div>
+      <div class="arc"></div>
+      <div class="percent">28%</div>
+    </div>
+    <div class="desc">
+      percentage point<br>
+      year-on-year uplift in the<br>
+      number of financial services<br>
+      companies in the two highest<br>
+      levels of maturity (influential<br>
+      and embedded).
+    </div>
+  </div>
+
+  <div class="title">
+    Proportion of financial services in the top two levels of data maturity (influential or embedded)<br>
+    compared with the cross-sector average across nine key data management categories
+  </div>
+
+  <div class="chart">
+    <div class="row r1">
+      <div class="label">Data accessibility</div>
+      <div class="bars">
+        <div class="bar total" style="width:505px;"></div>
+        <div class="bar fs" style="width:543px;"></div>
+        <div class="val" style="left:509px;">53%</div>
+        <div class="val" style="left:548px; top:15px;">57%</div>
+      </div>
+    </div>
+
+    <div class="row r2">
+      <div class="label">Data investment</div>
+      <div class="bars">
+        <div class="bar total" style="width:505px;"></div>
+        <div class="bar fs" style="width:553px;"></div>
+        <div class="val" style="left:509px;">53%</div>
+        <div class="val" style="left:558px; top:15px;">58%</div>
+      </div>
+    </div>
+
+    <div class="row r3">
+      <div class="label">Extracting meaningful insights</div>
+      <div class="bars">
+        <div class="bar total" style="width:495px;"></div>
+        <div class="bar fs" style="width:534px;"></div>
+        <div class="val" style="left:499px;">52%</div>
+        <div class="val" style="left:539px; top:15px;">56%</div>
+      </div>
+    </div>
+
+    <div class="row r4">
+      <div class="label">Data monetization</div>
+      <div class="bars">
+        <div class="bar total" style="width:495px;"></div>
+        <div class="bar fs" style="width:553px;"></div>
+        <div class="val" style="left:499px;">52%</div>
+        <div class="val" style="left:558px; top:15px;">58%</div>
+      </div>
+    </div>
+
+    <div class="row r5">
+      <div class="label">Data security</div>
+      <div class="bars">
+        <div class="bar total" style="width:495px;"></div>
+        <div class="bar fs" style="width:534px;"></div>
+        <div class="val" style="left:499px;">52%</div>
+        <div class="val" style="left:539px; top:15px;">56%</div>
+      </div>
+    </div>
+
+    <div class="row r6">
+      <div class="label">Data governance</div>
+      <div class="bars">
+        <div class="bar total" style="width:486px;"></div>
+        <div class="bar fs" style="width:515px;"></div>
+        <div class="val" style="left:490px;">51%</div>
+        <div class="val" style="left:520px; top:15px;">54%</div>
+      </div>
+    </div>
+
+    <div class="row r7">
+      <div class="label">Data interoperability</div>
+      <div class="bars">
+        <div class="bar total" style="width:486px;"></div>
+        <div class="bar fs" style="width:515px;"></div>
+        <div class="val" style="left:490px;">51%</div>
+        <div class="val" style="left:520px; top:15px;">54%</div>
+      </div>
+    </div>
+
+    <div class="row r8">
+      <div class="label">Data culture</div>
+      <div class="bars">
+        <div class="bar total" style="width:486px;"></div>
+        <div class="bar fs" style="width:515px;"></div>
+        <div class="val" style="left:490px;">51%</div>
+        <div class="val" style="left:520px; top:15px;">54%</div>
+      </div>
+    </div>
+
+    <div class="row r9">
+      <div class="label">Data science</div>
+      <div class="bars">
+        <div class="bar total" style="width:477px;"></div>
+        <div class="bar fs" style="width:525px;"></div>
+        <div class="val" style="left:481px;">50%</div>
+        <div class="val" style="left:530px; top:15px;">55%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="swatch sw1"></span>Total
+    <span class="swatch sw2"></span>Financial services
+  </div>
+
+  <div class="footnote">
+    How effective are your data and analytics activities in the following areas? — Influential/Embedded
+  </div>
+
+  <div class="copyright">
+    © 2025 KPMG LLP, a Delaware limited liability partnership and a member firm of the KPMG global organization of independent member firms affiliated with<br>
+    KPMG International Limited, a private English company limited by guarantee. All rights reserved. USCS026447-2A
+  </div>
+
+  <div class="pagenum">10</div>
+</div>
+</body>
+</html>

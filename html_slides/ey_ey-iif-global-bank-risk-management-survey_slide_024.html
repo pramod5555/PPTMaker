@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>Chapter 4 Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:24px auto;
+    overflow:hidden;
+    background:#020307;
+    box-shadow:0 0 0 1px rgba(0,0,0,.08);
+  }
+  .slide *{box-sizing:border-box; position:absolute;}
+
+  .bg-left{
+    left:0; top:0; width:392px; height:720px;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,.96) 0%, rgba(0,0,0,.95) 78%, rgba(0,0,0,.70) 100%);
+    z-index:2;
+  }
+  .bg-right{
+    left:392px; top:0; width:888px; height:720px;
+    background:
+      radial-gradient(circle at 14% 8%, rgba(0,188,255,.28) 0%, rgba(0,188,255,.13) 10%, rgba(0,0,0,0) 22%),
+      radial-gradient(circle at 32% 17%, rgba(255,145,0,.22) 0%, rgba(255,145,0,.08) 12%, rgba(0,0,0,0) 28%),
+      radial-gradient(circle at 47% 18%, rgba(255,0,122,.25) 0%, rgba(255,0,122,.09) 14%, rgba(0,0,0,0) 30%),
+      radial-gradient(circle at 72% 10%, rgba(0,168,255,.24) 0%, rgba(0,168,255,.08) 14%, rgba(0,0,0,0) 32%),
+      radial-gradient(circle at 54% 34%, rgba(255,255,255,.13) 0%, rgba(255,255,255,.03) 12%, rgba(0,0,0,0) 30%),
+      linear-gradient(180deg, rgba(7,12,26,.38), rgba(2,2,5,.60)),
+      linear-gradient(120deg, #071322 0%, #23112a 25%, #561130 50%, #262334 67%, #0a2942 100%);
+    z-index:0;
+  }
+  .texture{
+    left:380px; top:-4px; width:900px; height:728px; z-index:1; pointer-events:none;
+    opacity:.9;
+    background:
+      repeating-linear-gradient(103deg,
+        rgba(255,255,255,0) 0px,
+        rgba(255,255,255,0) 13px,
+        rgba(255,255,255,.05) 14px,
+        rgba(255,255,255,0) 22px),
+      repeating-linear-gradient(26deg,
+        rgba(255,167,57,0) 0px,
+        rgba(255,167,57,0) 16px,
+        rgba(255,186,88,.08) 17px,
+        rgba(255,167,57,0) 24px),
+      repeating-linear-gradient(147deg,
+        rgba(34,190,255,0) 0px,
+        rgba(34,190,255,0) 18px,
+        rgba(34,190,255,.08) 19px,
+        rgba(34,190,255,0) 27px),
+      radial-gradient(ellipse at 10% 8%, rgba(0,208,255,.32) 0 3%, rgba(0,0,0,0) 10%),
+      radial-gradient(ellipse at 35% 18%, rgba(255,194,33,.25) 0 5%, rgba(0,0,0,0) 13%),
+      radial-gradient(ellipse at 61% 32%, rgba(255,255,255,.18) 0 3%, rgba(0,0,0,0) 11%),
+      radial-gradient(ellipse at 79% 16%, rgba(61,190,255,.28) 0 3%, rgba(0,0,0,0) 10%);
+  }
+  .bottom-shadow{
+    left:360px; bottom:-20px; width:760px; height:260px; z-index:3;
+    background:
+      radial-gradient(ellipse at 28% 25%, rgba(0,0,0,.7) 0%, rgba(0,0,0,.35) 32%, rgba(0,0,0,0) 65%);
+    filter:blur(2px);
+    opacity:.9;
+  }
+
+  .title{
+    left:48px; top:42px; width:320px;
+    color:#fff;
+    font-size:64px;
+    font-weight:300;
+    line-height:1;
+    letter-spacing:-0.5px;
+    z-index:20;
+  }
+  .header-line{
+    left:48px; top:129px; width:1256px; height:4px;
+    background:linear-gradient(90deg, #f3dd00 0%, #edd900 30%, #8d40ff 63%, #39b6ff 100%);
+    z-index:21;
+  }
+  .subtitle{
+    left:48px; top:156px; width:780px;
+    color:#f1f1f1;
+    font-size:20px;
+    font-weight:700;
+    line-height:1.2;
+    z-index:20;
+  }
+
+  .left-column{
+    left:54px; top:231px; width:304px; height:438px; z-index:20;
+    color:#ededed;
+  }
+  .dropcap{
+    left:0; top:2px;
+    font-size:60px;
+    line-height:50px;
+    font-weight:300;
+    color:#ffffff;
+  }
+  .p1{
+    left:39px; top:0; width:264px;
+    font-size:14px;
+    line-height:1.38;
+    font-weight:400;
+    color:#ececec;
+  }
+  .p2{
+    left:0; top:350px; width:300px;
+    font-size:14px;
+    line-height:1.38;
+    font-weight:400;
+    color:#ececec;
+  }
+
+  .middle-column{
+    left:322px; top:231px; width:290px; height:438px; z-index:20;
+    color:#ededed;
+  }
+  .mid-p1{
+    left:0; top:0; width:278px;
+    font-size:14px; line-height:1.38; color:#ececec;
+  }
+  .mid-p2{
+    left:0; top:58px; width:286px;
+    font-size:14px; line-height:1.38; color:#ececec;
+  }
+  .bullets{
+    left:0; top:184px; width:286px;
+    font-size:14px; line-height:1.38; color:#ececec;
+  }
+  .bullet{
+    left:0; width:286px; padding-left:14px;
+  }
+  .bullet:before{
+    content:"■";
+    left:0; top:1px;
+    color:#efdd00;
+    font-size:8px;
+    line-height:18px;
+  }
+  .b1{ top:0; }
+  .b2{ top:82px; }
+
+  .chart-title{
+    left:610px; top:234px; width:330px;
+    color:#f2f2f2;
+    font-size:12px;
+    line-height:1.2;
+    font-weight:700;
+    z-index:20;
+  }
+
+  .chart-area{
+    left:586px; top:280px; width:395px; height:378px; z-index:20;
+  }
+  .row{ left:0; width:395px; height:52px; }
+  .r1{ top:0; }
+  .r2{ top:60px; }
+  .r3{ top:122px; }
+  .r4{ top:183px; }
+  .r5{ top:245px; }
+  .r6{ top:304px; height:66px; }
+
+  .label{
+    left:0; top:6px; width:194px;
+    color:#e8e8e8;
+    font-size:11px;
+    line-height:1.25;
+    text-align:right;
+    font-weight:400;
+  }
+  .bar-wrap{
+    left:201px; top:9px; width:168px; height:25px;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(12,18,28,.22);
+  }
+  .bar{
+    left:0; top:0; height:25px;
+    background:#28b5bc;
+  }
+  .subrank{
+    left:201px; top:35px;
+    color:#cfcfcf;
+    font-size:7px;
+    line-height:1.2;
+    white-space:nowrap;
+  }
+  .pct{
+    left:340px; top:10px; width:28px;
+    color:#fff;
+    font-size:20px;
+    line-height:18px;
+    font-weight:400;
+    text-align:right;
+  }
+  .pct small{ font-size:11px; }
+
+  .sidebar{
+    right:0; top:237px; width:215px; height:469px;
+    background:rgba(31,33,47,.95);
+    border-radius:34px 0 0 34px;
+    z-index:12;
+  }
+  .sidebar-content{
+    left:1094px; top:266px; width:174px; height:420px;
+    color:#f2f2f2;
+    font-size:14px;
+    line-height:1.35;
+    z-index:20;
+  }
+  .hl{ color:#f1cf00; }
+  .sb-intro{ left:0; top:0; width:170px; }
+  .sb-bul{ left:0; width:170px; padding-left:15px; }
+  .sb-bul:before{
+    content:"■";
+    left:0; top:1px;
+    color:#f1cf00;
+    font-size:8px;
+    line-height:17px;
+  }
+  .sb1{ top:118px; }
+  .sb2{ top:211px; }
+  .sb3{ top:305px; }
+  .sb-footer{
+    left:0; top:430px;
+    font-size:14px;
+    line-height:1.2;
+    font-weight:700;
+  }
+
+  .hero-silhouette{
+    left:935px; top:38px; width:245px; height:584px; z-index:11;
+  }
+
+  .jump{
+    left:1196px; top:30px; width:70px; height:70px; z-index:25;
+  }
+
+  .vert-label{
+    left:-24px; top:363px; width:90px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    color:#1e1e1e;
+    font-size:12px;
+    line-height:1;
+    letter-spacing:.14em;
+    z-index:30;
+  }
+  .vert-line{
+    left:14px; top:378px; width:1px; height:37px; background:#454545; z-index:30;
+  }
+  .page{
+    left:18px; bottom:15px;
+    color:#ffffff;
+    font-size:11px;
+    line-height:1;
+    z-index:30;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bg-right"></div>
+  <div class="texture"></div>
+  <div class="bottom-shadow"></div>
+  <div class="bg-left"></div>
+
+  <svg class="hero-silhouette" viewBox="0 0 245 584" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="sil" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#020204"/>
+        <stop offset="1" stop-color="#07090d"/>
+      </linearGradient>
+    </defs>
+    <ellipse cx="86" cy="107" rx="27" ry="23" fill="url(#sil)"/>
+    <path d="M80 129
+             C61 144,54 183,56 224
+             L49 292
+             C46 327,48 365,58 414
+             L53 505
+             C52 534,54 560,58 579
+             L81 579
+             C84 546,83 519,86 491
+             L95 426
+             L109 334
+             L121 409
+             L123 579
+             L145 579
+             L149 395
+             L146 296
+             C145 264,140 224,134 194
+             C129 166,109 138,80 129 Z"
+          fill="url(#sil)"/>
+    <path d="M109 147
+             C133 150,152 162,166 179
+             C189 144,209 103,241 30
+             L244 33
+             C230 82,206 143,187 194
+             C175 223,160 246,139 259
+             L126 240
+             C133 221,136 204,136 187
+             C136 167,128 154,109 147 Z"
+          fill="#05070a"/>
+    <path d="M58 185
+             C41 214,31 238,10 260
+             L4 253
+             C19 224,32 194,47 164
+             C54 166,57 174,58 185 Z"
+          fill="#05060a"/>
+    <path d="M146 255
+             C160 274,173 302,181 342
+             C189 381,193 434,191 480
+             L188 579
+             L209 579
+             L216 475
+             C218 430,215 370,207 328
+             C198 284,182 249,160 227 Z"
+          fill="#05070a" opacity=".55"/>
+  </svg>
+
+  <div class="title">Chapter 4</div>
+  <div class="header-line"></div>
+  <div class="subtitle">Regulatory outlook – navigating the impacts of fragmentation</div>
+
+  <div class="left-column">
+    <div class="dropcap">T</div>
+    <div class="p1">here is a perception that scrutiny is easing in some markets (the US, most notably). The current US administration is de-emphasizing sustainability and climate matters, pursuing a deregulatory agenda and positioning as innovation-friendly, particularly in the realm of AI and digital assets. Regulators in the UK and EU, as well as major markets in the Asia-Pacific region, are monitoring these developments as they revisit their own priorities. Their responses are factoring in both geostrategic trends and local issues. Equal and opposite reactions to US geopolitical and trade moves seem likely, either to assert local independence or maintain the settlement on financial stability that formed in the wake of the global financial crisis.</div>
+    <div class="p2">A full 80% of CROs in the Middle East and North Africa view regulatory fragmentation as a powerful force shaping the strategic agenda, compared with 31% of all survey</div>
+  </div>
+
+  <div class="middle-column">
+    <div class="mid-p1">respondents. CROs in Asia-Pacific (19%) and Latin America (19%) seem least concerned about regulatory fragmentation.</div>
+    <div class="mid-p2">The impact of regulatory fragmentation will take multiple forms, from increased operational risk and higher compliance costs, to trapped capital/liquidity, to greater data management challenges. Not surprisingly, concerns vary across regions:</div>
+    <div class="bullets">
+      <div class="bullet b1">43% of CROs in the Asia-Pacific region say trapped capital will have a big impact from regulatory fragmentation, compared with 30% of all CROs and 21% in North America.</div>
+      <div class="bullet b2">66% of North American CROs cite operational risk as a big impact, compared with only 25% in Europe.</div>
+    </div>
+  </div>
+
+  <div class="chart-title">Figure 17: Areas of impact from regulatory fragmentation</div>
+
+  <div class="chart-area">
+    <div class="row r1">
+      <div class="label">Increased compliance costs</div>
+      <div class="bar-wrap"><div class="bar" style="width:116px;"></div></div>
+      <div class="subrank">34% top ranked</div>
+      <div class="pct">69<small>%</small></div>
+    </div>
+    <div class="row r2">
+      <div class="label">Challenges in data management<br>and reporting</div>
+      <div class="bar-wrap"><div class="bar" style="width:89px;"></div></div>
+      <div class="subrank">20% top ranked</div>
+      <div class="pct">53<small>%</small></div>
+    </div>
+    <div class="row r3">
+      <div class="label">Increased operational risk</div>
+      <div class="bar-wrap"><div class="bar" style="width:81px;"></div></div>
+      <div class="subrank">13% top ranked</div>
+      <div class="pct">48<small>%</small></div>
+    </div>
+    <div class="row r4">
+      <div class="label">Difficulties in risk aggregation and<br>measurement</div>
+      <div class="bar-wrap"><div class="bar" style="width:57px;"></div></div>
+      <div class="subrank">4% top ranked</div>
+      <div class="pct">34<small>%</small></div>
+    </div>
+    <div class="row r5">
+      <div class="label">Inefficient strategic planning and<br>decision-making</div>
+      <div class="bar-wrap"><div class="bar" style="width:52px;"></div></div>
+      <div class="subrank">9% top ranked</div>
+      <div class="pct">31<small>%</small></div>
+    </div>
+    <div class="row r6">
+      <div class="label">Challenges due to trapped capital or<br>liquidity (e.g., local requirements are<br>more restrictive than group standards)</div>
+      <div class="bar-wrap"><div class="bar" style="width:50px;"></div></div>
+      <div class="subrank">18% top ranked</div>
+      <div class="pct">30<small>%</small></div>
+    </div>
+  </div>
+
+  <div class="sidebar"></div>
+  <div class="sidebar-content">
+    <div class="sb-intro">The <span class="hl">EY Global Financial<br>Services Regulatory Outlook<br>2026</span> highlights what it will take for banks and other firms to succeed in an uncertain environment. Specifically, firms:</div>
+    <div class="sb-bul sb1">Must be keenly aware of the higher costs and opportunities of doing business in certain countries or regions caused by diverging regulations.</div>
+    <div class="sb-bul sb2">Must continue to monitor specific risks and regulatory changes in markets where they operate.</div>
+    <div class="sb-bul sb3">Should use scenario planning and analysis to identify the potential implications for their business of different regulatory outcomes.</div>
+    <div class="sb-footer">Read the full report <span class="hl">here.</span></div>
+  </div>
+
+  <svg class="jump" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="35" cy="35" r="22" fill="rgba(255,255,255,.12)"/>
+    <circle cx="46.5" cy="11.5" r="4.5" fill="#f1cf00"/>
+    <path d="M25 28 L35 18 L45 28" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="17" y="36" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#ffffff">Jump to</text>
+    <text x="18" y="45" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#ffffff">contents</text>
+  </svg>
+
+  <div class="vert-label">CHAPTER 4</div>
+  <div class="vert-line"></div>
+  <div class="page">24</div>
+</div>
+</body>
+</html>

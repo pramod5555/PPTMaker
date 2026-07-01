@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d8d8da;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#efeff1;
+  }
+
+  .photo{
+    position:absolute;
+    left:30px;
+    top:31px;
+    width:321px;
+    height:706px;
+    overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(6,3,10,.92) 0%, rgba(9,4,14,.82) 12%, rgba(16,7,22,.48) 40%, rgba(15,5,18,.68) 100%),
+      radial-gradient(circle at 15% 24%, rgba(245,27,120,.95) 0 6%, rgba(245,27,120,0) 18%),
+      radial-gradient(circle at 22% 22%, rgba(251,180,58,.9) 0 8%, rgba(251,180,58,0) 20%),
+      radial-gradient(circle at 31% 26%, rgba(120,235,255,.88) 0 10%, rgba(120,235,255,0) 24%),
+      radial-gradient(circle at 76% 34%, rgba(0,224,255,.92) 0 10%, rgba(0,224,255,0) 22%),
+      radial-gradient(circle at 86% 38%, rgba(255,120,38,.95) 0 8%, rgba(255,120,38,0) 17%),
+      linear-gradient(102deg, #08111f 0%, #2a1640 28%, #143257 58%, #091224 100%);
+  }
+  .photo:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(37deg, transparent 0 18%, rgba(255,255,255,.10) 18.2% 18.6%, transparent 19% 100%),
+      linear-gradient(0deg, transparent 0 20.2%, rgba(0,0,0,.5) 20.4% 20.8%, transparent 21.1% 100%),
+      linear-gradient(90deg, transparent 0 66.2%, rgba(255,255,255,.20) 66.4% 66.8%, transparent 67.1% 100%),
+      linear-gradient(0deg, transparent 0 8.2%, rgba(74,225,255,.55) 8.25% 8.45%, transparent 8.7% 100%),
+      linear-gradient(0deg, transparent 0 20.65%, rgba(74,225,255,.4) 20.72% 20.92%, transparent 21.15% 100%);
+  }
+
+  .ceiling-line1,.ceiling-line2,.ceiling-line3,.ceiling-line4,.ceiling-line5,.ceiling-line6{
+    position:absolute;
+    background:rgba(79,219,255,.34);
+    z-index:2;
+  }
+  .ceiling-line1{left:78px;top:80px;width:155px;height:1px;}
+  .ceiling-line2{left:170px;top:177px;width:171px;height:1px;}
+  .ceiling-line3{left:99px;top:176px;width:205px;height:1px;}
+  .ceiling-line4{left:325px;top:189px;width:1px;height:191px;}
+  .ceiling-line5{left:244px;top:32px;width:1px;height:117px;transform:rotate(-21deg);}
+  .ceiling-line6{left:145px;top:31px;width:1px;height:147px;transform:rotate(-23deg);}
+
+  .figure{
+    position:absolute;
+    bottom:132px;
+    background:rgba(14,5,12,.92);
+    z-index:3;
+  }
+  .f1{left:73px;width:16px;height:196px;border-radius:8px 8px 4px 4px;}
+  .f1:before{content:"";position:absolute;left:1px;top:-17px;width:14px;height:14px;border-radius:50%;background:rgba(14,5,12,.95);}
+  .f2{left:132px;width:18px;height:188px;border-radius:9px 9px 4px 4px;}
+  .f2:before{content:"";position:absolute;left:2px;top:-18px;width:14px;height:14px;border-radius:50%;background:rgba(14,5,12,.95);}
+  .f3{left:181px;width:12px;height:171px;border-radius:7px 7px 4px 4px;}
+  .f3:before{content:"";position:absolute;left:1px;top:-12px;width:10px;height:10px;border-radius:50%;background:rgba(14,5,12,.95);}
+  .f4{left:211px;width:11px;height:162px;border-radius:7px 7px 4px 4px;}
+  .f4:before{content:"";position:absolute;left:1px;top:-10px;width:9px;height:9px;border-radius:50%;background:rgba(14,5,12,.95);}
+  .f5{left:315px;width:18px;height:200px;border-radius:8px 8px 5px 5px;}
+  .f5:before{content:"";position:absolute;left:2px;top:-17px;width:14px;height:14px;border-radius:50%;background:rgba(14,5,12,.95);}
+
+  .floor-glow{
+    position:absolute;
+    left:30px;
+    bottom:-2px;
+    width:321px;
+    height:228px;
+    background:
+      linear-gradient(180deg, rgba(20,25,50,0) 0%, rgba(17,7,28,.22) 28%, rgba(255,40,120,.16) 58%, rgba(10,6,16,.78) 100%);
+    z-index:2;
+  }
+
+  .chapter{
+    position:absolute;
+    left:11px;
+    top:332px;
+    width:16px;
+    height:122px;
+    z-index:5;
+  }
+  .chapter .line{
+    position:absolute;
+    left:3px;
+    top:78px;
+    width:1px;
+    height:34px;
+    background:#4c4d52;
+  }
+  .chapter .txt{
+    position:absolute;
+    left:-27px;
+    top:28px;
+    width:72px;
+    transform:rotate(-90deg);
+    transform-origin:center;
+    font-size:12px;
+    color:#26282d;
+    letter-spacing:.12em;
+    font-weight:600;
+  }
+
+  .left-caption{
+    position:absolute;
+    left:76px;
+    top:559px;
+    width:245px;
+    color:#f1edf2;
+    z-index:4;
+    font-size:18px;
+    line-height:1.48;
+    font-weight:400;
+  }
+  .left-caption .strong{
+    display:block;
+    margin-top:2px;
+    font-size:18px;
+    line-height:1.35;
+    font-weight:700;
+  }
+  .page-no{
+    position:absolute;
+    left:49px;
+    top:706px;
+    color:#f1eef2;
+    font-size:12px;
+    font-weight:600;
+    z-index:5;
+  }
+
+  .body-text{
+    position:absolute;
+    left:423px;
+    top:80px;
+    width:410px;
+    color:#55565d;
+    font-size:12px;
+    line-height:1.5;
+    font-weight:400;
+    z-index:10;
+  }
+
+  .chart-title{
+    position:absolute;
+    left:870px;
+    top:81px;
+    width:340px;
+    color:#3f4147;
+    font-size:12px;
+    line-height:1.38;
+    font-weight:700;
+    z-index:10;
+  }
+
+  .jump{
+    position:absolute;
+    right:25px;
+    top:60px;
+    width:39px;
+    height:39px;
+    border:1px solid #6b6d73;
+    border-radius:50%;
+    background:transparent;
+    z-index:20;
+  }
+  .jump .dot{
+    position:absolute;
+    right:-2px;
+    top:4px;
+    width:8px;
+    height:8px;
+    background:#e3d62e;
+    border-radius:50%;
+  }
+  .jump .label{
+    position:absolute;
+    left:6px;
+    top:10px;
+    width:27px;
+    font-size:8px;
+    line-height:1.05;
+    text-align:center;
+    color:#4e5057;
+    font-weight:500;
+  }
+
+  .chart{
+    position:absolute;
+    left:870px;
+    top:140px;
+    width:318px;
+    height:580px;
+    z-index:10;
+  }
+  .row{
+    position:absolute;
+    left:0;
+    width:318px;
+    height:47px;
+  }
+  .rlabel{
+    position:absolute;
+    left:0;
+    top:7px;
+    width:138px;
+    text-align:right;
+    color:#5b5d63;
+    font-size:12px;
+    line-height:1.15;
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .barbox{
+    position:absolute;
+    left:151px;
+    top:0;
+    width:168px;
+    height:25px;
+    border:1px solid #a6a8ad;
+    background:transparent;
+    box-sizing:border-box;
+  }
+  .fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:23px;
+    background:#169695;
+  }
+  .pct{
+    position:absolute;
+    right:7px;
+    top:5px;
+    color:#5b5d63;
+    font-size:12px;
+    font-weight:400;
+  }
+  .sub{z-index:1;
+    position:absolute;
+    left:151px;
+    top:28px;
+    color:#76787e;
+    font-size:7px;
+    line-height:1.1;
+    font-weight:400;
+    white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="photo"></div>
+    <div class="ceiling-line1"></div>
+    <div class="ceiling-line2"></div>
+    <div class="ceiling-line3"></div>
+    <div class="ceiling-line4"></div>
+    <div class="ceiling-line5"></div>
+    <div class="ceiling-line6"></div>
+    <div class="figure f1"></div>
+    <div class="figure f2"></div>
+    <div class="figure f3"></div>
+    <div class="figure f4"></div>
+    <div class="figure f5"></div>
+    <div class="floor-glow"></div>
+
+    <div class="chapter">
+      <div class="line"></div>
+      <div class="txt">CHAPTER 4</div>
+    </div>
+
+    <div class="left-caption">
+      CROs around the<br>
+      world are adjusting to<br>
+      <span class="strong">the reality of regulatory<br>fragmentation.</span>
+    </div>
+    <div class="page-no">26</div>
+
+    <div class="body-text">
+      These figures vary dramatically by region: 100% of North American
+      CROs expect to see a reduced focus on ESG, versus only 35% of CROs
+      in Europe and 33% in Latin America. Similarly, North American CROs
+      expect less focus on regulatory compliance risk (55%) and conduct
+      risk (52%) than do their counterparts in Europe (15%/20%) and Latin
+      America (24%/33%).<br><br>
+      Asia-Pacific CROs expect much greater regulatory focus on cyber and
+      tech risk (86% vs. 71% overall), digital fraud (57% vs. 36%) and third-
+      party risk (52% vs. 35%) than their counterparts in other regions.
+      Among European CROs, the expectation is for increased supervisory
+      focus on credit risk (40% vs. 26%) and data risk (40% vs. 22%).
+    </div>
+
+    <div class="chart-title">
+      Figure 20: Risk areas will see the greatest reduction in<br>
+      supervisory focus in the next three years
+    </div>
+
+    <div class="jump">
+      <div class="dot"></div>
+      <div class="label">Jump to<br>contents</div>
+    </div>
+
+    <div class="chart">
+      <div class="row" style="top:0px;">
+        <div class="rlabel">ESG risk</div>
+        <div class="barbox">
+          <div class="fill" style="width:91px;"></div>
+          <div class="pct">55%</div>
+        </div>
+        <div class="sub">40% top-ranked</div>
+      </div>
+
+      <div class="row" style="top:61px;">
+        <div class="rlabel">Strategic risk</div>
+        <div class="barbox">
+          <div class="fill" style="width:77px;"></div>
+          <div class="pct">46%</div>
+        </div>
+        <div class="sub">15% top-ranked</div>
+      </div>
+
+      <div class="row" style="top:122px;">
+        <div class="rlabel">Conduct risk</div>
+        <div class="barbox">
+          <div class="fill" style="width:58px;"></div>
+          <div class="pct">35%</div>
+        </div>
+        <div class="sub">6% top-ranked</div>
+      </div>
+
+      <div class="row" style="top:183px;">
+        <div class="rlabel">Regulatory compliance risk</div>
+        <div class="barbox">
+          <div class="fill" style="width:51px;"></div>
+          <div class="pct">31%</div>
+        </div>
+        <div class="sub">8% top-ranked</div>
+      </div>
+
+      <div class="row" style="top:244px;">
+        <div class="rlabel">IRRBB</div>
+        <div class="barbox">
+          <div class="fill" style="width:47px;"></div>
+          <div class="pct">28%</div>
+        </div>
+        <div class="sub">6% top-ranked</div>
+      </div>
+
+      <div class="row" style="top:305px;">
+        <div class="rlabel">Market risk</div>
+        <div class="barbox">
+          <div class="fill" style="width:44px;"></div>
+          <div class="pct">26%</div>
+        </div>
+        <div class="sub">7% top-ranked</div>
+      </div>
+
+      <div class="row" style="top:366px;">
+        <div class="rlabel">Liquidity risk</div>
+        <div class="barbox">
+          <div class="fill" style="width:34px;"></div>
+          <div class="pct">20%</div>
+        </div>
+        <div class="sub">6% top-ranked</div>
+      </div>
+
+      <div class="row" style="top:427px;">
+        <div class="rlabel">Model risk</div>
+        <div class="barbox">
+          <div class="fill" style="width:28px;"></div>
+          <div class="pct">17%</div>
+        </div>
+        <div class="sub">4% top-ranked</div>
+      </div>
+
+      <div class="row" style="top:488px;">
+        <div class="rlabel">Credit risk</div>
+        <div class="barbox">
+          <div class="fill" style="width:21px;"></div>
+          <div class="pct">13%</div>
+        </div>
+        <div class="sub">6% top-ranked</div>
+      </div>
+
+      <div class="row" style="top:549px;">
+        <div class="rlabel">Data risk</div>
+        <div class="barbox">
+          <div class="fill" style="width:20px;"></div>
+          <div class="pct">12%</div>
+        </div>
+        <div class="sub">0% top-ranked</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

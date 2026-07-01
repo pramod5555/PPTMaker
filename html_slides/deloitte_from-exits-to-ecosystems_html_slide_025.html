@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Economy Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#eeeeee;
+    color:#5f5f5f;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .qmark{
+    left:44px;
+    top:44px;
+    font-size:39px;
+    line-height:1;
+    font-weight:700;
+    color:#000;
+  }
+  .title{
+    left:55px;
+    top:104px;
+    font-size:34px;
+    line-height:1.1;
+    font-weight:700;
+    color:#565656;
+  }
+  .question{
+    left:55px;
+    top:174px;
+    width:286px;
+    font-size:25px;
+    line-height:1.24;
+    font-weight:400;
+    color:#5e5e5e;
+  }
+
+  .legend-head{
+    left:393px;
+    top:23px;
+    font-size:16px;
+    line-height:20px;
+    color:#6a6a6a;
+  }
+  .rule-left{
+    left:388px;
+    top:52px;
+    width:313px;
+    height:1px;
+    background:#8e9aa6;
+  }
+  .legend-likely-box{
+    left:722px;
+    top:23px;
+    width:17px;
+    height:17px;
+    background:#1a226d;
+  }
+  .legend-likely-text{
+    left:747px;
+    top:23px;
+    font-size:16px;
+    line-height:20px;
+    color:#6a6a6a;
+  }
+  .rule-mid{
+    left:716px;
+    top:52px;
+    width:479px;
+    height:1px;
+    background:#8e9aa6;
+  }
+  .legend-unlikely-box{
+    left:1113px;
+    top:22px;
+    width:17px;
+    height:17px;
+    background:#2eaead;
+  }
+  .legend-unlikely-text{
+    left:1137px;
+    top:23px;
+    font-size:16px;
+    line-height:20px;
+    color:#6a6a6a;
+  }
+  .legend-2023{
+    left:1222px;
+    top:23px;
+    font-size:16px;
+    line-height:20px;
+    color:#6a6a6a;
+    white-space:nowrap;
+  }
+  .rule-right{
+    left:1212px;
+    top:52px;
+    width:120px;
+    height:1px;
+    background:#8e9aa6;
+  }
+
+  .label{
+    width:322px;
+    font-size:16px;
+    line-height:1.2;
+    color:#6a6a6a;
+    text-align:right;
+  }
+  .bar-blue,
+  .bar-teal{
+    height:68px;
+  }
+  .bar-blue{
+    background:#1a226d;
+  }
+  .bar-teal{
+    background:#2eaead;
+  }
+  .pct-inside{
+    position:absolute;
+    right:10px;
+    top:22px;
+    font-size:16px;
+    line-height:20px;
+    font-weight:700;
+    color:#fff;
+  }
+
+  .right-note{
+    font-size:16px;
+    line-height:20px;
+    color:#6a6a6a;
+    white-space:nowrap;
+  }
+  .right-big{
+    font-size:20px;
+    line-height:24px;
+    color:#5f5f5f;
+    white-space:nowrap;
+  }
+
+  .triangle-grey{
+    width:0;
+    height:0;
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+    border-left:18px solid #bebebe;
+  }
+  .triangle-red{
+    width:0;
+    height:0;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-top:18px solid #f45d5d;
+  }
+
+  .base{
+    left:53px;
+    top:610px;
+    width:320px;
+    font-size:11px;
+    line-height:1.45;
+    font-style:italic;
+    color:#8b8b8b;
+  }
+  .footer-left{
+    left:49px;
+    top:729px;
+    transform:translateY(-16px);
+    font-size:12px;
+    line-height:14px;
+    color:#4f4f4f;
+    white-space:nowrap;
+  }
+  .footer-center{
+    left:684px;
+    top:729px;
+    transform:translate(-50%,-16px);
+    font-size:12px;
+    line-height:14px;
+    color:#4f4f4f;
+    white-space:nowrap;
+  }
+
+  .ipsos{
+    left:1212px;
+    top:691px;
+    width:56px;
+    height:50px;
+    overflow:hidden;
+    background:#2b4ea2;
+  }
+  .ipsos:before{
+    content:"";
+    position:absolute;
+    right:0;
+    top:0;
+    width:22px;
+    height:50px;
+    background:#29b28e;
+    clip-path:polygon(38% 0,100% 0,100% 100%,0 100%,24% 62%,4% 35%);
+  }
+  .ipsos-face{
+    position:absolute;
+    right:11px;
+    top:4px;
+    width:17px;
+    height:31px;
+    background:#1c8db7;
+    opacity:.6;
+    border-radius:10px;
+  }
+  .ipsos-text{
+    position:absolute;
+    left:7px;
+    bottom:6px;
+    font-size:16px;
+    line-height:16px;
+    font-weight:700;
+    color:#fff;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qmark">Q.</div>
+  <div class="title">Economy</div>
+  <div class="question">For each of the following,<br>please tell me how likely<br>or unlikely you think they<br>are to happen...?</div>
+
+  <div class="legend-head">Global averages</div>
+  <div class="rule-left"></div>
+  <div class="legend-likely-box"></div>
+  <div class="legend-likely-text">Likely</div>
+  <div class="rule-mid"></div>
+  <div class="legend-unlikely-box"></div>
+  <div class="legend-unlikely-text">Unlikely</div>
+  <div class="legend-2023">% Likely 2023</div>
+  <div class="rule-right"></div>
+
+  <div class="label" style="left:389px; top:112px;">Prices in [COUNTRY] will increase faster than<br>people&rsquo;s incomes</div>
+  <div class="bar-blue" style="left:722px; top:97px; width:375px;"><div class="pct-inside">79%</div></div>
+  <div class="bar-teal" style="left:1119px; top:97px; width:77px;"><div class="pct-inside">16%</div></div>
+  <div class="triangle-grey" style="left:1235px; top:110px;"></div>
+  <div class="right-note" style="left:1257px; top:111px;">No change</div>
+  <div class="right-big" style="left:1252px; top:144px;">79%</div>
+
+  <div class="label" style="left:389px; top:235px;">Taxes in [COUNTRY] will be higher in 2025 than<br>in 2024</div>
+  <div class="bar-blue" style="left:722px; top:218px; width:351px;"><div class="pct-inside">74%</div></div>
+  <div class="bar-teal" style="left:1112px; top:218px; width:84px;"><div class="pct-inside">18%</div></div>
+  <div class="right-big" style="left:1255px; top:244px;">N/A</div>
+
+  <div class="label" style="left:389px; top:357px;">Inflation in [COUNTRY] will be higher in 2025<br>than in 2024</div>
+  <div class="bar-blue" style="left:722px; top:340px; width:331px;"><div class="pct-inside">70%</div></div>
+  <div class="bar-teal" style="left:1096px; top:340px; width:100px;"><div class="pct-inside">21%</div></div>
+  <div class="triangle-grey" style="left:1235px; top:353px;"></div>
+  <div class="right-note" style="left:1257px; top:354px;">No change</div>
+  <div class="right-big" style="left:1252px; top:388px;">70%</div>
+
+  <div class="label" style="left:389px; top:479px;">Unemployment in [COUNTRY] will be higher in<br>2025 than in 2024</div>
+  <div class="bar-blue" style="left:722px; top:463px; width:321px;"><div class="pct-inside">68%</div></div>
+  <div class="bar-teal" style="left:1086px; top:463px; width:110px;"><div class="pct-inside">23%</div></div>
+  <div class="triangle-grey" style="left:1235px; top:476px;"></div>
+  <div class="right-note" style="left:1257px; top:471px;">No change</div>
+  <div class="right-big" style="left:1252px; top:500px;">68%</div>
+
+  <div class="label" style="left:389px; top:600px;">Interest rates in [COUNTRY] will be higher in<br>2025 than in 2024</div>
+  <div class="bar-blue" style="left:722px; top:585px; width:289px;"><div class="pct-inside">61%</div></div>
+  <div class="bar-teal" style="left:1067px; top:585px; width:129px;"><div class="pct-inside">27%</div></div>
+  <div class="triangle-red" style="left:1251px; top:590px;"></div>
+  <div class="right-note" style="left:1274px; top:591px;">-9 pp</div>
+  <div class="right-big" style="left:1252px; top:625px;">70%</div>
+
+  <div class="base">Base: 23,721 adults aged 18 years and older in India, 18-74 in Canada, Republic of Ireland, Malaysia, the Philippines, South Africa, Turkey, and the United States, 20-74 in Thailand, 21-74 in Indonesia and Singapore, and 16-74 in all other countries.<br>Friday, October 25 &ndash; Friday November 8, 2024</div>
+
+  <div class="footer-left">&copy; Ipsos Predictions 2025 Report</div>
+  <div class="footer-center">25</div>
+
+  <div class="ipsos">
+    <div class="ipsos-face"></div>
+    <div class="ipsos-text">Ipsos</div>
+  </div>
+</div>
+</body>
+</html>

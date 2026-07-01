@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Robot Training / Data Collection</title>
+<style>
+  body {
+    margin: 0;
+    background: #7e7d7e;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: linear-gradient(to right, #f1f1f1 0 56.2%, #000 56.2% 100%);
+  }
+
+  .top-left {
+    position: absolute;
+    left: 60px;
+    top: 36px;
+    font-size: 14px;
+    color: #4b5860;
+    letter-spacing: -0.1px;
+  }
+  .top-left .accent {
+    color: #a020f0;
+  }
+
+  .top-right {
+    position: absolute;
+    right: 62px;
+    top: 36px;
+    font-size: 14px;
+    color: #d9d9d9;
+  }
+  .top-right .page {
+    display: inline-block;
+    margin-left: 18px;
+    color: #f0f0f0;
+  }
+
+  .title {
+    position: absolute;
+    left: 60px;
+    top: 116px;
+    font-size: 26px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #0b0b0b;
+    letter-spacing: -0.4px;
+  }
+
+  .left-col {
+    position: absolute;
+    left: 60px;
+    top: 172px;
+    width: 264px;
+    color: #333;
+  }
+
+  .mid-col {
+    position: absolute;
+    left: 375px;
+    top: 172px;
+    width: 256px;
+    color: #333;
+  }
+
+  .section-title {
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: #222;
+    margin-bottom: 14px;
+  }
+
+  .body-text {
+    font-size: 15px;
+    line-height: 1.34;
+    color: #3d3d3d;
+    letter-spacing: -0.05px;
+  }
+
+  .gap-1 {
+    height: 26px;
+  }
+
+  sup {
+    font-size: 8px;
+    line-height: 0;
+    vertical-align: super;
+  }
+
+  .purple-mark {
+    position: absolute;
+    left: 56px;
+    bottom: 20px;
+    color: #a020f0;
+    font-size: 52px;
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .right-wrap {
+    position: absolute;
+    left: 704px;
+    top: 176px;
+    width: 514px;
+    color: #fff;
+  }
+
+  .right-head {
+    font-size: 18px;
+    line-height: 1.2;
+    color: #b28ae8;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .right-text {
+    width: 500px;
+    font-size: 14px;
+    line-height: 1.32;
+    color: #d8d8d8;
+  }
+
+  .chart-title {
+    position: absolute;
+    font-size: 13px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #fff;
+    width: 215px;
+  }
+
+  .chart-box {
+    position: absolute;
+    width: 230px;
+    height: 230px;
+  }
+
+  .axis-label {
+    position: absolute;
+    font-size: 10px;
+    color: #d8d8d8;
+    font-weight: 700;
+  }
+
+  .y-label {
+    position: absolute;
+    font-size: 10px;
+    color: #d8d8d8;
+  }
+
+  .chart-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .note {
+    position: absolute;
+    left: 704px;
+    bottom: 30px;
+    width: 500px;
+    font-size: 10px;
+    line-height: 1.25;
+    color: #cfcfcf;
+  }
+
+  .divider {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 720px;
+    background: rgba(255,255,255,0.14);
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+    <div class="top-right">When LLMs get their Bodies <span class="page">41</span></div>
+
+    <div class="title">Robot Training / Data Collection</div>
+
+    <div class="left-col">
+      <div class="section-title">What is it?</div>
+      <div class="body-text">
+        Part of the power of foundation models today is the robust training data used in their creation. But where LLMs leveraged all written language across the internet, robotics training sets have been scarce. Now, that’s starting to change. New robotics datasets, and the ability to leverage other data types in combination with simulation and real-world reinforcement learning approaches, are helping to fill the gap.
+      </div>
+
+      <div class="gap-1"></div>
+
+      <div class="section-title">How does it connect to the trend?</div>
+      <div class="body-text">
+        If companies want robots to work in different environments and accomplish a wide variety of tasks, their training data must reflect that variety. Assembling initial training sets will be important, but equally important is establishing a framework for ongoing data collection to power subsequent training and learning. Some companies are deploying robot fleets to gather their own real-world training data.<sup>97</sup> Others are leaning into synthetic data, especially for training in simulations where robots can confront nearly limitless scenarios.<sup>98</sup>
+      </div>
+    </div>
+
+    <div class="mid-col">
+      <div class="section-title">Who is doing it today?</div>
+      <div class="body-text">
+        Many groups have started creating open robotics and embodiment training sets, hoping to accelerate AI for robotics much like how ImageNet helped accelerate computer vision advancement. One example is the Open X-Embodiment Dataset, which is a compilation of 60 open robotic datasets.<sup>99</sup> As for ongoing data collection for training robots, one example comes from the auto industry. Tesla sources training data from its global fleet of cars to improve its Autopilot and Full Self-Driving features, selectively triggering to collect only the most relevant data.<sup>100</sup>
+      </div>
+    </div>
+
+    <div class="right-wrap">
+      <div class="right-head">Researchers are consolidating robotics efforts</div>
+      <div class="right-text">
+        Open X-Embodiment is an ambitious project to consolidate open robotics datasets into a centralized collection for the training of generalist robot policies. The dataset consists of data from 21 institutions and 22 different robots completing 527 skills, highlighting the growing number of organizations participating in creating open robotics datasets and a large increase in the volume of training data in recent years.
+      </div>
+    </div>
+
+    <div class="chart-title" style="left:704px; top:324px;">Total Number of Datasets in Open X-Embodiment by Publication Date</div>
+    <div class="chart-title" style="left:981px; top:324px; width:250px;">Total Number of Robotic Episode Examples in Open X-Embodiment by Publication Date</div>
+
+    <div class="chart-box" style="left:704px; top:373px;">
+      <svg class="chart-line" width="230" height="230" viewBox="0 0 230 230" xmlns="http://www.w3.org/2000/svg">
+        <line x1="30" y1="198" x2="220" y2="198" stroke="#ffffff" stroke-width="1.3"/>
+        <line x1="48" y1="172" x2="48" y2="25" stroke="#ffffff" stroke-width="5"/>
+        <polygon points="48,15 41,28 55,28" fill="#ffffff"/>
+        <polyline points="45,183 86,173 127,143 168,50 210,42" fill="none" stroke="#b000ff" stroke-width="2.2"/>
+      </svg>
+
+      <div class="y-label" style="left:3px; top:9px;">80</div>
+      <div class="y-label" style="left:3px; top:45px;">60</div>
+      <div class="y-label" style="left:3px; top:81px;">40</div>
+      <div class="y-label" style="left:3px; top:117px;">20</div>
+      <div class="y-label" style="left:8px; top:153px;">0</div>
+
+      <div class="axis-label" style="left:32px; top:206px;">2020</div>
+      <div class="axis-label" style="left:74px; top:206px;">2021</div>
+      <div class="axis-label" style="left:116px; top:206px;">2022</div>
+      <div class="axis-label" style="left:158px; top:206px;">2023</div>
+      <div class="axis-label" style="left:198px; top:206px;">2024*</div>
+
+      <div style="position:absolute; left:58px; top:22px; font-size:16px; color:#fff; font-weight:700;">12x</div>
+    </div>
+
+    <div class="chart-box" style="left:981px; top:373px;">
+      <svg class="chart-line" width="230" height="230" viewBox="0 0 230 230" xmlns="http://www.w3.org/2000/svg">
+        <line x1="32" y1="198" x2="220" y2="198" stroke="#ffffff" stroke-width="1.3"/>
+        <line x1="57" y1="142" x2="57" y2="39" stroke="#ffffff" stroke-width="5"/>
+        <polygon points="57,29 50,42 64,42" fill="#ffffff"/>
+        <polyline points="52,173 92,170 132,163 173,48 212,45" fill="none" stroke="#b000ff" stroke-width="2.2"/>
+      </svg>
+
+      <div class="y-label" style="left:2px; top:6px;">3.0M</div>
+      <div class="y-label" style="left:2px; top:40px;">2.5M</div>
+      <div class="y-label" style="left:2px; top:75px;">2.0M</div>
+      <div class="y-label" style="left:2px; top:110px;">1.5M</div>
+      <div class="y-label" style="left:2px; top:145px;">1.0M</div>
+      <div class="y-label" style="left:2px; top:179px;">0.5M</div>
+      <div class="y-label" style="left:2px; top:202px;">0.0M</div>
+
+      <div class="axis-label" style="left:37px; top:206px;">2020</div>
+      <div class="axis-label" style="left:79px; top:206px;">2021</div>
+      <div class="axis-label" style="left:119px; top:206px;">2022</div>
+      <div class="axis-label" style="left:160px; top:206px;">2023</div>
+      <div class="axis-label" style="left:200px; top:206px;">2024*</div>
+
+      <div style="position:absolute; left:72px; top:38px; font-size:16px; color:#fff; font-weight:700;">~4x</div>
+    </div>
+
+    <div class="note">
+      Note: *2024 contains partial data through Oct 2024<br>
+      Source: Accenture Research analysis on Open X-Embodiment Collaboration dataset; Jan 2020 – Oct 2024
+    </div>
+
+    <div class="purple-mark">&gt;</div>
+    <div class="divider"></div>
+  </div>
+</body>
+</html>

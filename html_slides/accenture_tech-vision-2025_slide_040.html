@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Foundation Models for Robotics / Embodied AI</title>
+<style>
+  body{
+    margin:0;
+    background:#111;
+    font-family: system-ui, -apple-system, "Segoe UI", Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:linear-gradient(to right, #f3f3f3 0 56.15%, #000 56.15% 100%);
+    color:#111;
+  }
+
+  .small-top-left{
+    position:absolute;
+    left:60px;
+    top:36px;
+    font-size:13px;
+    color:#4b4b4b;
+    letter-spacing:-0.1px;
+  }
+  .small-top-left .purple{ color:#a24cff; }
+
+  .small-top-right{
+    position:absolute;
+    right:60px;
+    top:36px;
+    font-size:12px;
+    color:#d6d6d6;
+  }
+  .small-top-right .num{
+    display:inline-block;
+    margin-left:16px;
+    font-size:18px;
+    color:#d6d6d6;
+  }
+
+  .title{
+    position:absolute;
+    left:60px;
+    top:116px;
+    width:620px;
+    font-size:24px;
+    font-weight:700;
+    color:#111;
+    letter-spacing:-0.5px;
+  }
+
+  .col1-head, .col2-head, .col3-title{
+    position:absolute;
+    font-size:19px;
+    font-weight:400;
+    letter-spacing:-0.2px;
+  }
+
+  .col1-head{ left:60px; top:171px; color:#222; }
+  .col2-head{ left:375px; top:171px; color:#222; }
+
+  .p{
+    position:absolute;
+    font-size:15px;
+    line-height:1.34;
+    color:#333;
+    font-weight:400;
+  }
+
+  .col1-p1{ left:60px; top:210px; width:270px; }
+  .col2-p1{ left:375px; top:210px; width:276px; }
+
+  .col1-head2{
+    position:absolute;
+    left:60px;
+    top:410px;
+    font-size:19px;
+    font-weight:400;
+    color:#222;
+    letter-spacing:-0.2px;
+  }
+  .col1-p2{
+    left:60px;
+    top:446px;
+    width:267px;
+  }
+
+  .cite{
+    font-size:8px;
+    vertical-align:baseline;
+    white-space:nowrap;
+  }
+
+  .purple-mark{
+    position:absolute;
+    left:56px;
+    bottom:18px;
+    color:#a200ff;
+    font-size:49px;
+    font-weight:700;
+    line-height:1;
+    transform:scaleX(0.8);
+  }
+
+  .right-title{
+    position:absolute;
+    left:748px;
+    top:219px;
+    width:485px;
+    font-size:19px;
+    line-height:1.15;
+    color:#b78aff;
+    font-weight:700;
+    letter-spacing:-0.2px;
+  }
+
+  .right-sub{
+    position:absolute;
+    left:748px;
+    top:245px;
+    width:486px;
+    font-size:15px;
+    line-height:1.32;
+    color:#d8d8d8;
+    font-weight:400;
+  }
+
+  .chart-title{
+    position:absolute;
+    left:748px;
+    top:309px;
+    width:460px;
+    font-size:13px;
+    color:#f1f1f1;
+    font-weight:700;
+  }
+
+  .chart{
+    position:absolute;
+    left:730px;
+    top:340px;
+    width:520px;
+    height:300px;
+  }
+
+  .y-label{
+    position:absolute;
+    right:472px;
+    color:#cfcfcf;
+    font-size:14px;
+    line-height:1;
+  }
+
+  .axis-x{
+    position:absolute;
+    left:54px;
+    bottom:20px;
+    width:510px;
+    height:1px;
+    background:#8d8d8d;
+  }
+
+  .bar{
+    position:absolute;
+    bottom:21px;
+    width:68px;
+    background:linear-gradient(to bottom, #be19ff 0%, #9500df 45%, #6f00b6 100%);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+  }
+
+  .barlabel{
+    position:absolute;
+    width:68px;
+    text-align:center;
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+  }
+
+  .xlabel{
+    position:absolute;
+    width:68px;
+    text-align:center;
+    bottom:-6px;
+    color:#fff;
+    font-size:14px;
+    font-weight:700;
+  }
+
+  .arrow-v{
+    position:absolute;
+    left:286px;
+    top:58px;
+    width:0;
+    height:150px;
+    border-left:5px solid #d8d8d8;
+  }
+  .arrow-v:before{
+    content:"";
+    position:absolute;
+    left:-9px;
+    top:-1px;
+    width:0;height:0;
+    border-left:9px solid transparent;
+    border-right:9px solid transparent;
+    border-bottom:14px solid #d8d8d8;
+  }
+  .arrow-top{
+    position:absolute;
+    left:286px;
+    top:58px;
+    width:236px;
+    height:0;
+    border-top:2px solid #d8d8d8;
+  }
+  .mult{
+    position:absolute;
+    left:303px;
+    top:63px;
+    color:#d8d8d8;
+    font-size:22px;
+    font-weight:700;
+  }
+
+  .callout-text{
+    position:absolute;
+    left:315px;
+    top:163px;
+    width:72px;
+    color:#fff;
+    font-size:12px;
+    line-height:1.05;
+    text-align:left;
+  }
+  .diag-arrow{
+    position:absolute;
+    left:309px;
+    top:194px;
+    width:2px;
+    height:31px;
+    background:#fff;
+    transform:rotate(16deg);
+    transform-origin:top center;
+  }
+  .diag-arrow:after{
+    content:"";
+    position:absolute;
+    left:-4px;
+    bottom:-1px;
+    width:0;height:0;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-top:8px solid #fff;
+    transform:rotate(180deg);
+  }
+
+  .foot{
+    position:absolute;
+    left:748px;
+    top:670px;
+    width:420px;
+    font-size:10px;
+    line-height:1.15;
+    color:#cfcfcf;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="small-top-left"><span class="purple">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+    <div class="small-top-right">When LLMs get their Bodies <span class="num">40</span></div>
+
+    <div class="title">Foundation Models for Robotics / Embodied AI</div>
+
+    <div class="col1-head">What is it?</div>
+    <div class="p col1-p1">
+      Embodied AI is AI specifically designed to interact with the real world through a physical body. The technical advances driving the generative AI revolution have sparked new interest in embodied AI, with some researchers believing it is the key to achieving the next leap in AI capability. Various approaches for embodied AI are being tested, including incorporating LLMs and VLMs into robotic systems on top of robotic control policies, as well as creating end-to-end robotics foundation models trained on robotics data.
+    </div>
+
+    <div class="col2-head">Who is doing it today?</div>
+    <div class="p col2-p1">
+      Google Research has been a leader in this field for years. In 2022, Google’s Gato model showed that robotic inputs and outputs could be tokenized and adapted to a language model.<span class="cite">93</span> Since then, the company has remained a pioneer, creating a series of progressively stronger robotics transformer (RT) models: RT-1, RT-2, and RT-X. Each improves on the one before, aiming to create generalizable robot policies that can be adapted to a range of robots.<span class="cite">94,95,96</span>
+    </div>
+
+    <div class="col1-head2">How does it connect to the trend?</div>
+    <div class="p col1-p2">
+      Innovations in embodied AI are critical to building robots that have greater contextual understanding of the world, communicate with people using natural language, and plan ways to complete complex actions (even ones they haven’t been specifically trained for) or adapt to changing environments.
+    </div>
+
+    <div class="purple-mark">&gt;</div>
+
+    <div class="right-title">Research into embodied AI is steadily increasing</div>
+    <div class="right-sub">
+      The development of foundation models is driving a renewed interest in the concept of embodied AI. Continued research and advances in embodied AI are poised to expand the capabilities of robots significantly.
+    </div>
+    <div class="chart-title">Number of research papers relating to Embodied AI, 2020 – 2024*</div>
+
+    <div class="chart">
+      <div class="y-label" style="top:16px;">700</div>
+      <div class="y-label" style="top:53px;">600</div>
+      <div class="y-label" style="top:91px;">500</div>
+      <div class="y-label" style="top:128px;">400</div>
+      <div class="y-label" style="top:165px;">300</div>
+      <div class="y-label" style="top:203px;">200</div>
+      <div class="y-label" style="top:240px;">100</div>
+      <div class="y-label" style="top:278px;">0</div>
+
+      <div class="axis-x"></div>
+
+      <div class="bar" style="left:76px; height:9px;"></div>
+      <div class="barlabel" style="left:76px; bottom:34px;">30</div>
+      <div class="xlabel" style="left:76px;">2020</div>
+
+      <div class="bar" style="left:178px; height:27px;"></div>
+      <div class="barlabel" style="left:178px; bottom:52px;">75</div>
+      <div class="xlabel" style="left:178px;">2021</div>
+
+      <div class="bar" style="left:280px; height:52px;"></div>
+      <div class="barlabel" style="left:280px; bottom:59px;">141</div>
+      <div class="xlabel" style="left:280px;">2022</div>
+
+      <div class="bar" style="left:382px; height:140px;"></div>
+      <div class="barlabel" style="left:382px; bottom:137px;">384</div>
+      <div class="xlabel" style="left:382px;">2023</div>
+
+      <div class="bar" style="left:484px; height:221px;"></div>
+      <div class="barlabel" style="left:484px; bottom:218px;">605</div>
+      <div class="xlabel" style="left:484px;">2024*</div>
+
+      <div class="arrow-v"></div>
+      <div class="arrow-top"></div>
+      <div class="mult">4x</div>
+
+      <div class="callout-text">Release<br>of <b>Gato</b><br>&amp; <b>RT-1</b></div>
+      <div class="diag-arrow"></div>
+    </div>
+
+    <div class="foot">
+      Note: *2024 contains partial data through Oct 2024<br>
+      Source: Accenture Research analysis on ArXiv papers; Jan 2020 – Oct 2024
+    </div>
+  </div>
+</body>
+</html>

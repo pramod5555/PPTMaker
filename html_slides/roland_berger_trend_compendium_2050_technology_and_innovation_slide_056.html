@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#ffffff;font-family:Arial, Helvetica, "Segoe UI", sans-serif;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+  }
+  #slide > div, #slide > svg { position:absolute; box-sizing:border-box; }
+
+  .sidebar{
+    left:0; top:0; width:180px; height:720px;
+    background:#353940;
+  }
+  .sidebar-line{
+    left:179px; top:0; width:2px; height:720px;
+    background:#6e4daa;
+  }
+  .title-side{
+    left:12px; top:34px; width:150px;
+    color:#f0f0f0; font-size:24px; line-height:28px; font-weight:700;
+  }
+
+  .step{
+    width:160px; height:96px;
+    color:#6f747c;
+  }
+  .hex{
+    left:6px; top:0; width:78px; height:78px;
+  }
+  .step-num{
+    position:absolute; left:92px; top:1px;
+    font-size:30px; line-height:32px; font-weight:700; color:#6f747c;
+  }
+  .step-text{
+    position:absolute; left:92px; top:34px; width:62px;
+    font-size:14px; line-height:16px; color:#666b72;
+  }
+  .step.active .step-num,
+  .step.active .step-text{
+    color:#8d67c9;
+    font-weight:700;
+  }
+
+  .gear-icon{
+    left:63px; top:669px; width:64px; height:48px; opacity:.72;
+  }
+
+  .main-title{
+    left:219px; top:31px; width:1080px;
+    color:#202020; font-size:28px; line-height:1.08; font-weight:700;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    left:220px; top:138px; width:650px;
+    color:#8b9098; font-size:23px; line-height:28px; font-weight:400;
+  }
+
+  .chart-area{
+    left:214px; top:205px; width:785px; height:465px;
+  }
+
+  .callout{
+    left:1010px; top:140px; width:356px; height:579px;
+    background:#d7d7d9;
+    padding:12px 15px 10px 15px;
+  }
+  .callout p{
+    margin:0 0 18px 0;
+    font-size:15px; line-height:1.15; color:#262626; font-weight:400;
+  }
+  .callout b{font-weight:700;}
+
+  .legend{
+    left:220px; top:701px; width:700px;
+    color:#4b4b4b; font-size:12px; line-height:16px;
+  }
+  .sources{
+    left:220px; top:752px; display:none;
+  }
+  .sources-bottom{
+    left:220px; top:752px; display:none;
+  }
+  .src{
+    left:220px; top:752px; display:none;
+  }
+  .source-vis{
+    left:220px; top:691px; width:240px;
+    color:#4a4a4a; font-size:12px; line-height:16px;
+  }
+
+  .pagevis{
+    left:11px; top:708px; width:20px;
+    color:#ffffff; font-size:16px; line-height:12px;
+  }
+
+  .logo{
+    left:1218px; top:688px; width:54px; height:24px;
+    color:#555; font-size:9px; line-height:9px;
+  }
+  .logo .rb{
+    position:absolute; right:0; top:-5px;
+    font-size:39px; line-height:26px; font-weight:700; color:#8a8c90;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="sidebar-line"></div>
+
+  <div class="title-side">Technology &amp;<br>Innovation</div>
+
+  <div class="step" style="left:8px; top:142px;">
+    <svg class="hex" viewBox="0 0 78 78">
+      <polygon points="17,4 50,4 68,30 50,56 17,56 2,30" fill="#5c6067" stroke="#a9adb2" stroke-width="4"/>
+      <polygon points="20,10 48,10 60,30 48,50 20,50 8,30" fill="#787b80"/>
+      <g opacity="0.95">
+        <path d="M11 34 L22 21 L33 28 L41 19 L57 32 L51 41 L34 39 L24 43 Z" fill="none" stroke="#f0f0f0" stroke-width="1"/>
+        <line x1="17" y1="15" x2="23" y2="40" stroke="#f0f0f0" stroke-width="1"/>
+        <line x1="27" y1="15" x2="29" y2="42" stroke="#f0f0f0" stroke-width="1"/>
+        <line x1="38" y1="13" x2="37" y2="42" stroke="#f0f0f0" stroke-width="1"/>
+        <line x1="48" y1="17" x2="44" y2="40" stroke="#f0f0f0" stroke-width="1"/>
+        <circle cx="22" cy="21" r="2" fill="#f0f0f0"/>
+        <circle cx="33" cy="28" r="2" fill="#f0f0f0"/>
+        <circle cx="41" cy="19" r="2" fill="#f0f0f0"/>
+        <circle cx="52" cy="32" r="2" fill="#f0f0f0"/>
+      </g>
+    </svg>
+    <div class="step-num">1</div>
+    <div class="step-text">Value of<br>Innovation</div>
+  </div>
+
+  <div class="step" style="left:8px; top:274px;">
+    <svg class="hex" viewBox="0 0 78 78">
+      <polygon points="17,4 50,4 68,30 50,56 17,56 2,30" fill="#5c6067" stroke="#a9adb2" stroke-width="4"/>
+      <polygon points="20,10 48,10 60,30 48,50 20,50 8,30" fill="#777a7f"/>
+      <g opacity="0.85" stroke="#f2f2f2" fill="none" stroke-width="1">
+        <circle cx="24" cy="30" r="7"/>
+        <circle cx="36" cy="24" r="4"/>
+        <circle cx="43" cy="33" r="8"/>
+        <circle cx="29" cy="37" r="5"/>
+        <line x1="24" y1="30" x2="36" y2="24"/>
+        <line x1="36" y1="24" x2="43" y2="33"/>
+        <line x1="24" y1="30" x2="29" y2="37"/>
+        <line x1="29" y1="37" x2="43" y2="33"/>
+      </g>
+    </svg>
+    <div class="step-num">2</div>
+    <div class="step-text">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="step active" style="left:8px; top:406px;">
+    <svg class="hex" viewBox="0 0 78 78">
+      <polygon points="17,4 50,4 68,30 50,56 17,56 2,30" fill="#efe6db" stroke="#9f7bd2" stroke-width="4"/>
+      <polygon points="20,10 48,10 60,30 48,50 20,50 8,30" fill="#efdfd2"/>
+      <g>
+        <circle cx="24" cy="29" r="6" fill="#e3ad85"/>
+        <circle cx="44" cy="29" r="6" fill="#deb39f"/>
+        <path d="M28 32 L39 24 L46 33 L31 40 Z" fill="#9d9187"/>
+        <path d="M19 33 L30 43" stroke="#8a6d5a" stroke-width="3"/>
+        <path d="M49 33 L38 43" stroke="#8a6d5a" stroke-width="3"/>
+      </g>
+    </svg>
+    <div class="step-num">3</div>
+    <div class="step-text">Humans &amp;<br>Machines</div>
+  </div>
+
+  <svg class="gear-icon" viewBox="0 0 100 76">
+    <g fill="none" stroke="#8b8f94" stroke-width="3" opacity="0.9">
+      <circle cx="30" cy="38" r="13"/>
+      <path d="M30 15 L30 7 M30 69 L30 61 M7 38 L15 38 M45 38 L53 38 M14 22 L20 27 M40 49 L46 54 M14 54 L20 49 M40 27 L46 22"/>
+      <path d="M60 20 l5-4 6 4 6-1 3 6 6 2 0 7 4 5-4 6 1 6-6 3-2 6-7 0-5 4-6-4-6 1-3-6-6-2 0-7-4-5 4-6-1-6 6-3 2-6 7 0z" fill="#8b8f94" stroke="none"/>
+      <circle cx="71" cy="38" r="10" fill="#353940" stroke="none"/>
+      <path d="M54 55 C64 60,75 61,85 53" />
+      <path d="M48 18 C53 11,64 10,73 13" />
+    </g>
+    <g stroke="#8b8f94" stroke-width="3" fill="none">
+      <path d="M47 52 C51 62,59 67,67 69"/>
+      <path d="M62 65 L66 69 L65 62"/>
+    </g>
+  </svg>
+
+  <div class="main-title">Workplaces have experienced a push to digitalization due to the pandemic –<br>Other innovations are yet to impact our working life</div>
+  <div class="subtitle">Gartner Hype Cycle for the Digital Workplace in 2020</div>
+
+  <div class="chart-area">
+    <svg width="785" height="465" viewBox="0 0 785 465">
+      <defs>
+        <linearGradient id="fadeBg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ececec" stop-opacity="0.7"/>
+          <stop offset="1" stop-color="#dcdcdc" stop-opacity="0.25"/>
+        </linearGradient>
+        <marker id="arrowEnd" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#222"/>
+        </marker>
+      </defs>
+
+      <rect x="58" y="22" width="700" height="432" fill="url(#fadeBg)"/>
+
+      <g opacity="0.18">
+        <rect x="78" y="25" width="43" height="320" fill="none" stroke="#cfcfcf" stroke-width="2"/>
+        <rect x="604" y="41" width="86" height="215" fill="none" stroke="#c9c9c9" stroke-width="2"/>
+        <circle cx="612" cy="74" r="11" fill="none" stroke="#c8c8c8" stroke-width="3"/>
+        <line x1="612" y1="86" x2="612" y2="141" stroke="#c8c8c8" stroke-width="4"/>
+        <line x1="612" y1="102" x2="585" y2="136" stroke="#c8c8c8" stroke-width="4"/>
+        <line x1="612" y1="102" x2="637" y2="136" stroke="#c8c8c8" stroke-width="4"/>
+        <line x1="612" y1="141" x2="592" y2="189" stroke="#c8c8c8" stroke-width="4"/>
+        <line x1="612" y1="141" x2="633" y2="189" stroke="#c8c8c8" stroke-width="4"/>
+        <circle cx="559" cy="170" r="10" fill="none" stroke="#c8c8c8" stroke-width="4"/>
+        <path d="M90 355 C240 245,335 230,470 170 C560 130,650 115,744 118" fill="none" stroke="#cbcbcb" stroke-width="4"/>
+        <path d="M98 147 L724 147" stroke="#d7d7d7" stroke-width="3"/>
+        <path d="M98 325 L724 325" stroke="#d7d7d7" stroke-width="3"/>
+        <g stroke="#d5d5d5" stroke-width="2">
+          <line x1="110" y1="125" x2="110" y2="350"/>
+          <line x1="145" y1="125" x2="145" y2="350"/>
+          <line x1="180" y1="125" x2="180" y2="350"/>
+          <line x1="215" y1="125" x2="215" y2="350"/>
+          <line x1="250" y1="125" x2="250" y2="350"/>
+          <line x1="285" y1="125" x2="285" y2="350"/>
+        </g>
+        <g fill="#d9d9d9">
+          <rect x="130" y="48" width="65" height="7"/>
+          <rect x="130" y="62" width="43" height="7"/>
+          <rect x="328" y="59" width="64" height="8"/>
+          <rect x="332" y="72" width="42" height="8"/>
+          <rect x="514" y="235" width="60" height="10"/>
+          <rect x="514" y="251" width="41" height="10"/>
+          <rect x="276" y="322" width="60" height="10"/>
+          <rect x="276" y="338" width="43" height="10"/>
+        </g>
+        <g fill="#d8d8d8">
+          <rect x="172" y="394" width="8" height="34"/>
+          <rect x="184" y="404" width="8" height="24"/>
+          <rect x="196" y="386" width="8" height="42"/>
+          <rect x="208" y="397" width="8" height="31"/>
+          <rect x="350" y="390" width="8" height="38"/>
+          <rect x="362" y="400" width="8" height="28"/>
+          <rect x="374" y="382" width="8" height="46"/>
+          <rect x="386" y="395" width="8" height="33"/>
+          <rect x="592" y="392" width="8" height="36"/>
+          <rect x="604" y="378" width="8" height="50"/>
+          <rect x="616" y="398" width="8" height="30"/>
+        </g>
+      </g>
+
+      <line x1="38" y1="392" x2="778" y2="392" stroke="#222" stroke-width="1.5" marker-end="url(#arrowEnd)"/>
+      <line x1="38" y1="392" x2="38" y2="1" stroke="#222" stroke-width="1.5" marker-end="url(#arrowEnd)"/>
+
+      <line x1="223" y1="1" x2="223" y2="392" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="296" y1="1" x2="296" y2="392" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="449" y1="1" x2="449" y2="392" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="649" y1="1" x2="649" y2="392" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="3 3"/>
+
+      <path d="M129 346
+               C157 314,175 253,196 178
+               C208 131,223 79,245 73
+               C260 69,276 90,286 147
+               C294 190,297 238,312 289
+               C327 339,350 348,387 330
+               C425 312,455 280,481 261
+               C521 231,553 236,589 215
+               C631 190,662 183,754 181"
+            fill="none" stroke="#8f8f8f" stroke-width="2"/>
+
+      <g fill="#7357a6" stroke="#7357a6">
+        <circle cx="171" cy="293" r="4.6"/>
+        <circle cx="185" cy="250" r="4.6"/>
+        <circle cx="194" cy="227" r="4.6"/>
+        <circle cx="204" cy="205" r="4.6"/>
+        <circle cx="212" cy="186" r="4.6"/>
+        <circle cx="218" cy="161" r="4.6"/>
+        <circle cx="223" cy="143" r="4.6"/>
+        <circle cx="230" cy="124" r="4.6"/>
+        <circle cx="236" cy="111" r="4.6"/>
+        <circle cx="242" cy="98" r="4.6"/>
+        <circle cx="248" cy="85" r="4.6"/>
+        <circle cx="257" cy="77" r="4.6"/>
+        <circle cx="268" cy="77" r="4.6"/>
+        <circle cx="278" cy="78" r="4.6"/>
+        <circle cx="286" cy="88" r="4.6"/>
+        <circle cx="291" cy="102" r="4.6"/>
+        <circle cx="294" cy="118" r="4.6"/>
+        <circle cx="296" cy="138" r="4.6"/>
+        <circle cx="296" cy="153" r="4.6"/>
+        <circle cx="298" cy="194" r="4.6"/>
+        <circle cx="302" cy="213" r="4.6"/>
+        <circle cx="307" cy="233" r="4.6"/>
+        <circle cx="313" cy="255" r="4.6"/>
+        <circle cx="338" cy="288" r="4.6"/>
+        <circle cx="394" cy="286" r="4.6"/>
+        <circle cx="421" cy="272" r="4.6" fill="#b9a5d7" stroke="#b9a5d7"/>
+        <circle cx="448" cy="261" r="4.6" fill="#b9a5d7" stroke="#b9a5d7"/>
+        <circle cx="500" cy="247" r="4.6" fill="#c7b7e0" stroke="#c7b7e0"/>
+        <circle cx="659" cy="188" r="4.6" fill="#d5c9e8" stroke="#d5c9e8"/>
+      </g>
+
+      <text x="20" y="245" transform="rotate(-90 20,245)" font-size="16" fill="#222222" font-weight="700">Expectations</text>
+      <text x="389" y="446" font-size="16" fill="#222222" font-weight="700">Time</text>
+
+      <text x="111" y="410" font-size="11" fill="#333">Innovation</text>
+      <text x="111" y="426" font-size="11" fill="#333">Trigger</text>
+
+      <text x="225" y="410" font-size="11" fill="#333">Peak of Inflated</text>
+      <text x="229" y="426" font-size="11" fill="#333">Expectations</text>
+
+      <text x="336" y="410" font-size="11" fill="#333">Trough of</text>
+      <text x="334" y="426" font-size="11" fill="#333">Disillusionment</text>
+
+      <text x="528" y="410" font-size="11" fill="#333">Slope of</text>
+      <text x="519" y="426" font-size="11" fill="#333">Enlightenment</text>
+
+      <text x="678" y="410" font-size="11" fill="#333">Plateau of</text>
+      <text x="675" y="426" font-size="11" fill="#333">Productivity</text>
+
+      <text x="675" y="384" font-size="10" fill="#9b9b9b">As of July 2020</text>
+
+      <g font-size="10" fill="#222">
+        <text x="72" y="83">Digital Experience Monitoring</text>
+        <text x="128" y="99">Knowledge Graphs</text>
+        <text x="189" y="88">Smart Basics</text>
+        <text x="232" y="56">Workplace Analytics</text>
+        <text x="280" y="79">Smart Workspace</text>
+
+        <text x="97" y="117">Voice of the Employee</text>
+        <text x="121" y="134">Bring Your Own Thing</text>
+        <text x="144" y="151">Data Literacy</text>
+        <text x="46" y="179">Employee Experience Tech (EXTech)</text>
+        <text x="24" y="194">Employee Productivity Monitoring</text>
+
+        <text x="179" y="204">Microapps</text>
+        <text x="147" y="223">Emotion AI</text>
+        <text x="116" y="254">Peer IT Support</text>
+        <text x="63" y="276">Ambient Virtual Meeting</text>
+        <text x="39" y="296">Internal Talent Marketplaces</text>
+        <text x="122" y="313">Content Flow</text>
+        <text x="54" y="338">Immersive Workspaces</text>
+
+        <text x="216" y="236">Virtual Events</text>
+        <text x="215" y="254">XLA</text>
+        <text x="216" y="281">Desktop as a Service</text>
+
+        <text x="307" y="94">Content Integration Services</text>
+        <text x="307" y="111">Digital Adoption Solutions</text>
+        <text x="307" y="127">Citizen Data Science</text>
+        <text x="315" y="143">Conversational User Interfaces</text>
+        <text x="315" y="159">Workstream Collaboration</text>
+        <text x="322" y="175">Collaborative Work Management</text>
+        <text x="334" y="191">Employee Wellness</text>
+
+        <text x="309" y="233">Employee Recognition and Reward Systems</text>
+        <text x="309" y="249">Robotic Process Automation</text>
+        <text x="309" y="265">Virtual Assistants</text>
+        <text x="309" y="281">Chatbots</text>
+        <text x="324" y="309">Intranet as a Service</text>
+        <text x="328" y="327">Citizen Integrator Tools</text>
+
+        <text x="392" y="360">Meeting Solutions</text>
+        <text x="449" y="334">Team Collaboration Devices</text>
+        <text x="458" y="351">Insight Engines</text>
+        <text x="480" y="282">Citizen Developers</text>
+
+        <text x="683" y="172">Cloud Office</text>
+        <text x="648" y="208">Enterprise Social</text>
+        <text x="648" y="223">Networking Applications</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="callout">
+    <p>&gt; Some areas of <b>workplace digitalization</b><br>have experienced an <b>extraordinary</b><br><b>push</b> due to the global <b>pandemic</b> and<br>the necessity to stay connected<br>remotely; <b>concepts debated or piloted</b><br>for years have been <b>put into use</b><br><b>almost overnight</b> in many countries<br>around the world</p>
+
+    <p>&gt; However, a considerable <b>number of</b><br><b>digital workplace technologies</b> are<br>also in a state of <b>inflated expectations</b><br>under an extended time horizon, such<br>as digital experience monitoring and<br>knowledge graphs</p>
+
+    <p>&gt; In coming years, <b>expectations are high</b><br>for several workplace and collaborative<br>innovations that have survived<br>unrealistic hypes and will <b>enhance</b><br><b>productivity</b> in the near to midterm, for<br>instance, <b>team collaboration devices</b><br>and insight engines</p>
+
+    <p style="margin-bottom:0;">&gt; More immediately, <b>cloud technologies</b><br>and enterprise social networking<br>applications have moved towards a<br>more mature – the plateau of<br><b>productivity stage</b></p>
+  </div>
+
+  <div class="legend">Plateau will be reached: &nbsp; <span style="color:#d8cee7;font-size:16px;">●</span> &lt;2 yrs. &nbsp;&nbsp; <span style="color:#a88cc8;font-size:16px;">●</span> 2-5 yrs. &nbsp;&nbsp; <span style="color:#7357a6;font-size:16px;">●</span> 5-10 yrs. &nbsp;&nbsp; <span style="color:#0f5b8d;font-size:16px;">▲</span> more than 10 yrs.</div>
+  <div class="source-vis">Sources: Gartner, Roland Berger</div>
+  <div class="pagevis">56</div>
+
+  <div class="logo">
+    <div style="position:absolute; right:24px; top:2px;">Roland<br>Berger</div>
+    <div class="rb">b</div>
+  </div>
+</div>
+</body>
+</html>

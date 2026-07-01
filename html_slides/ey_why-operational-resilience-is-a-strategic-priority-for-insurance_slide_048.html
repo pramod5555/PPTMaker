@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Further reading</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#c6c6ce;
+  }
+  .left-strip{
+    position:absolute;
+    left:0;
+    top:0;
+    width:31px;
+    height:720px;
+    background:#ffffff;
+    z-index:5;
+  }
+  .bottom-strip{
+    position:absolute;
+    left:0;
+    top:736px;
+    width:1280px;
+    height:0;
+    background:#ffffff;
+    z-index:5;
+  }
+  .right-strip{
+    position:absolute;
+    left:1262px;
+    top:0;
+    width:18px;
+    height:720px;
+    background:#ffffff;
+    z-index:5;
+  }
+
+  .header-line{
+    position:absolute;
+    left:103px;
+    top:0;
+    width:1px;
+    height:93px;
+    background:#a6a8af;
+    z-index:20;
+  }
+  .page-no{
+    position:absolute;
+    left:61px;
+    top:49px;
+    width:34px;
+    font-size:19px;
+    line-height:19px;
+    color:#72757f;
+    font-weight:400;
+    z-index:30;
+  }
+  .survey-label{
+    position:absolute;
+    left:115px;
+    top:59px;
+    width:210px;
+    font-size:8px;
+    line-height:10px;
+    color:#7d8089;
+    font-weight:400;
+    text-transform:uppercase;
+    z-index:30;
+  }
+
+  .title{
+    position:absolute;
+    left:102px;
+    top:132px;
+    width:250px;
+    font-size:54px;
+    line-height:52px;
+    color:#171924;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    z-index:30;
+  }
+  .accent-line{
+    position:absolute;
+    left:102px;
+    top:265px;
+    width:248px;
+    height:3px;
+    background:linear-gradient(90deg,#f0d400 0%, #f0d400 46%, #d44eff 70%, #2d86ff 100%);
+    z-index:30;
+  }
+
+  .vert-reading{
+    position:absolute;
+    left:11px;
+    top:332px;
+    width:16px;
+    height:110px;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    font-size:12px;
+    line-height:12px;
+    color:#6f727b;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    z-index:30;
+  }
+  .vert-yellow{
+    position:absolute;
+    left:12px;
+    top:428px;
+    width:11px;
+    height:11px;
+    background:#f0d400;
+    z-index:31;
+  }
+
+  .thumb{
+    position:absolute;
+    border-radius:13px;
+    overflow:hidden;
+    z-index:22;
+  }
+  .thumb-label{
+    position:absolute;
+    font-size:11px;
+    line-height:13px;
+    color:#353741;
+    font-weight:400;
+    text-align:center;
+    z-index:30;
+  }
+
+  .t1{ left:103px; top:321px; width:142px; height:184px; background:
+      radial-gradient(circle at 58% 52%, transparent 0 39px, rgba(240,212,0,0.95) 39px 42px, transparent 42px 47px, rgba(240,212,0,0.88) 47px 50px, transparent 50px 55px, rgba(240,212,0,0.82) 55px 58px, transparent 58px 63px, rgba(240,212,0,0.75) 63px 66px, transparent 66px),
+      repeating-conic-gradient(from 0deg at 58% 52%, rgba(240,212,0,0.85) 0deg 3deg, transparent 3deg 8deg),
+      linear-gradient(135deg,#e6a06d 0%, #d98b63 25%, #7d3657 68%, #c657d9 100%);
+  }
+  .t1:before{
+    content:"";
+    position:absolute;
+    left:33px; top:91px;
+    width:46px; height:68px;
+    background:#1f2a4a;
+    border-radius:10px 10px 6px 6px;
+    transform:rotate(-17deg);
+  }
+  .t1:after{
+    content:"";
+    position:absolute;
+    left:63px; top:61px;
+    width:39px; height:57px;
+    background:linear-gradient(180deg,#70433b 0%, #1d1921 100%);
+    border-radius:18px 18px 12px 12px;
+    box-shadow:
+      -8px -13px 0 -10px #2f2428,
+      6px 60px 0 -8px #23283a;
+  }
+
+  .t2{ left:266px; top:321px; width:143px; height:184px; background:
+      radial-gradient(circle at 72% 8%, rgba(255,240,193,0.95) 0%, rgba(255,239,196,0.65) 10%, rgba(255,255,255,0.12) 18%, rgba(255,255,255,0) 28%),
+      linear-gradient(180deg,#314255 0%, #4f6371 24%, #7b8b84 38%, #9b8d66 45%, #b59a5c 56%, #947a44 69%, #5f573a 86%, #484440 100%);
+  }
+  .t2:before{
+    content:"";
+    position:absolute;
+    left:-8px; top:86px;
+    width:174px; height:91px;
+    background:linear-gradient(180deg,rgba(255,255,255,0.40) 0%, rgba(255,255,255,0.12) 45%, rgba(255,255,255,0) 100%);
+    clip-path:polygon(0 58%, 20% 38%, 48% 28%, 75% 41%, 100% 24%, 100% 100%, 0 100%);
+    opacity:.7;
+  }
+  .t2:after{
+    content:"";
+    position:absolute;
+    left:69px; top:116px;
+    width:7px; height:7px;
+    background:#1d74ff;
+    border-radius:50%;
+    box-shadow:0 0 0 2px rgba(255,255,255,0.5);
+  }
+
+  .t3{ left:428px; top:321px; width:142px; height:184px; background:
+      linear-gradient(180deg,#8e7270 0%, #b4774f 38%, #cf8c42 59%, #d48b31 67%, #48413f 100%);
+  }
+  .t3:before{
+    content:"";
+    position:absolute;
+    left:47px; top:22px;
+    width:62px; height:135px;
+    background:linear-gradient(180deg,#f2b18e 0%, #f6c2ae 100%);
+    transform:skewY(-8deg);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.3) inset;
+  }
+  .t3:after{
+    content:"";
+    position:absolute;
+    left:56px; top:67px;
+    width:39px; height:39px;
+    border-radius:50%;
+    background:#ffea00;
+    box-shadow:0 0 24px rgba(255,234,0,0.38);
+  }
+  .t3 .ground{
+    position:absolute;
+    left:0; bottom:0;
+    width:142px; height:35px;
+    background:linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.28) 20%, #171717 100%);
+  }
+  .t3 .yellow-corner{
+    position:absolute;
+    right:0; bottom:0;
+    width:13px; height:3px;
+    background:#f0d400;
+    transform:skewX(-45deg);
+  }
+
+  .t4{ left:591px; top:321px; width:142px; height:184px; background:
+      linear-gradient(180deg,#79c3e8 0%, #9bd4ef 33%, #b6e0f4 100%);
+  }
+  .t4 svg{ position:absolute; left:0; top:0; }
+
+  .t5{ left:753px; top:321px; width:142px; height:184px; background:
+      linear-gradient(180deg,#89b2ea 0%, #6d9fda 38%, #6f9dd2 70%, #4f7fb5 100%);
+  }
+  .t5:before{
+    content:"";
+    position:absolute;
+    left:14px; top:49px;
+    width:10px; height:83px;
+    background:linear-gradient(180deg,#555b62 0%, #8b9198 100%);
+    border-radius:2px;
+    box-shadow:1px 0 0 #cfd4d7 inset;
+  }
+  .t5:after{
+    content:"";
+    position:absolute;
+    left:8px; top:37px;
+    width:22px; height:22px;
+    border-radius:50%;
+    background:linear-gradient(180deg,#31373c 0%, #8d9398 100%);
+  }
+  .t5 .flag{
+    position:absolute;
+    left:22px; top:50px;
+    width:109px; height:77px;
+    background:linear-gradient(180deg,#3769be 0%, #2b5ba8 100%);
+    clip-path:polygon(0 0, 97% 10%, 94% 52%, 100% 100%, 0 84%, 4% 41%);
+    opacity:.95;
+    transform:rotate(-4deg);
+  }
+
+  .label1{ left:98px; top:515px; width:153px; }
+  .label2{ left:264px; top:515px; width:147px; }
+  .label3{ left:425px; top:515px; width:148px; }
+  .label4{ left:591px; top:515px; width:142px; }
+  .label5{ left:750px; top:515px; width:150px; }
+
+  .rtop{
+    position:absolute;
+    left:961px;
+    top:0;
+    width:301px;
+    height:180px;
+    border-bottom-left-radius:14px;
+    border-bottom-right-radius:14px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 14% 64%, rgba(102,79,191,0.65) 0 10px, transparent 11px),
+      radial-gradient(circle at 24% 62%, rgba(81,123,255,0.50) 0 9px, transparent 10px),
+      radial-gradient(circle at 31% 59%, rgba(150,106,228,0.55) 0 12px, transparent 13px),
+      radial-gradient(circle at 44% 58%, rgba(90,110,255,0.45) 0 10px, transparent 11px),
+      radial-gradient(circle at 54% 52%, rgba(121,96,219,0.50) 0 12px, transparent 13px),
+      radial-gradient(circle at 69% 50%, rgba(193,107,214,0.55) 0 10px, transparent 11px),
+      radial-gradient(circle at 81% 43%, rgba(140,102,233,0.55) 0 11px, transparent 12px),
+      radial-gradient(circle at 90% 39%, rgba(197,118,214,0.55) 0 12px, transparent 13px),
+      radial-gradient(circle at 10% 76%, rgba(32,76,201,0.75) 0 7px, transparent 8px),
+      radial-gradient(circle at 22% 79%, rgba(47,78,189,0.72) 0 7px, transparent 8px),
+      radial-gradient(circle at 39% 81%, rgba(67,105,228,0.68) 0 7px, transparent 8px),
+      radial-gradient(circle at 57% 79%, rgba(87,100,229,0.62) 0 7px, transparent 8px),
+      radial-gradient(circle at 75% 84%, rgba(112,140,255,0.55) 0 7px, transparent 8px),
+      linear-gradient(180deg,#030305 0%, #05030f 58%, #07153d 100%);
+    z-index:15;
+  }
+  .rtop .glow{
+    position:absolute;
+    left:-6px; top:73px;
+    width:319px; height:38px;
+    background:
+      radial-gradient(circle at 10% 55%, rgba(151,86,214,0.8) 0 10px, transparent 15px),
+      radial-gradient(circle at 20% 48%, rgba(121,76,204,0.8) 0 9px, transparent 14px),
+      radial-gradient(circle at 30% 42%, rgba(160,98,224,0.8) 0 11px, transparent 16px),
+      radial-gradient(circle at 42% 36%, rgba(164,95,226,0.75) 0 10px, transparent 15px),
+      radial-gradient(circle at 56% 28%, rgba(176,105,229,0.78) 0 11px, transparent 16px),
+      radial-gradient(circle at 70% 18%, rgba(189,116,229,0.78) 0 11px, transparent 16px),
+      radial-gradient(circle at 84% 11%, rgba(202,127,231,0.78) 0 10px, transparent 15px),
+      radial-gradient(circle at 94% 8%, rgba(213,136,231,0.78) 0 10px, transparent 15px);
+    filter:blur(4px);
+    opacity:.9;
+  }
+
+  .jump{
+    position:absolute;
+    left:1272px;
+    top:0;
+    width:61px;
+    height:47px;
+    background:#7f8088;
+    border-bottom-left-radius:14px;
+    border-bottom-right-radius:14px;
+    z-index:55;
+  }
+  .jump span{
+    position:absolute;
+    left:11px;
+    top:18px;
+    width:39px;
+    font-size:8px;
+    line-height:9px;
+    color:#ffffff;
+    font-weight:700;
+    text-transform:uppercase;
+    text-align:center;
+  }
+
+  .rmid{
+    position:absolute;
+    left:961px;
+    top:191px;
+    width:301px;
+    height:309px;
+    overflow:hidden;
+    z-index:20;
+  }
+  .rmid-left, .rmid-right{
+    position:absolute;
+    top:0;
+    height:309px;
+    border-radius:14px;
+    overflow:hidden;
+  }
+  .rmid-left{
+    left:0;
+    width:153px;
+    background:
+      radial-gradient(circle at 18% 16%, rgba(255,118,71,0.75) 0 15px, transparent 35px),
+      radial-gradient(circle at 43% 36%, rgba(140,63,196,0.9) 0 12px, transparent 24px),
+      linear-gradient(90deg,#7c463f 0%, #bfa08b 49%, #7f645e 52%, #4a3332 100%);
+  }
+  .rmid-right{
+    left:170px;
+    width:131px;
+    background:
+      radial-gradient(circle at 78% 62%, rgba(255,128,64,0.9) 0 10px, transparent 23px),
+      radial-gradient(circle at 90% 68%, rgba(251,184,98,0.65) 0 6px, transparent 16px),
+      radial-gradient(circle at 70% 62%, rgba(255,174,84,0.40) 0 18px, transparent 40px),
+      linear-gradient(180deg,#9b867f 0%, #a88d83 24%, #7d6e67 28%, #5f4f4a 34%, #2b2624 52%, #3d2d27 58%, #b9ac9a 59%, #9d9285 63%, #7e7368 100%);
+  }
+  .rmid .divider{
+    position:absolute;
+    left:153px;
+    top:0;
+    width:17px;
+    height:309px;
+    background:#c6c6ce;
+    z-index:25;
+  }
+  .rmid .hcut{
+    position:absolute;
+    left:0;
+    top:177px;
+    width:301px;
+    height:13px;
+    background:#c6c6ce;
+    z-index:25;
+  }
+
+  .girl-head{
+    position:absolute;
+    left:1064px;
+    top:223px;
+    width:52px;
+    height:65px;
+    background:linear-gradient(180deg,#261b22 0%, #3b2131 100%);
+    border-radius:26px 28px 20px 22px;
+    z-index:31;
+    transform:rotate(6deg);
+  }
+  .girl-face{
+    position:absolute;
+    left:1094px;
+    top:252px;
+    width:19px;
+    height:31px;
+    background:linear-gradient(180deg,#f0b19a 0%, #d98c7d 100%);
+    border-radius:12px 10px 10px 12px;
+    z-index:32;
+    transform:rotate(12deg);
+  }
+  .girl-body{
+    position:absolute;
+    left:1053px;
+    top:285px;
+    width:58px;
+    height:120px;
+    background:linear-gradient(180deg,#7d2f4b 0%, #84405d 60%, #72344b 100%);
+    border-radius:22px 24px 18px 18px;
+    z-index:30;
+    transform:rotate(7deg);
+  }
+  .girl-arm{
+    position:absolute;
+    left:1101px;
+    top:367px;
+    width:37px;
+    height:14px;
+    background:linear-gradient(180deg,#cf8575 0%, #be7064 100%);
+    border-radius:9px;
+    z-index:31;
+    transform:rotate(25deg);
+  }
+  .tablet{
+    position:absolute;
+    left:1143px;
+    top:360px;
+    width:31px;
+    height:42px;
+    background:linear-gradient(180deg,#4d5b6d 0%, #1f2b3b 100%);
+    border-radius:4px;
+    z-index:32;
+    transform:rotate(23deg);
+    box-shadow:0 0 0 2px rgba(255,255,255,0.10) inset;
+  }
+
+  .rbot{
+    position:absolute;
+    left:961px;
+    top:513px;
+    width:301px;
+    height:255px;
+    border-top-left-radius:14px;
+    border-top-right-radius:14px;
+    overflow:hidden;
+    background:
+      linear-gradient(114deg, #02153d 10%, #042665 30%, #03174a 45%, #0a438d 67%, #0a5fa9 86%, #0d6bb1 100%);
+    z-index:15;
+  }
+  .rbot:before{
+    content:"";
+    position:absolute;
+    left:-14px; top:-7px;
+    width:339px; height:272px;
+    background:
+      repeating-linear-gradient(112deg,
+        rgba(0,0,0,0.58) 0px, rgba(0,0,0,0.58) 8px,
+        rgba(0,0,0,0.10) 8px, rgba(0,0,0,0.10) 31px);
+    opacity:.62;
+  }
+  .rbot:after{
+    content:"";
+    position:absolute;
+    right:22px; top:82px;
+    width:6px; height:138px;
+    background:linear-gradient(180deg,#0f1017 0%, #312722 100%);
+    border-radius:3px;
+    box-shadow:0 -4px 0 1px #d3a15c;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-strip"></div>
+  <div class="bottom-strip"></div>
+  <div class="right-strip"></div>
+
+  <div class="header-line"></div>
+  <div class="page-no">48</div>
+  <div class="survey-label">SECOND ANNUAL EY/EI GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+  <div class="title">Further<br>reading</div>
+  <div class="accent-line"></div>
+
+  <div class="vert-reading">FURTHER READING</div>
+  <div class="vert-yellow"></div>
+
+  <div class="thumb t1"></div>
+  <div class="thumb t2"></div>
+  <div class="thumb t3">
+    <div class="ground"></div>
+    <div class="yellow-corner"></div>
+  </div>
+  <div class="thumb t4">
+    <svg width="142" height="184" viewBox="0 0 142 184" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#24d4ef"/>
+          <stop offset="50%" stop-color="#7057d9"/>
+          <stop offset="100%" stop-color="#132d6f"/>
+        </linearGradient>
+      </defs>
+      <path d="M74 28 L95 34 L101 56 L85 76 L61 72 L54 48 Z" fill="#ab90ff" opacity="0.55"/>
+      <path d="M57 56 L91 38 L119 66 L93 98 L55 90 L38 69 Z" fill="url(#g1)"/>
+      <path d="M66 63 L87 51 L104 68 L87 87 L63 82 L51 69 Z" fill="none" stroke="#89eaff" stroke-width="3"/>
+      <path d="M71 71 L85 62 L95 71 L84 82 L69 79 L62 72 Z" fill="none" stroke="#d2f2ff" stroke-width="2"/>
+      <path d="M38 69 L28 83 L37 96 L52 100 L55 90 Z" fill="#8d76ff" opacity="0.85"/>
+      <path d="M92 98 L110 106 L117 123 L98 132 L77 123 L74 105 Z" fill="#8166e8" opacity="0.82"/>
+      <g fill="#8d71d6" opacity="0.9">
+        <circle cx="32" cy="38" r="10"/><circle cx="42" cy="30" r="9"/><circle cx="54" cy="32" r="10"/>
+        <circle cx="61" cy="22" r="8"/><circle cx="74" cy="24" r="11"/><circle cx="85" cy="28" r="9"/>
+        <circle cx="96" cy="35" r="10"/><circle cx="103" cy="47" r="8"/><circle cx="108" cy="58" r="9"/>
+        <circle cx="24" cy="56" r="8"/><circle cx="22" cy="70" r="10"/><circle cx="28" cy="83" r="10"/>
+        <circle cx="38" cy="97" r="11"/><circle cx="52" cy="108" r="10"/><circle cx="66" cy="116" r="9"/>
+        <circle cx="83" cy="124" r="11"/><circle cx="98" cy="126" r="9"/><circle cx="113" cy="118" r="10"/>
+        <circle cx="116" cy="101" r="8"/><circle cx="120" cy="85" r="10"/>
+      </g>
+      <g fill="#c8b9ff" opacity="0.55">
+        <circle cx="40" cy="40" r="6"/><circle cx="55" cy="22" r="5"/><circle cx="86" cy="33" r="5"/>
+        <circle cx="23" cy="71" r="5"/><circle cx="53" cy="108" r="5"/><circle cx="108" cy="120" r="5"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="thumb t5">
+    <div class="flag"></div>
+    <svg width="142" height="184" viewBox="0 0 142 184" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;left:0;top:0;">
+      <g fill="#ffd63d">
+        <circle cx="62" cy="77" r="2.2"/><circle cx="73" cy="72" r="2.2"/><circle cx="84" cy="74" r="2.2"/>
+        <circle cx="91" cy="83" r="2.2"/><circle cx="92" cy="95" r="2.2"/><circle cx="85" cy="104" r="2.2"/>
+        <circle cx="74" cy="108" r="2.2"/><circle cx="63" cy="105" r="2.2"/><circle cx="55" cy="96" r="2.2"/>
+        <circle cx="54" cy="84" r="2.2"/><circle cx="58" cy="88" r="2.2"/><circle cx="80" cy="88" r="2.2"/>
+      </g>
+      <g stroke="rgba(255,255,255,0.18)" stroke-width="4">
+        <line x1="0" y1="18" x2="142" y2="52"/>
+        <line x1="0" y1="46" x2="142" y2="80"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="thumb-label label1">2025 EY Cybersecurity Study:<br>Bridging the C-suite disconnect</div>
+  <div class="thumb-label label2">2025 Global Insurance Outlook</div>
+  <div class="thumb-label label3">IIF-EY AI Research</div>
+  <div class="thumb-label label4">2025 EY-IIF Global Banking<br>Risk Management Survey</div>
+  <div class="thumb-label label5">Understanding the EU<br>Omnibus proposal: key insights<br>and resources</div>
+
+  <div class="rtop"><div class="glow"></div></div>
+  <div class="jump"><span>JUMP TO<br>CONTENTS</span></div>
+
+  <div class="rmid">
+    <div class="rmid-left"></div>
+    <div class="rmid-right"></div>
+    <div class="divider"></div>
+    <div class="hcut"></div>
+  </div>
+  <div class="girl-head"></div>
+  <div class="girl-face"></div>
+  <div class="girl-body"></div>
+  <div class="girl-arm"></div>
+  <div class="tablet"></div>
+
+  <div class="rbot"></div>
+</div>
+</body>
+</html>

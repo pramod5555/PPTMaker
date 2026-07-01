@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body { margin:0; background:#ffffff; }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#F3F5F6;
+    font-family: Arial, Helvetica, 'Segoe UI', sans-serif;
+    color:#5b5b5b;
+  }
+  #slide > div, #slide > svg, #slide > table { position:absolute; box-sizing:border-box; }
+  .small { font-size:10px; line-height:14px; }
+  .tiny { font-size:9px; line-height:12px; }
+  .label { font-size:13px; line-height:16px; color:#6c6c6c; }
+  .title { font-size:22px; line-height:34px; font-weight:700; color:#575757; }
+  .note { font-size:10px; line-height:16px; color:#8a8a8a; font-style:italic; }
+  .footer { font-size:10px; line-height:12px; color:#4f4f4f; }
+  .legendText { font-size:13px; line-height:16px; color:#666; }
+  .hdr { font-size:12px; line-height:15px; color:#3d3d3d; }
+  .market { font-size:11px; line-height:14px; color:#707070; text-align:right; }
+  .pctL { font-size:11px; line-height:14px; color:#ffffff; font-weight:700; }
+  .pctR { font-size:11px; line-height:14px; color:#ffffff; font-weight:700; text-align:right; }
+  .chg { font-size:10px; line-height:14px; color:#4c4c4c; text-align:center; }
+  .changeHdr { font-size:12px; line-height:14px; color:#3d3d3d; text-align:center; }
+  .qmark{
+    font-size:40px;
+    font-weight:700;
+    color:#000;
+    line-height:40px;
+  }
+  .legendSquare{
+    width:16px;
+    height:16px;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div style="left:43px; top:44px; width:40px; height:40px; z-index:30;" class="qmark">Q.</div>
+
+  <div style="left:52px; top:154px; width:260px; height:86px; z-index:30; font-size:19px; line-height:24px; color:#666666; font-weight:400;">
+    For each of the following, please<br>
+    tell me how likely or unlikely you<br>
+    think they are to happen...?
+  </div>
+
+  <div style="left:52px; top:262px; width:310px; height:108px; z-index:30;" class="title">
+    Unemployment in my<br>
+    country will be higher<br>
+    in 2025 than in 2024
+  </div>
+
+  <div style="left:52px; top:610px; width:265px; height:74px; z-index:30;" class="note">
+    Base: 23,721 adults aged 18 years and older in India, 18-74 in
+    Canada, Republic of Ireland, Malaysia, the Philippines, South
+    Africa, Turkey, and the United States, 20-74 in Thailand, 21-74
+    in Indonesia and Singapore, and 16-74 in all other countries.<br>
+    Friday, October 25 – Friday November 8, 2024
+  </div>
+
+  <div style="left:50px; top:729px; width:160px; height:12px; z-index:30;" class="footer">© Ipsos Predictions 2025 Report</div>
+  <div style="left:635px; top:728px; width:20px; height:12px; z-index:30;" class="footer">31</div>
+
+  <div style="left:376px; top:22px; width:100px; height:22px; z-index:30; font-size:18px; line-height:22px; color:#666;">Market</div>
+  <div style="left:371px; top:51px; width:168px; height:1px; background:#7f95a7; z-index:20;"></div>
+
+  <div style="left:552px; top:24px; width:16px; height:16px; background:#20AEAC; z-index:30;"></div>
+  <div style="left:576px; top:22px; width:70px; height:20px; z-index:30;" class="legendText">Likely</div>
+
+  <div style="left:1114px; top:23px; width:16px; height:16px; background:#1A246E; z-index:30;"></div>
+  <div style="left:1138px; top:22px; width:70px; height:20px; z-index:30;" class="legendText">Unlikely</div>
+
+  <div style="left:518px; top:51px; width:620px; height:1px; background:#7f95a7; z-index:20;"></div>
+  <div style="left:1208px; top:51px; width:86px; height:1px; background:#7f95a7; z-index:20;"></div>
+  <div style="left:1226px; top:18px; width:85px; height:30px; z-index:30;" class="changeHdr">Change likely<br>vs 2023</div>
+
+  <svg style="left:355px; top:80px; width:880px; height:590px; z-index:20;" viewBox="0 0 880 590" xmlns="http://www.w3.org/2000/svg">
+    <!-- data rows -->
+    <!-- layout constants inside svg: labelRight=140, barX=150, likelyMax=460, unlikelyStart=660, changeX=810 -->
+    <!-- row height 16, gap 2 -->
+    <!-- 33 rows -->
+    <!-- Global Country Average -->
+    <text x="137" y="17" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Global Country Average</text>
+    <rect x="150" y="4" width="446" height="14" fill="none" stroke="#20AEAC" stroke-width="1"/>
+    <text x="158" y="16" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#20AEAC">68%</text>
+    <rect x="658" y="4" width="147" height="14" fill="none" stroke="#1A246E" stroke-width="1"/>
+    <text x="795" y="16" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#1A246E" text-anchor="end">23%</text>
+    <rect x="810" y="4" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="16" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">0%</text>
+
+    <text x="137" y="35" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">South Africa</text>
+    <rect x="150" y="22" width="552" height="14" fill="#20AEAC"/>
+    <text x="158" y="34" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">84%</text>
+    <rect x="729" y="22" width="79" height="14" fill="#1A246E"/>
+    <text x="801" y="34" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">12%</text>
+    <rect x="810" y="22" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="34" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">0%</text>
+
+    <text x="137" y="53" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Türkiye</text>
+    <rect x="150" y="40" width="552" height="14" fill="#20AEAC"/>
+    <text x="158" y="52" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">84%</text>
+    <rect x="712" y="40" width="92" height="14" fill="#1A246E"/>
+    <text x="801" y="52" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">14%</text>
+    <rect x="810" y="40" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="52" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">2%</text>
+
+    <text x="137" y="71" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Indonesia</text>
+    <rect x="150" y="58" width="545" height="14" fill="#20AEAC"/>
+    <text x="158" y="70" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">83%</text>
+    <rect x="718" y="58" width="99" height="14" fill="#1A246E"/>
+    <text x="801" y="70" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">15%</text>
+    <rect x="810" y="58" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="70" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">-1%</text>
+
+    <text x="137" y="89" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Philippines</text>
+    <rect x="150" y="76" width="512" height="14" fill="#20AEAC"/>
+    <text x="158" y="88" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">78%</text>
+    <rect x="689" y="76" width="118" height="14" fill="#1A246E"/>
+    <text x="801" y="88" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">18%</text>
+    <rect x="810" y="76" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="88" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">6%</text>
+
+    <text x="137" y="107" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Thailand</text>
+    <rect x="150" y="94" width="512" height="14" fill="#20AEAC"/>
+    <text x="158" y="106" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">78%</text>
+    <rect x="689" y="94" width="118" height="14" fill="#1A246E"/>
+    <text x="801" y="106" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">18%</text>
+    <rect x="810" y="94" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="106" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">8%</text>
+
+    <text x="137" y="125" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Malaysia</text>
+    <rect x="150" y="112" width="505" height="14" fill="#20AEAC"/>
+    <text x="158" y="124" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">77%</text>
+    <rect x="687" y="112" width="120" height="14" fill="#1A246E"/>
+    <text x="801" y="124" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">18%</text>
+    <rect x="810" y="112" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="124" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">1%</text>
+
+    <text x="137" y="143" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Romania</text>
+    <rect x="150" y="130" width="499" height="14" fill="#20AEAC"/>
+    <text x="158" y="142" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">76%</text>
+    <rect x="695" y="130" width="112" height="14" fill="#1A246E"/>
+    <text x="801" y="142" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">17%</text>
+    <rect x="810" y="130" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="142" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">7%</text>
+
+    <text x="137" y="161" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Belgium</text>
+    <rect x="150" y="148" width="499" height="14" fill="#20AEAC"/>
+    <text x="158" y="160" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">76%</text>
+    <rect x="718" y="148" width="99" height="14" fill="#1A246E"/>
+    <text x="801" y="160" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">15%</text>
+    <rect x="810" y="148" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="160" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">13%</text>
+
+    <text x="137" y="179" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Peru</text>
+    <rect x="150" y="166" width="479" height="14" fill="#20AEAC"/>
+    <text x="158" y="178" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">73%</text>
+    <rect x="689" y="166" width="118" height="14" fill="#1A246E"/>
+    <text x="801" y="178" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">18%</text>
+    <rect x="810" y="166" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="178" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">-3%</text>
+
+    <text x="137" y="197" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">South Korea</text>
+    <rect x="150" y="184" width="479" height="14" fill="#20AEAC"/>
+    <text x="158" y="196" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">73%</text>
+    <rect x="684" y="184" width="123" height="14" fill="#1A246E"/>
+    <text x="801" y="196" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">18%</text>
+    <rect x="810" y="184" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="196" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">-3%</text>
+
+    <text x="137" y="215" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">France</text>
+    <rect x="150" y="202" width="479" height="14" fill="#20AEAC"/>
+    <text x="158" y="214" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">73%</text>
+    <rect x="722" y="202" width="85" height="14" fill="#1A246E"/>
+    <text x="801" y="214" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">14%</text>
+    <rect x="810" y="202" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="214" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">9%</text>
+
+    <text x="137" y="233" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Germany</text>
+    <rect x="150" y="220" width="460" height="14" fill="#20AEAC"/>
+    <text x="158" y="232" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">70%</text>
+    <rect x="708" y="220" width="99" height="14" fill="#1A246E"/>
+    <text x="801" y="232" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">16%</text>
+    <rect x="810" y="220" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="232" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">6%</text>
+
+    <text x="137" y="251" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Colombia</text>
+    <rect x="150" y="238" width="453" height="14" fill="#20AEAC"/>
+    <text x="158" y="250" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">69%</text>
+    <rect x="659" y="238" width="148" height="14" fill="#1A246E"/>
+    <text x="801" y="250" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">23%</text>
+    <rect x="810" y="238" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="250" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">-5%</text>
+
+    <text x="137" y="269" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Hungary</text>
+    <rect x="150" y="256" width="453" height="14" fill="#20AEAC"/>
+    <text x="158" y="268" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">69%</text>
+    <rect x="667" y="256" width="140" height="14" fill="#1A246E"/>
+    <text x="801" y="268" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">22%</text>
+    <rect x="810" y="256" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="268" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">7%</text>
+
+    <text x="137" y="287" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Sweden</text>
+    <rect x="150" y="274" width="453" height="14" fill="#20AEAC"/>
+    <text x="158" y="286" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">69%</text>
+    <rect x="673" y="274" width="134" height="14" fill="#1A246E"/>
+    <text x="801" y="286" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">20%</text>
+    <rect x="810" y="274" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="286" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">-1%</text>
+
+    <text x="137" y="305" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#20AEAC" text-anchor="end">Chile</text>
+    <rect x="150" y="292" width="453" height="14" fill="#20AEAC"/>
+    <text x="158" y="304" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">69%</text>
+    <rect x="661" y="292" width="146" height="14" fill="#1A246E"/>
+    <text x="801" y="304" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">22%</text>
+    <rect x="810" y="292" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="304" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">-3%</text>
+
+    <!-- Australia highlighted row -->
+    <rect x="64" y="310" width="894" height="18" fill="none" stroke="#2AB66D" stroke-width="2"/>
+    <text x="137" y="323" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Australia</text>
+    <rect x="150" y="310" width="446" height="14" fill="#20AEAC"/>
+    <text x="158" y="322" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">68%</text>
+    <rect x="661" y="310" width="146" height="14" fill="#1A246E"/>
+    <text x="801" y="322" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">22%</text>
+    <rect x="810" y="310" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="322" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">3%</text>
+
+    <text x="137" y="341" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Singapore</text>
+    <rect x="150" y="328" width="446" height="14" fill="#20AEAC"/>
+    <text x="158" y="340" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">68%</text>
+    <rect x="672" y="328" width="135" height="14" fill="#1A246E"/>
+    <text x="801" y="340" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">22%</text>
+    <rect x="810" y="328" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="340" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">-4%</text>
+
+    <text x="137" y="359" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Canada</text>
+    <rect x="150" y="346" width="440" height="14" fill="#20AEAC"/>
+    <text x="158" y="358" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">67%</text>
+    <rect x="677" y="346" width="130" height="14" fill="#1A246E"/>
+    <text x="801" y="358" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">20%</text>
+    <rect x="810" y="346" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="358" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">1%</text>
+
+    <text x="137" y="377" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Great Britain</text>
+    <rect x="150" y="364" width="433" height="14" fill="#20AEAC"/>
+    <text x="158" y="376" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">66%</text>
+    <rect x="684" y="364" width="123" height="14" fill="#1A246E"/>
+    <text x="801" y="376" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">19%</text>
+    <rect x="810" y="364" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="376" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">-5%</text>
+
+    <text x="137" y="395" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Italy</text>
+    <rect x="150" y="382" width="430" height="14" fill="#20AEAC"/>
+    <text x="158" y="394" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">66%</text>
+    <rect x="666" y="382" width="141" height="14" fill="#1A246E"/>
+    <text x="801" y="394" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">22%</text>
+    <rect x="810" y="382" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="394" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">-1%</text>
+
+    <text x="137" y="413" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Spain</text>
+    <rect x="150" y="400" width="413" height="14" fill="#20AEAC"/>
+    <text x="158" y="412" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">63%</text>
+    <rect x="649" y="400" width="158" height="14" fill="#1A246E"/>
+    <text x="801" y="412" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">24%</text>
+    <rect x="810" y="400" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="412" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">-1%</text>
+
+    <text x="137" y="431" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Mexico</text>
+    <rect x="150" y="418" width="413" height="14" fill="#20AEAC"/>
+    <text x="158" y="430" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">63%</text>
+    <rect x="607" y="418" width="200" height="14" fill="#1A246E"/>
+    <text x="801" y="430" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">31%</text>
+    <rect x="810" y="418" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="430" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">0%</text>
+
+    <text x="137" y="449" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">China</text>
+    <rect x="150" y="436" width="400" height="14" fill="#20AEAC"/>
+    <text x="158" y="448" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">61%</text>
+    <rect x="585" y="436" width="222" height="14" fill="#1A246E"/>
+    <text x="801" y="448" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">34%</text>
+    <rect x="810" y="436" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="448" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">-4%</text>
+
+    <text x="137" y="467" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">Poland</text>
+    <rect x="150" y="454" width="393" height="14" fill="#20AEAC"/>
+    <text x="158" y="466" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">60%</text>
+    <rect x="636" y="454" width="171" height="14" fill="#1A246E"/>
+    <text x="801" y="466" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">26%</text>
+    <rect x="810" y="454" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="466" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">6%</text>
+
+    <text x="137" y="485" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#707070" text-anchor="end">India</text>
+    <rect x="150" y="472" width="386" height="14" fill="#20AEAC"/>
+    <text x="158" y="484" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">59%</text>
+    <rect x="593" y="472" width="214" height="14" fill="#1A246E"/>
+    <text x="801" y="484" font-size="11" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" text-anchor="end">33%</text>
+    <rect x="810" y="472" width="74" height="18" fill="#E3E3E5"/>
+    <text x="847" y="484" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#4c4c4c" text-anchor="middle">-7%</text>
+
+    <text x="137" y="503" font-size="11"

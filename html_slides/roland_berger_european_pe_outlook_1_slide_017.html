@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+    color:#111;
+  }
+  .slide > div, .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .header-box{
+    left:82px; top:24px; width:34px; height:34px;
+    background:#90959b;
+    color:#fff;
+    font-size:18px;
+    line-height:34px;
+    text-align:center;
+    font-weight:700;
+  }
+  .header-text{
+    left:126px; top:30px; width:560px; height:24px;
+    color:#8a8f96;
+    font-size:18px;
+    line-height:24px;
+    font-weight:600;
+  }
+  .logo{
+    left:1148px; top:22px; width:96px; height:54px;
+    color:#222;
+  }
+  .logo .roland{
+    position:absolute; left:0; top:8px; width:52px; height:14px;
+    font-size:18px; line-height:14px; text-align:right; color:#333;
+  }
+  .logo .berger{
+    position:absolute; left:0; top:20px; width:56px; height:28px;
+    font-size:28px; line-height:28px; text-align:right; color:#1f1f1f;
+    font-weight:400;
+  }
+  .logo .mark{
+    position:absolute; right:0; top:1px; width:39px; height:50px;
+    background:linear-gradient(180deg,#c6ccd0 0%,#6f7880 100%);
+    border-radius:0 22px 22px 0;
+  }
+  .logo .mark:before{
+    content:"";
+    position:absolute;
+    left:-11px; top:0; width:15px; height:50px;
+    background:#f3f3f3;
+    border-top-right-radius:15px 18px;
+    border-bottom-right-radius:15px 18px;
+  }
+
+  .title{
+    left:82px; top:86px; width:1100px; height:98px;
+    font-size:37px;
+    line-height:45px;
+    font-weight:400;
+    color:#111;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    left:82px; top:197px; width:640px; height:40px;
+    font-size:25px;
+    line-height:40px;
+    color:#8f949b;
+    font-weight:400;
+  }
+  .question{
+    left:84px; top:250px; width:640px; height:56px;
+    font-size:21px;
+    line-height:28px;
+    color:#1f76b3;
+    font-style:italic;
+    font-weight:400;
+  }
+
+  .table-head-left{
+    left:82px; top:333px; width:240px; height:26px;
+    font-size:21px; line-height:26px; font-weight:700; color:#111;
+  }
+  .table-head-mid{
+    left:425px; top:333px; width:410px; height:26px;
+    font-size:21px; line-height:26px; font-weight:700; color:#111;
+    text-align:center;
+  }
+  .table-head-right{
+    left:832px; top:333px; width:80px; height:26px;
+    font-size:21px; line-height:26px; font-weight:700; color:#111;
+  }
+
+  .rule{
+    left:82px; width:806px; height:1px; background:#d8d8d8;
+  }
+
+  .row-label{
+    left:82px; width:285px;
+    font-size:18px; line-height:22px; color:#1a1a1a; font-weight:400;
+  }
+  .row-label.bold{ font-weight:700; }
+
+  .chart{
+    left:388px; width:395px; height:56px;
+  }
+  .pct{
+    position:absolute; font-size:15px; line-height:16px; font-weight:700; color:#2c2c2c;
+    text-align:center;
+  }
+  .bar{
+    position:absolute; bottom:0;
+    background:#d5d7da;
+  }
+  .bar.blue{ background:#1d78ae; }
+
+  .labels{
+    left:385px; top:633px; width:420px; height:60px;
+  }
+
+  .trend-icon{
+    width:30px; height:30px;
+  }
+
+  .legend{
+    left:83px; top:677px; width:310px; height:18px;
+    font-size:12px; line-height:18px; color:#222;
+  }
+  .legend2{
+    left:82px; top:697px; width:330px; height:16px;
+    font-size:12px; line-height:16px; color:#222;
+  }
+  .source{
+    left:82px; top:717px; width:220px; height:14px;
+    font-size:11px; line-height:14px; color:#444;
+  }
+
+  .right-divider{
+    left:919px; top:246px; width:1px; height:466px; background:#bdbdbd;
+  }
+  .quote-icon{
+    left:804px; top:230px; width:73px; height:73px;
+  }
+  .bullet-box{
+    left:940px; top:242px; width:275px; height:345px;
+    font-size:18px; line-height:20px; color:#202020;
+  }
+  .footer-left{
+    left:910px; top:705px; width:260px; height:14px;
+    font-size:11px; line-height:14px; color:#9aa0a6;
+  }
+  .footer-sep{
+    left:1183px; top:704px; width:1px; height:14px; background:#9aa0a6;
+  }
+  .footer-page{
+    left:1198px; top:702px; width:20px; height:16px;
+    font-size:13px; line-height:16px; color:#8d9398;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <div class="header-box">1</div>
+  <div class="header-text">Development of the European private equity market</div>
+
+  <div class="logo">
+    <div class="roland">Roland</div>
+    <div class="berger">Berger</div>
+    <div class="mark"></div>
+  </div>
+
+  <div class="title">The exit channel "sale to PE investors" is anticipated to develop<br>favorably – IPO channel expected to decrease in importance</div>
+  <div class="subtitle">Change in exit channels – 2019 vs. 2018 [%]</div>
+  <div class="question">"How do you expect the individual exit channels to change<br>in 2019?"</div>
+
+  <div class="table-head-left">Exit channels</div>
+  <div class="table-head-mid">Development of exit channels in 2019</div>
+  <div class="table-head-right">Trend</div>
+
+  <div class="rule" style="top:417px;"></div>
+  <div class="rule" style="top:476px;"></div>
+  <div class="rule" style="top:535px;"></div>
+  <div class="rule" style="top:594px;"></div>
+
+  <div class="row-label bold" style="top:375px; height:24px;">M&amp;A with PE investors</div>
+  <div class="row-label" style="top:431px; height:24px;">M&amp;A with strategic investors</div>
+  <div class="row-label" style="top:487px; height:44px;">Dual track<br>(e.g., IPO and M&amp;A process)</div>
+  <div class="row-label" style="top:544px; height:44px;">Triple track (e.g., IPO, M&amp;A process<br>and refinancing)</div>
+  <div class="row-label bold" style="top:614px; height:24px;">IPO</div>
+
+  <div class="chart" style="top:367px;">
+    <div class="pct" style="left:7px; top:22px; width:26px;">1%</div>
+    <div class="pct" style="left:89px; top:9px; width:32px;">13%</div>
+    <div class="pct" style="left:168px; top:0; width:36px;">48%</div>
+    <div class="pct" style="left:275px; top:10px; width:36px;">35%</div>
+    <div class="pct" style="left:357px; top:20px; width:28px;">3%</div>
+
+    <div class="bar" style="left:16px; width:43px; height:2px;"></div>
+    <div class="bar blue" style="left:81px; width:43px; height:10px;"></div>
+    <div class="bar blue" style="left:162px; width:43px; height:34px;"></div>
+    <div class="bar blue" style="left:269px; width:43px; height:24px;"></div>
+    <div class="bar" style="left:349px; width:43px; height:2px;"></div>
+  </div>
+
+  <div class="chart" style="top:426px;">
+    <div class="pct" style="left:8px; top:22px; width:26px;">2%</div>
+    <div class="pct" style="left:89px; top:8px; width:32px;">23%</div>
+    <div class="pct" style="left:168px; top:0; width:36px;">46%</div>
+    <div class="pct" style="left:275px; top:12px; width:36px;">27%</div>
+    <div class="pct" style="left:357px; top:22px; width:28px;">2%</div>
+
+    <div class="bar" style="left:16px; width:43px; height:2px;"></div>
+    <div class="bar" style="left:81px; width:43px; height:16px;"></div>
+    <div class="bar" style="left:162px; width:43px; height:31px;"></div>
+    <div class="bar" style="left:269px; width:43px; height:18px;"></div>
+    <div class="bar" style="left:349px; width:43px; height:2px;"></div>
+  </div>
+
+  <div class="chart" style="top:485px;">
+    <div class="pct" style="left:4px; top:18px; width:34px;">13%</div>
+    <div class="pct" style="left:89px; top:0; width:32px;">49%</div>
+    <div class="pct" style="left:171px; top:13px; width:30px;">30%</div>
+    <div class="pct" style="left:278px; top:20px; width:28px;">8%</div>
+    <div class="pct" style="left:357px; top:22px; width:28px;">0%</div>
+
+    <div class="bar" style="left:16px; width:43px; height:8px;"></div>
+    <div class="bar" style="left:81px; width:43px; height:34px;"></div>
+    <div class="bar" style="left:162px; width:43px; height:19px;"></div>
+    <div class="bar" style="left:269px; width:43px; height:5px;"></div>
+    <div class="bar" style="left:349px; width:43px; height:1px;"></div>
+  </div>
+
+  <div class="chart" style="top:544px;">
+    <div class="pct" style="left:3px; top:16px; width:36px;">17%</div>
+    <div class="pct" style="left:89px; top:1px; width:32px;">46%</div>
+    <div class="pct" style="left:171px; top:12px; width:30px;">26%</div>
+    <div class="pct" style="left:276px; top:18px; width:30px;">11%</div>
+    <div class="pct" style="left:357px; top:22px; width:28px;">0%</div>
+
+    <div class="bar" style="left:16px; width:43px; height:11px;"></div>
+    <div class="bar" style="left:81px; width:43px; height:31px;"></div>
+    <div class="bar" style="left:162px; width:43px; height:18px;"></div>
+    <div class="bar" style="left:269px; width:43px; height:7px;"></div>
+    <div class="bar" style="left:349px; width:43px; height:1px;"></div>
+  </div>
+
+  <div class="chart" style="top:604px; height:58px;">
+    <div class="pct" style="left:0; top:0; width:38px;">27%</div>
+    <div class="pct" style="left:88px; top:0; width:36px;">49%</div>
+    <div class="pct" style="left:170px; top:20px; width:30px;">19%</div>
+    <div class="pct" style="left:279px; top:30px; width:24px;">5%</div>
+    <div class="pct" style="left:357px; top:30px; width:28px;">0%</div>
+
+    <div class="bar blue" style="left:16px; width:43px; height:18px;"></div>
+    <div class="bar blue" style="left:81px; width:43px; height:35px;"></div>
+    <div class="bar blue" style="left:162px; width:43px; height:12px;"></div>
+    <div class="bar blue" style="left:269px; width:43px; height:3px;"></div>
+    <div class="bar" style="left:349px; width:43px; height:1px;"></div>
+  </div>
+
+  <div class="labels">
+    <div style="position:absolute; left:0; top:0; width:76px; font-size:15px; line-height:17px; text-align:center; color:#222;">Significant<br>decrease</div>
+    <div style="position:absolute; left:80px; top:0; width:68px; font-size:15px; line-height:17px; text-align:center; color:#222;">Slight<br>decrease</div>
+    <div style="position:absolute; left:154px; top:0; width:92px; font-size:15px; line-height:17px; text-align:center; color:#222;">Stable<br>compared<br>to 2018</div>
+    <div style="position:absolute; left:256px; top:0; width:65px; font-size:15px; line-height:17px; text-align:center; color:#222;">Slight<br>increase</div>
+    <div style="position:absolute; left:334px; top:0; width:79px; font-size:15px; line-height:17px; text-align:center; color:#222;">Significant<br>increase</div>
+  </div>
+
+  <svg class="trend-icon" style="left:846px; top:377px;" viewBox="0 0 30 30">
+    <circle cx="15" cy="15" r="13" fill="#1d78ae"/>
+    <path d="M9 16 L16.2 8.8 L16.2 12.5 L22 12.5 L22 17.5 L16.2 17.5 L16.2 21.2 Z" fill="#fff"/>
+  </svg>
+  <svg class="trend-icon" style="left:846px; top:436px;" viewBox="0 0 30 30">
+    <circle cx="15" cy="15" r="13" fill="#1d78ae"/>
+    <path d="M8 12.5 L17 12.5 L17 7.5 L23 15 L17 22.5 L17 17.5 L8 17.5 Z" fill="#fff"/>
+  </svg>
+  <svg class="trend-icon" style="left:846px; top:495px;" viewBox="0 0 30 30">
+    <circle cx="15" cy="15" r="13" fill="#1d78ae"/>
+    <path d="M8 12.5 L17 12.5 L17 7.5 L23 15 L17 22.5 L17 17.5 L8 17.5 Z" fill="#fff"/>
+  </svg>
+  <svg class="trend-icon" style="left:846px; top:554px;" viewBox="0 0 30 30">
+    <circle cx="15" cy="15" r="13" fill="#1d78ae"/>
+    <path d="M8 12.5 L17 12.5 L17 7.5 L23 15 L17 22.5 L17 17.5 L8 17.5 Z" fill="#fff"/>
+  </svg>
+  <svg class="trend-icon" style="left:846px; top:615px;" viewBox="0 0 30 30">
+    <circle cx="15" cy="15" r="13" fill="#1d78ae"/>
+    <path d="M8 12.5 L17 12.5 L17 7.5 L23 15 L17 22.5 L17 17.5 L8 17.5 Z" fill="#fff"/>
+  </svg>
+
+  <div class="legend">
+    <svg style="position:absolute; left:0; top:1px; width:15px; height:15px;" viewBox="0 0 15 15">
+      <circle cx="7.5" cy="7.5" r="6.5" fill="#1d78ae"/>
+      <path d="M4.3 8 L7.3 5 L7.3 6.4 L10.8 6.4 L10.8 8.6 L7.3 8.6 L7.3 10 Z" fill="#fff"/>
+    </svg>
+    <div style="position:absolute; left:18px; top:0;">Positive trend</div>
+    <svg style="position:absolute; left:117px; top:1px; width:15px; height:15px;" viewBox="0 0 15 15">
+      <circle cx="7.5" cy="7.5" r="6.5" fill="#1d78ae"/>
+      <path d="M4.2 6.4 L7.8 6.4 L7.8 5 L10.8 7.5 L7.8 10 L7.8 8.6 L4.2 8.6 Z" fill="#fff"/>
+    </svg>
+    <div style="position:absolute; left:136px; top:0;">Negative trend</div>
+  </div>
+  <div class="legend2">[only one answer possible for each exit channel]</div>
+  <div class="source">Source: Roland Berger</div>
+
+  <div class="right-divider"></div>
+
+  <svg class="quote-icon" viewBox="0 0 73 73">
+    <circle cx="36.5" cy="36.5" r="28.5" fill="none" stroke="#1d78ae" stroke-width="2.5"/>
+    <path d="M24 45c-4 0-8-3-8-10 0-9 6-15 16-16 4 0 7 1 10 3" fill="none" stroke="#1d78ae" stroke-width="3" stroke-linecap="round"/>
+    <rect x="55" y="9" width="8" height="13" rx="1.5" fill="none" stroke="#1d78ae" stroke-width="2"/>
+    <rect x="43" y="9" width="8" height="13" rx="1.5" fill="none" stroke="#1d78ae" stroke-width="2"/>
+    <text x="34.5" y="58" text-anchor="middle" font-size="18" font-family="Arial" fill="#1d78ae">?</text>
+  </svg>
+
+  <div class="bullet-box">
+    <div style="font-size:18px; line-height:20px;">&gt;&nbsp; In 2019, all exit channels are<br>&nbsp;&nbsp;&nbsp;viewed less favorably<br>&nbsp;&nbsp;&nbsp;compared to past years</div>
+    <div style="height:10px;"></div>
+    <div style="margin-left:18px; font-size:18px; line-height:20px;">– Sale to both strategic and<br>&nbsp;&nbsp;PE investors is slightly<br>&nbsp;&nbsp;more conservative but still<br>&nbsp;&nbsp;considered promising: 29%<br>&nbsp;&nbsp;and 38% of respondents<br>&nbsp;&nbsp;expect an increase,<br>&nbsp;&nbsp;respectively</div>
+    <div style="height:12px;"></div>
+    <div style="margin-left:18px; font-size:18px; line-height:20px;">– PE professionals expect<br>&nbsp;&nbsp;IPO exits, dual tracks (e.g.,<br>&nbsp;&nbsp;IPO and M&amp;A process) and<br>&nbsp;&nbsp;triple tracks (e.g., IPO, M&amp;A<br>&nbsp;&nbsp;process and refinancing) to<br>&nbsp;&nbsp;decrease (slightly) in 2019</div>
+  </div>
+
+  <div class="footer-left">Roland_Berger_European_PE_Outlook_2019.pptx</div>
+  <div class="footer-sep"></div>
+  <div class="footer-page">17</div>
+
+</div>
+</body>
+</html>

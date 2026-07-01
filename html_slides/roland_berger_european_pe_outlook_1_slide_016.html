@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#e7e7e7;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#f3f3f3;
+  }
+  .slide > *{ position:absolute; box-sizing:border-box; }
+
+  .top-tag{
+    left:52px;
+    top:18px;
+    width:620px;
+    height:36px;
+    color:#8a9096;
+  }
+  .tag-box{
+    left:0;
+    top:0;
+    width:37px;
+    height:36px;
+    background:#8b9096;
+    color:#fff;
+    font-size:20px;
+    line-height:36px;
+    text-align:center;
+    font-weight:400;
+  }
+  .tag-text{
+    left:46px;
+    top:2px;
+    width:560px;
+    height:30px;
+    font-size:16px;
+    line-height:30px;
+    color:#8a9096;
+    font-weight:600;
+  }
+
+  .logo{
+    right:26px;
+    top:18px;
+    width:175px;
+    height:52px;
+  }
+  .logo .roland{
+    left:79px;
+    top:2px;
+    width:52px;
+    height:14px;
+    font-size:16px;
+    line-height:14px;
+    color:#222;
+    font-weight:400;
+  }
+  .logo .berger{
+    left:0;
+    top:18px;
+    width:132px;
+    height:28px;
+    font-size:27px;
+    line-height:27px;
+    color:#1d1d1d;
+    text-align:right;
+    font-weight:400;
+    letter-spacing:-0.4px;
+  }
+  .logo .bmark{
+    right:0;
+    top:0;
+    width:42px;
+    height:52px;
+  }
+
+  .headline{
+    left:53px;
+    top:77px;
+    width:1085px;
+    color:#111;
+    font-size:34px;
+    line-height:44px;
+    font-weight:400;
+    letter-spacing:-0.3px;
+  }
+
+  .subhead{
+    left:53px;
+    top:181px;
+    width:760px;
+    color:#8b9096;
+    font-size:28px;
+    line-height:34px;
+    font-weight:400;
+  }
+
+  .question{
+    left:57px;
+    top:235px;
+    width:730px;
+    color:#1f76af;
+    font-size:22px;
+    line-height:30px;
+    font-style:italic;
+    font-weight:400;
+  }
+
+  .quote-icon{
+    left:795px;
+    top:226px;
+    width:90px;
+    height:70px;
+  }
+
+  .chart{
+    left:70px;
+    top:290px;
+    width:800px;
+    height:340px;
+  }
+  .bar{
+    position:absolute;
+    bottom:0;
+    background:#cfd1d4;
+  }
+  .bar.blue{ background:#1f74a3; }
+
+  .bar1{ left:8px; width:126px; height:308px; }
+  .bar2{ left:168px; width:122px; height:241px; }
+  .bar3{ left:328px; width:122px; height:212px; }
+  .bar4{ left:488px; width:122px; height:116px; }
+  .bar5{ left:648px; width:122px; height:87px; }
+
+  .circle-wrap{
+    left:0;
+    top:-4px;
+    width:126px;
+    height:126px;
+  }
+
+  .pct{
+    color:#111;
+    font-weight:400;
+    text-align:center;
+    font-size:25px;
+    line-height:30px;
+  }
+  .pct2{ left:191px; top:102px; width:76px; }
+  .pct3{ left:351px; top:132px; width:76px; }
+  .pct4{ left:511px; top:228px; width:76px; }
+  .pct5{ left:671px; top:257px; width:60px; }
+
+  .bar-label{
+    color:#1f76af;
+    font-size:18px;
+    line-height:22px;
+    text-align:center;
+    font-weight:400;
+  }
+  .lbl1{ left:13px; top:244px; width:116px; color:#fff; }
+  .lbl2{ left:176px; top:263px; width:106px; }
+  .lbl3{ left:339px; top:244px; width:100px; }
+  .lbl4{ left:520px; top:262px; width:58px; }
+  .lbl5{ left:657px; top:244px; width:105px; }
+
+  .notes-divider{
+    left:927px;
+    top:233px;
+    width:1px;
+    height:476px;
+    background:#9a9a9a;
+  }
+
+  .notes{
+    left:945px;
+    top:232px;
+    width:285px;
+    color:#222;
+    font-size:16px;
+    line-height:24px;
+    font-weight:400;
+  }
+  .notes .bullet{
+    left:0;
+    width:18px;
+    font-size:22px;
+    line-height:24px;
+    color:#222;
+  }
+  .notes .text{
+    left:18px;
+    width:252px;
+    font-size:16px;
+    line-height:21px;
+    color:#222;
+  }
+  .notes .n1b{ top:0; }
+  .notes .n1t{ top:0; }
+  .notes .n2b{ top:84px; }
+  .notes .n2t{ top:84px; }
+
+  .footnote{
+    left:53px;
+    top:670px;
+    width:720px;
+    color:#222;
+    font-size:14px;
+    line-height:18px;
+    font-weight:400;
+  }
+  .source{
+    left:53px;
+    top:700px;
+    color:#222;
+    font-size:14px;
+    line-height:16px;
+    font-weight:400;
+  }
+
+  .footer-right{
+    right:29px;
+    top:700px;
+    color:#9aa0a7;
+    font-size:13px;
+    line-height:16px;
+    font-weight:400;
+    text-align:right;
+    white-space:nowrap;
+  }
+  .footer-right .sep{
+    display:inline-block;
+    width:1px;
+    height:13px;
+    background:#9aa0a7;
+    margin:0 12px;
+    vertical-align:-2px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-tag">
+    <div class="tag-box">1</div>
+    <div class="tag-text">Development of the European private equity market</div>
+  </div>
+
+  <div class="logo">
+    <div class="roland">Roland</div>
+    <div class="berger">Berger</div>
+    <svg class="bmark" viewBox="0 0 42 52" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#707983"/>
+          <stop offset="0.5" stop-color="#d4d9dd"/>
+          <stop offset="1" stop-color="#707983"/>
+        </linearGradient>
+      </defs>
+      <path d="M2 1 L22 1 C34 1 40 8 40 18 C40 26 36 31 30 33 C37 35 41 41 41 50 L2 50 Z" fill="url(#g)"/>
+    </svg>
+  </div>
+
+  <div class="headline">In 2019, PE activity is expected to focus on developing portfolio<br>companies and making new investments</div>
+
+  <div class="subhead">Focus of PE investors on lifecycle stages – 2019 [%]</div>
+
+  <div class="question">"On which phase of the PE value chain will you focus most in 2019?"</div>
+
+  <svg class="quote-icon" viewBox="0 0 90 70" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#1f76af" stroke-width="3">
+      <path d="M33 19 C18 19 7 30 7 45 C7 60 18 71 33 71 C48 71 59 60 59 45 C59 38 54 33 47 33 C40 33 35 38 35 45" />
+      <path d="M57 18 C61 18 64 15 64 11 L64 3 L57 3 L57 11 C57 13 55 15 53 15 L52 15 L52 18 Z" />
+      <path d="M72 18 C76 18 79 15 79 11 L79 3 L72 3 L72 11 C72 13 70 15 68 15 L67 15 L67 18 Z" />
+    </g>
+    <text x="32" y="61" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#1f76af">?</text>
+  </svg>
+
+  <div class="chart">
+    <div class="bar blue bar1"></div>
+    <div class="bar bar2"></div>
+    <div class="bar bar3"></div>
+    <div class="bar bar4"></div>
+    <div class="bar bar5"></div>
+
+    <div class="circle-wrap">
+      <svg viewBox="0 0 126 126" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="63" cy="63" r="49" fill="#f3f3f3" stroke="#1f76af" stroke-width="2.4"/>
+        <path d="M17 73 A42 42 0 1 1 108 83" fill="none" stroke="#1f76af" stroke-width="2.4"/>
+        <path d="M18 50 A47 47 0 0 1 107 35" fill="none" stroke="#1f76af" stroke-width="2.4"/>
+        <text x="63" y="74" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" fill="#111">32%</text>
+      </svg>
+    </div>
+
+    <div class="pct pct2">25%</div>
+    <div class="pct pct3">22%</div>
+    <div class="pct pct4">12%</div>
+    <div class="pct pct5">9%</div>
+
+    <div class="bar-label lbl1">Development<br>of portfolio<br>companies</div>
+    <div class="bar-label lbl2">Making new<br>investments</div>
+    <div class="bar-label lbl3">Divesting<br>existing<br>investments</div>
+    <div class="bar-label lbl4">Fund-<br>raising</div>
+    <div class="bar-label lbl5">Prolongation<br>of existing<br>funds</div>
+  </div>
+
+  <div class="notes-divider"></div>
+
+  <div class="notes">
+    <div class="bullet n1b">&gt;</div>
+    <div class="text n1t">The development of portfolio companies is the new top priority for financial investors in 2019, up 10 ppt. from 2018</div>
+    <div class="bullet n2b">&gt;</div>
+    <div class="text n2t">The top priority in 2018, cited by 30% of respondents, was the divestment of existing investments – At 22% in 2019, this has become slightly less important</div>
+  </div>
+
+  <div class="footnote">% of participants who plan to place most of their focus on this phase of the PE value chain</div>
+  <div class="source">Source: Roland Berger</div>
+  <div class="footer-right">Roland_Berger_European_PE_Outlook_2019.pptx <span class="sep"></span> 16</div>
+</div>
+</body>
+</html>

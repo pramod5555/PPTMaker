@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1024, initial-scale=1.0" />
+<title>Syracuse enrollment growth slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1024px;
+    height:768px;
+    overflow:hidden;
+    background:#f3f3f3;
+    color:#111;
+  }
+  .title{
+    position:absolute;
+    left:18px;
+    top:14px;
+    width:960px;
+    font-size:35px;
+    line-height:1.14;
+    font-weight:400;
+    letter-spacing:0;
+  }
+  .red-rule{
+    position:absolute;
+    left:0;
+    top:102px;
+    width:992px;
+    height:13px;
+    background:#d80000;
+    clip-path:polygon(0 0, 100% 0, 99.35% 100%, 0 100%);
+  }
+  .subtitle{
+    position:absolute;
+    left:33px;
+    top:147px;
+    font-size:17px;
+    line-height:1.2;
+    font-weight:400;
+  }
+  .chart{
+    position:absolute;
+    left:110px;
+    top:185px;
+    width:855px;
+    height:300px;
+  }
+  .barvalue,.xlab,.table-num,.left-label,.note,.page{
+    position:absolute;
+    color:#111;
+  }
+  .barvalue{
+    font-size:29px;
+    transform:scale(0.5);
+    transform-origin:top left;
+    line-height:1;
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .xlab{
+    font-size:29px;
+    transform:scale(0.5);
+    transform-origin:top left;
+    line-height:1.08;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .xlab.bold{ font-weight:700; }
+  .table-num{
+    font-size:31px;
+    transform:scale(0.5);
+    transform-origin:top left;
+    line-height:1;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .left-label{
+    left:34px;
+    width:110px;
+    font-size:18px;
+    line-height:1.03;
+    font-weight:400;
+  }
+  .grad{ top:519px; }
+  .under{ top:607px; }
+  .note{
+    left:20px;
+    top:702px;
+    width:900px;
+    font-size:13px;
+    line-height:1.1;
+    color:#222;
+  }
+  .bottom-line{
+    position:absolute;
+    left:0;
+    top:733px;
+    width:1024px;
+    height:1px;
+    background:#9b9b9b;
+  }
+  .page{
+    right:43px;
+    top:737px;
+    font-size:27px;
+    line-height:1;
+    font-weight:700;
+  }
+  .logo{
+    position:absolute;
+    right:18px;
+    top:736px;
+    width:20px;
+    height:20px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">Syracuse has grown enrollment at a higher rate than<br>most peers &ndash; particularly undergraduate enrollment</div>
+  <div class="red-rule"></div>
+  <div class="subtitle">Enrollment CAGR (undergraduate + graduate) from 2008-2012</div>
+
+  <svg class="chart" viewBox="0 0 855 300" aria-hidden="true">
+    <!-- axes -->
+    <line x1="50" y1="15" x2="50" y2="297" stroke="#111" stroke-width="2.2"/>
+    <line x1="50" y1="226" x2="848" y2="226" stroke="#111" stroke-width="1.8"/>
+
+    <!-- y ticks -->
+    <line x1="44" y1="15" x2="50" y2="15" stroke="#111" stroke-width="2"/>
+    <line x1="44" y1="85" x2="50" y2="85" stroke="#111" stroke-width="2"/>
+    <line x1="44" y1="156" x2="50" y2="156" stroke="#111" stroke-width="2"/>
+    <line x1="44" y1="226" x2="50" y2="226" stroke="#111" stroke-width="2"/>
+    <line x1="44" y1="297" x2="50" y2="297" stroke="#111" stroke-width="2"/>
+
+    <!-- bars -->
+    <rect x="64" y="41" width="51" height="185" fill="#adadad"/>
+    <rect x="144" y="48" width="51" height="178" fill="#adadad"/>
+    <rect x="224" y="75" width="51" height="151" fill="#f78600"/>
+    <rect x="304" y="89" width="51" height="137" fill="#adadad"/>
+    <rect x="384" y="180" width="51" height="46" fill="#adadad"/>
+    <rect x="464" y="194" width="51" height="32" fill="#adadad"/>
+    <rect x="544" y="205" width="51" height="21" fill="#adadad"/>
+    <rect x="624" y="212" width="51" height="14" fill="#adadad"/>
+    <rect x="704" y="216" width="51" height="10" fill="#adadad"/>
+    <rect x="784" y="226" width="51" height="39" fill="#adadad"/>
+
+    <!-- y-axis labels -->
+    <text x="7" y="20" font-size="16" font-family="Arial, Helvetica, sans-serif" fill="#111">6.0%</text>
+    <text x="18" y="90" font-size="16" font-family="Arial, Helvetica, sans-serif" fill="#111">4.0</text>
+    <text x="18" y="161" font-size="16" font-family="Arial, Helvetica, sans-serif" fill="#111">2.0</text>
+    <text x="18" y="231" font-size="16" font-family="Arial, Helvetica, sans-serif" fill="#111">0.0</text>
+    <text x="13" y="302" font-size="16" font-family="Arial, Helvetica, sans-serif" fill="#111">-2.0</text>
+  </svg>
+
+  <!-- bar values -->
+  <div class="barvalue" style="left:188px; top:206px;">5.3</div>
+  <div class="barvalue" style="left:268px; top:213px;">5.1</div>
+  <div class="barvalue" style="left:348px; top:240px;">4.3</div>
+  <div class="barvalue" style="left:428px; top:254px;">3.9</div>
+  <div class="barvalue" style="left:508px; top:344px;">1.4</div>
+  <div class="barvalue" style="left:588px; top:359px;">0.9</div>
+  <div class="barvalue" style="left:668px; top:371px;">0.6</div>
+  <div class="barvalue" style="left:748px; top:378px;">0.4</div>
+  <div class="barvalue" style="left:828px; top:381px;">0.3</div>
+  <div class="barvalue" style="left:902px; top:456px;">-1.1</div>
+
+  <!-- x labels -->
+  <div class="xlab" style="left:177px; top:486px; width:92px;">Tulane</div>
+  <div class="xlab" style="left:259px; top:486px; width:58px;">NE</div>
+  <div class="xlab bold" style="left:322px; top:486px; width:128px;">Syracuse</div>
+  <div class="xlab" style="left:400px; top:486px; width:96px;">George-<br>town</div>
+  <div class="xlab" style="left:476px; top:486px; width:114px;">American</div>
+  <div class="xlab" style="left:557px; top:486px; width:78px;">Wake<br>Forest</div>
+  <div class="xlab" style="left:645px; top:486px; width:63px;">BU</div>
+  <div class="xlab" style="left:718px; top:486px; width:77px;">SMU</div>
+  <div class="xlab" style="left:792px; top:486px; width:85px;">Lehigh</div>
+  <div class="xlab" style="left:881px; top:486px; width:69px;">GWU</div>
+
+  <div class="left-label grad">Graduate<br>enrollment<br>CAGR,<br>2008-2012</div>
+  <div class="left-label under">Undergraduate<br>enrollment<br>CAGR,<br>2008-2012</div>
+
+  <!-- graduate row values -->
+  <div class="table-num" style="left:179px; top:549px; width:78px;">3.9%</div>
+  <div class="table-num" style="left:257px; top:549px; width:78px;">12.9%</div>
+  <div class="table-num" style="left:335px; top:549px; width:78px;">2.1%</div>
+  <div class="table-num" style="left:413px; top:549px; width:78px;">5.6%</div>
+  <div class="table-num" style="left:491px; top:549px; width:78px;">-1.4%</div>
+  <div class="table-num" style="left:569px; top:549px; width:78px;">-0.2%</div>
+  <div class="table-num" style="left:647px; top:549px; width:78px;">1.0%</div>
+  <div class="table-num" style="left:725px; top:549px; width:78px;">0.2%</div>
+  <div class="table-num" style="left:803px; top:549px; width:78px;">-0.6%</div>
+  <div class="table-num" style="left:881px; top:549px; width:78px;">0.0%</div>
+
+  <!-- undergraduate row values -->
+  <div class="table-num" style="left:179px; top:637px; width:78px;">6.2%</div>
+  <div class="table-num" style="left:257px; top:637px; width:78px;">1.2%</div>
+  <div class="table-num" style="left:335px; top:637px; width:78px;">5.1%</div>
+  <div class="table-num" style="left:413px; top:637px; width:78px;">2.1%</div>
+  <div class="table-num" style="left:491px; top:637px; width:78px;">3.7%</div>
+  <div class="table-num" style="left:569px; top:637px; width:78px;">1.6%</div>
+  <div class="table-num" style="left:647px; top:637px; width:78px;">0.3%</div>
+  <div class="table-num" style="left:725px; top:637px; width:78px;">0.6%</div>
+  <div class="table-num" style="left:803px; top:637px; width:78px;">0.8%</div>
+  <div class="table-num" style="left:881px; top:637px; width:78px;">-2.7%</div>
+
+  <!-- hand-drawn red circle -->
+  <svg style="position:absolute; left:326px; top:618px; width:75px; height:43px;" viewBox="0 0 75 43" aria-hidden="true">
+    <path d="M10,25 C12,14 23,7 37,6 C52,5 66,12 67,23 C68,34 57,41 39,42 C23,43 8,37 10,25" fill="none" stroke="#d11" stroke-width="2" stroke-linecap="round"/>
+    <path d="M32,4 C38,1 48,2 55,6" fill="none" stroke="#d11" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+
+  <div class="note">Note: All enrollment CAGRs calculated based on IPEDS 12-month unduplicated headcount of total and undergraduate students<br>Source: IPEDS 2011</div>
+
+  <div class="bottom-line"></div>
+  <div class="page">13</div>
+
+  <svg class="logo" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="10.5" fill="none" stroke="#e01919" stroke-width="2"/>
+    <path d="M12 4.4 L16.2 13.2 L7.8 13.2 Z" fill="#e01919"/>
+  </svg>
+</div>
+</body>
+</html>

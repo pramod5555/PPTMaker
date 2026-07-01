@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Executive Summary Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#dddddd;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dfdde0;
+  }
+  .slide > div,
+  .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .left-panel{
+    left:30px;
+    top:30px;
+    width:762px;
+    height:705px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 26% 30%, rgba(255,192,73,0.72) 0%, rgba(244,130,66,0.55) 10%, rgba(133,24,64,0.36) 23%, rgba(18,7,26,0) 36%),
+      radial-gradient(ellipse at 33% 55%, rgba(227,99,209,0.36) 0%, rgba(137,38,112,0.28) 16%, rgba(18,8,28,0) 30%),
+      radial-gradient(ellipse at 70% 20%, rgba(48,95,196,0.24) 0%, rgba(21,48,120,0.15) 19%, rgba(6,9,34,0) 36%),
+      radial-gradient(ellipse at 74% 82%, rgba(160,17,28,0.22) 0%, rgba(90,7,14,0.14) 18%, rgba(11,4,18,0) 34%),
+      linear-gradient(180deg, rgba(7,7,26,0.97) 0%, rgba(11,7,24,0.98) 100%);
+  }
+
+  .ceiling{
+    left:30px;
+    top:30px;
+    width:350px;
+    height:155px;
+    background:repeating-linear-gradient(
+      12deg,
+      rgba(76,0,24,0.8) 0px,
+      rgba(76,0,24,0.8) 8px,
+      rgba(7,4,16,0.96) 8px,
+      rgba(7,4,16,0.96) 24px
+    );
+    clip-path:polygon(0 0, 100% 0, 66% 100%, 0 100%);
+    z-index:1;
+    opacity:0.8;
+  }
+
+  .art-svg{
+    left:30px;
+    top:30px;
+    width:762px;
+    height:705px;
+    z-index:2;
+    opacity:0.97;
+  }
+
+  .floor-shadow{
+    left:30px;
+    top:545px;
+    width:762px;
+    height:160px;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 32%, rgba(0,0,0,0.42) 100%);
+    z-index:3;
+  }
+
+  .silhouette-left{
+    left:78px;
+    top:287px;
+    width:86px;
+    height:315px;
+    z-index:4;
+    filter:blur(2.2px);
+    opacity:0.92;
+  }
+  .silhouette-right{
+    left:178px;
+    top:270px;
+    width:126px;
+    height:390px;
+    z-index:4;
+    filter:blur(2.8px);
+    opacity:0.95;
+  }
+  .head{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(10,1,12,0.96);
+  }
+  .body{
+    position:absolute;
+    background:rgba(12,1,12,0.97);
+    border-radius:22px;
+  }
+  .arm{
+    position:absolute;
+    background:rgba(12,1,12,0.96);
+    border-radius:16px;
+    transform-origin:left center;
+  }
+  .leg{
+    position:absolute;
+    background:rgba(8,0,10,0.98);
+    border-radius:18px;
+    transform-origin:top center;
+  }
+  .tablet{
+    position:absolute;
+    background:rgba(32,24,34,0.96);
+    border-radius:3px;
+    transform:rotate(-10deg);
+  }
+
+  .overlay-band{
+    left:376px;
+    top:30px;
+    width:416px;
+    height:705px;
+    background:linear-gradient(180deg, rgba(4,5,24,0.62) 0%, rgba(4,4,22,0.76) 100%);
+    z-index:10;
+  }
+
+  .numbers{
+    left:445px;
+    color:#f7e000;
+    font-weight:700;
+    line-height:0.86;
+    letter-spacing:-0.075em;
+    z-index:30;
+  }
+  .num29{ top:138px; font-size:128px; width:240px; }
+  .num71{ top:408px; font-size:128px; width:240px; }
+
+  .callout{
+    left:453px;
+    width:290px;
+    color:#f1f1f1;
+    font-size:17px;
+    line-height:1.38;
+    font-weight:300;
+    z-index:31;
+  }
+  .callout strong{ font-weight:700; }
+  .callout1{ top:243px; }
+  .callout2{ top:515px; }
+
+  .right-text{
+    left:870px;
+    top:186px;
+    width:382px;
+    color:#5c5960;
+    font-size:14px;
+    line-height:1.42;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .jump{
+    left:1200px;
+    top:58px;
+    width:48px;
+    height:48px;
+    z-index:50;
+  }
+
+  .sidebar-label{
+    left:11px;
+    top:375px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    color:#353239;
+    font-size:13px;
+    letter-spacing:0.04em;
+    font-weight:500;
+    width:175px;
+    z-index:41;
+  }
+  .sidebar-line{
+    left:14px;
+    top:390px;
+    width:1px;
+    height:35px;
+    background:#66626a;
+    z-index:41;
+  }
+
+  .page{
+    left:49px;
+    top:678px;
+    color:#ffffff;
+    font-size:11px;
+    font-weight:600;
+    z-index:60;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-panel"></div>
+  <div class="ceiling"></div>
+
+  <svg class="art-svg" viewBox="0 0 762 705" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="blur6"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="blur10"><feGaussianBlur stdDeviation="10"/></filter>
+      <filter id="blur18"><feGaussianBlur stdDeviation="18"/></filter>
+      <filter id="blur24"><feGaussianBlur stdDeviation="24"/></filter>
+      <linearGradient id="smoke1" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#f7d95e" stop-opacity="0.98"/>
+        <stop offset="45%" stop-color="#ff8a58" stop-opacity="0.78"/>
+        <stop offset="100%" stop-color="#cf4fc8" stop-opacity="0.24"/>
+      </linearGradient>
+      <linearGradient id="smoke2" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0%" stop-color="#9dd8ff" stop-opacity="0.2"/>
+        <stop offset="50%" stop-color="#f3f2c0" stop-opacity="0.34"/>
+        <stop offset="100%" stop-color="#2f66bf" stop-opacity="0.15"/>
+      </linearGradient>
+      <linearGradient id="smoke3" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#ff8ad9" stop-opacity="0.34"/>
+        <stop offset="50%" stop-color="#ffffff" stop-opacity="0.24"/>
+        <stop offset="100%" stop-color="#7ec8ff" stop-opacity="0.15"/>
+      </linearGradient>
+    </defs>
+
+    <path d="M74 305 C100 260, 128 185, 173 147 C205 121, 228 126, 239 169 C247 202, 227 232, 221 253 C212 291, 236 309, 272 290 C307 271, 317 242, 310 196 C304 154, 321 135, 357 133"
+          fill="none" stroke="url(#smoke1)" stroke-width="16" stroke-linecap="round" filter="url(#blur6)" opacity="0.84"/>
+    <path d="M82 316 C130 327, 170 382, 228 425 C271 457, 321 467, 342 441 C362 416, 345 378, 320 333 C291 276, 292 217, 319 184 C347 145, 388 136, 428 158"
+          fill="none" stroke="url(#smoke3)" stroke-width="19" stroke-linecap="round" filter="url(#blur10)" opacity="0.67"/>
+    <path d="M100 526 C140 487, 146 431, 179 390 C213 347, 253 333, 274 357 C296 382, 281 430, 279 467 C278 513, 303 538, 347 528"
+          fill="none" stroke="url(#smoke1)" stroke-width="18" stroke-linecap="round" filter="url(#blur10)" opacity="0.72"/>
+    <path d="M206 89 C257 127, 283 169, 310 223 C344 293, 381 310, 441 286 C492 263, 530 226, 548 154"
+          fill="none" stroke="url(#smoke1)" stroke-width="13" stroke-linecap="round" filter="url(#blur10)" opacity="0.38"/>
+    <path d="M463 31 C498 58, 520 97, 541 149 C560 198, 594 214, 632 206 C667 199, 690 179, 716 138"
+          fill="none" stroke="url(#smoke2)" stroke-width="20" stroke-linecap="round" filter="url(#blur18)" opacity="0.28"/>
+    <path d="M492 87 C553 99, 586 136, 612 188 C637 237, 660 277, 713 296"
+          fill="none" stroke="url(#smoke2)" stroke-width="14" stroke-linecap="round" filter="url(#blur10)" opacity="0.23"/>
+    <path d="M432 188 C447 228, 456 256, 474 292 C497 337, 503 373, 486 409 C470 445, 445 470, 417 506"
+          fill="none" stroke="url(#smoke2)" stroke-width="15" stroke-linecap="round" filter="url(#blur18)" opacity="0.18"/>
+    <path d="M631 94 C611 69, 585 42, 548 21 C507 -1, 475 -6, 445 8"
+          fill="none" stroke="url(#smoke2)" stroke-width="13" stroke-linecap="round" filter="url(#blur10)" opacity="0.14"/>
+    <path d="M524 493 C561 446, 594 429, 632 435 C668 440, 696 464, 713 516 C726 557, 716 589, 688 609"
+          fill="none" stroke="url(#smoke1)" stroke-width="12" stroke-linecap="round" filter="url(#blur10)" opacity="0.26"/>
+    <path d="M83 232 C105 257, 124 284, 145 292 C171 302, 191 288, 211 260 C233 228, 239 188, 267 176"
+          fill="none" stroke="url(#smoke3)" stroke-width="12" stroke-linecap="round" filter="url(#blur10)" opacity="0.38"/>
+
+    <ellipse cx="126" cy="294" rx="56" ry="28" fill="#6d0f4d" opacity="0.38" filter="url(#blur18)"/>
+    <ellipse cx="194" cy="168" rx="74" ry="54" fill="#ffac4c" opacity="0.18" filter="url(#blur24)"/>
+    <ellipse cx="182" cy="442" rx="92" ry="63" fill="#9c134d" opacity="0.22" filter="url(#blur24)"/>
+    <ellipse cx="575" cy="113" rx="102" ry="76" fill="#294f9f" opacity="0.14" filter="url(#blur24)"/>
+    <ellipse cx="631" cy="559" rx="110" ry="62" fill="#7c070f" opacity="0.12" filter="url(#blur24)"/>
+
+    <rect x="0" y="0" width="762" height="705" fill="rgba(17,7,27,0.12)"/>
+  </svg>
+
+  <div class="floor-shadow"></div>
+
+  <div class="silhouette-left">
+    <div class="head" style="left:16px; top:18px; width:34px; height:34px;"></div>
+    <div class="body" style="left:5px; top:48px; width:55px; height:118px;"></div>
+    <div class="arm" style="left:0; top:82px; width:36px; height:18px; transform:rotate(-4deg);"></div>
+    <div class="arm" style="left:34px; top:83px; width:36px; height:16px; transform:rotate(12deg);"></div>
+    <div class="leg" style="left:14px; top:160px; width:18px; height:126px; transform:rotate(-3deg);"></div>
+    <div class="leg" style="left:34px; top:162px; width:19px; height:127px; transform:rotate(5deg);"></div>
+  </div>
+
+  <div class="silhouette-right">
+    <div class="head" style="left:36px; top:21px; width:41px; height:41px;"></div>
+    <div class="body" style="left:18px; top:58px; width:73px; height:154px;"></div>
+    <div class="arm" style="left:66px; top:96px; width:56px; height:16px; transform:rotate(-6deg);"></div>
+    <div class="arm" style="left:8px; top:101px; width:39px; height:18px; transform:rotate(18deg);"></div>
+    <div class="leg" style="left:30px; top:206px; width:23px; height:154px; transform:rotate(-1deg);"></div>
+    <div class="leg" style="left:57px; top:206px; width:24px; height:154px; transform:rotate(8deg);"></div>
+    <div class="tablet" style="left:103px; top:98px; width:24px; height:12px;"></div>
+  </div>
+
+  <div class="overlay-band"></div>
+
+  <div class="numbers num29">29%</div>
+  <div class="callout callout1">
+    CROs who say <strong>hiring</strong> and/or<br>
+    <strong>developing specific talent/</strong><br>
+    <strong>skill sets is key</strong> to managing<br>
+    high-priority risks
+  </div>
+
+  <div class="numbers num71">71%</div>
+  <div class="callout callout2">
+    CROs who cite <strong>digital acumen</strong><br>
+    (e.g., technology, data, AI,<br>
+    programming) as a <strong>top skill</strong><br>
+    <strong>set</strong> to better manage risk
+  </div>
+
+  <div class="right-text">
+    Our survey respondents recognize the need for both<br>
+    discrete technical talent (e.g., AI, data science) and broader,<br>
+    more flexible skill sets (e.g., business knowledge, vendor<br>
+    management, ethics, governance). The emphasis on the<br>
+    latter reflects the quickly, constantly changing nature of<br>
+    the banking sector today. There is a premium on versatile<br>
+    risk management “athletes” who possess core skill sets<br>
+    (e.g., critical thinking, business savvy, communication) and<br>
+    can be coached up into advisory roles and/or trained in<br>
+    specific domains. AI skills and knowledge will be essential<br>
+    as risk management professionals increasingly operate in<br>
+    hybrid governance roles, designing enterprise policies and<br>
+    collaborating directly with the business to implement them<br>
+    in ways that foster responsible innovation.
+  </div>
+
+  <svg class="jump" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="29" cy="29" r="18" fill="none" stroke="#66636a" stroke-width="1.2" stroke-dasharray="7 5"/>
+    <circle cx="43" cy="11" r="4" fill="#e4d200"/>
+    <text x="14" y="24" font-family="Arial, Helvetica, sans-serif" font-size="8" fill="#3d3940">Jump to</text>
+    <text x="14" y="34" font-family="Arial, Helvetica, sans-serif" font-size="8" fill="#3d3940">contents</text>
+    <path d="M40 16 L47 16 L47 23" fill="none" stroke="#6d6a71" stroke-width="1.1" stroke-linecap="round"/>
+  </svg>
+
+  <div class="sidebar-label">EXECUTIVE SUMMARY</div>
+  <div class="sidebar-line"></div>
+
+  <div class="page">8</div>
+</div>
+</body>
+</html>

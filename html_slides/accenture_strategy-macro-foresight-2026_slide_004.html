@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Macro Foresight platform</title>
+<style>
+  body{
+    margin:0;
+    background:#f6f4f7;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f6f4f7;
+    color:#111;
+  }
+
+  .title{
+    position:absolute;
+    left:41px;
+    top:25px;
+    width:1170px;
+    font-size:28px;
+    line-height:1.0;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-0.3px;
+  }
+
+  .subtitle{
+    position:absolute;
+    left:41px;
+    top:118px;
+    width:430px;
+    font-size:28px;
+    line-height:1;
+    font-weight:700;
+    color:#9a1cff;
+  }
+
+  .monitor{
+    position:absolute;
+    left:58px;
+    top:206px;
+    width:544px;
+    height:360px;
+  }
+  .screen-frame{
+    position:absolute;
+    left:0;
+    top:0;
+    width:544px;
+    height:312px;
+    background:#ececec;
+    border:13px solid #000;
+    border-radius:12px;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.12), 0 14px 18px rgba(0,0,0,0.15);
+  }
+  .screen{
+    position:absolute;
+    left:37px;
+    top:22px;
+    width:451px;
+    height:268px;
+    background:#000;
+    overflow:hidden;
+  }
+  .scr-top{
+    position:absolute;
+    left:0;
+    top:0;
+    width:451px;
+    height:16px;
+    background:#070707;
+    color:#fff;
+    font-size:3px;
+  }
+  .scr-top .logo{
+    position:absolute;
+    left:32px;
+    top:4px;
+    color:#a120ff;
+    font-size:12px;
+    font-weight:700;
+  }
+  .scr-top .nav{
+    position:absolute;
+    left:138px;
+    top:4px;
+    font-size:3px;
+    color:#fff;
+    opacity:0.95;
+    letter-spacing:0.1px;
+  }
+  .scr-bar{
+    position:absolute;
+    left:0;
+    top:16px;
+    width:451px;
+    height:10px;
+    background:#7f00c8;
+  }
+  .scr-bar .menu{
+    position:absolute;
+    left:33px;
+    top:2px;
+    color:#fff;
+    font-size:3px;
+    width:390px;
+    display:flex;
+    justify-content:space-between;
+  }
+  .hero-img{
+    position:absolute;
+    left:12px;
+    top:64px;
+    width:155px;
+    height:106px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.08), rgba(0,0,0,0.1)),
+      linear-gradient(135deg, #3d1f5c 0%, #6d2d7a 35%, #f2b95a 65%, #5f2fa2 100%);
+    overflow:hidden;
+  }
+  .hero-img:before{
+    content:"";
+    position:absolute;
+    left:-10px;
+    top:54px;
+    width:185px;
+    height:18px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#ffbf73,#a56cff,#f0d28a);
+    transform:rotate(12deg);
+    opacity:.9;
+  }
+  .hero-img:after{
+    content:"";
+    position:absolute;
+    left:-6px;
+    top:76px;
+    width:178px;
+    height:10px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#ffd996,#b88cff,#ffd389);
+    transform:rotate(12deg);
+    opacity:.9;
+  }
+  .buildings{
+    position:absolute;
+    left:10px;
+    top:20px;
+    width:135px;
+    height:50px;
+    background:
+      linear-gradient(to right,
+        transparent 0 6%,
+        #c8c8ff 6% 9%, transparent 9% 12%,
+        #b6d7ff 12% 15%, transparent 15% 18%,
+        #ffe7aa 18% 23%, transparent 23% 26%,
+        #d7d7ff 26% 32%, transparent 32% 35%,
+        #f7d79b 35% 39%, transparent 39% 43%,
+        #b8c8ff 43% 48%, transparent 48% 52%,
+        #d8d8ff 52% 57%, transparent 57% 61%,
+        #f9e19c 61% 66%, transparent 66% 70%,
+        #d0d0ff 70% 74%, transparent 74% 78%,
+        #ebd595 78% 84%, transparent 84% 88%,
+        #cfcfff 88% 93%, transparent 93% 100%);
+    opacity:.7;
+  }
+  .hero-title{
+    position:absolute;
+    left:202px;
+    top:44px;
+    width:162px;
+    color:#fff;
+    font-size:18px;
+    line-height:1.05;
+    font-weight:700;
+  }
+  .hero-copy{
+    position:absolute;
+    left:202px;
+    top:133px;
+    width:142px;
+    color:#fff;
+    font-size:4px;
+    line-height:1.2;
+    opacity:.95;
+  }
+  .overview{
+    position:absolute;
+    left:32px;
+    top:188px;
+    width:192px;
+    color:#fff;
+  }
+  .overview .head{
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:8px;
+  }
+  .overview .body{
+    font-size:4px;
+    line-height:1.4;
+    opacity:.92;
+  }
+  .purple-card{
+    position:absolute;
+    left:259px;
+    top:188px;
+    width:103px;
+    height:47px;
+    background:#7c00ca;
+  }
+  .purple-card .tiny{
+    position:absolute;
+    left:6px;
+    top:5px;
+    color:#fff;
+    font-size:3px;
+    opacity:.85;
+  }
+  .purple-card .pct{
+    position:absolute;
+    left:7px;
+    top:15px;
+    color:#fff;
+    font-size:19px;
+    font-weight:700;
+  }
+  .purple-card .copy{
+    position:absolute;
+    left:7px;
+    top:34px;
+    width:74px;
+    color:#fff;
+    font-size:3px;
+    line-height:1.2;
+    opacity:.9;
+  }
+  .purple-card .box{
+    position:absolute;
+    right:6px;
+    top:6px;
+    width:5px;
+    height:5px;
+    border:1px solid #fff;
+    box-sizing:border-box;
+  }
+
+  .stand{
+    position:absolute;
+    left:286px;
+    top:325px;
+    width:97px;
+    height:94px;
+  }
+  .stand-neck{
+    position:absolute;
+    left:34px;
+    top:0;
+    width:29px;
+    height:60px;
+    background:linear-gradient(180deg,#efefef,#d8d8d8);
+    border-radius:0 0 18px 18px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+  }
+  .stand-base{
+    position:absolute;
+    left:0;
+    top:55px;
+    width:97px;
+    height:28px;
+    background:linear-gradient(180deg,#f3f3f3,#d8d8d8);
+    border-radius:50% 50% 10px 10px / 80% 80% 20px 20px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+  }
+
+  .keyboard{
+    position:absolute;
+    left:217px;
+    top:647px;
+    width:198px;
+    height:27px;
+    background:linear-gradient(180deg,#fafafa,#dedede);
+    border-radius:4px 4px 8px 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  }
+  .keyboard:before{
+    content:"";
+    position:absolute;
+    left:8px;
+    top:5px;
+    width:182px;
+    height:12px;
+    background:
+      repeating-linear-gradient(to right,
+        #d3d3d3 0 1px,
+        transparent 1px 9px),
+      repeating-linear-gradient(to bottom,
+        #d3d3d3 0 1px,
+        transparent 1px 6px);
+    opacity:.85;
+  }
+  .keyboard:after{
+    content:"";
+    position:absolute;
+    left:13px;
+    bottom:4px;
+    width:170px;
+    height:4px;
+    background:#ececec;
+    border-radius:4px;
+  }
+
+  .mouse{
+    position:absolute;
+    left:478px;
+    top:643px;
+    width:33px;
+    height:21px;
+    background:linear-gradient(180deg,#f8f8f8,#d9d9d9);
+    border-radius:18px 18px 16px 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+    transform:rotate(8deg);
+  }
+  .mouse:before{
+    content:"";
+    position:absolute;
+    left:15px;
+    top:3px;
+    width:2px;
+    height:6px;
+    background:#c2c2c2;
+    border-radius:2px;
+  }
+
+  .panel{
+    position:absolute;
+    left:639px;
+    top:179px;
+    width:669px;
+    height:509px;
+    background:#f7f7f7;
+    border:2px solid #676767;
+    box-shadow:4px 4px 8px rgba(0,0,0,0.18);
+    box-sizing:border-box;
+    padding:0;
+  }
+  .panel-content{
+    position:absolute;
+    left:29px;
+    top:8px;
+    width:610px;
+    font-size:18px;
+    line-height:1.12;
+    color:#222;
+  }
+  .bullet{
+    position:relative;
+    padding-left:22px;
+    margin-bottom:9px;
+  }
+  .bullet:before{
+    content:"•";
+    position:absolute;
+    left:0;
+    top:0;
+    font-size:20px;
+    line-height:1;
+    color:#000;
+  }
+  .dash{
+    position:relative;
+    padding-left:63px;
+    margin-top:6px;
+    margin-bottom:8px;
+  }
+  .dash:before{
+    content:"–";
+    position:absolute;
+    left:32px;
+    top:0;
+    font-size:22px;
+    line-height:1;
+    color:#222;
+  }
+  .purple{ color:#8e1cff; font-weight:700; }
+  .bold{ font-weight:700; color:#111; }
+
+  .footer-left{
+    position:absolute;
+    left:38px;
+    bottom:17px;
+    font-size:58px;
+    line-height:1;
+    color:#a020ff;
+    font-weight:700;
+  }
+  .footer-center{
+    position:absolute;
+    right:87px;
+    bottom:19px;
+    font-size:14px;
+    color:#666;
+  }
+  .footer-right{
+    position:absolute;
+    right:20px;
+    bottom:19px;
+    font-size:16px;
+    color:#666;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">
+    Macro Foresight is focused on helping companies develop strategic plans in response<br>
+    to the changing macro environment—reach out if you would like to learn more
+  </div>
+
+  <div class="subtitle">Macro Foresight platform</div>
+
+  <div class="monitor">
+    <div class="screen-frame">
+      <div class="screen">
+        <div class="scr-top">
+          <div class="logo">&gt;</div>
+          <div class="nav">Who we are &nbsp;&nbsp; What we think &nbsp;&nbsp; Who we are &nbsp;&nbsp; Careers &nbsp;&nbsp; About</div>
+        </div>
+        <div class="scr-bar">
+          <div class="menu">
+            <span>Macro foresight</span>
+            <span>Overview</span>
+            <span>Macro briefs</span>
+            <span>In the spotlight</span>
+            <span>Podcast</span>
+            <span>What's trending</span>
+          </div>
+        </div>
+        <div class="hero-img">
+          <div class="buildings"></div>
+        </div>
+        <div class="hero-title">
+          Forward-looking<br>
+          macroeconomic and<br>
+          geopolitical insights<br>
+          and trends
+        </div>
+        <div class="hero-copy">
+          A blended foresight to help you anticipate change and<br>
+          understand how major global economic and geopolitical shifts<br>
+          impact your strategic planning.
+        </div>
+        <div class="overview">
+          <div class="head">Overview</div>
+          <div class="body">
+            We provide strategic insights and issues to C-suite executives on economic and<br>
+            geopolitical developments given the current external environment businesses<br>
+            operate in. Our goal is to translate complicated trends into simple pragmatic<br>
+            recommendations for our clients, supporting companies with corporate strategy,<br>
+            government, scenario planning and more.
+          </div>
+        </div>
+        <div class="purple-card">
+          <div class="tiny">DATA</div>
+          <div class="pct">77%</div>
+          <div class="copy">of CEOs expect the economy to improve in the<br>next 12 months.</div>
+          <div class="box"></div>
+        </div>
+      </div>
+    </div>
+    <div class="stand">
+      <div class="stand-neck"></div>
+      <div class="stand-base"></div>
+    </div>
+  </div>
+
+  <div class="keyboard"></div>
+  <div class="mouse"></div>
+
+  <div class="panel">
+    <div class="panel-content">
+      <div class="bullet">
+        <span class="purple">Macro Foresight</span> helps companies develop strategic plans in<br>
+        response to complicated economic, financial and geopolitical<br>
+        shifts in the external environment
+      </div>
+
+      <div class="bullet">
+        <span class="bold">Our platform leverages Agentic AI to support:</span>
+      </div>
+
+      <div class="dash">Trend and event monitoring</div>
+      <div class="dash">Interpretation of events and implications for strategic<br>planning</div>
+      <div class="dash">Scenario planning activities</div>
+
+      <div class="bullet" style="margin-top:12px;">
+        The team also leverages capabilities across:
+      </div>
+
+      <div class="dash">Accenture’s deep industry expertise</div>
+      <div class="dash">Corporate Strategy &amp; Growth</div>
+      <div class="dash">Deep third-party network of policy advisors across<br>Washington DC, London, Brussels, and Beijing</div>
+
+      <div class="bullet" style="margin-top:10px;">
+        <span class="bold">Reach out if you would like to know more about our Macro<br>
+        Foresight platform and subscription models</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-left">&gt;</div>
+  <div class="footer-center">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="footer-right">4</div>
+</div>
+</body>
+</html>

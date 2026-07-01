@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f1f1f1;
+    color:#5f5f5f;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .qmark{
+    left:45px;
+    top:46px;
+    font-size:38px;
+    line-height:38px;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-0.5px;
+  }
+  .left-copy{
+    left:53px;
+    top:154px;
+    width:300px;
+    font-size:20px;
+    line-height:1.22;
+    font-weight:400;
+    color:#666;
+  }
+  .headline{
+    left:53px;
+    top:259px;
+    width:295px;
+    font-size:27px;
+    line-height:1.24;
+    font-weight:700;
+    color:#595959;
+    letter-spacing:-0.2px;
+  }
+  .base-note{
+    left:53px;
+    top:610px;
+    width:315px;
+    font-size:11px;
+    line-height:1.48;
+    font-style:italic;
+    color:#8a8a8a;
+  }
+  .copyright{
+    left:49px;
+    top:728px;
+    width:220px;
+    font-size:12px;
+    line-height:12px;
+    color:#4f4f4f;
+  }
+  .page{
+    left:674px;
+    top:728px;
+    width:18px;
+    text-align:center;
+    font-size:12px;
+    line-height:12px;
+    color:#4f4f4f;
+  }
+
+  .market-head{
+    left:376px;
+    top:22px;
+    font-size:15px;
+    line-height:18px;
+    color:#6d6d6d;
+    font-weight:400;
+  }
+  .legend-line-left{
+    left:370px;
+    top:52px;
+    width:168px;
+    height:1px;
+    background:#778998;
+  }
+  .legend-likely-box{
+    left:554px;
+    top:24px;
+    width:16px;
+    height:16px;
+    background:#28b3b4;
+  }
+  .legend-likely{
+    left:577px;
+    top:22px;
+    font-size:16px;
+    line-height:18px;
+    color:#6d6d6d;
+  }
+  .legend-line-mid{
+    left:547px;
+    top:52px;
+    width:624px;
+    height:1px;
+    background:#778998;
+  }
+  .legend-unlikely-box{
+    left:1114px;
+    top:23px;
+    width:16px;
+    height:16px;
+    background:#1b246c;
+  }
+  .legend-unlikely{
+    left:1137px;
+    top:22px;
+    font-size:16px;
+    line-height:18px;
+    color:#6d6d6d;
+  }
+  .legend-line-right{
+    left:1207px;
+    top:52px;
+    width:122px;
+    height:1px;
+    background:#778998;
+  }
+  .change-head{
+    left:1221px;
+    top:17px;
+    width:92px;
+    font-size:14px;
+    line-height:1.1;
+    text-align:center;
+    color:#333;
+    font-weight:400;
+  }
+
+  .labels{
+    left:378px;
+    top:84px;
+    width:132px;
+    font-size:11px;
+    line-height:18px;
+    color:#767676;
+    text-align:right;
+    font-weight:400;
+  }
+  .bars{
+    left:520px;
+    top:84px;
+    width:658px;
+    height:612px;
+  }
+  .row{
+    position:absolute;
+    left:0;
+    width:658px;
+    height:18px;
+  }
+  .likely{
+    position:absolute;
+    left:0;
+    top:1px;
+    height:15px;
+    background:#2ab2b5;
+  }
+  .unlikely{
+    position:absolute;
+    top:1px;
+    right:0;
+    height:15px;
+    background:#1b246c;
+  }
+  .row span{
+    position:absolute;
+    top:0;
+    font-size:12px;
+    line-height:15px;
+    font-weight:700;
+    color:#fff;
+    letter-spacing:-0.1px;
+  }
+  .row .lval{ left:8px; }
+  .row .uval{ right:8px; }
+
+  .avg-outline{
+    position:absolute;
+    left:0;
+    top:1px;
+    width:406px;
+    height:15px;
+    border:1px solid #47c0c1;
+    background:transparent;
+  }
+  .avg-outline-r{
+    position:absolute;
+    top:1px;
+    right:0;
+    width:180px;
+    height:15px;
+    border:1px solid #4d568e;
+    background:transparent;
+  }
+
+  .change-col{
+    left:1231px;
+    top:84px;
+    width:74px;
+    height:612px;
+    font-size:11px;
+    color:#505050;
+  }
+  .change-box{
+    position:absolute;
+    left:0;
+    width:74px;
+    height:18px;
+    background:#dcdcdf;
+    text-align:center;
+    line-height:18px;
+    border-top:1px solid rgba(255,255,255,0.45);
+  }
+
+  .highlight{
+    left:433px;
+    top:376px;
+    width:895px;
+    height:20px;
+    border:2px solid #2ab56f;
+    background:transparent;
+    z-index:10;
+  }
+
+  .logo{
+    left:1212px;
+    top:692px;
+    width:53px;
+    height:49px;
+    background:#2a4a96;
+    overflow:hidden;
+  }
+  .logo:before{
+    content:"";
+    position:absolute;
+    right:0;
+    top:0;
+    width:29px;
+    height:49px;
+    background:#10a79f;
+    clip-path:polygon(18% 0,100% 0,78% 100%,0 100%);
+  }
+  .logo .person1{
+    position:absolute;
+    right:20px;
+    top:6px;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#62308f;
+    z-index:2;
+  }
+  .logo .person1:after{
+    content:"";
+    position:absolute;
+    left:1px;
+    top:8px;
+    width:8px;
+    height:13px;
+    border-radius:4px 4px 0 0;
+    background:#62308f;
+  }
+  .logo .person2{
+    position:absolute;
+    right:11px;
+    top:10px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#179f97;
+    z-index:2;
+  }
+  .logo .person2:after{
+    content:"";
+    position:absolute;
+    left:1px;
+    top:6px;
+    width:6px;
+    height:11px;
+    border-radius:4px 4px 0 0;
+    background:#179f97;
+  }
+  .logo .txt{
+    position:absolute;
+    left:6px;
+    bottom:6px;
+    font-size:15px;
+    line-height:15px;
+    color:#fff;
+    font-weight:700;
+    z-index:3;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qmark">Q.</div>
+
+  <div class="left-copy">
+    For each of the following, please<br>
+    tell me how likely or unlikely you<br>
+    think they are to happen...?
+  </div>
+
+  <div class="headline">
+    Interest rates in my<br>
+    country will be higher<br>
+    in 2025 than in 2024
+  </div>
+
+  <div class="base-note">
+    Base: 23,721 adults aged 18 years and older in India, 18-74 in<br>
+    Canada, Republic of Ireland, Malaysia, the Philippines, South<br>
+    Africa, Turkey, and the United States, 20-74 in Thailand, 21-74<br>
+    in Indonesia and Singapore, and 16-74 in all other countries.<br>
+    Friday, October 25 – Friday November 8, 2024
+  </div>
+
+  <div class="copyright">© Ipsos Predictions 2025 Report</div>
+  <div class="page">32</div>
+
+  <div class="market-head">Market</div>
+  <div class="legend-line-left"></div>
+  <div class="legend-likely-box"></div>
+  <div class="legend-likely">Likely</div>
+  <div class="legend-line-mid"></div>
+  <div class="legend-unlikely-box"></div>
+  <div class="legend-unlikely">Unlikely</div>
+  <div class="legend-line-right"></div>
+  <div class="change-head">Change likely<br>vs 2023</div>
+
+  <div class="labels">
+    Global Country Average<br>
+    Philippines<br>
+    Indonesia<br>
+    Romania<br>
+    Malaysia<br>
+    South Africa<br>
+    Chile<br>
+    Mexico<br>
+    Brazil<br>
+    Peru<br>
+    Thailand<br>
+    Colombia<br>
+    Türkiye<br>
+    Hungary<br>
+    Singapore<br>
+    Ireland<br>
+    France<br>
+    Australia<br>
+    India<br>
+    Spain<br>
+    Poland<br>
+    Great Britain<br>
+    Italy<br>
+    United States<br>
+    Argentina<br>
+    Belgium<br>
+    Netherlands<br>
+    Canada<br>
+    Japan<br>
+    South Korea<br>
+    China<br>
+    Switzerland<br>
+    Germany<br>
+    Sweden
+  </div>
+
+  <div class="bars">
+    <div class="row" style="top:0px;">
+      <div class="avg-outline"></div>
+      <div class="avg-outline-r"></div>
+      <span class="lval" style="color:#2ab2b5;">61%</span>
+      <span class="uval" style="color:#1b246c;">27%</span>
+    </div>
+
+    <div class="row" style="top:18px;">
+      <div class="likely" style="width:553px;"></div>
+      <div class="unlikely" style="width:79px;"></div>
+      <span class="lval">84%</span><span class="uval">12%</span>
+    </div>
+    <div class="row" style="top:36px;">
+      <div class="likely" style="width:540px;"></div>
+      <div class="unlikely" style="width:72px;"></div>
+      <span class="lval">82%</span><span class="uval">11%</span>
+    </div>
+    <div class="row" style="top:54px;">
+      <div class="likely" style="width:520px;"></div>
+      <div class="unlikely" style="width:105px;"></div>
+      <span class="lval">79%</span><span class="uval">16%</span>
+    </div>
+    <div class="row" style="top:72px;">
+      <div class="likely" style="width:520px;"></div>
+      <div class="unlikely" style="width:112px;"></div>
+      <span class="lval">79%</span><span class="uval">17%</span>
+    </div>
+    <div class="row" style="top:90px;">
+      <div class="likely" style="width:517px;"></div>
+      <div class="unlikely" style="width:118px;"></div>
+      <span class="lval">78%</span><span class="uval">18%</span>
+    </div>
+    <div class="row" style="top:108px;">
+      <div class="likely" style="width:507px;"></div>
+      <div class="unlikely" style="width:99px;"></div>
+      <span class="lval">77%</span><span class="uval">15%</span>
+    </div>
+    <div class="row" style="top:126px;">
+      <div class="likely" style="width:494px;"></div>
+      <div class="unlikely" style="width:125px;"></div>
+      <span class="lval">75%</span><span class="uval">19%</span>
+    </div>
+    <div class="row" style="top:144px;">
+      <div class="likely" style="width:474px;"></div>
+      <div class="unlikely" style="width:132px;"></div>
+      <span class="lval">72%</span><span class="uval">20%</span>
+    </div>
+    <div class="row" style="top:162px;">
+      <div class="likely" style="width:474px;"></div>
+      <div class="unlikely" style="width:125px;"></div>
+      <span class="lval">72%</span><span class="uval">19%</span>
+    </div>
+    <div class="row" style="top:180px;">
+      <div class="likely" style="width:471px;"></div>
+      <div class="unlikely" style="width:151px;"></div>
+      <span class="lval">71%</span><span class="uval">23%</span>
+    </div>
+    <div class="row" style="top:198px;">
+      <div class="likely" style="width:461px;"></div>
+      <div class="unlikely" style="width:145px;"></div>
+      <span class="lval">70%</span><span class="uval">22%</span>
+    </div>
+    <div class="row" style="top:216px;">
+      <div class="likely" style="width:454px;"></div>
+      <div class="unlikely" style="width:164px;"></div>
+      <span class="lval">69%</span><span class="uval">25%</span>
+    </div>
+    <div class="row" style="top:234px;">
+      <div class="likely" style="width:421px;"></div>
+      <div class="unlikely" style="width:132px;"></div>
+      <span class="lval">64%</span><span class="uval">20%</span>
+    </div>
+    <div class="row" style="top:252px;">
+      <div class="likely" style="width:401px;"></div>
+      <div class="unlikely" style="width:191px;"></div>
+      <span class="lval">61%</span><span class="uval">29%</span>
+    </div>
+    <div class="row" style="top:270px;">
+      <div class="likely" style="width:397px;"></div>
+      <div class="unlikely" style="width:184px;"></div>
+      <span class="lval">61%</span><span class="uval">28%</span>
+    </div>
+    <div class="row" style="top:288px;">
+      <div class="likely" style="width:394px;"></div>
+      <div class="unlikely" style="width:171px;"></div>
+      <span class="lval">60%</span><span class="uval">26%</span>
+    </div>
+    <div class="row" style="top:306px;">
+      <div class="likely" style="width:387px;"></div>
+      <div class="unlikely" style="width:191px;"></div>
+      <span class="lval">60%</span><span class="uval">29%</span>
+    </div>
+    <div class="row" style="top:324px;">
+      <div class="likely" style="width:381px;"></div>
+      <div class="unlikely" style="width:210px;"></div>
+      <span class="lval">59%</span><span class="uval">32%</span>
+    </div>
+    <div class="row" style="top:342px;">
+      <div class="likely" style="width:366px;"></div>
+      <div class="unlikely" style="width:197px;"></div>
+      <span class="lval">56%</span><span class="uval">30%</span>
+    </div>
+    <div class="row" style="top:360px;">
+      <div class="likely" style="width:366px;"></div>
+      <div class="unlikely" style="width:164px;"></div>
+      <span class="lval">56%</span><span class="uval">25%</span>
+    </div>
+    <div class="row" style="top:378px;">
+      <div class="likely" style="width:360px;"></div>
+      <div class="unlikely" style="width:191px;"></div>
+      <span class="lval">56%</span><span class="uval">29%</span>
+    </div>
+    <div class="row" style="top:396px;">
+      <div class="likely" style="width:355px;"></div>
+      <div class="unlikely" style="width:197px;"></div>
+      <span class="lval">55%</span><span class="uval">30%</span>
+    </div>
+    <div class="row" style="top:414px;">
+      <div class="likely" style="width:350px;"></div>
+      <div class="unlikely" style="width:184px;"></div>
+      <span class="lval">54%</span><span class="uval">28%</span>
+    </div>
+    <div class="row" style="top:432px;">
+      <div class="likely" style="width:344px;"></div>
+      <div class="unlikely" style="width:230px;"></div>
+      <span class="lval">53%</span><span class="uval">35%</span>
+    </div>
+    <div class="row" style="top:450px;">
+      <div class="likely" style="width:344px;"></div>
+      <div class="unlikely" style="width:224px;"></div>
+      <span class="lval">53%</span><span class="uval">34%</span>
+    </div>
+    <div class="row" style="top:468px;">
+      <div class="likely" style="width:337px;"></div>
+      <div class="unlikely" style="width:237px;"></div>
+      <span class="lval">52%</span><span class="uval">36%</span>
+    </div>
+    <div class="row" style="top:486px;">
+      <div class="likely" style="width:329px;"></div>
+      <div class="unlikely" style="width:237px;"></div>
+      <span class="lval">50%</span><span class="uval">36%</span>
+    </div>
+    <div class="row" style="top:504px;">
+      <div class="likely" style="width:322px;"></div>
+      <div class="unlikely" style="width:191px;"></div>
+      <span class="lval">49%</span><span class="uval">29%</span>
+    </div>
+    <div class="row" style="top:522px;">
+      <div class="likely" style="width:316px;"></div>
+      <div class="unlikely" style="width:270px;"></div>
+      <span class="lval">48%</span><span class="uval">41%</span>
+    </div>
+    <div class="row" style="top:540px;">
+      <div class="likely" style="width:316px;"></div>
+      <div class="unlikely" style="width:303px;"></div>
+      <span class="lval">48%</span><span class="uval">46%</span>
+    </div>
+    <div class="row" style="top:558px;">
+      <div class="likely" style="width:310px;"></div>
+      <div class="unlikely" style="width:237px;"></div>
+      <span class="lval">47%</span><span class="uval">36%</span>
+    </div>
+    <div class="row" style="top:576px;">
+      <div class="likely" style="width:296px;"></div>
+      <div class="unlikely" style="width:237px;"></div>
+      <span class="lval">45%</span><span class="uval">36%</span>
+    </div>
+    <div class="row" style="top:594px;">
+      <div class="likely" style="width:220px;"></div>
+      <div class="unlikely" style="width:349px;"></div>
+      <span class="lval">34%</span><span class="uval">53%</span>
+    </div>
+  </div>
+
+  <div class="change-col">
+    <div class="change-box" style="top:0px;">-9%</div>
+    <div class="change-box" style="top:18px;">6%</div>
+    <div class="change-box" style="top:36px;">0%</div>
+    <div class="change-box" style="top:54px;">7%</div>
+    <div class="change-box" style="top:72px;">-1%</div>
+    <div class="change-box" style="top:90px;">-7%</div>
+    <div class="change-box" style="top:108px;">5%</div>
+    <div class="change-box" style="top:126px;">-1%</div>
+    <div class="change-box" style="top:144px;">11%</div>
+    <div class="change-box" style="top:162px;">-1%</div>
+    <div class="change-box" style="top:180px;">2%</div>
+    <div class="change-box" style="top:198px;">-8%</div>
+    <div class="change-box" style="top:216px;">-11%</div>
+    <div class="change-box" style="top:234px;">8%</div>
+    <div class="change-box" style="top:252px;">-15%</div>
+    <div class="change-box" style="top:270px;">N/A</div>
+    <div class="change-box" style="top:288px;">-13%</div>
+    <div class="change-box" style="top:306px;">-13%</div>
+    <div class="change-box" style="top:324px;">-9%</div>
+    <div class="change-box" style="top:342px;">-16%</div>
+    <div class="change-box" style="top:360px;">4%</div>
+    <div class="change-box" style="top:378px;">-10%</div>
+    <div class="change-box" style="top:396px;">-15%</div>
+    <div class="change-box" style="top:414px;">-21%</div>
+    <div class="change-box" style="top:432px;">-17%</div>
+    <div class="change-box" style="top:450px;">-6%</div>
+    <div class="change-box" style="top:468px;">-20%</div>
+    <div class="change-box" style="top:486px;">-20%</div>
+    <div class="change-box" style="top:504px;">4%</div>
+    <div class="change-box" style="top:522px;">-21%</div>
+    <div class="change-box" style="top:540px;">-14%</div>
+    <div class="change-box" style="top:558px;">-19%</div>
+    <div class="change-box" style="top:576px;">-18%</div>
+    <div class="change-box" style="top:594px;">-30%</div>
+  </div>
+
+  <div class="highlight"></div>
+
+  <div class="logo">
+    <div class="person1"></div>
+    <div class="person2"></div>
+    <div class="txt">Ipsos</div>
+  </div>
+</div>
+</body>
+</html>

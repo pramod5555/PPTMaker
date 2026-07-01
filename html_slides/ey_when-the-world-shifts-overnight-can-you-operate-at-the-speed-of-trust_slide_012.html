@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#1f1f1f;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#001631;
+    color:#fff;
+  }
+
+  .footer{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:1280px;
+    height:50px;
+    background:#efefef;
+    z-index:2;
+  }
+
+  .top-left-panel{
+    position:absolute;
+    left:34px;
+    top:26px;
+    width:393px;
+    height:86px;
+    background:#05182c;
+    z-index:5;
+  }
+  .guest{
+    position:absolute;
+    left:34px;
+    top:39px;
+    color:#ffffff;
+    font-size:18px;
+    font-weight:700;
+    line-height:1;
+    z-index:6;
+  }
+  .subhead{
+    position:absolute;
+    left:34px;
+    top:64px;
+    width:360px;
+    color:#ffd100;
+    font-size:17px;
+    font-weight:700;
+    line-height:1.08;
+    z-index:6;
+  }
+
+  .hero{
+    position:absolute;
+    left:34px;
+    top:73px;
+    width:591px;
+    height:401px;
+    overflow:hidden;
+    z-index:3;
+    background:
+      radial-gradient(ellipse at 23% 24%, rgba(255,255,255,.98) 0 9%, rgba(128,213,255,.33) 10%, rgba(0,0,0,0) 17%),
+      radial-gradient(ellipse at 70% 24%, rgba(255,255,255,.95) 0 9%, rgba(128,213,255,.30) 10%, rgba(0,0,0,0) 17%),
+      radial-gradient(circle at 84% 74%, rgba(180,230,255,.95) 0 1.4%, rgba(100,180,255,.5) 2.4%, rgba(0,0,0,0) 12%),
+      radial-gradient(circle at 16% 70%, rgba(130,255,210,.55) 0 1.1%, rgba(0,0,0,0) 8%),
+      linear-gradient(180deg, rgba(50,82,130,.18) 0%, rgba(34,22,55,.18) 22%, rgba(8,16,33,.58) 54%, rgba(3,8,18,.94) 100%),
+      linear-gradient(90deg, #283652 0%, #3d4b66 18%, #222d48 41%, #182338 58%, #121a2b 100%);
+  }
+  .hero .top-light-band{
+    position:absolute;
+    left:0;
+    top:69px;
+    width:591px;
+    height:8px;
+    background:linear-gradient(90deg, rgba(80,180,255,.85), rgba(160,230,255,.65), rgba(80,180,255,.85));
+    box-shadow:0 0 10px rgba(112,200,255,.55);
+  }
+  .hero .lab-top{
+    position:absolute;
+    left:0;
+    top:77px;
+    width:591px;
+    height:85px;
+    background:linear-gradient(180deg, rgba(189,182,217,.18), rgba(77,64,125,.22));
+  }
+  .hero .ceiling-left{
+    position:absolute;
+    left:63px;
+    top:83px;
+    width:121px;
+    height:20px;
+    border-radius:50%;
+    background:rgba(255,255,255,.97);
+    box-shadow:0 0 18px rgba(140,220,255,.45);
+  }
+  .hero .ceiling-right{
+    position:absolute;
+    left:373px;
+    top:84px;
+    width:110px;
+    height:18px;
+    border-radius:50%;
+    background:rgba(255,255,255,.97);
+    box-shadow:0 0 18px rgba(140,220,255,.45);
+  }
+  .hero .console{
+    position:absolute;
+    left:338px;
+    top:142px;
+    width:168px;
+    height:116px;
+    background:rgba(177,228,255,.12);
+    border:1px solid rgba(168,220,255,.16);
+    box-shadow:0 0 26px rgba(80,160,255,.22);
+  }
+  .hero .console:before{
+    content:"";
+    position:absolute;
+    left:17px;
+    top:17px;
+    width:134px;
+    height:78px;
+    border:1px solid rgba(170,220,255,.18);
+    background:
+      radial-gradient(circle at 22% 30%, rgba(132,220,255,.75) 0 3px, rgba(0,0,0,0) 4px),
+      radial-gradient(circle at 48% 22%, rgba(132,220,255,.65) 0 4px, rgba(0,0,0,0) 5px),
+      radial-gradient(circle at 72% 58%, rgba(132,220,255,.82) 0 4px, rgba(0,0,0,0) 5px),
+      linear-gradient(180deg, rgba(64,120,190,.25), rgba(16,40,72,.12));
+  }
+  .hero .figure-hair{
+    position:absolute;
+    left:224px;
+    top:72px;
+    width:90px;
+    height:86px;
+    border-radius:46% 46% 52% 52%;
+    background:linear-gradient(180deg, #10151b 0%, #242a31 58%, #0e141d 100%);
+    z-index:6;
+  }
+  .hero .figure-head{
+    position:absolute;
+    left:235px;
+    top:93px;
+    width:65px;
+    height:76px;
+    border-radius:50% 50% 46% 46%;
+    background:linear-gradient(180deg, #efc9b4 0%, #d7a289 100%);
+    z-index:5;
+  }
+  .hero .figure-neck{
+    position:absolute;
+    left:258px;
+    top:156px;
+    width:20px;
+    height:25px;
+    background:#c8937e;
+    z-index:4;
+  }
+  .hero .coat{
+    position:absolute;
+    left:183px;
+    top:161px;
+    width:195px;
+    height:208px;
+    background:linear-gradient(180deg, rgba(243,247,250,.98), rgba(214,226,235,.92));
+    clip-path:polygon(18% 0%, 82% 0%, 100% 100%, 0% 100%);
+    z-index:2;
+    box-shadow:0 0 22px rgba(255,255,255,.18);
+  }
+  .hero .coat-left{
+    position:absolute;
+    left:155px;
+    top:173px;
+    width:88px;
+    height:228px;
+    background:linear-gradient(180deg, rgba(248,251,253,.98), rgba(211,223,232,.9));
+    transform:skew(3deg);
+    z-index:3;
+  }
+  .hero .coat-right{
+    position:absolute;
+    left:335px;
+    top:174px;
+    width:86px;
+    height:226px;
+    background:linear-gradient(180deg, rgba(244,248,251,.98), rgba(209,220,229,.9));
+    transform:skew(-5deg);
+    z-index:3;
+  }
+  .hero .shirt{
+    position:absolute;
+    left:251px;
+    top:165px;
+    width:50px;
+    height:129px;
+    background:linear-gradient(180deg, #5779a8 0%, #233d5e 100%);
+    z-index:4;
+  }
+  .hero .lanyard-l{
+    position:absolute;
+    left:258px;
+    top:163px;
+    width:3px;
+    height:167px;
+    background:#122235;
+    transform:rotate(-7deg);
+    z-index:6;
+  }
+  .hero .lanyard-r{
+    position:absolute;
+    left:288px;
+    top:164px;
+    width:3px;
+    height:167px;
+    background:#122235;
+    transform:rotate(7deg);
+    z-index:6;
+  }
+  .hero .badge{
+    position:absolute;
+    left:271px;
+    top:298px;
+    width:22px;
+    height:34px;
+    background:rgba(240,240,240,.78);
+    border:1px solid rgba(100,100,100,.35);
+    z-index:7;
+  }
+  .hero .arm-left{
+    position:absolute;
+    left:144px;
+    top:238px;
+    width:104px;
+    height:114px;
+    background:linear-gradient(180deg, rgba(233,241,246,.98), rgba(209,223,231,.92));
+    transform:rotate(9deg);
+    z-index:4;
+  }
+  .hero .arm-right{
+    position:absolute;
+    left:353px;
+    top:238px;
+    width:107px;
+    height:106px;
+    background:linear-gradient(180deg, rgba(233,241,246,.98), rgba(207,222,231,.92));
+    transform:rotate(-17deg);
+    z-index:4;
+  }
+  .hero .hand-left{
+    position:absolute;
+    left:168px;
+    top:334px;
+    width:20px;
+    height:27px;
+    border-radius:8px;
+    background:linear-gradient(180deg, #d7a992, #b97a65);
+    z-index:8;
+  }
+  .hero .hand-right{
+    position:absolute;
+    left:417px;
+    top:329px;
+    width:21px;
+    height:24px;
+    border-radius:8px;
+    background:linear-gradient(180deg, #d7a992, #b97a65);
+    z-index:8;
+  }
+  .hero .screen-glow{
+    position:absolute;
+    left:0;
+    top:321px;
+    width:591px;
+    height:80px;
+    background:linear-gradient(180deg, rgba(38,85,150,.18) 0%, rgba(80,193,255,.95) 100%);
+    box-shadow:0 0 24px rgba(86,205,255,.55);
+  }
+  .hero .table-top{
+    position:absolute;
+    left:0;
+    top:338px;
+    width:591px;
+    height:113px;
+    background:
+      linear-gradient(180deg, rgba(92,165,255,.26), rgba(56,113,203,.34)),
+      linear-gradient(90deg, rgba(255,255,255,.12) 0 1px, transparent 1px 25%, rgba(255,255,255,.12) 25% 26%, transparent 26px 50%, rgba(255,255,255,.12) 50% 51%, transparent 51px 75%, rgba(255,255,255,.12) 75% 76%, transparent 76px 100%);
+    border:1px solid rgba(155,220,255,.45);
+  }
+  .hero .table-line1{
+    position:absolute;
+    left:0;
+    top:393px;
+    width:591px;
+    height:2px;
+    background:rgba(255,255,255,.18);
+  }
+  .hero .table-line2{
+    position:absolute;
+    left:186px;
+    top:338px;
+    width:2px;
+    height:113px;
+    background:rgba(255,255,255,.11);
+  }
+  .hero .table-line3{
+    position:absolute;
+    left:370px;
+    top:338px;
+    width:2px;
+    height:113px;
+    background:rgba(255,255,255,.11);
+  }
+  .hero .screen-circle-left{
+    position:absolute;
+    left:188px;
+    top:347px;
+    width:95px;
+    height:25px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.55);
+    box-shadow:0 0 18px rgba(255,255,255,.35);
+  }
+  .hero .screen-circle-right{
+    position:absolute;
+    left:387px;
+    top:347px;
+    width:112px;
+    height:28px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.45);
+    box-shadow:0 0 16px rgba(255,255,255,.28);
+  }
+  .hero .lower-shadow{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:591px;
+    height:24px;
+    background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.55));
+    z-index:9;
+  }
+
+  .headline{
+    position:absolute;
+    left:34px;
+    top:503px;
+    width:620px;
+    color:#f2f2f2;
+    font-size:38px;
+    font-weight:300;
+    line-height:1.16;
+    letter-spacing:-0.2px;
+    z-index:5;
+  }
+
+  .col1{
+    position:absolute;
+    left:661px;
+    top:29px;
+    width:205px;
+    color:#d8dde7;
+    font-size:13px;
+    line-height:1.42;
+    font-weight:400;
+    z-index:5;
+  }
+  .col2{
+    position:absolute;
+    left:896px;
+    top:29px;
+    width:232px;
+    color:#d8dde7;
+    font-size:13px;
+    line-height:1.42;
+    font-weight:400;
+    z-index:5;
+  }
+  .col1 p,.col2 p{
+    margin:0 0 11px 0;
+  }
+
+  .quote-mark{
+    position:absolute;
+    left:939px;
+    top:482px;
+    color:#ffd100;
+    font-size:62px;
+    font-weight:700;
+    line-height:.7;
+    z-index:6;
+  }
+  .quote{
+    position:absolute;
+    left:944px;
+    top:518px;
+    width:292px;
+    color:#f2f2f2;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:18px;
+    line-height:1.23;
+    font-weight:400;
+    z-index:6;
+  }
+  .quote-attrib{
+    position:absolute;
+    left:944px;
+    top:646px;
+    width:260px;
+    color:#ffffff;
+    font-size:13px;
+    line-height:1.22;
+    font-weight:700;
+    z-index:6;
+  }
+  .quote-attrib span{
+    display:block;
+    color:#d8dde7;
+    font-weight:400;
+    margin-top:3px;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:35px;
+    bottom:10px;
+    color:#1a2634;
+    font-size:7px;
+    font-weight:700;
+    line-height:1;
+    z-index:7;
+  }
+  .footer-center{
+    position:absolute;
+    right:99px;
+    bottom:10px;
+    color:#1a2634;
+    font-size:8px;
+    font-weight:700;
+    line-height:1;
+    z-index:7;
+  }
+  .footer-right{
+    position:absolute;
+    right:35px;
+    bottom:10px;
+    color:#1a2634;
+    font-size:8px;
+    font-weight:700;
+    line-height:1;
+    z-index:7;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="footer"></div>
+
+    <div class="top-left-panel"></div>
+    <div class="guest">Guest perspective</div>
+    <div class="subhead">Enterprise risk management and compliance<br>leader at a global life sciences company</div>
+
+    <div class="hero">
+      <div class="top-light-band"></div>
+      <div class="lab-top"></div>
+      <div class="ceiling-left"></div>
+      <div class="ceiling-right"></div>
+      <div class="console"></div>
+      <div class="figure-hair"></div>
+      <div class="figure-head"></div>
+      <div class="figure-neck"></div>
+      <div class="coat"></div>
+      <div class="coat-left"></div>
+      <div class="coat-right"></div>
+      <div class="shirt"></div>
+      <div class="lanyard-l"></div>
+      <div class="lanyard-r"></div>
+      <div class="badge"></div>
+      <div class="arm-left"></div>
+      <div class="arm-right"></div>
+      <div class="hand-left"></div>
+      <div class="hand-right"></div>
+      <div class="screen-glow"></div>
+      <div class="table-top"></div>
+      <div class="table-line1"></div>
+      <div class="table-line2"></div>
+      <div class="table-line3"></div>
+      <div class="screen-circle-left"></div>
+      <div class="screen-circle-right"></div>
+      <div class="lower-shadow"></div>
+    </div>
+
+    <div class="headline">How a life sciences company<br>used a human-centric and<br>nimble approach to build<br>an ERM function</div>
+
+    <div class="col1">
+      <p>Our company develops specialized drugs used for diagnosing and treating diseases such as cancer. As an organization, we have bias toward speed and action, both because of the niche space we occupy – our products must be produced to order with just-in-time delivery – and because we have a passion for innovation and our workforce is predisposed to moving at speed.</p>
+      <p>We’ve grown rapidly. In 2021, we launched our flagship product, which quickly became very successful in the market. Since then, our headcount has more than doubled and our revenue has increased more than fourfold, with most of that growth occurring between 2022 and 2024. In short order, we went from a company situated on a single campus where people could walk across the hall and talk to each other, to a complex organization operating across multiple countries.</p>
+      <p>This created the impetus for developing a more structured and cross-functional approach to risk management. For the transition to succeed, it needed to be done in ways that aligned with the company’s entrepreneurial and innovative culture.</p>
+      <p>So, we put in place an ERM function, which I lead. We were purposeful about avoiding check-the-box approaches and instead developed a partnership in which we focus on managing the organization’s greatest risks and enabling our business strategy. We developed a shared taxonomy for consistency, but avoided a structure with lots of subcommittees. Instead of formulaic, offline surveys, we built our ERM using workshops and conversations with a strong human element.</p>
+      <p>We identified the risk areas most needing improvement and then conducted workshops for each of them. The workshop style allowed us to identify and explore the inherent and residual risk factors driving these risks, and open a dialog about how best to manage them. Participants built on each other’s thoughts and made connections that might otherwise have been missed. The format also allowed us to quickly identify where people had divergent ideas, so we could dive deeper on these aspects.</p>
+    </div>
+
+    <div class="col2">
+      <p>The workshop format was the nimblest way to start conversations, help educate our people, and get the business input that we needed.</p>
+      <p>The workshops also allowed us to develop mindset. First among these is programmatic risk-based thinking. We didn’t just explore risks; we brought a way to look at any risk. We don’t need everyone to be a subject matter expert in a specific risk. What we need is for our people to have the mindset to unpack inherent and residual risks and use that to drive towards action. In an organization that’s predisposed to action, part of the challenge is getting them to slow down a beat to think about and prioritize risks, and ensure we are acting on the right things in a prioritized manner.</p>
+    </div>
+
+    <div class="quote-mark">“</div>
+    <div class="quote">We don’t need everyone to be a subject matter expert in a specific risk. What we need is for our people to have the mindset to unpack inherent and residual risks and use that to drive towards action.</div>
+    <div class="quote-attrib">Enterprise risk management and compliance leader<span>Global life sciences company</span></div>
+
+    <div class="footer-left">17&nbsp;&nbsp;|&nbsp;&nbsp;When the world shifts overnight how can you operate at the speed of trust</div>
+    <div class="footer-center">Global Risk Transformation Series&nbsp;&nbsp;|</div>
+    <div class="footer-right">18</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{margin:0;background:#8f9194;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#222;
+  }
+  #slide > div, #slide > svg{position:absolute; box-sizing:border-box;}
+
+  .sidebar{
+    left:0; top:0; width:181px; height:720px;
+    background:#333840;
+  }
+  .sidebar-line{
+    left:179px; top:0; width:2px; height:720px;
+    background:#7657a8;
+  }
+  .side-title{
+    left:12px; top:32px; width:150px;
+    color:#f1f1f1; font-size:24px; line-height:1.12; font-weight:700;
+  }
+
+  .hex{
+    width:73px; height:63px;
+    filter:drop-shadow(0 0 1px rgba(255,255,255,.18));
+  }
+  .num{
+    color:#8d9198; font-size:29px; line-height:29px; font-weight:700;
+  }
+  .num.active{ color:#8c69c5; }
+  .side-label{
+    font-size:15px; line-height:17px; font-weight:600;
+  }
+  .side-label.gray{ color:#626870; font-weight:500; }
+  .side-label.purple{ color:#8c69c5; font-weight:700; }
+
+  .side-bottom{
+    left:67px; top:665px; width:92px; height:50px;
+  }
+  .page{
+    left:9px; top:711px; color:#f3f3f3; font-size:18px; line-height:18px;
+  }
+
+  .main-title{
+    left:220px; top:28px; width:1060px;
+    color:#232323; font-size:28px; line-height:1.18; font-weight:800;
+    letter-spacing:-0.2px;
+  }
+  .sub-title{
+    left:220px; top:138px; width:560px;
+    color:#8e949d; font-size:22px; line-height:1.2; font-weight:400;
+  }
+  .sub-title sup{font-size:60%; vertical-align:super;}
+  .impact{
+    left:220px; top:186px;
+    color:#222; font-size:16px; font-weight:700;
+  }
+
+  .chart-wrap{
+    left:220px; top:222px; width:740px; height:395px;
+  }
+
+  .legend{
+    left:220px; top:676px; width:430px; height:18px;
+    color:#474747; font-size:12px; line-height:18px;
+  }
+  .legend-item{position:absolute; top:0;}
+  .diamond{
+    display:inline-block; width:12px; height:12px; background:#543a87;
+    transform:rotate(45deg); margin-right:8px; vertical-align:middle;
+  }
+  .circle{
+    display:inline-block; width:18px; height:18px; border-radius:50%; background:#7f67b4;
+    margin-right:7px; vertical-align:middle; position:relative; top:-1px;
+  }
+
+  .footnotes{
+    left:220px; top:704px; width:735px;
+    color:#555; font-size:10px; line-height:1.15; font-weight:400;
+  }
+
+  .callout{
+    left:994px; top:140px; width:286px; height:579px;
+    background:#d3d4d7;
+  }
+  .callout-text{
+    left:1004px; top:151px; width:258px;
+    color:#2c2c2c; font-size:16px; line-height:1.12; font-weight:400;
+  }
+  .callout-text p{margin:0 0 8px 0;}
+  .callout-text b{font-weight:800;}
+
+  .rb-logo{left:1213px; top:689px; width:58px; height:25px;}
+
+  .faint-bg{
+    left:265px; top:248px; width:650px; height:350px; opacity:.08;
+    transform:rotate(-11deg);
+  }
+  .faint-right{
+    left:742px; top:343px; width:210px; height:160px; opacity:.16;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="sidebar-line"></div>
+
+  <div class="side-title">Technology &amp;<br>Innovation</div>
+
+  <svg class="hex" style="left:8px; top:143px;" viewBox="0 0 73 63" aria-hidden="true">
+    <polygon points="18,2 55,2 71,31.5 55,61 18,61 2,31.5" fill="none" stroke="#8d9198" stroke-width="4"/>
+    <defs>
+      <clipPath id="clip1"><polygon points="18,2 55,2 71,31.5 55,61 18,61 2,31.5"/></clipPath>
+    </defs>
+    <g clip-path="url(#clip1)">
+      <rect width="73" height="63" fill="#6c7076"/>
+      <image href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 73 63'><rect width='73' height='63' fill='%236b6f75'/><g opacity='0.95'><path d='M7 35h59' stroke='%23f3f3f3' stroke-width='2'/><path d='M14 14l16 14M24 11l10 20M40 10l-4 18M50 14l7 14M16 46l18-15M37 46l1-15M46 44l12-11' stroke='%23d7d7d7' stroke-width='1.5'/><rect x='9' y='20' width='16' height='11' fill='none' stroke='%23f0f0f0' stroke-width='1'/><rect x='31' y='18' width='28' height='19' fill='none' stroke='%23ededed' stroke-width='1'/><circle cx='17' cy='26' r='2.2' fill='%23ffffff'/><circle cx='38' cy='24' r='2.2' fill='%23ffffff'/><circle cx='47' cy='28' r='1.8' fill='%23ffffff'/><circle cx='56' cy='22' r='1.8' fill='%23ffffff'/><path d='M8 12l11 5 10-6 14 4 13-3 10 7' stroke='%23ffffff' stroke-width='1.3' fill='none'/><path d='M7 52l11-3 9 5 12-6 9 3 18-5' stroke='%23ededed' stroke-width='1.1' fill='none'/></g></svg>" x="0" y="0" width="73" height="63"/>
+    </g>
+  </svg>
+  <div class="num" style="left:93px; top:145px;">1</div>
+  <div class="side-label gray" style="left:93px; top:177px; width:74px;">Value of<br>Innovation</div>
+
+  <svg class="hex" style="left:8px; top:276px;" viewBox="0 0 73 63" aria-hidden="true">
+    <polygon points="18,2 55,2 71,31.5 55,61 18,61 2,31.5" fill="none" stroke="#8d9198" stroke-width="4"/>
+    <defs>
+      <clipPath id="clip2"><polygon points="18,2 55,2 71,31.5 55,61 18,61 2,31.5"/></clipPath>
+    </defs>
+    <g clip-path="url(#clip2)">
+      <rect width="73" height="63" fill="#64696f"/>
+      <image href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 73 63'><rect width='73' height='63' fill='%2364696f'/><g stroke='%23eeeeee' fill='none' opacity='0.9'><path d='M11 46C17 24 29 14 40 15c10 1 18 10 22 21' stroke-width='1.4'/><path d='M9 35c12-8 24-11 38-11 10 0 15 3 18 5' stroke-width='1.2'/><path d='M18 15l11 11M28 14l5 16M38 15l1 14M49 16l-4 15M56 21l-9 9' stroke-width='1.1'/><circle cx='21' cy='33' r='2.2'/><circle cx='33' cy='28' r='1.8'/><circle cx='44' cy='30' r='2.5'/><circle cx='53' cy='35' r='1.8'/><path d='M15 47l11-8 14 3 13-7 10 2' stroke-width='1.1'/></g></svg>" x="0" y="0" width="73" height="63"/>
+    </g>
+  </svg>
+  <div class="num" style="left:93px; top:278px;">2</div>
+  <div class="side-label gray" style="left:93px; top:309px; width:82px;">Frontier<br>Technologies</div>
+
+  <svg class="hex" style="left:8px; top:409px;" viewBox="0 0 73 63" aria-hidden="true">
+    <polygon points="18,2 55,2 71,31.5 55,61 18,61 2,31.5" fill="none" stroke="#8c69c5" stroke-width="4"/>
+    <polygon points="18,2 55,2 71,31.5 55,61 18,61 2,31.5" fill="none" stroke="rgba(140,105,197,.35)" stroke-width="8"/>
+    <defs>
+      <clipPath id="clip3"><polygon points="18,2 55,2 71,31.5 55,61 18,61 2,31.5"/></clipPath>
+    </defs>
+    <g clip-path="url(#clip3)">
+      <rect width="73" height="63" fill="#c7b0c6"/>
+      <image href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 73 63'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23fff0e5'/><stop offset='0.55' stop-color='%23ddb3ca'/><stop offset='1' stop-color='%23a67bc5'/></linearGradient></defs><rect width='73' height='63' fill='url(%23g)'/><g opacity='0.95'><rect x='7' y='15' width='24' height='18' rx='2' fill='%23ffffff' stroke='%23c9c9c9'/><rect x='42' y='15' width='24' height='18' rx='2' fill='%23ffffff' stroke='%23c9c9c9'/><path d='M31 24h11' stroke='%23908090' stroke-width='3' stroke-linecap='round'/><path d='M24 24c6 0 7 8 13 8 5 0 6-8 12-8' stroke='%23838383' stroke-width='1.7' fill='none'/><circle cx='19' cy='24' r='5.5' fill='%23f1c39c'/><circle cx='54' cy='24' r='5.5' fill='%23f0c19b'/><path d='M18 29l8 8c3 3 7 3 10 0l1-1c2-2 5-2 7 0l2 2c3 3 7 3 10 0l8-8' stroke='%23d8d8d8' stroke-width='4' fill='none' stroke-linecap='round'/><path d='M26 37l6 6M41 37l6 6' stroke='%23b28bbf' stroke-width='1.2'/></g></svg>" x="0" y="0" width="73" height="63"/>
+    </g>
+  </svg>
+  <div class="num active" style="left:93px; top:410px;">3</div>
+  <div class="side-label purple" style="left:93px; top:442px; width:86px;">Humans &amp;<br>Machines</div>
+
+  <svg class="side-bottom" viewBox="0 0 92 50" aria-hidden="true">
+    <g fill="none" stroke="#6f747a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="68" cy="20" r="8"></circle>
+      <circle cx="34" cy="34" r="10"></circle>
+      <path d="M42 14c5-5 14-6 20-2"></path>
+      <path d="M45 42c8-4 14-11 18-20"></path>
+      <path d="M10 18l10 4"></path>
+      <path d="M7 30l12 0"></path>
+      <path d="M10 42l10-5"></path>
+      <path d="M22 11c2 1 4 3 5 5"></path>
+      <path d="M76 28l10 10"></path>
+      <path d="M59 6l7-4 8 2 4 7-1 8-7 5-8-1-5-7z"></path>
+    </g>
+  </svg>
+
+  <div class="page">53</div>
+
+  <div class="main-title">The relationship of humans with machines is fraught with technological risk –<br>Risk perception regarding innovations in the younger generation are higher</div>
+  <div class="sub-title">Global risks landscape<sup>1)</sup> for technological risks</div>
+  <div class="impact">Impact</div>
+
+  <svg class="faint-bg" viewBox="0 0 650 350" aria-hidden="true">
+    <g fill="none" stroke="#8e8e8e" stroke-width="2">
+      <path d="M20 110 C120 80, 220 95, 340 120"></path>
+      <path d="M100 55 L145 120 L115 185"></path>
+      <path d="M235 40 C285 70, 320 110, 380 132"></path>
+      <path d="M360 140 L405 230 L445 175"></path>
+      <path d="M475 55 C535 85, 565 135, 620 170"></path>
+      <path d="M515 210 L580 270"></path>
+      <path d="M165 230 C230 225, 280 230, 350 245"></path>
+      <path d="M35 265 C120 220, 170 212, 250 220"></path>
+      <path d="M395 262 C470 245, 545 255, 620 285"></path>
+    </g>
+    <g fill="#8a8a8a" font-family="Georgia, 'Times New Roman', serif" font-style="italic" opacity="0.9">
+      <text x="18" y="98" font-size="72">Risk</text>
+      <text x="83" y="210" font-size="84">risk</text>
+      <text x="325" y="118" font-size="64">Risk</text>
+      <text x="470" y="98" font-size="56">DAN</text>
+      <text x="513" y="170" font-size="60">ger</text>
+      <text x="228" y="320" font-size="86">DANGER</text>
+    </g>
+  </svg>
+
+  <svg class="faint-right" viewBox="0 0 210 160" aria-hidden="true">
+    <defs>
+      <radialGradient id="fr" cx="50%" cy="50%" r="55%">
+        <stop offset="0%" stop-color="#8d8d8d" stop-opacity=".55"/>
+        <stop offset="55%" stop-color="#8d8d8d" stop-opacity=".22"/>
+        <stop offset="100%" stop-color="#8d8d8d" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="blur2"><feGaussianBlur stdDeviation="2.2"/></filter>
+    </defs>
+    <ellipse cx="115" cy="80" rx="92" ry="46" fill="url(#fr)" filter="url(#blur2)"/>
+    <g opacity=".18" stroke="#7e7e7e" stroke-width="2" fill="none">
+      <path d="M40 96c22-20 44-30 71-31 18-1 35 1 55 7"></path>
+      <path d="M74 74l35 0 28 20"></path>
+    </g>
+  </svg>
+
+  <svg class="chart-wrap" viewBox="0 0 740 395" aria-hidden="true">
+    <defs>
+      <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+        <path d="M0,0 L8,4 L0,8 Z" fill="#7659ab"></path>
+      </marker>
+    </defs>
+
+    <line x1="42" y1="11" x2="42" y2="377" stroke="#4b4b4b" stroke-width="1.4"/>
+    <line x1="42" y1="377" x2="727" y2="377" stroke="#4b4b4b" stroke-width="1.4"/>
+
+    <line x1="35" y1="359" x2="52" y2="355" stroke="#4b4b4b" stroke-width="1.4"/>
+    <line x1="35" y1="368" x2="52" y2="364" stroke="#4b4b4b" stroke-width="1.4"/>
+
+    <g stroke="#4b4b4b" stroke-width="1">
+      <line x1="37" y1="377" x2="37" y2="384"/>
+      <line x1="88" y1="377" x2="88" y2="384"/>
+      <line x1="145" y1="377" x2="145" y2="384"/>
+      <line x1="201" y1="377" x2="201" y2="384"/>
+      <line x1="257" y1="377" x2="257" y2="384"/>
+      <line x1="314" y1="377" x2="314" y2="384"/>
+      <line x1="370" y1="377" x2="370" y2="384"/>
+      <line x1="427" y1="377" x2="427" y2="384"/>
+      <line x1="483" y1="377" x2="483" y2="384"/>
+      <line x1="539" y1="377" x2="539" y2="384"/>
+      <line x1="596" y1="377" x2="596" y2="384"/>
+      <line x1="652" y1="377" x2="652" y2="384"/>
+      <line x1="708" y1="377" x2="708" y2="384"/>
+
+      <line x1="35" y1="339" x2="42" y2="339"/>
+      <line x1="35" y1="292" x2="42" y2="292"/>
+      <line x1="35" y1="246" x2="42" y2="246"/>
+      <line x1="35" y1="200" x2="42" y2="200"/>
+      <line x1="35" y1="153" x2="42" y2="153"/>
+      <line x1="35" y1="106" x2="42" y2="106"/>
+      <line x1="35" y1="59" x2="42" y2="59"/>
+      <line x1="35" y1="11" x2="42" y2="11"/>
+    </g>
+
+    <g fill="#333" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400">
+      <text x="0" y="383">0.0</text>
+      <text x="0" y="343">3.1</text>
+      <text x="0" y="296">3.2</text>
+      <text x="0" y="250">3.3</text>
+      <text x="0" y="204">3.4</text>
+      <text x="0" y="157">3.5</text>
+      <text x="0" y="110">3.6</text>
+      <text x="0" y="63">3.7</text>
+      <text x="0" y="17">3.8</text>
+
+      <text x="31" y="406">0.0</text>
+      <text x="80" y="406">2.9</text>
+      <text x="136" y="406">3.0</text>
+      <text x="192" y="406">3.1</text>
+      <text x="248" y="406">3.2</text>
+      <text x="305" y="406">3.3</text>
+      <text x="361" y="406">3.4</text>
+      <text x="417" y="406">3.5</text>
+      <text x="474" y="406">3.6</text>
+      <text x="530" y="406">3.7</text>
+      <text x="586" y="406">3.8</text>
+      <text x="643" y="406">3.9</text>
+      <text x="700" y="406">4.0</text>
+    </g>
+
+    <text x="660" y="442" fill="#222" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">Likelihood</text>
+
+    <path d="M138 281 C172 240, 208 223, 308 174" fill="none" stroke="#7659ab" stroke-width="7" stroke-linecap="round" marker-end="url(#arrowPurple)"/>
+    <path d="M304 311 C345 248, 405 196, 467 160" fill="none" stroke="#7659ab" stroke-width="7" stroke-linecap="round" marker-end="url(#arrowPurple)"/>
+    <path d="M565 219 C582 160, 612 94, 645 47" fill="none" stroke="#7659ab" stroke-width="7" stroke-linecap="round" marker-end="url(#arrowPurple)"/>
+    <path d="M565 334 C580 280, 606 220, 639 185" fill="none" stroke="#7659ab" stroke-width="7" stroke-linecap="round" marker-end="url(#arrowPurple)"/>
+
+    <rect x="129" y="275" width="12" height="12" fill="#543a87" transform="rotate(45 135 281)"/>
+    <rect x="296" y="305" width="12" height="12" fill="#543a87" transform="rotate(45 302 311)"/>
+    <rect x="559" y="213" width="12" height="12" fill="#543a87" transform="rotate(45 565 219)"/>
+    <rect x="559" y="328" width="12" height="12" fill="#543a87" transform="rotate(45 565 334)"/>
+    <rect x="93" y="82" width="12" height="12" fill="#543a87" transform="rotate(45 99 88)"/>
+    <rect x="452" y="92" width="12" height="12" fill="#543a87" transform="rotate(45 458 98)"/>
+    <rect x="448" y="85" width="12" height="12" fill="#543a87" transform="rotate(45 454 91)"/>
+
+    <circle cx="307" cy="154" r="11" fill="#7f67b4"/>
+    <circle cx="449" cy="90" r="11" fill="#7f67b4"/>
+    <circle cx="476" cy="132" r="11" fill="#7f67b4"/>
+    <circle cx="678" cy="34" r="11" fill="#7f67b4"/>
+    <circle cx="678" cy="149" r="11" fill="#7f67b4"/>
+    <circle cx="78" cy="132" r="11" fill="#7f67b4"/>
+
+    <g fill="#333" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400">
+      <text x="32" y="160">IT infrastructure</text>
+      <text x="32" y="180">breakdown</text>
+
+      <text x="265" y="111">Adverse tech</text>
+      <text x="277" y="133">advances</text>
+
+      <text x="380" y="76">Cyber security failure</text>
+
+      <text x="468" y="155">Tech</text>
+      <text x="457" y="177">governance</text>
+      <text x="470" y="199">failure</text>
+
+      <text x="425" y="42">Digital power concentration</text>
+
+      <text x="664" y="118">Digital</text>
+      <text x="662" y="140">inequality</text>
+    </g>
+  </svg>
+
+  <div class="legend">
+    <div class="legend-item" style="left:0; width:245px;"><span class="diamond"></span>WEF’s multistakeholder communities</div>
+    <div class="legend-item" style="left:250px; width:180px;"><span class="circle"></span>Global shapers community<sup>2)</sup></div>
+  </div>
+
+  <div class="footnotes">1) The global risks landscape is based on a survey carried out by the WEF. Respondents were asked to evaluate the perceived likelihood and<br>impact of global technological risks on a scale from 1 (very low) to 5 (very high); 2) The Global Shapers Community is the WEF's network of young<br>people driving dialogue, action and change</div>
+
+  <div class="callout"></div>
+  <div class="callout-text">
+    <p>&gt; The <b>global risks landscape for technological risks</b>, according to a survey by the World Economic Forum, reflects the <b>perceived likelihood and impact</b> of such risks around the world</p>
+    <p>&gt; Intergenerationally, the potential of technological risks are felt quite differently: Survey results for participants that belong to the <b>younger generation</b> mostly <b>perceive such risks to occur more likely and with higher impact</b></p>
+    <p>&gt; Differences between the generations were most notable regarding risks pertaining to <b>adverse tech advances, tech governance failure, digital power concentration and digital inequality</b> – indicating a more acute awareness of the <b>growing gap</b> between the technological "haves" and "have-nots" in the younger generation</p>
+    <p>&gt; Two exceptions: <b>Breakdown of critical information infrastructure</b> and <b>failure of cybersecurity</b> measures are not perceived significantly more likely and/or of higher impact compared to the older generation surveyed</p>
+  </div>
+
+  <svg class="rb-logo" viewBox="0 0 58 25" aria-hidden="true">
+    <text x="0" y="14" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#666">Roland</text>
+    <text x="0" y="22" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#666">Berger</text>
+    <path d="M44 2 C53 2,57 6,57 12.5 C57 19.5,52 24,43 24 L43 2 Z" fill="#9fa2a6"/>
+    <path d="M34 2 L43 2 L43 24 L34 24 Z" fill="#80858a"/>
+  </svg>
+</div>
+</body>
+</html>

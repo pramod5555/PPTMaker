@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9dc;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#f3f3f5;
+  }
+
+  .page-num{
+    position:absolute;
+    left:48px;
+    bottom:16px;
+    font-size:11px;
+    color:#3b3b42;
+    font-weight:400;
+  }
+
+  .chapter{
+    position:absolute;
+    left:8px;
+    top:301px;
+    font-size:12px;
+    color:#35353b;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    font-weight:500;
+  }
+  .chapter-line{
+    position:absolute;
+    left:14px;
+    top:378px;
+    width:1px;
+    height:36px;
+    background:#6c6c72;
+  }
+
+  .left-text{
+    position:absolute;
+    left:95px;
+    top:74px;
+    width:365px;
+    color:#4c4c53;
+    font-size:15px;
+    line-height:1.45;
+    font-weight:400;
+  }
+  .left-text p{
+    margin:0 0 16px 0;
+  }
+  .left-text strong{
+    color:#2f2f36;
+    font-weight:700;
+  }
+
+  .quote-box{
+    position:absolute;
+    left:516px;
+    top:79px;
+    width:216px;
+    height:312px;
+    border:2px solid #c8c8cf;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .quote-top-line{
+    position:absolute;
+    left:516px;
+    top:79px;
+    width:187px;
+    height:2px;
+    background:#c8c8cf;
+  }
+  .quote-top-dot{
+    position:absolute;
+    left:699px;
+    top:76px;
+    width:6px;
+    height:6px;
+    background:#b9b9c0;
+    border-radius:50%;
+  }
+  .quote-right-dot{
+    position:absolute;
+    left:726px;
+    top:126px;
+    width:6px;
+    height:6px;
+    background:#b9b9c0;
+    border-radius:50%;
+  }
+  .quote-stem{
+    position:absolute;
+    left:728px;
+    top:129px;
+    width:2px;
+    height:262px;
+    background:#c8c8cf;
+  }
+  .quote-mark{
+    position:absolute;
+    left:546px;
+    top:117px;
+    font-size:42px;
+    line-height:1;
+    color:#e3c400;
+    font-weight:700;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .quote-title{
+    position:absolute;
+    left:548px;
+    top:146px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:13px;
+    line-height:1.2;
+    color:#383238;
+    font-weight:400;
+  }
+  .quote-body{
+    position:absolute;
+    left:548px;
+    top:164px;
+    width:150px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:17px;
+    line-height:1.45;
+    color:#383238;
+    font-weight:400;
+  }
+
+  .chart-title{
+    position:absolute;
+    left:820px;
+    top:76px;
+    width:350px;
+    font-size:14px;
+    line-height:1.25;
+    color:#2f2f35;
+    font-weight:700;
+  }
+  .chart-title span{
+    font-weight:400;
+  }
+
+  .chart{
+    position:absolute;
+    left:800px;
+    top:122px;
+    width:355px;
+    height:490px;
+  }
+  .row{
+    position:absolute;
+    width:355px;
+    height:42px;
+  }
+  .label{
+    position:absolute;
+    left:0;
+    top:0;
+    width:185px;
+    font-size:11px;
+    line-height:1.25;
+    color:#55555d;
+    text-align:right;
+    font-weight:400;
+  }
+  .barbox{
+    position:absolute;
+    left:196px;
+    top:6px;
+    width:168px;
+    height:26px;
+    border:1px solid #ababaf;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:24px;
+    background:#5b31ad;
+  }
+  .pct{
+    position:absolute;
+    right:5px;
+    top:4px;
+    font-size:11px;
+    line-height:1;
+    color:#55555d;
+    font-weight:400;
+  }
+
+  .logo{
+    position:absolute;
+    right:38px;
+    top:28px;
+    width:42px;
+    height:42px;
+    border:1px solid #66666b;
+    border-radius:50%;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .logo-cut{
+    position:absolute;
+    right:34px;
+    top:43px;
+    width:50px;
+    height:12px;
+    background:#f3f3f5;
+  }
+  .logo-text{
+    position:absolute;
+    right:43px;
+    top:37px;
+    width:31px;
+    font-size:8px;
+    line-height:1.1;
+    text-align:center;
+    color:#2d2d33;
+  }
+  .logo-dot{
+    position:absolute;
+    right:32px;
+    top:29px;
+    width:8px;
+    height:8px;
+    background:#e7d125;
+    border-radius:50%;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="chapter">CHAPTER 2</div>
+  <div class="chapter-line"></div>
+
+  <div class="left-text">
+    <p><strong>Private credit:</strong> the emergence of private credit as a powerful force in the market is also on the minds of CROs, particularly those at G-SIBs and banks with larger asset bases, which are most likely to have direct exposure. CROs at larger institutions may also have a deeper understanding of the opacity and lack of market discipline associated with private credit lending and private equity markets.</p>
+    <p>To be clear, private credit risk exposures vary across the sector; in fact, nearly 40% of survey respondents said their banks had no material exposure to or expected no material impact from private credit. As one CRO from a regional US bank told us, “We don’t see private credit as a strategic area given our exposure. But it could become systemic for the players that have leaned into this space.” It’s worth noting that some authorities, including in the UK and Europe, are examining system-wide risks and engaging institutions to gather more insight about their exposures.</p>
+    <p>However, recent market events seemed to reinforce past concerns about the unregulated or “shadow” banking system, which have evolved into worries about private credit and PE. Given private credit’s strategic implications and influence on the overall market, it can’t be considered a purely financial risk. Our results confirm that CROs are thinking holistically about private credit, citing both downside risks (increased complexity in analysis and measurements, growing counterparty exposure) and strategic opportunities (expanded client bases, new investment opportunities) as the top impacts.</p>
+  </div>
+
+  <div class="quote-box"></div>
+  <div class="quote-top-line"></div>
+  <div class="quote-top-dot"></div>
+  <div class="quote-right-dot"></div>
+  <div class="quote-stem"></div>
+  <div class="quote-mark">“</div>
+  <div class="quote-title">What CROs say:</div>
+  <div class="quote-body">
+    We don’t see private credit as a strategic area given our exposure. But it could become systemic for the players that have leaned into this space.
+    <br><br>
+    Private credit is a risk because of the amount of leeway the industry has, but they are also becoming a competitor.
+  </div>
+
+  <div class="chart-title">Figure 7: <span>Impacts of private credit on the organization</span></div>
+
+  <div class="chart">
+    <div class="row" style="top:0px;">
+      <div class="label">Led to greater complexity in<br>analysis and measurement of<br>these exposures</div>
+      <div class="barbox">
+        <div class="fill" style="width:60px;"></div>
+        <div class="pct">37%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:60px;">
+      <div class="label" style="top:7px;">Expanded client base</div>
+      <div class="barbox">
+        <div class="fill" style="width:51px;"></div>
+        <div class="pct">30%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:120px;">
+      <div class="label">Increased credit and/or<br>counterparty credit risk<br>concentrations</div>
+      <div class="barbox">
+        <div class="fill" style="width:43px;"></div>
+        <div class="pct">26%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:180px;">
+      <div class="label" style="top:7px;">Increased investment<br>opportunities</div>
+      <div class="barbox">
+        <div class="fill" style="width:42px;"></div>
+        <div class="pct">25%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:240px;">
+      <div class="label">Led to competitive displacement<br>in core lending or capital markets<br>activities</div>
+      <div class="barbox">
+        <div class="fill" style="width:37px;"></div>
+        <div class="pct">22%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:300px;">
+      <div class="label" style="top:7px;">Increased regulatory scrutiny</div>
+      <div class="barbox">
+        <div class="fill" style="width:34px;"></div>
+        <div class="pct">20%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:360px;">
+      <div class="label">Increased legal and valuation risk<br>(e.g., opaque NAVs, conflicts of<br>interest, contract disputes)</div>
+      <div class="barbox">
+        <div class="fill" style="width:29px;"></div>
+        <div class="pct">17%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:422px;">
+      <div class="label" style="top:9px;">No material impact</div>
+      <div class="barbox">
+        <div class="fill" style="width:65px;"></div>
+        <div class="pct">39%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">15</div>
+
+  <div class="logo-cut"></div>
+  <div class="logo"></div>
+  <div class="logo-text">Jump to<br>contents</div>
+  <div class="logo-dot"></div>
+</div>
+</body>
+</html>

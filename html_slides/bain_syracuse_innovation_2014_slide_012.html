@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Replicated Bain Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1024px;
+    height:768px;
+    overflow:hidden;
+    background:#ececec;
+  }
+  #slide > *{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .title{
+    left:19px;
+    top:31px;
+    width:980px;
+    font-size:39px;
+    line-height:1.08;
+    font-weight:400;
+    color:#111;
+  }
+  .redline{
+    left:0;
+    top:101px;
+    width:992px;
+    height:14px;
+    background:#d60000;
+    clip-path:polygon(0 0, 100% 0, 99.7% 100%, 0 100%);
+  }
+  .subtitle{
+    left:39px;
+    top:164px;
+    font-size:18px;
+    line-height:1.2;
+    color:#222;
+    font-weight:400;
+  }
+  .chartwrap{
+    left:58px;
+    top:206px;
+    width:743px;
+    height:339px;
+  }
+  .cagr{
+    left:802px;
+    top:162px;
+    width:170px;
+    color:#222;
+    font-size:18px;
+    line-height:1.08;
+    text-align:center;
+  }
+  .legend{
+    left:808px;
+    top:499px;
+    width:190px;
+    color:#222;
+    font-size:18px;
+    line-height:1.1;
+  }
+  .legend-row{
+    position:relative;
+    height:28px;
+    width:190px;
+  }
+  .legend-row.tall{ height:42px; }
+  .sw{
+    position:absolute;
+    left:0;
+    top:6px;
+    width:12px;
+    height:12px;
+  }
+  .legend-text{
+    position:absolute;
+    left:18px;
+    top:0;
+    width:170px;
+    font-size:16px;
+    line-height:1.12;
+    color:#222;
+    font-weight:400;
+  }
+  .carry{
+    left:31px;
+    top:580px;
+    width:757px;
+    height:62px;
+    background:#efd04d;
+    border:2px dashed #111;
+  }
+  .carry-label{
+    left:39px;
+    top:588px;
+    width:115px;
+    font-size:14px;
+    line-height:1.1;
+    color:#111;
+  }
+  .carry-num{
+    font-size:14px;
+    line-height:1;
+    color:#111;
+    width:58px;
+    text-align:center;
+  }
+  .foot{
+    left:19px;
+    top:703px;
+    width:820px;
+    font-size:14px;
+    line-height:1.06;
+    color:#222;
+  }
+  .bottomline{
+    left:0;
+    top:732px;
+    width:1000px;
+    height:1px;
+    background:#8b8b8b;
+  }
+  .pagenum{
+    left:961px;
+    top:741px;
+    width:22px;
+    font-size:28px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+    text-align:right;
+  }
+  .clock{
+    left:987px;
+    top:740px;
+    width:18px;
+    height:18px;
+    border:2px solid #e03030;
+    border-radius:50%;
+  }
+  .clock:before{
+    content:"";
+    position:absolute;
+    left:8px;
+    top:2px;
+    width:2px;
+    height:7px;
+    background:#e03030;
+  }
+  .clock:after{
+    content:"";
+    position:absolute;
+    left:8px;
+    top:8px;
+    width:6px;
+    height:2px;
+    background:#e03030;
+    transform:rotate(-35deg);
+    transform-origin:left center;
+  }
+  svg text{
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+    fill:#222;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">However, operating expenses are outgrowing revenues</div>
+  <div class="redline"></div>
+  <div class="subtitle">Syracuse University operating financials</div>
+
+  <div class="chartwrap">
+    <svg width="743" height="379" viewBox="0 0 743 379" xmlns="http://www.w3.org/2000/svg">
+      <!-- axes -->
+      <line x1="77" y1="6" x2="77" y2="338" stroke="#7e7e7e" stroke-width="1"/>
+      <line x1="77" y1="172" x2="740" y2="172" stroke="#7e7e7e" stroke-width="1"/>
+
+      <!-- y labels -->
+      <text x="8" y="16" font-size="15" font-weight="400">$1,200M</text>
+      <text x="39" y="92" font-size="15" font-weight="400">600</text>
+      <text x="58" y="176" font-size="15" font-weight="400">0</text>
+      <text x="36" y="261" font-size="15" font-weight="400">-600</text>
+      <text x="22" y="338" font-size="15" font-weight="400">-1,200</text>
+
+      <!-- bars -->
+      <!-- 2007 -->
+      <g>
+        <rect x="91" y="84" width="58" height="20" fill="#3b3b3b"/>
+        <rect x="91" y="104" width="58" height="24" fill="#808080"/>
+        <rect x="91" y="128" width="58" height="35" fill="#ababab"/>
+        <rect x="91" y="172" width="58" height="64" fill="#0e6997"/>
+        <rect x="91" y="236" width="58" height="25" fill="#1393bd"/>
+        <text x="105" y="77" font-size="15" font-weight="400">640</text>
+        <text x="103" y="279" font-size="15" font-weight="400">-638</text>
+        <text x="102" y="356" font-size="15" font-weight="400">2007</text>
+      </g>
+
+      <!-- 2008 -->
+      <g>
+        <rect x="174" y="82" width="58" height="20" fill="#3b3b3b"/>
+        <rect x="174" y="102" width="58" height="27" fill="#808080"/>
+        <rect x="174" y="129" width="58" height="30" fill="#ababab"/>
+        <rect x="174" y="172" width="58" height="68" fill="#0e6997"/>
+        <rect x="174" y="240" width="58" height="24" fill="#1393bd"/>
+        <text x="188" y="75" font-size="15" font-weight="400">652</text>
+        <text x="186" y="280" font-size="15" font-weight="400">-643</text>
+        <text x="185" y="356" font-size="15" font-weight="400">2008</text>
+      </g>
+
+      <!-- 2009 -->
+      <g>
+        <rect x="257" y="73" width="58" height="22" fill="#3b3b3b"/>
+        <rect x="257" y="95" width="58" height="27" fill="#808080"/>
+        <rect x="257" y="122" width="58" height="30" fill="#ababab"/>
+        <rect x="257" y="172" width="58" height="72" fill="#0e6997"/>
+        <rect x="257" y="244" width="58" height="24" fill="#1393bd"/>
+        <text x="271" y="66" font-size="15" font-weight="400">706</text>
+        <text x="268" y="286" font-size="15" font-weight="400">-690</text>
+        <text x="268" y="356" font-size="15" font-weight="400">2009</text>
+      </g>
+
+      <!-- 2010 -->
+      <g>
+        <rect x="340" y="76" width="58" height="18" fill="#3b3b3b"/>
+        <rect x="340" y="94" width="58" height="28" fill="#808080"/>
+        <rect x="340" y="122" width="58" height="30" fill="#ababab"/>
+        <rect x="340" y="172" width="58" height="67" fill="#0e6997"/>
+        <rect x="340" y="239" width="58" height="27" fill="#1393bd"/>
+        <text x="354" y="68" font-size="15" font-weight="400">688</text>
+        <text x="351" y="287" font-size="15" font-weight="400">-681</text>
+        <text x="351" y="356" font-size="15" font-weight="400">2010</text>
+      </g>
+
+      <!-- 2011 -->
+      <g>
+        <rect x="423" y="72" width="58" height="17" fill="#3b3b3b"/>
+        <rect x="423" y="89" width="58" height="29" fill="#808080"/>
+        <rect x="423" y="118" width="58" height="30" fill="#ababab"/>
+        <rect x="423" y="172" width="58" height="72" fill="#0e6997"/>
+        <rect x="423" y="244" width="58" height="26" fill="#1393bd"/>
+        <text x="437" y="64" font-size="15" font-weight="400">728</text>
+        <text x="434" y="289" font-size="15" font-weight="400">-712</text>
+        <text x="434" y="356" font-size="15" font-weight="400">2011</text>
+      </g>
+
+      <!-- 2012 -->
+      <g>
+        <rect x="506" y="66" width="58" height="19" fill="#3b3b3b"/>
+        <rect x="506" y="85" width="58" height="29" fill="#808080"/>
+        <rect x="506" y="114" width="58" height="31" fill="#ababab"/>
+        <rect x="506" y="172" width="58" height="79" fill="#0e6997"/>
+        <rect x="506" y="251" width="58" height="28" fill="#1393bd"/>
+        <text x="520" y="58" font-size="15" font-weight="400">761</text>
+        <text x="517" y="296" font-size="15" font-weight="400">-766</text>
+        <text x="517" y="356" font-size="15" font-weight="400">2012</text>
+      </g>
+
+      <!-- 2013 -->
+      <g>
+        <rect x="589" y="61" width="58" height="20" fill="#3b3b3b"/>
+        <rect x="589" y="81" width="58" height="32" fill="#808080"/>
+        <rect x="589" y="113" width="58" height="33" fill="#ababab"/>
+        <rect x="589" y="172" width="58" height="81" fill="#0e6997"/>
+        <rect x="589" y="253" width="58" height="29" fill="#1393bd"/>
+        <text x="603" y="53" font-size="15" font-weight="400">788</text>
+        <text x="600" y="300" font-size="15" font-weight="400">-791</text>
+        <text x="600" y="356" font-size="15" font-weight="400">2013</text>
+      </g>
+
+      <!-- 2014B -->
+      <g>
+        <rect x="672" y="53" width="58" height="18" fill="#3b3b3b"/>
+        <rect x="672" y="71" width="58" height="33" fill="#808080"/>
+        <rect x="672" y="104" width="58" height="34" fill="#ababab"/>
+        <rect x="672" y="172" width="58" height="85" fill="#0e6997"/>
+        <rect x="672" y="257" width="58" height="33" fill="#1393bd"/>
+        <text x="686" y="45" font-size="15" font-weight="400">820</text>
+        <text x="684" y="309" font-size="15" font-weight="400">-833</text>
+        <text x="678" y="356" font-size="15" font-weight="400">2014B</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="cagr">
+    <div style="text-decoration:underline;">CAGR</div>
+    <div>('07-'14B)</div>
+
+    <div style="margin-top:41px; text-align:left; width:170px;">
+      <span style="font-weight:700; text-decoration:underline;">Total revenue:</span>
+      <span style="font-weight:700; margin-left:8px;">3.6%</span>
+    </div>
+    <div style="margin-top:8px; margin-left:94px;">-1.3%</div>
+    <div style="margin-top:10px; margin-left:98px;">4.7%</div>
+    <div style="margin-top:29px; margin-left:98px;">5.1%</div>
+
+    <div style="margin-top:28px; text-align:left; width:178px; margin-left:-8px;">
+      <span style="font-weight:700; text-decoration:underline;">Total expenses:</span>
+      <span style="font-weight:700; margin-left:8px;">3.9%</span>
+    </div>
+    <div style="margin-top:8px; margin-left:98px;">3.9%</div>
+    <div style="margin-top:40px; margin-left:98px;">4.0%</div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-row">
+      <div class="sw" style="background:#1393bd;"></div>
+      <div class="legend-text">Indirect expenses</div>
+    </div>
+    <div class="legend-row">
+      <div class="sw" style="background:#0e6997;"></div>
+      <div class="legend-text">Direct expenses</div>
+    </div>
+    <div class="legend-row">
+      <div class="sw" style="background:#3b3b3b;"></div>
+      <div class="legend-text">Other revenue</div>
+    </div>
+    <div class="legend-row">
+      <div class="sw" style="background:#808080;"></div>
+      <div class="legend-text">Auxiliary revenue</div>
+    </div>
+    <div class="legend-row tall">
+      <div class="sw" style="background:#ababab;"></div>
+      <div class="legend-text">Net tuition<br>(undergrad &amp; grad)</div>
+    </div>
+  </div>
+
+  <div class="carry"></div>
+  <div class="carry-label">Change in<br>carryover<br>balance</div>
+  <div class="carry-num" style="left:148px; top:606px;">-$6M</div>
+  <div class="carry-num" style="left:230px; top:606px;">$9M</div>
+  <div class="carry-num" style="left:312px; top:606px;">$16M</div>
+  <div class="carry-num" style="left:392px; top:606px;">$7M</div>
+  <div class="carry-num" style="left:474px; top:606px;">$12M</div>
+  <div class="carry-num" style="left:554px; top:606px;">-$5M</div>
+  <div class="carry-num" style="left:636px; top:606px;">-$4M</div>
+  <div class="carry-num" style="left:716px; top:606px;">-$13M</div>
+
+  <div class="foot">Note: Operating financials do not include participation and subvention; values for 2014 are budgeted<br>Source: Syracuse financial reports</div>
+  <div class="bottomline"></div>
+  <div class="pagenum">12</div>
+  <div class="clock"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Reforming the EU Customs Union for e-commerce</title>
+<style>
+  html, body {
+    margin: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #d8d8d8;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d8d8d8;
+  }
+
+  .left-bg{
+    position:absolute;
+    left:0;
+    top:0;
+    width:533px;
+    height:720px;
+    background:#f1f1f2;
+    z-index:1;
+  }
+  .left-top-block{
+    position:absolute;
+    left:0;
+    top:0;
+    width:47px;
+    height:79px;
+    background:#c2c1c9;
+    z-index:5;
+  }
+  .topline{
+    position:absolute;
+    left:0;
+    top:77px;
+    width:1280px;
+    height:1px;
+    background:#d2d2d4;
+    z-index:40;
+  }
+
+  .photo-panel{
+    position:absolute;
+    left:533px;
+    top:0;
+    width:747px;
+    height:720px;
+    z-index:2;
+    overflow:hidden;
+    background:
+      linear-gradient(90deg, rgba(8,5,6,.82) 0%, rgba(22,8,9,.7) 10%, rgba(47,20,18,.38) 20%, rgba(82,48,43,.15) 28%, rgba(255,255,255,0) 50%);
+  }
+  .photo-back{
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(90deg,
+        #170a0b 0px,#14090a 20px,#413536 32px,#171011 46px,#0f090a 57px,#423537 74px,#191011 85px,#0f0909 97px,
+        #352324 113px,#130a0b 124px,#4b3e40 142px,#180f10 155px,#0d0708 168px,#4a2d2a 182px,#1a0f10 197px,#100809 211px,
+        #362628 225px,#100809 240px,#4d4548 256px,#1a1112 272px,#12090a 288px,#3b2a2c 306px,#130a0b 324px,#201416 343px,
+        #4e423f 360px,#7b6f6c 392px,#1a1111 430px,#2a1a1b 462px,#d6d6d7 560px,#efefef 635px,#f4f4f4 690px,#f0b4aa 747px);
+  }
+
+  .pipe{
+    position:absolute;
+    top:-10px;
+    height:740px;
+    border-radius:5px;
+    z-index:3;
+    opacity:.96;
+  }
+  .pipe.p1{left:20px;width:14px;background:linear-gradient(90deg,#4a4144,#8e8688 50%,#4f474a);}
+  .pipe.p2{left:67px;width:8px;background:linear-gradient(90deg,#3b3336,#7c7678 50%,#3e373a);}
+  .pipe.p3{left:92px;width:6px;background:linear-gradient(90deg,#2b2225,#696366 50%,#2a2124);}
+  .pipe.p4{left:120px;width:11px;background:linear-gradient(90deg,#463b3e,#878184 50%,#44393c);}
+  .pipe.p5{left:157px;width:8px;background:linear-gradient(90deg,#2a2124,#696266 50%,#261d20);}
+  .pipe.p6{left:196px;width:11px;background:linear-gradient(90deg,#271d20,#62595d 50%,#241a1d);}
+  .pipe.p7{left:239px;width:10px;background:linear-gradient(90deg,#211618,#575055 50%,#1c1114);}
+  .pipe.p8{left:286px;width:8px;background:linear-gradient(90deg,#2a1d20,#5f565a 50%,#221518);}
+  .pipe.p9{left:740px;width:8px;background:linear-gradient(90deg,#665c60,#90878a 50%,#64595d);}
+  .pipe.p10{left:710px;width:4px;background:linear-gradient(90deg,#76696c,#a49b9d 50%,#73686b); opacity:.8;}
+
+  .clamp{
+    position:absolute;
+    width:23px;
+    height:8px;
+    background:#7d7476;
+    border-radius:2px;
+    z-index:4;
+    opacity:.95;
+  }
+
+  .person{
+    position:absolute;
+    left:255px;
+    top:74px;
+    width:395px;
+    height:610px;
+    z-index:10;
+  }
+  .shadow-left{
+    position:absolute;
+    left:-18px;
+    top:0;
+    width:86px;
+    height:610px;
+    background:linear-gradient(90deg, rgba(0,0,0,.42), rgba(0,0,0,0));
+    z-index:9;
+  }
+  .helmet-top{
+    position:absolute;
+    left:83px;
+    top:2px;
+    width:151px;
+    height:64px;
+    background:linear-gradient(180deg,#f8f6f4 0%, #ece9e6 100%);
+    border-radius:60px 60px 16px 16px;
+    transform:rotate(9deg);
+    z-index:24;
+    box-shadow: inset -8px -10px 16px rgba(0,0,0,.12);
+  }
+  .helmet-side{
+    position:absolute;
+    left:74px;
+    top:21px;
+    width:37px;
+    height:63px;
+    background:linear-gradient(180deg,#ddd8d2,#c8c1bb);
+    border-radius:12px;
+    transform:rotate(-8deg);
+    z-index:22;
+  }
+  .helmet-brim{
+    position:absolute;
+    left:94px;
+    top:44px;
+    width:143px;
+    height:21px;
+    background:linear-gradient(180deg,#f1eeea,#e6e2de);
+    border-radius:12px;
+    transform:rotate(6deg);
+    z-index:25;
+    box-shadow: inset -4px -4px 8px rgba(0,0,0,.08);
+  }
+  .helmet-line{
+    position:absolute;
+    left:133px;
+    top:18px;
+    width:4px;
+    height:39px;
+    background:#d4d0cc;
+    transform:rotate(7deg);
+    z-index:26;
+    opacity:.8;
+  }
+
+  .head{
+    position:absolute;
+    left:101px;
+    top:37px;
+    width:131px;
+    height:161px;
+    background:radial-gradient(circle at 58% 38%, #bc8665 0%, #9a644a 38%, #734732 67%, #45271a 100%);
+    border-radius:53% 47% 47% 53% / 43% 44% 56% 57%;
+    transform:rotate(-7deg);
+    z-index:20;
+    box-shadow: inset -8px -14px 26px rgba(0,0,0,.22);
+  }
+  .hair{
+    position:absolute;
+    left:182px;
+    top:51px;
+    width:52px;
+    height:118px;
+    background:linear-gradient(180deg,#1c1312,#090707);
+    border-radius:36px;
+    transform:rotate(-6deg);
+    z-index:21;
+  }
+  .ear{
+    position:absolute;
+    left:187px;
+    top:106px;
+    width:18px;
+    height:28px;
+    background:#8e5a43;
+    border-radius:50%;
+    z-index:21;
+  }
+  .beard{
+    position:absolute;
+    left:119px;
+    top:112px;
+    width:97px;
+    height:62px;
+    background:radial-gradient(circle at 55% 20%, rgba(51,29,24,.96) 0%, rgba(29,17,15,.98) 65%, rgba(15,9,8,.98) 100%);
+    border-radius:44% 56% 57% 43% / 48% 47% 53% 52%;
+    transform:rotate(7deg);
+    z-index:22;
+    opacity:.97;
+  }
+  .neck{
+    position:absolute;
+    left:156px;
+    top:176px;
+    width:36px;
+    height:36px;
+    background:linear-gradient(180deg,#8d5942,#6e412f);
+    border-radius:10px;
+    transform:rotate(5deg);
+    z-index:18;
+  }
+
+  .shirt{
+    position:absolute;
+    left:130px;
+    top:192px;
+    width:113px;
+    height:347px;
+    background:linear-gradient(180deg,#11131a 0%, #0d0d15 60%, #0b0a11 100%);
+    border-radius:36px 36px 12px 12px;
+    z-index:11;
+  }
+  .placket{
+    position:absolute;
+    left:184px;
+    top:214px;
+    width:5px;
+    height:278px;
+    background:#20222a;
+    z-index:12;
+  }
+  .collar-left{
+    position:absolute;
+    left:147px;
+    top:191px;
+    width:40px;
+    height:53px;
+    background:linear-gradient(180deg,#0b0c12,#1a1d24);
+    clip-path:polygon(0 0,100% 0,66% 100%,16% 80%);
+    z-index:13;
+  }
+  .collar-right{
+    position:absolute;
+    left:189px;
+    top:193px;
+    width:48px;
+    height:58px;
+    background:linear-gradient(180deg,#13151d,#21242c);
+    clip-path:polygon(0 0,100% 0,84% 82%,32% 100%);
+    z-index:13;
+  }
+  .button{
+    position:absolute;
+    width:5px;height:5px;border-radius:50%;
+    background:#595c66;
+    z-index:14;
+  }
+
+  .jacket-left{
+    position:absolute;
+    left:67px;
+    top:185px;
+    width:133px;
+    height:374px;
+    background:linear-gradient(180deg,#d4d6d6 0%, #c7c9ca 28%, #b7b3b3 63%, #998a88 100%);
+    clip-path:polygon(0 4%, 73% 0, 98% 100%, 10% 100%);
+    border-radius:18px;
+    z-index:15;
+  }
+  .jacket-right{
+    position:absolute;
+    left:200px;
+    top:188px;
+    width:145px;
+    height:372px;
+    background:linear-gradient(180deg,#d4d6d7 0%, #d0d2d2 28%, #bdb6b6 70%, #9a8a88 100%);
+    clip-path:polygon(2% 0, 100% 6%, 92% 100%, 30% 100%);
+    border-radius:18px;
+    z-index:15;
+  }
+  .outer-collar-left{
+    position:absolute;
+    left:124px;
+    top:190px;
+    width:58px;
+    height:86px;
+    background:linear-gradient(180deg,#dadcdd,#bcc0c1);
+    clip-path:polygon(0 0,100% 0,61% 100%,15% 84%);
+    z-index:16;
+  }
+  .outer-collar-right{
+    position:absolute;
+    left:214px;
+    top:194px;
+    width:68px;
+    height:88px;
+    background:linear-gradient(180deg,#d8dada,#bfc2c3);
+    clip-path:polygon(0 0,100% 0,83% 86%,36% 100%);
+    z-index:16;
+  }
+
+  .pocket-left{
+    position:absolute;
+    left:113px;
+    top:297px;
+    width:70px;
+    height:28px;
+    background:linear-gradient(180deg,#a7a8a8,#919092);
+    transform:skewX(-14deg);
+    z-index:17;
+    opacity:.7;
+  }
+  .pocket-right{
+    position:absolute;
+    left:260px;
+    top:296px;
+    width:72px;
+    height:29px;
+    background:linear-gradient(180deg,#ececec,#d7d4d3);
+    transform:skewX(-12deg);
+    z-index:17;
+    opacity:.92;
+  }
+
+  .arm-left{
+    position:absolute;
+    left:84px;
+    top:360px;
+    width:112px;
+    height:176px;
+    background:linear-gradient(180deg,#c7c9c9,#a49997);
+    border-radius:38px;
+    transform:rotate(10deg);
+    z-index:18;
+  }
+  .arm-right{
+    position:absolute;
+    left:242px;
+    top:350px;
+    width:122px;
+    height:209px;
+    background:linear-gradient(180deg,#cdcecf,#a99c9a);
+    border-radius:38px;
+    transform:rotate(7deg);
+    z-index:18;
+  }
+  .watch{
+    position:absolute;
+    left:125px;
+    top:457px;
+    width:27px;
+    height:14px;
+    background:#121317;
+    border-radius:8px;
+    transform:rotate(8deg);
+    z-index:27;
+  }
+
+  .tablet{
+    position:absolute;
+    left:98px;
+    top:389px;
+    width:126px;
+    height:90px;
+    background:linear-gradient(180deg,#d7d1cc,#b4ada7);
+    border-radius:8px;
+    transform:rotate(9deg);
+    z-index:25;
+    box-shadow: 0 6px 14px rgba(0,0,0,.28);
+  }
+  .tablet:before{
+    content:"";
+    position:absolute;
+    left:8px;
+    top:8px;
+    width:110px;
+    height:72px;
+    background:#55575a;
+    border-radius:4px;
+  }
+  .tablet:after{
+    content:"";
+    position:absolute;
+    left:59px;
+    bottom:5px;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#8b8179;
+  }
+
+  .hand-left{
+    position:absolute;
+    left:145px;
+    top:470px;
+    width:63px;
+    height:42px;
+    background:linear-gradient(180deg,#ad6d54,#8a523e);
+    border-radius:21px;
+    transform:rotate(10deg);
+    z-index:26;
+  }
+  .hand-right{
+    position:absolute;
+    left:248px;
+    top:473px;
+    width:65px;
+    height:43px;
+    background:linear-gradient(180deg,#b37156,#925540);
+    border-radius:22px;
+    transform:rotate(-7deg);
+    z-index:26;
+  }
+
+  .kicker{
+    position:absolute;
+    left:57px;
+    top:50px;
+    width:470px;
+    font-size:17px;
+    line-height:1.2;
+    color:#7c7a87;
+    font-weight:400;
+    z-index:50;
+  }
+  .title{
+    position:absolute;
+    left:57px;
+    top:117px;
+    width:455px;
+    font-size:38px;
+    line-height:1.08;
+    color:#72717f;
+    font-weight:700;
+    letter-spacing:-0.3px;
+    z-index:50;
+  }
+  .section1{
+    position:absolute;
+    left:57px;
+    top:231px;
+    width:470px;
+    font-size:16px;
+    line-height:1.18;
+    color:#2f3138;
+    font-weight:700;
+    z-index:50;
+  }
+  .textblock{
+    position:absolute;
+    left:57px;
+    width:470px;
+    font-size:15px;
+    line-height:1.33;
+    color:#53525b;
+    font-weight:400;
+    z-index:50;
+  }
+  .textblock p{ margin:0 0 8px 0; }
+
+  .section2{
+    position:absolute;
+    left:57px;
+    top:533px;
+    width:470px;
+    font-size:16px;
+    line-height:1.18;
+    color:#2f3138;
+    font-weight:700;
+    z-index:50;
+  }
+  .footer{
+    position:absolute;
+    left:57px;
+    top:705px;
+    transform:translateY(-100%);
+    width:180px;
+    font-size:9px;
+    line-height:1.1;
+    color:#7f7f86;
+    font-weight:700;
+    z-index:60;
+  }
+
+  .nav-circle{
+    position:absolute;
+    top:34px;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:rgba(233,233,238,.9);
+    z-index:70;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#575867;
+    font-size:20px;
+    font-weight:700;
+  }
+  .nav-left{ left:950px; }
+  .nav-right{ left:994px; }
+
+  .side-nav{
+    position:absolute;
+    left:1009px;
+    top:121px;
+    width:271px;
+    height:306px;
+    z-index:70;
+  }
+  .nav-item{
+    position:absolute;
+    right:0;
+    width:271px;
+    height:35px;
+    background:#5c5c68;
+    color:#f3f3f4;
+    font-size:11px;
+    line-height:1.05;
+    font-weight:400;
+    padding-left:35px;
+    padding-top:9px;
+    box-sizing:border-box;
+    border-left:2px solid #d4ac12;
+  }
+  .nav-item.active{
+    background:#2e3048;
+  }
+  .nav-item.gray{
+    background:#87878d;
+    color:#f2f2f3;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-bg"></div>
+  <div class="photo-panel">
+    <div class="photo-back"></div>
+
+    <div class="pipe p1"></div>
+    <div class="pipe p2"></div>
+    <div class="pipe p3"></div>
+    <div class="pipe p4"></div>
+    <div class="pipe p5"></div>
+    <div class="pipe p6"></div>
+    <div class="pipe p7"></div>
+    <div class="pipe p8"></div>
+    <div class="pipe p9"></div>
+    <div class="pipe p10"></div>
+
+    <div class="clamp" style="left:24px; top:144px;"></div>
+    <div class="clamp" style="left:24px; top:155px;"></div>
+    <div class="clamp" style="left:61px; top:178px;"></div>
+    <div class="clamp" style="left:61px; top:189px;"></div>
+
+    <div class="person">
+      <div class="shadow-left"></div>
+      <div class="shirt"></div>
+      <div class="placket"></div>
+      <div class="collar-left"></div>
+      <div class="collar-right"></div>
+      <div class="jacket-left"></div>
+      <div class="jacket-right"></div>
+      <div class="outer-collar-left"></div>
+      <div class="outer-collar-right"></div>
+      <div class="pocket-left"></div>
+      <div class="pocket-right"></div>
+      <div class="arm-left"></div>
+      <div class="arm-right"></div>
+      <div class="tablet"></div>
+      <div class="watch"></div>
+      <div class="hand-left"></div>
+      <div class="hand-right"></div>
+
+      <div class="head"></div>
+      <div class="hair"></div>
+      <div class="ear"></div>
+      <div class="beard"></div>
+      <div class="neck"></div>
+
+      <div class="helmet-side"></div>
+      <div class="helmet-top"></div>
+      <div class="helmet-brim"></div>
+      <div class="helmet-line"></div>
+
+      <div class="button" style="left:185px; top:246px;"></div>
+      <div class="button" style="left:185px; top:280px;"></div>
+      <div class="button" style="left:185px; top:313px;"></div>
+      <div class="button" style="left:185px; top:345px;"></div>
+      <div class="button" style="left:185px; top:378px;"></div>
+      <div class="button" style="left:185px; top:412px;"></div>
+      <div class="button" style="left:185px; top:445px;"></div>
+    </div>
+  </div>
+
+  <div class="left-top-block"></div>
+  <div class="topline"></div>
+
+  <div class="kicker">Insights: Europe, Middle East, India and Africa</div>
+
+  <div class="title">Reforming the EU Customs<br>Union for e-commerce</div>
+
+  <div class="section1">Why the EU is intervening now</div>
+
+  <div class="textblock" style="top:257px;">
+    <p>The EU’s Customs Union reform is increasingly being shaped by one dominant reality: the scale and speed of low value e commerce imports has outgrown a supervision model built for traditional, bulk trade. The European Commission has framed the May 2023 reform package as a shift to a more data driven, risk based model centered on an EU Customs Authority and an EU Customs Data Hub that would ultimately replace today’s fragmented IT landscape and enable more consistent, EU wide controls.</p>
+    <p>In the e commerce context, the policy direction is clear: remove structural incentives for parcel imports, increase accountability for VAT and duty at the point of sale, and help customs authorities regain control through better data and clearer allocation of legal responsibility. The recent political steps on the €150 duty relief threshold and the interim €3 duty confirm that the EU is accelerating elements originally expected later in the decade. In this article, we elaborate on this change and other proposed changes affecting e-commerce import transactions.</p>
+  </div>
+
+  <div class="section2">The fixed import duty rate: the interim €3 measure<br>(from 1 July 2026)</div>
+
+  <div class="textblock" style="top:575px; width:472px;">
+    <p>A major near term change is the abolition of the €150 customs duty relief threshold for low value consignments from 1 July 2026. An item entering the EU in consignments valued under €150 will be subject to a fixed customs duty of €3 if the import takes place under the Import One-Stop Shop (IOSS) or the goods are in a postal consignment. In other cases, the normal import duty rate will be applicable.</p>
+  </div>
+
+  <div class="footer">42&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+
+  <div class="nav-circle nav-left">◀</div>
+  <div class="nav-circle nav-right">▶</div>
+
+  <div class="side-nav">
+    <div class="nav-item" style="top:0;">Contents</div>
+    <div class="nav-item active" style="top:50px;">Insights</div>
+    <div class="nav-item gray" style="top:100px;">New on<br>ey.com</div>
+    <div class="nav-item" style="top:150px;">Tax alerts</div>
+    <div class="nav-item gray" style="top:200px;">Additional<br>resources</div>
+    <div class="nav-item gray" style="top:250px;">Contacts</div>
+  </div>
+</div>
+</body>
+</html>

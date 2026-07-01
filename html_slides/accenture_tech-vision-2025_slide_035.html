@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Timeline Slide Replica</title>
+<style>
+  body {
+    margin: 0;
+    background: #030304;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #030304;
+    color: #e8e8ea;
+  }
+
+  .top-left {
+    position: absolute;
+    left: 61px;
+    top: 36px;
+    font-size: 16px;
+    color: #d7d2e4;
+    letter-spacing: -0.1px;
+  }
+  .top-left .accent { color: #9d78d0; }
+
+  .top-right {
+    position: absolute;
+    right: 61px;
+    top: 37px;
+    font-size: 16px;
+    color: #d7d7db;
+    white-space: nowrap;
+  }
+  .page {
+    display: inline-block;
+    margin-left: 18px;
+  }
+
+  .timeline {
+    position: absolute;
+    left: 61px;
+    width: 1239px;
+    border: 1px dotted #32004F;
+    border-left: none;
+    border-top: none;
+    box-sizing: border-box;
+  }
+
+  .timeline .line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 1px;
+    width: 1237px;
+    background: #a89eb8;
+  }
+
+  .future-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 1px;
+    width: 1237px;
+    background: #b000ff;
+  }
+
+  .tick {
+    position: absolute;
+    top: 0;
+    width: 1px;
+    background: #a89eb8;
+    height: 16px;
+  }
+
+  .tick.future {
+    background: #b000ff;
+  }
+
+  .event {
+    position: absolute;
+    width: 160px;
+    color: #e6e6e8;
+  }
+
+  .year {
+    font-size: 16px;
+    line-height: 1;
+    margin-bottom: 20px;
+    color: #cfc8db;
+  }
+
+  .future-year {
+    color: #b000ff;
+  }
+
+  .event p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.32;
+    color: #d9d9dc;
+  }
+
+  .sup {
+    font-size: 9px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .bottom-arrow {
+    position: absolute;
+    left: 61px;
+    top: 518px;
+    width: 359px;
+    height: 1px;
+    background: #b000ff;
+  }
+
+  .bottom-arrow:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 16px;
+    background: #b000ff;
+  }
+
+  .bottom-arrow:after {
+    content: "›";
+    position: absolute;
+    right: -6px;
+    top: -9px;
+    color: #b000ff;
+    font-size: 21px;
+    line-height: 1;
+  }
+
+  .small-tick {
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 16px;
+    background: #b000ff;
+  }
+
+  .corner-mark {
+    position: absolute;
+    left: 59px;
+    bottom: 8px;
+    color: #b000ff;
+    font-size: 52px;
+    font-weight: bold;
+    line-height: 1;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-left"><span class="accent">Technology Vision 2025</span> | AI: A Declaration of Autonomy</div>
+  <div class="top-right">When LLMs get their Bodies <span class="page">35</span></div>
+
+  <!-- Top historical timeline -->
+  <div class="timeline" style="top:69px; height:214px;">
+    <div class="line"></div>
+
+    <div class="tick" style="left:0px;"></div>
+    <div class="tick" style="left:181px;"></div>
+    <div class="tick" style="left:359px;"></div>
+    <div class="tick" style="left:539px;"></div>
+    <div class="tick" style="left:720px;"></div>
+    <div class="tick" style="left:900px;"></div>
+    <div class="tick" style="left:1075px;"></div>
+
+    <div class="event" style="left:12px; top:9px; width:154px;">
+      <div class="year">1950</div>
+      <p>Isaac Asimov’s <i>I, Robot</i> is published<span class="sup">75</span></p>
+    </div>
+
+    <div class="event" style="left:194px; top:9px; width:154px;">
+      <div class="year">1966</div>
+      <p>Stanford Research Institute begins developing Shakey, a robot that can navigate complex environments and find and group boxes<span class="sup">76</span></p>
+    </div>
+
+    <div class="event" style="left:371px; top:9px; width:157px;">
+      <div class="year">1973</div>
+      <p>Waseda University creates WABOT-1, the first full-scale anthropomorphic robot that can walk and grip objects<span class="sup">77</span></p>
+    </div>
+
+    <div class="event" style="left:551px; top:9px; width:157px;">
+      <div class="year">2002</div>
+      <p>iRobot launches Roomba, a floor vacuuming robot<span class="sup">78</span></p>
+    </div>
+
+    <div class="event" style="left:732px; top:9px; width:157px;">
+      <div class="year">2006</div>
+      <p>Willow Garage is founded and begins work on ROS (Robot Operating System) as the “Linux of robotics”<span class="sup">79</span></p>
+    </div>
+
+    <div class="event" style="left:912px; top:9px; width:152px;">
+      <div class="year">2015</div>
+      <p>The DARPA Robotics Challenge finals highlight many remaining barriers to general-purpose robots<span class="sup">80</span></p>
+    </div>
+
+    <div class="event" style="left:1086px; top:9px; width:145px;">
+      <div class="year">2016</div>
+      <p>Boston Dynamics releases a viral video of its humanoid robot, Atlas<span class="sup">81</span></p>
+    </div>
+  </div>
+
+  <!-- Mid future timeline -->
+  <div class="timeline" style="top:309px; height:184px;">
+    <div class="future-line"></div>
+
+    <div class="tick future" style="left:0px;"></div>
+    <div class="tick future" style="left:181px;"></div>
+    <div class="tick future" style="left:359px;"></div>
+    <div class="tick future" style="left:538px;"></div>
+    <div class="tick future" style="left:719px;"></div>
+    <div class="tick future" style="left:900px;"></div>
+    <div class="tick future" style="left:1076px;"></div>
+
+    <div class="event" style="left:12px; top:9px; width:155px;">
+      <div class="year future-year">2022</div>
+      <p>Google Research unveils RT-1, a transformer-based model for robotics<span class="sup">82</span></p>
+    </div>
+
+    <div class="event" style="left:194px; top:9px; width:155px;">
+      <div class="year future-year">2023</div>
+      <p>Stanford University, the University of California Berkeley, and Meta introduce ALOHA, a low-cost, open-source robotics system<span class="sup">83</span></p>
+    </div>
+
+    <div class="event" style="left:371px; top:9px; width:157px;">
+      <div class="year future-year">2024</div>
+      <p>Figure and OpenAI partner to release Figure 01, a robot that reasons<span class="sup">84</span></p>
+    </div>
+
+    <div class="event" style="left:551px; top:9px; width:157px;">
+      <div class="year future-year">Future</div>
+    </div>
+
+    <div class="event" style="left:731px; top:9px; width:152px;">
+      <div class="year future-year">2026</div>
+      <p>A few hospitals in Japan and Denmark become the first to use generalist robots</p>
+    </div>
+
+    <div class="event" style="left:912px; top:9px; width:152px;">
+      <div class="year future-year">2029</div>
+      <p>A consumer electronics company introduces a generalist robot prototype for limited household tasks</p>
+    </div>
+
+    <div class="event" style="left:1086px; top:9px; width:145px;">
+      <div class="year future-year">2030</div>
+      <p>Humanoid and quadruped robot production surpasses 100,000 per year</p>
+    </div>
+  </div>
+
+  <!-- Bottom short future arrow timeline -->
+  <div class="bottom-arrow">
+    <div class="small-tick" style="left:181px;"></div>
+  </div>
+
+  <div class="event" style="left:74px; top:521px; width:156px;">
+    <div class="year future-year">2032</div>
+    <p>Like app stores of the past, a market emerges to download new skills for generalist robots</p>
+  </div>
+
+  <div class="event" style="left:256px; top:521px; width:167px;">
+    <div class="year future-year">2035</div>
+    <p>A logistics company deploys humanoid robots to address labor shortages, delivering packages to even the most remote areas</p>
+  </div>
+
+  <div class="corner-mark">&gt;</div>
+</div>
+</body>
+</html>

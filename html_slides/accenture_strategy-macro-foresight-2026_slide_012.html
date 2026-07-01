@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>US near-term economic outlook and key scenarios</title>
+<style>
+  body{
+    margin:0;
+    background:#e6e2e9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e6e2e9;
+    color:#111;
+  }
+
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:25px;
+    background:#efefef;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:25px;
+    line-height:25px;
+    font-size:12px;
+    font-weight:700;
+    text-align:center;
+  }
+  .tab.purple{
+    left:0;
+    width:112px;
+    background:#7f0ec9;
+    color:#fff;
+  }
+  .tab.gray1{
+    left:112px;
+    width:95px;
+    color:#8f8f8f;
+  }
+  .tab.gray2{
+    left:207px;
+    width:140px;
+    color:#7f0ec9;
+    border-bottom:3px solid #7f0ec9;
+    box-sizing:border-box;
+  }
+
+  .title{
+    position:absolute;
+    left:43px;
+    top:60px;
+    width:1148px;
+    font-size:29px;
+    line-height:0.95;
+    font-weight:800;
+    color:#000;
+  }
+  .subtitle{
+    position:absolute;
+    left:43px;
+    top:120px;
+    font-size:27px;
+    line-height:1;
+    font-weight:800;
+    color:#8b16f0;
+  }
+  .flag{
+    position:absolute;
+    left:760px;
+    top:124px;
+    width:31px;
+    height:31px;
+    border-radius:50%;
+    background:
+      linear-gradient(to bottom,
+      #c91f2e 0 8%,
+      #fff 8% 16%,
+      #c91f2e 16% 24%,
+      #fff 24% 32%,
+      #c91f2e 32% 40%,
+      #fff 40% 48%,
+      #c91f2e 48% 56%,
+      #fff 56% 64%,
+      #c91f2e 64% 72%,
+      #fff 72% 80%,
+      #c91f2e 80% 88%,
+      #fff 88% 100%);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.15);
+  }
+  .flag:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:15px;
+    height:17px;
+    background:#21468b;
+    border-top-left-radius:16px;
+    border-bottom-right-radius:8px;
+  }
+  .flag:after{
+    content:"✦ ✦ ✦";
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:13px;
+    font-size:5px;
+    line-height:1.2;
+    color:#fff;
+    white-space:pre-wrap;
+  }
+
+  .left-panel{
+    position:absolute;
+    left:42px;
+    top:186px;
+    width:810px;
+    height:538px;
+  }
+  .table{
+    position:absolute;
+    left:0;
+    top:0;
+    width:810px;
+    height:538px;
+    box-sizing:border-box;
+  }
+
+  .thead-left{
+    position:absolute;
+    left:0;
+    top:0;
+    width:134px;
+    height:48px;
+    background:#e6e2e9;
+    border-bottom:1px solid #666;
+    box-sizing:border-box;
+    padding-top:6px;
+    padding-right:5px;
+    text-align:right;
+    font-size:16px;
+    line-height:1.05;
+    font-weight:800;
+  }
+  .thead-col{
+    position:absolute;
+    top:0;
+    height:48px;
+    background:#000;
+    color:#fff;
+    border-left:1px solid #303030;
+    box-sizing:border-box;
+    padding:8px 10px 0 10px;
+    font-size:16px;
+    line-height:1.1;
+    font-weight:800;
+  }
+  .c1{ left:134px; width:231px; }
+  .c2{ left:365px; width:223px; }
+  .c3{ left:588px; width:222px; }
+
+  .rowhead{
+    position:absolute;
+    left:0;
+    width:134px;
+    background:#efefef;
+    border-top:1px solid #b6b6b6;
+    box-sizing:border-box;
+    padding:6px 8px;
+    text-align:center;
+    font-size:15px;
+    line-height:1.12;
+    font-weight:800;
+  }
+  .r1{ top:48px; height:229px; }
+  .r2{ top:277px; height:190px; }
+  .r3{ top:467px; height:71px; }
+
+  .cell{
+    position:absolute;
+    border-top:1px solid #b6b6b6;
+    box-sizing:border-box;
+    padding:4px 12px 4px 12px;
+    font-size:14px;
+    line-height:1.14;
+    color:#2a2a2a;
+  }
+  .cell ul{
+    margin:0;
+    padding-left:18px;
+  }
+  .cell li{
+    margin:0 0 6px 0;
+  }
+  .cell-r1{ top:48px; height:229px; }
+  .cell-r2{ top:277px; height:190px; }
+  .cell-r3{ top:467px; height:71px; }
+
+  .x1{ left:134px; width:231px; }
+  .x2{ left:365px; width:223px; }
+  .x3{ left:588px; width:222px; }
+
+  .dashed-box{
+    position:absolute;
+    left:365px;
+    top:0;
+    width:223px;
+    height:538px;
+    border:2px dashed #d82222;
+    box-sizing:border-box;
+    pointer-events:none;
+  }
+
+  .most-likely{
+    position:absolute;
+    left:410px;
+    top:540px;
+    font-size:15px;
+    font-weight:800;
+    color:#111;
+  }
+
+  .right-card{
+    position:absolute;
+    left:880px;
+    top:186px;
+    width:457px;
+    height:530px;
+    background:#efefef;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.2);
+    box-sizing:border-box;
+    padding:16px 12px 10px 12px;
+  }
+  .watch-header{
+    position:relative;
+    height:34px;
+    border-bottom:2px solid #555;
+    margin-bottom:8px;
+  }
+  .eye{
+    position:absolute;
+    left:3px;
+    top:2px;
+    width:46px;
+    height:24px;
+  }
+  .eye:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:2px;
+    width:42px;
+    height:20px;
+    border:3px solid #7f0ec9;
+    border-radius:50%/65%;
+    transform:rotate(0deg);
+    box-sizing:border-box;
+  }
+  .eye:after{
+    content:"";
+    position:absolute;
+    left:15px;
+    top:7px;
+    width:12px;
+    height:12px;
+    background:#7f0ec9;
+    border-radius:50%;
+    box-shadow:0 0 0 4px #efefef inset;
+  }
+  .watch-title{
+    position:absolute;
+    left:62px;
+    top:0;
+    font-size:16px;
+    font-weight:800;
+    line-height:28px;
+  }
+
+  .watch-list{
+    margin:0;
+    padding-left:27px;
+    font-size:14px;
+    line-height:1.15;
+    color:#2a2a2a;
+  }
+  .watch-list li{
+    margin:0 0 14px 0;
+  }
+  .watch-list b{
+    color:#111;
+  }
+
+  .source{
+    position:absolute;
+    left:42px;
+    top:730px;
+    transform:translateY(-100%);
+    font-size:11px;
+    color:#8a8a8a;
+  }
+  .source .arrow{
+    color:#b21cff;
+    font-size:26px;
+    vertical-align:middle;
+    font-weight:900;
+    display:inline-block;
+    margin-right:6px;
+    transform:translateY(1px);
+  }
+
+  .footer{
+    position:absolute;
+    right:20px;
+    bottom:12px;
+    font-size:10px;
+    color:#6f6f6f;
+  }
+  .page{
+    position:absolute;
+    right:20px;
+    bottom:12px;
+    font-size:12px;
+    color:#7a7a7a;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar">
+    <div class="tab purple">2026 outlook</div>
+    <div class="tab gray1">Global</div>
+    <div class="tab gray2">Regional</div>
+  </div>
+
+  <div class="title">
+    The base case for US economy is continued bifurcation that leads to slowing and relatively<br>
+    jobless growth, with risk that tariff-led inflation and AI market correction trigger stagflation
+  </div>
+
+  <div class="subtitle">US near-term economic outlook and key scenarios</div>
+  <div class="flag"></div>
+
+  <div class="left-panel">
+    <div class="table">
+      <div class="thead-left">Economic<br>scenario</div>
+      <div class="thead-col c1">Stagflation</div>
+      <div class="thead-col c2">Moderating jobless<br>expansion</div>
+      <div class="thead-col c3">AI-led exceptionalism</div>
+
+      <div class="rowhead r1">Description</div>
+      <div class="rowhead r2">Key scenario<br>drivers and<br>assumptions</div>
+      <div class="rowhead r3">Corporate<br>implications</div>
+
+      <div class="cell cell-r1 x1">
+        <ul>
+          <li>Broad-based slowing of consumer spending and pullback in AI capex</li>
+          <li>Delayed impacts from tariffs and immigration restrictions keep inflation above 3%</li>
+          <li>Fed lowers rates below “neutral” if growth decline occurs alongside financial stress</li>
+        </ul>
+      </div>
+
+      <div class="cell cell-r1 x2">
+        <ul>
+          <li>Bifurcation of economy continues, with growth decelerating to 1.5-2% amidst continued solid AI capex but softening consumer spending</li>
+          <li>Investment-led growth limits job gains</li>
+          <li>Fed eases rates further to cushion growth but stops at ~3% neutral rate</li>
+        </ul>
+      </div>
+
+      <div class="cell cell-r1 x3">
+        <ul>
+          <li>Growth remains above trend on the back of AI productivity boost and broader recovery in non-AI investment due to falling interest rates, tax cuts and reshoring</li>
+          <li>Stronger demand leads Fed to keep rates above neutral to manage inflation risks</li>
+        </ul>
+      </div>
+
+      <div class="cell cell-r2 x1">
+        <ul>
+          <li>Larger and more persistent increase in inflation from tariffs</li>
+          <li>Geopolitical conflict(s) trigger renewed supply chain disruptions</li>
+          <li>Credit stress episode triggered by correction in AI company valuations</li>
+        </ul>
+      </div>
+
+      <div class="cell cell-r2 x2">
+        <ul>
+          <li>Tariff boost to inflation is short-lived</li>
+          <li>Ongoing affordability pressures and depleted household savings dampen consumption</li>
+          <li>No major drop-off in AI capex or valuations</li>
+        </ul>
+      </div>
+
+      <div class="cell cell-r2 x3">
+        <ul>
+          <li>OBBBA tax cuts and deregulation spur rebound in business investment beyond AI</li>
+          <li>Larger and faster-than-expected boost to productivity from AI</li>
+          <li>Stabilizing labor market, low AI displacement</li>
+        </ul>
+      </div>
+
+      <div class="cell cell-r3 x1">
+        <ul>
+          <li>Rising bankruptcies denting B2B demand and household finances</li>
+        </ul>
+      </div>
+
+      <div class="cell cell-r3 x2">
+        <ul>
+          <li>Further margin erosion from softer demand and weaker pricing power</li>
+        </ul>
+      </div>
+
+      <div class="cell cell-r3 x3">
+        <ul>
+          <li>Stabilizing margins</li>
+          <li>Tighter labor and financing conditions</li>
+        </ul>
+      </div>
+
+      <div class="dashed-box"></div>
+      <div class="most-likely">Most likely</div>
+    </div>
+  </div>
+
+  <div class="right-card">
+    <div class="watch-header">
+      <div class="eye"></div>
+      <div class="watch-title">What to watch for</div>
+    </div>
+    <ul class="watch-list">
+      <li><b>Bifurcation in consumer base:</b> Ongoing affordability pressures and labor market weakening could further widen the divide in purchasing power and sentiment between lower- and higher-income consumers</li>
+      <li><b>Durability of AI capex boom:</b> Massive AI-related investments drove a large share of GDP growth in 2025, but these may begin to slow in 2026 due to power constraints or delayed catch-up in AI demand</li>
+      <li><b>Intensification of tariff impacts:</b> Companies’ pre-tariff inventory buffers dwindle; the inflation and supply chain impacts of the large tariff increases to date (with more in pipeline for 2026) could intensify</li>
+      <li><b>Degree of labor market deterioration:</b> Potential for increased layoffs as consumer demand weakens, as well as transitional unemployment due to AI adoption, weakening employment rates for new college graduates, and immigration restrictions</li>
+      <li><b>Market correction:</b> Loss of confidence around pace of AI adoption and AI company earnings could trigger sharp decline in valuations, with knock-on wealth effects that weigh on higher-income consumer spend</li>
+    </ul>
+  </div>
+
+  <div class="source"><span class="arrow">&gt;</span>Source(s): Accenture Strategy analysis</div>
+  <div class="footer">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="page">12</div>
+</div>
+</body>
+</html>

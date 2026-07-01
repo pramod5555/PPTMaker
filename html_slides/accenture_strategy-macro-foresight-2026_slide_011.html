@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Economic Outlook Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ece8ef;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ece8ef;
+    color:#111;
+  }
+
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:25px;
+  }
+  .tab-left{
+    position:absolute;
+    left:0;
+    top:0;
+    width:106px;
+    height:24px;
+    background:#7b18d6;
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+    line-height:24px;
+    text-align:center;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:24px;
+    line-height:24px;
+    font-size:13px;
+    font-weight:700;
+    color:#7b18d6;
+    border-bottom:3px solid #7b18d6;
+  }
+  .tab.global{
+    left:113px;
+    width:109px;
+    text-align:center;
+  }
+  .tab.regional{
+    left:239px;
+    width:109px;
+    color:#9f9f9f;
+    border-bottom:1px solid #bfbfbf;
+  }
+
+  .title{
+    position:absolute;
+    left:44px;
+    top:59px;
+    width:1135px;
+    font-size:28px;
+    line-height:30px;
+    font-weight:800;
+    color:#000;
+    letter-spacing:-0.3px;
+  }
+  .subtitle{
+    position:absolute;
+    left:44px;
+    top:121px;
+    width:700px;
+    font-size:28px;
+    line-height:30px;
+    font-weight:800;
+    color:#8a1cf4;
+  }
+
+  .note{
+    position:absolute;
+    left:1136px;
+    top:145px;
+    width:187px;
+    text-align:center;
+    font-size:16px;
+    font-weight:800;
+    color:#111;
+  }
+  .note:before,
+  .note:after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:187px;
+    height:2px;
+    background:#111;
+  }
+  .note:before{ top:-8px; }
+  .note:after{ bottom:-2px; }
+
+  .card{
+    position:absolute;
+    width:293px;
+    height:155px;
+  }
+  .imgbox{
+    position:absolute;
+    left:0;
+    top:0;
+    width:293px;
+    height:95px;
+    overflow:hidden;
+    background:#999;
+  }
+  .label{
+    position:absolute;
+    left:0;
+    top:95px;
+    width:293px;
+    height:55px;
+    background:#000;
+    color:#fff;
+    font-size:16px;
+    line-height:20px;
+    font-weight:800;
+    padding:9px 11px;
+    box-sizing:border-box;
+  }
+
+  .card1{ left:50px; top:186px; }
+  .card2{ left:361px; top:186px; }
+  .card3{ left:676px; top:186px; }
+  .card4{ left:988px; top:186px; }
+
+  /* Faux images */
+  .europe{
+    background:
+      radial-gradient(circle at 28% 28%, rgba(255,255,255,.85) 0 4px, transparent 5px),
+      radial-gradient(circle at 62% 58%, rgba(255,255,255,.65) 0 3px, transparent 4px),
+      linear-gradient(180deg, #c8d5df 0%, #a4bfd1 100%);
+  }
+  .europe:before{
+    content:"";
+    position:absolute;
+    inset:10px 15px 10px 15px;
+    background:
+      radial-gradient(ellipse at 28% 35%, #7097b7 0 24%, transparent 25%),
+      radial-gradient(ellipse at 40% 28%, #6f95b3 0 18%, transparent 19%),
+      radial-gradient(ellipse at 51% 32%, #6b91b0 0 20%, transparent 21%),
+      radial-gradient(ellipse at 60% 40%, #6388a6 0 16%, transparent 17%),
+      radial-gradient(ellipse at 70% 49%, #6488a8 0 12%, transparent 13%),
+      radial-gradient(ellipse at 42% 58%, #6d92b3 0 12%, transparent 13%),
+      radial-gradient(ellipse at 20% 22%, #6a8fb0 0 8%, transparent 9%);
+    filter: blur(1px);
+    opacity:.95;
+  }
+
+  .chess{
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.2)),
+      linear-gradient(90deg,#221510 0%,#2f221d 33%,#1f1713 66%,#251a16 100%);
+  }
+  .chess:before{
+    content:"";
+    position:absolute;
+    left:18px;
+    top:16px;
+    width:255px;
+    height:58px;
+    background:
+      radial-gradient(circle at 12px 9px, #111 0 5px, transparent 6px),
+      linear-gradient(#111,#111) 8px 15px / 8px 18px no-repeat,
+      linear-gradient(#111,#111) 4px 31px / 16px 8px no-repeat,
+
+      radial-gradient(circle at 52px 9px, #bbb 0 5px, transparent 6px),
+      linear-gradient(#bbb,#bbb) 48px 15px / 8px 18px no-repeat,
+      linear-gradient(#bbb,#bbb) 44px 31px / 16px 8px no-repeat,
+
+      radial-gradient(circle at 92px 9px, #c7c7c7 0 5px, transparent 6px),
+      linear-gradient(#c7c7c7,#c7c7c7) 88px 15px / 8px 18px no-repeat,
+      linear-gradient(#c7c7c7,#c7c7c7) 84px 31px / 16px 8px no-repeat,
+
+      radial-gradient(circle at 132px 9px, #2f5fac 0 5px, transparent 6px),
+      radial-gradient(circle at 132px 9px, #d33 0 2px, transparent 3px),
+      linear-gradient(#e8e8e8,#e8e8e8) 128px 15px / 8px 18px no-repeat,
+      linear-gradient(#e8e8e8,#e8e8e8) 124px 31px / 16px 8px no-repeat,
+
+      radial-gradient(circle at 172px 9px, #ddd 0 5px, transparent 6px),
+      linear-gradient(#ddd,#ddd) 168px 15px / 8px 18px no-repeat,
+      linear-gradient(#ddd,#ddd) 164px 31px / 16px 8px no-repeat,
+
+      radial-gradient(circle at 212px 9px, #0c8a31 0 5px, transparent 6px),
+      linear-gradient(#ddd,#ddd) 208px 15px / 8px 18px no-repeat,
+      linear-gradient(#ddd,#ddd) 204px 31px / 16px 8px no-repeat;
+    background-repeat:no-repeat;
+    filter: drop-shadow(0 2px 1px rgba(255,255,255,.35));
+  }
+  .chess:after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    top:48px;
+    height:6px;
+    background:linear-gradient(90deg, rgba(255,215,0,.8), rgba(255,255,255,.5), rgba(255,0,0,.65), rgba(255,255,255,.45));
+  }
+
+  .china{
+    background:
+      linear-gradient(0deg, rgba(255,60,0,.4), rgba(255,60,0,.2)),
+      linear-gradient(90deg,#d10000 0%,#ff3b1f 55%,#ff8d2c 100%);
+  }
+  .china:before{
+    content:"★";
+    position:absolute;
+    left:18px;
+    top:2px;
+    color:#ffd42a;
+    font-size:55px;
+    line-height:55px;
+    text-shadow: 60px -2px 0 #ffd42a, 88px 17px 0 #ffd42a, 112px 0 0 #ffd42a;
+    transform:rotate(-8deg);
+  }
+  .china:after{
+    content:"";
+    position:absolute;
+    left:95px;
+    top:22px;
+    width:145px;
+    height:48px;
+    border-top:8px solid #ffcf2d;
+    border-right:8px solid #ffcf2d;
+    border-bottom:8px solid transparent;
+    border-left:8px solid transparent;
+    transform:skewX(20deg) rotate(-8deg);
+    clip-path: polygon(0 35%, 22% 0, 44% 40%, 66% 10%, 88% 55%, 100% 35%, 100% 60%, 88% 80%, 66% 40%, 44% 70%, 22% 30%, 0 55%);
+  }
+
+  .finance{
+    background:
+      radial-gradient(circle at 12% 28%, #ffb73c 0 4px, transparent 5px),
+      radial-gradient(circle at 28% 50%, #ffb73c 0 3px, transparent 4px),
+      radial-gradient(circle at 70% 70%, #ffb73c 0 3px, transparent 4px),
+      linear-gradient(90deg,#003556 0%,#006c8d 35%,#0089a4 55%,#00294f 100%);
+  }
+  .finance:before{
+    content:"35%";
+    position:absolute;
+    right:10px;
+    top:8px;
+    color:#40ff68;
+    font-size:34px;
+    font-weight:800;
+    letter-spacing:1px;
+    opacity:.8;
+  }
+  .finance:after{
+    content:"30.63";
+    position:absolute;
+    left:102px;
+    top:22px;
+    color:#b7ff41;
+    font-size:17px;
+    font-weight:700;
+    opacity:.85;
+  }
+
+  .textcol{
+    position:absolute;
+    width:280px;
+    font-size:17px;
+    line-height:21px;
+    color:#222;
+  }
+  .textcol ul{
+    margin:0;
+    padding-left:24px;
+  }
+  .textcol li{
+    margin-bottom:12px;
+  }
+  .textcol ul ul{
+    margin-top:6px;
+    padding-left:18px;
+    list-style:none;
+  }
+  .textcol ul ul li{
+    margin-bottom:6px;
+    position:relative;
+  }
+  .textcol ul ul li:before{
+    content:"–";
+    position:absolute;
+    left:-15px;
+    top:0;
+  }
+
+  .col1{ left:44px; top:350px; width:274px; }
+  .col2{ left:356px; top:350px; width:286px; }
+  .col3{ left:671px; top:350px; width:282px; }
+  .col4{ left:985px; top:350px; width:279px; }
+
+  .footer-left{
+    position:absolute;
+    left:39px;
+    top:726px;
+    display:none;
+  }
+  .accent-mark{
+    position:absolute;
+    left:39px;
+    top:724px;
+    display:none;
+  }
+
+  .accent{
+    position:absolute;
+    left:40px;
+    bottom:13px;
+    color:#9a13ff;
+    font-size:38px;
+    font-weight:900;
+    line-height:24px;
+  }
+  .source{
+    position:absolute;
+    left:74px;
+    bottom:13px;
+    color:#8b8b8b;
+    font-size:14px;
+    line-height:18px;
+  }
+  .copyright{
+    position:absolute;
+    right:82px;
+    bottom:13px;
+    color:#666;
+    font-size:13px;
+    line-height:18px;
+  }
+  .pagenum{
+    position:absolute;
+    right:20px;
+    bottom:13px;
+    color:#666;
+    font-size:13px;
+    line-height:18px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar">
+    <div class="tab-left">2026 outlook</div>
+    <div class="tab global">Global</div>
+    <div class="tab regional">Regional</div>
+  </div>
+
+  <div class="title">
+    Looking ahead, growth bifurcation, geoeconomic fragmentation and spillovers from<br>
+    China’s export push will continue to constrain growth momentum and widen divergences
+  </div>
+
+  <div class="subtitle">Key features of near-term economic outlook</div>
+
+  <div class="note">NOT EXHAUSTIVE</div>
+
+  <div class="card card1">
+    <div class="imgbox europe"></div>
+    <div class="label">Multi-speed growth</div>
+  </div>
+
+  <div class="card card2">
+    <div class="imgbox chess"></div>
+    <div class="label">Intensifying geoeconomic<br>fragmentation</div>
+  </div>
+
+  <div class="card card3">
+    <div class="imgbox china"></div>
+    <div class="label">China competitive shock 2.0</div>
+  </div>
+
+  <div class="card card4">
+    <div class="imgbox finance"></div>
+    <div class="label">Re-emerging financial fragility</div>
+  </div>
+
+  <div class="textcol col1">
+    <ul>
+      <li>At global level, a growing divide between economies benefiting from productivity and investment tailwinds vs. those constrained by debt, demographics, or competitiveness pressures</li>
+      <li>Within economies, K-shaped dynamics between sectors, companies, and consumer segments, reflecting:
+        <ul>
+          <li>Strength of links to AI investment</li>
+          <li>Vulnerability to immigration, technology, and trade/investment restrictions</li>
+          <li>Exposure to higher tariffs</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="textcol col2">
+    <ul>
+      <li>Policy shifts in 2025 reinforce a new global order of greater trade protectionism, geopolitical competition and fragmentation</li>
+      <li>2026 will see trade flows, supply chains, and tech ecosystems increasingly reflect these realities</li>
+      <li>Potential realignments that could impact the outlook include:
+        <ul>
+          <li>Weaker US integration with Mexico/Canada resulting from USMCA renegotiations</li>
+          <li>Europe’s tech and security decoupling from US</li>
+          <li>US-antagonized geopolitical swing states (e.g., India, Brazil) leaning more towards China</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="textcol col3">
+    <ul>
+      <li>China’s industrial overcapacity, continued cost competitiveness even with tariffs, and intent to lean on exports to support growth will have important repercussions:
+        <ul>
+          <li>Intensifying global price competition</li>
+          <li>Squeeze manufacturers in Europe and parts of EM where China has been gaining market share</li>
+          <li>Disinflationary impulse in countries most affected by Chinese dumping</li>
+          <li>Retaliatory trade actions</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="textcol col4">
+    <ul>
+      <li>Companies / governments will be increasingly vulnerable to funding stresses or asset price corrections, owing to:
+        <ul>
+          <li>Higher-for-longer rates</li>
+          <li>Large financing needs</li>
+          <li>Stretched valuations (e.g., AI stocks, private markets)</li>
+        </ul>
+      </li>
+      <li>Policy space to cushion fallout and spillovers will be constrained due to:
+        <ul>
+          <li>Reluctance of central banks to push rates too low given structural inflation risks</li>
+          <li>High public debt loads and fiscal austerity pressures</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="accent">&gt;</div>
+  <div class="source">Source(s): Accenture Strategy analysis</div>
+  <div class="copyright">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="pagenum">11</div>
+</div>
+</body>
+</html>

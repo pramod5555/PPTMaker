@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Environment Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+    color:#5f5f5f;
+  }
+  .slide > *{ position:absolute; box-sizing:border-box; }
+
+  .qmark{
+    left:46px;
+    top:42px;
+    font-size:40px;
+    line-height:40px;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-0.5px;
+  }
+  .left-title{
+    left:55px;
+    top:105px;
+    font-size:34px;
+    line-height:38px;
+    font-weight:700;
+    color:#5a5a5a;
+  }
+  .left-body{
+    left:56px;
+    top:174px;
+    width:285px;
+    font-size:25px;
+    line-height:1.25;
+    font-weight:400;
+    color:#5f5f5f;
+  }
+
+  .hdr1{
+    left:394px;
+    top:22px;
+    font-size:18px;
+    line-height:22px;
+    color:#6a6a6a;
+    font-weight:400;
+  }
+  .line1{
+    left:388px;
+    top:52px;
+    width:312px;
+    height:1px;
+    background:#7f95a5;
+  }
+
+  .legend-sq1{
+    left:722px;
+    top:23px;
+    width:17px;
+    height:17px;
+    background:#4d2a72;
+  }
+  .legend1{
+    left:746px;
+    top:22px;
+    font-size:17px;
+    line-height:21px;
+    color:#666;
+  }
+  .legend-sq2{
+    left:1113px;
+    top:22px;
+    width:17px;
+    height:17px;
+    background:#2daeb0;
+  }
+  .legend2{
+    left:1137px;
+    top:22px;
+    font-size:17px;
+    line-height:21px;
+    color:#666;
+  }
+  .legend3{
+    left:1222px;
+    top:22px;
+    width:96px;
+    font-size:17px;
+    line-height:21px;
+    color:#666;
+    text-align:left;
+  }
+  .line2{
+    left:716px;
+    top:52px;
+    width:624px;
+    height:1px;
+    background:#7f95a5;
+  }
+
+  .label{
+    font-size:15px;
+    line-height:1.22;
+    color:#6a6a6a;
+    font-weight:400;
+    text-align:right;
+  }
+
+  .bar-purple,.bar-teal{
+    height:56px;
+  }
+  .bar-purple{ background:#4d2a72; }
+  .bar-teal{ background:#2daeb0; }
+
+  .bartext{
+    font-size:17px;
+    line-height:56px;
+    color:#fff;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .bartext-left{
+    text-align:left;
+    padding-left:11px;
+  }
+  .bartext-right{
+    text-align:right;
+    padding-right:11px;
+  }
+
+  .delta{
+    width:66px;
+    font-size:15px;
+    line-height:19px;
+    color:#6a6a6a;
+    white-space:nowrap;
+  }
+  .tri{
+    display:inline-block;
+    width:0;
+    height:0;
+    vertical-align:middle;
+    margin-right:7px;
+  }
+  .down{
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-top:18px solid #ff5a64;
+  }
+  .up{
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:18px solid #2daeb0;
+  }
+  .pp{
+    display:inline-block;
+    vertical-align:middle;
+  }
+
+  .likely2023{
+    font-size:18px;
+    line-height:1;
+    color:#5d5d5d;
+    font-weight:400;
+    text-align:left;
+  }
+  .likely2023.big{
+    font-size:39px;
+    line-height:39px;
+    letter-spacing:-0.3px;
+  }
+
+  .footnote{
+    left:53px;
+    top:609px;
+    width:290px;
+    font-size:11px;
+    line-height:1.45;
+    font-style:italic;
+    color:#8b8b8b;
+  }
+  .footer-left{
+    left:49px;
+    top:729px;
+    transform:translateY(-100%);
+    font-size:11px;
+    line-height:14px;
+    color:#4f4f4f;
+  }
+  .page{
+    left:678px;
+    top:728px;
+    transform:translateY(-100%);
+    width:20px;
+    font-size:11px;
+    line-height:14px;
+    color:#4f4f4f;
+    text-align:center;
+  }
+
+  .ipsos{
+    left:1213px;
+    top:691px;
+    width:55px;
+    height:49px;
+    background:#294c9f;
+    overflow:hidden;
+  }
+  .ipsos:before{
+    content:"";
+    position:absolute;
+    right:0;
+    top:0;
+    width:30px;
+    height:49px;
+    background:#1ca3a7;
+    clip-path:polygon(0 0,100% 0,100% 100%,0 100%,18% 71%,32% 50%,18% 28%);
+  }
+  .ipsos .face{
+    position:absolute;
+    left:20px;
+    top:6px;
+    width:17px;
+    height:23px;
+    background:#5a67b3;
+    border-radius:9px 9px 7px 7px;
+  }
+  .ipsos .neck{
+    position:absolute;
+    left:23px;
+    top:28px;
+    width:12px;
+    height:11px;
+    background:#5a67b3;
+    border-radius:0 0 8px 8px;
+  }
+  .ipsos .txt{
+    position:absolute;
+    left:7px;
+    top:27px;
+    font-size:16px;
+    line-height:18px;
+    color:#fff;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qmark">Q.</div>
+  <div class="left-title">Environment</div>
+  <div class="left-body">
+    For each of the following,<br>
+    please tell me how likely<br>
+    or unlikely you think they<br>
+    are to happen...?
+  </div>
+
+  <div class="hdr1">Global averages</div>
+  <div class="line1"></div>
+
+  <div class="legend-sq1"></div>
+  <div class="legend1">Likely</div>
+  <div class="legend-sq2"></div>
+  <div class="legend2">Unlikely</div>
+  <div class="legend3">% Likely 2023</div>
+  <div class="line2"></div>
+
+  <div class="label" style="left:401px; top:110px; width:308px;">
+    Average global temperatures will increase
+  </div>
+  <div class="bar-purple" style="left:722px; top:92px; width:379px;">
+    <div class="bartext bartext-left">80%</div>
+  </div>
+  <div class="bar-teal" style="left:1133px; top:92px; width:63px;">
+    <div class="bartext bartext-right">13%</div>
+  </div>
+  <div class="delta" style="left:1243px; top:94px;"><span class="tri down"></span><span class="pp">-1 pp</span></div>
+  <div class="likely2023 big" style="left:1252px; top:124px;">81%</div>
+
+  <div class="label" style="left:401px; top:204px; width:309px;">
+    There will be more extreme weather events in<br>
+    [COUNTRY] in 2025 than there were in 2024
+  </div>
+  <div class="bar-purple" style="left:722px; top:194px; width:342px;">
+    <div class="bartext bartext-left">72%</div>
+  </div>
+  <div class="bar-teal" style="left:1105px; top:194px; width:91px;">
+    <div class="bartext bartext-right">19%</div>
+  </div>
+  <div class="delta" style="left:1243px; top:196px;"><span class="tri up"></span><span class="pp">+1 pp</span></div>
+  <div class="likely2023 big" style="left:1252px; top:226px;">71%</div>
+
+  <div class="label" style="left:395px; top:299px; width:315px;">
+    The government in [COUNTRY] will introduce<br>
+    more demanding targets to reduce carbon<br>
+    emissions more quickly
+  </div>
+  <div class="bar-purple" style="left:722px; top:296px; width:247px;">
+    <div class="bartext bartext-left">52%</div>
+  </div>
+  <div class="bar-teal" style="left:1020px; top:296px; width:176px;">
+    <div class="bartext bartext-right">37%</div>
+  </div>
+  <div class="delta" style="left:1242px; top:298px;"><span class="tri down"></span><span class="pp">-3 pp</span></div>
+  <div class="likely2023 big" style="left:1250px; top:328px;">55%</div>
+
+  <div class="label" style="left:395px; top:401px; width:316px;">
+    There will be more restrictions introduced to<br>
+    reduce the amount people drive in their cars in<br>
+    [COUNTRY]
+  </div>
+  <div class="bar-purple" style="left:722px; top:398px; width:222px;">
+    <div class="bartext bartext-left">47%</div>
+  </div>
+  <div class="bar-teal" style="left:997px; top:398px; width:199px;">
+    <div class="bartext bartext-right">42%</div>
+  </div>
+  <div class="delta" style="left:1242px; top:400px;"><span class="tri down"></span><span class="pp">-6 pp</span></div>
+  <div class="likely2023 big" style="left:1250px; top:430px;">53%</div>
+
+  <div class="label" style="left:419px; top:512px; width:289px;">
+    Parts of my country will become unliveable<br>
+    because of an extreme weather event
+  </div>
+  <div class="bar-purple" style="left:722px; top:500px; width:198px;">
+    <div class="bartext bartext-left">42%</div>
+  </div>
+  <div class="bar-teal" style="left:973px; top:500px; width:223px;">
+    <div class="bartext bartext-right">47%</div>
+  </div>
+  <div class="likely2023" style="left:1252px; top:519px; font-size:18px;">N/A</div>
+
+  <div class="label" style="left:401px; top:612px; width:308px;">
+    There will be a breakthrough technology<br>
+    developed which will halt climate change
+  </div>
+  <div class="bar-purple" style="left:722px; top:602px; width:152px;">
+    <div class="bartext bartext-left">32%</div>
+  </div>
+  <div class="bar-teal" style="left:931px; top:602px; width:265px;">
+    <div class="bartext bartext-right">56%</div>
+  </div>
+  <div class="likely2023" style="left:1252px; top:621px; font-size:18px;">N/A</div>
+
+  <div class="footnote">
+    Base: 23,721 adults aged 18 years and older in India, 18-74 in<br>
+    Canada, Republic of Ireland, Malaysia, the Philippines, South<br>
+    Africa, Turkey, and the United States, 20-74 in Thailand, 21-74<br>
+    in Indonesia and Singapore, and 16-74 in all other countries.<br>
+    Friday, October 25 – Friday November 8, 2024
+  </div>
+
+  <div class="footer-left">© Ipsos Predictions 2025 Report</div>
+  <div class="page">59</div>
+
+  <div class="ipsos">
+    <div class="face"></div>
+    <div class="neck"></div>
+    <div class="txt">Ipsos</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Country economic momentum snapshot</title>
+<style>
+  :root{
+    --bg:#e7e4e7;
+    --text:#0b0b0b;
+    --muted:#777;
+    --purple:#8224e3;
+    --purple-dark:#5a007f;
+    --line:#222;
+    --grid:#cfc8c8;
+    --soft:#f3f0ea;
+    --beige:#efe6b9;
+    --peach:#efc7a8;
+    --green:#b8d99f;
+    --green2:#8fc46e;
+    --na1:#ececec;
+    --na2:#d7d7d7;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg);
+    font-family: system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:var(--bg);
+    margin:0 auto;
+  }
+
+  /* Top tabs */
+  .tabs{
+    position:absolute; left:0; top:0; width:1280px; height:26px;
+    border-bottom:1px solid #bdb7bf;
+  }
+  .tab{
+    position:absolute; top:0; height:25px; line-height:25px;
+    font-size:14px; font-weight:700; padding:0 14px;
+    color:#969696;
+    border-bottom:3px solid transparent;
+  }
+  .tab.active-left{
+    left:0; background:#7b16c6; color:#fff; width:113px;
+  }
+  .tab.active{
+    left:113px; color:#7b16c6; width:108px; text-align:center;
+    border-bottom-color:#7b16c6;
+  }
+  .tab.third{
+    left:221px; width:102px; text-align:center;
+  }
+
+  /* Title area */
+  .title{
+    position:absolute; left:44px; top:58px; width:1180px;
+    color:var(--text);
+    font-size:29px; line-height:0.92; font-weight:800;
+    letter-spacing:-0.4px;
+  }
+  .subtitle{
+    position:absolute; left:44px; top:122px;
+    color:var(--purple); font-size:29px; line-height:1;
+    font-weight:800;
+  }
+
+  .asof{
+    position:absolute; left:1129px; top:124px; width:190px; height:32px;
+    color:#0b0b0b; font-weight:800; font-size:17px; text-align:center;
+  }
+  .asof:before,.asof:after{
+    content:""; position:absolute; left:0; width:190px; height:2px; background:#222;
+  }
+  .asof:before{ top:0; }
+  .asof:after{ bottom:0; }
+  .asof span{ position:absolute; left:0; top:2px; width:190px; }
+
+  /* Heatmap frame */
+  .frame{
+    position:absolute; left:44px; top:157px; width:1268px; height:493px;
+  }
+  .outer{
+    position:absolute; left:230px; top:0; width:1038px; height:493px;
+    border:2px solid #333;
+    background:#f8f6f2;
+  }
+  .tophead{
+    position:absolute; left:230px; top:0; width:1038px; height:29px;
+    display:flex;
+  }
+  .hcell{
+    height:29px; border-right:2px solid #333; border-bottom:2px solid #333;
+    text-align:center; line-height:29px; font-size:14px; font-weight:700; color:#111;
+    background:#efefef22;
+  }
+  .hcell:last-child{ border-right:none; }
+
+  .submonths{
+    position:absolute; left:230px; top:29px; width:1038px; height:28px;
+    display:flex;
+  }
+  .mgroup{
+    position:relative; height:28px; border-right:2px solid #333;
+    background:#e6e6e6;
+  }
+  .mgroup:last-child{ border-right:none; }
+  .months{
+    position:absolute; left:0; top:0; width:100%; height:28px;
+    display:grid; align-items:center; text-align:center;
+    color:#3d3d3d; font-size:10px;
+  }
+
+  /* left side */
+  .year{
+    position:absolute; left:102px; top:33px; width:76px; height:23px;
+    font-size:14px; font-weight:800; color:#111; text-align:center;
+  }
+  .leftband{
+    position:absolute; left:0; top:57px; width:103px; height:436px;
+    background:var(--purple-dark);
+    color:#fff; font-weight:800; font-size:15px;
+  }
+  .bandlabel{
+    position:absolute; left:0; width:103px; padding-left:5px;
+    display:flex; align-items:center; color:#fff; line-height:1.05;
+  }
+  .countries{
+    position:absolute; left:103px; top:57px; width:127px; height:436px;
+    background:#f0efee;
+    border-right:1px solid #999;
+  }
+  .country{
+    position:absolute; left:0; width:127px; height:29px;
+    padding-left:8px; font-size:13px; font-weight:700; color:#111;
+    display:flex; align-items:center; gap:8px;
+  }
+  .dash{
+    position:absolute; left:0; width:1268px; border-top:2px dashed #1d1d1d;
+  }
+  .dash.leftonly{
+    width:230px;
+  }
+  .rowgrid{
+    position:absolute; left:230px; width:1038px; border-top:1px dashed #c9c4c4;
+  }
+
+  /* flag circles */
+  .flag{
+    width:19px; height:19px; border-radius:50%; flex:0 0 19px;
+    border:1px solid #bbb; position:relative; overflow:hidden; background:#ddd;
+  }
+  .usa{ background:
+      linear-gradient(#d22 0 10%,#fff 10% 20%,#d22 20% 30%,#fff 30% 40%,#d22 40% 50%,#fff 50% 60%,#d22 60% 70%,#fff 70% 80%,#d22 80% 90%,#fff 90% 100%);
+  }
+  .usa:before{content:"";position:absolute;left:0;top:0;width:8px;height:8px;background:#2a4c9a;}
+  .canada{ background:linear-gradient(90deg,#e11 0 25%,#fff 25% 75%,#e11 75% 100%); }
+  .canada:before{content:"✦";position:absolute;left:6px;top:1px;font-size:9px;color:#e11;}
+  .mexico{ background:linear-gradient(90deg,#0a8b57 0 33%,#fff 33% 66%,#d62525 66% 100%);}
+  .brazil{ background:#0f8b3f; }
+  .brazil:before{content:"";position:absolute;left:3px;top:3px;width:11px;height:11px;background:#f6d13f;transform:rotate(45deg);}
+  .brazil:after{content:"";position:absolute;left:6px;top:6px;width:6px;height:6px;border-radius:50%;background:#1d4fa8;}
+  .uk{
+    background:
+      linear-gradient(90deg,transparent 43%,#fff 43% 57%,transparent 57%),
+      linear-gradient(transparent 43%,#fff 43% 57%,transparent 57%),
+      linear-gradient(90deg,transparent 46%,#d22 46% 54%,transparent 54%),
+      linear-gradient(transparent 46%,#d22 46% 54%,transparent 54%),
+      #234a9c;
+  }
+  .germany{ background:linear-gradient(#111 0 33%,#d51f1f 33% 66%,#f0c62b 66% 100%);}
+  .france{ background:linear-gradient(90deg,#2143a7 0 33%,#fff 33% 66%,#de2a2a 66% 100%);}
+  .italy{ background:linear-gradient(90deg,#14923c 0 33%,#fff 33% 66%,#e33 66% 100%);}
+  .spain{ background:linear-gradient(#d42727 0 25%,#f2c02c 25% 75%,#d42727 75% 100%);}
+  .spain:before{content:"";position:absolute;left:4px;top:7px;width:3px;height:5px;background:#7c3f00;}
+  .sa{ background:linear-gradient(#007847 0 50%,#ce2b37 50% 100%);}
+  .saudi{ background:#0a7b46; }
+  .saudi:before{content:"☪";position:absolute;left:3px;top:0px;font-size:11px;color:#fff;}
+  .china{ background:#de2910; }
+  .china:before{content:"★";position:absolute;left:3px;top:1px;font-size:8px;color:#ffde00;}
+  .japan{ background:#fff; }
+  .japan:before{content:"";position:absolute;left:5px;top:5px;width:8px;height:8px;border-radius:50%;background:#c70025;}
+  .india{ background:linear-gradient(#f0932b 0 33%,#fff 33% 66%,#128a3b 66% 100%);}
+  .india:before{content:"";position:absolute;left:7px;top:7px;width:4px;height:4px;border-radius:50%;border:1px solid #2152aa;}
+  .aus{ background:#234a9c; }
+  .aus:before{content:"✦";position:absolute;left:9px;top:8px;font-size:6px;color:#fff;}
+  .aus:after{content:"";position:absolute;left:0;top:0;width:8px;height:8px;background:
+      linear-gradient(90deg,transparent 42%,#fff 42% 58%,transparent 58%),
+      linear-gradient(transparent 42%,#fff 42% 58%,transparent 58%),
+      linear-gradient(90deg,transparent 46%,#d22 46% 54%,transparent 54%),
+      linear-gradient(transparent 46%,#d22 46% 54%,transparent 54%), #234a9c;}
+  .indo{ background:linear-gradient(#e31c24 0 50%,#fff 50% 100%); }
+
+  /* heatmap cells */
+  .grid{
+    position:absolute; left:230px; top:57px; width:1038px; height:436px;
+    display:grid;
+    grid-template-columns: repeat(41, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    overflow:hidden;
+  }
+  .cell{ border:none; }
+  .b1{ background:#f0e4bf; }
+  .b2{ background:#efd8c9; }
+  .b3{ background:#d7e0cf; }
+  .g1{ background:#b8d99f; }
+  .g2{ background:#8fc46e; }
+  .o1{ background:#efc8a7; }
+  .o2{ background:#eea975; }
+  .na{
+    background:
+      repeating-linear-gradient(45deg,var(--na1) 0 2px,var(--na2) 2px 4px);
+  }
+
+  .vline{
+    position:absolute; top:0; height:493px; width:2px; background:#333;
+  }
+
+  /* legend */
+  .legend{
+    position:absolute; left:44px; top:661px; width:1020px; height:18px;
+    color:#222; font-size:11px; font-weight:700;
+  }
+  .legend .item{ position:absolute; display:flex; align-items:center; gap:6px; }
+  .swatches{ display:flex; width:112px; height:18px; border:1px solid #ddd; }
+  .sw{ flex:1; }
+  .sw.peach{ background:#efaa76; }
+  .sw.beige{ background:#efd9c9; }
+  .sw.cream{ background:#efe7bf; }
+  .sw.green{ background:#d2dfbe; }
+  .sw.green2{ background:#9bc878; }
+
+  .legend-na{
+    position:absolute; left:44px; top:660px; width:170px; height:23px;
+    display:flex; align-items:center; font-size:13px; color:#222;
+  }
+  .na-box{
+    width:28px; height:22px; margin-right:6px;
+    background:repeating-linear-gradient(45deg,var(--na1) 0 2px,var(--na2) 2px 4px);
+    border:1px solid #ddd;
+  }
+
+  .notes{
+    position:absolute; left:74px; top:689px; width:1020px;
+    color:#8a8a8a; font-size:10px; line-height:1.15;
+  }
+  .brand{
+    position:absolute; left:40px; top:718px;
+    transform:translateY(-100%);
+    color:#7e18d1; font-size:51px; font-weight:800; line-height:0.8;
+  }
+  .copyright{
+    position:absolute; right:30px; top:729px;
+    transform:translateY(-100%);
+    color:#666; font-size:11px; text-align:right;
+  }
+  .pagenum{
+    position:absolute; right:19px; top:706px; color:#666; font-size:18px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="tabs">
+    <div class="tab active-left">2026 outlook</div>
+    <div class="tab active">Global</div>
+    <div class="tab third">Regional</div>
+  </div>
+
+  <div class="title">Economic signals point to uneven momentum across countries and sectors, despite a<br>gradual softening in inflation</div>
+  <div class="subtitle">Country economic momentum snapshot</div>
+  <div class="asof"><span>AS OF DEC 10</span></div>
+
+  <div class="frame">
+    <div class="year">2025</div>
+
+    <div class="leftband">
+      <div class="bandlabel" style="top:0px;height:110px;">Americas</div>
+      <div class="bandlabel" style="top:110px;height:136px;">Europe</div>
+      <div class="bandlabel" style="top:246px;height:55px;">Middle East<br>and Africa</div>
+      <div class="bandlabel" style="top:301px;height:135px;">Asia Pacific</div>
+    </div>
+
+    <div class="countries">
+      <div class="country" style="top:0px;"><span class="flag usa"></span>USA</div>
+      <div class="country" style="top:29px;"><span class="flag canada"></span>Canada</div>
+      <div class="country" style="top:58px;"><span class="flag mexico"></span>Mexico</div>
+      <div class="country" style="top:87px;"><span class="flag brazil"></span>Brazil</div>
+
+      <div class="country" style="top:116px;"><span class="flag uk"></span>UK</div>
+      <div class="country" style="top:145px;"><span class="flag germany"></span>Germany</div>
+      <div class="country" style="top:174px;"><span class="flag france"></span>France</div>
+      <div class="country" style="top:203px;"><span class="flag italy"></span>Italy</div>
+      <div class="country" style="top:232px;"><span class="flag spain"></span>Spain</div>
+
+      <div class="country" style="top:261px;"><span class="flag sa"></span>South Africa</div>
+      <div class="country" style="top:290px;"><span class="flag saudi"></span>Saudi Arabia</div>
+
+      <div class="country" style="top:319px;"><span class="flag china"></span>China</div>
+      <div class="country" style="top:348px;"><span class="flag japan"></span>Japan</div>
+      <div class="country" style="top:377px;"><span class="flag india"></span>India</div>
+      <div class="country" style="top:406px;"><span class="flag aus"></span>Australia</div>
+      <div class="country" style="top:435px;"><span class="flag indo"></span>Indonesia</div>
+    </div>
+
+    <div class="outer"></div>
+
+    <div class="tophead">
+      <div class="hcell" style="width:203px;">Services</div>
+      <div class="hcell" style="width:203px;">Manufacturing</div>
+      <div class="hcell" style="width:203px;">Consumer spending</div>
+      <div class="hcell" style="width:203px;">Employment</div>
+      <div class="hcell" style="width:226px;">CPI Inflation</div>
+    </div>
+
+    <div class="submonths">
+      <div class="mgroup" style="width:203px;">
+        <div class="months" style="grid-template-columns:repeat(9,1fr);">
+          <div>Mar</div><div>Apr</div><div>May</div><div>Jun</div><div>Jul</div><div>Aug</div><div>Sep</div><div>Oct</div><div>Nov</div>
+        </div>
+      </div>
+      <div class="mgroup" style="width:203px;">
+        <div class="months" style="grid-template-columns:repeat(9,1fr);">
+          <div>Mar</div><div>Apr</div><div>May</div><div>Jun</div><div>Jul</div><div>Aug</div><div>Sep</div><div>Oct</div><div>Nov</div>
+        </div>
+      </div>
+      <div class="mgroup" style="width:203px;">
+        <div class="months" style="grid-template-columns:repeat(9,1fr);">
+          <div>Jan</div><div>Feb</div><div>Mar</div><div>Apr</div><div>May</div><div>Jun</div><div>Jul</div><div>Aug</div><div>Sep</div>
+        </div>
+      </div>
+      <div class="mgroup" style="width:203px;">
+        <div class="months" style="grid-template-columns:repeat(9,1fr);">
+          <div>Jan</div><div>Feb</div><div>Mar</div><div>Apr</div><div>May</div><div>Jun</div><div>Jul</div><div>Aug</div><div>Sep</div>
+        </div>
+      </div>
+      <div class="mgroup" style="width:226px;">
+        <div class="months" style="grid-template-columns:repeat(10,1fr);">
+          <div>Jan</div><div>Feb</div><div>Mar</div><div>Apr</div><div>May</div><div>Jun</div><div>Jul</div><div>Aug</div><div>Sep</div><div>Oct</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- horizontal dashed separators -->
+    <div class="dash" style="top:167px;"></div>
+    <div class="dash" style="top:303px;"></div>
+    <div class="dash" style="top:358px;"></div>
+
+    <!-- row dashed lines inside heatmap -->
+    <div class="rowgrid" style="top:86px;"></div>
+    <div class="rowgrid" style="top:115px;"></div>
+    <div class="rowgrid" style="top:144px;"></div>
+    <div class="rowgrid" style="top:202px;"></div>
+    <div class="rowgrid" style="top:231px;"></div>
+    <div class="rowgrid" style="top:260px;"></div>
+    <div class="rowgrid" style="top:289px;"></div>
+    <div class="rowgrid" style="top:347px;"></div>
+    <div class="rowgrid" style="top:376px;"></div>
+    <div class="rowgrid" style="top:405px;"></div>
+    <div class="rowgrid" style="top:434px;"></div>
+    <div class="rowgrid" style="top:463px;"></div>
+
+    <!-- vertical section lines -->
+    <div class="vline" style="left:433px;"></div>
+    <div class="vline" style="left:636px;"></div>
+    <div class="vline" style="left:839px;"></div>
+    <div class="vline" style="left:1042px;"></div>
+
+    <div class="grid">
+      <!-- 15 rows x 41 cols -->
+      <!-- Row 1 USA -->
+      <div class="cell b3"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b3"></div>
+      <div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div>
+      <div class="cell o1"></div><div class="cell o1"></div><div class="cell b1"></div><div class="cell b3"></div><div class="cell b1"></div><div class="cell o1"></div><div class="cell b1"></div><div class="cell b3"></div><div class="cell b3"></div>
+      <div class="cell g1"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b1"></div>
+      <div class="cell b1"></div><div class="cell b1"></div><div class="cell b3"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell na"></div>
+
+      <!-- Row 2 Canada -->
+      <div class="cell o1"></div><div class="cell o1"></div><div class="cell o1"></div><div class="cell o1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell o1"></div>
+      <div class="cell b1"></div><div class="cell o1"></div><div class="cell b2"></div><div class="cell o1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div>
+      <div class="cell b3"></div><div class="cell b3"></div><div class="cell b2"></div><div class="cell b3"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell o1"></div><div class="cell b3"></div><div class="cell o1"></div>
+      <div class="cell b1"></div><div class="cell o1"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell o1"></div><div class="cell b1"></div><div class="cell o1"></div>
+      <div class="cell b1"></div><div class="cell b1"></div><div class="cell g2"></div><div class="cell b3"></div><div class="cell b1"></div><div class="cell b1"></div>
+
+      <!-- Row 3 Mexico -->
+      <div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div>
+      <div class="cell b1"></div><div class="cell o1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div>
+      <div class="cell b3"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b2"></div><div class="cell b3"></div><div class="cell b2"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b1"></div>
+      <div class="cell b2"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell o1"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b2"></div><div class="cell o1"></div><div class="cell b1"></div>
+      <div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b3"></div><div class="cell b3"></div>
+
+      <!-- Row 4 Brazil -->
+      <div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div>
+      <div class="cell b1"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div>
+      <div class="cell o1"></div><div class="cell b3"></div><div class="cell g2"></div><div class="cell b1"></div><div class="cell o1"></div><div class="cell o1"></div><div class="cell o1"></div><div class="cell b3"></div><div class="cell b3"></div>
+      <div class="cell b1"></div><div class="cell b1"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b1"></div>
+      <div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b1"></div>
+
+      <!-- Row 5 UK -->
+      <div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b3"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b2"></div>
+      <div class="cell o1"></div><div class="cell o1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div>
+      <div class="cell b1"></div><div class="cell b2"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b3"></div><div class="cell b3"></div>
+      <div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell na"></div><div class="cell b1"></div>
+      <div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b3"></div><div class="cell b3"></div>
+
+      <!-- Row 6 Germany -->
+      <div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b3"></div><div class="cell b1"></div>
+      <div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div>
+      <div class="cell b1"></div><div class="cell b2"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div>
+      <div class="cell b1"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div>
+      <div class="cell b1"></div><div class="cell g1"></div><div class="cell g2"></div><div class="cell g1"></div><div class="cell b1"></div><div class="cell b1"></div>
+
+      <!-- Row 7 France -->
+      <div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div>
+      <div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div>
+      <div class="cell b3"></div><div class="cell b2"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell o1"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b2"></div>
+      <div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div>
+      <div class="cell g1"></div><div class="cell g2"></div><div class="cell g2"></div><div class="cell g1"></div><div class="cell b1"></div><div class="cell b3"></div>
+
+      <!-- Row 8 Italy -->
+      <div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b3"></div>
+      <div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div>
+      <div class="cell o1"></div><div class="cell b1"></div><div class="cell o1"></div><div class="cell b2"></div><div class="cell b3"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell o1"></div><div class="cell b1"></div>
+      <div class="cell b3"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b2"></div><div class="cell b1"></div><div class="cell b1"></div>
+      <div class="cell b1"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b3"></div><div class="cell b1"></div><div class="cell g1"></div>
+
+      <!-- Row 9 Spain -->
+      <div class="cell b3"></div><div class="cell b1"></div><div class="cell b1"></div><div class="cell b3"></div><div class="cell b3"></div><div class="cell b

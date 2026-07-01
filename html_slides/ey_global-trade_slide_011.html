@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d7d7d7;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f6f6f7;
+  }
+  #slide > *{ position:absolute; box-sizing:border-box; }
+
+  .topbar{
+    left:0; top:0; width:1280px; height:79px;
+    background:#f2f2f3;
+    border-bottom:1px solid #cfd0d8;
+    z-index:5;
+  }
+  .topbar-accent{
+    left:0; top:0; width:47px; height:79px;
+    background:#bebec6;
+    z-index:6;
+  }
+  .insights{
+    left:57px; top:49px; width:170px;
+    font-size:18px; line-height:22px; color:#7f7f8a; font-weight:400;
+    z-index:30;
+  }
+
+  .nav-btn{
+    width:36px; height:36px;
+    border-radius:50%;
+    background:#c6c6ce;
+    color:#4e4e5d;
+    text-align:center;
+    font-size:23px;
+    line-height:35px;
+    font-weight:700;
+    z-index:50;
+  }
+  .nav-left{ left:1186px; top:32px; }
+  .nav-right{ left:1230px; top:32px; }
+
+  .title{
+    left:57px; top:113px; width:615px;
+    font-size:33px; line-height:1.12; color:#737381; font-weight:700;
+    letter-spacing:-0.01em;
+    z-index:30;
+  }
+
+  .hero{
+    left:0; top:272px; width:801px; height:448px;
+    background:
+      radial-gradient(circle at 5% 19%, rgba(52,147,138,0.65) 0 3%, transparent 7%),
+      radial-gradient(circle at 11% 34%, rgba(130,84,54,0.75) 0 12%, transparent 14%),
+      radial-gradient(circle at 14% 41%, rgba(214,182,149,0.95) 0 10%, transparent 12%),
+      radial-gradient(circle at 63% 17%, rgba(41,54,71,0.95) 0 11%, transparent 12%),
+      radial-gradient(circle at 78% 10%, rgba(34,193,255,0.85) 0 5%, transparent 9%),
+      radial-gradient(circle at 73% 68%, rgba(120,124,128,0.45) 0 8%, transparent 10%),
+      linear-gradient(90deg, #7e919d 0%, #dae0e3 12%, #d9cfc6 20%, #899ba6 31%, #e8edf1 42%, #71828c 52%, #dee1e4 61%, #5d7f88 72%, #dce0e3 81%, #48525c 100%);
+    overflow:hidden;
+    z-index:10;
+  }
+  .hero:before{
+    content:"";
+    position:absolute;
+    left:0; top:0; width:100%; height:100%;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.08), rgba(0,0,0,0.06)),
+      linear-gradient(90deg, rgba(0,0,0,0.15) 0%, rgba(255,255,255,0) 18%, rgba(255,255,255,0) 83%, rgba(0,0,0,0.15) 100%);
+  }
+
+  .person-hair{
+    left:-2px; top:274px; width:172px; height:256px;
+    border-radius:44% 49% 51% 43% / 35% 39% 55% 58%;
+    background:
+      radial-gradient(circle at 58% 14%, rgba(96,62,37,0.95) 0 23%, transparent 24%),
+      radial-gradient(circle at 34% 44%, rgba(177,111,72,0.8) 0 16%, transparent 18%),
+      linear-gradient(180deg,#8f5d37 0%, #6e472e 50%, #a56f48 100%);
+    transform:rotate(-4deg);
+    z-index:22;
+  }
+  .person-head{
+    left:41px; top:317px; width:114px; height:152px;
+    border-radius:51% 49% 46% 54% / 43% 42% 58% 57%;
+    background:linear-gradient(180deg,#d0a07b 0%, #bf825e 100%);
+    transform:rotate(-6deg);
+    z-index:21;
+  }
+  .glasses{
+    left:115px; top:369px; width:48px; height:19px;
+    border:2px solid #1e2128;
+    border-radius:10px;
+    background:transparent;
+    z-index:24;
+  }
+  .glasses:before{
+    content:"";
+    position:absolute;
+    left:-26px; top:1px; width:23px; height:15px;
+    border:2px solid #1e2128;
+    border-radius:9px;
+  }
+  .glasses:after{
+    content:"";
+    position:absolute;
+    left:-5px; top:7px; width:10px; height:2px;
+    background:#1e2128;
+  }
+  .person-neck{
+    left:121px; top:425px; width:34px; height:45px;
+    background:linear-gradient(180deg,#cc8f69 0%, #b47553 100%);
+    border-radius:11px;
+    z-index:21;
+  }
+  .person-body{
+    left:-18px; top:434px; width:435px; height:310px;
+    background:linear-gradient(180deg,#d8e4ee 0%, #f1f4f7 38%, #cad3dc 77%, #bcc5ce 100%);
+    border-radius:39% 28% 0 0 / 22% 16% 0 0;
+    transform:rotate(7deg);
+    z-index:20;
+  }
+  .shirt-fold{
+    left:149px; top:470px; width:120px; height:205px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(207,216,224,0.85));
+    clip-path:polygon(18% 0, 85% 0, 63% 100%, 0 100%);
+    z-index:23;
+  }
+
+  .desk{
+    left:0; top:609px; width:801px; height:111px;
+    background:linear-gradient(180deg,#2b373f 0%, #171b1f 100%);
+    z-index:18;
+  }
+  .desk-highlight{
+    left:0; top:603px; width:801px; height:10px;
+    background:rgba(91,121,135,0.85);
+    z-index:19;
+  }
+
+  .monitor-base{
+    left:329px; top:591px; width:125px; height:10px;
+    background:#262c31;
+    border-radius:3px;
+    z-index:23;
+  }
+  .monitor-stand{
+    left:382px; top:526px; width:17px; height:71px;
+    background:#21262b;
+    border-radius:5px;
+    z-index:23;
+  }
+  .monitor{
+    left:239px; top:327px; width:431px; height:226px;
+    background:#111316;
+    border-radius:3px;
+    box-shadow:0 0 0 1px rgba(0,0,0,0.45);
+    z-index:25;
+  }
+  .monitor-screen{
+    left:244px; top:333px; width:421px; height:215px;
+    background:#f6f7fa;
+    border-radius:1px;
+    overflow:hidden;
+    z-index:26;
+  }
+
+  .screen-top1{ left:258px; top:342px; width:67px; height:8px; background:#245fd8; z-index:27; }
+  .screen-top2{ left:329px; top:342px; width:57px; height:8px; background:#b23be0; z-index:27; }
+  .screen-top3{ left:391px; top:342px; width:87px; height:8px; background:#efb14a; z-index:27; }
+  .screen-top4{ left:484px; top:342px; width:90px; height:8px; background:#17c2d2; z-index:27; }
+  .screen-top5{ left:580px; top:342px; width:57px; height:8px; background:#f6534b; z-index:27; }
+
+  .screen-col-left{ left:258px; top:361px; width:258px; height:160px; z-index:28; }
+  .screen-col-mid{ left:529px; top:358px; width:56px; height:165px; z-index:28; }
+  .screen-col-right{ left:602px; top:336px; width:57px; height:195px; z-index:28; }
+
+  .dotrow,.smallrow,.metricrow{ position:absolute; left:0; width:100%; }
+  .dotrow span{ position:absolute; display:block; border-radius:50%; width:6px; height:6px; top:4px; }
+  .dotrow i,.smallrow i,.metricrow i{
+    position:absolute; display:block; height:4px; background:#d5dae1; border-radius:2px; top:5px;
+  }
+  .smallrow b{ position:absolute; display:block; width:8px; height:8px; border-radius:2px; top:3px; background:#91b6ff; }
+  .metricrow b{ position:absolute; display:block; width:34px; height:16px; border-radius:2px; top:0; background:#eef1f5; }
+
+  .laptop{
+    left:491px; top:535px; width:129px; height:93px;
+    background:#283038;
+    border-radius:4px 4px 0 0;
+    transform:skew(-18deg);
+    z-index:27;
+    box-shadow:0 0 0 2px rgba(0,0,0,0.18);
+  }
+  .laptop-screen{
+    left:499px; top:541px; width:114px; height:81px;
+    background:#eaf0f2;
+    transform:skew(-18deg);
+    overflow:hidden;
+    z-index:28;
+  }
+  .laptop-keyboard{
+    left:469px; top:625px; width:175px; height:27px;
+    background:linear-gradient(180deg,#4d5258 0%, #262b31 100%);
+    clip-path:polygon(11% 0, 94% 0, 100% 100%, 0 100%);
+    z-index:26;
+  }
+  .touchpad{
+    left:544px; top:635px; width:38px; height:10px;
+    border-radius:2px;
+    background:#d9dadd;
+    z-index:27;
+  }
+  .hand{
+    left:435px; top:574px; width:132px; height:58px;
+    background:linear-gradient(180deg,#cd946e 0%, #b87856 100%);
+    border-radius:34px;
+    transform:rotate(-18deg);
+    z-index:29;
+  }
+  .finger{
+    left:553px; top:566px; width:10px; height:40px;
+    background:linear-gradient(180deg,#cc936d 0%, #b87856 100%);
+    border-radius:8px;
+    transform:rotate(7deg);
+    z-index:30;
+  }
+  .pen{
+    left:559px; top:567px; width:4px; height:47px;
+    background:#1d2126;
+    border-radius:2px;
+    transform:rotate(10deg);
+    z-index:31;
+  }
+  .mouse{
+    left:684px; top:698px; width:26px; height:14px;
+    background:linear-gradient(180deg,#2b2e32 0%, #111315 100%);
+    border-radius:50% 50% 45% 45%;
+    z-index:30;
+  }
+
+  .right-col{
+    left:817px; top:118px; width:339px; height:592px;
+    z-index:30;
+    color:#4b4b55;
+  }
+  .para{
+    position:absolute;
+    left:0;
+    width:316px;
+    font-size:17px;
+    line-height:1.33;
+    color:#4f4f59;
+    font-weight:400;
+  }
+  .p1{ top:0; }
+  .p2{ top:105px; }
+  .p3{ top:304px; }
+  .subhead{
+    left:0; top:385px; width:316px;
+    font-size:19px; line-height:1.05; color:#2e2f37; font-weight:700;
+  }
+  .p4{ top:430px; }
+
+  .side-tab{
+    width:77px;
+    padding:7px 6px 7px 8px;
+    background:#2b2b39;
+    color:#dddddf;
+    font-size:11px;
+    line-height:1.1;
+    font-weight:400;
+    border-left:2px solid #d7c400;
+    z-index:52;
+  }
+  .tab1{ left:1196px; top:120px; height:35px; }
+  .tab2{ left:1196px; top:170px; height:35px; }
+  .tab3{ left:1196px; top:221px; height:41px; }
+  .tab4{ left:1196px; top:271px; height:35px; }
+  .tab5{ left:1196px; top:321px; height:50px; color:#f1f1f2; background:#7a7a86; }
+  .tab6{ left:1196px; top:382px; height:35px; color:#f1f1f2; background:#7a7a86; }
+
+  .footer{
+    left:56px; top:699px; width:180px;
+    color:#ffffff;
+    font-size:10px; line-height:12px; font-weight:600;
+    letter-spacing:0.01em;
+    z-index:40;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="topbar"></div>
+  <div class="topbar-accent"></div>
+  <div class="insights">Insights: Global</div>
+
+  <div class="nav-btn nav-left">◀</div>
+  <div class="nav-btn nav-right">▶</div>
+
+  <div class="title">Designing and implementing an automated sanctions screening technology solution</div>
+
+  <div class="hero"></div>
+  <div class="person-hair"></div>
+  <div class="person-head"></div>
+  <div class="glasses"></div>
+  <div class="person-neck"></div>
+  <div class="person-body"></div>
+  <div class="shirt-fold"></div>
+
+  <div class="desk"></div>
+  <div class="desk-highlight"></div>
+
+  <div class="monitor-base"></div>
+  <div class="monitor-stand"></div>
+  <div class="monitor"></div>
+  <div class="monitor-screen"></div>
+
+  <div class="screen-top1"></div>
+  <div class="screen-top2"></div>
+  <div class="screen-top3"></div>
+  <div class="screen-top4"></div>
+  <div class="screen-top5"></div>
+
+  <div class="screen-col-left">
+    <div class="dotrow" style="top:4px;height:14px;">
+      <span style="left:2px;background:#4a7cf2;"></span><i style="left:14px;width:58px;"></i><i style="left:79px;width:50px;"></i>
+    </div>
+    <div class="dotrow" style="top:28px;height:14px;">
+      <span style="left:2px;background:#f16b6b;"></span><i style="left:14px;width:43px;"></i><i style="left:62px;width:72px;"></i>
+    </div>
+    <div class="dotrow" style="top:52px;height:14px;">
+      <span style="left:2px;background:#38c7c7;"></span><i style="left:14px;width:55px;"></i><i style="left:74px;width:40px;"></i>
+    </div>
+    <div class="dotrow" style="top:76px;height:14px;">
+      <span style="left:2px;background:#9c7ef4;"></span><i style="left:14px;width:39px;"></i><i style="left:59px;width:55px;"></i>
+    </div>
+    <div class="dotrow" style="top:100px;height:14px;">
+      <span style="left:2px;background:#f0a53b;"></span><i style="left:14px;width:69px;"></i><i style="left:88px;width:39px;"></i>
+    </div>
+    <div class="dotrow" style="top:124px;height:14px;">
+      <span style="left:2px;background:#2cc78c;"></span><i style="left:14px;width:48px;"></i><i style="left:67px;width:59px;"></i>
+    </div>
+    <div class="dotrow" style="top:148px;height:14px;">
+      <span style="left:2px;background:#4a7cf2;"></span><i style="left:14px;width:75px;"></i><i style="left:95px;width:31px;"></i>
+    </div>
+  </div>
+
+  <div class="screen-col-mid">
+    <div class="smallrow" style="top:8px;height:14px;"><b style="left:0;background:#7aa8ff;"></b><i style="left:14px;width:34px;"></i></div>
+    <div class="smallrow" style="top:39px;height:14px;"><b style="left:0;background:#c595ff;"></b><i style="left:14px;width:40px;"></i></div>
+    <div class="smallrow" style="top:70px;height:14px;"><b style="left:0;background:#f6b055;"></b><i style="left:14px;width:35px;"></i></div>
+    <div class="smallrow" style="top:101px;height:14px;"><b style="left:0;background:#2ec8d3;"></b><i style="left:14px;width:32px;"></i></div>
+    <div class="smallrow" style="top:132px;height:14px;"><b style="left:0;background:#e86161;"></b><i style="left:14px;width:38px;"></i></div>
+  </div>
+
+  <div class="screen-col-right">
+    <div class="metricrow" style="top:8px;height:18px;"><b style="left:0;"></b><i style="left:39px;width:13px;"></i></div>
+    <div class="metricrow" style="top:40px;height:18px;"><b style="left:0;"></b><i style="left:39px;width:14px;"></i></div>
+    <div class="metricrow" style="top:72px;height:18px;"><b style="left:0;"></b><i style="left:39px;width:14px;"></i></div>
+    <div class="metricrow" style="top:104px;height:18px;"><b style="left:0;"></b><i style="left:39px;width:11px;"></i></div>
+    <div class="metricrow" style="top:136px;height:18px;"><b style="left:0;"></b><i style="left:39px;width:13px;"></i></div>
+  </div>
+
+  <div class="laptop"></div>
+  <div class="laptop-screen">
+    <svg width="114" height="101" viewBox="0 0 114 101" xmlns="http://www.w3.org/2000/svg" style="position:absolute;left:0;top:0">
+      <rect x="0" y="0" width="114" height="81" fill="#eef4f3"/>
+      <rect x="5" y="6" width="44" height="8" rx="2" fill="#d9ece8"/>
+      <rect x="5" y="18" width="60" height="3" rx="1.5" fill="#a2b5b0"/>
+      <rect x="5" y="25" width="49" height="3" rx="1.5" fill="#c0d0cc"/>
+      <rect x="5" y="36" width="47" height="36" rx="2" fill="#ffffff" stroke="#dce2e3"/>
+      <rect x="57" y="6" width="52" height="66" rx="2" fill="#ffffff" stroke="#dce2e3"/>
+      <rect x="62" y="11" width="22" height="4" rx="2" fill="#5eb8a5"/>
+      <rect x="62" y="20" width="31" height="3" rx="1.5" fill="#c8d6d3"/>
+      <rect x="62" y="27" width="25" height="3" rx="1.5" fill="#c8d6d3"/>
+      <rect x="62" y="38" width="40" height="5" rx="2" fill="#9dd8cb"/>
+      <rect x="62" y="47" width="34" height="5" rx="2" fill="#d3e7e2"/>
+      <rect x="62" y="55" width="28" height="5" rx="2" fill="#d3e7e2"/>
+      <rect x="62" y="64" width="35" height="6" rx="2" fill="#5ed0bf"/>
+      <rect x="10" y="42" width="34" height="5" rx="2" fill="#dbe4e3"/>
+      <rect x="10" y="50" width="31" height="5" rx="2" fill="#dbe4e3"/>
+      <rect x="10" y="58" width="26" height="5" rx="2" fill="#5ec8b3"/>
+      <rect x="5" y="74" width="104" height="5" rx="2.5" fill="#d9e6e3"/>
+    </svg>
+  </div>
+  <div class="laptop-keyboard"></div>
+  <div class="touchpad"></div>
+
+  <div class="hand"></div>
+  <div class="finger"></div>
+  <div class="pen"></div>
+  <div class="mouse"></div>
+
+  <div class="right-col">
+    <div class="para p1">As sanctions and embargo regimes continue to evolve in scope and complexity, organizations are designing and implementing automated screening solutions to manage exposure to restricted parties, sanctions and prohibited activities and to remain compliant.</div>
+    <div class="para p2">In today's environment, effective screening starts with identifying and understanding the key components that enable the screening of critical business processes such as business partner master data and procure-to-pay (PTP) and order-to-cash (OTC) transactions. Having a flexible global trade management (GTM) software platform that can be designed and configured to meet evolving requirements is essential to support scale, velocity and evolving risk across the enterprise.</div>
+    <div class="para p3">This article will provide an overview of the key functions that form an industry-agnostic automated detailed screening solution that can be scoped and scaled to meet the business needs and requirements of many organizations.</div>
+    <div class="subhead">Automated sanctions screening solution components</div>
+    <div class="para p4">Typical GTM software applications offer standard out-of-the-box automated sanctions screening functionality that can be designed and configured in many ways to meet an organization's needs and requirements. They also have the capability to integrate with various enterprise resource planning (ERP) systems and other business applications through electronic interfaces which will vary in complexity depending on the scope, scale and design of the interfaces.</div>
+  </div>
+
+  <div class="side-tab tab1">Contents</div>
+  <div class="side-tab tab2">Insights</div>
+  <div class="side-tab tab3">New on<br>ey.com</div>
+  <div class="side-tab tab4">Tax alerts</div>
+  <div class="side-tab tab5">Additional<br>resources</div>
+  <div class="side-tab tab6">Contacts</div>
+
+  <div class="footer">8 &nbsp;|&nbsp; TradeWatch Issue 1 2026</div>
+</div>
+</body>
+</html>

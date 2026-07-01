@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dcdcdc;
+    color:#5a5a5a;
+  }
+  .slide > *{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .qmark{
+    left:45px;
+    top:44px;
+    font-size:38px;
+    line-height:38px;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-0.01em;
+  }
+
+  .headline{
+    left:55px;
+    top:105px;
+    width:260px;
+    font-size:34px;
+    line-height:1.22;
+    font-weight:700;
+    color:#5c5c5c;
+    letter-spacing:-0.02em;
+  }
+
+  .bodycopy{
+    left:55px;
+    top:296px;
+    width:270px;
+    font-size:27px;
+    line-height:1.14;
+    font-weight:400;
+    color:#5d5d5d;
+    letter-spacing:-0.01em;
+  }
+
+  .footnote{
+    left:53px;
+    top:608px;
+    width:287px;
+    font-size:11px;
+    line-height:1.45;
+    font-style:italic;
+    font-weight:400;
+    color:#8a8a8a;
+  }
+
+  .copyright{
+    left:50px;
+    bottom:18px;
+    font-size:16px;
+    line-height:1;
+    color:#4e4e4e;
+    font-weight:400;
+  }
+
+  .chart-title{
+    left:392px;
+    top:22px;
+    font-size:30px;
+    line-height:1;
+    font-weight:400;
+    color:#6a6a6a;
+    letter-spacing:-0.01em;
+  }
+
+  .top-rule{
+    left:385px;
+    top:52px;
+    width:742px;
+    height:2px;
+    background:#7d92a0;
+  }
+
+  .chart-area{
+    left:388px;
+    top:73px;
+    width:748px;
+    height:542px;
+  }
+
+  .ylabels div{
+    position:absolute;
+    left:0;
+    width:44px;
+    text-align:right;
+    font-size:31px;
+    line-height:1;
+    color:#6b6b6b;
+    font-weight:400;
+  }
+
+  .xaxis{
+    position:absolute;
+    left:58px;
+    top:540px;
+    width:684px;
+    height:2px;
+    background:#c9c9c9;
+  }
+
+  .xlabel{
+    position:absolute;
+    font-size:27px;
+    line-height:1;
+    color:#2f2f2f;
+    font-weight:400;
+    text-align:center;
+    width:62px;
+  }
+
+  .callout{
+    left:1178px;
+    top:332px;
+    width:128px;
+    font-size:18px;
+    line-height:1.18;
+    font-weight:700;
+    color:#565656;
+    letter-spacing:-0.01em;
+  }
+
+  .center-page{
+    left:683px;
+    bottom:16px;
+    transform:translateX(-50%);
+    font-size:17px;
+    line-height:1;
+    color:#2f2f2f;
+    text-align:center;
+    font-weight:400;
+  }
+
+  .logo{
+    left:1213px;
+    top:690px;
+    width:55px;
+    height:50px;
+  }
+  .logo-box{
+    position:absolute;
+    left:0;
+    top:0;
+    width:55px;
+    height:50px;
+    background:#2f4aa2;
+    overflow:hidden;
+  }
+  .logo-teal{
+    position:absolute;
+    right:0;
+    top:0;
+    width:22px;
+    height:50px;
+    background:#11a5a6;
+    clip-path: polygon(25% 0,100% 0,100% 100%,0 100%);
+  }
+  .logo-head{
+    position:absolute;
+    left:21px;
+    top:4px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#2fa46b;
+  }
+  .logo-body{
+    position:absolute;
+    left:19px;
+    top:14px;
+    width:16px;
+    height:21px;
+    border-radius:8px;
+    background:#2fa46b;
+  }
+  .logo-text{
+    position:absolute;
+    left:7px;
+    bottom:7px;
+    font-size:13px;
+    line-height:1;
+    color:#fff;
+    font-weight:700;
+    letter-spacing:-0.02em;
+  }
+
+  svg text{
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="qmark">Q.</div>
+
+    <div class="headline">
+      Expectations for<br>
+      world security in<br>
+      2024 in an<br>
+      historical context
+    </div>
+
+    <div class="bodycopy">
+      Please indicate if you<br>
+      agree very much, agree<br>
+      somewhat, disagree<br>
+      somewhat or disagree<br>
+      very much with the<br>
+      following statements...?
+    </div>
+
+    <div class="footnote">
+      Base: 23,721 adults aged 18 years and older in India, 18-74 in<br>
+      Canada, Republic of Ireland, Malaysia, the Philippines, South<br>
+      Africa, Turkey, and the United States, 20-74 in Thailand, 21-74<br>
+      in Indonesia and Singapore, and 16-74 in all other countries.<br>
+      Friday, October 25 – Friday November 8, 2024
+    </div>
+
+    <div class="copyright">© Ipsos Predictions 2025 Report</div>
+
+    <div class="chart-title">Global averages - % agree</div>
+    <div class="top-rule"></div>
+
+    <div class="chart-area">
+      <div class="ylabels">
+        <div style="top:12px;">100%</div>
+        <div style="top:64px;">90%</div>
+        <div style="top:116px;">80%</div>
+        <div style="top:168px;">70%</div>
+        <div style="top:220px;">60%</div>
+        <div style="top:272px;">50%</div>
+        <div style="top:324px;">40%</div>
+        <div style="top:376px;">30%</div>
+        <div style="top:428px;">20%</div>
+        <div style="top:480px;">10%</div>
+        <div style="top:532px;">0%</div>
+      </div>
+
+      <div class="xaxis"></div>
+
+      <div class="xlabel" style="left:104px; top:557px;">2021</div>
+      <div class="xlabel" style="left:276px; top:557px;">2022</div>
+      <div class="xlabel" style="left:448px; top:557px;">2023</div>
+      <div class="xlabel" style="left:620px; top:557px;">2024</div>
+
+      <svg width="748" height="542" style="position:absolute; left:0; top:0; overflow:visible;">
+        <polyline points="142,399 314,399 486,357 656,357"
+                  fill="none" stroke="#7b7b7a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="142" cy="399" r="7" fill="#7b7b7a"/>
+        <circle cx="314" cy="399" r="7" fill="#7b7b7a"/>
+        <circle cx="486" cy="357" r="7" fill="#7b7b7a"/>
+        <circle cx="656" cy="357" r="7" fill="#7b7b7a"/>
+
+        <text x="142" y="432" text-anchor="middle" font-size="15" fill="#7b7b7a" font-weight="700">27%</text>
+        <text x="314" y="385" text-anchor="middle" font-size="15" fill="#7b7b7a" font-weight="700">27%</text>
+        <text x="486" y="344" text-anchor="middle" font-size="15" fill="#7b7b7a" font-weight="700">35%</text>
+        <text x="656" y="344" text-anchor="middle" font-size="15" fill="#7b7b7a" font-weight="700">35%</text>
+      </svg>
+    </div>
+
+    <div class="callout">
+      A rogue artificial<br>
+      intelligence<br>
+      program that<br>
+      can’t be shut<br>
+      down will cause<br>
+      significant havoc<br>
+      globally
+    </div>
+
+    <div class="center-page">51</div>
+
+    <div class="logo">
+      <div class="logo-box"></div>
+      <div class="logo-teal"></div>
+      <div class="logo-head"></div>
+      <div class="logo-body"></div>
+      <div class="logo-text">Ipsos</div>
+    </div>
+  </div>
+</body>
+</html>

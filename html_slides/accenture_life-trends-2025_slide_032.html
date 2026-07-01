@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#eee3e0;
+    color:#222;
+  }
+
+  .title{
+    position:absolute;
+    left:60px;
+    top:132px;
+    width:360px;
+    font-size:25px;
+    line-height:1.22;
+    font-weight:400;
+    color:#7a22e6;
+    letter-spacing:-0.2px;
+  }
+
+  .col-left{
+    position:absolute;
+    left:60px;
+    top:227px;
+    width:345px;
+    font-size:18px;
+    line-height:1.48;
+    color:#222;
+  }
+
+  .col-mid{
+    position:absolute;
+    left:480px;
+    top:126px;
+    width:345px;
+    font-size:17px;
+    line-height:1.43;
+    color:#222;
+  }
+
+  .quote{
+    position:absolute;
+    left:937px;
+    top:160px;
+    width:305px;
+    font-size:24px;
+    line-height:1.32;
+    font-weight:400;
+    color:#8b35e8;
+    letter-spacing:-0.2px;
+  }
+
+  .quote-author{
+    position:absolute;
+    left:944px;
+    top:335px;
+    font-size:18px;
+    line-height:1.2;
+    font-weight:700;
+    color:#111;
+  }
+
+  .img-top{
+    position:absolute;
+    left:937px;
+    top:0px;
+    width:365px;
+    height:129px;
+    background:
+      radial-gradient(circle at 82% 28%, rgba(236,197,185,0.95) 0 18%, rgba(236,197,185,0.3) 19%, rgba(236,197,185,0) 36%),
+      radial-gradient(circle at 52% 58%, rgba(214,81,132,0.7) 0 20%, rgba(214,81,132,0) 42%),
+      radial-gradient(circle at 23% 28%, rgba(255,177,104,0.55) 0 18%, rgba(255,177,104,0) 38%),
+      radial-gradient(circle at 13% 55%, rgba(252,212,201,0.7) 0 10%, rgba(252,212,201,0) 26%),
+      linear-gradient(115deg, #0d566f 0%, #224561 16%, #db5c66 45%, #ee8a74 66%, #d3a3a2 84%, #c89aa1 100%);
+    overflow:hidden;
+  }
+  .img-top:before{
+    content:"";
+    position:absolute;
+    left:12px;
+    top:-8px;
+    width:120px;
+    height:150px;
+    background:
+      radial-gradient(ellipse at 55% 25%, rgba(255,214,194,0.65) 0 12%, rgba(255,214,194,0) 13%),
+      linear-gradient(145deg, rgba(8,55,82,0.95) 0%, rgba(20,88,111,0.85) 24%, rgba(241,159,120,0.75) 55%, rgba(213,95,98,0.45) 100%);
+    border-radius:55% 45% 50% 30% / 35% 50% 45% 40%;
+    filter:blur(1px);
+    transform:rotate(8deg);
+    opacity:.95;
+  }
+  .img-top:after{
+    content:"";
+    position:absolute;
+    left:34px;
+    top:43px;
+    width:78px;
+    height:46px;
+    border-radius:0 0 55% 35% / 0 0 65% 45%;
+    border-bottom:3px solid rgba(80,43,41,0.55);
+    border-left:0;
+    border-right:0;
+    transform:rotate(8deg);
+    opacity:.7;
+  }
+
+  .img-bottom{
+    position:absolute;
+    left:937px;
+    top:391px;
+    width:365px;
+    height:329px;
+    background:
+      radial-gradient(circle at 18% 39%, rgba(248,220,52,0.95) 0 7%, rgba(248,220,52,0.35) 8%, rgba(248,220,52,0) 15%),
+      radial-gradient(circle at 26% 17%, rgba(255,255,255,0.4) 0 6%, rgba(255,255,255,0) 18%),
+      linear-gradient(125deg, rgba(30,39,45,0.95) 0%, rgba(58,83,86,0.55) 18%, rgba(40,221,248,0.12) 28%, rgba(36,188,230,0.82) 38%, rgba(239,190,175,0.62) 60%, rgba(240,199,170,0.86) 74%, rgba(229,196,171,0.95) 100%);
+    overflow:hidden;
+  }
+  .img-bottom:before{
+    content:"";
+    position:absolute;
+    left:95px;
+    top:-4px;
+    width:180px;
+    height:385px;
+    background:
+      linear-gradient(165deg, rgba(255,255,255,0.22) 0%, rgba(57,190,255,0.58) 18%, rgba(0,196,255,0.55) 28%, rgba(237,170,177,0.2) 45%, rgba(237,178,177,0.6) 62%, rgba(198,64,112,0.55) 84%, rgba(136,30,82,0.35) 100%);
+    border-radius:46% 42% 38% 48% / 12% 14% 18% 16%;
+    transform:rotate(14deg);
+    filter:blur(1px);
+    opacity:.95;
+  }
+  .img-bottom:after{
+    content:"";
+    position:absolute;
+    left:175px;
+    top:12px;
+    width:145px;
+    height:310px;
+    background:
+      linear-gradient(170deg, rgba(255,235,215,0.35) 0%, rgba(243,205,192,0.22) 34%, rgba(228,168,159,0.5) 62%, rgba(185,110,115,0.3) 100%);
+    border-radius:45% 40% 28% 35% / 10% 14% 22% 18%;
+    transform:rotate(10deg);
+    opacity:.85;
+  }
+
+  .vertical{
+    position:absolute;
+    right:10px;
+    top:34px;
+    width:24px;
+    height:650px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-size:12px;
+    line-height:1;
+    color:#666;
+    letter-spacing:0.2px;
+  }
+  .vertical .purple{
+    color:#7a22e6;
+    font-weight:700;
+  }
+
+  .footer-left{
+    position:absolute;
+    right:74px;
+    bottom:18px;
+    font-size:12px;
+    color:#8c8c8c;
+  }
+  .footer-left .year{
+    color:#7a22e6;
+    font-weight:700;
+  }
+  .footer-page{
+    position:absolute;
+    right:22px;
+    bottom:18px;
+    font-size:12px;
+    color:#777;
+  }
+
+  sup{
+    font-size:0.65em;
+    vertical-align:super;
+    line-height:0;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title">Sentiment will continue<br>to spread</div>
+
+    <div class="col-left">
+      Scott Galloway, NYU media professor and influential media and technology podcaster, takes a broader view of young people’s plight: “A decent proxy for the success of a society is how it treats children. Not how individuals parent, but the success of the structures, incentives, and leadership charged with preventing a tragedy of the commons.”<sup>58</sup> Parents around the world are rallying for change, and the movement is gaining traction.<br><br>
+      In the UK, St Albans is set to become the first city to be smartphone-free for all children under 14, and a number of London schools are seeking to follow suit.<sup>59, 60</sup> In February 2024, the French government passed a law to protect children on the internet, specifically on social networks.<sup>61</sup> China has been ahead of this trend, having imposed limits on children’s exposure to short videos and online games back in 2021, which was a move welcomed by most parents.<sup>62</sup>
+    </div>
+
+    <div class="col-mid">
+      In the US, the Kids Online Safety Act (KOSA) passed, mandating that online platforms adopt a duty of care for minors by mitigating risks such as online bullying, sexual exploitation, drug promotion and eating disorders. Platforms must default to the highest privacy settings for minors, and parental controls are mandated to oversee privacy settings, limit purchases and manage time spent online.<sup>63</sup><br><br>
+      Not all parents agree. The National Parents Union in the US states that children should have phone access during their free time.<sup>64</sup>
+    </div>
+
+    <div class="img-top"></div>
+
+    <div class="quote">“I get really nervous with them being on social media, but realize, the more that I try to limit it the less they’re going to have skills and know how to cope with it.”</div>
+    <div class="quote-author">Charlotte, 40, US</div>
+
+    <div class="img-bottom"></div>
+
+    <div class="vertical">Cost of hesitations &nbsp;/&nbsp; <span class="purple">The parent trap</span> &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; Social rewiring</div>
+
+    <div class="footer-left">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="footer-page">32</div>
+  </div>
+</body>
+</html>

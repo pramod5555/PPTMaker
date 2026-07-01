@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Chapter 1 - CRO agenda</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #000814;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      linear-gradient(90deg,
+        #000000 0%,
+        #00030b 18%,
+        #000816 40%,
+        #081e3d 54%,
+        #244d7f 72%,
+        #437fca 100%);
+  }
+  .slide > div, .slide > svg {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  .left-dark {
+    left: 0;
+    top: 0;
+    width: 710px;
+    height: 720px;
+    z-index: 2;
+    background:
+      linear-gradient(90deg,
+        rgba(0,0,0,0.82) 0%,
+        rgba(0,3,10,0.80) 35%,
+        rgba(0,8,25,0.74) 68%,
+        rgba(0,12,35,0.52) 100%);
+  }
+
+  .right-bg {
+    left: 677px;
+    top: 0;
+    width: 603px;
+    height: 720px;
+    z-index: 1;
+    background:
+      linear-gradient(90deg,
+        rgba(41,78,129,0.78) 0%,
+        rgba(60,112,176,0.74) 55%,
+        rgba(75,135,208,0.72) 100%);
+  }
+
+  .divider {
+    left: 677px;
+    top: 0;
+    width: 3px;
+    height: 720px;
+    z-index: 6;
+    background: rgba(10,19,39,0.78);
+  }
+
+  .floor-shadow {
+    left: 0;
+    top: 655px;
+    width: 1280px;
+    height: 65px;
+    z-index: 7;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 34%, rgba(0,0,0,0.78) 100%);
+  }
+
+  .horizon-line {
+    left: 0;
+    top: 691px;
+    width: 1280px;
+    height: 3px;
+    z-index: 8;
+    background: rgba(7,20,58,0.90);
+    box-shadow: 0 0 8px rgba(22,54,125,0.6);
+  }
+
+  .chapter-label {
+    left: 128px;
+    top: 136px;
+    z-index: 20;
+    color: #f2f2f2;
+    font-size: 33px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  .outline-one {
+    left: 16px;
+    top: 183px;
+    width: 378px;
+    height: 497px;
+    z-index: 9;
+  }
+
+  .title-block {
+    left: 313px;
+    top: 201px;
+    width: 290px;
+    height: 158px;
+    z-index: 21;
+    color: #f3f3f3;
+  }
+  .title-line1, .title-line2, .title-line3, .title-line4 {
+    position: absolute;
+    left: 0;
+    white-space: nowrap;
+    color: #f2f2f2;
+    letter-spacing: -0.2px;
+  }
+  .title-line1 {
+    top: 0;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.08;
+  }
+  .title-line2 {
+    top: 42px;
+    font-size: 33px;
+    font-weight: 400;
+    line-height: 1.08;
+  }
+  .title-line3 {
+    top: 82px;
+    font-size: 33px;
+    font-weight: 400;
+    line-height: 1.08;
+  }
+  .title-line4 {
+    top: 124px;
+    font-size: 33px;
+    font-weight: 400;
+    line-height: 1.08;
+  }
+
+  .accent-line {
+    left: 313px;
+    top: 372px;
+    width: 253px;
+    height: 3px;
+    z-index: 22;
+    background: linear-gradient(90deg, #d8d50f 0%, #ebda0b 26%, #ff4dd7 66%, #00f2ff 100%);
+  }
+
+  .body-copy {
+    left: 313px;
+    top: 412px;
+    width: 321px;
+    z-index: 21;
+    color: #f5f5f5;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.28;
+    letter-spacing: 0;
+  }
+
+  .jump {
+    left: 1232px;
+    top: 60px;
+    width: 42px;
+    height: 44px;
+    z-index: 30;
+  }
+  .jump-circle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 38px;
+    height: 38px;
+    border: 1.4px dashed rgba(255,255,255,0.78);
+    border-radius: 50%;
+  }
+  .jump-dot {
+    position: absolute;
+    left: 28px;
+    top: 0px;
+    width: 9px;
+    height: 9px;
+    background: #ffe427;
+    border-radius: 50%;
+  }
+  .jump-text {
+    position: absolute;
+    left: 6px;
+    top: 10px;
+    width: 26px;
+    color: #ffffff;
+    font-size: 8px;
+    font-weight: 400;
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .blue-glow {
+    left: 726px;
+    top: 252px;
+    width: 250px;
+    height: 250px;
+    z-index: 4;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(160,205,255,0.48) 0%, rgba(95,132,255,0.22) 24%, rgba(34,65,121,0.00) 72%);
+    filter: blur(7px);
+  }
+
+  .bottom-reflection {
+    left: 723px;
+    top: 618px;
+    width: 430px;
+    height: 102px;
+    z-index: 3;
+    background: radial-gradient(ellipse at center, rgba(92,156,255,0.36) 0%, rgba(37,79,170,0.18) 38%, rgba(26,52,82,0) 75%);
+    filter: blur(4px);
+  }
+
+  .fiber-wrap {
+    left: 610px;
+    top: 160px;
+    width: 670px;
+    height: 560px;
+    z-index: 12;
+    overflow: hidden;
+  }
+  .fiber-svg {
+    width: 670px;
+    height: 560px;
+    display: block;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="right-bg"></div>
+    <div class="left-dark"></div>
+    <div class="divider"></div>
+    <div class="blue-glow"></div>
+    <div class="bottom-reflection"></div>
+    <div class="floor-shadow"></div>
+    <div class="horizon-line"></div>
+
+    <div class="chapter-label">CHAPTER</div>
+
+    <svg class="outline-one" viewBox="0 0 378 497" aria-hidden="true">
+      <path d="M 11 81
+               L 11 160
+               L 104 160
+               L 104 496
+               L 0 496
+               M 104 496
+               L 104 160
+               L 243 160
+               L 243 0
+               L 153 0
+               C 149 18, 142 34, 130 47
+               C 118 61, 100 71, 76 76
+               C 57 80, 35 80, 11 81
+               M 243 496
+               L 365 496"
+            fill="none"
+            stroke="#f2f2f2"
+            stroke-width="2.2"
+            stroke-linejoin="miter"
+            stroke-linecap="square"/>
+    </svg>
+
+    <div class="title-block">
+      <div class="title-line1">The CRO agenda:</div>
+      <div class="title-line2">risk priorities</div>
+      <div class="title-line3">and planned</div>
+      <div class="title-line4">enhancements</div>
+    </div>
+
+    <div class="accent-line"></div>
+
+    <div class="body-copy">
+      Cybersecurity remains the defining near-term<br>
+      priority for insurance CROs, consistently ranking<br>
+      as the top risk across the past three survey cycles<br>
+      (2023-2025). This sustained prominence reflects<br>
+      both the persistence of the threat environment and<br>
+      rising expectations from boards and regulators for<br>
+      resilience, defensibility and operational stability.<br>
+      Meanwhile, the sharp rise in strategic risk highlights<br>
+      CROs’ growing awareness of the critical need to<br>
+      navigate long-term uncertainties and market shifts,<br>
+      requiring heightened attention going forward.
+    </div>
+
+    <div class="jump">
+      <div class="jump-circle"></div>
+      <div class="jump-dot"></div>
+      <div class="jump-text">Jump to<br>contents</div>
+    </div>
+
+    <div class="fiber-wrap">
+      <svg class="fiber-svg" viewBox="0 0 670 560" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="fiberStrokeA" x1="0" y1="560" x2="670" y2="70" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#00043c"/>
+            <stop offset="32%" stop-color="#000a7e"/>
+            <stop offset="62%" stop-color="#123cff"/>
+            <stop offset="100%" stop-color="#9bc4ff"/>
+          </linearGradient>
+          <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
+            <stop offset="48%" stop-color="rgba(255,255,255,0.22)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </linearGradient>
+        </defs>
+
+        <g fill="none" stroke-linecap="round" opacity="0.98">
+          <!-- main fan -->
+          <path d="M 25 557 C 80 502, 74 360, 88 250 C 95 198, 112 125, 132 68" stroke="#7f4ba4" stroke-width="1.6" opacity="0.45"/>
+          <path d="M 36 556 C 86 494, 88 356, 106 232 C 114 179, 132 118, 150 63" stroke="#8b56b2" stroke-width="1.6" opacity="0.48"/>
+          <path d="M 48 556 C 94 487, 102 349, 123 218 C 132 166, 149 112, 170 58" stroke="#9a63c0" stroke-width="1.6" opacity="0.5"/>
+          <path d="M 60 556 C 104 480, 117 343, 141 204 C 150 154, 168 107, 190 54" stroke="#00125f" stroke-width="2.3"/>
+          <path d="M 72 556 C 114 473, 132 337, 159 191 C 168 142, 188 103, 210 50" stroke="#001983" stroke-width="2.3"/>
+          <path d="M 84 556 C 124 467, 147 331, 177 180 C 187 132, 208 98, 230 47" stroke="#0022a8" stroke-width="2.3"/>
+          <path d="M 96 556 C 135 461, 162 326, 196 170 C 206 123, 228 95, 249 44" stroke="#002fcb" stroke-width="2.3"/>
+          <path d="M 108 556 C 146 456, 177 321, 215 160 C 226 114, 248 92, 269 41" stroke="#0f35f2" stroke-width="2.3"/>
+          <path d="M 120 556 C 158 452, 193 316, 235 151 C 247 107, 269 89, 289 39" stroke="#1742ff" stroke-width="2.3"/>
+          <path d="M 132 556 C 170 448, 209 311, 255 143 C 267 101, 289 86, 309 37" stroke="#1c4aff" stroke-width="2.3"/>
+          <path d="M 144 556 C 183 444, 226 307, 275 136 C 288 95, 310 84, 329 36" stroke="#2458ff" stroke-width="2.3"/>
+          <path d="M 156 556 C 196 440, 243 303, 296 129 C 310 90, 331 82, 350 35" stroke="#2d66ff" stroke-width="2.3"/>
+          <path d="M 168 556 C 209 437, 260 299, 317 123 C 331 86, 353 80, 371 34" stroke="#3672ff" stroke-width="2.3"/>
+          <path d="M 180 556 C 223 434, 278 296, 339 118 C 354 82, 376 79, 392 34" stroke="#417dff" stroke-width="2.3"/>
+          <path d="M 192 556 C 237 431, 297 293, 361 113 C 377 79, 399 78, 413 34" stroke="#4d88ff" stroke-width="2.3"/>
+          <path d="M 204 556 C 252 428, 316 290, 383 109 C 400 76, 422 77, 434 35" stroke="#5a92ff" stroke-width="2.3"/>
+          <path d="M 216 556 C 267 425, 336 287, 406 106 C 424 74, 446 77, 456 36" stroke="#679dff" stroke-width="2.3"/>
+          <path d="M 228 556 C 283 422, 357 285, 429 103 C 448 72, 470 77, 478 37" stroke="#75a8ff" stroke-width="2.3"/>
+          <path d="M 240 556 C 299 420, 378 283, 452 101 C 472 71, 494 78, 500 39" stroke="#84b2ff" stroke-width="2.3"/>
+          <path d="M 252 556 C 316 418, 400 281, 475 100 C 496 71, 518 79, 523 42" stroke="#90bcff" stroke-width="2.3"/>
+          <path d="M 264 556 C 333 416, 422 280, 498 99 C 520 72, 542 81, 546 45" stroke="#96c2ff" stroke-width="2.3"/>
+          <path d="M 276 556 C 350 414, 445 279, 521 99 C 544 74, 566 84, 570 49" stroke="#9bc7ff" stroke-width="2.3"/>
+          <path d="M 288 556 C 368 413, 468 279, 544 100 C 568 76, 590 88, 594 54" stroke="#9cc8ff" stroke-width="2.3"/>
+          <path d="M 300 556 C 386 412, 492 279, 567 102 C 592 79, 614 92, 619 60" stroke="#9ec9ff" stroke-width="2.3"/>
+          <path d="M 312 556 C 404 411, 516 280, 590 105 C 616 83, 638 97, 645 67" stroke="#9bc6ff" stroke-width="2.3"/>
+          <path d="M 324 556 C 423 411, 540 282, 613 110 C 639 88, 660 104, 671 76" stroke="#95c1ff" stroke-width="2.3"/>
+
+          <!-- dense internal fibers -->
+          <path d="M 72 556 C 126 495, 130 372, 153 246 C 164 185, 180 133, 197 82" stroke="#00084f" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 84 556 C 139 492, 145 370, 170 236 C 181 176, 198 126, 216 76" stroke="#001172" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 96 556 C 151 489, 160 366, 188 226 C 200 168, 217 121, 236 71" stroke="#001a93" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 108 556 C 163 485, 176 363, 206 217 C 219 160, 236 116, 256 67" stroke="#0026be" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 120 556 C 176 482, 193 359, 225 208 C 238 152, 256 111, 276 63" stroke="#1338f4" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 132 556 C 189 479, 210 355, 244 200 C 258 145, 277 107, 297 59" stroke="#2a52ff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 144 556 C 202 476, 227 351, 264 192 C 278 139, 298 103, 318 56" stroke="#3d67ff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 156 556 C 216 473, 245 347, 284 185 C 299 133, 319 100, 339 53" stroke="#527eff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 168 556 C 230 470, 264 344, 305 178 C 321 127, 341 97, 360 51" stroke="#6692ff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 180 556 C 244 468, 283 341, 326 172 C 342 122, 362 94, 381 49" stroke="#79a6ff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 192 556 C 258 465, 303 338, 348 166 C 365 117, 385 92, 402 48" stroke="#8ab6ff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 204 556 C 273 463, 323 335, 370 161 C 388 113, 408 90, 423 47" stroke="#88b0ff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 216 556 C 288 461, 344 333, 393 156 C 412 109, 432 89, 444 47" stroke="#7597ff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 228 556 C 303 459, 366 331, 416 152 C 436 105, 456 88, 465 47" stroke="#5c7eff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 240 556 C 319 457, 388 329, 440 148 C 460 102, 480 88, 486 48" stroke="#415fff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 252 556 C 335 456, 411 328, 464 145 C 485 100, 505 89, 508 49" stroke="#2947ff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 264 556 C 351 455, 434 327, 488 143 C 509 99, 529 91, 531 51" stroke="#1835ff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 276 556 C 368 454, 458 327, 512 141 C 534 98, 553 94, 555 54" stroke="#1531ff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 288 556 C 385 453, 482 327, 537 141 C 559 99, 578 98, 580 58" stroke="#2d52ff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 300 556 C 402 453, 507 327, 562 142 C 584 101, 602 103, 607 64" stroke="#4a70ff" stroke-width="1.4" opacity="0.92"/>
+          <path d="M 312 556 C 420 453, 532 328, 588 144 C 610 104, 627 109, 636 71" stroke="#6793ff" stroke-width="1.4" opacity="0.92"/>
+
+          <!-- lower loose strands -->
+          <path d="M 366 557 C 410 506, 430 420, 431 286 C 432 198, 419 142, 396 99" stroke="#00175f" stroke-width="1.0" opacity="0.68"/>
+          <path d="M 386 557 C 437 505, 460 421, 460 286 C 460 198, 447 143, 425 101" stroke="#00229a" stroke-width="1.0" opacity="0.68"/>
+          <path d="M 406 557 C 464 504, 491 422, 490 287 C 489 200, 476 146, 455 104" stroke="#1736df" stroke-width="1.0" opacity="0.68"/>
+          <path d="M 426 557 C 492 504, 522 423, 521 289 C 520 203, 506 149, 486 108" stroke="#3562ff" stroke-width="1.0" opacity="0.68"/>
+          <path d="M 446 557 C 520 504, 553 425, 552 291 C 551 207, 536 154, 518 114" stroke="#5f8fff" stroke-width="1.0" opacity="0.68"/>
+          <path d="M 466 557 C 549 505, 585 428, 584 295 C 583 212, 568 161, 551 122" stroke="#84b4ff" stroke-width="1.0" opacity="0.68"/>
+        </g>
+
+        <!-- top pink nodes -->
+        <g opacity="0.98">
+          <circle cx="132" cy="68" r="3.2" fill="#ec9cff"/>
+          <circle cx="141" cy="70" r="2.5" fill="#f2a8ff"/>
+          <circle cx="148" cy="63" r="2.7" fill="#f3a6ff"/>
+          <circle cx="156" cy="71" r="2.2" fill="#eaa0ff"/>
+          <circle cx="162" cy="65" r="2.4" fill="#f0a2ff"/>
+          <circle cx="170" cy="58" r="3.0" fill="#f7acff"/>
+          <circle cx="176" cy="72" r="2.2" fill="#ee9fff"/>
+          <circle cx="183" cy="66" r="2.6" fill="#f3a7ff"/>
+          <circle cx="190" cy="54" r="3.1" fill="#f8b0ff"/>
+          <circle cx="198" cy="73" r="2.3" fill="#ef9fff"/>
+          <circle cx="205" cy="67" r="2.7" fill="#f1a4ff"/>
+          <circle cx="210" cy="50" r="3.2" fill="#f5a8ff"/>
+          <circle cx="219" cy="75" r="2.4" fill="#f5a7ff"/>
+          <circle cx="224" cy="69" r="2.3" fill="#efa0ff"/>
+          <circle cx="230" cy="47" r="3.0" fill="#f4a9ff"/>
+          <circle cx="238" cy="74" r="2.4" fill="#f0a2ff"/>
+          <circle cx="245" cy="68" r="2.5" fill="#eca0ff"/>
+          <circle cx="249" cy="44" r="3.0" fill="#f5abff"/>
+          <circle cx="258" cy="73" r="2.4" fill="#f1a4ff"/>
+          <circle cx="264" cy="66" r="2.4" fill="#f4a7ff"/>
+          <circle cx="269" cy="41" r="3.1" fill="#f9b2ff"/>
+          <circle cx="279" cy="72" r="2.5" fill="#ef9fff"/>
+          <circle cx="284" cy="65" r="2.3" fill="#f0a3ff"/>
+          <circle cx="289" cy="39" r="3.0" fill="#f4a8ff"/>
+          <circle cx="299" cy="71" r="2.6" fill="#f3a6ff"/>
+          <circle cx="304" cy="64" r="2.4" fill="#eca0ff"/>
+          <circle cx="309" cy="37" r="3.4" fill="#ffb7ff"/>
+          <circle cx="319" cy="70" r="2.5" fill="#f4a7ff"/>
+          <circle cx="324" cy="63" r="2.4" fill="#f1a3ff"/>
+          <circle cx="329" cy="36" r="3.0" fill="#f5a9ff"/>
+          <circle cx="339" cy="69" r="2.5" fill="#ef9fff"/>
+          <circle cx="344" cy="62" r="2.3" fill="#f1a5ff"/>
+          <circle cx="350" cy="35" r="3.2" fill="#f7adff"/>
+          <circle cx="360" cy="69" r="2.4" fill="#ee9eff"/>
+          <circle cx="366" cy="61" r="2.4" fill="#f5a8ff"/>
+          <circle cx="371" cy="34" r="3.0" fill="#f3a7ff"/>
+          <circle cx="382" cy="69" r="2.4" fill="#f6acff"/>
+          <circle cx="387" cy="60" r="2.4" fill="#efa0ff"/>
+          <circle cx="392" cy="34" r="3.1" fill="#f4a8ff"/>
+          <circle cx="403" cy="70" r="2.4" fill="#f0a1ff"/>
+          <circle cx="408" cy="60" r="2.5" fill="#f4a7ff"/>
+          <circle cx="413" cy="34" r="3.2" fill="#f7acff"/>
+          <circle cx="424" cy="71" r="2.4" fill="#ef9fff"/>
+          <circle cx="429" cy="60" r="2.4" fill="#f1a4ff"/>
+          <circle cx="434" cy="35" r="3.0" fill="#f3a7ff"/>
+          <circle cx="446" cy="73" r="2.6" fill="#f8aeff"/>
+          <circle cx="451" cy="61" r="2.4" fill="#eca0ff"/>
+          <circle cx="456" cy="36" r="3.2" fill="#f4a7ff"/>
+          <circle cx="468" cy="74" r="2.3" fill="#f0a2ff"/>
+          <circle cx="473" cy="62" r="2.5" fill="#f4a8ff"/>
+          <circle cx="478" cy="37" r="3.0" fill="#f8afff"/>
+          <circle cx="490" cy="76" r="2.4" fill="#ee9fff"/>
+          <circle cx="495" cy="64" r="2.4" fill="#f4a7ff"/>
+          <circle cx="500" cy="39" r="3.1" fill="#f2a5ff"/>
+          <circle cx="512" cy="79" r="2.5" fill="#f6abff"/>
+          <circle cx="517" cy="67" r="2.3" fill="#f1a3ff"/>
+          <circle cx="523" cy="42" r="3.3" fill="#ffb5ff"/>
+          <circle cx="535" cy="83" r="2.4" fill="#ef9fff"/>
+          <circle cx="540" cy="71" r="2.4" fill="#f4a8ff"/>
+          <circle cx="546" cy="45" r="3.0" fill="#f5a8ff"/>
+          <circle cx="559" cy="88" r="2.4" fill="#f1a3ff"/>
+          <circle cx="564" cy="75" r="2.4" fill="#f7adff"/>
+          <circle cx="570" cy="49" r="3.2" fill="#f4a7ff"/>
+          <circle cx="584" cy="93" r="2.4" fill="#f0a2ff"/>
+          <circle cx="589" cy="80" r="2.4" fill="#f4a8ff"/>
+          <circle cx="594" cy="54" r="3.0" fill="#f8afff"/>
+          <circle cx="609" cy="99" r="2.4" fill="#ef9fff"/>
+          <circle cx="614" cy="86" r="2.5" fill="#f3a6ff"/>
+          <circle cx="619" cy="60" r="3.1" fill="#f4a7ff"/>
+          <circle cx="635" cy="106" r="2.5" fill="#f7acff"/>
+          <circle cx="640" cy="93" r="2.3" fill="#f1a4ff"/>
+        </g>
+
+        <!-- scattered pink dots across crown -->
+        <g opacity="0.95">
+          <circle cx="154" cy="92" r="2.6" fill="#ef9fff"/>
+          <circle cx="171" cy="84" r="2.3" fill="#f4a7ff"/>
+          <circle cx="192" cy="98" r="2.8" fill="#f7abff"/>
+          <circle cx="215" cy="89" r="2.4" fill="#f1a4ff"/>
+          <circle cx="238" cy="102" r="2.7" fill="#f4a7ff"/>
+          <circle cx="262" cy="90" r="2.3" fill="#ef9fff"/>
+          <circle cx="288" cy="104" r="2.6" fill="#f8aeff"/>
+          <circle cx="314" cy="93" r="2.4" fill="#f2a5ff"/>
+          <circle cx="338" cy="106" r="2.7" fill="#f4a7ff"/>
+          <circle cx="364" cy="95" r="2.3" fill="#f0a3ff"/>
+          <circle cx="388" cy="108" r="2.5" fill="#f6abff"/>
+          <circle cx="414" cy="97" r="2.4" fill="#f3a6ff"/>
+          <circle cx="439" cy="109" r="2.7" fill="#f8b0ff"/>
+          <circle cx="466" cy="100" r="2.4" fill="#f1a4ff"/>
+          <circle cx="492" cy="111" r="2.6" fill="#f4a8ff"/>
+          <circle cx="520" cy="103" r="2.4" fill="#ef9fff"/>
+          <circle cx="546" cy="113" r="2.8" fill="#f7acff"/>
+          <circle cx="574" cy="106" r="2.4" fill="#f1a4ff"/>
+          <circle cx="602" cy="116" r="2.6" fill="#f3a6ff"/>
+          <circle cx="626" cy="111" r="2.4" fill="#f7adff"/>
+        </g>
+
+        <!-- sheen / highlight -->
+        <rect x="180" y="70" width="85" height="405" fill="url(#sheen)" opacity="0.28" transform="rotate(-10 222 270)"/>
+
+        <!-- lower reflection strokes -->
+        <g fill="none" stroke-linecap="round" opacity="0.52">
+          <path d="M 400 560 C 430 542, 455 524, 480 500" stroke="#2f59ff" stroke-width="1.2"/>
+          <path d="M 445 560 C 472 540, 495 520, 520 490" stroke="#3565ff" stroke-width="1.2"/>
+          <path d="M 485 560 C 512 540, 533 518, 555 487" stroke="#5b8eff" stroke-width="1.2"/>
+          <path d="M 520 560 C 544 541, 563 520, 585 490" stroke="#7eadff" stroke-width="1.2"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>

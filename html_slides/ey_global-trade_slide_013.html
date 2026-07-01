@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Insights Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d7d6;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d9d7d6;
+  }
+  #slide *{box-sizing:border-box;}
+  .abs{position:absolute;}
+
+  .hero{
+    left:373px;
+    top:0;
+    width:907px;
+    height:272px;
+    overflow:hidden;
+  }
+
+  .top-rule{
+    position:absolute;
+    left:0;
+    top:78px;
+    width:1280px;
+    height:1px;
+    background:#b9bcc1;
+    z-index:5;
+  }
+
+  .title{
+    position:absolute;
+    left:56px;
+    top:50px;
+    color:#77777d;
+    font-size:17px;
+    line-height:20px;
+    font-weight:400;
+    z-index:10;
+  }
+
+  .nav-arrow{
+    position:absolute;
+    top:32px;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#d8d5dd;
+    color:#4b4952;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    font-weight:700;
+    z-index:20;
+  }
+  .nav-arrow.left{left:1143px;}
+  .nav-arrow.right{left:1186px;}
+
+  .side-nav{
+    position:absolute;
+    left:1202px;
+    top:119px;
+    width:78px;
+    z-index:20;
+  }
+  .nav-item{
+    width:78px;
+    min-height:36px;
+    background:#2f2c3c;
+    color:#f2f2f3;
+    font-size:11px;
+    line-height:12px;
+    font-weight:400;
+    padding:8px 7px 7px 7px;
+    border-left:2px solid #d6d533;
+    margin-bottom:16px;
+  }
+  .nav-item.light{
+    background:#6f6f7c;
+  }
+
+  .col{
+    position:absolute;
+    color:#4f5056;
+    font-size:15px;
+    line-height:1.28;
+    font-weight:400;
+    z-index:15;
+  }
+  .col p{
+    margin:0 0 11px 0;
+  }
+  .section{
+    margin:10px 0 4px 0 !important;
+    font-weight:700;
+    color:#3f4046;
+  }
+
+  .left-col{
+    left:56px;
+    top:119px;
+    width:290px;
+  }
+
+  .mid-col{
+    left:373px;
+    top:318px;
+    width:313px;
+  }
+
+  .right-col{
+    left:708px;
+    top:318px;
+    width:328px;
+  }
+
+  .bullet{
+    position:relative;
+    padding-left:16px;
+    margin-bottom:10px;
+  }
+  .bullet:before{
+    content:"▪";
+    position:absolute;
+    left:0;
+    top:-1px;
+    color:#33343b;
+    font-size:15px;
+    line-height:15px;
+  }
+  .bullet b{
+    color:#3d3e44;
+    font-weight:700;
+  }
+
+  .footer{
+    position:absolute;
+    left:56px;
+    bottom:20px;
+    color:#6d6d72;
+    font-size:10px;
+    line-height:12px;
+    font-weight:400;
+    z-index:20;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="hero abs">
+    <svg width="907" height="272" viewBox="0 0 907 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#d9b07b"/>
+          <stop offset="0.5" stop-color="#cfa06c"/>
+          <stop offset="1" stop-color="#8b7058"/>
+        </linearGradient>
+        <linearGradient id="darkshadow" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#0a1626" stop-opacity="0.88"/>
+          <stop offset="1" stop-color="#12253a" stop-opacity="0.45"/>
+        </linearGradient>
+      </defs>
+
+      <rect x="0" y="0" width="907" height="272" fill="url(#ground)"/>
+
+      <g opacity="0.18" stroke="#8e6c56" stroke-width="2">
+        <path d="M5 23 L180 -5"/>
+        <path d="M58 0 L0 90"/>
+        <path d="M182 0 L95 115"/>
+        <path d="M338 -5 L205 160"/>
+        <path d="M463 0 L325 190"/>
+        <path d="M772 16 L906 0"/>
+        <path d="M715 102 L902 16"/>
+      </g>
+
+      <g opacity="0.16" stroke="#8e8171" stroke-width="2">
+        <path d="M18 112 L228 52"/>
+        <path d="M154 220 L318 175"/>
+        <path d="M531 270 L626 155"/>
+        <path d="M683 270 L750 156"/>
+      </g>
+
+      <g fill="#7e6d58" opacity="0.18">
+        <path d="M0 185 C80 160,135 170,205 120 C280 67,340 76,405 28 L405 272 L0 272 Z"/>
+      </g>
+
+      <polygon points="445,0 590,0 774,128 620,168" fill="url(#darkshadow)" opacity="0.95"/>
+      <polygon points="700,0 874,0 907,78 757,103" fill="#0b1a2b" opacity="0.96"/>
+      <polygon points="468,0 705,165 641,196 397,25" fill="#0c1c2f" opacity="0.58"/>
+
+      <g transform="translate(368,14) rotate(-30 130 70)">
+        <g fill="#00a8ea" stroke="#42cdf9" stroke-width="1">
+          <rect x="118" y="0" width="108" height="48"/>
+          <rect x="55" y="44" width="108" height="48"/>
+          <rect x="172" y="52" width="108" height="48"/>
+          <rect x="110" y="96" width="108" height="48"/>
+          <rect x="226" y="105" width="44" height="42"/>
+          <rect x="304" y="25" width="80" height="52"/>
+          <rect x="468" y="-3" width="112" height="60"/>
+        </g>
+        <g stroke="#59d7ff" stroke-width="0.8" opacity="0.9">
+          <g>
+            <path d="M126 4 H218 M126 12 H218 M126 20 H218 M126 28 H218 M126 36 H218 M126 44 H218"/>
+            <path d="M63 48 H155 M63 56 H155 M63 64 H155 M63 72 H155 M63 80 H155 M63 88 H155"/>
+            <path d="M180 56 H272 M180 64 H272 M180 72 H272 M180 80 H272 M180 88 H272 M180 96 H272"/>
+            <path d="M118 100 H210 M118 108 H210 M118 116 H210 M118 124 H210 M118 132 H210 M118 140 H210"/>
+            <path d="M230 109 H266 M230 117 H266 M230 125 H266 M230 133 H266 M230 141 H266"/>
+            <path d="M311 29 H376 M311 37 H376 M311 45 H376 M311 53 H376 M311 61 H376 M311 69 H376"/>
+            <path d="M476 2 H572 M476 10 H572 M476 18 H572 M476 26 H572 M476 34 H572 M476 42 H572 M476 50 H572"/>
+          </g>
+          <g>
+            <path d="M134 0 V48 M142 0 V48 M150 0 V48 M158 0 V48 M166 0 V48 M174 0 V48 M182 0 V48 M190 0 V48 M198 0 V48 M206 0 V48 M214 0 V48"/>
+            <path d="M71 44 V92 M79 44 V92 M87 44 V92 M95 44 V92 M103 44 V92 M111 44 V92 M119 44 V92 M127 44 V92 M135 44 V92 M143 44 V92 M151 44 V92"/>
+            <path d="M188 52 V100 M196 52 V100 M204 52 V100 M212 52 V100 M220 52 V100 M228 52 V100 M236 52 V100 M244 52 V100 M252 52 V100 M260 52 V100 M268 52 V100"/>
+            <path d="M126 96 V144 M134 96 V144 M142 96 V144 M150 96 V144 M158 96 V144 M166 96 V144 M174 96 V144 M182 96 V144 M190 96 V144 M198 96 V144 M206 96 V144"/>
+            <path d="M238 105 V147 M246 105 V147 M254 105 V147 M262 105 V147"/>
+            <path d="M320 25 V77 M328 25 V77 M336 25 V77 M344 25 V77 M352 25 V77 M360 25 V77 M368 25 V77"/>
+            <path d="M485 -3 V57 M493 -3 V57 M501 -3 V57 M509 -3 V57 M517 -3 V57 M525 -3 V57 M533 -3 V57 M541 -3 V57 M549 -3 V57 M557 -3 V57 M565 -3 V57"/>
+          </g>
+        </g>
+      </g>
+
+      <g>
+        <polygon points="37,186 76,181 106,226 66,233" fill="#8e9aa1"/>
+        <polygon points="49,182 92,176 122,221 80,227" fill="#b9c4ca"/>
+        <polygon points="80,177 126,171 155,216 108,222" fill="#c7d0d5"/>
+        <polygon points="120,170 173,162 218,236 163,244" fill="#8a704f"/>
+        <polygon points="169,162 225,153 270,229 212,237" fill="#987d59"/>
+        <polygon points="220,154 278,145 324,221 265,229" fill="#a48863"/>
+        <polygon points="0,214 31,203 59,272 0,272" fill="#6d8b63"/>
+        <polygon points="0,230 73,205 96,272 0,272" fill="#8b7547"/>
+      </g>
+
+      <g opacity="0.6">
+        <ellipse cx="616" cy="188" rx="61" ry="8" fill="#0b1623"/>
+        <ellipse cx="633" cy="160" rx="95" ry="7" transform="rotate(-32 633 160)" fill="#07111d"/>
+        <ellipse cx="531" cy="128" rx="122" ry="14" transform="rotate(-33 531 128)" fill="#0d1625"/>
+      </g>
+
+      <g>
+        <polygon points="588,191 601,184 606,198 593,205" fill="#ba0e19"/>
+        <polygon points="579,187 591,182 597,195 585,201" fill="#8c0d14"/>
+        <ellipse cx="606" cy="198" rx="15" ry="11" fill="#d8c3a6"/>
+        <circle cx="621" cy="196" r="12" fill="#63acd5"/>
+        <circle cx="622" cy="190" r="4.5" fill="#4a788d"/>
+        <line x1="620" y1="207" x2="626" y2="221" stroke="#0b1827" stroke-width="3"/>
+        <line x1="610" y1="206" x2="605" y2="220" stroke="#0b1827" stroke-width="3"/>
+        <line x1="604" y1="198" x2="594" y2="206" stroke="#0b1827" stroke-width="3"/>
+        <line x1="629" y1="201" x2="639" y2="209" stroke="#0b1827" stroke-width="3"/>
+        <ellipse cx="607" cy="214" rx="25" ry="7" fill="#0a1522" opacity="0.7"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="top-rule"></div>
+  <div class="title">Insights</div>
+
+  <div class="nav-arrow left">◀</div>
+  <div class="nav-arrow right">▶</div>
+
+  <div class="side-nav">
+    <div class="nav-item">Contents</div>
+    <div class="nav-item light">Insights</div>
+    <div class="nav-item">New on<br>ey.com</div>
+    <div class="nav-item">Tax alerts</div>
+    <div class="nav-item light">Additional<br>resources</div>
+    <div class="nav-item light">Contacts</div>
+  </div>
+
+  <div class="col left-col">
+    <p>By leveraging both soft and hard blocks at strategic points in the screening process, organizations can efficiently screen transactions, ensure compliance with regulations and safeguard business interests without unnecessarily impeding operational flow and velocity.</p>
+
+    <p class="section">Alerts and case management</p>
+
+    <p>Alerts and case management play a crucial role in the compliance screening process by enabling organizations to efficiently track, manage and resolve potential compliance issues. When a transaction or business partner triggers a match against a sanctions or restricted party list, the system generates an alert to notify relevant stakeholders of the potential risk.</p>
+
+    <p>These alerts are communicated through various channels, including email notifications and the user interface within the GTM or ERP system. Typically, the user interface in the GTM system provides a centralized dashboard where compliance teams can review, prioritize and work through open alerts. This allows for efficient investigation and resolution, ensuring that each flagged item receives proper attention.</p>
+
+    <p>Case management functionality supports the escalation of complex or high-risk alerts to designated compliance officers or management for further review. The system tracks each case throughout its lifecycle, documenting the actions taken, decisions made and final outcomes. This structured approach ensures accountability, transparency and auditability within the compliance process.</p>
+  </div>
+
+  <div class="col mid-col">
+    <p>By using robust alerts and case management tools, organizations can promptly address compliance concerns, reduce the risk of regulatory violations and prove effective internal controls to regulators and auditors.</p>
+
+    <p class="section">Analytics, reporting and audit trails</p>
+
+    <p>Analytics, reporting and audit trails are fundamental components in compliance screening and transaction monitoring processes. They enable organizations to gain insights into their operations, assess the effectiveness of controls and find trends or anomalies that may indicate compliance risks. Most GTM software packages include basic analytics, reporting and audit trail functionality out of the box, but they may require enhancements to meet an organization’s needs and requirements.</p>
+
+    <p class="bullet"><b>Analytics:</b> Advanced analytics tools allow businesses to examine screening outcomes, alert volumes, case resolution times and patterns across transactions or business partners. Using data visualization and statistical analysis, companies can proactively find areas for improvement, improve workflows and monitor compliance performance.</p>
+  </div>
+
+  <div class="col right-col">
+    <p class="bullet"><b>Reports:</b> Comprehensive reporting capabilities provide stakeholders with regular updates on key metrics, such as the number of screened transactions, alerts generated, cases resolved and compliance exceptions. Reports can be tailored to different audiences – such as management, regulators or auditors – to prove the effectiveness of internal controls and support decision-making.</p>
+
+    <p class="bullet"><b>Audit trails:</b> Audit trails document every action taken within the compliance screening process, from alert generation to case resolution. This is typically included with most GTM software packages and ensures accountability and transparency, allowing organizations to trace decisions, review historical activity and respond to regulatory inquiries with confidence.</p>
+  </div>
+
+  <div class="footer">10&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+</div>
+</body>
+</html>

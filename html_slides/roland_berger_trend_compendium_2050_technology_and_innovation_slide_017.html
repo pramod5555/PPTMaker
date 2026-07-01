@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Technology & Innovation Slide Replica</title>
+<style>
+  body{margin:0;background:#cfcfcf;font-family:Arial, Helvetica, sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  .left-panel{
+    position:absolute;
+    left:0; top:0;
+    width:179px; height:720px;
+    background:#34373d;
+    border-right:2px solid #7b5aa6;
+    z-index:2;
+  }
+  .title-side{
+    position:absolute;
+    left:12px; top:33px;
+    width:156px;
+    color:#f1f1f1;
+    font-size:24px;
+    line-height:1.06;
+    font-weight:700;
+    z-index:5;
+  }
+  .step{
+    position:absolute;
+    left:8px;
+    width:165px;
+    z-index:5;
+    color:#6f747b;
+  }
+  .step.active{ color:#7b5aa6; }
+  .hex-wrap{
+    position:absolute;
+    left:0; top:0;
+    width:62px; height:52px;
+  }
+  .hex{
+    position:absolute;
+    left:0; top:0;
+    width:62px; height:52px;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    overflow:hidden;
+    box-sizing:border-box;
+    border:4px solid #8c72b8;
+    background:#84c5ea;
+  }
+  .step:not(.active) .hex{
+    border-color:#8b8e92;
+    background:#7b7e84;
+  }
+  .hex svg{width:100%;height:100%;display:block;}
+  .step-num{
+    position:absolute;
+    left:84px; top:-1px;
+    font-size:28px;
+    line-height:1;
+    font-weight:700;
+  }
+  .step-text{
+    position:absolute;
+    left:84px; top:31px;
+    width:76px;
+    font-size:14px;
+    line-height:1.1;
+    font-weight:700;
+  }
+  .step:not(.active) .step-text{font-weight:400;}
+  .side-icon{
+    position:absolute;
+    left:69px; top:661px;
+    width:82px; height:51px;
+    opacity:.33;
+    z-index:4;
+  }
+  .page{
+    position:absolute;
+    left:10px; bottom:8px;
+    color:#ffffff;
+    font-size:18px;
+    line-height:1;
+    font-weight:400;
+    z-index:6;
+  }
+  .main-title{
+    position:absolute;
+    left:220px; top:28px;
+    width:1035px;
+    color:#222;
+    font-size:29px;
+    line-height:1.12;
+    font-weight:700;
+    letter-spacing:-0.2px;
+    z-index:4;
+  }
+  .subhead{
+    position:absolute;
+    left:220px; top:139px;
+    width:290px;
+    color:#8d939d;
+    font-size:27px;
+    line-height:1.06;
+    font-weight:400;
+    z-index:4;
+  }
+  .arc-bg{
+    position:absolute;
+    left:220px; top:207px;
+    width:360px; height:510px;
+    background:#cfd0d3;
+    border-top-left-radius:320px 250px;
+    border-top-right-radius:220px 180px;
+    clip-path:ellipse(96% 92% at 0% 100%);
+    z-index:1;
+  }
+  .arc-cut{
+    position:absolute;
+    left:507px; top:216px;
+    width:72px; height:501px;
+    background:#efefef;
+    border-top-left-radius:56px 250px;
+    transform:skewX(-8deg);
+    z-index:2;
+  }
+  .rocket{
+    position:absolute;
+    left:496px; top:146px;
+    width:194px; height:132px;
+    z-index:5;
+  }
+  .rocket svg{width:100%;height:100%;display:block;}
+  .number{
+    position:absolute;
+    width:58px; height:58px;
+    border-radius:50%;
+    background:#4c2f7f;
+    color:#fff;
+    font-size:19px;
+    line-height:58px;
+    text-align:center;
+    font-weight:700;
+    z-index:5;
+  }
+  .num1{left:452px; top:288px;}
+  .num2{left:394px; top:372px;}
+  .num3{left:362px; top:463px;}
+  .num4{left:338px; top:556px;}
+  .num5{left:325px; top:643px;}
+  .guide{
+    position:absolute;
+    height:0;
+    border-top:1px dotted #a8a9ac;
+    z-index:3;
+  }
+  .g1{left:510px; top:316px; width:61px;}
+  .g2{left:452px; top:400px; width:119px;}
+  .g3{left:420px; top:491px; width:151px;}
+  .g4{left:396px; top:584px; width:175px;}
+  .g5{left:383px; top:671px; width:188px;}
+  .glow{
+    position:absolute;
+    left:520px; top:196px;
+    width:676px; height:522px;
+    z-index:0;
+    opacity:.7;
+    background:
+      radial-gradient(circle at 7% 13%, rgba(255,255,255,.55) 0 2px, rgba(255,255,255,0) 12px),
+      radial-gradient(circle at 10% 16%, rgba(255,255,255,.45) 0 3px, rgba(255,255,255,0) 17px),
+      radial-gradient(circle at 14% 20%, rgba(255,255,255,.35) 0 3px, rgba(255,255,255,0) 16px),
+      radial-gradient(circle at 18% 26%, rgba(255,255,255,.28) 0 3px, rgba(255,255,255,0) 18px),
+      radial-gradient(circle at 29% 11%, rgba(255,255,255,.33) 0 3px, rgba(255,255,255,0) 18px),
+      radial-gradient(circle at 43% 9%, rgba(255,255,255,.26) 0 3px, rgba(255,255,255,0) 20px),
+      radial-gradient(circle at 60% 10%, rgba(255,255,255,.34) 0 4px, rgba(255,255,255,0) 22px),
+      radial-gradient(circle at 67% 8%, rgba(255,255,255,.35) 0 3px, rgba(255,255,255,0) 18px),
+      radial-gradient(circle at 74% 16%, rgba(255,255,255,.4) 0 4px, rgba(255,255,255,0) 20px),
+      radial-gradient(circle at 83% 13%, rgba(255,255,255,.3) 0 3px, rgba(255,255,255,0) 18px),
+      radial-gradient(circle at 88% 10%, rgba(255,255,255,.28) 0 3px, rgba(255,255,255,0) 20px),
+      radial-gradient(circle at 8% 62%, rgba(255,255,255,.28) 0 3px, rgba(255,255,255,0) 18px),
+      radial-gradient(circle at 25% 73%, rgba(255,255,255,.24) 0 4px, rgba(255,255,255,0) 22px),
+      radial-gradient(circle at 50% 80%, rgba(255,255,255,.2) 0 3px, rgba(255,255,255,0) 18px),
+      radial-gradient(circle at 78% 84%, rgba(255,255,255,.22) 0 3px, rgba(255,255,255,0) 18px),
+      radial-gradient(circle at 93% 57%, rgba(255,255,255,.24) 0 3px, rgba(255,255,255,0) 18px);
+    filter:blur(1px);
+  }
+  .tech-title{
+    position:absolute;
+    left:663px; top:216px;
+    width:530px;
+    color:#4b2f7f;
+    font-size:33px;
+    line-height:1;
+    font-weight:400;
+    z-index:4;
+  }
+  .copy{
+    position:absolute;
+    left:582px; top:289px;
+    width:640px;
+    color:#2f2f2f;
+    font-size:17px;
+    line-height:1.08;
+    font-weight:400;
+    z-index:4;
+  }
+  .copy p{margin:0 0 23px 0;}
+  .copy b{font-weight:700;}
+  .source{
+    position:absolute;
+    left:220px; bottom:13px;
+    color:#3e3e3e;
+    font-size:10px;
+    line-height:1;
+    font-weight:400;
+    z-index:4;
+  }
+  .logo{
+    position:absolute;
+    right:10px; bottom:8px;
+    width:63px; height:25px;
+    z-index:5;
+  }
+  .logo .txt{
+    position:absolute;
+    left:0; top:2px;
+    width:35px;
+    color:#4a4a4a;
+    font-size:10px;
+    line-height:.92;
+    text-align:right;
+  }
+  .logo svg{
+    position:absolute;
+    right:0; top:0;
+    width:23px; height:25px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-panel"></div>
+
+  <div class="title-side">Technology &amp;<br>Innovation</div>
+
+  <div class="step active" style="top:141px;height:76px;">
+    <div class="hex-wrap">
+      <div class="hex">
+        <svg viewBox="0 0 62 52" aria-hidden="true">
+          <defs>
+            <linearGradient id="gradA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#65d1ff"/>
+              <stop offset="1" stop-color="#265b94"/>
+            </linearGradient>
+          </defs>
+          <rect width="62" height="52" fill="url(#gradA)"/>
+          <g stroke="rgba(255,255,255,.8)" stroke-width="1.2" fill="none">
+            <path d="M10 30 L22 18 L34 24 L47 12"/>
+            <path d="M9 37 L22 28 L38 35 L52 24"/>
+            <path d="M11 16 L20 23 L28 13 L42 21"/>
+            <circle cx="22" cy="18" r="1.8" fill="#fff"/>
+            <circle cx="34" cy="24" r="1.8" fill="#fff"/>
+            <circle cx="47" cy="12" r="1.8" fill="#fff"/>
+            <circle cx="22" cy="28" r="1.8" fill="#fff"/>
+            <circle cx="38" cy="35" r="1.8" fill="#fff"/>
+            <circle cx="52" cy="24" r="1.8" fill="#fff"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="step-num">1</div>
+    <div class="step-text">Value of<br>Innovation</div>
+  </div>
+
+  <div class="step" style="top:275px;height:76px;">
+    <div class="hex-wrap">
+      <div class="hex">
+        <svg viewBox="0 0 62 52" aria-hidden="true">
+          <defs>
+            <linearGradient id="gradB" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#a5a7ab"/>
+              <stop offset="1" stop-color="#5c5f64"/>
+            </linearGradient>
+          </defs>
+          <rect width="62" height="52" fill="url(#gradB)"/>
+          <g stroke="rgba(255,255,255,.45)" stroke-width="1" fill="none">
+            <path d="M9 33 C18 20, 29 16, 51 11"/>
+            <path d="M8 39 C24 28, 33 25, 54 22"/>
+            <path d="M14 13 C22 26, 33 31, 49 40"/>
+            <circle cx="18" cy="17" r="1.3" fill="#ddd"/>
+            <circle cx="28" cy="23" r="1.3" fill="#ddd"/>
+            <circle cx="42" cy="29" r="1.3" fill="#ddd"/>
+            <circle cx="47" cy="15" r="1.3" fill="#ddd"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="step-num">2</div>
+    <div class="step-text">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="step" style="top:407px;height:76px;">
+    <div class="hex-wrap">
+      <div class="hex">
+        <svg viewBox="0 0 62 52" aria-hidden="true">
+          <defs>
+            <linearGradient id="gradC" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ececec"/>
+              <stop offset="1" stop-color="#8a8d92"/>
+            </linearGradient>
+          </defs>
+          <rect width="62" height="52" fill="url(#gradC)"/>
+          <g stroke="#f1f1f1" stroke-width="1.8" fill="none" stroke-linecap="round">
+            <path d="M13 31 L23 20 L41 31"/>
+            <path d="M23 20 L32 31 L43 20"/>
+            <path d="M32 31 L27 36"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="step-num">3</div>
+    <div class="step-text">Humans &amp;<br>Machines</div>
+  </div>
+
+  <div class="side-icon">
+    <svg viewBox="0 0 82 51" aria-hidden="true">
+      <g fill="none" stroke="#c2c5ca" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M25 37c0-9 7-16 16-16 7 0 13 4 15 10 2 6 0 13-5 17-2 2-4 4-4 7h-16c0-3-2-5-5-7-1-1-1-1-1-1" />
+        <path d="M30 58h15" transform="translate(0,-12)"/>
+        <path d="M32 62h11" transform="translate(0,-12)"/>
+        <circle cx="57" cy="23" r="10"/>
+        <circle cx="57" cy="23" r="4" fill="#c2c5ca"/>
+        <path d="M57 8v-5M57 43v5M42 23h-5M77 23h5M47 13l-4-4M67 13l4-4M47 33l-4 4M67 33l4 4"/>
+        <path d="M18 18v-6M18 31v6M11 24H5M31 24h-6M12 17l-4-4M24 17l4-4M12 31l-4 4"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="main-title">In the future, emerging countries have the potential to maintain their momentum – A combination of factors supports this development</div>
+
+  <div class="subhead">How emerging countries<br>(can) increase their<br>technological<br>competitiveness</div>
+
+  <div class="arc-bg"></div>
+  <div class="arc-cut"></div>
+
+  <div class="rocket">
+    <svg viewBox="0 0 194 132" aria-hidden="true">
+      <path d="M90 12 C115 -4, 149 0, 190 4 C183 36,165 69,136 88 C123 89,111 88,99 82 C89 68,85 44,90 12 Z" fill="#8e79b9"/>
+      <path d="M89 12 C113 -3, 146 1, 187 5 C177 33,160 66,132 87 C115 82,99 61,89 12 Z" fill="#8b76b8"/>
+      <path d="M78 67 C62 59, 46 56, 26 57 C14 66, 5 79, 2 94 C14 98, 29 100, 48 94 C61 90, 73 79, 78 67 Z" fill="#4c2f7f"/>
+      <path d="M100 85 C109 95, 112 110, 107 127 C120 122, 131 108, 135 90" fill="none" stroke="#6f57a1" stroke-width="2"/>
+      <path d="M79 57 C70 43, 53 27, 35 22 C49 17, 67 20, 82 29" fill="none" stroke="#6f57a1" stroke-width="2"/>
+      <circle cx="128" cy="43" r="14" fill="#f4f4f4"/>
+      <circle cx="152" cy="28" r="7.5" fill="#f4f4f4"/>
+      <circle cx="104" cy="58" r="10" fill="#f4f4f4"/>
+      <path d="M63 75 C73 87, 76 102, 72 116 C84 112, 94 98, 96 79" fill="none" stroke="#6f57a1" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="number num1">1</div>
+  <div class="number num2">2</div>
+  <div class="number num3">3</div>
+  <div class="number num4">4</div>
+  <div class="number num5">5</div>
+
+  <div class="guide g1"></div>
+  <div class="guide g2"></div>
+  <div class="guide g3"></div>
+  <div class="guide g4"></div>
+  <div class="guide g5"></div>
+
+  <div class="glow"></div>
+
+  <div class="tech-title">Technological competitiveness</div>
+
+  <div class="copy">
+    <p>For an <b>emerging economy being relatively close to developed markets is an advantage</b>, also in terms of FDI. Equally, <b>similarities promote closer ties</b>: Stabler political conditions, including declining levels of corruption, relative ease of doing business, openness of markets and low tariffs as well as infrastructure improvements <b>increase attractiveness to investors</b></p>
+
+    <p><b>Capital inflows bring technologies that are new to emerging economies.</b> Newly-created production hubs can act as an incentive for local companies to imitate or adapt such technologies. Over time and beyond mere job creation, investments necessitate a strong(er) educational base</p>
+
+    <p>The <b>FDI stimulus boosts the local economy, breaking open aspects of the poverty trap while laying foundations for a wealthy middle class to emerge and grow.</b> Savings levels rise, allowing for investments in education or business and commerce; in turn, public revenue increases</p>
+
+    <p><b>Building up sectoral supply chains attracts further investments.</b> The economy depends less on external influences and companies; spillover-effects add further benefits</p>
+
+    <p>In order to <b>transform an emerging country from a (global) production hub into a competitive innovation leader</b>, governments need to <b>incentivize investments</b> in new technologies <b>through subsidies, tax incentives and stable governance; robust educational systems</b> play a significant role in maintaining future progress and technological competitiveness</p>
+  </div>
+
+  <div class="source">Sources: World Economic Forum; Voxeu; IGC; Roland Berger</div>
+
+  <div class="page">17</div>
+
+  <div class="logo">
+    <div class="txt">Roland<br>Berger</div>
+    <svg viewBox="0 0 24 25" aria-hidden="true">
+      <path d="M3 24V1c10 0 17 4 17 10 0 7-6 11-17 11z" fill="#8f9396"/>
+      <path d="M11 24c8 0 13-4 13-11 0-7-5-11-13-11z" fill="#70767d"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Introduction Slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #c5cbd9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #eef0f4;
+  }
+  .title {
+    position: absolute;
+    left: 51px;
+    top: 45px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: -0.2px;
+  }
+  .hero {
+    position: absolute;
+    left: 30px;
+    top: 85px;
+    width: 649px;
+    height: 611px;
+    background:
+      radial-gradient(circle at 7% 56%, rgba(255,255,255,0.95) 0 8px, rgba(70,170,255,0.8) 9px, rgba(70,170,255,0.0) 24px),
+      radial-gradient(circle at 13% 12%, rgba(255,220,245,0.95) 0 7px, rgba(255,220,245,0.0) 17px),
+      radial-gradient(circle at 19% 8%, rgba(255,225,240,0.95) 0 7px, rgba(255,225,240,0.0) 17px),
+      radial-gradient(circle at 23% 20%, rgba(255,255,255,0.95) 0 8px, rgba(255,255,255,0.0) 19px),
+      radial-gradient(circle at 31% 26%, rgba(120,210,255,0.95) 0 10px, rgba(120,210,255,0.0) 25px),
+      radial-gradient(circle at 12% 40%, rgba(130,210,255,0.9) 0 9px, rgba(130,210,255,0.0) 21px),
+      radial-gradient(circle at 38% 47%, rgba(80,255,230,0.95) 0 13px, rgba(80,255,230,0.0) 27px),
+      radial-gradient(circle at 50% 3%, rgba(255,255,255,0.95) 0 8px, rgba(255,255,255,0.0) 18px),
+      radial-gradient(circle at 81% 10%, rgba(255,90,145,0.95) 0 7px, rgba(255,90,145,0.0) 17px),
+      radial-gradient(circle at 90% 79%, rgba(220,170,255,0.9) 0 7px, rgba(220,170,255,0.0) 16px),
+      linear-gradient(90deg, rgba(15,27,86,0.98) 0%, rgba(23,32,101,0.96) 23%, rgba(3,45,134,0.95) 49%, rgba(7,34,111,0.98) 100%);
+    overflow: hidden;
+  }
+  .hero:before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 8px;
+    width: 725px;
+    height: 595px;
+    background:
+      radial-gradient(ellipse at 20% 18%, rgba(255,170,200,0.8) 0 4%, rgba(255,170,200,0) 10%),
+      radial-gradient(ellipse at 14% 26%, rgba(255,255,255,0.95) 0 1.8%, rgba(255,255,255,0) 4.2%),
+      radial-gradient(ellipse at 18% 26%, rgba(255,230,245,0.95) 0 1.8%, rgba(255,230,245,0) 4.2%),
+      radial-gradient(ellipse at 25% 26%, rgba(255,220,245,0.95) 0 1.8%, rgba(255,220,245,0) 4.2%),
+      radial-gradient(ellipse at 28% 9%, rgba(210,170,255,0.75) 0 1.8%, rgba(210,170,255,0) 4.6%),
+      radial-gradient(ellipse at 38% 7%, rgba(210,170,255,0.85) 0 1.8%, rgba(210,170,255,0) 4.6%),
+      radial-gradient(ellipse at 60% 5%, rgba(255,255,255,0.9) 0 1.8%, rgba(255,255,255,0) 4.4%),
+      radial-gradient(ellipse at 64% 4%, rgba(255,220,245,0.9) 0 1.8%, rgba(255,220,245,0) 4.4%),
+      radial-gradient(ellipse at 16% 48%, rgba(255,255,255,0.9) 0 2.2%, rgba(255,255,255,0) 5.2%),
+      radial-gradient(ellipse at 50% 50%, rgba(255,220,245,0.88) 0 1.8%, rgba(255,220,245,0) 4.5%),
+      radial-gradient(ellipse at 74% 54%, rgba(255,220,245,0.85) 0 1.8%, rgba(255,220,245,0) 4.5%),
+      radial-gradient(ellipse at 84% 65%, rgba(255,220,245,0.85) 0 1.8%, rgba(255,220,245,0) 4.5%),
+      linear-gradient(180deg, rgba(0,0,0,0.0) 0, rgba(0,0,0,0.0) 100%);
+    opacity: .95;
+  }
+  .film1, .film2, .film3 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(1px);
+    opacity: .58;
+  }
+  .film1 {
+    left: -74px;
+    top: 20px;
+    width: 603px;
+    height: 222px;
+    transform: rotate(-17deg);
+    background:
+      linear-gradient(90deg, rgba(0,255,255,0.18), rgba(255,180,80,0.24), rgba(80,255,180,0.18), rgba(255,255,255,0.08)),
+      radial-gradient(circle at 28% 45%, rgba(120,255,120,0.35), rgba(120,255,120,0) 30%),
+      radial-gradient(circle at 58% 40%, rgba(255,170,90,0.28), rgba(255,170,90,0) 28%);
+    border: 2px solid rgba(170,220,255,0.28);
+  }
+  .film2 {
+    left: 258px;
+    top: -33px;
+    width: 300px;
+    height: 559px;
+    transform: rotate(-16deg);
+    background:
+      linear-gradient(180deg, rgba(30,160,255,0.32), rgba(255,255,255,0.06), rgba(30,180,255,0.3)),
+      radial-gradient(circle at 30% 20%, rgba(0,255,255,0.18), rgba(0,255,255,0) 28%),
+      radial-gradient(circle at 55% 65%, rgba(255,180,80,0.18), rgba(255,180,80,0) 25%);
+    border: 2px solid rgba(170,220,255,0.26);
+  }
+  .film3 {
+    left: -73px;
+    top: 414px;
+    width: 629px;
+    height: 155px;
+    transform: rotate(-13deg);
+    background:
+      linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,210,80,0.24), rgba(80,255,255,0.2), rgba(180,120,255,0.22)),
+      radial-gradient(circle at 18% 55%, rgba(255,255,255,0.24), rgba(255,255,255,0) 22%),
+      radial-gradient(circle at 72% 42%, rgba(120,255,180,0.28), rgba(120,255,180,0) 22%);
+    border: 2px solid rgba(200,230,255,0.22);
+  }
+  .silhouette {
+    position: absolute;
+    left: 247px;
+    top: 55px;
+    width: 321px;
+    height: 533px;
+  }
+  .head {
+    position: absolute;
+    left: 76px;
+    top: 0;
+    width: 160px;
+    height: 162px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 32%, rgba(255,255,255,0.1), rgba(255,255,255,0) 34%),
+      linear-gradient(120deg, #36211d 0%, #221618 38%, #1a1217 62%, #17131c 100%);
+    box-shadow: inset -18px -20px 30px rgba(0,0,0,0.36);
+  }
+  .neck {
+    position: absolute;
+    left: 149px;
+    top: 136px;
+    width: 50px;
+    height: 72px;
+    background: linear-gradient(180deg, #2a1b1a, #1e171c);
+    transform: skewX(-8deg);
+    border-radius: 18px;
+  }
+  .shoulder {
+    position: absolute;
+    left: 79px;
+    top: 174px;
+    width: 221px;
+    height: 325px;
+    background:
+      linear-gradient(115deg, rgba(27,53,111,0.95) 0%, rgba(22,37,78,0.98) 42%, rgba(17,22,47,1) 100%);
+    border-radius: 91px 61px 52px 52px / 122px 71px 42px 42px;
+    transform: rotate(4deg);
+    box-shadow: inset 18px 0 30px rgba(0,0,0,0.26);
+  }
+  .lapel {
+    position: absolute;
+    left: 142px;
+    top: 206px;
+    width: 85px;
+    height: 177px;
+    background: linear-gradient(135deg, rgba(18,22,40,0.9), rgba(40,68,130,0.5));
+    clip-path: polygon(26% 0%, 100% 12%, 46% 100%, 0% 45%);
+  }
+  .shirt {
+    position: absolute;
+    left: 153px;
+    top: 223px;
+    width: 58px;
+    height: 129px;
+    background: linear-gradient(180deg, #d8e7f2, #9fb5ce);
+    clip-path: polygon(35% 0%, 100% 10%, 66% 100%, 0 48%);
+    opacity: .9;
+  }
+  .face {
+    position: absolute;
+    left: 0;
+    top: 47px;
+    width: 164px;
+    height: 120px;
+    background: linear-gradient(135deg, #4c312a 0%, #251a1c 45%, #18141a 100%);
+    clip-path: polygon(0 43%, 22% 20%, 52% 8%, 77% 18%, 96% 34%, 100% 49%, 90% 63%, 77% 73%, 57% 80%, 32% 78%, 14% 66%, 0 53%);
+    box-shadow: inset 0 0 24px rgba(255,255,255,0.05);
+  }
+  .nose {
+    position: absolute;
+    left: 103px;
+    top: 103px;
+    width: 20px;
+    height: 15px;
+    background: #302123;
+    clip-path: polygon(0 35%, 79% 0, 100% 55%, 27% 100%);
+  }
+  .ear {
+    position: absolute;
+    left: 84px;
+    top: 93px;
+    width: 17px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #3b2725, #271a1d);
+  }
+  .content {
+    position: absolute;
+    left: 748px;
+    top: 184px;
+    width: 450px;
+    color: #5a5a5a;
+    font-size: 17px;
+    line-height: 1.44;
+    font-weight: 400;
+  }
+  .content p {
+    margin: 0 0 26px 0;
+  }
+  .content em {
+    font-style: italic;
+  }
+  .footer {
+    position: absolute;
+    right: 54px;
+    bottom: 22px;
+    font-size: 12px;
+    color: #6b6b6b;
+    white-space: nowrap;
+  }
+  .footer .brand {
+    color: #111;
+    font-weight: 700;
+  }
+  .footer .divider {
+    display: inline-block;
+    margin: 0 8px;
+    color: #8b8b8b;
+  }
+  .footer .page {
+    display: inline-block;
+    margin-left: 34px;
+    color: #111;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title">Introduction</div>
+
+    <div class="hero">
+      <div class="film1"></div>
+      <div class="film2"></div>
+      <div class="film3"></div>
+
+      <div class="silhouette">
+        <div class="head"></div>
+        <div class="ear"></div>
+        <div class="face"></div>
+        <div class="nose"></div>
+        <div class="neck"></div>
+        <div class="shoulder"></div>
+        <div class="lapel"></div>
+        <div class="shirt"></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <p>Today, we again stand on the verge of transformational change. The ability to process and analyze vast stores of data, the enabling power of cloud, and the rapid maturation of artificial intelligence are combining to create a wealth of opportunities for enhancement and innovation across organizations’ operations, workforce, products and experiences.</p>
+
+      <p>As we enter the Age of AI, many bankers feel the same sense of awe that their counterparts did a quarter of a century ago. They know that, as with digitalization, very little will remain untouched. These technologies are unlikely to change <em>what</em> banking does, but they will dramatically transform <em>how</em> it does it.</p>
+
+      <p>Each of the trends we describe in this report is either caused or amplified by AI. We, together with most bankers today, are peering into the future: trying to figure out what this technology holds for the industry. We are confident the Age of AI will change banking and many other industries; exactly how, we will only know in retrospect. However, it is we who get to choose where and how we will use AI. The challenge is to ensure it’s a force for good that benefits all humankind.</p>
+    </div>
+
+    <div class="footer">
+      <span class="brand">Banking on AI</span><span class="divider">|</span><span>Banking Top 10 Trends for 2024</span>
+      <span class="page">3</span>
+    </div>
+  </div>
+</body>
+</html>

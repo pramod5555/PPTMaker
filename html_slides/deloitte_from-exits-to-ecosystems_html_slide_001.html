@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Predictions 2025 Report</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #0d4660;
+    font-family: "Arial Narrow", Arial, Helvetica, sans-serif;
+  }
+  #slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #0b4963;
+  }
+  #slide > div, #slide > svg {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  .left-panel {
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background: #0c4b65;
+    z-index: 0;
+  }
+
+  .photo-area {
+    left: 504px;
+    top: 0;
+    width: 776px;
+    height: 720px;
+    overflow: hidden;
+    z-index: 1;
+    background:
+      radial-gradient(circle at 84% 10%, rgba(251,242,237,0.95) 0%, rgba(251,242,237,0.65) 17%, rgba(251,242,237,0.15) 40%, rgba(251,242,237,0) 58%),
+      linear-gradient(180deg, #edc9ca 0%, #efc2c5 20%, #efa5b7 46%, #8b5f96 70%, #3f2b56 86%, #25172d 100%);
+    clip-path: polygon(52.9% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .photo-sky {
+    left: 504px;
+    top: 0;
+    width: 776px;
+    height: 376px;
+    z-index: 2;
+    background:
+      radial-gradient(circle at 88% 12%, rgba(253,246,241,0.85) 0%, rgba(253,246,241,0.48) 18%, rgba(253,246,241,0.08) 42%, rgba(253,246,241,0) 58%),
+      linear-gradient(180deg, #ebcfd0 0%, #efc4c7 34%, #f0b8bf 61%, #ee9db0 100%);
+    clip-path: polygon(52.9% 0%, 100% 0%, 100% 100%, 23.5% 100%);
+  }
+
+  .horizon-glow {
+    left: 600px;
+    top: 336px;
+    width: 680px;
+    height: 56px;
+    z-index: 3;
+    background: linear-gradient(180deg, rgba(145,90,140,0.18) 0%, rgba(91,53,103,0.4) 56%, rgba(52,31,67,0.06) 100%);
+    filter: blur(1.2px);
+  }
+
+  .water-band {
+    left: 504px;
+    top: 392px;
+    width: 776px;
+    height: 176px;
+    z-index: 2;
+    background:
+      linear-gradient(180deg, rgba(120,92,157,0.92) 0%, rgba(117,91,154,0.78) 14%, rgba(117,94,152,0.6) 34%, rgba(108,86,142,0.42) 58%, rgba(86,64,112,0.34) 100%);
+  }
+
+  .water-band-2 {
+    left: 504px;
+    top: 560px;
+    width: 776px;
+    height: 160px;
+    z-index: 2;
+    background:
+      linear-gradient(180deg, rgba(67,45,86,0.72) 0%, rgba(57,37,73,0.86) 36%, rgba(39,25,50,0.98) 100%);
+  }
+
+  .water-highlight {
+    left: 540px;
+    top: 410px;
+    width: 620px;
+    height: 28px;
+    z-index: 4;
+    background: linear-gradient(180deg, rgba(196,183,224,0.48) 0%, rgba(185,171,219,0.18) 100%);
+    filter: blur(7px);
+    border-radius: 28px;
+  }
+
+  .rocks {
+    left: 602px;
+    top: 320px;
+    width: 678px;
+    height: 154px;
+    z-index: 5;
+  }
+
+  .purple-corner {
+    right: 0;
+    bottom: 0;
+    width: 175px;
+    height: 344px;
+    z-index: 6;
+    background: #4d2872;
+    clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .teal-parallelogram {
+    left: 1018px;
+    top: 574px;
+    width: 220px;
+    height: 146px;
+    z-index: 7;
+    background: #28afb0;
+    clip-path: polygon(39% 0%, 100% 0%, 61% 100%, 0% 100%);
+  }
+
+  .lavender-top {
+    left: 714px;
+    top: 0;
+    width: 238px;
+    height: 194px;
+    z-index: 8;
+    background: #cec7da;
+    clip-path: polygon(82.5% 0%, 100% 0%, 57.8% 100%, 0% 100%);
+  }
+
+  .title {
+    left: 48px;
+    top: 154px;
+    width: 560px;
+    z-index: 30;
+    color: #f4f6f7;
+    font-size: 64px;
+    line-height: 1.04;
+    font-weight: 800;
+    letter-spacing: -1.8px;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  }
+
+  .subtitle {
+    left: 49px;
+    top: 394px;
+    width: 360px;
+    z-index: 30;
+    color: #eef3f4;
+    font-size: 31px;
+    line-height: 1.23;
+    font-weight: 300;
+    letter-spacing: -0.4px;
+  }
+
+  .date {
+    left: 49px;
+    top: 500px;
+    z-index: 30;
+    color: #eef3f4;
+    font-size: 26px;
+    line-height: 1.1;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+  }
+
+  .logo-box {
+    left: 1178px;
+    top: 691px;
+    width: 55px;
+    height: 50px;
+    z-index: 55;
+    background: #3974bc;
+    border: 1px solid rgba(255,255,255,0.22);
+    overflow: hidden;
+  }
+
+  .logo-left {
+    left: 1193px;
+    top: 694px;
+    width: 16px;
+    height: 34px;
+    z-index: 56;
+    background: #1f5db2;
+    clip-path: polygon(30% 0%, 88% 0%, 88% 100%, 0% 100%, 0% 22%);
+  }
+
+  .logo-right {
+    left: 1200px;
+    top: 694px;
+    width: 20px;
+    height: 34px;
+    z-index: 56;
+    background: #20b6b1;
+    clip-path: polygon(22% 0%, 80% 0%, 100% 22%, 100% 76%, 79% 100%, 12% 100%, 34% 50%, 12% 24%);
+  }
+
+  .logo-text {
+    left: 1185px;
+    top: 716px;
+    z-index: 57;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+</style>
+</head>
+<body>
+  <div id="slide">
+    <div class="left-panel"></div>
+    <div class="photo-area"></div>
+    <div class="photo-sky"></div>
+    <div class="water-band"></div>
+    <div class="water-band-2"></div>
+    <div class="horizon-glow"></div>
+    <div class="water-highlight"></div>
+
+    <svg class="rocks" viewBox="0 0 678 154" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="rockGrad1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#4a2432"/>
+          <stop offset="42%" stop-color="#79364f"/>
+          <stop offset="100%" stop-color="#231119"/>
+        </linearGradient>
+        <linearGradient id="rockGrad2" x1="0" y1="0" x2="0.8" y2="1">
+          <stop offset="0%" stop-color="#8d616d"/>
+          <stop offset="50%" stop-color="#4c2534"/>
+          <stop offset="100%" stop-color="#1f1118"/>
+        </linearGradient>
+        <linearGradient id="rockGrad3" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#b89a95"/>
+          <stop offset="38%" stop-color="#756068"/>
+          <stop offset="100%" stop-color="#2b1922"/>
+        </linearGradient>
+      </defs>
+
+      <polygon points="0,123 18,108 34,127 24,147 2,145" fill="#211219"/>
+      <polygon points="24,117 46,98 64,120 58,146 32,149" fill="#311825"/>
+      <polygon points="40,92 63,74 85,92 75,119 49,113" fill="url(#rockGrad1)"/>
+      <polygon points="75,73 100,57 122,81 104,111 80,104" fill="url(#rockGrad2)"/>
+      <polygon points="112,84 136,64 160,76 156,109 124,112" fill="url(#rockGrad3)"/>
+      <polygon points="146,65 172,55 191,82 183,112 154,97" fill="url(#rockGrad1)"/>
+      <polygon points="183,61 208,47 229,72 214,100 191,97" fill="url(#rockGrad2)"/>
+      <polygon points="214,88 239,74 262,88 255,113 226,118" fill="url(#rockGrad3)"/>
+      <polygon points="248,61 276,50 294,70 284,97 256,90" fill="url(#rockGrad1)"/>
+      <polygon points="286,79 315,65 338,82 326,107 297,103" fill="url(#rockGrad2)"/>
+      <polygon points="324,58 347,46 367,64 360,89 333,84" fill="url(#rockGrad3)"/>
+      <polygon points="357,82 382,67 401,88 394,114 366,109" fill="url(#rockGrad1)"/>
+      <polygon points="394,60 420,50 442,69 429,97 403,90" fill="url(#rockGrad2)"/>
+      <polygon points="430,84 457,72 478,90 468,116 439,108" fill="url(#rockGrad3)"/>
+      <polygon points="465,57 489,45 512,63 503,92 477,86" fill="url(#rockGrad1)"/>
+      <polygon points="502,77 529,64 552,82 543,107 515,104" fill="url(#rockGrad2)"/>
+      <polygon points="539,68 566,57 585,78 579,101 550,98" fill="url(#rockGrad3)"/>
+      <polygon points="571,87 599,75 622,92 611,117 583,111" fill="url(#rockGrad1)"/>
+      <polygon points="607,66 631,56 651,74 644,96 619,92" fill="url(#rockGrad2)"/>
+      <polygon points="636,83 662,72 678,91 670,112 644,108" fill="url(#rockGrad3)"/>
+
+      <polygon points="22,112 44,103 63,122 55,143 27,145" fill="#1b1119"/>
+      <polygon points="59,109 84,99 104,119 93,145 63,139" fill="#311825"/>
+      <polygon points="98,109 121,99 139,118 132,145 103,142" fill="#21131b"/>
+      <polygon points="136,102 161,91 180,111 173,139 143,144" fill="#442133"/>
+      <polygon points="173,111 196,100 218,120 211,146 181,143" fill="#2a141d"/>
+      <polygon points="211,108 236,95 258,116 250,144 220,141" fill="#4f2738"/>
+      <polygon points="250,105 275,95 296,117 289,145 258,146" fill="#27131a"/>
+      <polygon points="288,111 314,99 336,120 328,147 299,143" fill="#4a2837"/>
+      <polygon points="326,104 351,95 372,115 364,143 335,144" fill="#2a141c"/>
+      <polygon points="363,109 390,98 412,117 404,147 373,143" fill="#4a2939"/>
+      <polygon points="404,105 429,95 450,113 442,140 413,144" fill="#26131a"/>
+      <polygon points="441,108 466,97 489,118 481,147 451,145" fill="#462737"/>
+      <polygon points="482,103 506,93 528,111 521,141 493,145" fill="#26141b"/>
+      <polygon points="520,106 545,96 566,114 557,143 528,143" fill="#4a2a38"/>
+      <polygon points="557,104 582,93 604,111 594,140 564,145" fill="#24131a"/>
+      <polygon points="595,107 618,99 638,117 630,140 602,143" fill="#4d2a38"/>
+      <polygon points="625,103 648,96 669,114 663,137 637,141" fill="#2b151d"/>
+
+      <polygon points="84,48 103,34 118,54 107,72 86,66" fill="#7c4f62"/>
+      <polygon points="141,42 160,30 174,49 166,68 146,62" fill="#8c6872"/>
+      <polygon points="201,35 217,21 235,39 227,55 208,49" fill="#6c3f50"/>
+      <polygon points="293,28 310,15 326,34 318,50 298,44" fill="#805864"/>
+      <polygon points="440,36 455,24 472,41 464,57 446,51" fill="#70414e"/>
+    </svg>
+
+    <svg style="left:1065px; top:153px; width:116px; height:229px; z-index:9;" viewBox="0 0 132 239" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="towerBody" x1="0" y1="0" x2="0.5" y2="1">
+          <stop offset="0%" stop-color="#fff3ef"/>
+          <stop offset="60%" stop-color="#edd9da"/>
+          <stop offset="100%" stop-color="#c7a7ad"/>
+        </linearGradient>
+        <linearGradient id="shadowSide" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#d1b5bb"/>
+          <stop offset="100%" stop-color="#9c7a83"/>
+        </linearGradient>
+      </defs>
+
+      <polygon points="61,20 66,8 71,20" fill="#2e1320"/>
+      <rect x="64" y="8" width="3" height="14" fill="#3b202d"/>
+      <polygon points="52,29 79,29 71,20 60,20" fill="#512638"/>
+      <rect x="53" y="29" width="26" height="6" fill="#3d1d2d"/>
+      <rect x="54" y="35" width="24" height="15" fill="rgba(74,35,53,0.16)" stroke="#422535" stroke-width="2"/>
+      <line x1="60" y1="35" x2="60" y2="50" stroke="#3f2333" stroke-width="1"/>
+      <line x1="66" y1="35" x2="66" y2="50" stroke="#3f2333" stroke-width="1"/>
+      <line x1="72" y1="35" x2="72" y2="50" stroke="#3f2333" stroke-width="1"/>
+      <rect x="49" y="49" width="34" height="5" fill="#0c766f"/>
+      <polygon points="47,54 85,54 77,223 55,223" fill="url(#towerBody)"/>
+      <polygon points="77,54 85,54 77,223 71,223" fill="url(#shadowSide)" opacity="0.78"/>
+      <rect x="79" y="86" width="2" height="96" fill="#8f6d76" opacity="0.58"/>
+      <rect x="66" y="126" width="5" height="8" fill="#ffe57a" stroke="#7a5d33" stroke-width="1"/>
+      <rect x="62" y="159" width="5" height="8" fill="#ffe57a" stroke="#7a5d33" stroke-width="1"/>
+      <rect x="59" y="207" width="14" height="16" fill="#e2d0d0" stroke="#6f5760" stroke-width="2"/>
+      <line x1="66" y1="207" x2="66" y2="223" stroke="#6f5760" stroke-width="1"/>
+      <rect x="83" y="130" width="9" height="4" fill="#92757d" opacity="0.65"/>
+    </svg>
+
+    <div class="purple-corner"></div>
+    <div class="teal-parallelogram"></div>
+    <div class="lavender-top"></div>
+
+    <div class="title">PREDICTIONS 2025<br>REPORT</div>
+    <div class="subtitle">A 31-Country Ipsos<br>Global Advisor Survey</div>
+    <div class="date">December 2024</div>
+
+    <div class="logo-box"></div>
+    <div class="logo-left"></div>
+    <div class="logo-right"></div>
+    <div class="logo-text">Ipsos</div>
+  </div>
+</body>
+</html>

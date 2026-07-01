@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #000000;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #000000;
+  }
+  .slide > * { position: absolute; box-sizing: border-box; }
+
+  .bg {
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 61% 26%, rgba(156,110,210,0.14) 0%, rgba(97,58,151,0.08) 20%, rgba(0,0,0,0) 44%),
+      radial-gradient(ellipse at 77% 45%, rgba(114,204,255,0.08) 0%, rgba(0,0,0,0) 34%),
+      #000000;
+    z-index: 0;
+  }
+
+  svg#network {
+    left: -6px;
+    top: -10px;
+    width: 1380px;
+    height: 760px;
+    z-index: 2;
+    opacity: 0.95;
+  }
+
+  .top-line {
+    left: 0;
+    top: 211px;
+    width: 1366px;
+    height: 3px;
+    z-index: 20;
+    background: linear-gradient(90deg,
+      #f4de00 0%,
+      #f4de00 18%,
+      #ff58f4 56%,
+      #8f6dff 76%,
+      #00f5ff 100%);
+  }
+
+  .chapter {
+    z-index: 35;
+    text-align: center;
+    color: #ffffff;
+  }
+  .chapter .num {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    margin-left: -18px;
+    border-radius: 50%;
+    background: #ffe400;
+    color: #111111;
+    font-size: 16px;
+    line-height: 36px;
+    font-weight: 700;
+  }
+  .chapter .rule {
+    position: absolute;
+    left: 50%;
+    top: 42px;
+    width: 58px;
+    height: 5px;
+    margin-left: -29px;
+    background: #e8e8e8;
+  }
+  .chapter .label {
+    position: absolute;
+    top: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f3f3f3;
+    font-size: 12px;
+    line-height: 1.28;
+    font-weight: 400;
+    white-space: normal;
+  }
+  .chapter .label .bold {
+    font-weight: 700;
+  }
+
+  .big-word {
+    left: -4px;
+    top: 505px;
+    z-index: 10;
+    color: transparent;
+    -webkit-text-stroke: 2px #f4f4f4;
+    text-stroke: 2px #f4f4f4;
+    font-size: 270px;
+    line-height: 0.9;
+    font-weight: 300;
+    letter-spacing: -10px;
+    white-space: nowrap;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bg"></div>
+
+  <svg id="network" viewBox="0 0 1366 760" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="lgA" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#0d1b86" stop-opacity="0.22"/>
+        <stop offset="55%" stop-color="#8c58d8" stop-opacity="0.34"/>
+        <stop offset="100%" stop-color="#8fd8ff" stop-opacity="0.20"/>
+      </linearGradient>
+      <linearGradient id="lgB" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#09106e" stop-opacity="0.16"/>
+        <stop offset="48%" stop-color="#be78ff" stop-opacity="0.30"/>
+        <stop offset="100%" stop-color="#a6eaff" stop-opacity="0.16"/>
+      </linearGradient>
+      <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="0.8"/>
+      </filter>
+    </defs>
+
+    <g fill="none" stroke-linecap="round">
+      <!-- left-to-right flowing strands -->
+      <g opacity="0.9">
+        <path d="M-40 38 C150 12, 330 60, 540 24 S900 20, 1150 54 S1320 78, 1400 70" stroke="url(#lgA)" stroke-width="1.2"/>
+        <path d="M-50 56 C130 34, 320 86, 540 58 S900 48, 1160 86 S1320 110, 1400 102" stroke="url(#lgA)" stroke-width="1"/>
+        <path d="M-44 74 C128 58, 322 110, 544 88 S904 82, 1164 122 S1324 144, 1400 136" stroke="url(#lgA)" stroke-width="1.15"/>
+        <path d="M-38 92 C140 82, 326 132, 548 118 S910 118, 1168 158 S1328 178, 1400 170" stroke="url(#lgA)" stroke-width="1"/>
+        <path d="M-34 112 C148 104, 332 158, 554 150 S914 150, 1172 192 S1332 212, 1400 204" stroke="url(#lgA)" stroke-width="1.15"/>
+        <path d="M-28 132 C158 124, 340 182, 560 182 S920 186, 1176 226 S1336 246, 1400 240" stroke="url(#lgA)" stroke-width="1"/>
+        <path d="M-22 154 C168 146, 350 208, 568 214 S928 224, 1180 262 S1338 282, 1400 276" stroke="url(#lgA)" stroke-width="1.2"/>
+        <path d="M-14 178 C176 172, 360 238, 578 248 S936 264, 1186 300 S1340 320, 1400 316" stroke="url(#lgA)" stroke-width="1"/>
+        <path d="M-8 202 C182 198, 366 270, 586 284 S942 304, 1192 338 S1344 358, 1400 356" stroke="url(#lgA)" stroke-width="1.2"/>
+        <path d="M0 228 C190 226, 376 302, 596 320 S950 344, 1200 378 S1348 398, 1402 396" stroke="url(#lgA)" stroke-width="1"/>
+        <path d="M8 254 C198 256, 386 334, 606 356 S958 384, 1208 418 S1350 440, 1402 438" stroke="url(#lgA)" stroke-width="1.2"/>
+        <path d="M16 280 C206 286, 394 366, 616 392 S968 424, 1216 460 S1352 482, 1402 482" stroke="url(#lgA)" stroke-width="1"/>
+        <path d="M24 308 C214 316, 404 398, 628 428 S976 464, 1224 500 S1354 524, 1402 526" stroke="url(#lgA)" stroke-width="1.2"/>
+        <path d="M30 338 C220 350, 414 430, 638 464 S984 504, 1230 542 S1356 568, 1402 572" stroke="url(#lgA)" stroke-width="1"/>
+        <path d="M38 370 C228 384, 424 462, 648 500 S992 544, 1238 584 S1358 612, 1402 616" stroke="url(#lgA)" stroke-width="1.15"/>
+        <path d="M48 404 C238 418, 438 492, 662 536 S1002 584, 1248 626 S1360 656, 1402 660" stroke="url(#lgA)" stroke-width="1"/>
+
+        <path d="M28 20 C200 30, 380 88, 596 58 S930 96, 1164 168 S1320 212, 1400 246" stroke="url(#lgB)" stroke-width="1"/>
+        <path d="M16 42 C188 56, 374 112, 594 86 S928 126, 1166 198 S1322 242, 1400 278" stroke="url(#lgB)" stroke-width="1.15"/>
+        <path d="M10 66 C182 82, 372 138, 594 114 S930 156, 1168 228 S1324 272, 1400 310" stroke="url(#lgB)" stroke-width="1"/>
+        <path d="M6 92 C182 110, 376 164, 598 144 S934 188, 1170 260 S1324 304, 1400 342" stroke="url(#lgB)" stroke-width="1.15"/>
+        <path d="M4 120 C186 138, 382 192, 604 176 S938 220, 1172 292 S1324 338, 1400 376" stroke="url(#lgB)" stroke-width="1"/>
+        <path d="M6 150 C192 170, 390 222, 612 208 S944 252, 1178 326 S1326 374, 1400 412" stroke="url(#lgB)" stroke-width="1.15"/>
+        <path d="M10 182 C198 202, 400 254, 620 242 S952 286, 1184 362 S1330 412, 1402 452" stroke="url(#lgB)" stroke-width="1"/>
+        <path d="M18 216 C206 238, 410 288, 630 278 S960 322, 1190 398 S1334 450, 1402 490" stroke="url(#lgB)" stroke-width="1.15"/>
+        <path d="M26 252 C214 274, 420 324, 640 316 S968 362, 1198 438 S1338 492, 1402 532" stroke="url(#lgB)" stroke-width="1"/>
+        <path d="M34 290 C224 312, 432 362, 652 356 S978 404, 1208 480 S1342 536, 1402 578" stroke="url(#lgB)" stroke-width="1.1"/>
+        <path d="M44 330 C236 352, 446 402, 668 398 S990 448, 1220 526 S1346 584, 1402 626" stroke="url(#lgB)" stroke-width="1"/>
+      </g>
+
+      <!-- denser cluster on the right -->
+      <g opacity="0.7">
+        <path d="M420 36 C610 80, 744 142, 876 192 S1124 264, 1366 350" stroke="url(#lgA)" stroke-width="1.4"/>
+        <path d="M404 58 C598 104, 740 164, 874 216 S1128 290, 1366 370" stroke="url(#lgA)" stroke-width="1.2"/>
+        <path d="M392 80 C586 128, 734 188, 872 240 S1132 314, 1366 392" stroke="url(#lgA)" stroke-width="1.2"/>
+        <path d="M384 102 C578 150, 730 210, 872 266 S1136 340, 1366 416" stroke="url(#lgA)" stroke-width="1.2"/>
+        <path d="M380 126 C572 174, 730 236, 874 292 S1140 366, 1366 442" stroke="url(#lgA)" stroke-width="1.1"/>
+        <path d="M378 150 C570 200, 732 262, 878 320 S1146 394, 1366 470" stroke="url(#lgA)" stroke-width="1.1"/>
+        <path d="M382 176 C572 226, 736 288, 884 348 S1152 422, 1366 498" stroke="url(#lgA)" stroke-width="1.1"/>
+        <path d="M390 202 C578 252, 744 314, 892 376 S1160 450, 1366 526" stroke="url(#lgA)" stroke-width="1.1"/>
+        <path d="M404 228 C590 278, 756 340, 904 404 S1170 478, 1366 554" stroke="url(#lgA)" stroke-width="1.1"/>
+        <path d="M424 252 C606 300, 770 364, 918 430 S1182 504, 1366 578" stroke="url(#lgA)" stroke-width="1.1"/>
+
+        <path d="M470 18 C636 90, 770 164, 896 216 S1136 290, 1366 366" stroke="url(#lgB)" stroke-width="1.1"/>
+        <path d="M456 42 C624 112, 764 186, 894 240 S1140 314, 1366 390" stroke="url(#lgB)" stroke-width="1.1"/>
+        <path d="M444 68 C614 138, 758 212, 894 266 S1146 340, 1366 416" stroke="url(#lgB)" stroke-width="1.1"/>
+        <path d="M436 96 C608 166, 756 238, 896 294 S1150 370, 1366 444" stroke="url(#lgB)" stroke-width="1.1"/>
+        <path d="M432 126 C604 194, 756 266, 900 324 S1156 402, 1366 474" stroke="url(#lgB)" stroke-width="1.1"/>
+        <path d="M434 158 C606 222, 758 296, 906 356 S1162 434, 1366 506" stroke="url(#lgB)" stroke-width="1.1"/>
+        <path d="M442 192 C614 252, 766 328, 916 390 S1172 470, 1366 542" stroke="url(#lgB)" stroke-width="1.1"/>
+        <path d="M456 228 C626 284, 778 362, 930 426 S1182 508, 1366 580" stroke="url(#lgB)" stroke-width="1.1"/>
+      </g>
+
+      <!-- dots -->
+      <g filter="url(#glow)" opacity="0.75">
+        <g fill="#8a6cff">
+          <circle cx="80" cy="18" r="1.8"/><circle cx="150" cy="54" r="1.6"/><circle cx="214" cy="32" r="1.5"/>
+          <circle cx="286" cy="64" r="1.5"/><circle cx="346" cy="40" r="1.4"/><circle cx="422" cy="28" r="1.7"/>
+          <circle cx="492" cy="62" r="1.5"/><circle cx="558" cy="42" r="1.5"/><circle cx="624" cy="54" r="1.8"/>
+          <circle cx="686" cy="30" r="1.6"/><circle cx="760" cy="46" r="1.5"/><circle cx="824" cy="78" r="1.6"/>
+          <circle cx="886" cy="66" r="1.5"/><circle cx="948" cy="58" r="1.5"/><circle cx="1008" cy="86" r="1.7"/>
+          <circle cx="1076" cy="98" r="1.5"/><circle cx="1142" cy="92" r="1.5"/><circle cx="1208" cy="116" r="1.6"/>
+        </g>
+        <g fill="#7fd8ff" opacity="0.85">
+          <circle cx="124" cy="194" r="1.5"/><circle cx="350" cy="172" r="1.8"/><circle cx="644" cy="236" r="1.6"/>
+          <circle cx="770" cy="220" r="1.5"/><circle cx="884" cy="236" r="1.6"/><circle cx="1014" cy="288" r="1.5"/>
+          <circle cx="1144" cy="276" r="1.5"/><circle cx="1224" cy="320" r="1.6"/>
+        </g>
+        <g fill="#d194ff" opacity="0.85">
+          <circle cx="212" cy="210" r="1.7"/><circle cx="310" cy="224" r="1.5"/><circle cx="394" cy="216" r="1.6"/>
+          <circle cx="502" cy="238" r="1.5"/><circle cx="566" cy="224" r="1.5"/><circle cx="690" cy="212" r="1.6"/>
+          <circle cx="818" cy="266" r="1.6"/><circle cx="922" cy="278" r="1.6"/><circle cx="1058" cy="260" r="1.7"/>
+          <circle cx="1178" cy="306" r="1.6"/>
+        </g>
+        <g fill="#ffffff" opacity="0.5">
+          <circle cx="610" cy="194" r="2.2"/><circle cx="970" cy="246" r="2"/><circle cx="1148" cy="300" r="1.9"/>
+        </g>
+        <g fill="#8f7cff" opacity="0.55">
+          <circle cx="110" cy="664" r="1.5"/><circle cx="194" cy="640" r="1.4"/><circle cx="318" cy="650" r="1.4"/>
+          <circle cx="454" cy="628" r="1.5"/><circle cx="574" cy="618" r="1.4"/><circle cx="702" cy="612" r="1.5"/>
+          <circle cx="846" cy="602" r="1.6"/><circle cx="1004" cy="594" r="1.5"/><circle cx="1146" cy="586" r="1.5"/>
+          <circle cx="1262" cy="622" r="1.5"/>
+        </g>
+      </g>
+    </g>
+  </svg>
+
+  <div class="top-line"></div>
+
+  <div class="chapter" style="left:82px; top:257px; width:56px; height:120px;">
+    <div class="num">4</div>
+    <div class="rule"></div>
+    <div class="label" style="width:90px;">Key<br>takeaways</div>
+  </div>
+
+  <div class="chapter" style="left:226px; top:257px; width:56px; height:150px;">
+    <div class="num">7</div>
+    <div class="rule"></div>
+    <div class="label" style="width:112px;"><span class="bold">Chapter 1</span><br>The CRO agenda:<br>risk priorities<br>and planned<br>enhancements</div>
+  </div>
+
+  <div class="chapter" style="left:369px; top:257px; width:56px; height:165px;">
+    <div class="num">14</div>
+    <div class="rule"></div>
+    <div class="label" style="width:122px;"><span class="bold">Chapter 2</span><br>Technology<br>and risk<br>transformation:<br>from foundations<br>to AI at scale</div>
+  </div>
+
+  <div class="chapter" style="left:512px; top:257px; width:56px; height:156px;">
+    <div class="num">19</div>
+    <div class="rule"></div>
+    <div class="label" style="width:128px;"><span class="bold">Chapter 3</span><br>Operational<br>resilience: moving<br>from capabilities<br>to control</div>
+  </div>
+
+  <div class="chapter" style="left:655px; top:257px; width:56px; height:156px;">
+    <div class="num">22</div>
+    <div class="rule"></div>
+    <div class="label" style="width:132px;"><span class="bold">Chapter 4</span><br>Internal controls:<br>modernizing for a<br>tech-enabled risk<br>environment</div>
+  </div>
+
+  <div class="chapter" style="left:798px; top:255px; width:56px; height:156px;">
+    <div class="num">25</div>
+    <div class="rule"></div>
+    <div class="label" style="width:118px;"><span class="bold">Chapter 5</span><br>Skills and talent:<br>evolving the<br>digitally fluent risk<br>workforce</div>
+  </div>
+
+  <div class="chapter" style="left:941px; top:257px; width:56px; height:132px;">
+    <div class="num">31</div>
+    <div class="rule"></div>
+    <div class="label" style="width:128px;">Looking ahead and<br>further reading</div>
+  </div>
+
+  <div class="chapter" style="left:1084px; top:257px; width:56px; height:150px;">
+    <div class="num">32</div>
+    <div class="rule"></div>
+    <div class="label" style="width:136px;">Research<br>methodology and<br>participants</div>
+  </div>
+
+  <div class="chapter" style="left:1228px; top:257px; width:56px; height:120px;">
+    <div class="num">33</div>
+    <div class="rule"></div>
+    <div class="label" style="width:82px;">Contacts</div>
+  </div>
+
+  <div class="big-word">Contents</div>
+</div>
+</body>
+</html>

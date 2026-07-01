@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Using texture to drive loyalty</title>
+<style>
+  body {
+    margin: 0;
+    background: #d9d9d9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #e2dddb;
+    color: #222;
+  }
+
+  .photo-top,
+  .photo-left {
+    position: absolute;
+    overflow: hidden;
+    background: #6b4b35;
+  }
+
+  .photo-top {
+    left: 61px;
+    top: 0px;
+    width: 364px;
+    height: 98px;
+    background:
+      radial-gradient(ellipse at 18% 58%, rgba(28,11,10,0.95) 0%, rgba(58,18,10,0.95) 26%, rgba(96,35,14,0.9) 42%, transparent 56%),
+      radial-gradient(ellipse at 38% 48%, rgba(33,10,9,0.95) 0%, rgba(75,20,8,0.9) 28%, rgba(114,42,16,0.86) 44%, transparent 60%),
+      radial-gradient(ellipse at 61% 42%, rgba(38,12,9,0.95) 0%, rgba(79,23,8,0.88) 24%, rgba(120,48,19,0.82) 42%, transparent 58%),
+      radial-gradient(ellipse at 82% 38%, rgba(233,232,232,0.88) 0%, rgba(221,221,223,0.8) 12%, rgba(183,176,176,0.6) 24%, transparent 36%),
+      linear-gradient(135deg, #4a2f21 0%, #7b3f1d 40%, #b46a35 72%, #c58650 100%);
+    filter: blur(0.2px);
+  }
+
+  .photo-left {
+    left: 61px;
+    top: 233px;
+    width: 364px;
+    height: 488px;
+    background:
+      linear-gradient(12deg, rgba(243,235,217,0.95) 0%, rgba(229,219,197,0.9) 24%, transparent 25%),
+      radial-gradient(ellipse at 63% 48%, rgba(189,145,72,0.9) 0%, rgba(196,140,67,0.8) 8%, rgba(179,119,48,0.55) 16%, transparent 26%),
+      radial-gradient(ellipse at 64% 48%, rgba(236,181,87,0.8) 0%, rgba(225,158,66,0.6) 10%, transparent 21%),
+      radial-gradient(ellipse at 50% 59%, rgba(132,99,66,0.9) 0%, rgba(159,121,77,0.82) 18%, rgba(190,165,133,0.72) 28%, rgba(96,63,33,0.55) 34%, transparent 42%),
+      radial-gradient(ellipse at 52% 63%, rgba(104,71,42,0.88) 0%, rgba(148,109,71,0.7) 14%, transparent 26%),
+      radial-gradient(ellipse at 77% 62%, rgba(226,191,163,0.85) 0%, rgba(194,145,123,0.65) 10%, transparent 20%),
+      radial-gradient(ellipse at 72% 78%, rgba(242,238,232,0.95) 0%, rgba(214,204,195,0.85) 12%, transparent 24%),
+      radial-gradient(ellipse at 55% 12%, rgba(176,89,40,0.82) 0%, rgba(205,120,58,0.62) 10%, transparent 24%),
+      radial-gradient(ellipse at 59% 18%, rgba(248,175,67,0.58) 0%, transparent 11%),
+      linear-gradient(180deg, rgba(10,12,20,0.98) 0%, rgba(20,11,16,0.92) 13%, rgba(120,54,24,0.82) 28%, rgba(211,183,116,0.72) 48%, rgba(196,166,115,0.78) 56%, rgba(190,168,131,0.86) 67%, rgba(141,104,54,0.7) 83%, rgba(90,66,37,0.85) 100%);
+  }
+  .photo-left:before {
+    content: "";
+    position: absolute;
+    left: 155px;
+    top: 198px;
+    width: 120px;
+    height: 184px;
+    background: linear-gradient(185deg, rgba(198,177,141,0.34), rgba(144,93,36,0.18));
+    border-radius: 50% 50% 42% 42%;
+    filter: blur(10px);
+    transform: rotate(-15deg);
+  }
+  .photo-left:after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 338px;
+    width: 240px;
+    height: 220px;
+    background: linear-gradient(10deg, rgba(255,248,238,0.48), rgba(243,234,222,0.08));
+    transform: rotate(-28deg);
+    filter: blur(4px);
+  }
+
+  .title {
+    position: absolute;
+    left: 60px;
+    top: 140px;
+    width: 295px;
+    color: #7c20e0;
+    font-size: 35px;
+    line-height: 1.18;
+    font-weight: 300;
+    letter-spacing: -0.3px;
+  }
+
+  .col {
+    position: absolute;
+    font-size: 18px;
+    line-height: 1.45;
+    color: #252525;
+    font-weight: 400;
+  }
+  .col p {
+    margin: 0 0 28px 0;
+  }
+
+  .col-left {
+    left: 480px;
+    top: 75px;
+    width: 340px;
+  }
+
+  .col-right-top {
+    left: 900px;
+    top: 75px;
+    width: 330px;
+  }
+
+  .quote-wrap {
+    position: absolute;
+    left: 900px;
+    top: 266px;
+    width: 320px;
+    height: 146px;
+  }
+  .quote-line {
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 1px;
+    height: 145px;
+    background: #c7c0bf;
+  }
+  .quote {
+    position: absolute;
+    left: 25px;
+    top: -6px;
+    width: 295px;
+    color: #8e37e6;
+    font-size: 22px;
+    line-height: 1.45;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+  }
+
+  .col-right-bottom {
+    left: 900px;
+    top: 437px;
+    width: 320px;
+  }
+
+  .side-nav {
+    position: absolute;
+    right: 5px;
+    top: 39px;
+    height: 585px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 18px;
+    line-height: 1;
+    color: #6f6a6b;
+    letter-spacing: 0.1px;
+  }
+  .side-nav .active {
+    color: #8e37e6;
+    font-weight: 600;
+  }
+
+  .footer-left {
+    position: absolute;
+    right: 75px;
+    bottom: 20px;
+    font-size: 14px;
+    color: #7e7878;
+  }
+  .footer-left .year {
+    color: #8e37e6;
+  }
+
+  .footer-page {
+    position: absolute;
+    right: 24px;
+    bottom: 20px;
+    font-size: 14px;
+    color: #6f6a6b;
+  }
+
+  sup {
+    font-size: 10px;
+    vertical-align: super;
+    line-height: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="photo-top"></div>
+    <div class="title">Using texture<br>to drive loyalty</div>
+    <div class="photo-left"></div>
+
+    <div class="col col-left">
+      <p>The bonds of loyalty are strengthened through real-world textural experiences, offering a depth and authenticity that digital interactions often lack. While digital tools provide powerful means to measure, reward and visualize engagement, they cannot fully replicate the emotional richness of textural experiences. Textural experiences offer a layer of emotional depth beyond what is visually immediate. This means exploring sound and audio, real-life experiences, scent and ways to inspire emotional responses.</p>
+
+      <p>The Paris Olympics in 2024 provided a powerful reminder of what draws people into an experience. What made it memorable viewing were the displays of real emotion—more than the statistics around the records the athletes broke or the performance statistics they recorded. Notably, music was a much greater part of the Olympic experience than ever before, adding further texture and broadening engagement.</p>
+    </div>
+
+    <div class="col col-right-top">
+      <p>Sport is a fantastic source of inspiration for textural experience. It’s deeply event-based, limited to a defined period, which is a compelling part of texture. On a related point, brands that have most impact at sporting events are those that add something relevant, fun and additive without getting in the way of fans’ enjoyment of the event.</p>
+    </div>
+
+    <div class="quote-wrap">
+      <div class="quote-line"></div>
+      <div class="quote">Physical experiences create lasting memories and a sense of presence that deepens trust and loyalty, and this presents an opportunity to engage.</div>
+    </div>
+
+    <div class="col col-right-bottom">
+      <p>People like having a reason to do something, and brands can benefit by embracing that need. For example, sportswear and other health-related brands are jumping at the chance to sponsor running clubs, where members can sample their products and participate in events.<sup>155</sup></p>
+    </div>
+
+    <div class="side-nav">Cost of hesitations &nbsp;&nbsp;/&nbsp;&nbsp; The parent trap &nbsp;&nbsp;/&nbsp;&nbsp; Impatience economy &nbsp;&nbsp;/&nbsp;&nbsp; The dignity of work &nbsp;&nbsp;/&nbsp;&nbsp; <span class="active">Social rewiring</span></div>
+
+    <div class="footer-left">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="footer-page">81</div>
+  </div>
+</body>
+</html>

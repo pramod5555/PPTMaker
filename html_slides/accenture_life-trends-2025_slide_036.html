@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Why this matters now</title>
+<style>
+  body {
+    margin: 0;
+    background: #d9d9d9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #d8d3ca;
+    color: #222;
+  }
+
+  .title {
+    position: absolute;
+    left: 64px;
+    top: 130px;
+    width: 320px;
+    font-size: 56px;
+    line-height: 1.2;
+    font-weight: 300;
+    color: #6b18d6;
+    letter-spacing: -0.5px;
+  }
+
+  .body-copy {
+    position: absolute;
+    left: 64px;
+    top: 293px;
+    width: 425px;
+    font-size: 18px;
+    line-height: 1.55;
+    color: #222;
+    font-weight: 400;
+  }
+
+  .photo-top-right {
+    position: absolute;
+    left: 877px;
+    top: 0px;
+    width: 344px;
+    height: 193px;
+    background:
+      radial-gradient(circle at 80% 55%, rgba(7,35,62,0.65) 0 14%, rgba(9,30,54,0.2) 20%, transparent 34%),
+      radial-gradient(circle at 70% 58%, rgba(223,191,178,0.95) 0 17%, rgba(189,153,145,0.75) 22%, transparent 35%),
+      radial-gradient(circle at 44% 18%, rgba(214,178,182,0.95) 0 17%, rgba(172,132,140,0.65) 24%, transparent 35%),
+      radial-gradient(circle at 58% 43%, rgba(30,20,22,0.9) 0 8%, transparent 12%),
+      radial-gradient(circle at 71% 42%, rgba(24,20,25,0.95) 0 10%, transparent 14%),
+      radial-gradient(circle at 57% 66%, rgba(14,12,15,0.95) 0 11%, transparent 17%),
+      radial-gradient(circle at 20% 52%, rgba(54,38,34,0.9) 0 12%, transparent 18%),
+      radial-gradient(circle at 69% 86%, rgba(18,47,71,0.9) 0 9%, transparent 15%),
+      radial-gradient(circle at 62% 63%, rgba(49,95,52,0.9) 0 5%, transparent 10%),
+      linear-gradient(135deg, rgba(80,87,106,0.9) 0%, rgba(176,178,188,0.55) 30%, rgba(58,71,87,0.45) 50%, rgba(14,31,57,0.8) 100%);
+    overflow: hidden;
+  }
+  .photo-top-right::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(45deg, rgba(230,230,230,0.22) 0 2px, transparent 2px 18px),
+      repeating-linear-gradient(-45deg, rgba(230,230,230,0.18) 0 2px, transparent 2px 18px);
+    opacity: 0.55;
+    mix-blend-mode: screen;
+  }
+
+  .photo-mid {
+    position: absolute;
+    left: 549px;
+    top: 191px;
+    width: 386px;
+    height: 317px;
+    background:
+      radial-gradient(circle at 71% 84%, rgba(246,230,235,0.95) 0 18%, rgba(215,196,206,0.95) 19%, rgba(177,163,182,0.7) 22%, transparent 23%),
+      radial-gradient(circle at 18% 14%, rgba(26,76,60,0.85) 0 5%, transparent 9%),
+      linear-gradient(110deg, rgba(16,47,78,0.95) 6%, rgba(29,69,106,0.95) 30%, rgba(62,100,144,0.88) 55%, rgba(17,38,67,0.92) 100%);
+    overflow: hidden;
+  }
+  .photo-mid::before {
+    content: "";
+    position: absolute;
+    left: 24px;
+    top: -8px;
+    width: 54px;
+    height: 250px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.02));
+    transform: rotate(15deg);
+    filter: blur(2px);
+    opacity: 0.7;
+  }
+  .photo-mid::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 180px;
+    width: 220px;
+    height: 140px;
+    border-top-left-radius: 120px 80px;
+    border-top-right-radius: 110px 60px;
+    background: rgba(12,52,86,0.75);
+    filter: blur(1px);
+  }
+
+  .photo-bottom-right {
+    position: absolute;
+    left: 877px;
+    top: 508px;
+    width: 344px;
+    height: 212px;
+    background:
+      radial-gradient(circle at 11% 8%, rgba(241,230,236,0.95) 0 20%, rgba(192,176,190,0.75) 23%, transparent 24%),
+      linear-gradient(90deg, rgba(1,23,55,1) 0 47%, rgba(18,47,91,0.95) 55%, rgba(198,146,36,0.95) 76%, rgba(240,190,86,0.92) 100%);
+    overflow: hidden;
+  }
+  .photo-bottom-right::before {
+    content: "";
+    position: absolute;
+    left: 180px;
+    top: 0;
+    width: 95px;
+    height: 212px;
+    background: rgba(4,20,48,0.65);
+    border-radius: 46px 46px 0 0;
+    filter: blur(1px);
+  }
+
+  .quote-box {
+    position: absolute;
+    left: 935px;
+    top: 193px;
+    width: 286px;
+    height: 315px;
+    background: #f7f4f1;
+    padding: 28px 28px 20px 30px;
+    box-sizing: border-box;
+  }
+  .quote {
+    font-size: 21px;
+    line-height: 1.52;
+    color: #8d39e6;
+    font-weight: 300;
+  }
+
+  .side-nav {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 59px;
+    height: 720px;
+    color: #6c6c6c;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .side-nav .rot {
+    position: absolute;
+    right: -177px;
+    top: 339px;
+    width: 414px;
+    text-align: center;
+    transform: rotate(90deg);
+    transform-origin: center;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+  }
+  .side-nav .purple {
+    color: #8d39e6;
+    font-weight: 600;
+  }
+
+  .footer-left {
+    position: absolute;
+    right: 93px;
+    bottom: 20px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 400;
+  }
+
+  .footer-page {
+    position: absolute;
+    right: 28px;
+    bottom: 20px;
+    font-size: 14px;
+    color: #777;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title">Why this<br>matters now</div>
+
+    <div class="body-copy">
+      We believe this trend could unbalance the whole ecosystem of technology, marketing and entertainment—plus products and services targeted at younger demographics. At the least, if some, or even most, younger customers have reduced access to digital technology and social media, it will affect how brands become visible to them.
+    </div>
+
+    <div class="photo-top-right"></div>
+    <div class="photo-mid"></div>
+    <div class="quote-box">
+      <div class="quote">
+        What parents and their children want could diverge further, making the use of technology a much greater, daily point of tension than it has been to date. Brands may face significant gaps in their ability to engage children and teenagers.
+      </div>
+    </div>
+    <div class="photo-bottom-right"></div>
+
+    <div class="side-nav">
+      <div class="rot">
+        Cost of hesitations &nbsp;/&nbsp; <span class="purple">The parent trap</span> &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; Social rewiring
+      </div>
+    </div>
+
+    <div class="footer-left">Accenture Life Trends 2025</div>
+    <div class="footer-page">36</div>
+  </div>
+</body>
+</html>

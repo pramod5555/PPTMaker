@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>AI: A Declaration of Autonomy</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ecebec;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #ecebec;
+  }
+
+  /* Abstract hero artwork */
+  .art {
+    position: absolute;
+    left: -8px;
+    top: -6px;
+    width: 1288px;
+    height: 736px;
+    overflow: hidden;
+  }
+
+  .blob-head {
+    position: absolute;
+    left: 55px;
+    top: 37px;
+    width: 545px;
+    height: 495px;
+    border-radius: 50%;
+    background:
+      radial-gradient(ellipse at 66% 18%, rgba(255,150,255,0.85) 0%, rgba(255,150,255,0.35) 9%, rgba(111,101,255,0.55) 18%, rgba(95,14,138,0.05) 28%),
+      radial-gradient(ellipse at 72% 58%, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.55) 10%, rgba(242,151,194,0.72) 19%, rgba(186,43,224,0.58) 30%, rgba(93,10,142,0.2) 48%, rgba(62,0,95,0.0) 66%),
+      radial-gradient(ellipse at 23% 30%, rgba(83,7,127,0.96) 0%, rgba(86,10,130,0.98) 42%, rgba(125,25,170,0.96) 64%, rgba(163,63,205,0.88) 78%, rgba(255,255,255,0) 100%);
+    filter: saturate(115%);
+    transform: rotate(-10deg);
+  }
+
+  .hat-brim {
+    position: absolute;
+    left: -32px;
+    top: 353px;
+    width: 430px;
+    height: 108px;
+    border-radius: 55% 55% 50% 50% / 75% 75% 35% 35%;
+    background:
+      linear-gradient(90deg, rgba(149,32,229,0.95) 0%, rgba(173,55,255,0.92) 26%, rgba(135,22,219,0.92) 56%, rgba(255,188,214,0.65) 100%);
+    transform: rotate(-44deg);
+    box-shadow: inset 0 -10px 18px rgba(255,255,255,0.25);
+  }
+
+  .hat-rim-line {
+    position: absolute;
+    left: 20px;
+    top: 230px;
+    width: 575px;
+    height: 26px;
+    border-top: 4px solid rgba(255,234,236,0.85);
+    border-radius: 50%;
+    transform: rotate(-41deg);
+    opacity: 0.95;
+  }
+
+  .hat-rim-line.two {
+    left: 36px;
+    top: 243px;
+    width: 554px;
+    border-top-width: 2px;
+    opacity: 0.65;
+  }
+
+  .visor-band {
+    position: absolute;
+    left: 205px;
+    top: 135px;
+    width: 588px;
+    height: 72px;
+    border-radius: 50px;
+    background:
+      linear-gradient(90deg, rgba(242,217,207,0.8) 0%, rgba(245,227,221,0.65) 28%, rgba(237,205,220,0.15) 62%, rgba(255,255,255,0.0) 100%);
+    transform: rotate(-38deg);
+    opacity: 0.95;
+  }
+
+  .visor-sweep {
+    position: absolute;
+    left: 280px;
+    top: -15px;
+    width: 510px;
+    height: 175px;
+    border-radius: 120px 160px 40px 120px;
+    background:
+      repeating-linear-gradient(14deg,
+        rgba(223,84,226,0.34) 0px,
+        rgba(223,84,226,0.34) 2px,
+        rgba(255,205,228,0.18) 4px,
+        rgba(255,205,228,0.18) 6px),
+      linear-gradient(90deg, rgba(255,223,230,0.65), rgba(242,144,239,0.52), rgba(240,235,239,0.16));
+    transform: rotate(-22deg);
+    opacity: 0.9;
+    filter: blur(0.4px);
+  }
+
+  .ear {
+    position: absolute;
+    left: 491px;
+    top: 171px;
+    width: 63px;
+    height: 90px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 54% 44%, rgba(31,26,63,0.95) 0%, rgba(58,22,115,0.95) 45%, rgba(104,57,210,0.9) 68%, rgba(240,242,255,0.85) 82%, rgba(255,255,255,0.0) 100%);
+    transform: rotate(-24deg);
+  }
+
+  .ear-inner {
+    position: absolute;
+    left: 521px;
+    top: 223px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ff7bb2;
+    box-shadow: 0 0 10px rgba(255,123,178,0.8);
+  }
+
+  .neck {
+    position: absolute;
+    left: 516px;
+    top: 349px;
+    width: 152px;
+    height: 178px;
+    border-radius: 45% 30% 40% 45%;
+    background:
+      radial-gradient(circle at 28% 12%, rgba(151,108,205,0.85) 0%, rgba(129,82,186,0.8) 18%, rgba(88,42,122,0.9) 42%, rgba(58,37,79,0.95) 68%, rgba(62,31,69,0.0) 100%),
+      linear-gradient(120deg, rgba(205,180,212,0.55), rgba(102,64,150,0.85), rgba(44,31,64,0.95));
+    transform: rotate(24deg);
+    filter: blur(0.4px);
+  }
+
+  .shoulder {
+    position: absolute;
+    left: 600px;
+    top: 322px;
+    width: 720px;
+    height: 390px;
+    background:
+      radial-gradient(circle at 76% 75%, rgba(248,139,224,0.72) 0%, rgba(247,139,224,0.55) 14%, rgba(246,174,223,0.22) 28%, rgba(255,255,255,0) 44%),
+      radial-gradient(circle at 88% 60%, rgba(236,159,218,0.5) 0%, rgba(255,255,255,0) 34%),
+      linear-gradient(8deg, rgba(239,200,193,0.72) 0%, rgba(181,58,221,0.82) 23%, rgba(145,61,225,0.76) 45%, rgba(189,165,214,0.55) 61%, rgba(248,245,247,0.0) 100%);
+    clip-path: polygon(8% 31%, 28% 25%, 53% 27%, 100% 23%, 100% 100%, 17% 100%, 0% 65%);
+    opacity: 0.95;
+    filter: blur(0.4px);
+  }
+
+  .shoulder-shadow {
+    position: absolute;
+    left: 662px;
+    top: 355px;
+    width: 580px;
+    height: 235px;
+    background:
+      linear-gradient(90deg, rgba(107,61,174,0.18), rgba(172,59,221,0.2), rgba(255,255,255,0));
+    clip-path: polygon(0 26%, 100% 0, 100% 58%, 0 90%);
+    opacity: 0.65;
+  }
+
+  .mint-panel {
+    position: absolute;
+    left: 644px;
+    top: 633px;
+    width: 225px;
+    height: 92px;
+    background: #2b8b87;
+    transform: rotate(-21deg);
+    opacity: 0.95;
+  }
+
+  .collar {
+    position: absolute;
+    left: 554px;
+    top: 560px;
+    width: 222px;
+    height: 86px;
+    border-radius: 24px;
+    background:
+      linear-gradient(15deg, rgba(235,137,91,0.92), rgba(172,62,223,0.8));
+    transform: rotate(18deg);
+    opacity: 0.85;
+  }
+
+  .streak {
+    position: absolute;
+    height: 2px;
+    background: rgba(255,207,157,0.8);
+    transform-origin: left center;
+  }
+  .s1 { left: 750px; top: 425px; width: 190px; transform: rotate(-34deg); }
+  .s2 { left: 835px; top: 458px; width: 222px; transform: rotate(-43deg); }
+  .s3 { left: 735px; top: 605px; width: 112px; transform: rotate(-37deg); }
+  .s4 { left: 792px; top: 556px; width: 175px; transform: rotate(-37deg); opacity: 0.7; }
+
+  .bottom-left-lines {
+    position: absolute;
+    left: -18px;
+    top: 566px;
+    width: 160px;
+    height: 94px;
+    transform: rotate(-28deg);
+    opacity: 0.7;
+  }
+  .bottom-left-lines::before,
+  .bottom-left-lines::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 170px;
+    border-top: 3px solid rgba(170,41,232,0.9);
+    border-radius: 50%;
+  }
+  .bottom-left-lines::before { top: 18px; }
+  .bottom-left-lines::after { top: 36px; }
+  .bottom-left-lines span {
+    position: absolute;
+    left: 0;
+    top: 54px;
+    width: 170px;
+    border-top: 3px solid rgba(170,41,232,0.9);
+    border-radius: 50%;
+    display: block;
+  }
+
+  /* Text block */
+  .eyebrow {
+    position: absolute;
+    left: 774px;
+    top: 98px;
+    font-size: 17px;
+    line-height: 1;
+    color: #8f2ae6;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  .title {
+    position: absolute;
+    left: 773px;
+    top: 133px;
+    width: 430px;
+    font-size: 58px;
+    line-height: 0.95;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: -1.3px;
+  }
+
+  .subtitle {
+    position: absolute;
+    left: 773px;
+    top: 255px;
+    width: 345px;
+    font-size: 25px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: -0.3px;
+  }
+
+  /* Logo */
+  .logo {
+    position: absolute;
+    left: 38px;
+    top: 710px;
+    transform: translateY(-100%);
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: -0.6px;
+  }
+  .logo .accent {
+    position: absolute;
+    left: 62px;
+    top: -11px;
+    font-size: 24px;
+    color: #9d20e5;
+    font-weight: 700;
+    line-height: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="art">
+      <div class="blob-head"></div>
+      <div class="hat-brim"></div>
+      <div class="hat-rim-line"></div>
+      <div class="hat-rim-line two"></div>
+      <div class="visor-band"></div>
+      <div class="visor-sweep"></div>
+      <div class="ear"></div>
+      <div class="ear-inner"></div>
+      <div class="neck"></div>
+      <div class="shoulder"></div>
+      <div class="shoulder-shadow"></div>
+      <div class="mint-panel"></div>
+      <div class="collar"></div>
+      <div class="streak s1"></div>
+      <div class="streak s2"></div>
+      <div class="streak s3"></div>
+      <div class="streak s4"></div>
+      <div class="bottom-left-lines"><span></span></div>
+    </div>
+
+    <div class="eyebrow">Technology Vision 2025</div>
+    <div class="title">AI: A Declaration of Autonomy</div>
+    <div class="subtitle">Is trust the limit of<br>AI’s limitless possibilities?</div>
+
+    <div class="logo">
+      accenture
+      <span class="accent">&gt;</span>
+    </div>
+  </div>
+</body>
+</html>

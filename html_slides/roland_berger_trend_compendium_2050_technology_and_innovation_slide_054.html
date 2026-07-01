@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body { margin:0; background:#9c9c9f; }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+    color:#222;
+  }
+  .slide > div, .slide > svg { position:absolute; box-sizing:border-box; }
+
+  .sidebar{
+    left:0; top:0; width:181px; height:720px;
+    background:#33373d;
+    z-index:5;
+  }
+  .sidebar-accent{
+    left:180px; top:0; width:2px; height:720px;
+    background:#7c5ab8;
+    z-index:6;
+  }
+  .sidebar-title{
+    left:12px; top:34px; width:150px;
+    color:#f0f0f0; font-weight:700; font-size:23px; line-height:1.06;
+    z-index:30;
+  }
+
+  .hex{
+    width:52px; height:58px;
+    clip-path:polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
+    border:3px solid #8e949b;
+    background:rgba(255,255,255,0.03);
+    z-index:20;
+  }
+  .hex svg{position:absolute; left:0; top:0;}
+  .snum{ font-size:28px; font-weight:700; line-height:1; z-index:30; }
+  .slabel{ font-size:14px; line-height:1.08; z-index:30; }
+
+  .gear-icon{
+    left:66px; top:638px; width:62px; height:56px;
+    z-index:20; opacity:.38;
+  }
+
+  .page-no{
+    left:10px; top:711px; width:20px;
+    color:#f0f0f0; font-size:18px; font-weight:400; z-index:30;
+  }
+
+  .title{
+    left:220px; top:31px; width:1048px;
+    font-size:28px; line-height:1.12; font-weight:700; color:#222;
+    z-index:30;
+  }
+  .subtitle{
+    left:220px; top:138px; width:670px;
+    font-size:20px; line-height:1.2; font-weight:400; color:#8e959d;
+    z-index:30;
+  }
+
+  .bg-figure{
+    left:290px; top:165px; width:700px; height:500px;
+    z-index:1; opacity:.11;
+  }
+  .bg-figure2{
+    left:836px; top:164px; width:190px; height:182px;
+    z-index:1; opacity:.1;
+  }
+
+  .left-col{
+    left:220px; top:192px; width:340px; height:494px;
+    z-index:30;
+  }
+  .left-head{
+    font-size:16px; line-height:1.12; font-weight:700;
+    margin:0 0 6px 0;
+  }
+  .left-body{
+    font-size:17px; line-height:1.12; font-weight:400; color:#333;
+    margin:0;
+    width:328px;
+  }
+
+  .lh1{ color:#3b276f; }
+  .lh2{ color:#00558a; }
+  .lh3{ color:#0a5f91; }
+  .lh4{ color:#5a93ca; }
+
+  .block1{ left:0; top:0; width:332px; height:110px; position:absolute; }
+  .block2{ left:0; top:139px; width:332px; height:112px; position:absolute; }
+  .block3{ left:0; top:274px; width:332px; height:110px; position:absolute; }
+  .block4{ left:0; top:410px; width:332px; height:118px; position:absolute; }
+
+  .central{
+    left:527px; top:212px; width:462px; height:490px;
+    z-index:25;
+  }
+
+  .right-col{
+    left:1013px; top:192px; width:255px; height:494px;
+    z-index:30;
+    text-align:right;
+  }
+  .right-head{
+    font-size:16px; line-height:1.12; font-weight:700; margin:0 0 6px 0;
+  }
+  .right-body{
+    font-size:17px; line-height:1.12; font-weight:400; color:#333; margin:0;
+    width:255px;
+  }
+  .rh1{ color:#4b367f; }
+  .rh2{ color:#7f68bf; }
+  .rh3{ color:#b4a5d8; }
+  .rh4{ color:#b7add9; }
+
+  .rblock1{ left:0; top:0; width:255px; height:116px; position:absolute; }
+  .rblock2{ left:0; top:141px; width:255px; height:122px; position:absolute; }
+  .rblock3{ left:0; top:280px; width:255px; height:104px; position:absolute; }
+  .rblock4{ left:0; top:410px; width:255px; height:120px; position:absolute; }
+
+  .source{
+    left:220px; top:684px; width:170px;
+    font-size:11px; color:#444; z-index:40;
+  }
+
+  .logo{
+    left:1215px; top:674px; width:52px; height:30px; z-index:50;
+    color:#555; font-size:11px; line-height:0.92; text-align:right;
+  }
+  .logo-mark{
+    position:absolute; right:0; bottom:0; width:20px; height:20px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="sidebar"></div>
+  <div class="sidebar-accent"></div>
+
+  <div class="sidebar-title">Technology &amp;<br>Innovation</div>
+
+  <div class="hex" style="left:7px; top:143px;">
+    <svg width="52" height="58" viewBox="0 0 52 58">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#cfd3d8" stop-opacity=".9"/>
+          <stop offset="1" stop-color="#6f747a" stop-opacity=".7"/>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="52" height="58" fill="url(#g1)" opacity=".35"/>
+      <path d="M11 17 L16 13 L20 17 L25 13 L29 17 L34 14 L38 19 L41 24 L37 28 L41 32 L36 38 L31 37 L28 41 L22 38 L18 42 L15 37 L10 36 L12 29 L8 25 Z" fill="none" stroke="#f2f2f2" stroke-width="1.1" opacity=".8"/>
+      <line x1="11" y1="17" x2="20" y2="17" stroke="#fff" stroke-width="1" opacity=".7"/>
+      <line x1="20" y1="17" x2="29" y2="17" stroke="#fff" stroke-width="1" opacity=".7"/>
+      <line x1="16" y1="13" x2="15" y2="37" stroke="#fff" stroke-width="1" opacity=".4"/>
+      <line x1="25" y1="13" x2="22" y2="38" stroke="#fff" stroke-width="1" opacity=".4"/>
+      <line x1="34" y1="14" x2="31" y2="37" stroke="#fff" stroke-width="1" opacity=".4"/>
+      <circle cx="16" cy="13" r="1.7" fill="#fff"/>
+      <circle cx="25" cy="13" r="1.7" fill="#fff"/>
+      <circle cx="34" cy="14" r="1.7" fill="#fff"/>
+      <circle cx="15" cy="37" r="1.7" fill="#fff"/>
+      <circle cx="22" cy="38" r="1.7" fill="#fff"/>
+      <circle cx="31" cy="37" r="1.7" fill="#fff"/>
+    </svg>
+  </div>
+  <div class="snum" style="left:92px; top:145px; color:#71767d;">1</div>
+  <div class="slabel" style="left:92px; top:174px; width:64px; color:#71767d;">Value of<br>Innovation</div>
+
+  <div class="hex" style="left:7px; top:276px;">
+    <svg width="52" height="58" viewBox="0 0 52 58">
+      <defs>
+        <radialGradient id="g2" cx="50%" cy="45%" r="55%">
+          <stop offset="0" stop-color="#cfd3d8" stop-opacity=".8"/>
+          <stop offset="1" stop-color="#6f747a" stop-opacity=".6"/>
+        </radialGradient>
+      </defs>
+      <rect x="0" y="0" width="52" height="58" fill="url(#g2)" opacity=".35"/>
+      <circle cx="25" cy="29" r="12.5" fill="none" stroke="#fff" stroke-width="1" opacity=".45"/>
+      <path d="M13 25 C18 20, 27 18, 37 22" fill="none" stroke="#fff" stroke-width="1" opacity=".7"/>
+      <path d="M13 32 C20 27, 29 27, 39 35" fill="none" stroke="#fff" stroke-width="1" opacity=".7"/>
+      <path d="M21 16 C25 22, 27 33, 24 41" fill="none" stroke="#fff" stroke-width="1" opacity=".65"/>
+      <path d="M30 17 C33 23, 33 33, 30 40" fill="none" stroke="#fff" stroke-width="1" opacity=".65"/>
+      <circle cx="15" cy="26" r="1.5" fill="#fff"/>
+      <circle cx="38" cy="22" r="1.5" fill="#fff"/>
+      <circle cx="24" cy="41" r="1.5" fill="#fff"/>
+      <circle cx="30" cy="40" r="1.5" fill="#fff"/>
+    </svg>
+  </div>
+  <div class="snum" style="left:92px; top:278px; color:#71767d;">2</div>
+  <div class="slabel" style="left:92px; top:308px; width:74px; color:#71767d;">Frontier<br>Technologies</div>
+
+  <div class="hex" style="left:7px; top:409px; border-color:#a586d7; box-shadow:0 0 0 2px rgba(164,133,215,.22);">
+    <svg width="52" height="58" viewBox="0 0 52 58">
+      <defs>
+        <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#f3d5cf" />
+          <stop offset="1" stop-color="#b8d7f0" />
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="52" height="58" fill="url(#g3)" opacity=".95"/>
+      <path d="M16 34 C19 29, 22 28, 26 31 C30 28, 33 29, 36 34" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      <path d="M16 34 L12 30" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      <path d="M36 34 L40 30" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      <path d="M22 28 L19 24" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      <path d="M30 28 L33 24" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="snum" style="left:92px; top:411px; color:#9c72d3;">3</div>
+  <div class="slabel" style="left:92px; top:441px; width:74px; color:#9c72d3; font-weight:700;">Humans &amp;<br>Machines</div>
+
+  <svg class="gear-icon" viewBox="0 0 67 55">
+    <g fill="none" stroke="#c4c6c9" stroke-width="3" opacity=".78">
+      <circle cx="19" cy="34" r="12"></circle>
+      <path d="M19 12 L19 4 M8 16 L4 12 M4 28 L-3 28 M8 40 L4 44 M19 44 L19 52 M30 40 L35 44 M34 28 L41 28 M30 16 L35 12"></path>
+      <path d="M23 42 C22 38, 25 34, 27 31 C30 26, 28 18, 22 14 C17 10, 11 10, 7 14" stroke-linecap="round"></path>
+      <circle cx="46" cy="26" r="10"></circle>
+      <path d="M46 10 L46 5 M35 15 L31 12 M31 26 L26 26 M35 37 L31 40 M46 42 L46 47 M57 37 L61 40 M61 26 L66 26 M57 15 L61 12"></path>
+    </g>
+  </svg>
+
+  <div class="page-no">54</div>
+
+  <div class="title">Interactions between humans and machines are multifaceted – Society's capacity to adapt and shape technological advances is fundamental</div>
+  <div class="subtitle">The human-machine relationship at different touch points</div>
+
+  <svg class="bg-figure" viewBox="0 0 700 500">
+    <defs>
+      <linearGradient id="fade" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#cfcfcf"/>
+        <stop offset="1" stop-color="#bfbfbf"/>
+      </linearGradient>
+      <filter id="blur"><feGaussianBlur stdDeviation="1.6"/></filter>
+    </defs>
+    <ellipse cx="238" cy="128" rx="122" ry="116" fill="url(#fade)" opacity=".42"/>
+    <rect x="203" y="197" width="118" height="180" rx="38" fill="url(#fade)" opacity=".38"/>
+    <circle cx="266" cy="122" r="10" fill="#d8d8d8" opacity=".55"/>
+    <rect x="117" y="149" width="82" height="136" rx="22" fill="#d4d4d4" opacity=".32"/>
+    <line x1="168" y1="286" x2="168" y2="392" stroke="#c8c8c8" stroke-width="10" opacity=".28"/>
+    <circle cx="365" cy="327" r="100" fill="#d9d9d9" opacity=".28"/>
+    <circle cx="115" cy="360" r="28" fill="none" stroke="#cacaca" stroke-width="12" opacity=".35"/>
+    <circle cx="488" cy="207" r="16" fill="#d1d1d1" opacity=".42"/>
+    <path d="M384 44 L500 82 L472 178 L356 140 Z" fill="none" stroke="#d0d0d0" stroke-width="6" opacity=".25"/>
+    <path d="M430 26 L540 76 L500 170 L392 122 Z" fill="none" stroke="#d0d0d0" stroke-width="3" opacity=".18"/>
+    <g stroke="#d2d2d2" stroke-width="2" opacity=".22" filter="url(#blur)">
+      <line x1="416" y1="34" x2="376" y2="156"/>
+      <line x1="448" y1="48" x2="404" y2="170"/>
+      <line x1="480" y1="62" x2="438" y2="184"/>
+      <line x1="512" y1="76" x2="468" y2="198"/>
+      <line x1="544" y1="90" x2="500" y2="212"/>
+    </g>
+    <path d="M490 266 L522 308 L590 308" fill="none" stroke="#d2d2d2" stroke-width="4" opacity=".32"/>
+  </svg>
+
+  <svg class="bg-figure2" viewBox="0 0 190 182">
+    <g stroke="#d4d4d4" stroke-width="3" fill="none" opacity=".45">
+      <path d="M95 6 L138 91 L95 176 L52 91 Z"/>
+      <path d="M95 28 L123 91 L95 154 L67 91 Z"/>
+      <line x1="95" y1="6" x2="95" y2="176"/>
+      <line x1="52" y1="91" x2="138" y2="91"/>
+    </g>
+  </svg>
+
+  <div class="left-col">
+    <div class="block1">
+      <p class="left-head lh1">Technological inequality</p>
+      <p class="left-body">Technological progress is a driver<br>of wealth, but also carries<br>implications of social and economic<br>inequality</p>
+    </div>
+    <div class="block2">
+      <p class="left-head lh2">Social media &amp; society</p>
+      <p class="left-body">Social media has changed our lives.<br>Emergent technologies and new digital<br>realms, such as the metaverse, point to<br>further societal changes</p>
+    </div>
+    <div class="block3">
+      <p class="left-head lh3">Future of work</p>
+      <p class="left-body">Workplaces have undergone profound<br>change, but the key question remains:<br>Will robots complement humans – or<br>substitute them?</p>
+    </div>
+    <div class="block4">
+      <p class="left-head lh4">Biotechnology &amp; humans</p>
+      <p class="left-body">Advances in biotechnology are changing<br>society by eradicating fatal diseases.<br>Ethical concerns arise regarding gene<br>editing and human enhancement</p>
+    </div>
+  </div>
+
+  <svg class="central" viewBox="0 0 462 490">
+    <circle cx="87" cy="88" r="72" fill="#f4f4f4" stroke="#3c226f" stroke-width="6"/>
+    <path d="M159 160 L159 208 Q159 191 181 178 L181 160 Z" fill="#4f2f86"/>
+
+    <circle cx="251" cy="88" r="72" fill="#f4f4f4" stroke="#59358d" stroke-width="6"/>
+    <path d="M251 160 L251 208 Q251 191 229 178 L229 160 Z" fill="#5a3690"/>
+
+    <circle cx="385" cy="88" r="72" fill="#f4f4f4" stroke="#9076cb" stroke-width="6"/>
+    <path d="M295 160 L355 160 Q336 160 321 182 L295 182 Z" fill="#a08ad5"/>
+
+    <circle cx="87" cy="226" r="72" fill="#f4f4f4" stroke="#00588d" stroke-width="6"/>
+    <path d="M159 226 L159 298 L231 298 Q197 298 182 274 L159 274 Z" fill="#00588d"/>
+
+    <circle cx="344" cy="223" r="82" fill="#f4f4f4" opacity=".96"/>
+
+    <circle cx="385" cy="226" r="72" fill="#f4f4f4" stroke="#b7a6de" stroke-width="6"/>
+    <path d="M313 226 L313 298 Q313 282 291 275 L291 226 Z" fill="#c6b6e6"/>
+
+    <circle cx="87" cy="390" r="72" fill="#f4f4f4" stroke="#1575ac" stroke-width="6"/>
+    <circle cx="251" cy="390" r="72" fill="#f4f4f4" stroke="#9dbbdd" stroke-width="6"/>
+    <path d="M251 318 L315 318 Q301 318 287 338 L251 338 Z" fill="#a8c0e0"/>
+
+    <circle cx="385" cy="390" r="72" fill="#f4f4f4" stroke="#c3b5e4" stroke-width="6"/>
+
+    <g transform="translate(87 88)" stroke="#3c226f" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="-20" cy="-24" r="6" fill="#3c226f"/>
+      <path d="M-20 -16 L-20 6"/>
+      <path d="M-20 -6 L-31 8"/>
+      <path d="M-20 -6 L-7 4"/>
+      <path d="M-20 6 L-30 24"/>
+      <path d="M-20 6 L-10 24"/>
+      <line x1="-2" y1="18" x2="36" y2="18"/>
+      <line x1="18" y1="12" x2="18" y2="18"/>
+      <circle cx="36" cy="6" r="8"/>
+      <path d="M28 6 H44 M36 -2 V14 M30 2 C34 4 38 4 42 2 M30 10 C34 8 38 8 42 10" stroke-width="1.6"/>
+    </g>
+
+    <g transform="translate(251 88)" stroke="#59358d" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-25 22 C-25 4 -18 -10 -2 -18 C13 -26 31 -18 36 -2 C40 9 37 23 27 31 L0 31 C-14 28 -25 38 -25 22 Z"/>
+      <circle cx="-2" cy="2" r="17"/>
+      <circle cx="-2" cy="2" r="7"/>
+      <path d="M-2 -23 V-15 M-2 19 V27 M20 2 H28 M-24 2 H-16 M13 -13 L18 -18 M-17 21 L-12 16 M13 17 L18 22 M-17 -17 L-12 -12"/>
+      <circle cx="-2" cy="2" r="2" fill="#59358d"/>
+    </g>
+
+    <g transform="translate(385 88)" stroke="#9076cb" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0 -26 C-18 -26 -34 -12 -34 10 C-34 20 -29 30 -20 35" />
+      <path d="M0 -26 L0 35" />
+      <path d="M0 -26 C18 -26 34 -12 34 10 C34 20 28 30 18 35" />
+      <circle cx="-10" cy="4" r="2" fill="#9076cb"/>
+      <path d="M-18 16 C-10 12 -4 12 2 16"/>
+      <rect x="8" y="-12" width="12" height="12"/>
+      <rect x="8" y="4" width="12" height="12"/>
+      <rect x="8" y="20" width="12" height="12"/>
+      <line x1="20" y1="-6" x2="28" y2="-14"/>
+      <line x1="20" y1="10" x2="30" y2="10"/>
+      <line x1="20" y1="26" x2="28" y2="34"/>
+      <path d="M-34 10 H-42" />
+    </g>
+
+    <g transform="translate(87 226)" stroke="#00588d" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-32" y="-26" width="64" height="46" rx="2"/>
+      <line x1="-32" y1="-14" x2="32" y2="-14"/>
+      <circle cx="-22" cy="-20" r="1.8" fill="#00588d"/>
+      <circle cx="-16" cy="-20" r="1.8" fill="#00588d"/>
+      <circle cx="-10" cy="-20" r="1.8" fill="#00588d"/>
+      <circle cx="6" cy="-2" r="10"/>
+      <path d="M-2 -2 H14 M6 -12 V8 M-1 -8 C3 -6 9 -6 13 -8 M-1 4 C3 2 9 2 13 4" stroke-width="1.6"/>
+      <path d="M-28 4 L-18 4 L-18 14 L-28 14 Z"/>
+      <path d="M-14 4 L-4 4 L-4 14 L-14 14 Z"/>
+      <path d="M-30 22 L-18 12 L-6 22" />
+      <path d="M18 10 L28 14" />
+    </g>
+
+    <g transform="translate(344 223)" fill="#9ea3a8" stroke="#9ea3a8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="-12" cy="-10" r="9" fill="#9ea3a8" stroke="none"/>
+      <rect x="-18" y="0" width="12" height="41" fill="#9ea3a8" stroke="none"/>
+      <rect x="-4" y="12" width="12" height="29" fill="#9ea3a8" stroke="none"/>
+      <line x1="-11" y1="8" x2="-28" y2="18"/>
+      <circle cx="-31" cy="20" r="2.8" fill="#9ea3a8" stroke="none"/>
+      <line x1="8" y1="14" x2="29" y2="3"/>
+      <rect x="31" y="-3" width="18" height="10" rx="1.5" fill="#9ea3a8" stroke="none"/>
+      <line x1="14" y1="28" x2="32" y2="39"/>
+      <circle cx="38" cy="44" r="4.2" fill="#9ea3a8" stroke="none"/>
+      <path d="M-6 -28 Q-2 -38 2 -28" fill="none" stroke="#bfc2c6"/>
+    </g>
+
+    <g transform="translate(385 226)" stroke="#b7a6de" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-30" y="-22" width="46" height="34" rx="2"/>
+      <line x1="-22" y1="18" x2="8" y2="18"/>
+      <line x1="-7" y1="12" x2="-7" y2="18"/>
+      <rect x="18" y="-2" width="18" height="22" rx="3"/>
+      <path d="M23 -2 V-8 C23 -14 31 -14 31 -8 V-2"/>
+      <path d="M-22 -14 H8 M-22 -6 H3 M-22 2 H6"/>
+      <path d="M0 -16 L4 -12 L0 -8" />
+    </g>
+
+    <g transform="translate(87 390)" stroke="#1575ac" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-30 24 H32"/>
+      <path d="M-16 18 H12"/>
+      <path d="M10 -18 H-12"/>
+      <path d="M0 -18 V-4"/>
+      <path d="M-6 -4 H6"/>
+      <path d="M-4 -4 C6 -4 12 2 12 12 L12 18"/>
+      <path d="M-12 18 V10 C-12 1 -7 -4 0 -4"/>
+    </g>
+
+    <g transform="translate(251 390)" stroke="#88aad2" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="-8" cy="-8" r="18"/>
+      <path d="M-16 -18 C-2 -4 -2 4 -16 18"/>
+      <path d="M0 -18 C-14 -4 -14 4 0 18"/>
+      <line x1="-8" y1="10" x2="18" y2="36"/>
+      <circle cx="20" cy="38" r="5"/>
+    </g>
+
+    <g transform="translate(385 390)" stroke="#c3b5e4" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-30" y="-20" width="54" height="34" rx="2"/>
+      <line x1="-8" y1="18" x2="8" y2="18"/>
+      <line x1="0" y1="14" x2="0" y2="18"/>
+      <path d="M-16 -4 C-10 -12 2 -12 8 -4 C12 0 12 8 8 12 C2 18 -10 18 -16 12 C-20 8 -20 0 -16 -4 Z"/>
+      <circle cx="-8" cy="4" r="2" fill="#c3b5e4"/>
+      <circle cx="0" cy="0" r="2" fill="#c3b5e4"/>
+      <circle cx="8" cy="4" r="2" fill="#c3b5e4"/>
+      <path d="M-16 4 H-24 M8 4 H16 M0 -8 V-16"/>
+    </g>
+  </svg>
+
+  <div class="right-col">
+    <div class="rblock1">
+      <p class="right-head rh1">Technology governance</p>
+      <p class="right-body">Technological advances entail<br>aspects of uncertainty. Regulators<br>are faced with trade-offs – the<br>Collingridge dilemma</p>
+    </div>
+    <div class="rblock2">
+      <p class="right-head rh2">Fusion of humans &amp; machines</p>
+      <p class="right-body">Using thoughts to control devices: Brain-<br>computer-interface technologies set to<br>advance human-machine interactions –<br>yet many issues remain</p>
+    </div>
+    <div class="rblock3">
+      <p class="right-head rh3">Cybersecurity</p>
+      <p class="right-body">Cyberattacks exploit the public and private<br>proliferation of the Internet. Malicious<br>attacks on sensitive infrastructure and data<br>storage facilities carries immense costs</p>
+    </div>
+    <div class="rblock4">
+      <p class="right-head rh4">Machine behavior &amp; AI</p>
+      <p class="right-body">AI is becoming smarter. Imbedding re-<br>sponsible, moral code for smart systems<br>is fundamental – its omission poses<br>existential risks to future generations</p>
+    </div>
+  </div>
+
+  <div class="source">Sources: Roland Berger</div>
+
+  <div class="logo">
+    Roland<br>Berger
+    <svg class="logo-mark" viewBox="0 0 18 18">
+      <path d="M2 16 C2 8, 2 2, 8 2 C12 2, 14 5, 14 9 C14 13, 12 16, 8 16 Z" fill="#666"/>
+      <path d="M8 2 C13 2, 16 5, 16 10 C16 14, 14 16, 10 16 L10 2 Z" fill="#9b9b9b"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

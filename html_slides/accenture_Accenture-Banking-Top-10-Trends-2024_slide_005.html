@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Trend 1 - The rise of gen AI</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #e9e9e9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    margin: 0 auto;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(63,255,220,0.28) 0, rgba(63,255,220,0.12) 10%, rgba(63,255,220,0) 24%),
+      radial-gradient(circle at 82% 18%, rgba(167,0,255,0.30) 0, rgba(167,0,255,0.10) 12%, rgba(167,0,255,0) 28%),
+      radial-gradient(circle at 50% 45%, rgba(255,255,255,0.18) 0, rgba(255,255,255,0.06) 18%, rgba(255,255,255,0) 40%),
+      linear-gradient(180deg, #7c70ba 0%, #8f78c9 36%, #9b7fc8 65%, #ad87cd 100%);
+    box-sizing: border-box;
+  }
+
+  .frame {
+    position: absolute;
+    left: 26px;
+    top: 27px;
+    width: 1254px;
+    height: 693px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(70,50,130,0.52), rgba(95,60,150,0.25)),
+      linear-gradient(0deg, rgba(255,170,210,0.08), rgba(255,255,255,0.03));
+  }
+
+  .sky-swirl {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(90,255,230,0.30) 0 10%, rgba(90,255,230,0) 26%),
+      radial-gradient(ellipse at 18% 22%, rgba(255,200,230,0.22) 0 7%, rgba(255,200,230,0) 18%),
+      radial-gradient(ellipse at 43% 13%, rgba(100,160,255,0.26) 0 12%, rgba(100,160,255,0) 28%),
+      radial-gradient(ellipse at 58% 15%, rgba(163,87,255,0.30) 0 10%, rgba(163,87,255,0) 24%),
+      radial-gradient(ellipse at 74% 9%, rgba(80,120,255,0.18) 0 10%, rgba(80,120,255,0) 24%),
+      radial-gradient(ellipse at 84% 15%, rgba(166,0,255,0.22) 0 8%, rgba(166,0,255,0) 20%),
+      radial-gradient(ellipse at 66% 34%, rgba(255,255,255,0.12) 0 6%, rgba(255,255,255,0) 19%),
+      radial-gradient(ellipse at 78% 38%, rgba(78,255,239,0.16) 0 4%, rgba(78,255,239,0) 14%);
+    opacity: 0.95;
+    mix-blend-mode: screen;
+  }
+
+  .marble {
+    position: absolute;
+    left: 382px;
+    top: -10px;
+    width: 850px;
+    height: 450px;
+    opacity: 0.45;
+    background:
+      radial-gradient(ellipse at 30% 18%, rgba(255,255,255,0.18), rgba(255,255,255,0) 38%),
+      radial-gradient(ellipse at 50% 28%, rgba(0,255,245,0.16), rgba(0,255,245,0) 34%),
+      radial-gradient(ellipse at 68% 20%, rgba(255,0,255,0.14), rgba(255,0,255,0) 30%),
+      radial-gradient(ellipse at 74% 52%, rgba(75,255,230,0.14), rgba(75,255,230,0) 22%),
+      linear-gradient(110deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.10) 10%,
+        rgba(255,255,255,0) 16%,
+        rgba(165,120,255,0.20) 24%,
+        rgba(255,255,255,0) 30%,
+        rgba(85,255,235,0.10) 40%,
+        rgba(255,255,255,0) 48%,
+        rgba(202,130,255,0.18) 58%,
+        rgba(255,255,255,0) 67%,
+        rgba(117,255,241,0.10) 78%,
+        rgba(255,255,255,0) 100%);
+    filter: blur(2px);
+  }
+
+  .tower-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 425px;
+    height: 693px;
+    background:
+      linear-gradient(90deg, rgba(8,8,24,0.76) 0, rgba(28,24,54,0.40) 65%, rgba(18,14,40,0.72) 100%);
+  }
+
+  .tower-left::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(90deg,
+        rgba(10,18,30,0.85) 0 2px,
+        rgba(88,114,170,0.16) 2px 17px),
+      repeating-linear-gradient(180deg,
+        rgba(10,18,30,0.85) 0 2px,
+        rgba(126,140,190,0.14) 2px 22px);
+    opacity: 0.9;
+  }
+
+  .tower-left::after {
+    content: "";
+    position: absolute;
+    left: 58px;
+    top: 0;
+    width: 275px;
+    height: 565px;
+    background:
+      radial-gradient(circle at 30% 22%, rgba(255,255,255,0.95) 0 2%, rgba(255,255,255,0) 3%),
+      linear-gradient(145deg, rgba(255,255,255,0.20) 0 35%, rgba(255,255,255,0) 36%),
+      linear-gradient(90deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
+    mix-blend-mode: screen;
+    opacity: 0.9;
+  }
+
+  .left-lights {
+    position: absolute;
+    left: 61px;
+    top: 62px;
+    width: 300px;
+    height: 310px;
+    background:
+      radial-gradient(circle at 8% 10%, rgba(255,255,255,0.85) 0 1%, rgba(255,255,255,0) 6%),
+      linear-gradient(180deg, rgba(255,184,230,0.85) 0 7%, rgba(255,184,230,0) 8% 100%),
+      linear-gradient(180deg, transparent 0 18%, rgba(255,190,220,0.80) 18% 24%, transparent 24% 35%, rgba(255,195,220,0.7) 35% 42%, transparent 42% 54%, rgba(255,200,215,0.82) 54% 60%, transparent 60% 77%, rgba(255,250,255,0.92) 77% 87%, transparent 87% 100%);
+    opacity: 0.65;
+  }
+
+  .mid-building {
+    position: absolute;
+    left: 652px;
+    top: 221px;
+    width: 142px;
+    height: 486px;
+    background:
+      linear-gradient(180deg, rgba(18,21,46,0.90), rgba(41,30,80,0.78)),
+      repeating-linear-gradient(90deg, rgba(130,170,255,0.12) 0 1px, transparent 1px 20px),
+      repeating-linear-gradient(180deg, rgba(170,200,255,0.09) 0 1px, transparent 1px 16px);
+    box-shadow: 0 0 25px rgba(255,110,220,0.15);
+  }
+
+  .mid-building .top-cap {
+    position: absolute;
+    left: 22px;
+    top: -18px;
+    width: 78px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #7d3f8f, #57316d);
+    box-shadow: 0 0 10px rgba(255,150,240,0.35);
+  }
+
+  .mid-building .roof-left,
+  .mid-building .roof-right {
+    position: absolute;
+    top: 12px;
+    width: 34px;
+    height: 10px;
+    background: #5b4b87;
+  }
+
+  .mid-building .roof-left { left: 0; }
+  .mid-building .roof-right { right: 0; }
+
+  .mid-building .windows {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, transparent 0 18%, rgba(255,255,255,0.78) 18% 19%, transparent 19% 35%, rgba(255,255,255,0.78) 35% 36%, transparent 36% 66%, rgba(255,255,255,0.88) 66% 67%, transparent 67% 76%, rgba(255,255,255,0.85) 76% 77%, transparent 77% 100%);
+    opacity: 0.75;
+  }
+
+  .mid-building .beacon,
+  .right-building .beacon {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ff527f;
+    box-shadow: 0 0 8px #ff527f;
+  }
+
+  .mid-building .b1 { left: -2px; top: 20px; }
+  .mid-building .b2 { right: -2px; top: 18px; }
+
+  .right-building {
+    position: absolute;
+    left: 1110px;
+    top: 254px;
+    width: 110px;
+    height: 439px;
+    background:
+      linear-gradient(180deg, rgba(25,24,58,0.92), rgba(30,18,60,0.82)),
+      repeating-linear-gradient(90deg, rgba(140,170,255,0.10) 0 1px, transparent 1px 15px),
+      repeating-linear-gradient(180deg, rgba(170,200,255,0.08) 0 1px, transparent 1px 13px);
+  }
+
+  .right-building::before {
+    content: "";
+    position: absolute;
+    right: -7px;
+    top: 20px;
+    width: 18px;
+    height: 6px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.95));
+    transform: rotate(-45deg);
+    box-shadow: 0 0 12px rgba(255,255,255,0.75);
+  }
+
+  .right-building .windows {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, transparent 0 20%, rgba(255,255,255,0.65) 20% 21%, transparent 21% 35%, rgba(255,255,255,0.75) 35% 36%, transparent 36% 61%, rgba(255,255,255,0.72) 61% 62%, transparent 62% 72%, rgba(255,255,255,0.82) 72% 73%, transparent 73% 100%);
+    opacity: 0.72;
+  }
+
+  .right-building .beacon { left: 94px; top: 3px; }
+
+  .small-building {
+    position: absolute;
+    background:
+      linear-gradient(180deg, rgba(40,35,75,0.88), rgba(38,24,60,0.80)),
+      repeating-linear-gradient(90deg, rgba(170,190,255,0.10) 0 1px, transparent 1px 11px),
+      repeating-linear-gradient(180deg, rgba(160,190,255,0.08) 0 1px, transparent 1px 10px);
+  }
+
+  .sb1 { left: 401px; top: 263px; width: 145px; height: 430px; }
+  .sb2 { left: 838px; top: 429px; width: 32px; height: 215px; }
+  .sb3 { left: 882px; top: 520px; width: 41px; height: 145px; }
+  .sb4 { left: 934px; top: 489px; width: 54px; height: 186px; }
+  .sb5 { left: 984px; top: 516px; width: 75px; height: 160px; }
+  .sb6 { left: 1064px; top: 560px; width: 34px; height: 128px; }
+  .sb7 { left: 1208px; top: 458px; width: 40px; height: 232px; }
+
+  .haze {
+    position: absolute;
+    left: 720px;
+    top: 500px;
+    width: 500px;
+    height: 120px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0), rgba(255,220,250,0.45)),
+      repeating-linear-gradient(90deg, rgba(255,215,240,0.18) 0 2px, transparent 2px 6px);
+    opacity: 0.55;
+    filter: blur(1px);
+  }
+
+  .city-glow {
+    position: absolute;
+    left: 770px;
+    top: 470px;
+    width: 450px;
+    height: 220px;
+    background:
+      radial-gradient(circle at 10% 40%, rgba(255,190,220,0.85) 0 1%, rgba(255,190,220,0) 3%),
+      radial-gradient(circle at 22% 65%, rgba(255,170,210,0.85) 0 1%, rgba(255,170,210,0) 3%),
+      radial-gradient(circle at 38% 52%, rgba(255,225,245,0.90) 0 1%, rgba(255,225,245,0) 3%),
+      radial-gradient(circle at 54% 71%, rgba(255,160,210,0.85) 0 1%, rgba(255,160,210,0) 3%),
+      radial-gradient(circle at 66% 37%, rgba(255,210,235,0.92) 0 1%, rgba(255,210,235,0) 3%),
+      radial-gradient(circle at 80% 68%, rgba(255,150,205,0.88) 0 1%, rgba(255,150,205,0) 3%),
+      radial-gradient(circle at 92% 48%, rgba(255,245,255,0.95) 0 1%, rgba(255,245,255,0) 3%);
+    opacity: 0.9;
+  }
+
+  .crane {
+    position: absolute;
+    left: 998px;
+    top: 402px;
+    width: 40px;
+    height: 150px;
+  }
+
+  .crane::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 0;
+    width: 2px;
+    height: 120px;
+    background: #ff6a92;
+    box-shadow: 0 0 4px rgba(255,106,146,0.7);
+  }
+
+  .crane::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 35px;
+    width: 26px;
+    height: 2px;
+    background: #ff6a92;
+    box-shadow: 0 0 4px rgba(255,106,146,0.7);
+  }
+
+  .title-block {
+    position: absolute;
+    left: 875px;
+    top: 116px;
+    width: 290px;
+    color: #ffffff;
+  }
+
+  .trend {
+    font-size: 30px;
+    line-height: 1.1;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    letter-spacing: -0.2px;
+  }
+
+  .title {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 37px;
+    line-height: 1.03;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+  }
+
+  .callout {
+    position: absolute;
+    left: -2px;
+    top: 376px;
+    width: 787px;
+    height: 277px;
+    background: linear-gradient(180deg, #b300ff 0%, #9900ff 45%, #8c00ff 100%);
+    box-shadow: 0 8px 20px rgba(80,0,120,0.25);
+  }
+
+  .callout p {
+    position: absolute;
+    left: 136px;
+    top: 28px;
+    width: 575px;
+    margin: 0;
+    color: rgba(255,255,255,0.88);
+    font-size: 23px;
+    line-height: 1.35;
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="frame">
+      <div class="sky-swirl"></div>
+      <div class="marble"></div>
+
+      <div class="tower-left"></div>
+      <div class="left-lights"></div>
+
+      <div class="small-building sb1"></div>
+
+      <div class="mid-building">
+        <div class="top-cap"></div>
+        <div class="roof-left"></div>
+        <div class="roof-right"></div>
+        <div class="windows"></div>
+        <div class="beacon b1"></div>
+        <div class="beacon b2"></div>
+      </div>
+
+      <div class="small-building sb2"></div>
+      <div class="small-building sb3"></div>
+      <div class="small-building sb4"></div>
+      <div class="small-building sb5"></div>
+      <div class="small-building sb6"></div>
+      <div class="small-building sb7"></div>
+
+      <div class="right-building">
+        <div class="windows"></div>
+        <div class="beacon"></div>
+      </div>
+
+      <div class="haze"></div>
+      <div class="city-glow"></div>
+      <div class="crane"></div>
+
+      <div class="title-block">
+        <div class="trend">Trend: 1</div>
+        <h1 class="title">The rise<br>of gen AI</h1>
+      </div>
+
+      <div class="callout">
+        <p>
+          Banks are likely to benefit more from generative
+          AI than any other industry. Our analysis of operational
+          efficiency indicates a potential to boost productivity by
+          22-30%,<sup>4</sup> while a further study found that revenue could be
+          increased by 6%.<sup>5</sup> To achieve these improvements, however,
+          it will be necessary not only to utilize the cloud and data
+          effectively, but also to fundamentally rethink work and talent.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

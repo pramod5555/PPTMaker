@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+    color:#111;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .title{
+    left:31px;
+    top:59px;
+    width:1120px;
+    font-size:28px;
+    line-height:1.15;
+    font-weight:700;
+    color:#111;
+    letter-spacing:-0.01em;
+  }
+  .rule{
+    left:30px;
+    top:102px;
+    width:1210px;
+    height:1px;
+    background:#5e5e5e;
+  }
+  .section{
+    font-size:22px;
+    line-height:1.15;
+    font-weight:700;
+    color:#111;
+  }
+  .legend{
+    font-size:14px;
+    line-height:1;
+    color:#333;
+    white-space:nowrap;
+  }
+  .legend-swatch{
+    display:inline-block;
+    width:7px;
+    height:7px;
+    margin-right:4px;
+    vertical-align:middle;
+  }
+  .axis-label{
+    font-size:12px;
+    fill:#222;
+  }
+  .bar-total{
+    font-size:14px;
+    fill:#444;
+    font-weight:400;
+  }
+  .line-point-label{
+    font-size:13px;
+    fill:#222;
+    font-weight:400;
+  }
+  .footnote{
+    left:30px;
+    top:634px;
+    width:1120px;
+    font-size:11px;
+    line-height:1.22;
+    color:#222;
+  }
+  .footer-rule{
+    left:30px;
+    top:689px;
+    width:1210px;
+    height:1px;
+    background:#bdbdbd;
+  }
+  .page{
+    left:31px;
+    top:707px;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+  }
+  .logo{
+    left:1099px;
+    top:700px;
+    width:150px;
+    color:#1d1d1d;
+    text-align:left;
+  }
+  .logo .jp{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:26px;
+    line-height:0.9;
+    font-weight:400;
+    letter-spacing:-0.03em;
+  }
+  .logo .am{
+    margin-top:6px;
+    font-size:11px;
+    line-height:1;
+    font-weight:700;
+    letter-spacing:0.02em;
+  }
+  sup{
+    font-size:55%;
+    vertical-align:super;
+    font-weight:400;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">Secondaries is a large market with an expanding set of opportunities</div>
+  <div class="rule"></div>
+
+  <div class="section" style="left:31px; top:115px;">Annual secondary transaction volume ($B)<sup>1</sup></div>
+
+  <div class="legend" style="left:449px; top:160px;">
+    <span class="legend-swatch" style="background:#188ce2;"></span>LP
+    <span style="display:inline-block; width:46px;"></span>
+    <span class="legend-swatch" style="background:#f3b636;"></span>GP-Led
+  </div>
+
+  <svg style="left:31px; top:174px; width:1210px; height:208px;" viewBox="0 0 1210 208">
+    <line x1="46" y1="2" x2="46" y2="185" stroke="#111" stroke-width="2"/>
+    <line x1="46" y1="185" x2="962" y2="185" stroke="#111" stroke-width="2"/>
+
+    <text x="20" y="189" class="axis-label">$0</text>
+    <text x="5" y="150" class="axis-label">$50</text>
+    <text x="0" y="110" class="axis-label">$100</text>
+    <text x="0" y="70" class="axis-label">$150</text>
+    <text x="0" y="30" class="axis-label">$200</text>
+
+    <!-- Bars -->
+    <rect x="67" y="164" width="51" height="21" fill="#188ce2"/>
+    <rect x="67" y="155" width="51" height="9" fill="#f3b636"/>
+    <text x="81" y="147" class="bar-total">$37</text>
+    <text x="77" y="205" class="axis-label">2016</text>
+
+    <rect x="158" y="150" width="52" height="35" fill="#188ce2"/>
+    <rect x="158" y="140" width="52" height="10" fill="#f3b636"/>
+    <text x="173" y="133" class="bar-total">$54</text>
+    <text x="169" y="205" class="axis-label">2017</text>
+
+    <rect x="250" y="145" width="51" height="40" fill="#188ce2"/>
+    <rect x="250" y="129" width="51" height="16" fill="#f3b636"/>
+    <text x="265" y="120" class="bar-total">$72</text>
+    <text x="261" y="205" class="axis-label">2018</text>
+
+    <rect x="342" y="139" width="51" height="46" fill="#188ce2"/>
+    <rect x="342" y="124" width="51" height="15" fill="#f3b636"/>
+    <text x="357" y="116" class="bar-total">$79</text>
+    <text x="353" y="205" class="axis-label">2019</text>
+
+    <rect x="434" y="161" width="51" height="24" fill="#188ce2"/>
+    <rect x="434" y="139" width="51" height="22" fill="#f3b636"/>
+    <text x="449" y="131" class="bar-total">$60</text>
+    <text x="445" y="205" class="axis-label">2020</text>
+
+    <rect x="526" y="132" width="50" height="53" fill="#188ce2"/>
+    <rect x="526" y="80" width="50" height="52" fill="#f3b636"/>
+    <text x="538" y="70" class="bar-total">$134</text>
+    <text x="537" y="205" class="axis-label">2021</text>
+
+    <rect x="618" y="143" width="50" height="42" fill="#188ce2"/>
+    <rect x="618" y="105" width="50" height="38" fill="#f3b636"/>
+    <text x="629" y="95" class="bar-total">$103</text>
+    <text x="629" y="205" class="axis-label">2022</text>
+
+    <rect x="709" y="140" width="51" height="45" fill="#188ce2"/>
+    <rect x="709" y="97" width="51" height="43" fill="#f3b636"/>
+    <text x="721" y="87" class="bar-total">$114</text>
+    <text x="721" y="205" class="axis-label">2023</text>
+
+    <rect x="800" y="115" width="52" height="70" fill="#188ce2"/>
+    <rect x="800" y="60" width="52" height="55" fill="#f3b636"/>
+    <text x="810" y="50" class="bar-total">$160</text>
+    <text x="813" y="205" class="axis-label">2024</text>
+
+    <rect x="892" y="91" width="51" height="94" fill="#188ce2"/>
+    <rect x="892" y="9" width="51" height="82" fill="#f3b636"/>
+    <text x="903" y="0" class="bar-total">$226</text>
+    <text x="905" y="205" class="axis-label">2025</text>
+  </svg>
+
+  <div class="section" style="left:31px; top:398px;">LP portfolio pricing (% of NAV)<sup>2</sup></div>
+
+  <div class="legend" style="left:421px; top:431px;">
+    <svg width="30" height="12" style="vertical-align:middle; margin-right:2px;">
+      <line x1="46" y1="6" x2="30" y2="6" stroke="#188ce2" stroke-width="3"/>
+      <circle cx="15" cy="6" r="3.7" fill="#ececec" stroke="#188ce2" stroke-width="3"/>
+    </svg>Buyout
+    <span style="display:inline-block; width:34px;"></span>
+    <svg width="30" height="12" style="vertical-align:middle; margin-right:2px;">
+      <line x1="46" y1="6" x2="30" y2="6" stroke="#f1aa1e" stroke-width="3"/>
+      <circle cx="15" cy="6" r="3.7" fill="#ececec" stroke="#f1aa1e" stroke-width="3"/>
+    </svg>Venture
+  </div>
+
+  <svg style="left:31px; top:474px; width:1210px; height:152px;" viewBox="0 0 1210 152">
+    <line x1="45" y1="3" x2="45" y2="128" stroke="#111" stroke-width="2"/>
+    <line x1="45" y1="128" x2="962" y2="128" stroke="#111" stroke-width="2"/>
+
+    <text x="0" y="132" class="axis-label">60%</text>
+    <text x="0" y="101" class="axis-label">70%</text>
+    <text x="0" y="70" class="axis-label">80%</text>
+    <text x="0" y="39" class="axis-label">90%</text>
+    <text x="0" y="8" class="axis-label">100%</text>
+
+    <text x="76" y="148" class="axis-label">2016</text>
+    <text x="168" y="148" class="axis-label">2017</text>
+    <text x="260" y="148" class="axis-label">2018</text>
+    <text x="352" y="148" class="axis-label">2019</text>
+    <text x="444" y="148" class="axis-label">2020</text>
+    <text x="536" y="148" class="axis-label">2021</text>
+    <text x="628" y="148" class="axis-label">2022</text>
+    <text x="720" y="148" class="axis-label">2023</text>
+    <text x="812" y="148" class="axis-label">2024</text>
+    <text x="904" y="148" class="axis-label">2025</text>
+
+    <polyline points="91,18.6 183,6.2 275,12.4 367,24.8 459,34.1 551,12.4 643,58.9 735,46.5 827,21.7 919,28"
+              fill="none" stroke="#188ce2" stroke-width="3.5"/>
+    <polyline points="91,72.9 183,57.4 275,57.4 367,76 459,82.2 551,45 643,104 735,104 827,82.2 919,72.9"
+              fill="none" stroke="#f1aa1e" stroke-width="3.5"/>
+
+    <circle cx="91" cy="18.6" r="5" fill="#ececec" stroke="#188ce2" stroke-width="3"/>
+    <circle cx="183" cy="6.2" r="5" fill="#ececec" stroke="#188ce2" stroke-width="3"/>
+    <circle cx="275" cy="12.4" r="5" fill="#ececec" stroke="#188ce2" stroke-width="3"/>
+    <circle cx="367" cy="24.8" r="5" fill="#ececec" stroke="#188ce2" stroke-width="3"/>
+    <circle cx="459" cy="34.1" r="5" fill="#ececec" stroke="#188ce2" stroke-width="3"/>
+    <circle cx="551" cy="12.4" r="5" fill="#ececec" stroke="#188ce2" stroke-width="3"/>
+    <circle cx="643" cy="58.9" r="5" fill="#ececec" stroke="#188ce2" stroke-width="3"/>
+    <circle cx="735" cy="46.5" r="5" fill="#ececec" stroke="#188ce2" stroke-width="3"/>
+    <circle cx="827" cy="21.7" r="5" fill="#ececec" stroke="#188ce2" stroke-width="3"/>
+    <circle cx="919" cy="28" r="5" fill="#ececec" stroke="#188ce2" stroke-width="3"/>
+
+    <circle cx="91" cy="72.9" r="5" fill="#ececec" stroke="#f1aa1e" stroke-width="3"/>
+    <circle cx="183" cy="57.4" r="5" fill="#ececec" stroke="#f1aa1e" stroke-width="3"/>
+    <circle cx="275" cy="57.4" r="5" fill="#ececec" stroke="#f1aa1e" stroke-width="3"/>
+    <circle cx="367" cy="76" r="5" fill="#ececec" stroke="#f1aa1e" stroke-width="3"/>
+    <circle cx="459" cy="82.2" r="5" fill="#ececec" stroke="#f1aa1e" stroke-width="3"/>
+    <circle cx="551" cy="45" r="5" fill="#ececec" stroke="#f1aa1e" stroke-width="3"/>
+    <circle cx="643" cy="104" r="5" fill="#ececec" stroke="#f1aa1e" stroke-width="3"/>
+    <circle cx="735" cy="104" r="5" fill="#ececec" stroke="#f1aa1e" stroke-width="3"/>
+    <circle cx="827" cy="82.2" r="5" fill="#ececec" stroke="#f1aa1e" stroke-width="3"/>
+    <circle cx="919" cy="72.9" r="5" fill="#ececec" stroke="#f1aa1e" stroke-width="3"/>
+
+    <text x="79" y="5" class="line-point-label">95%</text>
+    <text x="169" y="-8" class="line-point-label">99%</text>
+    <text x="261" y="0" class="line-point-label">97%</text>
+    <text x="353" y="14" class="line-point-label">93%</text>
+    <text x="447" y="24" class="line-point-label">90%</text>
+    <text x="538" y="-1" class="line-point-label">97%</text>
+    <text x="631" y="45" class="line-point-label">87%</text>
+    <text x="723" y="33" class="line-point-label">91%</text>
+    <text x="815" y="8" class="line-point-label">94%</text>
+    <text x="906" y="18" class="line-point-label">92%</text>
+
+    <text x="78" y="57" class="line-point-label">78%</text>
+    <text x="169" y="43" class="line-point-label">83%</text>
+    <text x="261" y="43" class="line-point-label">83%</text>
+    <text x="353" y="63" class="line-point-label">77%</text>
+    <text x="446" y="70" class="line-point-label">75%</text>
+    <text x="537" y="68" class="line-point-label">88%</text>
+    <text x="629" y="90" class="line-point-label">68%</text>
+    <text x="721" y="90" class="line-point-label">68%</text>
+    <text x="815" y="70" class="line-point-label">75%</text>
+    <text x="906" y="63" class="line-point-label">78%</text>
+  </svg>
+
+  <div class="footnote">
+    1 Source: Evercore report issued January 2026. Transaction volume is inclusive of all private markets, including buyout, private credit, infrastructure, and venture.<br>
+    2 Source: Jefferies report issued January 2026. Forecasts, projections and other forward-looking statements are based upon current beliefs and expectations. There is no guarantee that this will occur. They are for illustrative purposes only and serve as an indication of what may occur. Given the inherent uncertainties and risks associated with forecasts, projections and other forward statements, actual events, results or performance may differ materially from those reflected or contemplated.
+  </div>
+
+  <div class="footer-rule"></div>
+  <div class="page">12</div>
+
+  <div class="logo">
+    <div class="jp">J.P.Morgan</div>
+    <div class="am">ASSET MANAGEMENT</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Consumer survey – Clusters and investigation areas</title>
+<style>
+  body{
+    margin:0;
+    background:#d5d4d4;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d5d4d4;
+    color:#111;
+  }
+
+  .title{
+    position:absolute;
+    left:47px;
+    top:18px;
+    width:1180px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:40px;
+    line-height:1.02;
+    color:#000;
+    font-weight:400;
+  }
+  .subtitle{
+    position:absolute;
+    left:47px;
+    top:142px;
+    font-size:27px;
+    color:#b3201f;
+    font-weight:700;
+  }
+  .subtitle span{
+    font-weight:400;
+  }
+
+  .survey-tag{
+    position:absolute;
+    left:48px;
+    top:180px;
+    height:21px;
+    display:flex;
+    align-items:center;
+    font-size:14px;
+    color:#111;
+  }
+  .survey-tag .hash{
+    width:20px;
+    height:18px;
+    background:#b3201f;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    margin-right:8px;
+    font-size:13px;
+    line-height:1;
+  }
+  .survey-tag .text{
+    font-style:italic;
+    font-size:14px;
+  }
+
+  .vs{
+    position:absolute;
+    right:47px;
+    top:192px;
+    font-size:13px;
+    color:#222;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .trend{
+    position:relative;
+    width:58px;
+    height:18px;
+  }
+  .trend .arr{
+    position:absolute;
+    width:0;height:0;
+    border-left:8px solid transparent;
+    border-right:8px solid transparent;
+    border-bottom:10px solid;
+    transform:rotate(45deg);
+    top:2px;
+  }
+  .trend .red{ left:0; border-bottom-color:#ff1515; }
+  .trend .green{ left:22px; border-bottom-color:#1ba54a; }
+  .trend .eq{
+    position:absolute;
+    left:45px;
+    top:4px;
+    width:13px;
+    height:10px;
+  }
+  .trend .eq:before, .trend .eq:after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:13px;
+    height:3px;
+    background:#777;
+  }
+  .trend .eq:before{ top:0; }
+  .trend .eq:after{ top:6px; }
+
+  .left-axis{
+    position:absolute;
+    left:48px;
+    top:296px;
+    width:28px;
+    height:398px;
+  }
+  .left-axis .line1, .left-axis .line2{
+    position:absolute;
+    left:18px;
+    width:1px;
+    background:#111;
+  }
+  .left-axis .line1{ top:0; height:195px; }
+  .left-axis .line2{ top:319px; height:79px; }
+  .left-axis .lbl{
+    position:absolute;
+    left:-72px;
+    width:170px;
+    text-align:center;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    font-size:18px;
+    font-weight:700;
+    color:#111;
+  }
+  .left-axis .d1{ top:203px; }
+  .left-axis .d2{ top:523px; }
+
+  .panel{
+    position:absolute;
+    top:215px;
+    width:387px;
+    height:481px;
+    background:#ececec;
+  }
+  .p1{ left:100px; }
+  .p2{ left:514px; }
+  .p3{ left:928px; }
+
+  .num{
+    position:absolute;
+    top:-25px;
+    left:173px;
+    width:39px;
+    height:39px;
+    border-radius:50%;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    font-weight:700;
+  }
+  .n1{ background:#b3201f; }
+  .n2{ background:#d84f5f; }
+  .n3{ background:#4c4c4c; }
+
+  .panel-title{
+    position:absolute;
+    top:18px;
+    left:0;
+    width:100%;
+    text-align:center;
+    font-size:30px;
+    font-weight:700;
+    color:#000;
+  }
+  .topline{
+    position:absolute;
+    left:12px;
+    top:63px;
+    width:361px;
+    height:3px;
+  }
+  .redline{ background:#b3201f; }
+  .pinkline{ background:#d84f5f; }
+  .grayline{ background:#505050; }
+
+  .panel-sub{
+    position:absolute;
+    top:68px;
+    left:20px;
+    width:347px;
+    text-align:center;
+    font-size:16px;
+    line-height:1.1;
+    font-style:italic;
+    color:#111;
+  }
+
+  .chart{
+    position:absolute;
+    left:15px;
+    top:145px;
+    width:355px;
+    height:116px;
+  }
+  .baseline{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:355px;
+    height:1px;
+    background:#444;
+  }
+  .tick{
+    position:absolute;
+    bottom:0;
+    width:1px;
+    height:7px;
+    background:#444;
+  }
+  .group{
+    position:absolute;
+    bottom:1px;
+    width:58px;
+    height:112px;
+  }
+  .bar{
+    position:absolute;
+    bottom:0;
+    width:29px;
+  }
+  .dark{ background:#555; }
+  .black{ background:#000; }
+  .lpink{ background:#e8a0ab; }
+  .mpink{ background:#d84f5f; }
+  .lred{ background:#de6b6b; }
+  .red{ background:#b3201f; }
+  .lgray{ background:#a6a6a6; }
+  .mgray{ background:#676767; }
+  .llgray{ background:#b3b3b3; }
+
+  .pct{
+    position:absolute;
+    font-size:13px;
+    font-weight:700;
+    color:#111;
+  }
+  .na{
+    position:absolute;
+    font-size:12px;
+    font-style:italic;
+    color:#444;
+  }
+
+  .marker{
+    position:absolute;
+    width:18px;
+    height:18px;
+  }
+  .up:before{
+    content:"";
+    position:absolute;
+    left:5px;
+    top:6px;
+    width:4px;
+    height:10px;
+    background:currentColor;
+    transform:rotate(45deg);
+    transform-origin:bottom center;
+  }
+  .up:after{
+    content:"";
+    position:absolute;
+    left:8px;
+    top:0;
+    width:0;height:0;
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-bottom:8px solid currentColor;
+    transform:rotate(45deg);
+  }
+  .m-red{ color:#ff1313; }
+  .m-green{ color:#1e6a35; }
+  .m-gray{
+    color:#888;
+    font-size:22px;
+    font-weight:700;
+    line-height:18px;
+    text-align:center;
+  }
+
+  .labels{
+    position:absolute;
+    left:13px;
+    top:277px;
+    width:360px;
+    height:33px;
+  }
+  .tag-total{
+    position:absolute;
+    left:20px;
+    top:5px;
+    font-size:17px;
+    font-weight:700;
+  }
+  .smalltag{
+    position:absolute;
+    top:0;
+    width:39px;
+    height:30px;
+    border-radius:5px;
+    color:#fff;
+    font-size:11px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .apac{ background:#d84f5f; left:86px; }
+  .emea{ background:#b3201f; left:156px; }
+  .naTag{ background:#4d4d4d; left:228px; }
+  .latam{ background:#9d9d9d; left:293px; }
+
+  .bullets{
+    position:absolute;
+    left:14px;
+    top:312px;
+    width:355px;
+    font-size:16px;
+    line-height:1.35;
+  }
+  .bullets ul{
+    margin:0;
+    padding-left:21px;
+  }
+  .bullets li{ margin:5px 0; }
+
+  .chev{
+    position:absolute;
+    left:171px;
+    top:365px;
+    width:0;height:0;
+    border-left:28px solid transparent;
+    border-right:28px solid transparent;
+    border-top:13px solid #000;
+  }
+
+  .footer-box{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:387px;
+    height:83px;
+    background:#000;
+    color:#fff;
+    font-size:17px;
+    line-height:1.15;
+    padding:10px 9px;
+    box-sizing:border-box;
+  }
+
+  .brand{
+    position:absolute;
+    left:47px;
+    bottom:15px;
+    font-size:13px;
+    color:#222;
+    line-height:1.1;
+  }
+  .source{
+    position:absolute;
+    left:445px;
+    bottom:18px;
+    font-size:12px;
+    color:#222;
+  }
+  .date{
+    position:absolute;
+    right:47px;
+    bottom:34px;
+    font-size:13px;
+    color:#222;
+  }
+  .page{
+    position:absolute;
+    right:48px;
+    bottom:15px;
+    font-size:13px;
+    color:#222;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">
+    Consumers have been grouped into 3 main clusters within 4 regions:<br>
+    EV Owners, EV prospects and EV sceptics
+  </div>
+
+  <div class="subtitle">Consumer survey – <span>Clusters and investigation areas</span></div>
+
+  <div class="survey-tag">
+    <div class="hash">#</div>
+    <div class="text">16,778 respondents</div>
+  </div>
+
+  <div class="vs">
+    <div class="trend">
+      <div class="arr red"></div>
+      <div class="arr green"></div>
+      <div class="eq"></div>
+    </div>
+    <div>Vs. 2023</div>
+  </div>
+
+  <div class="left-axis">
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="lbl d1">Description / Size</div>
+    <div class="lbl d2">Focus area</div>
+    <div class="lbl" style="top:643px;">Outcome</div>
+  </div>
+
+  <div class="panel p1">
+    <div class="num n1">1</div>
+    <div class="panel-title">EV Owners</div>
+    <div class="topline redline"></div>
+    <div class="panel-sub">People who currently own an EV</div>
+
+    <div class="chart">
+      <div class="baseline"></div>
+      <div class="tick" style="left:0;"></div>
+      <div class="tick" style="left:71px;"></div>
+      <div class="tick" style="left:142px;"></div>
+      <div class="tick" style="left:213px;"></div>
+      <div class="tick" style="left:284px;"></div>
+      <div class="tick" style="left:355px;"></div>
+
+      <div class="group" style="left:10px;">
+        <div class="bar dark" style="left:0; height:6px;"></div>
+        <div class="bar black" style="left:29px; height:6px;"></div>
+        <div class="pct" style="left:-1px; bottom:10px;">6%</div>
+        <div class="pct" style="left:29px; bottom:10px;">6%</div>
+        <div class="marker m-gray" style="left:18px; top:54px;">=</div>
+      </div>
+      <div class="group" style="left:81px;">
+        <div class="bar lpink" style="left:0; height:7px;"></div>
+        <div class="bar mpink" style="left:29px; height:7px;"></div>
+        <div class="pct" style="left:-1px; bottom:11px;">7%</div>
+        <div class="pct" style="left:29px; bottom:11px;">7%</div>
+        <div class="marker m-gray" style="left:18px; top:54px;">=</div>
+      </div>
+      <div class="group" style="left:152px;">
+        <div class="bar lred" style="left:0; height:5px;"></div>
+        <div class="bar red" style="left:29px; height:7px;"></div>
+        <div class="pct" style="left:0; bottom:9px;">5%</div>
+        <div class="pct" style="left:29px; bottom:11px;">7%</div>
+        <div class="marker up m-green" style="left:16px; top:50px;"></div>
+      </div>
+      <div class="group" style="left:223px;">
+        <div class="bar lgray" style="left:0; height:5px;"></div>
+        <div class="bar mgray" style="left:29px; height:5px;"></div>
+        <div class="pct" style="left:0; bottom:9px;">5%</div>
+        <div class="pct" style="left:29px; bottom:9px;">5%</div>
+        <div class="marker m-gray" style="left:18px; top:54px;">=</div>
+      </div>
+      <div class="group" style="left:294px;">
+        <div class="na" style="left:1px; bottom:4px;">n.a.</div>
+        <div class="bar llgray" style="left:29px; height:4px;"></div>
+        <div class="pct" style="left:30px; bottom:8px;">4%</div>
+      </div>
+    </div>
+
+    <div class="labels">
+      <div class="tag-total">Total</div>
+      <div class="smalltag apac">APAC</div>
+      <div class="smalltag emea">EMEA</div>
+      <div class="smalltag naTag">NA</div>
+      <div class="smalltag latam">LATAM</div>
+    </div>
+
+    <div class="bullets">
+      <ul>
+        <li>EV Owners profile</li>
+        <li>Customer journey and usage habits</li>
+      </ul>
+    </div>
+    <div class="chev"></div>
+    <div class="footer-box">
+      Best practices and lessons learnt to be leveraged to define EV specific customer journeys
+    </div>
+  </div>
+
+  <div class="panel p2">
+    <div class="num n2">2</div>
+    <div class="panel-title">EV prospects</div>
+    <div class="topline pinkline"></div>
+    <div class="panel-sub">People who have declared their intention to <u>buy</u><br>an EV in the next 5 years</div>
+
+    <div class="chart">
+      <div class="baseline"></div>
+      <div class="tick" style="left:0;"></div>
+      <div class="tick" style="left:71px;"></div>
+      <div class="tick" style="left:142px;"></div>
+      <div class="tick" style="left:213px;"></div>
+      <div class="tick" style="left:284px;"></div>
+      <div class="tick" style="left:355px;"></div>
+
+      <div class="group" style="left:10px;">
+        <div class="bar dark" style="left:0; height:80px;"></div>
+        <div class="bar black" style="left:29px; height:81px;"></div>
+        <div class="pct" style="left:-4px; bottom:84px;">62%</div>
+        <div class="pct" style="left:27px; bottom:85px;">63%</div>
+        <div class="marker up m-green" style="left:18px; top:39px;"></div>
+      </div>
+      <div class="group" style="left:81px;">
+        <div class="bar lpink" style="left:0; height:85px;"></div>
+        <div class="bar mpink" style="left:29px; height:81px;"></div>
+        <div class="pct" style="left:-1px; bottom:89px;">67%</div>
+        <div class="pct" style="left:27px; bottom:85px;">64%</div>
+        <div class="marker up m-red" style="left:18px; top:34px;"></div>
+      </div>
+      <div class="group" style="left:152px;">
+        <div class="bar lred" style="left:0; height:75px;"></div>
+        <div class="bar red" style="left:29px; height:78px;"></div>
+        <div class="pct" style="left:-3px; bottom:79px;">59%</div>
+        <div class="pct" style="left:25px; bottom:82px;">61%</div>
+        <div class="marker up m-green" style="left:18px; top:35px;"></div>
+      </div>
+      <div class="group" style="left:223px;">
+        <div class="bar lgray" style="left:0; height:69px;"></div>
+        <div class="bar mgray" style="left:29px; height:64px;"></div>
+        <div class="pct" style="left:-1px; bottom:73px;">54%</div>
+        <div class="pct" style="left:29px; bottom:68px;">50%</div>
+        <div class="marker up m-red" style="left:18px; top:50px;"></div>
+      </div>
+      <div class="group" style="left:294px;">
+        <div class="na" style="left:10px; bottom:4px;">n.a.</div>
+        <div class="bar llgray" style="left:29px; height:97px;"></div>
+        <div class="pct" style="left:28px; bottom:101px;">77%</div>
+      </div>
+    </div>
+
+    <div class="labels">
+      <div class="tag-total">Total</div>
+      <div class="smalltag apac">APAC</div>
+      <div class="smalltag emea">EMEA</div>
+      <div class="smalltag naTag">NA</div>
+      <div class="smalltag latam">LATAM</div>
+    </div>
+
+    <div class="bullets">
+      <ul>
+        <li>Personas and distinctive traits</li>
+        <li>Key reasons to buy</li>
+      </ul>
+    </div>
+    <div class="chev"></div>
+    <div class="footer-box">
+      Key customer profiles, with associated demographics and needs, to support targeting actions of OEMs
+    </div>
+  </div>
+
+  <div class="panel p3">
+    <div class="num n3">3</div>
+    <div class="panel-title">EV sceptics</div>
+    <div class="topline grayline"></div>
+    <div class="panel-sub">People who have declared their intention <u>not to</u><br><u>buy</u> an EV in the next 5 years</div>
+
+    <div class="chart">
+      <div class="baseline"></div>
+      <div class="tick" style="left:0;"></div>
+      <div class="tick" style="left:71px;"></div>
+      <div class="tick" style="left:142px;"></div>
+      <div class="tick" style="left:213px;"></div>
+      <div class="tick" style="left:284px;"></div>
+      <div class="tick" style="left:355px;"></div>
+
+      <div class="group" style="left:10px;">
+        <div class="bar dark" style="left:0; height:41px;"></div>
+        <div class="bar black" style="left:29px; height:40px;"></div>
+        <div class="pct" style="left:-2px; bottom:45px;">32%</div>
+        <div class="pct" style="left:29px; bottom:44px;">31%</div>
+        <div class="marker up m-green" style="left:18px; top:76px;"></div>
+      </div>
+      <div class="group" style="left:81px;">
+        <div class="bar lpink" style="left:0; height:32px;"></div>
+        <div class="bar mpink" style="left:29px; height:37px;"></div>
+        <div class="pct" style="left:-2px; bottom:36px;">25%</div>
+        <div class="pct" style="left:29px; bottom:41px;">29%</div>
+        <div class="marker up m-red" style="left:18px; top:82px;"></div>
+      </div>
+      <div class="group" style="left:152px;">
+        <div class="bar lred" style="left:0; height:46px;"></div>
+        <div class="bar red" style="left:29px; height:41px;"></div>
+        <div class="pct" style="left:-2px; bottom:50px;">36%</div>
+        <div class="pct" style="left:29px; bottom:45px;">32%</div>
+        <div class="marker up m-green" style="left:18px; top:66px;"></div>
+      </div>
+      <div class="group" style="left:223px;">
+        <div class="bar lgray" style="left:0; height:52px;"></div>
+        <div class="bar mgray" style="left:29px; height:57px;"></div>
+        <div class="pct" style="left:-2px; bottom:56px;">41%</div>
+        <div class="pct" style="left:29px; bottom:61px;">45%</div>
+        <div class="marker up m-red" style="left:18px; top:58px;"></div>
+      </div>
+      <div class="group" style="left:294px;">
+        <div class="na" style="left:18px; bottom:4px;">n.a.</div>
+        <div class="bar llgray" style="left:29px; height:24px;"></div>
+        <div class="pct" style="left:30px; bottom:28px;">19%</div>
+      </div>
+    </div>
+
+    <div class="labels">
+      <div class="tag-total">Total</div>
+      <div class="smalltag apac">APAC</div>
+      <div class="smalltag emea">EMEA</div>
+      <div class="smalltag naTag">NA</div>
+      <div class="smalltag latam">LATAM</div>
+    </div>
+
+    <div class="bullets">
+      <ul>
+        <li>EV sceptics profile and distinctive traits</li>
+        <li>Key reasons rejecting EVs</li>
+      </ul>
+    </div>
+    <div class="chev"></div>
+    <div class="footer-box">
+      Concerns and purchasing barriers to be addressed by OEMs communication to stimulate intention to buy
+    </div>
+  </div>
+
+  <div class="brand">eReadiness Report 2024<br>Strategy&amp;</div>
+  <div class="source">Source: Strategy&amp; analysis on feedback from consumer survey</div>
+  <div class="date">September 2024</div>
+  <div class="page">9</div>
+</div>
+</body>
+</html>

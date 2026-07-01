@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ececec;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+    color:#111;
+  }
+  .title{
+    position:absolute;
+    left:46px;
+    top:45px;
+    width:620px;
+    font-size:40px;
+    line-height:1.1;
+    font-weight:800;
+    letter-spacing:-0.6px;
+    color:#000;
+  }
+  .subhead{
+    position:absolute;
+    left:46px;
+    top:193px;
+    width:590px;
+    font-size:22px;
+    line-height:1.15;
+    font-weight:700;
+    color:#111;
+  }
+  .kpi-line{
+    position:absolute;
+    width:145px;
+    height:0;
+    border-top:3px solid #111;
+  }
+  .kpi-big{
+    position:absolute;
+    font-size:64px;
+    line-height:1;
+    font-weight:800;
+    color:#000;
+    letter-spacing:-1px;
+  }
+  .kpi-desc{
+    position:absolute;
+    font-size:16px;
+    line-height:1.18;
+    font-weight:400;
+    color:#555;
+  }
+  .kpi-desc em{
+    font-style:italic;
+    color:#555;
+  }
+  .why-title{
+    position:absolute;
+    font-size:22px;
+    line-height:1;
+    font-weight:800;
+    color:#111;
+  }
+  .bodytext{
+    position:absolute;
+    font-size:16px;
+    line-height:1.16;
+    font-weight:400;
+    color:#222;
+  }
+  .bodytext b{
+    font-weight:800;
+  }
+  .notes{
+    position:absolute;
+    left:48px;
+    top:620px;
+    width:585px;
+    font-size:12px;
+    line-height:1.12;
+    color:#333;
+  }
+  .footer-left{
+    position:absolute;
+    left:46px;
+    bottom:14px;
+    font-size:12px;
+    line-height:1;
+    color:#444;
+  }
+  .panel{
+    position:absolute;
+    left:709px;
+    top:46px;
+    width:611px;
+    height:670px;
+    background:#e4e4e4;
+  }
+  .panel-title{
+    position:absolute;
+    left:738px;
+    top:72px;
+    width:470px;
+    font-size:22px;
+    line-height:1.05;
+    font-weight:800;
+    color:#111;
+  }
+  .panel-sub{
+    position:absolute;
+    left:738px;
+    top:97px;
+    width:320px;
+    font-size:16px;
+    line-height:1.05;
+    font-weight:400;
+    font-style:italic;
+    color:#222;
+  }
+  .legend-dot{
+    position:absolute;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+  }
+  .legend-label{
+    position:absolute;
+    font-size:16px;
+    line-height:1;
+    font-weight:400;
+    color:#333;
+  }
+  .chart-note{
+    position:absolute;
+    left:1027px;
+    top:119px;
+    width:247px;
+    font-size:16px;
+    line-height:1.14;
+    font-weight:400;
+    color:#333;
+  }
+  .vline{
+    position:absolute;
+    left:1027px;
+    top:188px;
+    width:1px;
+    height:485px;
+    background:#9a9a9a;
+  }
+  .row-label{
+    position:absolute;
+    width:250px;
+    text-align:right;
+    font-size:16px;
+    line-height:1.05;
+    font-weight:700;
+    color:#111;
+  }
+  .bar{
+    position:absolute;
+    height:18px;
+  }
+  .pct{
+    position:absolute;
+    font-size:16px;
+    line-height:1;
+    font-weight:400;
+    color:#444;
+  }
+  .box{
+    position:absolute;
+    left:722px;
+    top:500px;
+    width:585px;
+    height:184px;
+    border:2px solid #ababab;
+    background:transparent;
+    box-sizing:border-box;
+  }
+  .footer-right{
+    position:absolute;
+    right:42px;
+    bottom:14px;
+    font-size:12px;
+    line-height:1;
+    color:#444;
+    text-align:right;
+  }
+  .page{
+    position:absolute;
+    right:14px;
+    bottom:14px;
+    font-size:12px;
+    line-height:1;
+    color:#444;
+    text-align:right;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">Faced with high prices, many travelers choose to spend more for the experience they want</div>
+
+  <div class="subhead">How does your 2026 trip budget compare with 2025?</div>
+
+  <div class="kpi-line" style="left:46px; top:244px;"></div>
+  <div class="kpi-big" style="left:49px; top:266px;">24%</div>
+  <div class="kpi-desc" style="left:50px; top:325px; width:290px;">Significantly more <em>(versus 19% in 2025)</em></div>
+  <div class="why-title" style="left:50px; top:355px; width:130px;">Why more?</div>
+  <div class="bodytext" style="left:50px; top:382px; width:274px;">
+    <b>More say they are absorbing rising prices</b>&mdash;38% of travelers spending more cite higher airline and lodging prices as their reason to raise budgets, compared to 26% in 2025. More also say that travel has become more important for them. <b>Both of these trends are strongest at the $100K to $199K income level,</b> indicating this group in particular is seeing higher prices and deciding that travel is too important to compromise.
+  </div>
+
+  <div class="kpi-line" style="left:354px; top:244px;"></div>
+  <div class="kpi-big" style="left:358px; top:266px;">11%</div>
+  <div class="kpi-desc" style="left:356px; top:325px; width:285px;">Significantly less <em>(versus 14% in 2025)</em></div>
+  <div class="why-title" style="left:356px; top:355px; width:120px;">Why more?</div>
+  <div class="bodytext" style="left:356px; top:382px; width:250px;">
+    Financial concerns are the biggest cause of tighter budgets, cited by 48% of those reducing spend. The share specifically pointing to travel prices has climbed to 43%, up from 29% in 2025.
+  </div>
+
+  <div class="notes">Notes: Questions: (1) “How does your budget for this trip compare to your budget for your longest summer trip in 2025?”; (2) “What best describes why you are spending more/less on this trip than you did on your longest summer trip in 2025?”; (3) “What, if any, adjustments are you making versus last year’s trip that make it more/less expensive?”;<br>n = 1,808 for all questions.<br>Source: 2026 Deloitte Summer Travel Survey.</div>
+
+  <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+
+  <div class="panel"></div>
+  <div class="panel-title">Travel upgrades versus previous year</div>
+  <div class="panel-sub">(among those raising budgets)</div>
+
+  <div class="legend-dot" style="left:739px; top:123px; background:#000;"></div>
+  <div class="legend-label" style="left:760px; top:124px;">2025</div>
+  <div class="legend-dot" style="left:824px; top:123px; background:#76c300;"></div>
+  <div class="legend-label" style="left:845px; top:124px;">2026</div>
+
+  <div class="chart-note">Longer trips remain the top upgrade for budget increasers, but upgrading comfort gains some traction in 2026</div>
+
+  <div class="vline"></div>
+
+  <div class="row-label" style="left:776px; top:211px;">Longer trip</div>
+  <div class="bar" style="left:1028px; top:200px; width:233px; background:#000;"></div>
+  <div class="bar" style="left:1028px; top:219px; width:206px; background:#76c300;"></div>
+  <div class="pct" style="left:1268px; top:201px;">45%</div>
+  <div class="pct" style="left:1242px; top:220px;">40%</div>
+
+  <div class="row-label" style="left:760px; top:273px;">Higher in-destination spend</div>
+  <div class="bar" style="left:1028px; top:263px; width:211px; background:#000;"></div>
+  <div class="bar" style="left:1028px; top:282px; width:161px; background:#76c300;"></div>
+  <div class="pct" style="left:1247px; top:264px;">41%</div>
+  <div class="pct" style="left:1197px; top:283px;">31%</div>
+
+  <div class="row-label" style="left:759px; top:334px;">International trip over domestic</div>
+  <div class="bar" style="left:1028px; top:326px; width:154px; background:#000;"></div>
+  <div class="bar" style="left:1028px; top:345px; width:129px; background:#76c300;"></div>
+  <div class="pct" style="left:1190px; top:327px;">30%</div>
+  <div class="pct" style="left:1163px; top:346px;">25%</div>
+
+  <div class="row-label" style="left:734px; top:396px;">Flying over driving to destination</div>
+  <div class="bar" style="left:1028px; top:389px; width:118px; background:#000;"></div>
+  <div class="bar" style="left:1028px; top:408px; width:93px; background:#76c300;"></div>
+  <div class="pct" style="left:1154px; top:390px;">23%</div>
+  <div class="pct" style="left:1128px; top:409px;">18%</div>
+
+  <div class="row-label" style="left:748px; top:447px;">Paid lodging over staying with<br>family/friends</div>
+  <div class="bar" style="left:1028px; top:451px; width:112px; background:#000;"></div>
+  <div class="bar" style="left:1028px; top:470px; width:99px; background:#76c300;"></div>
+  <div class="pct" style="left:1149px; top:452px;">22%</div>
+  <div class="pct" style="left:1136px; top:471px;">19%</div>
+
+  <div class="box"></div>
+
+  <div class="row-label" style="left:786px; top:523px;">Upgraded airfare class</div>
+  <div class="bar" style="left:1028px; top:514px; width:102px; background:#000;"></div>
+  <div class="bar" style="left:1028px; top:533px; width:118px; background:#76c300;"></div>
+  <div class="pct" style="left:1138px; top:515px;">20%</div>
+  <div class="pct" style="left:1154px; top:534px;">23%</div>
+
+  <div class="row-label" style="left:782px; top:585px;">Better lodging location</div>
+  <div class="bar" style="left:1028px; top:575px; width:129px; background:#000;"></div>
+  <div class="bar" style="left:1028px; top:594px; width:149px; background:#76c300;"></div>
+  <div class="pct" style="left:1166px; top:576px;">25%</div>
+  <div class="pct" style="left:1187px; top:595px;">29%</div>
+
+  <div class="row-label" style="left:805px; top:647px;">Luxurious lodging</div>
+  <div class="bar" style="left:1028px; top:637px; width:123px; background:#000;"></div>
+  <div class="bar" style="left:1028px; top:656px; width:134px; background:#76c300;"></div>
+  <div class="pct" style="left:1159px; top:638px;">24%</div>
+  <div class="pct" style="left:1173px; top:657px;">26%</div>
+
+  <div class="footer-right">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="page">11</div>
+</div>
+</body>
+</html>

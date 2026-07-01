@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Business considerations slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dddadd;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dddadd;
+    color:#111;
+  }
+
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:24px;
+    background:#ecebea;
+    border-bottom:1px solid #bfbcbc;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:24px;
+    line-height:24px;
+    font-size:10px;
+    color:#7a7673;
+    font-weight:700;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .tab.active{
+    background:#5c168d;
+    color:#fff;
+  }
+  .tab.underline{
+    color:#4a1176;
+    border-bottom:2px solid #7f2cc6;
+    height:22px;
+    line-height:22px;
+  }
+
+  .title{
+    position:absolute;
+    left:44px;
+    top:59px;
+    width:1185px;
+    font-size:28px;
+    line-height:29px;
+    font-weight:800;
+    color:#000;
+  }
+  .subtitle{
+    position:absolute;
+    left:43px;
+    top:120px;
+    font-size:29px;
+    line-height:30px;
+    font-weight:800;
+    color:#9d18f2;
+  }
+
+  .hdr{
+    position:absolute;
+    top:178px;
+    font-size:15px;
+    font-weight:800;
+    color:#111;
+  }
+  .hdr.left{ left:53px; }
+  .hdr.mid{ left:343px; }
+  .hdr.right{ left:651px; }
+
+  .purple-line{
+    position:absolute;
+    left:336px;
+    top:199px;
+    width:964px;
+    height:2px;
+    background:#b11df0;
+  }
+
+  .themes{
+    position:absolute;
+    left:45px;
+    top:199px;
+    width:280px;
+  }
+  .theme{
+    position:absolute;
+    left:0;
+    width:280px;
+    overflow:hidden;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+  }
+  .theme::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to bottom, rgba(0,0,0,.08), rgba(0,0,0,.28));
+  }
+  .theme .label{
+    position:absolute;
+    left:7px;
+    top:7px;
+    z-index:2;
+    color:#fff;
+    font-size:15px;
+    line-height:16px;
+    font-weight:800;
+    text-shadow:0 1px 1px rgba(0,0,0,.35);
+  }
+
+  .theme1{
+    top:0;
+    height:136px;
+    background:
+      linear-gradient(180deg, rgba(141,158,130,.95), rgba(147,147,102,.9)),
+      linear-gradient(135deg, #9ead98 0%, #7f8663 100%);
+  }
+  .theme1 .tower,
+  .theme1 .tower2{
+    position:absolute;
+    bottom:12px;
+    width:2px;
+    background:rgba(20,24,40,.9);
+    transform-origin:bottom center;
+    z-index:1;
+  }
+  .theme1 .tower{ left:83px; height:98px; transform:skewX(-4deg); }
+  .theme1 .tower2{ left:208px; height:86px; transform:skewX(5deg); }
+  .theme1 .cross, .theme1 .cross2, .theme1 .cross3, .theme1 .cross4{
+    position:absolute; height:1px; background:rgba(20,24,40,.85); z-index:1;
+  }
+  .theme1 .cross{ left:39px; top:31px; width:84px; transform:rotate(18deg); }
+  .theme1 .cross2{ left:156px; top:50px; width:89px; transform:rotate(-20deg); }
+  .theme1 .cross3{ left:28px; top:72px; width:108px; transform:rotate(-12deg); }
+  .theme1 .cross4{ left:181px; top:83px; width:73px; transform:rotate(14deg); }
+  .theme1 .wire, .theme1 .wire2, .theme1 .wire3{
+    position:absolute; height:1px; background:rgba(35,39,58,.7); z-index:1;
+  }
+  .theme1 .wire{ left:-6px; top:55px; width:173px; transform:rotate(-9deg); }
+  .theme1 .wire2{ left:84px; top:66px; width:160px; transform:rotate(8deg); }
+  .theme1 .wire3{ left:155px; top:44px; width:130px; transform:rotate(-11deg); }
+
+  .theme2{
+    top:138px;
+    height:125px;
+    background:
+      linear-gradient(180deg, rgba(83,109,172,.45), rgba(44,67,126,.45)),
+      linear-gradient(180deg, #bcc7e9 0%, #5670b8 35%, #39539a 36%, #2f4a8c 100%);
+  }
+  .theme2 .panel{
+    position:absolute;
+    bottom:18px;
+    width:78px;
+    height:57px;
+    background:
+      repeating-linear-gradient(to right, rgba(255,255,255,.55) 0 1px, transparent 1px 12px),
+      repeating-linear-gradient(to bottom, rgba(255,255,255,.28) 0 1px, transparent 1px 14px),
+      linear-gradient(180deg, #3d5fae, #23427e);
+    border:1px solid rgba(215,225,255,.6);
+    transform:skewX(18deg);
+    box-shadow:0 1px 0 rgba(0,0,0,.15);
+  }
+  .theme2 .p1{ left:-2px; }
+  .theme2 .p2{ left:55px; }
+  .theme2 .p3{ left:112px; }
+  .theme2 .p4{ left:169px; }
+  .theme2 .p5{ left:226px; }
+  .theme2 .field{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:280px;
+    height:20px;
+    background:linear-gradient(180deg, #91a83e, #6a7a26);
+  }
+
+  .theme3{
+    top:265px;
+    height:130px;
+    background:
+      radial-gradient(circle at 25% 64%, rgba(255,214,133,.85) 0 1px, transparent 2px),
+      radial-gradient(circle at 31% 66%, rgba(255,214,133,.8) 0 2px, transparent 3px),
+      radial-gradient(circle at 20% 61%, rgba(255,214,133,.7) 0 2px, transparent 3px),
+      radial-gradient(circle at 13% 71%, rgba(255,214,133,.65) 0 1px, transparent 3px),
+      radial-gradient(circle at 18% 58%, rgba(255,214,133,.5) 0 8px, transparent 17px),
+      radial-gradient(circle at 44% 72%, rgba(255,214,133,.22) 0 5px, transparent 18px),
+      linear-gradient(180deg, #000 0%, #082249 55%, #0e1a2c 100%);
+  }
+  .theme3::after{
+    content:"";
+    position:absolute;
+    left:-6px;
+    right:-6px;
+    bottom:-17px;
+    height:60px;
+    background:radial-gradient(ellipse at center, rgba(60,84,135,.65) 0%, rgba(25,44,79,.25) 45%, transparent 72%);
+    border-radius:50%;
+  }
+
+  .theme4{
+    top:398px;
+    height:96px;
+    background:
+      linear-gradient(180deg, rgba(122,177,219,.4), rgba(36,79,117,.25)),
+      linear-gradient(180deg, #c8d6df 0%, #6b93a5 48%, #45697a 66%, #4b5e1d 100%);
+  }
+  .theme4 .stack{
+    position:absolute;
+    bottom:16px;
+    width:31px;
+    height:60px;
+    background:linear-gradient(90deg, #dccf98 0%, #bba66a 22%, #e6d9a4 50%, #b39b63 78%, #d2c089 100%);
+    border-radius:15px 15px 12px 12px/8px 8px 10px 10px;
+    box-shadow:inset 0 8px 0 rgba(255,255,255,.18);
+  }
+  .theme4 .stack::before{
+    content:"";
+    position:absolute;
+    left:-5px;
+    top:-8px;
+    width:41px;
+    height:22px;
+    background:radial-gradient(ellipse at center, rgba(230,230,230,.8) 0%, rgba(210,210,210,.55) 45%, rgba(210,210,210,0) 80%);
+  }
+  .theme4 .s1{ left:20px; }
+  .theme4 .s2{ left:82px; }
+  .theme4 .s3{ left:149px; }
+  .theme4 .s4{ left:215px; }
+
+  .rowline{
+    position:absolute;
+    left:336px;
+    width:964px;
+    height:1px;
+    background:#bdbbbb;
+  }
+  .r1{ top:331px; }
+  .r2{ top:463px; }
+  .r3{ top:595px; }
+
+  .col2, .col3{
+    position:absolute;
+    font-size:16px;
+    line-height:24px;
+    color:#222;
+  }
+  .col2{ left:343px; width:263px; }
+  .col3{ left:649px; width:610px; }
+
+  .row1c2{ top:206px; }
+  .row2c2{ top:338px; }
+  .row3c2{ top:470px; }
+  .row4c2{ top:602px; }
+
+  .row1c3{ top:206px; }
+  .row2c3{ top:338px; }
+  .row3c3{ top:470px; }
+  .row4c3{ top:602px; }
+
+  ul{
+    margin:0;
+    padding-left:20px;
+  }
+  li{
+    margin:0 0 2px 0;
+  }
+  .col3 strong{
+    font-weight:800;
+    color:#111;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:40px;
+    bottom:18px;
+    font-size:12px;
+    color:#7a7776;
+  }
+  .chev{
+    position:absolute;
+    left:38px;
+    bottom:9px;
+    font-size:44px;
+    line-height:28px;
+    color:#9d18f2;
+    font-weight:800;
+  }
+  .footer-right{
+    position:absolute;
+    right:51px;
+    bottom:18px;
+    font-size:12px;
+    color:#6f6b6a;
+  }
+  .page{
+    position:absolute;
+    right:18px;
+    bottom:18px;
+    font-size:12px;
+    color:#6f6b6a;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar">
+    <div class="tab active" style="left:0;width:105px;">Top 10 trends</div>
+    <div class="tab" style="left:105px;width:126px;">Multi-speed growth</div>
+    <div class="tab" style="left:231px;width:106px;">Tariff impacts</div>
+    <div class="tab" style="left:337px;width:135px;">Financial fragility</div>
+    <div class="tab" style="left:472px;width:117px;">Affordability</div>
+    <div class="tab" style="left:589px;width:129px;">AI productivity</div>
+    <div class="tab" style="left:718px;width:120px;">China exports</div>
+    <div class="tab" style="left:838px;width:129px;">Europe struggle</div>
+    <div class="tab" style="left:967px;width:109px;">AI arms race</div>
+    <div class="tab underline" style="left:1076px;width:117px;">Power crunch</div>
+    <div class="tab" style="left:1193px;width:87px;">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">AI data center demand intensifies competition for affordable energy—companies need to be strategic in planning their energy needs and investments</div>
+  <div class="subtitle">9. Business considerations</div>
+
+  <div class="hdr left">Themes</div>
+  <div class="hdr mid">Impacted companies/industries</div>
+  <div class="hdr right">Business consideration if AI demand significantly outpaces grid supply</div>
+  <div class="purple-line"></div>
+
+  <div class="themes">
+    <div class="theme theme1">
+      <div class="label">Power availability and price</div>
+      <div class="tower"></div>
+      <div class="tower2"></div>
+      <div class="cross"></div>
+      <div class="cross2"></div>
+      <div class="cross3"></div>
+      <div class="cross4"></div>
+      <div class="wire"></div>
+      <div class="wire2"></div>
+      <div class="wire3"></div>
+    </div>
+
+    <div class="theme theme2">
+      <div class="label">Grid and connection bottlenecks</div>
+      <div class="panel p1"></div>
+      <div class="panel p2"></div>
+      <div class="panel p3"></div>
+      <div class="panel p4"></div>
+      <div class="panel p5"></div>
+      <div class="field"></div>
+    </div>
+
+    <div class="theme theme3">
+      <div class="label">Location and footprint</div>
+    </div>
+
+    <div class="theme theme4">
+      <div class="label">Energy-linked capital allocation</div>
+      <div class="stack s1"></div>
+      <div class="stack s2"></div>
+      <div class="stack s3"></div>
+      <div class="stack s4"></div>
+    </div>
+  </div>
+
+  <div class="rowline r1"></div>
+  <div class="rowline r2"></div>
+  <div class="rowline r3"></div>
+
+  <div class="col2 row1c2">
+    <ul>
+      <li>Utilities</li>
+      <li>Independent power providers</li>
+      <li>Grid operators</li>
+      <li>Energy-intensive industries including data centres (EII)</li>
+    </ul>
+  </div>
+
+  <div class="col3 row1c3">
+    <ul>
+      <li><strong>Increase usage of long-term PPAs and hedging strategies for EIIs,</strong> to ensure resilience supply and manage price volatility</li>
+      <li><strong>Review the potential headwinds surrounding sustainability goals</strong> with future trade-offs surfacing surrounding reliability, price and carbon intensity</li>
+      <li><strong>Embrace flexibility and efficiency</strong> to reduce constraints on the grid and avoid peak price periods</li>
+    </ul>
+  </div>
+
+  <div class="col2 row2c2">
+    <ul>
+      <li>Utilities</li>
+      <li>Grids</li>
+      <li>Large industrial sites</li>
+    </ul>
+  </div>
+
+  <div class="col3 row2c3">
+    <ul>
+      <li><strong>Create agility in the planning process to navigate potential delays</strong> as connection bottlenecks lead to growth constraints for manufacturing and other industrial sites</li>
+      <li><strong>Anticipate ecosystem, revenue and supply</strong> shocks as the expansion plans of partners and customers are also impacted</li>
+      <li><strong>Plan for talent shortages and supply chain bottlenecks</strong> surrounding energy infrastructure roll out</li>
+    </ul>
+  </div>
+
+  <div class="col2 row3c2">
+    <ul>
+      <li>Manufacturing</li>
+      <li>Logistics</li>
+      <li>Data centers</li>
+    </ul>
+  </div>
+
+  <div class="col3 row3c3">
+    <ul>
+      <li><strong>Consider energy infrastructure plans</strong> when selecting locations for site expansion for Manufacturing or other EIIs</li>
+      <li><strong>Review logistic networks</strong> and supply chains and the potential to reorientate around future industrial clusters anchored in energy availability</li>
+      <li><strong>Manage consumer pressures</strong> and resistance to build-out of energy-intensive assets which are experiencing energy price shocks</li>
+    </ul>
+  </div>
+
+  <div class="col2 row4c2">
+    <ul>
+      <li>Energy-intensive industries including data centres</li>
+    </ul>
+  </div>
+
+  <div class="col3 row4c3">
+    <ul>
+      <li><strong>Work with regulators and governments to accelerate infrastructure roll outs</strong> given energy availability and independence remain a geopolitical priority</li>
+      <li><strong>Recalibrate investment and ROI assumptions</strong> of long-term plans based on the shift of a broad range of variables associated with energy prices and availability</li>
+    </ul>
+  </div>
+
+  <div class="chev">&gt;</div>
+  <div class="footer-left">Source(s): Accenture Strategy analysis</div>
+  <div class="footer-right">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="page">37</div>
+</div>
+</body>
+</html>

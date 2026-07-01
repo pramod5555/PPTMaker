@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Chapter 8 Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, 'Segoe UI', sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efeff2;
+    color:#4b4d57;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .top-left-line{
+    left:103px;
+    top:0;
+    width:1px;
+    height:91px;
+    background:#b8b9bf;
+  }
+  .page-num{
+    left:61px;
+    top:50px;
+    width:34px;
+    font-size:16px;
+    line-height:18px;
+    font-weight:400;
+    color:#6f717d;
+  }
+  .survey-title{
+    left:114px;
+    top:58px;
+    width:170px;
+    font-size:8px;
+    line-height:10px;
+    font-weight:400;
+    color:#7a7b86;
+    text-transform:uppercase;
+  }
+
+  .jump{
+    right:0;
+    top:0;
+    width:68px;
+    height:46px;
+    background:#70717c;
+    border-bottom-left-radius:15px;
+  }
+  .jump-text{
+    right:11px;
+    top:17px;
+    width:46px;
+    font-size:8px;
+    line-height:8px;
+    font-weight:700;
+    color:#fff;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+    text-align:center;
+  }
+
+  .chapter{
+    left:102px;
+    top:131px;
+    width:255px;
+    font-size:50px;
+    line-height:54px;
+    font-weight:700;
+    color:#2f3140;
+  }
+
+  .accent-yellow{
+    left:102px;
+    top:214px;
+    width:127px;
+    height:3px;
+    background:#f1cb00;
+  }
+  .accent-magenta{
+    left:229px;
+    top:214px;
+    width:33px;
+    height:3px;
+    background:#c93cff;
+  }
+  .accent-blue{
+    left:262px;
+    top:214px;
+    width:87px;
+    height:3px;
+    background:#3a89f1;
+  }
+
+  .body-copy{
+    left:101px;
+    top:252px;
+    width:280px;
+    font-size:12px;
+    line-height:18px;
+    font-weight:400;
+    color:#565862;
+  }
+
+  .side-label{
+    left:13px;
+    top:424px;
+    font-size:12px;
+    line-height:12px;
+    font-weight:400;
+    color:#6f717d;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+  }
+  .side-yellow{
+    left:13px;
+    top:409px;
+    width:12px;
+    height:12px;
+    background:#f1cb00;
+  }
+
+  .graph-title{
+    left:647px;
+    top:211px;
+    width:565px;
+    font-size:13px;
+    line-height:18px;
+    font-weight:400;
+    color:#4e5059;
+  }
+  .graph-title b{
+    font-weight:700;
+    color:#33353d;
+  }
+
+  .col-head{
+    font-size:13px;
+    line-height:15px;
+    font-weight:400;
+    color:#555761;
+    text-align:center;
+  }
+  .col-rule{
+    height:1px;
+    background:#a7a8af;
+  }
+
+  .row-label{
+    font-size:12px;
+    line-height:14px;
+    font-weight:400;
+    color:#53555f;
+    text-align:right;
+  }
+
+  .bar{
+    height:25px;
+    border:1px solid #b7bcc0;
+    background:#fff;
+    overflow:hidden;
+  }
+  .seg1,.seg2,.seg3{
+    position:absolute;
+    top:0;
+    height:23px;
+  }
+  .seg1{ background:#7fd8a0; }
+  .seg2{ background:#35c667; }
+  .seg3{ background:#168a2f; }
+
+  .pct{
+    top:5px;
+    font-size:11px;
+    line-height:12px;
+    font-weight:400;
+    color:#4a4c55;
+    white-space:nowrap;
+  }
+  .pct.dark{ color:#fff; }
+
+  .legend-box{
+    width:14px;
+    height:14px;
+  }
+  .legend-text{
+    font-size:12px;
+    line-height:14px;
+    font-weight:400;
+    color:#575963;
+  }
+
+  .note{
+    left:841px;
+    top:646px;
+    width:230px;
+    font-size:9px;
+    line-height:11px;
+    font-weight:400;
+    color:#5c5e67;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-left-line"></div>
+  <div class="page-num">34</div>
+  <div class="survey-title">SECOND ANNUAL EY/IIF GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+  <div class="jump"></div>
+  <div class="jump-text">JUMP TO<br>CONTENTS</div>
+
+  <div class="chapter">Chapter 8</div>
+  <div class="accent-yellow"></div>
+  <div class="accent-magenta"></div>
+  <div class="accent-blue"></div>
+
+  <div class="body-copy">
+    Our survey results show clear maturation of controls<br>
+    environments on both the first and second lines, though<br>
+    ample work remains to be done. The most mature aspects<br>
+    of the control framework are governance and oversight,<br>
+    risk assessment, and risk control and identification.<br>
+    Testing and monitoring are the least mature aspects.<br>
+    There is much more room for maturation when it comes<br>
+    to first-line adoption of specific components of the<br>
+    internal control framework, with no more than 30% of<br>
+    respondents saying that any aspect of their control<br>
+    environment is mature.
+  </div>
+
+  <div class="side-label">CHAPTER 8</div>
+  <div class="side-yellow"></div>
+
+  <div class="graph-title"><b>Graph 1:</b> How mature are the following components of the internal control framework in terms of first-line<br>adoption?</div>
+
+  <div class="col-rule" style="left:648px; top:284px; width:138px;"></div>
+  <div class="col-head" style="left:683px; top:270px; width:70px;">Overall</div>
+
+  <div class="col-rule" style="left:797px; top:284px; width:138px;"></div>
+  <div class="col-head" style="left:849px; top:270px; width:36px;">EMEIA</div>
+
+  <div class="col-rule" style="left:946px; top:284px; width:138px;"></div>
+  <div class="col-head" style="left:992px; top:270px; width:47px;">Americas</div>
+
+  <div class="col-rule" style="left:1095px; top:284px; width:138px;"></div>
+  <div class="col-head" style="left:1135px; top:270px; width:61px;">Asia-Pacific</div>
+
+  <div class="row-label" style="left:452px; top:304px; width:186px;">Governance and oversight</div>
+  <div class="row-label" style="left:454px; top:327px; width:184px;">Risk assessment (inherent and<br>residual risk)</div>
+  <div class="row-label" style="left:459px; top:359px; width:179px;">Risk and control identification<br>(including key control ID/tagging)</div>
+  <div class="row-label" style="left:493px; top:392px; width:145px;">Accountability and ownership<br>of risk</div>
+  <div class="row-label" style="left:501px; top:424px; width:137px;">Control design and<br>implementation</div>
+  <div class="row-label" style="left:478px; top:457px; width:160px;">Control inventory and<br>documentation</div>
+  <div class="row-label" style="left:472px; top:489px; width:166px;">Control performance indicators<br>(incl. metrics and reporting)</div>
+  <div class="row-label" style="left:508px; top:531px; width:130px;">Testing and monitoring</div>
+  <div class="row-label" style="left:472px; top:563px; width:166px;">First-line control maturity overall</div>
+
+  <div class="bar" style="left:648px; top:299px; width:138px;">
+    <div class="seg1" style="left:0;width:21px;"></div>
+    <div class="seg2" style="left:21px;width:76px;"></div>
+    <div class="seg3" style="left:97px;width:41px;"></div>
+    <div class="pct" style="left:4px;">15%</div>
+    <div class="pct" style="left:48px;">55%</div>
+    <div class="pct dark" style="left:104px;">30%</div>
+  </div>
+  <div class="bar" style="left:648px; top:330px; width:138px;">
+    <div class="seg1" style="left:0;width:22px;"></div>
+    <div class="seg2" style="left:22px;width:83px;"></div>
+    <div class="seg3" style="left:105px;width:33px;"></div>
+    <div class="pct" style="left:4px;">16%</div>
+    <div class="pct" style="left:54px;">60%</div>
+    <div class="pct dark" style="left:110px;">24%</div>
+  </div>
+  <div class="bar" style="left:648px; top:361px; width:138px;">
+    <div class="seg1" style="left:0;width:25px;"></div>
+    <div class="seg2" style="left:25px;width:83px;"></div>
+    <div class="seg3" style="left:108px;width:30px;"></div>
+    <div class="pct" style="left:4px;">18%</div>
+    <div class="pct" style="left:54px;">60%</div>
+    <div class="pct dark" style="left:112px;">23%</div>
+  </div>
+  <div class="bar" style="left:648px; top:392px; width:138px;">
+    <div class="seg1" style="left:0;width:19px;"></div>
+    <div class="seg2" style="left:19px;width:90px;"></div>
+    <div class="seg3" style="left:109px;width:29px;"></div>
+    <div class="pct" style="left:4px;">14%</div>
+    <div class="pct" style="left:55px;">65%</div>
+    <div class="pct dark" style="left:113px;">21%</div>
+  </div>
+  <div class="bar" style="left:648px; top:423px; width:138px;">
+    <div class="seg1" style="left:0;width:15px;"></div>
+    <div class="seg2" style="left:15px;width:98px;"></div>
+    <div class="seg3" style="left:113px;width:25px;"></div>
+    <div class="pct" style="left:4px;">11%</div>
+    <div class="pct" style="left:56px;">71%</div>
+    <div class="pct dark" style="left:117px;">18%</div>
+  </div>
+  <div class="bar" style="left:648px; top:454px; width:138px;">
+    <div class="seg1" style="left:0;width:29px;"></div>
+    <div class="seg2" style="left:29px;width:90px;"></div>
+    <div class="seg3" style="left:119px;width:19px;"></div>
+    <div class="pct" style="left:4px;">21%</div>
+    <div class="pct" style="left:56px;">65%</div>
+    <div class="pct dark" style="left:122px;">14%</div>
+  </div>
+  <div class="bar" style="left:648px; top:485px; width:138px;">
+    <div class="seg1" style="left:0;width:28px;"></div>
+    <div class="seg2" style="left:28px;width:95px;"></div>
+    <div class="seg3" style="left:123px;width:15px;"></div>
+    <div class="pct" style="left:4px;">20%</div>
+    <div class="pct" style="left:58px;">69%</div>
+    <div class="pct dark" style="left:124px;">11%</div>
+  </div>
+  <div class="bar" style="left:648px; top:516px; width:138px;">
+    <div class="seg1" style="left:0;width:39px;"></div>
+    <div class="seg2" style="left:39px;width:84px;"></div>
+    <div class="seg3" style="left:123px;width:15px;"></div>
+    <div class="pct" style="left:4px;">28%</div>
+    <div class="pct" style="left:58px;">61%</div>
+    <div class="pct dark" style="left:124px;">11%</div>
+  </div>
+  <div class="bar" style="left:648px; top:547px; width:138px;">
+    <div class="seg1" style="left:0;width:22px;"></div>
+    <div class="seg2" style="left:22px;width:101px;"></div>
+    <div class="seg3" style="left:123px;width:15px;"></div>
+    <div class="pct" style="left:4px;">16%</div>
+    <div class="pct" style="left:60px;">73%</div>
+    <div class="pct dark" style="left:124px;">11%</div>
+  </div>
+
+  <div class="bar" style="left:797px; top:299px; width:138px;">
+    <div class="seg1" style="left:0;width:14px;"></div>
+    <div class="seg2" style="left:14px;width:80px;"></div>
+    <div class="seg3" style="left:94px;width:44px;"></div>
+    <div class="pct" style="left:3px;">10%</div>
+    <div class="pct" style="left:53px;">58%</div>
+    <div class="pct dark" style="left:106px;">33%</div>
+  </div>
+  <div class="bar" style="left:797px; top:330px; width:138px;">
+    <div class="seg1" style="left:0;width:18px;"></div>
+    <div class="seg2" style="left:18px;width:90px;"></div>
+    <div class="seg3" style="left:108px;width:30px;"></div>
+    <div class="pct" style="left:3px;">13%</div>
+    <div class="pct" style="left:56px;">65%</div>
+    <div class="pct dark" style="left:113px;">23%</div>
+  </div>
+  <div class="bar" style="left:797px; top:361px; width:138px;">
+    <div class="seg1" style="left:0;width:14px;"></div>
+    <div class="seg2" style="left:14px;width:94px;"></div>
+    <div class="seg3" style="left:108px;width:30px;"></div>
+    <div class="pct" style="left:3px;">10%</div>
+    <div class="pct" style="left:58px;">68%</div>
+    <div class="pct dark" style="left:113px;">23%</div>
+  </div>
+  <div class="bar" style="left:797px; top:392px; width:138px;">
+    <div class="seg1" style="left:0;width:11px;"></div>
+    <div class="seg2" style="left:11px;width:87px;"></div>
+    <div class="seg3" style="left:98px;width:40px;"></div>
+    <div class="pct" style="left:3px;">8%</div>
+    <div class="pct" style="left:53px;">63%</div>
+    <div class="pct dark" style="left:112px;">30%</div>
+  </div>
+  <div class="bar" style="left:797px; top:423px; width:138px;">
+    <div class="seg1" style="left:0;width:11px;"></div>
+    <div class="seg2" style="left:11px;width:108px;"></div>
+    <div class="seg3" style="left:119px;width:19px;"></div>
+    <div class="pct" style="left:3px;">8%</div>
+    <div class="pct" style="left:63px;">78%</div>
+    <div class="pct dark" style="left:122px;">15%</div>
+  </div>
+  <div class="bar" style="left:797px; top:454px; width:138px;">
+    <div class="seg1" style="left:0;width:25px;"></div>
+    <div class="seg2" style="left:25px;width:90px;"></div>
+    <div class="seg3" style="left:115px;width:23px;"></div>
+    <div class="pct" style="left:3px;">18%</div>
+    <div class="pct" style="left:57px;">65%</div>
+    <div class="pct dark" style="left:119px;">18%</div>
+  </div>
+  <div class="bar" style="left:797px; top:485px; width:138px;">
+    <div class="seg1" style="left:0;width:28px;"></div>
+    <div class="seg2" style="left:28px;width:89px;"></div>
+    <div class="seg3" style="left:117px;width:21px;"></div>
+    <div class="pct" style="left:4px;">20%</div>
+    <div class="pct" style="left:57px;">65%</div>
+    <div class="pct dark" style="left:121px;">15%</div>
+  </div>
+  <div class="bar" style="left:797px; top:516px; width:138px;">
+    <div class="seg1" style="left:0;width:39px;"></div>
+    <div class="seg2" style="left:39px;width:79px;"></div>
+    <div class="seg3" style="left:118px;width:20px;"></div>
+    <div class="pct" style="left:4px;">28%</div>
+    <div class="pct" style="left:56px;">58%</div>
+    <div class="pct dark" style="left:121px;">15%</div>
+  </div>
+  <div class="bar" style="left:797px; top:547px; width:138px;">
+    <div class="seg1" style="left:0;width:14px;"></div>
+    <div class="seg2" style="left:14px;width:104px;"></div>
+    <div class="seg3" style="left:118px;width:20px;"></div>
+    <div class="pct" style="left:3px;">10%</div>
+    <div class="pct" style="left:61px;">75%</div>
+    <div class="pct dark" style="left:121px;">15%</div>
+  </div>
+
+  <div class="bar" style="left:946px; top:299px; width:138px;">
+    <div class="seg1" style="left:0;width:26px;"></div>
+    <div class="seg2" style="left:26px;width:87px;"></div>
+    <div class="seg3" style="left:113px;width:25px;"></div>
+    <div class="pct" style="left:4px;">19%</div>
+    <div class="pct" style="left:59px;">63%</div>
+    <div class="pct dark" style="left:118px;">19%</div>
+  </div>
+  <div class="bar" style="left:946px; top:330px; width:138px;">
+    <div class="seg1" style="left:0;width:36px;"></div>
+    <div class="seg2" style="left:36px;width:87px;"></div>
+    <div class="seg3" style="left:123px;width:15px;"></div>
+    <div class="pct" style="left:4px;">26%</div>
+    <div class="pct" style="left:59px;">63%</div>
+    <div class="pct dark" style="left:124px;">11%</div>
+  </div>
+  <div class="bar" style="left:946px; top:361px; width:138px;">
+    <div class="seg1" style="left:0;width:46px;"></div>
+    <div class="seg2" style="left:46px;width:71px;"></div>
+    <div class="seg3" style="left:117px;width:21px;"></div>
+    <div class="pct" style="left:4px;">33%</div>
+    <div class="pct" style="left:58px;">52%</div>
+    <div class="pct dark" style="left:120px;">15%</div>
+  </div>
+  <div class="bar" style="left:946px; top:392px; width:138px;">
+    <div class="seg1" style="left:0;width:21px;"></div>
+    <div class="seg2" style="left:21px;width:97px;"></div>
+    <div class="seg3" style="left:118px;width:20px;"></div>
+    <div class="pct" style="left:4px;">15%</div>
+    <div class="pct" style="left:63px;">70%</div>
+    <div class="pct dark" style="left:121px;">15%</div>
+  </div>
+  <div class="bar" style="left:946px; top:423px; width:138px;">
+    <div class="seg1" style="left:0;width:26px;"></div>
+    <div class="seg2" style="left:26px;width:92px;"></div>
+    <div class="seg3" style="left:118px;width:20px;"></div>
+    <div class="pct" style="left:4px;">19%</div>
+    <div class="pct" style="left:59px;">67%</div>
+    <div class="pct dark" style="left:121px;">15%</div>
+  </div>
+  <div class="bar" style="left:946px; top:454px; width:138px;">
+    <div class="seg1" style="left:0;width:36px;"></div>
+    <div class="seg2" style="left:36px;width:97px;"></div>
+    <div class="seg3" style="left:133px;width:5px;"></div>
+    <div class="pct" style="left:4px;">26%</div>
+    <div class="pct" style="left:64px;">70%</div>
+    <div class="pct dark" style="left:130px;">4%</div>
+  </div>
+  <div class="bar" style="left:946px; top:485px; width:138px;">
+    <div class="seg1" style="left:0;width:36px;"></div>
+    <div class="seg2" style="left:36px;width:87px;"></div>
+    <div class="seg3" style="left:123px;width:15px;"></div>
+    <div class="pct" style="left:4px;">26%</div>
+    <div class="pct" style="left:59px;">63%</div>
+    <div class="pct dark" style="left:124px;">11%</div>
+  </div>
+  <div class="bar" style="left:946px; top:516px; width:138px;">
+    <div class="seg1" style="left:0;width:36px;"></div>
+    <div class="seg2" style="left:36px;width:87px;"></div>
+    <div class="seg3" style="left:123px;width:15px;"></div>
+    <div class="pct" style="left:4px;">26%</div>
+    <div class="pct" style="left:59px;">63%</div>
+    <div class="pct dark" style="left:124px;">11%</div>
+  </div>
+  <div class="bar" style="left:946px; top:547px; width:138px;">
+    <div class="seg1" style="left:0;width:36px;"></div>
+    <div class="seg2" style="left:36px;width:92px;"></div>
+    <div class="seg3" style="left:128px;width:10px;"></div>
+    <div class="pct" style="left:4px;">26%</div>
+    <div class="pct" style="left:61px;">67%</div>
+    <div class="pct dark" style="left:129px;">7%</div>
+  </div>
+
+  <div class="bar" style="left:1095px; top:299px; width:138px;">
+    <div class="seg1" style="left:0;width:32px;"></div>
+    <div class="seg2" style="left:32px;width:43px;"></div>
+    <div class="seg3" style="left:75px;width:63px;"></div>
+    <div class="pct" style="left:4px;">23%</div>
+    <div class="pct" style="left:42px;">31%</div>
+    <div class="pct dark" style="left:100px;">46%</div>
+  </div>
+  <div class="bar" style="left:1095px; top:330px; width:138px;">
+    <div class="seg1" style="left:0;width:11px;"></div>
+    <div class="seg2" style="left:11px;width:52px;"></div>
+    <div class="seg3" style="left:63px;width:75px;"></div>
+    <div class="pct" style="left:3px;">8%</div>
+    <div class="pct" style="left:40px;">38%</div>
+    <div class="pct dark" style="left:103px;">54%</div>
+  </div>
+  <div class="bar" style="left:1095px; top:361px; width:138px;">
+    <div class="seg1" style="left:0;width:11px;"></div>
+    <div class="seg2" style="left:11px;width:74px;"></div>
+    <div class="seg3" style="left:85px;width:53px;"></div>
+    <div class="pct" style="left:3px;">8%</div>
+    <div class="pct" style="left:41px;">54%</div>
+    <div class="pct dark" style="left:103px;">38%</div>
+  </div>
+  <div class="bar" style="left:1095px; top:392px; width:138px;">
+    <div class="seg1" style="left:0;width:43px;"></div>
+    <div class="seg2" style="left:43px;width:84px;"></div>
+    <div class="seg3" style="left:127px;width:11px;"></div>
+    <div class="pct" style="left:4px;">31%</div>
+    <div class="pct" style="left:49px;">62%</div>
+    <div class="pct dark" style="left:129px;">8%</div>
+  </div>
+  <div class="bar" style="left:1095px; top:423px; width:138px;">
+    <div class="seg1" style="left:0;width:11px;"></div>
+    <div class="seg2" style="left:11px;width:85px;"></div>
+    <div class="seg3" style="left:96px;width:42px;"></div>
+    <div class="pct" style="left:3px;">8%</div>
+    <div class="pct" style="left:42px;">62%</div>
+    <div class="pct dark" style="left:104px;">31%</div>
+  </div>
+  <div class="bar" style="left:1095px; top:454px; width:138px;">
+    <div class="seg1" style="left:0;width:32px;"></div>
+    <div class="seg2" style="left:32px;width:74px;"></div>
+    <div class="seg3" style="left:106px;width:32px;"></div>
+    <div class="pct" style="left:4px;">23%</div>
+    <div class="pct" style="left:41px;">54%</div>
+    <div class="pct dark" style="left:109px;">23%</div>
+  </div>
+  <div class="bar" style="left:1095px; top:485px; width:138px;">
+    <div class="seg1" style="left:0;width:11px;"></div>
+    <div class="seg2" style="left:11px;width:127px;"></div>
+    <div class="pct" style="left:3px;">8%</div>
+    <div class="pct" style="left:46px;">92%</div>
+  </div>
+  <div class="bar" style="left:1095px; top:516px; width:138px;">
+    <div class="seg1" style="left:0;width:43px;"></div>
+    <div class="seg2" style="left:43px;width:95px;"></div>
+    <div class="pct" style="left:4px;">31%</div>
+    <div class="pct" style="left:50px;">69%</div>
+  </div>
+  <div class="bar" style="left:1095px; top:547px; width:138px;">
+    <div class="seg1" style="left:0;width:21px;"></div>
+    <div class="seg2" style="left:21px;width:106px;"></div>
+    <div class="seg3" style="left:127px;width:11px;"></div>
+    <div class="pct" style="left:4px;">15%</div>
+    <div class="pct" style="left:58px;">77%</div>
+    <div class="pct dark" style="left:129px;">8%</div>
+  </div>
+
+  <div class="legend-box" style="left:650px; top:597px; background:#7fd8a0;"></div>
+  <div class="legend-text" style="left:673px; top:597px; width:110px;">1. Immature</div>
+
+  <div class="legend-box" style="left:824px; top:597px; background:#35c667;"></div>
+  <div class="legend-text" style="left:848px; top:597px; width:180px;">2. Established/maturing</div>
+
+  <div class="legend-box" style="left:1066px; top:597px; background:#168a2f;"></div>
+  <div class="legend-text" style="left:1089px; top:597px; width:90px;">3. Mature</div>
+
+  <div class="note">Note: Numbers may not add to 100% due to rounding.</div>
+</div>
+</body>
+</html>

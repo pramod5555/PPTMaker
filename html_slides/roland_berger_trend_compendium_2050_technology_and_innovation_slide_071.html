@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>AI enters the creative realm – Selected examples</title>
+<style>
+  body{
+    margin:0;
+    background:#cfcfcf;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+  }
+
+  .leftbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:180px;
+    height:720px;
+    background:#34383e;
+    z-index:5;
+  }
+  .leftbar-edge{
+    position:absolute;
+    left:179px;
+    top:0;
+    width:2px;
+    height:720px;
+    background:#6a4a9a;
+    z-index:6;
+  }
+
+  .title-side{
+    position:absolute;
+    left:12px;
+    top:33px;
+    width:150px;
+    color:#f2f2f2;
+    font-size:22px;
+    line-height:1.05;
+    font-weight:700;
+    z-index:20;
+  }
+
+  .hex{
+    position:absolute;
+    width:54px;
+    height:46px;
+    border:4px solid #a8adb2;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    background:linear-gradient(145deg,#6c7076 0%,#c3c6ca 55%,#7c8187 100%);
+    z-index:20;
+    overflow:hidden;
+  }
+  .hex.active{
+    border-color:#a78bd6;
+    box-shadow:0 0 0 3px rgba(122,87,180,.35);
+    background:linear-gradient(145deg,#e2d5ef 0%,#ffffff 52%,#ccb7e5 100%);
+  }
+  .hex::before{
+    content:"";
+    position:absolute;
+    inset:4px;
+    opacity:.9;
+  }
+
+  .icon-hex-1::before{
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,.8) 0 2px, transparent 3px),
+      radial-gradient(circle at 58% 40%, rgba(255,255,255,.8) 0 2px, transparent 3px),
+      radial-gradient(circle at 72% 30%, rgba(255,255,255,.8) 0 2px, transparent 3px),
+      linear-gradient(90deg, transparent 0 14%, rgba(255,255,255,.55) 14% 16%, transparent 16% 30%, rgba(255,255,255,.45) 30% 32%, transparent 32% 100%),
+      linear-gradient(0deg, transparent 0 38%, rgba(255,255,255,.55) 38% 40%, transparent 40% 56%, rgba(255,255,255,.45) 56% 58%, transparent 58% 100%),
+      linear-gradient(25deg, transparent 0 56%, rgba(255,255,255,.4) 56% 58%, transparent 58% 100%);
+  }
+  .icon-hex-2::before{
+    background:
+      radial-gradient(circle at 26% 35%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+      radial-gradient(circle at 50% 25%, rgba(255,255,255,.85) 0 2px, transparent 3px),
+      radial-gradient(circle at 72% 42%, rgba(255,255,255,.85) 0 2px, transparent 3px),
+      radial-gradient(circle at 36% 68%, rgba(255,255,255,.85) 0 2px, transparent 3px),
+      linear-gradient(28deg, transparent 0 36%, rgba(255,255,255,.55) 36% 38%, transparent 38% 100%),
+      linear-gradient(-18deg, transparent 0 52%, rgba(255,255,255,.55) 52% 54%, transparent 54% 100%),
+      linear-gradient(8deg, transparent 0 62%, rgba(255,255,255,.35) 62% 64%, transparent 64% 100%);
+  }
+  .icon-hex-3::before{
+    background:
+      radial-gradient(circle at 30% 48%, #f2ccad 0 6px, transparent 7px),
+      radial-gradient(circle at 64% 47%, #e2b08a 0 6px, transparent 7px),
+      linear-gradient(0deg, transparent 0 44%, #f6f6f6 44% 56%, transparent 56% 100%),
+      linear-gradient(18deg, transparent 0 38%, #ffffff 38% 51%, transparent 51% 100%),
+      linear-gradient(-16deg, transparent 0 40%, #cf9875 40% 53%, transparent 53% 100%),
+      linear-gradient(0deg, transparent 0 47%, #9db4cb 47% 57%, transparent 57% 100%);
+  }
+
+  .step-no{
+    position:absolute;
+    color:#7f8489;
+    font-size:30px;
+    line-height:1;
+    font-weight:700;
+    z-index:25;
+  }
+  .step-no.active{ color:#7a57b4; }
+
+  .step-label{
+    position:absolute;
+    width:80px;
+    color:#6c7075;
+    font-size:15px;
+    line-height:1.05;
+    font-weight:400;
+    z-index:25;
+  }
+  .step-label.active{
+    color:#7a57b4;
+    font-weight:700;
+  }
+
+  .main-title{
+    position:absolute;
+    left:220px;
+    top:28px;
+    width:1040px;
+    color:#202022;
+    font-size:27px;
+    line-height:1.1;
+    font-weight:800;
+    z-index:30;
+    letter-spacing:-0.2px;
+  }
+
+  .subtitle{
+    position:absolute;
+    left:220px;
+    top:139px;
+    width:650px;
+    color:#90959c;
+    font-size:27px;
+    line-height:1.1;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .bg-wash{
+    position:absolute;
+    left:350px;
+    top:165px;
+    width:830px;
+    height:520px;
+    z-index:1;
+    background:
+      radial-gradient(ellipse at 18% 50%, rgba(0,0,0,.16) 0%, rgba(0,0,0,.08) 18%, rgba(255,255,255,0) 43%),
+      radial-gradient(ellipse at 82% 55%, rgba(255,255,255,.55) 0%, rgba(255,255,255,.18) 24%, rgba(255,255,255,0) 52%);
+    opacity:.7;
+  }
+
+  .face-wash{
+    position:absolute;
+    left:860px;
+    top:150px;
+    width:340px;
+    height:540px;
+    z-index:2;
+    opacity:.17;
+    background:
+      radial-gradient(circle at 60% 14%, rgba(255,255,255,.95) 0 5%, transparent 6%),
+      radial-gradient(circle at 72% 15%, rgba(255,255,255,.95) 0 5%, transparent 6%),
+      radial-gradient(ellipse at 66% 20%, rgba(255,255,255,.9) 0 1.5%, transparent 2.5%),
+      linear-gradient(115deg, transparent 0 43%, rgba(255,255,255,.85) 43% 44%, transparent 44% 100%),
+      linear-gradient(72deg, transparent 0 66%, rgba(255,255,255,.55) 66% 67%, transparent 67% 100%),
+      radial-gradient(ellipse at 63% 43%, rgba(255,255,255,.4) 0 23%, transparent 24%),
+      radial-gradient(ellipse at 63% 70%, rgba(255,255,255,.4) 0 14%, transparent 15%),
+      radial-gradient(ellipse at 78% 44%, rgba(255,255,255,.28) 0 18%, transparent 19%);
+    filter:blur(1px);
+  }
+
+  .txt{
+    position:absolute;
+    color:#2f3032;
+    font-size:18px;
+    line-height:1.15;
+    font-weight:400;
+    z-index:35;
+  }
+  .txt b{ font-weight:700; }
+
+  .circle{
+    position:absolute;
+    border-radius:50%;
+    z-index:22;
+  }
+  .circle.dark{ background:#5a3d8b; }
+  .circle.light{ background:#b3a3d5; }
+
+  .circle-label{
+    position:absolute;
+    z-index:35;
+    text-align:center;
+    font-weight:700;
+  }
+  .dark-main{
+    color:#ffffff;
+    font-size:26px;
+    line-height:1.08;
+    width:170px;
+  }
+  .light-perf{
+    color:#1f1f22;
+    font-size:25px;
+    line-height:1.1;
+    width:140px;
+  }
+  .light-md{
+    color:#1f1f22;
+    font-size:20px;
+    line-height:1.1;
+  }
+
+  .icon{
+    position:absolute;
+    z-index:40;
+  }
+
+  .bottom-icon{
+    position:absolute;
+    left:68px;
+    top:663px;
+    width:62px;
+    height:46px;
+    z-index:18;
+    opacity:.62;
+  }
+
+  .page{
+    position:absolute;
+    left:8px;
+    bottom:6px;
+    color:#ffffff;
+    font-size:18px;
+    line-height:1;
+    font-weight:400;
+    z-index:50;
+  }
+
+  .sources{
+    position:absolute;
+    left:220px;
+    bottom:8px;
+    color:#4a4a4a;
+    font-size:11px;
+    line-height:1;
+    font-weight:400;
+    z-index:50;
+    white-space:nowrap;
+  }
+
+  .rb-logo{
+    position:absolute;
+    right:14px;
+    bottom:8px;
+    width:58px;
+    height:34px;
+    z-index:50;
+  }
+  .rb-logo .name{
+    position:absolute;
+    right:13px;
+    top:1px;
+    color:#7f7f7f;
+    font-size:8px;
+    line-height:0.95;
+    text-align:right;
+  }
+  .rb-logo .b1{
+    position:absolute;
+    right:0;
+    bottom:0;
+    width:16px;
+    height:30px;
+    background:#8a8a8a;
+    border-radius:8px;
+  }
+  .rb-logo .b2{
+    position:absolute;
+    right:8px;
+    bottom:0;
+    width:16px;
+    height:19px;
+    background:#8a8a8a;
+    border-radius:8px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="leftbar"></div>
+  <div class="leftbar-edge"></div>
+
+  <div class="title-side">Technology &amp;<br>Innovation</div>
+
+  <div class="hex icon-hex-1" style="left:8px; top:142px;"></div>
+  <div class="step-no" style="left:93px; top:145px;">1</div>
+  <div class="step-label" style="left:93px; top:176px;">Value of<br>Innovation</div>
+
+  <div class="hex icon-hex-2" style="left:8px; top:276px;"></div>
+  <div class="step-no" style="left:93px; top:279px;">2</div>
+  <div class="step-label" style="left:93px; top:309px;">Frontier<br>Technologies</div>
+
+  <div class="hex icon-hex-3 active" style="left:8px; top:410px;"></div>
+  <div class="step-no active" style="left:93px; top:413px;">3</div>
+  <div class="step-label active" style="left:93px; top:443px;">Humans &amp;<br>Machines</div>
+
+  <div class="main-title">AI's ability to be deployed creatively has already allowed the technology to<br>proliferate in other sectors such as music, art and culture</div>
+  <div class="subtitle">AI enters the creative realm – Selected examples</div>
+
+  <div class="bg-wash"></div>
+  <div class="face-wash"></div>
+
+  <div class="txt" style="left:366px; top:238px; width:340px;">
+    <b>Theatre:</b> The world premier of "AI:<br>
+    When a robot writes a play", <b>a play<br>
+    written by AI</b>, took place in early 2021
+  </div>
+
+  <div class="txt" style="left:798px; top:215px; width:355px; text-align:center;">
+    <b>Music:</b> In 2018, "I AM AI", the first music album<br>
+    composed by an AI based virtual artist system,<br>
+    entered the radio charts at number 48
+  </div>
+
+  <div class="txt" style="left:236px; top:390px; width:315px;">
+    <b>Poetry:</b> In 2018, a team of researchers from<br>
+    Kyoto University and Microsoft&nbsp;&nbsp;created an<br>
+    AI-made poem convincing online judges<br>
+    it was written by a human
+  </div>
+
+  <div class="txt" style="left:1000px; top:357px; width:250px;">
+    <b>Films:</b> Benjamin, a self-named AI bot,<br>
+    wrote the script for the sci-fi short-film<br>
+    "Sunspring", debuting in June 2016
+  </div>
+
+  <div class="txt" style="left:221px; top:494px; width:300px;">
+    <b>Horror Story:</b> In 2017, MIT researchers<br>
+    trained an AI named Shelley to write horror<br>
+    stories based on 140,000 Reddit post
+  </div>
+
+  <div class="txt" style="left:988px; top:446px; width:265px; text-align:center;">
+    <b>Installation Art:</b> In Istanbul, the artist Refik<br>
+    Anadol uses AI to illustrate the connection<br>
+    between 1.7 million documents in an immersive<br>
+    media installation, called "Archive Dreaming"
+  </div>
+
+  <div class="txt" style="left:410px; top:637px; width:360px;">
+    <b>Sculpture:</b> An AI trained on 1,000 classical<br>
+    statues created "Dio", a sculpture conceived by<br>
+    artist Ben Snell, selling for USD 6,875 in 2019
+  </div>
+
+  <div class="txt" style="left:887px; top:575px; width:340px;">
+    <b>Painting:</b> The "Portrait of Edmond de Belamy"<br>
+    was created by the collective Obvious with the<br>
+    help AI and sold for USD 430,000 in 2018
+  </div>
+
+  <div class="circle light" style="left:659px; top:224px; width:150px; height:150px;"></div>
+  <div class="circle dark" style="left:681px; top:340px; width:205px; height:205px;"></div>
+  <div class="circle light" style="left:572px; top:419px; width:148px; height:148px;"></div>
+  <div class="circle light" style="left:826px; top:356px; width:148px; height:148px;"></div>
+  <div class="circle light" style="left:730px; top:517px; width:150px; height:150px;"></div>
+
+  <div class="circle-label light-perf" style="left:665px; top:281px;">Performing</div>
+  <div class="circle-label dark-main" style="left:699px; top:414px;">Creative<br>industries</div>
+  <div class="circle-label light-md" style="left:577px; top:474px; width:138px; font-size:20px;">Literary</div>
+  <div class="circle-label light-md" style="left:842px; top:412px; width:116px; font-size:20px;">Media</div>
+  <div class="circle-label light-md" style="left:760px; top:575px; width:90px; font-size:20px;">Visual</div>
+
+  <svg class="icon" style="left:700px; top:170px; width:72px; height:98px;" viewBox="0 0 72 98">
+    <g fill="#5a3d8b">
+      <circle cx="36" cy="10" r="7"></circle>
+      <rect x="28" y="18" width="16" height="38" rx="2"></rect>
+      <rect x="30" y="55" width="6" height="33" rx="2"></rect>
+      <rect x="40" y="55" width="6" height="33" rx="2"></rect>
+      <rect x="8" y="17" width="22" height="6"></rect>
+      <rect x="15" y="7" width="5" height="19"></rect>
+      <rect x="45" y="23" width="6" height="34" transform="rotate(40 48 40)"></rect>
+    </g>
+  </svg>
+
+  <svg class="icon" style="left:594px; top:397px; width:56px; height:62px;" viewBox="0 0 56 62">
+    <g fill="#5a3d8b">
+      <rect x="14" y="12" width="22" height="46" rx="1"></rect>
+      <rect x="7" y="10" width="7" height="48" rx="1"></rect>
+      <rect x="36" y="12" width="14" height="46" rx="1"></rect>
+      <rect x="12" y="56" width="39" height="4"></rect>
+      <rect x="19" y="17" width="1.5" height="33" fill="#b3a3d5"></rect>
+    </g>
+  </svg>
+
+  <svg class="icon" style="left:856px; top:336px; width:78px; height:56px;" viewBox="0 0 78 56">
+    <g fill="none" stroke="#5a3d8b" stroke-width="5">
+      <rect x="6" y="6" width="66" height="44" rx="2"></rect>
+    </g>
+    <g fill="#5a3d8b">
+      <rect x="12" y="11" width="8" height="8"></rect>
+      <rect x="12" y="24" width="8" height="8"></rect>
+      <rect x="12" y="37" width="8" height="8"></rect>
+      <rect x="58" y="11" width="8" height="8"></rect>
+      <rect x="58" y="24" width="8" height="8"></rect>
+      <rect x="58" y="37" width="8" height="8"></rect>
+      <polygon points="31,15 50,28 31,41"></polygon>
+    </g>
+  </svg>
+
+  <svg class="icon" style="left:783px; top:621px; width:80px; height:78px;" viewBox="0 0 80 78">
+    <g fill="#5a3d8b" stroke="#5a3d8b" stroke-width="5" stroke-linejoin="round">
+      <path d="M31 11c17 0 30 10 30 23 0 7-5 12-10 17-4 4-6 10-13 10-8 0-10-5-17-5-8 0-13-5-13-12 0-18 12-33 23-33z"></path>
+      <path d="M44 49l24-24" fill="none" stroke-linecap="round"></path>
+      <path d="M56 31l10-10 4 4-10 10z"></path>
+    </g>
+    <g fill="#b3a3d5">
+      <circle cx="26" cy="23" r="5"></circle>
+      <circle cx="42" cy="18" r="4"></circle>
+      <circle cx="45" cy="34" r="5"></circle>
+      <circle cx="27" cy="43" r="4"></circle>
+      <circle cx="28" cy="57" r="5"></circle>
+    </g>
+  </svg>
+
+  <svg class="bottom-icon" viewBox="0 0 60 45">
+    <g fill="none" stroke="#8f9398" stroke-width="2.5" stroke-linecap="round">
+      <circle cx="18" cy="22" r="11"></circle>
+      <path d="M18 3v6M18 35v6M1 22h6M29 22h6M6 9l4 4M26 29l4 4M6 35l4-4M26 15l4-4"></path>
+      <path d="M40 7c5 0 9 4 9 9 0 3-1 5-3 7v6h-12v-6c-2-2-3-4-3-7 0-5 4-9 9-9z"></path>
+      <circle cx="46" cy="13" r="4" fill="#8f9398" stroke="#8f9398"></circle>
+      <path d="M40 34h12M41 38h10" stroke-width="2"></path>
+      <path d="M17 16c3-2 6-1 8 0M16 22c1 3 4 5 8 5" stroke-width="2"></path>
+    </g>
+  </svg>
+
+  <div class="page">71</div>
+  <div class="sources">Sources: RAND; THEAITRE; AI ARTISTS; MPG; WEF; MIT; Roland Berger</div>
+
+  <div class="rb-logo">
+    <div class="name">Roland<br>Berger</div>
+    <div class="b1"></div>
+    <div class="b2"></div>
+  </div>
+</div>
+</body>
+</html>

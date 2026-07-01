@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1365, initial-scale=1.0" />
+<title>Macro View Slide Replica</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1365px;
+    height: 768px;
+    overflow: hidden;
+    background: #dcdcdc;
+  }
+  .slide * { box-sizing: border-box; position: absolute; }
+
+  .canvas {
+    left: 31px;
+    top: 30px;
+    width: 1303px;
+    height: 706px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(8,0,16,0.98) 0%, rgba(25,4,39,0.92) 16%, rgba(104,61,154,0.48) 43%, rgba(72,43,124,0.54) 62%, rgba(38,25,80,0.92) 100%);
+  }
+
+  .photo {
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 47% 10%, rgba(175,119,255,0.58) 0%, rgba(137,88,224,0.44) 24%, rgba(74,34,126,0.18) 47%, rgba(19,4,34,0) 62%),
+      radial-gradient(ellipse at 56% 68%, rgba(159,141,255,0.16) 0%, rgba(134,117,233,0.08) 38%, rgba(0,0,0,0) 70%),
+      linear-gradient(180deg, rgba(14,5,18,0.42) 0%, rgba(21,7,31,0.18) 20%, rgba(0,0,0,0) 42%, rgba(0,0,0,0.08) 100%);
+    z-index: 1;
+  }
+
+  .left-building {
+    left: 0;
+    top: 0;
+    width: 147px;
+    height: 475px;
+    background:
+      linear-gradient(90deg, rgba(7,5,9,0.78) 0%, rgba(19,10,27,0.82) 42%, rgba(41,27,53,0.62) 100%);
+    z-index: 3;
+  }
+
+  .left-building::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, transparent 0 13px, rgba(141,128,155,0.22) 13px 15px, transparent 15px 35px, rgba(141,128,155,0.18) 35px 37px, transparent 37px 58px, rgba(141,128,155,0.18) 58px 60px, transparent 60px 79px, rgba(141,128,155,0.18) 79px 81px, transparent 81px 100px, rgba(141,128,155,0.16) 100px 102px, transparent 102px 121px, rgba(141,128,155,0.16) 121px 123px, transparent 123px);
+    opacity: .9;
+  }
+
+  .left-windows {
+    left: 0;
+    top: 0;
+    width: 147px;
+    height: 475px;
+    z-index: 4;
+    background:
+      radial-gradient(circle at 42px 62px, rgba(255,227,149,.35) 0 2px, transparent 3px),
+      radial-gradient(circle at 61px 89px, rgba(255,221,144,.28) 0 2px, transparent 3px),
+      radial-gradient(circle at 93px 116px, rgba(255,218,140,.34) 0 2px, transparent 3px),
+      radial-gradient(circle at 117px 151px, rgba(255,224,149,.30) 0 2px, transparent 3px),
+      radial-gradient(circle at 41px 187px, rgba(255,217,133,.28) 0 2px, transparent 3px),
+      radial-gradient(circle at 80px 214px, rgba(255,221,150,.32) 0 2px, transparent 3px),
+      radial-gradient(circle at 118px 248px, rgba(255,214,126,.28) 0 2px, transparent 3px),
+      radial-gradient(circle at 92px 285px, rgba(255,218,140,.28) 0 2px, transparent 3px),
+      radial-gradient(circle at 59px 318px, rgba(255,214,126,.25) 0 2px, transparent 3px),
+      radial-gradient(circle at 118px 350px, rgba(255,221,150,.28) 0 2px, transparent 3px),
+      radial-gradient(circle at 43px 389px, rgba(255,214,126,.24) 0 2px, transparent 3px);
+  }
+
+  .mullion {
+    top: 0;
+    height: 473px;
+    background: rgba(28,21,43,0.48);
+    z-index: 5;
+  }
+  .m1 { left: 58px; width: 4px; }
+  .m2 { left: 89px; width: 3px; }
+  .m3 { left: 308px; width: 5px; }
+  .m4 { left: 748px; width: 4px; }
+
+  .skyline {
+    left: 148px;
+    top: 178px;
+    width: 1092px;
+    height: 298px;
+    z-index: 2;
+    background:
+      radial-gradient(circle at 26% 74%, rgba(255,212,128,.95) 0 1.6px, transparent 2.4px),
+      radial-gradient(circle at 29% 73%, rgba(255,208,130,.9) 0 1.7px, transparent 2.5px),
+      radial-gradient(circle at 32% 72%, rgba(255,230,180,.95) 0 1.5px, transparent 2.4px),
+      radial-gradient(circle at 36% 71%, rgba(255,214,130,.95) 0 1.6px, transparent 2.5px),
+      radial-gradient(circle at 40% 70%, rgba(255,230,180,.92) 0 1.7px, transparent 2.5px),
+      radial-gradient(circle at 44% 69%, rgba(255,214,130,.95) 0 1.5px, transparent 2.4px),
+      radial-gradient(circle at 48% 68%, rgba(255,233,190,.94) 0 1.8px, transparent 2.6px),
+      radial-gradient(circle at 53% 67%, rgba(255,210,120,.95) 0 1.6px, transparent 2.5px),
+      radial-gradient(circle at 58% 66%, rgba(255,230,180,.95) 0 1.7px, transparent 2.5px),
+      radial-gradient(circle at 64% 65%, rgba(255,214,130,.95) 0 1.6px, transparent 2.5px),
+      radial-gradient(circle at 71% 63%, rgba(255,235,195,.98) 0 2.2px, transparent 3px),
+      radial-gradient(circle at 77% 55%, rgba(255,232,188,.98) 0 2px, transparent 2.8px),
+      radial-gradient(circle at 83% 60%, rgba(255,214,130,.95) 0 1.7px, transparent 2.5px),
+      radial-gradient(circle at 88% 50%, rgba(255,235,195,.98) 0 2px, transparent 2.8px),
+      linear-gradient(180deg, rgba(241,188,255,0.16) 0%, rgba(255,209,229,0.10) 44%, rgba(255,255,255,0) 68%);
+  }
+
+  .skyline .b {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(73,38,76,0.62) 0%, rgba(80,53,92,0.72) 45%, rgba(96,71,109,0.82) 100%);
+  }
+  .b1{left:12px;width:18px;height:25px;}
+  .b2{left:38px;width:16px;height:31px;}
+  .b3{left:62px;width:28px;height:44px;}
+  .b4{left:104px;width:18px;height:30px;}
+  .b5{left:132px;width:14px;height:25px;}
+  .b6{left:176px;width:15px;height:34px;}
+  .b7{left:212px;width:9px;height:117px;}
+  .b8{left:246px;width:22px;height:42px;}
+  .b9{left:287px;width:18px;height:58px;}
+  .b10{left:326px;width:22px;height:66px;}
+  .b11{left:364px;width:18px;height:48px;}
+  .b12{left:401px;width:33px;height:79px;}
+  .b13{left:453px;width:18px;height:53px;}
+  .b14{left:495px;width:25px;height:87px;}
+  .b15{left:543px;width:16px;height:65px;}
+  .b16{left:579px;width:37px;height:132px;}
+  .b17{left:636px;width:19px;height:72px;}
+  .b18{left:674px;width:18px;height:43px;}
+  .b19{left:709px;width:29px;height:58px;}
+  .b20{left:767px;width:14px;height:74px;}
+  .b21{left:806px;width:38px;height:156px;}
+  .b22{left:862px;width:18px;height:86px;}
+  .b23{left:900px;width:22px;height:51px;}
+  .b24{left:945px;width:15px;height:97px;}
+  .b25{left:981px;width:44px;height:120px;}
+  .b26{left:1044px;width:20px;height:76px;}
+
+  .ceiling {
+    left: 0;
+    top: 0;
+    width: 1303px;
+    height: 190px;
+    z-index: 9;
+    background:
+      linear-gradient(180deg, rgba(4,0,9,.96) 0%, rgba(7,0,14,.95) 42%, rgba(13,0,20,.78) 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 24%, 92% 23%, 82% 22%, 72% 21%, 63% 18%, 55% 14%, 47% 10%, 39% 7%, 30% 5%, 22% 5%, 13% 6%, 6% 8%, 0 12%);
+  }
+
+  .roof-glow {
+    left: 327px;
+    top: -15px;
+    width: 1015px;
+    height: 175px;
+    z-index: 8;
+    border-radius: 0 0 520px 520px / 0 0 120px 120px;
+    transform: rotate(6deg);
+    background: radial-gradient(ellipse at 45% 102%, rgba(193,134,255,.8) 0%, rgba(132,79,209,.56) 40%, rgba(46,10,68,0) 72%);
+    filter: blur(1px);
+  }
+
+  .big-two {
+    left: -47px;
+    top: 28px;
+    width: 505px;
+    height: 690px;
+    z-index: 10;
+    font-size: 920px;
+    line-height: 730px;
+    font-weight: 700;
+    letter-spacing: -18px;
+    color: rgba(255,255,255,0.20);
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+    pointer-events: none;
+  }
+
+  .floor {
+    left: 0;
+    top: 446px;
+    width: 1303px;
+    height: 260px;
+    z-index: 11;
+    background:
+      linear-gradient(180deg, rgba(165,156,226,0.26) 0%, rgba(125,108,198,0.30) 30%, rgba(87,74,157,0.38) 64%, rgba(45,37,93,0.55) 100%);
+  }
+
+  .floor::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 56% 2%, rgba(255,255,255,.18) 0%, rgba(244,216,255,.08) 24%, rgba(255,255,255,0) 50%),
+      linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+    filter: blur(1px);
+  }
+
+  .horizon-line {
+    left: 0;
+    top: 443px;
+    width: 1303px;
+    height: 2px;
+    z-index: 12;
+    background: rgba(23,8,36,0.58);
+  }
+
+  .people {
+    left: 555px;
+    top: 143px;
+    width: 735px;
+    height: 370px;
+    z-index: 20;
+  }
+
+  .person {
+    position: absolute;
+    bottom: 0;
+    background: rgba(17,2,24,0.88);
+    filter: blur(1px);
+    transform-origin: bottom center;
+    box-shadow: 0 0 18px rgba(52,8,80,0.38);
+  }
+  .person::before, .person::after {
+    content: "";
+    position: absolute;
+    background: rgba(17,2,24,0.92);
+  }
+
+  .p1 { left: 35px; width: 60px; height: 247px; border-radius: 40% 40% 18% 18% / 18% 18% 10% 10%; transform: skew(-4deg); }
+  .p1::before { left: 10px; top: -40px; width: 42px; height: 48px; border-radius: 50%; }
+  .p1::after { left: 27px; top: 55px; width: 11px; height: 145px; border-radius: 10px; }
+
+  .p2 { left: 148px; width: 54px; height: 255px; border-radius: 44% 44% 16% 16% / 22% 22% 10% 10%; transform: skew(4deg); }
+  .p2::before { left: 10px; top: -36px; width: 34px; height: 40px; border-radius: 50%; }
+  .p2::after { left: 22px; top: 16px; width: 8px; height: 175px; border-radius: 8px; }
+
+  .p3 { left: 228px; width: 48px; height: 206px; border-radius: 45% 45% 15% 15% / 20% 20% 10% 10%; transform: skew(-5deg); }
+  .p3::before { left: 8px; top: -33px; width: 31px; height: 35px; border-radius: 50%; }
+  .p3::after { left: 19px; top: 42px; width: 8px; height: 130px; border-radius: 8px; }
+
+  .p4 { left: 289px; width: 42px; height: 216px; border-radius: 44% 44% 15% 15% / 20% 20% 10% 10%; transform: skew(4deg); }
+  .p4::before { left: 8px; top: -30px; width: 28px; height: 32px; border-radius: 50%; }
+  .p4::after { left: 16px; top: 34px; width: 8px; height: 140px; border-radius: 8px; }
+
+  .p5 { left: 365px; width: 45px; height: 222px; border-radius: 45% 45% 15% 15% / 20% 20% 10% 10%; transform: skew(-5deg); }
+  .p5::before { left: 8px; top: -31px; width: 29px; height: 33px; border-radius: 50%; }
+  .p5::after { left: 18px; top: 34px; width: 8px; height: 152px; border-radius: 8px; }
+
+  .p6 { left: 458px; width: 42px; height: 190px; border-radius: 45% 45% 15% 15% / 20% 20% 10% 10%; transform: skew(2deg); }
+  .p6::before { left: 7px; top: -28px; width: 28px; height: 31px; border-radius: 50%; }
+  .p6::after { left: 17px; top: 28px; width: 8px; height: 124px; border-radius: 8px; }
+
+  .p7 { left: 564px; width: 64px; height: 291px; border-radius: 42% 42% 14% 14% / 20% 20% 10% 10%; transform: skew(6deg); }
+  .p7::before { left: 12px; top: -41px; width: 38px; height: 42px; border-radius: 50%; }
+  .p7::after { left: 27px; top: 20px; width: 10px; height: 206px; border-radius: 10px; }
+
+  .p8 { left: 693px; width: 49px; height: 198px; border-radius: 45% 45% 15% 15% / 20% 20% 10% 10%; transform: skew(-7deg); opacity: .9; }
+  .p8::before { left: 8px; top: -32px; width: 31px; height: 34px; border-radius: 50%; }
+  .p8::after { left: 20px; top: 28px; width: 8px; height: 136px; border-radius: 8px; }
+
+  .floor-reflection {
+    left: 560px;
+    top: 468px;
+    width: 725px;
+    height: 130px;
+    z-index: 18;
+    opacity: .26;
+    filter: blur(2px);
+    background:
+      radial-gradient(ellipse at 9% 0%, rgba(26,3,37,.85) 0%, rgba(26,3,37,0) 34%),
+      radial-gradient(ellipse at 22% 0%, rgba(26,3,37,.85) 0%, rgba(26,3,37,0) 32%),
+      radial-gradient(ellipse at 34% 0%, rgba(26,3,37,.85) 0%, rgba(26,3,37,0) 30%),
+      radial-gradient(ellipse at 45% 0%, rgba(26,3,37,.82) 0%, rgba(26,3,37,0) 30%),
+      radial-gradient(ellipse at 58% 0%, rgba(26,3,37,.82) 0%, rgba(26,3,37,0) 30%),
+      radial-gradient(ellipse at 74% 0%, rgba(26,3,37,.82) 0%, rgba(26,3,37,0) 28%),
+      radial-gradient(ellipse at 92% 0%, rgba(26,3,37,.76) 0%, rgba(26,3,37,0) 26%);
+  }
+
+  .chapter {
+    left: 595px;
+    top: 12px;
+    z-index: 30;
+    color: #f2f2f2;
+    font-size: 27px;
+    line-height: 30px;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .title {
+    left: 149px;
+    top: 35px;
+    z-index: 30;
+    color: #ffea00;
+    font-size: 127px;
+    line-height: 0.9;
+    font-weight: 700;
+    letter-spacing: -4px;
+    white-space: nowrap;
+  }
+
+  .subtitle {
+    left: 275px;
+    top: 144px;
+    z-index: 30;
+    color: #ffea00;
+    font-size: 38px;
+    line-height: 1.05;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .jump {
+    right: 24px;
+    top: 0;
+    width: 68px;
+    height: 46px;
+    border-radius: 0 0 14px 14px;
+    background: #8f8f95;
+    color: #fff;
+    z-index: 40;
+    text-align: center;
+    font-size: 9px;
+    line-height: 10px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    padding-top: 15px;
+  }
+
+  .bottom-strip {
+    left: 31px;
+    top: 726px;
+    width: 1303px;
+    height: 10px;
+    z-index: 35;
+    background: linear-gradient(90deg,
+      #f2df00 0%,
+      #f2df00 49%,
+      #ffbf39 55%,
+      #f548e8 69%,
+      #c554ff 79%,
+      #35cdfd 92%,
+      #24e2e4 100%);
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="canvas">
+      <div class="photo"></div>
+      <div class="skyline">
+        <div class="b b1"></div><div class="b b2"></div><div class="b b3"></div><div class="b b4"></div><div class="b b5"></div>
+        <div class="b b6"></div><div class="b b7"></div><div class="b b8"></div><div class="b b9"></div><div class="b b10"></div>
+        <div class="b b11"></div><div class="b b12"></div><div class="b b13"></div><div class="b b14"></div><div class="b b15"></div>
+        <div class="b b16"></div><div class="b b17"></div><div class="b b18"></div><div class="b b19"></div><div class="b b20"></div>
+        <div class="b b21"></div><div class="b b22"></div><div class="b b23"></div><div class="b b24"></div><div class="b b25"></div>
+        <div class="b b26"></div>
+      </div>
+
+      <div class="left-building"></div>
+      <div class="left-windows"></div>
+
+      <div class="mullion m1"></div>
+      <div class="mullion m2"></div>
+      <div class="mullion m3"></div>
+      <div class="mullion m4"></div>
+
+      <div class="roof-glow"></div>
+      <div class="ceiling"></div>
+
+      <div class="big-two">2</div>
+
+      <div class="horizon-line"></div>
+      <div class="floor"></div>
+      <div class="floor-reflection"></div>
+
+      <div class="people">
+        <div class="person p1"></div>
+        <div class="person p2"></div>
+        <div class="person p3"></div>
+        <div class="person p4"></div>
+        <div class="person p5"></div>
+        <div class="person p6"></div>
+        <div class="person p7"></div>
+        <div class="person p8"></div>
+      </div>
+
+      <div class="chapter">Chapter 2</div>
+      <div class="title">THE MACRO VIEW:</div>
+      <div class="subtitle">economic uncertainty and geopolitical risks</div>
+    </div>
+
+    <div class="jump">JUMP TO<br>CONTENTS</div>
+    <div class="bottom-strip"></div>
+  </div>
+</body>
+</html>

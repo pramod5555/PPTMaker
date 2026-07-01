@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger BCI Slide</title>
+<style>
+  body{margin:0;background:#ffffff;font-family:Arial, Helvetica, 'Segoe UI', sans-serif;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  #slide > div, #slide > svg{position:absolute;box-sizing:border-box;}
+  .leftbar{left:0;top:0;width:180px;height:720px;background:#373b41;z-index:5;}
+  .purple-line{left:179px;top:0;width:2px;height:720px;background:#7a56ad;z-index:6;}
+  .title{
+    left:220px;top:30px;width:1060px;
+    font-size:28px;line-height:1.08;font-weight:800;color:#222;z-index:30;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    left:220px;top:138px;width:520px;
+    font-size:27px;line-height:1.12;font-weight:300;color:#8f959d;z-index:30;
+  }
+  .left-title{
+    left:12px;top:32px;width:150px;
+    font-size:26px;line-height:1.06;font-weight:700;color:#f0f0f0;z-index:30;
+  }
+  .step-label{font-size:14px;line-height:1.08;font-weight:400;color:#6e747a;}
+  .step-num{font-size:29px;line-height:1;font-weight:700;color:#747980;}
+  .step-num.active{color:#8e67c3;}
+  .step-text.active{color:#8e67c3;font-weight:700;}
+  .right-panel{
+    left:887px;top:140px;width:448px;height:580px;background:#d6d6d8;z-index:20;
+  }
+  .right-text{
+    left:900px;top:151px;width:416px;
+    font-size:17px;line-height:1.14;font-weight:400;color:#2a2a2a;z-index:31;
+  }
+  .right-text b{font-weight:800;}
+  .source{
+    left:220px;top:753px;width:500px;
+    font-size:12px;line-height:1;font-weight:400;color:#4e4e4e;z-index:30;
+    transform:translateY(-33px);
+  }
+  .page{
+    left:9px;top:704px;width:30px;font-size:18px;line-height:1;font-weight:400;color:#f0f0f0;z-index:40;
+  }
+  .rb-logo-text{
+    left:1274px;top:706px;width:48px;
+    font-size:7px;line-height:1;font-weight:400;color:#4d4d4d;z-index:50;
+    transform:translate(-43px,-8px);
+    text-align:left;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="leftbar"></div>
+  <div class="purple-line"></div>
+  <div class="left-title">Technology &amp;<br>Innovation</div>
+
+  <svg width="1280" height="720" style="left:0;top:0;z-index:10;">
+    <defs>
+      <linearGradient id="hexgrey" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#9a9a9a"/>
+        <stop offset="100%" stop-color="#666"/>
+      </linearGradient>
+      <linearGradient id="hexpurple" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#c9b0ec"/>
+        <stop offset="100%" stop-color="#7a53ac"/>
+      </linearGradient>
+      <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="7"/>
+      </filter>
+    </defs>
+
+    <!-- left navigation -->
+    <polygon points="8,176 23,148 55,148 70,176 55,204 23,204" fill="none" stroke="#8d9094" stroke-width="4"/>
+    <polygon points="12,176 25,152 53,152 66,176 53,200 25,200" fill="url(#hexgrey)"/>
+    <g opacity="0.7">
+      <line x1="20" y1="165" x2="57" y2="186" stroke="#fff" stroke-width="1"/>
+      <line x1="19" y1="179" x2="58" y2="166" stroke="#fff" stroke-width="1"/>
+      <line x1="27" y1="156" x2="45" y2="191" stroke="#fff" stroke-width="1"/>
+      <circle cx="23" cy="164" r="2" fill="#fff"/>
+      <circle cx="35" cy="171" r="2" fill="#fff"/>
+      <circle cx="47" cy="184" r="2" fill="#fff"/>
+      <circle cx="54" cy="167" r="2" fill="#fff"/>
+      <circle cx="40" cy="188" r="2" fill="#fff"/>
+    </g>
+
+    <polygon points="8,310 23,282 55,282 70,310 55,338 23,338" fill="none" stroke="#8d9094" stroke-width="4"/>
+    <polygon points="12,310 25,286 53,286 66,310 53,334 25,334" fill="url(#hexgrey)"/>
+    <g opacity="0.7">
+      <circle cx="30" cy="309" r="2" fill="#fff"/>
+      <circle cx="37" cy="301" r="2" fill="#fff"/>
+      <circle cx="44" cy="316" r="2" fill="#fff"/>
+      <circle cx="50" cy="304" r="2" fill="#fff"/>
+      <line x1="30" y1="309" x2="37" y2="301" stroke="#fff" stroke-width="1"/>
+      <line x1="37" y1="301" x2="44" y2="316" stroke="#fff" stroke-width="1"/>
+      <line x1="44" y1="316" x2="50" y2="304" stroke="#fff" stroke-width="1"/>
+      <line x1="30" y1="309" x2="50" y2="304" stroke="#fff" stroke-width="1"/>
+    </g>
+
+    <polygon points="8,441 23,413 55,413 70,441 55,469 23,469" fill="#f0e8f7" stroke="#8b67bc" stroke-width="4"/>
+    <polygon points="12,441 25,417 53,417 66,441 53,465 25,465" fill="url(#hexpurple)" opacity="0.28"/>
+    <g>
+      <path d="M26 446 C30 438,38 436,42 442 C47 435,55 436,58 445" fill="none" stroke="#fff" stroke-width="3"/>
+      <path d="M26 446 L35 454" stroke="#fff" stroke-width="3"/>
+      <path d="M58 445 L49 454" stroke="#fff" stroke-width="3"/>
+      <rect x="35" y="442" width="14" height="10" rx="2" fill="#fff"/>
+    </g>
+
+    <!-- left bottom icon -->
+    <g transform="translate(70,668)" opacity="0.58">
+      <circle cx="17" cy="-20" r="3" fill="#8f949b"/>
+      <circle cx="42" cy="-22" r="8" fill="none" stroke="#8f949b" stroke-width="4"/>
+      <circle cx="17" cy="-20" r="18" fill="none" stroke="#8f949b" stroke-width="4"/>
+      <line x1="17" y1="-38" x2="17" y2="-47" stroke="#8f949b" stroke-width="3"/>
+      <line x1="17" y1="-2" x2="17" y2="7" stroke="#8f949b" stroke-width="3"/>
+      <line x1="-1" y1="-20" x2="-10" y2="-20" stroke="#8f949b" stroke-width="3"/>
+      <line x1="35" y1="-20" x2="44" y2="-20" stroke="#8f949b" stroke-width="3"/>
+      <line x1="4" y1="-33" x2="-3" y2="-40" stroke="#8f949b" stroke-width="3"/>
+      <line x1="30" y1="-7" x2="37" y2="0" stroke="#8f949b" stroke-width="3"/>
+      <line x1="4" y1="-7" x2="-3" y2="0" stroke="#8f949b" stroke-width="3"/>
+      <line x1="30" y1="-33" x2="37" y2="-40" stroke="#8f949b" stroke-width="3"/>
+      <path d="M42 -30 C53 -30,53 -12,42 -12" fill="none" stroke="#8f949b" stroke-width="4"/>
+      <path d="M26 -38 C22 -34,21 -30,21 -26 C21 -16,28 -14,28 -7" fill="none" stroke="#8f949b" stroke-width="4"/>
+      <path d="M24 -7 L31 -7" stroke="#8f949b" stroke-width="4"/>
+      <rect x="25" y="-7" width="8" height="10" fill="#8f949b"/>
+    </g>
+
+    <!-- background brain glow -->
+    <ellipse cx="392" cy="430" rx="195" ry="190" fill="#ffffff" opacity="0.18" filter="url(#softGlow)"/>
+
+    <!-- brain circuitry -->
+    <g opacity="0.18" transform="translate(215,242)">
+      <path d="M25 90
+               C10 55,25 20,60 12
+               C72 -4,108 -6,128 11
+               C158 -2,197 7,214 32
+               C253 36,281 69,278 112
+               C302 130,308 171,292 201
+               C300 239,278 271,242 276
+               C230 295,203 308,173 300
+               C150 318,118 317,94 301
+               C63 308,25 289,17 252
+               C-5 233,-8 193,8 168
+               C-10 141,-5 109,25 90 Z"
+            fill="none" stroke="#ffffff" stroke-width="3"/>
+      <path d="M129 12 L129 289" stroke="#ffffff" stroke-width="2"/>
+      <path d="M61 33 C81 47,74 73,96 85" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M88 50 C111 57,103 94,126 98" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M39 99 C65 109,67 134,88 143" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M47 151 C76 157,73 185,97 193" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M56 205 C83 214,85 241,107 253" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M88 255 C108 248,115 272,129 287" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M196 32 C174 45,180 71,159 82" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M169 49 C148 57,153 92,130 99" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M220 96 C194 109,189 133,168 143" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M211 149 C184 158,182 185,158 194" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M203 205 C175 214,171 239,149 250" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M168 254 C149 247,141 270,129 286" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M61 33 L196 32 M88 50 L169 49 M39 99 L220 96 M47 151 L211 149 M56 205 L203 205 M88 255 L168 254"
+            stroke="#ffffff" stroke-width="1.5"/>
+      <circle cx="129" cy="12" r="3" fill="#fff"/>
+      <circle cx="129" cy="289" r="3" fill="#fff"/>
+    </g>
+
+    <!-- digital digits -->
+    <g opacity="0.17" fill="#ffffff" font-family="Arial" font-size="18" font-weight="400">
+      <text x="424" y="326">1 0 0 0</text>
+      <text x="484" y="344">0 1 1</text>
+      <text x="536" y="309">1 1 0 1</text>
+      <text x="607" y="323">1 0 1</text>
+      <text x="665" y="347">0 1 1</text>
+      <text x="698" y="382">1 0 . 1 0 1 1</text>
+      <text x="687" y="412">1 0</text>
+      <text x="801" y="424">0 1 1</text>
+      <text x="742" y="456">1 0 . 1 0 1 1</text>
+      <text x="686" y="460">0 1 0 0</text>
+      <text x="796" y="334">1 0 0 0</text>
+      <text x="857" y="349">1 0 1</text>
+      <text x="772" y="389">1 0 1</text>
+      <text x="935" y="470">1 0 0</text>
+    </g>
+
+    <!-- monitor -->
+    <rect x="661" y="205" width="187" height="124" rx="8" fill="#5a3489"/>
+    <rect x="671" y="216" width="166" height="99" rx="3" fill="#f7f7f7"/>
+    <rect x="739" y="329" width="31" height="18" fill="#5a3489"/>
+    <rect x="712" y="347" width="87" height="14" fill="#5a3489"/>
+    <text x="688" y="288" font-family="Arial" font-size="48" font-style="italic" font-weight="700" fill="#1f1f1f">Tren ...</text>
+
+    <!-- wifi arcs -->
+    <path d="M541 392 C608 382,666 420,689 474" fill="none" stroke="#005b96" stroke-width="13" stroke-linecap="round"/>
+    <path d="M547 438 C597 430,637 458,654 495" fill="none" stroke="#005b96" stroke-width="13" stroke-linecap="round"/>
+    <path d="M551 483 C585 478,611 493,621 518" fill="none" stroke="#005b96" stroke-width="13" stroke-linecap="round"/>
+    <ellipse cx="519" cy="507" rx="18" ry="7" fill="#005b96"/>
+    <ellipse cx="519" cy="489" rx="11" ry="4" fill="#005b96"/>
+
+    <!-- arrow -->
+    <path d="M780 437
+             C772 498,722 553,646 599
+             L686 599
+             L654 559
+             C710 528,755 489,780 437 Z"
+          fill="#5b328b"/>
+
+    <!-- head silhouette -->
+    <g transform="translate(440,504)">
+      <path d="M36 62
+               C36 21,68 -4,104 -4
+               C140 -4,172 22,172 59
+               C172 80,169 99,180 113
+               C187 122,188 134,185 145
+               C181 160,169 172,152 176
+               L116 176
+               L116 207
+               L36 207
+               Z"
+            fill="#90959d"/>
+      <rect x="95" y="134" width="35" height="43" fill="#90959d"/>
+      <path d="M72 42
+               C79 33,91 31,101 37
+               C112 24,130 24,140 35
+               C154 35,165 46,164 59
+               C175 66,179 81,173 93
+               C179 105,175 120,162 127
+               C160 140,147 149,134 147
+               C124 155,109 154,101 145
+               C87 145,74 134,72 121
+               C58 114,51 100,55 88
+               C48 76,52 62,63 56
+               C63 49,66 45,72 42 Z"
+            fill="#f2f2f2"/>
+      <path d="M91 58
+               C96 67,100 78,97 88
+               M97 88
+               C87 93,82 101,82 111
+               M97 88
+               C109 88,118 93,123 102
+               M123 102
+               C129 94,139 88,149 88
+               M123 102
+               C121 112,121 120,126 128
+               M97 88
+               C94 78,84 71,75 69
+               M123 102
+               C132 107,141 113,149 113"
+            fill="none" stroke="#90959d" stroke-width="5" stroke-linecap="round"/>
+    </g>
+
+    <!-- thought cloud -->
+    <g transform="translate(208,478)">
+      <circle cx="49" cy="60" r="22" fill="#90959d"/>
+      <circle cx="79" cy="50" r="26" fill="#90959d"/>
+      <circle cx="111" cy="54" r="26" fill="#90959d"/>
+      <circle cx="137" cy="63" r="24" fill="#90959d"/>
+      <circle cx="23" cy="77" r="22" fill="#90959d"/>
+      <circle cx="57" cy="83" r="26" fill="#90959d"/>
+      <circle cx="91" cy="83" r="29" fill="#90959d"/>
+      <circle cx="128" cy="83" r="22" fill="#90959d"/>
+      <rect x="22" y="51" width="110" height="54" fill="#90959d"/>
+      <text x="70" y="79" text-anchor="middle" font-family="Arial" font-size="49" font-style="italic" font-weight="700" fill="#1b1b1b">Trend</text>
+      <circle cx="171" cy="70" r="12" fill="#90959d"/>
+      <circle cx="196" cy="66" r="9" fill="#90959d"/>
+    </g>
+
+    <!-- dotted connectors -->
+    <line x1="462" y1="336" x2="497" y2="503" stroke="#005b96" stroke-width="2" stroke-dasharray="2,4"/>
+    <line x1="490" y1="404" x2="503" y2="503" stroke="#005b96" stroke-width="2" stroke-dasharray="2,4"/>
+
+    <!-- logo mark -->
+    <g transform="translate(1313,708)">
+      <path d="M-6 -3
+               C4 -7,15 -2,16 10
+               C17 20,11 30,1 31
+               L1 0
+               C6 0,9 -3,9 -8
+               C9 -14,4 -18,-3 -16
+               Z"
+            fill="#8f949c"/>
+      <rect x="-20" y="-18" width="8" height="49" fill="#8f949c"/>
+    </g>
+  </svg>
+
+  <div class="title">Brain-computer-interfaces could revolutionize human-machine interaction –<br>Controlling devices and machines with thoughts is already possible</div>
+  <div class="subtitle">Schematic brain-computer-interface</div>
+
+  <div style="left:93px;top:145px;width:20px;" class="step-num">1</div>
+  <div style="left:93px;top:177px;width:56px;" class="step-label">Value of<br>Innovation</div>
+
+  <div style="left:93px;top:280px;width:20px;" class="step-num">2</div>
+  <div style="left:93px;top:311px;width:70px;" class="step-label">Frontier<br>Technologies</div>
+
+  <div style="left:93px;top:414px;width:20px;" class="step-num active">3</div>
+  <div style="left:93px;top:444px;width:78px;" class="step-label step-text active">Humans &amp;<br>Machines</div>
+
+  <div style="left:307px;top:216px;width:342px;font-size:18px;line-height:1.1;font-weight:400;color:#524088;text-align:center;z-index:32;">
+    Transforming neural activity into a probability<br>
+    time series describing the likelihood of each<br>
+    character/cursor/wheelchair/prosthesis<br>
+    movement depending on use case
+  </div>
+
+  <div style="left:430px;top:341px;width:116px;font-size:18px;line-height:1.08;font-weight:400;color:#005b96;text-align:center;z-index:32;">
+    Options<br><b style="font-weight:800;">Non-invasive</b><br>recording electrode
+  </div>
+
+  <div style="left:431px;top:423px;width:111px;font-size:17px;line-height:1.08;font-weight:400;color:#005b96;text-align:center;z-index:32;">
+    <b style="font-weight:800;">Invasive</b><br>recording electrode
+  </div>
+
+  <div style="left:721px;top:582px;width:170px;font-size:17px;line-height:1.06;font-weight:400;color:#5a3489;z-index:32;">
+    Auditory, visual or<br>haptic feedback
+  </div>
+
+  <div class="right-panel"></div>
+  <div class="right-text">
+    &gt; Machines are increasingly complementing humans.<br>
+    Up to now, these interactions are mostly<br>
+    characterized by so-called <b>"Human-Machine-<br>
+    Interfaces" (HMI).</b> An example for HMI are robots<br>
+    in factories that help automate production and are<br>
+    commanded by humans<br><br>
+
+    &gt; As technology progresses, a novel <b>"brain-<br>
+    computer-interface" (BCI)</b> emerges. Taking<br>
+    advantage of <b>electromagnetic flows (neural<br>
+    activities)</b> in the brain, AI and probabilistic models<br>
+    can be used to <b>transform thoughts into actions</b><br><br>
+
+    &gt; For instance, <b>thinking of writing a word,</b> neural<br>
+    activities can be collected and processed in such a<br>
+    way that the <b>computer knows which word to write.</b><br>
+    A team of Meta Platforms/Facebook AI experts and<br>
+    engineers aims to deploy an interface able to type<br>
+    100 words per minute merely by thought – an<br>
+    output far higher than an average typist<br><br>
+
+    &gt; Car manufacturers such as Nissan are also working<br>
+    on BCI technology. Their aim is to <b>steer cars with<br>
+    thoughts – i.e. brain-to-vehicle technology (B2V).</b><br>
+    Connecting the car directly to the brain reduces<br>
+    reaction time significantly, as muscle activation is<br>
+    omitted, reducing emergency braking by around 0.4<br>
+    to 1 second – long enough to avoid accidents<br>
+    altogether
+  </div>
+
+  <div class="source">Sources: Fraunhofer INT; Roth Institut; Nature; Roland Berger</div>
+  <div class="page">67</div>
+  <div class="rb-logo-text">Roland<br>Berger</div>
+</div>
+</body>
+</html>

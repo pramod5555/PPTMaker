@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body { margin:0; background:#c9ced5; font-family: Arial, Helvetica, "Segoe UI", sans-serif; }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #efefef;
+  }
+  .slide > div, .slide > svg { position:absolute; box-sizing:border-box; }
+
+  .hero {
+    left:0; top:0; width:1280px; height:170px;
+    background:
+      linear-gradient(rgba(8,23,37,0.10), rgba(8,23,37,0.10)),
+      linear-gradient(180deg,#4e86a9 0%, #6f8ea2 24%, #8f8b8b 60%, #8d847d 100%);
+  }
+  .sky-band { left:0; top:76px; width:1280px; height:2px; background:rgba(53,74,89,.65); }
+  .runway {
+    left:0; top:79px; width:1280px; height:91px;
+    background:
+      linear-gradient(180deg, rgba(121,125,132,0.82) 0%, rgba(146,141,136,0.85) 55%, rgba(140,135,131,0.9) 100%);
+  }
+
+  .plane-body {
+    left:560px; top:-4px; width:490px; height:70px;
+    background: linear-gradient(180deg,#a0b0be 0%, #d3dbe0 52%, #8c9dad 100%);
+    clip-path: polygon(7% 0%, 96% 0%, 100% 34%, 93% 93%, 10% 93%, 0% 34%);
+    border-radius: 0 0 50px 50px / 0 0 24px 24px;
+    opacity:.97;
+    z-index:8;
+  }
+  .wing-left {
+    left:337px; top:-2px; width:331px; height:58px;
+    background: linear-gradient(180deg,#618093 0%, #8ea7b6 100%);
+    clip-path: polygon(0 48%, 100% 0, 89% 100%, 11% 85%);
+    z-index:7;
+  }
+  .wing-right {
+    left:644px; top:-2px; width:352px; height:58px;
+    background: linear-gradient(180deg,#618093 0%, #8ea7b6 100%);
+    clip-path: polygon(12% 0, 100% 45%, 89% 86%, 0 100%);
+    z-index:7;
+  }
+
+  .engine { border-radius:50%; z-index:10; }
+  .engine .outer {
+    position:absolute; inset:0; border-radius:50%;
+    background: radial-gradient(circle at 50% 48%, #1c232b 0%, #06080a 38%, #687688 67%, #313e49 100%);
+  }
+  .engine .inner {
+    position:absolute; left:50%; top:50%; width:21px; height:21px; margin-left:-10.5px; margin-top:-10.5px;
+    border-radius:50%;
+    background: radial-gradient(circle,#f1bf80 0%, #9a6d58 38%, #1e2228 72%);
+  }
+  .engine.e1 { left:96px; top:-8px; width:62px; height:62px; }
+  .engine.e2 { left:207px; top:-14px; width:73px; height:73px; }
+  .engine.e3 { left:967px; top:-9px; width:66px; height:66px; }
+  .engine.e4 { left:1078px; top:-15px; width:75px; height:75px; }
+
+  .landing-strut { left:605px; top:0; width:70px; height:124px; z-index:12; }
+  .landing-strut svg { width:100%; height:100%; display:block; }
+
+  .wheel-col { left:606px; top:63px; width:63px; height:84px; z-index:13; }
+  .wheel {
+    position:absolute; top:0; width:21px; height:84px; border-radius:11px;
+    background: linear-gradient(180deg,#090b0c 0%, #2a2a2d 45%, #0d0e10 100%);
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.05);
+  }
+  .wheel.w1 { left:0; }
+  .wheel.w2 { left:21px; }
+  .wheel.w3 { left:42px; }
+
+  .yellow-line-v { left:632px; top:112px; width:7px; height:58px; background:#efbb3e; z-index:3; }
+  .yellow-line-h { left:556px; top:151px; width:89px; height:8px; background:#efbb3e; z-index:3; }
+
+  .chock1, .chock2 {
+    background:#9a6f3b; z-index:14;
+    clip-path: polygon(0 100%, 24% 0, 100% 0, 100% 100%);
+  }
+  .chock1 { left:598px; top:146px; width:18px; height:12px; }
+  .chock2 { left:667px; top:146px; width:19px; height:12px; transform:scaleX(-1); }
+
+  .worker { z-index:15; filter: blur(1.1px); }
+  .worker .torso { position:absolute; background:#ff6325; border-radius:10px; box-shadow: inset 0 -8px 0 rgba(255,255,255,.08); }
+  .worker .leg { position:absolute; background:#14223b; border-radius:8px; }
+  .worker .boot { position:absolute; background:#d6ef57; border-radius:2px; }
+  .worker .head { position:absolute; width:14px; height:14px; border-radius:50%; background:#17212c; }
+
+  .worker.wl { left:744px; top:11px; width:124px; height:155px; transform: rotate(8deg); }
+  .worker.wl .head { left:44px; top:24px; }
+  .worker.wl .torso { left:26px; top:30px; width:62px; height:64px; transform: skewX(8deg); }
+  .worker.wl .leg.l1 { left:43px; top:90px; width:21px; height:52px; transform: rotate(6deg); }
+  .worker.wl .leg.l2 { left:67px; top:91px; width:21px; height:55px; transform: rotate(-5deg); }
+  .worker.wl .boot.b1 { left:39px; top:142px; width:28px; height:12px; }
+  .worker.wl .boot.b2 { left:66px; top:145px; width:28px; height:12px; transform:rotate(4deg); }
+
+  .worker.wr { left:900px; top:18px; width:112px; height:146px; transform: rotate(12deg); }
+  .worker.wr .head { left:44px; top:15px; }
+  .worker.wr .torso { left:24px; top:22px; width:59px; height:60px; transform: skewX(-10deg); }
+  .worker.wr .leg.l1 { left:35px; top:78px; width:21px; height:52px; transform: rotate(6deg); }
+  .worker.wr .leg.l2 { left:59px; top:77px; width:21px; height:52px; transform: rotate(-2deg); }
+  .worker.wr .boot.b1 { left:30px; top:126px; width:25px; height:11px; }
+  .worker.wr .boot.b2 { left:59px; top:123px; width:25px; height:11px; }
+
+  .title-box {
+    left:47px; top:44px; width:728px; height:34px;
+    background: rgba(144,148,151,.42);
+    z-index:20;
+  }
+  .title {
+    left:56px; top:49px; width:520px;
+    color:#ffffff; font-size:16px; font-weight:400; line-height:20px;
+    z-index:21;
+  }
+  .title-rule {
+    left:57px; top:76px; width:950px; height:1px;
+    background: rgba(255,255,255,.52);
+    z-index:21;
+  }
+
+  .navcircle {
+    width:35px; height:35px; border-radius:50%;
+    background: rgba(219,222,228,.92);
+    z-index:22;
+  }
+  .navcircle.left { left:1124px; top:33px; }
+  .navcircle.right { left:1169px; top:33px; }
+  .navcircle:before {
+    content:"";
+    position:absolute; top:10px; width:0; height:0;
+    border-top:8px solid transparent; border-bottom:8px solid transparent;
+  }
+  .navcircle.left:before { left:11px; border-right:11px solid #60626a; }
+  .navcircle.right:before { left:14px; border-left:11px solid #60626a; }
+
+  .content-bg { left:0; top:170px; width:1280px; height:550px; background:#efefef; }
+
+  .left-col { left:56px; top:196px; width:505px; color:#4a4a4a; z-index:25; }
+  .right-col { left:631px; top:196px; width:572px; color:#4a4a4a; z-index:25; }
+
+  .h1 { font-size:18px; font-weight:700; line-height:22px; color:#33353d; }
+  .p, .numitem, .bullet {
+    font-size:14px; font-weight:400; line-height:20px; color:#4f4f56;
+  }
+  .numitem b, .bold { font-weight:700; color:#33353d; }
+  .bullet { line-height:20px; }
+  .sq {
+    display:inline-block; width:14px; color:#33353d; font-size:13px; vertical-align:top;
+  }
+
+  .contact-box {
+    left:630px; top:523px; width:650px; height:104px;
+    border:1px solid #d2d2d2; background:#f3f3f3; z-index:24;
+  }
+  .contact-head {
+    left:630px; top:523px; width:650px; height:35px;
+    background:#ffe100; z-index:25;
+    border:1px solid #d2d2d2; border-bottom:none;
+  }
+  .contact-head-text {
+    left:645px; top:532px; width:390px;
+    font-size:14px; font-weight:700; line-height:16px; color:#33353d; z-index:26;
+  }
+  .contact-line1, .contact-line2 {
+    font-size:14px; line-height:18px; color:#595959; z-index:26;
+  }
+  .contact-line1 { left:645px; top:571px; width:585px; }
+  .contact-line2 { left:645px; top:595px; width:585px; }
+  .contact-name { font-weight:700; color:#33353d; }
+  .contact-mail { color:#2b6dad; text-decoration: underline; font-weight:700; }
+
+  .footer-left {
+    left:56px; top:706px; width:180px;
+    color:#7d7d7d; font-size:10px; line-height:12px; font-weight:600; z-index:30;
+  }
+
+  .back-circle {
+    left:986px; top:679px; width:33px; height:33px; border-radius:50%;
+    background:#b7b7bf; z-index:30;
+  }
+  .back-circle:before {
+    content:"";
+    position:absolute; left:10px; top:9px; width:0; height:0;
+    border-top:7px solid transparent; border-bottom:7px solid transparent; border-right:9px solid #4d4f59;
+  }
+  .back-text {
+    left:1025px; top:695px; width:115px;
+    color:#4d4f59; font-size:10px; font-weight:700; line-height:12px; z-index:30;
+  }
+  .back-rule {
+    left:1110px; top:709px; width:66px; height:1px; background:#bebfc5; z-index:30;
+  }
+
+  .side-nav { left:1191px; top:120px; width:89px; z-index:40; }
+  .side-item {
+    left:0; width:89px; height:36px;
+    background:#2b2b39; color:#fff; font-size:12px; line-height:13px;
+    padding:8px 7px 0 7px; border-left:2px solid #f0dc00;
+  }
+  .side-item.gray { background:#8a8e99; color:#f3f3f3; }
+  .side-item.s1 { top:0; }
+  .side-item.s2 { top:50px; }
+  .side-item.s3 { top:100px; }
+  .side-item.s4 { top:150px; }
+  .side-item.s5 { top:200px; }
+  .side-item.s6 { top:250px; }
+
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="hero"></div>
+  <div class="sky-band"></div>
+  <div class="runway"></div>
+
+  <div class="wing-left"></div>
+  <div class="wing-right"></div>
+  <div class="plane-body"></div>
+
+  <div class="engine e1"><div class="outer"></div><div class="inner"></div></div>
+  <div class="engine e2"><div class="outer"></div><div class="inner"></div></div>
+  <div class="engine e3"><div class="outer"></div><div class="inner"></div></div>
+  <div class="engine e4"><div class="outer"></div><div class="inner"></div></div>
+
+  <div class="landing-strut">
+    <svg viewBox="0 0 70 124" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="27,0 42,0 44,18 25,18" fill="#d5a361"/>
+      <polygon points="23,18 46,18 41,57 27,57" fill="#cfa066"/>
+      <polygon points="28,57 40,57 45,84 24,84" fill="#9b6b37"/>
+      <rect x="23" y="83" width="22" height="7" fill="#514237"/>
+      <polygon points="25,90 43,90 39,118 29,118" fill="#bd8a47"/>
+      <circle cx="35" cy="31" r="5" fill="#3e3d3d"/>
+      <circle cx="35" cy="67" r="4" fill="#3e3d3d"/>
+      <line x1="25" y1="25" x2="44" y2="25" stroke="#70522b" stroke-width="2"/>
+      <line x1="25" y1="49" x2="43" y2="49" stroke="#70522b" stroke-width="2"/>
+      <line x1="26" y1="102" x2="41" y2="102" stroke="#70522b" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="wheel-col">
+    <div class="wheel w1"></div>
+    <div class="wheel w2"></div>
+    <div class="wheel w3"></div>
+  </div>
+
+  <div class="worker wl">
+    <div class="head"></div><div class="torso"></div><div class="leg l1"></div><div class="leg l2"></div><div class="boot b1"></div><div class="boot b2"></div>
+  </div>
+  <div class="worker wr">
+    <div class="head"></div><div class="torso"></div><div class="leg l1"></div><div class="leg l2"></div><div class="boot b1"></div><div class="boot b2"></div>
+  </div>
+
+  <div class="yellow-line-v"></div>
+  <div class="yellow-line-h"></div>
+  <div class="chock1"></div>
+  <div class="chock2"></div>
+
+  <div class="title-box"></div>
+  <div class="title">Insights: Europe, Middle East, India and Africa</div>
+  <div class="title-rule"></div>
+
+  <div class="navcircle left"></div>
+  <div class="navcircle right"></div>
+
+  <div class="content-bg"></div>
+
+  <div class="left-col">
+    <div class="h1" style="left:0; top:0; width:510px; position:absolute;">
+      More facilitation measures announced for AEOs in the<br/>recent budget
+    </div>
+    <div class="p" style="left:0; top:43px; width:506px; position:absolute;">
+      CBIC has announced far-reaching automation-led facilitation measures for AEO-<br/>
+      accredited companies in the recent budget.
+    </div>
+
+    <div class="numitem" style="left:0; top:84px; width:516px; position:absolute;">
+      1. <b>Automatic goods registration for imports</b><br/>
+      &nbsp;&nbsp;&nbsp;Under the new framework, AEO-T2 and AEO-T3 importers will receive<br/>
+      &nbsp;&nbsp;&nbsp;automatic goods registration upon cargo arrival, eliminating manual<br/>
+      &nbsp;&nbsp;&nbsp;intervention and reducing dwell time.
+    </div>
+
+    <div class="numitem" style="left:0; top:157px; width:510px; position:absolute;">
+      2. <b>Auto Out of Charge (OOC)</b><br/>
+      &nbsp;&nbsp;&nbsp;The Auto OOC facility for AEO-T2/T3 has been strengthened, ensuring swift<br/>
+      &nbsp;&nbsp;&nbsp;release when no compliance issues exist.
+    </div>
+
+    <div class="numitem" style="left:0; top:216px; width:510px; position:absolute;">
+      3. <b>Enhanced export facilitation</b><br/>
+      &nbsp;&nbsp;&nbsp;Exporters will benefit from online goods registration and auto LEO for<br/>
+      &nbsp;&nbsp;&nbsp;facilitated shipping bills, reinforcing risk based clearance.
+    </div>
+
+    <div class="numitem" style="left:0; top:274px; width:520px; position:absolute;">
+      4. <b>Extended deferred duty payment window</b><br/>
+      &nbsp;&nbsp;&nbsp;The deferred duty payment period has been extended from 15 days to up to<br/>
+      &nbsp;&nbsp;&nbsp;one month for eligible AEO T2 and AEO T3 entities, significantly improving<br/>
+      &nbsp;&nbsp;&nbsp;working capital efficiency.
+    </div>
+  </div>
+
+  <div class="right-col">
+    <div class="h1" style="left:0; top:0; width:540px; position:absolute;">
+      AEO status – a hallmark of supply chain credibility
+    </div>
+    <div class="p" style="left:0; top:26px; width:544px; position:absolute;">
+      With CBIC’s accelerated digitalization and automation agenda, AEO entities<br/>
+      benefit from:
+    </div>
+
+    <div class="bullet" style="left:0; top:70px; width:450px; position:absolute;"><span class="sq">▪</span> Reduced Customs intervention</div>
+    <div class="bullet" style="left:0; top:98px; width:450px; position:absolute;"><span class="sq">▪</span> Priority risk based processing</div>
+    <div class="bullet" style="left:0; top:126px; width:450px; position:absolute;"><span class="sq">▪</span> Faster clearance across ports</div>
+    <div class="bullet" style="left:0; top:154px; width:450px; position:absolute;"><span class="sq">▪</span> Predictable logistics timelines</div>
+    <div class="bullet" style="left:0; top:182px; width:450px; position:absolute;"><span class="sq">▪</span> Lower detention and demurrage costs</div>
+    <div class="bullet" style="left:0; top:210px; width:470px; position:absolute;"><span class="sq">▪</span> Enhanced global supply chain recognition</div>
+
+    <div class="p" style="left:0; top:248px; width:520px; position:absolute;">
+      In light of the significant facilitation measures and financial benefits available<br/>
+      under the AEO program, including the enhanced deferred duty payment facility,<br/>
+      entities that are not currently AEO accredited may consider <span class="bold">undertaking a<br/>
+      detailed assessment of the program’s relevance and potential impact</span> on their<br/>
+      operations to determine the commercial and compliance value of AEO status. <span style="color:#b7b7b7;">■</span>
+    </div>
+  </div>
+
+  <div class="contact-box"></div>
+  <div class="contact-head"></div>
+  <div class="contact-head-text">For additional information, please contact:</div>
+  <div class="contact-line1">
+    <span class="contact-name">Shreeni Pillai</span> &nbsp;|&nbsp; + 91 992 009 2360 &nbsp;|&nbsp; <span class="contact-mail">shreeni.pillai@in.ey.com</span>
+  </div>
+  <div class="contact-line2">
+    <span class="contact-name">Suresh Nair</span> &nbsp;&nbsp;|&nbsp; +91 989 275 7475 &nbsp;|&nbsp; <span class="contact-mail">suresh.nair@in.ey.com</span>
+  </div>
+
+  <div class="side-nav">
+    <div class="side-item gray s1">Contents</div>
+    <div class="side-item gray s2">Insights</div>
+    <div class="side-item s3">New on<br/>ey.com</div>
+    <div class="side-item s4">Tax alerts</div>
+    <div class="side-item gray s5">Additional<br/>resources</div>
+    <div class="side-item gray s6">Contacts</div>
+  </div>
+
+  <div class="footer-left">32&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+
+  <div class="back-circle"></div>
+  <div class="back-text">Back to Welcome</div>
+  <div class="back-rule"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>China exports slide replica</title>
+<style>
+  body {
+    margin: 0;
+    background: #f0edf2;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f0edf2;
+    color: #111;
+  }
+
+  /* Top tabs */
+  .tabs {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 25px;
+    background: #efefef;
+    border-bottom: 1px solid #d8d8d8;
+    font-size: 11px;
+    line-height: 25px;
+    color: #7f7f7f;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .tab {
+    position: absolute;
+    top: 0;
+    height: 25px;
+    text-align: center;
+  }
+  .tab.active {
+    background: #5c168d;
+    color: #fff;
+  }
+  .tab.underlined {
+    color: #4b1b7f;
+    border-bottom: 2px solid #6d1eb4;
+    box-sizing: border-box;
+  }
+
+  /* Headlines */
+  .title {
+    position: absolute;
+    left: 43px;
+    top: 58px;
+    width: 1168px;
+    font-size: 28px;
+    line-height: 27px;
+    font-weight: 700;
+    color: #0b0b0b;
+    letter-spacing: -0.2px;
+  }
+  .subtitle {
+    position: absolute;
+    left: 43px;
+    top: 122px;
+    width: 640px;
+    font-size: 26px;
+    line-height: 28px;
+    font-weight: 700;
+    color: #8f19ff;
+  }
+
+  /* Section headings */
+  .section-title {
+    position: absolute;
+    font-size: 17px;
+    line-height: 19px;
+    font-weight: 700;
+    color: #111;
+  }
+  .section-rule {
+    position: absolute;
+    height: 2px;
+    background: #555;
+  }
+  .section-sub {
+    position: absolute;
+    font-size: 13px;
+    line-height: 15px;
+    color: #9d9d9d;
+  }
+
+  /* Left chart */
+  .left-chart {
+    position: absolute;
+    left: 46px;
+    top: 242px;
+    width: 500px;
+    height: 390px;
+  }
+  .axis-y {
+    position: absolute;
+    left: 34px;
+    top: 0;
+    width: 1px;
+    height: 390px;
+    background: #4e4e4e;
+  }
+  .axis-x {
+    position: absolute;
+    left: 34px;
+    top: 195px;
+    width: 469px;
+    height: 1px;
+    background: #4e4e4e;
+  }
+  .tick-label {
+    position: absolute;
+    left: 0;
+    width: 24px;
+    font-size: 14px;
+    line-height: 14px;
+    color: #222;
+    text-align: right;
+  }
+  .year-label {
+    position: absolute;
+    font-size: 14px;
+    color: #222;
+  }
+  .x-tick {
+    position: absolute;
+    width: 1px;
+    height: 6px;
+    background: #4e4e4e;
+    top: 195px;
+  }
+  .legend-line {
+    position: absolute;
+    width: 22px;
+    height: 2px;
+  }
+  .legend-text {
+    position: absolute;
+    font-size: 15px;
+    color: #333;
+    line-height: 15px;
+  }
+  svg {
+    position: absolute;
+    overflow: visible;
+  }
+
+  /* Right chart */
+  .right-chart {
+    position: absolute;
+    left: 646px;
+    top: 246px;
+    width: 534px;
+    height: 386px;
+  }
+  .right-axis-y {
+    position: absolute;
+    left: 103px;
+    top: 0;
+    width: 1px;
+    height: 386px;
+    background: #4e4e4e;
+  }
+  .right-axis-x {
+    position: absolute;
+    left: 103px;
+    top: 386px;
+    width: 430px;
+    height: 1px;
+    background: #4e4e4e;
+  }
+  .country {
+    position: absolute;
+    left: 0;
+    width: 94px;
+    font-size: 15px;
+    line-height: 15px;
+    color: #222;
+  }
+  .bar-row {
+    position: absolute;
+    left: 104px;
+    height: 15px;
+    white-space: nowrap;
+  }
+  .seg {
+    display: inline-block;
+    height: 15px;
+    vertical-align: top;
+  }
+  .xnum {
+    position: absolute;
+    top: 392px;
+    font-size: 14px;
+    color: #222;
+    transform: translateX(-50%);
+  }
+  .xtick {
+    position: absolute;
+    top: 386px;
+    width: 1px;
+    height: 6px;
+    background: #4e4e4e;
+  }
+
+  /* Legend */
+  .legend {
+    position: absolute;
+    left: 927px;
+    top: 375px;
+    width: 285px;
+  }
+  .legend-item {
+    position: relative;
+    height: 25px;
+    font-size: 15px;
+    line-height: 20px;
+    color: #2b2b2b;
+  }
+  .swatch {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 22px;
+    height: 16px;
+  }
+  .legend-item span {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    white-space: nowrap;
+  }
+
+  /* Footer */
+  .notes {
+    position: absolute;
+    left: 73px;
+    top: 684px;
+    width: 875px;
+    font-size: 11px;
+    line-height: 15px;
+    color: #808080;
+  }
+  .footer-right {
+    position: absolute;
+    right: 34px;
+    top: 731px;
+  }
+  .copyright {
+    position: absolute;
+    left: 1014px;
+    top: 731px;
+  }
+  .copy {
+    position: absolute;
+    left: 949px;
+    top: 731px;
+  }
+  .copyright-text {
+    position: absolute;
+    left: 949px;
+    top: 731px;
+  }
+  .footer {
+    position: absolute;
+    left: 949px;
+    top: 731px;
+  }
+
+  .page {
+    position: absolute;
+    left: 1220px;
+    top: 729px;
+    font-size: 11px;
+    color: #666;
+  }
+  .copyright-line {
+    position: absolute;
+    left: 949px;
+    top: 728px;
+    font-size: 11px;
+    color: #666;
+    white-space: nowrap;
+  }
+  .accent-mark {
+    position: absolute;
+    left: 37px;
+    top: 718px;
+    font-size: 34px;
+    line-height: 22px;
+    color: #8f19ff;
+    font-weight: 700;
+    transform: scaleX(1.2);
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <div class="tabs">
+    <div class="tab active" style="left:0px;width:105px;">Top 10 trends</div>
+    <div class="tab" style="left:105px;width:130px;">Multi-speed growth</div>
+    <div class="tab" style="left:235px;width:110px;">Tariff impacts</div>
+    <div class="tab" style="left:345px;width:128px;">Financial fragility</div>
+    <div class="tab" style="left:473px;width:110px;">Affordability</div>
+    <div class="tab" style="left:583px;width:125px;">AI productivity</div>
+    <div class="tab underlined" style="left:708px;width:131px;">China exports</div>
+    <div class="tab" style="left:839px;width:130px;">Europe struggle</div>
+    <div class="tab" style="left:969px;width:113px;">AI arms race</div>
+    <div class="tab" style="left:1082px;width:114px;">Power crunch</div>
+    <div class="tab" style="left:1196px;width:84px;">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">
+    China’s push into higher-tech exports and dumping of tariff-affected goods is intensifying<br>
+    pressure on Western manufacturers and compressing margins for APAC competitors
+  </div>
+  <div class="subtitle">6. China doubles down on export-driven growth</div>
+
+  <div class="section-title" style="left:47px;top:169px;">China total and high tech<sup>1</sup> merchandise exports</div>
+  <div class="section-rule" style="left:46px;top:193px;width:515px;"></div>
+  <div class="section-sub" style="left:48px;top:202px;">Percent change, year-over-year</div>
+
+  <div class="section-title" style="left:646px;top:173px;">Countries and exports at risk from Chinese export competition</div>
+  <div class="section-rule" style="left:646px;top:193px;width:533px;"></div>
+  <div class="section-sub" style="left:646px;top:201px;">Exports of each county (percent of GDP)</div>
+
+  <div class="left-chart">
+    <div class="axis-y"></div>
+    <div class="axis-x"></div>
+
+    <div class="tick-label" style="top:-7px;">20</div>
+    <div class="tick-label" style="top:41px;">15</div>
+    <div class="tick-label" style="top:90px;">10</div>
+    <div class="tick-label" style="top:138px;">5</div>
+    <div class="tick-label" style="top:187px;">0</div>
+    <div class="tick-label" style="top:235px;">-5</div>
+    <div class="tick-label" style="top:284px;">-10</div>
+    <div class="tick-label" style="top:333px;">-15</div>
+    <div class="tick-label" style="top:381px;">-20</div>
+
+    <div class="legend-line" style="left:152px;top:32px;background:#a9a9a9;"></div>
+    <div class="legend-text" style="left:180px;top:22px;">Overall</div>
+    <div class="legend-line" style="left:152px;top:57px;background:#7414d4;"></div>
+    <div class="legend-text" style="left:180px;top:47px;">High tech</div>
+
+    <div class="x-tick" style="left:129px;"></div>
+    <div class="x-tick" style="left:254px;"></div>
+    <div class="x-tick" style="left:379px;"></div>
+    <div class="x-tick" style="left:504px;"></div>
+
+    <div class="year-label" style="left:110px;top:202px;">2023</div>
+    <div class="year-label" style="left:235px;top:202px;">2024</div>
+    <div class="year-label" style="left:360px;top:202px;">2025</div>
+    <div class="year-label" style="left:485px;top:202px;">2026</div>
+
+    <svg width="500" height="390" aria-hidden="true">
+      <polyline fill="none" stroke="#a8a8a8" stroke-width="2.5"
+        points="34,40 66,58 97,71 129,271 160,214 191,246 223,292 254,197 286,184 317,140 348,127 379,101 411,151 442,136 472,129" />
+      <polyline fill="none" stroke="#7414d4" stroke-width="2.5"
+        points="34,55 66,176 97,188 129,357 160,332 191,290 223,308 254,205 286,205 317,133 348,131 379,137 411,141 442,118 472,94" />
+    </svg>
+  </div>
+
+  <div class="right-chart">
+    <div class="right-axis-y"></div>
+    <div class="right-axis-x"></div>
+
+    <!-- Countries -->
+    <div class="country" style="top:4px;">Malaysia</div>
+    <div class="country" style="top:31px;">South Korea</div>
+    <div class="country" style="top:58px;">Ireland</div>
+    <div class="country" style="top:85px;">Germany</div>
+    <div class="country" style="top:112px;">Netherlands</div>
+    <div class="country" style="top:139px;">Thailand</div>
+    <div class="country" style="top:166px;">France</div>
+    <div class="country" style="top:193px;">Mexico</div>
+    <div class="country" style="top:220px;">Japan</div>
+    <div class="country" style="top:247px;">UK</div>
+    <div class="country" style="top:274px;">Canada</div>
+    <div class="country" style="top:301px;">Italy</div>
+    <div class="country" style="top:328px;">US</div>
+    <div class="country" style="top:355px;">India</div>
+    <div class="country" style="top:382px;">Brazil</div>
+
+    <!-- Bars: scale approx 23.9 px per unit -->
+    <div class="bar-row" style="top:4px;">
+      <span class="seg" style="width:4px;background:#24d0dd;"></span>
+      <span class="seg" style="width:4px;background:#d7b2ef;"></span>
+      <span class="seg" style="width:20px;background:#000;"></span>
+      <span class="seg" style="width:366px;background:#d7b2ef;"></span>
+    </div>
+
+    <div class="bar-row" style="top:31px;">
+      <span class="seg" style="width:2px;background:#24d0dd;"></span>
+      <span class="seg" style="width:2px;background:#b45ac2;"></span>
+      <span class="seg" style="width:40px;background:#8e1eff;"></span>
+      <span class="seg" style="width:158px;background:#d7b2ef;"></span>
+    </div>
+
+    <div class="bar-row" style="top:58px;">
+      <span class="seg" style="width:32px;background:#8e1eff;"></span>
+      <span class="seg" style="width:2px;background:#7414d4;"></span>
+      <span class="seg" style="width:41px;background:#000;"></span>
+    </div>
+
+    <div class="bar-row" style="top:85px;">
+      <span class="seg" style="width:3px;background:#24d0dd;"></span>
+      <span class="seg" style="width:4px;background:#7414d4;"></span>
+      <span class="seg" style="width:11px;background:#000;"></span>
+      <span class="seg" style="width:11px;background:#8e1eff;"></span>
+      <span class="seg" style="width:22px;background:#b45ac2;"></span>
+    </div>
+
+    <div class="bar-row" style="top:112px;">
+      <span class="seg" style="width:3px;background:#24d0dd;"></span>
+      <span class="seg" style="width:6px;background:#8e1eff;"></span>
+      <span class="seg" style="width:14px;background:#d7b2ef;"></span>
+      <span class="seg" style="width:33px;background:#000;"></span>
+    </div>
+
+    <div class="bar-row" style="top:139px;">
+      <span class="seg" style="width:3px;background:#24d0dd;"></span>
+      <span class="seg" style="width:6px;background:#7414d4;"></span>
+      <span class="seg" style="width:10px;background:#8e1eff;"></span>
+      <span class="seg" style="width:35px;background:#d7b2ef;"></span>
+    </div>
+
+    <div class="bar-row" style="top:166px;">
+      <span class="seg" style="width:2px;background:#24d0dd;"></span>
+      <span class="seg" style="width:4px;background:#7414d4;"></span>
+      <span class="seg" style="width:9px;background:#d7b2ef;"></span>
+      <span class="seg" style="width:32px;background:#8e1eff;"></span>
+    </div>
+
+    <div class="bar-row" style="top:193px;">
+      <span class="seg" style="width:2px;background:#24d0dd;"></span>
+      <span class="seg" style="width:4px;background:#b45ac2;"></span>
+      <span class="seg" style="width:19px;background:#8e1eff;"></span>
+      <span class="seg" style="width:19px;background:#000;"></span>
+    </div>
+
+    <div class="bar-row" style="top:220px;">
+      <span class="seg" style="width:2px;background:#24d0dd;"></span>
+      <span class="seg" style="width:6px;background:#7414d4;"></span>
+      <span class="seg" style="width:7px;background:#8e1eff;"></span>
+      <span class="seg" style="width:18px;background:#d7b2ef;"></span>
+    </div>
+
+    <div class="bar-row" style="top:247px;">
+      <span class="seg" style="width:3px;background:#000;"></span>
+      <span class="seg" style="width:26px;background:#4b0e9e;"></span>
+    </div>
+
+    <div class="bar-row" style="top:274px;">
+      <span class="seg" style="width:3px;background:#24d0dd;"></span>
+      <span class="seg" style="width:6px;background:#8e1eff;"></span>
+      <span class="seg" style="width:12px;background:#4b0e9e;"></span>
+    </div>
+
+    <div class="bar-row" style="top:301px;">
+      <span class="seg" style="width:3px;background:#000;"></span>
+      <span class="seg" style="width:5px;background:#8e1eff;"></span>
+      <span class="seg" style="width:7px;background:#4b0e9e;"></span>
+    </div>
+
+    <div class="bar-row" style="top:328px;">
+      <span class="seg" style="width:3px;background:#000;"></span>
+      <span class="seg" style="width:7px;background:#d7b2ef;"></span>
+    </div>
+
+    <div class="bar-row" style="top:355px;">
+      <span class="seg" style="width:7px;background:#8e1eff;"></span>
+    </div>
+
+    <div class="bar-row" style="top:382px;">
+      <span class="seg" style="width:4px;background:#8e1eff;"></span>
+    </div>
+
+    <!-- x ticks and labels -->
+    <div class="xtick" style="left:103px;"></div>
+    <div class="xtick" style="left:174px;"></div>
+    <div class="xtick" style="left:246px;"></div>
+    <div class="xtick" style="left:318px;"></div>
+    <div class="xtick" style="left:390px;"></div>
+    <div class="xtick" style="left:461px;"></div>
+    <div class="xtick" style="left:533px;"></div>
+
+    <div class="xnum" style="left:103px;">0</div>
+    <div class="xnum" style="left:174px;">3</div>
+    <div class="xnum" style="left:246px;">6</div>
+    <div class="xnum" style="left:318px;">9</div>
+    <div class="xnum" style="left:390px;">12</div>
+    <div class="xnum" style="left:461px;">15</div>
+    <div class="xnum" style="left:533px;">18</div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="swatch" style="background:#24d0dd;"></div><span>Lithium-ion batteries</span></div>
+    <div class="legend-item"><div class="swatch" style="background:#d7b2ef;"></div><span>Semiconductors</span></div>
+    <div class="legend-item"><div class="swatch" style="background:#b45ac2;"></div><span>EVs</span></div>
+    <div class="legend-item"><div class="swatch" style="background:#8e1eff;"></div><span>Agricultural equipment</span></div>
+    <div class="legend-item"><div class="swatch" style="background:#7d16f0;"></div><span>Transportation</span></div>
+    <div class="legend-item"><div class="swatch" style="background:#4b0e9e;"></div><span>Turbines</span></div>
+    <div class="legend-item"><div class="swatch" style="background:#000;"></div><span>High-end medical equipment</span></div>
+    <div class="legend-item"><div class="swatch" style="background:#b6b6b6;"></div><span>Robots</span></div>
+    <div class="legend-item"><div class="swatch" style="background:#cfcfcf;"></div><span>Carbon fiber and silicon</span></div>
+  </div>
+
+  <div class="notes">
+    Notes: (1) High tech includes semiconductors, EVs, solar cells, cell phones, audio and video equipment, flat panel displays, electronics and electronic components, electrical equipment,<br>
+    biotechnology, communication technology, aerospace technology and other technologies; (2) Semiconductors include: Memory Chips, Processors, Power Transistors, Manufacturing Gear, Other IoT;<br>
+    Transportation includes: Aircraft, Rail, Ships; Carbon Fiber and Silicon includes: Silicone Carbide, Silicone Steel and Carbon Fiber.<br>
+    Source(s): Haver analytics, UN Comtrade, Accenture Strategy analysis
+  </div>
+
+  <div class="copyright-line">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="page">30</div>
+  <div class="accent-mark">&gt;</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Contacts Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#d8d8db;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d8d8db;
+    color:#2d2f3b;
+  }
+  .slide > *{position:absolute; box-sizing:border-box;}
+
+  /* side rails */
+  .left-rail{
+    left:0; top:0; width:39px; height:720px;
+    background:#f5f5f6;
+  }
+  .left-rail .vert{
+    position:absolute;
+    left:11px; top:423px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    font-size:11px; line-height:11px; letter-spacing:.08em;
+    color:#7d7f89;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .left-rail .yellow{
+    position:absolute;
+    left:13px; top:408px; width:12px; height:12px;
+    background:#f3cf00;
+  }
+
+  .right-strip{
+    right:0; top:0; width:51px; height:720px;
+    background:#e3e3e6;
+  }
+  .jump{
+    right:0; top:0; width:59px; height:46px;
+    background:#7f8088;
+    border-bottom-left-radius:14px;
+    border-bottom-right-radius:14px;
+    color:#fff;
+    font-size:9px; line-height:11px; font-weight:700;
+    text-transform:uppercase;
+    text-align:center;
+    padding-top:18px;
+    letter-spacing:.02em;
+  }
+
+  /* top left header */
+  .page{
+    left:61px; top:52px;
+    font-size:20px; line-height:22px; font-weight:400;
+    color:#70727c;
+  }
+  .top-divider{
+    left:103px; top:0; width:1px; height:92px;
+    background:#b2b3ba;
+  }
+  .survey{
+    left:116px; top:60px; width:190px;
+    font-size:8px; line-height:10px;
+    color:#7a7c85;
+    text-transform:uppercase;
+  }
+
+  .title{
+    left:102px; top:134px;
+    font-size:50px; line-height:52px; font-weight:700;
+    color:#2d2f3b;
+    letter-spacing:-0.02em;
+  }
+
+  .accent-yellow{left:102px; top:214px; width:109px; height:3px; background:#f3cf00;}
+  .accent-magenta{left:211px; top:214px; width:53px; height:3px; background:#c53cff;}
+  .accent-blue{left:264px; top:214px; width:55px; height:3px; background:#4384ee;}
+
+  /* columns */
+  .global{ left:101px; top:252px; width:230px; }
+  .americas{ left:354px; top:175px; width:123px; }
+  .emeia{ left:494px; top:175px; width:123px; }
+  .apac{ left:634px; top:175px; width:123px; }
+  .divider-center{
+    left:786px; top:176px; width:1px; height:500px;
+    border-left:1px dotted #c2c3c8;
+  }
+  .iif{ left:808px; top:175px; width:123px; }
+  .thanks{
+    left:808px; top:384px; width:124px; height:266px;
+    border:1px solid #dfc84c;
+    padding:12px 12px 10px 12px;
+    background:transparent;
+  }
+
+  .col-title{
+    font-size:15px; line-height:18px; font-weight:600;
+    color:#3b3d46;
+  }
+  .col-rule{
+    margin-top:10px; height:1px; background:#7b7c84;
+  }
+  .global .col-rule{ width:137px; }
+  .americas .col-rule,
+  .emeia .col-rule,
+  .apac .col-rule,
+  .iif .col-rule{ width:122px; }
+
+  .entry{
+    position:absolute;
+    left:0; width:100%;
+    font-size:10px; line-height:12px;
+    color:#4c5059;
+  }
+  .name{
+    font-size:12px; line-height:14px; font-weight:400;
+    color:#3e4149;
+  }
+  .email{
+    color:#5f86c9;
+    font-size:10px; line-height:12px;
+    text-decoration:none;
+  }
+
+  .thanks-title{
+    font-size:11px; line-height:16px;
+    color:#4b4e57;
+    width:96px;
+  }
+  .thanks-list{
+    position:absolute;
+    left:12px; top:45px; width:100px;
+    font-size:10px; line-height:18px;
+    color:#666971;
+  }
+
+  /* imagery */
+  .img1,.img2,.img3{overflow:hidden;}
+  .img1{
+    left:961px; top:0; width:301px; height:179px;
+    border-bottom-left-radius:16px; border-bottom-right-radius:16px;
+    background:
+      radial-gradient(circle at 6% 64%, rgba(95,125,255,.9) 0 3px, transparent 5px),
+      radial-gradient(circle at 11% 80%, rgba(17,138,255,.8) 0 5px, transparent 9px),
+      radial-gradient(circle at 20% 10%, rgba(112,95,174,.8) 0 4px, transparent 7px),
+      radial-gradient(circle at 22% 22%, rgba(255,106,187,.65) 0 3px, transparent 6px),
+      radial-gradient(circle at 39% 83%, rgba(147,19,255,.85) 0 6px, transparent 10px),
+      radial-gradient(circle at 53% 21%, rgba(239,238,182,.8) 0 6px, transparent 10px),
+      radial-gradient(circle at 62% 10%, rgba(66,114,255,.85) 0 4px, transparent 7px),
+      radial-gradient(circle at 70% 35%, rgba(73,119,255,.85) 0 4px, transparent 8px),
+      radial-gradient(circle at 83% 52%, rgba(183,154,255,.85) 0 4px, transparent 8px),
+      radial-gradient(circle at 84% 12%, rgba(247,225,142,.55) 0 3px, transparent 7px),
+      linear-gradient(180deg, rgba(23,25,54,.98), rgba(34,35,72,.98));
+  }
+  .img2{
+    left:961px; top:193px; width:301px; height:309px;
+    border-radius:16px;
+    background:
+      radial-gradient(circle at 10% 35%, rgba(98,220,255,.8) 0 4px, transparent 7px),
+      radial-gradient(circle at 22% 18%, rgba(255,255,255,.72) 0 4px, transparent 9px),
+      radial-gradient(circle at 32% 49%, rgba(46,143,255,.85) 0 5px, transparent 9px),
+      radial-gradient(circle at 66% 26%, rgba(0,225,255,.82) 0 4px, transparent 8px),
+      radial-gradient(circle at 87% 47%, rgba(214,231,95,.8) 0 3px, transparent 7px),
+      linear-gradient(180deg, rgba(34,35,79,.96), rgba(78,97,154,.60) 46%, rgba(37,42,92,.96) 100%);
+  }
+  .img3{
+    left:961px; top:515px; width:301px; height:205px;
+    border-top-left-radius:16px; border-top-right-radius:16px;
+    background:
+      radial-gradient(circle at 10% 16%, rgba(255,141,244,.45) 0 11px, transparent 24px),
+      radial-gradient(circle at 23% 27%, rgba(113,78,255,.30) 0 18px, transparent 35px),
+      radial-gradient(circle at 84% 18%, rgba(235,190,255,.28) 0 14px, transparent 30px),
+      linear-gradient(180deg, rgba(132,78,171,.72), rgba(45,38,88,.96) 58%, rgba(18,18,28,1) 100%);
+  }
+  .grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size:12px 12px;
+    opacity:.68;
+    mix-blend-mode:screen;
+  }
+
+  /* person silhouette */
+  .person{
+    left:1016px; top:277px; width:224px; height:443px;
+    z-index:4;
+  }
+  .head{
+    left:67px; top:0; width:89px; height:103px;
+    border-radius:48px;
+    background:radial-gradient(circle at 45% 35%, #0d1730 0%, #08101f 60%, #04070f 100%);
+    box-shadow:0 0 18px rgba(0,0,0,.35);
+  }
+  .neck{
+    left:98px; top:89px; width:28px; height:25px;
+    border-radius:7px;
+    background:#070b12;
+  }
+  .body{
+    left:36px; top:94px; width:156px; height:283px;
+    background:linear-gradient(180deg,#0b1221 0%,#090d17 52%,#05070b 100%);
+    clip-path:polygon(21% 0%,79% 0%,95% 18%,97% 56%,92% 100%,8% 100%,3% 56%,5% 18%);
+    border-radius:18px;
+    box-shadow:0 0 22px rgba(0,0,0,.45);
+  }
+  .arm-left{
+    left:20px; top:133px; width:60px; height:272px;
+    background:linear-gradient(180deg,#09101d,#04070b);
+    clip-path:polygon(45% 0%,82% 4%,100% 100%,42% 100%,18% 18%);
+    border-radius:20px;
+  }
+  .arm-right{
+    left:146px; top:133px; width:60px; height:272px;
+    background:linear-gradient(180deg,#09101d,#04070b);
+    clip-path:polygon(18% 4%,55% 0%,82% 18%,58% 100%,0% 100%);
+    border-radius:20px;
+  }
+  .leg-left{
+    left:65px; top:340px; width:43px; height:103px;
+    background:linear-gradient(180deg,#05070c,#020305);
+    transform:skewX(-8deg);
+  }
+  .leg-right{
+    left:114px; top:340px; width:43px; height:103px;
+    background:linear-gradient(180deg,#05070c,#020305);
+    transform:skewX(8deg);
+  }
+  .headset-band{
+    left:52px; top:24px; width:120px; height:63px;
+    border:4px solid #101726;
+    border-bottom:none;
+    border-radius:72px 72px 0 0;
+    opacity:.96;
+  }
+  .ear-left{
+    left:51px; top:49px; width:11px; height:38px;
+    border-radius:7px;
+    background:#101726;
+  }
+  .ear-right{
+    left:162px; top:49px; width:11px; height:38px;
+    border-radius:7px;
+    background:#101726;
+  }
+  .mic{
+    left:46px; top:79px; width:30px; height:4px;
+    background:#101726;
+    border-radius:4px;
+    transform:rotate(22deg);
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-rail">
+    <div class="vert">CONTACTS</div>
+    <div class="yellow"></div>
+  </div>
+
+  <div class="right-strip"></div>
+  <div class="jump">JUMP TO<br>CONTENTS</div>
+
+  <div class="page">49</div>
+  <div class="top-divider"></div>
+  <div class="survey">SECOND ANNUAL EY/IIF GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+  <div class="title">Contacts</div>
+  <div class="accent-yellow"></div>
+  <div class="accent-magenta"></div>
+  <div class="accent-blue"></div>
+
+  <div class="global">
+    <div class="col-title">EY Global</div>
+    <div class="col-rule"></div>
+
+    <div class="entry" style="top:45px;">
+      <div class="name">Isabelle Santenac</div>
+      <div>EY Global Insurance Leader</div>
+      <div>Ernst &amp; Young AG</div>
+      <div class="email">isabelle.santenac@fr.ey.com</div>
+    </div>
+
+    <div class="entry" style="top:113px;">
+      <div class="name">Jonathan Zhao</div>
+      <div>EY Global Insurance Leader, effective 1 July 2025</div>
+      <div>Ernst &amp; Young Asia-Pacific Services (HK) Limited</div>
+      <div class="email">jonathan.zhao@hk.ey.com</div>
+    </div>
+
+    <div class="entry" style="top:190px;">
+      <div class="name">Stuart D. Doyle II</div>
+      <div>Principal, Global Financial Services</div>
+      <div>Ernst &amp; Young LLP</div>
+      <div class="email">stuart.doyleii@ey.com</div>
+    </div>
+  </div>
+
+  <div class="americas">
+    <div class="col-title">EY Americas</div>
+    <div class="col-rule"></div>
+
+    <div class="entry" style="top:37px;">
+      <div class="name">Jeff Gill</div>
+      <div>US</div>
+      <div class="email">jeffrey.gill3@ey.com</div>
+    </div>
+
+    <div class="entry" style="top:85px;">
+      <div class="name">Chris Raimondo</div>
+      <div>US</div>
+      <div class="email">chris.raimondo@ey.com</div>
+    </div>
+
+    <div class="entry" style="top:133px;">
+      <div class="name">Tom Campanile</div>
+      <div>US</div>
+      <div class="email">thomas.campanile@ey.com</div>
+    </div>
+
+    <div class="entry" style="top:181px;">
+      <div class="name">Nimna Varghese</div>
+      <div>US</div>
+      <div class="email">nimna.varghese@ey.com</div>
+    </div>
+
+    <div class="entry" style="top:229px;">
+      <div class="name">Chad Runchey</div>
+      <div>US</div>
+      <div class="email">chad.runchey@ey.com</div>
+    </div>
+
+    <div class="entry" style="top:277px;">
+      <div class="name">Marcelo Lustosa</div>
+      <div>Brazil</div>
+      <div class="email">marcelo.lustosa@ey.com</div>
+    </div>
+  </div>
+
+  <div class="emeia">
+    <div class="col-title">EY EMEIA</div>
+    <div class="col-rule"></div>
+
+    <div class="entry" style="top:37px;">
+      <div class="name">Philip Vermeulen</div>
+      <div>Switzerland</div>
+      <div class="email">philip.vermeulen@ch.ey.com</div>
+    </div>
+
+    <div class="entry" style="top:85px;">
+      <div class="name">Eamon McGinnity</div>
+      <div>UK</div>
+      <div class="email">eamon.mcginnity@uk.ey.com</div>
+    </div>
+
+    <div class="entry" style="top:133px;">
+      <div class="name">Pierre Santolini</div>
+      <div>France</div>
+      <div class="email">pierre.santolini@fr.ey.com</div>
+    </div>
+
+    <div class="entry" style="top:181px;">
+      <div class="name">Hannu Ulanska</div>
+      <div>Poland</div>
+      <div class="email">hannu.ulanska@pl.ey.com</div>
+    </div>
+
+    <div class="entry" style="top:229px;">
+      <div class="name">Kristin Bekkestøh</div>
+      <div>Norway</div>
+      <div class="email">kristin.bekkesteth@no.ey.com</div>
+    </div>
+
+    <div class="entry" style="top:277px;">
+      <div class="name">Maarten Bocksteins</div>
+      <div>Belgium</div>
+      <div class="email">maarten.bocksteins@be.ey.com</div>
+    </div>
+
+    <div class="entry" style="top:325px;">
+      <div class="name">Andre Dylan Kohler</div>
+      <div>Switzerland</div>
+      <div class="email">andre-dylan.kohler@ch.ey.com</div>
+    </div>
+  </div>
+
+  <div class="apac">
+    <div class="col-title">EY Asia-Pacific</div>
+    <div class="col-rule"></div>
+
+    <div class="entry" style="top:37px;">
+      <div class="name">Sun Young Bong</div>
+      <div>South Korea</div>
+      <div class="email">sun-young.bong@kr.ey.com</div>
+    </div>
+
+    <div class="entry" style="top:85px;">
+      <div class="name">Tze Ping Chng</div>
+      <div>Hong Kong</div>
+      <div class="email">tze-ping.chng@hk.ey.com</div>
+    </div>
+
+    <div class="entry" style="top:133px;">
+      <div class="name">Martyn Van Wensveen</div>
+      <div>Singapore</div>
+      <div class="email">martyn.van.wensveen@sg.ey.com</div>
+    </div>
+
+    <div class="entry" style="top:181px;">
+      <div class="name">Stacey Hooper</div>
+      <div>Australia</div>
+      <div class="email">stacey.hooper@au.ey.com</div>
+    </div>
+
+    <div class="entry" style="top:229px;">
+      <div class="name">Damien O'Meara</div>
+      <div>Australia</div>
+      <div class="email">damien.o.meara@au.ey.com</div>
+    </div>
+  </div>
+
+  <div class="divider-center"></div>
+
+  <div class="iif">
+    <div class="col-title">IIF contacts</div>
+    <div class="col-rule"></div>
+
+    <div class="entry" style="top:37px;">
+      <div class="name">Andrés Portilla</div>
+      <div>Managing Director, Regulatory</div>
+      <div>Affairs</div>
+      <div class="email">aportilla@iif.com</div>
+    </div>
+
+    <div class="entry" style="top:106px;">
+      <div class="name">Melanie Ilder</div>
+      <div>Associate Policy Advisor</div>
+      <div class="email">milder@iif.com</div>
+    </div>
+  </div>
+
+  <div class="thanks">
+    <div class="thanks-title">A special thank you to<br>these contributors:</div>
+    <div class="thanks-list">
+      Kristin Karst<br>
+      Patricia Davies<br>
+      Rasika Karnik<br>
+      Katie Karlix<br>
+      Megan Palazzo<br>
+      Cassidy Zimmerman<br>
+      Krista Vivian<br>
+      Lauren Raiford<br>
+      Shravan Kumar<br>
+      Edmond Nana Jimnang<br>
+      Michael Castelli<br>
+      Chinwook Baek<br>
+      Harvey Chiu
+    </div>
+  </div>
+
+  <div class="img1"><div class="grid"></div></div>
+  <div class="img2"><div class="grid"></div></div>
+  <div class="img3"><div class="grid"></div></div>
+
+  <div class="person">
+    <div class="head"></div>
+    <div class="neck"></div>
+    <div class="body"></div>
+    <div class="arm-left"></div>
+    <div class="arm-right"></div>
+    <div class="leg-left"></div>
+    <div class="leg-right"></div>
+    <div class="headset-band"></div>
+    <div class="ear-left"></div>
+    <div class="ear-right"></div>
+    <div class="mic"></div>
+  </div>
+</div>
+</body>
+</html>

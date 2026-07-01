@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Accenture Macro Foresight</title>
+<style>
+  body{
+    margin:0;
+    background:#111;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 83% 12%, rgba(255,111,200,0.55) 0%, rgba(255,111,200,0.18) 16%, rgba(255,111,200,0.00) 35%),
+      radial-gradient(circle at 58% 7%, rgba(184,0,255,0.95) 0%, rgba(184,0,255,0.45) 18%, rgba(184,0,255,0.00) 38%),
+      radial-gradient(circle at 78% 84%, rgba(179,0,255,0.95) 0%, rgba(179,0,255,0.35) 20%, rgba(179,0,255,0.00) 42%),
+      linear-gradient(90deg, #2f0a5d 0%, #4b0e86 42%, #6a109e 70%, #8e1aa9 100%);
+    color:#fff;
+  }
+
+  .left{
+    position:absolute;
+    left:49px;
+    top:47px;
+    width:677px;
+  }
+
+  .section{
+    position:relative;
+    margin-bottom:16px;
+    color:#f2ebff;
+    font-size:14px;
+    line-height:1.12;
+  }
+  .section .title{
+    font-weight:700;
+    font-size:15px;
+    margin-bottom:2px;
+    color:#ffffff;
+  }
+  .section p{
+    margin:0 0 10px 0;
+  }
+
+  .copyright{
+    position:absolute;
+    left:49px;
+    top:636px;
+    width:810px;
+    color:#e3d8f5;
+    font-size:10px;
+    line-height:1.18;
+  }
+  .copyright .small{
+    margin-bottom:12px;
+  }
+
+  .mark{
+    position:absolute;
+    left:39px;
+    top:709px;
+    width:22px;
+    height:12px;
+  }
+  .mark:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:-2px;
+    width:0;height:0;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+    border-left:22px solid #fff;
+    transform:skewX(-15deg);
+  }
+  .mark:after{
+    content:"";
+    position:absolute;
+    left:7px;
+    top:3px;
+    width:13px;
+    height:4px;
+    background:#641697;
+    transform:skewX(-20deg);
+  }
+
+  .contacts{
+    position:absolute;
+    left:786px;
+    top:67px;
+    width:440px;
+    height:600px;
+  }
+
+  .contact{
+    position:absolute;
+    width:170px;
+    color:#fff;
+    font-size:12px;
+    line-height:1.12;
+  }
+
+  .photo{
+    width:69px;
+    height:69px;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05)),
+      linear-gradient(180deg, #5e7e92 0%, #314656 100%);
+    border:1px solid rgba(255,255,255,0.15);
+    box-sizing:border-box;
+    overflow:hidden;
+    position:relative;
+  }
+
+  .photo:before{
+    content:"";
+    position:absolute;
+    left:21px;
+    top:8px;
+    width:26px;
+    height:26px;
+    background:#f0c8b0;
+    border-radius:50%;
+    box-shadow: 0 28px 0 10px #1f3550;
+  }
+
+  .photo:after{
+    content:"";
+    position:absolute;
+    left:18px;
+    top:4px;
+    width:32px;
+    height:18px;
+    background:#4f3f35;
+    border-radius:16px 16px 10px 10px;
+  }
+
+  .photo.p2{
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.02)),
+      linear-gradient(180deg, #6c7585 0%, #3b4655 100%);
+  }
+  .photo.p2:after{ background:#7a5f4d; }
+
+  .photo.p3{
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04)),
+      linear-gradient(180deg, #727f8f 0%, #29313b 100%);
+  }
+  .photo.p3:before{
+    box-shadow: 0 28px 0 10px #23212f;
+  }
+  .photo.p3:after{ background:#2f2b2a; }
+
+  .photo.p4{
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.22), rgba(255,255,255,0.04)),
+      linear-gradient(180deg, #9fbcc2 0%, #4f6770 100%);
+  }
+  .photo.p4:before{
+    left:22px;
+    width:24px;
+    background:#f1cfba;
+    box-shadow: 0 28px 0 10px #1c2d45;
+  }
+  .photo.p4:after{
+    background:#1c1c1c;
+    left:17px;
+    width:34px;
+  }
+
+  .photo.p5{
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.03)),
+      linear-gradient(180deg, #8293a6 0%, #4f5d70 100%);
+  }
+  .photo.p5:before{
+    background:#efc9b2;
+    box-shadow: 0 28px 0 10px #7ea0c9;
+  }
+  .photo.p5:after{
+    background:#6c4f35;
+  }
+
+  .photo.p6{
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.03)),
+      linear-gradient(180deg, #b8d0d2 0%, #7ca0a6 100%);
+  }
+  .photo.p6:before{
+    background:#f0d0c0;
+    box-shadow: 0 28px 0 10px #5a84b3;
+  }
+  .photo.p6:after{
+    background:#8a6948;
+  }
+
+  .name{
+    margin-top:8px;
+    font-size:14px;
+    font-weight:700;
+    color:#fff;
+  }
+  .line{
+    width:108px;
+    height:3px;
+    background:#fff;
+    margin-top:2px;
+    margin-bottom:6px;
+  }
+  .role,.loc,.email{
+    font-size:12px;
+    color:#f5eefe;
+  }
+  .email{
+    text-decoration:underline;
+  }
+
+  .c1{ left:0; top:0; }
+  .c2{ left:262px; top:0; }
+  .c3{ left:0; top:151px; }
+  .c4{ left:262px; top:151px; }
+  .c5{ left:0; top:303px; }
+  .c6{ left:262px; top:303px; }
+  .c7{ left:0; top:454px; }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left">
+      <div class="section">
+        <div class="title">About Accenture Macro Foresight</div>
+        <p>Accenture Strategy’s Macro Foresight capability is focused on helping companies and investors understand major macroeconomic and geopolitical shifts in the global economy and what they mean for corporate strategic planning, investment planning, operational resilience, and enterprise-wide transformation – with the goal of helping clients distill complicated macro trends into simple, pragmatic recommendations which drive value.</p>
+        <p>The team has hubs in Europe, the United States, and Asia and its members have prior experience working for governments, investment banks, asset managers, multilateral institutions and large corporates to bring a global, multi-disciplinary perspective to problem-solving. Visit us at www.accenture.com/macroforesight.</p>
+      </div>
+
+      <div class="section">
+        <div class="title">About Accenture Strategy</div>
+        <p>Accenture Strategy works with boards, CEOs and C-suite executives to create 360° value for all stakeholders by defining and answering their most strategic business questions—including growth, profitability, technology-driven transformation, mergers and acquisitions (M&amp;A), operating models and sustainability—with insights from AI and data science, combined with deep industry and function expertise. Visit us at www.accenture.com/strategy.</p>
+      </div>
+
+      <div class="section" style="margin-bottom:0;">
+        <div class="title">About Accenture</div>
+        <p>Accenture is a leading global professional services company that helps the world’s leading businesses, governments and other organizations build their digital core, optimize their operations, accelerate revenue growth and enhance citizen services— creating tangible value at speed and scale. We are a talent and innovation led company with 738,000 people serving clients in more than 120 countries. Technology is at the core of change today, and we are one of the world’s leaders in helping drive that change, with strong ecosystem relationships. We combine our strength in technology with unmatched industry experience, functional expertise and global delivery capability. We are uniquely able to deliver tangible outcomes because of our broad range of services, solutions and assets across Strategy &amp; Consulting, Technology, Operations, Industry X and Accenture Song. These capabilities, together with our culture of shared success and commitment to creating 360° value, enable us to help our clients succeed and build trusted, lasting relationships. We measure our success by the 360° value we create for our clients, each other, our shareholders, partners and communities. Visit us at www.accenture.com.</p>
+      </div>
+    </div>
+
+    <div class="contacts">
+      <div class="contact c1">
+        <div class="photo"></div>
+        <div class="name">Chris Tomsovic</div>
+        <div class="line"></div>
+        <div class="role">Global Lead, Macro Foresight</div>
+        <div class="email">Chris.Tomsovic@Accenture.com</div>
+      </div>
+
+      <div class="contact c2">
+        <div class="photo p2"></div>
+        <div class="name">Nick Kojucharov</div>
+        <div class="line"></div>
+        <div class="role">Americas Lead, Macro Foresight</div>
+        <div class="email">Nick.Kojucharov@Accenture.com</div>
+      </div>
+
+      <div class="contact c3">
+        <div class="photo p3"></div>
+        <div class="name">Terry Hammond</div>
+        <div class="line"></div>
+        <div class="loc">London, UK</div>
+        <div class="email">Terry.Hammond@Accenture.com</div>
+      </div>
+
+      <div class="contact c4">
+        <div class="photo p4"></div>
+        <div class="name">Jane Xu</div>
+        <div class="line"></div>
+        <div class="loc">Frankfurt, Germany</div>
+        <div class="email">Jane.Xu@Accenture.com</div>
+      </div>
+
+      <div class="contact c5">
+        <div class="photo p5"></div>
+        <div class="name">Pablo Gonzalez Alonso</div>
+        <div class="line"></div>
+        <div class="loc">Washington DC, USA</div>
+        <div class="email">P.A.Gonzalez.Alonso@Accenture.com</div>
+      </div>
+
+      <div class="contact c6">
+        <div class="photo p6"></div>
+        <div class="name">André de Silva</div>
+        <div class="line"></div>
+        <div class="loc">Singapore</div>
+        <div class="email">Andre.De.Silva@Accenture.com</div>
+      </div>
+
+      <div class="contact c7">
+        <div class="photo p2"></div>
+        <div class="name">William Snowden</div>
+        <div class="line"></div>
+        <div class="loc">New York City, USA</div>
+        <div class="email">William.M.Snowden@accenture.com</div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <div class="small">Copyright © 2025 Accenture. All rights reserved. Accenture and its logo are registered trademarks of Accenture.</div>
+      <div>This content is provided for general information purposes only, does not take into account the reader’s specific circumstances, and is not intended to be used in place of consultation with our professional advisors. This document reflects information available as of the date of publication, and positions may be subject to change. Accenture disclaims, to the fullest extent permitted by applicable law, any and all liability for the accuracy and completeness of the information and for any acts or omissions based on such information. Accenture does not provide legal, regulatory, financial or tax advice. Readers are responsible for obtaining such advice from their own legal counsel or other licensed professionals.</div>
+    </div>
+
+    <div class="mark"></div>
+  </div>
+</body>
+</html>

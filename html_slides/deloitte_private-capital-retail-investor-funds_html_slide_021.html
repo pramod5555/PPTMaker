@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+    color:#111;
+  }
+  #slide > *{ position:absolute; box-sizing:border-box; }
+
+  .title{
+    left:32px;
+    top:58px;
+    width:900px;
+    font-size:29px;
+    line-height:1.1;
+    font-weight:700;
+    color:#000;
+  }
+  .rule{
+    left:29px;
+    top:102px;
+    width:1211px;
+    height:1px;
+    background:#7d7d7d;
+  }
+
+  .banner{
+    left:180px;
+    top:114px;
+    width:885px;
+    height:33px;
+    background:linear-gradient(90deg, #edf4fb 0%, #d9ebfb 38%, #32a4f3 72%, #008ef0 100%);
+  }
+  .banner-text{
+    left:180px;
+    top:114px;
+    width:885px;
+    height:33px;
+    font-size:24px;
+    line-height:33px;
+    text-align:center;
+    font-weight:700;
+    color:#111;
+    letter-spacing:0;
+  }
+  .banner-text .light{
+    font-weight:400;
+  }
+
+  .table-left{
+    left:177px;
+    top:147px;
+    width:380px;
+  }
+  .row-label{
+    left:0;
+    width:380px;
+    background:#d9dadc;
+    color:#444;
+    font-weight:700;
+    font-size:18px;
+    line-height:1.12;
+    padding-left:11px;
+    display:flex;
+    align-items:center;
+    border-top:1px solid #e7e7e7;
+    letter-spacing:0.02em;
+  }
+  .r1{ top:0px; height:59px; }
+  .r2{ top:59px; height:57px; }
+  .r3{ top:116px; height:77px; }
+  .r4{ top:193px; height:57px; }
+  .r5{ top:250px; height:58px; }
+  .r6{ top:308px; height:83px; }
+  .r7{ top:391px; height:72px; }
+
+  .table-right{
+    left:584px;
+    top:162px;
+    width:590px;
+    color:#222;
+  }
+  .rt{
+    left:0;
+    width:590px;
+    font-size:17px;
+    line-height:1.22;
+    font-weight:400;
+  }
+  .rt sup,
+  .footnotes sup{
+    font-size:10px;
+    vertical-align:super;
+    line-height:0;
+  }
+  .t1{ top:0px; }
+  .t2{ top:59px; }
+  .t3{ top:125px; }
+  .t4{ top:191px; }
+  .t5{ top:249px; }
+  .t6{ top:289px; font-size:17px; line-height:1.06; }
+  .t7{ top:387px; line-height:1.16; }
+
+  .bullets{
+    margin-top:2px;
+    white-space:pre-line;
+  }
+
+  .footnotes{
+    left:32px;
+    top:621px;
+    width:1188px;
+    font-size:11px;
+    line-height:1.22;
+    color:#2c2c2c;
+    font-weight:400;
+  }
+  .bottom-rule{
+    left:31px;
+    top:690px;
+    width:1208px;
+    height:1px;
+    background:#b3b3b3;
+  }
+  .page{
+    left:31px;
+    top:706px;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+  }
+
+  .logo{
+    left:1100px;
+    top:671px;
+    width:150px;
+    text-align:left;
+    color:#1f1a17;
+  }
+  .logo .jp{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:25px;
+    line-height:0.95;
+    font-weight:400;
+    letter-spacing:-0.02em;
+  }
+  .logo .am{
+    margin-top:6px;
+    font-size:11px;
+    line-height:1;
+    font-weight:700;
+    letter-spacing:0.04em;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">Simplified way for investors to access private equity</div>
+  <div class="rule"></div>
+
+  <div class="banner"></div>
+  <div class="banner-text">
+    Get invested, stay invested, <span class="light">and</span> compound returns over time
+  </div>
+
+  <div class="table-left">
+    <div class="row-label r1">Lower Minimums</div>
+    <div class="row-label r2">No Capital Calls</div>
+    <div class="row-label r3">Potential Liquidity</div>
+    <div class="row-label r4">Simplified Tax Reporting</div>
+    <div class="row-label r5">Reporting Frequency</div>
+    <div class="row-label r6">More Accessible</div>
+    <div class="row-label r7">Competitive Fees</div>
+  </div>
+
+  <div class="table-right">
+    <div class="rt t1">$25,000<sup>1</sup></div>
+    <div class="rt t2">One initial drawdown, immediate investment</div>
+    <div class="rt t3">Expected liquidity through quarterly tender offers<sup>2</sup></div>
+    <div class="rt t4">1099-DIV instead of K-1</div>
+    <div class="rt t5">Monthly</div>
+    <div class="rt t6">
+      Accredited Investor and Qualified Clients<sup>3</sup><br>
+      <div class="bullets">•&nbsp;&nbsp;$1.1 million invested in the Fund with the Adviser<sup>4</sup> OR
+•&nbsp;&nbsp;$2.2 million investable assets OR
+•&nbsp;&nbsp;A “Qualified Purchaser”<sup>5</sup></div>
+    </div>
+    <div class="rt t7">1% management fee<br>10% incentive fee</div>
+  </div>
+
+  <div class="footnotes">
+    1 The $25,000 minimum investment applies to Class S and Class D shares. Class I shares have a minimum investment of $1.0 million.<br>
+    2 The strategy expects to offer investors limited quarterly liquidity through a tender offer process. Under normal market conditions, the Adviser expects to recommend that the Fund repurchase 5%<br>
+    of its outstanding shares at their net asset value. No assurance can be given that such tender offers will be approved by the Board. If a tender offer is oversubscribed, investors may be subject to<br>
+    pro rata reduction in the Shares ultimately repurchased by the Fund. All terms of each tender offer will be publicly disclosed.<br>
+    3 Investors must be considered both an Accredited Investor, as defined Regulation D Rule 501, and Qualified Client, as defined in the Investment Advisers Act of 1940.<br>
+    4 The Adviser is defined as J.P. Morgan Investment Management Inc. (JPMIM).<br>
+    5 As defined in the Investment Company Act of 1940.
+  </div>
+
+  <div class="bottom-rule"></div>
+  <div class="page">21</div>
+
+  <div class="logo">
+    <div class="jp">J.P.Morgan</div>
+    <div class="am">ASSET MANAGEMENT</div>
+  </div>
+</div>
+</body>
+</html>

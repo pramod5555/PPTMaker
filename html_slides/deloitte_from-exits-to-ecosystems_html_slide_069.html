@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e9e9e9;
+    color:#5b5b5b;
+  }
+  .slide > *{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .qmark{
+    left:44px;
+    top:45px;
+    font-size:38px;
+    line-height:38px;
+    font-weight:700;
+    color:#000000;
+    letter-spacing:-0.02em;
+  }
+
+  .title{
+    left:55px;
+    top:106px;
+    width:280px;
+    font-size:34px;
+    line-height:42px;
+    font-weight:700;
+    color:#585858;
+  }
+
+  .bodycopy{
+    left:55px;
+    top:298px;
+    width:258px;
+    font-size:27px;
+    line-height:1.15;
+    font-weight:400;
+    color:#616161;
+  }
+
+  .footnote{
+    left:53px;
+    top:609px;
+    width:305px;
+    font-size:12px;
+    line-height:1.38;
+    font-style:italic;
+    font-weight:400;
+    color:#8a8a8a;
+  }
+
+  .copyright{
+    left:49px;
+    top:728px;
+    transform:translateY(-20px);
+    font-size:15px;
+    line-height:15px;
+    font-weight:400;
+    color:#4a4a4a;
+  }
+
+  .chart-title{
+    left:393px;
+    top:24px;
+    font-size:14px;
+    line-height:18px;
+    font-weight:400;
+    color:#6c6c6c;
+  }
+
+  .top-rule{
+    left:388px;
+    top:52px;
+    width:748px;
+    height:1px;
+    background:#7f93a2;
+  }
+
+  .y-label{
+    width:52px;
+    text-align:right;
+    font-size:17px;
+    line-height:17px;
+    font-weight:400;
+    color:#6f6f6f;
+  }
+
+  .chart-bottom{
+    left:437px;
+    top:613px;
+    width:694px;
+    height:1px;
+    background:#cfcfcf;
+  }
+
+  .x-label{
+    width:54px;
+    text-align:center;
+    font-size:16px;
+    line-height:16px;
+    font-weight:400;
+    color:#2f2f2f;
+  }
+
+  .pct{
+    font-size:18px;
+    line-height:18px;
+    font-weight:700;
+    color:#153f58;
+    white-space:nowrap;
+  }
+
+  .series-label{
+    left:1146px;
+    top:391px;
+    width:122px;
+    font-size:21px;
+    line-height:1.18;
+    font-weight:700;
+    color:#153f58;
+  }
+
+  .page{
+    left:679px;
+    bottom:14px;
+    width:24px;
+    text-align:center;
+    font-size:15px;
+    line-height:15px;
+    font-weight:400;
+    color:#3f3f3f;
+  }
+
+  .logo-box{
+    right:17px;
+    bottom:11px;
+    width:54px;
+    height:50px;
+    background:#2d4fa3;
+    overflow:hidden;
+  }
+  .logo-teal{
+    position:absolute;
+    right:0;
+    top:0;
+    width:30px;
+    height:50px;
+    background:#18a3a6;
+    clip-path:polygon(18% 0, 100% 0, 100% 100%, 0 100%, 18% 58%);
+  }
+  .logo-green{
+    position:absolute;
+    left:20px;
+    top:6px;
+    width:14px;
+    height:27px;
+    background:#46b36b;
+    border-radius:8px 8px 4px 4px;
+    opacity:0.95;
+  }
+  .logo-green:before{
+    content:"";
+    position:absolute;
+    left:-6px;
+    top:5px;
+    width:11px;
+    height:9px;
+    background:#46b36b;
+    border-radius:7px;
+  }
+  .logo-green:after{
+    content:"";
+    position:absolute;
+    right:-6px;
+    top:5px;
+    width:11px;
+    height:9px;
+    background:#46b36b;
+    border-radius:7px;
+  }
+  .logo-text{
+    position:absolute;
+    left:7px;
+    top:28px;
+    font-size:17px;
+    line-height:17px;
+    font-weight:700;
+    color:#ffffff;
+    letter-spacing:-0.02em;
+  }
+
+  svg text{
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qmark">Q.</div>
+
+  <div class="title">Expectations for<br>society in 2024 in<br>an historical<br>context</div>
+
+  <div class="bodycopy">
+    Please indicate if you<br>
+    agree very much, agree<br>
+    somewhat, disagree<br>
+    somewhat or disagree<br>
+    very much with the<br>
+    following statements...?
+  </div>
+
+  <div class="footnote">
+    Base: 23,721 adults aged 18 years and older in India, 18-74 in Canada, Republic of Ireland, Malaysia, the Philippines, South Africa, Turkey, and the United States, 20-74 in Thailand, 21-74 in Indonesia and Singapore, and 16-74 in all other countries.<br>
+    Friday, October 25 – Friday November 8, 2024
+  </div>
+
+  <div class="copyright">© Ipsos Predictions 2025 Report</div>
+
+  <div class="chart-title">Global averages - % agree</div>
+  <div class="top-rule"></div>
+
+  <div class="y-label" style="left:380px; top:88px;">100%</div>
+  <div class="y-label" style="left:389px; top:140px;">90%</div>
+  <div class="y-label" style="left:389px; top:192px;">80%</div>
+  <div class="y-label" style="left:389px; top:244px;">70%</div>
+  <div class="y-label" style="left:389px; top:296px;">60%</div>
+  <div class="y-label" style="left:389px; top:348px;">50%</div>
+  <div class="y-label" style="left:389px; top:400px;">40%</div>
+  <div class="y-label" style="left:389px; top:452px;">30%</div>
+  <div class="y-label" style="left:389px; top:504px;">20%</div>
+  <div class="y-label" style="left:400px; top:556px;">10%</div>
+  <div class="y-label" style="left:405px; top:608px;">0%</div>
+
+  <div class="chart-bottom"></div>
+
+  <div class="x-label" style="left:476px; top:630px;">2020</div>
+  <div class="x-label" style="left:614px; top:630px;">2021</div>
+  <div class="x-label" style="left:751px; top:630px;">2022</div>
+  <div class="x-label" style="left:889px; top:630px;">2023</div>
+  <div class="x-label" style="left:1026px; top:630px;">2024</div>
+
+  <svg style="left:472px; top:425px; width:600px; height:140px;" viewBox="0 0 600 140" aria-hidden="true">
+    <polyline points="41,36 178,42 316,10 453,4 589,15" fill="none" stroke="#153f58" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="41" cy="36" r="7.2" fill="#153f58"/>
+    <circle cx="178" cy="42" r="7.2" fill="#153f58"/>
+    <circle cx="316" cy="10" r="7.2" fill="#153f58"/>
+    <circle cx="453" cy="4" r="7.2" fill="#153f58"/>
+    <circle cx="589" cy="15" r="7.2" fill="#153f58"/>
+  </svg>
+
+  <div class="pct" style="left:514px; top:433px; transform:translateX(-50%);">29%</div>
+  <div class="pct" style="left:650px; top:485px; transform:translateX(-50%);">28%</div>
+  <div class="pct" style="left:788px; top:409px; transform:translateX(-50%);">34%</div>
+  <div class="pct" style="left:926px; top:403px; transform:translateX(-50%);">35%</div>
+  <div class="pct" style="left:1062px; top:414px; transform:translateX(-50%);">33%</div>
+
+  <div class="series-label">
+    People in my<br>
+    country will<br>
+    become more<br>
+    tolerant of each<br>
+    other
+  </div>
+
+  <div class="page">69</div>
+
+  <div class="logo-box">
+    <div class="logo-teal"></div>
+    <div class="logo-green"></div>
+    <div class="logo-text">Ipsos</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Multi-speed growth</title>
+<style>
+  body{
+    margin:0;
+    background:#ece9ee;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ece9ee;
+    color:#111;
+  }
+  .topnav{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:24px;
+    background:#ece9ee;
+    border-bottom:1px solid #b7b2ba;
+    font-size:10px;
+    color:#8d8a8e;
+    font-weight:700;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:24px;
+    line-height:24px;
+    padding:0 12px;
+    box-sizing:border-box;
+    white-space:nowrap;
+  }
+  .tab.active{
+    background:#4f0b78;
+    color:#fff;
+  }
+  .tab.active2{
+    color:#4f0b78;
+    border-bottom:2px solid #8a2be2;
+  }
+
+  .title{
+    position:absolute;
+    left:43px;
+    top:59px;
+    width:1188px;
+    font-size:28px;
+    line-height:28px;
+    font-weight:800;
+    color:#000;
+  }
+  .section{
+    position:absolute;
+    left:43px;
+    top:119px;
+    font-size:29px;
+    line-height:29px;
+    font-weight:800;
+    color:#9b18ff;
+  }
+  .subtitle{
+    position:absolute;
+    left:40px;
+    top:169px;
+    font-size:16px;
+    font-weight:700;
+    color:#111;
+  }
+  .rule{
+    position:absolute;
+    left:40px;
+    top:193px;
+    width:1263px;
+    height:2px;
+    background:#4d4a4d;
+  }
+  .subnote{
+    position:absolute;
+    left:45px;
+    top:202px;
+    font-size:14px;
+    color:#9a9a9a;
+  }
+
+  .legend{
+    position:absolute;
+    left:402px;
+    top:210px;
+    font-size:14px;
+    color:#222;
+  }
+  .legend-item{
+    position:absolute;
+    top:0;
+    height:18px;
+    line-height:18px;
+    white-space:nowrap;
+  }
+  .swatch{
+    display:inline-block;
+    width:22px;
+    height:16px;
+    vertical-align:middle;
+    margin-right:7px;
+  }
+
+  .chart-bg{
+    position:absolute;
+    top:245px;
+    height:450px;
+    background:#dfdfdf;
+  }
+  .bg-americas{ left:42px; width:349px; }
+  .bg-europe{ left:390px; width:348px; }
+  .bg-apac{ left:734px; width:576px; }
+
+  .region{
+    position:absolute;
+    top:252px;
+    font-size:16px;
+    font-weight:800;
+    color:#6d12c9;
+  }
+  .r-americas{ left:161px; }
+  .r-europe{ left:531px; }
+  .r-apac{ left:997px; }
+
+  .baseline{
+    position:absolute;
+    left:43px;
+    top:481px;
+    width:1268px;
+    height:1px;
+    background:#222;
+  }
+
+  .bar{
+    position:absolute;
+    bottom:auto;
+  }
+  .lbl{
+    position:absolute;
+    font-size:12px;
+    color:#222;
+    white-space:nowrap;
+  }
+  .country{
+    position:absolute;
+    font-size:16px;
+    color:#222;
+    white-space:nowrap;
+  }
+
+  .callout{
+    position:absolute;
+    background:#efefef;
+    border:1px solid #8c8c8c;
+    box-sizing:border-box;
+    color:#2a2a2a;
+    font-size:14px;
+    line-height:18px;
+    padding:8px 10px;
+  }
+  .tail{
+    position:absolute;
+    width:0;height:0;
+    border-style:solid;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:42px;
+    top:728px;
+  }
+  .brand{
+    position:absolute;
+    left:42px;
+    top:724px;
+    font-size:36px;
+    color:#9b18ff;
+    font-weight:900;
+    transform:scaleX(1.1);
+    line-height:20px;
+  }
+  .source{
+    position:absolute;
+    left:73px;
+    top:728px;
+    font-size:12px;
+    color:#7d7d7d;
+  }
+  .copyright{
+    position:absolute;
+    right:57px;
+    top:728px;
+    font-size:11px;
+    color:#6f6f6f;
+  }
+  .pagenum{
+    position:absolute;
+    right:20px;
+    top:728px;
+    font-size:11px;
+    color:#6f6f6f;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topnav">
+    <div class="tab active" style="left:0px;">Top 10 trends</div>
+    <div class="tab active2" style="left:105px;">Multi-speed growth</div>
+    <div class="tab" style="left:240px;">Tariff impacts</div>
+    <div class="tab" style="left:390px;">Financial fragility</div>
+    <div class="tab" style="left:540px;">Affordability</div>
+    <div class="tab" style="left:660px;">AI productivity</div>
+    <div class="tab" style="left:790px;">China exports</div>
+    <div class="tab" style="left:910px;">Europe struggle</div>
+    <div class="tab" style="left:1050px;">AI arms race</div>
+    <div class="tab" style="left:1170px;">Power crunch</div>
+  </div>
+
+  <div class="title">Many countries are seeing a multi-speed growth dynamic, with tariffs weighing on consumer and export-facing areas of the economy, while AI-linked capex and industries excel</div>
+  <div class="section">1. Multi-speed economies</div>
+  <div class="subtitle">Key components of GDP growth dynamics in H1 2025</div>
+  <div class="rule"></div>
+  <div class="subnote">Percent growth in H1 2025 (annualized)</div>
+
+  <div class="legend">
+    <div class="legend-item" style="left:0px;">
+      <span class="swatch" style="background:#54007a;"></span>Business investment
+    </div>
+    <div class="legend-item" style="left:193px;">
+      <span class="swatch" style="background:#c8a0e8;"></span>Consumer spending
+    </div>
+    <div class="legend-item" style="left:384px;">
+      <span class="swatch" style="background:#b3b3b3;"></span>Exports
+    </div>
+  </div>
+
+  <div class="chart-bg bg-americas"></div>
+  <div class="chart-bg bg-europe"></div>
+  <div class="chart-bg bg-apac"></div>
+
+  <div class="region r-americas">Americas</div>
+  <div class="region r-europe">Europe</div>
+  <div class="region r-apac">APAC</div>
+
+  <div class="baseline"></div>
+
+  <!-- Americas -->
+  <div class="bar" style="left:56px; top:374px; width:30px; height:107px; background:#54007a;"></div>
+  <div class="bar" style="left:87px; top:463px; width:29px; height:18px; background:#c8a0e8;"></div>
+  <div class="bar" style="left:118px; top:481px; width:30px; height:10px; background:#b3b3b3;"></div>
+  <div class="lbl" style="left:59px; top:355px;">8.4</div>
+  <div class="lbl" style="left:89px; top:442px;">1.5</div>
+  <div class="lbl" style="left:114px; top:497px;">-0.8</div>
+
+  <div class="bar" style="left:171px; top:481px; width:30px; height:49px; background:#54007a;"></div>
+  <div class="bar" style="left:202px; top:449px; width:31px; height:32px; background:#c8a0e8;"></div>
+  <div class="bar" style="left:232px; top:481px; width:31px; height:153px; background:#b3b3b3;"></div>
+  <div class="lbl" style="left:170px; top:533px;">-3.8</div>
+  <div class="lbl" style="left:205px; top:425px;">2.5</div>
+  <div class="lbl" style="left:228px; top:637px;">-12.0</div>
+
+  <div class="bar" style="left:287px; top:481px; width:29px; height:83px; background:#54007a;"></div>
+  <div class="bar" style="left:316px; top:454px; width:30px; height:27px; background:#c8a0e8;"></div>
+  <div class="bar" style="left:347px; top:426px; width:30px; height:55px; background:#b3b3b3;"></div>
+  <div class="lbl" style="left:288px; top:566px;">-6.5</div>
+  <div class="lbl" style="left:322px; top:435px;">2.1</div>
+  <div class="lbl" style="left:350px; top:401px;">4.3</div>
+
+  <div class="country" style="left:90px; top:663px;">US</div>
+  <div class="country" style="left:188px; top:663px;">Canada</div>
+  <div class="country" style="left:306px; top:663px;">Mexico</div>
+
+  <div class="callout" style="left:102px; top:301px; width:200px; height:94px;">
+    The US is leading the<br>global AI capex boom and<br>getting a huge GDP lift<br>from it, counterbalancing<br>slowing consumer spend
+  </div>
+  <div class="tail" style="left:82px; top:394px; border-width:0 0 20px 52px; border-color:transparent transparent #8c8c8c transparent;"></div>
+  <div class="tail" style="left:84px; top:395px; border-width:0 0 18px 49px; border-color:transparent transparent #efefef transparent;"></div>
+
+  <!-- Europe -->
+  <div class="bar" style="left:401px; top:403px; width:31px; height:78px; background:#54007a;"></div>
+  <div class="bar" style="left:433px; top:472px; width:29px; height:9px; background:#c8a0e8;"></div>
+  <div class="bar" style="left:463px; top:438px; width:29px; height:43px; background:#b3b3b3;"></div>
+  <div class="lbl" style="left:406px; top:380px;">6.1</div>
+  <div class="lbl" style="left:434px; top:449px;">0.7</div>
+  <div class="lbl" style="left:467px; top:413px;">3.3</div>
+
+  <div class="bar" style="left:517px; top:481px; width:29px; height:14px; background:#54007a;"></div>
+  <div class="bar" style="left:548px; top:463px; width:29px; height:18px; background:#c8a0e8;"></div>
+  <div class="bar" style="left:578px; top:421px; width:29px; height:60px; background:#b3b3b3;"></div>
+  <div class="lbl" style="left:516px; top:497px;">-1.0</div>
+  <div class="lbl" style="left:550px; top:440px;">1.4</div>
+  <div class="lbl" style="left:581px; top:398px;">4.7</div>
+
+  <div class="bar" style="left:631px; top:481px; width:30px; height:10px; background:#54007a;"></div>
+  <div class="bar" style="left:662px; top:481px; width:29px; height:3px; background:#c8a0e8;"></div>
+  <div class="bar" style="left:693px; top:481px; width:29px; height:27px; background:#b3b3b3;"></div>
+  <div class="lbl" style="left:631px; top:497px;">-0.7</div>
+  <div class="lbl" style="left:662px; top:514px;">-0.4</div>
+  <div class="lbl" style="left:700px; top:510px;">-2.1</div>
+
+  <div class="country" style="left:436px; top:663px;">UK</div>
+  <div class="country" style="left:528px; top:663px;">Germany</div>
+  <div class="country" style="left:652px; top:663px;">France</div>
+
+  <div class="callout" style="left:414px; top:528px; width:244px; height:109px;">
+    Tariffs and competitive<br>pressures from China are stifling<br>Germany’s manufacturing<br>investment and exports, making<br>the economy increasingly reliant<br>on tepid consumer spend
+  </div>
+  <div class="tail" style="left:555px; top:492px; border-width:36px 14px 0 14px; border-color:#8c8c8c transparent transparent transparent;"></div>
+  <div class="tail" style="left:556px; top:493px; border-width:34px 13px 0 13px; border-color:#efefef transparent transparent transparent;"></div>
+
+  <!-- APAC -->
+  <div class="bar" style="left:747px; top:354px; width:31px; height:127px; background:#54007a;"></div>
+  <div class="bar" style="left:778px; top:385px; width:30px; height:96px; background:#c8a0e8;"></div>
+  <div class="bar" style="left:809px; top:481px; width:29px; height:10px; background:#b3b3b3;"></div>
+  <div class="lbl" style="left:744px; top:331px;">10.0</div>
+  <div class="lbl" style="left:779px; top:361px;">7.6</div>
+  <div class="lbl" style="left:811px; top:497px;">-0.8</div>
+
+  <div class="bar" style="left:861px; top:466px; width:30px; height:15px; background:#54007a;"></div>
+  <div class="bar" style="left:892px; top:434px; width:30px; height:47px; background:#c8a0e8;"></div>
+  <div class="bar" style="left:923px; top:389px; width:30px; height:92px; background:#b3b3b3;"></div>
+  <div class="lbl" style="left:865px; top:441px;">1.2</div>
+  <div class="lbl" style="left:896px; top:410px;">3.7</div>
+  <div class="lbl" style="left:927px; top:366px;">7.3</div>
+
+  <div class="bar" style="left:976px; top:446px; width:31px; height:35px; background:#54007a;"></div>
+  <div class="bar" style="left:1008px; top:471px; width:28px; height:10px; background:#c8a0e8;"></div>
+  <div class="bar" style="left:1037px; top:438px; width:31px; height:43px; background:#b3b3b3;"></div>
+  <div class="lbl" style="left:978px; top:420px;">2.8</div>
+  <div class="lbl" style="left:1011px; top:447px;">0.8</div>
+  <div class="lbl" style="left:1042px; top:414px;">3.3</div>
+
+  <div class="bar" style="left:1092px; top:481px; width:31px; height:37px; background:#54007a;"></div>
+  <div class="bar" style="left:1123px; top:472px; width:29px; height:9px; background:#c8a0e8;"></div>
+  <div class="bar" style="left:1154px; top:379px; width:29px; height:102px; background:#b3b3b3;"></div>
+  <div class="lbl" style="left:1093px; top:520px;">-2.9</div>
+  <div class="lbl" style="left:1125px; top:447px;">0.7</div>
+  <div class="lbl" style="left:1157px; top:356px;">8.0</div>
+
+  <div class="bar" style="left:1208px; top:281px; width:30px; height:200px; background:#54007a;"></div>
+  <div class="bar" style="left:1239px; top:376px; width:30px; height:105px; background:#c8a0e8;"></div>
+  <div class="bar" style="left:1270px; top:434px; width:29px; height:47px; background:#b3b3b3;"></div>
+  <div class="lbl" style="left:1207px; top:261px;">15.7</div>
+  <div class="lbl" style="left:1242px; top:353px;">8.3</div>
+  <div class="lbl" style="left:1272px; top:410px;">3.7</div>
+
+  <div class="country" style="left:773px; top:663px;">India</div>
+  <div class="country" style="left:891px; top:663px;">China</div>
+  <div class="country" style="left:1001px; top:663px;">Japan</div>
+  <div class="country" style="left:1091px; top:663px;">South Korea</div>
+  <div class="country" style="left:1219px; top:663px;">Malaysia</div>
+
+  <div class="callout" style="left:748px; top:531px; width:239px; height:99px;">
+    China is sustaining its export<br>growth (for now) by redirecting<br>US tariff-affected exports to<br>other markets, offsetting weak<br>domestic demand
+  </div>
+  <div class="tail" style="left:887px; top:491px; border-width:39px 21px 0 21px; border-color:#8c8c8c transparent transparent transparent;"></div>
+  <div class="tail" style="left:888px; top:492px; border-width:37px 20px 0 20px; border-color:#efefef transparent transparent transparent;"></div>
+
+  <div class="callout" style="left:1018px; top:542px; width:287px; height:114px;">
+    Semiconductor, electronics exports<br>and AI-linked FDI into Malaysia,<br>Singapore, and more recently,<br>Vietnam, underpin resilient growth in<br>high-tech manufacturing corridors,<br>despite depressed consumer spending
+  </div>
+  <div class="tail" style="left:1189px; top:490px; border-width:51px 35px 0 35px; border-color:#8c8c8c transparent transparent transparent;"></div>
+  <div class="tail" style="left:1190px; top:491px; border-width:49px 34px 0 34px; border-color:#efefef transparent transparent transparent;"></div>
+
+  <div class="brand">&gt;</div>
+  <div class="source">Source(s): Haver analytics, Accenture Strategy analysis</div>
+  <div class="copyright">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="pagenum">19</div>
+</div>
+</body>
+</html>

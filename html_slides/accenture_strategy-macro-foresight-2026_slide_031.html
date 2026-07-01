@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Business considerations slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #e7e5eb;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #e7e5eb;
+    color: #111;
+  }
+
+  /* Top tabs */
+  .topbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 25px;
+    background: #efefef;
+    border-bottom: 1px solid #cfcfcf;
+  }
+  .tab {
+    position: absolute;
+    top: 0;
+    height: 25px;
+    line-height: 25px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #868686;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .tab.active-left {
+    background: #551a8b;
+    color: #fff;
+  }
+  .tab.active-under {
+    color: #551a8b;
+    border-bottom: 2px solid #551a8b;
+    box-sizing: border-box;
+  }
+
+  /* Title */
+  .title {
+    position: absolute;
+    left: 41px;
+    top: 58px;
+    width: 1080px;
+    font-size: 31px;
+    line-height: 0.95;
+    font-weight: 800;
+    color: #000;
+  }
+  .subtitle {
+    position: absolute;
+    left: 41px;
+    top: 121px;
+    font-size: 29px;
+    line-height: 1;
+    font-weight: 800;
+    color: #9118ff;
+  }
+
+  /* Table */
+  .table {
+    position: absolute;
+    left: 26px;
+    top: 180px;
+    width: 1200px;
+    height: 500px;
+  }
+
+  .hdr {
+    position: absolute;
+    font-size: 15px;
+    font-weight: 800;
+    color: #111;
+  }
+  .subhdr {
+    position: absolute;
+    font-size: 16px;
+    font-weight: 800;
+    color: #111;
+  }
+  .line {
+    position: absolute;
+    height: 1px;
+    background: #b9b9b9;
+  }
+
+  /* Column positions */
+  .c-icon   { left: 0px;   width: 85px; }
+  .c-scen   { left: 92px;  width: 138px; }
+  .c-desc   { left: 236px; width: 206px; }
+  .c-true   { left: 460px; width: 193px; }
+  .c-comm   { left: 673px; width: 182px; }
+  .c-supply { left: 874px; width: 191px; }
+  .c-fin    { left: 1075px; width: 176px; }
+
+  .row {
+    position: absolute;
+    left: 0;
+    width: 1251px;
+    border-top: 1px solid #b9b9b9;
+    box-sizing: border-box;
+  }
+  .row.r1 { top: 55px; height: 100px; }
+  .row.r2 { top: 155px; height: 100px; }
+  .row.r3 { top: 255px; height: 140px; }
+  .row.r4 { top: 395px; height: 105px; }
+
+  .scenario-box {
+    position: absolute;
+    left: 92px;
+    width: 138px;
+    background: #000;
+    color: #fff;
+    padding: 8px 6px 6px 6px;
+    box-sizing: border-box;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 1.05;
+  }
+  .scenario-box .num {
+    display: inline-block;
+    margin-right: 6px;
+  }
+
+  .cell {
+    position: absolute;
+    font-size: 15px;
+    line-height: 1.16;
+    color: #2a2a2a;
+  }
+  .cell ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+  .cell li {
+    margin: 0 0 6px 0;
+  }
+
+  /* Icons */
+  .iconwrap {
+    position: absolute;
+    left: 0;
+    width: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .car {
+    position: relative;
+    width: 52px;
+    height: 20px;
+    background: linear-gradient(180deg, #d3df3d 0%, #a6b31c 100%);
+    border-radius: 10px 14px 8px 8px;
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
+    transform: skewX(-10deg);
+  }
+  .car:before {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: -8px;
+    width: 23px;
+    height: 11px;
+    background: linear-gradient(180deg, #878787 0%, #d7d7d7 100%);
+    border-radius: 10px 10px 2px 2px;
+    border: 1px solid rgba(0,0,0,.15);
+  }
+  .car:after {
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: 9px;
+    width: 50px;
+    height: 4px;
+    background: rgba(0,0,0,.12);
+    border-radius: 2px;
+  }
+  .wheel, .wheel2 {
+    position: absolute;
+    bottom: -4px;
+    width: 9px;
+    height: 9px;
+    background: #222;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2px #666;
+  }
+  .wheel { left: 8px; }
+  .wheel2 { right: 7px; }
+
+  .coins {
+    position: relative;
+    width: 52px;
+    height: 36px;
+  }
+  .coin-base {
+    position: absolute;
+    left: 2px;
+    top: 8px;
+    width: 48px;
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #dadada 0%, #b8b8b8 45%, #8e8e8e 100%);
+    transform: rotate(-5deg);
+    box-shadow: 0 2px 2px rgba(0,0,0,.18);
+  }
+  .coin-base:before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 4px;
+    width: 36px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.4);
+  }
+  .bars {
+    position: absolute;
+    right: 3px;
+    top: 7px;
+    width: 25px;
+    height: 22px;
+  }
+  .bars span {
+    position: absolute;
+    bottom: 0;
+    width: 6px;
+    background: #1b62c8;
+    border-radius: 2px 2px 0 0;
+  }
+  .bars .b1 { left: 0; height: 12px; }
+  .bars .b2 { left: 8px; height: 18px; }
+  .bars .b3 { left: 16px; height: 22px; }
+  .bars:after {
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: 9px;
+    width: 22px;
+    height: 2px;
+    background: #1b62c8;
+    transform: rotate(28deg);
+    transform-origin: left center;
+  }
+
+  .cars3 {
+    position: relative;
+    width: 65px;
+    height: 38px;
+  }
+  .cars3 .car.small {
+    position: absolute;
+    transform: scale(.78) skewX(-10deg);
+  }
+  .cars3 .c1 { left: 0; top: 12px; }
+  .cars3 .c2 { left: 16px; top: 7px; }
+  .cars3 .c3 { left: 30px; top: 15px; }
+
+  .globe {
+    position: relative;
+    width: 50px;
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #c4efff 0%, #8ec7ea 45%, #5a8fb3 100%);
+    overflow: hidden;
+    box-shadow: 0 2px 2px rgba(0,0,0,.12);
+  }
+  .globe:before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 11px;
+    width: 65px;
+    height: 7px;
+    background: rgba(255,255,255,.4);
+    transform: rotate(-18deg);
+  }
+  .glove {
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 10px 10px 8px 8px;
+    background: #2f8fe8;
+    transform: rotate(16deg);
+  }
+  .glove:before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 8px;
+    width: 12px;
+    height: 7px;
+    border-radius: 5px;
+    background: #2f8fe8;
+  }
+  .sleeve {
+    position: absolute;
+    left: 9px;
+    top: 12px;
+    width: 16px;
+    height: 8px;
+    background: #f1c38e;
+    border-radius: 4px;
+    transform: rotate(-18deg);
+  }
+
+  /* Footer */
+  .footer-left {
+    position: absolute;
+    left: 39px;
+    bottom: 15px;
+    font-size: 12px;
+    color: #7c7c7c;
+  }
+  .footer-left .chev {
+    color: #9118ff;
+    font-weight: 900;
+    font-size: 34px;
+    position: absolute;
+    left: 0;
+    top: -11px;
+    line-height: 1;
+  }
+  .footer-left .txt {
+    margin-left: 33px;
+  }
+  .footer-right {
+    position: absolute;
+    right: 53px;
+    bottom: 14px;
+    font-size: 11px;
+    color: #666;
+  }
+  .page {
+    position: absolute;
+    right: 12px;
+    bottom: 14px;
+    font-size: 11px;
+    color: #666;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar">
+    <div class="tab active-left" style="left:0px;width:99px;">Top 10 trends</div>
+    <div class="tab" style="left:99px;width:132px;">Multi-speed growth</div>
+    <div class="tab" style="left:231px;width:113px;">Tariff impacts</div>
+    <div class="tab" style="left:344px;width:133px;">Financial fragility</div>
+    <div class="tab" style="left:477px;width:112px;">Affordability</div>
+    <div class="tab" style="left:589px;width:129px;">AI productivity</div>
+    <div class="tab active-under" style="left:718px;width:120px;">China exports</div>
+    <div class="tab" style="left:838px;width:123px;">Europe struggle</div>
+    <div class="tab" style="left:961px;width:103px;">AI arms race</div>
+    <div class="tab" style="left:1064px;width:123px;">Power crunch</div>
+    <div class="tab" style="left:1187px;width:93px;">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">
+    Companies need to build resilience under any scenario by being able adjust<br>
+    course as Chinese high-tech competition and trade dynamics evolve
+  </div>
+  <div class="subtitle">6. Business considerations</div>
+
+  <div class="table">
+    <div class="hdr c-scen" style="top:31px;">Scenario</div>
+    <div class="hdr c-desc" style="top:31px;">Description</div>
+    <div class="hdr c-true" style="top:13px;">What would need<br>to be true?</div>
+    <div class="hdr" style="left:676px;top:3px;width:570px;">Strategic considerations for manufacturers</div>
+    <div class="line" style="left:668px;top:26px;width:604px;"></div>
+    <div class="subhdr c-comm" style="top:30px;">Commercial</div>
+    <div class="subhdr c-supply" style="top:30px;">Supply chain</div>
+    <div class="subhdr c-fin" style="top:30px;">Finance / Risk</div>
+    <div class="line" style="left:668px;top:54px;width:604px;"></div>
+
+    <div class="row r1"></div>
+    <div class="row r2"></div>
+    <div class="row r3"></div>
+    <div class="row r4"></div>
+
+    <!-- Row 1 -->
+    <div class="iconwrap" style="top:67px;height:60px;">
+      <div class="car">
+        <div class="wheel"></div><div class="wheel2"></div>
+      </div>
+    </div>
+    <div class="scenario-box" style="top:56px;height:100px;">
+      <span class="num">1.</span> Gradual<br>squeeze
+    </div>
+    <div class="cell c-desc" style="top:61px;">
+      <ul>
+        <li>Steady rise in Chinese high-tech exports, pricing pressure, but no major policy moves</li>
+      </ul>
+    </div>
+    <div class="cell c-true" style="top:61px;">
+      <ul>
+        <li>Demand broadly stable</li>
+        <li>Trade policy steady, with China focused on mid-range cost competition</li>
+      </ul>
+    </div>
+    <div class="cell c-comm" style="top:61px;">
+      <ul>
+        <li>Tilt mix toward defensible niches and service-led offerings in exposed lines</li>
+      </ul>
+    </div>
+    <div class="cell c-supply" style="top:61px;">
+      <ul>
+        <li>Execute “no-regrets” efficiency moves (e.g., yield, procurement, basic China+1 options)</li>
+      </ul>
+    </div>
+    <div class="cell c-fin" style="top:61px;">
+      <ul>
+        <li>Build integrated scenarios by product and region, with early-warning triggers on profitability and cash</li>
+      </ul>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="iconwrap" style="top:157px;height:80px;">
+      <div class="coins">
+        <div class="coin-base"></div>
+        <div class="bars"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+      </div>
+    </div>
+    <div class="scenario-box" style="top:156px;height:100px;">
+      <span class="num">2.</span> Selective<br>protection
+    </div>
+    <div class="cell c-desc" style="top:161px;">
+      <ul>
+        <li>Targeted tariffs and trade remedies in a few product areas offer partial shelter</li>
+      </ul>
+    </div>
+    <div class="cell c-true" style="top:161px;">
+      <ul>
+        <li>US/EU apply sector-specific remedies</li>
+        <li>Retaliation remains contained</li>
+      </ul>
+    </div>
+    <div class="cell c-comm" style="top:161px;">
+      <ul>
+        <li>Reposition portfolio to benefit from protected segments where you have a right to win</li>
+      </ul>
+    </div>
+    <div class="cell c-supply" style="top:161px;">
+      <ul>
+        <li>Adjust footprint to capture local-content incentives in priority markets</li>
+      </ul>
+    </div>
+    <div class="cell c-fin" style="top:161px;">
+      <ul>
+        <li>Model tariff, subsidy and local-content scenarios into P&amp;L, balance sheet and capex plans</li>
+      </ul>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="iconwrap" style="top:256px;height:95px;">
+      <div class="cars3">
+        <div class="car small c1"><div class="wheel"></div><div class="wheel2"></div></div>
+        <div class="car small c2"><div class="wheel"></div><div class="wheel2"></div></div>
+        <div class="car small c3"><div class="wheel"></div><div class="wheel2"></div></div>
+      </div>
+    </div>
+    <div class="scenario-box" style="top:256px;height:140px;">
+      <span class="num">3.</span> Aggressive<br>undercutting
+    </div>
+    <div class="cell c-desc" style="top:261px;">
+      <ul>
+        <li>Visible dumping and deep price discounts in key products despite some protection</li>
+      </ul>
+    </div>
+    <div class="cell c-true" style="top:261px;">
+      <ul>
+        <li>China sustains very low pricing via scale / support</li>
+        <li>Customers highly price-driven</li>
+      </ul>
+    </div>
+    <div class="cell c-comm" style="top:261px;">
+      <ul>
+        <li>Exit or shrink commodity SKUs</li>
+        <li>Double down on differentiated propositions and branding</li>
+      </ul>
+    </div>
+    <div class="cell c-supply" style="top:261px;">
+      <ul>
+        <li>Accelerate automation, site consolidation and supplier resets in loss-making lines</li>
+      </ul>
+    </div>
+    <div class="cell c-fin" style="top:261px;">
+      <ul>
+        <li>Reprioritise capex and M&amp;A toward high-return, defensible positions</li>
+        <li>Put guardrails around “value-destructive defence” spending</li>
+      </ul>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="iconwrap" style="top:414px;height:70px;">
+      <div class="globe">
+        <div class="sleeve"></div>
+        <div class="glove"></div>
+      </div>
+    </div>
+    <div class="scenario-box" style="top:397px;height:105px;">
+      <span class="num">4.</span> Trade and<br>technology<br>shock
+    </div>
+    <div class="cell c-desc" style="top:402px;">
+      <ul>
+        <li>Broad tariffs / quotas</li>
+        <li>China moves up the tech stack into systems and software</li>
+      </ul>
+    </div>
+    <div class="cell c-true" style="top:402px;">
+      <ul>
+        <li>Material escalation in tariffs / quotas</li>
+        <li>China credible in systems and software</li>
+      </ul>
+    </div>
+    <div class="cell c-comm" style="top:402px;">
+      <ul>
+        <li>Prioritise markets which can be defended</li>
+        <li>Differentiate on branding</li>
+      </ul>
+    </div>
+    <div class="cell c-supply" style="top:402px;">
+      <ul>
+        <li>Regionalise production (e.g., US / EU / APAC hubs)</li>
+        <li>Redesign networks for rules of origin</li>
+      </ul>
+    </div>
+    <div class="cell c-fin" style="top:402px;">
+      <ul>
+        <li>Conduct full balance-sheet stress tests for volume shocks and working-capital spikes</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-left">
+    <div class="chev">&gt;</div>
+    <div class="txt">Source(s): Accenture Strategy Analysis</div>
+  </div>
+  <div class="footer-right">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="page">31</div>
+</div>
+</body>
+</html>

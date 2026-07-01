@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Agenda Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .left-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 684px;
+    height: 720px;
+    background: #f1f1f1;
+  }
+
+  .photo-panel {
+    position: absolute;
+    left: 684px;
+    top: 0;
+    width: 596px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 68%, rgba(62,120,35,0.95) 0 5%, rgba(31,87,22,0.98) 6% 12%, transparent 13%),
+      radial-gradient(circle at 30% 73%, rgba(85,150,42,0.95) 0 5%, rgba(33,94,25,0.98) 6% 13%, transparent 14%),
+      radial-gradient(circle at 12% 50%, rgba(77,138,38,0.95) 0 4.5%, rgba(21,79,22,0.98) 5.5% 12%, transparent 13%),
+      radial-gradient(circle at 26% 16%, rgba(105,170,58,0.92) 0 6%, rgba(41,105,27,0.98) 7% 14%, transparent 15%),
+      radial-gradient(circle at 43% 19%, rgba(88,154,47,0.92) 0 5%, rgba(29,92,24,0.98) 6% 13%, transparent 14%),
+      radial-gradient(circle at 60% 10%, rgba(70,136,40,0.95) 0 6%, rgba(20,82,22,0.98) 7% 14%, transparent 15%),
+      radial-gradient(circle at 74% 23%, rgba(98,164,55,0.95) 0 6%, rgba(30,98,23,0.98) 7% 14%, transparent 15%),
+      radial-gradient(circle at 90% 14%, rgba(84,149,48,0.92) 0 5.5%, rgba(28,91,25,0.98) 6.5% 13.5%, transparent 14.5%),
+      radial-gradient(circle at 85% 77%, rgba(103,169,59,0.94) 0 6%, rgba(30,94,24,0.98) 7% 14%, transparent 15%),
+      radial-gradient(circle at 61% 79%, rgba(92,157,51,0.94) 0 5.5%, rgba(25,87,24,0.98) 6.5% 13.5%, transparent 14.5%),
+      radial-gradient(circle at 36% 88%, rgba(86,150,49,0.94) 0 6%, rgba(23,84,23,0.98) 7% 14%, transparent 15%),
+      radial-gradient(circle at 16% 93%, rgba(95,160,54,0.94) 0 5.5%, rgba(20,77,22,0.98) 6.5% 13.5%, transparent 14.5%),
+      radial-gradient(circle at 6% 8%, rgba(79,141,44,0.9) 0 6%, rgba(25,85,25,0.98) 7% 14%, transparent 15%),
+      radial-gradient(circle at 96% 5%, rgba(79,141,44,0.9) 0 5%, rgba(25,85,25,0.98) 6% 12%, transparent 13%),
+      linear-gradient(180deg, #2a5f1f 0%, #183e18 100%);
+  }
+
+  .road {
+    position: absolute;
+    left: -34px;
+    top: 329px;
+    width: 693px;
+    height: 98px;
+    background: linear-gradient(180deg, #666b73 0%, #555a62 50%, #474c53 100%);
+    border-top: 2px solid #90959c;
+    border-bottom: 2px solid #90959c;
+    transform: rotate(16deg);
+    transform-origin: center center;
+    box-shadow: inset 0 8px 12px rgba(255,255,255,0.05), inset 0 -8px 12px rgba(0,0,0,0.15);
+  }
+
+  .road::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 693px;
+    height: 2px;
+    background: rgba(255,255,255,0.65);
+  }
+
+  .road::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 18px;
+    width: 693px;
+    height: 2px;
+    background: rgba(255,255,255,0.65);
+  }
+
+  .center-line {
+    position: absolute;
+    left: 18px;
+    top: 47px;
+    width: 657px;
+    height: 2px;
+    background: repeating-linear-gradient(
+      to right,
+      rgba(194,149,69,0.8) 0 52px,
+      transparent 52px 72px
+    );
+  }
+
+  .car {
+    position: absolute;
+    left: 308px;
+    top: 374px;
+    width: 46px;
+    height: 22px;
+    background: #f4f5f6;
+    border: 1px solid #bcc1c6;
+    border-radius: 8px;
+    transform: rotate(16deg);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  }
+
+  .car::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 4px;
+    width: 29px;
+    height: 14px;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: inset 0 0 0 1px #d9dde1;
+  }
+
+  .car::after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 6px;
+    width: 13px;
+    height: 10px;
+    background: #5d6d7e;
+    border-radius: 2px;
+    box-shadow:
+      -12px 0 0 #2f3337,
+      18px 0 0 #2f3337,
+      -12px 8px 0 #2f3337,
+      18px 8px 0 #2f3337;
+  }
+
+  .title {
+    position: absolute;
+    left: 50px;
+    top: 143px;
+    font-size: 27px;
+    font-weight: 700;
+    color: #b22222;
+    line-height: 1;
+  }
+
+  .red-line {
+    position: absolute;
+    left: 50px;
+    top: 194px;
+    width: 613px;
+    height: 10px;
+    background: #b92020;
+  }
+
+  .item {
+    position: absolute;
+    left: 50px;
+    color: #111111;
+    font-size: 25px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .item .num {
+    display: inline-block;
+    width: 32px;
+    color: #b92020;
+    font-weight: 400;
+  }
+
+  .item.bold {
+    font-weight: 700;
+  }
+
+  .item1 { top: 219px; }
+  .item2 { top: 266px; }
+  .item3 { top: 309px; }
+  .item4 { top: 353px; }
+
+  .footer {
+    position: absolute;
+    left: 50px;
+    top: 716px;
+    transform: translateY(-100%);
+    font-size: 14px;
+    line-height: 1.2;
+    color: #222222;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-panel"></div>
+
+    <div class="photo-panel">
+      <div class="road">
+        <div class="center-line"></div>
+      </div>
+      <div class="car"></div>
+    </div>
+
+    <div class="title">Agenda</div>
+    <div class="red-line"></div>
+
+    <div class="item item1 bold"><span class="num">1.</span> Executive Summary</div>
+    <div class="item item2"><span class="num">2.</span> Consumers viewpoint</div>
+    <div class="item item3"><span class="num">3.</span> eReadiness Index</div>
+    <div class="item item4"><span class="num">4.</span> Contacts</div>
+
+    <div class="footer">eReadiness Report 2024<br>Strategy&amp;</div>
+  </div>
+</body>
+</html>

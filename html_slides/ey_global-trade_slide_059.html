@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Japan 2026 tax reform</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f4;
+    color:#5a5a66;
+  }
+  #slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .top-left-band{
+    left:0;
+    top:0;
+    width:46px;
+    height:79px;
+    background:#c6c6cf;
+  }
+  .top-rule{
+    left:0;
+    top:78px;
+    width:1280px;
+    height:1px;
+    background:#c7c7d0;
+  }
+  .insights{
+    left:56px;
+    top:50px;
+    font-size:19px;
+    line-height:22px;
+    color:#7a7a87;
+    font-weight:400;
+    letter-spacing:0;
+  }
+
+  .nav{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#c6c6cf;
+    top:33px;
+  }
+  .nav1{ left:950px; }
+  .nav2{ left:994px; }
+  .nav1:before,.nav2:before{
+    content:"";
+    position:absolute;
+    top:10px;
+    width:0;height:0;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+  }
+  .nav1:before{
+    left:12px;
+    border-right:10px solid #444451;
+  }
+  .nav2:before{
+    left:14px;
+    border-left:10px solid #444451;
+  }
+
+  .title{
+    left:58px;
+    top:118px;
+    width:935px;
+    font-size:35px;
+    line-height:43px;
+    color:#747481;
+    font-weight:700;
+    letter-spacing:-0.02em;
+  }
+
+  .photo{
+    left:0;
+    top:238px;
+    width:519px;
+    height:482px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 74% 33%, rgba(255,255,255,0.34) 0 4%, rgba(255,255,255,0.15) 7%, rgba(255,255,255,0) 13%),
+      radial-gradient(circle at 70% 41%, rgba(255,255,255,0.32) 0 4%, rgba(255,255,255,0.14) 8%, rgba(255,255,255,0) 14%),
+      linear-gradient(180deg,#0a6da5 0%, #0b85c2 100%);
+  }
+  .pole{
+    left:20px;
+    top:13px;
+    width:14px;
+    height:470px;
+    background:linear-gradient(90deg,#5c6167 0%, #b8bec5 22%, #f7f8fa 48%, #b3b8be 67%, #696f76 100%);
+    border-radius:9px;
+    transform:rotate(10deg);
+    box-shadow:0 0 1px rgba(0,0,0,0.4);
+  }
+  .pole-top{
+    left:37px;
+    top:10px;
+    width:42px;
+    height:18px;
+    border-radius:20px;
+    background:radial-gradient(circle at 40% 35%, #d8d8da 0%, #8b8d92 55%, #38393d 100%);
+    transform:rotate(10deg);
+  }
+  .rope{
+    left:54px;
+    top:366px;
+    width:2px;
+    height:40px;
+    background:#1f1f22;
+    transform:rotate(10deg);
+  }
+
+  .flag{
+    left:-4px;
+    top:98px;
+    width:451px;
+    height:337px;
+    background:
+      radial-gradient(ellipse at 65% 52%, rgba(255,255,255,0) 0 28%, rgba(0,0,0,0.10) 36%, rgba(255,255,255,0) 46%),
+      linear-gradient(140deg, rgba(0,0,0,0.10) 0 8%, rgba(255,255,255,0) 18% 100%),
+      linear-gradient(90deg, rgba(255,255,255,0.22) 0 12%, rgba(255,255,255,0) 20% 100%),
+      #f5f4f1;
+    clip-path:polygon(5% 0%, 14% 7%, 22% 14%, 31% 22%, 40% 30%, 49% 38%, 59% 46%, 70% 53%, 82% 58%, 93% 60%, 99% 72%, 96% 92%, 87% 96%, 75% 95%, 62% 94%, 48% 92%, 34% 90%, 20% 86%, 10% 80%, 3% 72%, 0% 58%, 0% 14%);
+    transform:rotate(9deg);
+    box-shadow: inset -18px -12px 24px rgba(0,0,0,0.10), inset 18px 12px 22px rgba(255,255,255,0.55);
+  }
+  .flag:before{
+    content:"";
+    position:absolute;
+    left:197px;
+    top:108px;
+    width:105px;
+    height:149px;
+    border-radius:50%;
+    background:#ff0011;
+    transform:rotate(-19deg);
+    box-shadow: inset -12px -10px 14px rgba(0,0,0,0.10);
+  }
+  .fold{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(0,0,0,0.07);
+    filter:blur(1px);
+  }
+  .f1{ left:247px; top:189px; width:88px; height:14px; transform:rotate(16deg); }
+  .f2{ left:302px; top:221px; width:94px; height:13px; transform:rotate(8deg); }
+  .f3{ left:277px; top:258px; width:103px; height:12px; transform:rotate(-2deg); }
+  .f4{ left:198px; top:303px; width:138px; height:12px; transform:rotate(11deg); }
+  .f5{ left:136px; top:235px; width:138px; height:12px; transform:rotate(24deg); }
+
+  .photo-foot{
+    left:57px;
+    top:703px;
+    font-size:10px;
+    line-height:12px;
+    color:#ffffff;
+    font-weight:700;
+    letter-spacing:0.01em;
+  }
+
+  .body-copy{
+    left:533px;
+    top:235px;
+    width:474px;
+    font-size:15px;
+    line-height:25px;
+    color:#55555d;
+    font-weight:400;
+  }
+  .section-head{
+    left:533px;
+    top:377px;
+    width:504px;
+    font-size:15px;
+    line-height:20px;
+    color:#3f3f48;
+    font-weight:700;
+  }
+  .section-body{
+    left:547px;
+    top:405px;
+    width:480px;
+    font-size:15px;
+    line-height:25px;
+    color:#55555d;
+    font-weight:400;
+  }
+
+  .side-btn{
+    left:1008px;
+    width:113px;
+    min-height:36px;
+    background:#2b2a39;
+    color:#ffffff;
+    font-size:15px;
+    line-height:17px;
+    font-weight:400;
+    padding:7px 8px 7px 7px;
+    border-left:2px solid #d3c300;
+  }
+  .btn1{ top:120px; }
+  .btn2{ top:170px; }
+  .btn3{ top:218px; }
+  .btn4{ top:270px; }
+  .btn5{ top:321px; }
+  .btn6{
+    top:373px;
+    background:#8f8f98;
+    color:#f4f4f4;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="top-left-band"></div>
+  <div class="top-rule"></div>
+  <div class="insights">Insights: Asia-Pacific</div>
+
+  <div class="nav nav1"></div>
+  <div class="nav nav2"></div>
+
+  <div class="title">Japan 2026 tax reform: Abolition of 60% valuation rule<br>and new domestic JCT framework on low-value goods</div>
+
+  <div class="photo">
+    <div class="pole"></div>
+    <div class="pole-top"></div>
+    <div class="rope"></div>
+    <div class="flag"></div>
+    <div class="fold f1"></div>
+    <div class="fold f2"></div>
+    <div class="fold f3"></div>
+    <div class="fold f4"></div>
+    <div class="fold f5"></div>
+  </div>
+
+  <div class="body-copy">Japan’s 2026 Tax Reform proposal introduces changes which may significantly impact the customs and consumption tax treatment of low-value imports, particularly those made through cross-border e-commerce. The primary objectives are to address the rapid increase of cross-border e-commerce and ensure tax fairness between imported and domestic goods. This article will address two key areas: the abolition of the 60% Customs Valuation Rule for personal-use imports and the introduction of a domestic Japanese Consumption Tax (JCT) on low-value goods.</div>
+
+  <div class="section-head">1. Abolition of the 60% Customs Valuation Rule (effective 1 April 2028)</div>
+
+  <div class="section-body">The primary method of customs valuation is the transaction value method (i.e., the price actually paid or payable by the buyer, to or for the benefit of the seller, for the goods in an import transaction plus statutory additions). A special rule for imports by individuals allowed individuals importing goods for personal use to declare a customs value equal to 60% of their overseas purchase price at retail (“60% Rule”), meaning that individuals paid customs duties and import JCT on only 60% of their purchase price rather than the full price. The Tax Reform proposal will terminate this special rule, and duties and import JCT will be assessed on the full purchase price. There is a special provision in the customs rules which exempts import taxes (customs duties and import JCT) for goods with a customs value of JPY 10,000 or less, with certain exceptions. Accordingly, if the 60% Rule is abolished , individuals importing goods worth 10,000 JPY or more will be affected. For example, currently individuals who import goods purchased at 16,666 JPY or less will declare a customs value of 10,000 JPY or less (60% of purchase price) and would qualify for the import tax exemption. However, if the 60% Rule is implemented, the individual will declare the full value of the imported goods and will no longer qualify for the import tax exemption.</div>
+
+  <div class="side-btn btn1">Contents</div>
+  <div class="side-btn btn2">Insights</div>
+  <div class="side-btn btn3">New on<br>ey.com</div>
+  <div class="side-btn btn4">Tax alerts</div>
+  <div class="side-btn btn5">Additional<br>resources</div>
+  <div class="side-btn btn6">Contacts</div>
+
+  <div class="photo-foot">56&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+</div>
+</body>
+</html>

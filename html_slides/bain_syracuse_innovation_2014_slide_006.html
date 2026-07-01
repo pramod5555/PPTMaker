@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Replicated Slide</title>
+<style>
+  body { margin: 0; background: #ffffff; }
+  .slide {
+    position: relative;
+    width: 1024px;
+    height: 768px;
+    overflow: hidden;
+    background: #efefef;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
+  }
+  .slide > div, .slide > svg { position: absolute; box-sizing: border-box; }
+  .title {
+    left: 18px;
+    top: 14px;
+    width: 930px;
+    font-size: 34px;
+    line-height: 1.18;
+    font-weight: 400;
+    color: #111;
+    letter-spacing: 0;
+  }
+  .red-line {
+    left: 0;
+    top: 101px;
+    width: 992px;
+    height: 12px;
+    background: #d50000;
+  }
+  .col-head {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+  }
+  .head-left {
+    left: 23px;
+    top: 135px;
+    width: 288px;
+    background: #9e9e9e;
+    color: #000;
+  }
+  .head-mid {
+    left: 320px;
+    top: 135px;
+    width: 422px;
+    background: #858585;
+    color: #fff;
+  }
+  .head-right {
+    left: 752px;
+    top: 135px;
+    width: 257px;
+    background: #adadad;
+    color: #000;
+  }
+  .col {
+    font-size: 15px;
+    line-height: 1.15;
+    color: #222;
+  }
+  .col ul {
+    margin: 0;
+    padding-left: 22px;
+  }
+  .col li {
+    margin: 0 0 8px 0;
+  }
+  .col li::marker {
+    font-size: 16px;
+    color: #000;
+  }
+  .name { font-weight: 800; }
+  .left-col {
+    left: 31px;
+    top: 188px;
+    width: 268px;
+  }
+  .mid-col {
+    left: 321px;
+    top: 188px;
+    width: 410px;
+  }
+  .right-col {
+    left: 758px;
+    top: 188px;
+    width: 238px;
+  }
+  .arrow {
+    width: 86px;
+    height: 22px;
+  }
+  .arrow-left { left: 129px; top: 610px; }
+  .arrow-mid { left: 491px; top: 610px; }
+  .arrow-right { left: 835px; top: 610px; }
+  .callout {
+    color: #d00000;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.1;
+    text-align: center;
+  }
+  .callout-left {
+    left: 24px;
+    top: 638px;
+    width: 291px;
+  }
+  .callout-mid {
+    left: 358px;
+    top: 638px;
+    width: 350px;
+  }
+  .callout-right {
+    left: 744px;
+    top: 638px;
+    width: 270px;
+  }
+  .bottom-line {
+    left: 0;
+    top: 732px;
+    width: 1024px;
+    height: 1px;
+    background: #9a9a9a;
+  }
+  .page {
+    left: 966px;
+    top: 739px;
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 700;
+    color: #111;
+  }
+  .clock {
+    left: 986px;
+    top: 737px;
+    width: 22px;
+    height: 22px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">Representatives from both faculty and the administration provided us with input and guidance</div>
+
+  <div class="red-line"></div>
+
+  <div class="col-head head-left">EXECUTIVE COMMITTEE</div>
+  <div class="col-head head-mid">STEERING COMMITTEE</div>
+  <div class="col-head head-right">DEANS</div>
+
+  <div class="col left-col">
+    <ul>
+      <li><span class="name">Kal Alston</span>, Senior Vice President of Human Capital Development</li>
+      <li><span class="name">Gwenn Judge</span>, Director of Budget and Planning</li>
+      <li><span class="name">Louis Marcoccia</span>, Executive Vice President and Chief Financial Officer</li>
+      <li><span class="name">Chris Sedore</span>, Associate Vice Chancellor for Academic Operations and CIO</li>
+      <li><span class="name">Eric F. Spina</span>, Vice Chancellor and Provost</li>
+      <li><span class="name">Steve Barnes</span>, Trustee</li>
+      <li><span class="name">H. John Riley</span>, Trustee</li>
+    </ul>
+  </div>
+
+  <div class="col mid-col">
+    <ul>
+      <li><span class="name">Executive committee in full</span>, except for trustees</li>
+      <li><span class="name">Prof. Shiu-Kai Chin</span>, Faculty rep to the Board</li>
+      <li><span class="name">Prof. Craig Dudczak</span>, Budget Committee chair</li>
+      <li><span class="name">Prof. Mary Lovely</span>, Chair of the former Senate Ad Hoc Committee on Enrollment</li>
+      <li><span class="name">Prof. Sandra Lane</span>, former Chair of the Senate Academic Affairs Committee</li>
+      <li><span class="name">Dean Lorraine Branham</span> (Newhouse)</li>
+      <li><span class="name">Dean Laura Steinberg</span> (LC Smith College of Engineering &amp; Computer Science)</li>
+      <li><span class="name">Prof. Gail Bulman</span>, Department Chair in Arts &amp; Sciences (Languages, Literature, and Linguistics)</li>
+      <li><span class="name">Kristen Jones-Kolod</span>, Division of Student Affairs</li>
+      <li><span class="name">Jamie Cyr</span>, Auxiliary Services</li>
+    </ul>
+  </div>
+
+  <div class="col right-col">
+    <ul>
+      <li><span class="name">Hannah Arterian</span>, Law</li>
+      <li><span class="name">Douglas Biklen</span>, Education</li>
+      <li><span class="name">Lorraine Branham</span>, Newhouse</li>
+      <li><span class="name">Ann Clarke</span>, Visual &amp; Performing Arts</li>
+      <li><span class="name">Bea Gonzalez</span>, Continuing Education</li>
+      <li><span class="name">Kenneth Kavajecz</span>, Whitman</li>
+      <li><span class="name">George Langford</span>, Arts &amp; Sciences</li>
+      <li><span class="name">Elizabeth Liddy</span>, iSchool</li>
+      <li><span class="name">Diane Murphy</span>, Falk</li>
+      <li><span class="name">Michael Speaks</span>, Architecture</li>
+      <li><span class="name">James Steinberg</span>, Maxwell</li>
+      <li><span class="name">Laura Steinberg</span>, Engineering</li>
+    </ul>
+  </div>
+
+  <svg class="arrow arrow-left" viewBox="0 0 90 24">
+    <path d="M26 2 L60 2 L60 11 L82 11 L45 22 L8 11 L26 11 Z" fill="#ffffff" stroke="#d50000" stroke-width="2.5"/>
+  </svg>
+  <svg class="arrow arrow-mid" viewBox="0 0 90 24">
+    <path d="M26 2 L60 2 L60 11 L82 11 L45 22 L8 11 L26 11 Z" fill="#ffffff" stroke="#d50000" stroke-width="2.5"/>
+  </svg>
+  <svg class="arrow arrow-right" viewBox="0 0 90 24">
+    <path d="M26 2 L60 2 L60 11 L82 11 L45 22 L8 11 L26 11 Z" fill="#ffffff" stroke="#d50000" stroke-width="2.5"/>
+  </svg>
+
+  <div class="callout callout-left">Met 10 times for 2 hrs each</div>
+  <div class="callout callout-mid">Met 6 times for 2-4 hrs each</div>
+  <div class="callout callout-right">One-hour, one-on-one<br>interviews followed by<br>group discussions</div>
+
+  <div class="bottom-line"></div>
+  <div class="page">6</div>
+
+  <svg class="clock" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="9" fill="none" stroke="#d50000" stroke-width="2.2"/>
+    <line x1="12" y1="12" x2="12" y2="6.7" stroke="#d50000" stroke-width="1.9"/>
+    <line x1="12" y1="12" x2="16" y2="12" stroke="#d50000" stroke-width="1.9"/>
+    <path d="M12 1.5 L14.5 5.5 L9.5 5.5 Z" fill="#d50000"/>
+  </svg>
+</div>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>A Portrait of the Future</title>
+<style>
+  body{
+    margin:0;
+    background:#030203;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#030203;
+    color:#ffffff;
+  }
+
+  .top-left{
+    position:absolute;
+    left:60px;
+    top:37px;
+    font-size:15px;
+    color:#cfcfcf;
+    font-weight:400;
+    letter-spacing:0;
+    white-space:nowrap;
+  }
+
+  .top-right{
+    position:absolute;
+    right:57px;
+    top:37px;
+    font-size:15px;
+    color:#d8d8d8;
+    white-space:nowrap;
+  }
+  .top-right .page{
+    display:inline-block;
+    margin-left:24px;
+    color:#d8d8d8;
+  }
+
+  .title{
+    position:absolute;
+    left:60px;
+    top:188px;
+    font-size:25px;
+    line-height:1.15;
+    color:#b99af5;
+    font-weight:700;
+    white-space:nowrap;
+  }
+
+  .col{
+    position:absolute;
+    width:285px;
+    font-size:14px;
+    line-height:1.36;
+    color:#e7e7e7;
+    font-weight:400;
+  }
+  .col1{ left:60px; top:285px; }
+  .col2{ left:346px; top:285px; }
+
+  .col p{
+    margin:0 0 12px 0;
+  }
+
+  .arrow{
+    position:absolute;
+    left:57px;
+    bottom:22px;
+    font-size:52px;
+    line-height:1;
+    color:#a200f1;
+    font-weight:700;
+  }
+
+  .art{
+    position:absolute;
+    left:764px;
+    top:122px;
+    width:368px;
+    height:506px;
+    background:
+      radial-gradient(ellipse at 31% 17%, rgba(255,130,255,0.95) 0%, rgba(233,160,255,0.55) 18%, rgba(255,255,255,0) 34%),
+      radial-gradient(ellipse at 28% 36%, rgba(174,0,255,0.95) 0%, rgba(174,0,255,0.75) 24%, rgba(255,255,255,0) 45%),
+      radial-gradient(ellipse at 57% 84%, rgba(255,134,255,0.7) 0%, rgba(255,255,255,0) 32%),
+      radial-gradient(ellipse at 47% 39%, rgba(230,230,230,0.95) 0%, rgba(245,245,245,0.92) 22%, rgba(255,255,255,0) 36%),
+      linear-gradient(135deg, rgba(106,0,214,0.95) 0%, rgba(202,94,255,0.82) 16%, rgba(244,183,255,0.62) 27%, rgba(245,245,245,0.98) 44%, rgba(236,236,236,0.96) 100%);
+    overflow:hidden;
+  }
+
+  .sweep, .sweep2, .sweep3, .sweep4, .sweep5{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(1px);
+    opacity:0.95;
+  }
+  .sweep{
+    left:-49px; top:-22px; width:306px; height:87px;
+    border-top:4px solid rgba(128,0,255,0.75);
+    border-bottom:4px solid rgba(186,122,255,0.45);
+    transform:rotate(28deg);
+  }
+  .sweep2{
+    left:-31px; top:11px; width:282px; height:76px;
+    border-top:4px solid rgba(140,0,255,0.7);
+    border-bottom:4px solid rgba(210,160,255,0.4);
+    transform:rotate(31deg);
+  }
+  .sweep3{
+    left:-60px; top:392px; width:414px; height:82px;
+    border-top:7px solid rgba(255,120,255,0.6);
+    border-bottom:7px solid rgba(178,0,255,0.28);
+    transform:rotate(8deg);
+  }
+  .sweep4{
+    left:-33px; top:419px; width:409px; height:78px;
+    border-top:7px solid rgba(255,180,255,0.55);
+    border-bottom:7px solid rgba(120,0,255,0.2);
+    transform:rotate(9deg);
+  }
+  .sweep5{
+    left:-73px; top:223px; width:272px; height:88px;
+    border-top:5px solid rgba(255,255,255,0.7);
+    border-bottom:5px solid rgba(167,0,255,0.35);
+    transform:rotate(16deg);
+  }
+
+  .face{
+    position:absolute;
+    right:34px;
+    top:-3px;
+    width:167px;
+    height:421px;
+    background:
+      radial-gradient(circle at 20% 4%, rgba(166,0,255,0.32) 0 6%, rgba(255,255,255,0) 8%),
+      radial-gradient(circle at 28% 10%, rgba(166,0,255,0.25) 0 5%, rgba(255,255,255,0) 8%),
+      linear-gradient(180deg, rgba(239,239,239,0.98) 0%, rgba(247,247,247,0.98) 100%);
+    clip-path: polygon(20% 0%, 62% 0%, 92% 4%, 100% 15%, 96% 24%, 93% 29%, 92% 36%, 96% 44%, 94% 54%, 88% 66%, 83% 74%, 76% 81%, 66% 88%, 56% 93%, 36% 100%, 8% 100%, 7% 84%, 9% 69%, 12% 52%, 13% 31%, 16% 12%);
+    opacity:0.97;
+  }
+  .face:before{
+    content:"";
+    position:absolute;
+    left:25px;
+    top:11px;
+    width:130px;
+    height:288px;
+    background:
+      repeating-linear-gradient(167deg,
+        rgba(215,215,215,0.82) 0px,
+        rgba(215,215,215,0.82) 11px,
+        rgba(244,244,244,0.0) 12px,
+        rgba(244,244,244,0.0) 28px);
+    opacity:0.75;
+    border-radius:55% 40% 45% 35%;
+    transform:rotate(4deg);
+  }
+
+  .chat{
+    position:absolute;
+    border-radius:22px;
+    box-shadow:none;
+  }
+  .chat:after{
+    content:"";
+    position:absolute;
+    width:0;height:0;
+    border-style:solid;
+  }
+
+  .c1{
+    left:244px; top:183px; width:117px; height:70px;
+    background:linear-gradient(180deg,#f7f7f7 0%, #f3f3f3 100%);
+    border-radius:18px;
+  }
+  .c1:after{
+    right:22px; bottom:-16px;
+    border-width:16px 9px 0 0;
+    border-color:#f4f4f4 transparent transparent transparent;
+  }
+
+  .c2{
+    left:268px; top:272px; width:142px; height:97px;
+    background:linear-gradient(180deg,#b100f3 0%, #7f1ce6 100%);
+    border-radius:20px;
+  }
+  .c2:after{
+    right:25px; bottom:-20px;
+    border-width:20px 12px 0 0;
+    border-color:#7f1ce6 transparent transparent transparent;
+  }
+
+  .c3{
+    left:8px; top:313px; width:198px; height:112px;
+    background:linear-gradient(180deg,#f7f7f7 0%, #efefef 100%);
+    border-radius:24px;
+  }
+  .c3:after{
+    left:24px; bottom:-20px;
+    border-width:20px 0 0 14px;
+    border-color:#efefef transparent transparent transparent;
+  }
+
+  .c4{
+    left:119px; top:433px; width:146px; height:59px;
+    background:linear-gradient(180deg,#7b14e2 0%, #6013d3 100%);
+    border-radius:28px;
+  }
+  .c4:after{
+    left:33px; bottom:-14px;
+    border-width:14px 0 0 12px;
+    border-color:#6013d3 transparent transparent transparent;
+  }
+
+  .smear{
+    position:absolute;
+    left:-14px;
+    top:241px;
+    width:214px;
+    height:59px;
+    background:
+      repeating-linear-gradient(12deg,
+      rgba(255,255,255,0.9) 0 3px,
+      rgba(255,255,255,0) 4px 10px);
+    opacity:0.65;
+    transform:rotate(14deg);
+  }
+
+  .purple-band{
+    position:absolute;
+    left:-28px;
+    top:141px;
+    width:241px;
+    height:168px;
+    border-radius:0 40px 40px 0;
+    background:linear-gradient(180deg, rgba(165,0,242,0.98) 0%, rgba(208,37,255,0.95) 60%, rgba(139,0,240,0.95) 100%);
+    filter:blur(0.3px);
+    opacity:0.95;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left">Technology Vision 2025&nbsp;&nbsp;|&nbsp;&nbsp;AI: A Declaration of Autonomy</div>
+    <div class="top-right">Your Face, in the Future <span class="page">33</span></div>
+
+    <div class="title">A Portrait of the Future</div>
+
+    <div class="col col1">
+      <p>Claire opens her computer, excited but nervous. The input window for her generative AI agent blinks at her. She begins to type, “Last night, my partner and I found a home that we’d like to buy. Now we need to find a mortgage broker so we can make an offer.”</p>
+      <p>“Exciting!” the agent responds. “I’ve pulled three of the top brokers according to online ratings. Each has an agent I can bring into the chat. Would you like to preview their introductions?”</p>
+      <p>“Sure,” Claire responds. Her agent shares the three messages with her, each from a different national bank. But she squints at her screen. “I think you made a mistake,” she writes. “You said you were going to find three. The first two messages are identical. See, they both just say ‘Thank you for considering us, we offer great rates and look forward to working together. Please connect to our agent to proceed.’ ”</p>
+      <p>“No, I’ve just queried them again,” responds Claire’s agent. “That was the intended response for each bank. Shall I ask them to regenerate?”</p>
+    </div>
+
+    <div class="col col2">
+      <p>Instead, Claire glances at the third bank’s message. “Hi Claire,” it reads. “My name is Bruno. I’m NorthRiver Bank’s first-time homebuyer agent. I know you’re probably feeling overwhelmed to say the least. Going through this process is a huge step, but I’ll try my hardest to make sure you understand everything and feel comfortable every step of the way.”</p>
+      <p>Claire smiles. She clicks on Bruno’s icon and enters the chat with her agent. Over the next hour, Bruno and Claire discuss different loan options, how they are structured, and what they mean for her finances in the long term. Claire connects Bruno to the real estate listing and financial portfolio of her and her partner. Bruno helps Claire identify discounts and tax incentives where she lives as well as suggests how to save on closing costs, all before connecting Claire to a human broker to walk through final details.</p>
+    </div>
+
+    <div class="art">
+      <div class="purple-band"></div>
+      <div class="sweep"></div>
+      <div class="sweep2"></div>
+      <div class="sweep3"></div>
+      <div class="sweep4"></div>
+      <div class="sweep5"></div>
+      <div class="smear"></div>
+      <div class="face"></div>
+      <div class="chat c1"></div>
+      <div class="chat c2"></div>
+      <div class="chat c3"></div>
+      <div class="chat c4"></div>
+    </div>
+
+    <div class="arrow">&gt;</div>
+  </div>
+</body>
+</html>

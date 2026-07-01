@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Roland Berger — Data Intensive Slides</title>
+<style>
+  body { margin:0; background:#0a0f1e; display:flex; flex-direction:column;
+         align-items:center; justify-content:center; min-height:100vh; font-family:Arial,sans-serif; }
+  h1 { color:#8a9aaa; font-size:12px; font-weight:400; margin:16px 0 8px; letter-spacing:2px; text-transform:uppercase; }
+  .slide-card { text-align:center; }
+  .label { color:#4a6a8a; font-size:11px; margin-bottom:8px; letter-spacing:1px; }
+  iframe { display:block; border-radius:3px; box-shadow:0 12px 48px rgba(0,0,0,0.7); }
+  .nav { display:flex; gap:16px; margin-top:20px; align-items:center; }
+  button { background:#111828; border:1px solid #2a3a5a; color:#8a9aaa; padding:8px 28px;
+            border-radius:3px; cursor:pointer; font-size:12px; letter-spacing:1px; text-transform:uppercase; }
+  button:hover { background:#1a2a4a; color:#aac0d8; }
+  .dots { display:flex; gap:8px; align-items:center; }
+  .dot { width:7px; height:7px; border-radius:50%; background:#2a3a5a; cursor:pointer; }
+  .dot.active { background:#1c78b0; }
+</style>
+</head>
+<body>
+<h1>Roland Berger · Data-Intensive Analysis Slides</h1>
+
+    <div class="slide-card" id="s0" style="display:block">
+      <div class="label">Slide 1 of 4</div>
+      <iframe srcdoc="&#60;!DOCTYPE html&#62;
+&#60;html lang=&quot;en&quot;&#62;
+&#60;head&#62;
+&#60;meta charset=&quot;UTF-8&quot; /&#62;
+&#60;meta name=&quot;viewport&quot; content=&quot;width=1280, initial-scale=1.0&quot; /&#62;
+&#60;title&#62;Technology Adoption vs. Productivity Growth — European Firms 2025&#60;/title&#62;
+&#60;style&#62;
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family:Arial, Helvetica, &quot;Segoe UI&quot;, sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ffffff;
+  }
+  .rule{
+    position:absolute;
+    top:44px;
+    left:64px;
+    width:1152px;
+    height:2px;
+    background:#1c78b0;
+  }
+  .kicker{
+    position:absolute;
+    top:56px;
+    left:64px;
+    font-size:10px;
+    color:#1c78b0;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    line-height:1.2;
+  }
+  .headline{
+    position:absolute;
+    top:74px;
+    left:64px;
+    width:1060px;
+    font-size:24px;
+    font-weight:700;
+    color:#1c2a3a;
+    line-height:1.2;
+  }
+  .footnote{
+    position:absolute;
+    top:686px;
+    left:64px;
+    font-size:10px;
+    color:#9aa0a8;
+    line-height:1.2;
+  }
+  svg text{
+    font-family:Arial, Helvetica, sans-serif;
+  }
+&#60;/style&#62;
+&#60;/head&#62;
+&#60;body&#62;
+&#60;div id=&quot;slide&quot;&#62;
+  &#60;div class=&quot;rule&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;kicker&quot;&#62;TECHNOLOGY ADOPTION vs. PRODUCTIVITY GROWTH — EUROPEAN FIRMS 2025&#60;/div&#62;
+  &#60;div class=&quot;headline&quot;&#62;Leaders combine broad adoption with high productivity returns — the centre of gravity is shifting right&#60;/div&#62;
+
+  &#60;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;1152&quot; height=&quot;534&quot; style=&quot;position:absolute;top:142px;left:64px&quot;&#62;
+    &#60;line x1=&quot;90&quot; y1=&quot;380&quot; x2=&quot;1140&quot; y2=&quot;380&quot; stroke=&quot;#e0e8f0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4,3&quot;/&#62;
+    &#60;line x1=&quot;90&quot; y1=&quot;270&quot; x2=&quot;1140&quot; y2=&quot;270&quot; stroke=&quot;#e0e8f0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4,3&quot;/&#62;
+    &#60;line x1=&quot;90&quot; y1=&quot;160&quot; x2=&quot;1140&quot; y2=&quot;160&quot; stroke=&quot;#e0e8f0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4,3&quot;/&#62;
+    &#60;line x1=&quot;90&quot; y1=&quot;50&quot; x2=&quot;1140&quot; y2=&quot;50&quot; stroke=&quot;#e0e8f0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4,3&quot;/&#62;
+
+    &#60;line x1=&quot;294&quot; y1=&quot;20&quot; x2=&quot;294&quot; y2=&quot;490&quot; stroke=&quot;#e0e8f0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4,3&quot;/&#62;
+    &#60;line x1=&quot;499&quot; y1=&quot;20&quot; x2=&quot;499&quot; y2=&quot;490&quot; stroke=&quot;#e0e8f0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4,3&quot;/&#62;
+    &#60;line x1=&quot;703&quot; y1=&quot;20&quot; x2=&quot;703&quot; y2=&quot;490&quot; stroke=&quot;#e0e8f0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4,3&quot;/&#62;
+    &#60;line x1=&quot;908&quot; y1=&quot;20&quot; x2=&quot;908&quot; y2=&quot;490&quot; stroke=&quot;#e0e8f0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4,3&quot;/&#62;
+
+    &#60;line x1=&quot;90&quot; y1=&quot;490&quot; x2=&quot;1140&quot; y2=&quot;490&quot; stroke=&quot;#c0c8d0&quot; stroke-width=&quot;1.5&quot;/&#62;
+    &#60;line x1=&quot;90&quot; y1=&quot;20&quot; x2=&quot;90&quot; y2=&quot;490&quot; stroke=&quot;#c0c8d0&quot; stroke-width=&quot;1.5&quot;/&#62;
+
+    &#60;line x1=&quot;90&quot; y1=&quot;490&quot; x2=&quot;90&quot; y2=&quot;496&quot; stroke=&quot;#9aa0a8&quot; stroke-width=&quot;1&quot;/&#62;
+    &#60;line x1=&quot;294&quot; y1=&quot;490&quot; x2=&quot;294&quot; y2=&quot;496&quot; stroke=&quot;#9aa0a8&quot; stroke-width=&quot;1&quot;/&#62;
+    &#60;line x1=&quot;499&quot; y1=&quot;490&quot; x2=&quot;499&quot; y2=&quot;496&quot; stroke=&quot;#9aa0a8&quot; stroke-width=&quot;1&quot;/&#62;
+    &#60;line x1=&quot;703&quot; y1=&quot;490&quot; x2=&quot;703&quot; y2=&quot;496&quot; stroke=&quot;#9aa0a8&quot; stroke-width=&quot;1&quot;/&#62;
+    &#60;line x1=&quot;908&quot; y1=&quot;490&quot; x2=&quot;908&quot; y2=&quot;496&quot; stroke=&quot;#9aa0a8&quot; stroke-width=&quot;1&quot;/&#62;
+    &#60;line x1=&quot;1112&quot; y1=&quot;490&quot; x2=&quot;1112&quot; y2=&quot;496&quot; stroke=&quot;#9aa0a8&quot; stroke-width=&quot;1&quot;/&#62;
+
+    &#60;text x=&quot;90&quot; y=&quot;505&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot; text-anchor=&quot;middle&quot;&#62;0&#60;/text&#62;
+    &#60;text x=&quot;294&quot; y=&quot;505&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot; text-anchor=&quot;middle&quot;&#62;20&#60;/text&#62;
+    &#60;text x=&quot;499&quot; y=&quot;505&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot; text-anchor=&quot;middle&quot;&#62;40&#60;/text&#62;
+    &#60;text x=&quot;703&quot; y=&quot;505&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot; text-anchor=&quot;middle&quot;&#62;60&#60;/text&#62;
+    &#60;text x=&quot;908&quot; y=&quot;505&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot; text-anchor=&quot;middle&quot;&#62;80&#60;/text&#62;
+    &#60;text x=&quot;1112&quot; y=&quot;505&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot; text-anchor=&quot;middle&quot;&#62;100&#60;/text&#62;
+    &#60;text x=&quot;615&quot; y=&quot;528&quot; font-size=&quot;12&quot; fill=&quot;#4a5a6a&quot; text-anchor=&quot;middle&quot;&#62;Technology Adoption Index [0–100]&#60;/text&#62;
+
+    &#60;line x1=&quot;84&quot; y1=&quot;490&quot; x2=&quot;90&quot; y2=&quot;490&quot; stroke=&quot;#9aa0a8&quot; stroke-width=&quot;1&quot;/&#62;
+    &#60;line x1=&quot;84&quot; y1=&quot;380&quot; x2=&quot;90&quot; y2=&quot;380&quot; stroke=&quot;#9aa0a8&quot; stroke-width=&quot;1&quot;/&#62;
+    &#60;line x1=&quot;84&quot; y1=&quot;270&quot; x2=&quot;90&quot; y2=&quot;270&quot; stroke=&quot;#9aa0a8&quot; stroke-width=&quot;1&quot;/&#62;
+    &#60;line x1=&quot;84&quot; y1=&quot;160&quot; x2=&quot;90&quot; y2=&quot;160&quot; stroke=&quot;#9aa0a8&quot; stroke-width=&quot;1&quot;/&#62;
+    &#60;line x1=&quot;84&quot; y1=&quot;50&quot; x2=&quot;90&quot; y2=&quot;50&quot; stroke=&quot;#9aa0a8&quot; stroke-width=&quot;1&quot;/&#62;
+
+    &#60;text x=&quot;82&quot; y=&quot;494&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot; text-anchor=&quot;end&quot;&#62;0%&#60;/text&#62;
+    &#60;text x=&quot;82&quot; y=&quot;384&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot; text-anchor=&quot;end&quot;&#62;10%&#60;/text&#62;
+    &#60;text x=&quot;82&quot; y=&quot;274&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot; text-anchor=&quot;end&quot;&#62;20%&#60;/text&#62;
+    &#60;text x=&quot;82&quot; y=&quot;164&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot; text-anchor=&quot;end&quot;&#62;30%&#60;/text&#62;
+    &#60;text x=&quot;82&quot; y=&quot;54&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot; text-anchor=&quot;end&quot;&#62;40%&#60;/text&#62;
+
+    &#60;text transform=&quot;rotate(-90)&quot; x=&quot;-255&quot; y=&quot;22&quot; font-size=&quot;12&quot; fill=&quot;#4a5a6a&quot; text-anchor=&quot;middle&quot;&#62;Productivity Growth 3-yr CAGR [%]&#60;/text&#62;
+
+    &#60;line x1=&quot;703&quot; y1=&quot;20&quot; x2=&quot;703&quot; y2=&quot;490&quot; stroke=&quot;#1c78b0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;6,4&quot; opacity=&quot;0.4&quot;/&#62;
+    &#60;line x1=&quot;90&quot; y1=&quot;270&quot; x2=&quot;1140&quot; y2=&quot;270&quot; stroke=&quot;#1c78b0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;6,4&quot; opacity=&quot;0.4&quot;/&#62;
+
+    &#60;text x=&quot;870&quot; y=&quot;44&quot; font-size=&quot;11&quot; font-weight=&quot;600&quot; fill=&quot;#1c5fa8&quot; opacity=&quot;0.55&quot; text-anchor=&quot;middle&quot;&#62;TRANSFORMATION LEADERS&#60;/text&#62;
+    &#60;text x=&quot;290&quot; y=&quot;244&quot; font-size=&quot;11&quot; font-weight=&quot;600&quot; fill=&quot;#6a7a8a&quot; opacity=&quot;0.55&quot; text-anchor=&quot;middle&quot;&#62;EFFICIENT LAGGARDS&#60;/text&#62;
+    &#60;text x=&quot;870&quot; y=&quot;430&quot; font-size=&quot;11&quot; font-weight=&quot;600&quot; fill=&quot;#4a9fd4&quot; opacity=&quot;0.55&quot; text-anchor=&quot;middle&quot;&#62;TECHNOLOGISTS&#60;/text&#62;
+    &#60;text x=&quot;290&quot; y=&quot;460&quot; font-size=&quot;11&quot; font-weight=&quot;600&quot; fill=&quot;#c0392b&quot; opacity=&quot;0.55&quot; text-anchor=&quot;middle&quot;&#62;DIGITAL STRAGGLERS&#60;/text&#62;
+
+    &#60;circle cx=&quot;826&quot; cy=&quot;119&quot; r=&quot;22&quot; fill=&quot;#1c5fa8&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; opacity=&quot;0.88&quot;/&#62;
+    &#60;text x=&quot;854&quot; y=&quot;115&quot; font-size=&quot;10&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;Siemens&#60;/text&#62;
+
+    &#60;circle cx=&quot;887&quot; cy=&quot;97&quot; r=&quot;24&quot; fill=&quot;#1c5fa8&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; opacity=&quot;0.88&quot;/&#62;
+    &#60;text x=&quot;917&quot; y=&quot;93&quot; font-size=&quot;10&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;Airbus&#60;/text&#62;
+
+    &#60;circle cx=&quot;846&quot; cy=&quot;141&quot; r=&quot;16&quot; fill=&quot;#1c5fa8&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; opacity=&quot;0.88&quot;/&#62;
+    &#60;text x=&quot;868&quot; y=&quot;155&quot; font-size=&quot;10&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;Philips&#60;/text&#62;
+
+    &#60;circle cx=&quot;785&quot; cy=&quot;152&quot; r=&quot;18&quot; fill=&quot;#1c5fa8&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; opacity=&quot;0.88&quot;/&#62;
+    &#60;text x=&quot;809&quot; y=&quot;156&quot; font-size=&quot;10&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;ABB&#60;/text&#62;
+
+    &#60;circle cx=&quot;754&quot; cy=&quot;196&quot; r=&quot;20&quot; fill=&quot;#1c78b0&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; opacity=&quot;0.88&quot;/&#62;
+    &#60;text x=&quot;780&quot; y=&quot;200&quot; font-size=&quot;10&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;Bosch&#60;/text&#62;
+
+    &#60;circle cx=&quot;652&quot; cy=&quot;229&quot; r=&quot;25&quot; fill=&quot;#4a9fd4&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; opacity=&quot;0.88&quot;/&#62;
+    &#60;text x=&quot;622&quot; y=&quot;215&quot; font-size=&quot;10&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;VW Group&#60;/text&#62;
+
+    &#60;circle cx=&quot;550&quot; cy=&quot;262&quot; r=&quot;16&quot; fill=&quot;#4a9fd4&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; opacity=&quot;0.88&quot;/&#62;
+    &#60;text x=&quot;528&quot; y=&quot;266&quot; font-size=&quot;10&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;BASF&#60;/text&#62;
+
+    &#60;circle cx=&quot;519&quot; cy=&quot;317&quot; r=&quot;18&quot; fill=&quot;#7ab8e8&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; opacity=&quot;0.88&quot;/&#62;
+    &#60;text x=&quot;495&quot; y=&quot;321&quot; font-size=&quot;10&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;Renault&#60;/text&#62;
+
+    &#60;circle cx=&quot;489&quot; cy=&quot;339&quot; r=&quot;20&quot; fill=&quot;#7ab8e8&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; opacity=&quot;0.88&quot;/&#62;
+    &#60;text x=&quot;461&quot; y=&quot;343&quot; font-size=&quot;10&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;Stellantis&#60;/text&#62;
+
+    &#60;circle cx=&quot;478&quot; cy=&quot;350&quot; r=&quot;15&quot; fill=&quot;#b8d0e8&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; opacity=&quot;0.88&quot;/&#62;
+    &#60;text x=&quot;500&quot; y=&quot;364&quot; font-size=&quot;10&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;ThyssenKrupp&#60;/text&#62;
+
+    &#60;circle cx=&quot;928&quot; cy=&quot;53&quot; r=&quot;30&quot; fill=&quot;#e8813a&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; opacity=&quot;0.88&quot;/&#62;
+    &#60;text x=&quot;964&quot; y=&quot;57&quot; font-size=&quot;10&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;US Avg&#60;/text&#62;
+
+    &#60;circle cx=&quot;897&quot; cy=&quot;86&quot; r=&quot;28&quot; fill=&quot;#2e8b57&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; opacity=&quot;0.88&quot;/&#62;
+    &#60;text x=&quot;931&quot; y=&quot;90&quot; font-size=&quot;10&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;Asia Avg&#60;/text&#62;
+
+    &#60;rect x=&quot;930&quot; y=&quot;372&quot; width=&quot;150&quot; height=&quot;88&quot; rx=&quot;3&quot; fill=&quot;white&quot; stroke=&quot;#e0e6ec&quot; stroke-width=&quot;1&quot;/&#62;
+    &#60;circle cx=&quot;944&quot; cy=&quot;390&quot; r=&quot;6&quot; fill=&quot;#1c5fa8&quot;/&#62;
+    &#60;text x=&quot;956&quot; y=&quot;395&quot; font-size=&quot;11&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot;&#62;European leaders&#60;/text&#62;
+
+    &#60;circle cx=&quot;944&quot; cy=&quot;410&quot; r=&quot;6&quot; fill=&quot;#7ab8e8&quot;/&#62;
+    &#60;text x=&quot;956&quot; y=&quot;415&quot; font-size=&quot;11&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot;&#62;EU mid-tier&#60;/text&#62;
+
+    &#60;circle cx=&quot;944&quot; cy=&quot;430&quot; r=&quot;6&quot; fill=&quot;#e8813a&quot;/&#62;
+    &#60;text x=&quot;956&quot; y=&quot;435&quot; font-size=&quot;11&quot; font-family=&quot;Arial&quot; fill=&quot;#1c2a3a&quot;&#62;Regional average&#60;/text&#62;
+
+    &#60;text x=&quot;944&quot; y=&quot;454&quot; font-size=&quot;9&quot; font-family=&quot;Arial&quot; fill=&quot;#9aa0a8&quot;&#62;Bubble size = relative revenue&#60;/text&#62;
+  &#60;/svg&#62;
+
+  &#60;div class=&quot;footnote&quot;&#62;Sources: Roland Berger Technology Adoption Survey 2025; company annual reports; n=127 firms&#60;/div&#62;
+&#60;/div&#62;
+&#60;/body&#62;
+&#60;/html&#62;" width="1280" height="720" scrolling="no" frameborder="0"></iframe>
+    </div>
+    <div class="slide-card" id="s1" style="display:none">
+      <div class="label">Slide 2 of 4</div>
+      <iframe srcdoc="&#60;!DOCTYPE html&#62;
+&#60;html lang=&quot;en&quot;&#62;
+&#60;head&#62;
+&#60;meta charset=&quot;UTF-8&quot; /&#62;
+&#60;meta name=&quot;viewport&quot; content=&quot;width=1280, initial-scale=1.0&quot; /&#62;
+&#60;title&#62;European Industrial Technology Investment 2020–2024&#60;/title&#62;
+&#60;style&#62;
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family:Arial, Helvetica, &quot;Segoe UI&quot;, sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ffffff;
+  }
+  .rule{
+    position:absolute;
+    top:44px;
+    left:64px;
+    width:1152px;
+    height:2px;
+    background:#1c78b0;
+  }
+  .kicker{
+    position:absolute;
+    top:56px;
+    left:64px;
+    font-size:10px;
+    color:#1c78b0;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    line-height:1.2;
+  }
+  .headline{
+    position:absolute;
+    top:74px;
+    left:64px;
+    width:900px;
+    font-size:23px;
+    line-height:1.2;
+    font-weight:700;
+    color:#1c2a3a;
+  }
+  .kpi-panel{
+    position:absolute;
+    top:74px;
+    left:980px;
+    width:272px;
+    height:222px;
+  }
+  .kpi-row{position:relative;width:272px;height:74px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding:10px 0;}
+  .kpi-row + .kpi-row{border-top:1px solid #e0e6ec;}
+  .kpi-value{
+    font-size:30px;
+    line-height:1;
+    font-weight:700;
+    margin-top:0;
+  }
+  .kpi-label{
+    margin-top:5px;
+    font-size:12px;
+    line-height:1.2;
+    color:#4a5a6a;
+  }
+  .footnote{
+    position:absolute;
+    top:676px;
+    left:64px;
+    font-size:10px;
+    color:#9aa0a8;
+    line-height:1.2;
+  }
+&#60;/style&#62;
+&#60;/head&#62;
+&#60;body&#62;
+&#60;div id=&quot;slide&quot;&#62;
+  &#60;div class=&quot;rule&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;kicker&quot;&#62;EUROPEAN INDUSTRIAL TECHNOLOGY INVESTMENT 2020–2024&#60;/div&#62;
+  &#60;div class=&quot;headline&quot;&#62;Software &amp;amp; AI has overtaken automation hardware as the largest investment category — total spend up 115%&#60;/div&#62;
+
+  &#60;div class=&quot;kpi-panel&quot;&#62;
+    &#60;div class=&quot;kpi-row&quot;&#62;
+      &#60;div class=&quot;kpi-value&quot; style=&quot;color:#1c5fa8;&quot;&#62;€206bn&#60;/div&#62;
+      &#60;div class=&quot;kpi-label&quot;&#62;Total EU tech investment 2024&#60;/div&#62;
+    &#60;/div&#62;
+    &#60;div class=&quot;kpi-row&quot;&#62;
+      &#60;div class=&quot;kpi-value&quot; style=&quot;color:#2a8a4a;&quot;&#62;+115%&#60;/div&#62;
+      &#60;div class=&quot;kpi-label&quot;&#62;Growth vs. 2020 baseline&#60;/div&#62;
+    &#60;/div&#62;
+    &#60;div class=&quot;kpi-row&quot;&#62;
+      &#60;div class=&quot;kpi-value&quot; style=&quot;color:#1c78b0;&quot;&#62;+21%&#60;/div&#62;
+      &#60;div class=&quot;kpi-label&quot;&#62;5-year investment CAGR&#60;/div&#62;
+    &#60;/div&#62;
+  &#60;/div&#62;
+
+  &#60;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;900&quot; height=&quot;510&quot; style=&quot;position:absolute;top:152px;left:64px&quot;&#62;
+    &#60;line x1=&quot;60&quot; y1=&quot;348&quot; x2=&quot;870&quot; y2=&quot;348&quot; stroke=&quot;#e0e8f0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4,3&quot;/&#62;
+    &#60;line x1=&quot;60&quot; y1=&quot;245&quot; x2=&quot;870&quot; y2=&quot;245&quot; stroke=&quot;#e0e8f0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4,3&quot;/&#62;
+    &#60;line x1=&quot;60&quot; y1=&quot;143&quot; x2=&quot;870&quot; y2=&quot;143&quot; stroke=&quot;#e0e8f0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4,3&quot;/&#62;
+    &#60;line x1=&quot;60&quot; y1=&quot;40&quot; x2=&quot;870&quot; y2=&quot;40&quot; stroke=&quot;#e0e8f0&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4,3&quot;/&#62;
+
+    &#60;line x1=&quot;60&quot; y1=&quot;450&quot; x2=&quot;870&quot; y2=&quot;450&quot; stroke=&quot;#c0c8d0&quot; stroke-width=&quot;1.5&quot;/&#62;
+    &#60;line x1=&quot;60&quot; y1=&quot;20&quot; x2=&quot;60&quot; y2=&quot;450&quot; stroke=&quot;#c0c8d0&quot; stroke-width=&quot;1.5&quot;/&#62;
+
+    &#60;text x=&quot;52&quot; y=&quot;450&quot; text-anchor=&quot;end&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot;&#62;0&#60;/text&#62;
+    &#60;text x=&quot;52&quot; y=&quot;348&quot; text-anchor=&quot;end&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot;&#62;50&#60;/text&#62;
+    &#60;text x=&quot;52&quot; y=&quot;245&quot; text-anchor=&quot;end&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot;&#62;100&#60;/text&#62;
+    &#60;text x=&quot;52&quot; y=&quot;143&quot; text-anchor=&quot;end&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot;&#62;150&#60;/text&#62;
+    &#60;text x=&quot;52&quot; y=&quot;40&quot; text-anchor=&quot;end&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#6a7a8a&quot;&#62;200&#60;/text&#62;
+
+    &#60;text transform=&quot;rotate(-90)&quot; x=&quot;-225&quot; y=&quot;16&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#4a5a6a&quot; text-anchor=&quot;middle&quot;&#62;Investment (€bn)&#60;/text&#62;
+
+    &#60;text x=&quot;162&quot; y=&quot;466&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;12&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;2020&#60;/text&#62;
+    &#60;text x=&quot;314&quot; y=&quot;466&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;12&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;2021&#60;/text&#62;
+    &#60;text x=&quot;466&quot; y=&quot;466&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;12&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;2022&#60;/text&#62;
+    &#60;text x=&quot;618&quot; y=&quot;466&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;12&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;2023&#60;/text&#62;
+    &#60;text x=&quot;770&quot; y=&quot;466&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;12&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;600&quot;&#62;2024&#60;/text&#62;
+
+    &#60;rect x=&quot;112&quot; y=&quot;364&quot; width=&quot;100&quot; height=&quot;86&quot; fill=&quot;#1c5fa8&quot;/&#62;
+    &#60;rect x=&quot;112&quot; y=&quot;307&quot; width=&quot;100&quot; height=&quot;57&quot; fill=&quot;#1c78b0&quot;/&#62;
+    &#60;rect x=&quot;112&quot; y=&quot;270&quot; width=&quot;100&quot; height=&quot;37&quot; fill=&quot;#4a9fd4&quot;/&#62;
+    &#60;rect x=&quot;112&quot; y=&quot;254&quot; width=&quot;100&quot; height=&quot;16&quot; fill=&quot;#7ab8e8&quot;/&#62;
+    &#60;text x=&quot;162&quot; y=&quot;244&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;700&quot;&#62;€96bn&#60;/text&#62;
+
+    &#60;rect x=&quot;264&quot; y=&quot;352&quot; width=&quot;100&quot; height=&quot;98&quot; fill=&quot;#1c5fa8&quot;/&#62;
+    &#60;rect x=&quot;264&quot; y=&quot;280&quot; width=&quot;100&quot; height=&quot;72&quot; fill=&quot;#1c78b0&quot;/&#62;
+    &#60;rect x=&quot;264&quot; y=&quot;231&quot; width=&quot;100&quot; height=&quot;49&quot; fill=&quot;#4a9fd4&quot;/&#62;
+    &#60;rect x=&quot;264&quot; y=&quot;211&quot; width=&quot;100&quot; height=&quot;20&quot; fill=&quot;#7ab8e8&quot;/&#62;
+    &#60;text x=&quot;314&quot; y=&quot;201&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;700&quot;&#62;€117bn&#60;/text&#62;
+
+    &#60;rect x=&quot;416&quot; y=&quot;344&quot; width=&quot;100&quot; height=&quot;106&quot; fill=&quot;#1c5fa8&quot;/&#62;
+    &#60;rect x=&quot;416&quot; y=&quot;246&quot; width=&quot;100&quot; height=&quot;98&quot; fill=&quot;#1c78b0&quot;/&#62;
+    &#60;rect x=&quot;416&quot; y=&quot;183&quot; width=&quot;100&quot; height=&quot;63&quot; fill=&quot;#4a9fd4&quot;/&#62;
+    &#60;rect x=&quot;416&quot; y=&quot;156&quot; width=&quot;100&quot; height=&quot;27&quot; fill=&quot;#7ab8e8&quot;/&#62;
+    &#60;text x=&quot;466&quot; y=&quot;146&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;700&quot;&#62;€144bn&#60;/text&#62;
+
+    &#60;rect x=&quot;568&quot; y=&quot;335&quot; width=&quot;100&quot; height=&quot;115&quot; fill=&quot;#1c5fa8&quot;/&#62;
+    &#60;rect x=&quot;568&quot; y=&quot;208&quot; width=&quot;100&quot; height=&quot;127&quot; fill=&quot;#1c78b0&quot;/&#62;
+    &#60;rect x=&quot;568&quot; y=&quot;130&quot; width=&quot;100&quot; height=&quot;78&quot; fill=&quot;#4a9fd4&quot;/&#62;
+    &#60;rect x=&quot;568&quot; y=&quot;97&quot; width=&quot;100&quot; height=&quot;33&quot; fill=&quot;#7ab8e8&quot;/&#62;
+    &#60;text x=&quot;618&quot; y=&quot;87&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;700&quot;&#62;€172bn&#60;/text&#62;
+
+    &#60;rect x=&quot;720&quot; y=&quot;325&quot; width=&quot;100&quot; height=&quot;125&quot; fill=&quot;#1c5fa8&quot;/&#62;
+    &#60;rect x=&quot;720&quot; y=&quot;163&quot; width=&quot;100&quot; height=&quot;162&quot; fill=&quot;#1c78b0&quot;/&#62;
+    &#60;rect x=&quot;720&quot; y=&quot;67&quot; width=&quot;100&quot; height=&quot;96&quot; fill=&quot;#4a9fd4&quot;/&#62;
+    &#60;rect x=&quot;720&quot; y=&quot;28&quot; width=&quot;100&quot; height=&quot;39&quot; fill=&quot;#7ab8e8&quot;/&#62;
+    &#60;text x=&quot;770&quot; y=&quot;18&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;700&quot;&#62;€206bn&#60;/text&#62;
+
+    &#60;polyline points=&quot;162,254 314,211 466,156 618,97 770,28&quot; stroke=&quot;#1c2a3a&quot; stroke-width=&quot;2&quot; fill=&quot;none&quot;/&#62;
+    &#60;circle cx=&quot;162&quot; cy=&quot;254&quot; r=&quot;4&quot; fill=&quot;#1c2a3a&quot;/&#62;
+    &#60;circle cx=&quot;314&quot; cy=&quot;211&quot; r=&quot;4&quot; fill=&quot;#1c2a3a&quot;/&#62;
+    &#60;circle cx=&quot;466&quot; cy=&quot;156&quot; r=&quot;4&quot; fill=&quot;#1c2a3a&quot;/&#62;
+    &#60;circle cx=&quot;618&quot; cy=&quot;97&quot; r=&quot;4&quot; fill=&quot;#1c2a3a&quot;/&#62;
+    &#60;circle cx=&quot;770&quot; cy=&quot;28&quot; r=&quot;4&quot; fill=&quot;#1c2a3a&quot;/&#62;
+
+    &#60;text x=&quot;466&quot; y=&quot;96&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;12&quot; fill=&quot;#1c2a3a&quot; font-weight=&quot;700&quot;&#62;+21% CAGR&#60;/text&#62;
+    &#60;path d=&quot;M 420,88 L 412,96 M 420,88 L 428,96&quot; stroke=&quot;#1c2a3a&quot; stroke-width=&quot;1.5&quot; fill=&quot;none&quot;/&#62;
+
+    &#60;rect x=&quot;60&quot; y=&quot;478&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#1c5fa8&quot;/&#62;
+    &#60;text x=&quot;78&quot; y=&quot;489&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#4a5a6a&quot;&#62;Automation Hardware&#60;/text&#62;
+
+    &#60;rect x=&quot;230&quot; y=&quot;478&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#1c78b0&quot;/&#62;
+    &#60;text x=&quot;248&quot; y=&quot;489&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#4a5a6a&quot;&#62;Software &amp;amp; AI&#60;/text&#62;
+
+    &#60;rect x=&quot;360&quot; y=&quot;478&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#4a9fd4&quot;/&#62;
+    &#60;text x=&quot;378&quot; y=&quot;489&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#4a5a6a&quot;&#62;Cloud &amp;amp; Infrastructure&#60;/text&#62;
+
+    &#60;rect x=&quot;530&quot; y=&quot;478&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#7ab8e8&quot;/&#62;
+    &#60;text x=&quot;548&quot; y=&quot;489&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;11&quot; fill=&quot;#4a5a6a&quot;&#62;Training &amp;amp; Change Mgmt&#60;/text&#62;
+  &#60;/svg&#62;
+
+  &#60;div class=&quot;footnote&quot;&#62;Sources: Eurostat ICT Investment Statistics; IDC European Technology Tracker; Roland Berger analysis&#60;/div&#62;
+&#60;/div&#62;
+&#60;/body&#62;
+&#60;/html&#62;" width="1280" height="720" scrolling="no" frameborder="0"></iframe>
+    </div>
+    <div class="slide-card" id="s2" style="display:none">
+      <div class="label">Slide 3 of 4</div>
+      <iframe srcdoc="&#60;!DOCTYPE html&#62;
+&#60;html lang=&quot;en&quot;&#62;
+&#60;head&#62;
+&#60;meta charset=&quot;UTF-8&quot; /&#62;
+&#60;meta name=&quot;viewport&quot; content=&quot;width=1280, initial-scale=1.0&quot; /&#62;
+&#60;title&#62;Technology Maturity Heat Map&#60;/title&#62;
+&#60;style&#62;
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family:Arial, Helvetica, &quot;Segoe UI&quot;, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ffffff;
+    color:#1c2a3a;
+  }
+  .rule{
+    position:absolute;
+    top:44px;
+    left:64px;
+    width:1152px;
+    height:2px;
+    background:#1c78b0;
+  }
+  .kicker{
+    position:absolute;
+    top:56px;
+    left:64px;
+    font-size:10px;
+    line-height:12px;
+    color:#1c78b0;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .headline{
+    position:absolute;
+    top:74px;
+    left:64px;
+    width:900px;
+    font-size:23px;
+    line-height:1.2;
+    font-weight:700;
+    color:#1c2a3a;
+  }
+  .colhead{
+    position:absolute;
+    top:134px;
+    height:14px;
+    font-size:11px;
+    line-height:14px;
+    font-weight:700;
+    color:#1c2a3a;
+    text-align:center;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+  .colhead.index{
+    color:#1c78b0;
+  }
+  .rowlabel{
+    position:absolute;
+    left:64px;
+    width:130px;
+    height:76px;
+    display:flex;
+    align-items:center;
+    font-size:13px;
+    font-weight:600;
+    color:#1c2a3a;
+  }
+  .cell{
+    position:absolute;
+    width:172px;
+    height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    font-weight:700;
+    box-sizing:border-box;
+  }
+  .cell.index{
+    width:134px;
+    font-size:18px;
+  }
+  .vline{
+    position:absolute;
+    top:148px;
+    width:1px;
+    height:456px;
+    background:#d0d8e4;
+  }
+  .hline{
+    position:absolute;
+    left:64px;
+    width:1152px;
+    height:1px;
+    background:#d0d8e4;
+  }
+  .legend-title{
+    position:absolute;
+    left:64px;
+    top:617px;
+    font-size:10px;
+    line-height:12px;
+    color:#6a7a8a;
+  }
+  .legend-block{
+    position:absolute;
+    top:616px;
+    width:80px;
+    height:18px;
+  }
+  .legend-label{
+    position:absolute;
+    top:638px;
+    width:80px;
+    font-size:10px;
+    line-height:12px;
+    color:#6a7a8a;
+    text-align:center;
+  }
+  .footnote{
+    position:absolute;
+    top:668px;
+    left:64px;
+    font-size:10px;
+    line-height:12px;
+    color:#9aa0a8;
+  }
+&#60;/style&#62;
+&#60;/head&#62;
+&#60;body&#62;
+&#60;div class=&quot;slide&quot;&#62;
+  &#60;div class=&quot;rule&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;kicker&quot;&#62;TECHNOLOGY MATURITY INDEX — EUROPE BY COUNTRY AND DIMENSION [0–100]&#60;/div&#62;
+  &#60;div class=&quot;headline&quot;&#62;Sweden and Germany lead — Poland and Italy face a compounding technology maturity deficit across all five dimensions&#60;/div&#62;
+
+  &#60;div class=&quot;colhead&quot; style=&quot;left:200px; width:172px;&quot;&#62;AUTOMATION&#60;/div&#62;
+  &#60;div class=&quot;colhead&quot; style=&quot;left:372px; width:172px;&quot;&#62;AI / ML&#60;/div&#62;
+  &#60;div class=&quot;colhead&quot; style=&quot;left:544px; width:172px;&quot;&#62;DIGITAL TWIN&#60;/div&#62;
+  &#60;div class=&quot;colhead&quot; style=&quot;left:716px; width:172px;&quot;&#62;CLOUD&#60;/div&#62;
+  &#60;div class=&quot;colhead&quot; style=&quot;left:888px; width:172px;&quot;&#62;CYBERSEC&#60;/div&#62;
+  &#60;div class=&quot;colhead index&quot; style=&quot;left:1082px; width:134px;&quot;&#62;INDEX&#60;/div&#62;
+
+  &#60;div class=&quot;rowlabel&quot; style=&quot;top:148px;&quot;&#62;Sweden&#60;/div&#62;
+  &#60;div class=&quot;rowlabel&quot; style=&quot;top:224px;&quot;&#62;Germany&#60;/div&#62;
+  &#60;div class=&quot;rowlabel&quot; style=&quot;top:300px;&quot;&#62;Netherlands&#60;/div&#62;
+  &#60;div class=&quot;rowlabel&quot; style=&quot;top:376px;&quot;&#62;France&#60;/div&#62;
+  &#60;div class=&quot;rowlabel&quot; style=&quot;top:452px;&quot;&#62;Italy&#60;/div&#62;
+  &#60;div class=&quot;rowlabel&quot; style=&quot;top:528px;&quot;&#62;Poland&#60;/div&#62;
+
+  &#60;div class=&quot;cell&quot; style=&quot;left:200px; top:148px; background:#1c5fa8; color:#ffffff;&quot;&#62;82&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:372px; top:148px; background:#4a9fd4; color:#ffffff;&quot;&#62;70&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:544px; top:148px; background:#4a9fd4; color:#ffffff;&quot;&#62;65&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:716px; top:148px; background:#1c78b0; color:#ffffff;&quot;&#62;78&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:888px; top:148px; background:#1c5fa8; color:#ffffff;&quot;&#62;80&#60;/div&#62;
+  &#60;div class=&quot;cell index&quot; style=&quot;left:1082px; top:148px; background:#1c78b0; color:#ffffff;&quot;&#62;75&#60;/div&#62;
+
+  &#60;div class=&quot;cell&quot; style=&quot;left:200px; top:224px; background:#1c78b0; color:#ffffff;&quot;&#62;78&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:372px; top:224px; background:#7ab8e8; color:#1c2a3a;&quot;&#62;62&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:544px; top:224px; background:#7ab8e8; color:#1c2a3a;&quot;&#62;54&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:716px; top:224px; background:#4a9fd4; color:#ffffff;&quot;&#62;71&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:888px; top:224px; background:#1c78b0; color:#ffffff;&quot;&#62;75&#60;/div&#62;
+  &#60;div class=&quot;cell index&quot; style=&quot;left:1082px; top:224px; background:#4a9fd4; color:#ffffff;&quot;&#62;68&#60;/div&#62;
+
+  &#60;div class=&quot;cell&quot; style=&quot;left:200px; top:300px; background:#4a9fd4; color:#ffffff;&quot;&#62;71&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:372px; top:300px; background:#7ab8e8; color:#1c2a3a;&quot;&#62;64&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:544px; top:300px; background:#7ab8e8; color:#1c2a3a;&quot;&#62;58&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:716px; top:300px; background:#4a9fd4; color:#ffffff;&quot;&#62;74&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:888px; top:300px; background:#4a9fd4; color:#ffffff;&quot;&#62;72&#60;/div&#62;
+  &#60;div class=&quot;cell index&quot; style=&quot;left:1082px; top:300px; background:#4a9fd4; color:#ffffff;&quot;&#62;68&#60;/div&#62;
+
+  &#60;div class=&quot;cell&quot; style=&quot;left:200px; top:376px; background:#4a9fd4; color:#ffffff;&quot;&#62;65&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:372px; top:376px; background:#7ab8e8; color:#1c2a3a;&quot;&#62;55&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:544px; top:376px; background:#b8d8f0; color:#1c2a3a;&quot;&#62;48&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:716px; top:376px; background:#4a9fd4; color:#ffffff;&quot;&#62;68&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:888px; top:376px; background:#4a9fd4; color:#ffffff;&quot;&#62;70&#60;/div&#62;
+  &#60;div class=&quot;cell index&quot; style=&quot;left:1082px; top:376px; background:#7ab8e8; color:#1c2a3a;&quot;&#62;61&#60;/div&#62;
+
+  &#60;div class=&quot;cell&quot; style=&quot;left:200px; top:452px; background:#7ab8e8; color:#1c2a3a;&quot;&#62;52&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:372px; top:452px; background:#b8d8f0; color:#1c2a3a;&quot;&#62;41&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:544px; top:452px; background:#b8d8f0; color:#1c2a3a;&quot;&#62;38&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:716px; top:452px; background:#7ab8e8; color:#1c2a3a;&quot;&#62;58&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:888px; top:452px; background:#7ab8e8; color:#1c2a3a;&quot;&#62;62&#60;/div&#62;
+  &#60;div class=&quot;cell index&quot; style=&quot;left:1082px; top:452px; background:#7ab8e8; color:#1c2a3a;&quot;&#62;50&#60;/div&#62;
+
+  &#60;div class=&quot;cell&quot; style=&quot;left:200px; top:528px; background:#b8d8f0; color:#1c2a3a;&quot;&#62;45&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:372px; top:528px; background:#b8d8f0; color:#1c2a3a;&quot;&#62;35&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:544px; top:528px; background:#eaf3fb; color:#1c2a3a;&quot;&#62;30&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:716px; top:528px; background:#7ab8e8; color:#1c2a3a;&quot;&#62;52&#60;/div&#62;
+  &#60;div class=&quot;cell&quot; style=&quot;left:888px; top:528px; background:#b8d8f0; color:#1c2a3a;&quot;&#62;48&#60;/div&#62;
+  &#60;div class=&quot;cell index&quot; style=&quot;left:1082px; top:528px; background:#b8d8f0; color:#1c2a3a;&quot;&#62;42&#60;/div&#62;
+
+  &#60;div class=&quot;hline&quot; style=&quot;top:224px;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;hline&quot; style=&quot;top:300px;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;hline&quot; style=&quot;top:376px;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;hline&quot; style=&quot;top:452px;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;hline&quot; style=&quot;top:528px;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;hline&quot; style=&quot;top:604px;&quot;&#62;&#60;/div&#62;
+
+  &#60;div class=&quot;vline&quot; style=&quot;left:200px;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;vline&quot; style=&quot;left:372px;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;vline&quot; style=&quot;left:544px;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;vline&quot; style=&quot;left:716px;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;vline&quot; style=&quot;left:888px;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;vline&quot; style=&quot;left:1060px;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;vline&quot; style=&quot;left:1082px;&quot;&#62;&#60;/div&#62;
+
+  &#60;div class=&quot;legend-title&quot;&#62;Index score:&#60;/div&#62;
+  &#60;div class=&quot;legend-block&quot; style=&quot;left:200px; background:#eaf3fb;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;legend-block&quot; style=&quot;left:280px; background:#b8d8f0;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;legend-block&quot; style=&quot;left:360px; background:#7ab8e8;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;legend-block&quot; style=&quot;left:440px; background:#4a9fd4;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;legend-block&quot; style=&quot;left:520px; background:#1c78b0;&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;legend-block&quot; style=&quot;left:600px; background:#1c5fa8;&quot;&#62;&#60;/div&#62;
+
+  &#60;div class=&quot;legend-label&quot; style=&quot;left:200px;&quot;&#62;&amp;lt;35&#60;/div&#62;
+  &#60;div class=&quot;legend-label&quot; style=&quot;left:280px;&quot;&#62;35–50&#60;/div&#62;
+  &#60;div class=&quot;legend-label&quot; style=&quot;left:360px;&quot;&#62;50–65&#60;/div&#62;
+  &#60;div class=&quot;legend-label&quot; style=&quot;left:440px;&quot;&#62;65–75&#60;/div&#62;
+  &#60;div class=&quot;legend-label&quot; style=&quot;left:520px;&quot;&#62;75–85&#60;/div&#62;
+  &#60;div class=&quot;legend-label&quot; style=&quot;left:600px;&quot;&#62;85+&#60;/div&#62;
+
+  &#60;div class=&quot;footnote&quot;&#62;Sources: Roland Berger Technology Adoption Survey 2025; n=842 firms across DE, FR, IT, PL, SE, NL · Index: unweighted average across five dimensions&#60;/div&#62;
+&#60;/div&#62;
+&#60;/body&#62;
+&#60;/html&#62;" width="1280" height="720" scrolling="no" frameborder="0"></iframe>
+    </div>
+    <div class="slide-card" id="s3" style="display:none">
+      <div class="label">Slide 4 of 4</div>
+      <iframe srcdoc="&#60;!DOCTYPE html&#62;
+&#60;html lang=&quot;en&quot;&#62;
+&#60;head&#62;
+&#60;meta charset=&quot;UTF-8&quot; /&#62;
+&#60;meta name=&quot;viewport&quot; content=&quot;width=1280, initial-scale=1.0&quot; /&#62;
+&#60;title&#62;Technology Investment Allocation by Region — 2024&#60;/title&#62;
+&#60;style&#62;
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family:Arial, Helvetica, &quot;Segoe UI&quot;, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ffffff;
+    color:#1c2a3a;
+  }
+  .rule{
+    position:absolute;
+    top:44px;
+    left:64px;
+    width:1152px;
+    height:2px;
+    background:#1c78b0;
+  }
+  .kicker{
+    position:absolute;
+    top:56px;
+    left:64px;
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#1c78b0;
+    line-height:1.2;
+  }
+  .headline{
+    position:absolute;
+    top:74px;
+    left:64px;
+    width:1000px;
+    font-size:23px;
+    font-weight:700;
+    color:#1c2a3a;
+    line-height:1.2;
+  }
+
+  .panel{
+    position:absolute;
+    width:280px;
+    height:260px;
+  }
+  .region{
+    position:absolute;
+    top:0;
+    left:0;
+    width:280px;
+    text-align:center;
+    font-size:14px;
+    font-weight:700;
+    color:#1c2a3a;
+    line-height:1.2;
+  }
+  .donut-wrap{
+    position:absolute;
+    top:24px;
+    left:50px;
+    width:180px;
+    height:180px;
+  }
+  .center-value{
+    position:absolute;
+    top:76px;
+    left:0;
+    width:180px;
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#1c5fa8;
+    line-height:1.2;
+  }
+  .legend{position:absolute;top:208px;left:10px;width:260px;display:grid;grid-template-columns:1fr 1fr;gap:4px 8px;}
+  .legend-row{display:flex;align-items:center;gap:5px;font-size:10.5px;color:#4a5a6a;white-space:nowrap;line-height:1.4;}
+  .swatch{
+    width:10px;
+    height:10px;
+    flex:0 0 10px;
+  }
+
+  .summary{
+    position:absolute;
+    left:360px;
+    top:152px;
+    width:328px;
+    height:536px;
+  }
+  .summary-header{
+    position:absolute;
+    top:0;
+    left:0;
+    font-size:11px;
+    font-weight:700;
+    color:#1c2a3a;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    line-height:1.2;
+  }
+  .card{
+    position:absolute;
+    left:0;
+    width:308px;
+    background:#f5f8fb;
+    border-left:3px solid #1c78b0;
+    padding:16px 18px;
+    box-sizing:border-box;
+  }
+  .card .stat{
+    font-size:34px;
+    font-weight:700;
+    line-height:1;
+    color:#1c5fa8;
+  }
+  .card .stat.red{
+    color:#c0392b;
+  }
+  .card .label{
+    margin-top:8px;
+    font-size:12px;
+    color:#4a5a6a;
+    line-height:1.5;
+  }
+
+  .shared-legend{
+    position:absolute;
+    top:658px;
+    left:64px;
+    display:flex;
+    align-items:center;
+    gap:28px;
+    font-size:10px;
+    color:#4a5a6a;
+    line-height:1;
+    white-space:nowrap;
+  }
+  .shared-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .shared-swatch{
+    width:12px;
+    height:12px;
+    flex:0 0 12px;
+  }
+
+  .footnote{
+    position:absolute;
+    top:680px;
+    left:64px;
+    font-size:10px;
+    color:#9aa0a8;
+    line-height:1.2;
+  }
+
+  svg{
+    display:block;
+    overflow:visible;
+  }
+&#60;/style&#62;
+&#60;/head&#62;
+&#60;body&#62;
+&#60;div class=&quot;slide&quot;&#62;
+  &#60;div class=&quot;rule&quot;&#62;&#60;/div&#62;
+  &#60;div class=&quot;kicker&quot;&#62;TECHNOLOGY INVESTMENT ALLOCATION BY REGION — 2024&#60;/div&#62;
+  &#60;div class=&quot;headline&quot;&#62;Software and AI dominates UK and Nordic investment — German firms still over-index on hardware&#60;/div&#62;
+
+  &#60;div class=&quot;panel&quot; style=&quot;top:152px; left:64px;&quot;&#62;
+    &#60;div class=&quot;region&quot;&#62;Germany — €58bn&#60;/div&#62;
+    &#60;div class=&quot;donut-wrap&quot;&#62;
+      &#60;svg width=&quot;180&quot; height=&quot;180&quot; viewBox=&quot;0 0 180 180&quot; aria-hidden=&quot;true&quot;&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#1c5fa8&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;167.1 272.72&quot; stroke-dashoffset=&quot;0&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#1c78b0&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;114.4 325.42&quot; stroke-dashoffset=&quot;-167.1&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#4a9fd4&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;96.8 343.02&quot; stroke-dashoffset=&quot;-281.5&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#7ab8e8&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;61.6 378.22&quot; stroke-dashoffset=&quot;-378.3&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;56&quot; fill=&quot;#ffffff&quot;&#62;&#60;/circle&#62;
+      &#60;/svg&#62;
+      &#60;div class=&quot;center-value&quot;&#62;€58bn&#60;/div&#62;
+    &#60;/div&#62;
+    &#60;div class=&quot;legend&quot;&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#1c5fa8;&quot;&#62;&#60;/span&#62;&#60;span&#62;38% Automation&#60;/span&#62;&#60;/div&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#1c78b0;&quot;&#62;&#60;/span&#62;&#60;span&#62;26% Software/AI&#60;/span&#62;&#60;/div&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#4a9fd4;&quot;&#62;&#60;/span&#62;&#60;span&#62;22% Cloud&#60;/span&#62;&#60;/div&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#7ab8e8;&quot;&#62;&#60;/span&#62;&#60;span&#62;14% Training&#60;/span&#62;&#60;/div&#62;
+    &#60;/div&#62;
+  &#60;/div&#62;
+
+  &#60;div class=&quot;panel&quot; style=&quot;top:152px; left:704px;&quot;&#62;
+    &#60;div class=&quot;region&quot;&#62;France — €31bn&#60;/div&#62;
+    &#60;div class=&quot;donut-wrap&quot;&#62;
+      &#60;svg width=&quot;180&quot; height=&quot;180&quot; viewBox=&quot;0 0 180 180&quot; aria-hidden=&quot;true&quot;&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#1c5fa8&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;123.1 316.72&quot; stroke-dashoffset=&quot;0&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#1c78b0&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;149.5 290.32&quot; stroke-dashoffset=&quot;-123.1&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#4a9fd4&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;109.9 329.92&quot; stroke-dashoffset=&quot;-272.6&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#7ab8e8&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;57.2 382.62&quot; stroke-dashoffset=&quot;-382.5&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;56&quot; fill=&quot;#ffffff&quot;&#62;&#60;/circle&#62;
+      &#60;/svg&#62;
+      &#60;div class=&quot;center-value&quot;&#62;€31bn&#60;/div&#62;
+    &#60;/div&#62;
+    &#60;div class=&quot;legend&quot;&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#1c5fa8;&quot;&#62;&#60;/span&#62;&#60;span&#62;28% Automation&#60;/span&#62;&#60;/div&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#1c78b0;&quot;&#62;&#60;/span&#62;&#60;span&#62;34% Software/AI&#60;/span&#62;&#60;/div&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#4a9fd4;&quot;&#62;&#60;/span&#62;&#60;span&#62;25% Cloud&#60;/span&#62;&#60;/div&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#7ab8e8;&quot;&#62;&#60;/span&#62;&#60;span&#62;13% Training&#60;/span&#62;&#60;/div&#62;
+    &#60;/div&#62;
+  &#60;/div&#62;
+
+  &#60;div class=&quot;panel&quot; style=&quot;top:412px; left:64px;&quot;&#62;
+    &#60;div class=&quot;region&quot;&#62;United Kingdom — €44bn&#60;/div&#62;
+    &#60;div class=&quot;donut-wrap&quot;&#62;
+      &#60;svg width=&quot;180&quot; height=&quot;180&quot; viewBox=&quot;0 0 180 180&quot; aria-hidden=&quot;true&quot;&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#1c5fa8&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;96.8 343.02&quot; stroke-dashoffset=&quot;0&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#1c78b0&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;184.7 255.12&quot; stroke-dashoffset=&quot;-96.8&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#4a9fd4&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;118.7 321.12&quot; stroke-dashoffset=&quot;-281.5&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#7ab8e8&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;39.6 400.22&quot; stroke-dashoffset=&quot;-400.2&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;56&quot; fill=&quot;#ffffff&quot;&#62;&#60;/circle&#62;
+      &#60;/svg&#62;
+      &#60;div class=&quot;center-value&quot;&#62;€44bn&#60;/div&#62;
+    &#60;/div&#62;
+    &#60;div class=&quot;legend&quot;&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#1c5fa8;&quot;&#62;&#60;/span&#62;&#60;span&#62;22% Automation&#60;/span&#62;&#60;/div&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#1c78b0;&quot;&#62;&#60;/span&#62;&#60;span&#62;42% Software/AI&#60;/span&#62;&#60;/div&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#4a9fd4;&quot;&#62;&#60;/span&#62;&#60;span&#62;27% Cloud&#60;/span&#62;&#60;/div&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#7ab8e8;&quot;&#62;&#60;/span&#62;&#60;span&#62;9% Training&#60;/span&#62;&#60;/div&#62;
+    &#60;/div&#62;
+  &#60;/div&#62;
+
+  &#60;div class=&quot;panel&quot; style=&quot;top:412px; left:704px;&quot;&#62;
+    &#60;div class=&quot;region&quot;&#62;Nordics — €27bn&#60;/div&#62;
+    &#60;div class=&quot;donut-wrap&quot;&#62;
+      &#60;svg width=&quot;180&quot; height=&quot;180&quot; viewBox=&quot;0 0 180 180&quot; aria-hidden=&quot;true&quot;&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#1c5fa8&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;114.4 325.42&quot; stroke-dashoffset=&quot;0&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#1c78b0&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;167.1 272.72&quot; stroke-dashoffset=&quot;-114.4&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#4a9fd4&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;105.6 334.22&quot; stroke-dashoffset=&quot;-281.5&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;70&quot; fill=&quot;none&quot; stroke=&quot;#7ab8e8&quot; stroke-width=&quot;28&quot; stroke-dasharray=&quot;52.8 387.02&quot; stroke-dashoffset=&quot;-387.1&quot; transform=&quot;rotate(-90 90 90)&quot;&#62;&#60;/circle&#62;
+        &#60;circle cx=&quot;90&quot; cy=&quot;90&quot; r=&quot;56&quot; fill=&quot;#ffffff&quot;&#62;&#60;/circle&#62;
+      &#60;/svg&#62;
+      &#60;div class=&quot;center-value&quot;&#62;€27bn&#60;/div&#62;
+    &#60;/div&#62;
+    &#60;div class=&quot;legend&quot;&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#1c5fa8;&quot;&#62;&#60;/span&#62;&#60;span&#62;26% Automation&#60;/span&#62;&#60;/div&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#1c78b0;&quot;&#62;&#60;/span&#62;&#60;span&#62;38% Software/AI&#60;/span&#62;&#60;/div&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#4a9fd4;&quot;&#62;&#60;/span&#62;&#60;span&#62;24% Cloud&#60;/span&#62;&#60;/div&#62;
+      &#60;div class=&quot;legend-row&quot;&#62;&#60;span class=&quot;swatch&quot; style=&quot;background:#7ab8e8;&quot;&#62;&#60;/span&#62;&#60;span&#62;12% Training&#60;/span&#62;&#60;/div&#62;
+    &#60;/div&#62;
+  &#60;/div&#62;
+
+  &#60;div class=&quot;summary&quot;&#62;
+    &#60;div class=&quot;summary-header&quot;&#62;KEY TAKEAWAYS&#60;/div&#62;
+
+    &#60;div class=&quot;card&quot; style=&quot;top:26px; height:148px;&quot;&#62;
+      &#60;div class=&quot;stat&quot;&#62;+16pp&#60;/div&#62;
+      &#60;div class=&quot;label&quot;&#62;higher Software/AI share in UK vs. Germany — the widest inter-country gap in the study.&#60;/div&#62;
+    &#60;/div&#62;
+
+    &#60;div class=&quot;card&quot; style=&quot;top:182px; height:148px;&quot;&#62;
+      &#60;div class=&quot;stat&quot;&#62;€160bn&#60;/div&#62;
+      &#60;div class=&quot;label&quot;&#62;total investment across four regions — Germany alone accounts for 36% of the pool.&#60;/div&#62;
+    &#60;/div&#62;
+
+    &#60;div class=&quot;card&quot; style=&quot;top:338px; height:124px;&quot;&#62;
+      &#60;div class=&quot;stat red&quot;&#62;2026&#60;/div&#62;
+      &#60;div class=&quot;label&quot;&#62;year by which Software/AI is projected to account for &amp;gt;40% of investment in all four regions.&#60;/div&#62;
+    &#60;/div&#62;
+  &#60;/div&#62;
+
+  &#60;div class=&quot;shared-legend&quot;&#62;
+    &#60;div class=&quot;shared-item&quot;&#62;&#60;span class=&quot;shared-swatch&quot; style=&quot;background:#1c5fa8;&quot;&#62;&#60;/span&#62;&#60;span&#62;Automation Hardware&#60;/span&#62;&#60;/div&#62;
+    &#60;div class=&quot;shared-item&quot;&#62;&#60;span class=&quot;shared-swatch&quot; style=&quot;background:#1c78b0;&quot;&#62;&#60;/span&#62;&#60;span&#62;Software &amp;amp; AI&#60;/span&#62;&#60;/div&#62;
+    &#60;div class=&quot;shared-item&quot;&#62;&#60;span class=&quot;shared-swatch&quot; style=&quot;background:#4a9fd4;&quot;&#62;&#60;/span&#62;&#60;span&#62;Cloud &amp;amp; Infra&#60;/span&#62;&#60;/div&#62;
+    &#60;div class=&quot;shared-item&quot;&#62;&#60;span class=&quot;shared-swatch&quot; style=&quot;background:#7ab8e8;&quot;&#62;&#60;/span&#62;&#60;span&#62;Training&#60;/span&#62;&#60;/div&#62;
+  &#60;/div&#62;
+
+  &#60;div class=&quot;footnote&quot;&#62;Sources: IDC European IT Spending Guide 2024; Eurostat; Roland Berger regional office analysis&#60;/div&#62;
+&#60;/div&#62;
+&#60;/body&#62;
+&#60;/html&#62;" width="1280" height="720" scrolling="no" frameborder="0"></iframe>
+    </div>
+<div class="nav">
+  <button onclick="move(-1)">&#8592; Prev</button>
+  <div class="dots" id="dots"></div>
+  <button onclick="move(1)">Next &#8594;</button>
+</div>
+<script>
+  var cur=0,total=4;
+  var dots=document.getElementById('dots');
+  for(var i=0;i<total;i++){
+    var d=document.createElement('div');d.className='dot'+(i===0?' active':'');
+    d.dataset.i=i;d.onclick=function(){go(+this.dataset.i);};dots.appendChild(d);
+  }
+  function go(n){
+    document.getElementById('s'+cur).style.display='none';dots.children[cur].classList.remove('active');
+    cur=(n+total)%total;
+    document.getElementById('s'+cur).style.display='block';dots.children[cur].classList.add('active');
+  }
+  function move(d){go(cur+d);}
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight')move(1);if(e.key==='ArrowLeft')move(-1);
+  });
+</script>
+</body>
+</html>

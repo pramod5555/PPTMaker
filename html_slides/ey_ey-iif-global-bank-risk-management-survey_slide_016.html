@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d8d8db;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#dedee2;
+  }
+
+  .vlabel{
+    position:absolute;
+    left:8px;
+    top:330px;
+    color:#2f3136;
+    font-size:13px;
+    line-height:13px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    font-weight:500;
+  }
+  .vline{
+    position:absolute;
+    left:14px;
+    top:407px;
+    width:1px;
+    height:38px;
+    background:#4a4b50;
+  }
+
+  .bodycopy{
+    position:absolute;
+    left:96px;
+    top:103px;
+    width:205px;
+    color:#4e5158;
+    font-size:14px;
+    line-height:1.42;
+    font-weight:400;
+  }
+
+  .figure-title{
+    position:absolute;
+    left:423px;
+    top:108px;
+    color:#303239;
+    font-size:15px;
+    line-height:18px;
+    font-weight:700;
+    white-space:nowrap;
+  }
+
+  .jump{
+    position:absolute;
+    right:29px;
+    top:27px;
+    width:52px;
+    height:52px;
+  }
+  .jump .ring{
+    position:absolute;
+    left:4px;
+    top:2px;
+    width:39px;
+    height:39px;
+    border:1px solid #707278;
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+  .jump .ring:before{
+    content:"";
+    position:absolute;
+    right:-3px;
+    top:2px;
+    width:8px;
+    height:8px;
+    background:#f0dd23;
+    border-radius:50%;
+  }
+  .jump .txt{
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:27px;
+    text-align:center;
+    color:#34363c;
+    font-size:9px;
+    line-height:10px;
+    font-weight:400;
+  }
+
+  .chart-label{
+    position:absolute;
+    color:#55575d;
+    font-size:12px;
+    line-height:14px;
+    font-weight:400;
+    text-align:right;
+  }
+  .barbox{
+    position:absolute;
+    width:168px;
+    height:28px;
+    border:1px solid #a7a8b0;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:26px;
+    background:#5b35ae;
+  }
+  .pct{
+    position:absolute;
+    right:6px;
+    top:5px;
+    color:#4c4e54;
+    font-size:12px;
+    line-height:12px;
+    font-weight:400;
+  }
+  .subnote{
+    position:absolute;
+    color:#56575d;
+    font-size:8px;
+    line-height:9px;
+    font-weight:400;
+  }
+
+  .hero{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:1280px;
+    height:247px;
+    background:
+      radial-gradient(circle at 4% 58%, rgba(48,220,255,.30) 0 3px, transparent 8px),
+      radial-gradient(circle at 9% 48%, rgba(0,190,255,.28) 0 3px, transparent 8px),
+      radial-gradient(circle at 14% 40%, rgba(140,0,255,.35) 0 3px, transparent 8px),
+      radial-gradient(circle at 19% 62%, rgba(255,80,0,.45) 0 3px, transparent 8px),
+      radial-gradient(circle at 23% 35%, rgba(255,0,140,.38) 0 3px, transparent 8px),
+      radial-gradient(circle at 28% 51%, rgba(255,220,0,.40) 0 4px, transparent 10px),
+      radial-gradient(circle at 33% 58%, rgba(255,40,0,.45) 0 4px, transparent 10px),
+      radial-gradient(circle at 39% 43%, rgba(255,160,0,.36) 0 5px, transparent 11px),
+      radial-gradient(circle at 45% 50%, rgba(210,0,255,.32) 0 5px, transparent 12px),
+      radial-gradient(circle at 58% 47%, rgba(255,50,140,.20) 0 6px, transparent 16px),
+      radial-gradient(circle at 73% 52%, rgba(0,180,255,.18) 0 8px, transparent 18px),
+      radial-gradient(circle at 92% 35%, rgba(0,170,255,.18) 0 10px, transparent 24px),
+      linear-gradient(90deg,#0e6ca7 0%, #0a296d 15%, #5b0d78 28%, #db4b00 40%, #9a1e71 56%, #16437a 74%, #060611 100%);
+  }
+  .hero:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 7px),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 1px, transparent 1px 8px);
+    opacity:.9;
+    mix-blend-mode:screen;
+  }
+  .hero:after{
+    content:"";
+    position:absolute;
+    left:500px;
+    top:0;
+    width:9px;
+    height:247px;
+    background:rgba(0,0,0,.5);
+  }
+
+  .hero-right{
+    position:absolute;
+    right:0;
+    bottom:0;
+    width:335px;
+    height:247px;
+    background:linear-gradient(90deg, rgba(66,0,70,.20) 0%, rgba(0,0,0,.55) 100%);
+  }
+
+  .big-num{
+    position:absolute;
+    right:105px;
+    top:510px;
+    color:#ffe300;
+    font-size:128px;
+    line-height:112px;
+    font-weight:700;
+    letter-spacing:-.06em;
+  }
+  .callout{
+    position:absolute;
+    right:70px;
+    top:620px;
+    width:240px;
+    color:#ffffff;
+    font-size:20px;
+    line-height:1.32;
+    font-weight:400;
+  }
+
+  .pageno{
+    position:absolute;
+    left:19px;
+    bottom:14px;
+    color:#ffffff;
+    font-size:10px;
+    line-height:10px;
+    font-weight:400;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="vlabel">CHAPTER 2</div>
+  <div class="vline"></div>
+
+  <div class="bodycopy">
+    To manage the risks associated with<br>
+    private credit, CROs are looking to adjust<br>
+    their exposure limits to nonbank financial<br>
+    institutions, more closely examine<br>
+    counterparty and concentration risk, and<br>
+    enhance scenario planning. G-SIB CROs<br>
+    are much more likely to be pursuing these<br>
+    enhancements, befitting their much<br>
+    greater exposures.
+  </div>
+
+  <div class="figure-title">Figure 8: Changes to manage private credit exposures</div>
+
+  <div class="jump">
+    <div class="ring"></div>
+    <div class="txt">Jump to<br>contents</div>
+  </div>
+
+  <div class="chart-label" style="left:423px; top:151px; width:150px;">
+    Adjusting risk appetite<br>or exposure limits to nonbank<br>financial institutions
+  </div>
+  <div class="barbox" style="left:581px; top:159px;">
+    <div class="fill" style="width:55px;"></div>
+    <div class="pct">33%</div>
+  </div>
+  <div class="subnote" style="left:581px; top:190px;">G-SIBs: 67%</div>
+
+  <div class="chart-label" style="left:423px; top:220px; width:150px;">
+    Enhancing counterparty<br>and concentration analysis
+  </div>
+  <div class="barbox" style="left:581px; top:219px;">
+    <div class="fill" style="width:52px;"></div>
+    <div class="pct">31%</div>
+  </div>
+  <div class="subnote" style="left:581px; top:250px;">G-SIBs: 83%</div>
+
+  <div class="chart-label" style="left:423px; top:279px; width:150px;">
+    Strengthening stress testing<br>and scenario analysis
+  </div>
+  <div class="barbox" style="left:581px; top:279px;">
+    <div class="fill" style="width:52px;"></div>
+    <div class="pct">31%</div>
+  </div>
+  <div class="subnote" style="left:581px; top:310px;">G-SIBs: 83%</div>
+
+  <div class="chart-label" style="left:423px; top:339px; width:150px;">
+    Enhancing counterparty<br>and fund-level due diligence
+  </div>
+  <div class="barbox" style="left:581px; top:339px;">
+    <div class="fill" style="width:50px;"></div>
+    <div class="pct">30%</div>
+  </div>
+  <div class="subnote" style="left:581px; top:370px;">G-SIBs: 58%</div>
+
+  <div class="chart-label" style="left:806px; top:151px; width:182px;">
+    Addressing data quality<br>or availability challenges related<br>to private market exposure
+  </div>
+  <div class="barbox" style="left:999px; top:159px;">
+    <div class="fill" style="width:42px;"></div>
+    <div class="pct">25%</div>
+  </div>
+  <div class="subnote" style="left:999px; top:190px;">G-SIBs: 83%</div>
+
+  <div class="chart-label" style="left:828px; top:220px; width:160px;">
+    Monitoring developments but<br>no major changes implemented
+  </div>
+  <div class="barbox" style="left:999px; top:219px;">
+    <div class="fill" style="width:30px;"></div>
+    <div class="pct">18%</div>
+  </div>
+
+  <div class="chart-label" style="left:828px; top:279px; width:160px;">
+    Improving regulatory reporting<br>and transparency
+  </div>
+  <div class="barbox" style="left:999px; top:279px;">
+    <div class="fill" style="width:23px;"></div>
+    <div class="pct">14%</div>
+  </div>
+
+  <div class="chart-label" style="left:828px; top:339px; width:160px;">
+    Not applicable/no material<br>exposure
+  </div>
+  <div class="barbox" style="left:999px; top:339px;">
+    <div class="fill" style="width:64px;"></div>
+    <div class="pct">38%</div>
+  </div>
+
+  <div class="hero"></div>
+  <div class="hero-right"></div>
+
+  <div class="big-num">33%</div>
+  <div class="callout">
+    of CROs are adjusting risk<br>
+    appetites to manage private<br>
+    credit exposures.
+  </div>
+
+  <div class="pageno">16</div>
+</div>
+</body>
+</html>

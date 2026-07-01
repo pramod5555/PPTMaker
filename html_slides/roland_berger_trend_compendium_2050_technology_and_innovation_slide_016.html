@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#bfc0c2;font-family:Arial, Helvetica, "Segoe UI", sans-serif;}
+  .slide{position:relative;overflow:hidden;width:1280px;height:720px;background:#f1f1f2;}
+  .left-panel{position:absolute;left:0;top:0;width:180px;height:720px;background:#343842;z-index:5;}
+  .left-divider{position:absolute;left:179px;top:0;width:2px;height:720px;background:#7d63bd;z-index:6;}
+  .title-left{position:absolute;left:12px;top:34px;width:150px;color:#f1f1f1;font-size:22px;line-height:1.08;font-weight:700;z-index:30;}
+
+  .step1hex,.step2hex,.step3hex{position:absolute;left:8px;width:70px;height:70px;z-index:30;}
+  .step1hex{top:141px;}
+  .step2hex{top:273px;opacity:.6;}
+  .step3hex{top:406px;opacity:.9;}
+
+  .step1num,.step2num,.step3num{position:absolute;left:93px;width:24px;font-size:31px;line-height:31px;font-weight:700;z-index:30;}
+  .step1num{top:144px;color:#8d73c7;}
+  .step2num{top:276px;color:#7e8289;}
+  .step3num{top:408px;color:#7e8289;}
+
+  .step1text,.step2text,.step3text{position:absolute;left:93px;font-size:14px;line-height:1.15;z-index:30;}
+  .step1text{top:174px;color:#8d73c7;font-weight:700;}
+  .step2text{top:308px;color:#70747b;font-weight:400;}
+  .step3text{top:439px;color:#70747b;font-weight:400;}
+
+  .gear-wrap{position:absolute;left:66px;top:662px;width:74px;height:50px;z-index:30;opacity:.7;}
+  .page{position:absolute;left:11px;bottom:7px;color:#fff;font-size:18px;line-height:18px;font-weight:400;z-index:50;}
+
+  .main-title{position:absolute;left:220px;top:31px;width:1038px;color:#1f1f1f;font-size:28px;line-height:1.06;font-weight:800;z-index:30;letter-spacing:.1px;}
+  .subtitle{position:absolute;left:220px;top:139px;width:560px;color:#8e949e;font-size:25px;line-height:1.12;font-weight:400;z-index:30;}
+  .chart-title{position:absolute;left:220px;top:221px;color:#222;font-size:19px;line-height:22px;font-weight:700;z-index:30;}
+  .chart-title sup{font-size:11px;vertical-align:super;font-weight:700;}
+
+  .chart-area{position:absolute;left:217px;top:252px;width:610px;height:418px;z-index:20;}
+  .footnote{position:absolute;left:220px;top:735px;transform:translateY(-33px);color:#555;font-size:10px;line-height:13px;font-weight:400;z-index:30;}
+
+  .notes-box{position:absolute;left:868px;top:140px;width:412px;height:579px;background:#d7d7d9;z-index:20;}
+  .notes{position:absolute;left:881px;top:150px;width:381px;height:555px;color:#333;font-size:17px;line-height:1.08;font-weight:400;z-index:30;}
+  .notes p{margin:0 0 10px 0;}
+  .notes b{font-weight:700;}
+
+  .logo{position:absolute;right:10px;bottom:10px;width:64px;height:22px;z-index:50;}
+  .rbtext{position:absolute;left:0;top:4px;width:32px;color:#4d4d4d;font-size:10px;line-height:9px;font-weight:400;text-align:right;}
+  .rbmark{position:absolute;left:36px;top:0;width:18px;height:22px;}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-panel"></div>
+  <div class="left-divider"></div>
+
+  <div class="title-left">Technology &amp;<br>Innovation</div>
+
+  <svg class="step1hex" viewBox="0 0 70 70" aria-hidden="true">
+    <polygon points="18,4 52,4 66,35 52,66 18,66 4,35" fill="none" stroke="#8c6acb" stroke-width="4"/>
+    <polygon points="18,8 52,8 61,35 52,61 18,61 9,35" fill="#53bbe0" opacity=".35"/>
+    <rect x="13" y="18" width="44" height="23" fill="#c7efff" opacity=".35"/>
+    <path d="M16 42 L25 27 L33 34 L41 23 L55 32" fill="none" stroke="#effcff" stroke-width="2"/>
+    <circle cx="25" cy="27" r="2" fill="#fff"/><circle cx="33" cy="34" r="2" fill="#fff"/><circle cx="41" cy="23" r="2" fill="#fff"/><circle cx="55" cy="32" r="2" fill="#fff"/>
+    <path d="M18 21 L54 21 M18 27 L54 27 M18 33 L54 33" stroke="#e8fbff" stroke-width="1" opacity=".45"/>
+  </svg>
+  <div class="step1num">1</div>
+  <div class="step1text">Value of<br>Innovation</div>
+
+  <svg class="step2hex" viewBox="0 0 70 70" aria-hidden="true">
+    <polygon points="18,4 52,4 66,35 52,66 18,66 4,35" fill="none" stroke="#a8aaad" stroke-width="4"/>
+    <polygon points="18,8 52,8 61,35 52,61 18,61 9,35" fill="#c5c6c8" opacity=".18"/>
+    <circle cx="22" cy="29" r="8" fill="#efefef" opacity=".55"/>
+    <circle cx="34" cy="24" r="4" fill="#f5f5f5" opacity=".7"/>
+    <circle cx="44" cy="31" r="7" fill="#d8d8d8" opacity=".45"/>
+    <circle cx="30" cy="42" r="3" fill="#efefef" opacity=".7"/>
+    <circle cx="45" cy="43" r="5" fill="#ececec" opacity=".55"/>
+  </svg>
+  <div class="step2num">2</div>
+  <div class="step2text">Frontier<br>Technologies</div>
+
+  <svg class="step3hex" viewBox="0 0 70 70" aria-hidden="true">
+    <polygon points="18,4 52,4 66,35 52,66 18,66 4,35" fill="none" stroke="#c8c8c8" stroke-width="4"/>
+    <polygon points="18,8 52,8 61,35 52,61 18,61 9,35" fill="#f4f4f4" opacity=".7"/>
+    <path d="M17 38 Q25 27 33 38 T48 38" fill="none" stroke="#999" stroke-width="2"/>
+    <circle cx="22" cy="32" r="2.5" fill="#999"/>
+    <circle cx="33" cy="37" r="2.5" fill="#999"/>
+    <circle cx="45" cy="32" r="2.5" fill="#999"/>
+    <path d="M14 40 L25 50" stroke="#999" stroke-width="2"/>
+    <path d="M48 24 L58 14" stroke="#999" stroke-width="2"/>
+  </svg>
+  <div class="step3num">3</div>
+  <div class="step3text">Humans &amp;<br>Machines</div>
+
+  <svg class="gear-wrap" viewBox="0 0 79 51" aria-hidden="true">
+    <g fill="none" stroke="#8b8f95" stroke-width="2.4">
+      <circle cx="21" cy="28" r="14"></circle>
+      <path d="M21 8 L21 2 M21 54 L21 48 M1 28 L7 28 M35 28 L41 28 M7 14 L11 18 M31 38 L35 42 M7 42 L11 38 M31 18 L35 14"></path>
+      <path d="M20 20 C17 20 14 22 14 26 C14 31 20 31 20 35 C20 38 17 40 14 40" />
+      <path d="M24 12 C20 15 19 19 20 23 C21 28 28 29 28 35 C28 40 25 43 20 45" />
+      <circle cx="56" cy="20" r="9"></circle>
+      <path d="M56 8 L56 3 M56 37 L56 32 M44 20 L39 20 M73 20 L68 20 M47 11 L44 8 M65 29 L68 32 M47 29 L44 32 M65 11 L68 8"></path>
+    </g>
+  </svg>
+
+  <div class="page">16</div>
+
+  <div class="main-title">For emerging countries, boosting innovation enables per capita GDP growth<br>to become intrinsic and sustainable</div>
+  <div class="subtitle">Global Innovation Index plotted against GDP per<br>capita, 2011 and 2019 [index, USD]</div>
+  <div class="chart-title">GDP per capita PPP [USD]<sup>1)</sup></div>
+
+  <div class="chart-area">
+    <svg width="610" height="418" viewBox="0 0 610 418" aria-hidden="true">
+      <defs>
+        <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L8,4 L0,8 z" fill="#4f2d82"></path>
+        </marker>
+        <marker id="arrowWhite" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L8,4 L0,8 z" fill="#ffffff"></path>
+        </marker>
+        <clipPath id="brazilClip"><circle cx="114" cy="155" r="18"/></clipPath>
+        <clipPath id="mexClip"><circle cx="198" cy="110" r="18"/></clipPath>
+        <clipPath id="indiaClip"><circle cx="236" cy="312" r="18"/></clipPath>
+        <clipPath id="indoClip"><circle cx="301" cy="263" r="18"/></clipPath>
+        <clipPath id="rusClip"><circle cx="553" cy="66" r="18"/></clipPath>
+      </defs>
+
+      <rect x="0" y="0" width="610" height="418" fill="#f1f1f2"/>
+
+      <g opacity=".16">
+        <path d="M385 309 C405 267 426 251 447 254 C464 256 476 245 495 226 C511 208 523 204 538 176 C546 162 555 159 566 160
+                 C560 177 559 194 560 216 C560 245 557 267 541 287 C524 308 499 313 479 324 C452 338 426 341 385 309 Z"
+              fill="#fff"/>
+        <path d="M345 72 C373 95 388 124 412 165 C431 198 446 244 449 288 C451 310 446 332 430 352 C410 379 385 392 344 399
+                 C286 408 204 409 147 412 C98 414 57 416 0 418 L0 72 Z" fill="#fff" opacity=".5"/>
+      </g>
+
+      <path d="M44 383 C104 375,161 363,213 336 C269 307,322 259,375 184 C419 123,465 83,495 69"
+            stroke="#ffffff" stroke-width="3.2" fill="none" opacity=".72" marker-end="url(#arrowWhite)"/>
+      <path d="M79 389 C126 382,183 367,242 336 C307 301,369 246,445 142"
+            stroke="#ffffff" stroke-width="3.2" fill="none" opacity=".72" marker-end="url(#arrowWhite)"/>
+
+      <line x1="73" y1="18" x2="73" y2="390" stroke="#7a7a7a" stroke-width="1.5"/>
+      <line x1="73" y1="390" x2="594" y2="390" stroke="#7a7a7a" stroke-width="1.5"/>
+
+      <g font-family="Arial" font-size="15" fill="#333">
+        <text x="43" y="396">0</text>
+        <text x="4" y="273">10,000</text>
+        <text x="4" y="151">20,000</text>
+        <text x="4" y="29">30,000</text>
+
+        <text x="61" y="422">30</text>
+        <text x="157" y="422">35</text>
+        <text x="262" y="422">40</text>
+        <text x="359" y="422">45</text>
+        <text x="463" y="422">50</text>
+        <text x="561" y="422">55</text>
+      </g>
+
+      <g stroke="#4f2d82" stroke-width="6" fill="none" marker-end="url(#arrowPurple)">
+        <path d="M82 166 C117 127,152 112,186 118"/>
+        <path d="M154 154 C176 147,199 149,224 167"/>
+        <path d="M146 262 C170 237,197 227,234 228"/>
+        <path d="M164 340 C173 323,188 314,206 312"/>
+        <path d="M255 141 C302 84,350 52,402 50"/>
+        <path d="M316 141 C365 142,411 132,447 90"/>
+        <path d="M414 264 C468 265,523 244,587 196"/>
+      </g>
+
+      <g fill="#4f2d82">
+        <circle cx="82" cy="166" r="7"/>
+        <polygon points="184,114 192,130 176,130"/>
+        <circle cx="147" cy="258" r="7"/>
+        <polygon points="242,225 250,241 234,241"/>
+        <circle cx="167" cy="334" r="7"/>
+        <polygon points="205,305 213,321 197,321"/>
+
+        <circle cx="155" cy="190" r="7"/>
+        <polygon points="148,149 156,165 140,165"/>
+
+        <circle cx="239" cy="166" r="7"/>
+        <polygon points="257,217 265,233 249,233"/>
+
+        <circle cx="303" cy="135" r="7"/>
+        <polygon points="369,112 377,128 361,128"/>
+
+        <circle cx="364" cy="75" r="7"/>
+        <polygon points="478,29 486,45 470,45"/>
+
+        <circle cx="421" cy="247" r="7"/>
+        <polygon points="583,174 591,190 575,190"/>
+      </g>
+
+      <g>
+        <circle cx="114" cy="155" r="18" fill="#fff" stroke="#888" stroke-width="1"/>
+        <g clip-path="url(#brazilClip)">
+          <rect x="96" y="137" width="36" height="36" fill="#009b3a"/>
+          <polygon points="114,143 128,155 114,167 100,155" fill="#ffdf00"/>
+          <circle cx="114" cy="155" r="6" fill="#002776"/>
+        </g>
+
+        <circle cx="198" cy="110" r="18" fill="#fff" stroke="#888" stroke-width="1"/>
+        <g clip-path="url(#mexClip)">
+          <rect x="180" y="92" width="12" height="36" fill="#006847"/>
+          <rect x="192" y="92" width="12" height="36" fill="#ffffff"/>
+          <rect x="204" y="92" width="12" height="36" fill="#ce1126"/>
+        </g>
+
+        <circle cx="236" cy="312" r="18" fill="#fff" stroke="#888" stroke-width="1"/>
+        <g clip-path="url(#indiaClip)">
+          <rect x="218" y="294" width="36" height="12" fill="#ff9933"/>
+          <rect x="218" y="306" width="36" height="12" fill="#ffffff"/>
+          <rect x="218" y="318" width="36" height="12" fill="#138808"/>
+          <circle cx="236" cy="312" r="3" fill="#000080"/>
+        </g>
+
+        <circle cx="301" cy="263" r="18" fill="#fff" stroke="#888" stroke-width="1"/>
+        <g clip-path="url(#indoClip)">
+          <rect x="283" y="245" width="36" height="18" fill="#e70011"/>
+          <rect x="283" y="263" width="36" height="18" fill="#ffffff"/>
+        </g>
+
+        <circle cx="374" cy="34" r="17" fill="#cf0000" stroke="#888" stroke-width="1"/>
+        <circle cx="370" cy="32" r="6" fill="#fff"/>
+        <circle cx="372" cy="32" r="5" fill="#cf0000"/>
+        <polygon points="382,29 383,33 388,33 384,36 386,40 382,38 378,40 379,36 375,33 380,33" fill="#fff"/>
+
+        <circle cx="553" cy="190" r="18" fill="#de2910" stroke="#888" stroke-width="1"/>
+        <polygon points="547,180 549,185 554,185 550,188 552,193 547,190 543,193 544,188 540,185 545,185" fill="#ffde00"/>
+        <circle cx="556" cy="181" r="1.2" fill="#ffde00"/>
+        <circle cx="559" cy="185" r="1.2" fill="#ffde00"/>
+        <circle cx="559" cy="190" r="1.2" fill="#ffde00"/>
+        <circle cx="555" cy="194" r="1.2" fill="#ffde00"/>
+
+        <circle cx="553" cy="66" r="18" fill="#fff" stroke="#888" stroke-width="1"/>
+        <g clip-path="url(#rusClip)">
+          <rect x="535" y="48" width="36" height="12" fill="#ffffff"/>
+          <rect x="535" y="60" width="36" height="12" fill="#1c57a7"/>
+          <rect x="535" y="72" width="36" height="12" fill="#d52b1e"/>
+        </g>
+      </g>
+
+      <g font-family="Arial" fill="#333" font-size="17">
+        <text x="90" y="209">Brazil</text>
+        <text x="171" y="201">Mexico</text>
+        <text x="210" y="336">India</text>
+        <text x="266" y="224">Indonesia</text>
+        <text x="356" y="72">Turkey</text>
+        <text x="531" y="207">China</text>
+        <text x="482" y="72">Russia</text>
+      </g>
+
+      <text x="393" y="456" font-family="Arial" font-size="17" font-weight="700" fill="#222">Global Innovation Index</text>
+
+      <g transform="translate(550,347)">
+        <circle cx="0" cy="0" r="7" fill="#4f2d82"/>
+        <text x="15" y="5" font-family="Arial" font-size="15" fill="#333">2011</text>
+        <polygon points="0,20 8,36 -8,36" fill="#4f2d82"/>
+        <text x="15" y="34" font-family="Arial" font-size="15" fill="#333">2019</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="footnote">1) World Bank GDP per capita, PPP, current international USD<br>Source: The World Bank; UN; Roland Berger</div>
+
+  <div class="notes-box"></div>
+  <div class="notes">
+    <p>&gt; Economic growth can be sustained by multiple factors,<br>
+    such as a country's <b>natural resources</b> supplying global<br>
+    markets, or by the strength of its labor market in terms of<br>
+    <b>human resources</b></p>
+
+    <p>&gt; Such factors are faced with crucial limitations – they are<br>
+    almost always <b>finite</b>, and any growth derived is therefore<br>
+    <b>not sustainable</b></p>
+
+    <p>&gt; <b>Sustainable, long-term growth is achieved through<br>
+    technological progress and innovation.</b> This holds true<br>
+    especially for most of the emerging countries that –<br>
+    compared to developed countries – have been<br>
+    experiencing significant economic growth</p>
+
+    <p>&gt; Under this consideration, it becomes apparent that their<br>
+    growth is linked to an <b>increase in their ability to innovate.</b><br>
+    Almost all of these emerging countries have moved up<br>
+    along the prosperity-innovation scale: While their <b>GII<br>
+    value increased, GDP per capita income rose,</b> too</p>
+
+    <p>&gt; <b>Brazil</b> appears to be an <b>exception</b>, displaying a lesser GII<br>
+    value and a near static GDP per capita development</p>
+
+    <p>&gt; For <b>emerging countries</b> to catch up with developed<br>
+    countries, <b>it is essential to maintain momentum</b> and<br>
+    reinforce the dynamics that started this journey of<br>
+    innovation. Competing on price may defeat this goal –<br>
+    quality of products and services increasingly support<br>
+    abilities to innovate in the longer term</p>
+  </div>
+
+  <div class="logo">
+    <div class="rbtext">Roland<br>Berger</div>
+    <svg class="rbmark" viewBox="0 0 18 22" aria-hidden="true">
+      <path d="M6 1 C12 1 16 4 16 10 C16 14 13 18 8 18 L6 18 Z" fill="#b8b8b8"/>
+      <path d="M6 1 L6 21 C10 21 18 18 18 12 C18 6 13 1 6 1 Z" fill="#9da0a3"/>
+      <path d="M0 1 L6 1 L6 21 L0 21 Z" fill="#d1d1d1"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

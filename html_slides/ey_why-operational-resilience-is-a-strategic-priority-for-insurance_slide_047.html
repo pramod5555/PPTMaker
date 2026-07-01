@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Key actions for CROs</title>
+<style>
+  body{
+    margin:0;
+    background:#e7e7e7;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#e7e7e7;
+  }
+  .slide > *{position:absolute; box-sizing:border-box;}
+  .bg-top{
+    left:0; top:0; width:1280px; height:31px;
+    background:#e6e6e6;
+    z-index:1;
+  }
+  .left-rail{
+    left:0; top:0; width:73px; height:720px;
+    background:#efefef;
+    border-right:1px solid #b6b7bd;
+    z-index:3;
+  }
+  .main{
+    left:31px; top:31px; width:1249px; height:689px;
+    background:#2c2d3c;
+    z-index:2;
+  }
+  .bottom-band{
+    left:31px; top:726px; width:1249px; height:11px;
+    background:linear-gradient(90deg,#f2df00 0%, #f2df00 48%, #f03ce4 76%, #20e6ea 100%);
+    z-index:8;
+    transform:translateY(-31px);
+  }
+
+  .rail-num{
+    left:29px; top:49px;
+    color:#7f8091;
+    font-size:18px;
+    line-height:1;
+    font-weight:400;
+    z-index:20;
+  }
+  .rail-line{
+    left:71px; top:31px; width:1px; height:61px;
+    background:#9ea0aa;
+    z-index:20;
+  }
+  .rail-vert{
+    left:12px; top:320px;
+    color:#7f8091;
+    font-size:12px;
+    line-height:12px;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    letter-spacing:0.02em;
+    z-index:20;
+  }
+  .rail-square{
+    left:13px; top:442px; width:11px; height:11px;
+    background:#f2df00;
+    z-index:20;
+  }
+
+  .kicker{
+    left:84px; top:58px; width:235px;
+    color:#6f7380;
+    font-size:8px;
+    line-height:10px;
+    text-transform:uppercase;
+    z-index:20;
+  }
+  .title{
+    left:102px; top:135px; width:290px;
+    color:#ffe100;
+    font-size:54px;
+    line-height:54px;
+    font-weight:700;
+    z-index:20;
+  }
+  .underline{
+    left:102px; top:265px; width:270px; height:3px;
+    background:linear-gradient(90deg,#f2df00 0%, #f2df00 52%, #b93bff 79%, #4797ff 100%);
+    z-index:20;
+  }
+  .body{
+    left:101px; top:303px; width:278px;
+    color:#f0f0f3;
+    font-size:12px;
+    line-height:16px;
+    font-weight:400;
+    z-index:20;
+  }
+
+  .contents{
+    right:0; top:0; width:60px; height:44px;
+    background:#7f818c;
+    color:#fff;
+    font-size:9px;
+    line-height:10px;
+    text-align:center;
+    padding-top:17px;
+    border-bottom-left-radius:12px;
+    border-bottom-right-radius:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    z-index:50;
+  }
+
+  .dot{border-radius:50%; z-index:9;}
+  .dot.white{background:#ededf0;}
+  .dot.grey{background:#8f909d;}
+  .dot.dark{background:#181927;}
+
+  .chart-wrap{
+    left:446px; top:0; width:834px; height:720px;
+    z-index:10;
+  }
+  .seg{z-index:10;}
+  .seg text{font-family:Arial, Helvetica, "Segoe UI", sans-serif;}
+
+  .center-ring{
+    left:356px; top:329px; width:162px; height:162px;
+    border-radius:50%;
+    background:#2c2d3c;
+    z-index:16;
+  }
+  .ring-svg{
+    left:355px; top:328px; width:164px; height:164px;
+    z-index:17;
+  }
+  .center-text{
+    left:394px; top:377px; width:86px;
+    color:#ffffff;
+    font-size:19px;
+    line-height:23px;
+    text-align:center;
+    font-weight:400;
+    z-index:18;
+  }
+
+  .num{
+    color:#181927;
+    font-size:23px;
+    line-height:23px;
+    font-weight:700;
+    text-align:center;
+    z-index:18;
+  }
+  .num.light{color:#ffffff;}
+  .small{
+    color:#222430;
+    font-size:8px;
+    line-height:10px;
+    text-align:center;
+    z-index:18;
+  }
+  .small.light{color:#ffffff;}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bg-top"></div>
+  <div class="left-rail"></div>
+  <div class="main"></div>
+  <div class="bottom-band"></div>
+
+  <div class="rail-num">47</div>
+  <div class="rail-line"></div>
+  <div class="rail-vert">KEY ACTIONS FOR CROS</div>
+  <div class="rail-square"></div>
+
+  <div class="kicker">SECOND ANNUAL EY/IF GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+  <div class="title">Key actions<br>for CROs</div>
+  <div class="underline"></div>
+
+  <div class="body">
+    Our survey results suggest that this powerful<br>
+    combination of capabilities is what it will take to<br>
+    establish high-performing risk management functions<br>
+    in the future. In the meantime, CROs can prioritize<br>
+    the following actions.<br><br>
+    Given all the uncertainty in the market today and the<br>
+    likelihood of more disruptive change, CROs must take<br>
+    a holistic approach in boosting the effectiveness of<br>
+    current risk management techniques. The big-picture<br>
+    objective is to ensure risk teams can deliver maximum<br>
+    strategic value and that risk management is viewed as<br>
+    a resource for achieving key goals.
+  </div>
+
+  <div class="contents">JUMP TO<br>CONTENTS</div>
+
+  <div class="dot white" style="left:751px;top:-13px;width:57px;height:57px;"></div>
+  <div class="dot grey" style="left:1025px;top:-33px;width:59px;height:59px;"></div>
+  <div class="dot grey" style="left:419px;top:330px;width:61px;height:61px;"></div>
+  <div class="dot dark" style="left:661px;top:196px;width:30px;height:30px;"></div>
+  <div class="dot grey" style="left:1038px;top:214px;width:28px;height:28px;"></div>
+  <div class="dot white" style="left:1219px;top:327px;width:50px;height:50px;"></div>
+  <div class="dot grey" style="left:557px;top:544px;width:42px;height:42px;"></div>
+  <div class="dot dark" style="left:998px;top:670px;width:31px;height:31px;"></div>
+  <div class="dot grey" style="left:1215px;top:570px;width:66px;height:66px;"></div>
+
+  <div class="chart-wrap">
+    <svg class="seg" width="834" height="720" viewBox="0 0 834 720" xmlns="http://www.w3.org/2000/svg">
+      <!-- top outer pale wedge behind the wheel -->
+      <path d="M434 -6
+               C540 0 621 23 670 69
+               L559 218
+               C523 191 479 175 434 171
+               Z"
+            fill="#bdbec8"/>
+
+      <!-- segment 1 -->
+      <path d="M234 131
+               C281 96 343 74 425 70
+               L425 286
+               C402 286 381 292 360 304
+               Z"
+            fill="#ededf0"/>
+
+      <!-- segment 2 -->
+      <path d="M435 0
+               C535 1 621 25 671 69
+               L559 218
+               C526 189 482 173 435 171
+               Z"
+            fill="#c9cad2"/>
+
+      <!-- segment 3 -->
+      <path d="M551 242
+               C589 271 619 303 632 340
+               L505 373
+               C497 345 483 321 467 295
+               Z"
+            fill="#9293a0"/>
+
+      <!-- segment 4 -->
+      <path d="M647 317
+               C659 367 656 420 636 471
+               L523 428
+               C526 410 521 391 505 373
+               Z"
+            fill="#efeff2"/>
+
+      <!-- segment 5 -->
+      <path d="M639 472
+               C656 546 622 642 564 693
+               L485 590
+               C519 553 529 489 523 428
+               Z"
+            fill="#d1d1d8"/>
+
+      <!-- segment 6 -->
+      <path d="M435 535
+               C465 534 494 515 518 486
+               L611 615
+               C565 651 507 673 435 675
+               Z"
+            fill="#161827"/>
+
+      <!-- segment 7 -->
+      <path d="M244 688
+               C292 624 352 573 435 535
+               L435 720
+               L244 720
+               Z"
+            fill="#ededf0"/>
+
+      <!-- segment 8 -->
+      <path d="M146 498
+               C165 543 193 578 224 606
+               L309 486
+               C292 476 283 464 276 451
+               Z"
+            fill="#efeff2"/>
+
+      <!-- segment 9 -->
+      <path d="M66 301
+               C66 380 92 451 146 498
+               L276 451
+               C274 423 282 396 298 364
+               Z"
+            fill="#8e8f9b"/>
+
+      <!-- segment 10 -->
+      <path d="M220 220
+               C235 201 251 186 272 171
+               L360 304
+               C334 321 315 342 298 364
+               Z"
+            fill="#161827"/>
+    </svg>
+
+    <div class="center-ring"></div>
+    <svg class="ring-svg" viewBox="0 0 164 164" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="82" cy="82" r="79" fill="none" stroke="#f3df00" stroke-width="4" stroke-dasharray="128 368" stroke-linecap="butt" transform="rotate(-90 82 82)"/>
+      <circle cx="82" cy="82" r="79" fill="none" stroke="#bc3bff" stroke-width="4" stroke-dasharray="92 404" stroke-dashoffset="-128" stroke-linecap="butt" transform="rotate(-90 82 82)"/>
+      <circle cx="82" cy="82" r="79" fill="none" stroke="#438cff" stroke-width="4" stroke-dasharray="103 393" stroke-dashoffset="-220" stroke-linecap="butt" transform="rotate(-90 82 82)"/>
+    </svg>
+    <div class="center-text">Top 10<br>actions for<br>CROs</div>
+
+    <div class="num" style="left:346px;top:238px;width:26px;">1</div>
+    <div class="small" style="left:287px;top:130px;width:126px;">
+      Prioritize relationship-<br>
+      building with senior leaders<br>
+      and the board to facilitate<br>
+      information sharing, better<br>
+      understand business needs<br>
+      and embed risk management<br>
+      in strategic planning relative<br>
+      to growth and innovation<br>
+      strategies, deployments of<br>
+      new technology and<br>
+      allocation capital
+    </div>
+
+    <div class="num" style="left:443px;top:229px;width:26px;">2</div>
+    <div class="small" style="left:431px;top:136px;width:121px;">
+      Drive a stronger risk<br>
+      culture by educating<br>
+      first-line business<br>
+      leaders, functional<br>
+      executives and the<br>
+      board on the latest<br>
+      risks and leading<br>
+      practices
+    </div>
+
+    <div class="num" style="left:529px;top:289px;width:26px;">3</div>
+    <div class="small" style="left:606px;top:205px;width:151px;">
+      Expand the aperture of scenario<br>
+      planning and stress testing<br>
+      programs, pushing participants<br>
+      to envision extreme, even<br>
+      unthinkable developments in<br>
+      terms of geopolitical conflict,<br>
+      macroeconomic shocks,<br>
+      cyber breaches and war-like<br>
+      disasters (including “everything<br>
+      happening at once” situations)
+    </div>
+
+    <div class="num" style="left:558px;top:378px;width:26px;">4</div>
+    <div class="small" style="left:595px;top:384px;width:148px;">
+      Embrace a continuous<br>
+      improvement mindset in<br>
+      adopting technology and<br>
+      enhancing data management<br>
+      capabilities in pursuit of<br>
+      increased efficiency; seek<br>
+      opportunities to self-disrupt<br>
+      with technology
+    </div>
+
+    <div class="num" style="left:524px;top:495px;width:26px;">5</div>
+    <div class="small" style="left:564px;top:479px;width:150px;">
+      Apply risk-based principles<br>
+      and approaches for all core<br>
+      risk management tasks and<br>
+      activities, with the goal of<br>
+      having the right people and<br>
+      teams focused on the right<br>
+      risks at the right time; ensure<br>
+      all risk management plans are<br>
+      designed with resilience in<br>
+      mind, with a proper balance<br>
+      of monitoring, prevention and<br>
+      incident response
+    </div>
+
+    <div class="num light" style="left:445px;top:525px;width:26px;">6</div>
+    <div class="small light" style="left:402px;top:558px;width:116px;">
+      Proactively monitor<br>
+      regulatory developments<br>
+      using AI-powered scanning<br>
+      tools; and participate<br>
+      in industry forums and<br>
+      in direct dialogue with<br>
+      authorities to shape<br>
+      rulemaking processes,<br>
+      new requirements and the<br>
+      development of industry<br>
+      standards
+    </div>
+
+    <div class="num" style="left:351px;top:551px;width:26px;">7</div>
+    <div class="small" style="left:293px;top:573px;width:131px;">
+      Continually revisit and<br>
+      refine governance models<br>
+      for GenAI to reflect<br>
+      priority use cases, new<br>
+      deployments and ensure<br>
+      ongoing flexibility to adjust<br>
+      as the technology matures
+    </div>
+
+    <div class="num" style="left:287px;top:494px;width:26px;">8</div>
+    <div class="small" style="left:200px;top:499px;width:143px;">
+      Build a strong<br>
+      business case for risk<br>
+      management’s value,<br>
+      with quantifiable<br>
+      metrics to track returns<br>
+      on investments in<br>
+      talent, technology and<br>
+      partnerships; identify and<br>
+      share risk insights that can<br>
+      drive strategic initiatives,<br>
+      enhance customer<br>
+      experiences and foster<br>
+      innovation
+    </div>
+
+    <div class="num" style="left:247px;top:391px;width:26px;">9</div>
+    <div class="small" style="left:158px;top:381px;width:134px;">
+      Consider<br>
+      alternative sourcing<br>
+      strategies and new<br>
+      partnerships to<br>
+      access specialty skill<br>
+      sets and specific<br>
+      technology
+    </div>
+
+    <div class="num light" style="left:262px;top:300px;width:32px;">10</div>
+    <div class="small light" style="left:138px;top:208px;width:138px;">
+      Expand talent<br>
+      management strategies<br>
+      and the scope of<br>
+      recruiting efforts to<br>
+      incorporate generalists<br>
+      with business savvy and<br>
+      discrete technical skills,<br>
+      including AI, cyber and<br>
+      operational resilience
+    </div>
+  </div>
+</div>
+</body>
+</html>

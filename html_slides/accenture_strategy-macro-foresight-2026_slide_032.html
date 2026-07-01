@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Europe struggle slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #eae7ec;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #eae7ec;
+    color: #111;
+  }
+
+  .topbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 24px;
+    background: #efefef;
+    border-bottom: 1px solid #c7c7c7;
+    font-size: 11px;
+    color: #7f7f7f;
+    line-height: 24px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .tab {
+    position: absolute;
+    top: 0;
+    height: 24px;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  .tab.active {
+    background: #5c1a92;
+    color: #fff;
+  }
+  .tab.underline {
+    color: #4d1f7d;
+  }
+  .tab.underline::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 0;
+    height: 2px;
+    background: #7e2db9;
+  }
+
+  .title {
+    position: absolute;
+    left: 40px;
+    top: 60px;
+    width: 1180px;
+    font-size: 27px;
+    line-height: 29px;
+    font-weight: 800;
+    color: #0d0d0d;
+  }
+  .subtitle {
+    position: absolute;
+    left: 40px;
+    top: 121px;
+    width: 1160px;
+    font-size: 26px;
+    line-height: 28px;
+    font-weight: 800;
+    color: #9b18ff;
+  }
+
+  .left-head {
+    position: absolute;
+    left: 40px;
+    top: 168px;
+    width: 465px;
+    font-size: 17px;
+    line-height: 20px;
+    font-weight: 800;
+    color: #111;
+    border-bottom: 3px solid #444;
+    padding-bottom: 5px;
+  }
+  .left-sub {
+    position: absolute;
+    left: 40px;
+    top: 199px;
+    font-size: 15px;
+    color: #9b9b9b;
+  }
+
+  .chart {
+    position: absolute;
+    left: 62px;
+    top: 252px;
+    width: 430px;
+    height: 390px;
+  }
+  .chart .axis-top {
+    position: absolute;
+    left: 106px;
+    top: -18px;
+    width: 340px;
+    height: 18px;
+    border-top: 2px solid #4a4a4a;
+  }
+  .chart .ticklabel {
+    position: absolute;
+    top: -36px;
+    width: 24px;
+    margin-left: -12px;
+    text-align: center;
+    font-size: 13px;
+    color: #333;
+  }
+  .chart .tick {
+    position: absolute;
+    top: -4px;
+    width: 1px;
+    height: 8px;
+    background: #4a4a4a;
+  }
+  .chart .axis-left {
+    position: absolute;
+    left: 106px;
+    top: 0;
+    width: 2px;
+    height: 390px;
+    background: #4a4a4a;
+  }
+
+  .row {
+    position: absolute;
+    left: 0;
+    width: 430px;
+    height: 27px;
+  }
+  .label {
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 96px;
+    text-align: right;
+    font-size: 16px;
+    line-height: 18px;
+    color: #222;
+  }
+  .bar {
+    position: absolute;
+    left: 108px;
+    top: 2px;
+    width: 339px;
+    height: 20px;
+    background: transparent;
+  }
+  .seg {
+    position: absolute;
+    top: 0;
+    height: 20px;
+  }
+  .dark {
+    background: #353535;
+  }
+  .mid {
+    background: #a9a9a9;
+  }
+  .light {
+    background: #c7a0e8;
+  }
+  .purple {
+    background: #6d0db5;
+  }
+  .val-white, .val-dark {
+    position: absolute;
+    top: 1px;
+    font-size: 13px;
+    line-height: 18px;
+    white-space: nowrap;
+  }
+  .val-white { color: #fff; }
+  .val-dark { color: #222; }
+
+  .legend {
+    position: absolute;
+    left: 108px;
+    top: 658px;
+    width: 400px;
+    font-size: 16px;
+    color: #222;
+  }
+  .legend-item {
+    position: absolute;
+    height: 20px;
+    line-height: 20px;
+  }
+  .legend-box {
+    display: inline-block;
+    width: 19px;
+    height: 16px;
+    margin-right: 7px;
+    vertical-align: middle;
+  }
+
+  .right-head {
+    position: absolute;
+    left: 570px;
+    top: 168px;
+    width: 650px;
+    font-size: 17px;
+    line-height: 20px;
+    font-weight: 800;
+    color: #111;
+  }
+
+  .initiative-box {
+    position: absolute;
+    left: 570px;
+    top: 188px;
+    width: 733px;
+    height: 313px;
+    border: 2px dashed #8e4abd;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    background: transparent;
+  }
+  .initiative-box ul,
+  .comment-box ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+  .initiative-box li,
+  .comment-box li {
+    margin-bottom: 7px;
+  }
+  .initiative-main {
+    font-size: 15px;
+    line-height: 17px;
+    color: #303030;
+  }
+  .timeline {
+    font-size: 15px;
+    line-height: 17px;
+    color: #9a9a9a;
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  .comment-box {
+    position: absolute;
+    left: 570px;
+    top: 513px;
+    width: 733px;
+    height: 188px;
+    background: #ececec;
+    box-shadow: 2px 3px 4px rgba(0,0,0,0.18);
+    box-sizing: border-box;
+    padding: 10px 12px;
+  }
+  .comment-title {
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .comment-main {
+    font-size: 15px;
+    line-height: 17px;
+    color: #2b2b2b;
+  }
+
+  .footer-left {
+    position: absolute;
+    left: 37px;
+    top: 726px;
+  }
+  .source-icon {
+    position: absolute;
+    left: 40px;
+    top: 726px;
+    color: #a315ff;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 20px;
+    transform: skewX(-15deg);
+  }
+  .source-text {
+    position: absolute;
+    left: 72px;
+    top: 728px;
+    font-size: 11px;
+    color: #7d7d7d;
+  }
+
+  .copyright {
+    position: absolute;
+    right: 82px;
+    top: 729px;
+    font-size: 11px;
+    color: #6f6f6f;
+  }
+  .page {
+    position: absolute;
+    right: 19px;
+    top: 728px;
+    font-size: 12px;
+    color: #6f6f6f;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar">
+    <div class="tab active" style="left:0px;width:105px;">Top 10 trends</div>
+    <div class="tab" style="left:105px;width:140px;">Multi-speed growth</div>
+    <div class="tab" style="left:245px;width:116px;">Tariff impacts</div>
+    <div class="tab" style="left:361px;width:132px;">Financial fragility</div>
+    <div class="tab" style="left:493px;width:107px;">Affordability</div>
+    <div class="tab" style="left:600px;width:119px;">AI productivity</div>
+    <div class="tab" style="left:719px;width:120px;">China exports</div>
+    <div class="tab underline" style="left:839px;width:125px;">Europe struggle</div>
+    <div class="tab" style="left:964px;width:118px;">AI arms race</div>
+    <div class="tab" style="left:1082px;width:122px;">Power crunch</div>
+    <div class="tab" style="left:1204px;width:76px;">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">Europe’s more interventionist approach to economic security, but poor implementation track record, could increase operating complexities for firms without a competitiveness payoff</div>
+  <div class="subtitle">7. Europe lags in structural reform amidst pivot to strengthen economic security</div>
+
+  <div class="left-head">Implementation of Draghi report recommendations, by sector</div>
+  <div class="left-sub">Percentage of initiatives</div>
+
+  <div class="chart">
+    <div class="axis-top"></div>
+    <div class="axis-left"></div>
+
+    <div class="ticklabel" style="left:106px;">0</div>
+    <div class="ticklabel" style="left:140px;">10</div>
+    <div class="ticklabel" style="left:174px;">20</div>
+    <div class="ticklabel" style="left:208px;">30</div>
+    <div class="ticklabel" style="left:242px;">40</div>
+    <div class="ticklabel" style="left:276px;">50</div>
+    <div class="ticklabel" style="left:310px;">60</div>
+    <div class="ticklabel" style="left:344px;">70</div>
+    <div class="ticklabel" style="left:378px;">80</div>
+    <div class="ticklabel" style="left:412px;">90</div>
+    <div class="ticklabel" style="left:446px;">100</div>
+
+    <div class="tick" style="left:106px;"></div>
+    <div class="tick" style="left:140px;"></div>
+    <div class="tick" style="left:174px;"></div>
+    <div class="tick" style="left:208px;"></div>
+    <div class="tick" style="left:242px;"></div>
+    <div class="tick" style="left:276px;"></div>
+    <div class="tick" style="left:310px;"></div>
+    <div class="tick" style="left:344px;"></div>
+    <div class="tick" style="left:378px;"></div>
+    <div class="tick" style="left:412px;"></div>
+    <div class="tick" style="left:446px;"></div>
+
+    <div class="row" style="top:0px;">
+      <div class="label">Energy</div>
+      <div class="bar">
+        <div class="seg purple" style="left:0px;width:61px;"></div>
+        <div class="seg light" style="left:61px;width:224px;"></div>
+        <div class="seg mid" style="left:285px;width:11px;"></div>
+        <div class="seg dark" style="left:296px;width:43px;"></div>
+        <div class="val-white" style="left:14px;">18%</div>
+        <div class="val-dark" style="left:158px;">66%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:39px;">
+      <div class="label">Digitisation &amp;<br>advanced tech</div>
+      <div class="bar">
+        <div class="seg purple" style="left:0px;width:78px;"></div>
+        <div class="seg light" style="left:78px;width:180px;"></div>
+        <div class="seg mid" style="left:258px;width:45px;"></div>
+        <div class="seg dark" style="left:303px;width:36px;"></div>
+        <div class="val-white" style="left:23px;">23%</div>
+        <div class="val-dark" style="left:147px;">53%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:78px;">
+      <div class="label">Pharma</div>
+      <div class="bar">
+        <div class="seg purple" style="left:0px;width:58px;"></div>
+        <div class="seg light" style="left:58px;width:190px;"></div>
+        <div class="seg mid" style="left:248px;width:91px;"></div>
+        <div class="val-white" style="left:14px;">17%</div>
+        <div class="val-dark" style="left:132px;">56%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:117px;">
+      <div class="label">Space</div>
+      <div class="bar">
+        <div class="seg purple" style="left:0px;width:95px;"></div>
+        <div class="seg light" style="left:95px;width:149px;"></div>
+        <div class="seg mid" style="left:244px;width:95px;"></div>
+        <div class="val-white" style="left:30px;">28%</div>
+        <div class="val-dark" style="left:143px;">44%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:156px;">
+      <div class="label">Clean<br>technologies</div>
+      <div class="bar">
+        <div class="seg purple" style="left:0px;width:88px;"></div>
+        <div class="seg light" style="left:88px;width:139px;"></div>
+        <div class="seg mid" style="left:227px;width:104px;"></div>
+        <div class="seg dark" style="left:331px;width:8px;"></div>
+        <div class="val-white" style="left:28px;">26%</div>
+        <div class="val-dark" style="left:125px;">41%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:195px;">
+      <div class="label">Defense</div>
+      <div class="bar">
+        <div class="seg purple" style="left:0px;width:98px;"></div>
+        <div class="seg light" style="left:98px;width:122px;"></div>
+        <div class="seg mid" style="left:220px;width:119px;"></div>
+        <div class="val-white" style="left:30px;">29%</div>
+        <div class="val-dark" style="left:123px;">36%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:234px;">
+      <div class="label">Critical<br>raw minerals</div>
+      <div class="bar">
+        <div class="seg purple" style="left:0px;width:88px;"></div>
+        <div class="seg light" style="left:88px;width:125px;"></div>
+        <div class="seg mid" style="left:213px;width:10px;"></div>
+        <div class="seg dark" style="left:223px;width:116px;"></div>
+        <div class="val-white" style="left:28px;">26%</div>
+        <div class="val-dark" style="left:124px;">37%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:273px;">
+      <div class="label">Energy-intensive<br>industries</div>
+      <div class="bar">
+        <div class="seg purple" style="left:0px;width:71px;"></div>
+        <div class="seg light" style="left:71px;width:129px;"></div>
+        <div class="seg mid" style="left:200px;width:80px;"></div>
+        <div class="seg dark" style="left:280px;width:59px;"></div>
+        <div class="val-white" style="left:19px;">21%</div>
+        <div class="val-dark" style="left:124px;">38%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:312px;">
+      <div class="label">Transport</div>
+      <div class="bar">
+        <div class="seg purple" style="left:0px;width:68px;"></div>
+        <div class="seg light" style="left:68px;width:115px;"></div>
+        <div class="seg mid" style="left:183px;width:92px;"></div>
+        <div class="seg dark" style="left:275px;width:64px;"></div>
+        <div class="val-white" style="left:17px;">20%</div>
+        <div class="val-dark" style="left:121px;">34%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:351px;">
+      <div class="label">Automotive</div>
+      <div class="bar">
+        <div class="seg purple" style="left:0px;width:98px;"></div>
+        <div class="seg light" style="left:98px;width:85px;"></div>
+        <div class="seg mid" style="left:183px;width:156px;"></div>
+        <div class="val-white" style="left:30px;">29%</div>
+        <div class="val-dark" style="left:129px;">25%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item" style="left:0px;top:0px;"><span class="legend-box" style="background:#353535;"></span>Implemented</div>
+    <div class="legend-item" style="left:202px;top:0px;"><span class="legend-box" style="background:#c7a0e8;"></span>In progress</div>
+    <div class="legend-item" style="left:0px;top:24px;"><span class="legend-box" style="background:#a9a9a9;"></span>Partially implemented</div>
+    <div class="legend-item" style="left:202px;top:24px;"><span class="legend-box" style="background:#6d0db5;"></span>Not implemented</div>
+  </div>
+
+  <div class="right-head">Recent EU economic security initiatives</div>
+  <div class="initiative-box">
+    <ul>
+      <li>
+        <div class="initiative-main">“Made in Europe” targets aim to push for up to 70% for the content of certain products such as cars to be produced in EU,</div>
+        <div class="timeline">Timeline: EU to present a Legal Draft on December 10<sup>th</sup></div>
+      </li>
+      <li>
+        <div class="initiative-main">The REsourceEU action plan aims to secure the EU's supply of critical raw materials by providing EUR 3 billion over the next 12 months for alternative solutions</div>
+        <div class="timeline">Timeline: EU adopted proposal on December 2<sup>nd</sup></div>
+      </li>
+      <li>
+        <div class="initiative-main">The European Commission can now investigate subsidies granted by non-EU countries to companies active in the EU and address any negative spillover effects on the EU Single Market</div>
+        <div class="timeline">Timeline: EU made this proposal on December 3<sup>rd</sup></div>
+      </li>
+      <li>
+        <div class="initiative-main">The European Union is considering forcing non-EU firms to transfer technologies to European companies if they want to operate locally, through avenues such as joint ventures or minimum EU labour quotas</div>
+        <div class="timeline">Timeline: EU made this proposal on December 3<sup>rd</sup></div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="comment-box">
+    <div class="comment-title">Commentary</div>
+    <ul class="comment-main">
+      <li>Europe has been able to diagnose where its economic structural problems lie, with the Draghi report spearheading that effort</li>
+      <li>The key issue driver is that despite this knowledge, and Brussels proposing hundreds of reforms and initiatives in response, the rate of action is poor with many initiatives not fully implemented</li>
+      <li>This creates a risk that Europe is unable to respond, and transform, quick enough given the changing external environment vis-a-vi the US and China</li>
+    </ul>
+  </div>
+
+  <div class="source-icon">&gt;</div>
+  <div class="source-text">Source(s): Eurostat, Accenture Strategy analysis</div>
+  <div class="copyright">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="page">32</div>
+</div>
+</body>
+</html>

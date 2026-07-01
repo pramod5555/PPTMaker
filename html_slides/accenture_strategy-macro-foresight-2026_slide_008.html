@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>2026 Economic Outlook</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #ececec;
+  }
+
+  .top-photo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 485px;
+    background:
+      radial-gradient(circle at 18% 30%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.72) 18%, rgba(255,255,255,0.25) 40%, rgba(255,255,255,0) 60%),
+      linear-gradient(180deg, rgba(113,170,216,0.95) 0%, rgba(144,192,225,0.9) 35%, rgba(193,214,229,0.75) 72%, rgba(86,105,126,0.92) 100%);
+  }
+  .top-photo:before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 300px;
+    width: 1320px;
+    height: 185px;
+    background:
+      radial-gradient(ellipse at 55% 70%, rgba(40,56,76,0.55) 0%, rgba(40,56,76,0.18) 18%, rgba(40,56,76,0) 38%),
+      linear-gradient(180deg, rgba(140,150,160,0) 0%, rgba(81,92,108,0.45) 55%, rgba(38,51,68,0.88) 100%);
+    filter: blur(3px);
+  }
+  .top-photo:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 485px;
+    background:
+      radial-gradient(circle at 25% 8%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0.15) 18%, rgba(255,255,255,0) 36%),
+      radial-gradient(circle at 38% 12%, rgba(255,255,255,0.33) 0%, rgba(255,255,255,0.10) 12%, rgba(255,255,255,0) 23%),
+      radial-gradient(circle at 48% 10%, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.08) 10%, rgba(255,255,255,0) 18%),
+      radial-gradient(circle at 70% 18%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 10%, rgba(255,255,255,0) 18%),
+      radial-gradient(circle at 82% 14%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.05) 8%, rgba(255,255,255,0) 14%);
+    filter: blur(8px);
+    opacity: 0.75;
+  }
+
+  .scope {
+    position: absolute;
+    left: 825px;
+    top: 28px;
+    width: 335px;
+    height: 435px;
+    transform: rotate(-3deg);
+  }
+  .scope .pole {
+    position: absolute;
+    left: 150px;
+    top: 230px;
+    width: 24px;
+    height: 220px;
+    background: linear-gradient(90deg, #5a3b2a 0%, #bf8b64 28%, #f6d8b5 50%, #8f6448 70%, #4d3427 100%);
+    border-radius: 10px;
+    box-shadow: inset 0 0 2px rgba(255,255,255,0.6);
+  }
+  .scope .body {
+    position: absolute;
+    left: 95px;
+    top: 55px;
+    width: 112px;
+    height: 145px;
+    background: linear-gradient(90deg, #4b2f22 0%, #b37b58 8%, #e8c9aa 13%, #87a4c7 24%, #cfe3f8 48%, #88abd5 71%, #4f2d23 95%, #2f1b15 100%);
+    border-radius: 56px / 18px;
+    box-shadow: inset -3px 0 6px rgba(0,0,0,0.35), inset 3px 0 4px rgba(255,255,255,0.25);
+  }
+  .scope .body-rim-top,
+  .scope .body-rim-bottom {
+    position: absolute;
+    width: 120px;
+    height: 16px;
+    left: 91px;
+    background: radial-gradient(ellipse at center, #f2d1b0 0%, #9d6847 35%, #351f19 80%);
+    border-radius: 50%;
+  }
+  .scope .body-rim-top { top: 48px; }
+  .scope .body-rim-bottom { top: 189px; }
+
+  .scope .eye-tube {
+    position: absolute;
+    left: 150px;
+    top: 8px;
+    width: 100px;
+    height: 24px;
+    background: linear-gradient(90deg, #301d18 0%, #bc885f 18%, #d9b08a 35%, #7088aa 60%, #1a1518 100%);
+    border-radius: 14px;
+  }
+  .scope .eye-lens {
+    position: absolute;
+    left: 223px;
+    top: -2px;
+    width: 50px;
+    height: 38px;
+    background: radial-gradient(circle at 38% 38%, #28344f 0%, #11141b 40%, #050608 75%);
+    border: 4px solid #513428;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px #b47b56 inset;
+  }
+
+  .scope .front {
+    position: absolute;
+    left: 140px;
+    top: 88px;
+    width: 168px;
+    height: 168px;
+    background: radial-gradient(circle at 38% 38%, #1b1f27 0%, #0f1217 48%, #07080b 78%);
+    border: 6px solid #4b2d23;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px #9d6949 inset;
+  }
+  .scope .front:before {
+    content: "";
+    position: absolute;
+    left: 104px;
+    top: 118px;
+    width: 52px;
+    height: 52px;
+    background: radial-gradient(circle at 35% 35%, #1e2530 0%, #0c0f14 55%, #050608 80%);
+    border: 4px solid #5c3a2b;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #b17a55 inset;
+  }
+  .scope .side-knob {
+    position: absolute;
+    left: 126px;
+    top: 186px;
+    width: 40px;
+    height: 72px;
+    background: linear-gradient(90deg, #4c3126 0%, #b8835d 22%, #d5ad8b 50%, #744d38 78%, #38231b 100%);
+    border-radius: 20px;
+    transform: rotate(90deg);
+  }
+  .scope .side-knob:before,
+  .scope .side-knob:after {
+    content: "";
+    position: absolute;
+    top: 22px;
+    width: 10px;
+    height: 28px;
+    background: linear-gradient(90deg, #7d553d, #d9b18a, #5d3a2b);
+    border-radius: 3px;
+  }
+  .scope .side-knob:before { left: -8px; }
+  .scope .side-knob:after { right: -8px; }
+
+  .scope .small-knob {
+    position: absolute;
+    left: 135px;
+    top: 148px;
+    width: 42px;
+    height: 42px;
+    background: radial-gradient(circle at 35% 35%, #1d2230 0%, #0e1218 60%, #07080b 85%);
+    border: 3px solid #4e3126;
+    border-radius: 50%;
+  }
+
+  .bottom-panel {
+    position: absolute;
+    left: 0;
+    top: 485px;
+    width: 1280px;
+    height: 235px;
+    background: #ececec;
+  }
+
+  .divider {
+    position: absolute;
+    left: 634px;
+    top: 514px;
+    width: 2px;
+    height: 210px;
+    background: #8a18f0;
+  }
+
+  .title {
+    position: absolute;
+    left: 698px;
+    top: 548px;
+    width: 420px;
+    color: #000;
+    font-size: 58px;
+    line-height: 0.95;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+  }
+  .title .year {
+    color: #8a18f0;
+  }
+
+  .accent {
+    position: absolute;
+    left: 41px;
+    bottom: -6px;
+    color: #9620f4;
+    font-size: 68px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .copyright {
+    position: absolute;
+    right: 33px;
+    bottom: 15px;
+    color: #6f6f6f;
+    font-size: 14px;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-photo"></div>
+
+    <div class="scope">
+      <div class="pole"></div>
+      <div class="body-rim-top"></div>
+      <div class="body"></div>
+      <div class="body-rim-bottom"></div>
+      <div class="eye-tube"></div>
+      <div class="eye-lens"></div>
+      <div class="front"></div>
+      <div class="side-knob"></div>
+      <div class="small-knob"></div>
+    </div>
+
+    <div class="bottom-panel"></div>
+    <div class="divider"></div>
+
+    <div class="title">
+      <span class="year">2026</span> Economic<br>Outlook
+    </div>
+
+    <div class="accent">&gt;</div>
+    <div class="copyright">Copyright © 2025 Accenture. All rights reserved.</div>
+  </div>
+</body>
+</html>

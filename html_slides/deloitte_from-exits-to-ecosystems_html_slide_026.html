@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Economy Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#efefef;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#efefef;
+    color:#555;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .qmark{
+    left:46px;
+    top:48px;
+    font-size:39px;
+    line-height:39px;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-0.02em;
+  }
+  .title{
+    left:55px;
+    top:104px;
+    font-size:34px;
+    line-height:38px;
+    font-weight:700;
+    color:#565656;
+  }
+  .question{
+    left:55px;
+    top:173px;
+    width:280px;
+    font-size:27px;
+    line-height:1.16;
+    font-weight:400;
+    color:#5d5d5d;
+  }
+  .topnote{
+    left:393px;
+    top:22px;
+    font-size:14px;
+    line-height:18px;
+    color:#6e6e6e;
+    font-weight:400;
+  }
+  .topline{
+    left:389px;
+    top:52px;
+    width:312px;
+    height:1px;
+    background:#7f95a5;
+  }
+
+  .chart-wrap{
+    left:377px;
+    top:155px;
+    width:915px;
+    height:535px;
+  }
+  .xaxis{
+    position:absolute;
+    left:0;
+    top:482px;
+    width:915px;
+    height:1px;
+    background:#c9c9c9;
+  }
+
+  .bar{
+    position:absolute;
+    bottom:53px;
+    width:17px;
+  }
+  .val{
+    position:absolute;
+    width:28px;
+    text-align:center;
+    font-size:12px;
+    line-height:12px;
+    color:#6b625f;
+    font-weight:400;
+  }
+  .group-label{
+    position:absolute;
+    top:492px;
+    font-size:11px;
+    line-height:13px;
+    color:#6f6f6f;
+    text-align:center;
+    white-space:nowrap;
+  }
+
+  .legend{
+    position:absolute;
+    left:247px;
+    top:517px;
+    width:470px;
+    height:16px;
+    color:#6f6f6f;
+    font-size:11px;
+    line-height:16px;
+    white-space:nowrap;
+  }
+  .legend-item{
+    position:absolute;
+    top:0;
+    height:16px;
+  }
+  .swatch{
+    position:absolute;
+    left:0;
+    top:4px;
+    width:6px;
+    height:6px;
+  }
+  .legend-text{
+    position:absolute;
+    left:10px;
+    top:0;
+  }
+
+  .base{
+    left:53px;
+    top:610px;
+    width:290px;
+    font-size:11px;
+    line-height:1.45;
+    color:#8a8a8a;
+    font-style:italic;
+    font-weight:400;
+  }
+  .copyright{
+    left:49px;
+    top:728px;
+    transform:translateY(-100%);
+    font-size:11px;
+    line-height:14px;
+    color:#4f4f4f;
+    font-weight:400;
+  }
+  .pagenum{
+    left:640px;
+    top:728px;
+    transform:translateY(-100%);
+    width:25px;
+    font-size:12px;
+    line-height:14px;
+    color:#3d3d3d;
+    font-weight:400;
+    text-align:center;
+  }
+
+  .logo{
+    left:1211px;
+    top:691px;
+    width:56px;
+    height:50px;
+    transform:translateY(-100%);
+    overflow:hidden;
+  }
+  .logo .blue{
+    position:absolute;
+    left:0;
+    top:0;
+    width:41px;
+    height:50px;
+    background:#2f4d97;
+  }
+  .logo .teal{
+    position:absolute;
+    right:0;
+    top:0;
+    width:31px;
+    height:50px;
+    background:#16a6a1;
+    clip-path:polygon(22% 0,100% 0,100% 100%,0 100%);
+  }
+  .logo .profile1{
+    position:absolute;
+    left:18px;
+    top:4px;
+    width:12px;
+    height:18px;
+    background:#23b5aa;
+    border-radius:8px 8px 5px 5px;
+  }
+  .logo .profile2{
+    position:absolute;
+    left:24px;
+    top:8px;
+    width:10px;
+    height:22px;
+    background:#49b848;
+    border-radius:8px 8px 5px 5px;
+  }
+  .logo .text{
+    position:absolute;
+    left:6px;
+    top:26px;
+    color:#fff;
+    font-size:16px;
+    line-height:16px;
+    font-weight:700;
+    letter-spacing:-0.03em;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qmark">Q.</div>
+  <div class="title">Economy</div>
+  <div class="question">For each of the following,<br>please tell me how likely<br>or unlikely you think they<br>are to happen...?</div>
+
+  <div class="topnote">% Likely: G7 markets</div>
+  <div class="topline"></div>
+
+  <div class="chart-wrap">
+    <div class="xaxis"></div>
+
+    <!-- Group 1 -->
+    <div class="bar" style="left:16px;height:430px;background:#d6cf47;"></div>
+    <div class="val" style="left:11px;top:32px;">81%</div>
+
+    <div class="bar" style="left:38px;height:435px;background:#ff7a12;"></div>
+    <div class="val" style="left:33px;top:27px;">82%</div>
+
+    <div class="bar" style="left:60px;height:430px;background:#53307d;"></div>
+    <div class="val" style="left:55px;top:32px;">81%</div>
+
+    <div class="bar" style="left:82px;height:409px;background:#ec005c;"></div>
+    <div class="val" style="left:77px;top:53px;">77%</div>
+
+    <div class="bar" style="left:104px;height:419px;background:#9ad7ca;"></div>
+    <div class="val" style="left:99px;top:43px;">79%</div>
+
+    <div class="bar" style="left:126px;height:297px;background:#11195a;"></div>
+    <div class="val" style="left:121px;top:165px;">56%</div>
+
+    <div class="bar" style="left:148px;height:361px;background:#a39a14;"></div>
+    <div class="val" style="left:143px;top:101px;">68%</div>
+
+    <!-- Group 2 -->
+    <div class="bar" style="left:203px;height:407px;background:#d6cf47;"></div>
+    <div class="val" style="left:198px;top:55px;">77%</div>
+
+    <div class="bar" style="left:225px;height:457px;background:#ff7a12;"></div>
+    <div class="val" style="left:220px;top:5px;">86%</div>
+
+    <div class="bar" style="left:247px;height:398px;background:#53307d;"></div>
+    <div class="val" style="left:242px;top:64px;">75%</div>
+
+    <div class="bar" style="left:269px;height:449px;background:#ec005c;"></div>
+    <div class="val" style="left:264px;top:13px;">85%</div>
+
+    <div class="bar" style="left:291px;height:370px;background:#9ad7ca;"></div>
+    <div class="val" style="left:286px;top:92px;">70%</div>
+
+    <div class="bar" style="left:313px;height:373px;background:#11195a;"></div>
+    <div class="val" style="left:308px;top:89px;">71%</div>
+
+    <div class="bar" style="left:335px;height:321px;background:#a39a14;"></div>
+    <div class="val" style="left:330px;top:141px;">61%</div>
+
+    <!-- Group 3 -->
+    <div class="bar" style="left:389px;height:354px;background:#d6cf47;"></div>
+    <div class="val" style="left:384px;top:108px;">67%</div>
+
+    <div class="bar" style="left:411px;height:365px;background:#ff7a12;"></div>
+    <div class="val" style="left:406px;top:97px;">69%</div>
+
+    <div class="bar" style="left:433px;height:363px;background:#53307d;"></div>
+    <div class="val" style="left:428px;top:99px;">68%</div>
+
+    <div class="bar" style="left:455px;height:340px;background:#ec005c;"></div>
+    <div class="val" style="left:450px;top:122px;">64%</div>
+
+    <div class="bar" style="left:477px;height:340px;background:#9ad7ca;"></div>
+    <div class="val" style="left:472px;top:122px;">64%</div>
+
+    <div class="bar" style="left:499px;height:393px;background:#11195a;"></div>
+    <div class="val" style="left:494px;top:69px;">74%</div>
+
+    <div class="bar" style="left:521px;height:313px;background:#a39a14;"></div>
+    <div class="val" style="left:516px;top:149px;">59%</div>
+
+    <!-- Group 4 -->
+    <div class="bar" style="left:575px;height:354px;background:#d6cf47;"></div>
+    <div class="val" style="left:570px;top:108px;">67%</div>
+
+    <div class="bar" style="left:597px;height:387px;background:#ff7a12;"></div>
+    <div class="val" style="left:592px;top:75px;">73%</div>
+
+    <div class="bar" style="left:619px;height:371px;background:#53307d;"></div>
+    <div class="val" style="left:614px;top:91px;">70%</div>
+
+    <div class="bar" style="left:641px;height:350px;background:#ec005c;"></div>
+    <div class="val" style="left:636px;top:112px;">66%</div>
+
+    <div class="bar" style="left:663px;height:350px;background:#9ad7ca;"></div>
+    <div class="val" style="left:658px;top:112px;">66%</div>
+
+    <div class="bar" style="left:685px;height:302px;background:#11195a;"></div>
+    <div class="val" style="left:680px;top:160px;">57%</div>
+
+    <div class="bar" style="left:707px;height:275px;background:#a39a14;"></div>
+    <div class="val" style="left:702px;top:187px;">52%</div>
+
+    <!-- Group 5 -->
+    <div class="bar" style="left:761px;height:264px;background:#d6cf47;"></div>
+    <div class="val" style="left:756px;top:198px;">50%</div>
+
+    <div class="bar" style="left:783px;height:317px;background:#ff7a12;"></div>
+    <div class="val" style="left:778px;top:145px;">60%</div>
+
+    <div class="bar" style="left:805px;height:238px;background:#53307d;"></div>
+    <div class="val" style="left:800px;top:224px;">45%</div>
+
+    <div class="bar" style="left:827px;height:296px;background:#ec005c;"></div>
+    <div class="val" style="left:822px;top:166px;">56%</div>
+
+    <div class="bar" style="left:849px;height:291px;background:#9ad7ca;"></div>
+    <div class="val" style="left:844px;top:171px;">55%</div>
+
+    <div class="bar" style="left:871px;height:259px;background:#11195a;"></div>
+    <div class="val" style="left:866px;top:203px;">49%</div>
+
+    <div class="bar" style="left:893px;height:286px;background:#a39a14;"></div>
+    <div class="val" style="left:888px;top:176px;">54%</div>
+
+    <!-- labels -->
+    <div class="group-label" style="left:0px;width:195px;">Prices will rise faster than incomes</div>
+    <div class="group-label" style="left:214px;width:120px;">Taxes will rise</div>
+    <div class="group-label" style="left:392px;width:128px;">Inflation will rise</div>
+    <div class="group-label" style="left:564px;width:168px;">Unemployment will rise</div>
+    <div class="group-label" style="left:760px;width:146px;">Interest rates will rise</div>
+
+    <!-- legend -->
+    <div class="legend">
+      <div class="legend-item" style="left:0px;width:52px;">
+        <div class="swatch" style="background:#d6cf47;"></div>
+        <div class="legend-text">Canada</div>
+      </div>
+      <div class="legend-item" style="left:58px;width:51px;">
+        <div class="swatch" style="background:#ff7a12;"></div>
+        <div class="legend-text">France</div>
+      </div>
+      <div class="legend-item" style="left:114px;width:58px;">
+        <div class="swatch" style="background:#53307d;"></div>
+        <div class="legend-text">Germany</div>
+      </div>
+      <div class="legend-item" style="left:179px;width:80px;">
+        <div class="swatch" style="background:#ec005c;"></div>
+        <div class="legend-text">Great Britain</div>
+      </div>
+      <div class="legend-item" style="left:266px;width:35px;">
+        <div class="swatch" style="background:#9ad7ca;"></div>
+        <div class="legend-text">Italy</div>
+      </div>
+      <div class="legend-item" style="left:308px;width:40px;">
+        <div class="swatch" style="background:#11195a;"></div>
+        <div class="legend-text">Japan</div>
+      </div>
+      <div class="legend-item" style="left:362px;width:85px;">
+        <div class="swatch" style="background:#a39a14;"></div>
+        <div class="legend-text">United States</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="base">Base: 23,721 adults aged 18 years and older in India, 18-74 in<br>Canada, Republic of Ireland, Malaysia, the Philippines, South<br>Africa, Turkey, and the United States, 20-74 in Thailand, 21-74<br>in Indonesia and Singapore, and 16-74 in all other countries.<br>Friday, October 25 – Friday November 8, 2024</div>
+
+  <div class="copyright">© Ipsos Predictions 2025 Report</div>
+  <div class="pagenum">26</div>
+
+  <div class="logo">
+    <div class="blue"></div>
+    <div class="teal"></div>
+    <div class="profile1"></div>
+    <div class="profile2"></div>
+    <div class="text">Ipsos</div>
+  </div>
+</div>
+</body>
+</html>

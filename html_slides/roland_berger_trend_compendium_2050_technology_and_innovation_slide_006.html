@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>Technology & Innovation Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#9a9a9a;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f1f1f1;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .sidebar{
+    left:0;
+    top:0;
+    width:181px;
+    height:720px;
+    background:#31343b;
+    z-index:5;
+  }
+  .sidebar-accent{
+    left:179px;
+    top:0;
+    width:2px;
+    height:720px;
+    background:#7d63b4;
+    z-index:6;
+  }
+  .mainbg{
+    left:181px;
+    top:0;
+    width:1099px;
+    height:720px;
+    background:#f1f1f1;
+    z-index:0;
+  }
+
+  .sidebar-title{
+    left:12px;
+    top:34px;
+    width:150px;
+    color:#f0f0f0;
+    font-size:24px;
+    line-height:29px;
+    font-weight:700;
+    z-index:30;
+  }
+
+  .nav-item{
+    width:160px;
+    z-index:30;
+  }
+  .nav-num{
+    position:absolute;
+    left:92px;
+    width:22px;
+    font-size:29px;
+    line-height:29px;
+    font-weight:700;
+  }
+  .nav-text{
+    position:absolute;
+    left:92px;
+    font-size:14px;
+    line-height:17px;
+    font-weight:700;
+  }
+  .nav-text.small{
+    font-weight:400;
+    color:#6f747d;
+  }
+
+  .hex{
+    position:absolute;
+    width:44px;
+    height:38px;
+    left:8px;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    border:4px solid;
+    z-index:31;
+    overflow:hidden;
+  }
+  .hex::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,.55), rgba(255,255,255,0) 34%),
+      linear-gradient(135deg, rgba(255,255,255,.22), rgba(0,0,0,.10)),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.16) 0 1px, transparent 1px 7px),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.14) 0 1px, transparent 1px 7px);
+    opacity:.95;
+  }
+  .hex.active{
+    border-color:#866fbe;
+    background:#2d8eb6;
+  }
+  .hex.gray{
+    border-color:#70747d;
+    background:#595d65;
+  }
+  .hex.hand{
+    border-color:#d6d6d6;
+    background:linear-gradient(135deg,#8f939b,#d9d9d9);
+  }
+
+  .sidebar-bottom-icon{
+    left:68px;
+    top:663px;
+    width:62px;
+    height:48px;
+    z-index:30;
+  }
+
+  .title{
+    left:220px;
+    top:31px;
+    width:1120px;
+    color:#222326;
+    font-size:26px;
+    line-height:38px;
+    font-weight:700;
+    z-index:30;
+    letter-spacing:.1px;
+  }
+  .subtitle{
+    left:220px;
+    top:138px;
+    width:320px;
+    color:#8c9198;
+    font-size:27px;
+    line-height:31px;
+    font-weight:300;
+    z-index:30;
+  }
+
+  .ghost-bg{
+    left:214px;
+    top:174px;
+    width:714px;
+    height:538px;
+    z-index:1;
+    opacity:.95;
+    filter:blur(1px);
+  }
+
+  .callout{
+    left:974px;
+    top:140px;
+    width:306px;
+    height:579px;
+    background:#d4d4d6;
+    z-index:20;
+    padding:10px 14px 8px 14px;
+  }
+  .callout p{
+    margin:0 0 11px 0;
+    color:#2d2e32;
+    font-size:17px;
+    line-height:19px;
+    font-weight:400;
+  }
+  .callout b{font-weight:700;}
+  .bullet{
+    font-size:20px;
+    vertical-align:top;
+    display:inline-block;
+    width:14px;
+  }
+  .bullettext{
+    display:inline-block;
+    width:258px;
+  }
+
+  .footer-left{
+    left:9px;
+    top:749px;
+    width:10px;
+    color:#ffffff;
+    font-size:11px;
+    line-height:11px;
+    z-index:30;
+  }
+  .source{
+    left:220px;
+    top:752px;
+    width:240px;
+    color:#444;
+    font-size:11px;
+    line-height:13px;
+    font-weight:400;
+    z-index:30;
+  }
+  .footer-right{
+    left:1210px;
+    top:683px;
+    width:60px;
+    height:28px;
+    z-index:50;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="mainbg"></div>
+  <div class="sidebar"></div>
+  <div class="sidebar-accent"></div>
+
+  <div class="sidebar-title">Technology &amp;<br>Innovation</div>
+
+  <div class="hex active" style="top:143px;">
+    <svg width="44" height="78" viewBox="0 0 44 78" style="position:absolute;left:0;top:0">
+      <rect x="0" y="0" width="44" height="38" fill="rgba(64,177,220,0.35)"/>
+      <path d="M5 26 L12 12 L17 19 L22 10 L29 21 L37 13" stroke="#d9f4ff" stroke-width="2" fill="none"/>
+      <path d="M6 29 L38 29" stroke="#b7e6ff" stroke-width="1"/>
+      <circle cx="12" cy="12" r="1.5" fill="#fff"/>
+      <circle cx="22" cy="10" r="1.5" fill="#fff"/>
+      <circle cx="37" cy="13" r="1.5" fill="#fff"/>
+    </svg>
+  </div>
+  <div class="nav-item" style="left:0; top:144px;">
+    <div class="nav-num" style="top:0;color:#856ec0;">1</div>
+    <div class="nav-text" style="top:29px;color:#856ec0;width:58px;">Value of</div>
+    <div class="nav-text" style="top:46px;color:#856ec0;width:76px;">Innovation</div>
+  </div>
+
+  <div class="hex gray" style="top:277px;">
+    <svg width="44" height="78" viewBox="0 0 44 78" style="position:absolute;left:0;top:0">
+      <rect x="0" y="0" width="44" height="38" fill="rgba(255,255,255,0.06)"/>
+      <circle cx="21" cy="19" r="10" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.1"/>
+      <circle cx="15" cy="15" r="1.4" fill="#cfcfcf"/>
+      <circle cx="26" cy="13" r="1.4" fill="#cfcfcf"/>
+      <circle cx="29" cy="22" r="1.4" fill="#cfcfcf"/>
+      <circle cx="17" cy="25" r="1.4" fill="#cfcfcf"/>
+      <path d="M15 15 L26 13 L29 22 L17 25 Z" stroke="#d9d9d9" stroke-width="0.9" fill="none"/>
+    </svg>
+  </div>
+  <div class="nav-item" style="left:0; top:277px;">
+    <div class="nav-num" style="top:0;color:#7f858e;">2</div>
+    <div class="nav-text small" style="top:29px;width:74px;">Frontier</div>
+    <div class="nav-text small" style="top:46px;width:90px;">Technologies</div>
+  </div>
+
+  <div class="hex hand" style="top:409px;">
+    <svg width="44" height="78" viewBox="0 0 44 78" style="position:absolute;left:0;top:0">
+      <rect x="0" y="0" width="44" height="38" fill="rgba(255,255,255,0.14)"/>
+      <path d="M10 22 C13 19,15 18,18 19 L21 21 L22 18 C23 16,26 16,26 19 L26 21 L28 18 C29 16,31 16,31 19 L31 22 L34 19 C35 18,37 19,37 21 C37 23,34 25,32 27 C30 29,26 30,23 29 L18 28 L13 25 Z" fill="#f3f3f3" stroke="#8b8b8b" stroke-width="0.8"/>
+      <path d="M10 22 L6 19" stroke="#8b8b8b" stroke-width="1.2"/>
+      <path d="M20 21 L26 25" stroke="#8b8b8b" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="nav-item" style="left:0; top:410px;">
+    <div class="nav-num" style="top:0;color:#7f858e;">3</div>
+    <div class="nav-text small" style="top:29px;width:66px;">Humans &amp;</div>
+    <div class="nav-text small" style="top:46px;width:72px;">Machines</div>
+  </div>
+
+  <svg class="sidebar-bottom-icon" viewBox="0 0 61 47">
+    <g fill="none" stroke="#747982" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.95">
+      <circle cx="17" cy="31" r="11"></circle>
+      <path d="M17 20 L24 14 L34 13"></path>
+      <path d="M17 42 L23 42 L28 46"></path>
+      <path d="M10 24 L6 19"></path>
+      <path d="M9 31 L2 31"></path>
+      <path d="M10 38 L5 43"></path>
+      <path d="M19 8 L19 2"></path>
+      <path d="M26 11 L31 6"></path>
+      <circle cx="44" cy="26" r="11"></circle>
+      <path d="M44 15 L44 37"></path>
+      <path d="M33 26 L55 26"></path>
+      <path d="M36 18 L52 34"></path>
+      <path d="M52 18 L36 34"></path>
+      <path d="M33 44 L55 44"></path>
+    </g>
+  </svg>
+
+  <div class="title">Technology and innovation are deeply entangled with economy and society –<br>Successful technology asserts itself passing through the innovation cycle</div>
+  <div class="subtitle">The innovation cycle</div>
+
+  <div class="ghost-bg">
+    <svg width="714" height="578" viewBox="0 0 714 578" style="position:absolute;left:0;top:0;opacity:.36">
+      <defs>
+        <filter id="blurText"><feGaussianBlur stdDeviation="0.45"/></filter>
+      </defs>
+      <rect x="0" y="0" width="714" height="538" fill="url(#fade)"/>
+      <g fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="47" font-weight="300" filter="url(#blurText)" opacity=".7">
+        <text x="28" y="52">1</text><text x="67" y="52">1</text>
+        <text x="54" y="112">1</text><text x="102" y="112">0</text><text x="145" y="112">1</text>
+        <text x="38" y="171">1</text><text x="88" y="171">0</text><text x="132" y="171">0</text>
+        <text x="33" y="230">0</text><text x="84" y="230">0</text><text x="126" y="230">1</text>
+        <text x="32" y="289">0</text><text x="78" y="289">1</text><text x="123" y="289">0</text>
+        <text x="36" y="347">0</text><text x="82" y="347">0</text><text x="126" y="347">0</text>
+        <text x="38" y="405">0</text><text x="84" y="405">1</text><text x="128" y="405">0</text>
+        <text x="47" y="464">0</text><text x="95" y="464">0</text><text x="139" y="464">1</text>
+        <text x="58" y="523">1</text><text x="105" y="523">0</text><text x="150" y="523">1</text>
+
+        <text x="178" y="63">1</text><text x="222" y="63">0</text>
+        <text x="191" y="122">0</text><text x="235" y="122">1</text>
+        <text x="177" y="181">1</text><text x="223" y="181">0</text>
+        <text x="193" y="240">0</text><text x="237" y="240">0</text>
+        <text x="177" y="299">1</text><text x="223" y="299">1</text>
+        <text x="193" y="358">0</text><text x="237" y="358">1</text>
+        <text x="177" y="417">1</text><text x="221" y="417">0</text>
+      </g>
+      <g opacity=".12">
+        <circle cx="475" cy="90" r="48" fill="#fff"/>
+        <circle cx="566" cy="162" r="34" fill="#fff"/>
+        <circle cx="610" cy="336" r="26" fill="#fff"/>
+        <circle cx="636" cy="412" r="52" fill="#fff"/>
+      </g>
+    </svg>
+  </div>
+
+  <svg style="left:295px; top:183px; width:590px; height:523px; z-index:25;" viewBox="0 0 590 523">
+    <defs>
+      <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6.2" refY="3.5" orient="auto">
+        <polygon points="0 0, 7 3.5, 0 7" fill="#655096"></polygon>
+      </marker>
+    </defs>
+
+    <g>
+      <path d="M294 3 A260 260 0 0 1 413 32 L392 131 A159 159 0 0 0 309 105 Z" fill="#90aac9"/>
+      <path d="M421 36 A260 260 0 0 1 515 154 L427 205 A159 159 0 0 0 398 137 Z" fill="#94add0"/>
+      <path d="M518 163 A260 260 0 0 1 531 344 L430 327 A159 159 0 0 0 426 213 Z" fill="#98b0d0"/>
+      <path d="M527 354 A260 260 0 0 1 437 499 L371 420 A159 159 0 0 0 421 338 Z" fill="#97b0cf"/>
+      <path d="M429 503 A260 260 0 0 1 274 521 L293 421 A159 159 0 0 0 362 421 Z" fill="#9db5d3"/>
+      <path d="M262 518 A260 260 0 0 1 134 452 L215 392 A159 159 0 0 0 283 419 Z" fill="#97b0d0"/>
+      <path d="M126 445 A260 260 0 0 1 71 317 L171 300 A159 159 0 0 0 210 384 Z" fill="#9ab2d1"/>
+      <path d="M68 308 A260 260 0 0 1 103 163 L198 217 A159 159 0 0 0 167 290 Z" fill="#96afcf"/>
+      <path d="M109 152 A260 260 0 0 1 282 4 L290 105 A159 159 0 0 0 205 137 Z" fill="#91abcc"/>
+    </g>
+
+    <circle cx="294" cy="264" r="124" fill="#4b2f7f"></circle>
+    <circle cx="294" cy="264" r="125" fill="none" stroke="#f1f1f1" stroke-width="15"></circle>
+
+    <g transform="translate(294,264)">
+      <circle cx="0" cy="0" r="23" fill="#ffffff"/>
+      <g fill="none" stroke="#1b5d88" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M-8 -2 C-8 -9,-3 -13,0 -13 C5 -13,9 -9,9 -3 C9 1,6 2,5 5 C4 7,4 9,4 10 L-4 10 C-4 8,-4 6,-5 5 C-7 2,-8 1,-8 -2 Z"></path>
+        <path d="M-4 13 L4 13"></path>
+        <path d="M-2 16 L2 16"></path>
+        <path d="M-1 -1 L2 -4"></path>
+      </g>
+      <g stroke="#ffffff" stroke-width="4" stroke-linecap="round">
+        <path d="M0 -37 L0 -27"></path>
+        <path d="M26 -26 L19 -19"></path>
+        <path d="M37 0 L27 0"></path>
+        <path d="M26 26 L19 19"></path>
+        <path d="M0 37 L0 27"></path>
+        <path d="M-26 26 L-19 19"></path>
+        <path d="M-37 0 L-27 0"></path>
+        <path d="M-26 -26 L-19 -19"></path>
+      </g>
+      <g fill="#ffffff">
+        <circle cx="0" cy="-28" r="5"/>
+        <circle cx="20" cy="-20" r="5"/>
+        <circle cx="28" cy="0" r="5"/>
+        <circle cx="20" cy="20" r="5"/>
+        <circle cx="0" cy="28" r="5"/>
+        <circle cx="-20" cy="20" r="5"/>
+        <circle cx="-28" cy="0" r="5"/>
+        <circle cx="-20" cy="-20" r="5"/>
+      </g>
+    </g>
+
+    <line x1="206" y1="176" x2="382" y2="352" stroke="#8e7bad" stroke-width="1.2" opacity="0.65"/>
+    <line x1="382" y1="176" x2="206" y2="352" stroke="#8e7bad" stroke-width="1.2" opacity="0.65"/>
+
+    <text x="294" y="188" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="400">Inception</text>
+    <text x="221" y="255" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="400">Wider</text>
+    <text x="221" y="277" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="400">impacts</text>
+    <text x="361" y="255" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="400">Value</text>
+    <text x="361" y="277" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="400">creation</text>
+    <text x="294" y="342" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="400">Value capture</text>
+
+    <g fill="#04548b" font-size="17" font-weight="400">
+      <text x="302" y="76" text-anchor="middle">Ideas,</text>
+      <text x="302" y="99" text-anchor="middle">needs &amp;</text>
+      <text x="302" y="122" text-anchor="middle">investments</text>
+
+      <text x="430" y="162" text-anchor="middle">R&amp;D and</text>
+      <text x="430" y="185" text-anchor="middle">application</text>
+
+      <text x="466" y="314" text-anchor="middle">Knowledge &amp;</text>
+      <text x="466" y="337" text-anchor="middle">capabilities</text>
+
+      <text x="401" y="444" text-anchor="middle">Adoption &amp;</text>
+      <text x="401" y="467" text-anchor="middle">diffusion</text>
+
+      <text x="274" y="476" text-anchor="middle">Trans-</text>
+      <text x="274" y="499" text-anchor="middle">formation &amp;</text>
+      <text x="274" y="522" text-anchor="middle">improvements</text>
+
+      <text x="114" y="402" text-anchor="middle">Productivity</text>
+      <text x="114" y="425" text-anchor="middle">&amp; economic</text>
+      <text x="114" y="448" text-anchor="middle">impacts</text>
+
+      <text x="102" y="260" text-anchor="middle">Social &amp;</text>
+      <text x="102" y="283" text-anchor="middle">environmental</text>
+      <text x="102" y="306" text-anchor="middle">impacts</text>
+
+      <text x="143" y="138" text-anchor="middle">Potential</text>
+      <text x="143" y="161" text-anchor="middle">reinvestments</text>
+    </g>
+
+    <g fill="none" stroke="#655096" stroke-width="4.5" marker-end="url(#arrowhead)">
+      <path d="M204 90 C218 75,231 68,247 68"></path>
+      <path d="M352 82 C374 88,391 99,403 111"></path>
+      <path d="M455 201 C468 215,473 230,472 249"></path>
+      <path d="M462 343 C452 364,438 382,422 396"></path>
+      <path d="M364 445 C344 459,324 466,303 468"></path>
+      <path d="M210 461 C188 451,174 438,162 420"></path>
+      <path d="M104 362 C93 342,88 321,91 296"></path>
+      <path d="M101 180 C93 205,96 232,110 260"></path>
+
+      <path d="M285 119 C343 120,392 144,425 190"></path>
+      <path d="M447 201 C451 216,451 234,446 248"></path>
+      <path d="M162 174 C143 198,136 225,137 257"></path>
+      <path d="M140 281 C141 306,149 329,165 349"></path>
+      <path d="M180 352 C207 370,236 379,267 381"></path>
+    </g>
+  </svg>
+
+  <div class="callout">
+    <p><span class="bullet">&gt;</span><span class="bullettext">Innovation is to be understood as a <b>dynamic process</b> that touches on several <b>economic</b> as well as <b>societal</b> aspects</span></p>
+    <p><span class="bullet">&gt;</span><span class="bullettext">Innovation is driven by different factors and can therefore be considered from <b>different perspectives</b>: From a firm-based view, innovation promises competitive advantage, higher profits, and an enhanced reputation. Such <b>incentives stimulate ideas and investment</b> aimed at maximizing a rewarding outcome</span></p>
+    <p><span class="bullet">&gt;</span><span class="bullettext">Any innovation in the form of a new technology will only <b>gain widespread acceptance, adoption and diffusion when adding significant value for a range of customers</b> and across society. Positive feedback incentivizes future research and (re)investments in order to develop technologies further</span></p>
+    <p><span class="bullet">&gt;</span><span class="bullettext">On a macroeconomic scale, <b>innovative industries</b> bring about <b>higher productivities and prosperity</b>. A country's intrinsic ability to innovate is due to complex, interwoven factors – it is a sign of <b>national competitive advantage</b></span></p>
+  </div>
+
+  <div class="footer-left">6</div>
+  <div class="source" style="top:753px;">Sources: Csiro; Roland Berger</div>
+
+  <svg class="footer-right" viewBox="0 0 60 28">
+    <text x="1" y="10" font-size="6" fill="#5a5a5a" font-family="Arial, Helvetica, sans-serif">Roland</text>
+    <path d="M29 2 C39 2,46 8,46 14 C46 21,40 26,29 26 L22 26 L22 2 Z" fill="#8f9498"/>
+    <path d="M30 2 L37 2 C44 2,49 6,49 11 C49 15,46 18,40 19 C46 20,51 23,51 28 L40 28 C40 23,35 21,29 21 Z" fill="#7d8288"/>
+  </svg>
+</div>
+</body>
+</html>

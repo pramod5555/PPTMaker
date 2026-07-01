@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Bain Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ececec;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+  }
+  .title{
+    position:absolute;
+    left:42px;
+    top:26px;
+    width:1140px;
+    font-size:56px;
+    line-height:1.06;
+    font-weight:400;
+    color:#111;
+    letter-spacing:0;
+    transform:scale(0.53);
+    transform-origin:top left;
+    z-index:30;
+  }
+  .top-rule{
+    position:absolute;
+    left:19px;
+    top:114px;
+    width:1204px;
+    height:14px;
+    background:#e00000;
+    z-index:5;
+  }
+
+  .panel{
+    position:absolute;
+    border:2px solid #e31a1a;
+    border-radius:24px;
+    overflow:hidden;
+    z-index:20;
+    box-sizing:border-box;
+  }
+  .left-panel{
+    left:54px;
+    top:136px;
+    width:479px;
+    height:566px;
+    background:
+      repeating-linear-gradient(0deg, rgba(120,120,120,0.075) 0px, rgba(120,120,120,0.075) 1px, transparent 1px, transparent 5px),
+      repeating-linear-gradient(90deg, rgba(120,120,120,0.07) 0px, rgba(120,120,120,0.07) 1px, transparent 1px, transparent 5px),
+      linear-gradient(180deg, #f7f7f7 0%, #efefef 100%);
+  }
+  .right-panel{
+    left:558px;
+    top:136px;
+    width:494px;
+    height:566px;
+    background:#ececec;
+  }
+  .panel-header{
+    position:absolute;
+    left:0;
+    top:16px;
+    width:100%;
+    height:86px;
+    z-index:25;
+  }
+  .left-header{
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 4px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 4px),
+      linear-gradient(180deg, #d83a33 0%, #ea4a43 100%);
+  }
+  .right-header{
+    background:#efbcbc;
+  }
+  .header-text{
+    position:absolute;
+    top:18px;
+    width:100%;
+    color:#fff;
+    font-style:italic;
+    font-weight:700;
+    font-size:24px;
+    line-height:1.15;
+    text-align:center;
+    z-index:30;
+    text-shadow:none;
+  }
+  .left-header-text{
+    left:8px;
+    width:462px;
+  }
+  .right-header-text{
+    left:15px;
+    width:462px;
+  }
+
+  .left-photo{
+    position:absolute;
+    left:0;
+    top:103px;
+    width:479px;
+    height:463px;
+    z-index:21;
+    opacity:0.42;
+  }
+  .right-photo{
+    position:absolute;
+    left:42px;
+    top:288px;
+    width:430px;
+    height:278px;
+    z-index:21;
+    opacity:0.28;
+  }
+
+  .white-fade-left{
+    position:absolute;
+    left:33px;
+    top:352px;
+    width:413px;
+    height:198px;
+    background:rgba(255,255,255,0.67);
+    border-radius:18px;
+    z-index:22;
+  }
+  .white-fade-right{
+    position:absolute;
+    left:35px;
+    top:289px;
+    width:424px;
+    height:228px;
+    background:rgba(255,255,255,0.52);
+    border-radius:20px;
+    z-index:22;
+  }
+
+  .left-list{
+    position:absolute;
+    left:31px;
+    top:267px;
+    width:404px;
+    z-index:30;
+    color:#111;
+  }
+  .num{
+    position:absolute;
+    width:31px;
+    height:31px;
+    border-radius:50%;
+    background:#db0000;
+    color:#fff;
+    font-size:24px;
+    line-height:31px;
+    font-weight:700;
+    text-align:center;
+  }
+  .item-text{
+    position:absolute;
+    left:35px;
+    font-size:21px;
+    line-height:1.12;
+    font-weight:400;
+    color:#111;
+    width:355px;
+  }
+
+  .right-list{
+    position:absolute;
+    left:613px;
+    top:269px;
+    width:370px;
+    z-index:30;
+    color:#b8b8b8;
+  }
+  .bullet{
+    position:absolute;
+    left:0;
+    font-size:25px;
+    line-height:24px;
+    color:#000;
+    font-weight:700;
+  }
+  .bullet-text{
+    position:absolute;
+    left:22px;
+    width:340px;
+    font-size:22px;
+    line-height:1.23;
+    font-weight:400;
+    color:#bdbdbd;
+  }
+
+  .footer-line{
+    position:absolute;
+    left:20px;
+    top:702px;
+    width:1240px;
+    height:1px;
+    background:#8f8f8f;
+    z-index:40;
+  }
+  .footer-text{
+    position:absolute;
+    left:31px;
+    top:713px;
+    width:820px;
+    font-size:9px;
+    line-height:1;
+    color:#333;
+    z-index:40;
+  }
+  .footer-mid{
+    position:absolute;
+    left:878px;
+    top:711px;
+    width:36px;
+    font-size:10px;
+    color:#333;
+    z-index:40;
+  }
+  .footer-right{
+    position:absolute;
+    left:926px;
+    top:711px;
+    width:285px;
+    font-size:10px;
+    color:#333;
+    z-index:40;
+  }
+  .page-badge{
+    position:absolute;
+    right:18px;
+    top:708px;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    border:3px solid #e00000;
+    box-sizing:border-box;
+    z-index:50;
+  }
+  .page-badge:after{
+    content:"";
+    position:absolute;
+    left:5px;
+    top:2px;
+    width:0;
+    height:0;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-bottom:10px solid #e00000;
+  }
+
+  svg text{ font-family: Arial, Helvetica, "Segoe UI", sans-serif; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">Brand landscape is becoming more dynamic; cautiously optimistic outlook on China luxury market</div>
+  <div class="top-rule"></div>
+
+  <div class="panel left-panel">
+    <div class="panel-header left-header"></div>
+    <div class="header-text left-header-text">Strong growth in 2010 &amp; majority<br>of 2011; with a more dynamic and<br>active brand landscape</div>
+
+    <svg class="left-photo" viewBox="0 0 479 463" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="lg1" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stop-color="#555"/>
+          <stop offset="1" stop-color="#f3f3f3"/>
+        </linearGradient>
+        <linearGradient id="lg2" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stop-color="#575757"/>
+          <stop offset="1" stop-color="#ffffff"/>
+        </linearGradient>
+      </defs>
+      <path d="M0 463 L0 255 Q40 215 74 220 Q101 175 138 177 Q170 130 207 134 Q254 94 304 110 Q344 55 396 20 L479 88 L479 463 Z" fill="url(#lg1)" opacity="0.82"/>
+      <rect x="18" y="321" width="7" height="142" fill="url(#lg2)" rx="4"/>
+      <rect x="39" y="277" width="9" height="186" fill="url(#lg2)" rx="5"/>
+      <rect x="56" y="345" width="6" height="118" fill="url(#lg2)" rx="3"/>
+      <rect x="72" y="296" width="18" height="167" fill="url(#lg2)" rx="9"/>
+      <rect x="98" y="237" width="13" height="226" fill="url(#lg2)" rx="6"/>
+      <rect x="119" y="209" width="26" height="254" fill="url(#lg2)" rx="12"/>
+      <rect x="154" y="245" width="10" height="218" fill="url(#lg2)" rx="5"/>
+      <rect x="172" y="188" width="30" height="275" fill="url(#lg2)" rx="14"/>
+      <rect x="211" y="221" width="12" height="242" fill="url(#lg2)" rx="6"/>
+      <rect x="233" y="170" width="18" height="293" fill="url(#lg2)" rx="9"/>
+      <rect x="259" y="260" width="7" height="203" fill="url(#lg2)" rx="3"/>
+      <rect x="272" y="194" width="24" height="269" fill="url(#lg2)" rx="12"/>
+      <rect x="306" y="223" width="10" height="240" fill="url(#lg2)" rx="5"/>
+      <rect x="325" y="158" width="29" height="305" fill="url(#lg2)" rx="14"/>
+      <polygon points="370,137 394,109 418,137 418,463 370,463" fill="#ffffff" opacity="0.96"/>
+      <rect x="423" y="212" width="8" height="251" fill="url(#lg2)" rx="4"/>
+      <polygon points="441,179 454,144 467,179 467,463 441,463" fill="#ffffff" opacity="0.92"/>
+    </svg>
+
+    <div class="white-fade-left"></div>
+
+    <div class="left-list">
+      <div class="num" style="left:0; top:0;">1</div>
+      <div class="item-text" style="top:0;">Continued expansion into tier<br>2/3 cities, with a slower pace</div>
+
+      <div class="num" style="left:0; top:60px;">2</div>
+      <div class="item-text" style="top:60px;">Leading brands emphasizing<br>more and more on improving<br>customer experience</div>
+
+      <div class="num" style="left:0; top:146px;">3</div>
+      <div class="item-text" style="top:146px;">Acceleration of online platforms<br>as channel for brand marketing<br>and ecommerce</div>
+
+      <div class="num" style="left:0; top:236px;">4</div>
+      <div class="item-text" style="top:236px;">Heritage-focused brand building<br>activities</div>
+
+      <div class="num" style="left:0; top:296px;">5</div>
+      <div class="item-text" style="top:296px;">Emerging Chinese-culture-<br>inspired luxury brands</div>
+
+      <div class="num" style="left:0; top:352px;">6</div>
+      <div class="item-text" style="top:352px;">Risk of negative media<br>exposure</div>
+    </div>
+  </div>
+
+  <div class="panel right-panel">
+    <div class="panel-header right-header"></div>
+    <div class="header-text right-header-text">Overall business environment<br>remains positive with a few<br>uncertainties</div>
+
+    <div class="white-fade-right"></div>
+
+    <svg class="right-photo" viewBox="0 0 430 278" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="personGrad" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stop-color="#0f0f0f"/>
+          <stop offset="1" stop-color="#7d7d7d"/>
+        </linearGradient>
+      </defs>
+      <g opacity="0.96">
+        <circle cx="90" cy="78" r="18" fill="url(#personGrad)"/>
+        <rect x="71" y="95" width="38" height="100" rx="12" fill="url(#personGrad)"/>
+        <rect x="57" y="107" width="12" height="73" rx="6" fill="url(#personGrad)" transform="rotate(13 63 143)"/>
+        <rect x="112" y="107" width="12" height="73" rx="6" fill="url(#personGrad)" transform="rotate(-13 118 143)"/>
+        <rect x="75" y="190" width="11" height="84" rx="5" fill="url(#personGrad)" transform="rotate(4 80 232)"/>
+        <rect x="93" y="190" width="11" height="84" rx="5" fill="url(#personGrad)" transform="rotate(-4 98 232)"/>
+
+        <circle cx="188" cy="53" r="31" fill="url(#personGrad)"/>
+        <rect x="149" y="84" width="80" height="135" rx="19" fill="url(#personGrad)"/>
+        <rect x="126" y="102" width="19" height="92" rx="9" fill="url(#personGrad)" transform="rotate(17 135 148)"/>
+        <rect x="233" y="102" width="19" height="92" rx="9" fill="url(#personGrad)" transform="rotate(-17 242 148)"/>
+        <rect x="161" y="212" width="18" height="96" rx="8" fill="url(#personGrad)" transform="rotate(2 170 260)"/>
+        <rect x="198" y="212" width="18" height="96" rx="8" fill="url(#personGrad)" transform="rotate(-2 207 260)"/>
+        <rect x="170" y="42" width="39" height="8" rx="4" fill="#8d8d8d"/>
+        <rect x="160" y="43" width="23" height="18" rx="6" fill="none" stroke="#8d8d8d" stroke-width="3"/>
+        <rect x="196" y="43" width="23" height="18" rx="6" fill="none" stroke="#8d8d8d" stroke-width="3"/>
+        <line x1="183" y1="52" x2="196" y2="52" stroke="#8d8d8d" stroke-width="3"/>
+
+        <circle cx="301" cy="101" r="19" fill="url(#personGrad)"/>
+        <rect x="281" y="119" width="39" height="94" rx="12" fill="url(#personGrad)"/>
+        <rect x="267" y="126" width="12" height="67" rx="6" fill="url(#personGrad)" transform="rotate(10 273 160)"/>
+        <rect x="322" y="126" width="12" height="67" rx="6" fill="url(#personGrad)" transform="rotate(-10 328 160)"/>
+        <rect x="287" y="206" width="10" height="72" rx="5" fill="url(#personGrad)" transform="rotate(2 292 242)"/>
+        <rect x="304" y="206" width="10" height="72" rx="5" fill="url(#personGrad)" transform="rotate(-2 309 242)"/>
+
+        <circle cx="382" cy="86" r="18" fill="url(#personGrad)"/>
+        <rect x="359" y="104" width="45" height="111" rx="14" fill="url(#personGrad)"/>
+        <rect x="342" y="116" width="14" height="80" rx="7" fill="url(#personGrad)" transform="rotate(25 349 156)"/>
+        <rect x="406" y="116" width="14" height="80" rx="7" fill="url(#personGrad)" transform="rotate(-28 413 156)"/>
+        <rect x="367" y="209" width="12" height="80" rx="6" fill="url(#personGrad)" transform="rotate(3 373 249)"/>
+        <rect x="387" y="209" width="12" height="80" rx="6" fill="url(#personGrad)" transform="rotate(-3 393 249)"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="right-list">
+    <div class="bullet" style="top:0;">•</div>
+    <div class="bullet-text" style="top:0;">Overall macroeconomic<br>environment favors continued<br>growth, despite recent economy<br>slowdown</div>
+
+    <div class="bullet" style="top:146px;">•</div>
+    <div class="bullet-text" style="top:146px;">Consumers confidence remains<br>high; level of sophistication<br>rising</div>
+
+    <div class="bullet" style="top:258px;">•</div>
+    <div class="bullet-text" style="top:258px;">Evolving regulatory<br>environment requires close<br>monitoring and compliance by<br>brands</div>
+  </div>
+
+  <div class="footer-line"></div>
+  <div class="footer-text">This information is confidential and was prepared by Bain &amp; Company solely for the use of our client; it is not to be relied on by any 3rd party without Bain's prior written consent</div>
+  <div class="footer-mid">SHA</div>
+  <div class="footer-right">2011 Bain China Luxury Market Study_Media release_vf 14</div>
+  <div class="page-badge"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #d9d9da;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f2f2f3;
+    color: #5e5f67;
+  }
+  .slide > div {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  .top-band {
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 79px;
+    background: #ececed;
+    border-bottom: 1px solid #c4c5cb;
+  }
+  .left-accent {
+    left: 0;
+    top: 0;
+    width: 47px;
+    height: 79px;
+    background: #c6c7ce;
+  }
+
+  .kicker {
+    left: 57px;
+    top: 50px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #7b7c88;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    white-space: nowrap;
+  }
+
+  .nav-circle {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background: #c7c7cf;
+    color: #4a4b58;
+    text-align: center;
+    line-height: 37px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .title {
+    left: 57px;
+    top: 118px;
+    width: 470px;
+    font-size: 38px;
+    line-height: 1.06;
+    color: #747583;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+  }
+
+  .body {
+    font-size: 15px;
+    line-height: 1.28;
+    color: #4f5058;
+    font-weight: 400;
+  }
+
+  .subhead {
+    font-size: 17px;
+    line-height: 21px;
+    color: #3f4048;
+    font-weight: 700;
+  }
+
+  .photo {
+    left: 531px;
+    top: 79px;
+    width: 749px;
+    height: 325px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 4% 60%, #f4a04f 0 10px, #b55f19 11px, #e8bb8a 23px, #3b231f 24px, transparent 33px),
+      radial-gradient(circle at 10% 41%, #f6a24f 0 10px, #bc651b 11px, #edc08f 23px, #452821 24px, transparent 34px),
+      radial-gradient(circle at 17% 56%, #f2a35a 0 10px, #b05e17 11px, #f0c291 24px, #3e251e 25px, transparent 35px),
+      radial-gradient(circle at 23% 45%, #f29c4a 0 12px, #a85714 13px, #edc08c 27px, #3b241f 28px, transparent 39px),
+      radial-gradient(circle at 28% 73%, #f2a14d 0 11px, #a95a16 12px, #eec18f 25px, #38221d 26px, transparent 37px),
+      radial-gradient(circle at 35% 48%, #f4a24f 0 13px, #a55715 14px, #efc28e 30px, #34211e 31px, transparent 43px),
+      radial-gradient(circle at 40% 63%, #f39f4a 0 10px, #a55514 11px, #efc18d 23px, #3a231d 24px, transparent 34px),
+      radial-gradient(circle at 45% 75%, #f6a553 0 12px, #ad5d18 13px, #efc390 28px, #3c231d 29px, transparent 40px),
+      radial-gradient(circle at 50% 40%, #f5a452 0 12px, #ab5d18 13px, #efc390 27px, #39211c 28px, transparent 38px),
+      radial-gradient(circle at 56% 57%, #f3a14c 0 11px, #a75a15 12px, #efc18d 25px, #35211d 26px, transparent 36px),
+      radial-gradient(circle at 61% 22%, #f3a24c 0 12px, #ac5c17 13px, #efc28e 29px, #35211c 30px, transparent 42px),
+      radial-gradient(circle at 67% 44%, #f2a34f 0 12px, #a85b17 13px, #efc290 27px, #38231d 28px, transparent 39px),
+      radial-gradient(circle at 72% 74%, #f3a451 0 13px, #a95d18 14px, #efc390 30px, #37221c 31px, transparent 42px),
+      radial-gradient(circle at 78% 50%, #f3a14d 0 11px, #aa5b16 12px, #efc08c 24px, #39231e 25px, transparent 35px),
+      radial-gradient(circle at 84% 66%, #f4a451 0 10px, #a55714 11px, #efc18d 23px, #37211c 24px, transparent 34px),
+      radial-gradient(circle at 90% 46%, #f3a24e 0 11px, #aa5c16 12px, #efc28e 24px, #38221d 25px, transparent 35px),
+      radial-gradient(circle at 95% 77%, #f5a756 0 11px, #a75b17 12px, #efc390 24px, #38231d 25px, transparent 35px),
+      linear-gradient(180deg, #e8e8d9 0%, #d7dfbd 10%, #bdcf9f 20%, #9eb07d 34%, #5e6f4c 52%, #2d2a23 58%, #4a2e25 67%, #73452e 78%, #a36c45 89%, #c99465 100%);
+  }
+  .photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 42% 73%, rgba(255,177,98,0.96) 0 22px, rgba(146,73,22,0.95) 23px, rgba(243,197,145,0.75) 45px, rgba(40,24,21,0.92) 46px, transparent 59px),
+      radial-gradient(circle at 54% 47%, rgba(255,177,98,0.97) 0 19px, rgba(136,69,21,0.94) 20px, rgba(242,194,142,0.72) 39px, rgba(40,24,21,0.90) 40px, transparent 51px),
+      radial-gradient(circle at 66% 23%, rgba(255,177,98,0.97) 0 21px, rgba(136,69,21,0.94) 22px, rgba(242,194,142,0.72) 44px, rgba(40,24,21,0.90) 45px, transparent 58px),
+      radial-gradient(circle at 76% 50%, rgba(255,177,98,0.97) 0 19px, rgba(136,69,21,0.94) 20px, rgba(242,194,142,0.72) 39px, rgba(40,24,21,0.90) 40px, transparent 51px),
+      radial-gradient(circle at 89% 60%, rgba(255,177,98,0.97) 0 18px, rgba(136,69,21,0.94) 19px, rgba(242,194,142,0.72) 37px, rgba(40,24,21,0.90) 38px, transparent 49px),
+      radial-gradient(circle at 31% 44%, rgba(255,177,98,0.97) 0 20px, rgba(136,69,21,0.94) 21px, rgba(242,194,142,0.72) 42px, rgba(40,24,21,0.90) 43px, transparent 56px),
+      linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0));
+    pointer-events: none;
+  }
+
+  .menu {
+    width: 78px;
+    height: 37px;
+    background: #4b4855;
+    color: #f1f1f1;
+    font-size: 11px;
+    line-height: 13px;
+    padding: 10px 0 0 8px;
+  }
+
+  .footer {
+    left: 57px;
+    top: 731px;
+    transform: translateY(-13px);
+    font-size: 10px;
+    line-height: 12px;
+    color: #74757d;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .footer strong {
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-band"></div>
+    <div class="left-accent"></div>
+
+    <div class="kicker">Insights: Europe, Middle East, India and Africa</div>
+
+    <div class="nav-circle" style="left:951px; top:33px;">◀</div>
+    <div class="nav-circle" style="left:995px; top:33px;">▶</div>
+
+    <div class="title">EUDR at the gates: Key<br>customs, tax and supply-<br>chain considerations</div>
+
+    <div class="body" style="left:57px; top:267px; width:430px;">
+      As outlined in our previous edition, the EU Deforestation Regulation (EUDR)<br>
+      aims to ensure that products linked to key commodities – including cocoa,<br>
+      coffee, rubber, cattle, palm oil, soy and wood – enter the EU market only if<br>
+      they are proven deforestation-free and compliant with local legislation. To<br>
+      do this, companies must trace their products back to plots of origin, assess<br>
+      risks and provide due diligence statements (DDS) through the EU Information<br>
+      System (TRACES).
+    </div>
+
+    <div class="body" style="left:57px; top:388px; width:432px;">
+      After a revised text published in December 2025 and the application date<br>
+      deferred by one year, the EUDR is entering a new phase. The focus is shifting<br>
+      from understanding the regulation’s requirements to integrating operationally<br>
+      these obligations into supply chains and obtaining data as well as addressing the<br>
+      impacts on corporations’ operating models.
+    </div>
+
+    <div class="body" style="left:57px; top:483px; width:432px;">
+      This article explores what organizations should consider as they move toward<br>
+      execution, how technology can support a scalable compliance model, operating<br>
+      model considerations and key customs-related points that remain open.
+    </div>
+
+    <div class="subhead" style="left:57px; top:553px; width:395px;">Integrating EUDR into supply chain operations</div>
+
+    <div class="body" style="left:57px; top:583px; width:432px;">
+      For many organizations, operationalization is where EUDR compliance becomes<br>
+      real. Mapping flows, cleaning master data and understanding the sourcing<br>
+      journey of every relevant commodity are foundational steps, and often far more<br>
+      complex than anticipated.
+    </div>
+
+    <div class="body" style="left:57px; top:646px; width:452px;">
+      Linking product flows to Harmonized System (HS) codes is a central element of<br>
+      the regulation, as the list of in-scope commodities and products refers exclusively<br>
+      to this classification. Yet, experience shows that HS and material/batch code<br>
+      classifications are frequently inconsistent, supplier master data is fragmented,
+    </div>
+
+    <div class="photo"></div>
+
+    <div class="menu" style="left:1042px; top:117px;">Contents</div>
+    <div class="menu" style="left:1040px; top:171px;">Insights</div>
+    <div class="menu" style="left:1040px; top:224px; padding-top:6px;">New on<br>ey.com</div>
+    <div class="menu" style="left:1040px; top:278px;">Tax alerts</div>
+    <div class="menu" style="left:1040px; top:332px; padding-top:6px;">Additional<br>resources</div>
+    <div class="menu" style="left:1040px; top:385px;">Contacts</div>
+
+    <div class="body" style="left:533px; top:436px; width:488px;">
+      and legacy purchasing systems are poorly connected to logistics and Enterprise<br>
+      Resource Planning (ERP) platforms. In practice, HS code classifications often<br>
+      do not match internal material codes, and mismatches between a company’s<br>
+      and its suppliers’ classifications are common. Further, companies purchasing<br>
+      goods inside the EU rarely have access to upstream import declarations<br>
+      and therefore cannot verify whether suppliers used correct HS codes. The<br>
+      challenge is heightened for complex or global supply chains involving contract<br>
+      manufacturers, intermediaries or processing steps that break the link between<br>
+      sourced and finished goods.
+    </div>
+
+    <div class="body" style="left:533px; top:590px; width:493px;">
+      Ensuring traceability to every plot of land and compliance with applicable<br>
+      legislation requires intense engagement with suppliers. It requires structured<br>
+      supplier outreach, remediation processes and robust sourcing and contracting<br>
+      practices. Among other commitments and confirmations to comply with the<br>
+      EUDR’s traceability and due diligence requirements, operators should ensure that<br>
+      suppliers be bound by contractual obligations to provide all relevant evidence<br>
+      and documentation (for example, of prior placement on the EU market) to
+    </div>
+
+    <div class="footer">39&nbsp;&nbsp;|&nbsp;&nbsp;<strong>TradeWatch</strong> Issue 1 2026</div>
+  </div>
+</body>
+</html>

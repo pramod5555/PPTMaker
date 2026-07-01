@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+    color:#555;
+  }
+  #slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .qmark{
+    left:45px; top:43px;
+    font-size:39px; line-height:39px; font-weight:700; color:#000;
+  }
+  .prompt{
+    left:53px; top:155px; width:300px;
+    font-size:18px; line-height:1.32; font-weight:400; color:#666;
+  }
+  .headline{
+    left:53px; top:269px; width:320px;
+    font-size:29px; line-height:1.18; font-weight:700; color:#555;
+  }
+  .base{
+    left:53px; top:610px; width:315px;
+    font-size:10px; line-height:1.58; font-style:italic; color:#8a8a8a;
+  }
+  .footer-text{
+    left:49px; top:730px;
+    transform:translateY(-100%);
+    font-size:12px; line-height:12px; color:#444;
+  }
+  .page{
+    left:683px; top:730px;
+    transform:translate(-50%,-100%);
+    font-size:12px; line-height:12px; color:#333;
+  }
+
+  .market-title{
+    left:376px; top:22px;
+    font-size:30px; line-height:30px; font-weight:300; color:#666;
+    transform:scale(0.62,1);
+    transform-origin:left top;
+    letter-spacing:0.2px;
+  }
+  .top-line-left{
+    left:370px; top:52px; width:169px; height:1px;
+    background:#7f8f99;
+  }
+
+  .legend-likely-box{
+    left:554px; top:24px; width:16px; height:16px;
+    background:#2bb3b3;
+  }
+  .legend-likely{
+    left:577px; top:22px;
+    font-size:17px; line-height:20px; color:#666;
+  }
+
+  .top-line-mid{
+    left:552px; top:52px; width:594px; height:1px;
+    background:#7f8f99;
+  }
+
+  .legend-unlikely-box{
+    left:1113px; top:23px; width:16px; height:16px;
+    background:#1a246f;
+  }
+  .legend-unlikely{
+    left:1135px; top:22px;
+    font-size:17px; line-height:20px; color:#666;
+  }
+
+  .change-title{
+    left:1218px; top:18px; width:98px;
+    font-size:12px; line-height:15px; color:#444; text-align:center;
+    font-weight:400;
+  }
+  .top-line-right{
+    left:1207px; top:52px; width:123px; height:1px;
+    background:#7f8f99;
+  }
+
+  .labels{
+    left:379px; top:82px; width:129px; height:590px;
+    font-size:12px; line-height:16px; color:#777;
+    text-align:right;
+  }
+  .labels div{
+    position:absolute;
+    width:129px;
+    right:0;
+    height:16px;
+  }
+
+  .bars-area{
+    left:519px; top:83px; width:660px; height:590px;
+  }
+  .row{
+    position:absolute;
+    left:0;
+    width:660px;
+    height:18px;
+  }
+  .likely-bar{
+    position:absolute;
+    left:0;
+    top:1px;
+    height:15px;
+    background:#2bb3b3;
+  }
+  .unlikely-bar{
+    position:absolute;
+    right:0;
+    top:1px;
+    height:15px;
+    background:#1a246f;
+  }
+  .pct-left, .pct-right{
+    position:absolute;
+    top:0;
+    height:16px;
+    font-size:12px;
+    line-height:16px;
+    font-weight:700;
+    color:#fff;
+    z-index:5;
+  }
+  .pct-left{ left:9px; }
+  .pct-right{ right:9px; }
+
+  .change-col{
+    left:1231px; top:84px; width:74px; height:590px;
+  }
+  .change-cell{
+    position:absolute;
+    left:0;
+    width:74px;
+    height:16px;
+    background:#e2e2e4;
+    color:#555;
+    font-size:12px;
+    line-height:16px;
+    text-align:center;
+  }
+
+  .highlight{
+    left:432px; top:375px; width:896px; height:20px;
+    border:2px solid #31b56f;
+    background:transparent;
+    z-index:20;
+    pointer-events:none;
+  }
+
+  .ipsos{
+    left:1262px; top:691px; width:54px; height:49px;
+    overflow:hidden;
+    background:#2453a5;
+  }
+  .ipsos:before{
+    content:"";
+    position:absolute;
+    right:-3px; top:0;
+    width:28px; height:49px;
+    background:#22b4a5;
+    clip-path:polygon(35% 0,100% 0,78% 100%,0 100%);
+  }
+  .ipsos .head{
+    position:absolute;
+    left:21px; top:6px;
+    width:10px; height:10px;
+    border-radius:50%;
+    background:#2b8dc5;
+    z-index:2;
+  }
+  .ipsos .body{
+    position:absolute;
+    left:18px; top:15px;
+    width:15px; height:23px;
+    background:#2b8dc5;
+    border-radius:8px;
+    z-index:2;
+  }
+  .ipsos .leaf{
+    position:absolute;
+    left:13px; top:11px;
+    width:17px; height:22px;
+    background:#2baa67;
+    clip-path:polygon(55% 0,85% 12%,100% 38%,90% 75%,62% 100%,30% 90%,25% 58%,35% 25%);
+    z-index:3;
+    opacity:.95;
+  }
+  .ipsos .text{
+    position:absolute;
+    left:7px; bottom:5px;
+    font-size:13px; line-height:13px; font-weight:700; color:#fff;
+    z-index:4;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="qmark">Q.</div>
+
+  <div class="prompt">For each of the following, please<br>tell me how likely or unlikely you<br>think they are to happen...?</div>
+
+  <div class="headline">Women will be paid<br>the same as men for<br>the same work</div>
+
+  <div class="base">Base: 23,721 adults aged 18 years and older in India, 18-74 in<br>Canada, Republic of Ireland, Malaysia, the Philippines, South<br>Africa, Turkey, and the United States, 20-74 in Thailand, 21-74<br>in Indonesia and Singapore, and 16-74 in all other countries.<br>Friday, October 25 – Friday November 8, 2024</div>
+
+  <div class="footer-text">© Ipsos Predictions 2025 Report</div>
+  <div class="page">72</div>
+
+  <div class="market-title">Market</div>
+  <div class="top-line-left"></div>
+  <div class="legend-likely-box"></div>
+  <div class="legend-likely">Likely</div>
+  <div class="top-line-mid"></div>
+  <div class="legend-unlikely-box"></div>
+  <div class="legend-unlikely">Unlikely</div>
+  <div class="change-title">Change likely<br><span style="font-weight:700;">vs 2023</span></div>
+  <div class="top-line-right"></div>
+
+  <div class="labels">
+    <div style="top:0px;">Global Country Average</div>
+    <div style="top:16px;">Indonesia</div>
+    <div style="top:32px;">Philippines</div>
+    <div style="top:48px;">Malaysia</div>
+    <div style="top:64px;">Thailand</div>
+    <div style="top:80px;">China</div>
+    <div style="top:96px;">Mexico</div>
+    <div style="top:112px;">India</div>
+    <div style="top:128px;">Colombia</div>
+    <div style="top:144px;">Romania</div>
+    <div style="top:160px;">South Africa</div>
+    <div style="top:176px;">Singapore</div>
+    <div style="top:192px;">Peru</div>
+    <div style="top:208px;">Spain</div>
+    <div style="top:224px;">Ireland</div>
+    <div style="top:240px;">Türkiye</div>
+    <div style="top:256px;">Argentina</div>
+    <div style="top:272px;">Australia</div>
+    <div style="top:288px;">Chile</div>
+    <div style="top:304px;">Canada</div>
+    <div style="top:320px;">United States</div>
+    <div style="top:336px;">Great Britain</div>
+    <div style="top:352px;">Poland</div>
+    <div style="top:368px;">South Korea</div>
+    <div style="top:384px;">Brazil</div>
+    <div style="top:400px;">Switzerland</div>
+    <div style="top:416px;">Netherlands</div>
+    <div style="top:432px;">Italy</div>
+    <div style="top:448px;">Sweden</div>
+    <div style="top:464px;">Japan</div>
+    <div style="top:480px;">Belgium</div>
+    <div style="top:496px;">France</div>
+    <div style="top:512px;">Germany</div>
+    <div style="top:528px;">Hungary</div>
+  </div>
+
+  <div class="bars-area">
+    <div class="row" style="top:0px;">
+      <div class="likely-bar" style="width:323px;border:1px solid #2bb3b3;background:transparent;height:15px;"></div>
+      <div class="unlikely-bar" style="width:286px;border:1px solid #1a246f;background:transparent;height:15px;"></div>
+      <div class="pct-left">49%</div>
+      <div class="pct-right">43%</div>
+    </div>
+    <div class="row" style="top:16px;">
+      <div class="likely-bar" style="width:574px;"></div>
+      <div class="unlikely-bar" style="width:79px;"></div>
+      <div class="pct-left">87%</div>
+      <div class="pct-right">12%</div>
+    </div>
+    <div class="row" style="top:32px;">
+      <div class="likely-bar" style="width:515px;"></div>
+      <div class="unlikely-bar" style="width:119px;"></div>
+      <div class="pct-left">78%</div>
+      <div class="pct-right">18%</div>
+    </div>
+    <div class="row" style="top:48px;">
+      <div class="likely-bar" style="width:508px;"></div>
+      <div class="unlikely-bar" style="width:112px;"></div>
+      <div class="pct-left">77%</div>
+      <div class="pct-right">17%</div>
+    </div>
+    <div class="row" style="top:64px;">
+      <div class="likely-bar" style="width:475px;"></div>
+      <div class="unlikely-bar" style="width:158px;"></div>
+      <div class="pct-left">72%</div>
+      <div class="pct-right">24%</div>
+    </div>
+    <div class="row" style="top:80px;">
+      <div class="likely-bar" style="width:470px;"></div>
+      <div class="unlikely-bar" style="width:172px;"></div>
+      <div class="pct-left">71%</div>
+      <div class="pct-right">26%</div>
+    </div>
+    <div class="row" style="top:96px;">
+      <div class="likely-bar" style="width:430px;"></div>
+      <div class="unlikely-bar" style="width:198px;"></div>
+      <div class="pct-left">65%</div>
+      <div class="pct-right">30%</div>
+    </div>
+    <div class="row" style="top:112px;">
+      <div class="likely-bar" style="width:391px;"></div>
+      <div class="unlikely-bar" style="width:211px;"></div>
+      <div class="pct-left">60%</div>
+      <div class="pct-right">32%</div>
+    </div>
+    <div class="row" style="top:128px;">
+      <div class="likely-bar" style="width:383px;"></div>
+      <div class="unlikely-bar" style="width:238px;"></div>
+      <div class="pct-left">58%</div>
+      <div class="pct-right">36%</div>
+    </div>
+    <div class="row" style="top:144px;">
+      <div class="likely-bar" style="width:383px;"></div>
+      <div class="unlikely-bar" style="width:231px;"></div>
+      <div class="pct-left">58%</div>
+      <div class="pct-right">35%</div>
+    </div>
+    <div class="row" style="top:160px;">
+      <div class="likely-bar" style="width:376px;"></div>
+      <div class="unlikely-bar" style="width:251px;"></div>
+      <div class="pct-left">57%</div>
+      <div class="pct-right">38%</div>
+    </div>
+    <div class="row" style="top:176px;">
+      <div class="likely-bar" style="width:368px;"></div>
+      <div class="unlikely-bar" style="width:224px;"></div>
+      <div class="pct-left">56%</div>
+      <div class="pct-right">34%</div>
+    </div>
+    <div class="row" style="top:192px;">
+      <div class="likely-bar" style="width:339px;"></div>
+      <div class="unlikely-bar" style="width:258px;"></div>
+      <div class="pct-left">51%</div>
+      <div class="pct-right">39%</div>
+    </div>
+    <div class="row" style="top:208px;">
+      <div class="likely-bar" style="width:331px;"></div>
+      <div class="unlikely-bar" style="width:264px;"></div>
+      <div class="pct-left">50%</div>
+      <div class="pct-right">40%</div>
+    </div>
+    <div class="row" style="top:224px;">
+      <div class="likely-bar" style="width:318px;"></div>
+      <div class="unlikely-bar" style="width:298px;"></div>
+      <div class="pct-left">48%</div>
+      <div class="pct-right">45%</div>
+    </div>
+    <div class="row" style="top:240px;">
+      <div class="likely-bar" style="width:304px;"></div>
+      <div class="unlikely-bar" style="width:324px;"></div>
+      <div class="pct-left">46%</div>
+      <div class="pct-right">49%</div>
+    </div>
+    <div class="row" style="top:256px;">
+      <div class="likely-bar" style="width:297px;"></div>
+      <div class="unlikely-bar" style="width:291px;"></div>
+      <div class="pct-left">45%</div>
+      <div class="pct-right">44%</div>
+    </div>
+    <div class="row" style="top:272px;">
+      <div class="likely-bar" style="width:297px;"></div>
+      <div class="unlikely-bar" style="width:311px;"></div>
+      <div class="pct-left">45%</div>
+      <div class="pct-right">47%</div>
+    </div>
+    <div class="row" style="top:288px;">
+      <div class="likely-bar" style="width:292px;"></div>
+      <div class="unlikely-bar" style="width:324px;"></div>
+      <div class="pct-left">45%</div>
+      <div class="pct-right">49%</div>
+    </div>
+    <div class="row" style="top:304px;">
+      <div class="likely-bar" style="width:290px;"></div>
+      <div class="unlikely-bar" style="width:290px;"></div>
+      <div class="pct-left">44%</div>
+      <div class="pct-right">44%</div>
+    </div>
+    <div class="row" style="top:320px;">
+      <div class="likely-bar" style="width:284px;"></div>
+      <div class="unlikely-bar" style="width:298px;"></div>
+      <div class="pct-left">43%</div>
+      <div class="pct-right">45%</div>
+    </div>
+    <div class="row" style="top:336px;">
+      <div class="likely-bar" style="width:278px;"></div>
+      <div class="unlikely-bar" style="width:311px;"></div>
+      <div class="pct-left">42%</div>
+      <div class="pct-right">47%</div>
+    </div>
+    <div class="row" style="top:352px;">
+      <div class="likely-bar" style="width:278px;"></div>
+      <div class="unlikely-bar" style="width:311px;"></div>
+      <div class="pct-left">42%</div>
+      <div class="pct-right">47%</div>
+    </div>
+    <div class="row" style="top:368px;">
+      <div class="likely-bar" style="width:264px;"></div>
+      <div class="unlikely-bar" style="width:324px;"></div>
+      <div class="pct-left">40%</div>
+      <div class="pct-right">49%</div>
+    </div>
+    <div class="row" style="top:384px;">
+      <div class="likely-bar" style="width:264px;"></div>
+      <div class="unlikely-bar" style="width:337px;"></div>
+      <div class="pct-left">40%</div>
+      <div class="pct-right">51%</div>
+    </div>
+    <div class="row" style="top:400px;">
+      <div class="likely-bar" style="width:251px;"></div>
+      <div class="unlikely-bar" style="width:370px;"></div>
+      <div class="pct-left">38%</div>
+      <div class="pct-right">56%</div>
+    </div>
+    <div class="row" style="top:416px;">
+      <div class="likely-bar" style="width:244px;"></div>
+      <div class="unlikely-bar" style="width:377px;"></div>
+      <div class="pct-left">37%</div>
+      <div class="pct-right">57%</div>
+    </div>
+    <div class="row" style="top:432px;">
+      <div class="likely-bar" style="width:224px;"></div>
+      <div class="unlikely-bar" style="width:390px;"></div>
+      <div class="pct-left">34%</div>
+      <div class="pct-right">59%</div>
+    </div>
+    <div class="row" style="top:448px;">
+      <div class="likely-bar" style="width:218px;"></div>
+      <div class="unlikely-bar" style="width:403px;"></div>
+      <div class="pct-left">33%</div>
+      <div class="pct-right">61%</div>
+    </div>
+    <div class="row" style="top:464px;">
+      <div class="likely-bar" style="width:211px;"></div>
+      <div class="unlikely-bar" style="width:331px;"></div>
+      <div class="pct-left">32%</div>
+      <div class="pct-right">50%</div>
+    </div>
+    <div class="row" style="top:480px;">
+      <div class="likely-bar" style="width:211px;"></div>
+      <div class="unlikely-bar" style="width:396px;"></div>
+      <div class="pct-left">32%</div>
+      <div class="pct-right">60%</div>
+    </div>
+    <div class="row" style="top:496px;">
+      <div class="likely-bar" style="width:198px;"></div>
+      <div class="unlikely-bar" style="width:429px;"></div>
+      <div class="pct-left">29%</div>
+      <div class="pct-right">65%</div>
+    </div>
+    <div class="row" style="top:512px;">
+      <div class="likely-bar" style="width:191px;"></div>
+      <div class="unlikely-bar" style="width:409px;"></div>
+      <div class="pct-left">28%</div>
+      <div class="pct-right">62%</div>
+    </div>
+    <div class="row" style="top:528px;">
+      <div class="likely-bar" style="width:184px;"></div>
+      <div class="unlikely-bar" style="width:403px;"></div>
+      <div class="pct-left">27%</div>
+      <div class="pct-right">61%</div>
+    </div>
+  </div>
+
+  <div class="change-col">
+    <div class="change-cell" style="top:0px;">1%</div>
+    <div class="change-cell" style="top:16px;">0%</div>
+    <div class="change-cell" style="top:32px;">-1%</div>
+    <div class="change-cell" style="top:48px;">0%</div>
+    <div class="change-cell" style="top:64px;">5%</div>
+    <div class="change-cell" style="top:80px;">-7%</div>
+    <div class="change-cell" style="top:96px;">3%</div>
+    <div class="change-cell" style="top:112px;">-11%</div>
+    <div class="change-cell" style="top:128px;">5%</div>
+    <div class="change-cell" style="top:144px;">11%</div>
+    <div class="change-cell" style="top:160px;">4%</div>
+    <div class="change-cell" style="top:176px;">-2%</div>
+    <div class="change-cell" style="top:192px;">2%</div>
+    <div class="change-cell" style="top:208px;">3%</div>
+    <div class="change-cell" style="top:224px;">N/A</div>
+    <div class="change-cell" style="top:240px;">0%</div>
+    <div class="change-cell" style="top:256px;">-2%</div>
+    <div class="change-cell" style="top:272px;">1%</div>
+    <div class="change-cell" style="top:288px;">0%</div>
+    <div class="change-cell" style="top:304px;">4%</div>
+    <div class="change-cell" style="top:320px;">1%</div>
+    <div class="change-cell" style="top:336px;">0%</div>
+    <div class="change-cell" style="top:352px;">-4%</div>
+    <div class="change-cell" style="top:368px;">1%</div>
+    <div class="change-cell" style="top:384px;">-4%</div>
+    <div class="change-cell" style="top:400px;">3%</div>
+    <div class="change-cell" style="top:416px;">5%</div>
+    <div class="change-cell" style="top:432px;">-6%</div>
+    <div class="change-cell" style="top:448px;">4%</div>
+    <div class="change-cell" style="top:464px;">1%</div>
+    <div class="change-cell" style="top:480px;">-6%</div>
+    <div class="change-cell" style="top:496px;">4%</div>
+    <div class="change-cell" style="top:512px;">2%</div>
+    <div class="change-cell" style="top:528px;">-1%</div>
+  </div>
+
+  <div class="highlight"></div>
+
+  <div class="ipsos">
+    <div class="head"></div>
+    <div class="body"></div>
+    <div class="leaf"></div>
+    <div class="text">Ipsos</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Agenda Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dcdcdc;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+  }
+  .text{
+    color:#111;
+    font-weight:400;
+    white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+
+  <div style="left:18px; top:17px; width:352px; height:703px; background:linear-gradient(180deg,#7f7f7f 0%, #5c5c5c 18%, #2f2f2f 42%, #5e5e5e 73%, #8b8b8b 100%); overflow:hidden; z-index:10;">
+    <svg width="352" height="703" viewBox="0 0 352 703" xmlns="http://www.w3.org/2000/svg" style="position:absolute; left:0; top:0;">
+      <defs>
+        <filter id="grain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" stitchTiles="stitch"/>
+          <feColorMatrix type="saturate" values="0"/>
+          <feComponentTransfer>
+            <feFuncA type="table" tableValues="0 0.14"/>
+          </feComponentTransfer>
+        </filter>
+        <linearGradient id="bagGrad1" x1="0" x2="1">
+          <stop offset="0%" stop-color="#d8d8d8"/>
+          <stop offset="50%" stop-color="#747474"/>
+          <stop offset="100%" stop-color="#171717"/>
+        </linearGradient>
+        <linearGradient id="bagGrad2" x1="0" x2="1">
+          <stop offset="0%" stop-color="#c8c8c8"/>
+          <stop offset="55%" stop-color="#5f5f5f"/>
+          <stop offset="100%" stop-color="#111111"/>
+        </linearGradient>
+        <pattern id="snake" width="10" height="10" patternUnits="userSpaceOnUse">
+          <rect width="10" height="10" fill="transparent"/>
+          <circle cx="2" cy="2" r="1.2" fill="#9c9c9c"/>
+          <circle cx="8" cy="5" r="1.2" fill="#6c6c6c"/>
+          <circle cx="4" cy="8" r="1.2" fill="#878787"/>
+        </pattern>
+      </defs>
+
+      <rect x="0" y="0" width="352" height="703" fill="transparent"/>
+      <rect x="0" y="0" width="352" height="703" filter="url(#grain)" opacity="0.92"/>
+
+      <line x1="180" y1="183" x2="352" y2="183" stroke="#d8d8d8" stroke-width="1" opacity="0.45"/>
+      <line x1="180" y1="370" x2="352" y2="370" stroke="#d8d8d8" stroke-width="1" opacity="0.32"/>
+
+      <g transform="translate(-6,8) rotate(-5 130 125)">
+        <path d="M22 120 C30 35, 175 12, 235 70 L240 240 C206 286, 98 301, 14 258 Z" fill="url(#bagGrad1)" stroke="#222" stroke-width="2"/>
+        <path d="M50 92 C82 42, 155 33, 193 70" fill="none" stroke="#1d1d1d" stroke-width="11" stroke-linecap="round"/>
+        <path d="M47 95 C82 50, 153 42, 190 78" fill="none" stroke="#adadad" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+        <path d="M22 120 C30 35, 175 12, 235 70 L240 240 C206 286, 98 301, 14 258 Z" fill="url(#snake)" opacity="0.58"/>
+        <ellipse cx="133" cy="172" rx="18" ry="12" fill="#2b2b2b"/>
+        <path d="M123 170 L143 170" stroke="#d0d0d0" stroke-width="3" />
+        <path d="M112 28 C151 10, 191 16, 215 39" fill="none" stroke="#0f0f0f" stroke-width="14" stroke-linecap="round"/>
+      </g>
+
+      <g transform="translate(176,274) rotate(10 80 110)">
+        <path d="M10 58 C25 11, 103 0, 146 37 L152 181 C124 212, 54 214, 7 169 Z" fill="url(#bagGrad2)" stroke="#262626" stroke-width="2"/>
+        <path d="M35 48 C63 -9, 101 2, 128 60" fill="none" stroke="#2a2a2a" stroke-width="10" stroke-linecap="round"/>
+        <path d="M38 51 C66 -4, 102 7, 124 63" fill="none" stroke="#c2c2c2" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+        <path d="M10 58 C25 11, 103 0, 146 37 L152 181 C124 212, 54 214, 7 169 Z" fill="url(#snake)" opacity="0.55"/>
+        <path d="M100 55 C118 38, 132 50, 120 68 C104 79, 93 71, 100 55 Z" fill="none" stroke="#232323" stroke-width="4"/>
+      </g>
+
+      <g transform="translate(0,410) rotate(13 85 70)">
+        <path d="M10 44 C21 14, 104 6, 152 38 L156 140 C137 165, 41 173, 7 132 Z" fill="url(#bagGrad1)" stroke="#272727" stroke-width="2"/>
+        <path d="M28 41 C41 -5, 89 -2, 116 50" fill="none" stroke="#202020" stroke-width="9" stroke-linecap="round"/>
+        <path d="M31 44 C45 2, 87 4, 113 53" fill="none" stroke="#bcbcbc" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+        <path d="M10 44 C21 14, 104 6, 152 38 L156 140 C137 165, 41 173, 7 132 Z" fill="url(#snake)" opacity="0.5"/>
+      </g>
+
+      <g transform="translate(214,474) rotate(24 48 90)">
+        <path d="M55 0 C70 23, 73 50, 74 116 C74 148, 62 170, 44 198 C30 207, 11 203, 0 190 C8 129, 24 68, 55 0 Z" fill="url(#bagGrad2)" stroke="#262626" stroke-width="2"/>
+        <path d="M13 174 C26 186, 45 184, 57 168" fill="none" stroke="#0f0f0f" stroke-width="5"/>
+        <path d="M0 190 C10 166, 39 159, 57 168 C45 194, 17 206, 0 190 Z" fill="url(#snake)" opacity="0.6"/>
+      </g>
+
+      <rect x="0" y="0" width="352" height="703" fill="transparent" filter="url(#grain)" opacity="0.52"/>
+    </svg>
+  </div>
+
+  <div class="text" style="left:376px; top:47px; width:250px; height:42px; font-size:35px; line-height:42px; z-index:30;">Agenda</div>
+
+  <div style="left:337px; top:114px; width:702px; height:13px; background:#e00000; z-index:15; clip-path:polygon(0 0, 100% 0, 99.2% 100%, 0 100%);"></div>
+
+  <div class="text" style="left:381px; top:229px; width:720px; height:40px; font-size:34px; line-height:40px; z-index:30;">• China luxury market overview</div>
+
+  <div style="left:357px; top:286px; width:688px; height:68px; border:3px solid #d40000; box-sizing:border-box; background:transparent; z-index:25;"></div>
+  <div class="text" style="left:381px; top:297px; width:760px; height:40px; font-size:34px; line-height:40px; z-index:30;">• Key trends of China luxury market</div>
+
+  <div class="text" style="left:381px; top:363px; width:820px; height:40px; font-size:34px; line-height:40px; z-index:30;">• Implications for luxury brands in China</div>
+
+  <div style="left:336px; top:686px; width:734px; height:1px; background:#9d9d9d; z-index:20;"></div>
+
+  <div class="text" style="left:335px; top:697px; width:405px; height:10px; font-size:9px; line-height:10px; color:#333; z-index:30;">
+    the use of our client; it is not to be relied on by any 3rd party without Bain's prior written consent
+  </div>
+
+  <div class="text" style="left:747px; top:697px; width:24px; height:10px; font-size:9px; line-height:10px; color:#333; z-index:30;">SHA</div>
+
+  <div class="text" style="left:790px; top:697px; width:245px; height:10px; font-size:9px; line-height:10px; color:#333; z-index:30;">
+    2011 Bain China Luxury Market Study_Media release_vf 12
+  </div>
+
+  <div style="left:1039px; top:691px; width:18px; height:18px; border:3px solid #d40000; border-radius:50%; box-sizing:border-box; z-index:50;"></div>
+  <div style="left:1045px; top:693px; width:0; height:0; border-left:3px solid transparent; border-right:3px solid transparent; border-bottom:9px solid #d40000; z-index:51;"></div>
+
+</div>
+</body>
+</html>

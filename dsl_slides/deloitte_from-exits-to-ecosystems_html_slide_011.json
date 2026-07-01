@@ -1,0 +1,58 @@
+{
+  "description": "Create a content slide titled '2024 in retrospect' with a two-column layout: a left sidebar with survey prompt and base note, and a right-side horizontal stacked bar chart comparing agree vs disagree for two statements with 2023 agree benchmarks.",
+  "spec": {
+    "slide_type": "content",
+    "header": {
+      "kicker": "",
+      "headline": "2024 in retrospect",
+      "sub": ""
+    },
+    "layout": "sidebar-left",
+    "content": {
+      "sidebar": {
+        "type": "text-block",
+        "title": "",
+        "body": "Please indicate if you agree very much, agree somewhat, disagree somewhat or disagree very much with the following statements:\n\nBase: 23,721 online adults under the age of 75 across 33 countries, interviewed 25 October - 8 November 2024."
+      },
+      "main": {
+        "type": "bar-chart",
+        "orientation": "horizontal",
+        "series": [
+          {
+            "name": "Agree",
+            "values": [
+              65,
+              51
+            ]
+          },
+          {
+            "name": "Disagree",
+            "values": [
+              35,
+              49
+            ]
+          },
+          {
+            "name": "% Agree 2023",
+            "values": [
+              70,
+              53
+            ]
+          }
+        ],
+        "labels": [
+          "2024 was a bad year for my country",
+          "2024 was a bad year for me and my family"
+        ],
+        "stacked": false,
+        "fmt": "percent",
+        "show_values": true,
+        "title": "Global averages"
+      }
+    },
+    "footer": {
+      "source": "© Ipsos Predictions 2025 Report",
+      "page": 11
+    }
+  }
+}

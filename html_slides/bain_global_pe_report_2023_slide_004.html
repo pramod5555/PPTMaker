@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Bain Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#efefef;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+    color:#111;
+  }
+  .title{
+    position:absolute;
+    left:43px;
+    top:56px;
+    font-size:38px;
+    line-height:1.1;
+    font-weight:400;
+    color:#111;
+    white-space:nowrap;
+  }
+  .subtitle{
+    position:absolute;
+    left:38px;
+    top:144px;
+    font-size:18px;
+    line-height:1.2;
+    font-weight:400;
+    color:#111;
+    white-space:nowrap;
+  }
+  .chart-area{
+    position:absolute;
+    left:32px;
+    top:184px;
+    width:1240px;
+    height:500px;
+  }
+  .label-top{
+    position:absolute;
+    font-size:17px;
+    line-height:1.15;
+    font-weight:700;
+    color:#111;
+    text-align:center;
+    z-index:3;
+    white-space:nowrap;
+  }
+  .callout{
+    position:absolute;
+    background:#cfcfcf;
+    border:1px solid #7d7d7d;
+    box-sizing:border-box;
+    padding:5px 10px;
+    font-size:18px;
+    line-height:1.08;
+    font-weight:700;
+    color:#d40000;
+    z-index:4;
+  }
+  .axis-label{
+    position:absolute;
+    font-size:16px;
+    line-height:1;
+    font-weight:400;
+    color:#111;
+    z-index:3;
+  }
+  .year-label{
+    position:absolute;
+    font-size:16px;
+    line-height:1;
+    font-weight:400;
+    color:#111;
+    transform-origin:left top;
+    transform:rotate(-45deg);
+    z-index:3;
+    white-space:nowrap;
+  }
+  svg{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">Few investors have invested through such challenging times</div>
+  <div class="subtitle">US CPI growth rate (all items, quarterly rolling annual % change)</div>
+
+  <div class="chart-area">
+    <div class="label-top" style="left:132px; top:24px; width:250px;">1960 – 1980 avg. CPI: ~5%</div>
+    <div class="label-top" style="left:614px; top:24px; width:295px;">1981 – 2008 avg. CPI: 3-4%</div>
+    <div class="label-top" style="left:1060px; top:0px; width:205px;">2009 – Q2 2021<br>avg. CPI: 1-2%</div>
+
+    <div class="callout" style="left:472px; top:64px; width:775px; height:34px;">Most Senior Partner or Fund MD tenure</div>
+    <div class="callout" style="left:864px; top:102px; width:384px; height:34px;">Avg. Partner or Fund MD tenure</div>
+    <div class="callout" style="left:1015px; top:140px; width:233px; height:56px;">Avg. Principal/<br>Director/ VP</div>
+    <div class="callout" style="left:1128px; top:201px; width:121px; height:57px; text-align:center;">Avg.<br>Associate</div>
+
+    <div class="axis-label" style="left:6px; top:46px; width:42px;">15%</div>
+    <div class="axis-label" style="left:26px; top:154px; width:24px;">10</div>
+    <div class="axis-label" style="left:33px; top:261px; width:17px;">5</div>
+    <div class="axis-label" style="left:37px; top:370px; width:13px;">0</div>
+    <div class="axis-label" style="left:28px; top:478px; width:22px;">-5</div>
+
+    <div class="year-label" style="left:30px; top:492px;">1960</div>
+    <div class="year-label" style="left:70px; top:492px;">1962</div>
+    <div class="year-label" style="left:110px; top:492px;">1964</div>
+    <div class="year-label" style="left:150px; top:492px;">1966</div>
+    <div class="year-label" style="left:190px; top:492px;">1968</div>
+    <div class="year-label" style="left:230px; top:492px;">1970</div>
+    <div class="year-label" style="left:270px; top:492px;">1972</div>
+    <div class="year-label" style="left:310px; top:492px;">1974</div>
+    <div class="year-label" style="left:350px; top:492px;">1976</div>
+    <div class="year-label" style="left:390px; top:492px;">1978</div>
+    <div class="year-label" style="left:430px; top:492px;">1980</div>
+    <div class="year-label" style="left:470px; top:492px;">1982</div>
+    <div class="year-label" style="left:510px; top:492px;">1984</div>
+    <div class="year-label" style="left:550px; top:492px;">1986</div>
+    <div class="year-label" style="left:590px; top:492px;">1988</div>
+    <div class="year-label" style="left:630px; top:492px;">1990</div>
+    <div class="year-label" style="left:670px; top:492px;">1992</div>
+    <div class="year-label" style="left:710px; top:492px;">1994</div>
+    <div class="year-label" style="left:750px; top:492px;">1996</div>
+    <div class="year-label" style="left:790px; top:492px;">1998</div>
+    <div class="year-label" style="left:830px; top:492px;">2000</div>
+    <div class="year-label" style="left:870px; top:492px;">2002</div>
+    <div class="year-label" style="left:910px; top:492px;">2004</div>
+    <div class="year-label" style="left:950px; top:492px;">2006</div>
+    <div class="year-label" style="left:990px; top:492px;">2008</div>
+    <div class="year-label" style="left:1030px; top:492px;">2010</div>
+    <div class="year-label" style="left:1070px; top:492px;">2012</div>
+    <div class="year-label" style="left:1110px; top:492px;">2014</div>
+    <div class="year-label" style="left:1150px; top:492px;">16</div>
+    <div class="year-label" style="left:1190px; top:492px;">2018</div>
+    <div class="year-label" style="left:1230px; top:492px;">2020</div>
+
+    <svg width="1240" height="500" viewBox="0 0 1240 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- top reference lines -->
+      <line x1="55" y1="60" x2="463" y2="60" stroke="#222" stroke-width="1.4"/>
+      <line x1="472" y1="60" x2="1013" y2="60" stroke="#222" stroke-width="1.4"/>
+      <line x1="1021" y1="60" x2="1248" y2="60" stroke="#222" stroke-width="1.4"/>
+
+      <!-- average reference lines -->
+      <line x1="55" y1="263" x2="463" y2="263" stroke="#222" stroke-width="1.4"/>
+      <line x1="470" y1="299" x2="1013" y2="299" stroke="#222" stroke-width="1.4"/>
+      <line x1="1023" y1="340" x2="1273" y2="340" stroke="#222" stroke-width="1.4"/>
+
+      <!-- zero line -->
+      <line x1="55" y1="373" x2="1285" y2="373" stroke="#555" stroke-width="1.2"/>
+
+      <!-- vertical dashed separators -->
+      <line x1="463" y1="28" x2="463" y2="493" stroke="#9a9a9a" stroke-width="1.2" stroke-dasharray="5 4"/>
+      <line x1="1011" y1="28" x2="1011" y2="493" stroke="#9a9a9a" stroke-width="1.2" stroke-dasharray="5 4"/>
+      <line x1="1253" y1="36" x2="1253" y2="493" stroke="#9a9a9a" stroke-width="1.2" stroke-dasharray="5 4"/>
+
+      <!-- CPI line -->
+      <polyline fill="none" stroke="#8a8a8a" stroke-width="4" stroke-linejoin="miter" stroke-linecap="butt" points="
+      55,335
+      61,329
+      67,344
+      73,338
+      79,349
+      85,341
+      91,346
+      97,343
+      103,343
+      109,347
+      115,342
+      121,339
+      127,343
+      133,344
+      139,333
+      145,320
+      151,311
+      157,288
+      163,317
+      169,323
+      175,321
+      181,286
+      187,274
+      193,260
+      199,252
+      205,241
+      211,236
+      217,236
+      223,248
+      229,263
+      235,286
+      241,285
+      247,294
+      253,300
+      259,286
+      265,248
+      271,188
+      277,163
+      283,105
+      289,129
+      295,165
+      301,205
+      307,228
+      313,241
+      319,263
+      325,231
+      331,235
+      337,237
+      343,229
+      349,193
+      355,166
+      361,137
+      367,101
+      373,59
+      379,62
+      385,96
+      391,117
+      397,157
+      403,129
+      409,180
+      415,203
+      421,242
+      427,275
+      433,287
+      439,305
+      445,285
+      451,315
+      457,293
+      463,297
+      469,258
+      475,205
+      481,246
+      487,185
+      493,220
+      499,266
+      505,288
+      511,317
+      517,337
+      523,284
+      529,289
+      535,295
+      541,299
+      547,302
+      553,309
+      559,306
+      565,307
+      571,346
+      577,334
+      583,287
+      589,272
+      595,286
+      601,274
+      607,267
+      613,250
+      619,266
+      625,260
+      631,235
+      637,255
+      643,242
+      649,219
+      655,246
+      661,287
+      667,300
+      673,294
+      679,295
+      685,296
+      691,296
+      697,304
+      703,299
+      709,306
+      715,299
+      721,307
+      727,301
+      733,300
+      739,293
+      745,298
+      751,296
+      757,290
+      763,296
+      769,313
+      775,323
+      781,336
+      787,339
+      793,333
+      799,334
+      805,327
+      811,315
+      817,313
+      823,299
+      829,293
+      835,293
+      841,296
+      847,299
+      853,337
+      859,346
+      865,337
+      871,312
+      877,321
+      883,329
+      889,313
+      895,319
+      901,326
+      907,287
+      913,293
+      919,304
+      925,287
+      931,274
+      937,281
+      943,255
+      949,299
+      955,338
+      961,311
+      967,302
+      973,308
+      979,278
+      985,244
+      991,364
+      997,392
+      1003,411
+      1009,334
+      1015,323
+      1021,344
+      1027,351
+      1033,334
+      1039,293
+      1045,279
+      1051,289
+      1057,333
+      1063,334
+      1069,340
+      1075,336
+      1081,335
+      1087,330
+      1093,344
+      1099,329
+      1105,333
+      1111,347
+      1117,372
+      1123,372
+      1129,365
+      1135,347
+      1141,347
+      1147,346
+      1153,313
+      1159,345
+      1165,351
+      1171,346
+      1177,339
+      1183,334
+      1189,327
+      1195,328
+      1201,332
+      1207,356
+      1213,349
+      1219,340
+      1225,360
+      1231,341
+      1237,336
+      1243,254
+      1249,242
+      1255,197
+      1261,179
+      1267,192
+      1273,188
+      1279,225
+      1285,233
+      1291,255
+      1297,244
+      1303,224
+      1309,215
+      " transform="translate(-25,0)"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

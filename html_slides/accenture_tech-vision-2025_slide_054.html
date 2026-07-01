@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Agentic Workflows</title>
+<style>
+  body {
+    margin: 0;
+    background: #111;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: linear-gradient(to right, #f2f2f2 0 56.1%, #000 56.1% 100%);
+  }
+
+  .top-left {
+    position: absolute;
+    left: 61px;
+    top: 37px;
+    font-size: 12px;
+    color: #5a5a5a;
+    letter-spacing: 0;
+  }
+  .top-left .accent { color: #8a2be2; }
+
+  .top-right {
+    position: absolute;
+    right: 39px;
+    top: 37px;
+    font-size: 12px;
+    color: #d6d6d6;
+  }
+  .top-right .page {
+    display: inline-block;
+    margin-left: 25px;
+    color: #d6d6d6;
+  }
+
+  .title {
+    position: absolute;
+    left: 64px;
+    top: 116px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .section-head {
+    position: absolute;
+    font-size: 19px;
+    font-weight: 400;
+    color: #222;
+  }
+
+  .body {
+    position: absolute;
+    font-size: 14px;
+    line-height: 1.38;
+    color: #333;
+  }
+
+  .left-col { left: 64px; width: 258px; }
+  .mid-col { left: 379px; width: 260px; }
+
+  .left-h1 { top: 173px; }
+  .left-b1 { top: 211px; }
+  .left-h2 { top: 482px; }
+  .left-b2 { top: 518px; }
+
+  .mid-h1 { top: 173px; }
+  .mid-b1 { top: 211px; }
+
+  .right-panel {
+    position: absolute;
+    left: 719px;
+    top: 0;
+    width: 561px;
+    height: 720px;
+    color: #fff;
+  }
+
+  .r-title {
+    position: absolute;
+    left: 33px;
+    top: 174px;
+    width: 420px;
+    font-size: 18px;
+    line-height: 1.2;
+    color: #b78cf0;
+    font-weight: 700;
+  }
+  .r-sub {
+    position: absolute;
+    left: 33px;
+    top: 199px;
+    width: 420px;
+    font-size: 13px;
+    line-height: 1.35;
+    color: #d7d7d7;
+  }
+  .r-chart-title {
+    position: absolute;
+    left: 33px;
+    top: 260px;
+    width: 410px;
+    font-size: 12px;
+    line-height: 1.25;
+    color: #f3f3f3;
+    font-weight: 700;
+  }
+
+  .chart {
+    position: absolute;
+    left: 36px;
+    top: 301px;
+    width: 454px;
+    height: 304px;
+  }
+  .axis-x {
+    position: absolute;
+    left: 41px;
+    bottom: 31px;
+    width: 406px;
+    height: 1px;
+    background: #5c5c5c;
+  }
+
+  .y-label {
+    position: absolute;
+    left: 0;
+    font-size: 12px;
+    color: #d8d8d8;
+  }
+
+  .x-label {
+    position: absolute;
+    bottom: 7px;
+    font-size: 12px;
+    color: #eaeaea;
+    font-weight: 700;
+  }
+
+  .note-box {
+    position: absolute;
+    left: 33px;
+    top: 663px;
+    width: 468px;
+    font-size: 9px;
+    line-height: 1.25;
+    color: #c9c9c9;
+  }
+
+  .anno {
+    position: absolute;
+    left: 151px;
+    top: 355px;
+    width: 120px;
+    font-size: 13px;
+    line-height: 1.2;
+    color: #e4e4e4;
+  }
+
+  .arrow-line {
+    position: absolute;
+    left: 271px;
+    top: 345px;
+    width: 7px;
+    height: 241px;
+    background: #fff;
+  }
+  .arrow-head {
+    position: absolute;
+    left: 264px;
+    top: 333px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 14px solid #fff;
+  }
+  .mult {
+    position: absolute;
+    left: 289px;
+    top: 348px;
+    font-size: 23px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .top-bracket {
+    position: absolute;
+    left: 255px;
+    top: 345px;
+    width: 186px;
+    height: 2px;
+    background: #d8d8d8;
+  }
+
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: visible;
+  }
+
+  .bottom-mark {
+    position: absolute;
+    left: 58px;
+    bottom: 16px;
+    font-size: 28px;
+    color: #a020f0;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+    <div class="top-right">The New Learning Loop <span class="page">54</span></div>
+
+    <div class="title">Agentic Workflows</div>
+
+    <div class="section-head left-col left-h1">What is it?</div>
+    <div class="body left-col left-b1">
+      Agentic workflows are an approach to using agentic systems to solve complicated cognitive tasks. By breaking problems into discrete steps, specific agentic systems can address each step, while an overarching system orchestrates interactions.<br>
+      An early version of this is AI-powered business process automation (BPA). While BPA started as the automation of repetitive business processes, providers are integrating LLM solutions, shifting the industry to more flexible and creative automations. As agentic workflows become more sophisticated, the agentic systems involved will become capable of learning over time to improve the performance of their individual task and the output of the entire system.
+    </div>
+
+    <div class="section-head left-col left-h2">How does it connect to the trend?</div>
+    <div class="body left-col left-b2">
+      As agentic workflows take on a greater share of task-specific work, they will become an accelerant for your people. Organizations can use them to create a layer of abstraction across technology, handling lower-level tasks like writing code and connecting pieces together. Instead of employees asking “how can I write this software” or “what software can perform this task,” they can ask “how can an agent help me accomplish my goal?”
+    </div>
+
+    <div class="section-head mid-col mid-h1">Who is doing it today?</div>
+    <div class="body mid-col mid-b1">
+      Kognitos, a generative AI automation company, is deploying AI-powered BPA solutions.<sup>129</sup> Their platform can automate complex workflows like order management, contact centers, and financial services, and let users set up these automations using plain speech, enabling greater flexibility. Meanwhile, Microsoft is developing AutoGen, a multiagent framework that lets users define a set of agents, each with specialized roles.<sup>130</sup> The orchestration layer then determines how these agents should interact with each other.
+    </div>
+
+    <div class="right-panel">
+      <div class="r-title">Growing executive interest in agentic systems</div>
+      <div class="r-sub">
+        AI agents have significant potential to transform businesses and executives are starting to recognize it. Over the past two years, executive mentions of AI agents and agentic systems has increased rapidly.
+      </div>
+      <div class="r-chart-title">
+        Number of mentions relating to Agentic Systems in earnings call<br>
+        transcripts, 2020 – 2024*
+      </div>
+
+      <div class="chart">
+        <div class="axis-x"></div>
+
+        <div class="y-label" style="left:2px; top:12px;">400</div>
+        <div class="y-label" style="left:2px; top:48px;">350</div>
+        <div class="y-label" style="left:2px; top:83px;">300</div>
+        <div class="y-label" style="left:2px; top:118px;">250</div>
+        <div class="y-label" style="left:2px; top:153px;">200</div>
+        <div class="y-label" style="left:2px; top:188px;">150</div>
+        <div class="y-label" style="left:2px; top:223px;">100</div>
+        <div class="y-label" style="left:2px; top:258px;">50</div>
+        <div class="y-label" style="left:10px; top:293px;">0</div>
+
+        <div class="x-label" style="left:62px;">2020</div>
+        <div class="x-label" style="left:144px;">2021</div>
+        <div class="x-label" style="left:227px;">2022</div>
+        <div class="x-label" style="left:308px;">2023</div>
+        <div class="x-label" style="left:387px;">2024*</div>
+
+        <div class="anno">Executive discussions around agentic systems skyrocketed after the release of ChatGPT</div>
+        <div class="arrow-head"></div>
+        <div class="arrow-line"></div>
+        <div class="top-bracket"></div>
+        <div class="mult">41x</div>
+
+        <svg width="454" height="304" aria-hidden="true">
+          <polyline
+            points="80,300 162,300 245,298 325,178 405,45"
+            fill="none"
+            stroke="#b000ff"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="note-box">
+        Note: *2024 contains partial data through Oct 2024<br>
+        Source: Accenture Research analysis on earnings call transcripts of 13K+ companies; Jan 2020 – Oct 2024
+      </div>
+    </div>
+
+    <div class="bottom-mark">&gt;</div>
+  </div>
+</body>
+</html>

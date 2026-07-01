@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Summary Authors Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #d9d9da;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #d9d9da;
+  }
+
+  .photo-panel {
+    position: absolute;
+    left: 33px;
+    top: 62px;
+    width: 528px;
+    height: 652px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 74% 16%, rgba(255,218,246,0.80) 0px, rgba(255,218,246,0.28) 62px, rgba(123,65,144,0) 155px),
+      radial-gradient(circle at 70% 43%, rgba(244,225,236,0.54) 0px, rgba(236,195,229,0.16) 95px, rgba(0,0,0,0) 190px),
+      radial-gradient(circle at 61% 71%, rgba(235,246,255,0.22) 0px, rgba(255,255,255,0.08) 120px, rgba(0,0,0,0) 250px),
+      linear-gradient(163deg, #040816 0%, #120c2b 17%, #24113d 35%, #52255f 52%, #86689d 71%, #a8a9ba 86%, #8eb2aa 100%);
+    z-index: 10;
+  }
+  .photo-panel:before {
+    content: "";
+    position: absolute;
+    left: -14px;
+    top: -8px;
+    width: 565px;
+    height: 470px;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.98) 0px, rgba(255,255,255,0.72) 0.7px, rgba(255,255,255,0) 1.6px),
+      radial-gradient(circle, rgba(255,255,255,0.90) 0px, rgba(255,255,255,0.48) 0.8px, rgba(255,255,255,0) 1.8px),
+      radial-gradient(circle, rgba(255,255,255,0.70) 0px, rgba(255,255,255,0.28) 0.8px, rgba(255,255,255,0) 1.6px);
+    background-size: 18px 18px, 27px 27px, 34px 34px;
+    background-position: 0 0, 8px 12px, 14px 5px;
+    opacity: 0.72;
+    z-index: 1;
+  }
+  .photo-panel:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 228px;
+    width: 528px;
+    height: 424px;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.45) 0px, rgba(255,255,255,0.14) 0.8px, rgba(255,255,255,0) 1.7px),
+      radial-gradient(circle, rgba(255,255,255,0.35) 0px, rgba(255,255,255,0.10) 0.8px, rgba(255,255,255,0) 1.6px);
+    background-size: 14px 14px, 22px 22px;
+    background-position: 0 0, 9px 7px;
+    opacity: 0.42;
+    z-index: 1;
+  }
+  .milky {
+    position: absolute;
+    left: 78px;
+    top: -28px;
+    width: 405px;
+    height: 620px;
+    background:
+      radial-gradient(ellipse at 55% 18%, rgba(255,225,246,0.38) 0%, rgba(240,178,230,0.18) 17%, rgba(185,119,191,0.11) 30%, rgba(0,0,0,0) 46%),
+      radial-gradient(ellipse at 62% 38%, rgba(255,243,234,0.27) 0%, rgba(237,180,207,0.14) 21%, rgba(0,0,0,0) 43%),
+      radial-gradient(ellipse at 47% 61%, rgba(255,235,214,0.23) 0%, rgba(223,174,194,0.12) 16%, rgba(0,0,0,0) 36%),
+      linear-gradient(145deg, rgba(0,0,0,0) 0%, rgba(250,220,235,0.11) 30%, rgba(255,228,225,0.19) 50%, rgba(0,0,0,0) 71%);
+    transform: rotate(26deg);
+    filter: blur(2.2px);
+    opacity: 0.95;
+    z-index: 2;
+  }
+
+  .tree-left {
+    position: absolute;
+    left: 13px;
+    bottom: 12px;
+    width: 118px;
+    height: 132px;
+    z-index: 4;
+  }
+  .tree-left .trunk {
+    position: absolute;
+    left: 42px;
+    top: 58px;
+    width: 10px;
+    height: 62px;
+    background: #0c0908;
+    transform: rotate(-9deg);
+  }
+  .tree-left .b1, .tree-left .b2, .tree-left .b3, .tree-left .b4, .tree-left .b5, .tree-left .b6, .tree-left .b7, .tree-left .b8 {
+    position: absolute;
+    background: #090808;
+    border-radius: 50%;
+    filter: blur(0.3px);
+  }
+  .tree-left .b1 { left: 12px; top: 43px; width: 39px; height: 47px; }
+  .tree-left .b2 { left: 31px; top: 30px; width: 45px; height: 56px; }
+  .tree-left .b3 { left: 58px; top: 44px; width: 36px; height: 41px; }
+  .tree-left .b4 { left: 6px; top: 74px; width: 41px; height: 36px; }
+  .tree-left .b5 { left: 45px; top: 69px; width: 43px; height: 43px; }
+  .tree-left .b6 { left: 67px; top: 80px; width: 28px; height: 28px; }
+  .tree-left .b7 { left: 24px; top: 92px; width: 32px; height: 25px; }
+  .tree-left .b8 { left: 0px; top: 96px; width: 24px; height: 18px; }
+
+  .lighthouse {
+    position: absolute;
+    left: 387px;
+    top: 382px;
+    width: 148px;
+    height: 270px;
+    z-index: 5;
+  }
+  .roof {
+    position: absolute;
+    left: 58px;
+    top: 191px;
+    width: 98px;
+    height: 72px;
+    background: linear-gradient(180deg, #7d2a25 0%, #6e1d19 52%, #381312 100%);
+    clip-path: polygon(0 100%, 44% 53%, 100% 23%, 100% 100%);
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .base-shadow {
+    position: absolute;
+    left: 59px;
+    top: 194px;
+    width: 89px;
+    height: 56px;
+    background: rgba(0,0,0,0.22);
+    clip-path: polygon(0 100%, 47% 54%, 100% 26%, 100% 100%);
+  }
+  .tower-base {
+    position: absolute;
+    left: 43px;
+    top: 117px;
+    width: 63px;
+    height: 132px;
+    background: linear-gradient(90deg, #49210c 0%, #76431c 18%, #8a5624 38%, #6c3814 62%, #4b220f 100%);
+    clip-path: polygon(18% 0, 82% 0, 96% 100%, 4% 100%);
+    border-radius: 2px;
+  }
+  .tower-rings1, .tower-rings2, .tower-rings3, .tower-rings4, .tower-rings5 {
+    position: absolute;
+    left: 37px;
+    width: 74px;
+    background: linear-gradient(90deg, #4f240d 0%, #9a652f 50%, #53270f 100%);
+    border-radius: 50%;
+  }
+  .tower-rings1 { top: 139px; height: 10px; }
+  .tower-rings2 { top: 158px; height: 10px; }
+  .tower-rings3 { top: 177px; height: 10px; }
+  .tower-rings4 { top: 196px; height: 10px; }
+  .tower-rings5 { top: 215px; height: 10px; }
+  .lantern-base {
+    position: absolute;
+    left: 51px;
+    top: 85px;
+    width: 49px;
+    height: 40px;
+    background: linear-gradient(90deg, #c1c1c3 0%, #e7e7e8 40%, #f7f7f7 58%, #c8c8ca 100%);
+    border-radius: 2px 2px 12px 12px;
+    clip-path: polygon(8% 0, 92% 0, 100% 80%, 82% 100%, 18% 100%, 0 80%);
+    box-shadow: inset 0 -4px 0 rgba(0,0,0,0.12);
+  }
+  .light-cap {
+    position: absolute;
+    left: 47px;
+    top: 56px;
+    width: 56px;
+    height: 42px;
+    background: linear-gradient(180deg, rgba(255,247,224,0.98) 0%, rgba(255,251,243,0.9) 60%, rgba(224,224,224,0.9) 100%);
+    border-radius: 32px 32px 18px 18px;
+    border: 1px solid rgba(200,200,200,0.5);
+    box-shadow: 0 0 18px rgba(255,246,210,0.65);
+  }
+  .light-glow {
+    position: absolute;
+    left: 31px;
+    top: 47px;
+    width: 90px;
+    height: 57px;
+    background: radial-gradient(ellipse at 50% 55%, rgba(255,255,244,0.58) 0%, rgba(255,247,219,0.38) 38%, rgba(255,255,255,0) 74%);
+    border-radius: 50%;
+  }
+  .railing {
+    position: absolute;
+    left: 44px;
+    top: 86px;
+    width: 62px;
+    height: 8px;
+    border-top: 1px solid rgba(110,110,110,0.8);
+    border-bottom: 1px solid rgba(110,110,110,0.5);
+  }
+  .antenna1, .antenna2, .antenna3, .flagpole {
+    position: absolute;
+    background: #343434;
+  }
+  .antenna1 { left: 82px; top: 30px; width: 1px; height: 24px; }
+  .antenna2 { left: 101px; top: 26px; width: 1px; height: 30px; }
+  .antenna3 { left: 95px; top: 39px; width: 16px; height: 1px; }
+  .flagpole { left: 76px; top: 22px; width: 1px; height: 22px; }
+  .flag {
+    position: absolute;
+    left: 77px;
+    top: 23px;
+    width: 9px;
+    height: 6px;
+    background: #8f3349;
+    clip-path: polygon(0 0, 100% 30%, 0 100%);
+  }
+
+  .summary-title {
+    position: absolute;
+    left: 69px;
+    top: 105px;
+    color: #f2f1f6;
+    font-size: 24px;
+    line-height: 1.05;
+    font-weight: 400;
+    z-index: 20;
+    letter-spacing: 0.1px;
+  }
+  .summary-head {
+    position: absolute;
+    left: 69px;
+    top: 176px;
+    width: 286px;
+    color: #ffffff;
+    font-size: 17px;
+    line-height: 1.36;
+    font-weight: 700;
+    z-index: 20;
+  }
+  .summary-body {
+    position: absolute;
+    left: 69px;
+    top: 247px;
+    width: 273px;
+    color: rgba(255,255,255,0.84);
+    font-size: 11px;
+    line-height: 1.42;
+    font-weight: 400;
+    z-index: 20;
+  }
+
+  .authors-title {
+    position: absolute;
+    left: 735px;
+    top: 58px;
+    color: #1f2937;
+    font-size: 24px;
+    line-height: 1.1;
+    font-weight: 400;
+    z-index: 30;
+  }
+
+  .author {
+    position: absolute;
+    width: 430px;
+    height: 92px;
+    z-index: 30;
+  }
+  .author1 { left: 735px; top: 179px; }
+  .author2 { left: 735px; top: 313px; }
+  .author3 { left: 735px; top: 451px; }
+
+  .avatar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+    background: #ddd;
+  }
+  .avatar svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .author-name {
+    position: absolute;
+    left: 108px;
+    top: 22px;
+    color: #1c2430;
+    font-size: 17px;
+    line-height: 1.1;
+    font-weight: 700;
+    z-index: 31;
+  }
+  .author-role {
+    position: absolute;
+    left: 108px;
+    top: 47px;
+    width: 325px;
+    color: #555f6e;
+    font-size: 10px;
+    line-height: 1.35;
+    font-weight: 400;
+    z-index: 31;
+  }
+
+  .footnote {
+    position: absolute;
+    left: 735px;
+    top: 663px;
+    width: 360px;
+    color: #4e5967;
+    font-size: 10px;
+    line-height: 1.38;
+    font-weight: 400;
+    z-index: 30;
+  }
+
+  .bottom-left {
+    position: absolute;
+    left: 32px;
+    bottom: 9px;
+    color: #1f2937;
+    font-size: 7px;
+    line-height: 1;
+    font-weight: 700;
+    z-index: 50;
+    white-space: nowrap;
+  }
+  .bottom-left .light {
+    font-weight: 400;
+  }
+
+  .bottom-right {
+    position: absolute;
+    right: 32px;
+    bottom: 9px;
+    color: #1f2937;
+    font-size: 7px;
+    line-height: 1;
+    font-weight: 700;
+    text-align: right;
+    z-index: 50;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="photo-panel">
+    <div class="milky"></div>
+    <div class="tree-left">
+      <div class="trunk"></div>
+      <div class="b1"></div>
+      <div class="b2"></div>
+      <div class="b3"></div>
+      <div class="b4"></div>
+      <div class="b5"></div>
+      <div class="b6"></div>
+      <div class="b7"></div>
+      <div class="b8"></div>
+    </div>
+    <div class="lighthouse">
+      <div class="light-glow"></div>
+      <div class="light-cap"></div>
+      <div class="railing"></div>
+      <div class="lantern-base"></div>
+      <div class="tower-base"></div>
+      <div class="tower-rings1"></div>
+      <div class="tower-rings2"></div>
+      <div class="tower-rings3"></div>
+      <div class="tower-rings4"></div>
+      <div class="tower-rings5"></div>
+      <div class="base-shadow"></div>
+      <div class="roof"></div>
+      <div class="antenna1"></div>
+      <div class="antenna2"></div>
+      <div class="antenna3"></div>
+      <div class="flagpole"></div>
+      <div class="flag"></div>
+    </div>
+  </div>
+
+  <div class="summary-title">Summary</div>
+  <div class="summary-head">Traditional, slow and periodic risk operating models are no longer fit for a NAVI risk environment.</div>
+  <div class="summary-body">
+    To operate at the “speed of trust,” organizations must redesign risk to be strategy-first, trigger-based, and governance-forward. This involves anchoring risk in future strategic assumptions, using predefined signals and thresholds to activate action, and aligning governance to move at speed. To succeed, transformation initiatives will tailor their approach to their company’s specific constraints and circumstances.
+  </div>
+
+  <div class="authors-title">Authors</div>
+
+  <div class="author author1">
+    <div class="avatar">
+      <svg width="78" height="78" viewBox="0 0 78 78" xmlns="http://www.w3.org/2000/svg">
+        <defs><clipPath id="clip1"><circle cx="39" cy="39" r="39"/></clipPath></defs>
+        <g clip-path="url(#clip1)">
+          <rect x="0" y="0" width="78" height="78" fill="#e7eaee"/>
+          <rect x="0" y="0" width="78" height="36" fill="#dbe0e4"/>
+          <rect x="0" y="40" width="78" height="38" fill="#e9edf0"/>
+          <rect x="1" y="29" width="17" height="30" fill="#4b657b"/>
+          <rect x="59" y="22" width="17" height="36" fill="#7d8da0"/>
+          <circle cx="39" cy="28" r="14" fill="#d79669"/>
+          <path d="M24 23 C27 10, 49 10, 53 24 C50 17, 28 17, 24 23 Z" fill="#6b422b"/>
+          <path d="M26 28 C28 42, 50 42, 52 28 L52 47 L26 47 Z" fill="#f1f4f6"/>
+          <path d="M35 43 L43 43 L48 78 L30 78 Z" fill="#3f4d7c"/>
+          <path d="M26 78 L32 54 L39 58 L46 54 L53 78 Z" fill="#eef2f6"/>
+        </g>
+      </svg>
+    </div>
+    <div class="author-name">Scott McCowan</div>
+    <div class="author-role">EY Global Consulting Risk Markets Leader</div>
+  </div>
+
+  <div class="author author2">
+    <div class="avatar">
+      <svg width="78" height="78" viewBox="0 0 78 78" xmlns="http://www.w3.org/2000/svg">
+        <defs><clipPath id="clip2"><circle cx="39" cy="39" r="39"/></clipPath></defs>
+        <g clip-path="url(#clip2)">
+          <rect x="0" y="0" width="78" height="78" fill="#edf0f2"/>
+          <rect x="0" y="0" width="78" height="32" fill="#e0e4e7"/>
+          <rect x="0" y="36" width="78" height="42" fill="#f2f3f4"/>
+          <circle cx="38" cy="27" r="14" fill="#b87f5d"/>
+          <path d="M24 24 C26 8, 51 10, 52 28 C48 18, 28 19, 24 24 Z" fill="#33333a"/>
+          <rect x="29" y="26" width="6" height="3" rx="1" fill="#1f2430"/>
+          <rect x="41" y="26" width="6" height="3" rx="1" fill="#1f2430"/>
+          <rect x="35" y="27" width="6" height="1" fill="#1f2430"/>
+          <path d="M27 44 C34 39, 43 39, 50 44 L51 78 L26 78 Z" fill="#5c78b2"/>
+          <path d="M33 41 L43 41 L44 48 L32 48 Z" fill="#d9c6b0"/>
+          <path d="M28 34 C29 40, 47 40, 48 34" stroke="#5e3e32" stroke-width="1" fill="none"/>
+        </g>
+      </svg>
+    </div>
+    <div class="author-name">Gautam Jaggi</div>
+    <div class="author-role">Director, Business and CXO Insights, Ernst &amp; Young LLP</div>
+  </div>
+
+  <div class="author author3">
+    <div class="avatar">
+      <svg width="78" height="78" viewBox="0 0 78 78" xmlns="http://www.w3.org/2000/svg">
+        <defs><clipPath id="clip3"><circle cx="39" cy="39" r="39"/></clipPath></defs>
+        <g clip-path="url(#clip3)">
+          <rect x="0" y="0" width="78" height="78" fill="#e8e5e0"/>
+          <rect x="0" y="0" width="78" height="27" fill="#d6d6d2"/>
+          <rect x="0" y="27" width="78" height="51" fill="#ede8e1"/>
+          <rect x="2" y="17" width="18" height="40" fill="#67574b"/>
+          <rect x="57" y="11" width="19" height="39" fill="#9a8c7e"/>
+          <circle cx="38" cy="28" r="14" fill="#bd8b68"/>
+          <path d="M24 23 C27 11, 49 11, 52 23 C47 14, 29 14, 24 23 Z" fill="#33383f"/>
+          <path d="M29 46 C35 41, 42 41, 48 46 L52 78 L26 78 Z" fill="#40454c"/>
+          <path d="M32 41 L44 41 L44 48 L32 48 Z" fill="#dbc5af"/>
+          <path d="M31 33 C34 36, 42 36, 45 33" stroke="#7b5c48" stroke-width="1" fill="none"/>
+        </g>
+      </svg>
+    </div>
+    <div class="author-name">Kapish Vanvaria</div>
+    <div class="author-role">EY Global and Americas Risk Consulting Leader</div>
+  </div>
+
+  <div class="footnote">
+    The authors would like to thank Kyle Lawless, Senior Manager – Risk Consulting, Ernst &amp; Young LLP; AnnMarie Pino, Associate Director, Ernst &amp; Young LLP; Joe Morecroft, Associate Director, EYGS LLP; and William Reid, Assistant Director, Ernst &amp; Young LLP for their contributions to this article.
+  </div>
+
+  <div class="bottom-left"><span class="light">25 &nbsp;|</span>&nbsp; When the world shifts overnight how can you operate at the speed of trust</div>
+  <div class="bottom-right">Global Risk Transformation Series &nbsp;|&nbsp; 26</div>
+</div>
+</body>
+</html>

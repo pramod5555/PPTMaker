@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Bain Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .title{
+    left:36px;
+    top:24px;
+    width:1020px;
+    font-size:30px;
+    line-height:1.06;
+    font-weight:400;
+    color:#111;
+    letter-spacing:0.1px;
+  }
+  .redbar{
+    left:17px;
+    top:113px;
+    width:1208px;
+    height:13px;
+    background:#e00000;
+    transform:skewX(-14deg);
+    transform-origin:left center;
+  }
+  .subtitle{
+    left:247px;
+    top:135px;
+    width:713px;
+    text-align:center;
+    color:#111;
+    font-size:25px;
+    line-height:0.98;
+    font-weight:700;
+    font-style:italic;
+  }
+  .bjsh{
+    left:1046px;
+    top:141px;
+    width:175px;
+    text-align:center;
+    color:#111;
+    font-size:22px;
+    line-height:1;
+    font-weight:700;
+    border-top:2px solid #444;
+    border-bottom:2px solid #444;
+    padding:2px 0 1px;
+  }
+
+  .rank{
+    width:70px;
+    text-align:center;
+    color:#a10036;
+    font-size:27px;
+    line-height:1;
+    font-weight:700;
+    text-decoration:underline;
+  }
+  .rank sup{
+    font-size:58%;
+    vertical-align:top;
+    top:-0.2em;
+    position:relative;
+  }
+  .r1{ left:371px; top:210px; }
+  .r2{ left:679px; top:210px; }
+  .r3{ left:988px; top:210px; }
+
+  .icon-cell{
+    width:74px;
+    height:51px;
+    background:#f4f4f4;
+    border:2px solid #bfbfbf;
+  }
+  .label-cell{
+    width:156px;
+    height:51px;
+    background:#d8d8d8;
+    border:2px solid #bfbfbf;
+    color:#1a1a1a;
+    text-align:center;
+    font-size:18px;
+    line-height:1.06;
+    font-style:italic;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 8px;
+  }
+  .label-cell.multiline{
+    font-size:17px;
+    line-height:1.02;
+  }
+
+  .brand-cell{
+    height:53px;
+    background:#f7f7f7;
+    border:2px solid #bfbfbf;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .brand-cell.red{ border:2px solid #ff2818; }
+  .brand-cell.blue{ border:2px solid #1386df; }
+
+  .brand1{ left:266px; width:252px; }
+  .brand2{ left:525px; width:251px; }
+  .brand3{ left:783px; width:252px; }
+
+  .logo{
+    width:100%;
+    text-align:center;
+    color:#222;
+    white-space:nowrap;
+  }
+  .omega{ font-family: Arial, Helvetica, sans-serif; font-size:32px; letter-spacing:-1px; font-weight:400; }
+  .cartier{ font-family: "Times New Roman", Georgia, serif; font-size:34px; font-style:italic; }
+  .rolex{ font-family: Georgia, "Times New Roman", serif; font-size:29px; font-weight:700; letter-spacing:0.5px; }
+  .chanel{ font-family: Arial, Helvetica, sans-serif; font-size:31px; font-weight:700; letter-spacing:-1px; }
+  .dior{ font-family: Georgia, "Times New Roman", serif; font-size:31px; }
+  .lancome{ font-family: Georgia, "Times New Roman", serif; font-size:25px; letter-spacing:-0.5px; }
+  .lv{ font-family: Arial, Helvetica, sans-serif; font-size:21px; letter-spacing:1px; }
+  .gucci{ font-family: Georgia, "Times New Roman", serif; font-size:25px; letter-spacing:8px; }
+  .hermes{ font-family: Georgia, "Times New Roman", serif; font-size:16px; line-height:0.9; color:#8e8e8e; font-weight:700; }
+  .armani{ font-family: Georgia, "Times New Roman", serif; font-size:23px; }
+  .zegna{ font-family: Georgia, "Times New Roman", serif; font-size:21px; }
+  .boss{ font-family: Georgia, "Times New Roman", serif; font-size:26px; line-height:0.84; font-weight:700; }
+  .boss small{ display:block; font-size:9px; letter-spacing:2px; margin-top:0; }
+  .tiffany{ font-family: Georgia, "Times New Roman", serif; font-size:25px; }
+  .bvlgari{ font-family: Arial, Helvetica, sans-serif; font-size:23px; letter-spacing:8px; }
+  .ferragamo{ font-family: Georgia, "Times New Roman", serif; font-size:17px; font-style:italic; font-weight:700; transform:rotate(-2deg); }
+  .prada{ font-family: Georgia, "Times New Roman", serif; font-size:31px; font-weight:700; letter-spacing:1px; }
+  .bally{ font-family: Arial, Helvetica, sans-serif; font-size:31px; font-weight:800; letter-spacing:1px; }
+  .burberry{ font-family: Georgia, "Times New Roman", serif; font-size:24px; letter-spacing:3px; }
+
+  .new-badge{
+    width:32px;
+    height:20px;
+    border-radius:12px;
+    background:#f2a01c;
+    color:#fff3cb;
+    font-size:11px;
+    line-height:20px;
+    text-align:center;
+    font-weight:700;
+    box-shadow:0 0 0 1px rgba(255,255,255,0.25) inset;
+  }
+  .new-badge:before, .new-badge:after{
+    content:"";
+    position:absolute;
+    top:6px;
+    width:8px;
+    height:8px;
+    background:#f2a01c;
+    transform:rotate(45deg);
+  }
+  .new-badge:before{ left:-3px; }
+  .new-badge:after{ right:-3px; }
+
+  .legend-box{
+    width:30px;
+    height:20px;
+    background:#ececec;
+  }
+  .legend-text{
+    font-size:17px;
+    line-height:1;
+    color:#111;
+    font-style:italic;
+    font-weight:700;
+  }
+
+  .footnote{
+    left:30px;
+    top:696px;
+    width:825px;
+    font-size:13px;
+    line-height:1;
+    color:#222;
+  }
+  .fineprint{
+    left:26px;
+    top:712px;
+    width:780px;
+    font-size:9px;
+    line-height:1;
+    color:#444;
+  }
+  .bottomline{
+    left:25px;
+    top:718px;
+    width:1238px;
+    height:1px;
+    background:#8f8f8f;
+  }
+  .pageinfo{
+    left:744px;
+    top:712px;
+    width:440px;
+    font-size:9px;
+    line-height:1;
+    color:#444;
+  }
+  .bainmark{
+    left:1238px;
+    top:700px;
+    width:22px;
+    height:22px;
+  }
+  .icon-svg{
+    width:100%;
+    height:100%;
+    display:block;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">BJ/SH: a few new brands entered top 3 in BJ/SH<br>compared with overall China market in 2010</div>
+  <div class="redbar"></div>
+  <div class="subtitle">"What are the top 3 brands you are most likely to<br>purchase in each category in 2011?"</div>
+  <div class="bjsh">BJ/SH ONLY</div>
+
+  <div class="rank r1">1<sup>st</sup></div>
+  <div class="rank r2">2<sup>nd</sup></div>
+  <div class="rank r3">3<sup>rd</sup></div>
+
+  <!-- Row 1 -->
+  <div class="icon-cell" style="left:26px; top:248px;">
+    <svg class="icon-svg" viewBox="0 0 74 51">
+      <rect x="29" y="1" width="13" height="49" rx="4" fill="#d9b8ae"/>
+      <circle cx="35.5" cy="21.5" r="10.5" fill="#2b2626" stroke="#8f6d5c" stroke-width="2"/>
+      <circle cx="35.5" cy="21.5" r="6.2" fill="#0f0f0f"/>
+      <circle cx="35.5" cy="21.5" r="1.7" fill="#d83b33"/>
+      <rect x="31" y="5" width="9" height="5" rx="1" fill="#e6c8c0"/>
+      <rect x="31" y="38" width="9" height="8" rx="1" fill="#e6c8c0"/>
+      <path d="M25 21.5 h-4 M46 21.5 h4" stroke="#b99786" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="label-cell" style="left:104px; top:248px;">Watches</div>
+  <div class="brand-cell brand1 red" style="top:244px;"><div class="logo omega">OMEGA</div></div>
+  <div class="brand-cell brand2 red" style="top:244px;"><div class="logo cartier">Cartier</div></div>
+  <div class="brand-cell brand3" style="top:244px;"><div class="logo rolex">ROLEX</div></div>
+
+  <!-- Row 2 -->
+  <div class="icon-cell" style="left:26px; top:307px;">
+    <svg class="icon-svg" viewBox="0 0 74 51">
+      <defs>
+        <radialGradient id="perfumeFill" cx="50%" cy="42%" r="55%">
+          <stop offset="0%" stop-color="#f8f4fc"/>
+          <stop offset="100%" stop-color="#b39bc8"/>
+        </radialGradient>
+      </defs>
+      <circle cx="36" cy="29" r="10.5" fill="url(#perfumeFill)" stroke="#8f79a7" stroke-width="2"/>
+      <rect x="33.2" y="13" width="5.6" height="8" rx="1.8" fill="#cbbddd"/>
+      <circle cx="36" cy="11.5" r="3.4" fill="#ae92c3"/>
+      <path d="M30 22 C34 19,38 19,42 22" fill="none" stroke="#cfc0de" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="label-cell multiline" style="left:104px; top:307px;">Cosmetics,<br>perfumes &amp;<br>personal care</div>
+  <div class="brand-cell brand1" style="top:303px;"><div class="logo chanel">CHANEL</div></div>
+  <div class="brand-cell brand2 red" style="top:303px;"><div class="logo dior">Dior</div></div>
+  <div class="brand-cell brand3" style="top:303px;"><div class="logo lancome">LANCÔME</div></div>
+
+  <!-- Row 3 -->
+  <div class="icon-cell" style="left:26px; top:366px;">
+    <svg class="icon-svg" viewBox="0 0 74 51">
+      <rect x="18" y="20" width="38" height="18" rx="2" fill="#d8c08b" stroke="#826b37" stroke-width="2"/>
+      <path d="M26 20 C26 8,48 8,48 20" fill="none" stroke="#313131" stroke-width="3"/>
+      <rect x="24" y="15" width="3" height="11" fill="#2b2b2b"/>
+      <rect x="47" y="15" width="3" height="11" fill="#2b2b2b"/>
+    </svg>
+  </div>
+  <div class="label-cell" style="left:104px; top:366px;">Leather goods</div>
+  <div class="brand-cell brand1" style="top:362px;"><div class="logo lv">LOUIS VUITTON</div></div>
+  <div class="brand-cell brand2" style="top:362px;"><div class="logo gucci">GUCCI</div></div>
+  <div class="brand-cell brand3 blue" style="top:362px;"><div class="logo hermes">⌒⌒<br>HERMÈS<br><span style="font-size:10px; letter-spacing:1px;">PARIS</span></div></div>
+  <div class="new-badge" style="left:783px; top:357px;">NEW</div>
+
+  <!-- Row 4 -->
+  <div class="icon-cell" style="left:26px; top:425px;">
+    <svg class="icon-svg" viewBox="0 0 74 51">
+      <rect x="28" y="8" width="18" height="30" rx="2" fill="#131922"/>
+      <polygon points="37,8 32.5,14 41.5,14" fill="#fafafa"/>
+      <rect x="32.5" y="14" width="9" height="16" fill="#f8f8f8"/>
+      <rect x="22" y="10" width="7" height="13" rx="2" fill="#131922"/>
+      <rect x="45" y="10" width="7" height="13" rx="2" fill="#131922"/>
+      <rect x="31" y="38" width="4" height="10" fill="#131922"/>
+      <rect x="39" y="38" width="4" height="10" fill="#131922"/>
+    </svg>
+  </div>
+  <div class="label-cell" style="left:104px; top:425px;">Menswear</div>
+  <div class="brand-cell brand1" style="top:421px;"><div class="logo armani">GIORGIO ARMANI</div></div>
+  <div class="brand-cell brand2" style="top:421px;"><div class="logo zegna">Ermenegildo Zegna</div></div>
+  <div class="brand-cell brand3 blue" style="top:421px;"><div class="logo boss">BOSS<small>HUGO BOSS</small></div></div>
+  <div class="new-badge" style="left:783px; top:416px;">NEW</div>
+
+  <!-- Row 5 -->
+  <div class="icon-cell" style="left:26px; top:484px;">
+    <svg class="icon-svg" viewBox="0 0 74 51">
+      <path d="M37 6 C31 10,28 16,28 23 C28 31,33 39,37 46 C42 39,47 31,47 23 C47 16,44 10,37 6 Z" fill="#d8d8d8" stroke="#8b8b8b" stroke-width="2"/>
+      <path d="M22 17 L52 30" stroke="#7ab3c6" stroke-width="2"/>
+      <circle cx="30" cy="18" r="2.6" fill="#c63145"/>
+      <circle cx="42" cy="24" r="2.6" fill="#49a0c6"/>
+      <circle cx="36" cy="31" r="2.6" fill="#6a9f48"/>
+      <circle cx="25" cy="27" r="2.6" fill="#8a8a8a"/>
+      <circle cx="47" cy="18" r="2.6" fill="#a67b3e"/>
+    </svg>
+  </div>
+  <div class="label-cell" style="left:104px; top:484px;">Jewelry</div>
+  <div class="brand-cell brand1 red" style="top:480px;"><div class="logo tiffany">TIFFANY&amp;Co.</div></div>
+  <div class="brand-cell brand2" style="top:480px;"><div class="logo cartier">Cartier</div></div>
+  <div class="brand-cell brand3 blue" style="top:480px;"><div class="logo bvlgari">BVLGARI</div></div>
+  <div class="new-badge" style="left:783px; top:475px;">NEW</div>
+
+  <!-- Row 6 -->
+  <div class="icon-cell" style="left:26px; top:543px;">
+    <svg class="icon-svg" viewBox="0 0 74 51">
+      <path d="M14 33 C21 26,28 16,42 11 C49 9,55 13,59 18 C63 21,60 26,56 29 L36 40 C30 43,23 43,18 39 Z" fill="#171717"/>
+      <path d="M22 33 C28 36,38 37,49 32" stroke="#8b6030" stroke-width="2"/>
+      <ellipse cx="25" cy="40" rx="12" ry="3" fill="#8f8f8f" opacity="0.3"/>
+    </svg>
+  </div>
+  <div class="label-cell" style="left:104px; top:543px;">Shoes</div>
+  <div class="brand-cell brand1" style="top:539px;"><div class="logo ferragamo">Salvatore Ferragamo</div></div>
+  <div class="brand-cell brand2" style="top:539px;"><div class="logo prada">PRADA</div></div>
+  <div class="brand-cell brand3 blue" style="top:539px;"><div class="logo bally">BALLY</div></div>
+  <div class="new-badge" style="left:783px; top:534px;">NEW</div>
+
+  <!-- Row 7 -->
+  <div class="icon-cell" style="left:26px; top:602px;">
+    <svg class="icon-svg" viewBox="0 0 74 51">
+      <path d="M24 40 C24 25,27 12,37 11 C47 12,50 25,50 40 Z" fill="#222"/>
+      <path d="M27 19 C31 15,43 15,47 19" fill="none" stroke="#bba38f" stroke-width="3"/>
+      <path d="M31 11 C33 6,41 6,43 11" fill="none" stroke="#d7d7d7" stroke-width="2"/>
+      <path d="M28 23 C35 27,39 27,46 23" fill="none" stroke="#666" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="label-cell" style="left:104px; top:602px;">Womenswear</div>
+  <div class="brand-cell brand1" style="top:598px;"><div class="logo chanel">CHANEL</div></div>
+  <div class="brand-cell brand2" style="top:598px;"><div class="logo burberry">BURBERRY</div></div>
+  <div class="brand-cell brand3 blue" style="top:598px;"><div class="logo dior" style="font-size:33px;">Dior</div></div>
+  <div class="new-badge" style="left:783px; top:593px;">NEW</div>
+
+  <!-- Legend -->
+  <div class="legend-box" style="left:38px; top:665px; border:2px solid #ff2818;"></div>
+  <div class="legend-text" style="left:73px; top:669px;">Ranking improved in 2011*</div>
+  <div class="legend-box" style="left:349px; top:665px; border:2px solid #1386df;"></div>
+  <div class="legend-text" style="left:384px; top:669px;">New to Top 3 in 2011*</div>
+
+  <div class="footnote">* Ranking compared with view on overall China market in 2010; not for BJ/SH only</div>
+  <div class="fineprint">This information is confidential and was prepared by Bain &amp; Company solely for the use of our client; it is not to be relied on by any 3rd party without Bain's prior written consent</div>
+  <div class="bottomline"></div>
+  <div class="pageinfo">SHA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2011 Bain China Luxury Market Study_Media release_vf 10</div>
+
+  <div class="bainmark">
+    <svg viewBox="0 0 24 24" width="22" height="22">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="#d40000" stroke-width="2"/>
+      <path d="M12 3 L12 12 L18 12" stroke="#d40000" stroke-width="2" fill="none"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

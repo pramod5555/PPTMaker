@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+    color:#111;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .title{
+    left:82px;
+    top:36px;
+    width:1030px;
+    font-size:35px;
+    line-height:1.22;
+    font-weight:400;
+    color:#111;
+    letter-spacing:-0.3px;
+  }
+  .subtitle{
+    left:82px;
+    top:186px;
+    width:520px;
+    font-size:25px;
+    line-height:1.15;
+    font-weight:300;
+    color:#8d939a;
+  }
+  .rb-logo{
+    left:1137px;
+    top:23px;
+    width:100px;
+    height:53px;
+  }
+  .left-box{
+    left:82px;
+    top:245px;
+    width:282px;
+    height:443px;
+    border:3px solid #1f78ad;
+    background:transparent;
+  }
+  .left-header{
+    left:82px;
+    top:257px;
+    width:250px;
+    font-size:28px;
+    line-height:1.03;
+    font-weight:700;
+    color:#111;
+  }
+  .item-num{
+    width:27px;
+    height:27px;
+    background:#1f78ad;
+    color:#fff;
+    font-size:18px;
+    line-height:27px;
+    text-align:center;
+    font-weight:700;
+  }
+  .item-text{
+    font-size:21px;
+    line-height:1.08;
+    font-weight:400;
+    color:#222;
+  }
+  .topic-footer{
+    left:82px;
+    top:612px;
+    width:140px;
+    font-size:27px;
+    line-height:1.05;
+    font-weight:300;
+    color:#1f78ad;
+  }
+  .footer-line{
+    left:215px;
+    top:655px;
+    width:149px;
+    height:3px;
+    background:#1f78ad;
+  }
+  .circle-dashed{
+    left:397px;
+    top:245px;
+    width:233px;
+    height:233px;
+    border:3px dotted #2a87bd;
+    border-radius:50%;
+  }
+  .kpi{
+    left:410px;
+    top:305px;
+    color:#1f78ad;
+    font-weight:300;
+    white-space:nowrap;
+  }
+  .kpi strong{
+    font-size:61px;
+    line-height:1;
+    font-weight:400;
+    letter-spacing:-1px;
+  }
+  .kpi-small{
+    display:inline-block;
+    font-size:18px;
+    line-height:1.08;
+    vertical-align:top;
+    margin-left:3px;
+    margin-top:8px;
+  }
+  .icon-circle{
+    left:493px;
+    top:365px;
+    width:138px;
+    height:138px;
+    border-radius:50%;
+    background:#1f78ad;
+  }
+  .pe-exp-title{
+    left:395px;
+    top:507px;
+    width:170px;
+    font-size:19px;
+    line-height:1.12;
+    color:#111;
+  }
+  .pe-exp-title strong{font-weight:700;}
+  .pe-chart{
+    left:396px;
+    top:551px;
+    width:265px;
+    height:138px;
+  }
+  .participants-title{
+    left:804px;
+    top:243px;
+    width:360px;
+    font-size:27px;
+    line-height:1.15;
+    font-weight:400;
+    color:#1f78ad;
+  }
+  .participants-sub{
+    left:873px;
+    top:296px;
+    width:350px;
+    font-size:28px;
+    line-height:1.1;
+    font-weight:700;
+    color:#111;
+  }
+  .participants-sub2{
+    left:1067px;
+    top:342px;
+    width:150px;
+    font-size:18px;
+    line-height:1.08;
+    font-weight:700;
+    color:#111;
+    text-align:center;
+  }
+  .participants-sub3{
+    left:1050px;
+    top:364px;
+    width:183px;
+    font-size:16px;
+    line-height:1.08;
+    font-weight:400;
+    color:#222;
+    text-align:center;
+  }
+  .map-wrap{
+    left:736px;
+    top:338px;
+    width:468px;
+    height:330px;
+  }
+  .label{
+    position:absolute;
+    font-size:15px;
+    line-height:1.02;
+    color:#222;
+  }
+  .label .pct{
+    display:block;
+    font-size:19px;
+    line-height:1;
+    font-weight:700;
+    color:#1f78ad;
+    margin-bottom:1px;
+  }
+  .footnote{
+    left:83px;
+    top:684px;
+    font-size:12px;
+    line-height:1.15;
+    color:#111;
+  }
+  .source{
+    left:83px;
+    top:716px;
+    font-size:12px;
+    line-height:1.15;
+    color:#111;
+  }
+  .page-footer{
+    left:905px;
+    top:715px;
+    width:318px;
+    font-size:11px;
+    line-height:1;
+    color:#9aa0a6;
+    text-align:right;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+
+  <div class="title">This study is based once more on an exclusive survey of private<br>equity professionals from leading PE firms across Europe</div>
+
+  <div class="subtitle">Focus and methodology of the study</div>
+
+  <div class="rb-logo">
+    <svg width="100" height="93" viewBox="0 0 100 93" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#d3d7db"/>
+          <stop offset="100%" stop-color="#69737c"/>
+        </linearGradient>
+      </defs>
+      <text x="0" y="18" font-size="11" fill="#444" font-family="Arial, Helvetica, sans-serif">Roland</text>
+      <text x="0" y="39" font-size="20" fill="#222" font-family="Arial, Helvetica, sans-serif">Berger</text>
+      <path d="M67 0 C82 0, 90 0, 94 10 C98 10,100 17,100 26 C100 35,96 43,89 46 C85 52,78 53,67 53 Z" fill="url(#g1)"/>
+    </svg>
+  </div>
+
+  <div class="left-box"></div>
+  <div class="left-header">Overview of European<br>private equity survey</div>
+
+  <div class="item-num" style="left:82px; top:338px;">1</div>
+  <div class="item-text" style="left:125px; top:336px; width:220px;">Development of the European<br>private equity market</div>
+
+  <div class="item-num" style="left:82px; top:402px;">2</div>
+  <div class="item-text" style="left:125px; top:399px; width:210px;">Key challenges for private<br>equity</div>
+
+  <div class="item-num" style="left:82px; top:465px;">3</div>
+  <div class="item-text" style="left:125px; top:462px; width:228px;">Competitive dynamics and the<br>private equity business model</div>
+
+  <div class="topic-footer">Key topics<br>in 2019</div>
+  <div class="footer-line"></div>
+
+  <div class="circle-dashed"></div>
+  <div class="kpi"><strong>2,500+</strong><span class="kpi-small">experts<br>contacted</span></div>
+
+  <div class="icon-circle">
+    <svg width="138" height="178" viewBox="0 0 138 178" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="69" cy="69" r="69" fill="#1f78ad"/>
+      <g fill="#f3f3f3">
+        <circle cx="56" cy="47" r="19"/>
+        <path d="M31 104 C31 84, 43 72, 56 72 C69 72, 81 84, 81 104 Z"/>
+        <circle cx="80" cy="63" r="15"/>
+        <path d="M64 102 C66 87, 76 76, 84 76 C93 76, 102 86, 103 102 Z"/>
+        <circle cx="102" cy="67" r="11"/>
+        <path d="M90 101 C90 90, 97 83, 104 83 C111 83, 117 90, 117 101 Z"/>
+        <path d="M49 70 L54 70 L57 78 L60 70 L66 70 L59 92 L55 92 Z"/>
+        <path d="M53 83 L61 83 L61 87 L53 87 Z"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="pe-exp-title"><strong>PE experience</strong><br>[% of responses]</div>
+
+  <svg class="pe-chart" viewBox="0 0 265 138" xmlns="http://www.w3.org/2000/svg">
+    <line x1="52" y1="6" x2="52" y2="134" stroke="#111" stroke-width="2"/>
+    <text x="18" y="28" font-size="16" fill="#222" font-family="Arial, Helvetica, sans-serif">&lt; 6</text>
+    <text x="6" y="48" font-size="16" fill="#222" font-family="Arial, Helvetica, sans-serif">years</text>
+    <rect x="52" y="14" width="20" height="27" fill="#c1c5c9"/>
+    <text x="78" y="35" font-size="16" font-weight="700" fill="#111" font-family="Arial, Helvetica, sans-serif">13%</text>
+
+    <text x="9" y="73" font-size="16" fill="#222" font-family="Arial, Helvetica, sans-serif">6-10</text>
+    <text x="6" y="93" font-size="16" fill="#222" font-family="Arial, Helvetica, sans-serif">years</text>
+    <rect x="52" y="58" width="20" height="27" fill="#9fa5ab"/>
+    <text x="78" y="79" font-size="16" font-weight="700" fill="#111" font-family="Arial, Helvetica, sans-serif">13%</text>
+
+    <text x="7" y="116" font-size="16" fill="#222" font-family="Arial, Helvetica, sans-serif">&gt; 10</text>
+    <text x="6" y="136" font-size="16" fill="#222" font-family="Arial, Helvetica, sans-serif">years</text>
+    <rect x="52" y="103" width="119" height="27" fill="#1f78ad"/>
+    <text x="176" y="124" font-size="16" font-weight="700" fill="#111" font-family="Arial, Helvetica, sans-serif">74%</text>
+  </svg>
+
+  <div class="participants-title">Overview of participants</div>
+  <div class="participants-sub">Private equity survey, 2019</div>
+  <div class="participants-sub2">% of responses</div>
+  <div class="participants-sub3">Geographical focus</div>
+
+  <div class="map-wrap">
+    <svg width="468" height="370" viewBox="0 0 468 370" xmlns="http://www.w3.org/2000/svg">
+      <g fill="#d9dbde">
+        <path d="M161 27 L176 18 L188 18 L191 11 L200 12 L198 18 L208 17 L209 23 L219 26 L218 31 L224 36 L221 43 L227 50 L223 60 L229 70 L235 76 L239 87 L251 91 L267 99 L277 108 L289 117 L298 129 L309 139 L323 146 L334 157 L339 169 L350 175 L363 182 L373 189 L377 197 L372 208 L367 220 L358 228 L350 243 L337 247 L325 243 L314 248 L300 251 L291 258 L281 262 L270 259 L260 262 L249 257 L239 265 L225 266 L214 274 L202 272 L190 278 L177 273 L169 267 L157 268 L149 259 L138 255 L133 246 L120 241 L109 236 L98 227 L89 215 L78 206 L68 197 L59 188 L52 179 L46 167 L43 154 L43 143 L51 139 L59 131 L64 122 L74 118 L83 108 L95 103 L105 95 L113 84 L123 76 L131 68 L142 62 L147 50 L157 46 Z"/>
+        <path d="M92 126 L103 119 L111 123 L114 131 L110 141 L100 142 L94 136 Z"/>
+        <path d="M76 144 L84 139 L88 147 L83 154 L75 151 Z"/>
+        <path d="M44 205 L67 205 L76 216 L71 231 L55 234 L43 224 Z"/>
+        <path d="M215 212 L228 217 L236 229 L246 236 L240 247 L228 242 L223 230 L214 224 Z"/>
+        <path d="M195 18 L215 8 L235 13 L229 25 L239 34 L233 49 L219 54 L205 47 L201 33 Z"/>
+      </g>
+
+      <g fill="#1f78ad">
+        <circle cx="171" cy="188" r="38"/>
+        <circle cx="197" cy="79" r="23"/>
+        <circle cx="98" cy="154" r="18"/>
+        <circle cx="121" cy="188" r="13"/>
+        <circle cx="126" cy="234" r="17"/>
+        <circle cx="216" cy="255" r="23"/>
+        <circle cx="219" cy="208" r="9"/>
+        <circle cx="332" cy="137" r="16"/>
+        <circle cx="43" cy="272" r="8"/>
+      </g>
+    </svg>
+
+    <div class="label" style="left:221px; top:49px; width:95px;">
+      <span class="pct">15%</span>Scandinavia
+    </div>
+
+    <div class="label" style="left:35px; top:136px; width:55px;">
+      <span class="pct">11%</span>UK
+    </div>
+
+    <div class="label" style="left:47px; top:171px; width:70px;">
+      <span class="pct">9%</span>Benelux
+    </div>
+
+    <div class="label" style="left:43px; top:212px; width:70px;">
+      <span class="pct">11%</span>France
+    </div>
+
+    <div class="label" style="left:214px; top:164px; width:88px;">
+      <span class="pct">23%</span>DACH<sup style="font-size:10px;">1)</sup>
+    </div>
+
+    <div class="label" style="left:253px; top:213px; width:52px;">
+      <span class="pct">5%</span>CEE
+    </div>
+
+    <div class="label" style="left:353px; top:133px; width:86px;">
+      <span class="pct">9%</span>Pan-<br>European
+    </div>
+
+    <div class="label" style="left:205px; top:280px; width:60px;">
+      <span class="pct">14%</span>Italy
+    </div>
+
+    <div class="label" style="left:29px; top:286px; width:95px;">
+      <span class="pct">3%</span>Spain &amp;<br>Portugal
+    </div>
+  </div>
+
+  <div class="footnote">1) Germany, Austria, Switzerland</div>
+  <div class="source">Source: Roland Berger</div>
+  <div class="page-footer">Roland_Berger_European_PE_Outlook_2019.pptx &nbsp; | &nbsp; 5</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#f1f1f1;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    background:#f1f1f1;
+    overflow:hidden;
+    color:#111;
+  }
+  .title{
+    position:absolute;
+    left:43px;
+    top:39px;
+    width:1145px;
+    font-size:37px;
+    line-height:1.06;
+    font-weight:400;
+    letter-spacing:-0.02em;
+  }
+  .left-sub{
+    position:absolute;
+    left:37px;
+    top:156px;
+    width:250px;
+    font-size:23px;
+    line-height:1.05;
+    font-weight:400;
+  }
+  .right-sub{
+    position:absolute;
+    left:498px;
+    top:156px;
+    width:510px;
+    font-size:23px;
+    line-height:1.05;
+    font-weight:400;
+  }
+  .logo{
+    position:absolute;
+    right:45px;
+    top:149px;
+    font-size:20px;
+    font-weight:400;
+    color:#ef2b21;
+    letter-spacing:-0.02em;
+  }
+  .logo .reg{
+    font-size:10px;
+    vertical-align:super;
+    margin-left:1px;
+  }
+
+  .axis-label{
+    font-size:18px;
+    fill:#111;
+    font-weight:400;
+  }
+  .cat-label{
+    font-size:17px;
+    fill:#111;
+    font-weight:400;
+  }
+  .bartext-black{
+    font-size:18px;
+    fill:#111;
+    font-weight:400;
+    text-anchor:middle;
+  }
+  .bartext-white{
+    font-size:18px;
+    fill:#fff;
+    font-weight:400;
+    text-anchor:middle;
+  }
+  .small-white{
+    font-size:17px;
+    fill:#fff;
+    font-weight:400;
+    text-anchor:middle;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">What is driving this? One big factor is the composition of PE portfolios – tech<br>exposure in the public markets is very different from tech in private markets</div>
+
+  <div class="left-sub">Share of 2022 S&amp;P500<br>market cap decline</div>
+  <div class="right-sub">Share of global buyout deal initial equity capital<br>(2017-2022)</div>
+  <div class="logo">DealEdge<span class="reg">®</span></div>
+
+  <svg width="420" height="490" viewBox="0 0 420 490" style="position:absolute; left:37px; top:221px;">
+    <!-- y labels -->
+    <text x="0" y="24" class="axis-label">100%</text>
+    <text x="40" y="109" class="axis-label">80</text>
+    <text x="40" y="192" class="axis-label">60</text>
+    <text x="40" y="275" class="axis-label">40</text>
+    <text x="40" y="358" class="axis-label">20</text>
+    <text x="40" y="442" class="axis-label">0</text>
+
+    <!-- baseline -->
+    <line x1="58" y1="442" x2="430" y2="442" stroke="#222" stroke-width="1.2"/>
+
+    <!-- stacked bar -->
+    <rect x="141" y="18" width="210" height="138" fill="#b1b1b1"/>
+    <rect x="141" y="156" width="210" height="44" fill="#8f8f8f"/>
+    <rect x="141" y="200" width="210" height="59" fill="#5d5d5d"/>
+    <rect x="141" y="259" width="210" height="183" fill="#353535"/>
+
+    <!-- labels in bar -->
+    <text x="246" y="93" class="bartext-black">Non-tech</text>
+
+    <text x="246" y="173" class="small-white">Tech - other software &amp;</text>
+    <text x="246" y="196" class="small-white">internet services</text>
+
+    <text x="246" y="237" class="small-white">Tech - other hardware</text>
+
+    <text x="246" y="335" class="bartext-white">Microsoft, Apple,</text>
+    <text x="246" y="357" class="bartext-white">Alphabet, Meta and</text>
+    <text x="246" y="379" class="bartext-white">Amazon (MAAMA)</text>
+
+    <text x="150" y="464" class="axis-label">2022 full year decline</text>
+  </svg>
+
+  <svg width="820" height="510" viewBox="0 0 820 510" style="position:absolute; left:498px; top:218px;">
+    <!-- y labels -->
+    <text x="0" y="23" class="axis-label">100%</text>
+    <text x="29" y="84" class="axis-label">80</text>
+    <text x="29" y="148" class="axis-label">60</text>
+    <text x="29" y="212" class="axis-label">40</text>
+    <text x="29" y="276" class="axis-label">20</text>
+    <text x="37" y="340" class="axis-label">0</text>
+
+    <!-- plot area top 16 bottom 320 -->
+    <!-- Technology -->
+    <rect x="58" y="16" width="235" height="38" fill="#c6c6c6"/>
+    <rect x="58" y="54" width="235" height="266" fill="#df0000"/>
+    <line x1="58" y1="54" x2="293" y2="54" stroke="#ffffff" stroke-width="1.2"/>
+    <text x="176" y="49" class="bartext-black">Hardware</text>
+    <text x="176" y="191" class="bartext-white">Software</text>
+
+    <!-- Consumer -->
+    <rect x="294" y="16" width="108" height="6" fill="#d0d0d0"/>
+    <rect x="294" y="22" width="108" height="28" fill="#c6c6c6"/>
+    <rect x="294" y="50" width="108" height="41" fill="#c6c6c6"/>
+    <rect x="294" y="91" width="108" height="62" fill="#c6c6c6"/>
+    <rect x="294" y="153" width="108" height="53" fill="#c6c6c6"/>
+    <rect x="294" y="206" width="108" height="114" fill="#c6c6c6"/>
+
+    <!-- Healthcare -->
+    <rect x="402" y="16" width="99" height="63" fill="#c6c6c6"/>
+    <rect x="402" y="79" width="99" height="79" fill="#c6c6c6"/>
+    <rect x="402" y="158" width="99" height="162" fill="#c6c6c6"/>
+
+    <!-- Industrials -->
+    <rect x="501" y="16" width="83" height="39" fill="#c6c6c6"/>
+    <rect x="501" y="55" width="83" height="56" fill="#c6c6c6"/>
+    <rect x="501" y="111" width="83" height="21" fill="#c6c6c6"/>
+    <rect x="501" y="132" width="83" height="51" fill="#c6c6c6"/>
+    <rect x="501" y="183" width="83" height="137" fill="#c6c6c6"/>
+
+    <!-- Financial Services -->
+    <rect x="584" y="16" width="82" height="20" fill="#d0d0d0"/>
+    <rect x="584" y="36" width="82" height="56" fill="#c6c6c6"/>
+    <rect x="584" y="92" width="82" height="47" fill="#c6c6c6"/>
+    <rect x="584" y="139" width="82" height="92" fill="#c6c6c6"/>
+    <rect x="584" y="231" width="82" height="89" fill="#c6c6c6"/>
+
+    <!-- Media & Telecom -->
+    <rect x="666" y="16" width="77" height="64" fill="#c6c6c6"/>
+    <rect x="666" y="80" width="77" height="240" fill="#c6c6c6"/>
+
+    <!-- Business Services -->
+    <rect x="743" y="16" width="46" height="24" fill="#d0d0d0"/>
+    <rect x="743" y="40" width="46" height="121" fill="#c6c6c6"/>
+    <rect x="743" y="161" width="46" height="159" fill="#c6c6c6"/>
+
+    <!-- Energy & Natural Resources -->
+    <rect x="789" y="16" width="27" height="51" fill="#d0d0d0"/>
+    <rect x="789" y="67" width="27" height="110" fill="#c6c6c6"/>
+    <rect x="789" y="177" width="27" height="47" fill="#c6c6c6"/>
+    <rect x="789" y="224" width="27" height="96" fill="#c6c6c6"/>
+
+    <!-- vertical separators -->
+    <g stroke="#ffffff" stroke-width="1.2">
+      <line x1="293" y1="16" x2="293" y2="320"/>
+      <line x1="402" y1="16" x2="402" y2="320"/>
+      <line x1="501" y1="16" x2="501" y2="320"/>
+      <line x1="584" y1="16" x2="584" y2="320"/>
+      <line x1="666" y1="16" x2="666" y2="320"/>
+      <line x1="743" y1="16" x2="743" y2="320"/>
+      <line x1="789" y1="16" x2="789" y2="320"/>
+    </g>
+
+    <!-- horizontal segment lines -->
+    <g stroke="#ececec" stroke-width="1.2">
+      <line x1="294" y1="22" x2="402" y2="22"/>
+      <line x1="294" y1="50" x2="402" y2="50"/>
+      <line x1="294" y1="91" x2="402" y2="91"/>
+      <line x1="294" y1="153" x2="402" y2="153"/>
+      <line x1="294" y1="206" x2="402" y2="206"/>
+
+      <line x1="402" y1="79" x2="501" y2="79"/>
+      <line x1="402" y1="158" x2="501" y2="158"/>
+
+      <line x1="501" y1="55" x2="584" y2="55"/>
+      <line x1="501" y1="111" x2="584" y2="111"/>
+      <line x1="501" y1="132" x2="584" y2="132"/>
+      <line x1="501" y1="183" x2="584" y2="183"/>
+
+      <line x1="584" y1="36" x2="666" y2="36"/>
+      <line x1="584" y1="92" x2="666" y2="92"/>
+      <line x1="584" y1="139" x2="666" y2="139"/>
+      <line x1="584" y1="231" x2="666" y2="231"/>
+
+      <line x1="666" y1="80" x2="743" y2="80"/>
+
+      <line x1="743" y1="40" x2="789" y2="40"/>
+      <line x1="743" y1="161" x2="789" y2="161"/>
+
+      <line x1="789" y1="67" x2="816" y2="67"/>
+      <line x1="789" y1="177" x2="816" y2="177"/>
+      <line x1="789" y1="224" x2="816" y2="224"/>
+    </g>
+
+    <!-- baseline -->
+    <line x1="58" y1="320" x2="816" y2="320" stroke="#222" stroke-width="1.2"/>
+
+    <!-- x labels -->
+    <text x="138" y="405" transform="rotate(-45 138 405)" class="cat-label">Technology</text>
+    <text x="316" y="399" transform="rotate(-45 316 399)" class="cat-label">Consumer</text>
+    <text x="420" y="401" transform="rotate(-45 420 401)" class="cat-label">Healthcare</text>
+    <text x="522" y="400" transform="rotate(-45 522 400)" class="cat-label">Industrials</text>
+    <text x="611" y="416" transform="rotate(-45 611 416)" class="cat-label">Financial Services</text>
+    <text x="698" y="410" transform="rotate(-45 698 410)" class="cat-label">Media &amp; Telecom</text>
+    <text x="763" y="428" transform="rotate(-45 763 428)" class="cat-label">Business Services</text>
+    <text x="807" y="411" transform="rotate(-45 807 411)" class="cat-label">Energy &amp; Natural</text>
+    <text x="830" y="434" transform="rotate(-45 830 434)" class="cat-label">Resources</text>
+  </svg>
+</div>
+</body>
+</html>

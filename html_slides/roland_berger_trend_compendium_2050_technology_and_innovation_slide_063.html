@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#cfcfcf;
+    font-family: "Arial Narrow", Arial, Helvetica, sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1366px;
+    height:768px;
+    overflow:hidden;
+    background:#f2f2f2;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .sidebar{
+    left:0;
+    top:0;
+    width:180px;
+    height:768px;
+    background:#353943;
+    z-index:5;
+  }
+  .purple-line{
+    left:179px;
+    top:0;
+    width:2px;
+    height:768px;
+    background:#7b64ad;
+    z-index:6;
+  }
+  .content-fade{
+    left:180px;
+    top:0;
+    width:1186px;
+    height:768px;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,0.58) 0%, rgba(255,255,255,0.46) 40%, rgba(255,255,255,0.28) 68%, rgba(255,255,255,0.12) 100%);
+    z-index:1;
+  }
+
+  .title-tech{
+    left:12px;
+    top:36px;
+    width:150px;
+    color:#ffffff;
+    font-size:24px;
+    line-height:1.02;
+    font-weight:700;
+    z-index:30;
+  }
+
+  .hex{
+    width:46px;
+    height:40px;
+    border:4px solid rgba(255,255,255,0.40);
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    background:rgba(255,255,255,0.05);
+    z-index:20;
+  }
+  .hex.active{
+    border-color:#9b84cf;
+    background:rgba(123,100,173,0.10);
+    box-shadow:0 0 0 2px rgba(123,100,173,0.18);
+  }
+  .hex-inner{
+    position:absolute;
+    left:5px;
+    top:4px;
+    width:34px;
+    height:29px;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    overflow:hidden;
+    opacity:0.95;
+  }
+  .hex-num{
+    color:#8a9099;
+    font-size:20px;
+    font-weight:700;
+    line-height:1;
+    z-index:30;
+  }
+  .hex-num.active{
+    color:#7b64ad;
+  }
+  .hex-label{
+    color:#68707b;
+    font-size:14px;
+    line-height:1.05;
+    width:82px;
+    z-index:30;
+  }
+  .hex-label.active{
+    color:#7b64ad;
+    font-weight:600;
+  }
+
+  .main-title{
+    left:220px;
+    top:30px;
+    width:1080px;
+    color:#222222;
+    font-size:28px;
+    line-height:1.08;
+    font-weight:800;
+    z-index:30;
+    letter-spacing:-0.2px;
+  }
+  .subhead-left,
+  .subhead-right{
+    color:#8a9099;
+    font-size:26px;
+    line-height:1.08;
+    font-weight:400;
+    z-index:30;
+  }
+  .subhead-left{
+    left:220px;
+    top:140px;
+    width:560px;
+  }
+  .subhead-right{
+    left:948px;
+    top:140px;
+    width:380px;
+  }
+
+  .chart-left{
+    left:217px;
+    top:220px;
+    width:560px;
+    height:290px;
+    z-index:30;
+  }
+  .axis-line{
+    position:absolute;
+    left:62px;
+    top:0;
+    width:1px;
+    height:290px;
+    background:#666666;
+  }
+  .label-age{
+    position:absolute;
+    left:0;
+    width:58px;
+    text-align:left;
+    color:#2f2f2f;
+    font-size:17px;
+    font-weight:400;
+    line-height:1;
+  }
+  .bar{
+    position:absolute;
+    left:63px;
+    height:31px;
+    background:#52357e;
+  }
+  .pct{
+    position:absolute;
+    color:#2f2f2f;
+    font-size:17px;
+    font-weight:400;
+    line-height:1;
+  }
+
+  .right-chart{
+    left:920px;
+    top:214px;
+    width:420px;
+    height:300px;
+    z-index:30;
+  }
+
+  .notes-box{
+    left:220px;
+    top:530px;
+    width:1116px;
+    height:190px;
+    background:#d9d9db;
+    z-index:20;
+  }
+  .notes{
+    left:232px;
+    top:540px;
+    width:1088px;
+    color:#333333;
+    font-size:17px;
+    line-height:1.08;
+    font-weight:400;
+    z-index:30;
+  }
+  .notes b{ font-weight:700; }
+
+  .footer-source{
+    left:220px;
+    bottom:11px;
+    color:#4b4b4b;
+    font-size:13px;
+    line-height:1;
+    z-index:30;
+  }
+  .page{
+    left:10px;
+    bottom:8px;
+    color:#ffffff;
+    opacity:0.9;
+    font-size:17px;
+    line-height:1;
+    z-index:30;
+  }
+
+  .gear-wrap{
+    left:50px;
+    bottom:20px;
+    width:88px;
+    height:78px;
+    z-index:15;
+    opacity:0.45;
+  }
+
+  .rb-logo{
+    right:24px;
+    bottom:12px;
+    width:38px;
+    height:28px;
+    z-index:40;
+  }
+  .rb-text{
+    position:absolute;
+    left:0;
+    top:2px;
+    width:25px;
+    color:#4d4d4d;
+    font-size:10px;
+    line-height:0.88;
+    text-align:right;
+  }
+
+  .bg-social{
+    left:670px;
+    top:158px;
+    width:340px;
+    height:405px;
+    z-index:8;
+    opacity:0.17;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="purple-line"></div>
+  <div class="content-fade"></div>
+
+  <div class="title-tech">Technology &amp;<br>Innovation</div>
+
+  <div class="hex" style="left:8px;top:143px;">
+    <div class="hex-inner">
+      <svg width="34" height="69" viewBox="0 0 34 69">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#d9d9d9"/>
+            <stop offset="100%" stop-color="#727272"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="34" height="29" fill="url(#g1)"/>
+        <line x1="2" y1="21" x2="30" y2="7" stroke="#f4f4f4" stroke-width="1"/>
+        <line x1="2" y1="9" x2="31" y2="22" stroke="#f4f4f4" stroke-width="0.8"/>
+        <circle cx="8" cy="10" r="2.2" fill="#fff"/>
+        <circle cx="15" cy="17" r="2.4" fill="#fff"/>
+        <circle cx="24" cy="12" r="2.2" fill="#fff"/>
+        <circle cx="28" cy="20" r="2.1" fill="#fff"/>
+        <rect x="4" y="4" width="10" height="6" fill="rgba(255,255,255,.35)"/>
+      </svg>
+    </div>
+  </div>
+  <div class="hex-num" style="left:93px;top:145px;">1</div>
+  <div class="hex-label" style="left:93px;top:176px;">Value of<br>Innovation</div>
+
+  <div class="hex" style="left:8px;top:277px;">
+    <div class="hex-inner">
+      <svg width="34" height="69" viewBox="0 0 34 69">
+        <defs>
+          <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#d0d0d0"/>
+            <stop offset="100%" stop-color="#7f858f"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="34" height="29" fill="url(#g2)"/>
+        <circle cx="8" cy="14" r="1.6" fill="#fff"/>
+        <circle cx="14" cy="10" r="1.6" fill="#fff"/>
+        <circle cx="22" cy="15" r="1.6" fill="#fff"/>
+        <circle cx="29" cy="8" r="1.6" fill="#fff"/>
+        <circle cx="25" cy="22" r="1.6" fill="#fff"/>
+        <line x1="8" y1="14" x2="14" y2="10" stroke="#fff" stroke-width="0.8"/>
+        <line x1="14" y1="10" x2="22" y2="15" stroke="#fff" stroke-width="0.8"/>
+        <line x1="22" y1="15" x2="29" y2="8" stroke="#fff" stroke-width="0.8"/>
+        <line x1="22" y1="15" x2="25" y2="22" stroke="#fff" stroke-width="0.8"/>
+      </svg>
+    </div>
+  </div>
+  <div class="hex-num" style="left:93px;top:278px;">2</div>
+  <div class="hex-label" style="left:93px;top:309px;">Frontier<br>Technologies</div>
+
+  <div class="hex active" style="left:8px;top:410px;">
+    <div class="hex-inner">
+      <svg width="34" height="69" viewBox="0 0 34 69">
+        <rect x="0" y="0" width="34" height="29" fill="#eee3dd"/>
+        <rect x="0" y="15" width="18" height="14" fill="#efc6a8"/>
+        <rect x="18" y="15" width="16" height="14" fill="#d1e3ef"/>
+        <path d="M11 14 C14 11,16 11,18 14 L22 18 C19 21,17 21,14 18 Z" fill="#c58f6d"/>
+        <path d="M18 14 C21 12,24 12,26 14 L30 18 C27 20,24 20,21 18 Z" fill="#b7cad8"/>
+      </svg>
+    </div>
+  </div>
+  <div class="hex-num active" style="left:93px;top:411px;">3</div>
+  <div class="hex-label active" style="left:93px;top:443px;">Humans &amp;<br>Machines</div>
+
+  <div class="main-title">New technologies do not necessary influence society for the better –<br>Younger age groups state a notable addiction to social media</div>
+
+  <div class="subhead-left">Share of consumers by age that would describe<br>themselves as addicted to social media in 2019 [%]</div>
+  <div class="subhead-right">Amount of time an average consumer<br>spends on social media [min/d]</div>
+
+  <div class="chart-left">
+    <div class="axis-line"></div>
+
+    <div class="label-age" style="top:20px;">13-17</div>
+    <div class="bar" style="top:13px;width:446px;"></div>
+    <div class="pct" style="left:515px;top:19px;">49%</div>
+
+    <div class="label-age" style="top:76px;">18-22</div>
+    <div class="bar" style="top:69px;width:364px;"></div>
+    <div class="pct" style="left:434px;top:75px;">40%</div>
+
+    <div class="label-age" style="top:132px;">23-38</div>
+    <div class="bar" style="top:125px;width:337px;"></div>
+    <div class="pct" style="left:406px;top:131px;">37%</div>
+
+    <div class="label-age" style="top:188px;">39-54</div>
+    <div class="bar" style="top:181px;width:237px;"></div>
+    <div class="pct" style="left:306px;top:187px;">26%</div>
+
+    <div class="label-age" style="top:244px;">55-64</div>
+    <div class="bar" style="top:237px;width:190px;"></div>
+    <div class="pct" style="left:259px;top:243px;">21%</div>
+  </div>
+
+  <svg class="bg-social" viewBox="0 0 340 405">
+    <defs>
+      <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="1.5"/>
+      </filter>
+    </defs>
+    <circle cx="165" cy="52" r="30" fill="#fff" filter="url(#blur)"/>
+    <circle cx="110" cy="103" r="25" fill="#fff" filter="url(#blur)"/>
+    <circle cx="103" cy="165" r="18" fill="#fff" filter="url(#blur)"/>
+    <circle cx="142" cy="138" r="15" fill="#fff" filter="url(#blur)"/>
+    <circle cx="160" cy="205" r="22" fill="#fff" filter="url(#blur)"/>
+    <circle cx="225" cy="170" r="19" fill="#fff" filter="url(#blur)"/>
+    <circle cx="192" cy="222" r="14" fill="#fff" filter="url(#blur)"/>
+    <circle cx="157" cy="243" r="12" fill="#fff" filter="url(#blur)"/>
+    <circle cx="222" cy="303" r="18" fill="#fff" filter="url(#blur)"/>
+    <circle cx="245" cy="310" r="28" fill="#fff" filter="url(#blur)"/>
+    <circle cx="140" cy="336" r="16" fill="#fff" filter="url(#blur)"/>
+    <circle cx="126" cy="351" r="10" fill="#fff" filter="url(#blur)"/>
+    <path d="M86 289 L118 270 L182 325 L153 355 Z" fill="rgba(255,255,255,0.50)"/>
+    <rect x="69" y="280" width="72" height="31" rx="3" fill="rgba(255,255,255,0.33)" transform="rotate(-29 69 280)"/>
+    <path d="M179 268 C200 245,228 257,235 292 L237 343 C218 353,198 349,184 336 Z" fill="rgba(255,255,255,0.38)"/>
+    <g fill="#fff" opacity="0.9">
+      <path d="M160 138 c-4 -8 -16 -6 -16 4 c0 8 8 13 16 18 c8 -5 16 -10 16 -18 c0 -10 -12 -12 -16 -4z"/>
+      <path d="M105 102 h6 v-8 h6 v8 h6 v6 h-6 v8 h-6 v-8 h-6z"/>
+      <path d="M98 164 h5 v-7 h5 v7 h5 v5 h-5 v7 h-5 v-7 h-5z"/>
+      <path d="M220 170 h6 v-8 h6 v8 h6 v6 h-6 v8 h-6 v-8 h-6z"/>
+      <path d="M190 222 c-3 -6 -12 -5 -12 3 c0 6 6 9 12 13 c6 -4 12 -7 12 -13 c0 -8 -9 -9 -12 -3z"/>
+      <path d="M157 244 c-3 -6 -12 -5 -12 3 c0 6 6 9 12 13 c6 -4 12 -7 12 -13 c0 -8 -9 -9 -12 -3z"/>
+    </g>
+  </svg>
+
+  <div class="right-chart">
+    <svg width="420" height="340" viewBox="0 0 420 340">
+      <line x1="105" y1="271" x2="418" y2="271" stroke="#5d5d5d" stroke-width="1.2"/>
+      <rect x="48" y="143" width="115" height="128" fill="#8069b0"/>
+      <rect x="257" y="61" width="116" height="210" fill="#8069b0"/>
+
+      <text x="105" y="137" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#2f2f2f">90</text>
+      <text x="315" y="53" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#2f2f2f">147</text>
+
+      <text x="105" y="296" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#2f2f2f">2012</text>
+      <text x="315" y="296" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#2f2f2f">2021</text>
+
+      <line x1="105" y1="125" x2="105" y2="14" stroke="#9ea1a7" stroke-width="1.2"/>
+      <line x1="315" y1="47" x2="315" y2="14" stroke="#9ea1a7" stroke-width="1.2"/>
+      <line x1="105" y1="14" x2="315" y2="14" stroke="#9ea1a7" stroke-width="1.2"/>
+      <polygon points="311,14 319,14 315,24" fill="#9ea1a7"/>
+      <ellipse cx="210" cy="14" rx="35" ry="17" fill="#f7f7f7" stroke="#727272" stroke-width="1.1"/>
+      <text x="210" y="21" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#2f2f2f">+63%</text>
+    </svg>
+  </div>
+
+  <div class="notes-box"></div>
+  <div class="notes">
+    &gt; <b>Social media</b> has profoundly changed society and clearly has <b>aspects of intrinsic value</b>. Bridging geographical divides, for example by bringing family and friends closer together, is a much cited positive. However, other factors are not always so beneficial<br><br>
+    &gt; Today, the <b>average user spends 63% more time</b> on social media compared to a decade ago, totaling around <b>two and half hours per day</b> – up from an hour and a half in 2012. Social media user behavior varies widely depending on age. In the youngest age group of the <b>under 18s nearly half describe themselves as "addicted to social media"</b> – with the next older cohort not very far behind<br><br>
+    &gt; With user data analysis and the help of AI, <b>social media platforms can deploy targeted individual feeds</b> and tailor information to users – amplifying so-called <b>echo-chambers</b> and Internet bubbles including the <b>dissemination of misinformation and fake news</b>. The <b>proliferation</b> of untruths and <b>baseless conspiracy theories</b> is a global emergency, <b>profoundly dividing societies while straining socio-political relationships</b>
+  </div>
+
+  <div class="footer-source">Sources: Think Now; Datareportal; Roland Berger</div>
+  <div class="page">63</div>
+
+  <div class="gear-wrap">
+    <svg width="88" height="118" viewBox="0 0 88 118">
+      <g fill="none" stroke="#b0b3ba" stroke-width="3" opacity="0.55">
+        <circle cx="29" cy="39" r="16"/>
+        <path d="M29 16 v-8 M29 70 v-8 M7 39 h-8 M59 39 h-8 M14 24 l-6 -6 M50 60 l-6 -6 M14 54 l-6 6 M50 18 l-6 6"/>
+        <path d="M33 25 c8 -3 16 0 19 7 c3 8 0 16 -7 19"/>
+      </g>
+      <g fill="#b0b3ba" opacity="0.6">
+        <circle cx="59" cy="31" r="12"/>
+        <circle cx="59" cy="31" r="4" fill="#353943"/>
+        <rect x="57.5" y="11" width="3" height="8"/>
+        <rect x="57.5" y="43" width="3" height="8"/>
+        <rect x="39" y="29.5" width="8" height="3"/>
+        <rect x="71" y="29.5" width="8" height="3"/>
+        <rect x="44" y="17" width="3" height="8" transform="rotate(-45 45.5 21)"/>
+        <rect x="68" y="41" width="3" height="8" transform="rotate(-45 69.5 45)"/>
+        <rect x="44" y="41" width="3" height="8" transform="rotate(45 45.5 45)"/>
+        <rect x="68" y="17" width="3" height="8" transform="rotate(45 69.5 21)"/>
+        <path d="M45 60 h10 v8 l5-4 l5 4 v-8 h7" fill="none" stroke="#b0b3ba" stroke-width="3" stroke-linejoin="round"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="rb-logo">
+    <div class="rb-text">Roland<br>Berger</div>
+    <svg style="position:absolute;left:24px;top:1px;" width="14" height="64" viewBox="0 0 14 64">
+      <path d="M1 1 h5 c5 0 7 4 7 8 c0 4 -2 6 -6 7 c4 0 6 3 6 7 H8 c0-4 -1-6 -5-6 H1z" fill="#8d939d"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

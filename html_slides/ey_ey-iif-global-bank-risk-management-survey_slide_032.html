@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1365, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9db;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1365px;
+    height:768px;
+    overflow:hidden;
+    background:#d9d9db;
+  }
+
+  .left-panel{
+    position:absolute;
+    left:31px;
+    top:31px;
+    width:654px;
+    height:706px;
+    background:
+      radial-gradient(circle at 16% 49%, rgba(17,93,136,.62) 0 5%, rgba(14,65,100,.45) 6% 10%, rgba(0,0,0,0) 18%),
+      radial-gradient(circle at 18% 76%, rgba(28,111,170,.48) 0 5%, rgba(0,0,0,0) 18%),
+      radial-gradient(circle at 61% 14%, rgba(101,34,126,.35) 0 7%, rgba(0,0,0,0) 22%),
+      radial-gradient(circle at 78% 86%, rgba(44,103,197,.32) 0 4%, rgba(0,0,0,0) 13%),
+      radial-gradient(circle at 70% 37%, rgba(36,71,144,.22) 0 8%, rgba(0,0,0,0) 23%),
+      linear-gradient(90deg, rgba(0,0,0,.78) 0 15%, rgba(0,0,0,.40) 16% 34%, rgba(0,0,0,.12) 35% 100%),
+      linear-gradient(180deg, #071120 0%, #091326 35%, #030810 100%);
+  }
+  .left-panel:before{
+    content:"";
+    position:absolute;
+    left:103px;
+    top:0;
+    width:2px;
+    height:706px;
+    background:rgba(0,0,0,.55);
+  }
+  .left-panel:after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:208px;
+    width:654px;
+    height:26px;
+    background:linear-gradient(90deg, rgba(220,225,235,.05), rgba(0,0,0,.14), rgba(220,225,235,.03));
+  }
+  .left-overlay{
+    position:absolute;
+    left:31px;
+    top:31px;
+    width:654px;
+    height:706px;
+    pointer-events:none;
+  }
+  .left-overlay svg{
+    width:100%;
+    height:100%;
+    display:block;
+  }
+
+  .title-looking{
+    position:absolute;
+    left:80px;
+    top:86px;
+    width:250px;
+    color:#f2f3f4;
+    font-size:63px;
+    line-height:.98;
+    font-weight:700;
+    letter-spacing:-0.02em;
+  }
+  .title-looking .thin{
+    display:block;
+    font-weight:300;
+  }
+
+  .gradient-line-left{
+    position:absolute;
+    left:77px;
+    top:223px;
+    width:494px;
+    height:4px;
+    background:linear-gradient(90deg, #e2d400 0%, #e2d400 44%, #ca42ff 72%, #5598ff 100%);
+  }
+
+  .dropcap{
+    position:absolute;
+    left:79px;
+    top:289px;
+    color:#ffffff;
+    font-size:60px;
+    line-height:50px;
+    font-weight:300;
+  }
+  .body-col-1,.body-col-2{
+    color:#f0f0f0;
+    font-size:12px;
+    line-height:1.45;
+    font-weight:400;
+  }
+  .body-col-1{
+    position:absolute;
+    left:95px;
+    top:294px;
+    width:196px;
+  }
+  .body-col-2{
+    position:absolute;
+    left:331px;
+    top:294px;
+    width:228px;
+  }
+
+  .page-num{
+    position:absolute;
+    left:49px;
+    top:712px;
+    color:#f4f4f4;
+    font-size:12px;
+    line-height:12px;
+    font-weight:400;
+  }
+
+  .vert-label{
+    position:absolute;
+    left:17px;
+    top:510px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    color:#2e3137;
+    font-size:14px;
+    line-height:14px;
+    font-weight:400;
+    letter-spacing:.01em;
+    white-space:nowrap;
+  }
+  .vert-rule{
+    position:absolute;
+    left:14px;
+    top:471px;
+    width:1px;
+    height:38px;
+    background:#4b4f55;
+  }
+
+  .right-title{
+    position:absolute;
+    left:741px;
+    top:87px;
+    width:360px;
+    color:#181a24;
+    font-size:64px;
+    line-height:.98;
+    font-weight:300;
+    letter-spacing:-0.02em;
+  }
+  .right-title .bold{
+    display:block;
+    font-weight:700;
+  }
+
+  .gradient-line-right{
+    position:absolute;
+    left:740px;
+    top:223px;
+    width:496px;
+    height:4px;
+    background:linear-gradient(90deg, #e2d400 0%, #e2d400 44%, #ca42ff 72%, #5598ff 100%);
+  }
+
+  .jump-wrap{
+    position:absolute;
+    right:61px;
+    top:59px;
+    width:44px;
+    height:44px;
+  }
+  .jump-wrap svg{
+    width:44px;
+    height:44px;
+    display:block;
+  }
+  .jump-center{
+    position:absolute;
+    left:9px;
+    top:11px;
+    width:26px;
+    color:#2e3137;
+    font-size:8px;
+    line-height:1.05;
+    text-align:center;
+    font-weight:400;
+  }
+
+  .card{
+    position:absolute;
+    top:291px;
+    width:141px;
+  }
+  .card1{ left:740px; }
+  .card2{ left:903px; }
+  .card3{ left:1065px; }
+
+  .thumb{
+    position:relative;
+    width:141px;
+    height:183px;
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .caption{
+    margin-top:10px;
+    width:141px;
+    color:#3d6fb8;
+    font-size:11px;
+    line-height:1.24;
+    text-align:center;
+    text-decoration:underline;
+    font-weight:400;
+  }
+
+  .thumb1{
+    background:
+      radial-gradient(circle at 83% 22%, rgba(255,255,255,.95) 0, rgba(255,255,255,.45) 4%, rgba(0,0,0,0) 10%),
+      radial-gradient(circle at 82% 22%, rgba(64,158,255,.75) 0, rgba(0,0,0,0) 14%),
+      radial-gradient(circle at 49% 85%, rgba(115,154,199,.95) 0, rgba(74,104,148,.88) 15%, rgba(0,0,0,0) 30%),
+      linear-gradient(180deg, #04050b 0%, #010105 46%, #0a1433 100%);
+  }
+  .thumb2{
+    background:linear-gradient(180deg, #160700 0%, #060100 100%);
+  }
+  .thumb3{
+    background:linear-gradient(180deg, #9c7f87 0%, #bb988c 26%, #d8b191 46%, #77596a 47%, #3a3046 100%);
+  }
+  .thumb svg{
+    position:absolute;
+    inset:0;
+    width:141px;
+    height:183px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-panel"></div>
+  <div class="left-overlay">
+    <svg viewBox="0 0 654 706" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <filter id="blurBig" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="18"/>
+        </filter>
+        <filter id="blurSmall" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="7"/>
+        </filter>
+      </defs>
+      <path d="M0 0 H654 V706 H0 Z" fill="transparent"/>
+      <path d="M136 0 L160 0 L159 706 L104 706 Q96 582 91 508 Q86 430 84 367 Q82 279 88 188 Q94 89 136 0Z" fill="rgba(0,0,0,.55)"/>
+      <g opacity=".24" filter="url(#blurBig)">
+        <path d="M267 0 C313 65,339 118,331 174 C322 237,291 298,292 367 C293 445,342 511,339 585 C336 632,323 674,313 706 L463 706 C506 638,543 563,548 483 C553 397,515 322,515 236 C516 162,548 89,536 0Z" fill="#66203f"/>
+        <path d="M430 0 C456 80,475 147,467 209 C457 281,419 358,419 420 C419 517,465 594,466 706 L613 706 C604 628,611 552,618 490 C629 393,658 301,654 198 C652 123,637 53,622 0Z" fill="#142749"/>
+      </g>
+      <g opacity=".5" filter="url(#blurSmall)">
+        <circle cx="111" cy="319" r="40" fill="#17557f"/>
+        <circle cx="102" cy="526" r="52" fill="#07101c"/>
+        <circle cx="133" cy="612" r="46" fill="#081423"/>
+        <circle cx="475" cy="654" r="24" fill="#2f5da3"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="title-looking">Looking<span class="thin">ahead</span></div>
+  <div class="gradient-line-left"></div>
+
+  <div class="dropcap">T</div>
+  <div class="body-col-1">
+    he broad range of risks<br>
+    that banks face, and the<br>
+    interconnected nature of those<br>
+    risks, continue to drive rapid evolution<br>
+    of the risk management operating<br>
+    model, affecting everything from talent<br>
+    needs to capability development to<br>
+    technology needs. Transforming the risk<br>
+    management approach is becoming an<br>
+    imperative in banking and other sectors;<br>
+    as other EY research has shown, the<br>
+    risk environment today is nonlinear,<br>
+    accelerated, volatile and interconnected.<br>
+    Firms that take a more strategic and<br>
+    nontraditional approach to risk are more<br>
+    likely to succeed in these uncertain and<br>
+    turbulent times.
+  </div>
+  <div class="body-col-2">
+    As risk leaders contend with proliferating<br>
+    and suddenly emerging threats, it seems<br>
+    that the most promising solutions (e.g.,<br>
+    AI, partnerships) complicate other risk<br>
+    categories. Perhaps that's why what we<br>
+    said in our 2008 risk survey remains<br>
+    true more than 15 years later: “the<br>
+    lessons learned from financial upheaval<br>
+    convey an unmistakable message that<br>
+    risk governance must be given an<br>
+    equal seat at the table and be treated<br>
+    as a strategic goal on par with revenue<br>
+    growth ... achieving this parity requires an<br>
+    enterprise-wide framework that supports<br>
+    an integrated approach to risk.”
+  </div>
+
+  <div class="page-num">32</div>
+  <div class="vert-rule"></div>
+  <div class="vert-label">LOOKING AHEAD/FURTHER READING</div>
+
+  <div class="right-title">Further<span class="bold">reading</span></div>
+  <div class="gradient-line-right"></div>
+
+  <div class="jump-wrap">
+    <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="22" cy="22" r="20" fill="none" stroke="#53565c" stroke-width="1.2" stroke-dasharray="18 8 6 8"/>
+      <circle cx="34" cy="8" r="4.2" fill="#e2d400"/>
+    </svg>
+    <div class="jump-center">Jump to<br>contents</div>
+  </div>
+
+  <div class="card card1">
+    <div class="thumb thumb1">
+      <svg viewBox="0 0 141 183" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="g1" cx="82%" cy="22%" r="16%">
+            <stop offset="0%" stop-color="#fff"/>
+            <stop offset="35%" stop-color="#fff" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="68" cy="83" rx="79" ry="93" fill="none" stroke="#cf80ff" stroke-width="2.4" opacity=".55"/>
+        <ellipse cx="66" cy="85" rx="74" ry="87" fill="none" stroke="#75c8ff" stroke-width="2.2" opacity=".5"/>
+        <ellipse cx="71" cy="86" rx="69" ry="82" fill="none" stroke="#ffffff" stroke-width="1.7" opacity=".55"/>
+        <ellipse cx="78" cy="94" rx="64" ry="76" fill="none" stroke="#4f7fff" stroke-width="1.4" opacity=".4"/>
+        <circle cx="115" cy="30" r="20" fill="url(#g1)"/>
+        <path d="M18 112 C27 94, 55 80, 88 84 C110 87, 124 97, 132 112 L132 146 C111 151, 76 154, 50 151 C34 149, 24 145, 18 138 Z" fill="#7da2bc"/>
+        <path d="M18 116 C34 104, 63 99, 91 103 C107 106, 123 114, 132 123 L132 146 C111 150, 78 154, 50 151 C34 149, 24 145, 18 138 Z" fill="#d7dde4"/>
+        <path d="M94 128 C98 121, 106 117, 116 116 C120 121, 122 128, 122 139 C111 142, 98 141, 94 128 Z" fill="#09101d"/>
+        <path d="M88 114 C96 109, 108 108, 117 111 L118 143 C110 145, 97 145, 90 140 Z" fill="#f4f5f7"/>
+        <rect x="98" y="114" width="11" height="22" fill="#101722"/>
+      </svg>
+    </div>
+    <div class="caption">2025 EY Global Risk<br>Transformation Study</div>
+  </div>
+
+  <div class="card card2">
+    <div class="thumb thumb2">
+      <svg viewBox="0 0 141 183" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="69" cy="29" rx="38" ry="16" fill="#f3c800"/>
+        <ellipse cx="69" cy="29" rx="43" ry="20" fill="none" stroke="#7b3900" stroke-width="4" opacity=".58"/>
+        <ellipse cx="61" cy="76" rx="28" ry="10" fill="#f3c800"/>
+        <ellipse cx="61" cy="76" rx="32" ry="13.5" fill="none" stroke="#7b3900" stroke-width="3.4" opacity=".52"/>
+        <ellipse cx="52" cy="108" rx="21.5" ry="8" fill="#f3c800"/>
+        <ellipse cx="52" cy="108" rx="25" ry="10.5" fill="none" stroke="#7b3900" stroke-width="2.8" opacity=".5"/>
+        <ellipse cx="49" cy="135" rx="17" ry="6.6" fill="#f3c800"/>
+        <ellipse cx="49" cy="135" rx="20.2" ry="8.7" fill="none" stroke="#7b3900" stroke-width="2.4" opacity=".45"/>
+        <ellipse cx="59" cy="157" rx="12.5" ry="4.6" fill="#f3c800"/>
+        <ellipse cx="59" cy="157" rx="14.8" ry="6.1" fill="none" stroke="#7b3900" stroke-width="2" opacity=".4"/>
+      </svg>
+    </div>
+    <div class="caption">IIF/EY Annual Report<br>on AI Use in Financial<br>Services</div>
+  </div>
+
+  <div class="card card3">
+    <div class="thumb thumb3">
+      <svg viewBox="0 0 141 183" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 109 L25 99 L44 82 L65 76 L85 73 L96 88 L111 80 L130 72 L141 71 L141 183 L0 183 Z" fill="#3c2e44"/>
+        <path d="M0 123 L27 110 L45 94 L67 88 L87 87 L97 97 L113 93 L130 88 L141 86 L141 183 L0 183 Z" fill="#5d485e" opacity=".92"/>
+        <circle cx="69" cy="26" r="9" fill="#2b2029"/>
+        <rect x="66" y="34" width="7" height="35" rx="3" fill="#2b2029"/>
+        <path d="M60 48 L72 48 L78 79 L71 81 Z" fill="#2b2029"/>
+        <path d="M67 48 L79 46 L84 52 L72 55 Z" fill="#2b2029"/>
+      </svg>
+    </div>
+    <div class="caption">EY Global<br>Regulatory Outlook 2026</div>
+  </div>
+</div>
+</body>
+</html>

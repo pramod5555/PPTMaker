@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>Connecting to something real</title>
+<style>
+  body {
+    margin: 0;
+    background: #d9d9d9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #e7e4e3;
+    color: #222;
+  }
+
+  .title {
+    position: absolute;
+    left: 64px;
+    top: 132px;
+    width: 260px;
+    font-size: 35px;
+    line-height: 1.12;
+    color: #7a1fe0;
+    font-weight: 300;
+    letter-spacing: -0.4px;
+  }
+
+  .left-text {
+    position: absolute;
+    left: 64px;
+    top: 226px;
+    width: 332px;
+    font-size: 17px;
+    line-height: 1.38;
+    color: #2a2a2a;
+    font-weight: 400;
+  }
+
+  .middle-text {
+    position: absolute;
+    left: 484px;
+    top: 128px;
+    width: 350px;
+    font-size: 17px;
+    line-height: 1.38;
+    color: #2a2a2a;
+    font-weight: 400;
+  }
+
+  .quote-panel {
+    position: absolute;
+    left: 935px;
+    top: 0;
+    width: 367px;
+    height: 720px;
+    background: #fff;
+  }
+
+  .photo-top {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 367px;
+    height: 129px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 12% 20%, rgba(230,221,190,0.95) 0 11%, rgba(230,221,190,0) 28%),
+      radial-gradient(circle at 23% 44%, rgba(214,72,18,0.95) 0 16%, rgba(214,72,18,0) 39%),
+      radial-gradient(circle at 41% 15%, rgba(186,120,96,0.55) 0 17%, rgba(186,120,96,0) 38%),
+      radial-gradient(circle at 82% 28%, rgba(243,232,226,0.95) 0 28%, rgba(243,232,226,0) 55%),
+      linear-gradient(90deg, #b7a88d 0%, #f06d2b 18%, #ef8652 36%, #eaded7 58%, #e5d8d1 100%);
+    filter: blur(0.2px);
+  }
+  .photo-top::before {
+    content: "";
+    position: absolute;
+    left: 247px;
+    top: -14px;
+    width: 86px;
+    height: 86px;
+    border: 3px solid rgba(88,77,76,0.55);
+    border-radius: 50%;
+  }
+  .photo-top::after {
+    content: "";
+    position: absolute;
+    left: 264px;
+    top: -8px;
+    width: 132px;
+    height: 160px;
+    background:
+      radial-gradient(ellipse at 48% 73%, rgba(205,151,132,0.45) 0 18%, rgba(205,151,132,0) 40%),
+      radial-gradient(circle at 55% 68%, rgba(160,114,98,0.22) 0 7%, rgba(160,114,98,0) 18%);
+    opacity: 0.9;
+  }
+
+  .quote {
+    position: absolute;
+    left: 10px;
+    top: 154px;
+    width: 315px;
+    font-size: 19px;
+    line-height: 1.68;
+    color: #8d33e4;
+    font-weight: 300;
+  }
+
+  .attribution {
+    position: absolute;
+    left: 10px;
+    top: 463px;
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .photo-bottom {
+    position: absolute;
+    left: 0;
+    top: 521px;
+    width: 367px;
+    height: 199px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(237,203,183,0.8) 0%, rgba(233,228,221,0.85) 27%, rgba(220,175,94,0.9) 53%, rgba(42,52,65,0.95) 82%, rgba(216,99,34,0.9) 100%);
+  }
+  .photo-bottom::before {
+    content: "";
+    position: absolute;
+    left: -12px;
+    top: 42px;
+    width: 395px;
+    height: 92px;
+    background: radial-gradient(ellipse at center, rgba(245,244,235,0.98) 0 55%, rgba(245,244,235,0) 72%);
+    filter: blur(2px);
+  }
+  .photo-bottom::after {
+    content: "";
+    position: absolute;
+    left: 18px;
+    top: -8px;
+    width: 332px;
+    height: 54px;
+    background:
+      radial-gradient(circle at 15% 85%, rgba(244,220,204,0.85) 0 18%, rgba(244,220,204,0) 35%),
+      radial-gradient(circle at 44% 55%, rgba(241,200,178,0.78) 0 20%, rgba(241,200,178,0) 36%),
+      radial-gradient(circle at 82% 24%, rgba(245,214,196,0.8) 0 17%, rgba(245,214,196,0) 33%);
+    filter: blur(1px);
+  }
+
+  .brand {
+    position: absolute;
+    right: 12px;
+    bottom: 18px;
+    font-size: 14px;
+    color: #ffffff;
+    letter-spacing: 0.1px;
+  }
+
+  .page {
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    font-size: 14px;
+    color: #777;
+  }
+
+  .side-nav {
+    position: absolute;
+    right: -8px;
+    top: 35px;
+    width: 28px;
+    height: 620px;
+    font-size: 12px;
+    color: #777;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.2px;
+  }
+
+  .side-nav .active {
+    color: #8d33e4;
+    font-weight: 600;
+  }
+
+  sup {
+    font-size: 10px;
+    vertical-align: super;
+    line-height: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title">Connecting to<br>something real</div>
+
+    <div class="left-text">
+      People will appreciate and tell their friends about companies that reach beyond the transactional and deliver something personal. For example, barbecue company, Big Green Egg encourages people to “disconnect to reconnect with friends, your family, and neighbors.” The company avoids distribution through large retailers or direct-to-consumer, focusing instead on local distributors who can build lasting personal, local relationships with customers.<sup>153</sup>
+    </div>
+
+    <div class="middle-text">
+      It may be a solid strategy to look to very different industries for inspiration. In the creative sphere, digital is returning to its role as a complement to the experience rather than a replacement for it. Artists are now dominating both the streaming market and the vinyl market, so this is not just a grassroots movement of enthusiasts—it’s also a lucrative strategy for the wider music industry. In 2024, Taylor Swift’s music accounted for 7% of vinyl sales in the US in 2023.<sup>154</sup><br><br>
+      Brands should be asking themselves how they can deliver joy offline as part of their brand promise. They will need to define what “the good life” looks like for their customers and work out whether they have permission to find a place in it.
+    </div>
+
+    <div class="quote-panel">
+      <div class="photo-top"></div>
+
+      <div class="quote">
+        “In the past year, I have participated more in physical, face-to-face activities such as reading books, attending live performances, exercising and taking walks. I think brands can interact with me more by organizing more offline events such as activity days, consultation days or exhibition days.”
+      </div>
+
+      <div class="attribution">M. Xie, 44, China</div>
+
+      <div class="photo-bottom"></div>
+      <div class="brand">Accenture Life Trends 2025</div>
+    </div>
+
+    <div class="side-nav">
+      Cost of hesitations &nbsp; / &nbsp; The parent trap &nbsp; / &nbsp; Impatience economy &nbsp; / &nbsp; The dignity of work &nbsp; / &nbsp; <span class="active">Social rewiring</span>
+    </div>
+
+    <div class="page">80</div>
+  </div>
+</body>
+</html>

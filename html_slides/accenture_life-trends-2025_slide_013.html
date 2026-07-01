@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Hyper-personalized harm</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #cdccce;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #cdccce;
+    color: #222;
+  }
+
+  .top-strip {
+    position: absolute;
+    left: 60px;
+    top: 0px;
+    width: 366px;
+    height: 43px;
+    background: linear-gradient(90deg, #101300 0%, #87a0ee 18%, #9eb3fb 58%, #b8c5f7 100%);
+  }
+  .top-strip::after{
+    content:"";
+    position:absolute;
+    right:30px;
+    top:6px;
+    width:78px;
+    height:18px;
+    background:
+      radial-gradient(circle at 8px 8px, rgba(140,162,245,.45) 0 2px, transparent 3px),
+      linear-gradient(to bottom, rgba(80,90,130,.25), rgba(80,90,130,.1));
+    opacity:.7;
+  }
+
+  .title {
+    position: absolute;
+    left: 60px;
+    top: 78px;
+    width: 320px;
+    color: #8a1fe0;
+    font-size: 34px;
+    line-height: 1.15;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+  }
+
+  .photo {
+    position: absolute;
+    left: 60px;
+    top: 186px;
+    width: 367px;
+    height: 474px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 38% 30%, rgba(255,217,228,0.75) 0%, rgba(255,217,228,0.45) 12%, rgba(160,115,140,0.18) 26%, transparent 40%),
+      radial-gradient(ellipse at 53% 31%, rgba(244,196,206,0.78) 0%, rgba(244,196,206,0.42) 11%, transparent 26%),
+      radial-gradient(ellipse at 72% 30%, rgba(236,194,198,0.75) 0%, rgba(236,194,198,0.34) 10%, transparent 23%),
+      linear-gradient(180deg, rgba(114,145,191,0.9) 0%, rgba(85,107,162,0.72) 8%, rgba(72,84,112,0.45) 17%, rgba(52,38,34,0.2) 22%, rgba(0,0,0,0) 28%),
+      repeating-linear-gradient(90deg, #485471 0 4px, #2c3750 4px 6px, #7c8fae 6px 10px, #34415b 10px 12px),
+      repeating-linear-gradient(180deg, transparent 0 18px, rgba(236,241,255,0.42) 18px 20px),
+      linear-gradient(180deg, #8fa2d0 0 18%, #7f93c0 18% 22%, #876766 22% 28%, #2a201f 28% 100%);
+    background-size:
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 39%,
+      100% 39%,
+      100% 100%;
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+    border-radius: 0;
+  }
+  .photo::before{
+    content:"";
+    position:absolute;
+    left: 128px;
+    top: 313px;
+    width: 122px;
+    height: 177px;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(152,122,85,0.95) 0%, rgba(92,70,48,0.9) 28%, rgba(29,23,18,0.95) 56%, rgba(9,8,8,1) 100%);
+    border-radius: 48% 46% 36% 42%;
+    filter: blur(1px);
+    opacity: .98;
+  }
+  .photo::after{
+    content:"";
+    position:absolute;
+    left: -18px;
+    bottom: -14px;
+    width: 335px;
+    height: 220px;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(56,27,19,.85) 0%, rgba(30,16,10,.95) 44%, rgba(7,7,7,1) 100%);
+    border-radius: 46% 36% 0 0;
+    filter: blur(2px);
+  }
+
+  .col {
+    position: absolute;
+    font-size: 18px;
+    line-height: 1.3;
+    color: #222;
+  }
+  .col p {
+    margin: 0 0 16px 0;
+  }
+  .col sup {
+    font-size: 11px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .col1 {
+    left: 481px;
+    top: 44px;
+    width: 336px;
+  }
+
+  .col2 {
+    left: 904px;
+    top: 44px;
+    width: 335px;
+  }
+
+  .sidebar {
+    position: absolute;
+    right: 8px;
+    top: 27px;
+    height: 610px;
+    width: 42px;
+    color: #7d7d7d;
+    font-size: 15px;
+    line-height: 1;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.2px;
+  }
+  .sidebar .highlight {
+    color: #8a1fe0;
+    font-weight: 700;
+    display: inline-block;
+    padding: 8px 4px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.0) 0%, rgba(175,152,248,0.25) 45%, rgba(255,255,255,0.0) 100%);
+    margin-bottom: 10px;
+  }
+
+  .footer-left {
+    position: absolute;
+    right: 84px;
+    bottom: 18px;
+    font-size: 15px;
+    color: #787878;
+    white-space: nowrap;
+  }
+  .footer-left .year {
+    color: #8a1fe0;
+  }
+  .page {
+    position: absolute;
+    right: 24px;
+    bottom: 18px;
+    font-size: 15px;
+    color: #787878;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-strip"></div>
+
+    <div class="title">Hyper-personalized<br>harm</div>
+
+    <div class="photo"></div>
+
+    <div class="col col1">
+      <p>Fraudulent behavior and scams online aren’t new but put them together with generative AI, and people whose aim is to commit crimes online now have a tool that makes it much easier. Releasing generative AI so that anyone can use it has created numerous unintended consequences, some of which are as serious as it gets—and it’s happening before people feel the promised value of the technology.</p>
+
+      <p>The most tangible consequence is fraud perpetuated when people are tricked into sharing payment information in exchange for a non-existent product or service. Less easily quantifiable is the psychological impact of new, non-financial types of fraud that are destroying people’s trust in the online experience and making hesitation a reflex. Our survey has found that in the past year, 32.6% of respondents have experienced deep-fake attacks or scams designed to steal their personal information and/or money.<sup>19</sup></p>
+
+      <p>In June 2024, Google DeepMind published research into tactics being exploited by bad actors to misuse generative AI’s capabilities.<sup>20, 21</sup> Among those tactics affecting people directly are impersonation, altering people’s appearance to change the story told by a photograph, and creating non-consensual intimate imagery, using</p>
+    </div>
+
+    <div class="col col2">
+      <p>a person’s likeness. They’re also falsifying documents, using people’s IP without permission and imitating or reproducing original work, brands or styles with the intention of presenting it as real. Listed out like this, it becomes abundantly clear that along with the good generative AI can do, it can also do significant damage in the wrong hands.</p>
+
+      <p>Deep-fake scams are proliferating worldwide, leading organizations to consider them a bigger threat than identity theft.<sup>22</sup> In these scams, callers use deep-fake audio to mimic the voice of a loved one in a dire situation and request financial help. The Asia-Pacific region saw a 1530% rise in deep-fake cases from 2022 to 2023—the second largest rise in the world, behind North America.<sup>23</sup></p>
+
+      <p>Further, celebrities and citizens alike are increasingly discovering their images and voices are being used without their consent for nefarious purposes, risking harm to their mental well-being and their reputation. According to Britt Paris at Rutgers School of Communication and Information, with deep-fake technology, “anybody can just put a face into this app and get an image of somebody… completely without clothes.”<sup>24</sup> Shockingly, this is happening both to adult and child victims.</p>
+    </div>
+
+    <div class="sidebar">
+      <span class="highlight">Cost of hesitations</span>
+      / The parent trap / Impatience economy / The dignity of work / Social rewiring
+    </div>
+
+    <div class="footer-left">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="page">13</div>
+  </div>
+</body>
+</html>

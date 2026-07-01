@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#292938;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1366px;
+    height:768px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#292938;
+  }
+  .canvas{
+    position:absolute;
+    left:32px;
+    top:31px;
+    width:1302px;
+    height:705px;
+    background:#dfdfdf;
+  }
+
+  .page-no{
+    position:absolute;
+    left:61px;
+    top:49px;
+    color:#b7b7c1;
+    font-size:18px;
+    font-weight:300;
+    line-height:1;
+  }
+  .vline{
+    position:absolute;
+    left:103px;
+    top:0;
+    width:1px;
+    height:90px;
+    background:#8d8d96;
+    opacity:.55;
+  }
+
+  .side-label{
+    position:absolute;
+    left:14px;
+    top:430px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    color:#2f3040;
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .side-yellow{
+    position:absolute;
+    left:10px;
+    top:432px;
+    width:14px;
+    height:11px;
+    background:#f3e300;
+  }
+
+  .title-kicker{
+    position:absolute;
+    left:154px;
+    top:82px;
+    color:#30303d;
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:.17em;
+    text-transform:uppercase;
+  }
+  .title-main{
+    position:absolute;
+    left:130px;
+    top:105px;
+    color:#30303d;
+    font-size:48px;
+    font-weight:800;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    line-height:1;
+  }
+
+  .jump-left,.jump-right{
+    position:absolute;
+    top:143px;
+    height:1px;
+    background:#b7b7b7;
+  }
+  .jump-left{ left:516px; width:99px; }
+  .jump-right{ left:778px; width:97px; }
+  .jump-text{
+    position:absolute;
+    left:632px;
+    top:139px;
+    width:128px;
+    text-align:center;
+    color:#494955;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+
+  .card{
+    position:absolute;
+    border-radius:16px;
+    overflow:hidden;
+    color:#fff;
+    background:
+      radial-gradient(circle at 84% 92%, rgba(113,227,255,.28) 0%, rgba(113,227,255,0) 34%),
+      radial-gradient(circle at 10% 120%, rgba(195,121,255,.48) 0%, rgba(195,121,255,0) 30%),
+      linear-gradient(180deg,#24195a 0%,#262162 48%,#2c2d72 100%);
+  }
+  .card.dark{
+    background:
+      radial-gradient(circle at 85% 92%, rgba(91,185,255,.10) 0%, rgba(91,185,255,0) 35%),
+      linear-gradient(180deg,#02040c 0%,#07102a 58%,#10204a 100%);
+  }
+  .card.blue{
+    background:
+      radial-gradient(circle at 76% 92%, rgba(137,245,255,.48) 0%, rgba(137,245,255,0) 34%),
+      radial-gradient(circle at 6% 118%, rgba(173,138,255,.26) 0%, rgba(173,138,255,0) 28%),
+      linear-gradient(180deg,#4b4699 0%,#5a5fb4 48%,#355582 100%);
+  }
+
+  .card.lines:before{
+    content:"";
+    position:absolute;
+    left:-12px;
+    top:38px;
+    width:188px;
+    height:2px;
+    background:rgba(134,62,255,.7);
+    transform:rotate(-9deg);
+    transform-origin:left center;
+  }
+  .card.streaks:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(158deg, rgba(154,198,255,.12) 0, rgba(154,198,255,.12) 1px, transparent 1px, transparent 15px),
+      repeating-linear-gradient(170deg, rgba(170,114,255,.10) 0, rgba(170,114,255,.10) 1px, transparent 1px, transparent 22px);
+    opacity:.62;
+    mix-blend-mode:screen;
+  }
+  .card.topwave:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(164deg, rgba(130,178,255,.20) 0, rgba(130,178,255,.20) 1px, transparent 1px, transparent 18px),
+      radial-gradient(230px 94px at 92% 18%, rgba(255,255,255,0) 60%, rgba(124,100,255,.28) 61%, rgba(255,255,255,0) 63%);
+    opacity:.7;
+  }
+  .card.swirl:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(210px 150px at 6% 100%, rgba(255,255,255,0) 47%, rgba(171,224,255,.58) 48%, rgba(255,255,255,0) 49.5%, rgba(255,255,255,0) 54%, rgba(171,224,255,.48) 55%, rgba(255,255,255,0) 56.5%, rgba(255,255,255,0) 61%, rgba(171,224,255,.35) 62%, rgba(255,255,255,0) 63.5%),
+      radial-gradient(260px 180px at 6% 100%, rgba(255,255,255,0) 54%, rgba(197,147,255,.40) 55%, rgba(255,255,255,0) 56.5%);
+    pointer-events:none;
+  }
+  .card.wave:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(270px 185px at 84% 100%, rgba(255,255,255,0) 52%, rgba(156,231,255,.44) 53%, rgba(255,255,255,0) 54.5%, rgba(255,255,255,0) 59%, rgba(156,231,255,.35) 60%, rgba(255,255,255,0) 61.5%, rgba(255,255,255,0) 67%, rgba(156,231,255,.26) 68%, rgba(255,255,255,0) 69.5%),
+      radial-gradient(315px 230px at 84% 100%, rgba(255,255,255,0) 64%, rgba(180,132,255,.22) 65%, rgba(255,255,255,0) 66.6%);
+    pointer-events:none;
+  }
+
+  .label{
+    position:absolute;
+    left:10px;
+    top:20px;
+    color:#fff;
+    font-size:15px;
+    line-height:1.15;
+    font-weight:700;
+    letter-spacing:.03em;
+    z-index:2;
+  }
+  .body{
+    position:absolute;
+    left:10px;
+    top:48px;
+    color:#fff;
+    font-size:13px;
+    line-height:1.2;
+    font-weight:500;
+    z-index:2;
+  }
+  .badge{
+    position:absolute;
+    right:10px;
+    top:15px;
+    width:31px;
+    height:29px;
+    background:#f3e300;
+    color:#2f3040;
+    font-size:17px;
+    line-height:29px;
+    font-weight:800;
+    text-align:center;
+    z-index:3;
+  }
+
+  .person svg,.fullperson svg,.silhand svg{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:1;
+  }
+
+  .footer-gradient{
+    position:absolute;
+    left:129px;
+    top:670px;
+    width:1134px;
+    height:12px;
+    background:linear-gradient(90deg,#f1df00 0%,#f1df00 30%,#e42bf4 67%,#19dbe0 100%);
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="canvas"></div>
+
+  <div class="page-no">3</div>
+  <div class="vline"></div>
+  <div class="side-label">TABLE OF CONTENTS</div>
+  <div class="side-yellow"></div>
+
+  <div class="title-kicker">TABLE OF</div>
+  <div class="title-main">CONTENTS</div>
+  <div class="jump-left"></div>
+  <div class="jump-text">CLICK TO JUMP TO SECTION</div>
+  <div class="jump-right"></div>
+
+  <div class="card dark lines" style="left:130px; top:167px; width:150px; height:182px;">
+    <div class="label" style="width:100px;">Key takeaways</div>
+    <div class="badge">04</div>
+  </div>
+
+  <div class="card dark streaks" style="left:130px; top:368px; width:150px; height:147px;">
+    <div class="label" style="width:102px;">CHAPTER 1</div>
+    <div class="badge">08</div>
+    <div class="body" style="width:126px;">The CRO agenda: risk priorities and planned enhancements</div>
+  </div>
+
+  <div class="card blue swirl" style="left:130px; top:526px; width:150px; height:144px;">
+    <div class="label" style="width:102px;">CHAPTER 2</div>
+    <div class="badge">13</div>
+    <div class="body" style="width:124px;">The macro view: economic uncertainty and geopolitical risks</div>
+  </div>
+
+  <div class="card dark lines" style="left:296px; top:167px; width:151px; height:49px;"></div>
+
+  <div class="card" style="left:296px; top:234px; width:151px; height:145px;">
+    <div class="label" style="width:103px;">CHAPTER 3</div>
+    <div class="badge">16</div>
+    <div class="body" style="width:126px;">Risk and the business: CRO involvement in major change initiatives</div>
+  </div>
+
+  <div class="card swirl silhand" style="left:296px; top:398px; width:151px; height:272px;">
+    <div class="label" style="width:103px;">CHAPTER 4</div>
+    <div class="badge">20</div>
+    <div class="body" style="width:128px;">Operational resilience: preparing the business for times of crisis</div>
+    <svg viewBox="0 0 151 272" preserveAspectRatio="none">
+      <path d="M104,270 C104,226 101,188 103,152 C105,121 113,102 125,98 C136,95 146,108 149,126 L151,272 Z" fill="#0a0d18" opacity=".9"/>
+    </svg>
+  </div>
+
+  <div class="card dark lines" style="left:461px; top:167px; width:151px; height:145px;"></div>
+
+  <div class="card person" style="left:461px; top:327px; width:151px; height:145px; background:
+      radial-gradient(circle at 72% 92%, rgba(125,232,255,.16) 0%, rgba(125,232,255,0) 35%),
+      linear-gradient(180deg,#24195a 0%, #4c3d89 100%);">
+    <svg viewBox="0 0 151 145" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="gp" x1="0" x2="1">
+          <stop offset="0" stop-color="#05070f"/>
+          <stop offset="1" stop-color="#101734"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="74" cy="42" rx="26" ry="31" fill="url(#gp)"/>
+      <path d="M50,66 C63,54 87,53 101,67 L110,84 L111,127 L41,127 L42,86 Z" fill="url(#gp)"/>
+      <path d="M91,51 C100,50 107,52 114,57" stroke="#6f8dff" stroke-width="2" fill="none" opacity=".35"/>
+      <rect x="100" y="39" width="17" height="9" rx="4.5" fill="none" stroke="#9fb0ff" stroke-width="1" opacity=".45"/>
+    </svg>
+  </div>
+
+  <div class="card dark fullperson" style="left:461px; top:487px; width:151px; height:183px; background:
+      radial-gradient(circle at 72% 92%, rgba(110,255,255,.12) 0%, rgba(110,255,255,0) 35%),
+      linear-gradient(180deg,#04060f 0%, #0a1233 56%, #11244d 100%);">
+    <div class="label" style="width:104px;">CHAPTER 5</div>
+    <div class="badge">23</div>
+    <div class="body" style="width:122px; top:51px;">Technology and transformation in risk management: modernizing for the age of AI</div>
+    <svg viewBox="0 0 151 183" preserveAspectRatio="none">
+      <path d="M18,182 C22,141 24,104 34,78 C43,58 56,47 66,45 C72,44 79,48 84,59 C96,86 89,118 88,182 Z" fill="#070a13"/>
+      <path d="M92,121 C104,110 113,102 123,94 C129,89 135,92 136,99 C137,107 132,111 126,114 C120,117 114,120 110,126 C115,133 117,141 119,151" fill="none" stroke="#0a0d18" stroke-width="8" stroke-linecap="round"/>
+      <path d="M111,125 C122,121 131,119 140,118" fill="none" stroke="#0a0d18" stroke-width="6" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="card" style="left:624px; top:169px; width:151px; height:145px;">
+    <div class="label" style="width:103px;">CHAPTER 6</div>
+    <div class="badge">27</div>
+    <div class="body" style="width:127px;">Climate risk: taking the long-term view</div>
+  </div>
+
+  <div class="card blue silhand" style="left:624px; top:331px; width:151px; height:339px;">
+    <svg viewBox="0 0 151 339" preserveAspectRatio="none">
+      <path d="M0,339 L0,0 L151,0 L151,339 Z" fill="none"/>
+      <path d="M20,339 C48,303 48,262 67,236 C82,216 91,196 94,190 C98,182 106,181 110,188 C114,195 113,201 111,209 C109,216 107,224 106,232 C117,243 126,251 135,261" fill="none" stroke="#11172c" stroke-width="10" stroke-linecap="round"/>
+      <path d="M82,261 C95,245 103,231 116,216 C124,208 133,196 145,184" fill="none" stroke="#11172c" stroke-width="7" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="card streaks" style="left:786px; top:169px; width:152px; height:302px;">
+    <div class="label" style="width:103px;">CHAPTER 7</div>
+    <div class="badge">30</div>
+    <div class="body" style="width:123px;">Regulatory risk: seeking efficiency in compliance</div>
+  </div>
+
+  <div class="card wave" style="left:786px; top:486px; width:152px; height:184px;">
+    <div class="label" style="width:103px;">CHAPTER 8</div>
+    <div class="badge">33</div>
+    <div class="body" style="width:124px;">Current state of controls: maturing capabilities from a solid foundation</div>
+  </div>
+
+  <div class="card streaks topwave" style="left:949px; top:169px; width:151px; height:181px;">
+    <div class="label" style="width:103px;">CHAPTER 9</div>
+    <div class="badge">37</div>
+    <div class="body" style="width:127px;">Risk management organization and operating model: demand-driven staffing increases</div>
+  </div>
+
+  <div class="card wave" style="left:949px; top:368px; width:151px; height:147px;">
+    <div class="label" style="width:120px;">CHAPTER 10</div>
+    <div class="badge">40</div>
+    <div class="body" style="width:126px;">Skills and talent: seeking expertise beyond technical domains</div>
+  </div>
+
+  <div class="card" style="left:949px; top:530px; width:151px; height:140px;">
+    <div class="badge">45</div>
+    <div class="body" style="top:18px; width:130px;">Looking ahead: finding the balance between immediate-term pressures and strategic perspectives</div>
+  </div>
+
+  <div class="card dark topwave" style="left:1112px; top:167px; width:151px; height:49px;"></div>
+
+  <div class="card streaks" style="left:1112px; top:234px; width:151px; height:145px;">
+    <div class="label" style="width:100px;">Key actions<br>for CROs</div>
+    <div class="badge">47</div>
+  </div>
+
+  <div class="card wave" style="left:1112px; top:398px; width:151px; height:117px;">
+    <div class="label" style="width:110px;">Further<br>reading</div>
+    <div class="badge">48</div>
+  </div>
+
+  <div class="card dark" style="left:1112px; top:528px; width:151px; height:142px;">
+    <div class="label" style="width:116px;">Appendix:<br>methodology<br>and supplemental<br>data</div>
+    <div class="badge">50</div>
+  </div>
+
+  <div class="footer-gradient"></div>
+</div>
+</body>
+</html>

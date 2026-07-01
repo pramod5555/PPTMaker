@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Business considerations</title>
+<style>
+  body {
+    margin: 0;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f2f2f2;
+    color: #111;
+  }
+
+  .topbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 24px;
+    background: #efefef;
+    border-bottom: 1px solid #d0d0d0;
+    font-size: 10px;
+    font-weight: 700;
+    color: #8a8a8a;
+    line-height: 24px;
+    white-space: nowrap;
+  }
+  .tab {
+    position: absolute;
+    top: 0;
+    height: 24px;
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+  .tab.active-main {
+    background: #5e1a8f;
+    color: #fff;
+  }
+  .tab.active-under {
+    color: #5e1a8f;
+    border-bottom: 2px solid #7e1cf0;
+    line-height: 22px;
+  }
+
+  .title {
+    position: absolute;
+    left: 41px;
+    top: 58px;
+    width: 1160px;
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: 800;
+    color: #000;
+  }
+  .subtitle {
+    position: absolute;
+    left: 41px;
+    top: 122px;
+    font-size: 29px;
+    line-height: 29px;
+    font-weight: 800;
+    color: #9a1cff;
+  }
+
+  .section-head {
+    position: absolute;
+    left: 405px;
+    top: 173px;
+    width: 830px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 800;
+    color: #111;
+  }
+  .section-line {
+    position: absolute;
+    left: 405px;
+    top: 194px;
+    width: 888px;
+    height: 2px;
+    background: #a8a8a8;
+  }
+
+  .header {
+    position: absolute;
+    top: 214px;
+    font-size: 17px;
+    font-weight: 800;
+    color: #111;
+  }
+  .h-desc { left: 194px; width: 170px; }
+  .h-op { left: 390px; width: 180px; }
+  .h-comp { left: 612px; width: 200px; }
+  .h-fin { left: 822px; width: 120px; }
+  .h-tech { left: 1032px; width: 210px; }
+
+  .header-rule {
+    position: absolute;
+    left: 41px;
+    top: 239px;
+    width: 1248px;
+    height: 1px;
+    background: #a8a8a8;
+  }
+
+  .row-label {
+    position: absolute;
+    left: 41px;
+    width: 154px;
+    padding: 8px 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 800;
+    color: #111;
+  }
+  .r1 { top: 240px; height: 161px; background: #ceb3e0; }
+  .r2 { top: 402px; height: 159px; background: #b672ea; }
+  .r3 { top: 562px; height: 150px; background: #6a00a3; color: #fff; }
+
+  .cell {
+    position: absolute;
+    font-size: 16px;
+    line-height: 18px;
+    color: #222;
+  }
+  .italic { font-style: italic; }
+  .bullet-line { display: block; margin-bottom: 4px; }
+  .indent { padding-left: 18px; display: block; }
+
+  .desc1 { left: 194px; top: 245px; width: 187px; }
+  .op1   { left: 389px; top: 245px; width: 195px; }
+  .comp1 { left: 611px; top: 245px; width: 188px; }
+  .fin1  { left: 821px; top: 245px; width: 172px; }
+  .tech1 { left: 1032px; top: 245px; width: 200px; }
+
+  .desc2 { left: 194px; top: 405px; width: 190px; }
+  .op2   { left: 389px; top: 405px; width: 200px; }
+  .comp2 { left: 611px; top: 405px; width: 185px; }
+  .fin2  { left: 821px; top: 405px; width: 195px; }
+  .tech2 { left: 1032px; top: 405px; width: 190px; }
+
+  .desc3 { left: 194px; top: 565px; width: 187px; }
+  .op3   { left: 389px; top: 565px; width: 203px; }
+  .comp3 { left: 611px; top: 565px; width: 180px; }
+  .fin3  { left: 821px; top: 565px; width: 180px; }
+  .tech3 { left: 1032px; top: 565px; width: 190px; }
+
+  .sep1, .sep2, .sep3 {
+    position: absolute;
+    left: 41px;
+    width: 1248px;
+    height: 1px;
+    background: #c6c6c6;
+  }
+  .sep1 { top: 401px; }
+  .sep2 { top: 561px; }
+  .sep3 { top: 711px; }
+
+  .footer-left {
+    position: absolute;
+    left: 41px;
+    top: 726px;
+    display: none;
+  }
+
+  .accent-mark {
+    position: absolute;
+    left: 40px;
+    top: 724px;
+    display: none;
+  }
+
+  .brand-arrow {
+    position: absolute;
+    left: 38px;
+    top: 723px;
+    display: none;
+  }
+
+  .arrow-footer {
+    position: absolute;
+    left: 39px;
+    top: 723px;
+    display: none;
+  }
+
+  .footer-accent {
+    position: absolute;
+    left: 41px;
+    top: 726px;
+    display: none;
+  }
+
+  .source-icon {
+    position: absolute;
+    left: 39px;
+    top: 727px;
+    display: none;
+  }
+
+  .accenture {
+    position: absolute;
+    left: 40px;
+    top: 727px;
+    display: none;
+  }
+
+  .footer-mark {
+    position: absolute;
+    left: 40px;
+    top: 725px;
+    display: none;
+  }
+
+  .source-arrow {
+    position: absolute;
+    left: 40px;
+    top: 726px;
+    width: 24px;
+    height: 14px;
+  }
+  .source-arrow:before,
+  .source-arrow:after {
+    content: "";
+    position: absolute;
+    background: #9a1cff;
+  }
+  .source-arrow:before {
+    left: 0;
+    top: 5px;
+    width: 18px;
+    height: 4px;
+    transform: skewX(-25deg);
+  }
+  .source-arrow:after {
+    left: 10px;
+    top: 0;
+    width: 14px;
+    height: 14px;
+    clip-path: polygon(0 0, 100% 50%, 0 100%, 32% 50%);
+    background: #9a1cff;
+  }
+
+  .source-text {
+    position: absolute;
+    left: 73px;
+    top: 729px;
+    display: none;
+  }
+
+  .footer {
+    position: absolute;
+    left: 69px;
+    top: 728px;
+    display: none;
+  }
+
+  .source {
+    position: absolute;
+    left: 69px;
+    top: 728px;
+    display: none;
+  }
+
+  .source-line {
+    position: absolute;
+    left: 69px;
+    top: 729px;
+    display: none;
+  }
+
+  .footer-visible-left {
+    position: absolute;
+    left: 70px;
+    top: 728px;
+    display: none;
+  }
+
+  .source-label {
+    position: absolute;
+    left: 69px;
+    top: 727px;
+    display: none;
+  }
+
+  .source-final {
+    position: absolute;
+    left: 69px;
+    top: 729px;
+    display: none;
+  }
+
+  .foot-left {
+    position: absolute;
+    left: 69px;
+    top: 728px;
+    display: none;
+  }
+
+  .visible-footer-left {
+    position: absolute;
+    left: 69px;
+    top: 728px;
+    display: none;
+  }
+
+  .source-real {
+    position: absolute;
+    left: 69px;
+    top: 728px;
+    display: none;
+  }
+
+  .bottom-source {
+    position: absolute;
+    left: 69px;
+    top: 728px;
+    display: none;
+  }
+
+  .footer-left-real {
+    position: absolute;
+    left: 69px;
+    top: 728px;
+    display: none;
+  }
+
+  .source-block {
+    position: absolute;
+    left: 69px;
+    top: 728px;
+    display: none;
+  }
+
+  .bottom-left-text {
+    position: absolute;
+    left: 69px;
+    top: 728px;
+    display: none;
+  }
+
+  .source-text-visible {
+    position: absolute;
+    left: 69px;
+    top: 731px;
+    width: 300px;
+    font-size: 12px;
+    color: #7f7f7f;
+  }
+
+  .copyright {
+    position: absolute;
+    right: 83px;
+    top: 731px;
+    display: none;
+  }
+
+  .copyright-visible {
+    position: absolute;
+    left: 950px;
+    top: 731px;
+    width: 250px;
+    font-size: 12px;
+    color: #6f6f6f;
+    text-align: left;
+  }
+
+  .page {
+    position: absolute;
+    left: 1226px;
+    top: 731px;
+    width: 24px;
+    font-size: 12px;
+    color: #6f6f6f;
+    text-align: right;
+  }
+
+  .footer-band {
+    position: absolute;
+    left: 0;
+    top: 720px;
+    display: none;
+  }
+
+  .footer-in {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  /* place footer inside viewport */
+  .source-arrow { top: 728px; }
+  .source-text-visible { top: 730px; }
+  .copyright-visible { top: 730px; }
+  .page { top: 730px; }
+
+  /* correct footer to be visible within 720 */
+  .source-arrow { top: 708px; }
+  .source-text-visible { top: 710px; }
+  .copyright-visible { top: 710px; }
+  .page { top: 710px; }
+
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="topbar">
+      <div class="tab active-main" style="left:0px;">Top 10 trends</div>
+      <div class="tab" style="left:106px;">Multi-speed growth</div>
+      <div class="tab" style="left:242px;">Tariff impacts</div>
+      <div class="tab" style="left:372px;">Financial fragility</div>
+      <div class="tab" style="left:510px;">Affordability</div>
+      <div class="tab active-under" style="left:612px;">AI productivity</div>
+      <div class="tab" style="left:734px;">China exports</div>
+      <div class="tab" style="left:845px;">Europe struggle</div>
+      <div class="tab" style="left:978px;">AI arms race</div>
+      <div class="tab" style="left:1098px;">Power crunch</div>
+      <div class="tab" style="left:1195px;">Geostrategic hubs</div>
+    </div>
+
+    <div class="title">Businesses must adapt operating models and capabilities as AI maturity drives widening performance gaps</div>
+    <div class="subtitle">5. Business considerations</div>
+
+    <div class="section-head">Strategic considerations across different levels of AI adoption</div>
+    <div class="section-line"></div>
+
+    <div class="header h-desc">Description</div>
+    <div class="header h-op">Operating model</div>
+    <div class="header h-comp">Competitive positioning</div>
+    <div class="header h-fin">Financials</div>
+    <div class="header h-tech">Technology / Compliance</div>
+    <div class="header-rule"></div>
+
+    <div class="row-label r1">Early Adopters</div>
+    <div class="row-label r2">Followers</div>
+    <div class="row-label r3">Late Adopters</div>
+
+    <div class="cell desc1 italic">
+      Organizations already embedding AI across core workflows<br>
+      Strong capabilities, use cases, and growing returns
+    </div>
+    <div class="cell op1">
+      <span class="bullet-line">•&nbsp;&nbsp;Redesign for end-to-end workflow</span>
+      <span class="bullet-line">•&nbsp;&nbsp;Enable greater agility and adaptability within people and process to disruption</span>
+    </div>
+    <div class="cell comp1">
+      <span class="bullet-line">•&nbsp;&nbsp;Differentiating AI-enabled services across the streams e.g.,</span>
+      <span class="indent">–&nbsp;&nbsp;Propositions</span>
+      <span class="indent">–&nbsp;&nbsp;Pricing</span>
+      <span class="bullet-line">•&nbsp;&nbsp;Realise higher productivity as AI maturity advances</span>
+    </div>
+    <div class="cell fin1">
+      <span class="bullet-line">•&nbsp;&nbsp;New revenue models enabled by AI (e.g., personalised services) prioritisation</span>
+    </div>
+    <div class="cell tech1">
+      <span class="bullet-line">•&nbsp;&nbsp;Emphasis on governance as models grow more complex</span>
+      <span class="bullet-line">•&nbsp;&nbsp;Best positioned to leverage agentic AI within existing process</span>
+    </div>
+
+    <div class="sep1"></div>
+
+    <div class="cell desc2 italic">
+      Organizations with meaningful AI opportunities but uneven progress<br>
+      Selective adoption and barriers e.g., regulatory, capability or data restraints
+    </div>
+    <div class="cell op2">
+      <span class="bullet-line">•&nbsp;&nbsp;Prioritise the highest-value use cases to avoid fragmented adoption</span>
+      <span class="bullet-line">•&nbsp;&nbsp;Seamless shift towards standardised decision workflows</span>
+    </div>
+    <div class="cell comp2">
+      <span class="bullet-line">•&nbsp;&nbsp;Scale priority initiatives while driving targeted innovation ahead of competitors</span>
+    </div>
+    <div class="cell fin2">
+      <span class="bullet-line">•&nbsp;&nbsp;Investments with areas of visible ROI to avoid experimental sprawl</span>
+      <span class="bullet-line">•&nbsp;&nbsp;Is there enough financial evidence to support scaling decisions?</span>
+    </div>
+    <div class="cell tech2">
+      <span class="bullet-line">•&nbsp;&nbsp;Address data quality, access and barriers</span>
+    </div>
+
+    <div class="sep2"></div>
+
+    <div class="cell desc3 italic">
+      Organizations where AI adoption remains limited due to operational constraints, legacy systems or low applicability
+    </div>
+    <div class="cell op3">
+      <span class="bullet-line">•&nbsp;&nbsp;Focus on foundational digital and process improvements</span>
+      <span class="indent">–&nbsp;&nbsp;Specific areas (e.g., reporting)</span>
+      <span class="indent">–&nbsp;&nbsp;Improving data literacy</span>
+    </div>
+    <div class="cell comp3">
+      <span class="bullet-line">•&nbsp;&nbsp;Risk of losing market share if foundations are not strengthened</span>
+    </div>
+    <div class="cell fin3">
+      <span class="bullet-line">•&nbsp;&nbsp;Early investment in data systems</span>
+    </div>
+    <div class="cell tech3">
+      <span class="bullet-line">•&nbsp;&nbsp;Minimum-viable data governance to enable AI use</span>
+      <span class="bullet-line">•&nbsp;&nbsp;Modernisation of legacy platforms</span>
+    </div>
+
+    <div class="sep3"></div>
+
+    <div class="source-arrow"></div>
+    <div class="source-text-visible">Source(s): Accenture Strategy analysis</div>
+    <div class="copyright-visible">Copyright © 2025 Accenture. All rights reserved.</div>
+    <div class="page">29</div>
+  </div>
+</body>
+</html>

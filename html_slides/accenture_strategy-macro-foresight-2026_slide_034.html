@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>US-China AI race</title>
+<style>
+  body{
+    margin:0;
+    background:#f0ecf1;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f0ecf1;
+    color:#111;
+  }
+
+  /* Top nav */
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:25px;
+    background:#f0ecf1;
+    border-bottom:1px solid #cfc8d0;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:25px;
+    line-height:25px;
+    font-size:10px;
+    font-weight:700;
+    color:#7c7c7c;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .tab.active{
+    background:#5b1688;
+    color:#fff;
+  }
+  .underline{
+    position:absolute;
+    height:2px;
+    background:#7d24c8;
+    top:23px;
+  }
+
+  .title{
+    position:absolute;
+    left:41px;
+    top:58px;
+    width:1180px;
+    font-size:25px;
+    line-height:29px;
+    font-weight:800;
+    color:#000;
+  }
+  .subtitle{
+    position:absolute;
+    left:41px;
+    top:120px;
+    font-size:29px;
+    line-height:31px;
+    font-weight:800;
+    color:#8f1df0;
+  }
+
+  .section-head{
+    position:absolute;
+    font-size:18px;
+    line-height:21px;
+    font-weight:800;
+    color:#111;
+  }
+  .section-sub{
+    position:absolute;
+    font-size:15px;
+    line-height:18px;
+    color:#9a9a9a;
+  }
+  .rule{
+    position:absolute;
+    height:2px;
+    background:#444;
+  }
+
+  /* Left chart */
+  .left-panel{
+    position:absolute;
+    left:43px;
+    top:175px;
+    width:580px;
+    height:500px;
+  }
+  .axis{
+    position:absolute;
+    left:102px;
+    top:63px;
+    width:2px;
+    height:405px;
+    background:#222;
+  }
+  .gdp-head{
+    position:absolute;
+    left:507px;
+    top:44px;
+    font-size:15px;
+    font-weight:800;
+    font-style:italic;
+    color:#111;
+  }
+  .row{
+    position:absolute;
+    left:0;
+    width:560px;
+    height:35px;
+  }
+  .flag{
+    position:absolute;
+    left:0;
+    top:6px;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    box-shadow:0 1px 2px rgba(0,0,0,0.25);
+    overflow:hidden;
+    background:#ddd;
+  }
+  .label{
+    position:absolute;
+    left:33px;
+    top:7px;
+    width:72px;
+    font-size:14px;
+    line-height:18px;
+    color:#222;
+  }
+  .bar{
+    position:absolute;
+    left:112px;
+    top:2px;
+    height:30px;
+    background:#ccc;
+  }
+  .val{
+    position:absolute;
+    top:6px;
+    font-size:14px;
+    line-height:18px;
+    font-weight:700;
+    color:#222;
+  }
+  .val.reg{
+    font-weight:400;
+  }
+  .gdp-box{
+    position:absolute;
+    left:506px;
+    top:4px;
+    width:61px;
+    height:30px;
+    border-radius:2px;
+    text-align:center;
+    line-height:30px;
+    font-size:14px;
+    box-shadow:0 2px 4px rgba(0,0,0,0.22);
+    color:#222;
+    background:#d0d0d0;
+  }
+  .gdp-box.dark{
+    background:#52007c;
+    color:#fff;
+    font-weight:700;
+  }
+  .gdp-box.mid{
+    background:#b053a9;
+    color:#fff;
+    font-weight:700;
+  }
+
+  /* Right chart */
+  .right-panel{
+    position:absolute;
+    left:660px;
+    top:175px;
+    width:590px;
+    height:490px;
+  }
+  .legend{
+    position:absolute;
+    left:0;
+    top:63px;
+    width:240px;
+  }
+  .leg-item{
+    position:relative;
+    height:21px;
+    font-size:13px;
+    line-height:21px;
+    color:#333;
+  }
+  .sw{
+    display:inline-block;
+    width:18px;
+    height:13px;
+    margin-right:7px;
+    vertical-align:middle;
+  }
+  .baseline{
+    position:absolute;
+    left:43px;
+    top:458px;
+    width:535px;
+    height:2px;
+    background:#222;
+  }
+  .stack{
+    position:absolute;
+    width:92px;
+  }
+  .block{
+    position:absolute;
+    left:0;
+    width:50px;
+    text-align:center;
+    font-size:17px;
+    font-weight:700;
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .block.auto{
+    background:#8b16f0;
+    color:#fff;
+  }
+  .block.aug{
+    background:#d0a8ea;
+  }
+  .block.other{
+    background:#cfcfd0;
+    font-weight:400;
+    color:#333;
+  }
+  .stack-label{
+    position:absolute;
+    left:11px;
+    top:465px;
+    width:170px;
+    font-size:15px;
+    line-height:19px;
+    font-weight:800;
+    color:#111;
+  }
+  .cn-label{
+    left:292px;
+    width:180px;
+  }
+
+  .flag-small{
+    position:absolute;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    box-shadow:0 1px 2px rgba(0,0,0,0.25);
+    overflow:hidden;
+  }
+
+  .dash{
+    position:absolute;
+    border-top:1px dashed #7a7a7a;
+  }
+
+  .arrow-line{
+    position:absolute;
+    width:2px;
+    background:#111;
+  }
+  .arrow-head-up, .arrow-head-down{
+    position:absolute;
+    width:0;
+    height:0;
+    left:-4px;
+  }
+  .arrow-head-up{
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-bottom:10px solid #111;
+    top:-1px;
+  }
+  .arrow-head-down{
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-top:10px solid #111;
+    bottom:-1px;
+  }
+  .callout{
+    position:absolute;
+    width:40px;
+    height:25px;
+    border:1px solid #333;
+    border-radius:50%;
+    background:#f0ecf1;
+    text-align:center;
+    line-height:25px;
+    font-size:14px;
+    font-weight:800;
+    color:#222;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:39px;
+    top:708px;
+    transform:translateY(-100%);
+    font-size:12px;
+    line-height:16px;
+    color:#8c8c8c;
+    width:860px;
+  }
+  .footer-logo{
+    position:absolute;
+    left:41px;
+    top:696px;
+    width:20px;
+    height:20px;
+    color:#8f16f0;
+    font-size:34px;
+    line-height:16px;
+    font-weight:900;
+  }
+  .footer-right{
+    position:absolute;
+    right:83px;
+    top:708px;
+    transform:translateY(-100%);
+    font-size:12px;
+    color:#222;
+  }
+  .page{
+    position:absolute;
+    right:22px;
+    top:708px;
+    transform:translateY(-100%);
+    font-size:12px;
+    color:#666;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar">
+    <div class="tab active" style="left:0px;width:105px;">Top 10 trends</div>
+    <div class="tab" style="left:105px;width:132px;">Multi-speed growth</div>
+    <div class="tab" style="left:237px;width:120px;">Tariff impacts</div>
+    <div class="tab" style="left:357px;width:134px;">Financial fragility</div>
+    <div class="tab" style="left:491px;width:118px;">Affordability</div>
+    <div class="tab" style="left:609px;width:122px;">AI productivity</div>
+    <div class="tab" style="left:731px;width:121px;">China exports</div>
+    <div class="tab" style="left:852px;width:128px;">Europe struggle</div>
+    <div class="tab" style="left:980px;width:123px;color:#4e1878;font-weight:800;">AI arms race</div>
+    <div class="tab" style="left:1103px;width:102px;">Power crunch</div>
+    <div class="tab" style="left:1205px;width:75px;">Geostrategic hubs</div>
+    <div class="underline" style="left:990px;width:105px;"></div>
+  </div>
+
+  <div class="title">The US and China command over 80% of global AI investment, positioning themselves as<br>the dominant competitors in the intensifying AI “arms” race</div>
+  <div class="subtitle">8. US-China AI race</div>
+
+  <div class="section-head" style="left:42px;top:172px;width:575px;">The US and China account for over 80% of global AI investment...</div>
+  <div class="rule" style="left:42px;top:194px;width:618px;"></div>
+  <div class="section-sub" style="left:43px;top:198px;width:470px;">Cumulative private investment in AI by geographic area (2013-2024), USD billions</div>
+
+  <div class="section-head" style="left:705px;top:172px;width:540px;">...as they race to automate or augment 33%-44% of annual working hours</div>
+  <div class="rule" style="left:705px;top:194px;width:618px;"></div>
+  <div class="section-sub" style="left:705px;top:198px;width:420px;">Average annual working hours per worker by geographic area</div>
+
+  <div class="left-panel">
+    <div class="axis"></div>
+    <div class="gdp-head">% of GDP</div>
+
+    <div class="row" style="top:74px;">
+      <div class="flag" style="background:
+        linear-gradient(to bottom,#b22234 0 14%,#fff 14% 28%,#b22234 28% 42%,#fff 42% 56%,#b22234 56% 70%,#fff 70% 84%,#b22234 84% 100%);">
+        <div style="position:absolute;left:0;top:0;width:10px;height:12px;background:#3c3b6e;"></div>
+      </div>
+      <div class="label" style="font-weight:700;">US</div>
+      <div class="bar" style="width:330px;background:#560080;"></div>
+      <div class="val" style="left:447px;">471</div>
+      <div class="gdp-box dark">1.7%</div>
+    </div>
+
+    <div class="row" style="top:114px;">
+      <div class="flag" style="background:#de001a;">
+        <div style="position:absolute;left:5px;top:6px;color:#ffde00;font-size:8px;">★</div>
+      </div>
+      <div class="label" style="font-weight:700;">China</div>
+      <div class="bar" style="width:83px;background:#b053a9;"></div>
+      <div class="val" style="left:200px;">119</div>
+      <div class="gdp-box mid">0.7%</div>
+    </div>
+
+    <div class="row" style="top:154px;">
+      <div class="flag" style="background:#1f4aa8;">
+        <div style="position:absolute;inset:0;background:
+          linear-gradient(45deg, transparent 43%, #fff 43% 57%, transparent 57%),
+          linear-gradient(-45deg, transparent 43%, #fff 43% 57%, transparent 57%),
+          linear-gradient(45deg, transparent 47%, #c8102e 47% 53%, transparent 53%),
+          linear-gradient(-45deg, transparent 47%, #c8102e 47% 53%, transparent 53%),
+          linear-gradient(to right, transparent 38%, #fff 38% 62%, transparent 62%),
+          linear-gradient(to bottom, transparent 38%, #fff 38% 62%, transparent 62%),
+          linear-gradient(to right, transparent 45%, #c8102e 45% 55%, transparent 55%),
+          linear-gradient(to bottom, transparent 45%, #c8102e 45% 55%, transparent 55%);
+        "></div>
+      </div>
+      <div class="label">UK</div>
+      <div class="bar" style="width:18px;background:#cfcfcf;"></div>
+      <div class="val reg" style="left:138px;">28</div>
+      <div class="gdp-box">0.8%</div>
+    </div>
+
+    <div class="row" style="top:194px;">
+      <div class="flag" style="background:#fff;">
+        <div style="position:absolute;left:9px;top:3px;width:4px;height:16px;background:#e11;"></div>
+        <div style="position:absolute;left:3px;top:9px;width:16px;height:4px;background:#e11;"></div>
+      </div>
+      <div class="label">Canada</div>
+      <div class="bar" style="width:11px;background:#cfcfcf;"></div>
+      <div class="val reg" style="left:130px;">15</div>
+      <div class="gdp-box">0.7%</div>
+    </div>
+
+    <div class="row" style="top:234px;">
+      <div class="flag" style="background:#fff;">
+        <div style="position:absolute;left:4px;top:4px;width:14px;height:14px;color:#1b5fbf;font-size:13px;line-height:14px;text-align:center;">✡</div>
+        <div style="position:absolute;left:3px;top:2px;width:16px;height:2px;background:#1b5fbf;"></div>
+        <div style="position:absolute;left:3px;bottom:2px;width:16px;height:2px;background:#1b5fbf;"></div>
+      </div>
+      <div class="label">Israel</div>
+      <div class="bar" style="width:11px;background:#cfcfcf;"></div>
+      <div class="val reg" style="left:130px;">15</div>
+      <div class="gdp-box">2.9%</div>
+    </div>
+
+    <div class="row" style="top:274px;">
+      <div class="flag" style="background:linear-gradient(to bottom,#000 0 33%,#dd0000 33% 66%,#ffce00 66% 100%);"></div>
+      <div class="label">Germany</div>
+      <div class="bar" style="width:9px;background:#cfcfcf;"></div>
+      <div class="val reg" style="left:126px;">13</div>
+      <div class="gdp-box">0.3%</div>
+    </div>
+
+    <div class="row" style="top:314px;">
+      <div class="flag" style="background:linear-gradient(to bottom,#f7931e 0 33%,#fff 33% 66%,#138808 66% 100%);">
+        <div style="position:absolute;left:8px;top:8px;width:6px;height:6px;border:1px solid #2b5fae;border-radius:50%;"></div>
+      </div>
+      <div class="label">India</div>
+      <div class="bar" style="width:8px;background:#cfcfcf;"></div>
+      <div class="val reg" style="left:123px;">11</div>
+      <div class="gdp-box">0.3%</div>
+    </div>
+
+    <div class="row" style="top:354px;">
+      <div class="flag" style="background:linear-gradient(to right,#244aa5 0 33%,#fff 33% 66%,#e53935 66% 100%);"></div>
+      <div class="label">France</div>
+      <div class="bar" style="width:8px;background:#cfcfcf;"></div>
+      <div class="val reg" style="left:123px;">11</div>
+      <div class="gdp-box">0.4%</div>
+    </div>
+
+    <div class="row" style="top:394px;">
+      <div class="flag" style="background:#fff;">
+        <div style="position:absolute;left:5px;top:5px;width:12px;height:12px;border-radius:50%;background:linear-gradient(to right,#c60c30 0 50%,#003478 50% 100%);opacity:.9;"></div>
+        <div style="position:absolute;left:2px;top:2px;width:18px;height:18px;border:1px solid rgba(0,0,0,.08);border-radius:50%;"></div>
+      </div>
+      <div class="label">S. Korea</div>
+      <div class="bar" style="width:7px;background:#cfcfcf;"></div>
+      <div class="val reg" style="left:120px;">9</div>
+      <div class="gdp-box">0.5%</div>
+    </div>
+
+    <div class="row" style="top:434px;">
+      <div class="flag" style="background:#ef3340;">
+        <div style="position:absolute;left:6px;top:7px;color:#fff;font-size:8px;">☾</div>
+      </div>
+      <div class="label">Singapore</div>
+      <div class="bar" style="width:5px;background:#cfcfcf;"></div>
+      <div class="val reg" style="left:118px;">7</div>
+      <div class="gdp-box">1.4%</div>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="legend">
+      <div class="leg-item"><span class="sw" style="background:#cfcfd0;"></span>Other working hours</div>
+      <div class="leg-item"><span class="sw" style="background:#d0a8ea;"></span>Working hours in scope for augmentation</div>
+      <div class="leg-item"><span class="sw" style="background:#8b16f0;"></span>Working hours in scope for automation</div>
+    </div>
+
+    <div class="dash" style="left:45px;top:330px;width:170px;"></div>
+    <div class="dash" style="left:325px;top:341px;width:174px;"></div>
+    <div class="dash" style="left:387px;top:405px;width:50px;"></div>
+
+    <div class="arrow-line" style="left:45px;top:332px;height:120px;">
+      <div class="arrow-head-up"></div>
+      <div class="arrow-head-down"></div>
+    </div>
+    <div class="callout" style="left:23px;top:389px;">44%</div>
+
+    <div class="arrow-line" style="left:324px;top:342px;height:116px;">
+      <div class="arrow-head-up"></div>
+      <div class="arrow-head-down"></div>
+    </div>
+    <div class="callout" style="left:303px;top:394px;">33%</div>
+
+    <div class="baseline"></div>
+
+    <!-- US -->
+    <div class="stack" style="left:74px;top:0;">
+      <div class="block auto" style="top:398px;height:61px;">374</div>
+      <div class="block aug" style="left:67px;top:331px;height:67px;">409</div>
+      <div class="block other" style="left:134px;top:170px;height:161px;font-size:16px;">996</div>
+    </div>
+
+    <!-- China -->
+    <div class="stack" style="left:355px;top:0;">
+      <div class="block auto" style="top:406px;height:53px;">329</div>
+      <div class="block aug" style="left:74px;top:341px;height:65px;">395</div>
+      <div class="block other" style="left:154px;top:102px;height:239px;font-size:16px;">1,471</div>
+    </div>
+
+    <div class="flag-small" style="left:88px;top:468px;background:
+      linear-gradient(to bottom,#b22234 0 14%,#fff 14% 28%,#b22234 28% 42%,#fff 42% 56%,#b22234 56% 70%,#fff 70% 84%,#b22234 84% 100%);">
+      <div style="position:absolute;left:0;top:0;width:10px;height:12px;background:#3c3b6e;"></div>
+    </div>
+    <div class="stack-label">US average annual<br>working hours</div>
+
+    <div class="flag-small" style="left:366px;top:468px;background:#de001a;">
+      <div style="position:absolute;left:6px;top:6px;color:#ffde00;font-size:8px;">★</div>
+    </div>
+    <div class="stack-label cn-label">China average annual<br>working hours</div>
+  </div>
+
+  <div class="footer-logo">&gt;</div>
+  <div class="footer-left">Source(s): US Bureau of Economic Analysis; Oxford Economics; OECD, HAI AI Index Report 2025, Accenture Research “Work, workforce, workers:<br>Reinvented in the Age of Gen AI”, Accenture Strategy analysis</div>
+  <div class="footer-right">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="page">34</div>
+</div>
+</body>
+</html>

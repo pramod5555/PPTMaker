@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+    color:#111;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .title{
+    left:46px;
+    top:43px;
+    width:1190px;
+    font-size:41px;
+    line-height:1.02;
+    font-weight:800;
+    letter-spacing:-0.01em;
+    color:#000;
+  }
+  .subtitle{
+    left:46px;
+    top:146px;
+    width:1190px;
+    font-size:24px;
+    line-height:1.18;
+    font-weight:400;
+    color:#222;
+  }
+  .panel{
+    background:#f2f2f2;
+  }
+  .left-panel{
+    left:46px;
+    top:224px;
+    width:620px;
+    height:491px;
+  }
+  .right-panel{
+    left:699px;
+    top:224px;
+    width:621px;
+    height:491px;
+  }
+  .panel-title{
+    font-size:20px;
+    line-height:1.2;
+    font-weight:700;
+    color:#111;
+  }
+  .left-title{
+    left:77px;
+    top:249px;
+    width:545px;
+  }
+  .right-title{
+    left:730px;
+    top:248px;
+    width:545px;
+  }
+  .right-subtitle{
+    left:730px;
+    top:277px;
+    width:455px;
+    font-size:17px;
+    line-height:1.15;
+    font-weight:400;
+    font-style:italic;
+    color:#444;
+  }
+  .legend-dot{
+    width:17px;
+    height:17px;
+    border-radius:50%;
+    top:300px;
+  }
+  .legend-label{
+    top:297px;
+    font-size:17px;
+    line-height:1.2;
+    font-weight:400;
+    color:#222;
+  }
+  .left-table{
+    left:77px;
+    top:331px;
+    width:570px;
+    height:238px;
+  }
+  .table-header{
+    font-size:16px;
+    line-height:1.12;
+    font-weight:400;
+    color:#2a2a2a;
+  }
+  .table-text{
+    font-size:16px;
+    line-height:1.2;
+    color:#222;
+  }
+  .bold{
+    font-weight:700;
+  }
+  .rule{
+    background:#c5c5c5;
+  }
+  .rowrule{
+    background:#d8d8d8;
+  }
+  .note{
+    font-size:11px;
+    line-height:1.15;
+    font-weight:400;
+    color:#333;
+  }
+  .footer-left{
+    left:47px;
+    top:727px;
+    width:220px;
+    font-size:11px;
+    line-height:1.1;
+    color:#444;
+    transform:translateY(-100%);
+  }
+  .footer-center{
+    left:985px;
+    top:727px;
+    width:300px;
+    font-size:11px;
+    line-height:1.1;
+    color:#444;
+    text-align:left;
+    transform:translateY(-100%);
+  }
+  .footer-right{
+    left:1268px;
+    top:727px;
+    width:18px;
+    font-size:11px;
+    line-height:1.1;
+    color:#444;
+    text-align:right;
+    transform:translateY(-100%);
+  }
+  .bar-label{
+    font-size:16px;
+    line-height:1.05;
+    font-weight:700;
+    color:#111;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">Willingness to spend across income levels should translate<br>into steady demand across categories</div>
+
+  <div class="subtitle">In a year of lower-incidence travel, high-income travelers tend to drive up average trends. In 2026, travelers at all income<br>levels expect to spend more, supporting resilient intent across travel categories.</div>
+
+  <div class="panel left-panel"></div>
+  <div class="panel right-panel"></div>
+
+  <div class="panel-title left-title">Across income levels, trip frequency is similar to 2025, while trip<br>budgets are up</div>
+
+  <div class="panel-title right-title">Intent is stable across core travel product categories</div>
+  <div class="right-subtitle">Travelers planning to book, summer 2025 vs. 2026</div>
+
+  <div class="legend-dot" style="left:730px;background:#000;"></div>
+  <div class="legend-label" style="left:750px;">2025</div>
+  <div class="legend-dot" style="left:810px;background:#76bc00;"></div>
+  <div class="legend-label" style="left:830px;">2026</div>
+
+  <div class="left-table">
+    <div class="table-header" style="left:10px;top:7px;width:170px;">Income level</div>
+    <div class="table-header" style="left:199px;top:7px;width:154px;">Trip frequency<br>2025 to 2026</div>
+    <div class="table-header" style="left:389px;top:7px;width:160px;">Marquee trip budget<br>vs. 2025</div>
+
+    <div class="rule" style="left:188px;top:0;width:1px;height:238px;"></div>
+    <div class="rule" style="left:378px;top:0;width:1px;height:238px;"></div>
+
+    <div class="rule" style="left:0;top:50px;width:570px;height:2px;"></div>
+
+    <div class="rowrule" style="left:0;top:98px;width:570px;height:1px;"></div>
+    <div class="rowrule" style="left:0;top:145px;width:570px;height:1px;"></div>
+    <div class="rowrule" style="left:0;top:192px;width:570px;height:1px;"></div>
+
+    <div class="table-text bold" style="left:10px;top:58px;width:170px;">Under $100K</div>
+    <div class="table-text" style="left:199px;top:58px;width:154px;">2.9 to 2.7</div>
+    <div class="table-text" style="left:389px;top:58px;width:160px;">+6%</div>
+
+    <div class="table-text bold" style="left:10px;top:105px;width:180px;">$100K to $199,000</div>
+    <div class="table-text" style="left:199px;top:105px;width:154px;">3.2 to 3.3</div>
+    <div class="table-text" style="left:389px;top:105px;width:160px;">+24%</div>
+
+    <div class="table-text bold" style="left:10px;top:152px;width:170px;">Over $200K</div>
+    <div class="table-text" style="left:199px;top:152px;width:154px;">3.8 to 3.7</div>
+    <div class="table-text" style="left:389px;top:152px;width:160px;">+14%</div>
+
+    <div class="table-text bold" style="left:10px;top:199px;width:170px;">Overall</div>
+    <div class="table-text" style="left:199px;top:199px;width:154px;">3.1 to 3.1</div>
+    <div class="table-text" style="left:389px;top:199px;width:160px;">+17%</div>
+  </div>
+
+  <div class="note" style="left:77px;top:648px;width:550px;">Notes: Questions: (1) “Of your [x] leisure trips in 2026, how many trips will you be taking this summer?”;<br>(2) “What is your budget for this trip?”; n = 1,948 for both questions.<br>Source: 2026 Deloitte Summer Travel Survey.</div>
+
+  <svg width="560" height="330" viewBox="0 0 560 330" style="left:730px; top:329px;">
+    <rect x="0" y="28" width="33" height="224" fill="#000000"></rect>
+    <rect x="36" y="25" width="33" height="227" fill="#76bc00"></rect>
+    <text x="16.5" y="18" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#4a4a4a" text-anchor="middle">80%</text>
+    <text x="52.5" y="17" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#4a4a4a" text-anchor="middle">81%</text>
+
+    <rect x="122" y="182" width="33" height="70" fill="#000000"></rect>
+    <rect x="158" y="171" width="33" height="81" fill="#76bc00"></rect>
+    <text x="138.5" y="171" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#4a4a4a" text-anchor="middle">25%</text>
+    <text x="174.5" y="160" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#4a4a4a" text-anchor="middle">29%</text>
+
+    <rect x="244" y="224" width="33" height="28" fill="#000000"></rect>
+    <rect x="280" y="221" width="33" height="31" fill="#76bc00"></rect>
+    <text x="260.5" y="214" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#4a4a4a" text-anchor="middle">10%</text>
+    <text x="296.5" y="211" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#4a4a4a" text-anchor="middle">11%</text>
+
+    <rect x="366" y="90" width="33" height="162" fill="#000000"></rect>
+    <rect x="402" y="81" width="33" height="171" fill="#76bc00"></rect>
+    <text x="382.5" y="79" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#4a4a4a" text-anchor="middle">58%</text>
+    <text x="418.5" y="70" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#4a4a4a" text-anchor="middle">61%</text>
+
+    <rect x="488" y="173" width="33" height="79" fill="#000000"></rect>
+    <rect x="524" y="159" width="33" height="93" fill="#76bc00"></rect>
+    <text x="504.5" y="162" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#4a4a4a" text-anchor="middle">27%</text>
+    <text x="540.5" y="148" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#4a4a4a" text-anchor="middle">32%</text>
+  </svg>
+
+  <div class="bar-label" style="left:727px;top:594px;width:74px;">Hotel</div>
+  <div class="bar-label" style="left:842px;top:594px;width:84px;">Private<br>rental</div>
+  <div class="bar-label" style="left:972px;top:594px;width:47px;">Cruise</div>
+  <div class="bar-label" style="left:1072px;top:594px;width:102px;">Domestic<br>flight</div>
+  <div class="bar-label" style="left:1195px;top:594px;width:99px;">International<br>flight</div>
+
+  <div class="note" style="left:730px;top:650px;width:535px;">Note: Question: “Across your travels this summer, which accommodation/transportation options are you<br>likely to use?” (Select all that apply) (n = 1,948).<br>Source: 2026 Deloitte Summer Travel Survey.</div>
+
+  <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+  <div class="footer-center">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="footer-right">10</div>
+</div>
+</body>
+</html>

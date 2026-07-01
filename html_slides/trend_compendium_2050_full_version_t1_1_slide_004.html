@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>People & Society</title>
+<style>
+  body{margin:0;background:#ffffff;font-family:Arial, Helvetica, "Segoe UI", sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+  }
+  .leftbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:180px;
+    height:720px;
+    background:#4a4f56;
+    z-index:5;
+  }
+  .divider{
+    position:absolute;
+    left:178px;
+    top:0;
+    width:2px;
+    height:720px;
+    background:#c2c800;
+    z-index:10;
+  }
+  .bottom-band{
+    position:absolute;
+    left:180px;
+    top:434px;
+    width:1100px;
+    height:286px;
+    background:#b4bd00;
+    z-index:0;
+  }
+
+  .title-side{
+    position:absolute;
+    left:14px;
+    top:34px;
+    width:118px;
+    color:#fff;
+    font-size:24px;
+    line-height:1.05;
+    font-weight:700;
+    z-index:20;
+  }
+
+  .main-title{
+    position:absolute;
+    left:220px;
+    top:30px;
+    width:1030px;
+    color:#1c1c1c;
+    font-size:27px;
+    line-height:1.12;
+    font-weight:700;
+    z-index:20;
+    letter-spacing:.1px;
+  }
+  .subtitle{
+    position:absolute;
+    left:220px;
+    top:138px;
+    width:700px;
+    color:#8d939c;
+    font-size:26px;
+    line-height:1.18;
+    font-weight:400;
+    z-index:20;
+  }
+
+  .num{
+    position:absolute;
+    color:#b8bf00;
+    font-size:96px;
+    line-height:1;
+    font-weight:700;
+    z-index:20;
+  }
+  .n1{left:309px;top:232px;}
+  .n2{left:601px;top:232px;}
+  .n3{left:875px;top:232px;}
+  .n4{left:1144px;top:232px;}
+
+  .hex{
+    position:absolute;
+    width:228px;
+    height:202px;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    background:#e3e3df;
+    z-index:15;
+    box-shadow:0 0 0 2px rgba(0,0,0,0.02);
+  }
+  .hex:before{
+    content:"";
+    position:absolute;
+    left:18px;
+    top:17px;
+    width:192px;
+    height:168px;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    z-index:16;
+  }
+  .h1{left:220px;top:338px;}
+  .h2{left:511px;top:338px;}
+  .h3{left:802px;top:338px;}
+  .h4{left:1062px;top:338px;}
+
+  .h1:before{
+    background:
+      radial-gradient(circle at 8% 18%, #7b7b7b 0 2px, transparent 2.2px),
+      radial-gradient(circle at 15% 22%, #b84f57 0 2px, transparent 2.2px),
+      radial-gradient(circle at 22% 16%, #4b4b4b 0 2px, transparent 2.2px),
+      radial-gradient(circle at 28% 21%, #b8a22a 0 2px, transparent 2.2px),
+      radial-gradient(circle at 34% 18%, #2e6ea3 0 2px, transparent 2.2px),
+      radial-gradient(circle at 40% 23%, #555 0 2px, transparent 2.2px),
+      radial-gradient(circle at 48% 19%, #7b7b7b 0 2px, transparent 2.2px),
+      radial-gradient(circle at 55% 24%, #4e8c57 0 2px, transparent 2.2px),
+      radial-gradient(circle at 62% 19%, #c0504d 0 2px, transparent 2.2px),
+      radial-gradient(circle at 70% 22%, #2d85b8 0 2px, transparent 2.2px),
+      radial-gradient(circle at 78% 16%, #444 0 2px, transparent 2.2px),
+      radial-gradient(circle at 85% 21%, #9b9b9b 0 2px, transparent 2.2px),
+      radial-gradient(circle at 12% 34%, #cf9650 0 2px, transparent 2.2px),
+      radial-gradient(circle at 20% 31%, #777 0 2px, transparent 2.2px),
+      radial-gradient(circle at 27% 36%, #2d85b8 0 2px, transparent 2.2px),
+      radial-gradient(circle at 35% 31%, #c0504d 0 2px, transparent 2.2px),
+      radial-gradient(circle at 43% 36%, #4b4b4b 0 2px, transparent 2.2px),
+      radial-gradient(circle at 51% 32%, #6ca269 0 2px, transparent 2.2px),
+      radial-gradient(circle at 58% 37%, #8f5cc0 0 2px, transparent 2.2px),
+      radial-gradient(circle at 66% 31%, #cc3f52 0 2px, transparent 2.2px),
+      radial-gradient(circle at 74% 35%, #2d85b8 0 2px, transparent 2.2px),
+      radial-gradient(circle at 82% 31%, #444 0 2px, transparent 2.2px),
+      radial-gradient(circle at 90% 37%, #c8a34c 0 2px, transparent 2.2px),
+      radial-gradient(circle at 10% 49%, #666 0 2px, transparent 2.2px),
+      radial-gradient(circle at 18% 45%, #2d85b8 0 2px, transparent 2.2px),
+      radial-gradient(circle at 26% 51%, #c0504d 0 2px, transparent 2.2px),
+      radial-gradient(circle at 34% 45%, #3f8f5a 0 2px, transparent 2.2px),
+      radial-gradient(circle at 42% 51%, #444 0 2px, transparent 2.2px),
+      radial-gradient(circle at 50% 46%, #d9a12e 0 2px, transparent 2.2px),
+      radial-gradient(circle at 58% 52%, #777 0 2px, transparent 2.2px),
+      radial-gradient(circle at 66% 46%, #2d85b8 0 2px, transparent 2.2px),
+      radial-gradient(circle at 74% 51%, #c0504d 0 2px, transparent 2.2px),
+      radial-gradient(circle at 82% 46%, #5fa069 0 2px, transparent 2.2px),
+      radial-gradient(circle at 90% 52%, #444 0 2px, transparent 2.2px),
+      radial-gradient(circle at 8% 65%, #2d85b8 0 2px, transparent 2.2px),
+      radial-gradient(circle at 16% 60%, #444 0 2px, transparent 2.2px),
+      radial-gradient(circle at 24% 66%, #c0504d 0 2px, transparent 2.2px),
+      radial-gradient(circle at 32% 61%, #999 0 2px, transparent 2.2px),
+      radial-gradient(circle at 40% 67%, #3f8f5a 0 2px, transparent 2.2px),
+      radial-gradient(circle at 48% 62%, #444 0 2px, transparent 2.2px),
+      radial-gradient(circle at 56% 68%, #d9a12e 0 2px, transparent 2.2px),
+      radial-gradient(circle at 64% 62%, #777 0 2px, transparent 2.2px),
+      radial-gradient(circle at 72% 68%, #2d85b8 0 2px, transparent 2.2px),
+      radial-gradient(circle at 80% 63%, #c0504d 0 2px, transparent 2.2px),
+      radial-gradient(circle at 88% 68%, #444 0 2px, transparent 2.2px),
+      radial-gradient(circle at 12% 80%, #444 0 2px, transparent 2.2px),
+      radial-gradient(circle at 22% 84%, #c0504d 0 2px, transparent 2.2px),
+      radial-gradient(circle at 32% 79%, #d9a12e 0 2px, transparent 2.2px),
+      radial-gradient(circle at 42% 85%, #5fa069 0 2px, transparent 2.2px),
+      radial-gradient(circle at 52% 80%, #444 0 2px, transparent 2.2px),
+      radial-gradient(circle at 62% 86%, #2d85b8 0 2px, transparent 2.2px),
+      radial-gradient(circle at 72% 80%, #777 0 2px, transparent 2.2px),
+      radial-gradient(circle at 82% 86%, #c0504d 0 2px, transparent 2.2px),
+      linear-gradient(135deg,#efefef 0%,#fafafa 100%);
+  }
+
+  .h2:before{
+    background:
+      linear-gradient(160deg,#394851 0%,#243239 32%,#1f282d 100%);
+  }
+  .h2:after{
+    content:"";
+    position:absolute;
+    left:44px;
+    top:40px;
+    width:144px;
+    height:86px;
+    background:#2193d3;
+    border:2px solid rgba(255,255,255,.35);
+    transform:skewX(-7deg);
+    z-index:17;
+    box-shadow:0 6px 0 rgba(0,0,0,.08);
+  }
+  .immig{
+    position:absolute;
+    left:578px;
+    top:377px;
+    width:125px;
+    color:#eef7ff;
+    font-size:18px;
+    line-height:1.08;
+    font-weight:700;
+    z-index:18;
+  }
+  .immig .ar{
+    display:block;
+    font-size:16px;
+    letter-spacing:.8px;
+    margin-bottom:3px;
+  }
+  .immig .down{
+    display:block;
+    font-size:28px;
+    line-height:.8;
+    text-align:center;
+    margin-top:1px;
+  }
+
+  .h3:before{
+    background:
+      linear-gradient(90deg,#a87c55 0 12%, #e9d8bb 12% 22%, #cdb189 22% 28%, #f6f1ea 28% 40%, #d9c4a2 40% 49%, #b48a60 49% 55%, #eadfc8 55% 67%, #a98057 67% 74%, #7b5c40 74% 100%);
+  }
+  .h3:after{
+    content:"";
+    position:absolute;
+    left:53px;
+    top:24px;
+    width:122px;
+    height:136px;
+    background:
+      linear-gradient(#6f4628,#6f4628) 0 90%/100% 8px no-repeat,
+      radial-gradient(circle at 50% 56%, transparent 24px, #242424 24px 30px, transparent 31px),
+      linear-gradient(90deg,#a88761 0 43%, #f2ece2 43% 57%, #b4936a 57% 100%);
+    z-index:17;
+    opacity:.8;
+  }
+
+  .h4:before{
+    background:
+      linear-gradient(180deg,#ecd29a 0 16%, #cfa059 16% 21%, #f4deb3 21% 41%, #d2a65b 41% 46%, #f5e0b8 46% 65%, #d2a65b 65% 70%, #f5e0b8 70% 100%);
+  }
+  .student{
+    position:absolute;
+    border-radius:50%;
+    z-index:18;
+  }
+  .student.s1{left:1138px;top:382px;width:30px;height:30px;background:#f0d2ba;}
+  .student.s2{left:1177px;top:375px;width:30px;height:30px;background:#dfc5af;}
+  .student.s3{left:1217px;top:441px;width:31px;height:31px;background:#f1d4bc;}
+  .hair1,.hair2,.hair3{
+    position:absolute;
+    border-radius:50%;
+    background:#1e1e1e;
+    z-index:19;
+  }
+  .hair1{left:1136px;top:373px;width:33px;height:16px;}
+  .hair2{left:1175px;top:366px;width:35px;height:17px;}
+  .hair3{left:1216px;top:432px;width:35px;height:18px;}
+  .arm{
+    position:absolute;
+    background:#f0d0b7;
+    border-radius:10px;
+    z-index:18;
+  }
+  .a1{left:1118px;top:392px;width:38px;height:7px;transform:rotate(-30deg);}
+  .a2{left:1148px;top:405px;width:34px;height:7px;transform:rotate(18deg);}
+
+  .label{
+    position:absolute;
+    color:#1a1a1a;
+    font-size:31px;
+    line-height:1.08;
+    font-weight:400;
+    z-index:20;
+  }
+  .l1{left:237px;top:565px;}
+  .l2{left:538px;top:565px;}
+  .l3{left:837px;top:565px;}
+  .l4{left:1080px;top:565px;}
+
+  .side-item{
+    position:absolute;
+    left:8px;
+    width:165px;
+    height:88px;
+    z-index:20;
+  }
+  .si1{top:135px;}
+  .si2{top:252px;}
+  .si3{top:370px;}
+  .si4{top:489px;}
+
+  .minihex{
+    position:absolute;
+    left:0;
+    top:10px;
+    width:76px;
+    height:67px;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    background:#d9d9d9;
+  }
+  .minihex:before{
+    content:"";
+    position:absolute;
+    left:6px;
+    top:6px;
+    width:64px;
+    height:55px;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+  }
+
+  .si1 .minihex:before{
+    background:
+      radial-gradient(circle at 18% 22%, #666 0 1px, transparent 1.2px),
+      radial-gradient(circle at 30% 20%, #c0504d 0 1px, transparent 1.2px),
+      radial-gradient(circle at 45% 24%, #2d85b8 0 1px, transparent 1.2px),
+      radial-gradient(circle at 60% 18%, #444 0 1px, transparent 1.2px),
+      radial-gradient(circle at 75% 22%, #d9a12e 0 1px, transparent 1.2px),
+      radial-gradient(circle at 20% 45%, #3f8f5a 0 1px, transparent 1.2px),
+      radial-gradient(circle at 35% 50%, #777 0 1px, transparent 1.2px),
+      radial-gradient(circle at 50% 45%, #c0504d 0 1px, transparent 1.2px),
+      radial-gradient(circle at 65% 50%, #2d85b8 0 1px, transparent 1.2px),
+      radial-gradient(circle at 80% 45%, #444 0 1px, transparent 1.2px),
+      linear-gradient(135deg,#e6e6e6,#f9f9f9);
+  }
+  .si2 .minihex:before{background:linear-gradient(160deg,#394851 0%,#243239 32%,#1f282d 100%);}
+  .si3 .minihex:before{background:linear-gradient(90deg,#a87c55 0 12%, #e9d8bb 12% 22%, #cdb189 22% 28%, #f6f1ea 28% 40%, #d9c4a2 40% 49%, #b48a60 49% 55%, #eadfc8 55% 67%, #a98057 67% 74%, #7b5c40 74% 100%);}
+  .si4 .minihex:before{background:linear-gradient(180deg,#ecd29a 0 16%, #cfa059 16% 21%, #f4deb3 21% 41%, #d2a65b 41% 46%, #f5e0b8 46% 65%, #d2a65b 65% 70%, #f5e0b8 70% 100%);}
+
+  .numsm{
+    position:absolute;
+    left:88px;
+    top:8px;
+    color:#c2c800;
+    font-size:19px;
+    line-height:1;
+    font-weight:700;
+  }
+  .textsm{
+    position:absolute;
+    left:88px;
+    top:39px;
+    color:#ffffff;
+    font-size:14px;
+    line-height:1.1;
+    font-weight:400;
+    width:72px;
+  }
+
+  .mini-immig{
+    position:absolute;
+    left:31px;
+    top:27px;
+    width:36px;
+    color:#eef7ff;
+    font-size:7px;
+    line-height:1;
+    font-weight:700;
+    z-index:21;
+  }
+  .mini-immig .d{display:block;text-align:center;font-size:12px;line-height:.8;margin-top:1px;}
+
+  .mini-arches{
+    position:absolute;
+    left:24px;
+    top:27px;
+    width:34px;
+    height:24px;
+    background:
+      radial-gradient(circle at 50% 54%, transparent 6px, #222 7px 8px, transparent 9px),
+      linear-gradient(#6d482f,#6d482f) 0 100%/100% 3px no-repeat;
+    opacity:.7;
+    z-index:21;
+  }
+
+  .mini-studs{
+    position:absolute;
+    left:27px;
+    top:26px;
+    width:40px;
+    height:26px;
+    z-index:21;
+  }
+  .mini-studs:before,.mini-studs:after,.mini-studs div{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    width:11px;
+    height:11px;
+    background:#f1d1b8;
+  }
+  .mini-studs:before{left:2px;top:0;}
+  .mini-studs:after{left:18px;top:0;}
+  .mini-studs div{left:25px;top:14px;}
+
+  .people-icon{
+    position:absolute;
+    left:56px;
+    top:676px;
+    width:88px;
+    height:54px;
+    z-index:20;
+  }
+  .people-icon .h{position:absolute;border-radius:50%;background:#7e8287;}
+  .people-icon .b{position:absolute;background:#7e8287;border-radius:16px 16px 4px 4px;}
+  .p1h{left:27px;top:0;width:22px;height:22px;}
+  .p2h{left:8px;top:5px;width:20px;height:20px;}
+  .p3h{left:46px;top:5px;width:20px;height:20px;}
+  .p4h{left:0;top:16px;width:18px;height:18px;}
+  .p5h{left:19px;top:18px;width:18px;height:18px;}
+  .p6h{left:38px;top:18px;width:18px;height:18px;}
+  .p7h{left:57px;top:16px;width:18px;height:18px;}
+  .p1b{left:19px;top:18px;width:38px;height:28px;}
+  .p2b{left:0;top:26px;width:34px;height:22px;}
+  .p3b{left:50px;top:26px;width:34px;height:22px;}
+  .p4b{left:8px;top:34px;width:32px;height:16px;}
+  .p5b{left:38px;top:34px;width:32px;height:16px;}
+
+  .page{
+    position:absolute;
+    left:9px;
+    bottom:8px;
+    color:#ffffff;
+    font-size:19px;
+    line-height:1;
+    font-weight:400;
+    z-index:25;
+  }
+
+  .bg-hex{
+    position:absolute;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    background:rgba(194,199,35,.34);
+    z-index:1;
+  }
+  .bh1{left:356px;top:650px;width:182px;height:162px;}
+  .bh2{left:525px;top:549px;width:206px;height:182px;}
+  .bh3{left:561px;top:745px;width:111px;height:98px;}
+  .bh4{left:692px;top:650px;width:208px;height:178px;}
+  .bh5{left:1030px;top:650px;width:205px;height:178px;}
+  .bh6{left:1197px;top:549px;width:168px;height:182px;}
+
+  .logo{
+    position:absolute;
+    right:11px;
+    bottom:10px;
+    width:58px;
+    height:28px;
+    z-index:25;
+  }
+  .logo .txt1{
+    position:absolute;
+    left:0;
+    top:0;
+    font-size:8px;
+    line-height:1;
+    color:#222;
+    width:40px;
+  }
+  .logo .txt2{
+    position:absolute;
+    left:0;
+    top:9px;
+    font-size:14px;
+    line-height:1;
+    color:#222;
+    width:42px;
+  }
+  .logo .b{
+    position:absolute;
+    right:0;
+    top:0;
+    width:18px;
+    height:28px;
+    background:linear-gradient(90deg,#9ea8c9 0%,#d7dbeb 55%,#6e7fb5 55%,#6e7fb5 100%);
+    border-radius:3px 9px 9px 3px/3px 14px 14px 3px;
+  }
+  .logo .b:before{
+    content:"";
+    position:absolute;
+    left:1px;
+    top:1px;
+    width:7px;
+    height:26px;
+    background:#eef1f8;
+    opacity:.7;
+    border-radius:2px 0 0 2px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bottom-band"></div>
+  <div class="bg-hex bh1"></div>
+  <div class="bg-hex bh2"></div>
+  <div class="bg-hex bh3"></div>
+  <div class="bg-hex bh4"></div>
+  <div class="bg-hex bh5"></div>
+  <div class="bg-hex bh6"></div>
+
+  <div class="leftbar"></div>
+  <div class="divider"></div>
+
+  <div class="title-side">People &amp;<br>Society</div>
+
+  <div class="side-item si1">
+    <div class="minihex"></div>
+    <div class="numsm">1</div>
+    <div class="textsm">Population</div>
+  </div>
+
+  <div class="side-item si2">
+    <div class="minihex"></div>
+    <div class="mini-immig"><span>Immigra</span><span class="d">↓</span></div>
+    <div class="numsm">2</div>
+    <div class="textsm">Migration</div>
+  </div>
+
+  <div class="side-item si3">
+    <div class="minihex"></div>
+    <div class="mini-arches"></div>
+    <div class="numsm">3</div>
+    <div class="textsm">Values</div>
+  </div>
+
+  <div class="side-item si4">
+    <div class="minihex"></div>
+    <div class="mini-studs"><div></div></div>
+    <div class="numsm">4</div>
+    <div class="textsm">Education</div>
+  </div>
+
+  <div class="main-title">Beyond mere demographics, people and society are at the core of our thinking – People are on the move, rely on values and are eager to learn</div>
+  <div class="subtitle">Subtrends of megatrend "People &amp; Society"</div>
+
+  <div class="num n1">1</div>
+  <div class="num n2">2</div>
+  <div class="num n3">3</div>
+  <div class="num n4">4</div>
+
+  <div class="hex h1"></div>
+  <div class="hex h2"></div>
+  <div class="hex h3"></div>
+  <div class="hex h4"></div>
+
+  <div class="immig"><span class="ar">زارات</span>Immigration<span class="down">↓</span></div>
+
+  <div class="student s1"></div>
+  <div class="student s2"></div>
+  <div class="student s3"></div>
+  <div class="hair1"></div>
+  <div class="hair2"></div>
+  <div class="hair3"></div>
+  <div class="arm a1"></div>
+  <div class="arm a2"></div>
+
+  <div class="label l1">Population</div>
+  <div class="label l2">Migration</div>
+  <div class="label l3">Values</div>
+  <div class="label l4">Education</div>
+
+  <div class="people-icon">
+    <div class="h p1h"></div><div class="h p2h"></div><div class="h p3h"></div><div class="h p4h"></div><div class="h p5h"></div><div class="h p6h"></div><div class="h p7h"></div>
+    <div class="b p1b"></div><div class="b p2b"></div><div class="b p3b"></div><div class="b p4b"></div><div class="b p5b"></div>
+  </div>
+
+  <div class="page">4</div>
+
+  <div class="logo">
+    <div class="txt1">Roland</div>
+    <div class="txt2">Berger</div>
+    <div class="b"></div>
+  </div>
+</div>
+</body>
+</html>

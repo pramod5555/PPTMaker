@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Contents Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d9d9d9;
+    margin:0 auto;
+  }
+
+  .hero{
+    position:absolute;
+    left:31px;
+    top:31px;
+    width:1249px;
+    height:574px;
+    overflow:hidden;
+    background:
+      radial-gradient(130px 230px at 3% 22%, rgba(255,95,180,.45), rgba(255,95,180,0) 72%),
+      radial-gradient(110px 210px at 12% 19%, rgba(120,170,255,.22), rgba(120,170,255,0) 72%),
+      radial-gradient(220px 160px at 26% 31%, rgba(255,255,255,.22), rgba(255,255,255,0) 68%),
+      radial-gradient(280px 160px at 39% 32%, rgba(255,232,180,.18), rgba(255,232,180,0) 70%),
+      radial-gradient(330px 170px at 53% 34%, rgba(255,175,250,.34), rgba(255,175,250,0) 72%),
+      radial-gradient(260px 150px at 76% 34%, rgba(255,255,255,.20), rgba(255,255,255,0) 70%),
+      radial-gradient(160px 240px at 94% 18%, rgba(255,224,70,.45), rgba(255,224,70,0) 72%),
+      radial-gradient(210px 180px at 102% 47%, rgba(255,96,190,.26), rgba(255,96,190,0) 72%),
+      radial-gradient(120px 220px at 2% 84%, rgba(255,200,120,.14), rgba(255,200,120,0) 72%),
+      radial-gradient(140px 210px at 98% 82%, rgba(255,120,210,.14), rgba(255,120,210,0) 72%),
+      linear-gradient(90deg,#50055c 0%, #7b1186 14%, #a017af 33%, #b233cf 50%, #9b1ab3 66%, #781083 83%, #5a0a60 100%);
+    z-index:0;
+  }
+  .hero:before{
+    content:"";
+    position:absolute;
+    left:-70px;
+    top:-72px;
+    width:1390px;
+    height:182px;
+    background:#030012;
+    border-radius:0 0 695px 695px / 0 0 128px 128px;
+    z-index:1;
+  }
+  .hero:after{
+    content:"";
+    position:absolute;
+    left:-58px;
+    bottom:-42px;
+    width:1368px;
+    height:160px;
+    background:#040012;
+    border-radius:684px 684px 0 0 / 116px 116px 0 0;
+    z-index:1;
+  }
+
+  .noise{
+    position:absolute;
+    inset:0;
+    z-index:2;
+    background:
+      radial-gradient(20px 42px at 6% 18%, rgba(255,255,255,.08), transparent 70%),
+      radial-gradient(16px 35px at 13% 26%, rgba(255,240,210,.08), transparent 72%),
+      radial-gradient(18px 40px at 22% 13%, rgba(125,205,255,.10), transparent 72%),
+      radial-gradient(18px 36px at 31% 32%, rgba(255,255,255,.08), transparent 72%),
+      radial-gradient(20px 38px at 45% 30%, rgba(255,255,255,.08), transparent 72%),
+      radial-gradient(22px 40px at 60% 25%, rgba(255,190,250,.09), transparent 72%),
+      radial-gradient(20px 38px at 73% 29%, rgba(255,255,255,.07), transparent 72%),
+      radial-gradient(18px 36px at 84% 24%, rgba(110,225,255,.10), transparent 72%),
+      radial-gradient(20px 42px at 95% 16%, rgba(255,225,110,.11), transparent 72%);
+    filter: blur(8px);
+    opacity:.9;
+  }
+
+  .person{
+    position:absolute;
+    left:595px;
+    top:47px;
+    width:283px;
+    height:560px;
+    z-index:4;
+  }
+  .head{
+    position:absolute;
+    left:46px;
+    top:0;
+    width:151px;
+    height:194px;
+    background:#090114;
+    border-radius:82px 82px 68px 70px;
+    box-shadow: inset -12px 0 0 rgba(0,0,0,.18);
+  }
+  .head:before{
+    content:"";
+    position:absolute;
+    left:-17px;
+    top:68px;
+    width:34px;
+    height:58px;
+    background:#160717;
+    border-radius:18px;
+    transform:rotate(-12deg);
+  }
+  .neck{
+    position:absolute;
+    left:101px;
+    top:181px;
+    width:37px;
+    height:42px;
+    background:#211126;
+    border-radius:12px;
+  }
+  .torso{
+    position:absolute;
+    left:10px;
+    top:205px;
+    width:252px;
+    height:356px;
+    background:linear-gradient(180deg,#21183b 0%, #0b071d 60%, #070314 100%);
+    clip-path:polygon(34% 0%, 64% 0%, 88% 14%, 100% 58%, 96% 100%, 9% 100%, 0% 63%, 14% 16%);
+    border-radius:28px;
+  }
+  .collar-left{
+    position:absolute;
+    left:83px;
+    top:202px;
+    width:51px;
+    height:42px;
+    background:#81839e;
+    clip-path:polygon(0 0, 100% 0, 72% 100%, 26% 76%);
+    opacity:.56;
+  }
+  .collar-right{
+    position:absolute;
+    left:122px;
+    top:202px;
+    width:72px;
+    height:44px;
+    background:#73768f;
+    clip-path:polygon(0 0, 100% 14%, 84% 100%, 32% 72%);
+    opacity:.45;
+  }
+
+  .chapter{
+    position:absolute;
+    z-index:30;
+    color:#fff;
+    text-align:center;
+  }
+  .badge{
+    position:absolute;
+    left:0;
+    top:0;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#ffe000;
+    color:#1c1c1c;
+    font-size:15px;
+    font-weight:700;
+    line-height:36px;
+    text-align:center;
+  }
+  .rule{
+    position:absolute;
+    left:-10px;
+    top:43px;
+    width:56px;
+    height:5px;
+    background:#fff;
+  }
+  .title{
+    position:absolute;
+    top:56px;
+    font-size:11px;
+    line-height:14px;
+    font-weight:700;
+  }
+  .body{
+    position:absolute;
+    top:79px;
+    font-size:11px;
+    line-height:15px;
+    font-weight:400;
+  }
+
+  .ch0 .body{left:-12px;width:60px;top:59px;}
+  .ch1 .title,.ch2 .title,.ch3 .title,.ch4 .title,.ch5 .title{left:-29px;width:96px;}
+  .ch1 .body,.ch2 .body,.ch3 .body,.ch4 .body,.ch5 .body{left:-44px;width:124px;}
+  .ch6 .body,.ch7 .body{left:-35px;width:107px;top:59px;}
+  .ch8 .body{left:-17px;width:71px;top:59px;}
+
+  .contents-bg{
+    position:absolute;
+    left:0;
+    top:605px;
+    width:1280px;
+    height:115px;
+    background:#d9d9d9;
+    z-index:5;
+  }
+  .big-contents{
+    position:absolute;
+    left:0;
+    top:596px;
+    width:825px;
+    color:#c0c0ca;
+    font-size:183px;
+    line-height:150px;
+    font-weight:700;
+    letter-spacing:-4px;
+    z-index:10;
+  }
+  .headline{
+    position:absolute;
+    left:848px;
+    top:652px;
+    width:397px;
+    color:#1f2028;
+    z-index:20;
+    font-size:31px;
+    line-height:32px;
+    font-weight:400;
+  }
+  .headline .bold{
+    font-weight:700;
+  }
+  .sub{
+    position:absolute;
+    left:848px;
+    top:700px;
+    width:395px;
+    color:#1f2028;
+    z-index:20;
+    font-size:16px;
+    line-height:19px;
+    font-weight:400;
+  }
+  .sub .bold{
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="hero">
+    <div class="noise"></div>
+  </div>
+
+  <div class="person">
+    <div class="head"></div>
+    <div class="neck"></div>
+    <div class="torso"></div>
+    <div class="collar-left"></div>
+    <div class="collar-right"></div>
+  </div>
+
+  <div class="chapter ch0" style="left:98px; top:333px; width:36px; height:128px;">
+    <div class="badge">03</div>
+    <div class="rule"></div>
+    <div class="body">Executive summary</div>
+  </div>
+
+  <div class="chapter ch1" style="left:241px; top:333px; width:36px; height:160px;">
+    <div class="badge">11</div>
+    <div class="rule"></div>
+    <div class="title">Chapter 1:</div>
+    <div class="body">the macro forces framing the CRO agenda</div>
+  </div>
+
+  <div class="chapter ch2" style="left:384px; top:333px; width:36px; height:175px;">
+    <div class="badge">14</div>
+    <div class="rule"></div>
+    <div class="title">Chapter 2:</div>
+    <div class="body">the return of financial and traditional risks in new forms</div>
+  </div>
+
+  <div class="chapter ch3" style="left:527px; top:333px; width:36px; height:189px;">
+    <div class="badge">18</div>
+    <div class="rule"></div>
+    <div class="title">Chapter 3:</div>
+    <div class="body">AI and disruptive technology – balancing risk and opportunity</div>
+  </div>
+
+  <div class="chapter ch4" style="left:670px; top:333px; width:36px; height:189px;">
+    <div class="badge">24</div>
+    <div class="rule"></div>
+    <div class="title">Chapter 4:</div>
+    <div class="body">regulatory outlook – navigating the impacts of fragmentation</div>
+  </div>
+
+  <div class="chapter ch5" style="left:813px; top:333px; width:36px; height:189px;">
+    <div class="badge">28</div>
+    <div class="rule"></div>
+    <div class="title">Chapter 5:</div>
+    <div class="body">risk management operations – new tech, talent and team structures</div>
+  </div>
+
+  <div class="chapter ch6" style="left:956px; top:333px; width:36px; height:160px;">
+    <div class="badge">32</div>
+    <div class="rule"></div>
+    <div class="body">Looking ahead and further reading</div>
+  </div>
+
+  <div class="chapter ch7" style="left:1099px; top:333px; width:36px; height:174px;">
+    <div class="badge">33</div>
+    <div class="rule"></div>
+    <div class="body">Research methodology and participants</div>
+  </div>
+
+  <div class="chapter ch8" style="left:1242px; top:333px; width:36px; height:128px;">
+    <div class="badge">34</div>
+    <div class="rule"></div>
+    <div class="body">Contacts</div>
+  </div>
+
+  <div class="contents-bg"></div>
+  <div class="big-contents">Contents</div>
+
+  <div class="headline"><span class="bold">Shifting priorities:</span> CRO agendas in a time of uncertainty and innovation</div>
+  <div class="sub"><span class="bold">15th annual</span> EY/IIF global bank risk management survey</div>
+</div>
+</body>
+</html>

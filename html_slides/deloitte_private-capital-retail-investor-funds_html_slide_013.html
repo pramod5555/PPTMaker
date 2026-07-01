@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>JPMorgan Private Markets Fund: April 2026 performance snapshot</title>
+<style>
+  body{
+    margin:0;
+    background:#d8d8d8;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+    color:#111;
+  }
+  .slide *{ box-sizing:border-box; }
+  .abs{ position:absolute; }
+
+  .title{
+    left:31px;
+    top:58px;
+    font-size:26px;
+    line-height:1.1;
+    font-weight:700;
+    color:#000;
+    white-space:nowrap;
+  }
+  .top-rule{
+    left:30px;
+    top:102px;
+    width:1210px;
+    height:1px;
+    background:#6c6c6c;
+  }
+
+  .blue-accent{
+    left:46px;
+    top:131px;
+    width:38px;
+    height:4px;
+    background:#1296f3;
+  }
+  .perf-head{
+    left:46px;
+    top:141px;
+    font-size:23px;
+    line-height:1;
+    font-weight:800;
+    color:#111;
+    white-space:nowrap;
+  }
+  .perf-sub{
+    left:48px;
+    top:167px;
+    font-size:15px;
+    line-height:1.1;
+    font-weight:400;
+    color:#111;
+    white-space:nowrap;
+  }
+
+  .metrics{
+    left:771px;
+    top:130px;
+    width:410px;
+    font-size:16px;
+    line-height:1.45;
+    color:#1b1b1b;
+  }
+  .metrics .row{
+    display:flex;
+    justify-content:flex-start;
+    align-items:baseline;
+    gap:10px;
+  }
+  .metrics .label{
+    min-width:132px;
+  }
+  .metrics .value{
+    font-weight:700;
+  }
+
+  .table-top{
+    left:48px;
+    top:197px;
+    width:942px;
+    height:1px;
+    background:#3aa0f5;
+  }
+
+  .table{
+    position:absolute;
+    left:48px;
+    top:198px;
+    width:942px;
+    height:223px;
+  }
+  .hline{
+    position:absolute;
+    left:0;
+    width:942px;
+    height:1px;
+    background:#c9c9c9;
+  }
+  .hline.bottom{
+    background:#58b0ff;
+  }
+
+  .header{
+    position:absolute;
+    top:0;
+    left:0;
+    width:942px;
+    height:61px;
+    color:#1a1a1a;
+    font-weight:700;
+    font-size:18px;
+    line-height:1.05;
+  }
+  .cell{
+    position:absolute;
+    font-size:17px;
+    line-height:1.15;
+    color:#111;
+  }
+  .labelcell{
+    font-weight:700;
+    font-size:17px;
+  }
+  .blueval{
+    color:#0a84ff;
+    font-weight:700;
+  }
+  .highlight{
+    position:absolute;
+    left:682px;
+    top:-2px;
+    width:131px;
+    height:226px;
+    border:4px solid #f2b233;
+    pointer-events:none;
+  }
+
+  .fund-box{
+    position:absolute;
+    left:48px;
+    top:452px;
+    width:344px;
+    height:110px;
+    border:1px solid #bfbfbf;
+    background:transparent;
+  }
+  .fund-head{
+    position:absolute;
+    left:0;
+    top:0;
+    width:344px;
+    height:31px;
+    background:#e6e6e6;
+    border-bottom:1px solid #d0d0d0;
+    padding-left:10px;
+    font-size:16px;
+    line-height:31px;
+    font-weight:700;
+    color:#111;
+  }
+  .fund-colh{
+    position:absolute;
+    top:37px;
+    font-size:14px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+  }
+  .fund-txt{
+    position:absolute;
+    font-size:13px;
+    line-height:1.25;
+    color:#222;
+  }
+
+  .disclaimer{
+    position:absolute;
+    left:31px;
+    top:594px;
+    width:1200px;
+    font-size:17px;
+    line-height:1.15;
+    font-weight:700;
+    font-style:italic;
+    color:#151515;
+  }
+  .data-date{
+    position:absolute;
+    left:30px;
+    top:674px;
+    font-size:10px;
+    line-height:1;
+    color:#222;
+  }
+  .bottom-rule{
+    position:absolute;
+    left:30px;
+    top:689px;
+    width:1210px;
+    height:1px;
+    background:#b8b8b8;
+  }
+  .page{
+    position:absolute;
+    left:31px;
+    top:736px;
+    transform:translateY(-100%);
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+  }
+
+  .logo{
+    position:absolute;
+    right:32px;
+    bottom:14px;
+    width:170px;
+    height:55px;
+    color:#1f1f1f;
+  }
+  .logo .jp{
+    position:absolute;
+    left:0;
+    top:0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:25px;
+    line-height:1;
+    font-weight:400;
+    letter-spacing:-0.02em;
+    white-space:nowrap;
+  }
+  .logo .am{
+    position:absolute;
+    left:2px;
+    top:31px;
+    font-size:11px;
+    line-height:1;
+    font-weight:700;
+    letter-spacing:0.02em;
+    white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title abs">JPMorgan Private Markets Fund: April 2026 performance snapshot</div>
+  <div class="top-rule abs"></div>
+
+  <div class="blue-accent abs"></div>
+  <div class="perf-head abs">PERFORMANCE (%)</div>
+  <div class="perf-sub abs">Net time-weighted return</div>
+
+  <div class="metrics abs">
+    <div class="row"><span class="label">Portfolio assets</span><span class="value">$1.86bn</span></div>
+    <div class="row"><span class="label">Private equity holdings</span><span class="value">117</span></div>
+  </div>
+
+  <div class="table-top abs"></div>
+
+  <div class="table">
+    <div class="header">
+      <div class="cell" style="left:320px; top:12px; width:62px; text-align:center; font-weight:700;">One<br>month</div>
+      <div class="cell" style="left:463px; top:12px; width:62px; text-align:center; font-weight:700;">Year<br>to date</div>
+      <div class="cell" style="left:611px; top:12px; width:62px; text-align:center; font-weight:700;">One<br>Year</div>
+      <div class="cell" style="left:742px; top:2px; width:82px; text-align:center; font-weight:700;">Since<br>inception<br>annualized</div>
+      <div class="cell" style="left:825px; top:18px; width:117px; text-align:center; font-weight:700;">Inception date</div>
+    </div>
+
+    <div class="hline" style="top:61px;"></div>
+    <div class="hline" style="top:114px;"></div>
+    <div class="hline" style="top:167px;"></div>
+    <div class="hline bottom" style="top:222px;"></div>
+
+    <div class="cell labelcell" style="left:8px; top:80px; width:120px;">CLASS I</div>
+    <div class="cell" style="left:336px; top:79px;">2.97</div>
+    <div class="cell" style="left:480px; top:79px;">3.94</div>
+    <div class="cell" style="left:616px; top:79px;">13.36</div>
+    <div class="cell blueval" style="left:756px; top:79px;">24.86</div>
+    <div class="cell" style="left:878px; top:69px; width:88px; text-align:center;">July 12,<br>2023</div>
+
+    <div class="cell labelcell" style="left:8px; top:133px; width:120px;">CLASS S</div>
+    <div class="cell" style="left:336px; top:132px;">2.92</div>
+    <div class="cell" style="left:480px; top:132px;">3.73</div>
+    <div class="cell" style="left:616px; top:132px;">12.66</div>
+    <div class="cell blueval" style="left:756px; top:132px;">16.10</div>
+    <div class="cell" style="left:840px; top:121px; width:124px; text-align:center;">September 1,<br>2023</div>
+
+    <div class="cell labelcell" style="left:8px; top:187px; width:120px;">CLASS D</div>
+    <div class="cell" style="left:336px; top:186px;">2.96</div>
+    <div class="cell" style="left:480px; top:186px;">3.90</div>
+    <div class="cell" style="left:616px; top:186px;">13.17</div>
+    <div class="cell blueval" style="left:756px; top:186px;">14.93</div>
+    <div class="cell" style="left:860px; top:175px; width:104px; text-align:center;">January 2,<br>2024</div>
+
+    <div class="highlight"></div>
+  </div>
+
+  <div class="fund-box">
+    <div class="fund-head">Fund Information</div>
+    <div class="fund-colh" style="left:9px;">CUSIP</div>
+    <div class="fund-colh" style="left:180px;">NAV/Share</div>
+
+    <div class="fund-txt" style="left:9px; top:53px;">(I) 48130F306</div>
+    <div class="fund-txt" style="left:9px; top:70px;">(S) 48130F108</div>
+    <div class="fund-txt" style="left:9px; top:87px;">(D) 48130F207</div>
+
+    <div class="fund-txt" style="left:180px; top:53px;">(I) $18.48</div>
+    <div class="fund-txt" style="left:180px; top:70px;">(S) $14.76</div>
+    <div class="fund-txt" style="left:180px; top:87px;">(D) $13.71</div>
+  </div>
+
+  <div class="disclaimer">The performance quoted is past performance and is not a guarantee of future results. Mutual funds are subject to certain market<br>risks. Investment returns and principal value of an investment will fluctuate so that an investor’s shares, when redeemed, may be<br>worth more or less than original cost. Current performance may be higher or lower than the performance data shown. For<br>performance current to the most recent month-end please call 1-800-338-4345.</div>
+
+  <div class="data-date">Data as of 4/30/2026.</div>
+  <div class="bottom-rule"></div>
+  <div class="page">13</div>
+
+  <div class="logo">
+    <div class="jp">J.P.Morgan</div>
+    <div class="am">ASSET MANAGEMENT</div>
+  </div>
+</div>
+</body>
+</html>

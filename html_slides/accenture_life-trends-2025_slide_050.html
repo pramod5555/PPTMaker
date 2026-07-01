@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e7e2d9;
+    color:#222;
+  }
+
+  .photo{
+    position:absolute;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 78% 28%, rgba(255,221,192,0.95) 0 6%, rgba(201,169,149,0.7) 8%, transparent 14%),
+      radial-gradient(circle at 60% 14%, rgba(20,9,22,0.95) 0 22%, rgba(41,24,36,0.75) 24%, transparent 40%),
+      radial-gradient(circle at 48% 48%, rgba(213,145,96,0.95) 0 11%, rgba(172,108,74,0.9) 12%, transparent 22%),
+      radial-gradient(circle at 63% 53%, rgba(255,192,178,0.9) 0 9%, transparent 15%),
+      radial-gradient(circle at 58% 56%, rgba(198,138,102,0.95) 0 13%, transparent 24%),
+      radial-gradient(circle at 64% 72%, rgba(156,181,239,0.95) 0 18%, transparent 29%),
+      radial-gradient(circle at 42% 76%, rgba(228,179,0,0.9) 0 19%, transparent 28%),
+      linear-gradient(135deg, #cfd0ee 0%, #d8d8ef 24%, #251723 48%, #6d4f64 67%, #efbf67 100%);
+    filter:saturate(1.08) blur(0.2px);
+  }
+
+  .photo.top{
+    left:59px;
+    top:0px;
+    width:669px;
+    height:428px;
+    clip-path: inset(0 0 0 0);
+  }
+
+  .photo.bottom{
+    left:59px;
+    top:429px;
+    width:661px;
+    height:291px;
+    background:
+      radial-gradient(circle at 56% 67%, #e9dfd6 0 7%, #e2d6ca 8%, transparent 13%),
+      linear-gradient(12deg, rgba(121,73,15,0.35), rgba(121,73,15,0.05) 35%, transparent 60%),
+      linear-gradient(35deg, #b98d09 0%, #c89c05 20%, #d3ab18 34%, #d2a31b 45%, #b48106 59%, #e6c258 100%);
+  }
+  .photo.bottom:before{
+    content:"";
+    position:absolute;
+    left:18px;
+    top:18px;
+    width:330px;
+    height:267px;
+    border-radius:10px;
+    background:linear-gradient(160deg,#d9d1c8 0%, #cfc6bc 35%, #a98a62 100%);
+    transform:skew(-18deg) rotate(14deg);
+    box-shadow:0 8px 20px rgba(0,0,0,0.18);
+  }
+  .photo.bottom:after{
+    content:"";
+    position:absolute;
+    left:157px;
+    top:137px;
+    width:87px;
+    height:87px;
+    border-radius:50%;
+    background:#e7dfd2;
+    transform:rotate(14deg);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+  }
+
+  .quote-box{
+    position:absolute;
+    left:61px;
+    top:129px;
+    width:346px;
+    height:289px;
+    background:#f8f7f4;
+    padding:28px 22px 20px 8px;
+    box-sizing:border-box;
+  }
+  .quote{
+    margin:0;
+    color:#8b33e2;
+    font-size:20px;
+    line-height:1.58;
+    font-weight:400;
+    letter-spacing:-0.1px;
+  }
+  .author{
+    position:absolute;
+    left:8px;
+    bottom:28px;
+    font-size:18px;
+    font-weight:700;
+    color:#1f1f1f;
+  }
+
+  .paragraph{
+    position:absolute;
+    left:454px;
+    top:488px;
+    width:428px;
+    font-size:17px;
+    line-height:1.38;
+    color:#262626;
+    letter-spacing:0;
+  }
+
+  .right{
+    position:absolute;
+    left:906px;
+    top:125px;
+    width:286px;
+    color:#202020;
+  }
+  .right .title{
+    font-size:18px;
+    line-height:1.35;
+    font-weight:700;
+    margin-bottom:20px;
+  }
+  .metric{
+    position:relative;
+    margin-bottom:20px;
+    min-height:58px;
+  }
+  .pct{
+    color:#8b23eb;
+    font-size:41px;
+    line-height:0.95;
+    font-weight:300;
+    letter-spacing:-1px;
+    display:inline-block;
+    vertical-align:top;
+  }
+  .label{
+    font-size:17px;
+    line-height:1.2;
+    color:#454545;
+    margin-top:2px;
+  }
+  .icon{
+    position:absolute;
+    left:111px;
+    top:0px;
+    width:40px;
+    height:40px;
+    color:#a020ff;
+  }
+
+  .pig:before{
+    content:"";
+    position:absolute;
+    left:6px;
+    top:10px;
+    width:26px;
+    height:18px;
+    border:2px solid #a020ff;
+    border-radius:16px 16px 12px 12px;
+  }
+  .pig:after{
+    content:"";
+    position:absolute;
+    left:1px;
+    top:14px;
+    width:10px;
+    height:8px;
+    border:2px solid #a020ff;
+    border-right:none;
+    border-radius:8px 0 0 8px;
+  }
+  .pig i, .heart i, .head i, .clipboard i, .cap i{display:none;}
+  .pig .leg1,.pig .leg2,.pig .ear,.pig .tail{
+    position:absolute;background:#a020ff;
+  }
+  .pig .leg1{left:15px;top:28px;width:2px;height:7px;}
+  .pig .leg2{left:28px;top:28px;width:2px;height:7px;}
+  .pig .ear{left:14px;top:7px;width:8px;height:8px;border-left:2px solid #a020ff;border-top:2px solid #a020ff;background:transparent;transform:rotate(45deg);}
+  .pig .tail{left:32px;top:14px;width:7px;height:7px;border:2px solid #a020ff;border-left-color:transparent;border-bottom-color:transparent;border-radius:50%;background:transparent;}
+
+  .heart:before{
+    content:"";
+    position:absolute;
+    left:7px;
+    top:6px;
+    width:24px;
+    height:22px;
+    border:2px solid #a020ff;
+    border-top:none;
+    transform:rotate(45deg);
+    border-radius:0 0 5px 0;
+  }
+  .heart:after{
+    content:"";
+    position:absolute;
+    left:9px;
+    top:8px;
+    width:10px;
+    height:10px;
+    border:2px solid #a020ff;
+    border-radius:50%;
+    box-shadow:12px 0 0 -2px #e7e2d9, 12px 0 0 0 #a020ff;
+  }
+  .heart .pulse{
+    position:absolute;
+    left:6px;
+    top:21px;
+    width:27px;
+    height:2px;
+    background:#a020ff;
+    transform:skewX(-35deg);
+    clip-path:polygon(0 50%,20% 50%,28% 0,40% 100%,53% 25%,67% 75%,78% 50%,100% 50%,100% 100%,0 100%);
+  }
+
+  .head:before{
+    content:"";
+    position:absolute;
+    left:8px;
+    top:6px;
+    width:20px;
+    height:20px;
+    border:2px solid #a020ff;
+    border-radius:50%;
+  }
+  .head:after{
+    content:"";
+    position:absolute;
+    left:21px;
+    top:8px;
+    width:8px;
+    height:8px;
+    border:2px solid #a020ff;
+    border-left:none;
+    border-bottom:none;
+    transform:rotate(45deg);
+    border-radius:2px;
+  }
+  .head .neck{
+    position:absolute;
+    left:14px;
+    top:26px;
+    width:14px;
+    height:10px;
+    border:2px solid #a020ff;
+    border-top:none;
+  }
+  .head .heartsmall{
+    position:absolute;
+    left:14px;
+    top:12px;
+    color:#a020ff;
+    font-size:12px;
+    line-height:12px;
+  }
+
+  .clipboard:before{
+    content:"";
+    position:absolute;
+    left:8px;
+    top:8px;
+    width:22px;
+    height:26px;
+    border:2px solid #a020ff;
+    border-radius:2px;
+  }
+  .clipboard:after{
+    content:"";
+    position:absolute;
+    left:15px;
+    top:4px;
+    width:10px;
+    height:7px;
+    border:2px solid #a020ff;
+    border-radius:2px;
+    background:#e7e2d9;
+  }
+  .clipboard .check{
+    position:absolute;
+    left:15px;
+    top:21px;
+    width:10px;
+    height:5px;
+    border-left:2px solid #a020ff;
+    border-bottom:2px solid #a020ff;
+    transform:rotate(-45deg);
+  }
+
+  .cap:before{
+    content:"";
+    position:absolute;
+    left:7px;
+    top:11px;
+    width:26px;
+    height:12px;
+    border:2px solid #a020ff;
+    transform:skewX(0deg);
+    clip-path:polygon(0 50%,50% 0,100% 50%,50% 100%);
+    background:transparent;
+  }
+  .cap:after{
+    content:"";
+    position:absolute;
+    left:11px;
+    top:20px;
+    width:18px;
+    height:10px;
+    border:2px solid #a020ff;
+    border-top:none;
+  }
+  .cap .tassel{
+    position:absolute;
+    left:30px;
+    top:15px;
+    width:2px;
+    height:13px;
+    background:#a020ff;
+  }
+
+  .source{
+    margin-top:8px;
+    font-size:14px;
+    font-weight:700;
+    color:#1f1f1f;
+  }
+
+  .right-rail{
+    position:absolute;
+    right:8px;
+    top:38px;
+    height:608px;
+    width:42px;
+    color:#6f6f6f;
+    font-size:18px;
+    line-height:1;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    letter-spacing:0.2px;
+  }
+  .right-rail .accent{
+    color:#9d21ff;
+    font-weight:700;
+  }
+
+  .footer-left{
+    position:absolute;
+    right:83px;
+    bottom:19px;
+    font-size:13px;
+    color:#777;
+  }
+  .footer-left .yr{
+    color:#9d21ff;
+    font-weight:700;
+  }
+  .footer-page{
+    position:absolute;
+    right:30px;
+    bottom:19px;
+    font-size:13px;
+    color:#777;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="photo top"></div>
+    <div class="quote-box">
+      <p class="quote">“Anything that a brand can do for me that’s making my life easier or that is saving me time is something that I think is important to spend money on, and that is in the short term now, but then also in the long term.”</p>
+      <div class="author">Amrita, 34, UK</div>
+    </div>
+
+    <div class="photo bottom"></div>
+
+    <div class="paragraph">
+      Companies can’t leave critical financial advice languishing on FAQ pages. They need to create a connection that is compelling enough to be widely shared for its ability to get to the core of people’s lived experience. Self-service interactions over the past few years have fallen victim to efficiencies, compromising quality and personalization. What hope does this advice have when the alternative is highly entertaining content that may inspire customers to go a different way?
+    </div>
+
+    <div class="right">
+      <div class="title">Areas of life where people want<br>long-term support:</div>
+
+      <div class="metric">
+        <div class="pct">61.1%</div>
+        <div class="icon pig">
+          <span class="leg1"></span><span class="leg2"></span><span class="ear"></span><span class="tail"></span>
+        </div>
+        <div class="label">Financial investment</div>
+      </div>
+
+      <div class="metric">
+        <div class="pct">59.9%</div>
+        <div class="icon heart"><span class="pulse"></span></div>
+        <div class="label">Physical health</div>
+      </div>
+
+      <div class="metric">
+        <div class="pct">58.9%</div>
+        <div class="icon head"><span class="neck"></span><span class="heartsmall">♡</span></div>
+        <div class="label">Mental health</div>
+      </div>
+
+      <div class="metric">
+        <div class="pct">57.2%</div>
+        <div class="icon clipboard"><span class="check"></span></div>
+        <div class="label">Insurance</div>
+      </div>
+
+      <div class="metric">
+        <div class="pct">56.6%</div>
+        <div class="icon cap"><span class="tassel"></span></div>
+        <div class="label">Education and skill development</div>
+      </div>
+
+      <div class="source">Accenture Life Trends survey, 2024</div>
+    </div>
+
+    <div class="right-rail">Cost of hesitations &nbsp;/&nbsp; The parent trap &nbsp;/&nbsp; <span class="accent">Impatience economy</span> &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; Social rewilding</div>
+
+    <div class="footer-left">Accenture Life Trends <span class="yr">2025</span></div>
+    <div class="footer-page">50</div>
+  </div>
+</body>
+</html>

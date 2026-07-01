@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ffffff;
+  }
+  .slide > div, .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .left-panel{
+    left:0;
+    top:0;
+    width:532px;
+    height:720px;
+    background:#f4f4f5;
+    z-index:2;
+  }
+  .top-grey{
+    left:0;
+    top:0;
+    width:47px;
+    height:79px;
+    background:#b7b7be;
+    z-index:6;
+  }
+  .header-text{
+    left:56px;
+    top:50px;
+    width:420px;
+    font-size:16px;
+    line-height:18px;
+    color:#7e808d;
+    font-weight:400;
+    z-index:30;
+  }
+  .rule{
+    left:0;
+    top:78px;
+    width:1280px;
+    height:1px;
+    background:#bcc0c7;
+    z-index:25;
+  }
+
+  .title{
+    left:56px;
+    top:116px;
+    width:420px;
+    font-size:17px;
+    line-height:22px;
+    color:#2f313a;
+    font-weight:700;
+    z-index:30;
+  }
+  .p1,.p2,.p3,.p4{
+    font-size:13px;
+    line-height:18px;
+    color:#4e5058;
+    font-weight:400;
+    z-index:30;
+  }
+  .p1{
+    left:56px;
+    top:157px;
+    width:422px;
+  }
+  .p2{
+    left:56px;
+    top:233px;
+    width:423px;
+  }
+  .p3{
+    left:56px;
+    top:360px;
+    width:423px;
+  }
+  .subhead{
+    left:56px;
+    top:459px;
+    width:430px;
+    font-size:17px;
+    line-height:22px;
+    color:#2f313a;
+    font-weight:700;
+    z-index:30;
+  }
+  .subsub{
+    left:56px;
+    top:511px;
+    width:430px;
+    font-size:13px;
+    line-height:18px;
+    color:#2f313a;
+    font-weight:700;
+    z-index:30;
+  }
+  .p4{
+    left:56px;
+    top:535px;
+    width:425px;
+  }
+  .footer{
+    left:57px;
+    top:706px;
+    transform:translateY(-100%);
+    width:180px;
+    font-size:10px;
+    line-height:12px;
+    color:#7d8088;
+    font-weight:600;
+    z-index:30;
+  }
+
+  .photo{
+    left:532px;
+    top:0;
+    width:748px;
+    height:720px;
+    z-index:1;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 3% 5%, rgba(30,31,23,.98) 0 4%, rgba(0,0,0,0) 10%),
+      radial-gradient(circle at 11% 8%, rgba(112,63,41,.95) 0 5%, rgba(0,0,0,0) 12%),
+      radial-gradient(circle at 20% 9%, rgba(214,132,58,.96) 0 6%, rgba(0,0,0,0) 13%),
+      radial-gradient(circle at 34% 6%, rgba(25,34,19,.97) 0 6%, rgba(0,0,0,0) 13%),
+      radial-gradient(circle at 46% 11%, rgba(234,180,18,.97) 0 7%, rgba(0,0,0,0) 14%),
+      radial-gradient(circle at 58% 8%, rgba(28,50,31,.97) 0 7%, rgba(0,0,0,0) 14%),
+      radial-gradient(circle at 69% 13%, rgba(236,183,14,.97) 0 7%, rgba(0,0,0,0) 15%),
+      radial-gradient(circle at 83% 10%, rgba(22,39,21,.97) 0 8%, rgba(0,0,0,0) 15%),
+      radial-gradient(circle at 96% 8%, rgba(245,189,8,.97) 0 6%, rgba(0,0,0,0) 13%),
+
+      radial-gradient(circle at 9% 26%, rgba(104,68,47,.95) 0 8%, rgba(0,0,0,0) 14%),
+      radial-gradient(circle at 22% 30%, rgba(198,117,47,.95) 0 8%, rgba(0,0,0,0) 14%),
+      radial-gradient(circle at 33% 28%, rgba(241,135,11,.95) 0 6%, rgba(0,0,0,0) 13%),
+      radial-gradient(circle at 49% 28%, rgba(226,188,27,.95) 0 8%, rgba(0,0,0,0) 15%),
+      radial-gradient(circle at 61% 28%, rgba(33,66,37,.95) 0 8%, rgba(0,0,0,0) 15%),
+      radial-gradient(circle at 76% 28%, rgba(58,73,43,.95) 0 9%, rgba(0,0,0,0) 15%),
+      radial-gradient(circle at 89% 30%, rgba(48,57,44,.95) 0 8%, rgba(0,0,0,0) 15%),
+
+      radial-gradient(circle at 14% 46%, rgba(28,34,24,.98) 0 12%, rgba(0,0,0,0) 18%),
+      radial-gradient(circle at 39% 45%, rgba(34,41,31,.98) 0 12%, rgba(0,0,0,0) 19%),
+      radial-gradient(circle at 65% 46%, rgba(39,44,36,.98) 0 13%, rgba(0,0,0,0) 19%),
+      radial-gradient(circle at 88% 44%, rgba(30,30,31,.98) 0 12%, rgba(0,0,0,0) 18%),
+
+      linear-gradient(180deg,#171714 0%, #1b140e 11%, #282a1d 22%, #171a15 34%, #121516 44%, #2d241b 53%, #1e1d1d 57%, #0f1218 60%, #2c251b 65%, #48331d 73%, #231a16 81%, #171416 100%);
+  }
+
+  .train-track-band{
+    left:0;
+    top:396px;
+    width:748px;
+    height:29px;
+    background:linear-gradient(180deg,#11161a 0%, #1e2930 48%, #11161a 100%);
+    z-index:12;
+  }
+  .rail-line1{
+    left:0;
+    top:404px;
+    width:748px;
+    height:2px;
+    background:#707780;
+    z-index:14;
+  }
+  .sleeper-row{
+    left:0;
+    top:407px;
+    width:748px;
+    height:8px;
+    background:
+      repeating-linear-gradient(90deg,
+        #262a31 0px, #262a31 2px,
+        #8b8f95 2px, #8b8f95 4px,
+        #262a31 4px, #262a31 9px);
+    z-index:13;
+    opacity:.95;
+  }
+  .rail-line2{
+    left:0;
+    top:414px;
+    width:748px;
+    height:2px;
+    background:#707780;
+    z-index:14;
+  }
+  .road-band{
+    left:0;
+    top:426px;
+    width:748px;
+    height:96px;
+    background:linear-gradient(180deg,#3a2a20 0%, #30231c 55%, #2a201a 100%);
+    z-index:11;
+  }
+
+  .car{
+    top:399px;
+    height:19px;
+    border-radius:3px;
+    z-index:16;
+    box-shadow:0 0 7px rgba(255,255,255,.18);
+  }
+  .car:before{
+    content:"";
+    position:absolute;
+    left:3px;
+    top:2px;
+    width:calc(100% - 6px);
+    height:5px;
+    border-radius:2px;
+    background:rgba(255,255,255,.4);
+  }
+  .car1{left:45px;width:74px;background:#2a6e90;}
+  .car2{left:135px;width:67px;background:#4681a6;}
+  .car3{left:266px;width:54px;background:#6f8eb0;}
+  .car4{left:322px;width:10px;background:#f2f2f2;}
+  .car5{left:335px;width:46px;background:#8e4856;}
+  .car6{left:386px;width:12px;background:#f2f2f2;}
+  .car7{left:402px;width:53px;background:#2d79ad;}
+  .car8{left:460px;width:11px;background:#f2f2f2;}
+  .car9{left:477px;width:49px;background:#5a656f;}
+  .car10{left:530px;width:12px;background:#f2f2f2;}
+  .car11{left:547px;width:48px;background:#c8a04f;}
+
+  .bottom-trees{
+    left:0;
+    top:528px;
+    width:748px;
+    height:192px;
+    z-index:8;
+    background:
+      radial-gradient(circle at 9% 60%, rgba(237,156,37,.96) 0 5%, rgba(0,0,0,0) 10%),
+      radial-gradient(circle at 18% 65%, rgba(242,176,70,.96) 0 6%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 28% 62%, rgba(246,185,74,.95) 0 5%, rgba(0,0,0,0) 10%),
+      radial-gradient(circle at 39% 66%, rgba(241,178,67,.95) 0 6%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 49% 64%, rgba(244,206,140,.95) 0 6%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 63% 63%, rgba(242,169,48,.96) 0 6%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 74% 66%, rgba(245,148,30,.96) 0 6%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 86% 64%, rgba(245,187,100,.96) 0 6%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 96% 67%, rgba(242,168,40,.96) 0 6%, rgba(0,0,0,0) 11%),
+      linear-gradient(180deg, rgba(60,41,26,0) 0%, rgba(58,39,26,.2) 20%, rgba(28,21,19,.55) 56%, rgba(16,13,15,.96) 100%);
+  }
+
+  .white-branches{
+    left:34px;
+    top:594px;
+    width:686px;
+    height:80px;
+    z-index:17;
+    opacity:.82;
+  }
+
+  .diag{
+    width:23px;
+    height:3px;
+    background:#d6dce3;
+    border-radius:2px;
+    transform:rotate(-31deg);
+    z-index:18;
+    opacity:.9;
+  }
+  .d1{left:0;top:458px;}
+  .d2{left:402px;top:514px;}
+  .d3{left:664px;top:492px;}
+
+  .top-arrows-wrap{
+    left:948px;
+    top:32px;
+    width:86px;
+    height:36px;
+    z-index:60;
+  }
+  .arrow-circle{
+    position:absolute;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:rgba(224,225,231,.95);
+    color:#565a63;
+    font-size:25px;
+    line-height:34px;
+    text-align:center;
+    font-weight:700;
+  }
+  .arrow-left{left:0;top:0;}
+  .arrow-right{left:46px;top:0;}
+
+  .menu{
+    left:1009px;
+    top:120px;
+    width:111px;
+    height:286px;
+    z-index:70;
+  }
+  .menu .item{
+    position:absolute;
+    left:0;
+    width:111px;
+    min-height:35px;
+    background:#444653;
+    color:#e1e3e7;
+    font-size:11px;
+    line-height:12px;
+    padding:8px 8px 8px 7px;
+    border-left:2px solid #f1e21a;
+    font-weight:400;
+  }
+  .menu .i1{top:0;background:#3d3f4b;}
+  .menu .i2{top:51px;background:#3e4050;}
+  .menu .i3{top:102px;background:#3e4050;}
+  .menu .i4{top:153px;background:#2f313d;}
+  .menu .i5{top:204px;background:#70727f;color:#ffffff;}
+  .menu .i6{top:255px;background:#5a5d69;color:#ffffff;}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="photo">
+    <div class="train-track-band"></div>
+    <div class="rail-line1"></div>
+    <div class="sleeper-row"></div>
+    <div class="rail-line2"></div>
+    <div class="road-band"></div>
+
+    <div class="car car1"></div>
+    <div class="car car2"></div>
+    <div class="car car3"></div>
+    <div class="car car4"></div>
+    <div class="car car5"></div>
+    <div class="car car6"></div>
+    <div class="car car7"></div>
+    <div class="car car8"></div>
+    <div class="car car9"></div>
+    <div class="car car10"></div>
+    <div class="car car11"></div>
+
+    <div class="bottom-trees"></div>
+
+    <svg class="white-branches" viewBox="0 0 686 80" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#f0d7c8" stroke-width="2" stroke-linecap="round" fill="none">
+        <path d="M20 64 L8 43 M20 64 L18 33 M20 64 L31 39 M17 48 L5 31 M17 48 L16 23 M17 48 L28 28 M27 49 L39 32 M27 49 L28 24"/>
+        <path d="M73 69 L61 45 M73 69 L73 31 M73 69 L84 41 M67 53 L55 35 M67 53 L67 24 M79 54 L91 36 M79 54 L80 24"/>
+        <path d="M130 65 L116 41 M130 65 L130 28 M130 65 L144 39 M124 50 L113 31 M124 50 L124 21 M136 50 L148 29"/>
+        <path d="M195 71 L183 47 M195 71 L194 33 M195 71 L208 44 M188 56 L176 38 M188 56 L188 27 M201 56 L214 36"/>
+        <path d="M264 67 L251 43 M264 67 L263 29 M264 67 L277 41 M257 52 L245 34 M271 52 L283 35"/>
+        <path d="M337 73 L323 48 M337 73 L336 33 M337 73 L351 45 M331 58 L319 38 M345 58 L357 40"/>
+        <path d="M412 66 L398 41 M412 66 L411 26 M412 66 L426 39 M405 51 L393 32 M419 52 L431 30"/>
+        <path d="M488 70 L475 46 M488 70 L488 30 M488 70 L502 43 M481 55 L468 36 M496 55 L509 37"/>
+        <path d="M565 67 L552 44 M565 67 L565 28 M565 67 L579 41 M559 52 L546 34 M572 52 L585 35"/>
+        <path d="M635 70 L622 46 M635 70 L634 32 M635 70 L648 43 M628 54 L615 36 M642 55 L655 37"/>
+      </g>
+    </svg>
+
+    <div class="diag d1"></div>
+    <div class="diag d2"></div>
+    <div class="diag d3"></div>
+  </div>
+
+  <div class="left-panel"></div>
+  <div class="top-grey"></div>
+  <div class="header-text">Insights: Europe, Middle East, India and Africa</div>
+  <div class="rule"></div>
+
+  <div class="title">Changes to IOSS: incentives, pressure points and<br>compliance consequences</div>
+
+  <div class="p1">
+    IOSS remains a VAT mechanism, but the customs reform is increasingly<br>
+    interacting with IOSS in two ways: coverage (how much of the e commerce<br>
+    ecosystem is pushed into IOSS) and operational coupling (how customs processes<br>
+    treat IOSS flows vs. non IOSS flows).
+  </div>
+
+  <div class="p2">
+    On the VAT policy side, changes under discussion and adopted positions<br>
+    have been described as increasing pressure on non EU sellers to use IOSS by<br>
+    making alternatives more burdensome, especially through local registration<br>
+    requirements and tax representative mechanics for non EU sellers where IOSS is<br>
+    not used. In parallel, the Council and Commission have linked the interim € 3 duty<br>
+    operationally to IOSS registered flows, explicitly noting that IOSS registration<br>
+    encompasses the vast majority of ecommerce imports in practice.
+  </div>
+
+  <div class="p3">
+    The practical question for many sellers will no longer be “Should we use<br>
+    IOSS?” but rather “If we do not use IOSS, can we absorb the VAT compliance<br>
+    fragmentation and still meet delivery experience expectations?” The reform<br>
+    environment is shifting costs away from the border and towards the point of sale<br>
+    and data governance, especially for high volume platforms and marketplaces.
+  </div>
+
+  <div class="subhead">Handling fees: an EU level fee is coming, but some national fees<br>are (or were) already here</div>
+  <div class="subsub">EU handling fee (under negotiation; targeted for November 2026)</div>
+
+  <div class="p4">
+    Alongside the interim € 3 duty, EU institutions have been discussing a Union<br>
+    handling fee intended to compensate customs authorities for the growing<br>
+    cost of supervising enormous parcel volumes. The Commission notes that the<br>
+    handling fee concept was introduced in early 2025 and brought into the customs<br>
+    reform file through the Council’s negotiating mandate. The Council has explicitly<br>
+    distinguished the €3 duty (a revenue/level playing field measure) from the<br>
+    handling fee (a cost recovery/supervision measure).
+  </div>
+
+  <div class="footer">44&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+
+  <div class="top-arrows-wrap">
+    <div class="arrow-circle arrow-left">◀</div>
+    <div class="arrow-circle arrow-right">▶</div>
+  </div>
+
+  <div class="menu">
+    <div class="item i1">Contents</div>
+    <div class="item i2">Insights</div>
+    <div class="item i3">New on<br>ey.com</div>
+    <div class="item i4">Tax alerts</div>
+    <div class="item i5">Additional<br>resources</div>
+    <div class="item i6">Contacts</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Operational Resilience Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #e6e6e6;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #6f706d;
+    margin: 0 auto;
+  }
+  .slide > div,
+  .slide > svg {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  .photo-base {
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.86) 0px, rgba(0,0,0,0.72) 102px, rgba(0,0,0,0.28) 255px, rgba(0,0,0,0.10) 520px, rgba(0,0,0,0.08) 920px, rgba(0,0,0,0.34) 1280px),
+      linear-gradient(180deg, rgba(255,255,255,0.16) 0px, rgba(255,255,255,0.03) 160px, rgba(0,0,0,0.06) 480px, rgba(0,0,0,0.22) 720px),
+      linear-gradient(180deg, #5e5d5a 0px, #767574 120px, #a8a6a2 280px, #8a8c8f 430px, #54595d 600px, #2d3438 720px);
+    z-index: 0;
+  }
+
+  .ceiling-band {
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 152px;
+    background: linear-gradient(180deg, rgba(40,40,40,0.42) 0px, rgba(56,56,56,0.16) 152px);
+    z-index: 1;
+  }
+
+  .left-black-edge {
+    left: 0;
+    top: 0;
+    width: 105px;
+    height: 720px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.85) 0, rgba(0,0,0,0.72) 70%, rgba(0,0,0,0) 100%);
+    z-index: 1;
+  }
+
+  .four-left {
+    left: -8px;
+    top: 54px;
+    width: 420px;
+    height: 650px;
+    color: rgba(255,255,255,0.26);
+    font-size: 620px;
+    line-height: 560px;
+    font-weight: 700;
+    letter-spacing: -28px;
+    z-index: 3;
+  }
+
+  .glass-panel {
+    left: 340px;
+    top: 140px;
+    width: 428px;
+    height: 448px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.045) 100%);
+    border-left: 1px solid rgba(255,255,255,0.15);
+    border-right: 1px solid rgba(255,255,255,0.10);
+    z-index: 4;
+  }
+
+  .glass-vert-line-1 {
+    left: 453px;
+    top: 0;
+    width: 2px;
+    height: 720px;
+    background: linear-gradient(180deg, rgba(80,80,80,0.35), rgba(120,120,120,0.14), rgba(90,90,90,0.18));
+    z-index: 2;
+  }
+
+  .glass-vert-line-2 {
+    left: 754px;
+    top: 0;
+    width: 2px;
+    height: 720px;
+    background: linear-gradient(180deg, rgba(80,80,80,0.35), rgba(120,120,120,0.14), rgba(90,90,90,0.18));
+    z-index: 2;
+  }
+
+  .dark-right {
+    left: 1058px;
+    top: 0;
+    width: 222px;
+    height: 720px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.28) 100%);
+    z-index: 2;
+  }
+
+  .cabinet-band {
+    left: 384px;
+    top: 566px;
+    width: 707px;
+    height: 96px;
+    background: linear-gradient(180deg, rgba(57,42,34,0.18) 0, rgba(60,41,31,0.48) 24px, rgba(78,58,46,0.74) 100%);
+    z-index: 4;
+  }
+
+  .counter {
+    left: 789px;
+    top: 586px;
+    width: 268px;
+    height: 79px;
+    background: linear-gradient(180deg, rgba(167,131,103,0.42) 0px, rgba(111,85,67,0.70) 100%);
+    z-index: 4;
+  }
+
+  .counter2 {
+    left: 706px;
+    top: 590px;
+    width: 182px;
+    height: 68px;
+    background: linear-gradient(180deg, rgba(168,130,104,0.34) 0px, rgba(95,72,57,0.58) 100%);
+    z-index: 4;
+  }
+
+  .table-chair-1 {
+    left: 988px;
+    top: 608px;
+    width: 88px;
+    height: 93px;
+    background: rgba(213,217,221,0.88);
+    border-radius: 10px 10px 0 0;
+    clip-path: polygon(10% 12%, 90% 12%, 100% 100%, 0 100%);
+    z-index: 5;
+  }
+
+  .table-chair-2 {
+    left: 1117px;
+    top: 609px;
+    width: 90px;
+    height: 95px;
+    background: rgba(165,185,157,0.88);
+    border-radius: 10px 10px 0 0;
+    clip-path: polygon(10% 12%, 90% 12%, 100% 100%, 0 100%);
+    z-index: 5;
+  }
+
+  .table-chair-3 {
+    left: 1167px;
+    top: 660px;
+    width: 66px;
+    height: 56px;
+    background: rgba(73,83,91,0.82);
+    border-radius: 6px 6px 0 0;
+    clip-path: polygon(12% 10%, 88% 10%, 100% 100%, 0 100%);
+    z-index: 5;
+  }
+
+  .chair-right-dark {
+    left: 1224px;
+    top: 651px;
+    width: 42px;
+    height: 51px;
+    background: rgba(34,36,41,0.90);
+    border-radius: 4px 4px 0 0;
+    z-index: 5;
+  }
+
+  .plant-blur-left {
+    left: 24px;
+    top: 598px;
+    width: 125px;
+    height: 104px;
+    background: radial-gradient(circle at 40% 60%, rgba(17,28,12,0.95) 0px, rgba(16,24,13,0.85) 28px, rgba(15,22,12,0.50) 52px, rgba(15,22,12,0) 84px);
+    filter: blur(5px);
+    z-index: 6;
+  }
+
+  .plant-blur-bottom {
+    left: 338px;
+    top: 666px;
+    width: 322px;
+    height: 75px;
+    background: radial-gradient(circle at 50% 55%, rgba(192,214,183,0.92) 0px, rgba(172,195,164,0.76) 82px, rgba(144,166,137,0.18) 156px, rgba(144,166,137,0) 220px);
+    filter: blur(7px);
+    z-index: 6;
+  }
+
+  .hanging-rail {
+    left: 214px;
+    top: 125px;
+    width: 1066px;
+    height: 4px;
+    background: rgba(18,18,18,0.88);
+    z-index: 8;
+  }
+
+  .pendant-left-stem {
+    left: 655px;
+    top: 125px;
+    width: 3px;
+    height: 49px;
+    background: rgba(18,18,18,0.86);
+    z-index: 8;
+  }
+
+  .pendant-left {
+    left: 584px;
+    top: 172px;
+    width: 144px;
+    height: 89px;
+    background: radial-gradient(circle at 50% 30%, rgba(67,71,75,0.95) 0px, rgba(30,32,36,0.98) 70px, rgba(18,20,24,1) 100%);
+    border-radius: 52% 52% 48% 48% / 62% 62% 38% 38%;
+    z-index: 8;
+    box-shadow: inset 0 -10px 14px rgba(255,255,255,0.09);
+  }
+
+  .pendant-left-glow {
+    left: 607px;
+    top: 220px;
+    width: 98px;
+    height: 18px;
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.98) 0px, rgba(242,246,248,0.92) 33px, rgba(241,245,246,0.05) 50px);
+    border-radius: 50%;
+    z-index: 9;
+  }
+
+  .pendant-mid-stem {
+    left: 1088px;
+    top: 125px;
+    width: 3px;
+    height: 66px;
+    background: rgba(18,18,18,0.86);
+    z-index: 8;
+  }
+
+  .pendant-mid {
+    left: 1036px;
+    top: 190px;
+    width: 113px;
+    height: 89px;
+    background: radial-gradient(circle at 50% 28%, rgba(72,77,81,0.90) 0px, rgba(30,32,36,0.98) 58px, rgba(20,21,24,1) 100%);
+    border-radius: 50% 50% 47% 47% / 72% 72% 28% 28%;
+    z-index: 8;
+  }
+
+  .pendant-mid-glow {
+    left: 1056px;
+    top: 268px;
+    width: 73px;
+    height: 17px;
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.95) 0px, rgba(245,248,250,0.84) 24px, rgba(245,248,250,0.06) 38px);
+    border-radius: 50%;
+    z-index: 9;
+  }
+
+  .small-downlight {
+    left: 1009px;
+    top: 128px;
+    width: 18px;
+    height: 60px;
+    z-index: 8;
+  }
+  .small-downlight:before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 0;
+    width: 8px;
+    height: 31px;
+    background: rgba(33,33,35,0.96);
+    border-radius: 5px;
+  }
+  .small-downlight:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 27px;
+    width: 18px;
+    height: 27px;
+    background: radial-gradient(circle at 50% 65%, rgba(255,255,255,0.90) 0px, rgba(215,220,225,0.72) 7px, rgba(215,220,225,0.05) 12px);
+    border-radius: 50%;
+  }
+
+  .horizon-line {
+    left: 777px;
+    top: 325px;
+    width: 360px;
+    height: 3px;
+    background: rgba(241,245,247,0.60);
+    z-index: 7;
+  }
+
+  .back-right-column {
+    left: 1234px;
+    top: 322px;
+    width: 32px;
+    height: 208px;
+    background: linear-gradient(180deg, rgba(44,47,53,0.45) 0, rgba(24,27,31,0.76) 100%);
+    z-index: 4;
+  }
+
+  .logo-tab {
+    right: 0;
+    top: 0;
+    width: 67px;
+    height: 46px;
+    background: rgba(107,108,116,0.98);
+    border-radius: 0 0 16px 16px;
+    z-index: 60;
+  }
+
+  .logo-text {
+    right: 9px;
+    top: 18px;
+    width: 49px;
+    color: #ffffff;
+    font-size: 8px;
+    line-height: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.04em;
+    z-index: 61;
+  }
+
+  .chapter {
+    left: 596px;
+    top: 14px;
+    width: 170px;
+    color: #f1f1f1;
+    font-size: 27px;
+    line-height: 32px;
+    font-weight: 700;
+    text-align: center;
+    z-index: 40;
+  }
+
+  .title {
+    left: 27px;
+    top: 42px;
+    width: 1228px;
+    color: #ffe100;
+    font-size: 91px;
+    line-height: 92px;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    z-index: 40;
+    white-space: nowrap;
+  }
+
+  .subtitle {
+    left: 298px;
+    top: 137px;
+    width: 760px;
+    color: #ffe100;
+    font-size: 38px;
+    line-height: 42px;
+    font-weight: 700;
+    z-index: 40;
+    white-space: nowrap;
+  }
+
+  .bottom-band {
+    left: 0;
+    bottom: 0;
+    width: 1280px;
+    height: 10px;
+    background: linear-gradient(90deg, #efe200 0px, #efe200 470px, #f3ca3a 560px, #c13ff3 805px, #5268ff 1048px, #98c2ff 1280px);
+    z-index: 50;
+  }
+
+  .glass-scribble {
+    left: 348px;
+    top: 160px;
+    width: 380px;
+    height: 385px;
+    z-index: 12;
+    opacity: 0.76;
+  }
+
+  .persons {
+    left: 487px;
+    top: 190px;
+    width: 518px;
+    height: 472px;
+    z-index: 20;
+  }
+
+  .floor-shadow {
+    left: 689px;
+    top: 626px;
+    width: 280px;
+    height: 62px;
+    background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.30) 0px, rgba(0,0,0,0.15) 84px, rgba(0,0,0,0.00) 148px);
+    z-index: 4;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="photo-base"></div>
+  <div class="ceiling-band"></div>
+  <div class="left-black-edge"></div>
+  <div class="glass-vert-line-1"></div>
+  <div class="glass-vert-line-2"></div>
+  <div class="dark-right"></div>
+  <div class="four-left">4</div>
+  <div class="glass-panel"></div>
+  <div class="cabinet-band"></div>
+  <div class="counter"></div>
+  <div class="counter2"></div>
+  <div class="floor-shadow"></div>
+  <div class="table-chair-1"></div>
+  <div class="table-chair-2"></div>
+  <div class="table-chair-3"></div>
+  <div class="chair-right-dark"></div>
+  <div class="plant-blur-left"></div>
+  <div class="plant-blur-bottom"></div>
+  <div class="hanging-rail"></div>
+  <div class="pendant-left-stem"></div>
+  <div class="pendant-left"></div>
+  <div class="pendant-left-glow"></div>
+  <div class="pendant-mid-stem"></div>
+  <div class="pendant-mid"></div>
+  <div class="pendant-mid-glow"></div>
+  <div class="small-downlight"></div>
+  <div class="horizon-line"></div>
+  <div class="back-right-column"></div>
+
+  <svg class="glass-scribble" viewBox="0 0 370 380" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M95 22 L121 48" stroke="#1d5b8f" stroke-width="2"/>
+      <path d="M121 48 L110 96" stroke="#1d5b8f" stroke-width="2"/>
+      <path d="M104 42 L130 40" stroke="#1d5b8f" stroke-width="2"/>
+      <text x="74" y="27" font-family="Arial" font-size="11" fill="#5b5b5b">10%</text>
+
+      <path d="M55 115 L55 64 L69 64" stroke="#2c6da4" stroke-width="3"/>
+      <path d="M55 64 L48 71" stroke="#2c6da4" stroke-width="3"/>
+      <path d="M55 64 L62 71" stroke="#2c6da4" stroke-width="3"/>
+      <text x="48" y="138" font-family="Arial" font-size="20" fill="#2c6da4">POWER</text>
+
+      <path d="M176 132 C188 94, 205 72, 247 78" stroke="#1e8fd0" stroke-width="3"/>
+      <text x="182" y="80" font-family="Arial" font-size="17" fill="#1e8fd0">50%</text>
+
+      <text x="199" y="248" font-family="Arial" font-size="18" fill="#27a9e0">70!</text>
+      <circle cx="228" cy="250" r="33" stroke="#84def4" stroke-width="2"/>
+      <text x="219" y="225" font-family="Arial" font-size="12" fill="#2eaad6">70!</text>
+
+      <text x="160" y="155" font-family="Arial" font-size="11" fill="#666">70%</text>
+      <rect x="151" y="117" width="34" height="24" fill="#e9d48b" opacity="0.65"/>
+      <rect x="174" y="168" width="23" height="18" fill="#e9d48b" opacity="0.65"/>
+      <rect x="183" y="135" width="24" height="18" fill="#f9d96a" opacity="0.70"/>
+      <rect x="120" y="177" width="27" height="22" fill="#caeef3" opacity="0.55"/>
+      <rect x="127" y="215" width="29" height="18" fill="#dfeacc" opacity="0.70"/>
+      <rect x="192" y="217" width="22" height="20" fill="#ccf0f6" opacity="0.70"/>
+      <rect x="216" y="205" width="21" height="18" fill="#d9f4cc" opacity="0.72"/>
+      <rect x="238" y="95" width="38" height="27" fill="#f16a6a" opacity="0.62"/>
+      <rect x="140" y="85" width="36" height="28" fill="#ff7c7c" opacity="0.68"/>
+      <rect x="16" y="58" width="24" height="20" fill="#e9d48b" opacity="0.45"/>
+      <rect x="26" y="108" width="18" height="14" fill="#d7eef4" opacity="0.38"/>
+      <rect x="22" y="164" width="22" height="18" fill="#f1dd9d" opacity="0.35"/>
+
+      <text x="7" y="213" font-family="Arial" font-size="22" fill="#7d8e90" opacity="0.8">MARKETING</text>
+      <text x="174" y="339" font-family="Arial" font-size="22" fill="#49b9ff" opacity="0.9">MONEY</text>
+      <text x="35" y="256" font-family="Arial" font-size="14" fill="#c26a6a" opacity="0.7">RISK</text>
+
+      <path d="M41 171 C54 157, 70 150, 89 149" stroke="#67818d" stroke-width="2"/>
+      <path d="M111 167 C124 177, 132 189, 131 204" stroke="#67818d" stroke-width="2"/>
+      <path d="M248 109 L248 145" stroke="#2190d8" stroke-width="2"/>
+      <path d="M262 109 L262 145" stroke="#2190d8" stroke-width="2"/>
+      <path d="M275 109 L275 145" stroke="#2190d8" stroke-width="2"/>
+      <path d="M290 109 L290 145" stroke="#2190d8" stroke-width="2"/>
+      <path d="M245 145 L293 145" stroke="#2190d8" stroke-width="2"/>
+      <text x="269" y="171" font-family="Arial" font-size="16" fill="#4fbaf2">20</text>
+      <path d="M262 181 C290 181, 300 194, 301 216" stroke="#4fbaf2" stroke-width="2"/>
+      <path d="M221 297 C240 304, 261 304, 284 295" stroke="#84def4" stroke-width="2"/>
+
+      <path d="M309 54 C322 58, 328 70, 323 82 C318 95, 302 98, 290 90" stroke="#0f6ca7" stroke-width="2"/>
+      <text x="300" y="73" font-family="Arial" font-size="18" fill="#1fa5e0">70</text>
+
+      <path d="M300 12 C325 8, 342 18, 349 37" stroke="#1f6ea9" stroke-width="2"/>
+      <text x="273" y="10" font-family="Arial" font-size="12" fill="#355b7a">GOALS!</text>
+    </g>
+  </svg>
+
+  <svg class="persons" viewBox="0 0 430 456" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="skin1" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#f0bf9a"/>
+        <stop offset="1" stop-color="#d39d79"/>
+      </linearGradient>
+      <linearGradient id="skin2" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#6b432f"/>
+        <stop offset="1" stop-color="#523424"/>
+      </linearGradient>
+      <linearGradient id="purpleJacket" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0" stop-color="#6b46b1"/>
+        <stop offset="0.55" stop-color="#6a3ba3"/>
+        <stop offset="1" stop-color="#41255d"/>
+      </linearGradient>
+      <linearGradient id="purplePant" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#b06ad8"/>
+        <stop offset="1" stop-color="#965cb9"/>
+      </linearGradient>
+      <linearGradient id="blackSuit" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0" stop-color="#171922"/>
+        <stop offset="0.5" stop-color="#0f1118"/>
+        <stop offset="1" stop-color="#252730"/>
+      </linearGradient>
+      <linearGradient id="shirtWhite" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#fefefe"/>
+        <stop offset="1" stop-color="#d9dde3"/>
+      </linearGradient>
+    </defs>
+
+    <ellipse cx="185" cy="433" rx="84" ry="16" fill="rgba(0,0,0,0.18)"/>
+    <ellipse cx="309" cy="430" rx="98" ry="18" fill="rgba(0,0,0,0.20)"/>
+
+    <g>
+      <path d="M140 105 C148 82, 170 70, 191 73 C214 76, 228 93, 229 116 C230 133, 222 148, 210 157 C197 166, 177 168, 163 160 C145 150, 134 128, 140 105 Z" fill="url(#skin1)"/>
+      <path d="M148 97 C150 66, 175 53, 199 59 C218 63, 229 79, 228 101 C217 98, 209 87, 200 82 C191 95, 179 102, 162 104 C156 104, 152 101, 148 97 Z" fill="#2a1d1f"/>
+      <path d="M191 58 C204 58, 217 65, 225 77" stroke="#40272a" stroke-width="6" opacity="0.7" fill="none"/>
+      <rect x="185" y="151" width="18" height="26" rx="7" fill="url(#skin1)"/>
+      <path d="M131 172 C150 154, 177 153, 201 155 C221 157, 241 165, 250 183 C261 205, 258 250, 257 286 C256 324, 253 350, 249 379 L163 379 C157 348, 153 318, 151 290 C149 263, 151 245, 148 221 C145 202, 138 188, 131 172 Z" fill="url(#purpleJacket)"/>
+      <path d="M132 175 C148 184, 166 188, 187 188 C212 188, 229 182, 247 171" stroke="#8a70cf" stroke-width="3" fill="none" opacity="0.7"/>
+      <path d="M160 380 L247 380 C247 410, 242 432, 240 452 L174 452 C171 431, 165 407, 160 380 Z" fill="url(#purplePant)"/>
+      <path d="M197 157 C198 173, 196 179, 192 188" stroke="#d2a58a" stroke-width="3" fill="none"/>
+      <path d="M204 208 C215 230, 225 249, 239 273" stroke="url(#skin1)" stroke-width="15" stroke-linecap="round"/>
+      <path d="M239 273 C252 284, 267 299, 286 318" stroke="url(#skin1)" stroke-width="15" stroke-linecap="round"/>
+      <path d="M177 210 C174 243, 172 267, 172 295" stroke="url(#skin1)" stroke-width="14" stroke-linecap="round"/>
+      <path d="M172 295 C161 289, 149 282, 136 279" stroke="url(#skin1)" stroke-width="14" stroke-linecap="round"/>
+      <path d="M195 113 C189 123, 183 130, 175 136" stroke="#d89b7b" stroke-width="3" fill="none"/>
+      <circle cx="170" cy="120" r="2" fill="#2b201e"/>
+      <path d="M183 144 C190 147, 197 147, 203 143" stroke="#8c5d52" stroke-width="2" fill="none"/>
+      <path d="M123 252 L165 267 L168 223 L126 224 Z" fill="#555b68"/>
+      <path d="M95 263 L165 267 L169 223 L99 219 Z" fill="#838c95"/>
+      <rect x="98" y="222" width="68" height="4" fill="#c8ced8"/>
+      <path d="M122 281 C113 309, 108 342, 112 389" stroke="#1e1e1e" stroke-width="2" fill="none"/>
+      <path d="M130 282 C128 305, 131 344, 137 390" stroke="#2a2a2a" stroke-width="2" fill="none"/>
+      <path d="M149 281 C152 304, 160 335, 174 376" stroke="#2a2a2a" stroke-width="2" fill="none"/>
+      <path d="M224 247 C236 241, 244 235, 252 226" stroke="#6c4ac1" stroke-width="3" fill="none"/>
+      <path d="M255 219 C268 229, 280 241, 287 254" stroke="#ff72a8" stroke-width="4" fill="none"/>
+      <path d="M160 179 L180 211" stroke="#8e79c8" stroke-width="3"/>
+      <path d="M210 178 L237 213" stroke="#8e79c8" stroke-width="3"/>
+      <path d="M188 196 C195 210, 202 220, 210 232" stroke="#4f2e72" stroke-width="2" opacity="0.5"/>
+    </g>
+
+    <g>
+      <path d="M252 92 C260 56, 293 37, 327 44 C353 50, 371 72, 370 100 C369 123, 357 142, 339 151 C322 160, 299 159, 281 148 C260 134, 247 114, 252 92 Z" fill="url(#skin2)"/>
+      <path d="M262 85 C265 55, 289 36, 320 37 C338 38, 354 48, 363 64 C349 74, 329 75, 304 71 C293 74, 280 81, 262 85 Z" fill="#12151c"/>
+      <rect x="311" y="151" width="20" height="30" rx="8" fill="url(#skin2)"/>
+      <path d="M278 172 C297 161, 326 158, 349 164 C370 169, 386 184, 390 207 C396 241, 392 281, 391 319 C390 357, 388 399, 383 444 L267 444 C265 401, 262 364, 261 331 C260 287, 266 247, 267 217 C268 197, 270 181, 278 172 Z" fill="url(#blackSuit)"/>
+      <path d="M302 164 L333 164 L351 186 L319 196 L287 182 Z" fill="url(#shirtWhite)"/>
+      <path d="M315 166 L323 166 L326 199 L317 206 L309 197 Z" fill="#ffffff"/>
+      <path d="M322 195 L329 228 L336 252" stroke="#0c0e12" stroke-width="5" fill="none"/>
+      <path d="M272 202 C283 225, 292 252, 301 280" stroke="url(#skin2)" stroke-width="17" stroke-linecap="round"/>
+      <path d="M301 280 C314 297, 330 315, 353 336" stroke="url(#skin2)" stroke-width="17" stroke-linecap="round"/>
+      <path d="M328 279 C321 304, 314 324, 303 339" stroke="url(#skin2)" stroke-width="16" stroke-linecap="round"/>
+      <path d="M303 339 C286 333, 272 329, 254 327" stroke="url(#skin2)" stroke-width="16" stroke-linecap="round"/>
+      <path d="M277 169 C287 187, 297 199, 307 208" stroke="#11131a" stroke-width="4" fill="none"/>
+      <path d="M357 171 C347 190, 344 216, 343 245 C342 288, 344 332, 348 445" stroke="#1b1e27" stroke-width="6" fill="none"/>
+      <path d="M286 168 C274 188, 269 213, 267 246 C264 298, 266 370, 268 444" stroke="#1b1e27" stroke-width="5" fill="none"/>
+      <rect x="279" y="86" width="35" height="21" rx="10" fill="none" stroke="#151515" stroke-width="4"/>
+      <rect x="316" y="91" width="36" height="21" rx="10" fill="none" stroke="#151515" stroke-width="4"/>
+      <path d="M314 97 L316 98" stroke="#151515" stroke-width="4"/>
+      <path d="M296 115 C303 118, 310 118, 317 115" stroke="#3d281f" stroke-width="2" fill="none"/>
+      <circle cx="293" cy="103" r="2.5" fill="#111"/>
+      <circle cx="331" cy="106" r="2.5" fill="#111"/>
+      <rect x="348" y="324" width="6" height="29" rx="3" fill="#b8b8bd"/>
+      <rect x="352" y="326" width="5" height="24" rx="2" fill="#726260"/>
+      <circle cx="351" cy="352" r="9" fill="#7f858e"/>
+    </g>
+
+    <g opacity="0.95">
+      <path d="M241 330 C257 326, 272 325, 287 326" stroke="#d5a584" stroke-width="10" stroke-linecap="round"/>
+      <path d="M285 326 C300 326, 314 329, 330 335" stroke="#6c432e" stroke-width="10" stroke-linecap="round"/>
+    </g>
+  </svg>
+
+  <div class="chapter">Chapter 4</div>
+  <div class="title">OPERATIONAL RESILIENCE:</div>
+  <div class="subtitle">preparing the business for times of crisis</div>
+  <div class="logo-tab"></div>
+  <div class="logo-text">JUMP TO<br>CONTENTS</div>
+  <div class="bottom-band"></div>
+</div>
+</body>
+</html>

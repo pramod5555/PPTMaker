@@ -1,0 +1,70 @@
+{
+  "description": "Create a two-column content slide on society predictions with a left text prompt and a right horizontal stacked bar chart comparing likely vs unlikely responses plus 2023 likely reference values.",
+  "spec": {
+    "slide_type": "content",
+    "header": {
+      "kicker": "Q.",
+      "headline": "Society",
+      "sub": "For each of the following, please tell me how likely or unlikely you think they are to happen...?"
+    },
+    "layout": "two-column",
+    "content": {
+      "left": {
+        "type": "text-block",
+        "title": "",
+        "body": "Base: 23,721 adults aged 18 years and older in India, 18-74 in Canada, Republic of Ireland, Malaysia, the Philippines, South Africa, Turkey, and the United States, 20-74 in Thailand, 21-74 in Indonesia and Singapore, and 16-74 in all other countries. Friday, October 25 – Friday November 8, 2024"
+      },
+      "right": {
+        "type": "bar-chart",
+        "orientation": "horizontal",
+        "series": [
+          {
+            "name": "Likely",
+            "values": [
+              67,
+              49,
+              39,
+              33,
+              32
+            ]
+          },
+          {
+            "name": "Unlikely",
+            "values": [
+              23,
+              43,
+              51,
+              59,
+              59
+            ]
+          },
+          {
+            "name": "% Likely 2023",
+            "values": [
+              71,
+              48,
+              39,
+              35,
+              0
+            ]
+          }
+        ],
+        "labels": [
+          "The level of immigration into [COUNTRY] will increase",
+          "Women will be paid the same as men for the same work",
+          "The total population size of [COUNTRY] will fall",
+          "People in [COUNTRY] will become more tolerant of each other",
+          "It will become normal for businesses in my country to implement a four-day working week"
+        ],
+        "stacked": false,
+        "fmt": "percent",
+        "show_values": true,
+        "title": "Global averages"
+      }
+    },
+    "footer": {
+      "source": "© Ipsos Predictions 2025 Report",
+      "page": 68
+    }
+  }
+}

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>What's next slide</title>
+<style>
+  body{
+    margin:0;
+    background:#f3f3f3;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#fcfbfd;
+    color:#222;
+  }
+
+  .title-small{
+    position:absolute;
+    left:63px;
+    top:114px;
+    font-size:35px;
+    line-height:1;
+    font-weight:300;
+    color:#7d22e8;
+    letter-spacing:-0.5px;
+  }
+  .title-large{
+    position:absolute;
+    left:129px;
+    top:154px;
+    font-size:59px;
+    line-height:0.95;
+    font-weight:300;
+    color:#6c12d7;
+    letter-spacing:-1px;
+  }
+
+  .body-copy{
+    position:absolute;
+    left:63px;
+    top:248px;
+    width:387px;
+    font-size:18px;
+    line-height:1.48;
+    color:#242424;
+    font-weight:400;
+  }
+  .body-copy sup{
+    font-size:10px;
+    vertical-align:super;
+    line-height:0;
+  }
+
+  .photo{
+    position:absolute;
+    left:562px;
+    width:448px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 35% 20%, rgba(255,241,164,0.95) 0%, rgba(255,209,78,0.86) 18%, rgba(248,166,31,0.55) 35%, rgba(243,149,32,0.16) 48%, transparent 58%),
+      linear-gradient(to bottom, #7fb5e2 0%, #a9c9ea 18%, #f2b95c 38%, #d28a2c 49%, #487780 70%, #153e4f 100%);
+  }
+  .photo::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(8deg, transparent 0 34%, rgba(255,197,72,0.32) 35%, rgba(255,197,72,0.02) 48%, transparent 56%),
+      linear-gradient(-8deg, transparent 0 58%, rgba(53,104,124,0.38) 59%, rgba(53,104,124,0.03) 73%, transparent 77%);
+    mix-blend-mode:screen;
+  }
+  .photo::after{
+    content:"";
+    position:absolute;
+    right:62px;
+    bottom:34px;
+    width:150px;
+    height:20px;
+    border-radius:50px;
+    background:rgba(18,37,52,0.68);
+    transform:skewX(-18deg);
+    filter:blur(1px);
+  }
+
+  .p1{ top:0; height:255px; }
+  .p2{ top:256px; height:255px; }
+  .p3{ top:512px; height:208px; }
+
+  .kayak{
+    position:absolute;
+    background:rgba(15,39,55,0.68);
+    border-radius:60px;
+    transform:skewX(-20deg);
+    filter:blur(0.5px);
+  }
+  .kayak.k1{ left:250px; top:144px; width:126px; height:10px; }
+  .kayak.k2{ left:238px; top:186px; width:150px; height:13px; }
+  .kayak.k3{ left:220px; top:160px; width:200px; height:14px; }
+  .kayak.k4{ left:221px; top:148px; width:247px; height:16px; }
+
+  .person{
+    position:absolute;
+    width:18px;
+    height:54px;
+    background:rgba(52,66,76,0.6);
+    border-radius:10px;
+    filter:blur(1px);
+  }
+  .head{
+    position:absolute;
+    width:16px;
+    height:16px;
+    background:rgba(89,88,73,0.55);
+    border-radius:50%;
+    filter:blur(1px);
+  }
+  .p1 .person.a{ left:210px; top:92px; transform:rotate(-4deg); }
+  .p1 .head.a{ left:212px; top:80px; }
+  .p1 .person.b{ left:277px; top:104px; height:40px; width:14px; }
+  .p1 .head.b{ left:276px; top:94px; width:12px; height:12px; }
+  .p2 .person.a{ left:215px; top:98px; height:74px; width:21px; }
+  .p2 .head.a{ left:218px; top:84px; }
+  .p2 .person.b{ left:300px; top:122px; height:44px; width:14px; }
+  .p2 .head.b{ left:299px; top:111px; width:12px; height:12px; }
+  .p3 .person.a{ left:210px; top:72px; height:78px; width:22px; }
+  .p3 .head.a{ left:214px; top:58px; }
+  .p3 .person.b{ left:300px; top:94px; height:42px; width:14px; }
+  .p3 .head.b{ left:299px; top:84px; width:12px; height:12px; }
+
+  .paddle{
+    position:absolute;
+    width:4px;
+    background:rgba(84,88,82,0.42);
+    border-radius:4px;
+    filter:blur(1px);
+  }
+  .blade{
+    position:absolute;
+    width:10px;
+    height:24px;
+    background:rgba(107,116,102,0.35);
+    border-radius:8px;
+    filter:blur(1px);
+  }
+  .p1 .paddle.a{ left:233px; top:71px; height:81px; transform:rotate(24deg); }
+  .p1 .blade.a1{ left:225px; top:59px; transform:rotate(24deg); }
+  .p1 .blade.a2{ left:240px; top:131px; transform:rotate(24deg); }
+  .p1 .paddle.b{ left:290px; top:90px; height:55px; transform:rotate(-18deg); }
+  .p1 .blade.b1{ left:284px; top:81px; transform:rotate(-18deg); height:18px; }
+  .p1 .blade.b2{ left:294px; top:127px; transform:rotate(-18deg); height:18px; }
+
+  .p2 .paddle.a{ left:243px; top:63px; height:100px; transform:rotate(28deg); }
+  .p2 .blade.a1{ left:234px; top:50px; transform:rotate(28deg); }
+  .p2 .blade.a2{ left:251px; top:140px; transform:rotate(28deg); }
+  .p2 .paddle.b{ left:312px; top:110px; height:54px; transform:rotate(-18deg); }
+  .p2 .blade.b1{ left:305px; top:101px; transform:rotate(-18deg); height:17px; }
+  .p2 .blade.b2{ left:315px; top:146px; transform:rotate(-18deg); height:17px; }
+
+  .p3 .paddle.a{ left:239px; top:42px; height:108px; transform:rotate(24deg); }
+  .p3 .blade.a1{ left:231px; top:30px; transform:rotate(24deg); }
+  .p3 .blade.a2{ left:247px; top:128px; transform:rotate(24deg); }
+  .p3 .paddle.b{ left:314px; top:84px; height:52px; transform:rotate(-16deg); }
+  .p3 .blade.b1{ left:308px; top:74px; transform:rotate(-16deg); height:17px; }
+  .p3 .blade.b2{ left:318px; top:118px; transform:rotate(-16deg); height:17px; }
+
+  .stat{
+    position:absolute;
+    left:1050px;
+    top:291px;
+    width:205px;
+    color:#444;
+  }
+  .stat .lead{
+    font-size:16px;
+    line-height:1.4;
+    margin-top:0;
+  }
+  .bigline{
+    display:flex;
+    align-items:flex-end;
+    gap:8px;
+    margin-bottom:4px;
+  }
+  .percent{
+    font-size:29px;
+    font-weight:300;
+    color:#7c22e8;
+    line-height:1;
+  }
+
+  .globe{
+    position:relative;
+    width:26px;
+    height:26px;
+    border:2px solid #a325ff;
+    border-radius:50%;
+    box-sizing:border-box;
+    top:-1px;
+  }
+  .globe:before,
+  .globe:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+  }
+  .globe:before{
+    background:
+      linear-gradient(to right, transparent 46%, #a325ff 46%, #a325ff 54%, transparent 54%),
+      linear-gradient(to bottom, transparent 46%, #a325ff 46%, #a325ff 54%, transparent 54%);
+    opacity:0.9;
+  }
+  .globe:after{
+    border-left:2px solid #a325ff;
+    border-right:2px solid #a325ff;
+    left:6px;
+    right:6px;
+    top:1px;
+    bottom:1px;
+  }
+  .globe .arc1,
+  .globe .arc2{
+    position:absolute;
+    left:2px;
+    right:2px;
+    height:8px;
+    border:2px solid #a325ff;
+    border-left:none;
+    border-right:none;
+    border-radius:50%;
+  }
+  .globe .arc1{ top:5px; }
+  .globe .arc2{ bottom:5px; }
+
+  .source{
+    margin-top:14px;
+    font-size:14px;
+    line-height:1.3;
+    font-weight:700;
+    color:#111;
+  }
+
+  .vert-nav{
+    position:absolute;
+    right:8px;
+    top:36px;
+    height:602px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-size:17px;
+    color:#6e6e6e;
+    letter-spacing:0;
+    line-height:1;
+  }
+  .vert-nav .purple{
+    color:#8b24ef;
+    font-weight:600;
+  }
+
+  .footer{
+    position:absolute;
+    right:32px;
+    bottom:18px;
+    font-size:12px;
+    color:#7a7a7a;
+  }
+  .footer .year{
+    color:#8b24ef;
+    font-weight:600;
+  }
+  .footer .page{
+    margin-left:28px;
+    color:#777;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title-small">What’s</div>
+    <div class="title-large">next</div>
+
+    <div class="body-copy">
+      We’re on the cusp of a cultural movement that sees
+      people rebalancing their relationship with the
+      physical world. Social rewilding is prompted by the
+      fatigue of a digital-first lifestyle and characterized as
+      an intentional shift toward a more balanced and
+      simplified existence. In our survey, 41.9% of
+      respondents said their most enjoyable experience
+      in the previous week was a physical one, while only
+      15.3% said it was digital. In fact, 37.9% increasingly
+      appreciate the “joy of missing out” on technology—
+      or JOMO.<sup>150</sup>
+    </div>
+
+    <div class="photo p1">
+      <div class="kayak k1"></div>
+      <div class="person a"></div><div class="head a"></div>
+      <div class="person b"></div><div class="head b"></div>
+      <div class="paddle a"></div><div class="blade a1"></div><div class="blade a2"></div>
+      <div class="paddle b"></div><div class="blade b1"></div><div class="blade b2"></div>
+    </div>
+
+    <div class="photo p2">
+      <div class="kayak k3"></div>
+      <div class="person a"></div><div class="head a"></div>
+      <div class="person b"></div><div class="head b"></div>
+      <div class="paddle a"></div><div class="blade a1"></div><div class="blade a2"></div>
+      <div class="paddle b"></div><div class="blade b1"></div><div class="blade b2"></div>
+    </div>
+
+    <div class="photo p3">
+      <div class="kayak k4"></div>
+      <div class="person a"></div><div class="head a"></div>
+      <div class="person b"></div><div class="head b"></div>
+      <div class="paddle a"></div><div class="blade a1"></div><div class="blade a2"></div>
+      <div class="paddle b"></div><div class="blade b1"></div><div class="blade b2"></div>
+    </div>
+
+    <div class="stat">
+      <div class="bigline">
+        <div class="percent">41.9%</div>
+        <div class="globe"><div class="arc1"></div><div class="arc2"></div></div>
+      </div>
+      <div class="lead">
+        of respondents said their most<br>
+        enjoyable experience in the<br>
+        previous week was a<br>
+        physical one
+      </div>
+      <div class="source">Accenture Life Trends survey, 2024</div>
+    </div>
+
+    <div class="vert-nav">
+      Cost of hesitations &nbsp; / &nbsp; The parent trap &nbsp; / &nbsp; Impatience economy &nbsp; / &nbsp; The dignity of work &nbsp; / &nbsp; <span class="purple">Social rewilding</span>
+    </div>
+
+    <div class="footer">
+      Accenture Life Trends <span class="year">2025</span>
+      <span class="page">77</span>
+    </div>
+  </div>
+</body>
+</html>

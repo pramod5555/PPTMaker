@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Data and AI Slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #99A3AC;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #efefef;
+  }
+
+  .topbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 47px;
+    background: #e9e9e9;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .nav {
+    position: absolute;
+    top: 18px;
+    font-size: 12px;
+    color: #7f7f7f;
+    white-space: nowrap;
+  }
+  .nav.active {
+    color: #1f49d8;
+    font-weight: 700;
+  }
+  .nav.n1 { left: 87px; }
+  .nav.n2 { left: 264px; }
+  .nav.n3 { left: 376px; }
+  .nav.n4 { left: 491px; }
+  .nav.n5 { left: 609px; }
+  .nav.n6 { left: 814px; }
+  .nav.n7 { left: 979px; }
+
+  .icon {
+    position: absolute;
+    top: 13px;
+    color: #8d8d8d;
+  }
+  .back {
+    left: 1174px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 12px solid #8d8d8d;
+    transform: scale(0.75);
+  }
+  .home {
+    left: 1197px;
+    width: 22px;
+    height: 22px;
+  }
+  .home:before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 8px;
+    width: 14px;
+    height: 10px;
+    border: 1.5px solid #8d8d8d;
+    border-top: none;
+    box-sizing: border-box;
+  }
+  .home:after {
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 14px;
+    height: 14px;
+    border-left: 1.5px solid #8d8d8d;
+    border-top: 1.5px solid #8d8d8d;
+    transform: rotate(45deg);
+    transform-origin: 3px 3px;
+    box-sizing: border-box;
+  }
+  .forward {
+    left: 1229px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 12px solid #8d8d8d;
+    transform: scale(0.75);
+  }
+
+  .left-panel {
+    position: absolute;
+    left: 0;
+    top: 47px;
+    width: 814px;
+    height: 673px;
+    background:
+      radial-gradient(circle at 14% 29%, rgba(255,255,255,0.32) 0 18px, rgba(255,255,255,0.12) 19px, transparent 42px),
+      radial-gradient(circle at 20% 42%, rgba(255,255,255,0.28) 0 20px, rgba(255,255,255,0.08) 21px, transparent 44px),
+      radial-gradient(circle at 48% 18%, rgba(255,200,120,0.55), transparent 18%),
+      radial-gradient(circle at 75% 26%, rgba(255,0,120,0.55), transparent 12%),
+      radial-gradient(circle at 91% 16%, rgba(0,170,255,0.40), transparent 10%),
+      linear-gradient(115deg, rgba(21,31,43,0.72) 0%, rgba(4,102,153,0.30) 24%, rgba(0,110,191,0.18) 42%, rgba(19,7,45,0.20) 100%),
+      linear-gradient(90deg, #2f3e45 0%, #0f6f9d 28%, #0d88c6 48%, #14162e 74%, #08132b 100%);
+  }
+  .left-panel:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.0) 18%, rgba(0,0,0,0.0) 100%),
+      radial-gradient(circle at 58% 52%, rgba(249,197,156,0.95) 0 7%, rgba(119,60,47,0.85) 13%, transparent 24%),
+      radial-gradient(circle at 64% 58%, rgba(220,170,145,0.92) 0 8%, rgba(109,52,42,0.82) 14%, transparent 25%),
+      radial-gradient(circle at 66% 43%, rgba(230,210,188,0.85) 0 12%, rgba(150,115,82,0.36) 18%, transparent 29%);
+    opacity: 0.95;
+  }
+  .left-panel:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(103deg, transparent 0 32px, rgba(0,214,255,0.22) 33px 36px, transparent 37px 72px),
+      repeating-linear-gradient(15deg, transparent 0 46px, rgba(255,0,153,0.18) 47px 50px, transparent 51px 94px);
+    mix-blend-mode: screen;
+    opacity: 0.45;
+  }
+
+  .circuit {
+    position: absolute;
+    border-radius: 10px;
+    background: rgba(0,220,255,0.82);
+    box-shadow: 0 0 10px rgba(0,220,255,0.9);
+  }
+  .dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(115,247,255,0.95);
+    box-shadow: 0 0 8px rgba(0,220,255,0.95);
+  }
+
+  .title {
+    position: absolute;
+    left: 86px;
+    top: 151px;
+    font-size: 38px;
+    line-height: 1;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+
+  .right-panel {
+    position: absolute;
+    left: 814px;
+    top: 47px;
+    width: 466px;
+    height: 673px;
+    background: #f5f5f5;
+  }
+
+  .body-text {
+    position: absolute;
+    left: 904px;
+    top: 104px;
+    width: 332px;
+    color: #1e45e3;
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 400;
+  }
+
+  .footnote {
+    position: absolute;
+    left: 903px;
+    top: 650px;
+    width: 250px;
+    color: #5e7fc8;
+    font-size: 8px;
+    line-height: 1.1;
+  }
+
+  .copyright {
+    position: absolute;
+    left: 87px;
+    top: 716px;
+    width: 541px;
+    color: rgba(255,255,255,0.72);
+    font-size: 9px;
+    line-height: 1.2;
+    transform: translateY(-100%);
+  }
+
+  .pagenum {
+    position: absolute;
+    right: 37px;
+    bottom: 13px;
+    color: #0e3aa8;
+    font-size: 14px;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="topbar">
+      <div class="nav n1">Executive summary</div>
+      <div class="nav n2">Key findings</div>
+      <div class="nav n3">Risk and regulation</div>
+      <div class="nav n4 active">Data and AI</div>
+      <div class="nav n5">Simplification and modernization</div>
+      <div class="nav n6">How KPMG can help</div>
+      <div class="nav n7">Methodology</div>
+
+      <div class="icon back"></div>
+      <div class="icon home"></div>
+      <div class="icon forward"></div>
+    </div>
+
+    <div class="left-panel">
+      <div class="title">Data and AI</div>
+
+      <div class="circuit" style="left:605px; top:395px; width:7px; height:156px;"></div>
+      <div class="circuit" style="left:640px; top:395px; width:7px; height:156px;"></div>
+      <div class="circuit" style="left:679px; top:396px; width:7px; height:155px;"></div>
+      <div class="circuit" style="left:544px; top:467px; width:138px; height:7px;"></div>
+      <div class="circuit" style="left:553px; top:419px; width:54px; height:7px;"></div>
+      <div class="circuit" style="left:646px; top:421px; width:35px; height:7px;"></div>
+      <div class="circuit" style="left:492px; top:497px; width:61px; height:7px;"></div>
+      <div class="circuit" style="left:573px; top:548px; width:97px; height:7px;"></div>
+      <div class="circuit" style="left:453px; top:533px; width:124px; height:7px;"></div>
+      <div class="circuit" style="left:688px; top:514px; width:77px; height:7px;"></div>
+
+      <div class="dot" style="left:548px; top:414px;"></div>
+      <div class="dot" style="left:603px; top:414px;"></div>
+      <div class="dot" style="left:640px; top:414px;"></div>
+      <div class="dot" style="left:679px; top:414px;"></div>
+      <div class="dot" style="left:488px; top:492px;"></div>
+      <div class="dot" style="left:545px; top:492px;"></div>
+      <div class="dot" style="left:569px; top:462px;"></div>
+      <div class="dot" style="left:673px; top:462px;"></div>
+      <div class="dot" style="left:568px; top:543px;"></div>
+      <div class="dot" style="left:663px; top:543px;"></div>
+      <div class="dot" style="left:449px; top:528px;"></div>
+      <div class="dot" style="left:571px; top:528px;"></div>
+      <div class="dot" style="left:683px; top:509px;"></div>
+      <div class="dot" style="left:760px; top:509px;"></div>
+    </div>
+
+    <div class="right-panel"></div>
+
+    <div class="body-text">
+      The evolution of AI is transforming numerous industries. The rise of GenAI has caused many organizations to rethink their AI investment strategies with a view to accelerating and building on their experience with machine learning (ML). Financial services companies have always been quick to embrace new technologies.<sup>3</sup> As such, 92 percent of financial services companies in the KPMG Global Tech Report research indicated their AI investments have generated profits over the last 24 months, compared with a cross-sector average of 88 percent.
+    </div>
+
+    <div class="footnote">
+      <sup>3</sup>Source:World Economic Forum, “Transforming Paradigms: A Global AI in Financial Services Survey” (January 2020).
+    </div>
+
+    <div class="copyright">
+      © 2025 KPMG LLP, a Delaware limited liability partnership and a member firm of the KPMG global organization of independent member firms affiliated with KPMG International Limited, a private English company limited by guarantee. All rights reserved. USC3026447-2A
+    </div>
+
+    <div class="pagenum">8</div>
+  </div>
+</body>
+</html>

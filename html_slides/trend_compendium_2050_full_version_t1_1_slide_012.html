@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#b8b8b8;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f1f1f1;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+    color:#222;
+  }
+  #slide > div, #slide > svg{position:absolute; box-sizing:border-box;}
+  .sidebar{
+    left:0; top:0; width:149px; height:720px;
+    background:#4a4d51;
+  }
+  .title{
+    left:220px; top:29px; width:1025px;
+    font-size:28px; line-height:1.14; font-weight:700; color:#222;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    left:220px; top:138px; width:560px;
+    font-size:27px; line-height:1.1; font-weight:300; color:#8b9198;
+  }
+  .side-title{
+    left:14px; top:35px; width:115px;
+    font-size:22px; line-height:1.08; font-weight:700; color:#f3f3f3;
+  }
+  .side-item{width:135px; height:92px;}
+  .hex{
+    position:absolute; left:8px; top:0; width:72px; height:72px;
+    clip-path:polygon(25% 6%,75% 6%,94% 50%,75% 94%,25% 94%,6% 50%);
+    overflow:hidden;
+    background:#adb0b3;
+    border:4px solid #b8bf00;
+  }
+  .hex.gray{border-color:#dadde0;}
+  .hex-inner{
+    position:absolute; inset:4px;
+    clip-path:polygon(25% 6%,75% 6%,94% 50%,75% 94%,25% 94%,6% 50%);
+    background:
+      radial-gradient(circle at 14% 20%, #c4b29a 0 1.3px, transparent 1.5px),
+      radial-gradient(circle at 24% 27%, #7d8aa5 0 1.4px, transparent 1.6px),
+      radial-gradient(circle at 37% 18%, #d36f68 0 1.4px, transparent 1.6px),
+      radial-gradient(circle at 50% 25%, #7d7d7d 0 1.3px, transparent 1.5px),
+      radial-gradient(circle at 63% 18%, #5f8e78 0 1.4px, transparent 1.6px),
+      radial-gradient(circle at 76% 24%, #d9d9d9 0 1.2px, transparent 1.4px),
+      radial-gradient(circle at 18% 40%, #ececec 0 1.3px, transparent 1.5px),
+      radial-gradient(circle at 31% 44%, #6b6b6b 0 1.4px, transparent 1.6px),
+      radial-gradient(circle at 46% 40%, #c77a62 0 1.4px, transparent 1.6px),
+      radial-gradient(circle at 59% 45%, #9ba7b2 0 1.4px, transparent 1.6px),
+      radial-gradient(circle at 72% 42%, #5a5a5a 0 1.3px, transparent 1.5px),
+      radial-gradient(circle at 20% 58%, #bdc7d3 0 1.4px, transparent 1.6px),
+      radial-gradient(circle at 36% 60%, #c6ae95 0 1.4px, transparent 1.6px),
+      radial-gradient(circle at 52% 59%, #7b7b7b 0 1.4px, transparent 1.6px),
+      radial-gradient(circle at 67% 60%, #d5655d 0 1.4px, transparent 1.6px),
+      radial-gradient(circle at 80% 59%, #e8e8e8 0 1.2px, transparent 1.4px),
+      radial-gradient(circle at 25% 76%, #6c7f96 0 1.4px, transparent 1.6px),
+      radial-gradient(circle at 41% 77%, #ddd 0 1.2px, transparent 1.4px),
+      radial-gradient(circle at 57% 76%, #7f7f7f 0 1.3px, transparent 1.5px),
+      radial-gradient(circle at 74% 77%, #bda894 0 1.4px, transparent 1.6px),
+      linear-gradient(135deg,#ececec,#bfbfbf);
+    background-size:100% 100%;
+  }
+  .hex-inner.gray1{
+    background:
+      linear-gradient(155deg,#dcdcdc 0 17%, #8e8e8e 17% 29%, #c7c7c7 29% 40%, #666 40% 55%, #d5d5d5 55% 68%, #888 68% 82%, #efefef 82% 100%);
+  }
+  .hex-inner.gray2{
+    background:
+      linear-gradient(90deg,#efefef 0 24%, #8e8e8e 24% 34%, #f4f4f4 34% 58%, #6e6e6e 58% 68%, #ebebeb 68% 100%);
+  }
+  .hex-inner.gray3{
+    background:
+      linear-gradient(145deg,#e8e8e8 0 20%, #a2a2a2 20% 34%, #f3f3f3 34% 51%, #7f7f7f 51% 66%, #dedede 66% 100%);
+  }
+  .side-num{
+    left:96px; top:0;
+    font-size:19px; line-height:1; font-weight:700; color:#b7bf00;
+  }
+  .side-num.gray{color:#767d85;}
+  .side-lbl{
+    left:96px; top:30px;
+    font-size:14px; line-height:1.15; font-weight:400; color:#b7bf00;
+    width:58px;
+  }
+  .side-lbl.gray{color:#6f767d;}
+  .page{
+    left:9px; bottom:10px;
+    font-size:18px; color:#f0f0f0; font-weight:400;
+  }
+  .crowd{left:53px; top:676px; width:82px; height:50px;}
+  .faded-photo{
+    left:195px; top:195px; width:790px; height:515px; opacity:.3;
+    background:
+      radial-gradient(circle at 8% 10%, rgba(255,255,255,.9) 0 18px, rgba(225,225,225,.85) 19px 36px, transparent 37px),
+      radial-gradient(circle at 58% 18%, rgba(255,255,255,.7) 0 54px, rgba(225,225,225,.7) 55px 88px, transparent 89px),
+      radial-gradient(circle at 55% 63%, rgba(255,255,255,.8) 0 64px, rgba(225,225,225,.7) 65px 108px, transparent 109px),
+      radial-gradient(circle at 78% 50%, rgba(255,255,255,.78) 0 70px, rgba(227,227,227,.65) 71px 112px, transparent 113px),
+      linear-gradient(180deg, rgba(245,245,245,.9), rgba(232,232,232,.9));
+    filter:grayscale(1);
+  }
+  .col-head{
+    font-size:29px; line-height:1; font-weight:700; color:#222; text-align:center;
+  }
+  .age-label{
+    font-size:21px; line-height:1; font-weight:700;
+  }
+  .chart-base{
+    height:2px; background:#565656;
+  }
+  .bar{
+    width:58px; height:165px;
+  }
+  .seg-blue{background:#0f4d84;}
+  .seg-green{background:#b5bc00;}
+  .seg-gray{background:#a9adb1;}
+  .pct-blue,.pct-gray,.pct-green{
+    position:absolute; width:100%; text-align:center;
+    font-size:17px; line-height:1; font-weight:400;
+  }
+  .pct-blue,.pct-gray{color:#fff;}
+  .pct-green{color:#222;}
+  .bar-year{
+    font-size:18px; line-height:1; font-weight:400; color:#222; text-align:center;
+  }
+  .median-label{
+    font-size:24px; line-height:1.05; font-weight:700; color:#b5bc00;
+  }
+  .median-num{
+    font-size:22px; line-height:1; font-weight:700; color:#b5bc00; text-align:center;
+  }
+  .sep{
+    height:1px; background:#d3d3d3;
+  }
+  .metric-label{
+    font-size:19px; line-height:1.02; font-weight:700; color:#222;
+  }
+  .metric-num{
+    font-size:18px; line-height:1; font-weight:700; color:#222; text-align:center;
+  }
+  .footnote{
+    font-size:11px; line-height:1.3; color:#444;
+  }
+  .rightpanel{
+    left:995px; top:140px; width:285px; height:579px; background:#d9d9d9;
+  }
+  .callout{
+    font-size:16px; line-height:1.23; color:#333;
+  }
+  .callout b{font-weight:700;}
+  .rb{
+    font-size:11px; line-height:1; color:#666; font-weight:400;
+  }
+  .rb-mark{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:54px; line-height:40px; color:#9ea1a4; font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+
+  <div class="side-title">People &amp;<br>Society</div>
+
+  <div class="side-item" style="left:0; top:142px;">
+    <div class="hex"><div class="hex-inner"></div></div>
+    <div class="side-num" style="position:absolute;">1</div>
+    <div class="side-lbl" style="position:absolute;">Population</div>
+  </div>
+
+  <div class="side-item" style="left:0; top:262px;">
+    <div class="hex gray"><div class="hex-inner gray1"></div></div>
+    <div class="side-num gray" style="position:absolute;">2</div>
+    <div class="side-lbl gray" style="position:absolute;">Migration</div>
+  </div>
+
+  <div class="side-item" style="left:0; top:382px;">
+    <div class="hex gray"><div class="hex-inner gray2"></div></div>
+    <div class="side-num gray" style="position:absolute;">3</div>
+    <div class="side-lbl gray" style="position:absolute;">Values</div>
+  </div>
+
+  <div class="side-item" style="left:0; top:502px;">
+    <div class="hex gray"><div class="hex-inner gray3"></div></div>
+    <div class="side-num gray" style="position:absolute;">4</div>
+    <div class="side-lbl gray" style="position:absolute;">Education</div>
+  </div>
+
+  <svg class="crowd" viewBox="0 0 82 50">
+    <g fill="#8b8e92">
+      <circle cx="41" cy="8" r="9"></circle>
+      <circle cx="24" cy="12" r="7.5"></circle>
+      <circle cx="58" cy="12" r="7.5"></circle>
+      <circle cx="11" cy="21" r="6.5"></circle>
+      <circle cx="41" cy="22" r="7.5"></circle>
+      <circle cx="71" cy="21" r="6.5"></circle>
+      <circle cx="24" cy="29" r="7.5"></circle>
+      <circle cx="58" cy="29" r="7.5"></circle>
+      <path d="M29 17h24c7 0 13 6 13 13v6H16v-6c0-7 6-13 13-13z"></path>
+      <path d="M10 28h18c6 0 10 5 10 10v5H0v-5c0-5 4-10 10-10z"></path>
+      <path d="M54 28h18c6 0 10 5 10 10v5H44v-5c0-5 4-10 10-10z"></path>
+      <circle cx="41" cy="37" r="9"></circle>
+      <path d="M28 40h26c8 0 14 5 14 10H14c0-5 6-10 14-10z"></path>
+    </g>
+  </svg>
+
+  <div class="page">12</div>
+
+  <div class="title">By 2050, the global median age will increase by 5.3 years – Half of the world's population will be older than 36 years</div>
+  <div class="subtitle">Age groups and median age [%, years]</div>
+  <div class="faded-photo"></div>
+
+  <div class="col-head" style="left:347px; top:205px; width:160px;">World</div>
+  <div class="col-head" style="left:549px; top:205px; width:230px;">More developed</div>
+  <div class="col-head" style="left:781px; top:205px; width:210px;">Less developed</div>
+
+  <div class="age-label" style="left:220px; top:257px; color:#0f4d84;">65+</div>
+  <div class="age-label" style="left:220px; top:309px; color:#b5bc00;">20-64</div>
+  <div class="age-label" style="left:220px; top:382px; color:#7c838b;">0-19</div>
+
+  <div class="chart-base" style="left:333px; top:422px; width:195px;"></div>
+  <div class="chart-base" style="left:560px; top:422px; width:196px;"></div>
+  <div class="chart-base" style="left:786px; top:422px; width:195px;"></div>
+
+  <div class="bar" style="left:353px; top:258px;">
+    <div class="seg-blue" style="position:absolute; left:0; top:0; width:58px; height:19px;"></div>
+    <div class="seg-green" style="position:absolute; left:0; top:19px; width:58px; height:92px;"></div>
+    <div class="seg-gray" style="position:absolute; left:0; top:111px; width:58px; height:54px;"></div>
+    <div class="pct-blue" style="top:3px;">9.3%</div>
+    <div class="pct-green" style="top:55px;">57.4%</div>
+    <div class="pct-gray" style="top:130px;">33.3%</div>
+  </div>
+  <div class="bar" style="left:452px; top:258px;">
+    <div class="seg-blue" style="position:absolute; left:0; top:0; width:58px; height:26px;"></div>
+    <div class="seg-green" style="position:absolute; left:0; top:26px; width:58px; height:92px;"></div>
+    <div class="seg-gray" style="position:absolute; left:0; top:118px; width:58px; height:47px;"></div>
+    <div class="pct-blue" style="top:3px;">15.9%</div>
+    <div class="pct-green" style="top:55px;">56.1%</div>
+    <div class="pct-gray" style="top:130px;">28.0%</div>
+  </div>
+
+  <div class="bar" style="left:579px; top:258px;">
+    <div class="seg-blue" style="position:absolute; left:0; top:0; width:58px; height:35px;"></div>
+    <div class="seg-green" style="position:absolute; left:0; top:35px; width:58px; height:93px;"></div>
+    <div class="seg-gray" style="position:absolute; left:0; top:128px; width:58px; height:37px;"></div>
+    <div class="pct-blue" style="top:3px;">19.3%</div>
+    <div class="pct-green" style="top:55px;">58.9%</div>
+    <div class="pct-gray" style="top:136px;">21.8%</div>
+  </div>
+  <div class="bar" style="left:678px; top:258px;">
+    <div class="seg-blue" style="position:absolute; left:0; top:0; width:58px; height:44px;"></div>
+    <div class="seg-green" style="position:absolute; left:0; top:44px; width:58px; height:87px;"></div>
+    <div class="seg-gray" style="position:absolute; left:0; top:131px; width:58px; height:34px;"></div>
+    <div class="pct-blue" style="top:3px;">26.9%</div>
+    <div class="pct-green" style="top:55px;">53.0%</div>
+    <div class="pct-gray" style="top:136px;">20.1%</div>
+  </div>
+
+  <div class="bar" style="left:806px; top:258px;">
+    <div class="seg-blue" style="position:absolute; left:0; top:0; width:58px; height:12px;"></div>
+    <div class="seg-green" style="position:absolute; left:0; top:12px; width:58px; height:94px;"></div>
+    <div class="seg-gray" style="position:absolute; left:0; top:106px; width:58px; height:59px;"></div>
+    <div class="pct-blue" style="top:2px;">7.4%</div>
+    <div class="pct-green" style="top:55px;">57.1%</div>
+    <div class="pct-gray" style="top:127px;">35.6%</div>
+  </div>
+  <div class="bar" style="left:905px; top:258px;">
+    <div class="seg-blue" style="position:absolute; left:0; top:0; width:58px; height:23px;"></div>
+    <div class="seg-green" style="position:absolute; left:0; top:23px; width:58px; height:93px;"></div>
+    <div class="seg-gray" style="position:absolute; left:0; top:116px; width:58px; height:49px;"></div>
+    <div class="pct-blue" style="top:3px;">14.2%</div>
+    <div class="pct-green" style="top:55px;">56.5%</div>
+    <div class="pct-gray" style="top:128px;">29.2%</div>
+  </div>
+
+  <div class="bar-year" style="left:347px; top:438px; width:70px;">2020</div>
+  <div class="bar-year" style="left:446px; top:438px; width:70px;">2050</div>
+  <div class="bar-year" style="left:573px; top:438px; width:70px;">2020</div>
+  <div class="bar-year" style="left:672px; top:438px; width:70px;">2050</div>
+  <div class="bar-year" style="left:800px; top:438px; width:70px;">2020</div>
+  <div class="bar-year" style="left:899px; top:438px; width:70px;">2050</div>
+
+  <div class="median-label" style="left:220px; top:482px; width:110px;">Median<br>age</div>
+  <div class="median-num" style="left:343px; top:490px; width:80px;">30.9</div>
+  <div class="median-num" style="left:442px; top:490px; width:80px;">36.2</div>
+  <div class="median-num" style="left:569px; top:490px; width:80px;">42.0</div>
+  <div class="median-num" style="left:668px; top:490px; width:80px;">46.0</div>
+  <div class="median-num" style="left:795px; top:490px; width:80px;">29.0</div>
+  <div class="median-num" style="left:894px; top:490px; width:80px;">34.9</div>
+
+  <div class="sep" style="left:220px; top:547px; width:763px;"></div>
+
+  <div class="metric-label" style="left:220px; top:560px; width:125px;">Fertility<sup style="font-size:10px;">1)</sup></div>
+  <div class="metric-num" style="left:343px; top:561px; width:80px;">2.5</div>
+  <div class="metric-num" style="left:442px; top:561px; width:80px;">2.2</div>
+  <div class="metric-num" style="left:569px; top:561px; width:80px;">1.6</div>
+  <div class="metric-num" style="left:668px; top:561px; width:80px;">1.7</div>
+  <div class="metric-num" style="left:795px; top:561px; width:80px;">2.6</div>
+  <div class="metric-num" style="left:894px; top:561px; width:80px;">2.3</div>
+
+  <div class="sep" style="left:220px; top:586px; width:763px;"></div>
+
+  <div class="metric-label" style="left:220px; top:598px; width:130px;">Life ex-<br>pectancy<sup style="font-size:10px;">2)</sup></div>
+  <div class="metric-num" style="left:343px; top:603px; width:80px;">72.3</div>
+  <div class="metric-num" style="left:442px; top:603px; width:80px;">76.8</div>
+  <div class="metric-num" style="left:569px; top:603px; width:80px;">79.2</div>
+  <div class="metric-num" style="left:668px; top:603px; width:80px;">83.4</div>
+  <div class="metric-num" style="left:795px; top:603px; width:80px;">70.7</div>
+  <div class="metric-num" style="left:894px; top:603px; width:80px;">75.7</div>
+
+  <div class="footnote" style="left:220px; top:690px; width:640px;">
+    1) Live births per woman, average 2015-2020 (2020) resp. 2045-2050 (2050)<br>
+    2) Life expectancy at birth [years], average 2015-2020 (2020) resp. 2045-2050 (2050)
+  </div>
+  <div class="footnote" style="left:220px; top:724px; width:340px;">Source: UN Population data; Roland Berger</div>
+
+  <div class="rightpanel"></div>
+  <div class="callout" style="left:1008px; top:151px; width:252px; height:548px;">
+    &gt; <b>Population aging</b> is a global phenomenon: Virtually every country in the world is experiencing growth in its share of older people within its population. Globally in 2020, there were 728 million <b>people aged 65 years or over – this is projected</b> to double to 1.5 billion in 2050<br><br>
+    &gt; <b>Drivers</b> of global aging are two-fold: <b>declining fertility rates</b> and <b>increasing longevity</b>, the latter due to improvements in healthcare and better living conditions<br><br>
+    &gt; <b>Life expectancy</b> at age 65 is projected to <b>increase in all countries</b>. Globally and on average, a person aged 65 years in 2015-2020 could expect to live 17 more years – increasing to 19 years by 2045-2050<br><br>
+    &gt; Women currently outlive men by 4.8 years, but this <b>global gender longevity gap</b> is <b>expected to narrow</b> over the next three decades<br><br>
+    &gt; The <b>median age will rise</b> in both developed regions (+4 years = 46 years) and developing regions (+5.9 years = 34.9 years)
+  </div>
+
+  <div style="left:1188px; top:698px; width:76px; height:20px;">
+    <div class="rb" style="position:absolute; left:0; top:4px;">Roland</div>
+    <div style="position:absolute; left:0; top:13px; font-size:16px; line-height:1; color:#666; font-weight:400;">Berger</div>
+    <div class="rb-mark" style="position:absolute; left:36px; top:-8px;">b</div>
+  </div>
+</div>
+</body>
+</html>

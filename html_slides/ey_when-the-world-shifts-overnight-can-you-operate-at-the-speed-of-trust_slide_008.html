@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+    color:#1d2735;
+  }
+  .slide > *{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .para{
+    font-size:11.4px;
+    line-height:1.36;
+    color:#4b5563;
+    font-weight:400;
+    width:145px;
+  }
+  .para p{
+    margin:0 0 6px 0;
+  }
+
+  .para.col1{
+    left:145px;
+    top:61px;
+  }
+
+  .para.col2{
+    left:357px;
+    top:59px;
+    width:146px;
+  }
+
+  .quote-wrap{
+    left:32px;
+    top:431px;
+    width:310px;
+    height:98px;
+  }
+  .quote-line{
+    position:absolute;
+    left:0;
+    top:1px;
+    width:2px;
+    height:94px;
+    background:#243446;
+  }
+  .quote-text{
+    position:absolute;
+    left:19px;
+    top:0;
+    width:285px;
+    font-size:17px;
+    line-height:1.08;
+    font-weight:400;
+    color:#1f2b3a;
+    letter-spacing:0;
+  }
+
+  .photo{
+    left:626px;
+    top:27px;
+    width:531px;
+    height:686px;
+    border-radius:2px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 57% 49%, rgba(5,31,61,0.98) 0%, rgba(12,44,76,0.96) 7%, rgba(32,69,103,0.92) 15%, rgba(71,103,132,0.78) 23%, rgba(198,208,217,0.30) 32%, rgba(242,243,245,0) 40%),
+      conic-gradient(from 164deg at 57% 49%,
+        rgba(255,255,255,0.00) 0deg 14deg,
+        rgba(255,255,255,0.92) 14deg 36deg,
+        rgba(208,216,223,0.42) 36deg 45deg,
+        rgba(255,255,255,0.00) 45deg 58deg,
+        rgba(255,255,255,0.96) 58deg 86deg,
+        rgba(198,207,215,0.35) 86deg 97deg,
+        rgba(255,255,255,0.00) 97deg 112deg,
+        rgba(255,255,255,0.95) 112deg 142deg,
+        rgba(206,214,221,0.34) 142deg 152deg,
+        rgba(255,255,255,0.00) 152deg 168deg,
+        rgba(255,255,255,0.94) 168deg 200deg,
+        rgba(204,212,220,0.33) 200deg 210deg,
+        rgba(255,255,255,0.00) 210deg 227deg,
+        rgba(255,255,255,0.96) 227deg 258deg,
+        rgba(206,214,221,0.33) 258deg 269deg,
+        rgba(255,255,255,0.00) 269deg 285deg,
+        rgba(255,255,255,0.94) 285deg 316deg,
+        rgba(206,214,221,0.30) 316deg 326deg,
+        rgba(255,255,255,0.00) 326deg 342deg,
+        rgba(255,255,255,0.93) 342deg 360deg),
+      radial-gradient(ellipse at 57% 49%, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 15%, rgba(255,255,255,0.94) 17%, rgba(255,255,255,0) 23%, rgba(255,255,255,0) 29%, rgba(255,255,255,0.76) 31%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 46%, rgba(255,255,255,0.46) 49%, rgba(255,255,255,0) 56%),
+      radial-gradient(circle at 29% 29%, rgba(24,48,74,0.95) 0%, rgba(34,64,94,0.68) 5%, rgba(243,243,243,0) 10%),
+      radial-gradient(circle at 35% 40%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.78) 7%, rgba(243,243,243,0) 13%),
+      radial-gradient(circle at 52% 22%, rgba(255,255,255,0.86) 0%, rgba(255,255,255,0.22) 9%, rgba(243,243,243,0) 18%),
+      radial-gradient(circle at 77% 39%, rgba(25,58,92,0.9) 0%, rgba(53,84,114,0.4) 4%, rgba(243,243,243,0) 9%),
+      radial-gradient(circle at 71% 58%, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.25) 8%, rgba(243,243,243,0) 16%),
+      radial-gradient(circle at 40% 71%, rgba(33,60,90,0.55) 0%, rgba(243,243,243,0) 6%),
+      radial-gradient(circle at 50% 82%, rgba(255,255,255,0.72) 0%, rgba(243,243,243,0) 10%),
+      radial-gradient(circle at 14% 13%, rgba(255,255,255,0.48) 0%, rgba(243,243,243,0) 18%),
+      radial-gradient(circle at 90% 10%, rgba(255,255,255,0.36) 0%, rgba(243,243,243,0) 18%),
+      radial-gradient(circle at 92% 82%, rgba(255,255,255,0.42) 0%, rgba(243,243,243,0) 22%),
+      radial-gradient(circle at 10% 92%, rgba(255,255,255,0.38) 0%, rgba(243,243,243,0) 22%),
+      linear-gradient(180deg, #d7d9dc 0%, #e1e3e6 16%, #eaedef 36%, #f0f1f3 60%, #e6e8eb 100%);
+    filter: saturate(.9) contrast(1.04);
+  }
+  .photo:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:531px;
+    height:686px;
+    background:
+      radial-gradient(circle at 56% 48%, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 18%, rgba(255,255,255,0.85) 20%, rgba(255,255,255,0) 23%),
+      radial-gradient(circle at 56% 48%, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 29%, rgba(255,255,255,0.65) 31%, rgba(255,255,255,0) 36%);
+    opacity:.45;
+    mix-blend-mode:screen;
+  }
+
+  .foot-left{
+    left:32px;
+    top:739px;
+    transform:translateY(-100%);
+    font-size:6.9px;
+    line-height:1;
+    color:#1e2936;
+    font-weight:700;
+    white-space:nowrap;
+    letter-spacing:0;
+  }
+  .foot-left .num{
+    font-weight:400;
+    margin-right:10px;
+  }
+
+  .foot-right{
+    right:31px;
+    top:739px;
+    transform:translateY(-100%);
+    font-size:6.9px;
+    line-height:1;
+    color:#1e2936;
+    font-weight:700;
+    white-space:nowrap;
+    letter-spacing:0;
+  }
+  .foot-right .series{
+    margin-right:11px;
+  }
+  .foot-right .sep{
+    margin-right:8px;
+    font-weight:400;
+  }
+  .foot-right .page{
+    font-weight:400;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="para col1">
+      <p>It begins with translating strategic assumptions into signals that indicate when conditions are shifting in ways that matter for value creation. Those signals are continuously monitored and paired with objective thresholds that define when attention is required and what level of response is appropriate. The level determines four things: decision authority, response actions, escalation path and communications cadence.</p>
+      <p>Most Risk Strategist organizations benefit from three trigger levels: monitor, mitigate and mobilize. Each level includes defined owners, required actions, escalation paths and communication protocols. Every signal needs a data owner, measurement logic, refresh frequency and a single accountable decision owner once thresholds are crossed.</p>
+    </div>
+
+    <div class="para col2">
+      <p>To see this approach in practice, consider a large organization preparing for the possibility of cross-border conflict in a region marked by growing geopolitical tensions. The company may begin by establishing a monitoring framework tied to a range of escalation scenarios, ranging from low-intensity political and economic pressure to hybrid warfare and full-scale armed conflict. Based on these scenarios, the company might define both no-regrets actions to take immediately (such as diversifying critical dependencies) and pre-authorized countermeasures that activate at each escalation level (for example, bifurcating technology stacks to isolate local operations as conditions deteriorate).</p>
+      <p>This is where speed becomes structural. The organization is not deciding “who owns this” during disruptions. Ownership, authority and escalation are pre wired. The only task during activation is execution.</p>
+      <p>When a crisis hits, the organization does not debate process; it activates the pre-defined playbook. Risk does not run the play; it designs the playbook, convenes the right owners, and keeps the design current through rehearsal, post-event learning and periodic refresh.</p>
+      <p>Crucially, governance follows the trigger. Oversight and assurance activate in proportion to severity, preserving accountability without re-introducing latency. Outcomes, near-misses, and true surprises feed a learning loop that refines signals, resets thresholds, updates protocols and strengthens the no-regret posture over time. In this way, the organization becomes faster and more coherent with each activation.</p>
+    </div>
+
+    <div class="quote-wrap">
+      <div class="quote-line"></div>
+      <div class="quote-text">Ownership, authority, and<br>escalation are pre wired.<br>The only task during<br>activation is execution</div>
+    </div>
+
+    <div class="photo"></div>
+
+    <div class="foot-left"><span class="num">9</span> | When the world shifts overnight how can you operate at the speed of trust</div>
+    <div class="foot-right"><span class="series">Global Risk Transformation Series</span><span class="sep">|</span><span class="page">10</span></div>
+  </div>
+</body>
+</html>

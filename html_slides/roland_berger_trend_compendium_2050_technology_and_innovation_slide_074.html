@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body { margin:0; background:#ffffff; }
+  #slide {
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+    font-family: Arial, Helvetica, 'Segoe UI', sans-serif;
+    color:#222;
+  }
+  #slide > div, #slide > svg { position:absolute; box-sizing:border-box; }
+
+  .sidebar {
+    left:0px; top:0px; width:181px; height:720px;
+    background:#34373d;
+    z-index:5;
+  }
+  .purple-line{
+    left:179px; top:0px; width:2px; height:720px;
+    background:#7b61b3; z-index:6;
+  }
+  .side-title{
+    left:12px; top:34px; width:145px; height:64px;
+    color:#f2f2f2; font-weight:700; font-size:25px; line-height:1.05;
+    z-index:30;
+  }
+
+  .hex {
+    width:43px; height:37px;
+    background:#5a5d63;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    border:2px solid #9fa1a6;
+  }
+  .hex .inner{
+    position:absolute; left:4px; top:4px; width:31px; height:27px;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    background:linear-gradient(135deg,#d9d9d9,#7b7d82);
+    opacity:.9;
+  }
+  .hex1{ left:8px; top:144px; z-index:20;}
+  .hex2{ left:8px; top:275px; z-index:20;}
+  .hex3{ left:8px; top:408px; z-index:20; border-color:#8f73cc; box-shadow:0 0 0 4px rgba(143,115,204,.18);}
+  .num1,.num2,.num3{
+    width:18px; color:#83878e; font-weight:700; font-size:27px; line-height:1;
+    z-index:30;
+  }
+  .num1{ left:92px; top:145px;}
+  .num2{ left:92px; top:275px;}
+  .num3{ left:92px; top:408px; color:#8f73cc;}
+  .side-lbl{
+    color:#6f747c; font-size:14px; line-height:1.05; width:80px; z-index:30;
+  }
+  .lbl1{ left:92px; top:179px; height:35px;}
+  .lbl2{ left:92px; top:307px; height:36px;}
+  .lbl3{ left:92px; top:441px; height:34px; color:#8f73cc; font-weight:700;}
+
+  .side-bottom{
+    left:69px; top:661px; width:64px; height:44px; z-index:30;
+    opacity:.65;
+  }
+  .page{
+    left:8px; top:748px; width:18px; height:0px;
+  }
+  .page-num{
+    left:8px; top:748px;
+  }
+  .page-fixed{
+    left:8px; top:748px;
+  }
+  .page-real{
+    left:8px; top:748px;
+  }
+  .page-visible{
+    left:8px; top:748px;
+  }
+  .pageNo{
+    left:9px; top:748px;
+  }
+  .pagen{
+    left:8px; top:748px;
+  }
+  .page-number{
+    left:8px; top:748px;
+  }
+  .sidebar-page{
+    left:9px; top:749px;
+  }
+  .left-page{
+    left:9px; top:749px;
+  }
+  .pageTxt{
+    left:9px; top:749px;
+  }
+  .page-actual{
+    left:8px; top:749px;
+  }
+  .footer-page{
+    left:8px; top:747px;
+  }
+  .pageSmall{
+    left:8px; top:747px;
+  }
+  .pageno{
+    left:8px; top:747px;
+  }
+  .pageNumVis{
+    left:8px; top:747px;
+  }
+  .page-num-visible{
+    left:8px; top:747px;
+  }
+  .page-text{
+    left:8px; top:747px;
+  }
+  .bottom-left-page{
+    left:8px; top:747px;
+  }
+  .pageIndicator{
+    left:8px; top:747px;
+  }
+  .pageDisplay{
+    left:8px; top:747px;
+  }
+  .pageActualVisible{
+    left:8px; top:747px;
+  }
+  .page-final{
+    left:8px; top:747px;
+  }
+  .pagecount{
+    left:9px; top:748px;
+  }
+  .page-counter{
+    left:8px; top:748px;
+  }
+  .real-page{
+    left:8px; top:748px;
+  }
+
+  .main-title{
+    left:220px; top:33px; width:940px; height:80px;
+    font-size:25px; line-height:1.08; font-weight:700; color:#202124;
+    z-index:30;
+  }
+  .sub-title{
+    left:220px; top:138px; width:505px; height:34px;
+    font-size:24px; line-height:1.1; font-weight:300; color:#8c9197;
+    z-index:30;
+  }
+
+  .circle-left{
+    left:263px; top:186px; width:120px; height:120px;
+    border:2px solid #7e67a7; border-radius:50%; background:transparent;
+    z-index:20;
+  }
+  .circle-right{
+    left:726px; top:184px; width:123px; height:123px;
+    border:2px solid #b0a5c9; border-radius:50%; background:transparent;
+    z-index:20;
+  }
+  .top-line{
+    left:370px; top:240px; width:401px; height:9px;
+    background:#d6d7db; z-index:10;
+  }
+
+  .mag-wrap{
+    left:472px; top:168px; width:193px; height:212px; z-index:25;
+  }
+
+  .dotted1, .dotted2{
+    border-top:5px dotted #004674; z-index:12;
+    transform-origin:left center;
+  }
+  .dotted1{
+    left:363px; top:414px; width:163px; height:0px;
+    transform:rotate(-51deg);
+  }
+  .dotted2{
+    left:626px; top:413px; width:162px; height:0px;
+    transform:rotate(51deg);
+  }
+
+  .explain-left{
+    left:220px; top:314px; width:179px; height:76px;
+    color:#5f3e89; font-size:18px; line-height:1.05; text-align:center; font-weight:400;
+    z-index:30;
+  }
+
+  .content-box{
+    left:220px; top:421px; width:640px; height:299px;
+    background:rgba(255,255,255,.86);
+    border:2px solid #2f79b2;
+    border-radius:15px;
+    z-index:20;
+  }
+
+  .box-title{
+    left:456px; top:396px; width:175px; height:25px;
+    color:#004674; font-size:19px; line-height:1.1; font-weight:700; text-align:center;
+    z-index:30;
+  }
+
+  .left-copy{
+    left:228px; top:451px; width:120px; height:200px;
+    color:#2e2e2e; font-size:17px; line-height:1.08; font-weight:400;
+    z-index:31;
+  }
+
+  .mini-head1,.mini-head2,.mini-head3{
+    color:#333; font-size:17px; line-height:1; font-weight:700; z-index:31; text-align:center;
+  }
+  .mini-head1{ left:441px; top:433px; width:51px; height:16px;}
+  .mini-head2{ left:515px; top:433px; width:52px; height:16px;}
+  .mini-head3{ left:644px; top:433px; width:68px; height:16px;}
+
+  .right-panel{
+    left:873px; top:140px; width:407px; height:579px;
+    background:#d9d9db;
+    z-index:20;
+  }
+  .bullet-text{
+    left:886px; top:150px; width:379px; height:545px;
+    color:#2b2b2b; font-size:16px; line-height:1.15; font-weight:400;
+    z-index:30;
+  }
+  .bullet-text b{ font-weight:700; }
+  .bullet{
+    margin-bottom:9px;
+  }
+
+  .sources{
+    left:220px; top:752px; width:250px; height:0px;
+  }
+  .sources-visible{
+    left:220px; top:752px;
+  }
+  .source-text{
+    left:220px; top:752px;
+  }
+
+  .footer-source{
+    left:220px; top:753px;
+  }
+  .sourceReal{
+    left:220px; top:753px;
+  }
+
+  .src{
+    left:220px; top:752px;
+  }
+
+  .footer-left{
+    left:220px; top:752px;
+  }
+
+  .bottom-source{
+    left:220px; top:752px;
+  }
+
+  .source-visible{
+    left:220px; top:752px;
+  }
+
+  .sourceText{
+    left:220px; top:752px;
+  }
+
+  .source-final{
+    left:220px; top:752px;
+  }
+
+  .foot-source{
+    left:220px; top:752px;
+  }
+
+  .sources-line{
+    left:220px; top:752px;
+  }
+
+  .small-footer{
+    left:220px; top:753px;
+  }
+
+  .bottom-note{
+    left:220px; top:753px;
+  }
+
+  .src-text{
+    left:220px; top:753px;
+  }
+
+  .source-note{
+    left:220px; top:753px;
+  }
+
+  .footerTxt{
+    left:220px; top:753px;
+  }
+
+  .actual-source{
+    left:220px; top:753px;
+  }
+
+  .source-position{
+    left:220px; top:753px;
+  }
+
+  .sourcesBottom{
+    left:220px; top:753px;
+  }
+
+  .source-display{
+    left:220px; top:753px;
+  }
+
+  .footerCaption{
+    left:220px; top:753px;
+  }
+
+  .visible-source{
+    left:220px; top:753px;
+  }
+
+  .source-block{
+    left:220px; top:753px;
+  }
+
+  .slide-source{
+    left:220px; top:753px;
+  }
+
+  .bottom-left-source{
+    left:220px; top:753px;
+  }
+
+  .srcLine{
+    left:220px; top:753px;
+  }
+
+  .srcCaption{
+    left:220px; top:753px;
+  }
+
+  .realSourceTxt{
+    left:220px; top:753px;
+  }
+
+  .footer-source-real{
+    left:220px; top:753px;
+  }
+
+  .rb-logo{
+    left:1245px; top:729px;
+  }
+
+  .source-note-vis{
+    left:220px; top:754px;
+  }
+
+  .footer-bottom-source{
+    left:220px; top:753px;
+  }
+
+  .visible-footer-left{
+    left:220px; top:753px;
+  }
+
+  .tiny-source{
+    left:220px; top:753px;
+  }
+
+  .actual-footer-source{
+    left:220px; top:753px;
+  }
+
+  .source-now{
+    left:220px; top:753px;
+  }
+
+  .footerTextActual{
+    left:220px; top:753px;
+  }
+
+  .footer-source-show{
+    left:220px; top:753px;
+  }
+
+  .source-show{
+    left:220px; top:753px;
+  }
+
+  .bottom-footer-text{
+    left:220px; top:753px;
+  }
+
+  .source-caption{
+    left:220px; top:753px;
+  }
+
+  .footnote{
+    left:220px; top:753px; width:260px; height:13px;
+    color:#3c3c3c; font-size:11px; line-height:1; font-weight:400;
+    z-index:30;
+  }
+
+  .rbmark{
+    left:1212px; top:729px; width:54px; height:18px; z-index:30;
+    color:#555; font-size:11px; line-height:1; text-align:right;
+  }
+  .rbmark .bshape{
+    position:absolute; right:0; top:-5px; width:24px; height:27px;
+    background:#9ea0a4; border-radius:0 12px 12px 0;
+  }
+  .rbmark .bshape:before{
+    content:""; position:absolute; left:-10px; top:0; width:16px; height:27px;
+    background:#b8babd; border-radius:9px 0 0 9px;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="purple-line"></div>
+
+  <div class="side-title">Technology &amp;<br>Innovation</div>
+
+  <div class="hex hex1">
+    <div class="inner"></div>
+    <svg width="43" height="77" style="position:absolute;left:0;top:0">
+      <line x1="9" y1="24" x2="17" y2="16" stroke="#fff" stroke-width="1"/>
+      <line x1="17" y1="16" x2="24" y2="20" stroke="#fff" stroke-width="1"/>
+      <line x1="24" y1="20" x2="31" y2="10" stroke="#fff" stroke-width="1"/>
+      <circle cx="9" cy="24" r="2" fill="#fff"/><circle cx="17" cy="16" r="2" fill="#fff"/>
+      <circle cx="24" cy="20" r="2" fill="#fff"/><circle cx="31" cy="10" r="2" fill="#fff"/>
+    </svg>
+  </div>
+  <div class="num1">1</div>
+  <div class="side-lbl lbl1">Value of<br>Innovation</div>
+
+  <div class="hex hex2">
+    <div class="inner"></div>
+    <svg width="43" height="77" style="position:absolute;left:0;top:0">
+      <circle cx="14" cy="18" r="2" fill="#fff"/><circle cx="20" cy="14" r="2" fill="#fff"/>
+      <circle cx="27" cy="19" r="2" fill="#fff"/><circle cx="18" cy="24" r="2" fill="#fff"/>
+      <circle cx="28" cy="11" r="2" fill="#fff"/>
+      <line x1="14" y1="18" x2="20" y2="14" stroke="#fff" stroke-width="1"/>
+      <line x1="20" y1="14" x2="27" y2="19" stroke="#fff" stroke-width="1"/>
+      <line x1="20" y1="14" x2="28" y2="11" stroke="#fff" stroke-width="1"/>
+      <line x1="14" y1="18" x2="18" y2="24" stroke="#fff" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="num2">2</div>
+  <div class="side-lbl lbl2">Frontier<br>Technologies</div>
+
+  <div class="hex hex3">
+    <div class="inner" style="background:linear-gradient(135deg,#ffd9d1,#c8b3ff);"></div>
+    <svg width="43" height="77" style="position:absolute;left:0;top:0">
+      <circle cx="16" cy="17" r="4" fill="#fff"/><circle cx="26" cy="20" r="4" fill="#fff"/>
+      <line x1="19" y1="18" x2="23" y2="19" stroke="#fff" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="num3">3</div>
+  <div class="side-lbl lbl3">Humans &amp;<br>Machines</div>
+
+  <svg class="side-bottom" viewBox="0 0 64 44">
+    <g fill="none" stroke="#9da0a6" stroke-width="2">
+      <circle cx="41" cy="20" r="12"></circle>
+      <circle cx="29" cy="30" r="13"></circle>
+      <line x1="17" y1="18" x2="10" y2="14"></line>
+      <line x1="16" y1="24" x2="8" y2="24"></line>
+      <line x1="18" y1="30" x2="11" y2="34"></line>
+      <line x1="23" y1="13" x2="20" y2="7"></line>
+      <path d="M30 43 L30 34"></path>
+      <path d="M35 42 L42 42"></path>
+      <path d="M43 6 L47 1"></path>
+      <path d="M49 20 L57 20"></path>
+      <path d="M46 28 L53 33"></path>
+      <path d="M38 8 L36 1"></path>
+      <path d="M28 29 C24 22,24 17,30 14 C34 12,39 13,41 17 C44 23,38 27,35 29 C32 31,30 34,30 38"></path>
+      <circle cx="31" cy="38" r="2" fill="#9da0a6"></circle>
+      <circle cx="47" cy="20" r="2" fill="#9da0a6"></circle>
+      <circle cx="34" cy="14" r="2" fill="#9da0a6"></circle>
+    </g>
+  </svg>
+
+  <div style="left:9px; top:748px; width:16px; height:12px; color:#f0f0f0; font-size:21px; line-height:1; z-index:30;">74</div>
+
+  <div class="main-title">Shedding light into the AI black box – Greater transparency will improve levels of trust and acceptance between humans and machines</div>
+  <div class="sub-title">What happens inside an AI black box</div>
+
+  <div class="circle-left">
+    <svg width="120" height="160" viewBox="0 0 120 160" style="position:absolute;left:0;top:0">
+      <g fill="#5d3a86">
+        <circle cx="59" cy="70" r="8"></circle>
+        <rect x="54" y="78" width="10" height="27"></rect>
+        <rect x="47" y="86" width="7" height="18"></rect>
+        <rect x="64" y="83" width="7" height="22"></rect>
+        <line x1="64" y1="69" x2="80" y2="43" stroke="#5d3a86" stroke-width="4"/>
+        <circle cx="78" cy="37" r="8"></circle>
+      </g>
+    </svg>
+  </div>
+
+  <div class="top-line"></div>
+
+  <div class="circle-right">
+    <svg width="123" height="163" viewBox="0 0 123 163" style="position:absolute;left:0;top:0">
+      <g stroke="#bcb7c9" stroke-width="3" fill="none" opacity=".9">
+        <rect x="19" y="19" width="85" height="60"></rect>
+        <line x1="62" y1="19" x2="62" y2="79"></line>
+        <line x1="19" y1="48" x2="104" y2="48"></line>
+      </g>
+      <text x="62" y="41" text-anchor="middle" font-size="18" fill="#6f58a5" font-weight="700" font-family="Arial">Kid &amp;</text>
+      <text x="62" y="67" text-anchor="middle" font-size="18" fill="#6f58a5" font-weight="700" font-family="Arial">Balloon</text>
+      <g fill="#c4c0ce" opacity=".9">
+        <circle cx="63" cy="79" r="7"></circle>
+        <rect x="58" y="86" width="10" height="22"></rect>
+        <rect x="52" y="92" width="5" height="16"></rect>
+        <rect x="69" y="90" width="5" height="18"></rect>
+      </g>
+    </svg>
+  </div>
+
+  <div class="mag-wrap">
+    <svg width="193" height="252" viewBox="0 0 193 252" style="position:absolute;left:0;top:0">
+      <defs>
+        <radialGradient id="g1" cx="50%" cy="45%" r="55%">
+          <stop offset="0%" stop-color="#f8f8f8"/>
+          <stop offset="55%" stop-color="#bfc3c7"/>
+          <stop offset="100%" stop-color="#7c8086"/>
+        </radialGradient>
+        <radialGradient id="g2" cx="50%" cy="50%" r="55%">
+          <stop offset="0%" stop-color="#0a1534"/>
+          <stop offset="100%" stop-color="#1d273f"/>
+        </radialGradient>
+      </defs>
+      <circle cx="74" cy="74" r="63" fill="none" stroke="#004674" stroke-width="17"></circle>
+      <circle cx="74" cy="74" r="40" fill="url(#g1)"></circle>
+      <circle cx="74" cy="74" r="23" fill="url(#g2)"></circle>
+      <g fill="#46a7ff" opacity=".9">
+        <circle cx="63" cy="66" r="2"></circle><circle cx="73" cy="59" r="2"></circle><circle cx="82" cy="68" r="2"></circle>
+        <circle cx="67" cy="80" r="2"></circle><circle cx="80" cy="83" r="2"></circle><circle cx="74" cy="72" r="2"></circle>
+      </g>
+      <g stroke="#3a8fe0" stroke-width="1.5" opacity=".8">
+        <line x1="63" y1="66" x2="73" y2="59"></line>
+        <line x1="73" y1="59" x2="82" y2="68"></line>
+        <line x1="63" y1="66" x2="67" y2="80"></line>
+        <line x1="67" y1="80" x2="80" y2="83"></line>
+        <line x1="82" y1="68" x2="80" y2="83"></line>
+      </g>
+      <rect x="116" y="108" width="39" height="102" rx="16" ry="16" fill="#004674" transform="rotate(-45 135 159)"></rect>
+    </svg>
+  </div>
+
+  <div class="dotted1"></div>
+  <div class="dotted2"></div>
+
+  <div class="explain-left">The AI is presented with<br>a picture of a child<br>holding a balloon for<br>recognition</div>
+
+  <div class="box-title">Inside Black Box AI</div>
+  <div class="content-box"></div>
+
+  <div class="left-copy">A neural network,<br>such as this one<br>is taught to<br>perform image<br>recognition, is<br>made from layers<br>or "neurons".<br>The neurons fire<br>when given data<br>that cross certain<br>thresholds and<br>pass that<br>information to a<br>new layer</div>
+  <div class="mini-head1">Form</div>
+  <div class="mini-head2">Color</div>
+  <div class="mini-head3">Result</div>
+
+  <svg style="left:308px; top:431px; width:526px; height:264px; z-index:31;" viewBox="0 0 526 264">
+    <defs>
+      <linearGradient id="bgnet" x1="0" x2="1">
+        <stop offset="0%" stop-color="#efefef" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#d9dade" stop-opacity="0.08"/>
+      </linearGradient>
+      <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+        <path d="M0,0 L8,4 L0,8 Z" fill="#1f6ca7"></path>
+      </marker>
+      <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+        <path d="M0,0 L8,4 L0,8 Z" fill="#7754b0"></path>
+      </marker>
+    </defs>
+
+    <rect x="0" y="0" width="526" height="264" fill="url(#bgnet)"></rect>
+
+    <g opacity="0.18" stroke="#bdbec2" stroke-width="1">
+      <line x1="0" y1="10" x2="526" y2="250"></line>
+      <line x1="20" y1="0" x2="260" y2="264"></line>
+      <line x1="80" y1="0" x2="350" y2="264"></line>
+      <line x1="150" y1="0" x2="430" y2="264"></line>
+      <line x1="220" y1="0" x2="500" y2="264"></line>
+      <line x1="0" y1="80" x2="520" y2="30"></line>
+      <line x1="0" y1="150" x2="526" y2="100"></line>
+      <line x1="0" y1="220" x2="526" y2="170"></line>
+    </g>
+
+    <g stroke="#c5c6cb" stroke-width="1.1" opacity="0.95">
+      <!-- dense network connections -->
+      <line x1="72" y1="57" x2="146" y2="57"/><line x1="72" y1="57" x2="146" y2="114"/><line x1="72" y1="57" x2="146" y2="171"/><line x1="72" y1="57" x2="146" y2="228"/>
+      <line x1="72" y1="114" x2="146" y2="57"/><line x1="72" y1="114" x2="146" y2="114"/><line x1="72" y1="114" x2="146" y2="171"/><line x1="72" y1="114" x2="146" y2="228"/>
+      <line x1="72" y1="171" x2="146" y2="57"/><line x1="72" y1="171" x2="146" y2="114"/><line x1="72" y1="171" x2="146" y2="171"/><line x1="72" y1="171" x2="146" y2="228"/>
+      <line x1="72" y1="228" x2="146" y2="57"/><line x1="72" y1="228" x2="146" y2="114"/><line x1="72" y1="228" x2="146" y2="171"/><line x1="72" y1="228" x2="146" y2="228"/>
+
+      <line x1="146" y1="57" x2="217" y2="57"/><line x1="146" y1="57" x2="217" y2="114"/><line x1="146" y1="57" x2="217" y2="171"/><line x1="146" y1="57" x2="217" y2="228"/>
+      <line x1="146" y1="114" x2="217" y2="57"/><line x1="146" y1="114" x2="217" y2="114"/><line x1="146" y1="114" x2="217" y2="171"/><line x1="146" y1="114" x2="217" y2="228"/>
+      <line x1="146" y1="171" x2="217" y2="57"/><line x1="146" y1="171" x2="217" y2="114"/><line x1="146" y1="171" x2="217" y2="171"/><line x1="146" y1="171" x2="217" y2="228"/>
+      <line x1="146" y1="228" x2="217" y2="57"/><line x1="146" y1="228" x2="217" y2="114"/><line x1="146" y1="228" x2="217" y2="171"/><line x1="146" y1="228" x2="217" y2="228"/>
+
+      <line x1="217" y1="57" x2="291" y2="57"/><line x1="217" y1="57" x2="291" y2="114"/><line x1="217" y1="57" x2="291" y2="171"/><line x1="217" y1="57" x2="291" y2="228"/>
+      <line x1="217" y1="114" x2="291" y2="57"/><line x1="217" y1="114" x2="291" y2="114"/><line x1="217" y1="114" x2="291" y2="171"/><line x1="217" y1="114" x2="291" y2="228"/>
+      <line x1="217" y1="171" x2="291" y2="57"/><line x1="217" y1="171" x2="291" y2="114"/><line x1="217" y1="171" x2="291" y2="171"/><line x1="217" y1="171" x2="291" y2="228"/>
+      <line x1="217" y1="228" x2="291" y2="57"/><line x1="217" y1="228" x2="291" y2="114"/><line x1="217" y1="228" x2="291" y2="171"/><line x1="217" y1="228" x2="291" y2="228"/>
+
+      <line x1="291" y1="57" x2="365" y2="57"/><line x1="291" y1="57" x2="365" y2="114"/><line x1="291" y1="57" x2="365" y2="171"/><line x1="291" y1="57" x2="365" y2="228"/>
+      <line x1="291" y1="114" x2="365" y2="57"/><line x1="291" y1="114" x2="365" y2="114"/><line x1="291" y1="114" x2="365" y2="171"/><line x1="291" y1="114" x2="365" y2="228"/>
+      <line x1="291" y1="171" x2="365" y2="57"/><line x1="291" y1="171" x2="365" y2="114"/><line x1="291" y1="171" x2="365" y2="171"/><line x1="291" y1="171" x2="365" y2="228"/>
+      <line x1="291" y1="228" x2="365" y2="57"/><line x1="291" y1="228" x2="365" y2="114"/><line x1="291" y1="228" x2="365" y2="171"/><line x1="291" y1="228" x2="365" y2="228"/>
+
+      <line x1="365" y1="57" x2="428" y2="76"/><line x1="365" y1="114" x2="428" y2="76"/><line x1="365" y1="171" x2="428" y2="76"/>
+      <line x1="365" y1="57" x2="428" y2="199"/><line x1="365" y1="114" x2="428" y2="199"/><line x1="365" y1="171" x2="428" y2="199"/>
+    </g>
+
+    <!-- input arrows -->
+    <g stroke="#6e95c2" stroke-width="3" marker-end="url(#arrowBlue)">
+      <line x1="38" y1="57" x2="62" y2="57"></line>
+      <line x1="38" y1="114" x2="62" y2="114"></line>
+    </g>
+
+    <!-- nodes -->
+    <g>
+      <circle cx="72" cy="57" r="17" fill="#aa95d2"/>
+      <circle cx="72" cy="114" r="17" fill="#aa95d2"/>
+      <circle cx="72" cy="171" r="17" fill="#aa95d2"/>
+      <circle cx="72" cy="228" r="17" fill="#bfb0dd" stroke="#7b61b3" stroke-width="1.2"/>
+
+      <circle cx="146" cy="57" r="17" fill="#c1b7df"/>
+      <circle cx="146" cy="114" r="17" fill="#a794d1"/>
+      <circle cx="146" cy="171" r="17

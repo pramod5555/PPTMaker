@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+    color:#111;
+  }
+  .top-kicker{
+    position:absolute;
+    left:48px;
+    top:28px;
+    font-size:18px;
+    line-height:20px;
+    color:#8e9399;
+    font-weight:600;
+  }
+
+  .logo{
+    position:absolute;
+    right:31px;
+    top:23px;
+    width:118px;
+    height:52px;
+  }
+  .logo .rb-text{
+    position:absolute;
+    right:42px;
+    top:1px;
+    width:56px;
+    text-align:right;
+    color:#222;
+    font-weight:400;
+  }
+  .logo .rb-text .small{
+    display:block;
+    font-size:18px;
+    line-height:17px;
+  }
+  .logo .rb-text .big{
+    display:block;
+    margin-top:-1px;
+    font-size:20px;
+    line-height:19px;
+  }
+  .logo .bmark{
+    position:absolute;
+    right:0;
+    top:0;
+    width:38px;
+    height:52px;
+    background:linear-gradient(180deg,#d4d8db 0%, #9ca4aa 45%, #6f787f 100%);
+    border-radius:4px 22px 22px 4px;
+  }
+  .logo .bmark:before,
+  .logo .bmark:after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:23px;
+    height:21px;
+    background:#f3f3f3;
+    border-radius:0 17px 17px 0;
+  }
+  .logo .bmark:before{ top:2px; }
+  .logo .bmark:after{ bottom:2px; }
+
+  .headline{
+    position:absolute;
+    left:48px;
+    top:78px;
+    width:1110px;
+    font-size:35px;
+    line-height:1.18;
+    font-weight:400;
+    color:#111;
+    letter-spacing:-0.2px;
+  }
+  .subhead{
+    position:absolute;
+    left:48px;
+    top:183px;
+    width:980px;
+    font-size:26px;
+    line-height:32px;
+    color:#8e9399;
+    font-weight:400;
+  }
+  .question{
+    position:absolute;
+    left:48px;
+    top:239px;
+    width:1045px;
+    font-size:22px;
+    line-height:1.22;
+    font-style:italic;
+    color:#1f78b4;
+    font-weight:400;
+  }
+
+  .quote-icon{
+    position:absolute;
+    right:55px;
+    top:221px;
+    width:86px;
+    height:74px;
+  }
+
+  .bubbles{
+    position:absolute;
+    left:783px;
+    top:286px;
+    width:414px;
+    height:82px;
+  }
+  .bubble{
+    position:absolute;
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    background:#1f78b4;
+    color:#fff;
+    text-align:center;
+  }
+  .bubble .year{
+    position:absolute;
+    top:10px;
+    left:0;
+    width:100%;
+    font-size:14px;
+    line-height:14px;
+    font-weight:400;
+  }
+  .bubble .pct{
+    position:absolute;
+    top:24px;
+    left:0;
+    width:100%;
+    font-size:25px;
+    line-height:25px;
+    font-weight:700;
+  }
+  .bubble .pct span{
+    font-size:14px;
+    vertical-align:super;
+    font-weight:700;
+  }
+  .vs{
+    position:absolute;
+    top:34px;
+    width:30px;
+    text-align:center;
+    color:#1f78b4;
+    font-size:17px;
+    line-height:17px;
+    font-weight:700;
+  }
+  .dotted{
+    position:absolute;
+    left:757px;
+    top:338px;
+    width:438px;
+    height:23px;
+  }
+
+  .chart{
+    position:absolute;
+    left:70px;
+    top:375px;
+    width:1100px;
+    height:250px;
+  }
+  .group{
+    position:absolute;
+    bottom:0;
+    width:190px;
+    height:250px;
+  }
+  .bars{
+    position:absolute;
+    left:0;
+    bottom:55px;
+    width:190px;
+    height:190px;
+  }
+  .bar{
+    position:absolute;
+    bottom:0;
+    width:58px;
+  }
+  .light{ background:#d6d7d9; }
+  .mid{ background:#8f949b; }
+  .blue{ background:#1f78a9; }
+  .bar-label{
+    position:absolute;
+    width:58px;
+    text-align:center;
+    font-size:16px;
+    line-height:16px;
+    color:#222;
+    font-weight:400;
+  }
+  .bar-label.bold{ font-weight:700; }
+  .group-title{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:190px;
+    text-align:center;
+    font-size:18px;
+    line-height:1.05;
+    color:#222;
+    font-weight:400;
+  }
+  .group-title.bold{ font-weight:700; }
+
+  .legend{
+    position:absolute;
+    left:48px;
+    top:650px;
+    width:610px;
+    height:18px;
+    font-size:14px;
+    line-height:16px;
+    color:#444;
+  }
+  .legend-item{
+    position:absolute;
+    top:0;
+    height:18px;
+  }
+  .swatch{
+    position:absolute;
+    left:0;
+    top:2px;
+    width:18px;
+    height:14px;
+  }
+  .legend-text{
+    position:absolute;
+    left:27px;
+    top:0;
+    white-space:nowrap;
+  }
+
+  .footer-note{
+    position:absolute;
+    left:48px;
+    top:681px;
+    font-size:13px;
+    line-height:15px;
+    color:#222;
+    font-weight:400;
+  }
+  .footer-source{
+    position:absolute;
+    left:48px;
+    top:703px;
+    font-size:13px;
+    line-height:15px;
+    color:#222;
+    font-weight:400;
+  }
+  .footer-right{
+    position:absolute;
+    right:43px;
+    top:699px;
+    font-size:11px;
+    line-height:14px;
+    color:#9da2a8;
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .footer-right .sep{
+    padding:0 10px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-kicker">PE Outlook 2019 compared to previous years</div>
+
+  <div class="logo">
+    <div class="rb-text"><span class="small">Roland</span><span class="big">Berger</span></div>
+    <div class="bmark"></div>
+  </div>
+
+  <div class="headline">Expectations for the availability of attractive targets in 2019 are<br>largely in line with previous years</div>
+
+  <div class="subhead">Expected development of investment opportunities by year, 2017-2019 [%]</div>
+
+  <div class="question">"Will the targets available on the market in 2019 (2018) be more attractive than in 2018 (2017)/<br>2017 (2016)?"</div>
+
+  <svg class="quote-icon" viewBox="0 0 86 74" aria-hidden="true">
+    <circle cx="33" cy="38" r="28" fill="none" stroke="#1f78b4" stroke-width="3"></circle>
+    <path d="M34 23c-7 2-12 9-12 16 0 4 2 8 5 10" fill="none" stroke="#1f78b4" stroke-width="3" stroke-linecap="round"/>
+    <path d="M35 51c0 4-3 8-8 11" fill="none" stroke="#1f78b4" stroke-width="3" stroke-linecap="round"/>
+    <text x="29" y="49" font-family="Arial, Helvetica, sans-serif" font-size="33" fill="#1f78b4">?</text>
+    <text x="61" y="27" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#1f78b4">”</text>
+  </svg>
+
+  <div class="bubbles">
+    <div class="bubble" style="left:31px; top:0;">
+      <div class="year">2017</div>
+      <div class="pct">24<span>%</span></div>
+    </div>
+    <div class="vs" style="left:117px;">vs.</div>
+    <div class="bubble" style="left:158px; top:0;">
+      <div class="year">2018</div>
+      <div class="pct">26<span>%</span></div>
+    </div>
+    <div class="vs" style="left:244px;">vs.</div>
+    <div class="bubble" style="left:285px; top:0;">
+      <div class="year">2019</div>
+      <div class="pct">23<span>%</span></div>
+    </div>
+  </div>
+
+  <svg class="dotted" viewBox="0 0 438 23" aria-hidden="true">
+    <path d="M10 12 L428 12" stroke="#1f78b4" stroke-width="3" stroke-dasharray="1.2 5" fill="none"/>
+    <path d="M10 12 L10 23" stroke="#1f78b4" stroke-width="3" stroke-dasharray="1.2 5" fill="none"/>
+    <path d="M428 12 L428 23" stroke="#1f78b4" stroke-width="3" stroke-dasharray="1.2 5" fill="none"/>
+  </svg>
+
+  <div class="chart">
+    <div class="group" style="left:0px;">
+      <div class="bars">
+        <div class="bar light" style="left:18px;height:20px;"></div>
+        <div class="bar-label" style="left:18px;bottom:24px;">4%</div>
+
+        <div class="bar mid" style="left:76px;height:5px;"></div>
+        <div class="bar-label" style="left:76px;bottom:9px;">1%</div>
+
+        <div class="bar blue" style="left:134px;height:25px;"></div>
+        <div class="bar-label" style="left:134px;bottom:29px;">5%</div>
+      </div>
+      <div class="group-title">Completely<br>disagree</div>
+    </div>
+
+    <div class="group" style="left:228px;">
+      <div class="bars">
+        <div class="bar light" style="left:18px;height:140px;"></div>
+        <div class="bar-label" style="left:18px;bottom:145px;">27%</div>
+
+        <div class="bar mid" style="left:76px;height:171px;"></div>
+        <div class="bar-label" style="left:76px;bottom:176px;">33%</div>
+
+        <div class="bar blue" style="left:134px;height:150px;"></div>
+        <div class="bar-label" style="left:134px;bottom:155px;">29%</div>
+      </div>
+      <div class="group-title">Somewhat<br>disagree</div>
+    </div>
+
+    <div class="group" style="left:456px;">
+      <div class="bars">
+        <div class="bar light" style="left:18px;height:235px;"></div>
+        <div class="bar-label" style="left:18px;bottom:240px;">45%</div>
+
+        <div class="bar mid" style="left:76px;height:209px;"></div>
+        <div class="bar-label" style="left:76px;bottom:214px;">40%</div>
+
+        <div class="bar blue" style="left:134px;height:225px;"></div>
+        <div class="bar-label" style="left:134px;bottom:230px;">43%</div>
+      </div>
+      <div class="group-title">Neither agree<br>nor disagree</div>
+    </div>
+
+    <div class="group" style="left:684px;">
+      <div class="bars">
+        <div class="bar light" style="left:18px;height:120px;"></div>
+        <div class="bar-label bold" style="left:18px;bottom:125px;">23%</div>
+
+        <div class="bar mid" style="left:76px;height:136px;"></div>
+        <div class="bar-label bold" style="left:76px;bottom:141px;">26%</div>
+
+        <div class="bar blue" style="left:134px;height:110px;"></div>
+        <div class="bar-label bold" style="left:134px;bottom:115px;">21%</div>
+      </div>
+      <div class="group-title bold">Somewhat<br>agree</div>
+    </div>
+
+    <div class="group" style="left:912px;">
+      <div class="bars">
+        <div class="bar light" style="left:18px;height:5px;"></div>
+        <div class="bar-label bold" style="left:18px;bottom:10px;">1%</div>
+
+        <div class="bar mid" style="left:76px;height:0px;"></div>
+        <div class="bar-label bold" style="left:76px;bottom:5px;">0%</div>
+
+        <div class="bar blue" style="left:134px;height:10px;"></div>
+        <div class="bar-label bold" style="left:134px;bottom:15px;">2%</div>
+      </div>
+      <div class="group-title bold">Completely<br>agree</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item" style="left:0;width:170px;">
+      <div class="swatch" style="background:#d6d7d9;"></div>
+      <div class="legend-text">% of responses in 2017</div>
+    </div>
+    <div class="legend-item" style="left:185px;width:170px;">
+      <div class="swatch" style="background:#8f949b;"></div>
+      <div class="legend-text">% of responses in 2018</div>
+    </div>
+    <div class="legend-item" style="left:370px;width:170px;">
+      <div class="swatch" style="background:#1f78a9;"></div>
+      <div class="legend-text">% of responses in 2019</div>
+    </div>
+  </div>
+
+  <div class="footer-note">Note: Only one answer possible</div>
+  <div class="footer-source">Source: Roland Berger</div>
+  <div class="footer-right">Roland_Berger_European_PE_Outlook_2019.pptx <span class="sep">|</span> 32</div>
+</div>
+</body>
+</html>

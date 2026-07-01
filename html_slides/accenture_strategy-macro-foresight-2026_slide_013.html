@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Europe near-term economic outlook and key scenarios</title>
+<style>
+  body{
+    margin:0;
+    background:#e8e4eb;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e8e4eb;
+    color:#111;
+  }
+
+  .top-tab{
+    position:absolute;
+    top:0;
+    height:24px;
+    font-size:12px;
+    line-height:24px;
+    font-weight:700;
+    text-align:center;
+  }
+  .tab1{left:0;width:107px;background:#7d16c8;color:#fff;}
+  .tab2{left:107px;width:101px;color:#9b9b9b;}
+  .tab3{left:223px;width:125px;color:#7d16c8;border-bottom:3px solid #7d16c8;box-sizing:border-box;}
+
+  .title{
+    position:absolute;
+    left:43px;
+    top:61px;
+    width:1180px;
+    font-size:31px;
+    line-height:0.92;
+    font-weight:700;
+    color:#0a0a0a;
+    letter-spacing:-0.4px;
+  }
+  .subtitle{
+    position:absolute;
+    left:44px;
+    top:122px;
+    font-size:27px;
+    line-height:1;
+    font-weight:700;
+    color:#8f21f0;
+  }
+
+  .icon-eu{
+    position:absolute;
+    left:821px;
+    top:123px;
+    width:31px;
+    height:31px;
+    border-radius:50%;
+    background:#26459b;
+    box-shadow:0 2px 4px rgba(0,0,0,.25);
+  }
+  .icon-eu:before{
+    content:"✶";
+    position:absolute;
+    left:8px;
+    top:5px;
+    color:#ffd54a;
+    font-size:15px;
+  }
+  .icon-uk{
+    position:absolute;
+    left:862px;
+    top:123px;
+    width:31px;
+    height:31px;
+    border-radius:50%;
+    overflow:hidden;
+    box-shadow:0 2px 4px rgba(0,0,0,.25);
+    background:
+      linear-gradient(90deg, transparent 42%, #fff 42%, #fff 58%, transparent 58%),
+      linear-gradient(0deg, transparent 42%, #fff 42%, #fff 58%, transparent 58%),
+      linear-gradient(63deg, transparent 44%, #fff 44%, #fff 50%, transparent 50%),
+      linear-gradient(-63deg, transparent 44%, #fff 44%, #fff 50%, transparent 50%),
+      linear-gradient(90deg, transparent 46%, #cf142b 46%, #cf142b 54%, transparent 54%),
+      linear-gradient(0deg, transparent 46%, #cf142b 46%, #cf142b 54%, transparent 54%),
+      linear-gradient(63deg, transparent 47%, #cf142b 47%, #cf142b 49%, transparent 49%),
+      linear-gradient(-63deg, transparent 47%, #cf142b 47%, #cf142b 49%, transparent 49%),
+      #1d3f95;
+  }
+
+  .table{
+    position:absolute;
+    left:42px;
+    top:188px;
+    width:815px;
+    height:507px;
+    font-size:14px;
+    color:#2b2b2b;
+  }
+  .th-left{
+    position:absolute;
+    left:0;
+    top:0;
+    width:132px;
+    height:48px;
+    border-bottom:1px solid #5f5f5f;
+    box-sizing:border-box;
+    font-weight:700;
+    font-size:17px;
+    text-align:center;
+    line-height:1.05;
+    padding-top:6px;
+  }
+  .header{
+    position:absolute;
+    top:0;
+    height:48px;
+    background:#000;
+    color:#f5f5f5;
+    font-size:16px;
+    font-weight:700;
+    line-height:1.05;
+    padding:7px 10px;
+    box-sizing:border-box;
+  }
+  .c1{left:138px;width:228px;}
+  .c2{left:366px;width:228px;}
+  .c3{left:594px;width:219px;}
+
+  .dashed-red{
+    position:absolute;
+    left:138px;
+    top:-3px;
+    width:450px;
+    height:510px;
+    border:2px dashed #d91f26;
+    box-sizing:border-box;
+    pointer-events:none;
+  }
+  .dashed-green{
+    position:absolute;
+    left:594px;
+    top:-3px;
+    width:225px;
+    height:510px;
+    border:2px dashed #19c769;
+    box-sizing:border-box;
+    pointer-events:none;
+  }
+
+  .rowlabel{
+    position:absolute;
+    left:0;
+    width:132px;
+    background:#efefef;
+    border-top:1px solid #d0d0d0;
+    box-sizing:border-box;
+    font-weight:700;
+    font-size:16px;
+    line-height:1.05;
+    text-align:center;
+    padding:7px 8px;
+  }
+  .r1{top:48px;height:216px;}
+  .r2{top:264px;height:172px;}
+  .r3{top:436px;height:72px;}
+
+  .cell{
+    position:absolute;
+    background:#efefef;
+    border-top:1px solid #d0d0d0;
+    box-sizing:border-box;
+    padding:8px 12px 6px 14px;
+    overflow:hidden;
+  }
+  .r1c1{left:138px;top:48px;width:228px;height:216px;}
+  .r1c2{left:366px;top:48px;width:228px;height:216px;}
+  .r1c3{left:594px;top:48px;width:219px;height:216px;}
+  .r2c1{left:138px;top:264px;width:228px;height:172px;}
+  .r2c2{left:366px;top:264px;width:228px;height:172px;}
+  .r2c3{left:594px;top:264px;width:219px;height:172px;}
+  .r3c1{left:138px;top:436px;width:228px;height:72px;}
+  .r3c2{left:366px;top:436px;width:228px;height:72px;}
+  .r3c3{left:594px;top:436px;width:219px;height:72px;}
+
+  ul{
+    margin:0;
+    padding-left:16px;
+  }
+  li{
+    margin:0 0 6px 0;
+    line-height:1.08;
+    font-size:16px;
+  }
+  .sublist{
+    list-style:none;
+    padding-left:0;
+    margin-top:6px;
+  }
+  .sublist li{
+    position:relative;
+    padding-left:20px;
+    margin-bottom:7px;
+  }
+  .sublist li:before{
+    content:"–";
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .watch{
+    position:absolute;
+    left:880px;
+    top:187px;
+    width:458px;
+    height:531px;
+    background:#efefef;
+    box-shadow:2px 3px 5px rgba(0,0,0,.22);
+    box-sizing:border-box;
+    padding:12px 14px 10px 14px;
+  }
+  .watch-head{
+    position:relative;
+    height:34px;
+    font-size:17px;
+    font-weight:700;
+    line-height:34px;
+    border-bottom:2px solid #3a3a3a;
+    padding-left:60px;
+  }
+  .eye{
+    position:absolute;
+    left:12px;
+    top:6px;
+    width:48px;
+    height:24px;
+  }
+  .eye:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:44px;
+    height:22px;
+    border:3px solid #8f21c2;
+    border-radius:24px/14px;
+    box-sizing:border-box;
+    transform:skewX(0deg);
+    clip-path:polygon(0 50%, 20% 0, 80% 0, 100% 50%, 80% 100%, 20% 100%);
+  }
+  .eye:after{
+    content:"";
+    position:absolute;
+    left:16px;
+    top:5px;
+    width:12px;
+    height:12px;
+    border:3px solid #8f21c2;
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+
+  .watch ul{
+    margin-top:9px;
+    padding-left:16px;
+  }
+  .watch li{
+    margin-bottom:13px;
+    font-size:16px;
+    line-height:1.1;
+  }
+  .watch b{font-weight:700;}
+
+  .legend{
+    position:absolute;
+    left:43px;
+    top:700px;
+    font-size:16px;
+    color:#8a8a8a;
+  }
+  .source-arrow{
+    position:absolute;
+    left:42px;
+    top:723px;
+  }
+
+  .flags{
+    position:absolute;
+    top:703px;
+    font-size:0;
+    white-space:nowrap;
+  }
+  .flag{
+    display:inline-block;
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    margin-right:7px;
+    box-shadow:0 1px 3px rgba(0,0,0,.3);
+    vertical-align:middle;
+    position:relative;
+    overflow:hidden;
+  }
+  .de{background:
+      linear-gradient(#000 0 33%, #dd0000 33% 66%, #ffce00 66% 100%);}
+  .fr{background:
+      linear-gradient(90deg,#1f4db6 0 33%, #fff 33% 66%, #e22929 66% 100%);}
+  .ie{background:
+      linear-gradient(90deg,#169b62 0 33%, #fff 33% 66%, #ff883e 66% 100%);}
+  .es{background:
+      linear-gradient(#c91428 0 25%, #f5c62d 25% 75%, #c91428 75% 100%);}
+  .gr{background:
+      linear-gradient(#2d62d4 0 20%, #fff 20% 40%, #2d62d4 40% 60%, #fff 60% 80%, #2d62d4 80% 100%);}
+  .it{background:
+      linear-gradient(90deg,#1c9b46 0 33%, #fff 33% 66%, #d92626 66% 100%);}
+  .gb{
+    background:
+      linear-gradient(90deg, transparent 42%, #fff 42%, #fff 58%, transparent 58%),
+      linear-gradient(0deg, transparent 42%, #fff 42%, #fff 58%, transparent 58%),
+      linear-gradient(63deg, transparent 44%, #fff 44%, #fff 50%, transparent 50%),
+      linear-gradient(-63deg, transparent 44%, #fff 44%, #fff 50%, transparent 50%),
+      linear-gradient(90deg, transparent 46%, #cf142b 46%, #cf142b 54%, transparent 54%),
+      linear-gradient(0deg, transparent 46%, #cf142b 46%, #cf142b 54%, transparent 54%),
+      linear-gradient(63deg, transparent 47%, #cf142b 47%, #cf142b 49%, transparent 49%),
+      linear-gradient(-63deg, transparent 47%, #cf142b 47%, #cf142b 49%, transparent 49%),
+      #1d3f95;
+  }
+
+  .most{
+    position:absolute;
+    left:334px;
+    top:703px;
+    font-size:17px;
+    font-weight:700;
+    color:#111;
+  }
+  .group-left{left:268px;}
+  .group-mid{left:443px;}
+  .group-right{left:663px;}
+
+  .acc{
+    position:absolute;
+    left:40px;
+    top:724px;
+    color:#9a27ea;
+    font-weight:700;
+    font-size:39px;
+    line-height:1;
+    transform:scaleX(1.1);
+  }
+  .source{
+    position:absolute;
+    left:73px;
+    top:728px;
+    font-size:12px;
+    color:#7f7f7f;
+  }
+  .copyright{
+    position:absolute;
+    right:90px;
+    top:729px;
+    font-size:11px;
+    color:#6f6f6f;
+  }
+  .pageno{
+    position:absolute;
+    right:19px;
+    top:728px;
+    font-size:14px;
+    color:#6f6f6f;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-tab tab1">2026 outlook</div>
+  <div class="top-tab tab2">Global</div>
+  <div class="top-tab tab3">Regional</div>
+
+  <div class="title">
+    Sluggish growth is most likely across Europe, with manufacturing- and China-exposed<br>
+    economies at higher risk of renewed downturn, but some upside from AI/defense spending
+  </div>
+
+  <div class="subtitle">Europe near-term economic outlook and key scenarios</div>
+  <div class="icon-eu"></div>
+  <div class="icon-uk"></div>
+
+  <div class="table">
+    <div class="th-left">Economic<br>scenario</div>
+    <div class="header c1">Renewed stagnation</div>
+    <div class="header c2">Uneven muddle-through</div>
+    <div class="header c3">Economic security-led<br>acceleration</div>
+
+    <div class="dashed-red"></div>
+    <div class="dashed-green"></div>
+
+    <div class="rowlabel r1">Description</div>
+    <div class="rowlabel r2">Key scenario<br>drivers and<br>assumptions</div>
+    <div class="rowlabel r3">Corporate<br>implications</div>
+
+    <div class="cell r1c1">
+      <ul>
+        <li>Loss of growth momentum and rising vulnerability to recession due to combination of:</li>
+      </ul>
+      <ul class="sublist">
+        <li>Weak external demand</li>
+        <li>Fiscal tightening</li>
+        <li>Intense Chinese competition</li>
+      </ul>
+    </div>
+
+    <div class="cell r1c2">
+      <ul>
+        <li>Sluggish, uneven growth of ~1% as disinflation lifts real incomes, but core industrial weaknesses persist</li>
+        <li>Export-dependent and manufacturing-led economies lag, while services- and tourism-heavy ones hold steady</li>
+      </ul>
+    </div>
+
+    <div class="cell r1c3">
+      <ul>
+        <li>Growth strengthens toward ~1½–2% as key investments in economic security—green transition, defense, digital/AI infrastructure—accelerate and provide nascent productivity boost</li>
+      </ul>
+    </div>
+
+    <div class="cell r2c1">
+      <ul>
+        <li>Geopolitical shocks revive cost pressures</li>
+        <li>Fiscal tightening weighs on high-debt, demand-sensitive economies</li>
+        <li>China’s export surge further erodes manufacturing</li>
+      </ul>
+    </div>
+
+    <div class="cell r2c2">
+      <ul>
+        <li>Gradual rate cuts/easing of financial conditions</li>
+        <li>Real wages rise; capex and confidence muted</li>
+        <li>China competition keeps pressure on automotive, machinery, batteries, and solar manufacturing</li>
+      </ul>
+    </div>
+
+    <div class="cell r2c3">
+      <ul>
+        <li>Faster pass-through benefits of lower rates</li>
+        <li>Stronger execution of EU-funded and national investment programs</li>
+        <li>Global supply chain diversification benefits local manufacturing</li>
+      </ul>
+    </div>
+
+    <div class="cell r3c1">
+      <ul>
+        <li>Rising bankruptcies</li>
+        <li>Imperative on cost rationalization</li>
+      </ul>
+    </div>
+
+    <div class="cell r3c2">
+      <ul>
+        <li>Stable, low sales growth</li>
+        <li>Strong competition vs. China squeezes margins</li>
+      </ul>
+    </div>
+
+    <div class="cell r3c3">
+      <ul>
+        <li>Strong top-line growth</li>
+        <li>High returns on capex</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="watch">
+    <div class="watch-head">
+      <div class="eye"></div>
+      What to watch for
+    </div>
+    <ul>
+      <li><b>Transmission of monetary easing:</b> Faster ECB/BoE cuts that feed through to credit and housing costs would support a more forceful investment rebound and potential boost to consumer spending</li>
+      <li><b>Pressure from China’s high-tech exports:</b> A sharper rise in Chinese EV, battery, solar, and machinery exports would further pressure Europe’s industrial core, and could prompt more forceful EU tariff responses and anti-dumping measures</li>
+      <li><b>Fiscal stance and investment mobilization:</b> The pace of consolidation in high-debt countries, absorption of EU funds, and ability to coordinate public/private investments in renewables, grids, EVs, defense and AI infrastructure will shape how much of a growth impulse economies can summon via capex</li>
+      <li><b>Energy price stability:</b> Renewed spikes in gas/power prices from geopolitical or supply shocks would hit energy-intensive sectors and raise stagnation risk</li>
+      <li><b>Supply chain repositioning around Europe:</b> Whether Europe captures near-shoring and diversification away from China or loses share as firms relocate elsewhere or rely more on Chinese producers</li>
+    </ul>
+  </div>
+
+  <div class="flags group-left">
+    <span class="flag de"></span>
+  </div>
+  <div class="most">Most likely</div>
+  <div class="flags group-mid">
+    <span class="flag gb"></span>
+    <span class="flag it"></span>
+    <span class="flag fr"></span>
+  </div>
+  <div class="flags group-right">
+    <span class="flag es"></span>
+    <span class="flag gr"></span>
+    <span class="flag ie"></span>
+  </div>
+
+  <div class="acc">&gt;</div>
+  <div class="source">Source(s): Accenture Strategy analysis</div>
+  <div class="copyright">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="pageno">13</div>
+</div>
+</body>
+</html>

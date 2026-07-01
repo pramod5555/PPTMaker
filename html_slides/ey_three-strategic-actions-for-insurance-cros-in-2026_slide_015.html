@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ddddde;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececef;
+    margin:0 auto;
+  }
+  .slide > div,
+  .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .chapter-pill{
+    left:31px;
+    top:13px;
+    width:69px;
+    height:18px;
+    background:#7f7d85;
+    border-radius:10px;
+    color:#fff;
+    font-size:9px;
+    font-weight:700;
+    line-height:18px;
+    text-align:center;
+    letter-spacing:.04em;
+    z-index:50;
+  }
+
+  .top-band{
+    left:31px;
+    top:30px;
+    width:1304px;
+    height:91px;
+    background:
+      radial-gradient(circle at 48% 5%, rgba(92,177,255,.55) 0%, rgba(92,177,255,.16) 18%, rgba(0,0,0,0) 34%),
+      radial-gradient(circle at 62% 8%, rgba(190,130,255,.65) 0%, rgba(190,130,255,.18) 15%, rgba(0,0,0,0) 32%),
+      radial-gradient(circle at 81% 6%, rgba(212,84,255,.78) 0%, rgba(212,84,255,.2) 14%, rgba(0,0,0,0) 30%),
+      radial-gradient(circle at 92% 10%, rgba(154,90,255,.55) 0%, rgba(154,90,255,.14) 12%, rgba(0,0,0,0) 24%),
+      linear-gradient(90deg,#020306 0%,#01020b 24%,#000035 34%,#0a5fa5 48%,#7f64dc 62%,#8b18b7 76%,#5a046f 88%,#4a97dd 100%);
+    z-index:5;
+  }
+
+  .jump{
+    left:1244px;
+    top:59px;
+    width:41px;
+    height:41px;
+    border:1px solid rgba(255,255,255,.65);
+    border-radius:50%;
+    color:#fff;
+    font-size:8px;
+    line-height:9px;
+    text-align:center;
+    z-index:55;
+    padding-top:12px;
+  }
+  .jump-dot{
+    left:1274px;
+    top:60px;
+    width:9px;
+    height:9px;
+    background:#efd92c;
+    border-radius:50%;
+    z-index:56;
+  }
+
+  .left-vlabel{
+    left:9px;
+    top:394px;
+    color:#33333b;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.16em;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    z-index:40;
+    white-space:nowrap;
+  }
+  .left-vline{
+    left:14px;
+    top:408px;
+    width:1px;
+    height:36px;
+    background:#5f6066;
+    z-index:35;
+  }
+
+  .intro{
+    left:77px;
+    top:210px;
+    width:262px;
+    color:#55545c;
+    font-size:13px;
+    line-height:1.4;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .figure-title{
+    left:404px;
+    top:212px;
+    width:820px;
+    color:#48464e;
+    font-size:12px;
+    line-height:1.25;
+    font-weight:700;
+    z-index:30;
+  }
+
+  .chart{
+    left:408px;
+    top:245px;
+    width:780px;
+    height:275px;
+    z-index:30;
+  }
+
+  .item{
+    position:absolute;
+  }
+  .label{
+    position:absolute;
+    color:#5c5b62;
+    font-size:12px;
+    line-height:1.15;
+    font-weight:400;
+  }
+  .trend{
+    position:absolute;
+    color:#5c5b62;
+    font-size:8px;
+    line-height:1.1;
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .barbox{
+    position:absolute;
+    width:199px;
+    height:26px;
+    border:1px solid #b1b1b9;
+    background:#ededf0;
+  }
+  .fill{
+    position:absolute;
+    top:0;
+    left:0;
+    height:24px;
+    background:#0a78c9;
+  }
+  .pct{
+    position:absolute;
+    right:6px;
+    top:4px;
+    color:#4f4f57;
+    font-size:18px;
+    line-height:1;
+    font-weight:400;
+  }
+  .regions{
+    position:absolute;
+    color:#6c6b73;
+    font-size:6px;
+    line-height:1.1;
+    white-space:nowrap;
+  }
+
+  .bottom-band{
+    left:31px;
+    top:591px;
+    width:1304px;
+    height:145px;
+    background:
+      radial-gradient(circle at 54% 92%, rgba(64,222,255,.95) 0%, rgba(64,222,255,.18) 11%, rgba(0,0,0,0) 24%),
+      radial-gradient(circle at 73% 72%, rgba(233,39,255,.8) 0%, rgba(233,39,255,.18) 16%, rgba(0,0,0,0) 34%),
+      linear-gradient(90deg,#03030c 0%,#04030e 26%,#1a023c 40%,#14356e 56%,#8d129a 72%,#b60f9f 84%,#4e025d 100%);
+    z-index:5;
+  }
+
+  .streaks{
+    left:384px;
+    top:591px;
+    width:951px;
+    height:145px;
+    z-index:12;
+    pointer-events:none;
+  }
+
+  .bottom-copy{
+    left:78px;
+    top:625px;
+    width:720px;
+    color:#fff;
+    font-size:18px;
+    line-height:1.45;
+    font-weight:400;
+    z-index:35;
+  }
+  .bottom-copy b{
+    font-weight:700;
+  }
+
+  .page{
+    left:50px;
+    top:712px;
+    color:#fff;
+    font-size:10px;
+    line-height:1;
+    font-weight:400;
+    z-index:60;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="chapter-pill">CHAPTER 2</div>
+    <div class="top-band"></div>
+    <div class="jump">Jump to<br>contents</div>
+    <div class="jump-dot"></div>
+
+    <div class="left-vlabel">CHAPTER 2</div>
+    <div class="left-vline"></div>
+
+    <div class="intro">
+      AI and automation are increasingly shifting risk oversight from periodic review to continuous, real-time visibility and faster, self-service risk insights for the business. As digital fluency becomes more important, CROs are leveraging technology to strengthen insights, sharpen decision-making and support scalable risk management capabilities.
+    </div>
+
+    <div class="figure-title">
+      Figure 7: What are your organization’s top priorities in risk management technology solutions and capabilities over the next three to five years?
+    </div>
+
+    <div class="chart">
+      <div class="item" style="left:0px; top:0px; width:340px; height:54px;">
+        <div class="label" style="left:4px; top:1px; width:134px;">AI-enabled risk solutions</div>
+        <div class="trend" style="left:55px; top:24px;">▲ Up 18% pts YOY</div>
+        <div class="barbox" style="left:140px; top:0px;">
+          <div class="fill" style="width:120px;"></div>
+          <div class="pct">60%</div>
+        </div>
+        <div class="regions" style="left:140px; top:30px;">80% Asia-Pacific | 55% EMEIA | 62% Americas</div>
+      </div>
+
+      <div class="item" style="left:0px; top:61px; width:340px; height:54px;">
+        <div class="label" style="left:0px; top:1px; width:135px;">Enterprise GRC platforms</div>
+        <div class="trend" style="left:56px; top:24px;">▼ Down 4% pts YOY</div>
+        <div class="barbox" style="left:140px; top:0px;">
+          <div class="fill" style="width:80px;"></div>
+          <div class="pct">40%</div>
+        </div>
+        <div class="regions" style="left:140px; top:30px;">40% Asia-Pacific | 41% EMEIA | 38% Americas</div>
+      </div>
+
+      <div class="item" style="left:0px; top:121px; width:340px; height:54px;">
+        <div class="label" style="left:2px; top:1px; width:138px;">Automated control testing</div>
+        <div class="trend" style="left:56px; top:24px;">▲ Up 14% pts YOY</div>
+        <div class="barbox" style="left:140px; top:0px;">
+          <div class="fill" style="width:74px;"></div>
+          <div class="pct">37%</div>
+        </div>
+        <div class="regions" style="left:140px; top:30px;">40% Asia-Pacific | 43% EMEIA | 31% Americas</div>
+      </div>
+
+      <div class="item" style="left:0px; top:180px; width:340px; height:58px;">
+        <div class="label" style="left:1px; top:0px; width:128px; text-align:center;">Development of a central<br>risk data hub</div>
+        <div class="trend" style="left:61px; top:31px;">▲ Up 6% pts YOY</div>
+        <div class="barbox" style="left:140px; top:1px;">
+          <div class="fill" style="width:58px;"></div>
+          <div class="pct">29%</div>
+        </div>
+        <div class="regions" style="left:140px; top:31px;">40% Asia-Pacific | 32% EMEIA | 25% Americas</div>
+      </div>
+
+      <div class="item" style="left:444px; top:0px; width:336px; height:54px;">
+        <div class="label" style="left:0px; top:1px; width:120px; text-align:right;">Data privacy solutions</div>
+        <div class="trend" style="left:41px; top:24px; width:88px; text-align:right;">▼ Down 6% pts YOY</div>
+        <div class="barbox" style="left:143px; top:0px;">
+          <div class="fill" style="width:26px;"></div>
+          <div class="pct">13%</div>
+        </div>
+        <div class="regions" style="left:143px; top:30px;">10% Asia-Pacific | 5% EMEIA | 21% Americas</div>
+      </div>
+
+      <div class="item" style="left:444px; top:61px; width:336px; height:58px;">
+        <div class="label" style="left:-2px; top:0px; width:128px; text-align:right;">Transaction monitoring for<br>financial crimes</div>
+        <div class="trend" style="left:41px; top:31px; width:88px; text-align:right;">▼ Down 2% pts YOY</div>
+        <div class="barbox" style="left:143px; top:1px;">
+          <div class="fill" style="width:26px;"></div>
+          <div class="pct">13%</div>
+        </div>
+        <div class="regions" style="left:143px; top:31px;">10% Asia-Pacific | 20% EMEIA | 6% Americas</div>
+      </div>
+
+      <div class="item" style="left:444px; top:121px; width:336px; height:58px;">
+        <div class="label" style="left:-1px; top:0px; width:127px; text-align:right;">Data disposition<br>and minimization solutions</div>
+        <div class="trend" style="left:45px; top:31px; width:84px; text-align:right;">▲ Up 5% pts YOY</div>
+        <div class="barbox" style="left:143px; top:1px;">
+          <div class="fill" style="width:22px;"></div>
+          <div class="pct">11%</div>
+        </div>
+        <div class="regions" style="left:143px; top:31px;">30% Asia-Pacific | 11% EMEIA | 8% Americas</div>
+      </div>
+
+      <div class="item" style="left:444px; top:179px; width:336px; height:82px;">
+        <div class="label" style="left:-16px; top:-1px; width:145px; text-align:right;">Too early to tell; we haven’t taken<br>or made any decisions to accelerate<br>our risk management technology<br>capabilities as of yet</div>
+        <div class="trend" style="left:43px; top:61px; width:86px; text-align:right;">▼ Down7% pts YOY</div>
+        <div class="barbox" style="left:143px; top:1px;">
+          <div class="fill" style="width:26px;"></div>
+          <div class="pct">13%</div>
+        </div>
+        <div class="regions" style="left:143px; top:31px;">0% Asia-Pacific | 14% EMEIA | 15% Americas</div>
+      </div>
+    </div>
+
+    <div class="bottom-band"></div>
+
+    <svg class="streaks" viewBox="0 0 951 145" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%" stop-color="#39dfff" stop-opacity="0.95"/>
+          <stop offset="42%" stop-color="#5dd1ff" stop-opacity="0.8"/>
+          <stop offset="70%" stop-color="#d43dff" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#ff67e0" stop-opacity="0.55"/>
+        </linearGradient>
+        <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity=".82"/>
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <path d="M0,0 C130,70 210,118 305,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".45"/>
+      <path d="M18,0 C145,65 230,114 338,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".48"/>
+      <path d="M38,0 C163,61 254,111 372,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".52"/>
+      <path d="M62,0 C188,57 283,107 411,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".56"/>
+      <path d="M88,0 C219,54 316,104 454,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".6"/>
+      <path d="M116,0 C252,51 352,101 500,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".63"/>
+      <path d="M148,0 C289,49 392,98 550,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".66"/>
+      <path d="M182,0 C327,48 434,96 603,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".63"/>
+      <path d="M218,0 C367,48 478,96 659,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".59"/>
+      <path d="M257,0 C410,50 526,98 717,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".54"/>
+      <path d="M299,0 C456,53 577,101 778,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".5"/>
+      <path d="M343,0 C505,58 632,106 842,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".46"/>
+      <path d="M390,0 C557,63 690,112 910,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".42"/>
+      <path d="M442,0 C612,70 752,119 950,145" stroke="url(#g1)" stroke-width="2.1" fill="none" opacity=".36"/>
+
+      <path d="M112,0 C228,60 314,117 388,145" stroke="url(#g2)" stroke-width="1.1" fill="none" opacity=".52"/>
+      <path d="M147,0 C264,58 353,115 439,145" stroke="url(#g2)" stroke-width="1.1" fill="none" opacity=".48"/>
+      <path d="M186,0 C304,56 396,113 494,145" stroke="url(#g2)" stroke-width="1.1" fill="none" opacity=".46"/>
+      <path d="M228,0 C348,56 442,112 553,145" stroke="url(#g2)" stroke-width="1.1" fill="none" opacity=".44"/>
+      <path d="M274,0 C395,57 491,114 615,145" stroke="url(#g2)" stroke-width="1.1" fill="none" opacity=".42"/>
+      <path d="M323,0 C444,59 543,117 682,145" stroke="url(#g2)" stroke-width="1.1" fill="none" opacity=".4"/>
+      <path d="M376,0 C498,63 601,120 753,145" stroke="url(#g2)" stroke-width="1.1" fill="none" opacity=".38"/>
+      <path d="M433,0 C556,68 664,125 829,145" stroke="url(#g2)" stroke-width="1.1" fill="none" opacity=".34"/>
+      <path d="M493,0 C617,74 730,129 910,145" stroke="url(#g2)" stroke-width="1.1" fill="none" opacity=".3"/>
+
+      <g fill="#ffffff" opacity=".78">
+        <circle cx="85" cy="41" r="1.3"/><circle cx="106" cy="24" r="1.1"/><circle cx="130" cy="47" r="1.1"/>
+        <circle cx="148" cy="31" r="1.3"/><circle cx="171" cy="55" r="1.0"/><circle cx="191" cy="27" r="1.1"/>
+        <circle cx="214" cy="43" r="1.2"/><circle cx="240" cy="26" r="1.0"/><circle cx="264" cy="49" r="1.1"/>
+        <circle cx="286" cy="34" r="1.0"/><circle cx="309" cy="18" r="1.2"/><circle cx="334" cy="45" r="1.1"/>
+        <circle cx="356" cy="29" r="1.0"/><circle cx="383" cy="16" r="1.2"/><circle cx="406" cy="40" r="1.1"/>
+        <circle cx="431" cy="24" r="1.0"/><circle cx="456" cy="12" r="1.2"/><circle cx="480" cy="35" r="1.1"/>
+        <circle cx="505" cy="21" r="1.0"/><circle cx="529" cy="11" r="1.2"/><circle cx="554" cy="31" r="1.1"/>
+        <circle cx="579" cy="19" r="1.0"/><circle cx="604" cy="9" r="1.2"/><circle cx="629" cy="28" r="1.1"/>
+        <circle cx="655" cy="17" r="1.0"/><circle cx="680" cy="10" r="1.2"/><circle cx="705" cy="24" r="1.1"/>
+        <circle cx="730" cy="16" r="1.0"/><circle cx="756" cy="10" r="1.2"/><circle cx="782" cy="26" r="1.1"/>
+        <circle cx="807" cy="18" r="1.0"/><circle cx="833" cy="13" r="1.2"/><circle cx="860" cy="29" r="1.1"/>
+        <circle cx="887" cy="22" r="1.0"/>
+
+        <circle cx="108" cy="72" r="1.2"/><circle cx="132" cy="63" r="1.1"/><circle cx="158" cy="83" r="1.0"/>
+        <circle cx="183" cy="70" r="1.3"/><circle cx="208" cy="92" r="1.0"/><circle cx="232" cy="74" r="1.1"/>
+        <circle cx="258" cy="97" r="1.2"/><circle cx="283" cy="79" r="1.0"/><circle cx="307" cy="102" r="1.1"/>
+        <circle cx="333" cy="85" r="1.0"/><circle cx="359" cy="107" r="1.2"/><circle cx="384" cy="89" r="1.1"/>
+        <circle cx="410" cy="111" r="1.0"/><circle cx="436" cy="91" r="1.2"/><circle cx="462" cy="113" r="1.1"/>
+        <circle cx="489" cy="95" r="1.0"/><circle cx="515" cy="117" r="1.2"/><circle cx="541" cy="99" r="1.1"/>
+        <circle cx="568" cy="121" r="1.0"/><circle cx="595" cy="102" r="1.2"/><circle cx="622" cy="123" r="1.1"/>
+        <circle cx="649" cy="106" r="1.0"/><circle cx="676" cy="127" r="1.2"/><circle cx="703" cy="109" r="1.1"/>
+        <circle cx="730" cy="129" r="1.0"/><circle cx="757" cy="112" r="1.2"/><circle cx="784" cy="131" r="1.1"/>
+        <circle cx="811" cy="115" r="1.0"/><circle cx="838" cy="133" r="1.2"/><circle cx="865" cy="119" r="1.1"/>
+      </g>
+    </svg>
+
+    <div class="bottom-copy">
+      CROs are leveraging technology to <b>strengthen</b> insights, <b>sharpen</b> decision-<br>making and <b>support</b> scalable risk management capabilities.
+    </div>
+
+    <div class="page">15</div>
+  </div>
+</body>
+</html>

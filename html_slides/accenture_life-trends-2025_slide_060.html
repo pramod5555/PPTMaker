@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>The employee experience recession</title>
+<style>
+  body{
+    margin:0;
+    background:#ddd;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f2f0;
+    color:#1f1f1f;
+  }
+
+  .photo-top{
+    position:absolute;
+    left:59px;
+    top:0px;
+    width:342px;
+    height:121px;
+    background:
+      linear-gradient(110deg, #60666d 0 8%, #1d1f23 8% 12%, #8f979f 12% 16%, transparent 16%),
+      linear-gradient(95deg, #6e7479 0 10%, #2d3238 10% 12%, #a9b0b5 12% 14%, transparent 14%),
+      linear-gradient(180deg, #d5dbe0 0%, #e7ecef 46%, #c9d0d6 100%);
+  }
+  .photo-top:before{
+    content:"";
+    position:absolute;
+    right:0;
+    top:0;
+    width:121px;
+    height:121px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.08)),
+      linear-gradient(0deg, #d4b16e, #e7d29a 42%, #c8cfb9 42%, #c8cfb9 58%, #ddbb6f 58%, #dca74c 100%);
+  }
+  .photo-top:after{
+    content:"";
+    position:absolute;
+    left:258px;
+    top:-6px;
+    width:38px;
+    height:140px;
+    background:#242424;
+    border-radius:15px;
+    transform:rotate(8deg);
+    box-shadow:20px 0 0 #b98d45;
+  }
+
+  .title{
+    position:absolute;
+    left:59px;
+    top:159px;
+    width:323px;
+    font-size:35px;
+    line-height:1.13;
+    font-weight:300;
+    color:#7d20df;
+    letter-spacing:-0.5px;
+  }
+
+  .photo-large{
+    position:absolute;
+    left:59px;
+    top:274px;
+    width:342px;
+    height:446px;
+    background:
+      linear-gradient(90deg, rgba(180,194,207,0.9) 0 28%, transparent 28%),
+      linear-gradient(180deg, #d6e0e9 0%, #f3f0d8 40%, #d8a84d 40%, #c58f32 100%);
+    overflow:hidden;
+  }
+  .photo-large .desk1{
+    position:absolute;
+    left:202px;
+    top:0;
+    width:75px;
+    height:446px;
+    background:linear-gradient(180deg,#cbc9bc 0%,#a7acaa 46%,#6f7577 100%);
+    transform:skewX(-8deg);
+    opacity:0.9;
+  }
+  .photo-large .paper1,
+  .photo-large .paper2,
+  .photo-large .paper3{
+    position:absolute;
+    background:#f5f3ea;
+    box-shadow:0 1px 2px rgba(0,0,0,0.08);
+    transform:rotate(-18deg);
+  }
+  .photo-large .paper1{ left:265px; top:101px; width:45px; height:29px; }
+  .photo-large .paper2{ left:256px; top:220px; width:58px; height:40px; transform:rotate(-6deg); }
+  .photo-large .paper3{ left:227px; top:336px; width:54px; height:35px; transform:rotate(10deg); }
+  .photo-large .figure{
+    position:absolute;
+    left:-8px;
+    top:61px;
+    width:249px;
+    height:377px;
+    border-radius:120px 120px 40px 40px;
+    background:
+      radial-gradient(circle at 64% 20%, #5a351f 0 15%, #3f2516 16% 23%, transparent 24%),
+      radial-gradient(circle at 58% 18%, #3a2317 0 25%, transparent 26%),
+      radial-gradient(circle at 49% 19%, #7d573f 0 10%, transparent 11%),
+      radial-gradient(circle at 61% 28%, #d0a28a 0 10%, transparent 11%),
+      linear-gradient(205deg, transparent 0 32%, #efb400 33% 84%, #d89900 85% 100%);
+    transform:rotate(-18deg);
+    filter:blur(2px);
+  }
+
+  .col-left{
+    position:absolute;
+    left:457px;
+    top:70px;
+    width:311px;
+    font-size:18px;
+    line-height:1.32;
+    color:#222;
+  }
+  .col-left p{
+    margin:0 0 18px 0;
+  }
+  .sup{
+    font-size:11px;
+    vertical-align:super;
+    line-height:0;
+  }
+
+  .divider{
+    position:absolute;
+    left:847px;
+    top:77px;
+    width:2px;
+    height:255px;
+    background:#d6d1cc;
+  }
+
+  .quote{
+    position:absolute;
+    left:869px;
+    top:72px;
+    width:289px;
+    font-size:23px;
+    line-height:1.38;
+    color:#8b33dd;
+    font-weight:300;
+    letter-spacing:-0.2px;
+  }
+
+  .quote-source{
+    position:absolute;
+    left:875px;
+    top:315px;
+    width:260px;
+    font-size:17px;
+    line-height:1.2;
+    font-weight:700;
+    color:#111;
+  }
+
+  .col-right{
+    position:absolute;
+    left:849px;
+    top:350px;
+    width:314px;
+    font-size:18px;
+    line-height:1.3;
+    color:#222;
+  }
+  .col-right p{
+    margin:0;
+  }
+
+  .right-rail{
+    position:absolute;
+    right:8px;
+    top:37px;
+    width:26px;
+    height:607px;
+    color:#6e6e6e;
+    font-size:14px;
+    line-height:1;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    letter-spacing:0.2px;
+  }
+  .right-rail .highlight{
+    color:#8b33dd;
+    font-weight:700;
+  }
+
+  .footer-left{
+    position:absolute;
+    right:71px;
+    bottom:17px;
+    font-size:13px;
+    color:#7a7a7a;
+  }
+  .footer-left .year{
+    color:#8b33dd;
+  }
+  .footer-page{
+    position:absolute;
+    right:27px;
+    bottom:17px;
+    font-size:13px;
+    color:#7a7a7a;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="photo-top"></div>
+
+    <div class="title">The employee<br>experience recession</div>
+
+    <div class="photo-large">
+      <div class="desk1"></div>
+      <div class="paper1"></div>
+      <div class="paper2"></div>
+      <div class="paper3"></div>
+      <div class="figure"></div>
+    </div>
+
+    <div class="col-left">
+      <p>The value exchange is at the heart of the “EX recession”—a phrase coined by Forrester that has picked up steam. The result is a collection of worrying tensions that are depleting energy within the workplace. Without intervention, we could see a breakdown of the employer/employee value exchange such that people continue to mute themselves in the workplace.</p>
+
+      <p>The activities that have long been known to bring energy to an organization have been gradually deprioritized over recent years. In companies around the world, investment has dropped for initiatives that mattered to organizations—such as diversity, equality and inclusion (DEI) and Sustainability.<span class="sup">106</span> Forrester predicts that organizational DEI investments will fall from 33% in 2022 to 20% in 2024.<span class="sup">107</span></p>
+
+      <p>Cutbacks to employee welfare schemes, financial incentives and training make people feel like their leaders aren’t willing to invest in their development anymore. In the United Kingdom, companies have reduced investment in training by 28% since 2005 despite 75% of employees referencing improved training and development as key to boosting their engagement at work.<span class="sup">108, 109</span></p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="quote">“Improving productivity” is the message most frequently heard (49.5%) by employees from their employers—more often than any messages about improving customer value or workforce development.</div>
+
+    <div class="quote-source">Accenture Life Trends survey, 2024</div>
+
+    <div class="col-right">
+      <p>Like consumers, employees were primed on more than a decade of talk about the employee experience. Many have come to expect more than a transactional relationship with their employer. The deeper context here is an ongoing re-evaluation of the value, benefits, and social function of work. This re-evaluation has multiple fronts, but they all push towards growing feeling that human agency and dignity needs to be reasserted in the face of a challenged work culture.</p>
+    </div>
+
+    <div class="right-rail">Cost of hesitations &nbsp; / &nbsp; The parent trap &nbsp; / &nbsp; Impatience economy &nbsp; / &nbsp; <span class="highlight">The dignity of work</span> &nbsp; / &nbsp; Social rewiring</div>
+
+    <div class="footer-left">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="footer-page">60</div>
+  </div>
+</body>
+</html>

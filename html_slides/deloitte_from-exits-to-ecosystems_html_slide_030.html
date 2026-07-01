@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Forecast 2025 inflation rates</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#d9d9d9;
+  }
+  .left-panel{
+    position:absolute;
+    left:49px;
+    top:0;
+    width:290px;
+    height:665px;
+    background:#123f56;
+  }
+  .left-panel:after{
+    content:"";
+    position:absolute;
+    right:0;
+    bottom:-1px;
+    width:0;
+    height:0;
+    border-left:40px solid transparent;
+    border-top:40px solid #123f56;
+  }
+  .headline{
+    position:absolute;
+    left:62px;
+    top:79px;
+    width:245px;
+    color:#f2f4f5;
+    font-size:25px;
+    line-height:1.38;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  .source{
+    position:absolute;
+    left:62px;
+    top:520px;
+    color:#e6eef2;
+    font-size:13px;
+    line-height:1.25;
+  }
+  .source .u{
+    text-decoration:underline;
+  }
+  .base{
+    position:absolute;
+    left:62px;
+    top:548px;
+    width:230px;
+    color:#d9e5ea;
+    font-size:11px;
+    line-height:1.45;
+  }
+  .title{
+    position:absolute;
+    left:390px;
+    top:33px;
+    color:#111;
+    font-size:16px;
+    line-height:1.2;
+    font-weight:700;
+  }
+  .subtitle{
+    position:absolute;
+    left:390px;
+    top:58px;
+    width:760px;
+    color:#2f2f2f;
+    font-size:14px;
+    line-height:1.2;
+  }
+  .chart-wrap{
+    position:absolute;
+    left:430px;
+    top:108px;
+    width:830px;
+    height:495px;
+  }
+  .quad{
+    position:absolute;
+    font-size:17px;
+    line-height:1.4;
+    font-weight:700;
+  }
+  .qt1{
+    left:444px;
+    top:108px;
+    width:235px;
+    color:#19afb2;
+  }
+  .qt2{
+    left:1048px;
+    top:108px;
+    width:220px;
+    color:#1f2b70;
+    text-align:right;
+  }
+  .qt3{
+    left:436px;
+    top:506px;
+    width:300px;
+    color:#ff0f6c;
+  }
+  .qt4{
+    left:1052px;
+    top:506px;
+    width:190px;
+    color:#ff6a00;
+    text-align:right;
+  }
+  .axis-label{
+    position:absolute;
+    left:655px;
+    top:650px;
+    width:470px;
+    text-align:center;
+    color:#111;
+    font-size:16px;
+    line-height:1.2;
+    font-weight:700;
+  }
+  .footer-left{
+    position:absolute;
+    left:49px;
+    bottom:16px;
+    color:#4b4b4b;
+    font-size:14px;
+  }
+  .home{
+    position:absolute;
+    left:675px;
+    bottom:10px;
+    width:18px;
+    height:18px;
+  }
+  .logo{
+    position:absolute;
+    right:13px;
+    bottom:11px;
+    width:55px;
+    height:50px;
+    background:#27439b;
+    overflow:hidden;
+  }
+  .logo:before{
+    content:"";
+    position:absolute;
+    right:0;
+    top:0;
+    width:24px;
+    height:50px;
+    background:#18a99a;
+    clip-path:polygon(28% 0,100% 0,100% 100%,0 100%);
+  }
+  .logo .shape1{
+    position:absolute;
+    left:20px;
+    top:4px;
+    width:11px;
+    height:20px;
+    background:#6e57cf;
+    border-radius:8px 8px 4px 4px;
+  }
+  .logo .shape2{
+    position:absolute;
+    left:27px;
+    top:10px;
+    width:11px;
+    height:24px;
+    background:#1d9b6d;
+    border-radius:8px 8px 4px 4px;
+  }
+  .logo .txt{
+    position:absolute;
+    left:7px;
+    bottom:7px;
+    color:#fff;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:-0.02em;
+  }
+  svg text{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .tick{
+    fill:#6f6f6f;
+    font-size:11px;
+  }
+  .country{
+    fill:#666;
+    font-size:11px;
+  }
+  .dot{
+    fill:#1d2566;
+  }
+  .grid{
+    stroke:#c4c4c4;
+    stroke-width:1;
+  }
+  .axisline{
+    stroke:#171717;
+    stroke-width:2.4;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-panel"></div>
+
+  <div class="headline">The public in most markets expect inflation to rise in their country in 2025, irrespective of what actual economic forecasts look like.</div>
+
+  <div class="source">Source: <span class="u">Trading Economics</span></div>
+  <div class="base">Base: 23,721 adults aged 18 years and older in India, 18-74 in Canada, Republic of Ireland, Malaysia, the Philippines, South Africa, Turkey, and the United States, 20-74 in Thailand, 21-74 in Indonesia and Singapore, and 16-74 in all other countries. Friday, October 25 - Friday November 8, 2024</div>
+
+  <div class="title">Forecast 2025 inflation rates</div>
+  <div class="subtitle">[Average of Q4 2024, Q1, Q2, Q3 2025 - without Argentina where 2025 inflation is forecast to be 98% ]</div>
+
+  <div class="chart-wrap">
+    <svg width="830" height="495" viewBox="0 0 830 495" xmlns="http://www.w3.org/2000/svg">
+      <!-- vertical grid -->
+      <line class="grid" x1="0" y1="0" x2="0" y2="495"/>
+      <line class="grid" x1="83" y1="0" x2="83" y2="495"/>
+      <line class="grid" x1="166" y1="0" x2="166" y2="495"/>
+      <line class="grid" x1="249" y1="0" x2="249" y2="495"/>
+      <line class="grid" x1="332" y1="0" x2="332" y2="495"/>
+      <line class="grid" x1="415" y1="0" x2="415" y2="495"/>
+      <line class="grid" x1="498" y1="0" x2="498" y2="495"/>
+      <line class="grid" x1="581" y1="0" x2="581" y2="495"/>
+      <line class="grid" x1="664" y1="0" x2="664" y2="495"/>
+      <line class="grid" x1="747" y1="0" x2="747" y2="495"/>
+      <line class="grid" x1="830" y1="0" x2="830" y2="495"/>
+
+      <!-- horizontal grid -->
+      <line class="grid" x1="0" y1="495" x2="830" y2="495"/>
+      <line class="grid" x1="0" y1="445.5" x2="830" y2="445.5"/>
+      <line class="grid" x1="0" y1="396" x2="830" y2="396"/>
+      <line class="grid" x1="0" y1="346.5" x2="830" y2="346.5"/>
+      <line class="grid" x1="0" y1="297" x2="830" y2="297"/>
+      <line class="grid" x1="0" y1="247.5" x2="830" y2="247.5"/>
+      <line class="grid" x1="0" y1="198" x2="830" y2="198"/>
+      <line class="grid" x1="0" y1="148.5" x2="830" y2="148.5"/>
+      <line class="grid" x1="0" y1="99" x2="830" y2="99"/>
+      <line class="grid" x1="0" y1="49.5" x2="830" y2="49.5"/>
+      <line class="grid" x1="0" y1="0" x2="830" y2="0"/>
+
+      <!-- quadrant lines -->
+      <line class="axisline" x1="415" y1="-2" x2="415" y2="495"/>
+      <line class="axisline" x1="0" y1="247.5" x2="830" y2="247.5"/>
+
+      <!-- y ticks -->
+      <text class="tick" x="-18" y="498">0</text>
+      <text class="tick" x="-29" y="448">0.5</text>
+      <text class="tick" x="-28" y="399">1</text>
+      <text class="tick" x="-29" y="349">1.5</text>
+      <text class="tick" x="-28" y="300">2</text>
+      <text class="tick" x="-29" y="250">2.5</text>
+      <text class="tick" x="-28" y="201">3</text>
+      <text class="tick" x="-29" y="151">3.5</text>
+      <text class="tick" x="-28" y="102">4</text>
+      <text class="tick" x="-29" y="52">4.5</text>
+      <text class="tick" x="-18" y="4">5</text>
+
+      <!-- x ticks -->
+      <text class="tick" x="-1" y="517">40%</text>
+      <text class="tick" x="68" y="517">45%</text>
+      <text class="tick" x="152" y="517">50%</text>
+      <text class="tick" x="235" y="517">55%</text>
+      <text class="tick" x="318" y="517">60%</text>
+      <text class="tick" x="401" y="517">65%</text>
+      <text class="tick" x="484" y="517">70%</text>
+      <text class="tick" x="567" y="517">75%</text>
+      <text class="tick" x="650" y="517">80%</text>
+      <text class="tick" x="733" y="517">85%</text>
+      <text class="tick" x="816" y="517">90%</text>
+
+      <!-- dots -->
+      <g class="dot">
+        <circle cx="15" cy="268" r="3.6"/>
+        <circle cx="310" cy="432" r="3.6"/>
+        <circle cx="350" cy="389" r="3.6"/>
+        <circle cx="347" cy="310" r="3.6"/>
+        <circle cx="360" cy="109" r="3.6"/>
+        <circle cx="390" cy="205" r="3.6"/>
+        <circle cx="391" cy="439" r="3.6"/>
+        <circle cx="437" cy="173" r="3.6"/>
+        <circle cx="454" cy="233" r="3.6"/>
+        <circle cx="453" cy="190" r="3.6"/>
+        <circle cx="456" cy="83" r="3.6"/>
+        <circle cx="471" cy="69" r="3.6"/>
+        <circle cx="467" cy="425" r="3.6"/>
+        <circle cx="475" cy="438" r="3.6"/>
+        <circle cx="484" cy="275" r="3.6"/>
+        <circle cx="504" cy="396" r="3.6"/>
+        <circle cx="506" cy="418" r="3.6"/>
+        <circle cx="540" cy="247" r="3.6"/>
+        <circle cx="534" cy="49" r="3.6"/>
+        <circle cx="547" cy="73" r="3.6"/>
+        <circle cx="561" cy="296" r="3.6"/>
+        <circle cx="565" cy="393" r="3.6"/>
+        <circle cx="573" cy="133" r="3.6"/>
+        <circle cx="586" cy="140" r="3.6"/>
+        <circle cx="603" cy="333" r="3.6"/>
+        <circle cx="605" cy="460" r="3.6"/>
+        <circle cx="620" cy="165" r="3.6"/>
+        <circle cx="625" cy="394" r="3.6"/>
+        <circle cx="661" cy="99" r="3.6"/>
+        <circle cx="665" cy="214" r="3.6"/>
+        <circle cx="687" cy="244" r="3.6"/>
+        <circle cx="725" cy="80" r="3.6"/>
+        <circle cx="763" cy="165" r="3.6"/>
+      </g>
+
+      <!-- labels -->
+      <text class="country" x="28" y="276">Sweden</text>
+
+      <text class="country" x="287" y="414">United States</text>
+      <text class="country" x="318" y="377">Switzerland</text>
+      <text class="country" x="312" y="317">Great Britain</text>
+      <text class="country" x="366" y="285">Italy</text>
+      <text class="country" x="373" y="88">India</text>
+      <text class="country" x="356" y="451">China</text>
+
+      <text class="country" x="467" y="84">Poland</text>
+      <text class="country" x="484" y="64">Brazil</text>
+      <text class="country" x="495" y="224">Germany</text>
+      <text class="country" x="452" y="270">Canada</text>
+      <text class="country" x="436" y="300">Ireland</text>
+      <text class="country" x="472" y="317">France</text>
+      <text class="country" x="474" y="333">Spain</text>
+      <text class="country" x="517" y="389">Peru</text>
+      <text class="country" x="497" y="310">Belgium</text>
+      <text class="country" x="494" y="347">Australia</text>
+      <text class="country" x="540" y="274">Netherlands</text>
+
+      <text class="country" x="541" y="52">Colombia</text>
+      <text class="country" x="562" y="84">Mexico</text>
+      <text class="country" x="586" y="126">Türkiye</text>
+      <text class="country" x="600" y="139">Chile</text>
+      <text class="country" x="571" y="208">Japan</text>
+      <text class="country" x="574" y="307">Malaysia</text>
+      <text class="country" x="571" y="407">South Korea</text>
+      <text class="country" x="635" y="372">Thailand</text>
+      <text class="country" x="628" y="167">Hungary</text>
+
+      <text class="country" x="673" y="104">South Africa</text>
+      <text class="country" x="679" y="287">Singapore</text>
+      <text class="country" x="678" y="287" dx="-28" dy="22">Indonesia</text>
+      <text class="country" x="731" y="82">Romania</text>
+      <text class="country" x="744" y="185">Philippines</text>
+    </svg>
+  </div>
+
+  <div class="quad qt1">Markets with higher<br>forecast inflation but<br>lower expectations<br>that it will rise in<br>2025</div>
+  <div class="quad qt2">Markets with higher forecast<br>inflation and higher expectations<br>that it will rise in 2025</div>
+  <div class="quad qt3">Markets with lower<br>forecast inflation and<br>lower expectations that it<br>will rise in 2025</div>
+  <div class="quad qt4">Markets with lower forecast<br>inflation and higher<br>expectations that it will rise<br>in 2025</div>
+
+  <div class="axis-label">% who agree that inflation in their country will rise in 2025</div>
+
+  <div class="footer-left">© Ipsos Predictions 2025 Report</div>
+
+  <svg class="home" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M3 9.5l7-6 7 6" fill="none" stroke="#707070" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M5.5 8.7v8h9v-8" fill="none" stroke="#707070" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12.6 3.6v2.5" fill="none" stroke="#707070" stroke-width="1.2" stroke-linecap="round"/>
+  </svg>
+
+  <div class="logo">
+    <div class="shape1"></div>
+    <div class="shape2"></div>
+    <div class="txt">Ipsos</div>
+  </div>
+</div>
+</body>
+</html>

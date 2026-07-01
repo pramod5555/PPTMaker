@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Mobility needs – Free time</title>
+<style>
+  body {
+    margin: 0;
+    background: #f0ecec;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f0ecec;
+    color: #111;
+  }
+
+  .title {
+    position: absolute;
+    left: 47px;
+    top: 48px;
+    width: 1140px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 39px;
+    line-height: 1.02;
+    color: #111;
+    font-weight: 400;
+  }
+  .subtitle {
+    position: absolute;
+    left: 47px;
+    top: 143px;
+    font-size: 27px;
+    line-height: 1;
+    color: #b42222;
+    font-weight: 400;
+  }
+  .subtitle .strong {
+    font-weight: 700;
+  }
+
+  .section-title {
+    position: absolute;
+    font-size: 22px;
+    line-height: 1.15;
+    font-weight: 700;
+    color: #111;
+  }
+  .left-sec { left: 47px; top: 202px; width: 580px; }
+  .right-sec { left: 703px; top: 202px; width: 530px; }
+
+  .redline {
+    position: absolute;
+    height: 6px;
+    background: #b42222;
+  }
+  .redline.left { left: 47px; top: 241px; width: 613px; }
+  .redline.right { left: 703px; top: 241px; width: 614px; }
+
+  .respondents {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-style: italic;
+    color: #222;
+  }
+  .respondents.left { left: 47px; top: 252px; }
+  .respondents.right { left: 703px; top: 252px; }
+  .hash {
+    width: 22px;
+    height: 18px;
+    background: #b42222;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+    font-weight: 700;
+    margin-right: 7px;
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .chart-band {
+    position: absolute;
+    left: 0;
+    top: 307px;
+    width: 1280px;
+    height: 384px;
+    background: #e2e2e2;
+  }
+
+  .axis {
+    position: absolute;
+    height: 1px;
+    background: #555;
+  }
+
+  .chart-label {
+    position: absolute;
+    font-size: 16px;
+    color: #1a1a1a;
+  }
+
+  .stack {
+    position: absolute;
+    width: 84px;
+    bottom: 87px;
+  }
+  .seg {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  .seg.white { color: #fff; }
+  .seg.blacktxt { color: #000; }
+
+  .dash {
+    position: absolute;
+    border-top: 2px dashed #333;
+    transform-origin: left center;
+    opacity: 0.9;
+  }
+
+  .side-label {
+    position: absolute;
+    font-size: 17px;
+    line-height: 1.18;
+    color: #111;
+    font-weight: 700;
+  }
+  .side-label.normal {
+    font-weight: 700;
+  }
+
+  .callout-line {
+    position: absolute;
+    border-top: 3px solid #b42222;
+    transform-origin: left center;
+  }
+
+  .footer-left {
+    position: absolute;
+    left: 47px;
+    top: 715px;
+    transform: translateY(-100%);
+    font-size: 14px;
+    line-height: 1.2;
+    color: #222;
+  }
+  .footer-center {
+    position: absolute;
+    left: 416px;
+    top: 715px;
+    transform: translateY(-100%);
+    width: 450px;
+    text-align: center;
+    font-size: 12px;
+    color: #222;
+  }
+  .footer-right {
+    position: absolute;
+    right: 47px;
+    top: 715px;
+    transform: translateY(-100%);
+    text-align: right;
+    font-size: 12px;
+    line-height: 1.25;
+    color: #222;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">During leisure time, the role of multimodality becomes even more<br>prominent across all clusters</div>
+  <div class="subtitle"><span class="strong">Mobility needs –</span> Free time</div>
+
+  <div class="section-title left-sec">Which of the following means do you use during your free time?</div>
+  <div class="section-title right-sec">Where do you typically park your car when you switching mean?</div>
+
+  <div class="redline left"></div>
+  <div class="redline right"></div>
+
+  <div class="respondents left"><span class="hash">#</span>16,778 respondents</div>
+  <div class="respondents right"><span class="hash">#</span>6,157 respondents</div>
+
+  <div class="chart-band"></div>
+
+  <!-- Left chart -->
+  <div class="axis" style="left:48px; top:632px; width:449px;"></div>
+
+  <!-- EV Owners -->
+  <div class="stack" style="left:82px; height:304px;">
+    <div class="seg white" style="bottom:0; height:122px; background:#b51d1d;">40%</div>
+    <div class="seg white" style="bottom:122px; height:158px; background:#d75066;">52%</div>
+    <div class="seg white" style="bottom:280px; height:24px; background:#000;">8%</div>
+  </div>
+
+  <!-- Prospects -->
+  <div class="stack" style="left:231px; height:304px;">
+    <div class="seg white" style="bottom:0; height:122px; background:#b51d1d;">40%</div>
+    <div class="seg white" style="bottom:122px; height:140px; background:#d75066;">46%</div>
+    <div class="seg white" style="bottom:262px; height:42px; background:#000;">14%</div>
+  </div>
+
+  <!-- Sceptics -->
+  <div class="stack" style="left:380px; height:304px;">
+    <div class="seg white" style="bottom:0; height:201px; background:#b51d1d;">67%</div>
+    <div class="seg white" style="bottom:201px; height:63px; background:#d75066;">21%</div>
+    <div class="seg white" style="bottom:264px; height:40px; background:#000;">12%</div>
+  </div>
+
+  <!-- Left chart dashes -->
+  <div class="dash" style="left:166px; top:511px; width:65px; transform:rotate(0deg);"></div>
+  <div class="dash" style="left:166px; top:352px; width:68px; transform:rotate(18deg);"></div>
+  <div class="dash" style="left:315px; top:512px; width:84px; transform:rotate(-43deg);"></div>
+  <div class="dash" style="left:315px; top:374px; width:66px; transform:rotate(-6deg);"></div>
+
+  <div class="side-label normal" style="left:480px; top:318px; width:170px;">Other<br>transportation<br>means</div>
+  <div class="side-label normal" style="left:480px; top:382px; width:200px;">Car, in<br>combination<br>with other means</div>
+  <div class="side-label normal" style="left:480px; top:583px; width:120px;">Car only</div>
+
+  <div class="chart-label" style="left:81px; top:647px;">EV Owners</div>
+  <div class="chart-label" style="left:234px; top:647px;">Prospects</div>
+  <div class="chart-label" style="left:390px; top:647px;">Sceptics</div>
+
+  <!-- Center callout -->
+  <div class="callout-line" style="left:644px; top:485px; width:174px; transform:rotate(-64deg);"></div>
+  <div class="callout-line" style="left:644px; top:485px; width:182px; transform:rotate(64deg);"></div>
+
+  <!-- Right chart -->
+  <div class="axis" style="left:780px; top:632px; width:449px;"></div>
+
+  <!-- EV Owners -->
+  <div class="stack" style="left:814px; height:304px;">
+    <div class="seg white" style="bottom:0; height:122px; background:#b34156;">40%</div>
+    <div class="seg white" style="bottom:122px; height:79px; background:#cf4b61;">26%</div>
+    <div class="seg blacktxt" style="bottom:201px; height:79px; background:#d8848f; font-weight:700;">28%</div>
+    <div class="seg blacktxt" style="bottom:280px; height:24px; background:#e6bcc2; font-weight:700;">6%</div>
+  </div>
+
+  <!-- Prospects -->
+  <div class="stack" style="left:964px; height:304px;">
+    <div class="seg white" style="bottom:0; height:125px; background:#b34156;">41%</div>
+    <div class="seg white" style="bottom:125px; height:76px; background:#cf4b61;">25%</div>
+    <div class="seg blacktxt" style="bottom:201px; height:79px; background:#d8848f; font-weight:700;">26%</div>
+    <div class="seg blacktxt" style="bottom:280px; height:24px; background:#e6bcc2; font-weight:700;">8%</div>
+  </div>
+
+  <!-- Sceptics -->
+  <div class="stack" style="left:1112px; height:304px;">
+    <div class="seg white" style="bottom:0; height:109px; background:#b34156;">36%</div>
+    <div class="seg white" style="bottom:109px; height:52px; background:#cf4b61;">17%</div>
+    <div class="seg blacktxt" style="bottom:161px; height:103px; background:#d8848f; font-weight:700;">34%</div>
+    <div class="seg blacktxt" style="bottom:264px; height:40px; background:#e6bcc2; font-weight:700;">13%</div>
+  </div>
+
+  <!-- Right chart dashes -->
+  <div class="dash" style="left:898px; top:347px; width:66px; transform:rotate(0deg);"></div>
+  <div class="dash" style="left:898px; top:348px; width:73px; transform:rotate(8deg);"></div>
+  <div class="dash" style="left:898px; top:431px; width:66px; transform:rotate(0deg);"></div>
+  <div class="dash" style="left:898px; top:511px; width:66px; transform:rotate(-1deg);"></div>
+
+  <div class="dash" style="left:1048px; top:355px; width:67px; transform:rotate(11deg);"></div>
+  <div class="dash" style="left:1048px; top:432px; width:78px; transform:rotate(35deg);"></div>
+  <div class="dash" style="left:1048px; top:507px; width:70px; transform:rotate(12deg);"></div>
+
+  <div class="side-label" style="left:1209px; top:334px; width:120px;">On the<br>street</div>
+  <div class="side-label" style="left:1209px; top:411px; width:130px;">In a public<br>parking</div>
+  <div class="side-label" style="left:1209px; top:479px; width:130px;">In a park<br>and ride</div>
+  <div class="side-label" style="left:1209px; top:558px; width:140px;">In a private<br>parking</div>
+
+  <div class="chart-label" style="left:811px; top:647px;">EV Owners</div>
+  <div class="chart-label" style="left:957px; top:647px;">Prospects</div>
+  <div class="chart-label" style="left:1121px; top:647px;">Sceptics</div>
+
+  <div class="footer-left">eReadiness Report 2024<br>Strategy&amp;</div>
+  <div class="footer-center">Source: Strategy&amp; analysis on feedback from consumer survey</div>
+  <div class="footer-right">September 2024<br>14</div>
+</div>
+</body>
+</html>

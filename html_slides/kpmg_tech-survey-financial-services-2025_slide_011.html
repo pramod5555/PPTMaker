@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f7f7f7;
+  }
+
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:48px;
+    background:#dcdcdc;
+  }
+  .nav{
+    position:absolute;
+    top:20px;
+    font-size:12px;
+    color:#8a8a8a;
+    white-space:nowrap;
+  }
+  .nav.active{
+    color:#1f4be0;
+    font-weight:700;
+  }
+
+  .icon-outline{
+    position:absolute;
+    width:14px;
+    height:14px;
+    border:1px solid #8f8f8f;
+    transform:rotate(45deg);
+    border-left:none;
+    border-bottom:none;
+  }
+  .home{
+    position:absolute;
+    width:16px;
+    height:14px;
+  }
+  .home:before{
+    content:"";
+    position:absolute;
+    left:2px;
+    top:5px;
+    width:11px;
+    height:8px;
+    border:1px solid #8f8f8f;
+    border-top:none;
+  }
+  .home:after{
+    content:"";
+    position:absolute;
+    left:1px;
+    top:0;
+    width:12px;
+    height:12px;
+    border-left:1px solid #8f8f8f;
+    border-top:1px solid #8f8f8f;
+    transform:rotate(45deg);
+  }
+
+  .left{
+    position:absolute;
+    left:0;
+    top:48px;
+    width:735px;
+    height:672px;
+    background:#ffffff;
+  }
+  .right{
+    position:absolute;
+    left:735px;
+    top:48px;
+    width:545px;
+    height:672px;
+    background:linear-gradient(90deg,#7d11ea 0%, #2a47dc 100%);
+  }
+
+  .quote-big{
+    position:absolute;
+    left:88px;
+    top:53px;
+    color:#4d2fe2;
+    font-size:96px;
+    line-height:70px;
+    font-weight:700;
+  }
+  .quote-text{
+    position:absolute;
+    left:90px;
+    top:117px;
+    width:536px;
+    color:#2149ea;
+    font-size:16px;
+    line-height:1.2;
+    font-weight:400;
+  }
+  .quote-close{
+    position:absolute;
+    left:319px;
+    top:209px;
+    color:#4d2fe2;
+    font-size:74px;
+    line-height:50px;
+    font-weight:700;
+  }
+  .author{
+    position:absolute;
+    left:90px;
+    top:246px;
+    color:#2149ea;
+    font-size:14px;
+    font-weight:700;
+  }
+  .author-sub{
+    position:absolute;
+    left:90px;
+    top:265px;
+    color:#4d70d8;
+    font-size:12px;
+    line-height:1.25;
+  }
+  .body1, .body2{
+    position:absolute;
+    left:90px;
+    width:543px;
+    color:#3f67b8;
+    font-size:12px;
+    line-height:1.28;
+  }
+  .body1{ top:316px; }
+  .body2{ top:359px; }
+
+  .source{
+    position:absolute;
+    left:90px;
+    top:611px;
+    width:543px;
+    color:#5c78c5;
+    font-size:9px;
+    line-height:1.2;
+  }
+  .copyright{
+    position:absolute;
+    left:88px;
+    top:668px;
+    width:585px;
+    color:#c5c5c5;
+    font-size:9px;
+    line-height:1.2;
+  }
+
+  .right-title{
+    position:absolute;
+    left:790px;
+    top:104px;
+    width:422px;
+    color:#ffffff;
+    font-size:17px;
+    line-height:1.18;
+    font-weight:700;
+  }
+
+  .item{
+    position:absolute;
+    left:788px;
+    width:420px;
+    color:#ffffff;
+  }
+  .item h3{
+    margin:0;
+    font-size:24px;
+    line-height:1.05;
+    font-weight:700;
+    letter-spacing:-0.3px;
+  }
+  .item p{
+    margin:4px 0 0 0;
+    font-size:12px;
+    line-height:1.25;
+    color:#dfddff;
+    width:355px;
+  }
+
+  .icon{
+    position:absolute;
+    left:790px;
+    width:40px;
+    height:40px;
+    color:#ffffff;
+  }
+
+  /* lightbulb */
+  .bulb .b1{
+    position:absolute;
+    left:9px;
+    top:1px;
+    width:20px;
+    height:22px;
+    border:2px solid #fff;
+    border-radius:14px;
+  }
+  .bulb .b2{
+    position:absolute;
+    left:15px;
+    top:23px;
+    width:9px;
+    height:6px;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
+  }
+  .bulb .b3{
+    position:absolute;
+    left:13px;
+    top:29px;
+    width:13px;
+    height:2px;
+    background:#fff;
+  }
+  .bulb .b4{
+    position:absolute;
+    left:14px;
+    top:33px;
+    width:11px;
+    height:2px;
+    background:#fff;
+    border-radius:2px;
+  }
+
+  /* gear/check */
+  .gear .g1{
+    position:absolute;
+    left:7px;
+    top:7px;
+    width:24px;
+    height:24px;
+    border:2px solid #fff;
+    border-radius:50%;
+  }
+  .gear .g2{
+    position:absolute;
+    left:15px;
+    top:17px;
+    width:9px;
+    height:5px;
+    border-left:2px solid #fff;
+    border-bottom:2px solid #fff;
+    transform:rotate(-45deg);
+  }
+  .gear .tooth{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border:2px solid #fff;
+    border-radius:1px;
+    background:transparent;
+  }
+
+  /* talent icon */
+  .talent .head1{
+    position:absolute;
+    left:9px;
+    top:4px;
+    width:8px;
+    height:8px;
+    border:2px solid #fff;
+    border-radius:50%;
+  }
+  .talent .body1{
+    position:absolute;
+    left:7px;
+    top:14px;
+    width:12px;
+    height:12px;
+    border:2px solid #fff;
+    border-radius:3px;
+  }
+  .talent .head2{
+    position:absolute;
+    left:28px;
+    top:14px;
+    width:6px;
+    height:6px;
+    border:2px solid #fff;
+    border-radius:50%;
+  }
+  .talent .body2{
+    position:absolute;
+    left:24px;
+    top:22px;
+    width:11px;
+    height:7px;
+    border:2px solid #fff;
+    border-top-left-radius:8px;
+    border-top-right-radius:8px;
+    border-bottom:none;
+  }
+  .talent .lens{
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:28px;
+    height:28px;
+    border:2px solid #fff;
+    border-radius:50%;
+  }
+  .talent .handle{
+    position:absolute;
+    left:21px;
+    top:24px;
+    width:12px;
+    height:2px;
+    background:#fff;
+    transform:rotate(45deg);
+    transform-origin:left center;
+  }
+
+  /* transform icon */
+  .transform-icon .c1{
+    position:absolute;
+    left:7px;
+    top:8px;
+    width:25px;
+    height:25px;
+    border:2px solid #fff;
+    border-radius:50%;
+    border-right-color:transparent;
+  }
+  .transform-icon .a1{
+    position:absolute;
+    left:11px;
+    top:5px;
+    width:0;height:0;
+    border-left:4px solid transparent;
+    border-right:4px solid transparent;
+    border-bottom:7px solid #fff;
+    transform:rotate(35deg);
+  }
+  .transform-icon .gcore{
+    position:absolute;
+    left:15px;
+    top:15px;
+    width:10px;
+    height:10px;
+    border:2px solid #fff;
+    border-radius:50%;
+  }
+  .transform-icon .gt{
+    position:absolute;
+    width:4px;
+    height:4px;
+    border:2px solid #fff;
+    border-radius:1px;
+  }
+
+  .bottom-band{
+    position:absolute;
+    left:735px;
+    top:666px;
+    width:545px;
+    height:18px;
+    background:rgba(170,146,255,0.42);
+  }
+  .page{
+    position:absolute;
+    right:6px;
+    bottom:3px;
+    color:#ffffff;
+    font-size:11px;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar"></div>
+
+  <div class="nav" style="left:87px;">Executive summary</div>
+  <div class="nav" style="left:263px;">Key findings</div>
+  <div class="nav" style="left:344px;">Risk and regulation</div>
+  <div class="nav active" style="left:491px;">Data and AI</div>
+  <div class="nav" style="left:609px;">Simplification and modernization</div>
+  <div class="nav" style="left:816px;">How KPMG can help</div>
+  <div class="nav" style="left:1012px;">Methodology</div>
+
+  <div class="icon-outline" style="left:1208px; top:18px; transform:rotate(225deg);"></div>
+  <div class="home" style="left:1229px; top:17px;"></div>
+  <div class="icon-outline" style="left:1259px; top:18px; transform:rotate(45deg);"></div>
+
+  <div class="left">
+    <div class="quote-big">“</div>
+    <div class="quote-text">
+      Strong data governance treats data as a set of products with one or more specific business goals, and all maintenance, storage, and quality standards are oriented around that on an ongoing basis. Some leading banks and insurers have started to adopt that approach, and it is paying off for them because it moves away from the idea that data needs to be perfect before it can be useful.
+    </div>
+    <div class="quote-close">”</div>
+
+    <div class="author">Paul Henninger</div>
+    <div class="author-sub">Head of Connected Technology<br>KPMG in the UK</div>
+
+    <div class="body1">
+      To transform the value chain end-to-end, businesses will need to continually address data siloes by strengthening data governance and integration, and consider how to bridge a skills gap.
+    </div>
+
+    <div class="body2">
+      Companies across financial services are currently experiencing a bottleneck as they look to scale their AI adoption. A recent KPMG survey* found that only 16 percent of organizations have a workforce that is well equipped to implement GenAI, with 61 percent looking to hire new talent in this area. “A multifaceted approach is proving to be a critical strategy adopted by digital leaders,” says Ryan. “This involves partnering with third parties to expand the talent pool, providing learning programs and global delivery centers to upskill and engage with the workforce, buying off the shelf assets and solutions, and ‘co-investing’ with start-ups or (financial) tech companies to leverage their speed, skills, and balance sheet.”
+    </div>
+
+    <div class="source">› Source: KPMG LLP, “KPMG Survey: GenAI Dramatically Shifting How Leaders Are Charting the Course for Their Organizations” (August 15, 2024).</div>
+
+    <div class="copyright">© 2025 KPMG LLP, a Delaware limited liability partnership and a member firm of the KPMG global organization of independent member firms affiliated with KPMG International Limited, a private English company limited by guarantee. All rights reserved. USCS026447-2A</div>
+  </div>
+
+  <div class="right"></div>
+
+  <div class="right-title">
+    The financial services sector should consider these challenges with urgency. We recommend the following actions, derived from analysis on the performance of global leaders:
+  </div>
+
+  <div class="icon bulb" style="top:145px;">
+    <div class="b1"></div><div class="b2"></div><div class="b3"></div><div class="b4"></div>
+  </div>
+  <div class="item" style="top:140px;">
+    <h3 style="margin-left:66px;">Upgrade legacy systems</h3>
+    <p style="margin-left:66px;">Legacy systems are holding AI back. Invest to upgrade, replatform or consider low-code options to help augment legacy systems where they are impeding the use of AI.</p>
+  </div>
+
+  <div class="icon gear" style="top:259px;">
+    <div class="g1"></div>
+    <div class="g2"></div>
+    <div class="tooth" style="left:16px; top:0px;"></div>
+    <div class="tooth" style="left:16px; top:32px;"></div>
+    <div class="tooth" style="left:0px; top:16px;"></div>
+    <div class="tooth" style="left:32px; top:16px;"></div>
+    <div class="tooth" style="left:4px; top:4px;"></div>
+    <div class="tooth" style="left:28px; top:4px;"></div>
+    <div class="tooth" style="left:4px; top:28px;"></div>
+    <div class="tooth" style="left:28px; top:28px;"></div>
+  </div>
+  <div class="item" style="top:256px;">
+    <h3 style="margin-left:66px;">Improve data foundations</h3>
+    <p style="margin-left:66px;">Establish the data foundations needed to enable your vision, including data platforms, products, and governance. Build confidence in the quality of data to improve outcomes from the use of AI.</p>
+  </div>
+
+  <div class="icon talent" style="top:383px;">
+    <div class="lens"></div>
+    <div class="handle"></div>
+    <div class="head1"></div>
+    <div class="body1"></div>
+    <div class="head2"></div>
+    <div class="body2"></div>
+  </div>
+  <div class="item" style="top:386px;">
+    <h3 style="margin-left:66px;">Plan for talent</h3>
+    <p style="margin-left:66px;">Identify and plan for your future AI talent. Explore the requirements for upskilling your current team while identifying future sources of skills including partnering or co-investing with start-ups or tech companies.</p>
+  </div>
+
+  <div class="icon transform-icon" style="top:522px;">
+    <div class="c1"></div>
+    <div class="a1"></div>
+    <div class="gcore"></div>
+    <div class="gt" style="left:18px; top:8px;"></div>
+    <div class="gt" style="left:18px; top:24px;"></div>
+    <div class="gt" style="left:9px; top:16px;"></div>
+    <div class="gt" style="left:27px; top:16px;"></div>
+    <div class="gt" style="left:11px; top:11px;"></div>
+    <div class="gt" style="left:25px; top:11px;"></div>
+    <div class="gt" style="left:11px; top:21px;"></div>
+    <div class="gt" style="left:25px; top:21px;"></div>
+  </div>
+  <div class="item" style="top:518px;">
+    <h3 style="margin-left:66px;">Transform</h3>
+    <p style="margin-left:66px;">Architect your AI-enabled transformation to maintain focus on long-term goals while releasing value progressively and avoid getting stuck in proofs of concept or pilots that don’t deliver value. Accelerate use cases that can prove benefits and de-risk delivery.</p>
+  </div>
+
+  <div class="bottom-band"></div>
+  <div class="page">11</div>
+</div>
+</body>
+</html>

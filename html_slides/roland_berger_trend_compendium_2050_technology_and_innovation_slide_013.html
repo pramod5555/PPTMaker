@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{margin:0;background:#b8b8b8;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#222;
+  }
+  .slide > div, .slide > svg{position:absolute;box-sizing:border-box;}
+  .sidebar{
+    left:0;top:0;width:181px;height:720px;
+    background:#2f3238;
+    border-right:2px solid #7d63b7;
+  }
+  .title-left{
+    left:12px;top:32px;width:156px;height:70px;
+    color:#f1f1f1;font-size:24px;line-height:27px;font-weight:700;
+  }
+  .main-title{
+    left:220px;top:28px;width:1030px;height:86px;
+    font-size:30px;line-height:37px;font-weight:700;color:#222;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    left:220px;top:138px;width:700px;height:38px;
+    color:#8d9098;font-size:28px;line-height:32px;font-weight:400;
+  }
+  .chart-bg{
+    left:286px;top:201px;width:565px;height:465px;
+    opacity:.62;
+    filter:blur(.2px);
+  }
+  .chart{
+    left:220px;top:204px;width:680px;height:470px;
+  }
+  .callout{
+    left:940px;top:140px;width:340px;height:579px;
+    background:#d9d9dc;
+    padding:12px 14px 10px 13px;
+  }
+  .callout p{
+    margin:0 0 12px 0;
+    font-size:16px;line-height:20px;color:#2a2a2a;
+    font-weight:400;
+  }
+  .callout b{font-weight:700;}
+  .side-item{width:165px;height:110px;}
+  .hex{
+    position:absolute;left:8px;top:12px;width:64px;height:70px;
+  }
+  .side-num{
+    position:absolute;left:92px;top:16px;font-size:31px;line-height:31px;font-weight:700;color:#81848c;
+  }
+  .side-num.active{color:#8c6ad0;}
+  .side-label{
+    position:absolute;left:93px;top:50px;width:74px;
+    font-size:13px;line-height:17px;font-weight:700;color:#7f61bc;
+  }
+  .side-label.gray{
+    color:#6f737a;font-weight:400;width:75px;
+  }
+  .bottom-icon{
+    left:67px;top:667px;width:70px;height:50px;
+  }
+  .legend{
+    left:221px;top:704px;width:240px;height:16px;
+    font-size:11px;color:#4b4b4b;
+  }
+  .sources{
+    left:220px;top:752px;width:360px;height:14px;
+    font-size:10px;color:#444;
+  }
+  .page{
+    left:10px;bottom:8px;width:18px;height:14px;
+    color:#f0f0f0;font-size:16px;line-height:14px;
+  }
+  .logo{
+    right:12px;bottom:10px;width:58px;height:28px;color:#666a70;
+  }
+  .logo .rbtext{
+    position:absolute;left:0;top:5px;width:33px;
+    font-size:6px;line-height:7px;text-align:right;color:#7a7d82;
+  }
+  .logo .shape1{
+    position:absolute;right:7px;top:0;width:14px;height:28px;
+    background:#8e9095;border-radius:7px;
+  }
+  .logo .shape2{
+    position:absolute;right:0;top:10px;width:12px;height:18px;
+    background:#b4b7bb;border-radius:0 9px 9px 0;
+  }
+  .flag{
+    position:absolute;width:28px;height:28px;border-radius:50%;
+    overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.18) inset;
+  }
+  .country{
+    position:absolute;font-size:16px;line-height:20px;color:#2a2a2a;font-weight:400;
+  }
+  .barlabel{
+    position:absolute;font-size:17px;line-height:18px;color:#424242;font-weight:400;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="sidebar"></div>
+
+  <div class="title-left">Technology &amp;<br>Innovation</div>
+
+  <div class="side-item" style="left:8px;top:130px;">
+    <svg class="hex" viewBox="0 0 64 70">
+      <polygon points="16,3 48,3 63,35 48,67 16,67 1,35" fill="#4c5e74" stroke="#8b6ed0" stroke-width="4"/>
+      <polygon points="18,8 46,8 58,35 46,62 18,62 6,35" fill="url(#g1)"/>
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#5bc3e6"/>
+          <stop offset="1" stop-color="#244260"/>
+        </linearGradient>
+      </defs>
+      <g opacity=".9">
+        <circle cx="16" cy="25" r="2" fill="#dff7ff"/>
+        <circle cx="23" cy="21" r="2" fill="#dff7ff"/>
+        <circle cx="30" cy="28" r="2" fill="#dff7ff"/>
+        <circle cx="39" cy="23" r="2" fill="#dff7ff"/>
+        <circle cx="46" cy="30" r="2" fill="#dff7ff"/>
+        <circle cx="22" cy="41" r="2" fill="#dff7ff"/>
+        <circle cx="35" cy="42" r="2" fill="#dff7ff"/>
+        <line x1="16" y1="25" x2="23" y2="21" stroke="#dff7ff" stroke-width="1"/>
+        <line x1="23" y1="21" x2="30" y2="28" stroke="#dff7ff" stroke-width="1"/>
+        <line x1="30" y1="28" x2="39" y2="23" stroke="#dff7ff" stroke-width="1"/>
+        <line x1="39" y1="23" x2="46" y2="30" stroke="#dff7ff" stroke-width="1"/>
+        <line x1="30" y1="28" x2="22" y2="41" stroke="#dff7ff" stroke-width="1"/>
+        <line x1="30" y1="28" x2="35" y2="42" stroke="#dff7ff" stroke-width="1"/>
+      </g>
+    </svg>
+    <div class="side-num active">1</div>
+    <div class="side-label">Value of<br>Innovation</div>
+  </div>
+
+  <div class="side-item" style="left:8px;top:263px;">
+    <svg class="hex" viewBox="0 0 64 70">
+      <polygon points="16,3 48,3 63,35 48,67 16,67 1,35" fill="#6d7177" stroke="#8a8d93" stroke-width="3"/>
+      <polygon points="18,8 46,8 58,35 46,62 18,62 6,35" fill="url(#g2)"/>
+      <defs>
+        <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#9b9b9b"/>
+          <stop offset="1" stop-color="#5d5d5d"/>
+        </linearGradient>
+      </defs>
+      <g stroke="#cfcfcf" stroke-width="1" opacity=".55">
+        <circle cx="18" cy="20" r="1.5" fill="#dcdcdc"/>
+        <circle cx="29" cy="15" r="1.5" fill="#dcdcdc"/>
+        <circle cx="24" cy="29" r="1.5" fill="#dcdcdc"/>
+        <circle cx="37" cy="26" r="1.5" fill="#dcdcdc"/>
+        <circle cx="45" cy="34" r="1.5" fill="#dcdcdc"/>
+        <circle cx="20" cy="41" r="1.5" fill="#dcdcdc"/>
+        <line x1="18" y1="20" x2="29" y2="15"/>
+        <line x1="29" y1="15" x2="24" y2="29"/>
+        <line x1="24" y1="29" x2="37" y2="26"/>
+        <line x1="37" y1="26" x2="45" y2="34"/>
+        <line x1="24" y1="29" x2="20" y2="41"/>
+      </g>
+    </svg>
+    <div class="side-num">2</div>
+    <div class="side-label gray">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="side-item" style="left:8px;top:396px;">
+    <svg class="hex" viewBox="0 0 64 70">
+      <polygon points="16,3 48,3 63,35 48,67 16,67 1,35" fill="#6d7177" stroke="#8a8d93" stroke-width="3"/>
+      <polygon points="18,8 46,8 58,35 46,62 18,62 6,35" fill="url(#g3)"/>
+      <defs>
+        <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#f2f2f2"/>
+          <stop offset="1" stop-color="#9f9f9f"/>
+        </linearGradient>
+      </defs>
+      <g opacity=".72" fill="#ffffff">
+        <circle cx="23" cy="34" r="8"/>
+        <circle cx="39" cy="35" r="8"/>
+        <rect x="24" y="32" width="14" height="5" rx="2.5"/>
+      </g>
+      <g stroke="#999" stroke-width="1" opacity=".35">
+        <line x1="14" y1="18" x2="50" y2="52"/>
+        <line x1="18" y1="52" x2="48" y2="18"/>
+      </g>
+    </svg>
+    <div class="side-num">3</div>
+    <div class="side-label gray">Humans &amp;<br>Machines</div>
+  </div>
+
+  <svg class="bottom-icon" viewBox="0 0 70 50">
+    <g fill="none" stroke="#6f7379" stroke-width="3">
+      <circle cx="28" cy="29" r="18"/>
+      <path d="M28 12c5 0 10 2 13 5"/>
+      <path d="M33 16c-2 5-1 11 2 15"/>
+      <path d="M22 22c4 1 7 4 9 8"/>
+      <path d="M25 45l-2 6"/>
+      <path d="M34 45l4 4"/>
+      <path d="M16 40l-5 3"/>
+      <path d="M11 31H4"/>
+      <path d="M13 20l-6-3"/>
+      <path d="M19 13l-3-6"/>
+      <path d="M44 16l5-5"/>
+      <path d="M48 25l7-1"/>
+      <circle cx="52" cy="17" r="8"/>
+      <circle cx="52" cy="17" r="3" fill="#6f7379"/>
+      <path d="M52 9v-5M52 30v-5M44 17h-5M65 17h-5M46 11l-4-4M58 23l4 4M58 11l4-4M46 23l-4 4"/>
+    </g>
+  </svg>
+
+  <div class="main-title">… potentially leading to a higher decoupling of innovation and economic<br>growth in the future – Structural trends include services shift</div>
+  <div class="subtitle">Services' share of Gross Value Added (GVA) of total GVA [%]</div>
+
+  <div class="chart-bg">
+    <svg width="565" height="465" viewBox="0 0 565 465">
+      <defs>
+        <linearGradient id="fadebg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffffff" stop-opacity=".88"/>
+          <stop offset="1" stop-color="#d8d8d8" stop-opacity=".82"/>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="565" height="465" fill="url(#fadebg)"/>
+      <g opacity=".35">
+        <rect x="92" y="92" width="18" height="240" fill="#d5d5d5"/>
+        <rect x="130" y="92" width="22" height="240" fill="#dfdfdf"/>
+        <rect x="171" y="92" width="24" height="240" fill="#d7d7d7"/>
+        <rect x="214" y="92" width="22" height="240" fill="#e2e2e2"/>
+        <rect x="264" y="92" width="25" height="240" fill="#d8d8d8"/>
+        <rect x="315" y="92" width="23" height="240" fill="#e1e1e1"/>
+        <rect x="365" y="92" width="25" height="240" fill="#d8d8d8"/>
+        <rect x="422" y="92" width="31" height="240" fill="#dedede"/>
+        <rect x="482" y="92" width="37" height="240" fill="#d4d4d4"/>
+        <rect x="76" y="166" width="363" height="18" fill="#e5e5e5"/>
+        <rect x="76" y="190" width="363" height="13" fill="#dbdbdb"/>
+        <rect x="80" y="209" width="360" height="16" fill="#e9e9e9"/>
+        <rect x="118" y="229" width="288" height="92" fill="none" stroke="#d9d9d9" stroke-width="2"/>
+        <rect x="123" y="234" width="278" height="82" fill="none" stroke="#d9d9d9" stroke-width="1.5"/>
+        <rect x="102" y="333" width="403" height="14" fill="#dcdcdc"/>
+        <rect x="85" y="348" width="435" height="19" fill="#e8e8e8"/>
+        <rect x="69" y="369" width="466" height="16" fill="#d9d9d9"/>
+        <rect x="66" y="386" width="477" height="15" fill="#ebebeb"/>
+        <rect x="64" y="403" width="482" height="15" fill="#dbdbdb"/>
+        <rect x="65" y="419" width="481" height="18" fill="#ececec"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="chart">
+    <svg width="680" height="470" viewBox="0 0 680 470">
+      <line x1="140" y1="465" x2="140" y2="457" stroke="#404040" stroke-width="1.6"/>
+      <line x1="157" y1="3" x2="146" y2="71" stroke="#444" stroke-width="2"/>
+      <line x1="167" y1="3" x2="151" y2="71" stroke="#666" stroke-width="2"/>
+      <line x1="157" y1="84" x2="146" y2="151" stroke="#444" stroke-width="2"/>
+      <line x1="167" y1="84" x2="151" y2="151" stroke="#666" stroke-width="2"/>
+      <line x1="157" y1="164" x2="146" y2="231" stroke="#444" stroke-width="2"/>
+      <line x1="167" y1="164" x2="151" y2="231" stroke="#666" stroke-width="2"/>
+      <line x1="157" y1="244" x2="146" y2="311" stroke="#444" stroke-width="2"/>
+      <line x1="167" y1="244" x2="151" y2="311" stroke="#666" stroke-width="2"/>
+      <line x1="157" y1="324" x2="146" y2="391" stroke="#444" stroke-width="2"/>
+      <line x1="167" y1="324" x2="151" y2="391" stroke="#666" stroke-width="2"/>
+      <line x1="157" y1="404" x2="146" y2="457" stroke="#444" stroke-width="2"/>
+      <line x1="167" y1="404" x2="151" y2="457" stroke="#666" stroke-width="2"/>
+    </svg>
+
+    <div class="flag" style="left:0px;top:23px;background:#fff;">
+      <div style="position:absolute;left:9px;top:9px;width:10px;height:10px;border-radius:50%;border:4px solid transparent;border-top-color:#cf2e2e;border-right-color:#1c58a7;border-bottom-color:#cf2e2e;border-left-color:#1c58a7;"></div>
+      <div style="position:absolute;left:13px;top:2px;width:2px;height:24px;background:rgba(0,0,0,.15);"></div>
+      <div style="position:absolute;left:2px;top:13px;width:24px;height:2px;background:rgba(0,0,0,.15);"></div>
+    </div>
+    <div class="country" style="left:36px;top:29px;width:120px;">South Korea</div>
+
+    <div class="flag" style="left:0px;top:99px;background:linear-gradient(180deg,#000 0 33.33%, #dd1d1d 33.33% 66.66%, #ffcf1a 66.66% 100%);"></div>
+    <div class="country" style="left:36px;top:105px;width:90px;">Germany</div>
+
+    <div class="flag" style="left:0px;top:177px;background:linear-gradient(90deg,#1c4aa8 0 33.33%, #fff 33.33% 66.66%, #d81f2a 66.66% 100%);"></div>
+    <div class="country" style="left:36px;top:183px;width:70px;">France</div>
+
+    <div class="flag" style="left:0px;top:257px;background:#173f8f;">
+      <div style="position:absolute;left:0;top:0;width:28px;height:28px;background:
+        linear-gradient(90deg, transparent 0 10px, #fff 10px 18px, transparent 18px),
+        linear-gradient(transparent 0 10px, #fff 10px 18px, transparent 18px),
+        linear-gradient(90deg, transparent 0 12px, #d1222a 12px 16px, transparent 16px),
+        linear-gradient(transparent 0 12px, #d1222a 12px 16px, transparent 16px),
+        linear-gradient(45deg, transparent 0 11px, #fff 11px 14px, transparent 14px),
+        linear-gradient(-45deg, transparent 0 11px, #fff 11px 14px, transparent 14px);opacity:.95;"></div>
+    </div>
+    <div class="country" style="left:36px;top:263px;width:40px;">UK</div>
+
+    <div class="flag" style="left:0px;top:337px;background:repeating-linear-gradient(180deg,#c91c29 0 2px,#fff 2px 4px);">
+      <div style="position:absolute;left:0;top:0;width:14px;height:14px;background:#1e3c89;"></div>
+    </div>
+    <div class="country" style="left:36px;top:343px;width:40px;">US</div>
+
+    <div class="flag" style="left:0px;top:417px;background:#e73617;">
+      <div style="position:absolute;left:6px;top:8px;color:#ffd34d;font-size:8px;">★</div>
+    </div>
+    <div class="country" style="left:36px;top:423px;width:55px;">China</div>
+
+    <div style="position:absolute;left:140px;top:8px;width:165px;height:20px;background:#b7a9d8;"></div>
+    <div style="position:absolute;left:140px;top:28px;width:165px;height:20px;background:#826db8;"></div>
+    <div style="position:absolute;left:140px;top:48px;width:165px;height:20px;background:#4d2d80;"></div>
+    <div class="barlabel" style="left:309px;top:9px;width:30px;">61</div>
+    <div class="barlabel" style="left:309px;top:29px;width:30px;">61</div>
+    <div class="barlabel" style="left:309px;top:49px;width:30px;">61</div>
+
+    <div style="position:absolute;left:140px;top:88px;width:290px;height:20px;background:#b7a9d8;"></div>
+    <div style="position:absolute;left:140px;top:108px;width:295px;height:20px;background:#826db8;"></div>
+    <div style="position:absolute;left:140px;top:128px;width:309px;height:20px;background:#4d2d80;"></div>
+    <div class="barlabel" style="left:434px;top:89px;width:30px;">69</div>
+    <div class="barlabel" style="left:447px;top:109px;width:30px;">70</div>
+    <div class="barlabel" style="left:449px;top:129px;width:30px;">70</div>
+
+    <div style="position:absolute;left:140px;top:168px;width:394px;height:20px;background:#b7a9d8;"></div>
+    <div style="position:absolute;left:140px;top:188px;width:458px;height:20px;background:#826db8;"></div>
+    <div style="position:absolute;left:140px;top:208px;width:471px;height:20px;background:#4d2d80;"></div>
+    <div class="barlabel" style="left:537px;top:169px;width:30px;">76</div>
+    <div class="barlabel" style="left:601px;top:189px;width:30px;">80</div>
+    <div class="barlabel" style="left:615px;top:209px;width:30px;">81</div>
+
+    <div style="position:absolute;left:140px;top:248px;width:413px;height:20px;background:#b7a9d8;"></div>
+    <div style="position:absolute;left:140px;top:268px;width:458px;height:20px;background:#826db8;"></div>
+    <div style="position:absolute;left:140px;top:288px;width:510px;height:20px;background:#4d2d80;"></div>
+    <div class="barlabel" style="left:557px;top:249px;width:30px;">77</div>
+    <div class="barlabel" style="left:604px;top:269px;width:30px;">80</div>
+    <div class="barlabel" style="left:652px;top:289px;width:30px;">83</div>
+
+    <div style="position:absolute;left:140px;top:328px;width:413px;height:20px;background:#b7a9d8;"></div>
+    <div style="position:absolute;left:140px;top:348px;width:432px;height:20px;background:#826db8;"></div>
+    <div style="position:absolute;left:140px;top:368px;width:458px;height:20px;background:#4d2d80;"></div>
+    <div class="barlabel" style="left:557px;top:329px;width:30px;">77</div>
+    <div class="barlabel" style="left:580px;top:349px;width:30px;">79</div>
+    <div class="barlabel" style="left:603px;top:369px;width:30px;">80</div>
+
+    <div style="position:absolute;left:140px;top:408px;width:35px;height:20px;background:#b7a9d8;"></div>
+    <div style="position:absolute;left:140px;top:428px;width:102px;height:20px;background:#826db8;"></div>
+    <div style="position:absolute;left:140px;top:448px;width:297px;height:20px;background:#4d2d80;"></div>
+    <div class="barlabel" style="left:178px;top:409px;width:30px;">52</div>
+    <div class="barlabel" style="left:249px;top:429px;width:30px;">57</div>
+    <div class="barlabel" style="left:442px;top:449px;width:30px;">69</div>
+  </div>
+
+  <div class="legend">
+    <div style="position:absolute;left:1px;top:1px;width:20px;height:15px;background:#b7a9d8;"></div>
+    <div style="position:absolute;left:26px;top:0;width:34px;height:16px;line-height:15px;">2000</div>
+    <div style="position:absolute;left:66px;top:1px;width:20px;height:15px;background:#826db8;"></div>
+    <div style="position:absolute;left:91px;top:0;width:34px;height:16px;line-height:15px;">2020</div>
+    <div style="position:absolute;left:132px;top:1px;width:20px;height:15px;background:#4d2d80;"></div>
+    <div style="position:absolute;left:157px;top:0;width:34px;height:16px;line-height:15px;">2050</div>
+  </div>
+
+  <div class="callout">
+    <p>&gt; The <b>services sector</b> is, in general, <b>more labor intensive</b>, when compared to the <b>manufacturing sector</b>, with the latter being comparatively <b>more likely to experience productivity-increasing innovations</b></p>
+    <p>&gt; The <b>global economy broadly shifts</b> away from manufacturing <b>towards services</b>. Already evident in <b>developed economies, services as a share of total GVA have reached high levels</b>; herein, the UK, the US and France display exceptionally pronounced shares compared to other countries</p>
+    <p>&gt; In the long run, the observed <b>decline of productivity growth</b> can partially be explained by such <b>structural changes</b>, that – in the main – are affecting developed countries but will also affect emerging countries such as China</p>
+    <p>&gt; But not all services are created equal: <b>Modern services</b> (broadly understood as ICT enabled services where proximity of buyer and supplier is not a key factor) <b>are able to increase their levels of productivity through technological innovations</b>; they are also considered to be more crisis resilient compared to traditional services</p>
+  </div>
+
+  <div class="page">13</div>
+
+  <div class="logo">
+    <div class="rbtext">Roland<br>Berger</div>
+    <div class="shape1"></div>
+    <div class="shape2"></div>
+  </div>
+</div>
+</body>
+</html>

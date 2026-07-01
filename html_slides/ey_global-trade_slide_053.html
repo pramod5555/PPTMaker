@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#cfcfcd;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d8d8d6;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .topbar{
+    left:0;
+    top:0;
+    width:1280px;
+    height:78px;
+    background:#dbdbdb;
+    z-index:1;
+  }
+  .top-left-block{
+    left:0;
+    top:0;
+    width:47px;
+    height:78px;
+    background:#bebec4;
+    z-index:2;
+  }
+  .top-rule{
+    left:0;
+    top:78px;
+    width:1280px;
+    height:2px;
+    background:#b8b8bf;
+    z-index:4;
+  }
+  .header-text{
+    left:57px;
+    top:50px;
+    color:#7c7c87;
+    font-size:18px;
+    line-height:20px;
+    font-weight:400;
+    letter-spacing:0;
+    z-index:30;
+    white-space:nowrap;
+  }
+  .nav-circle{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#bfc0c7;
+    color:#464753;
+    text-align:center;
+    line-height:35px;
+    font-size:20px;
+    font-weight:700;
+    z-index:40;
+  }
+  .left-nav{ left:951px; top:33px; }
+  .right-nav{ left:995px; top:33px; }
+
+  .col1{
+    left:56px;
+    top:117px;
+    width:275px;
+    color:#4c4c52;
+    font-size:17px;
+    line-height:1.32;
+    font-weight:400;
+    z-index:30;
+  }
+  .col2-title{
+    left:374px;
+    top:116px;
+    width:300px;
+    color:#34343d;
+    font-size:18px;
+    line-height:21px;
+    font-weight:700;
+    z-index:31;
+  }
+  .col2-body{
+    left:374px;
+    top:160px;
+    width:287px;
+    color:#4c4c52;
+    font-size:17px;
+    line-height:1.32;
+    font-weight:400;
+    z-index:30;
+  }
+  .col3-top{
+    left:690px;
+    top:116px;
+    width:290px;
+    color:#4c4c52;
+    font-size:17px;
+    line-height:1.32;
+    font-weight:400;
+    z-index:30;
+  }
+  .col3-title{
+    left:690px;
+    top:301px;
+    width:320px;
+    color:#34343d;
+    font-size:18px;
+    line-height:21px;
+    font-weight:700;
+    z-index:31;
+  }
+  .col3-body{
+    left:690px;
+    top:346px;
+    width:305px;
+    color:#4c4c52;
+    font-size:17px;
+    line-height:1.32;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .photo{
+    left:0;
+    top:516px;
+    width:679px;
+    height:204px;
+    overflow:hidden;
+    background:#6d7a75;
+    z-index:10;
+  }
+  .photo svg{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .side-menu{
+    left:1040px;
+    top:120px;
+    width:240px;
+    z-index:35;
+  }
+  .menu-item{
+    position:absolute;
+    right:0;
+    width:240px;
+    height:36px;
+    background:#2f3040;
+    color:#d7d7dc;
+    font-size:11px;
+    line-height:12px;
+    font-weight:400;
+    padding-left:8px;
+    display:flex;
+    align-items:center;
+    border-left:2px solid #e6d400;
+  }
+  .m1{ top:0; width:272px; }
+  .m2{ top:50px; width:240px; }
+  .m3{ top:100px; width:240px; }
+  .m4{ top:150px; width:240px; }
+  .m5{ top:202px; width:240px; background:#7f7f89; color:#ececef; }
+  .m6{ top:252px; width:240px; background:#7f7f89; color:#ececef; }
+
+  .footer{
+    left:57px;
+    top:707px;
+    transform:translateY(-100%);
+    color:#ffffff;
+    font-size:10px;
+    line-height:12px;
+    font-weight:700;
+    z-index:40;
+    white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+  <div id="slide">
+    <div class="topbar"></div>
+    <div class="top-left-block"></div>
+    <div class="top-rule"></div>
+
+    <div class="header-text">Insights: Europe, Middle East, India and Africa</div>
+    <div class="nav-circle left-nav">◀</div>
+    <div class="nav-circle right-nav">▶</div>
+
+    <div class="col1">
+      It is also envisaged to use data already available within the company. This primarily concerns the option of self-assessment (self-control). In the longer term, the European Commission's vision is for tax and customs authorities to be granted permanent direct access to productive systems (e.g., ERP/inventory management, financial accounting, logistics systems) –also in the context of the Trust &amp; Check Trader authorization (see below). Whether customs clearance will then be organized by companies via self-assessment or whether customs authorities will extract the relevant data and assess duties purely on a data basis is yet unknown. Based on initial tests, the European Commission has found that data extraction and AI-based assessment is more difficult than initially expected due to the diversity of systems and data types. Nevertheless, this perspective has far-reaching consequences for companies and their IT and data landscape, particularly with regard to data and master data quality, the implementation of interfaces, automation, access rights and much more.
+    </div>
+
+    <div class="col2-title">Certified Trusted Economic Operator<br>(Trust &amp; Check Trader)</div>
+    <div class="col2-body">
+      Brussels is planning a premium trusted trade scheme above the currently available customs authorization as an Authorized Economic Operator (Authorized Economic Operator, commonly abbreviated as “AEO”). The Trust &amp; Check Trader/economic operator will have to meet even higher requirements regarding internal control systems, data quality, detailed transparency and governance. The new status promises far-reaching privileges for companies. These include significant simplifications such as automated release of goods to the customs procedure, centralized customs clearance, self-assessment and periodic settlement, and fewer physical checks.<br><br>
+      At one point, even the future of the AEO was under consideration. The European Commission had planned for the status to be discontinued in the future. Many customs simplifications would then have required Trust &amp; Check Trader status. It was
+    </div>
+
+    <div class="col3-top">
+      foreseeable, however, that many – especially small and mid-sized – companies would not yet have been able to meet these requirements by the date to be determined. As a consequence, the loss of existing simplifications would have been threatened. Lobby activities of business associations have apparently been successful and, according to the latest information, the Trust &amp; Check Trader status is intended to build on the existing AEO concept and strengthen it.
+    </div>
+
+    <div class="col3-title">E-commerce and platform responsibility</div>
+    <div class="col3-body">
+      Based on the VAT e-commerce rules and certain market-conformity provisions, electronic platforms or online marketplaces in e-commerce are, in the future, to be classified as “deemed importers”. From a customs perspective, they will then be responsible in their own name for the proper handling of import transactions by third-party sellers on their platform.<br><br>
+      In addition, a simplified system with four groups of product categories for low-value consignments is to be introduced. This is intended to significantly reduce the effort required for customs tariff classification and, in conjunction with abolishing the current duty exemption for goods valued at up to EUR 150, prevent fraud. What may be overlooked, however, is that many excise and environmental taxes, product conformity rules, and prohibitions and restrictions identify affected goods by customs tariff codes. Correct tariff classification will therefore still be necessary and could call the added value of the measure into question.
+    </div>
+
+    <div class="photo">
+      <svg width="679" height="204" viewBox="0 0 679 204" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="bgp" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#556250"/>
+            <stop offset="25%" stop-color="#829188"/>
+            <stop offset="48%" stop-color="#d7e0e6"/>
+            <stop offset="72%" stop-color="#7a838d"/>
+            <stop offset="100%" stop-color="#4c525b"/>
+          </linearGradient>
+          <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#efb294"/>
+            <stop offset="100%" stop-color="#c88567"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="679" height="204" fill="url(#bgp)"/>
+        <rect x="0" y="0" width="679" height="204" fill="rgba(0,0,0,0.10)"/>
+        <line x1="12" y1="26" x2="220" y2="4" stroke="#eff8ff" stroke-width="4"/>
+        <line x1="135" y1="-2" x2="302" y2="154" stroke="#edf7ff" stroke-width="4"/>
+        <line x1="255" y1="-4" x2="430" y2="190" stroke="#e8f4ff" stroke-width="3.5"/>
+        <line x1="372" y1="-4" x2="534" y2="168" stroke="#eef6ff" stroke-width="4"/>
+        <line x1="492" y1="-4" x2="654" y2="146" stroke="#eff7ff" stroke-width="3.5"/>
+
+        <rect x="178" y="25" width="99" height="115" fill="#d7dfe5" opacity="0.96" stroke="#d8e0e6" stroke-width="2"/>
+        <rect x="283" y="35" width="127" height="104" fill="#eef2f5" opacity="0.96" stroke="#d8e0e6" stroke-width="2"/>
+        <rect x="167" y="44" width="9" height="127" fill="#40454b"/>
+        <rect x="275" y="51" width="9" height="115" fill="#40454b"/>
+
+        <rect x="186" y="33" width="37" height="7" fill="#9fd4e9"/>
+        <rect x="186" y="45" width="54" height="4" fill="#c3d0d8"/>
+        <rect x="186" y="56" width="44" height="4" fill="#c3d0d8"/>
+        <rect x="186" y="68" width="60" height="4" fill="#c3d0d8"/>
+        <rect x="186" y="82" width="72" height="50" fill="#dfe9ef"/>
+        <rect x="291" y="44" width="35" height="5" fill="#a7d8ec"/>
+        <rect x="291" y="56" width="69" height="4" fill="#cad4da"/>
+        <rect x="291" y="67" width="57" height="4" fill="#cad4da"/>
+        <rect x="291" y="83" width="89" height="42" fill="#e3eaef"/>
+
+        <ellipse cx="160" cy="110" rx="16" ry="46" fill="#e6956c" opacity="0.75"/>
+        <rect x="152" y="81" width="22" height="73" rx="11" fill="#d7805c" opacity="0.55"/>
+
+        <ellipse cx="533" cy="77" rx="30" ry="34" fill="url(#skin)"/>
+        <path d="M511,69 C518,44 550,44 562,65 C552,75 530,82 511,69 Z" fill="#d88c6d"/>
+        <path d="M506,64 C519,39 551,35 567,58 C557,71 539,79 520,76 Z" fill="#d3b07b"/>
+        <path d="M509,60 C523,37 546,33 564,49 C553,56 535,61 509,60 Z" fill="#efc969"/>
+        <rect x="513" y="67" width="15" height="7" rx="2.5" fill="#1b2028"/>
+        <rect x="530" y="69" width="15" height="7" rx="2.5" fill="#1b2028"/>
+        <line x1="528" y1="72.5" x2="530" y2="72.5" stroke="#1b2028" stroke-width="2"/>
+        <path d="M501,111 C526,93 567,98 589,125 L619,165 C597,184 572,192 547,192 C519,192 499,174 493,147 Z" fill="#6e7e66"/>
+        <path d="M489,146 C506,143 527,147 541,156 C545,173 547,186 546,204 L509,204 C498,194 491,175 489,146 Z" fill="#6b785f"/>
+        <rect x="462" y="139" width="55" height="6" rx="3" transform="rotate(-12 462 139)" fill="#d8bea8"/>
+        <rect x="426" y="145" width="48" height="8" rx="2" fill="#dedbd6"/>
+        <rect x="414" y="148" width="14" height="20" rx="2" fill="#bcc2c7"/>
+        <circle cx="443" cy="182" r="6" fill="#566869"/>
+        <rect x="376" y="172" width="24" height="12" rx="2" fill="#ddd8cf"/>
+        <rect x="330" y="169" width="38" height="18" rx="3" fill="#ddd7cf"/>
+        <rect x="297" y="164" width="27" height="19" rx="3" fill="#e8e3dc"/>
+        <rect x="230" y="177" width="46" height="8" rx="4" fill="#fbfcfd"/>
+        <rect x="257" y="186" width="17" height="5" rx="2.5" fill="#d6dce3"/>
+        <circle cx="466" cy="156" r="4" fill="#748e7b"/>
+      </svg>
+    </div>
+
+    <div class="side-menu">
+      <div class="menu-item m1">Contents</div>
+      <div class="menu-item m2">Insights</div>
+      <div class="menu-item m3">New on<br>ey.com</div>
+      <div class="menu-item m4">Tax alerts</div>
+      <div class="menu-item m5">Additional<br>resources</div>
+      <div class="menu-item m6">Contacts</div>
+    </div>
+
+    <div class="footer">50&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#000;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e6e6e6;
+    color:#202833;
+  }
+  .top-line{
+    position:absolute;
+    left:0;
+    top:63px;
+    width:1280px;
+    height:2px;
+    background:#f0bf00;
+    z-index:5;
+  }
+  .circle-num{
+    position:absolute;
+    left:842px;
+    top:45px;
+    width:36px;
+    height:36px;
+    border:2px solid #f0bf00;
+    border-radius:50%;
+    background:#e6e6e6;
+    color:#2b313c;
+    font-size:14px;
+    font-weight:700;
+    line-height:36px;
+    text-align:center;
+    z-index:20;
+  }
+  .left-text{
+    position:absolute;
+    left:143px;
+    top:170px;
+    width:246px;
+    font-size:11px;
+    line-height:1.45;
+    color:#4d5560;
+    z-index:30;
+  }
+  .white-panel{
+    position:absolute;
+    left:96px;
+    top:160px;
+    width:404px;
+    height:324px;
+    background:#ffffff;
+    z-index:10;
+  }
+  .photo-top{
+    position:absolute;
+    left:465px;
+    top:135px;
+    width:258px;
+    height:381px;
+    border-radius:2px 2px 0 0;
+    overflow:hidden;
+    z-index:15;
+    background:
+      linear-gradient(to bottom, #2c4f83 0%, #325887 28%, #48658b 45%, #b7a17f 71%, #f0d387 100%);
+  }
+  .photo-bottom{
+    position:absolute;
+    left:33px;
+    top:484px;
+    width:690px;
+    height:229px;
+    border-radius:0 0 2px 2px;
+    overflow:hidden;
+    z-index:15;
+    background:
+      linear-gradient(to bottom, #f4c869 0%, #ee9d33 14%, #dc6323 25%, #172033 46%, #060b16 100%);
+  }
+  .photo-bottom-overlay{
+    position:absolute;
+    left:33px;
+    top:484px;
+    width:690px;
+    height:229px;
+    background:linear-gradient(to right, rgba(0,0,0,0.14) 0%, rgba(0,0,0,0.08) 38%, rgba(0,0,0,0.18) 100%);
+    border-radius:0 0 2px 2px;
+    z-index:16;
+  }
+  .quote-line{
+    position:absolute;
+    left:108px;
+    top:576px;
+    width:2px;
+    height:84px;
+    background:rgba(255,255,255,0.95);
+    z-index:30;
+  }
+  .quote{
+    position:absolute;
+    left:127px;
+    top:575px;
+    width:360px;
+    color:#f5f5f5;
+    font-size:21px;
+    line-height:1.15;
+    font-weight:400;
+    z-index:30;
+  }
+  .right-title{
+    position:absolute;
+    left:844px;
+    top:132px;
+    width:270px;
+    font-size:18px;
+    line-height:1.2;
+    font-weight:700;
+    color:#1d2430;
+    z-index:30;
+  }
+  .right-body{
+    position:absolute;
+    left:844px;
+    top:170px;
+    width:287px;
+    font-size:11px;
+    line-height:1.48;
+    color:#4d5560;
+    z-index:30;
+  }
+  .footer-left{
+    position:absolute;
+    left:32px;
+    bottom:12px;
+    font-size:6.5px;
+    line-height:1;
+    color:#27303b;
+    font-weight:700;
+    z-index:40;
+    white-space:nowrap;
+  }
+  .footer-right{
+    position:absolute;
+    right:32px;
+    bottom:12px;
+    font-size:6.5px;
+    line-height:1;
+    color:#27303b;
+    font-weight:700;
+    z-index:40;
+    white-space:nowrap;
+    text-align:right;
+  }
+  svg{
+    position:absolute;
+    inset:0;
+    z-index:18;
+  }
+  .dish-line{ stroke:#08142c; stroke-width:3px; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+  .dish-thin{ stroke:#122038; stroke-width:1.8px; fill:none; }
+  .dish-dark{ fill:#09142d; }
+  .base-dark{ fill:rgba(10,19,37,0.97); }
+  .ground-shadow{ fill:rgba(0,0,0,0.28); }
+  .dish-red{ fill:#d71828; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-line"></div>
+  <div class="circle-num">03</div>
+
+  <div class="white-panel"></div>
+
+  <div class="left-text">
+    Whether in the context of a transaction, a rapidly growing startup, or a large company undertaking a significant transformation, partnering strategically with managed services providers – using them as a force multiplier and solution to bottlenecks, rather than a mere cost play – can help smooth over many of the rough patches in a transformation. Transform-then-transfer models can help a fast-growing company or newly spun-off entity build mature capabilities before transitioning them in house. Alternatively, managed services can help companies undertaking a large risk transformation “run the engine while rebuilding it,” maintaining day-to-day execution while transformation is delivered in parallel – reducing exposure during the change journey and protecting momentum.
+  </div>
+
+  <div class="photo-top"></div>
+  <div class="photo-bottom"></div>
+  <div class="photo-bottom-overlay"></div>
+
+  <svg width="1280" height="720" viewBox="0 0 1280 720" aria-hidden="true">
+    <g transform="translate(465,135)">
+      <g>
+        <rect x="166" y="215" width="38" height="166" rx="10" class="base-dark"/>
+        <rect x="172" y="87" width="27" height="136" rx="8" class="base-dark"/>
+        <path d="M73 177 Q169 124 266 177" class="dish-line"/>
+        <path d="M73 177 Q169 221 266 177" class="dish-line"/>
+        <line x1="95" y1="177" x2="245" y2="177" class="dish-line"/>
+        <line x1="109" y1="162" x2="230" y2="193" class="dish-thin"/>
+        <line x1="105" y1="193" x2="235" y2="162" class="dish-thin"/>
+        <line x1="123" y1="153" x2="123" y2="198" class="dish-thin"/>
+        <line x1="142" y1="145" x2="142" y2="205" class="dish-thin"/>
+        <line x1="160" y1="140" x2="160" y2="209" class="dish-thin"/>
+        <line x1="178" y1="140" x2="178" y2="210" class="dish-thin"/>
+        <line x1="196" y1="145" x2="196" y2="206" class="dish-thin"/>
+        <line x1="214" y1="154" x2="214" y2="199" class="dish-thin"/>
+        <line x1="232" y1="164" x2="232" y2="191" class="dish-thin"/>
+        <line x1="169" y1="124" x2="99" y2="177" class="dish-line"/>
+        <line x1="169" y1="124" x2="239" y2="177" class="dish-line"/>
+        <line x1="169" y1="124" x2="151" y2="177" class="dish-line"/>
+        <line x1="169" y1="124" x2="187" y2="177" class="dish-line"/>
+        <rect x="160" y="88" width="49" height="23" rx="4" class="dish-dark"/>
+        <line x1="160" y1="100" x2="209" y2="100" class="dish-thin"/>
+        <line x1="165" y1="86" x2="162" y2="96" class="dish-thin"/>
+        <line x1="204" y1="86" x2="206" y2="96" class="dish-thin"/>
+        <line x1="171" y1="110" x2="179" y2="124" class="dish-line"/>
+        <line x1="197" y1="110" x2="190" y2="124" class="dish-line"/>
+        <line x1="199" y1="229" x2="213" y2="267" class="dish-thin"/>
+        <line x1="189" y1="253" x2="213" y2="253" class="dish-thin"/>
+        <circle cx="198" cy="258" r="4" class="dish-red"/>
+      </g>
+
+      <g opacity="0.96">
+        <rect x="7" y="241" width="23" height="140" rx="8" class="base-dark"/>
+        <path d="M-21 281 Q18 258 57 281" class="dish-line"/>
+        <path d="M-21 281 Q18 298 57 281" class="dish-line"/>
+        <line x1="-10" y1="281" x2="46" y2="281" class="dish-thin"/>
+        <line x1="18" y1="233" x2="-5" y2="281" class="dish-line"/>
+        <line x1="18" y1="233" x2="41" y2="281" class="dish-line"/>
+        <rect x="5" y="220" width="24" height="12" rx="2" class="dish-dark"/>
+      </g>
+
+      <g opacity="0.96">
+        <rect x="109" y="319" width="18" height="62" rx="6" class="base-dark"/>
+        <path d="M58 342 Q118 319 178 342" class="dish-line"/>
+        <path d="M58 342 Q118 362 178 342" class="dish-line"/>
+        <line x1="69" y1="342" x2="167" y2="342" class="dish-thin"/>
+        <line x1="118" y1="298" x2="76" y2="342" class="dish-line"/>
+        <line x1="118" y1="298" x2="160" y2="342" class="dish-line"/>
+        <rect x="107" y="289" width="22" height="12" rx="2" class="dish-dark"/>
+      </g>
+
+      <rect x="0" y="329" width="258" height="52" fill="rgba(27,27,34,0.35)"/>
+    </g>
+
+    <g transform="translate(33,484)">
+      <rect x="0" y="130" width="690" height="99" class="ground-shadow"/>
+      <rect x="9" y="94" width="24" height="82" fill="rgba(8,14,31,0.85)"/>
+      <rect x="51" y="110" width="17" height="66" fill="rgba(8,14,31,0.84)"/>
+
+      <g>
+        <rect x="134" y="50" width="25" height="163" rx="8" class="base-dark"/>
+        <rect x="140" y="-4" width="13" height="61" rx="5" class="base-dark"/>
+        <path d="M68 31 Q148 -10 228 31" class="dish-line"/>
+        <path d="M68 31 Q148 64 228 31" class="dish-line"/>
+        <line x1="84" y1="31" x2="212" y2="31" class="dish-line"/>
+        <line x1="98" y1="15" x2="198" y2="47" class="dish-thin"/>
+        <line x1="96" y1="47" x2="200" y2="15" class="dish-thin"/>
+        <line x1="116" y1="8" x2="116" y2="53" class="dish-thin"/>
+        <line x1="132" y1="3" x2="132" y2="56" class="dish-thin"/>
+        <line x1="148" y1="54" x2="148" y2="58" class="dish-thin"/>
+        <line x1="164" y1="3" x2="164" y2="56" class="dish-thin"/>
+        <line x1="181" y1="8" x2="181" y2="53" class="dish-thin"/>
+        <line x1="196" y1="15" x2="196" y2="47" class="dish-thin"/>
+        <line x1="148" y1="-10" x2="92" y2="31" class="dish-line"/>
+        <line x1="148" y1="-10" x2="204" y2="31" class="dish-line"/>
+        <line x1="148" y1="-10" x2="132" y2="31" class="dish-line"/>
+        <line x1="148" y1="-10" x2="164" y2="31" class="dish-line"/>
+        <rect x="138" y="-21" width="21" height="11" rx="2" class="dish-dark"/>
+      </g>
+
+      <g>
+        <rect x="371" y="72" width="19" height="141" rx="7" class="base-dark"/>
+        <rect x="376" y="30" width="9" height="46" rx="4" class="base-dark"/>
+        <path d="M312 38 Q380 7 448 38" class="dish-line"/>
+        <path d="M312 38 Q380 66 448 38" class="dish-line"/>
+        <line x1="326" y1="38" x2="434" y2="38" class="dish-line"/>
+        <line x1="380" y1="8" x2="335" y2="38" class="dish-line"/>
+        <line x1="380" y1="8" x2="425" y2="38" class="dish-line"/>
+        <line x1="352" y1="22" x2="408" y2="50" class="dish-thin"/>
+        <line x1="352" y1="50" x2="408" y2="22" class="dish-thin"/>
+        <rect x="371" y="0" width="17" height="9" rx="2" class="dish-dark"/>
+      </g>
+
+      <g>
+        <rect x="610" y="49" width="24" height="164" rx="8" class="base-dark"/>
+        <rect x="615" y="0" width="14" height="54" rx="5" class="base-dark"/>
+        <path d="M544 26 Q621 -13 698 26" class="dish-line"/>
+        <path d="M544 26 Q621 60 698 26" class="dish-line"/>
+        <line x1="560" y1="26" x2="682" y2="26" class="dish-line"/>
+        <line x1="621" y1="-8" x2="574" y2="26" class="dish-line"/>
+        <line x1="621" y1="-8" x2="668" y2="26" class="dish-line"/>
+        <line x1="589" y1="8" x2="653" y2="41" class="dish-thin"/>
+        <line x1="589" y1="41" x2="653" y2="8" class="dish-thin"/>
+        <rect x="612" y="-20" width="20" height="12" rx="2" class="dish-dark"/>
+      </g>
+
+      <rect x="237" y="100" width="14" height="113" rx="5" class="base-dark"/>
+      <rect x="523" y="108" width="12" height="105" rx="5" class="base-dark"/>
+
+      <rect x="0" y="185" width="690" height="44" fill="rgba(2,5,14,0.88)"/>
+      <rect x="55" y="162" width="45" height="67" fill="rgba(8,14,31,0.66)"/>
+      <rect x="281" y="176" width="73" height="53" fill="rgba(8,14,31,0.54)"/>
+    </g>
+  </svg>
+
+  <div class="quote-line"></div>
+  <div class="quote">
+    Risk is not a brake on<br>
+    speed but the mechanism<br>
+    that makes speed<br>
+    repeatable, trusted, and<br>
+    aligned to strategy
+  </div>
+
+  <div class="right-title">Shocks and breaches</div>
+  <div class="right-body">
+    The maxim about never letting a good crisis go to waste applies in spades to risk management. In some ways, this is not new. Companies routinely use cyber breaches to reexamine and bolster cybersecurity controls.<br><br>
+    In a more volatile and unpredictable operating climate, companies are likely to face external shocks with increasing frequency – not just company-specific incidents, but also systemic exogenous shocks such as pandemics and geopolitical crises.<br><br>
+    Each is an entry point for learning and reinvention. The opportunity is to optimize not just for elasticity (the ability to deform under stress and rebound to the original state) but also for plasticity (the ability to respond to stress by achieving an entirely new shape). How does your operating model need to be reshaped to make the organization more resilient to similar shocks in the future?<br><br>
+    The stakes are higher than ever before. Resilience in the NAVI world means not just protecting what exists but enabling what’s next. The organizations that win will be those whose risk operating models move at the same speed as their strategy, decisions and stakeholders.<br><br>
+    This places the Risk function at a pivotal moment. Few functions have the enterprise-wide mandate, cross-functional vantage point, and institutional license to translate uncertainty into shared assumptions, decision thresholds, and escalation paths. Properly positioned, Risk is not a brake on speed but the mechanism that makes speed repeatable, trusted and aligned to strategy.
+  </div>
+
+  <div class="footer-left">21&nbsp;&nbsp;|&nbsp;&nbsp;When the world shifts overnight how can you operate at the speed of trust</div>
+  <div class="footer-right">Global Risk Transformation Series&nbsp;&nbsp;|&nbsp;&nbsp;22</div>
+</div>
+</body>
+</html>

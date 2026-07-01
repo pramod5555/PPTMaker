@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 3% 59%, rgba(221,0,167,0.95) 0 1.2%, rgba(221,0,167,0.25) 2.2%, rgba(0,0,0,0) 4.2%),
+      radial-gradient(circle at 43% 2%, rgba(255,255,255,0.95) 0 2%, rgba(255,255,255,0.25) 4%, rgba(0,0,0,0) 7%),
+      radial-gradient(circle at 54% 7%, rgba(0,255,190,0.95) 0 2.8%, rgba(0,255,190,0.18) 6%, rgba(0,0,0,0) 10%),
+      radial-gradient(circle at 62% 9%, rgba(255,255,255,0.9) 0 1.2%, rgba(255,255,255,0.15) 3%, rgba(0,0,0,0) 6%),
+      radial-gradient(circle at 78% 13%, rgba(0,255,180,0.9) 0 2.5%, rgba(0,255,180,0.18) 5.5%, rgba(0,0,0,0) 9%),
+      radial-gradient(circle at 88% 6%, rgba(255,0,155,0.95) 0 2.2%, rgba(255,0,155,0.18) 5%, rgba(0,0,0,0) 9%),
+      radial-gradient(circle at 93% 2%, rgba(255,168,66,0.95) 0 4%, rgba(255,168,66,0.18) 8%, rgba(0,0,0,0) 12%),
+      radial-gradient(circle at 94% 28%, rgba(0,170,255,0.9) 0 6%, rgba(0,170,255,0.16) 12%, rgba(0,0,0,0) 18%),
+      radial-gradient(circle at 76% 23%, rgba(0,255,180,0.55) 0 5%, rgba(0,255,180,0.12) 10%, rgba(0,0,0,0) 16%),
+      radial-gradient(circle at 61% 47%, rgba(255,187,170,0.95) 0 5%, rgba(255,187,170,0.18) 10%, rgba(0,0,0,0) 16%),
+      radial-gradient(circle at 71% 48%, rgba(237,238,198,0.9) 0 3%, rgba(237,238,198,0.14) 8%, rgba(0,0,0,0) 14%),
+      radial-gradient(circle at 43% 49%, rgba(255,90,60,0.9) 0 2.2%, rgba(255,90,60,0.15) 5%, rgba(0,0,0,0) 10%),
+      radial-gradient(circle at 50% 49%, rgba(188,255,245,0.85) 0 2%, rgba(188,255,245,0.14) 4.5%, rgba(0,0,0,0) 8%),
+      radial-gradient(circle at 52% 63%, rgba(255,255,255,0.95) 0 1.8%, rgba(255,255,255,0.14) 4%, rgba(0,0,0,0) 8%),
+      radial-gradient(circle at 55% 73%, rgba(255,255,255,0.95) 0 1.6%, rgba(255,255,255,0.14) 4%, rgba(0,0,0,0) 8%),
+      radial-gradient(circle at 59% 58%, rgba(160,102,40,0.8) 0 2%, rgba(160,102,40,0.14) 5%, rgba(0,0,0,0) 9%),
+      radial-gradient(circle at 49% 86%, rgba(94,57,34,0.7) 0 3%, rgba(94,57,34,0.12) 7%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 59% 73%, rgba(0,190,120,0.85) 0 6%, rgba(0,190,120,0.15) 12%, rgba(0,0,0,0) 18%),
+      radial-gradient(circle at 68% 82%, rgba(0,8,24,0.95) 0 10%, rgba(0,8,24,0.32) 16%, rgba(0,0,0,0) 24%),
+      radial-gradient(circle at 83% 55%, rgba(0,184,230,0.75) 0 11%, rgba(0,184,230,0.14) 20%, rgba(0,0,0,0) 28%),
+      radial-gradient(circle at 92% 65%, rgba(255,224,120,0.88) 0 10%, rgba(255,224,120,0.14) 18%, rgba(0,0,0,0) 24%),
+      radial-gradient(circle at 92% 73%, rgba(255,143,43,0.92) 0 7%, rgba(255,143,43,0.16) 13%, rgba(0,0,0,0) 20%),
+      radial-gradient(circle at 93% 84%, rgba(0,170,255,0.9) 0 3%, rgba(0,170,255,0.14) 7%, rgba(0,0,0,0) 12%),
+      radial-gradient(circle at 95% 91%, rgba(228,0,168,0.92) 0 3%, rgba(228,0,168,0.15) 6%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 99% 70%, rgba(255,80,50,0.9) 0 2.2%, rgba(255,80,50,0.14) 5%, rgba(0,0,0,0) 8%),
+      radial-gradient(circle at 100% 66%, rgba(255,255,255,0.85) 0 2%, rgba(255,255,255,0.12) 4%, rgba(0,0,0,0) 8%),
+      linear-gradient(135deg, #001108 0%, #003218 15%, #00653b 34%, #00b56b 48%, #007547 62%, #005234 74%, #007040 84%, #00522f 100%);
+  }
+
+  .left-panel {
+    position: absolute;
+    left: 61px;
+    top: 0;
+    width: 468px;
+    height: 720px;
+    background: #ececec;
+  }
+
+  .text {
+    position: absolute;
+    left: 112px;
+    top: 98px;
+    width: 354px;
+    color: #202020;
+    font-size: 17px;
+    line-height: 1.38;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .text p {
+    margin: 0 0 16px 0;
+  }
+
+  .footer-left {
+    position: absolute;
+    right: 85px;
+    bottom: 24px;
+    color: #e7f3e6;
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.95;
+  }
+
+  .footer-right {
+    position: absolute;
+    right: 31px;
+    bottom: 24px;
+    color: #e7f3e6;
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.95;
+  }
+
+/* fix: correct background color */
+.slide { background: #9C959D !important; background-color: #9C959D !important; }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-panel"></div>
+
+    <div class="text">
+      <p>Most parents’ instinct is to protect their children—to keep them healthy and safe from harm. They perceive their job includes raising children to be well-adjusted adults and perhaps passing on important cultural values. One of today’s biggest parental challenges is how to help the next generation shape a safe, healthy relationship with digital technology.</p>
+      <p>Growing up today looks very different from parents’ own experiences. Unfettered access to the internet and social media is causing harm, influencing extreme behaviors and forcing young people to live with unintended consequences. We’re seeing an acceleration of top-down policies from governments and bottom-up action from parents and schools to establish guardrails and protect children. This will undoubtedly have major repercussions for organizations—and soon.</p>
+    </div>
+
+    <div class="footer-left">Accenture Life Trends 2025</div>
+    <div class="footer-right">24</div>
+  </div>
+</body>
+</html>

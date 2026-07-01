@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Agentic Systems</title>
+<style>
+  body {
+    margin: 0;
+    background: #7e7d7e;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: linear-gradient(to right, #f3f3f3 0, #f3f3f3 56.1%, #000 56.1%, #000 100%);
+  }
+
+  .top-left {
+    position: absolute;
+    left: 60px;
+    top: 37px;
+    font-size: 12px;
+    color: #555;
+    white-space: nowrap;
+  }
+  .top-left .purple { color: #a100ff; }
+
+  .top-right {
+    position: absolute;
+    right: 60px;
+    top: 37px;
+    font-size: 12px;
+    color: #d9d9d9;
+    white-space: nowrap;
+  }
+  .top-right .num {
+    margin-left: 22px;
+  }
+
+  .left-title {
+    position: absolute;
+    left: 60px;
+    top: 118px;
+    font-size: 24px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .col {
+    position: absolute;
+    color: #333;
+  }
+  .col h2 {
+    margin: 0 0 12px 0;
+    font-size: 20px;
+    line-height: 1.15;
+    font-weight: 400;
+    color: #2b2b2b;
+  }
+  .col p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.34;
+    color: #333;
+  }
+
+  .col1 {
+    left: 60px;
+    top: 173px;
+    width: 250px;
+  }
+  .col1b {
+    left: 60px;
+    top: 397px;
+    width: 255px;
+  }
+
+  .col2 {
+    left: 375px;
+    top: 173px;
+    width: 255px;
+  }
+
+  .right-panel {
+    position: absolute;
+    left: 694px;
+    top: 0;
+    width: 586px;
+    height: 720px;
+    color: #fff;
+  }
+
+  .right-head {
+    position: absolute;
+    left: 58px;
+    top: 173px;
+    width: 470px;
+  }
+  .right-head .title {
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #b28adf;
+    margin-bottom: 2px;
+  }
+  .right-head .desc {
+    font-size: 13px;
+    line-height: 1.28;
+    color: #d5d5d5;
+    width: 462px;
+  }
+  .right-head .sub {z-index:1;
+    margin-top: 16px;
+    font-size: 11px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #f2f2f2;
+  }
+
+  .chart {
+    position: absolute;
+    left: 58px;
+    top: 336px;
+    width: 520px;
+    height: 270px;
+  }
+
+  .y-labels {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 42px;
+    height: 240px;
+    font-size: 12px;
+    color: #d9d9d9;
+  }
+  .y-labels div {
+    position: absolute;
+    right: 8px;
+    transform: translateY(50%);
+  }
+
+  .plot {
+    position: absolute;
+    left: 48px;
+    top: 10px;
+    width: 502px;
+    height: 243px;
+  }
+
+  .top-line {
+    position: absolute;
+    left: 217px;
+    top: 29px;
+    width: 285px;
+    height: 1px;
+    background: #787878;
+  }
+
+  .baseline {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 502px;
+    height: 2px;
+    background: #7c7c7c;
+  }
+
+  .arrow-line {
+    position: absolute;
+    left: 216px;
+    top: 39px;
+    width: 1px;
+    height: 177px;
+    background: #8d00ff;
+  }
+  .arrow-line:before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -2px;
+    width: 0;
+    height: 0;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-bottom: 4px solid #8d00ff;
+  }
+
+  .multiplier {
+    position: absolute;
+    left: 232px;
+    top: 41px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #a100ff;
+  }
+
+  .bar {
+    position: absolute;
+    bottom: 2px;
+    width: 78px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .bar .rect {
+    width: 78px;
+    background: #a100ff;
+  }
+  .bar .val {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .bar .year {
+    position: absolute;
+    top: calc(100% + 11px);
+    font-size: 12px;
+    font-weight: 700;
+    color: #f2f2f2;
+  }
+
+  .b2020 { left: 10px; }
+  .b2020 .rect { height: 7px; background: linear-gradient(to top, #8f00ff, #be3dff); }
+
+  .b2021 { left: 112px; }
+  .b2021 .rect { height: 10px; background: linear-gradient(to top, #8f00ff, #be3dff); }
+
+  .b2022 { left: 215px; }
+  .b2022 .rect { height: 12px; background: linear-gradient(to top, #8f00ff, #be3dff); }
+
+  .b2023 { left: 318px; }
+  .b2023 .rect { height: 84px; background: linear-gradient(to top, #8f00ff, #d313ff); }
+
+  .b2024 { left: 421px; }
+  .b2024 .rect { height: 228px; background: #5b0586; }
+
+  .foot {
+    position: absolute;
+    left: 58px;
+    top: 653px;
+    width: 500px;
+    font-size: 9px;
+    line-height: 1.2;
+    color: #bdbdbd;
+  }
+
+  .corner {
+    position: absolute;
+    left: 56px;
+    bottom: 20px;
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 700;
+    color: #a100ff;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left"><span class="purple">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+    <div class="top-right">The Binary Big Bang <span class="num">15</span></div>
+
+    <div class="left-title">Agentic Systems</div>
+
+    <div class="col col1">
+      <h2>What is it?</h2>
+      <p>
+        AI agents and agentic systems offer a powerful way to leverage LLMs and other foundation models to complete complicated and compound tasks. Agentic systems take the power of language models and extend them by integrating them with methods for reflection, tool use, planning, and collaboration. These methods transform the models from simple prompt and generate functions into reasoning engines that can tackle a huge variety of challenges.
+      </p>
+    </div>
+
+    <div class="col col1b">
+      <h2>How does it connect to the trend?</h2>
+      <p>
+        Agentic systems may eventually be one of many architectures or models that deliver abundance, abstraction, or autonomy—but right now they are the one capturing the most attention across researchers and the technology industry. They are already helping to write code, and as these systems improve, with better reasoning capabilities, larger context windows, and validation methods, they will be able to take on an even greater set of challenges.
+      </p>
+    </div>
+
+    <div class="col col2">
+      <h2>Who is doing it today?</h2>
+      <p>
+        Agentic systems show great promise with small pieces of code, and given documentation and examples, can call functions and APIs with high accuracy. Research has also demonstrated they can create functions and APIs to use later. Companies are rapidly integrating these capabilities into new models to accelerate engineering velocity. One of the leading agentic systems for software engineering today is Anthropic’s Claude 3.5 Sonnet. When tested on SWE-Bench Verified, a software engineering benchmark of real-world issues from GitHub, it achieved a remarkable 49% resolved rate.<sup>38</sup> In 2023, agents had a rate of less than 5%.<sup>39</sup>
+      </p>
+    </div>
+
+    <div class="right-panel">
+      <div class="right-head">
+        <div class="title">Research interest in agentic systems is surging</div>
+        <div class="desc">
+          Over the past two years, researchers have discovered powerful ways to extend the capabilities of LLMs to create AI agents and agentic systems. Companies are transforming these research efforts into commercial offerings rapidly.
+        </div>
+        <div class="sub">Number of research papers relating to Agentic Systems, 2020 - 2024*</div>
+      </div>
+
+      <div class="chart">
+        <div class="y-labels">
+          <div style="top: 233px;">0</div>
+          <div style="top: 204px;">200</div>
+          <div style="top: 175px;">400</div>
+          <div style="top: 146px;">600</div>
+          <div style="top: 117px;">800</div>
+          <div style="top: 89px;">1,000</div>
+          <div style="top: 60px;">1,200</div>
+          <div style="top: 31px;">1,400</div>
+          <div style="top: 2px;">1,600</div>
+          <div style="top: -26px;">1,800</div>
+        </div>
+
+        <div class="plot">
+          <div class="top-line"></div>
+          <div class="arrow-line"></div>
+          <div class="multiplier">17x</div>
+          <div class="baseline"></div>
+
+          <div class="bar b2020">
+            <div class="val">50</div>
+            <div class="rect"></div>
+            <div class="year">2020</div>
+          </div>
+
+          <div class="bar b2021">
+            <div class="val">71</div>
+            <div class="rect"></div>
+            <div class="year">2021</div>
+          </div>
+
+          <div class="bar b2022">
+            <div class="val">91</div>
+            <div class="rect"></div>
+            <div class="year">2022</div>
+          </div>
+
+          <div class="bar b2023">
+            <div class="val">588</div>
+            <div class="rect"></div>
+            <div class="year">2023</div>
+          </div>
+
+          <div class="bar b2024">
+            <div class="val">1,576</div>
+            <div class="rect"></div>
+            <div class="year">2024’</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">
+        Note: *2024 contains partial data through Oct 2024<br>
+        Source: Accenture Research analysis on ArXiv papers; Jan 2020 – Oct 2024
+      </div>
+    </div>
+
+    <div class="corner">&gt;</div>
+  </div>
+</body>
+</html>

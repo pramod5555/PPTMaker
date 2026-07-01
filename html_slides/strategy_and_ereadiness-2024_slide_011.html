@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>EV Consumer Survey – Cluster profiles</title>
+<style>
+  body{
+    margin:0;
+    background:#dedddd;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dedddd;
+    color:#000;
+  }
+
+  .title{
+    position:absolute;
+    left:48px;
+    top:43px;
+    width:1185px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:38px;
+    line-height:1.05;
+    font-weight:400;
+    letter-spacing:-0.3px;
+  }
+
+  .subtitle{
+    position:absolute;
+    left:48px;
+    top:143px;
+    font-size:27px;
+    line-height:1;
+    color:#b22222;
+    font-weight:700;
+  }
+  .subtitle .light{
+    font-weight:400;
+    color:#b22222;
+  }
+
+  .respondents{
+    position:absolute;
+    left:48px;
+    top:181px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:15px;
+    font-style:italic;
+    color:#111;
+  }
+  .hashbox{
+    width:22px;
+    height:18px;
+    background:#a61c1c;
+    color:#fff;
+    font-weight:700;
+    font-size:13px;
+    line-height:18px;
+    text-align:center;
+    font-style:normal;
+  }
+
+  .questions{
+    position:absolute;
+    left:48px;
+    top:260px;
+    width:298px;
+  }
+  .qbox{
+    position:relative;
+    width:298px;
+    height:79px;
+    background:#000;
+    margin-bottom:10px;
+    color:#fff;
+  }
+  .qicon{
+    position:absolute;
+    left:12px;
+    top:15px;
+    width:46px;
+    height:46px;
+  }
+  .qtext{
+    position:absolute;
+    left:72px;
+    top:14px;
+    width:212px;
+    font-size:19px;
+    line-height:1.04;
+    font-style:italic;
+    font-weight:700;
+  }
+
+  .panel{
+    position:absolute;
+    top:187px;
+    width:299px;
+    height:509px;
+    background:#e8e8e8;
+  }
+  .p1{ left:364px; }
+  .p2{ left:689px; }
+  .p3{ left:1013px; }
+
+  .badge{
+    position:absolute;
+    top:-12px;
+    left:131px;
+    width:40px;
+    height:40px;
+    border-radius:20px;
+    color:#fff;
+    font-size:22px;
+    line-height:40px;
+    text-align:center;
+    font-weight:700;
+  }
+  .badge.red1{ background:#c62828; }
+  .badge.red2{ background:#d94f67; }
+  .badge.gray{ background:#4c4c4c; }
+
+  .panel-title{
+    position:absolute;
+    top:24px;
+    width:100%;
+    text-align:center;
+    font-size:28px;
+    font-weight:800;
+  }
+  .rule{
+    position:absolute;
+    left:8px;
+    top:66px;
+    width:283px;
+    height:3px;
+    background:#b22222;
+  }
+  .p3 .rule{ background:#4c4c4c; }
+
+  .bar{
+    position:absolute;
+    left:40px;
+    width:220px;
+    height:43px;
+    border:4px solid #7f7f7f;
+    border-radius:13px;
+    background:#efefef;
+    box-sizing:border-box;
+  }
+  .bar::after{
+    content:"";
+    position:absolute;
+    right:-13px;
+    top:10px;
+    width:10px;
+    height:19px;
+    border-radius:0 5px 5px 0;
+    background:#7f7f7f;
+  }
+  .fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:35px;
+    border-radius:9px 0 0 9px;
+  }
+  .barlabel{
+    position:absolute;
+    left:11px;
+    top:7px;
+    color:#fff;
+    font-size:17px;
+    font-weight:700;
+  }
+
+  .metric{
+    position:absolute;
+    width:100%;
+    text-align:center;
+    font-weight:800;
+    font-style:italic;
+    color:#000;
+    white-space:nowrap;
+  }
+  .metric .big{
+    font-size:41px;
+    letter-spacing:-1px;
+  }
+  .metric .small{
+    font-size:23px;
+    margin-left:1px;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:49px;
+    top:714px;
+    transform:translateY(-100%);
+    font-size:12px;
+    line-height:1.35;
+    color:#222;
+  }
+  .footer-center{
+    position:absolute;
+    left:445px;
+    top:714px;
+    transform:translateY(-100%);
+    font-size:12px;
+    color:#222;
+  }
+  .footer-right{
+    position:absolute;
+    right:26px;
+    top:714px;
+    transform:translateY(-100%);
+    font-size:12px;
+    line-height:1.3;
+    text-align:right;
+    color:#222;
+  }
+
+  svg{
+    display:block;
+    width:100%;
+    height:100%;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <div class="title">
+    EV Owners, prospects, and sceptics exhibit distinct characteristics in terms of income, mobility requirements, and demographic profiles
+  </div>
+
+  <div class="subtitle">
+    Consumer survey – <span class="light">Cluster profiles (2/2)</span>
+  </div>
+
+  <div class="respondents">
+    <div class="hashbox">#</div>
+    <div>16,778 respondents</div>
+  </div>
+
+  <div class="questions">
+    <div class="qbox">
+      <div class="qicon">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="16" y="26" width="28" height="12" rx="4" fill="none" stroke="#fff" stroke-width="4"/>
+          <path d="M20 26 L26 18 H38 L44 26" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+          <circle cx="20" cy="40" r="5" fill="#fff"/>
+          <circle cx="44" cy="40" r="5" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="qtext">Do you commute with a car?</div>
+    </div>
+
+    <div class="qbox">
+      <div class="qicon">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="19" y="10" width="28" height="38" rx="4" fill="none" stroke="#fff" stroke-width="4"/>
+          <circle cx="32" cy="41" r="2.8" fill="#fff"/>
+          <line x1="24" y1="14" x2="42" y2="14" stroke="#fff" stroke-width="3"/>
+          <line x1="20" y1="54" x2="44" y2="54" stroke="#fff" stroke-width="3"/>
+          <line x1="32" y1="48" x2="20" y2="60" stroke="#fff" stroke-width="3"/>
+          <line x1="32" y1="48" x2="44" y2="60" stroke="#fff" stroke-width="3"/>
+          <line x1="23" y1="60" x2="41" y2="60" stroke="#fff" stroke-width="3"/>
+        </svg>
+      </div>
+      <div class="qtext">Do you combine the car with other means?</div>
+    </div>
+
+    <div class="qbox">
+      <div class="qicon">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="14" y="16" width="36" height="34" fill="none" stroke="#fff" stroke-width="4"/>
+          <line x1="14" y1="28" x2="50" y2="28" stroke="#fff" stroke-width="4"/>
+          <line x1="24" y1="10" x2="24" y2="20" stroke="#fff" stroke-width="4"/>
+          <line x1="40" y1="10" x2="40" y2="20" stroke="#fff" stroke-width="4"/>
+          <line x1="26" y1="32" x2="26" y2="48" stroke="#fff" stroke-width="3"/>
+          <line x1="38" y1="32" x2="38" y2="48" stroke="#fff" stroke-width="3"/>
+          <line x1="14" y1="38" x2="50" y2="38" stroke="#fff" stroke-width="3"/>
+          <line x1="14" y1="44" x2="50" y2="44" stroke="#fff" stroke-width="3"/>
+        </svg>
+      </div>
+      <div class="qtext">How many days per week do you commute?</div>
+    </div>
+
+    <div class="qbox">
+      <div class="qicon">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M14 14 L14 44 L24 40 L32 44 L40 40 L50 44 L50 14 L40 18 L32 14 L24 18 Z" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+          <polyline points="18,34 24,28 30,32 38,24 46,28" fill="none" stroke="#fff" stroke-width="3"/>
+        </svg>
+      </div>
+      <div class="qtext">How many km do you commute daily?</div>
+    </div>
+
+    <div class="qbox">
+      <div class="qicon">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="28" r="22" fill="none" stroke="#fff" stroke-width="4"/>
+          <line x1="32" y1="28" x2="32" y2="14" stroke="#fff" stroke-width="3"/>
+          <line x1="32" y1="28" x2="43" y2="34" stroke="#fff" stroke-width="3"/>
+          <line x1="8" y1="52" x2="44" y2="52" stroke="#fff" stroke-width="3"/>
+          <polygon points="44,47 54,52 44,57" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="qtext">What is your typical car tenure?</div>
+    </div>
+  </div>
+
+  <div class="panel p1">
+    <div class="badge red1">1</div>
+    <div class="panel-title">EV Owners</div>
+    <div class="rule"></div>
+
+    <div class="bar" style="top:90px;">
+      <div class="fill" style="width:204px;background:#b21d20;"></div>
+      <div class="barlabel">93% yes</div>
+    </div>
+
+    <div class="bar" style="top:176px;">
+      <div class="fill" style="width:133px;background:#b21d20;"></div>
+      <div class="barlabel">61% yes</div>
+    </div>
+
+    <div class="metric" style="top:267px;">
+      <span class="big">4.3</span><span class="small">days</span>
+    </div>
+    <div class="metric" style="top:354px;">
+      <span class="big">24</span><span class="small">kms</span>
+    </div>
+    <div class="metric" style="top:444px;">
+      <span class="big">5.5</span><span class="small">years</span>
+    </div>
+  </div>
+
+  <div class="panel p2">
+    <div class="badge red2">2</div>
+    <div class="panel-title">EV prospects</div>
+    <div class="rule" style="background:#d94f67;"></div>
+
+    <div class="bar" style="top:90px;">
+      <div class="fill" style="width:191px;background:#d84f67;"></div>
+      <div class="barlabel">87% yes</div>
+    </div>
+
+    <div class="bar" style="top:176px;">
+      <div class="fill" style="width:116px;background:#d84f67;"></div>
+      <div class="barlabel">53% yes</div>
+    </div>
+
+    <div class="metric" style="top:267px;">
+      <span class="big">4.2</span><span class="small">days</span>
+    </div>
+    <div class="metric" style="top:354px;">
+      <span class="big">27</span><span class="small">kms</span>
+    </div>
+    <div class="metric" style="top:444px;">
+      <span class="big">7.7</span><span class="small">years</span>
+    </div>
+  </div>
+
+  <div class="panel p3">
+    <div class="badge gray">3</div>
+    <div class="panel-title">EV sceptics</div>
+    <div class="rule"></div>
+
+    <div class="bar" style="top:90px;">
+      <div class="fill" style="width:187px;background:#4d4d4d;"></div>
+      <div class="barlabel">85% yes</div>
+    </div>
+
+    <div class="bar" style="top:176px;">
+      <div class="fill" style="width:95px;background:#4d4d4d;"></div>
+      <div class="barlabel">43% yes</div>
+    </div>
+
+    <div class="metric" style="top:267px;">
+      <span class="big">3.3</span><span class="small">days</span>
+    </div>
+    <div class="metric" style="top:354px;">
+      <span class="big">21</span><span class="small">kms</span>
+    </div>
+    <div class="metric" style="top:444px;">
+      <span class="big">10.6</span><span class="small">years</span>
+    </div>
+  </div>
+
+  <div class="footer-left">
+    eReadiness Report 2024<br/>Strategy&amp;
+  </div>
+
+  <div class="footer-center">
+    Source: Strategy&amp; analysis on feedback from consumer survey
+  </div>
+
+  <div class="footer-right">
+    September 2024<br/>11
+  </div>
+
+</div>
+</body>
+</html>

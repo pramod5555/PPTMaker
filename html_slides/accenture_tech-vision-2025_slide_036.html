@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>The Big Picture</title>
+<style>
+  body{
+    margin:0;
+    background:#dcd4e5;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dcd4e5;
+    color:#111;
+  }
+
+  .top-left{
+    position:absolute;
+    left:60px;
+    top:37px;
+    font-size:14px;
+    color:#4f5a5f;
+    letter-spacing:-0.1px;
+    white-space:nowrap;
+  }
+  .top-left .accent{
+    color:#8a35d8;
+  }
+
+  .top-right{
+    position:absolute;
+    right:57px;
+    top:36px;
+    font-size:14px;
+    color:#333;
+    white-space:nowrap;
+  }
+  .top-right .num{
+    margin-left:28px;
+    color:#444;
+  }
+
+  .hero{
+    position:absolute;
+    left:60px;
+    top:63px;
+    width:463px;
+    height:609px;
+    background:
+      radial-gradient(ellipse at 30% 46%, rgba(183,24,255,0.95) 0%, rgba(148,16,221,0.92) 24%, rgba(102,15,170,0.85) 45%, rgba(68,16,123,0.85) 65%, rgba(55,14,103,0.95) 100%),
+      linear-gradient(145deg, #481177 0%, #5d148f 44%, #3f0d6e 100%);
+    overflow:hidden;
+  }
+  .hero:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 18% 50%, rgba(184,40,255,0.75) 0 14%, transparent 15%),
+      radial-gradient(circle at 28% 40%, rgba(192,52,255,0.82) 0 10%, transparent 11%),
+      radial-gradient(circle at 60% 30%, rgba(173,37,250,0.55) 0 17%, transparent 18%),
+      radial-gradient(circle at 67% 55%, rgba(152,30,230,0.45) 0 16%, transparent 17%),
+      linear-gradient(16deg, transparent 0 30%, rgba(118,24,195,0.45) 31% 52%, transparent 53%),
+      linear-gradient(-22deg, transparent 0 43%, rgba(105,18,175,0.40) 44% 65%, transparent 66%);
+    mix-blend-mode:screen;
+    opacity:0.9;
+  }
+
+  .shape{
+    position:absolute;
+    background:linear-gradient(180deg, rgba(180,42,255,0.95), rgba(126,20,214,0.92));
+    filter:blur(1px);
+    opacity:0.95;
+  }
+  .s1{
+    left:120px; top:36px; width:280px; height:85px;
+    border-radius:120px 100px 90px 90px / 55px 45px 40px 45px;
+    transform:rotate(18deg);
+  }
+  .s2{
+    left:76px; top:86px; width:184px; height:67px;
+    border-radius:90px 80px 70px 60px / 35px 35px 35px 35px;
+    transform:rotate(2deg);
+  }
+  .s3{
+    left:64px; top:126px; width:176px; height:48px;
+    border-radius:90px / 30px;
+    transform:rotate(11deg);
+  }
+  .s4{
+    left:8px; top:179px; width:270px; height:226px;
+    border-radius:120px 100px 130px 100px;
+    transform:rotate(16deg);
+  }
+  .s5{
+    left:198px; top:107px; width:194px; height:440px;
+    border-radius:110px 110px 90px 90px;
+    transform:rotate(-27deg);
+  }
+  .s6{
+    left:56px; top:370px; width:232px; height:146px;
+    border-radius:120px 90px 70px 100px;
+    transform:rotate(34deg);
+  }
+  .s7{
+    left:218px; top:503px; width:164px; height:57px;
+    border-radius:60px / 28px;
+    transform:rotate(-10deg);
+  }
+  .s8{
+    left:214px; top:214px; width:145px; height:142px;
+    border-radius:80px;
+    transform:rotate(12deg);
+    opacity:0.7;
+  }
+  .stem{
+    position:absolute;
+    left:203px;
+    top:122px;
+    width:9px;
+    height:86px;
+    background:linear-gradient(180deg, #7a16c8, #9233e2);
+    border-radius:7px;
+    transform:rotate(-10deg);
+    opacity:0.9;
+  }
+  .stem:after{
+    content:"";
+    position:absolute;
+    left:-4px;
+    top:-8px;
+    width:18px;
+    height:11px;
+    border-radius:0 12px 12px 12px;
+    background:#7a16c8;
+    transform:rotate(-34deg);
+  }
+
+  .title{
+    position:absolute;
+    left:688px;
+    top:158px;
+    width:220px;
+    font-size:54px;
+    line-height:0.88;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-1.4px;
+  }
+
+  .lead{
+    position:absolute;
+    left:691px;
+    top:291px;
+    width:292px;
+    font-size:13px;
+    line-height:1.34;
+    font-weight:700;
+    color:#1c1c1c;
+  }
+
+  .body-left{
+    position:absolute;
+    left:691px;
+    top:385px;
+    width:288px;
+    font-size:13px;
+    line-height:1.28;
+    color:#333;
+  }
+  .body-left p,
+  .body-right p{
+    margin:0 0 17px 0;
+  }
+
+  .body-right{
+    position:absolute;
+    left:1008px;
+    top:162px;
+    width:247px;
+    font-size:13px;
+    line-height:1.28;
+    color:#333;
+  }
+
+  .chev{
+    position:absolute;
+    left:58px;
+    bottom:22px;
+    color:#a012ff;
+    font-size:48px;
+    font-weight:700;
+    line-height:1;
+  }
+
+  sup{
+    font-size:8px;
+    vertical-align:super;
+    line-height:0;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left"><span class="accent">Technology Vision 2025</span> | AI: A Declaration of Autonomy</div>
+    <div class="top-right">When LLMs get their Bodies <span class="num">36</span></div>
+
+    <div class="hero">
+      <div class="shape s1"></div>
+      <div class="shape s2"></div>
+      <div class="shape s3"></div>
+      <div class="shape s4"></div>
+      <div class="shape s5"></div>
+      <div class="shape s6"></div>
+      <div class="shape s7"></div>
+      <div class="shape s8"></div>
+      <div class="stem"></div>
+    </div>
+
+    <div class="title">The Big<br>Picture</div>
+
+    <div class="lead">
+      A silvery humanoid stands at a table with an apple, some dishes, and a drying rack. A man asks for something to eat, and the robot hands him the apple. When the man asks why, it explains that the apple was the only edible item.<sup>85</sup>
+    </div>
+
+    <div class="body-left">
+      <p>There is a seismic shift happening in robotics and AI—and this scene from early 2024 was one of the first major demonstrations. The robot, called Figure 01, had no human assistance. Using a large vision language model (VLM) trained by OpenAI for visual reasoning and language understanding, and robotics startup Figure’s neural networks for fast, dexterous robotic action, it understood the person’s question, recognized the apple as food, and acted on its own.</p>
+      <p>Machine intelligence is moving into the physical world, and robots are starting to demonstrate reason and autonomy. We’ve long had robots, but this is something new: the dawn of machines that can perform and coexist in truly human environments.</p>
+    </div>
+
+    <div class="body-right">
+      <p>Before, robots didn’t “think.” They did repetitive tasks, rigidly. A small mistake or unexpected occurrence could end a task in failure. A vague command, “Can I have something to eat?” would not compute. This inability to navigate or reason through a world built for and lived in by people is why robots have never been truly autonomous, relegated to heavily controlled environments like factories and warehouses and largely kept away from the general population. They were guardrailed to be with other machines and not mixed with human workflows or interactions. But now these limits are dissolving. Foundation models are unlocking a new chapter as we begin to assemble a full stack of robotics hardware, software, and AI models purpose-built for one thing: machine autonomy in the human world.</p>
+      <p>Over the next decade, we will start to see robots casually and commonly interacting with people, reasoning their way through unplanned tasks, and independently taking actions in any kind of environment. It is an opportunity for physical reinvention in industries far beyond the ones typically leveraging robotics. Robots will be able to move into customer-heavy environments, work in unpredictable settings, communicate with anyone and take on any number of tasks, without needing to be specifically trained for each. Advances and adoption are coming fast. Recent years have seen a meteoric rise in new startups, investments, and innovation, each tackling different dimensions of robotics.<sup>86</sup></p>
+    </div>
+
+    <div class="chev">&gt;</div>
+  </div>
+</body>
+</html>

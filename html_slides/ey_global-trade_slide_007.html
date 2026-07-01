@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d7d7d7;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .left-rail{
+    left:0;
+    top:0;
+    width:47px;
+    height:720px;
+    background:#c2c2cd;
+    z-index:2;
+  }
+  .top-bar{
+    left:0;
+    top:0;
+    width:1280px;
+    height:79px;
+    background:#f2f2f2;
+    z-index:1;
+  }
+  .top-line{
+    left:47px;
+    top:78px;
+    width:1233px;
+    height:1px;
+    background:#c8c9d1;
+    z-index:6;
+  }
+  .title{
+    left:56px;
+    top:50px;
+    font-size:16px;
+    line-height:20px;
+    color:#787987;
+    font-weight:400;
+    z-index:10;
+  }
+  .nav{
+    top:34px;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#c5c6cf;
+    color:#3c3d48;
+    font-size:18px;
+    line-height:35px;
+    text-align:center;
+    font-weight:700;
+    z-index:20;
+  }
+  .nav.left{ left:950px; }
+  .nav.right{ left:994px; }
+
+  .photo{
+    left:0;
+    top:79px;
+    width:519px;
+    height:641px;
+    overflow:hidden;
+    z-index:4;
+    background:
+      radial-gradient(circle at 30% 19%, rgba(255,247,234,0.95) 0%, rgba(255,238,220,0.64) 12%, rgba(255,228,207,0.18) 24%, rgba(255,255,255,0) 38%),
+      linear-gradient(180deg, #f2d6ca 0%, #f7d8c4 22%, #f2bf9e 42%, #e39c7d 58%, #735356 82%, #46323a 100%);
+  }
+  .sun-glow{
+    left:11px;
+    top:86px;
+    width:255px;
+    height:255px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,248,232,0.95) 0%, rgba(255,244,228,0.72) 31%, rgba(255,240,220,0.14) 58%, rgba(255,255,255,0) 76%);
+    z-index:5;
+  }
+  .horizon{
+    left:0;
+    top:358px;
+    width:519px;
+    height:20px;
+    background:linear-gradient(180deg, rgba(90,80,74,0.08), rgba(60,42,40,0.2));
+    z-index:6;
+  }
+  .runway{
+    left:0;
+    top:387px;
+    width:519px;
+    height:333px;
+    z-index:6;
+    background:
+      linear-gradient(180deg, rgba(56,37,39,0.06) 0%, rgba(34,24,28,0.32) 14%, rgba(28,21,27,0.75) 100%);
+    clip-path: polygon(0 0, 100% 6.5%, 100% 100%, 0 100%);
+  }
+  .runway-line1{
+    left:330px;
+    top:474px;
+    width:1px;
+    height:257px;
+    background:rgba(26,20,25,0.45);
+    transform:rotate(-10deg);
+    transform-origin:top left;
+    z-index:7;
+  }
+  .runway-line2{
+    left:69px;
+    top:494px;
+    width:1px;
+    height:226px;
+    background:rgba(49,34,39,0.36);
+    z-index:7;
+  }
+
+  .terminal{
+    left:73px;
+    top:297px;
+    width:129px;
+    height:76px;
+    z-index:8;
+  }
+  .terminal .roof{
+    position:absolute;
+    left:0;
+    top:12px;
+    width:126px;
+    height:13px;
+    border:2px solid #8f7364;
+    border-bottom:none;
+    border-radius:2px 2px 0 0;
+    background:rgba(235,223,209,0.32);
+  }
+  .terminal .body{
+    position:absolute;
+    left:14px;
+    top:24px;
+    width:93px;
+    height:34px;
+    border:2px solid #7f675c;
+    background:rgba(193,198,204,0.48);
+  }
+  .terminal .supports{
+    position:absolute;
+    left:0;
+    top:24px;
+    width:120px;
+    height:47px;
+    background:
+      linear-gradient(90deg,
+      transparent 0 14%, #7f675c 14% 15.6%, transparent 15.6% 28%,
+      #7f675c 28% 29.6%, transparent 29.6% 42%,
+      #7f675c 42% 43.6%, transparent 43.6% 56%,
+      #7f675c 56% 57.6%, transparent 57.6% 70%,
+      #7f675c 70% 71.6%, transparent 71.6% 84%,
+      #7f675c 84% 85.6%, transparent 85.6% 100%);
+  }
+  .terminal .orange{
+    position:absolute;
+    left:119px;
+    top:25px;
+    width:4px;
+    height:4px;
+    background:#f36d2d;
+    border-radius:1px;
+    box-shadow:0 18px 0 #f36d2d;
+  }
+  .stairs{
+    left:97px;
+    top:376px;
+    width:72px;
+    height:27px;
+    border-top:3px solid #c6ccd2;
+    border-bottom:3px solid #c6ccd2;
+    transform:skewX(-28deg);
+    z-index:9;
+  }
+  .stairs:before{
+    content:"";
+    position:absolute;
+    left:-20px;
+    top:3px;
+    width:20px;
+    height:19px;
+    border:2px solid #c6ccd2;
+    border-right:none;
+  }
+
+  .kite{
+    left:82px;
+    top:250px;
+    width:62px;
+    height:22px;
+    border-top:4px solid #c68d72;
+    border-left:4px solid #c68d72;
+    border-right:4px solid #c68d72;
+    border-radius:32px 32px 7px 7px;
+    transform:rotate(-10deg);
+    z-index:9;
+  }
+  .kite:before{
+    content:"";
+    position:absolute;
+    left:8px;
+    top:-2px;
+    width:48px;
+    height:15px;
+    border-top:2px dashed rgba(122,81,62,0.6);
+    border-radius:50%;
+  }
+  .kite-string{
+    left:79px;
+    top:154px;
+    width:2px;
+    height:41px;
+    background:#b7907b;
+    transform:rotate(3deg);
+    z-index:8;
+    border-radius:2px;
+  }
+
+  .fuselage{
+    left:-63px;
+    top:321px;
+    width:705px;
+    height:56px;
+    z-index:12;
+    background:linear-gradient(180deg, #f5f2f4 0%, #dad4d9 29%, #a79ca6 58%, #f1eef1 100%);
+    border-radius:30px;
+    transform:rotate(-3deg);
+    box-shadow: inset 0 -6px 12px rgba(0,0,0,0.14), inset 0 5px 12px rgba(255,255,255,0.42);
+  }
+  .fuselage-lower{
+    left:-57px;
+    top:350px;
+    width:655px;
+    height:70px;
+    z-index:11;
+    background:linear-gradient(180deg, #d7cfd4 0%, #8f828d 58%, #f0edef 100%);
+    border-radius:38px;
+    transform:rotate(-3deg);
+    box-shadow: inset 0 -6px 12px rgba(0,0,0,0.16);
+  }
+  .topline{
+    left:65px;
+    top:317px;
+    width:166px;
+    height:2px;
+    background:#918690;
+    transform:rotate(-7deg);
+    z-index:13;
+  }
+  .window{
+    left:33px;
+    top:389px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#2b2a31;
+    z-index:14;
+    box-shadow:0 0 0 3px rgba(230,228,233,0.82);
+  }
+  .reflect{
+    left:8px;
+    top:313px;
+    width:68px;
+    height:265px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.68) 0%, rgba(255,255,255,0.22) 16%, rgba(255,255,255,0.04) 100%);
+    clip-path:polygon(18% 0, 58% 0, 94% 100%, 0 100%);
+    z-index:13;
+  }
+  .wing{
+    left:171px;
+    top:333px;
+    width:368px;
+    height:56px;
+    z-index:15;
+    background:linear-gradient(180deg, #f8f5f7 0%, #dfdadd 28%, #a79ea8 63%, #f2eef1 100%);
+    clip-path:polygon(0 58%, 100% 10%, 98% 63%, 4% 100%);
+    box-shadow:inset 0 -6px 10px rgba(0,0,0,0.12);
+  }
+  .engine-pylon{
+    left:367px;
+    top:372px;
+    width:31px;
+    height:27px;
+    background:linear-gradient(180deg, #cec8cd 0%, #8f848c 100%);
+    border-radius:7px;
+    transform:rotate(7deg);
+    z-index:16;
+  }
+  .engine{
+    left:390px;
+    top:362px;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    background:radial-gradient(circle at 37% 37%, #ddd6d9 0%, #f0ecee 31%, #a59aa5 56%, #625b66 72%, #272028 100%);
+    z-index:18;
+    box-shadow: inset -12px -12px 18px rgba(0,0,0,0.28), inset 15px 10px 16px rgba(255,255,255,0.4);
+  }
+  .engine-inner{
+    left:428px;
+    top:400px;
+    width:74px;
+    height:74px;
+    border-radius:50%;
+    background:radial-gradient(circle, #17131b 0%, #06070c 60%, #2b2a43 100%);
+    z-index:19;
+  }
+  .engine-fan{
+    left:428px;
+    top:400px;
+    width:74px;
+    height:74px;
+    border-radius:50%;
+    z-index:20;
+    background:
+      repeating-conic-gradient(from 0deg, rgba(190,190,205,0.95) 0 7deg, rgba(20,20,27,0) 7deg 20deg);
+    -webkit-mask: radial-gradient(circle at center, transparent 0 11px, #000 12px 100%);
+            mask: radial-gradient(circle at center, transparent 0 11px, #000 12px 100%);
+    opacity:.72;
+  }
+  .landing{
+    left:156px;
+    top:416px;
+    width:36px;
+    height:90px;
+    z-index:17;
+  }
+  .landing:before{
+    content:"";
+    position:absolute;
+    left:12px;
+    top:0;
+    width:9px;
+    height:48px;
+    background:#312c30;
+    border-radius:4px;
+  }
+  .landing:after{
+    content:"";
+    position:absolute;
+    left:3px;
+    top:45px;
+    width:25px;
+    height:25px;
+    background:#17141a;
+    border-radius:50%;
+    box-shadow:17px 0 0 #17141a;
+  }
+
+  .foot{
+    left:56px;
+    top:729px;
+    transform:translateY(-100%);
+    color:#faf7f2;
+    font-size:10px;
+    line-height:14px;
+    font-weight:700;
+    z-index:30;
+    letter-spacing:.1px;
+  }
+
+  .content{
+    left:519px;
+    top:79px;
+    width:761px;
+    height:641px;
+    background:#f3f3f3;
+    z-index:3;
+  }
+
+  .text{
+    left:532px;
+    top:115px;
+    width:448px;
+    height:570px;
+    color:#51535b;
+    font-size:14px;
+    line-height:1.22;
+    font-weight:400;
+    z-index:30;
+  }
+  .text p{
+    margin:0;
+    position:absolute;
+  }
+  .bullet{
+    position:absolute;
+    color:#3f4048;
+    font-size:15px;
+    line-height:15px;
+    font-weight:700;
+  }
+  .heading{
+    position:absolute;
+    color:#2f3138;
+    font-size:17px;
+    line-height:20px;
+    font-weight:700;
+  }
+
+  .side-menu{
+    left:1041px;
+    top:120px;
+    width:239px;
+    height:300px;
+    z-index:40;
+  }
+  .menu-box{
+    position:absolute;
+    right:0;
+    width:76px;
+    min-height:35px;
+    background:#2f2d3b;
+    color:#f2f2f2;
+    font-size:12px;
+    line-height:13px;
+    font-weight:400;
+    padding:8px 8px 8px 7px;
+    border-left:2px solid #d3d52a;
+  }
+  .menu-box.light{
+    background:#70717c;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-bar"></div>
+  <div class="left-rail"></div>
+  <div class="top-line"></div>
+  <div class="title">Insights: Global</div>
+  <div class="nav left">◀</div>
+  <div class="nav right">▶</div>
+
+  <div class="photo"></div>
+  <div class="sun-glow"></div>
+  <div class="horizon"></div>
+  <div class="runway"></div>
+  <div class="runway-line1"></div>
+  <div class="runway-line2"></div>
+
+  <div class="terminal">
+    <div class="roof"></div>
+    <div class="body"></div>
+    <div class="supports"></div>
+    <div class="orange"></div>
+  </div>
+  <div class="stairs"></div>
+  <div class="kite"></div>
+  <div class="kite-string"></div>
+
+  <div class="fuselage"></div>
+  <div class="fuselage-lower"></div>
+  <div class="topline"></div>
+  <div class="reflect"></div>
+  <div class="window"></div>
+  <div class="wing"></div>
+  <div class="engine-pylon"></div>
+  <div class="engine"></div>
+  <div class="engine-inner"></div>
+  <div class="engine-fan"></div>
+  <div class="landing"></div>
+
+  <div class="foot">4&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+
+  <div class="content"></div>
+
+  <div class="text">
+    <div class="bullet" style="left:0; top:4px;">▪</div>
+    <p style="left:17px; top:0; width:415px;">Australia will remove over 99% of tariffs on originating EU goods.</p>
+
+    <div class="bullet" style="left:17px; top:31px;">▪</div>
+    <p style="left:33px; top:27px; width:435px;">Australia will remove duties on key EU industrial products such as motor vehicles, chemicals and machinery.</p>
+
+    <div class="bullet" style="left:17px; top:70px;">▪</div>
+    <p style="left:33px; top:66px; width:452px;">Upon entry into force, Australia will also eliminate duties on EU food and drink exports for all items but cheeses. Notable exports that will benefit from tariff-free treatment include wine, chocolate, pasta and canned vegetables.</p>
+
+    <div class="bullet" style="left:0; top:144px;">▪</div>
+    <p style="left:17px; top:140px; width:455px;">Critical minerals will see tariffs eliminated and access improved, reflecting Europe's strategic push to diversify inputs for its green energy transition and Australia's ambition to become a renewable energy superpower.</p>
+
+    <p style="left:0; top:201px; width:476px;">The improved terms enable Australian exporters to expand their footprint in one of the world's largest high income consumer markets, while EU exporters gain a more predictable and open path into Australia's rapidly growing sectors.</p>
+
+    <div class="heading" style="left:0; top:270px; width:300px;">Services, mobility and investment</div>
+
+    <p style="left:0; top:302px; width:382px;">The FTA offers substantial new opportunities for services providers and investors:</p>
+
+    <div class="bullet" style="left:0; top:353px;">▪</div>
+    <p style="left:17px; top:349px; width:463px;">The EU will grant non-discriminatory treatment to Australian investors in sectors such as mining, manufacturing, energy, tourism and education, enhancing investment predictability.</p>
+
+    <div class="bullet" style="left:0; top:413px;">▪</div>
+    <p style="left:17px; top:409px; width:425px;">Australia will raise its foreign investment screening thresholds for private EU investors.</p>
+
+    <div class="bullet" style="left:0; top:461px;">▪</div>
+    <p style="left:17px; top:457px; width:468px;">Market access improvements across professional services, telecommunications, delivery, maritime transport and financial services. Mutual recognition provisions will make it easier for professionals to navigate regulatory requirements.</p>
+
+    <div class="bullet" style="left:0; top:554px;">▪</div>
+    <p style="left:17px; top:550px; width:468px;">The agreement includes an Innovation Mobility Pathway, enabling up to 3,000 researchers and trainee engineers per year to move between the jurisdictions.</p>
+
+    <p style="left:0; top:620px; width:469px;">These provisions align with broader EU and Australian ambitions to strengthen innovation ecosystems and reduce friction in skilled mobility.</p>
+  </div>
+
+  <div class="side-menu">
+    <div class="menu-box" style="top:0;">Contents</div>
+    <div class="menu-box" style="top:51px;">Insights</div>
+    <div class="menu-box" style="top:102px; min-height:39px; padding-top:6px;">New on<br>ey.com</div>
+    <div class="menu-box" style="top:153px;">Tax alerts</div>
+    <div class="menu-box light" style="top:204px; min-height:39px; padding-top:6px;">Additional<br>resources</div>
+    <div class="menu-box light" style="top:255px;">Contacts</div>
+  </div>
+</div>
+</body>
+</html>

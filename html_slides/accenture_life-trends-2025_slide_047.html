@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#fdfdfd;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#fdfdfd;
+    color:#222;
+  }
+
+  .title-small{
+    position:absolute;
+    left:60px;
+    top:116px;
+    font-size:33px;
+    line-height:1;
+    font-weight:300;
+    color:#7a1fe0;
+    letter-spacing:-0.5px;
+  }
+  .title-large{
+    position:absolute;
+    left:128px;
+    top:158px;
+    font-size:58px;
+    line-height:1;
+    font-weight:300;
+    color:#6f10d8;
+    letter-spacing:-1px;
+  }
+
+  .body-text{
+    position:absolute;
+    left:60px;
+    top:247px;
+    width:392px;
+    font-size:19px;
+    line-height:1.38;
+    color:#222;
+    font-weight:400;
+  }
+
+  .image-col{
+    position:absolute;
+    left:530px;
+    top:0;
+    width:418px;
+    height:720px;
+    overflow:hidden;
+  }
+  .panel{
+    position:absolute;
+    left:0;
+    width:418px;
+    height:240px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 22% 30%, rgba(229,0,76,0.75) 0 18%, transparent 19%),
+      radial-gradient(circle at 70% 10%, rgba(255,255,255,0.55) 0 10%, transparent 16%),
+      radial-gradient(circle at 52% 80%, rgba(43,65,255,0.45) 0 16%, transparent 28%),
+      linear-gradient(90deg, rgba(195,0,92,0.78) 0%, rgba(107,79,255,0.58) 55%, rgba(48,76,170,0.72) 100%),
+      linear-gradient(180deg, rgba(255,76,76,0.18), rgba(73,59,255,0.18));
+  }
+  .panel:before{
+    content:"";
+    position:absolute;
+    left:-10px;
+    top:-6px;
+    width:270px;
+    height:250px;
+    background:
+      radial-gradient(circle at 62% 14%, rgba(255,240,220,0.95) 0 12%, rgba(255,240,220,0.28) 13%, transparent 24%),
+      radial-gradient(circle at 61% 40%, rgba(209,227,255,0.85) 0 18%, rgba(209,227,255,0.18) 19%, transparent 36%),
+      radial-gradient(circle at 55% 74%, rgba(250,247,252,0.72) 0 22%, rgba(250,247,252,0.10) 23%, transparent 42%),
+      radial-gradient(circle at 38% 40%, rgba(200,40,45,0.78) 0 10%, transparent 16%);
+    filter: blur(7px);
+    transform: scaleX(1.2);
+    opacity:0.95;
+  }
+  .panel:after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:
+      radial-gradient(circle at 10px 12px, rgba(99,50,205,0.55) 0 2px, transparent 3px);
+    background-size:20px 20px;
+    opacity:0.38;
+    mix-blend-mode:multiply;
+  }
+  .p1{ top:0; }
+  .p2{ top:240px; }
+  .p3{ top:480px; }
+
+  .mic{
+    position:absolute;
+    width:31px;
+    height:86px;
+    background:linear-gradient(180deg,#020214 0%, #0c0c3d 45%, #010114 100%);
+    border-radius:16px;
+    left:213px;
+    top:136px;
+    transform:rotate(6deg);
+    box-shadow:0 0 8px rgba(0,0,0,0.35);
+    z-index:2;
+  }
+  .mic:before{
+    content:"";
+    position:absolute;
+    left:6px;
+    bottom:-15px;
+    width:20px;
+    height:18px;
+    border:2px solid #111;
+    border-top:none;
+    border-radius:0 0 12px 12px;
+    opacity:0.7;
+  }
+  .mic:after{
+    content:"";
+    position:absolute;
+    left:13px;
+    bottom:-33px;
+    width:4px;
+    height:24px;
+    background:#111;
+    border-radius:2px;
+    box-shadow:-13px -8px 0 0 rgba(17,17,17,0.35), 13px -8px 0 0 rgba(17,17,17,0.35);
+  }
+
+  .camera{
+    position:absolute;
+    right:10px;
+    top:82px;
+    width:91px;
+    height:61px;
+    background:#16142a;
+    border-radius:10px;
+    z-index:3;
+    box-shadow:0 2px 8px rgba(0,0,0,0.25);
+  }
+  .camera:before{
+    content:"";
+    position:absolute;
+    left:12px;
+    top:8px;
+    width:62px;
+    height:39px;
+    border-radius:3px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0)),
+      radial-gradient(circle at 78% 28%, rgba(255,229,170,0.65) 0 9%, transparent 18%),
+      linear-gradient(135deg, rgba(255,120,50,0.9), rgba(210,45,103,0.8) 60%, rgba(97,56,228,0.8));
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+  }
+  .camera:after{
+    content:"";
+    position:absolute;
+    right:-8px;
+    top:7px;
+    width:16px;
+    height:47px;
+    background:#16142a;
+    border-radius:3px;
+  }
+  .cam-dot{
+    position:absolute;
+    right:82px;
+    top:95px;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:#dfd6ff;
+    z-index:4;
+  }
+
+  .callout{
+    position:absolute;
+    left:987px;
+    top:292px;
+    width:230px;
+    color:#333;
+  }
+  .percent{
+    font-size:38px;
+    line-height:1;
+    font-weight:300;
+    color:#7a1fe0;
+    display:inline-block;
+    vertical-align:middle;
+  }
+
+  .icon{
+    position:absolute;
+    left:1094px;
+    top:295px;
+    width:31px;
+    height:24px;
+  }
+  .icon .slate{
+    position:absolute;
+    left:0;
+    top:0;
+    width:27px;
+    height:17px;
+    border:2px solid #a020ff;
+    border-radius:2px;
+    box-sizing:border-box;
+  }
+  .icon .slate:before{
+    content:"";
+    position:absolute;
+    left:-2px;
+    top:-7px;
+    width:27px;
+    height:7px;
+    border:2px solid #a020ff;
+    border-bottom:none;
+    border-radius:2px 2px 0 0;
+    box-sizing:border-box;
+    background:
+      repeating-linear-gradient(135deg, transparent 0 4px, #a020ff 4px 5px);
+  }
+  .icon .play{
+    position:absolute;
+    right:-4px;
+    top:10px;
+    width:12px;
+    height:12px;
+    border:2px solid #a020ff;
+    border-radius:50%;
+    box-sizing:border-box;
+    background:#fff;
+  }
+  .icon .play:before{
+    content:"";
+    position:absolute;
+    left:4px;
+    top:2px;
+    width:0;
+    height:0;
+    border-left:5px solid #a020ff;
+    border-top:3px solid transparent;
+    border-bottom:3px solid transparent;
+  }
+
+  .callout-text{
+    position:absolute;
+    left:987px;
+    top:330px;
+    width:216px;
+    font-size:17px;
+    line-height:1.28;
+    color:#333;
+  }
+  .source{
+    position:absolute;
+    left:987px;
+    top:430px;
+    font-size:14px;
+    font-weight:700;
+    color:#222;
+  }
+
+  .rail{
+    position:absolute;
+    right:14px;
+    top:36px;
+    width:22px;
+    height:610px;
+    color:#777;
+    font-size:18px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    letter-spacing:0;
+  }
+  .rail .muted{ color:#777; }
+  .rail .active{ color:#a020ff; font-weight:600; }
+
+  .footer{
+    position:absolute;
+    right:32px;
+    bottom:18px;
+    font-size:13px;
+    color:#777;
+  }
+  .footer .purple{ color:#8d25e2; }
+  .footer .page{
+    display:inline-block;
+    margin-left:28px;
+    color:#777;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title-small">What’s</div>
+  <div class="title-large">next</div>
+
+  <div class="body-text">
+    At the center of this trend is the fact that people are being more impatient, proactive and assertive in how they navigate life. Their new approaches to pursuing health, wealth and happiness are challenging the status quo for businesses. The role of influencers started with product recommendations and has moved on to helping people solve their life problems and offering them alternatives. For the past twenty years, tech startups spotted gaps in the market and filled them, but now it’s the power of the crowd.
+  </div>
+
+  <div class="image-col">
+    <div class="panel p1">
+      <div class="mic"></div>
+      <div class="camera"></div>
+      <div class="cam-dot"></div>
+    </div>
+    <div class="panel p2">
+      <div class="mic"></div>
+      <div class="camera"></div>
+      <div class="cam-dot"></div>
+    </div>
+    <div class="panel p3">
+      <div class="mic"></div>
+      <div class="camera"></div>
+      <div class="cam-dot"></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="percent">68.2%</span>
+  </div>
+  <div class="icon">
+    <div class="slate"></div>
+    <div class="play"></div>
+  </div>
+  <div class="callout-text">
+    of people would engage<br>
+    more with a brand that<br>
+    educates them through<br>
+    blogs and videos<sup>90</sup>
+  </div>
+  <div class="source">Accenture Life Trends survey, 2024</div>
+
+  <div class="rail">
+    <span class="muted">Cost of hesitations</span>
+    <span class="muted">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+    <span class="muted">The parent trap</span>
+    <span class="muted">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+    <span class="active">Impatience economy</span>
+    <span class="muted">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+    <span class="muted">The dignity of work</span>
+    <span class="muted">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+    <span class="muted">Social rewilding</span>
+  </div>
+
+  <div class="footer">
+    Accenture Life Trends <span class="purple">2025</span>
+    <span class="page">47</span>
+  </div>
+</div>
+</body>
+</html>

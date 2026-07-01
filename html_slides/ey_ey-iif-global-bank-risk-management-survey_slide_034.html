@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1365, initial-scale=1.0" />
+<title>Contacts Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#dedede;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:31px auto;
+    overflow:hidden;
+    background:
+      radial-gradient(520px 260px at 22% 78%, rgba(0,110,155,.33), rgba(0,0,0,0) 58%),
+      radial-gradient(420px 220px at 58% 82%, rgba(255,121,24,.20), rgba(0,0,0,0) 45%),
+      radial-gradient(680px 320px at 52% 8%, rgba(89,0,68,.18), rgba(0,0,0,0) 52%),
+      linear-gradient(180deg,#01050c 0%, #03070d 100%);
+  }
+  #slide > div{ position:absolute; box-sizing:border-box; }
+
+  .bg-overlay-top{
+    left:0; top:0; width:1280px; height:175px;
+    background:linear-gradient(180deg, rgba(0,0,0,.36), rgba(0,0,0,0));
+    z-index:1;
+  }
+  .right-swirl{
+    left:940px; top:-38px; width:380px; height:760px;
+    background:
+      radial-gradient(250px 160px at 66% 16%, rgba(183,35,109,.22), rgba(0,0,0,0) 56%),
+      radial-gradient(260px 360px at 86% 18%, rgba(67,95,220,.18), rgba(0,0,0,0) 58%),
+      radial-gradient(260px 280px at 76% 54%, rgba(156,22,101,.18), rgba(0,0,0,0) 60%);
+    transform:rotate(4deg);
+    opacity:.9;
+    z-index:2;
+  }
+  .mid-art{
+    left:-20px; top:260px; width:1320px; height:295px;
+    background:
+      radial-gradient(220px 140px at 50% 68%, rgba(244,190,52,.34), rgba(0,0,0,0) 48%),
+      radial-gradient(300px 170px at 60% 60%, rgba(150,50,160,.26), rgba(0,0,0,0) 45%),
+      radial-gradient(390px 220px at 75% 58%, rgba(212,81,36,.23), rgba(0,0,0,0) 42%),
+      radial-gradient(300px 180px at 23% 56%, rgba(0,121,170,.16), rgba(0,0,0,0) 50%),
+      linear-gradient(90deg, rgba(3,14,31,.92) 0%, rgba(5,16,33,.78) 31%, rgba(50,17,54,.30) 73%, rgba(90,28,40,.16) 100%);
+    clip-path:polygon(0 14%, 44% 39%, 73% 24%, 93% 0, 100% 0, 100% 100%, 0 100%);
+    z-index:3;
+  }
+  .bottom-stage{
+    left:-120px; top:524px; width:1510px; height:255px;
+    background:
+      radial-gradient(450px 150px at 22% 24%, rgba(0,124,162,.22), rgba(0,0,0,0) 55%),
+      radial-gradient(360px 120px at 56% 35%, rgba(205,111,39,.18), rgba(0,0,0,0) 52%),
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.45) 18%, rgba(0,0,0,.90) 68%, rgba(0,0,0,.98) 100%);
+    border-top-left-radius:900px 120px;
+    border-top-right-radius:900px 120px;
+    transform:rotate(7deg);
+    z-index:4;
+  }
+  .bottom-rim{
+    left:-40px; top:523px; width:1380px; height:175px;
+    border-top:2px solid rgba(0,0,0,.6);
+    border-top-left-radius:780px 88px;
+    border-top-right-radius:780px 88px;
+    transform:rotate(7deg);
+    z-index:5;
+    opacity:.55;
+  }
+
+  .title{
+    left:48px; top:44px;
+    color:#f4f5f8;
+    font-size:64px;
+    line-height:68px;
+    font-weight:700;
+    letter-spacing:-1.7px;
+    z-index:20;
+  }
+  .accent-line{
+    left:46px; top:131px; width:1280px; height:3px;
+    background:linear-gradient(90deg,#efe400 0%, #efe400 49%, #ae2cff 78%, #42a6ff 100%);
+    z-index:20;
+  }
+
+  .vert-label{
+    left:-6px; top:408px;
+    color:rgba(255,255,255,.88);
+    font-size:13px;
+    line-height:13px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    z-index:20;
+  }
+  .vert-label-line{
+    left:14px; top:349px; width:1px; height:58px;
+    background:rgba(255,255,255,.75);
+    z-index:20;
+  }
+  .page-num{
+    left:18px; top:677px;
+    color:#ffffff;
+    font-size:13px;
+    line-height:13px;
+    z-index:20;
+  }
+
+  .jump{
+    left:1218px; top:27px; width:58px; height:62px;
+    z-index:25;
+  }
+  .jump .circle{
+    position:absolute; inset:0;
+    border:1px solid rgba(255,255,255,.5);
+    border-radius:50%;
+  }
+  .jump .dot{
+    position:absolute; right:4px; top:2px;
+    width:9px; height:9px; border-radius:50%;
+    background:#efe400;
+  }
+  .jump .arrow{
+    position:absolute; left:30px; top:8px;
+    color:#fff; font-size:10px; line-height:10px; font-weight:700;
+  }
+  .jump .text{
+    position:absolute; left:11px; top:16px; width:36px;
+    color:#fff; font-size:10px; line-height:10px; text-align:center;
+  }
+
+  .col-sep{
+    width:2px; height:392px; z-index:15;
+    background:repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,.82) 0px,
+      rgba(255,255,255,.82) 2px,
+      rgba(255,255,255,0) 4px,
+      rgba(255,255,255,0) 7px
+    );
+  }
+
+  .section{ color:#fff; z-index:18; }
+  .section .header{
+    position:absolute; left:0; top:0;
+    color:#f3f4f7;
+    font-size:15px; line-height:18px; font-weight:400;
+    white-space:nowrap;
+  }
+  .section .rule{
+    position:absolute; left:0; top:26px; height:1px;
+    background:rgba(255,255,255,.50);
+  }
+  .person{ position:absolute; color:#fff; }
+  .name{
+    font-size:11px; line-height:14px; font-weight:700;
+    color:#f7f7f7;
+    white-space:nowrap;
+  }
+  .meta,.phone{
+    font-size:10px; line-height:12px; font-weight:400;
+    color:#f0f0f0;
+    white-space:nowrap;
+  }
+  .email{
+    font-size:10px; line-height:12px; font-weight:400;
+    color:#e7d300;
+    white-space:nowrap;
+  }
+
+  .ey-global{ left:46px; top:192px; width:166px; height:330px; }
+  .americas{ left:262px; top:192px; width:271px; height:254px; }
+  .latin{ left:262px; top:450px; width:271px; height:117px; }
+  .apac{ left:590px; top:192px; width:170px; height:306px; }
+  .emeia{ left:816px; top:192px; width:242px; height:307px; }
+  .iif{ left:1121px; top:192px; width:123px; height:307px; }
+
+  .smallcol{ position:absolute; top:48px; }
+  .smallcol.left{ left:0; width:118px; }
+  .smallcol.right{ left:129px; width:118px; }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="bg-overlay-top"></div>
+  <div class="right-swirl"></div>
+  <div class="mid-art"></div>
+  <div class="bottom-stage"></div>
+  <div class="bottom-rim"></div>
+
+  <div class="title">Contacts</div>
+  <div class="accent-line"></div>
+
+  <div class="vert-label">CONTACTS</div>
+  <div class="vert-label-line"></div>
+
+  <div class="jump">
+    <div class="circle"></div>
+    <div class="dot"></div>
+    <div class="arrow">↗</div>
+    <div class="text">Jump to<br>contents</div>
+  </div>
+
+  <div class="col-sep" style="left:238px; top:193px;"></div>
+  <div class="col-sep" style="left:559px; top:193px;"></div>
+  <div class="col-sep" style="left:787px; top:193px;"></div>
+  <div class="col-sep" style="left:1089px; top:193px;"></div>
+
+  <div class="section ey-global">
+    <div class="header">EY Global</div>
+    <div class="rule" style="width:136px;"></div>
+
+    <div class="person" style="left:0; top:46px; width:166px; height:72px;">
+      <div class="name">Nigel Moden</div>
+      <div class="meta" style="position:absolute; top:16px;">EY Global Banking &amp; Capital Sector Leader</div>
+      <div class="meta" style="position:absolute; top:28px;">UK</div>
+      <div class="email" style="position:absolute; top:45px;">nmoden@uk.ey.com</div>
+      <div class="phone" style="position:absolute; top:59px;">+44 7771 596501</div>
+    </div>
+
+    <div class="person" style="left:0; top:132px; width:166px; height:84px;">
+      <div class="name">Tom Campanile</div>
+      <div class="meta" style="position:absolute; top:16px;">EY Global Financial Services Risk Consulting</div>
+      <div class="meta" style="position:absolute; top:28px;">US</div>
+      <div class="email" style="position:absolute; top:45px;">thomas.campanile@ey.com</div>
+      <div class="phone" style="position:absolute; top:59px;">+1 212 773 6461</div>
+    </div>
+
+    <div class="person" style="left:0; top:233px; width:166px; height:92px;">
+      <div class="name">Christopher Woolard</div>
+      <div class="meta" style="position:absolute; top:16px;">EY Global Regulatory Network Leader and</div>
+      <div class="meta" style="position:absolute; top:28px;">EMEIA Regulatory Network Leader</div>
+      <div class="meta" style="position:absolute; top:40px;">UK</div>
+      <div class="email" style="position:absolute; top:57px;">christopher.woolard@uk.ey.com</div>
+      <div class="phone" style="position:absolute; top:71px;">+44 207 760 8166</div>
+    </div>
+  </div>
+
+  <div class="section americas">
+    <div class="header">EY Americas Risk team</div>
+    <div class="rule" style="width:270px;"></div>
+
+    <div class="smallcol left">
+      <div class="person" style="left:0; top:47px; width:118px; height:63px;">
+        <div class="name">Jim Barkley</div>
+        <div class="meta" style="position:absolute; top:16px;">US</div>
+        <div class="email" style="position:absolute; top:33px;">jim.barkley@ey.com</div>
+        <div class="phone" style="position:absolute; top:47px;">+1 914 356 6788</div>
+      </div>
+      <div class="person" style="left:0; top:122px; width:118px; height:63px;">
+        <div class="name">Adam Girling</div>
+        <div class="meta" style="position:absolute; top:16px;">US</div>
+        <div class="email" style="position:absolute; top:33px;">adam.girling@ey.com</div>
+        <div class="phone" style="position:absolute; top:47px;">+1 212 774 9514</div>
+      </div>
+      <div class="person" style="left:0; top:197px; width:118px; height:63px;">
+        <div class="name">Marc Saidenberg</div>
+        <div class="meta" style="position:absolute; top:16px;">US</div>
+        <div class="email" style="position:absolute; top:33px;">marc.saidenberg@ey.com</div>
+        <div class="phone" style="position:absolute; top:47px;">+1 212 773 9361</div>
+      </div>
+    </div>
+
+    <div class="smallcol right">
+      <div class="person" style="left:0; top:47px; width:118px; height:63px;">
+        <div class="name">Karen Becker</div>
+        <div class="meta" style="position:absolute; top:16px;">US</div>
+        <div class="email" style="position:absolute; top:33px;">karen.becker@ey.com</div>
+        <div class="phone" style="position:absolute; top:47px;">+1 212 773 0154</div>
+      </div>
+      <div class="person" style="left:0; top:122px; width:118px; height:63px;">
+        <div class="name">Yannic Blais-Gauthier</div>
+        <div class="meta" style="position:absolute; top:16px;">Canada</div>
+        <div class="email" style="position:absolute; top:33px;">yannic.blais-gauthier@ca.ey.com</div>
+        <div class="phone" style="position:absolute; top:47px;">+1 514 730 1525</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section latin">
+    <div class="header">EY Latin America Risk team</div>
+    <div class="rule" style="width:180px;"></div>
+
+    <div class="smallcol left" style="top:47px;">
+      <div class="person" style="left:0; top:0; width:118px; height:63px;">
+        <div class="name">Rui Cabral</div>
+        <div class="meta" style="position:absolute; top:16px;">Brazil</div>
+        <div class="email" style="position:absolute; top:33px;">rui.cabral@br.ey.com</div>
+        <div class="phone" style="position:absolute; top:47px;">+55 11 957844998</div>
+      </div>
+    </div>
+
+    <div class="smallcol right" style="top:47px;">
+      <div class="person" style="left:0; top:0; width:118px; height:63px;">
+        <div class="name">Marlene Devotto</div>
+        <div class="meta" style="position:absolute; top:16px;">Chile</div>
+        <div class="email" style="position:absolute; top:33px;">marlene.devotto@cl.ey.com</div>
+        <div class="phone" style="position:absolute; top:47px;">+56 229 162 752</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section apac">
+    <div class="header">EY Asia-Pacific Risk team</div>
+    <div class="rule" style="width:170px;"></div>
+
+    <div class="person" style="left:0; top:47px; width:170px; height:63px;">
+      <div class="name">Eugène Goyne</div>
+      <div class="meta" style="position:absolute; top:16px;">Hong Kong</div>
+      <div class="email" style="position:absolute; top:33px;">eugene.goyne@hk.ey.com</div>
+      <div class="phone" style="position:absolute; top:47px;">+852 2849 9470</div>
+    </div>
+
+    <div class="person" style="left:0; top:122px; width:170px; height:63px;">
+      <div class="name">Damien O'Meara</div>
+      <div class="meta" style="position:absolute; top:16px;">Australia</div>
+      <div class="email" style="position:absolute; top:33px;">damien.o'meara@au.ey.com</div>
+      <div class="phone" style="position:absolute; top:47px;">+61 419 820 266</div>
+    </div>
+
+    <div class="person" style="left:0; top:197px; width:170px; height:63px;">
+      <div class="name">Kentaro Ogata</div>
+      <div class="meta" style="position:absolute; top:16px;">Japan</div>
+      <div class="email" style="position:absolute; top:33px;">kentaro.ogata@jp.ey.com</div>
+      <div class="phone" style="position:absolute; top:47px;">+81 335 031 110</div>
+    </div>
+
+    <div class="person" style="left:0; top:272px; width:170px; height:63px;">
+      <div class="name">David Scott</div>
+      <div class="meta" style="position:absolute; top:16px;">Hong Kong</div>
+      <div class="email" style="position:absolute; top:33px;">david.scott@hk.ey.com</div>
+      <div class="phone" style="position:absolute; top:47px;">+852 2670 3070</div>
+    </div>
+  </div>
+
+  <div class="section emeia">
+    <div class="header">EY EMEIA Risk team</div>
+    <div class="rule" style="width:241px;"></div>
+
+    <div class="smallcol left" style="width:112px;">
+      <div class="person" style="left:0; top:47px; width:112px; height:63px;">
+        <div class="name">Kristin Bekkeseth</div>
+        <div class="meta" style="position:absolute; top:16px;">Norway</div>
+        <div class="email" style="position:absolute; top:33px;">kristin.bekkeseth@no.ey.com</div>
+        <div class="phone" style="position:absolute; top:47px;">+47 924 47 130</div>
+      </div>
+
+      <div class="person" style="left:0; top:122px; width:112px; height:63px;">
+        <div class="name">Bernhard Hein</div>
+        <div class="meta" style="position:absolute; top:16px;">Germany</div>
+        <div class="email" style="position:absolute; top:33px;">bernhard.hein@de.ey.com</div>
+        <div class="phone" style="position:absolute; top:47px;">+49 711 9881 14383</div>
+      </div>
+
+      <div class="person" style="left:0; top:197px; width:112px; height:63px;">
+        <div class="name">Andre Dylan Kohler</div>
+        <div class="meta" style="position:absolute; top:16px;">Switzerland</div>
+        <div class="email" style="position:absolute; top:33px;">andre-dylan.kohler@ch.ey.com</div>
+        <div class="phone" style="position:absolute; top:47px;">+41582863378</div>
+      </div>
+
+      <div class="person" style="left:0; top:272px; width:112px; height:63px;">
+        <div class="name">Christopher Richardson</div>
+        <div class="meta" style="position:absolute; top:16px;">UK</div>
+        <div class="email" style="position:absolute; top:33px;">crichardson4@uk.ey.com</div>
+        <div class="phone" style="position:absolute; top:47px;">+44 20 7951 1012</div>
+      </div>
+    </div>
+
+    <div class="smallcol right" style="left:133px; width:109px;">
+      <div class="person" style="left:0; top:47px; width:109px; height:63px;">
+        <div class="name">Matthew Walker</div>
+        <div class="meta" style="position:absolute; top:16px;">South Africa</div>
+        <div class="email" style="position:absolute; top:33px;">matthew.h.walker@za.ey.com</div>
+        <div class="phone" style="position:absolute; top:47px;">+27 11 772 4436</div>
+      </div>
+
+      <div class="person" style="left:0; top:122px; width:109px; height:63px;">
+        <div class="name">Andrew Duff</div>
+        <div class="meta" style="position:absolute; top:16px;">UK</div>
+        <div class="email" style="position:absolute; top:33px;">aduff@uk.ey.com</div>
+        <div class="phone" style="position:absolute; top:47px;">+44 7584 205955</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section iif">
+    <div class="header">IIF contacts</div>
+    <div class="rule" style="width:123px;"></div>
+
+    <div class="person" style="left:0; top:47px; width:123px; height:86px;">
+      <div class="name">Andrés Portilla</div>
+      <div class="meta" style="position:absolute; top:16px;">Managing Director and Head,</div>
+      <div class="meta" style="position:absolute; top:28px;">Regulatory Affairs</div>
+      <div class="meta" style="position:absolute; top:40px;">US</div>
+      <div class="email" style="position:absolute; top:57px;">aportilla@iif.com</div>
+      <div class="phone" style="position:absolute; top:71px;">+1 202 857 3645</div>
+    </div>
+
+    <div class="person" style="left:0; top:154px; width:123px; height:74px;">
+      <div class="name">Martin Boer</div>
+      <div class="meta" style="position:absolute; top:16px;">Senior Director, Regulatory Affairs</div>
+      <div class="meta" style="position:absolute; top:28px;">US</div>
+      <div class="email" style="position:absolute; top:45px;">mboer@iif.com</div>
+      <div class="phone" style="position:absolute; top:59px;">+1 202 857 3636</div>
+    </div>
+
+    <div class="person" style="left:0; top:259px; width:123px; height:74px;">
+      <div class="name">Gaku Kobayashi</div>
+      <div class="meta" style="position:absolute; top:16px;">Policy Advisor, Regulatory Affairs</div>
+      <div class="meta" style="position:absolute; top:28px;">US</div>
+      <div class="email" style="position:absolute; top:45px;">gkobayashi@iif.com</div>
+      <div class="phone" style="position:absolute; top:59px;">+1 202 857 3322</div>
+    </div>
+  </div>
+
+  <div class="page-num">34</div>
+</div>
+</body>
+</html>

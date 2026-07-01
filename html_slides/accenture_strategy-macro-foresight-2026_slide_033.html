@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Europe struggle - Business considerations</title>
+<style>
+  body{
+    margin:0;
+    background:#e8e4ea;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e8e4ea;
+    color:#111;
+  }
+
+  /* Top nav */
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:25px;
+    background:#efefef;
+    border-bottom:1px solid #c9c9c9;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:25px;
+    line-height:25px;
+    font-size:11px;
+    font-weight:700;
+    color:#7f7f7f;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .tab.active{
+    background:#4d148c;
+    color:#fff;
+  }
+  .tab.underline{
+    color:#4d148c;
+    border-bottom:2px solid #4d148c;
+    height:23px;
+    line-height:23px;
+  }
+
+  .title{
+    position:absolute;
+    left:43px;
+    top:58px;
+    width:1170px;
+    font-size:28px;
+    line-height:29px;
+    font-weight:800;
+    color:#000;
+  }
+  .subtitle{
+    position:absolute;
+    left:42px;
+    top:120px;
+    font-size:20px;
+    line-height:20px;
+    font-weight:800;
+    color:#a317ff;
+  }
+  .sectionhead{
+    position:absolute;
+    left:42px;
+    top:166px;
+    font-size:17px;
+    line-height:17px;
+    font-weight:800;
+    color:#111;
+  }
+  .rule{
+    position:absolute;
+    left:42px;
+    top:193px;
+    width:664px;
+    height:2px;
+    background:#595959;
+  }
+
+  /* Left chevrons */
+  .item{
+    position:absolute;
+    left:36px;
+    width:389px;
+    height:82px;
+  }
+  .circle{
+    position:absolute;
+    left:0;
+    top:0;
+    width:82px;
+    height:82px;
+    border-radius:41px;
+    background:#bfb0d8;
+    border:2px solid rgba(255,255,255,0.55);
+    box-sizing:border-box;
+    z-index:3;
+  }
+  .circle span{
+    position:absolute;
+    left:0;
+    top:24px;
+    width:82px;
+    text-align:center;
+    font-size:25px;
+    font-weight:800;
+    color:#000;
+  }
+  .chevron{
+    position:absolute;
+    left:62px;
+    top:0;
+    width:327px;
+    height:82px;
+    clip-path:polygon(0 0, 86% 0, 100% 50%, 86% 100%, 0 100%, 8% 50%);
+    overflow:hidden;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+  }
+  .chevron .bg{
+    position:absolute;
+    inset:0;
+  }
+  .chevron .overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.28);
+  }
+  .chevron .label{
+    position:absolute;
+    left:48px;
+    top:28px;
+    width:220px;
+    font-size:17px;
+    line-height:18px;
+    font-weight:800;
+    color:#fff;
+    text-shadow:0 1px 1px rgba(0,0,0,0.35);
+  }
+  .chevron .label.small2{
+    top:18px;
+  }
+
+  /* Simulated photo backgrounds */
+  .bg1{
+    background:
+      linear-gradient(90deg, rgba(55,95,125,0.8) 0 14%, rgba(120,80,50,0.15) 14% 100%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.1) 0 1px, transparent 1px 18px),
+      repeating-linear-gradient(0deg, rgba(255,190,130,0.18) 0 2px, transparent 2px 12px),
+      radial-gradient(circle at 70% 30%, rgba(255,190,100,0.35), transparent 35%),
+      linear-gradient(180deg, #6b5b4a 0%, #31251f 100%);
+  }
+  .bg2{
+    background:
+      radial-gradient(circle at 35% 30%, rgba(235,210,170,0.85) 0 10%, transparent 11%),
+      radial-gradient(circle at 46% 36%, rgba(210,185,145,0.8) 0 9%, transparent 10%),
+      radial-gradient(circle at 58% 28%, rgba(245,220,180,0.8) 0 11%, transparent 12%),
+      linear-gradient(120deg, rgba(0,0,0,0.55), rgba(0,0,0,0.2)),
+      linear-gradient(180deg, #4c4132 0%, #1b1a1d 100%);
+  }
+  .bg3{
+    background:
+      linear-gradient(180deg, rgba(220,230,238,0.88), rgba(205,215,225,0.88)),
+      linear-gradient(90deg, transparent 0 20%, rgba(255,255,255,0.22) 20% 21%, transparent 21% 100%),
+      linear-gradient(90deg, transparent 0 45%, rgba(110,180,220,0.45) 45% 46%, transparent 46% 100%),
+      linear-gradient(0deg, transparent 0 55%, rgba(255,90,90,0.55) 55% 56%, transparent 56% 100%);
+  }
+  .bg3:before{
+    content:"";
+    position:absolute;
+    right:24px;
+    top:0;
+    width:92px;
+    height:82px;
+    background:
+      linear-gradient(180deg, rgba(245,245,248,0.95), rgba(210,220,230,0.9));
+    clip-path:polygon(35% 0, 70% 0, 100% 100%, 55% 100%);
+    opacity:0.95;
+  }
+  .bg4{
+    background:
+      radial-gradient(circle at 47% 50%, rgba(110,145,230,0.35), transparent 24%),
+      radial-gradient(circle at 50% 48%, rgba(255,185,130,0.35), transparent 8%),
+      linear-gradient(120deg, rgba(255,255,255,0.08), rgba(255,255,255,0)),
+      linear-gradient(90deg, #283067 0%, #171c45 62%, #1b1334 100%);
+  }
+  .bg4:before{
+    content:"";
+    position:absolute;
+    left:110px;
+    top:10px;
+    width:130px;
+    height:62px;
+    background:
+      radial-gradient(circle at 50% 50%, transparent 0 20px, rgba(255,255,255,0.2) 20px 21px, transparent 21px),
+      radial-gradient(circle at 24% 34%, rgba(255,255,255,0.18) 0 2px, transparent 3px),
+      radial-gradient(circle at 76% 64%, rgba(255,255,255,0.18) 0 2px, transparent 3px),
+      radial-gradient(circle at 62% 20%, rgba(255,255,255,0.18) 0 2px, transparent 3px),
+      radial-gradient(circle at 40% 78%, rgba(255,255,255,0.18) 0 2px, transparent 3px);
+    opacity:0.9;
+  }
+  .bg5{
+    background:
+      linear-gradient(90deg, rgba(180,110,20,0.4) 0 12%, transparent 12% 100%),
+      linear-gradient(0deg, rgba(255,210,120,0.18), transparent 55%),
+      linear-gradient(120deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
+      linear-gradient(180deg, #6f5126 0%, #2d261f 100%);
+  }
+  .bg5:before{
+    content:"";
+    position:absolute;
+    left:210px;
+    top:8px;
+    width:82px;
+    height:50px;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 12px),
+      linear-gradient(0deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 12px);
+    opacity:0.4;
+  }
+
+  /* Flags for item 1 */
+  .flags{
+    position:absolute;
+    left:22px;
+    top:22px;
+    width:54px;
+    height:32px;
+    z-index:2;
+  }
+  .flagpole{
+    position:absolute;
+    bottom:0;
+    width:2px;
+    height:26px;
+    background:#d1d1d1;
+  }
+  .flag{
+    position:absolute;
+    width:10px;
+    height:7px;
+    top:2px;
+  }
+  .f1{left:4px;}
+  .f1 .flagpole{left:0;}
+  .f1 .flag{left:2px;background:linear-gradient(90deg,#0b5bd3 0 33%,#fff 33% 66%,#d92e2e 66%);}
+  .f2{left:16px;}
+  .f2 .flagpole{left:0;}
+  .f2 .flag{left:2px;background:linear-gradient(180deg,#111 0 33%,#d63232 33% 66%,#f1cc3b 66%);}
+  .f3{left:28px;}
+  .f3 .flagpole{left:0;}
+  .f3 .flag{left:2px;background:linear-gradient(90deg,#1a8f43 0 33%,#fff 33% 66%,#d53434 66%);}
+  .f4{left:40px;}
+  .f4 .flagpole{left:0;}
+  .f4 .flag{left:2px;background:linear-gradient(90deg,#005bbb 0 50%,#ffd500 50%);}
+
+  /* Right text column */
+  .right{
+    position:absolute;
+    left:450px;
+    top:206px;
+    width:785px;
+    color:#2b2b2b;
+    font-size:16px;
+    line-height:18px;
+  }
+  .group{
+    position:absolute;
+    left:0;
+    width:785px;
+  }
+  .bullet{
+    position:absolute;
+    left:0;
+    top:0;
+    font-size:19px;
+    line-height:18px;
+  }
+  .content{
+    position:absolute;
+    left:22px;
+    top:0;
+    width:760px;
+  }
+  .dash{
+    margin-left:30px;
+  }
+  .dash div:before{
+    content:"– ";
+    position:relative;
+    left:0;
+  }
+
+  .source{
+    position:absolute;
+    left:42px;
+    top:728px;
+    transform:translateY(-100%);
+    font-size:12px;
+    color:#757575;
+  }
+  .brand{
+    position:absolute;
+    left:40px;
+    top:710px;
+    font-size:26px;
+    line-height:26px;
+    color:#a317ff;
+    font-weight:900;
+  }
+  .copyright{
+    position:absolute;
+    right:88px;
+    top:732px;
+    transform:translateY(-100%);
+    font-size:11px;
+    color:#6f6f6f;
+  }
+  .pagenum{
+    position:absolute;
+    right:19px;
+    top:731px;
+    transform:translateY(-100%);
+    font-size:12px;
+    color:#6f6f6f;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar">
+    <div class="tab active" style="left:0px;width:105px;">Top 10 trends</div>
+    <div class="tab" style="left:105px;width:132px;">Multi-speed growth</div>
+    <div class="tab" style="left:237px;width:113px;">Tariff impacts</div>
+    <div class="tab" style="left:350px;width:133px;">Financial fragility</div>
+    <div class="tab" style="left:483px;width:113px;">Affordability</div>
+    <div class="tab" style="left:596px;width:126px;">AI productivity</div>
+    <div class="tab" style="left:722px;width:117px;">China exports</div>
+    <div class="tab underline" style="left:839px;width:147px;">Europe struggle</div>
+    <div class="tab" style="left:986px;width:117px;">AI arms race</div>
+    <div class="tab" style="left:1103px;width:112px;">Power crunch</div>
+    <div class="tab" style="left:1215px;width:65px;">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">Firms with European operations and exposure may need to reconsider their regional strategy if European growth and competitiveness continues to falter</div>
+  <div class="subtitle">7. Business considerations</div>
+  <div class="sectionhead">Guiding principles to consider</div>
+  <div class="rule"></div>
+
+  <div class="item" style="top:210px;">
+    <div class="circle"><span>1</span></div>
+    <div class="chevron">
+      <div class="bg bg1"></div>
+      <div class="flags">
+        <div class="f1"><div class="flagpole"></div><div class="flag"></div></div>
+        <div class="f2"><div class="flagpole"></div><div class="flag"></div></div>
+        <div class="f3"><div class="flagpole"></div><div class="flag"></div></div>
+        <div class="f4"><div class="flagpole"></div><div class="flag"></div></div>
+      </div>
+      <div class="overlay"></div>
+      <div class="label">Market reorientation</div>
+    </div>
+  </div>
+
+  <div class="item" style="top:315px;">
+    <div class="circle"><span>2</span></div>
+    <div class="chevron">
+      <div class="bg bg2"></div>
+      <div class="overlay"></div>
+      <div class="label small2">Building brand loyalty<br>in foreign markets</div>
+    </div>
+  </div>
+
+  <div class="item" style="top:420px;">
+    <div class="circle"><span>3</span></div>
+    <div class="chevron">
+      <div class="bg bg3"></div>
+      <div class="overlay" style="background:rgba(30,60,90,0.12);"></div>
+      <div class="label small2">Continuing to invest in<br>R&amp;D and innovation</div>
+    </div>
+  </div>
+
+  <div class="item" style="top:525px;">
+    <div class="circle"><span>4</span></div>
+    <div class="chevron">
+      <div class="bg bg4"></div>
+      <div class="overlay" style="background:rgba(10,10,30,0.22);"></div>
+      <div class="label">Accelerate AI transition</div>
+    </div>
+  </div>
+
+  <div class="item" style="top:628px;">
+    <div class="circle"><span>5</span></div>
+    <div class="chevron">
+      <div class="bg bg5"></div>
+      <div class="overlay"></div>
+      <div class="label small2">Securing supply chain<br>resilience</div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="group" style="top:0px;height:98px;">
+      <div class="bullet">•</div>
+      <div class="content">
+        Firms have markets where they defend a sizeable presence, in terms of customer loyalty and technology advantage and they should:
+        <div class="dash" style="margin-top:6px;">
+          <div>Focus on growing European markets where they are operating with this relative strength</div>
+          <div style="margin-top:4px;">Exit / avoid market entry into weaker European markets, as well as markets outside Europe</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group" style="top:105px;height:80px;">
+      <div class="bullet">•</div>
+      <div class="content">
+        European brands need to continue to anchor on their brand heritage as they compete in markets abroad – particularly against low-cost competitors (e.g., China)
+      </div>
+      <div class="bullet" style="top:43px;">•</div>
+      <div class="content" style="top:43px;">
+        European companies also need to understand how consumer aspirations are changing outside Europe and how much European brand heritage still matters
+      </div>
+    </div>
+
+    <div class="group" style="top:209px;height:88px;">
+      <div class="bullet">•</div>
+      <div class="content">
+        European firms have found themselves in a crowded market (e.g., automobiles) in recent times competing with established foreign high-tech manufacturers and new innovative players
+      </div>
+      <div class="bullet" style="top:43px;">•</div>
+      <div class="content" style="top:43px;">Companies must continue to invest in R&amp;D to not lose their relative advantage</div>
+      <div class="bullet" style="top:66px;">•</div>
+      <div class="content" style="top:66px;">New economic security regulations mandating joint ventures for access to EU markets may help with this</div>
+    </div>
+
+    <div class="group" style="top:312px;height:84px;">
+      <div class="bullet">•</div>
+      <div class="content">
+        AI operates as a productivity supercharger, and widespread automation could lead to wide efficiency gains across routine tasks, forecasting and organizational optimization
+      </div>
+      <div class="bullet" style="top:48px;">•</div>
+      <div class="content" style="top:48px;">
+        This will be especially true for foreign competitors who do not have to deal with legacy technology estates (and workforces) – many of these firms will often start first with AI in mind as they go to market
+      </div>
+    </div>
+
+    <div class="group" style="top:418px;height:76px;">
+      <div class="bullet">•</div>
+      <div class="content">
+        With moves towards deglobalisation and increasing protectionism, firms will need to continue to invest in supply chain resilience capabilities (e.g., n-tier supply visibility, onshoring to friendly locations)
+      </div>
+      <div class="bullet" style="top:43px;">•</div>
+      <div class="content" style="top:43px;">
+        Many European companies have already started on these journeys since 2021 and they must continue to strengthen capabilities in this space
+      </div>
+    </div>
+  </div>
+
+  <div class="brand">&gt;</div>
+  <div class="source">Source(s): Accenture Strategy analysis</div>
+  <div class="copyright">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="pagenum">33</div>
+</div>
+</body>
+</html>

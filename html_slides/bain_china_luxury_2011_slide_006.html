@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Bain Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+    color:#111;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .title{
+    left:35px;
+    top:24px;
+    width:1185px;
+    font-size:41px;
+    line-height:1.04;
+    font-weight:400;
+    letter-spacing:0;
+    color:#111;
+  }
+  .redline{
+    left:17px;
+    top:114px;
+    width:1208px;
+    height:13px;
+    background:#e00000;
+  }
+  .subtitle{
+    left:17px;
+    top:154px;
+    width:700px;
+    font-size:18px;
+    line-height:1.2;
+    font-weight:400;
+    color:#222;
+  }
+  .axis-y{
+    left:85px;
+    top:208px;
+    width:2px;
+    height:352px;
+    background:#202020;
+  }
+  .axis-x{
+    left:85px;
+    top:559px;
+    width:714px;
+    height:2px;
+    background:#202020;
+  }
+  .y-label{
+    width:42px;
+    text-align:right;
+    font-size:30px;
+    line-height:1;
+    font-weight:400;
+    color:#202020;
+    transform:scale(0.53);
+    transform-origin:left top;
+  }
+  .bar-value{
+    font-size:31px;
+    line-height:1;
+    font-weight:400;
+    color:#222;
+    text-align:center;
+    transform:scale(0.53);
+    transform-origin:left top;
+  }
+  .brand{
+    color:#111;
+    white-space:nowrap;
+    transform-origin:left top;
+  }
+  .callout{
+    left:193px;
+    top:193px;
+    width:272px;
+    height:125px;
+    background:#c7c7c7;
+    border-radius:20px;
+  }
+  .callout:after{
+    content:"";
+    position:absolute;
+    left:28px;
+    top:103px;
+    width:0;height:0;
+    border-left:17px solid transparent;
+    border-right:17px solid transparent;
+    border-top:50px solid #c7c7c7;
+    transform:rotate(18deg);
+  }
+  .callout-text{
+    left:200px;
+    top:199px;
+    width:240px;
+    font-size:17px;
+    line-height:1.08;
+    font-weight:400;
+    color:#111;
+  }
+  .callout-text .head{
+    font-size:18px;
+  }
+  .legend-box{
+    left:468px;
+    top:289px;
+    width:176px;
+    height:131px;
+    border:2px solid #202020;
+    background:#f2f2f2;
+  }
+  .legend-item{
+    font-size:14px;
+    line-height:1.12;
+    font-style:italic;
+    color:#222;
+  }
+  .key-title{
+    left:798px;
+    top:142px;
+    width:350px;
+    text-align:center;
+    font-size:23px;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:0.02em;
+    color:#111;
+  }
+  .key-rule{
+    left:836px;
+    top:169px;
+    width:342px;
+    height:2px;
+    background:#202020;
+  }
+  .bullets{
+    left:829px;
+    top:183px;
+    width:385px;
+    font-size:18px;
+    line-height:1.08;
+    font-weight:400;
+    color:#111;
+  }
+  .bullets p{ margin:0 0 7px 0; }
+  .quote{
+    left:827px;
+    top:544px;
+    width:385px;
+    font-size:17px;
+    line-height:1.12;
+    font-style:italic;
+    color:#222;
+  }
+  .quote .b{ font-weight:700; }
+  .quote-name{
+    left:968px;
+    top:668px;
+    width:260px;
+    text-align:left;
+    font-size:17px;
+    line-height:1.1;
+    font-weight:400;
+    color:#222;
+  }
+  .foot{
+    left:51px;
+    top:672px;
+    width:820px;
+    font-size:12px;
+    line-height:1.12;
+    font-weight:400;
+    color:#222;
+  }
+  .bottom-rule{
+    left:17px;
+    top:717px;
+    width:1245px;
+    height:1px;
+    background:#9b9b9b;
+  }
+  .conf{
+    left:27px;
+    top:726px;
+    width:820px;
+    font-size:9px;
+    line-height:1.1;
+    color:#333;
+    transform:scale(0.83);
+    transform-origin:left top;
+  }
+  .sha{
+    left:876px;
+    top:726px;
+    width:40px;
+    font-size:9px;
+    line-height:1.1;
+    color:#333;
+    transform:scale(0.83);
+    transform-origin:left top;
+  }
+  .bain{
+    left:928px;
+    top:726px;
+    width:260px;
+    font-size:9px;
+    line-height:1.1;
+    color:#333;
+    transform:scale(0.83);
+    transform-origin:left top;
+  }
+  .page{
+    left:1210px;
+    top:722px;
+    width:14px;
+    font-size:13px;
+    line-height:1;
+    color:#333;
+  }
+  .logo{
+    left:1237px;
+    top:721px;
+    width:20px;
+    height:20px;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">Brands continue to expand aggressively in 2010, however,<br>some slowing down evidenced in 2011</div>
+  <div class="redline"></div>
+
+  <div class="subtitle">Store Count of Selected Luxury Brand by end of September 2011</div>
+
+  <div class="axis-y"></div>
+  <div class="axis-x"></div>
+
+  <div class="y-label" style="left:49px; top:193px;">125</div>
+  <div class="y-label" style="left:49px; top:261px;">100</div>
+  <div class="y-label" style="left:58px; top:329px;">75</div>
+  <div class="y-label" style="left:58px; top:397px;">50</div>
+  <div class="y-label" style="left:58px; top:465px;">25</div>
+  <div class="y-label" style="left:68px; top:533px;">0</div>
+
+  <svg style="left:86px; top:208px; width:595px; height:352px;" viewBox="0 0 595 352">
+    <!-- BOSS -->
+    <rect x="4" y="160" width="24" height="192" fill="#bebebe"/>
+    <rect x="4" y="144" width="24" height="16" fill="#a8a8a8"/>
+    <rect x="4" y="128" width="24" height="16" fill="#8d8d8d"/>
+    <rect x="4" y="95" width="24" height="33" fill="#3a3a3a"/>
+    <rect x="4" y="31" width="24" height="64" fill="#0e6d9f"/>
+
+    <!-- ARMANI -->
+    <rect x="38" y="255" width="24" height="97" fill="#bebebe"/>
+    <rect x="38" y="150" width="24" height="105" fill="#8d8d8d"/>
+    <rect x="38" y="71" width="24" height="79" fill="#3a3a3a"/>
+    <rect x="38" y="44" width="24" height="27" fill="#0e6d9f"/>
+
+    <!-- dunhill -->
+    <rect x="72" y="228" width="24" height="124" fill="#bebebe"/>
+    <rect x="72" y="169" width="24" height="59" fill="#8d8d8d"/>
+    <rect x="72" y="86" width="24" height="83" fill="#3a3a3a"/>
+    <rect x="72" y="44" width="24" height="42" fill="#0e6d9f"/>
+
+    <!-- BALLY -->
+    <rect x="106" y="292" width="24" height="60" fill="#bebebe"/>
+    <rect x="106" y="244" width="24" height="48" fill="#8d8d8d"/>
+    <rect x="106" y="223" width="24" height="21" fill="#3a3a3a"/>
+    <rect x="106" y="213" width="24" height="10" fill="#0e6d9f"/>
+
+    <!-- Salvatore Ferragamo -->
+    <rect x="140" y="288" width="24" height="64" fill="#bebebe"/>
+    <rect x="140" y="258" width="24" height="30" fill="#8d8d8d"/>
+    <rect x="140" y="211" width="24" height="47" fill="#3a3a3a"/>
+
+    <!-- BURBERRY -->
+    <rect x="174" y="257" width="24" height="95" fill="#bebebe"/>
+    <rect x="174" y="228" width="24" height="29" fill="#8d8d8d"/>
+    <rect x="174" y="204" width="24" height="24" fill="#3a3a3a"/>
+    <rect x="174" y="194" width="24" height="10" fill="#0e6d9f"/>
+
+    <!-- Ermenegildo Zegna -->
+    <rect x="208" y="237" width="24" height="115" fill="#bebebe"/>
+    <rect x="208" y="196" width="24" height="41" fill="#8d8d8d"/>
+    <rect x="208" y="173" width="24" height="23" fill="#3a3a3a"/>
+    <rect x="208" y="148" width="24" height="25" fill="#0e6d9f"/>
+
+    <!-- COACH -->
+    <rect x="242" y="323" width="24" height="29" fill="#bebebe"/>
+    <rect x="242" y="301" width="24" height="22" fill="#8d8d8d"/>
+    <rect x="242" y="209" width="24" height="92" fill="#3a3a3a"/>
+    <rect x="242" y="144" width="24" height="65" fill="#0e6d9f"/>
+
+    <!-- GUCCI -->
+    <rect x="276" y="312" width="24" height="40" fill="#bebebe"/>
+    <rect x="276" y="289" width="24" height="23" fill="#8d8d8d"/>
+    <rect x="276" y="245" width="24" height="44" fill="#3a3a3a"/>
+    <rect x="276" y="221" width="24" height="24" fill="#0e6d9f"/>
+
+    <!-- Louis Vuitton -->
+    <rect x="310" y="275" width="24" height="77" fill="#bebebe"/>
+    <rect x="310" y="259" width="24" height="16" fill="#8d8d8d"/>
+    <rect x="310" y="246" width="24" height="13" fill="#3a3a3a"/>
+    <rect x="310" y="236" width="24" height="10" fill="#0e6d9f"/>
+
+    <!-- Cartier -->
+    <rect x="344" y="299" width="24" height="53" fill="#bebebe"/>
+    <rect x="344" y="283" width="24" height="16" fill="#8d8d8d"/>
+    <rect x="344" y="244" width="24" height="39" fill="#3a3a3a"/>
+    <rect x="344" y="239" width="24" height="5" fill="#0e6d9f"/>
+
+    <!-- Dior -->
+    <rect x="378" y="314" width="24" height="38" fill="#bebebe"/>
+    <rect x="378" y="298" width="24" height="16" fill="#8d8d8d"/>
+    <rect x="378" y="274" width="24" height="24" fill="#3a3a3a"/>
+
+    <!-- Versace -->
+    <rect x="412" y="329" width="24" height="23" fill="#bebebe"/>
+    <rect x="412" y="312" width="24" height="17" fill="#8d8d8d"/>
+    <rect x="412" y="303" width="24" height="9" fill="#3a3a3a"/>
+    <rect x="412" y="299" width="24" height="4" fill="#0e6d9f"/>
+
+    <!-- Bulgari -->
+    <rect x="446" y="323" width="24" height="29" fill="#bebebe"/>
+    <rect x="446" y="315" width="24" height="8" fill="#8d8d8d"/>
+    <rect x="446" y="308" width="24" height="7" fill="#3a3a3a"/>
+    <rect x="446" y="304" width="24" height="4" fill="#0e6d9f"/>
+
+    <!-- Hermes -->
+    <rect x="480" y="322" width="24" height="30" fill="#bebebe"/>
+    <rect x="480" y="314" width="24" height="8" fill="#8d8d8d"/>
+    <rect x="480" y="309" width="24" height="5" fill="#3a3a3a"/>
+    <rect x="480" y="305" width="24" height="4" fill="#0e6d9f"/>
+
+    <!-- Prada -->
+    <rect x="514" y="321" width="24" height="31" fill="#bebebe"/>
+    <rect x="514" y="312" width="24" height="9" fill="#8d8d8d"/>
+    <rect x="514" y="308" width="24" height="4" fill="#3a3a3a"/>
+    <rect x="514" y="298" width="24" height="10" fill="#0e6d9f"/>
+
+    <!-- Tiffany -->
+    <rect x="548" y="329" width="24" height="23" fill="#bebebe"/>
+    <rect x="548" y="322" width="24" height="7" fill="#8d8d8d"/>
+    <rect x="548" y="314" width="24" height="8" fill="#3a3a3a"/>
+    <rect x="548" y="307" width="24" height="7" fill="#0e6d9f"/>
+  </svg>
+
+  <svg style="left:654px; top:208px; width:70px; height:352px;" viewBox="0 0 70 352">
+    <!-- Chanel -->
+    <rect x="0" y="335" width="24" height="17" fill="#bebebe"/>
+    <rect x="0" y="331" width="24" height="4" fill="#8d8d8d"/>
+    <rect x="0" y="327" width="24" height="4" fill="#3a3a3a"/>
+    <rect x="0" y="323" width="24" height="4" fill="#0e6d9f"/>
+  </svg>
+
+  <div class="bar-value" style="left:85px; top:205px; width:40px;">114</div>
+  <div class="bar-value" style="left:119px; top:232px; width:40px;">104</div>
+  <div class="bar-value" style="left:153px; top:232px; width:40px;">104</div>
+  <div class="bar-value" style="left:188px; top:289px; width:30px;">69</div>
+  <div class="bar-value" style="left:222px; top:320px; width:30px;">57</div>
+  <div class="bar-value" style="left:256px; top:321px; width:30px;">56</div>
+  <div class="bar-value" style="left:290px; top:321px; width:30px;">56</div>
+  <div class="bar-value" style="left:324px; top:344px; width:30px;">52</div>
+  <div class="bar-value" style="left:358px; top:385px; width:30px;">45</div>
+  <div class="bar-value" style="left:392px; top:407px; width:30px;">38</div>
+  <div class="bar-value" style="left:426px; top:409px; width:30px;">37</div>
+  <div class="bar-value" style="left:460px; top:445px; width:30px;">30</div>
+  <div class="bar-value" style="left:494px; top:473px; width:30px;">20</div>
+  <div class="bar-value" style="left:528px; top:480px; width:30px;">19</div>
+  <div class="bar-value" style="left:562px; top:480px; width:30px;">19</div>
+  <div class="bar-value" style="left:596px; top:481px; width:30px;">18</div>
+  <div class="bar-value" style="left:630px; top:486px; width:30px;">16</div>
+  <div class="bar-value" style="left:662px; top:538px; width:22px;">7</div>
+
+  <div class="brand" style="left:60px; top:582px; transform:rotate(-41deg); font-size:17px; font-weight:700;">BOSS</div>
+  <div class="brand" style="left:91px; top:586px; transform:rotate(-41deg); font-size:17px; font-weight:400;">ARMANI</div>
+  <div class="brand" style="left:151px; top:592px; transform:rotate(-53deg); font-size:17px; font-weight:700;">dunhill</div>
+  <div class="brand" style="left:185px; top:598px; transform:rotate(-39deg); font-size:18px; font-weight:800; letter-spacing:0.03em;">BALLY</div>
+  <div class="brand" style="left:228px; top:620px; transform:rotate(-54deg); font-size:11px; font-style:italic;">Salvatore Ferragamo</div>
+  <div class="brand" style="left:270px; top:619px; transform:rotate(-41deg); font-size:14px; letter-spacing:0.06em;">BURBERRY</div>
+  <div class="brand" style="left:321px; top:637px; transform:rotate(-54deg); font-size:11px;">Ermenegildo Zegna</div>
+  <div class="brand" style="left:355px; top:627px; transform:rotate(-46deg); font-size:18px; letter-spacing:0.08em;">COACH</div>
+  <div class="brand" style="left:404px; top:629px; transform:rotate(-52deg); font-size:18px; letter-spacing:0.11em;">GUCCI</div>
+  <div class="brand" style="left:463px; top:626px; transform:rotate(-48deg); font-size:12px; font-weight:700;">Louis Vuitton</div>
+  <div class="brand" style="left:521px; top:628px; transform:rotate(-49deg); font-size:18px; font-style:italic;">Cartier*</div>
+  <div class="brand" style="left:592px; top:630px; transform:rotate(-51deg); font-size:17px; font-weight:700;">Dior</div>
+  <div class="brand" style="left:633px; top:644px; transform:rotate(-52deg); font-size:13px;">VERSACE</div>
+  <div class="brand" style="left:680px; top:648px; transform:rotate(-55deg); font-size:15px; letter-spacing:0.18em;">BULGARI*</div>
+  <div class="brand" style="left:743px; top:639px; transform:rotate(-45deg); font-size:16px; font-weight:700; letter-spacing:0.08em;">HERMES</div>
+  <div class="brand" style="left:802px; top:640px; transform:rotate(-61deg); font-size:15px; font-weight:700;">PRADA</div>
+  <div class="brand" style="left:865px; top:655px; transform:rotate(-58deg); font-size:12px;">TIFFANY&amp; CO</div>
+  <div class="brand" style="left:950px; top:648px; transform:rotate(-52deg); font-size:15px; font-weight:800; letter-spacing:0.06em;">CHANEL</div>
+
+  <div class="callout"></div>
+  <div class="callout-text">
+    <span class="head">• New stores opened for<br>select brands</span><br>
+    &nbsp;&nbsp;- 2009: ~<b>150</b><br>
+    &nbsp;&nbsp;- 2010: ~<b>160</b><br>
+    &nbsp;&nbsp;- 2011 (by end Sep): ~<b>90</b>
+  </div>
+
+  <div class="legend-box"></div>
+  <div style="left:476px; top:295px; width:12px; height:12px; background:#0e6d9f;"></div>
+  <div class="legend-item" style="left:493px; top:292px; width:132px;">Opened in 2011(by<br>end of Sep 2011)</div>
+  <div style="left:476px; top:334px; width:12px; height:12px; background:#3a3a3a;"></div>
+  <div class="legend-item" style="left:493px; top:333px; width:110px;">Opened in 2010</div>
+  <div style="left:476px; top:364px; width:12px; height:12px; background:#8d8d8d;"></div>
+  <div class="legend-item" style="left:493px; top:363px; width:110px;">Opened in 2009</div>
+  <div style="left:476px; top:392px; width:12px; height:12px; background:#a8a8a8;"></div>
+  <div class="legend-item" style="left:493px; top:391px; width:116px;">Opened in 2008</div>
+  <div style="left:476px; top:419px; width:12px; height:12px; background:#bebebe;"></div>
+  <div class="legend-item" style="left:493px; top:418px; width:128px;">Opened before 2008</div>
+
+  <div class="key-title">KEY DRIVERS</div>
+  <div class="key-rule"></div>
+
+  <div class="bullets">
+    <p>• <b>Some investment reduction<br>planned during 2008-2009 crisis</b></p>
+    <p>• Some brands are making <b>conscious<br>decisions to reduce the pace</b> of<br>expansion and focus more on store<br><b>performance improvement</b></p>
+    <p>• Despite high growth of commercial<br>real estate, brands are being <b>more<br>selective on top quality locations</b><br>with great infrastructure &amp;<br>management</p>
+    <p>• <b>Talent shortage</b> and <b>rising labor<br>cost</b> remain major hurdles for store<br>expansion, especially in tier 2/3<br>cities</p>
+  </div>
+
+  <div class="quote">“We are <span class="b">intentionally slowing down</span><br>
+  the expansion, because we have<br>
+  already established great awareness,<br>
+  and we will be <span class="b">very selective on</span><br>
+  <span class="b">locations</span> to open new stores.”</div>
+  <div class="quote-name">PR Director, Luxury brand</div>
+
+  <div class="foot">*Cartier and Bulgari store data excludes watch counters<br>
+  Note: Armani brand includes Giorgio Armani, Emporio Armani and Armani Collezioni; Dior brand includes Dior Ladies and Dior Homme<br>
+  Source: Analyst reports; Literature search; Brand interviews</div>
+
+  <div class="bottom-rule"></div>
+  <div class="conf">This information is confidential and was prepared by Bain &amp; Company solely for the use of our client; it is not to be relied on by any 3rd party without Bain's prior written consent</div>
+  <div class="sha">SHA</div>
+  <div class="bain">2011 Bain China Luxury Market Study_Media release_vf</div>
+  <div class="page">6</div>
+
+  <svg class="logo" viewBox="0 0 30 30">
+    <circle cx="15" cy="15" r="12" fill="none" stroke="#e00000" stroke-width="3"/>
+    <path d="M15 5 L15 15 L21 15" stroke="#e00000" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+</div>
+</body>
+</html>

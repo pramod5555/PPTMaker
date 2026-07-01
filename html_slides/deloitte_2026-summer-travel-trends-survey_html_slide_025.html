@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#f3f3f3;
+    font-family: Arial, Helvetica, 'Segoe UI', sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+  }
+  .title{
+    position:absolute;
+    left:47px;
+    top:44px;
+    width:1185px;
+    font-size:38px;
+    line-height:1.02;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-0.4px;
+    z-index:5;
+  }
+  .panel{
+    position:absolute;
+    left:46px;
+    top:145px;
+    width:1274px;
+    height:570px;
+    background:#ececec;
+    z-index:1;
+  }
+
+  .left-head{
+    position:absolute;
+    left:74px;
+    top:167px;
+    font-size:17px;
+    line-height:1.2;
+    font-weight:700;
+    color:#111;
+    z-index:2;
+  }
+  .left-sub{
+    position:absolute;
+    left:74px;
+    top:196px;
+    font-size:14px;
+    line-height:1.2;
+    font-style:italic;
+    color:#222;
+    z-index:2;
+  }
+
+  .table{
+    position:absolute;
+    left:76px;
+    top:252px;
+    width:378px;
+    height:334px;
+    color:#222;
+    z-index:2;
+  }
+  .table .header-year{
+    position:absolute;
+    top:0;
+    font-size:16px;
+    font-weight:700;
+    color:#111;
+  }
+  .table .y2025{ left:235px; width:52px; text-align:center; }
+  .table .y2026{ left:317px; width:52px; text-align:center; }
+  .table .topline{
+    position:absolute;
+    left:0;
+    top:28px;
+    width:378px;
+    height:1px;
+    background:#4e4e4e;
+  }
+  .row{
+    position:absolute;
+    left:0;
+    width:378px;
+    height:31px;
+    font-size:15px;
+    line-height:1.1;
+    font-weight:400;
+    color:#2a2a2a;
+  }
+  .row.tall{ height:47px; }
+  .row .label{
+    position:absolute;
+    left:10px;
+    top:7px;
+    width:205px;
+  }
+  .row .v1{
+    position:absolute;
+    left:241px;
+    top:7px;
+    width:45px;
+    text-align:center;
+  }
+  .row .v2{
+    position:absolute;
+    left:323px;
+    top:7px;
+    width:38px;
+    text-align:center;
+  }
+  .row .line{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:378px;
+    height:1px;
+    background:#b8b8b8;
+  }
+
+  .right-head{
+    position:absolute;
+    left:541px;
+    top:167px;
+    font-size:17px;
+    line-height:1.2;
+    font-weight:700;
+    color:#111;
+    z-index:2;
+  }
+
+  .legend{
+    position:absolute;
+    left:540px;
+    top:201px;
+    width:470px;
+    height:24px;
+    z-index:2;
+    font-size:15px;
+    color:#222;
+  }
+  .dot{
+    position:absolute;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    top:2px;
+  }
+  .legend-item{
+    position:absolute;
+    top:0;
+    height:20px;
+    font-size:15px;
+    line-height:20px;
+    font-weight:400;
+    color:#222;
+    white-space:nowrap;
+  }
+
+  .chart-wrap{
+    position:absolute;
+    left:589px;
+    top:250px;
+    width:716px;
+    height:356px;
+    z-index:2;
+  }
+
+  .small-note{
+    position:absolute;
+    left:76px;
+    top:657px;
+    width:845px;
+    font-size:11px;
+    line-height:1.25;
+    color:#333;
+    z-index:2;
+  }
+  .footer-left{
+    position:absolute;
+    left:47px;
+    top:728px;
+    transform:translateY(-100%);
+    font-size:12px;
+    line-height:1;
+    color:#4a4a4a;
+    z-index:2;
+  }
+  .footer-right{
+    position:absolute;
+    right:42px;
+    top:728px;
+    transform:translateY(-100%);
+    font-size:12px;
+    line-height:1;
+    color:#4a4a4a;
+    z-index:2;
+  }
+  .page{
+    position:absolute;
+    right:23px;
+    top:728px;
+    transform:translateY(-100%);
+    font-size:12px;
+    line-height:1;
+    color:#4a4a4a;
+    z-index:2;
+  }
+  svg text{
+    font-family: Arial, Helvetica, 'Segoe UI', sans-serif;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">Price sensitivity also declines in lodging, and as with air,<br>loyalty’s influence drops for higher-income travelers</div>
+
+  <div class="panel"></div>
+
+  <div class="left-head">Leading lodging selection factors</div>
+  <div class="left-sub">Top 3</div>
+
+  <div class="table">
+    <div class="header-year y2025">2025</div>
+    <div class="header-year y2026">2026</div>
+    <div class="topline"></div>
+
+    <div class="row" style="top:29px;">
+      <div class="label">Price</div><div class="v1">55%</div><div class="v2">52%</div><div class="line"></div>
+    </div>
+    <div class="row" style="top:60px;">
+      <div class="label">Safety</div><div class="v1">33%</div><div class="v2">33%</div><div class="line"></div>
+    </div>
+    <div class="row" style="top:91px;">
+      <div class="label">Access to activities</div><div class="v1">31%</div><div class="v2">31%</div><div class="line"></div>
+    </div>
+    <div class="row" style="top:122px;">
+      <div class="label">Access to a beach or pool</div><div class="v1">24%</div><div class="v2">22%</div><div class="line"></div>
+    </div>
+    <div class="row tall" style="top:153px;">
+      <div class="label">Proximity to restaurants<br>and nightlife</div><div class="v1">22%</div><div class="v2">21%</div><div class="line"></div>
+    </div>
+    <div class="row" style="top:200px;">
+      <div class="label">Size or number of rooms</div><div class="v1">24%</div><div class="v2">21%</div><div class="line"></div>
+    </div>
+    <div class="row" style="top:231px;">
+      <div class="label">Loyalty memberships</div><div class="v1">21%</div><div class="v2">20%</div><div class="line"></div>
+    </div>
+    <div class="row" style="top:262px;">
+      <div class="label">Privacy</div><div class="v1">20%</div><div class="v2">19%</div><div class="line"></div>
+    </div>
+    <div class="row" style="top:293px;">
+      <div class="label">Customer service</div><div class="v1">18%</div><div class="v2">17%</div><div class="line"></div>
+    </div>
+  </div>
+
+  <div class="right-head">Leading hotel selection factors, by income</div>
+
+  <div class="legend">
+    <div class="dot" style="left:0;background:#cfcfcf;"></div>
+    <div class="legend-item" style="left:21px;">Under $100K</div>
+    <div class="dot" style="left:160px;background:#a6a6a6;"></div>
+    <div class="legend-item" style="left:181px;">$100K to $199K</div>
+    <div class="dot" style="left:336px;background:#000;"></div>
+    <div class="legend-item" style="left:357px;">Over $200K</div>
+  </div>
+
+  <div class="chart-wrap">
+    <svg width="716" height="396" viewBox="0 0 716 396" xmlns="http://www.w3.org/2000/svg">
+      <!-- gridlines -->
+      <line x1="89" y1="1" x2="716" y2="1" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="89" y1="46" x2="716" y2="46" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="89" y1="91" x2="716" y2="91" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="89" y1="136" x2="716" y2="136" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="89" y1="181" x2="716" y2="181" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="89" y1="226" x2="716" y2="226" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="89" y1="271" x2="716" y2="271" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="89" y1="316" x2="716" y2="316" stroke="#d0d0d0" stroke-width="1"/>
+
+      <!-- y labels -->
+      <text x="-48" y="6" font-size="16" fill="#333">70%</text>
+      <text x="-48" y="51" font-size="16" fill="#333">60%</text>
+      <text x="-48" y="96" font-size="16" fill="#333">50%</text>
+      <text x="-48" y="141" font-size="16" fill="#333">40%</text>
+      <text x="-48" y="186" font-size="16" fill="#333">30%</text>
+      <text x="-48" y="231" font-size="16" fill="#333">20%</text>
+      <text x="-48" y="276" font-size="16" fill="#333">10%</text>
+      <text x="-37" y="321" font-size="16" fill="#333">0%</text>
+
+      <!-- axis baseline -->
+      <line x1="89" y1="316" x2="716" y2="316" stroke="#d0d0d0" stroke-width="1"/>
+
+      <!-- ticks -->
+      <line x1="89" y1="316" x2="89" y2="321" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="178" y1="316" x2="178" y2="321" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="267" y1="316" x2="267" y2="321" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="356" y1="316" x2="356" y2="321" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="445" y1="316" x2="445" y2="321" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="534" y1="316" x2="534" y2="321" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="623" y1="316" x2="623" y2="321" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="712" y1="316" x2="712" y2="321" stroke="#d0d0d0" stroke-width="1"/>
+
+      <!-- data lines -->
+      <polyline fill="none" stroke="#cfcfcf" stroke-width="3"
+        points="45,58 134,159 223,181 312,227 401,232 490,221 579,223 668,239"/>
+      <polyline fill="none" stroke="#a6a6a6" stroke-width="3"
+        points="45,102 134,169 223,179 312,225 401,226 490,228 579,238 668,218"/>
+      <polyline fill="none" stroke="#000" stroke-width="3"
+        points="45,112 134,168 223,165 312,223 401,225 490,245 579,196 668,239"/>
+
+      <!-- x labels -->
+      <text x="26" y="365" font-size="16" font-weight="700" fill="#222">Price</text>
+      <text x="109" y="365" font-size="16" font-weight="700" fill="#222">Safety</text>
+
+      <text x="191" y="355" font-size="16" font-weight="700" fill="#222">Access to</text>
+      <text x="191" y="373" font-size="16" font-weight="700" fill="#222">activities</text>
+
+      <text x="273" y="349" font-size="16" font-weight="700" fill="#222">Access to</text>
+      <text x="275" y="367" font-size="16" font-weight="700" fill="#222">a beach</text>
+      <text x="286" y="385" font-size="16" font-weight="700" fill="#222">or pool</text>
+
+      <text x="357" y="349" font-size="16" font-weight="700" fill="#222">Proximity to</text>
+      <text x="356" y="367" font-size="16" font-weight="700" fill="#222">restaurants</text>
+      <text x="358" y="385" font-size="16" font-weight="700" fill="#222">and nightlife</text>
+
+      <text x="490" y="349" font-size="16" font-weight="700" fill="#222">Size or</text>
+      <text x="471" y="367" font-size="16" font-weight="700" fill="#222">number</text>
+      <text x="476" y="385" font-size="16" font-weight="700" fill="#222">of rooms</text>
+
+      <text x="573" y="355" font-size="16" font-weight="700" fill="#222">Loyalty</text>
+      <text x="555" y="373" font-size="16" font-weight="700" fill="#222">memberships</text>
+
+      <text x="655" y="365" font-size="16" font-weight="700" fill="#222">Privacy</text>
+    </svg>
+  </div>
+
+  <div class="small-note">Note: Question: “Which of the following factors are most important to your lodging selection for this trip?” (Please rank your top 3 considerations) (n = 1,563).<br>Source: 2026 Deloitte Summer Travel Survey.</div>
+
+  <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+  <div class="footer-right">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="page">25</div>
+</div>
+</body>
+</html>

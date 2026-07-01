@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#cfcfd4;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d9d9de;
+    margin:0 auto;
+  }
+
+  .vlabel{
+    position:absolute;
+    left:10px;
+    top:392px;
+    color:#333338;
+    font-size:13px;
+    letter-spacing:0.08em;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    z-index:20;
+  }
+  .vline{
+    position:absolute;
+    left:14px;
+    top:378px;
+    width:1px;
+    height:38px;
+    background:#55575d;
+    z-index:20;
+  }
+
+  .intro{
+    position:absolute;
+    left:77px;
+    top:80px;
+    width:322px;
+    color:#4c4d55;
+    font-size:13px;
+    line-height:1.42;
+    font-weight:400;
+    z-index:10;
+  }
+
+  .title{
+    position:absolute;
+    left:481px;
+    top:82px;
+    width:700px;
+    color:#3d3d43;
+    font-size:12px;
+    line-height:1.2;
+    font-weight:700;
+    z-index:10;
+  }
+
+  .jump{
+    position:absolute;
+    right:30px;
+    top:29px;
+    width:42px;
+    height:42px;
+    border:1px solid #6f7178;
+    border-radius:50%;
+    background:transparent;
+    z-index:20;
+  }
+  .jump::before{
+    content:"";
+    position:absolute;
+    left:7px;
+    top:-1px;
+    width:12px;
+    height:12px;
+    background:#d9d9de;
+    border-radius:50%;
+  }
+  .jump::after{
+    content:"";
+    position:absolute;
+    right:2px;
+    top:2px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#edd22d;
+  }
+  .jumptext{
+    position:absolute;
+    right:27px;
+    top:36px;
+    width:48px;
+    color:#3d3e44;
+    font-size:9px;
+    line-height:1.05;
+    text-align:center;
+    z-index:21;
+  }
+
+  .callout-frame{
+    position:absolute;
+    left:77px;
+    top:252px;
+    width:216px;
+    height:279px;
+    border:1px solid #b9bac2;
+    box-sizing:border-box;
+    z-index:5;
+  }
+  .callout-topline{
+    position:absolute;
+    left:77px;
+    top:252px;
+    width:187px;
+    height:1px;
+    background:#b9bac2;
+    z-index:6;
+  }
+  .callout-topdot{
+    position:absolute;
+    left:261px;
+    top:249px;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#b9bac2;
+    z-index:7;
+  }
+  .callout-rightline{
+    position:absolute;
+    left:292px;
+    top:312px;
+    width:1px;
+    height:219px;
+    background:#b9bac2;
+    z-index:6;
+  }
+  .callout-rightdot{
+    position:absolute;
+    left:289px;
+    top:309px;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#b9bac2;
+    z-index:7;
+  }
+
+  .quote{
+    position:absolute;
+    left:104px;
+    top:286px;
+    color:#f0cf17;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:42px;
+    line-height:1;
+    z-index:10;
+  }
+  .callout-text{
+    position:absolute;
+    left:106px;
+    top:309px;
+    width:150px;
+    color:#2f3036;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:17px;
+    line-height:1.28;
+    z-index:10;
+  }
+
+  .chart-area{
+    position:absolute;
+    left:481px;
+    top:119px;
+    width:645px;
+    height:410px;
+    z-index:10;
+  }
+  .label{
+    position:absolute;
+    left:0;
+    width:462px;
+    color:#575860;
+    font-size:12px;
+    line-height:1.23;
+    text-align:right;
+    font-weight:400;
+  }
+  .barbox{
+    position:absolute;
+    left:477px;
+    width:169px;
+    height:28px;
+    border:1px solid #a8a9b1;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:26px;
+    background:#b14792;
+  }
+  .pct{
+    position:absolute;
+    top:6px;
+    right:6px;
+    width:34px;
+    color:#575860;
+    font-size:12px;
+    line-height:1;
+    text-align:right;
+    font-weight:400;
+  }
+
+  .photo{
+    position:absolute;
+    left:31px;
+    top:570px;
+    width:1249px;
+    height:167px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 27% 73%, rgba(253,103,223,0.95) 0%, rgba(191,72,220,0.78) 10%, rgba(0,0,0,0) 28%),
+      radial-gradient(ellipse at 35% 76%, rgba(255,212,98,0.95) 0%, rgba(255,212,98,0) 10%),
+      radial-gradient(ellipse at 41% 75%, rgba(85,214,255,0.95) 0%, rgba(85,214,255,0) 19%),
+      radial-gradient(ellipse at 30% 82%, rgba(255,206,115,0.75) 0%, rgba(255,206,115,0) 8%),
+      radial-gradient(ellipse at 6% 22%, rgba(179,93,78,0.35) 0%, rgba(179,93,78,0) 20%),
+      radial-gradient(ellipse at 38% 12%, rgba(40,131,255,0.75) 0%, rgba(40,131,255,0) 18%),
+      radial-gradient(ellipse at 17% 30%, rgba(242,55,217,0.35) 0%, rgba(242,55,217,0) 18%),
+      linear-gradient(90deg, #3f2725 0%, #090f2f 14%, #0d2f7b 32%, #10052f 56%, #150112 78%, #07070d 100%);
+    z-index:1;
+  }
+  .device{
+    position:absolute;
+    left:55px;
+    top:631px;
+    width:590px;
+    height:31px;
+    background:#11151d;
+    border-radius:4px;
+    transform:rotate(6deg);
+    z-index:3;
+    box-shadow:0 2px 10px rgba(0,0,0,0.45);
+  }
+  .device-screen{
+    position:absolute;
+    left:71px;
+    top:638px;
+    width:545px;
+    height:18px;
+    background:
+      radial-gradient(circle at 45% 40%, rgba(255,205,102,0.9) 0%, rgba(255,205,102,0) 10%),
+      radial-gradient(circle at 40% 48%, rgba(255,90,215,0.92) 0%, rgba(255,90,215,0) 17%),
+      radial-gradient(circle at 54% 55%, rgba(107,215,255,0.9) 0%, rgba(107,215,255,0) 16%),
+      linear-gradient(90deg, rgba(34,11,59,0.95), rgba(167,42,190,0.6) 40%, rgba(52,146,255,0.65) 100%);
+    transform:rotate(6deg);
+    z-index:4;
+  }
+
+  .finger1{
+    position:absolute;
+    left:573px;
+    top:589px;
+    width:318px;
+    height:66px;
+    background:linear-gradient(90deg, rgba(74,22,45,0.96), rgba(122,48,72,0.97) 45%, rgba(68,15,36,0.98) 100%);
+    border-radius:38px;
+    transform:rotate(-16deg);
+    z-index:6;
+    opacity:0.98;
+  }
+  .fingerTip{
+    position:absolute;
+    left:818px;
+    top:616px;
+    width:92px;
+    height:42px;
+    background:linear-gradient(90deg, rgba(104,39,60,0.98), rgba(65,18,38,0.98));
+    border-radius:26px;
+    transform:rotate(-14deg);
+    z-index:7;
+  }
+  .hand{
+    position:absolute;
+    left:840px;
+    top:559px;
+    width:405px;
+    height:120px;
+    background:linear-gradient(90deg, rgba(42,10,22,0.97), rgba(18,4,12,0.98) 100%);
+    border-radius:70px;
+    transform:rotate(18deg);
+    z-index:5;
+    opacity:0.98;
+  }
+
+  .dot{
+    position:absolute;
+    border-radius:50%;
+    z-index:4;
+  }
+
+  .page{
+    position:absolute;
+    left:50px;
+    bottom:14px;
+    color:#f1f1f4;
+    font-size:11px;
+    line-height:1;
+    font-weight:400;
+    z-index:10;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="vline"></div>
+  <div class="vlabel">CHAPTER 5</div>
+
+  <div class="intro">
+    As AI tools meet basic analytical needs and handle more<br>
+    routine tasks relative to traditional risks, risk management<br>
+    teams will shift from today’s pyramids (with more workers<br>
+    in junior roles) to tomorrow’s diamond shapes (with more<br>
+    senior-level specialists). Half of European CROs expect to see<br>
+    the shift to a diamond-shaped structure, and 81% of Latin<br>
+    American CROs expect to see a reduction in manual roles.
+  </div>
+
+  <div class="title">
+    Figure 24: <span style="font-weight:400;">Expected impact of AI on the size and composition of risk management workforce in next three years</span>
+  </div>
+
+  <div class="jump"></div>
+  <div class="jumptext">Jump to<br>contents &gt;</div>
+
+  <div class="callout-frame"></div>
+  <div class="callout-topline"></div>
+  <div class="callout-topdot"></div>
+  <div class="callout-rightline"></div>
+  <div class="callout-rightdot"></div>
+  <div class="quote">“</div>
+  <div class="callout-text">
+    What CROs say:<br><br>
+    AI use cases are being<br>
+    adopted, and long-term<br>
+    efficiency gains will be<br>
+    available, but it requires an<br>
+    uptick in initial headcount<br>
+    to support the build of those<br>
+    long-term capabilities.<br><br>
+    AI is going to be a skill to<br>
+    learn, like spreadsheets.
+  </div>
+
+  <div class="chart-area">
+    <div class="label" style="top:8px;">
+      Stable workforce size with enhanced productivity (e.g., AI boosts efficiency<br>
+      without significantly altering headcount due to redeploying of staff to strategic roles)
+    </div>
+    <div class="barbox" style="top:8px;">
+      <div class="fill" style="width:93px;"></div>
+      <div class="pct">56%</div>
+    </div>
+
+    <div class="label" style="top:69px;">
+      Shift to hire specialized expertise as greater needs for specialists in areas like cyber, climate,<br>
+      quantum and AI governance arise (e.g., due to leveraging AI tools to manage more traditional risks)
+    </div>
+    <div class="barbox" style="top:69px;">
+      <div class="fill" style="width:85px;"></div>
+      <div class="pct">51%</div>
+    </div>
+
+    <div class="label" style="top:130px;">
+      Shift to a diamond-shaped resource structure vs. traditional pyramid-shaped<br>
+      (e.g., due to use of AI for basic analytical needs)
+    </div>
+    <div class="barbox" style="top:130px;">
+      <div class="fill" style="width:52px;"></div>
+      <div class="pct">31%</div>
+    </div>
+
+    <div class="label" style="top:195px;">
+      Impact still under evaluation
+    </div>
+    <div class="barbox" style="top:191px;">
+      <div class="fill" style="width:47px;"></div>
+      <div class="pct">28%</div>
+    </div>
+
+    <div class="label" style="top:252px;">
+      Significant headcount reduction (e.g., due to AI automating<br>
+      repetitive tasks such as data collection, reporting)
+    </div>
+    <div class="barbox" style="top:252px;">
+      <div class="fill" style="width:27px;"></div>
+      <div class="pct">16%</div>
+    </div>
+
+    <div class="label" style="top:314px;">
+      Shift to smaller, specialized tech-savvy teams<br>
+      (e.g., due to AI enabling more efficient operations)
+    </div>
+    <div class="barbox" style="top:313px;">
+      <div class="fill" style="width:25px;"></div>
+      <div class="pct">15%</div>
+    </div>
+
+    <div class="label" style="top:377px;">
+      No significant changes expected
+    </div>
+    <div class="barbox" style="top:374px;">
+      <div class="fill" style="width:7px;"></div>
+      <div class="pct">4%</div>
+    </div>
+  </div>
+
+  <div class="photo"></div>
+  <div class="device"></div>
+  <div class="device-screen"></div>
+  <div class="hand"></div>
+  <div class="finger1"></div>
+  <div class="fingerTip"></div>
+
+  <div class="dot" style="left:292px; top:680px; width:3px; height:3px; background:#f7d0ff;"></div>
+  <div class="dot" style="left:306px; top:684px; width:3px; height:3px; background:#f1a4ff;"></div>
+  <div class="dot" style="left:320px; top:687px; width:5px; height:5px; background:#ffd561;"></div>
+  <div class="dot" style="left:336px; top:691px; width:4px; height:4px; background:#ff6cd8;"></div>
+  <div class="dot" style="left:349px; top:683px; width:3px; height:3px; background:#69b7ff;"></div>
+  <div class="dot" style="left:365px; top:688px; width:4px; height:4px; background:#ffb7e7;"></div>
+  <div class="dot" style="left:383px; top:685px; width:3px; height:3px; background:#fff1b2;"></div>
+  <div class="dot" style="left:403px; top:689px; width:5px; height:5px; background:#ff66cf;"></div>
+  <div class="dot" style="left:424px; top:694px; width:4px; height:4px; background:#81d4ff;"></div>
+  <div class="dot" style="left:446px; top:699px; width:4px; height:4px; background:#ffda72;"></div>
+  <div class="dot" style="left:464px; top:693px; width:3px; height:3px; background:#f3b0ff;"></div>
+  <div class="dot" style="left:485px; top:697px; width:4px; height:4px; background:#ffe38d;"></div>
+  <div class="dot" style="left:510px; top:701px; width:3px; height:3px; background:#ff89ea;"></div>
+  <div class="dot" style="left:533px; top:705px; width:5px; height:5px; background:#9ed6ff;"></div>
+  <div class="dot" style="left:556px; top:697px; width:4px; height:4px; background:#ffd454;"></div>
+  <div class="dot" style="left:577px; top:701px; width:3px; height:3px; background:#f7ccff;"></div>
+
+  <div class="page">30</div>
+</div>
+</body>
+</html>

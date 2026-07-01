@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>The Big Picture</title>
+<style>
+  body{
+    margin:0;
+    background:#ececec;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+    color:#222;
+    margin:0 auto;
+  }
+
+  .top-left{
+    position:absolute;
+    left:60px;
+    top:36px;
+    font-size:15px;
+    color:#5d5d5d;
+    letter-spacing:-0.1px;
+    white-space:nowrap;
+  }
+  .top-left .accent{ color:#8a39df; }
+
+  .top-right{
+    position:absolute;
+    right:40px;
+    top:36px;
+    font-size:13px;
+    color:#333;
+    white-space:nowrap;
+  }
+  .top-right .num{
+    display:inline-block;
+    margin-left:18px;
+  }
+
+  .art{
+    position:absolute;
+    left:58px;
+    top:63px;
+    width:464px;
+    height:641px;
+    background:
+      radial-gradient(circle at 40% 18%, rgba(222,101,255,0.45) 0%, rgba(173,20,245,0.15) 28%, rgba(126,0,201,0) 48%),
+      linear-gradient(180deg, #b300ff 0%, #7b1fbf 52%, #b100ff 100%);
+    overflow:hidden;
+  }
+  .art .c1{
+    position:absolute;
+    left:-58px;
+    top:54px;
+    width:385px;
+    height:385px;
+    border-radius:50%;
+    background:radial-gradient(circle at 50% 45%, rgba(198,76,255,0.95) 0%, rgba(135,0,214,0.95) 54%, rgba(108,0,177,0.98) 100%);
+    opacity:0.9;
+  }
+  .art .c2{
+    position:absolute;
+    left:25px;
+    top:189px;
+    width:307px;
+    height:307px;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 28% 54%, rgba(170,0,255,0.0) 0 24%, rgba(113,0,189,0.8) 25%, rgba(76,0,141,0.92) 58%, rgba(98,23,166,0.98) 100%);
+    box-shadow:
+      inset 0 0 0 4px rgba(74,0,120,0.18),
+      0 0 0 2px rgba(82,0,135,0.18);
+  }
+  .art .c2:before{
+    content:"";
+    position:absolute;
+    left:-48px;
+    top:24px;
+    width:184px;
+    height:184px;
+    border-radius:50%;
+    background:radial-gradient(circle at 56% 52%, rgba(187,51,255,0.95) 0%, rgba(132,17,216,0.78) 40%, rgba(86,0,137,0.0) 72%);
+    clip-path:path("M 92 0 A 92 92 0 1 1 91.9 0 L 122 34 A 54 54 0 1 0 122.1 150 Z");
+    opacity:0.9;
+  }
+  .art .c2:after{
+    content:"";
+    position:absolute;
+    left:121px;
+    top:203px;
+    width:121px;
+    height:121px;
+    border-radius:50%;
+    background:radial-gradient(circle at 54% 46%, rgba(195,58,255,0.95) 0%, rgba(145,22,228,0.78) 44%, rgba(91,0,146,0) 75%);
+    clip-path:path("M 60 0 A 60 60 0 1 1 59.9 0 L 85 20 A 34 34 0 1 0 85.1 100 Z");
+    opacity:0.95;
+  }
+  .art .c3{
+    position:absolute;
+    right:-175px;
+    top:-13px;
+    width:373px;
+    height:645px;
+    border-radius:50%;
+    background:linear-gradient(180deg, #53128b 0%, #4c1181 38%, #6619a5 100%);
+    opacity:0.92;
+  }
+  .art .shade{
+    position:absolute;
+    left:-93px;
+    top:180px;
+    width:185px;
+    height:337px;
+    border-radius:50%;
+    background:rgba(78,15,131,0.55);
+  }
+
+  .title{
+    position:absolute;
+    left:692px;
+    top:158px;
+    width:170px;
+    font-size:56px;
+    line-height:0.95;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-1.2px;
+  }
+
+  .col-left{
+    position:absolute;
+    left:693px;
+    top:291px;
+    width:292px;
+    font-size:13px;
+    line-height:1.22;
+    color:#333;
+  }
+  .col-left p{
+    margin:0 0 15px 0;
+  }
+  .col-left .lead{
+    font-weight:700;
+  }
+
+  .col-right{
+    position:absolute;
+    left:1007px;
+    top:163px;
+    width:245px;
+    font-size:13px;
+    line-height:1.22;
+    color:#333;
+  }
+  .col-right p{
+    margin:0 0 17px 0;
+  }
+
+  .chev{
+    position:absolute;
+    left:58px;
+    bottom:19px;
+    font-size:52px;
+    line-height:1;
+    color:#9c00f8;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+    <div class="top-right">The Binary Big Bang <span class="num">11</span></div>
+
+    <div class="art">
+      <div class="c1"></div>
+      <div class="c2"></div>
+      <div class="c3"></div>
+      <div class="shade"></div>
+    </div>
+
+    <div class="title">The Big<br>Picture</div>
+
+    <div class="col-left">
+      <p class="lead">In September 2024, Marc Benioff announced that Salesforce would “hard pivot” to Agentforce, a platform for building and deploying autonomous AI agents.27 It’s rare for a company of such scale to pivot like this. But Salesforce realized something groundbreaking and formidable that every company needs to recognize too:</p>
+      <p>We have just entered the Binary Big Bang.</p>
+      <p>It’s a generation-defining moment, and specifically, a moment of transition. When foundation models first emerged, they cracked the language barrier between people and technology. And while these natural language capabilities are well known—driving today’s innovations in AI chatbots, summarization and synthesization, creative generators, and, perhaps most consequentially, coding assistants and agentic workflows—their full breadth of impact is poised to go much deeper.</p>
+      <p>These AI models have the potential to do more than deliver automation on top of existing business processes; they’ll soon be creating new processes, workflows, and software. This is a groundbreaking</p>
+    </div>
+
+    <div class="col-right">
+      <p>shift in technology’s building blocks. Where software has long been a tool for enterprises to create new capabilities and outcomes, AI will multiply the output, pushing limits on who can develop it and how it can be used. It’s why we call it the Binary Big Bang. A new technology paradigm is on the rise—defined by abundance, abstraction, and autonomy—and it’s about to drive a massive expansion of businesses’ digital footprints.</p>
+      <p>Enterprises will soon operate in a technology landscape where new digital concepts come to life in hours instead of weeks. Where they can end one-size-fits-all digital solutions, as the drastically faster rate of creating digital systems and connecting them together enables a level of personalization never before possible. It will be a new era of customizable technology where unbridled digital experimentation and innovation will become not only possible, but a key feature of business growth strategies.</p>
+      <p>This is the future we started moving towards the moment AI broke the language barrier—but we’re not there yet. First, there’s a moment of transition that leaders need to use to set themselves up for tomorrow’s paradigm and their next decade of digital growth. And that’s where we are today. It’s why companies like Salesforce—which defined SaaS and introduced software standardization—are now taking such substantial action. With Agentforce, they’re leaning into tomorrow, letting every company create their own, unique, personalized</p>
+    </div>
+
+    <div class="chev">&gt;</div>
+  </div>
+</body>
+</html>

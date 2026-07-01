@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EY Services related to CBAM</title>
+<style>
+  body{
+    margin:0;
+    background:#e6e6e6;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1086px;
+    height:768px;
+    overflow:hidden;
+    background:#e6e6e6;
+    color:#4d4d4d;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .top-left-band{
+    left:0;
+    top:0;
+    width:47px;
+    height:79px;
+    background:#bbbcc4;
+  }
+  .top-title{
+    left:56px;
+    top:50px;
+    font-size:32px;
+    line-height:1;
+    color:#7d7d88;
+    font-weight:400;
+    transform:scale(0.5);
+    transform-origin:left top;
+    white-space:nowrap;
+  }
+  .top-rule{
+    left:0;
+    top:78px;
+    width:1086px;
+    height:1px;
+    background:#bfc0c5;
+  }
+  .nav-circle{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#c9c9d1;
+    color:#454552;
+    font-size:22px;
+    line-height:35px;
+    text-align:center;
+    font-weight:700;
+  }
+  .yellow-header{
+    left:56px;
+    top:120px;
+    width:780px;
+    height:30px;
+    background:#f5df00;
+  }
+  .yellow-header-text{
+    left:63px;
+    top:126px;
+    font-size:16px;
+    line-height:1;
+    color:#222;
+    font-weight:700;
+  }
+  .main-grid{
+    left:56px;
+    top:151px;
+    width:780px;
+    height:560px;
+  }
+  .col{
+    top:0;
+    height:560px;
+    border-left:1px solid #c9c9c9;
+  }
+  .first{ border-left:none; }
+  .h-rule{
+    height:2px;
+    background:#e4c700;
+  }
+  .mid-rule{
+    height:1px;
+    background:#b9b9b9;
+  }
+  .section-title{
+    font-size:12px;
+    line-height:14px;
+    font-weight:700;
+    color:#333;
+  }
+  .bullet{
+    font-size:11px;
+    line-height:11px;
+    color:#e9cb00;
+    font-weight:700;
+  }
+  .bullet-text{
+    font-size:11px;
+    line-height:15px;
+    color:#555;
+    font-weight:400;
+  }
+  .subbullet{
+    font-size:9px;
+    line-height:9px;
+    color:#e9cb00;
+    font-weight:700;
+  }
+  .footer-rule{
+    left:56px;
+    top:710px;
+    width:780px;
+    height:1px;
+    background:#b9b9b9;
+  }
+  .footer-text{
+    left:56px;
+    top:729px;
+    font-size:9px;
+    line-height:10px;
+    color:#767676;
+    white-space:nowrap;
+  }
+  .footer-text b{ font-weight:700; }
+
+  .right-photo{
+    left:851px;
+    top:79px;
+    width:235px;
+    height:387px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 18% 13%, rgba(235,235,235,0.95) 0 13%, rgba(210,210,210,0.6) 18%, rgba(0,0,0,0) 32%),
+      radial-gradient(circle at 40% 10%, rgba(235,235,235,0.95) 0 14%, rgba(210,210,210,0.58) 20%, rgba(0,0,0,0) 34%),
+      radial-gradient(circle at 66% 14%, rgba(235,235,235,0.93) 0 12%, rgba(210,210,210,0.52) 19%, rgba(0,0,0,0) 32%),
+      radial-gradient(circle at 86% 17%, rgba(235,235,235,0.88) 0 10%, rgba(210,210,210,0.45) 16%, rgba(0,0,0,0) 28%),
+      linear-gradient(180deg,#101927 0%, #1f2631 24%, #5a5652 54%, #2f2c2a 74%, #111512 100%);
+  }
+  .stack{
+    position:absolute;
+    bottom:18px;
+    background:#c0af95;
+    border-left:2px solid #2f2c30;
+    border-right:2px solid #2f2c30;
+    border-top-left-radius:50% 8%;
+    border-top-right-radius:50% 8%;
+    border-bottom-left-radius:45% 4%;
+    border-bottom-right-radius:45% 4%;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);
+  }
+  .stack:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:3px;
+    background:repeating-linear-gradient(90deg,#ce3b31 0 5px,#f4f4f4 5px 9px);
+  }
+  .water{
+    left:851px;
+    top:428px;
+    width:235px;
+    height:38px;
+    background:linear-gradient(180deg,#24342d 0%, #121914 100%);
+  }
+
+  .right-menu{
+    left:1008px;
+    top:120px;
+    width:78px;
+    height:286px;
+  }
+  .menu-item{
+    left:0;
+    width:78px;
+    background:#3d3f4d;
+    color:#ececf0;
+    border-left:2px solid #e9db00;
+    padding-left:6px;
+    display:flex;
+    align-items:center;
+    font-size:11px;
+    line-height:13px;
+  }
+
+  .contact-box{
+    left:851px;
+    top:466px;
+    width:235px;
+    height:192px;
+    background:#efefef;
+    border:1px solid #c8c8c8;
+  }
+  .contact-yellow{
+    left:851px;
+    top:466px;
+    width:235px;
+    height:53px;
+    background:#f5df00;
+  }
+  .contact-yellow-text{
+    left:862px;
+    top:478px;
+    font-size:12px;
+    line-height:15px;
+    color:#222;
+    font-weight:700;
+  }
+  .contact-text{
+    font-size:12px;
+    line-height:18px;
+    color:#4d4d4d;
+  }
+  .contact-name{
+    font-weight:700;
+    color:#333;
+  }
+  .contact-link{
+    color:#0b58b4;
+    font-weight:700;
+  }
+  .back-circle{
+    left:851px;
+    top:678px;
+    width:33px;
+    height:33px;
+    border-radius:50%;
+    background:#c9c9d1;
+    color:#454552;
+    font-size:22px;
+    line-height:33px;
+    text-align:center;
+    font-weight:700;
+  }
+  .back-text{
+    left:889px;
+    top:696px;
+    font-size:11px;
+    line-height:12px;
+    color:#4a4a4a;
+    font-weight:700;
+  }
+  .back-rule{
+    left:889px;
+    top:710px;
+    width:107px;
+    height:1px;
+    background:#b9b9b9;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-left-band"></div>
+  <div class="top-title">Insights: Europe, Middle East, India and Africa</div>
+  <div class="top-rule"></div>
+
+  <div class="nav-circle" style="left:951px; top:34px;">◀</div>
+  <div class="nav-circle" style="left:994px; top:34px;">▶</div>
+
+  <div class="yellow-header"></div>
+  <div class="yellow-header-text">EY Services related to CBAM</div>
+
+  <div class="main-grid">
+    <div class="col first" style="left:0; width:193px;">
+      <div class="section-title" style="left:7px; top:5px;">Customs advisory</div>
+      <div class="h-rule" style="left:0; top:27px; width:193px;"></div>
+
+      <div class="bullet" style="left:8px; top:38px;">▪</div>
+      <div class="bullet-text" style="left:24px; top:34px; width:154px;">Technical customs advisory<br>(statements, workshops,<br>help-desk, etc.)</div>
+
+      <div class="bullet" style="left:8px; top:93px;">▪</div>
+      <div class="bullet-text" style="left:24px; top:89px; width:156px;">Customs classification,<br>origin, trade data (incl.<br>EY outsourcing services)</div>
+
+      <div class="bullet" style="left:8px; top:148px;">▪</div>
+      <div class="bullet-text" style="left:24px; top:144px; width:158px;">Special customs procedures<br>to optimize customs duty<br>and CBAM burden</div>
+
+      <div class="bullet" style="left:8px; top:203px;">▪</div>
+      <div class="bullet-text" style="left:24px; top:199px; width:150px;">Customs and trade risk<br>management</div>
+
+      <div class="bullet" style="left:8px; top:258px;">▪</div>
+      <div class="bullet-text" style="left:24px; top:254px; width:150px;">Dealing with the customs<br>authorities</div>
+
+      <div class="section-title" style="left:7px; top:296px;">Corporate strategy</div>
+      <div class="h-rule" style="left:0; top:318px; width:193px;"></div>
+
+      <div class="bullet" style="left:8px; top:330px;">▪</div>
+      <div class="bullet-text" style="left:24px; top:326px; width:156px;">Corporate strategy<br>assessment and advisory:</div>
+
+      <div class="subbullet" style="left:24px; top:377px;">▪</div>
+      <div class="bullet-text" style="left:36px; top:372px; width:140px;">Strategic procurement</div>
+
+      <div class="subbullet" style="left:24px; top:400px;">▪</div>
+      <div class="bullet-text" style="left:36px; top:395px; width:140px;">Supply chain footprint</div>
+
+      <div class="subbullet" style="left:24px; top:423px;">▪</div>
+      <div class="bullet-text" style="left:36px; top:418px; width:140px;">Investment strategy</div>
+
+      <div class="subbullet" style="left:24px; top:446px;">▪</div>
+      <div class="bullet-text" style="left:36px; top:441px; width:150px;">Decarbonization strategy</div>
+    </div>
+
+    <div class="col" style="left:193px; width:195px;">
+      <div class="section-title" style="left:9px; top:5px;">CBAM advisory</div>
+      <div class="h-rule" style="left:0; top:27px; width:195px;"></div>
+
+      <div class="bullet" style="left:9px; top:38px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:34px; width:160px;">Technical CBAM advisory<br>(statements, workshops,<br>help-desk, etc.)</div>
+
+      <div class="bullet" style="left:9px; top:93px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:89px; width:155px;">Authorized CBAM Declarant<br>application, monitoring etc.</div>
+
+      <div class="bullet" style="left:9px; top:148px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:144px; width:145px;">Calculation of CBAM cost<br>exposure</div>
+
+      <div class="bullet" style="left:9px; top:187px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:183px; width:146px;">Full CBAM workflow<br>outsourcing</div>
+
+      <div class="bullet" style="left:9px; top:226px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:222px; width:145px;">CBAM risk management</div>
+
+      <div class="bullet" style="left:9px; top:249px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:245px; width:145px;">Dealing with the CBAM<br>NCAs</div>
+
+      <div class="section-title" style="left:9px; top:296px;">Systems and data</div>
+      <div class="h-rule" style="left:0; top:318px; width:195px;"></div>
+
+      <div class="bullet" style="left:9px; top:330px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:326px; width:155px;">Implementation of ESG<br>data warehouses</div>
+
+      <div class="bullet" style="left:9px; top:370px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:366px; width:158px;">CBAM data cleansing and<br>improvement projects</div>
+
+      <div class="bullet" style="left:9px; top:410px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:406px; width:158px;">Assessment of best fit<br>CBAM IT solutions</div>
+
+      <div class="bullet" style="left:9px; top:450px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:446px; width:158px;">Advisory in IT solution<br>tendering, customization,<br>testing, documentation, etc.</div>
+
+      <div class="bullet" style="left:9px; top:505px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:501px; width:158px;">Quality assurance when<br>implementing IT solutions<br>with other providers</div>
+    </div>
+
+    <div class="col" style="left:388px; width:197px;">
+      <div class="section-title" style="left:9px; top:5px;">CBAM emissions calculations</div>
+      <div class="h-rule" style="left:0; top:27px; width:197px;"></div>
+
+      <div class="bullet" style="left:9px; top:38px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:34px; width:158px;">Technical advisory on<br>emissions calculation<br>methodology, monitoring<br>plan etc. (statements,<br>workshops etc.)</div>
+
+      <div class="bullet" style="left:9px; top:116px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:112px; width:160px;">Emissions calculation by<br>EY, or review of client<br>methodology by EY</div>
+
+      <div class="bullet" style="left:9px; top:171px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:167px; width:145px;">“Pre-verification” of<br>emissions calculation</div>
+
+      <div class="section-title" style="left:9px; top:296px;">Legal advisory</div>
+      <div class="h-rule" style="left:0; top:318px; width:197px;"></div>
+
+      <div class="bullet" style="left:9px; top:330px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:326px; width:160px;">Review of legal contracts,<br>specifically considering<br>CBAM/ESG general<br>requirements</div>
+
+      <div class="bullet" style="left:9px; top:401px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:397px; width:160px;">Drafting of legal contracts,<br>specifically considering<br>CBAM/ESG general<br>requirements</div>
+
+      <div class="bullet" style="left:9px; top:472px;">▪</div>
+      <div class="bullet-text" style="left:25px; top:468px; width:152px;">Support in commercial<br>disputes, disputes with<br>authorities</div>
+    </div>
+
+    <div class="col" style="left:585px; width:195px;">
+      <div class="section-title" style="left:8px; top:5px;">Sustainability reporting</div>
+      <div class="h-rule" style="left:0; top:27px; width:195px;"></div>
+
+      <div class="bullet" style="left:8px; top:38px;">▪</div>
+      <div class="bullet-text" style="left:24px; top:34px; width:145px;">Technical advisory on<br>sustainability reporting<br>regulations</div>
+
+      <div class="bullet" style="left:8px; top:93px;">▪</div>
+      <div class="bullet-text" style="left:24px; top:89px; width:155px;">Advisory and hands-<br>on support to analyze<br>corporate profile and<br>include carbon pricing/<br>CBAM into sustainability<br>reports (such as EU<br>CSRD)</div>
+
+      <div class="section-title" style="left:8px; top:296px;">Transaction advisory/M&amp;A</div>
+      <div class="h-rule" style="left:0; top:318px; width:195px;"></div>
+
+      <div class="bullet" style="left:8px; top:330px;">▪</div>
+      <div class="bullet-text" style="left:24px; top:326px; width:138px;">ESG Due Diligence<br>(incl. CBAM)</div>
+
+      <div class="bullet" style="left:8px; top:370px;">▪</div>
+      <div class="bullet-text" style="left:24px; top:366px; width:145px;">Corporate Valuation<br>(incl. CBAM)</div>
+
+      <div class="bullet" style="left:8px; top:410px;">▪</div>
+      <div class="bullet-text" style="left:24px; top:406px; width:160px;">Inclusion of CBAM into<br>Commercial, Legal and/or<br>Tax Due Diligence Process</div>
+    </div>
+
+    <div class="mid-rule" style="left:0; top:287px; width:780px;"></div>
+  </div>
+
+  <div class="footer-rule"></div>
+  <div class="footer-text">38&nbsp;&nbsp;|&nbsp;&nbsp;<b>TradeWatch</b> Issue 1 2026</div>
+
+  <div class="right-photo">
+    <div class="stack" style="left:30px; width:58px; height:172px;"></div>
+    <div class="stack" style="left:97px; width:78px; height:225px;"></div>
+    <div class="stack" style="left:174px; width:61px; height:198px;"></div>
+  </div>
+  <div class="water"></div>
+
+  <div class="right-menu">
+    <div class="menu-item" style="top:0; height:36px;">Contents</div>
+    <div class="menu-item" style="top:51px; height:36px;">Insights</div>
+    <div class="menu-item" style="top:102px; height:52px;">New on<br>ey.com</div>
+    <div class="menu-item" style="top:153px; height:36px;">Tax alerts</div>
+    <div class="menu-item" style="top:204px; height:52px;">Additional<br>resources</div>
+    <div class="menu-item" style="top:255px; height:36px;">Contacts</div>
+  </div>
+
+  <div class="contact-box"></div>
+  <div class="contact-yellow"></div>
+  <div class="contact-yellow-text">For additional information,<br>please contact:</div>
+
+  <div class="contact-text" style="left:863px; top:530px;"><span class="contact-name">Richard J. Albert</span></div>
+  <div class="contact-text" style="left:863px; top:551px;">+ 49 160 939 17756</div>
+  <div class="contact-text contact-link" style="left:863px; top:572px;">richard.j.albert@de.ey.com</div>
+
+  <div class="contact-text" style="left:863px; top:604px;"><span class="contact-name">Neele Müller</span></div>
+  <div class="contact-text" style="left:863px; top:625px;">+ 49 160 939 17105</div>
+  <div class="contact-text contact-link" style="left:863px; top:646px;">neele.mueller@de.ey.com</div>
+
+  <div class="back-circle">◀</div>
+  <div class="back-text">Back to Welcome</div>
+  <div class="back-rule"></div>
+</div>
+</body>
+</html>

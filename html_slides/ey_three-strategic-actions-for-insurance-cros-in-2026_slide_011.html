@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Planned enhancements to risk management</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9dc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d9d9dc;
+  }
+  .slide > div, .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .chapter-pill{
+    left:31px;
+    top:14px;
+    width:70px;
+    height:18px;
+    background:#7c7d86;
+    border-radius:10px 10px 0 0;
+    color:#fff;
+    font-size:9px;
+    font-weight:700;
+    line-height:18px;
+    text-align:center;
+    letter-spacing:.04em;
+  }
+
+  .title{
+    left:78px;
+    top:138px;
+    width:330px;
+    color:#2e313d;
+    font-size:29px;
+    font-weight:700;
+    line-height:1.14;
+  }
+
+  .accent-line{
+    left:76px;
+    top:221px;
+    width:291px;
+    height:3px;
+    background:linear-gradient(90deg,#d8c933 0 63%, #cf67c7 83%, #25c7df 100%);
+  }
+
+  .body-copy{
+    left:79px;
+    top:264px;
+    width:323px;
+    color:#575a61;
+    font-size:13px;
+    line-height:1.36;
+    font-weight:400;
+  }
+
+  .vertical-label{
+    left:14px;
+    top:392px;
+    color:#2f3138;
+    font-size:12px;
+    letter-spacing:.08em;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+  }
+
+  .vertical-rule{
+    left:14px;
+    top:406px;
+    width:1px;
+    height:38px;
+    background:#55575d;
+  }
+
+  .page-no{
+    left:50px;
+    top:711px;
+    color:#2f3138;
+    font-size:10px;
+    line-height:10px;
+  }
+
+  .hero{
+    left:454px;
+    top:31px;
+    width:880px;
+    height:206px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 45% 10%, rgba(132,91,255,.22) 0, rgba(132,91,255,0) 6%),
+      radial-gradient(circle at 18% 32%, rgba(62,235,189,.18) 0, rgba(62,235,189,0) 5%),
+      radial-gradient(circle at 42% 88%, rgba(41,109,255,.22) 0, rgba(41,109,255,0) 4%),
+      radial-gradient(circle at 55% 30%, rgba(67,255,211,.24) 0, rgba(67,255,211,0) 2.3%),
+      radial-gradient(circle at 53% 44%, rgba(74,172,255,.24) 0, rgba(74,172,255,0) 2.2%),
+      radial-gradient(circle at 59% 8%, rgba(215,44,162,.16) 0, rgba(215,44,162,0) 1.6%),
+      radial-gradient(circle at 89% 18%, rgba(95,201,225,.22) 0, rgba(95,201,225,0) 15%),
+      radial-gradient(circle at 80% 49%, rgba(19,204,217,.18) 0, rgba(19,204,217,0) 22%),
+      radial-gradient(circle at 95% 67%, rgba(255,174,100,.15) 0, rgba(255,174,100,0) 9%),
+      radial-gradient(circle at 72% 54%, rgba(162,76,176,.17) 0, rgba(162,76,176,0) 25%),
+      linear-gradient(90deg,#000c24 0%, #02163b 34%, #0a2347 57%, #10375a 75%, #194c72 100%);
+  }
+
+  .hero-text{
+    left:496px;
+    top:81px;
+    width:520px;
+    color:#f7f8fb;
+    font-size:18px;
+    line-height:1.42;
+    font-weight:400;
+  }
+  .hero-text .b{font-weight:700;}
+
+  .jump-circle{
+    left:1265px;
+    top:58px;
+    width:41px;
+    height:41px;
+    border:1px solid rgba(255,255,255,.65);
+    border-radius:50%;
+    color:#fff;
+    font-size:8px;
+    line-height:1.15;
+    text-align:center;
+    padding-top:10px;
+  }
+  .jump-dot{
+    left:1294px;
+    top:60px;
+    width:10px;
+    height:10px;
+    background:#ead52e;
+    border-radius:50%;
+  }
+
+  .figure-title{
+    left:465px;
+    top:286px;
+    width:830px;
+    color:#3a3d45;
+    font-size:13px;
+    line-height:1.35;
+    font-weight:700;
+  }
+  .figure-title .light{font-weight:400;}
+
+  .year{
+    color:#44464e;
+    font-size:14px;
+    font-weight:700;
+    text-align:center;
+    line-height:16px;
+  }
+  .year-line{
+    height:1px;
+    background:#b8bac1;
+  }
+
+  .cat-label{
+    color:#595b63;
+    font-size:13px;
+    line-height:1.18;
+    text-align:right;
+  }
+
+  .bar-box{
+    height:26px;
+    border:1px solid #a9acb4;
+    background:#dadbdf;
+  }
+  .fill-2025,.fill-2024,.fill-2023{
+    height:24px;
+  }
+  .fill-2025{background:#16157c;}
+  .fill-2024{background:#5d35ab;}
+  .fill-2023{background:#9a83cd;}
+
+  .bar-pct{
+    color:#55575d;
+    font-size:18px;
+    line-height:26px;
+    text-align:right;
+    padding-right:6px;
+  }
+
+  .subnote{
+    color:#666971;
+    font-size:7px;
+    line-height:1.1;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="chapter-pill">CHAPTER 1</div>
+
+  <div class="title">Planned enhancements<br>to risk management</div>
+  <div class="accent-line"></div>
+
+  <div class="body-copy">
+    Planned enhancements over the next 12 months<br>
+    reinforce a shift toward stronger infrastructure and<br>
+    integration across both financial and nonfinancial<br>
+    risk management. Financial risk management<br>
+    enhancements remain anchored in core quantitative<br>
+    disciplines, including risk appetite/limits and stress<br>
+    testing/scenario analysis. In nonfinancial risk<br>
+    management, risk technology continues to grow as<br>
+    the leading priority, alongside controls, governance,<br>
+    operating model and, importantly, talent-related<br>
+    enhancements. Overall, the data points to greater<br>
+    focus on infrastructure, integration and the critical<br>
+    role of human capital, rather than incremental,<br>
+    siloed improvements.
+  </div>
+
+  <div class="vertical-label">CHAPTER 1</div>
+  <div class="vertical-rule"></div>
+  <div class="page-no">11</div>
+
+  <div class="hero"></div>
+
+  <svg style="left:454px; top:31px; width:880px; height:206px; pointer-events:none;" viewBox="0 0 880 206" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="g" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="1.3" result="b"/>
+        <feMerge>
+          <feMergeNode in="b"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+
+    <g opacity=".55">
+      <circle cx="176" cy="63" r="9" fill="#17b2a2"/>
+      <circle cx="364" cy="70" r="10" fill="#17b2a2"/>
+      <circle cx="395" cy="182" r="3" fill="#2ed8cf"/>
+      <circle cx="323" cy="183" r="2" fill="#2c76ff"/>
+      <circle cx="334" cy="4" r="2" fill="#3f59ff"/>
+      <circle cx="461" cy="64" r="4" fill="#84d7de"/>
+      <circle cx="444" cy="157" r="4" fill="#1fc18b"/>
+      <circle cx="509" cy="101" r="3" fill="#22f0bf"/>
+      <circle cx="458" cy="9" r="1.4" fill="#d438a9"/>
+      <circle cx="716" cy="14" r="4" fill="#52dbe0"/>
+      <circle cx="731" cy="28" r="4" fill="#74def0"/>
+      <circle cx="760" cy="8" r="3.5" fill="#77f2e4"/>
+      <circle cx="769" cy="25" r="4" fill="#61dce0"/>
+      <circle cx="802" cy="26" r="2.5" fill="#4de0d8"/>
+      <circle cx="713" cy="36" r="2.8" fill="#6bd4f8"/>
+      <circle cx="745" cy="51" r="3.2" fill="#7ee8f0"/>
+      <circle cx="775" cy="49" r="3.2" fill="#7ce4da"/>
+      <circle cx="848" cy="48" r="3" fill="#d6bca7"/>
+      <circle cx="738" cy="116" r="4" fill="#6edef1"/>
+      <circle cx="784" cy="126" r="4" fill="#86e7ea"/>
+      <circle cx="832" cy="115" r="4" fill="#d6b59f"/>
+      <circle cx="816" cy="176" r="3.5" fill="#77dfdc"/>
+      <circle cx="792" cy="157" r="5" fill="#d6cab2"/>
+      <circle cx="760" cy="172" r="4" fill="#66d9ca"/>
+      <circle cx="690" cy="168" r="3" fill="#52c0bc"/>
+    </g>
+
+    <g filter="url(#g)" opacity=".9">
+      <path d="M609 168 C646 136, 683 118, 712 73" stroke="#f2aa63" stroke-width="2.1" fill="none"/>
+      <path d="M598 156 C650 115, 721 112, 756 43" stroke="#d96a98" stroke-width="2" fill="none"/>
+      <path d="M628 175 C668 136, 734 128, 777 61" stroke="#865ed7" stroke-width="2.1" fill="none"/>
+      <path d="M644 181 C689 142, 759 141, 810 84" stroke="#57b8ff" stroke-width="2" fill="none"/>
+      <path d="M659 184 C706 151, 783 151, 835 111" stroke="#3ed7c0" stroke-width="2" fill="none"/>
+      <path d="M675 188 C725 160, 810 167, 863 135" stroke="#f2bd62" stroke-width="2" fill="none"/>
+      <path d="M696 189 C727 160, 836 176, 879 158" stroke="#60d0ca" stroke-width="2" fill="none"/>
+
+      <path d="M624 175 C653 145, 675 116, 671 81" stroke="#ff8c6a" stroke-width="1.5" fill="none"/>
+      <path d="M637 180 C671 149, 703 123, 713 89" stroke="#db7dff" stroke-width="1.5" fill="none"/>
+      <path d="M650 184 C690 156, 727 138, 748 103" stroke="#7aa2ff" stroke-width="1.5" fill="none"/>
+      <path d="M666 187 C706 165, 768 150, 798 124" stroke="#74e0da" stroke-width="1.5" fill="none"/>
+      <path d="M680 188 C724 170, 796 165, 835 150" stroke="#f2af50" stroke-width="1.5" fill="none"/>
+    </g>
+
+    <g>
+      <circle cx="609" cy="168" r="4" fill="#f1c473"/>
+      <circle cx="598" cy="156" r="3.5" fill="#87d9d2"/>
+      <circle cx="628" cy="175" r="3.5" fill="#bf77ff"/>
+      <circle cx="645" cy="181" r="4" fill="#62c5ff"/>
+      <circle cx="660" cy="184" r="4" fill="#82e0d8"/>
+      <circle cx="676" cy="188" r="3.5" fill="#f4b86c"/>
+      <circle cx="696" cy="189" r="3.5" fill="#67d4cb"/>
+
+      <circle cx="712" cy="73" r="4" fill="#efb263"/>
+      <circle cx="756" cy="43" r="4" fill="#7ce0da"/>
+      <circle cx="777" cy="61" r="4" fill="#9d88ff"/>
+      <circle cx="810" cy="84" r="4" fill="#70c8ff"/>
+      <circle cx="835" cy="111" r="4" fill="#61dbc8"/>
+      <circle cx="863" cy="135" r="4" fill="#f1c067"/>
+
+      <circle cx="671" cy="81" r="3" fill="#ff8d6f"/>
+      <circle cx="713" cy="89" r="3" fill="#db83ff"/>
+      <circle cx="748" cy="103" r="3" fill="#7ca9ff"/>
+      <circle cx="798" cy="124" r="3" fill="#7ee4dd"/>
+      <circle cx="835" cy="150" r="3" fill="#f1b255"/>
+    </g>
+
+    <g opacity=".35">
+      <path d="M700 0 C735 4, 774 22, 801 53 C826 81, 836 122, 826 166" stroke="#9ee8ff" stroke-width="1.2" fill="none"/>
+      <path d="M732 0 C767 8, 809 28, 835 64 C858 96, 869 130, 866 162" stroke="#6bd7f0" stroke-width="1.1" fill="none"/>
+      <path d="M764 0 C803 14, 840 39, 864 76 C880 102, 884 134, 878 160" stroke="#ffe27a" stroke-width="1.1" fill="none"/>
+    </g>
+  </svg>
+
+  <div class="hero-text">
+    Financial risk management enhancements<br>
+    remain anchored in <span class="b">core quantitative</span><br>
+    <span class="b">disciplines</span>, including risk appetite/limits<br>
+    and stress testing/scenario analysis.
+  </div>
+
+  <div class="jump-circle">Jump to<br>contents</div>
+  <div class="jump-dot"></div>
+
+  <div class="figure-title">
+    Figure 4: <span class="light">What key enhancements is your organization planning to make to its financial risk management capabilities over the next 12 months as<br>
+    part of business-as-usual (BAU) risk management?</span>
+  </div>
+
+  <div class="year" style="left:709px; top:341px; width:70px;">2025</div>
+  <div class="year" style="left:928px; top:341px; width:70px;">2024</div>
+  <div class="year" style="left:1147px; top:341px; width:70px;">2023</div>
+
+  <div class="year-line" style="left:644px; top:360px; width:199px;"></div>
+  <div class="year-line" style="left:862px; top:360px; width:199px;"></div>
+  <div class="year-line" style="left:1080px; top:360px; width:198px;"></div>
+
+  <div class="cat-label" style="left:463px; top:391px; width:170px; height:30px;">Risk appetite and limit framework</div>
+  <div class="bar-box" style="left:643px; top:383px; width:199px;"></div>
+  <div class="fill-2025" style="left:644px; top:384px; width:109px;"></div>
+  <div class="bar-pct" style="left:792px; top:383px; width:45px; height:26px;">55%</div>
+  <div class="subnote" style="left:643px; top:412px; width:165px;">90% Asia-Pacific | 50% EMEA | 52% Americas</div>
+
+  <div class="bar-box" style="left:862px; top:383px; width:199px;"></div>
+  <div class="fill-2024" style="left:863px; top:384px; width:97px;"></div>
+  <div class="bar-pct" style="left:1011px; top:383px; width:45px; height:26px;">49%</div>
+
+  <div class="bar-box" style="left:1080px; top:383px; width:198px;"></div>
+  <div class="fill-2023" style="left:1081px; top:384px; width:97px;"></div>
+  <div class="bar-pct" style="left:1228px; top:383px; width:45px; height:26px;">49%</div>
+
+  <div class="cat-label" style="left:463px; top:452px; width:170px; height:31px;">Risk measurement and stress<br>testing/scenario analysis</div>
+  <div class="bar-box" style="left:643px; top:444px; width:199px;"></div>
+  <div class="fill-2025" style="left:644px; top:445px; width:103px;"></div>
+  <div class="bar-pct" style="left:792px; top:444px; width:45px; height:26px;">52%</div>
+  <div class="subnote" style="left:643px; top:473px; width:165px;">70% Asia-Pacific | 57% EMEA | 44% Americas</div>
+
+  <div class="bar-box" style="left:862px; top:444px; width:199px;"></div>
+  <div class="fill-2024" style="left:863px; top:445px; width:117px;"></div>
+  <div class="bar-pct" style="left:1011px; top:444px; width:45px; height:26px;">59%</div>
+
+  <div class="bar-box" style="left:1080px; top:444px; width:198px;"></div>
+  <div class="fill-2023" style="left:1081px; top:445px; width:117px;"></div>
+  <div class="bar-pct" style="left:1228px; top:444px; width:45px; height:26px;">59%</div>
+
+  <div class="cat-label" style="left:463px; top:512px; width:170px; height:30px;">Monitoring and analytics<br>capabilities</div>
+  <div class="bar-box" style="left:643px; top:504px; width:199px;"></div>
+  <div class="fill-2025" style="left:644px; top:505px; width:70px;"></div>
+  <div class="bar-pct" style="left:792px; top:504px; width:45px; height:26px;">35%</div>
+  <div class="subnote" style="left:643px; top:533px; width:165px;">50% Asia-Pacific | 32% EMEA | 35% Americas</div>
+
+  <div class="bar-box" style="left:862px; top:504px; width:199px;"></div>
+  <div class="fill-2024" style="left:863px; top:505px; width:63px;"></div>
+  <div class="bar-pct" style="left:1011px; top:504px; width:45px; height:26px;">32%</div>
+
+  <div class="bar-box" style="left:1080px; top:504px; width:198px;"></div>
+  <div class="fill-2023" style="left:1081px; top:505px; width:63px;"></div>
+  <div class="bar-pct" style="left:1228px; top:504px; width:45px; height:26px;">32%</div>
+
+  <div class="cat-label" style="left:463px; top:574px; width:170px; height:15px;">Risk technology</div>
+  <div class="bar-box" style="left:643px; top:565px; width:199px;"></div>
+  <div class="fill-2025" style="left:644px; top:566px; width:70px;"></div>
+  <div class="bar-pct" style="left:792px; top:565px; width:45px; height:26px;">35%</div>
+  <div class="subnote" style="left:643px; top:594px; width:165px;">60% Asia-Pacific | 34% EMEA | 31% Americas</div>
+
+  <div class="bar-box" style="left:862px; top:565px; width:199px;"></div>
+  <div class="fill-2024" style="left:863px; top:566px; width:25px;"></div>
+  <div class="bar-pct" style="left:1011px; top:565px; width:45px; height:26px;">13%</div>
+
+  <div class="bar-box" style="left:1080px; top:565px; width:198px;"></div>
+  <div class="fill-2023" style="left:1081px; top:566px; width:30px;"></div>
+  <div class="bar-pct" style="left:1228px; top:565px; width:45px; height:26px;">15%</div>
+
+  <div class="cat-label" style="left:463px; top:635px; width:170px; height:15px;">Talent development</div>
+  <div class="bar-box" style="left:643px; top:626px; width:199px;"></div>
+  <div class="fill-2025" style="left:644px; top:627px; width:70px;"></div>
+  <div class="bar-pct" style="left:792px; top:626px; width:45px; height:26px;">35%</div>
+  <div class="subnote" style="left:643px; top:655px; width:165px;">70% Asia-Pacific | 34% EMEA | 29% Americas</div>
+
+  <div class="bar-box" style="left:862px; top:626px; width:199px;"></div>
+  <div class="fill-2024" style="left:863px; top:627px; width:68px;"></div>
+  <div class="bar-pct" style="left:1011px; top:626px; width:45px; height:26px;">34%</div>
+
+  <div class="bar-box" style="left:1080px; top:626px; width:198px;"></div>
+  <div class="fill-2023" style="left:1081px; top:627px; width:72px;"></div>
+  <div class="bar-pct" style="left:1228px; top:626px; width:45px; height:26px;">36%</div>
+</div>
+</body>
+</html>

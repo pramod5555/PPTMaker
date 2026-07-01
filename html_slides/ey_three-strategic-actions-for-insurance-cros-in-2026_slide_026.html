@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dedee2;
+    margin:0 auto;
+  }
+
+  .top-band{
+    position:absolute;
+    left:15px;
+    top:30px;
+    width:1234px;
+    height:90px;
+    background:
+      radial-gradient(circle at 83% 35%, rgba(88,74,255,0.22) 0%, rgba(64,44,186,0.12) 24%, rgba(27,14,110,0) 58%),
+      linear-gradient(90deg,#020012 0%, #04001d 27%, #060043 54%, #24158f 72%, #21107e 100%);
+  }
+  .top-band::after{
+    content:"";
+    position:absolute;
+    left:726px;
+    top:0;
+    width:508px;
+    height:90px;
+    background:linear-gradient(90deg, rgba(56,34,170,0.78) 0%, rgba(43,27,153,0.78) 100%);
+    mix-blend-mode:screen;
+    opacity:.55;
+  }
+
+  .chapter-pill{
+    position:absolute;
+    left:15px;
+    top:14px;
+    width:69px;
+    height:19px;
+    background:#83848d;
+    border-radius:10px;
+    color:#fff;
+    font-size:9px;
+    font-weight:700;
+    line-height:19px;
+    text-align:center;
+    letter-spacing:.06em;
+  }
+
+  .jump-wrap{
+    position:absolute;
+    right:28px;
+    top:54px;
+    width:58px;
+    height:58px;
+  }
+  .jump-circle{
+    position:absolute;
+    left:10px;
+    top:5px;
+    width:38px;
+    height:38px;
+    border:1px solid rgba(255,255,255,.88);
+    border-radius:50%;
+  }
+  .jump-circle::after{
+    content:"";
+    position:absolute;
+    right:-1px;
+    bottom:-1px;
+    width:12px;
+    height:12px;
+    background:#24158f;
+    border-left:3px solid #24158f;
+    border-top:3px solid #24158f;
+    transform:rotate(45deg);
+  }
+  .jump-dot{
+    position:absolute;
+    left:40px;
+    top:0px;
+    width:9px;
+    height:9px;
+    background:#efe400;
+    border-radius:50%;
+  }
+  .jump-text{
+    position:absolute;
+    left:11px;
+    top:10px;
+    width:36px;
+    color:#fff;
+    font-size:8px;
+    line-height:9px;
+    text-align:center;
+    font-weight:500;
+  }
+
+  .left-vertical{
+    position:absolute;
+    left:-1px;
+    top:329px;
+    width:28px;
+    height:125px;
+  }
+  .left-vertical .text{
+    position:absolute;
+    left:13px;
+    top:64px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    color:#33333d;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .left-vertical .line{
+    position:absolute;
+    left:14px;
+    top:74px;
+    width:1px;
+    height:35px;
+    background:#66666f;
+  }
+
+  .title{
+    position:absolute;
+    left:62px;
+    top:166px;
+    width:245px;
+    color:#30313b;
+    font-size:31px;
+    font-weight:800;
+    line-height:1.08;
+    letter-spacing:-0.01em;
+  }
+
+  .accent{
+    position:absolute;
+    left:61px;
+    top:319px;
+    width:197px;
+    height:4px;
+    background:linear-gradient(90deg,#e5df00 0 39%, #ff5af0 39% 80%, #15d7eb 80% 100%);
+  }
+
+  .left-body{
+    position:absolute;
+    left:62px;
+    top:361px;
+    width:194px;
+    color:#4d4d56;
+    font-size:15px;
+    line-height:1.45;
+    font-weight:400;
+  }
+
+  .figure-title{
+    position:absolute;
+    left:315px;
+    top:167px;
+    width:930px;
+    color:#3c3c46;
+    font-size:13px;
+    line-height:16px;
+    font-weight:400;
+  }
+  .figure-title b{font-weight:700;}
+
+  .chart{
+    position:absolute;
+    left:306px;
+    top:193px;
+    width:940px;
+    height:245px;
+  }
+  .label{
+    position:absolute;
+    color:#565660;
+    font-size:11px;
+    line-height:14px;
+    font-weight:400;
+    text-align:right;
+  }
+  .barbox{
+    position:absolute;
+    width:198px;
+    height:25px;
+    border:1px solid #b1b1b8;
+    background:#ececf0;
+    box-sizing:border-box;
+  }
+  .fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:23px;
+    background:#7a0b5f;
+  }
+  .pct{
+    position:absolute;
+    right:8px;
+    top:4px;
+    color:#55555f;
+    font-size:11px;
+    font-weight:400;
+  }
+  .delta{
+    position:absolute;
+    color:#565660;
+    font-size:9px;
+    line-height:10px;
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .regional{
+    position:absolute;
+    color:#66666f;
+    font-size:7px;
+    line-height:8px;
+    font-weight:400;
+    white-space:nowrap;
+  }
+
+  .footer-image{
+    position:absolute;
+    left:15px;
+    top:585px;
+    width:1234px;
+    height:151px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 1.5% 60%, rgba(162,255,255,0.95) 0px, rgba(162,255,255,0.5) 5px, rgba(162,255,255,0) 18px),
+      radial-gradient(circle at 8% 81%, rgba(197,120,255,0.88) 0px, rgba(197,120,255,0.4) 7px, rgba(197,120,255,0) 20px),
+      radial-gradient(circle at 24% 89%, rgba(145,255,217,0.82) 0px, rgba(145,255,217,0.35) 8px, rgba(145,255,217,0) 22px),
+      linear-gradient(180deg,#070024 0%, #071047 20%, #150a58 40%, #27106f 67%, #09001e 100%);
+  }
+  .footer-image svg{
+    position:absolute;
+    inset:0;
+    width:1234px;
+    height:151px;
+  }
+
+  .page-num{
+    position:absolute;
+    left:34px;
+    bottom:14px;
+    color:#fff;
+    font-size:11px;
+    font-weight:400;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-band"></div>
+  <div class="chapter-pill">CHAPTER 5</div>
+
+  <div class="jump-wrap">
+    <div class="jump-circle"></div>
+    <div class="jump-dot"></div>
+    <div class="jump-text">Jump to<br>contents</div>
+  </div>
+
+  <div class="left-vertical">
+    <div class="text">CHAPTER 5</div>
+    <div class="line"></div>
+  </div>
+
+  <div class="title">Skill priorities –<br>adaptability<br>and digital<br>acumen lead</div>
+  <div class="accent"></div>
+
+  <div class="left-body">
+    CROs are prioritizing a targeted<br>
+    set of capabilities to keep pace<br>
+    with a more technology-driven risk<br>
+    environment. Adaptability (66%)<br>
+    and digital acumen (55%) lead,<br>
+    alongside continued emphasis on<br>
+    soft skills and an understanding<br>
+    of the business – reflecting a<br>
+    shift toward more strategic risk<br>
+    partnering as automation expands.
+  </div>
+
+  <div class="figure-title"><b>Figure 14:</b> Over the next three years, what are the top skill sets your organization believes risk management resources should prioritize to better manage risk?</div>
+
+  <div class="chart">
+    <div class="label" style="left:0px; top:20px; width:241px;">Ability to adapt to a changing risk environment</div>
+    <div class="barbox" style="left:248px; top:16px;">
+      <div class="fill" style="width:131px;"></div>
+      <div class="pct">66%</div>
+    </div>
+    <div class="delta" style="left:160px; top:42px;">▲ Up 19% pts YOY</div>
+    <div class="regional" style="left:248px; top:42px;">80% Asia-Pacific | 66% EMEIA | 63% Americas</div>
+
+    <div class="label" style="left:0px; top:75px; width:241px;">Digital acumen (e.g., technology, data, AI,<br>programming)</div>
+    <div class="barbox" style="left:248px; top:77px;">
+      <div class="fill" style="width:109px;"></div>
+      <div class="pct">55%</div>
+    </div>
+    <div class="delta" style="left:168px; top:104px;">▲ Up 13% pts YOY</div>
+    <div class="regional" style="left:248px; top:104px;">80% Asia-Pacific | 45% EMEIA | 58% Americas</div>
+
+    <div class="label" style="left:0px; top:131px; width:241px;">Soft skills (e.g., leadership, relationship building,<br>communication, negotiation, active teaming)</div>
+    <div class="barbox" style="left:248px; top:138px;">
+      <div class="fill" style="width:97px;"></div>
+      <div class="pct">49%</div>
+    </div>
+    <div class="delta" style="left:176px; top:165px;">▲ Up 7% pts YOY</div>
+    <div class="regional" style="left:248px; top:165px;">30% Asia-Pacific | 61% EMEIA | 42% Americas</div>
+
+    <div class="label" style="left:0px; top:198px; width:241px;">Understanding of the business and products</div>
+    <div class="barbox" style="left:248px; top:198px;">
+      <div class="fill" style="width:89px;"></div>
+      <div class="pct">45%</div>
+    </div>
+    <div class="delta" style="left:155px; top:224px;">▼ Down13% pts YOY</div>
+    <div class="regional" style="left:248px; top:224px;">50% Asia-Pacific | 45% EMEIA | 44% Americas</div>
+
+    <div class="label" style="left:536px; top:12px; width:272px;">Deeper specialization in at least one domain<br>(e.g., credit, cyber)</div>
+    <div class="barbox" style="left:772px; top:16px;">
+      <div class="fill" style="width:48px;"></div>
+      <div class="pct">24%</div>
+    </div>
+    <div class="delta" style="left:689px; top:42px;">▲ Up 1% pts YOY</div>
+    <div class="regional" style="left:772px; top:42px;">20% Asia-Pacific | 25% EMEIA | 23% Americas</div>
+
+    <div class="label" style="left:560px; top:84px; width:248px;">Broaden understanding of risk domains</div>
+    <div class="barbox" style="left:772px; top:77px;">
+      <div class="fill" style="width:36px;"></div>
+      <div class="pct">18%</div>
+    </div>
+    <div class="delta" style="left:682px; top:104px;">▼ Down 13% pts YOY</div>
+    <div class="regional" style="left:772px; top:104px;">0% Asia-Pacific | 18% EMEIA | 21% Americas</div>
+
+    <div class="label" style="left:492px; top:135px; width:316px;">Governance and documentation capabilities to satisfy<br>internal and regulatory requirements and expectations</div>
+    <div class="barbox" style="left:772px; top:138px;">
+      <div class="fill" style="width:30px;"></div>
+      <div class="pct">15%</div>
+    </div>
+    <div class="delta" style="left:684px; top:165px;">▼ Down 6% pts YOY</div>
+    <div class="regional" style="left:772px; top:165px;">20% Asia-Pacific | 11% EMEIA | 17% Americas</div>
+
+    <div class="label" style="left:559px; top:197px; width:249px;">Knowledge of agile development or innovation<br>methods</div>
+    <div class="barbox" style="left:772px; top:198px;">
+      <div class="fill" style="width:22px;"></div>
+      <div class="pct">11%</div>
+    </div>
+    <div class="delta" style="left:685px; top:224px;">▼ Down 9% pts YOY</div>
+    <div class="regional" style="left:772px; top:224px;">10% Asia-Pacific | 16% EMEIA | 8% Americas</div>
+  </div>
+
+  <div class="footer-image">
+    <svg viewBox="0 0 1234 151" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="blur1"><feGaussianBlur stdDeviation="1.2"/></filter>
+        <filter id="blur2"><feGaussianBlur stdDeviation="2.1"/></filter>
+      </defs>
+      <g opacity="0.9" fill="none">
+        <path d="M-20,94 C130,85 300,30 470,18 C650,8 880,42 1250,-8" stroke="#4b78ff" stroke-width="1.2"/>
+        <path d="M-40,106 C160,95 320,40 505,28 C720,14 930,46 1260,0" stroke="#1a6fff" stroke-width="1"/>
+        <path d="M-10,118 C180,110 360,54 565,36 C780,19 980,34 1260,8" stroke="#2d67ff" stroke-width="1"/>
+        <path d="M0,128 C170,117 380,66 585,46 C770,29 980,38 1244,18" stroke="#4864ff" stroke-width="1.2"/>
+        <path d="M40,146 C240,125 430,73 650,52 C850,33 1010,41 1238,26" stroke="#6b5cff" stroke-width="1"/>
+        <path d="M-50,84 C110,78 280,26 470,12 C700,-4 900,16 1270,-18" stroke="#2d47c7" stroke-width="1"/>
+        <path d="M0,140 C180,116 340,62 540,44 C780,22 1030,48 1260,12" stroke="#8051ff" stroke-width="1.2"/>
+        <path d="M100,150 C280,124 470,84 690,56 C890,31 1060,30 1260,16" stroke="#9b53ff" stroke-width="1"/>
+        <path d="M-20,70 C150,60 310,20 490,8 C700,-6 970,10 1254,-12" stroke="#0d57d9" stroke-width="0.9"/>
+        <path d="M-40,88 C120,79 310,33 500,20 C730,4 940,20 1262,-6" stroke="#1d50eb" stroke-width="0.9"/>
+        <path d="M40,151 C215,132 405,83 610,62 C830,40 1020,43 1234,34" stroke="#bc62ff" stroke-width="0.9"/>
+        <path d="M140,151 C320,124 500,80 710,54 C900,31 1070,28 1238,21" stroke="#f16cff" stroke-width="0.8"/>
+        <path d="M-10,110 C150,98 320,52 515,31 C720,11 920,22 1250,-4" stroke="#2aa0ff" stroke-width="0.8"/>
+        <path d="M10,121 C190,110 370,63 558,39 C786,10 1010,15 1250,-10" stroke="#315cff" stroke-width="0.8"/>
+        <path d="M20,136 C195,118 395,75 590,50 C820,21 1030,35 1248,14" stroke="#7f6cff" stroke-width="0.8"/>
+        <path d="M-10,146 C180,130 368,91 580,69 C820,43 1030,45 1234,33" stroke="#d67cff" stroke-width="0.8"/>
+        <path d="M-30,100 C110,94 280,60 420,44 C650,18 900,26 1250,6" stroke="#123ca4" stroke-width="0.7"/>
+        <path d="M-20,64 C120,58 310,26 490,16 C710,4 920,10 1260,-6" stroke="#092f8e" stroke-width="0.7"/>
+        <path d="M0,80 C160,68 340,30 540,18 C750,6 980,10 1238,-8" stroke="#173cc9" stroke-width="0.7"/>
+        <path d="M0,152 C240,128 430,102 615,80 C840,54 1050,46 1242,39" stroke="#ff7eff" stroke-width="0.7"/>
+      </g>
+      <g filter="url(#blur1)">
+        <circle cx="18" cy="88" r="3" fill="#cbffff"/>
+        <circle cx="57" cy="130" r="2.5" fill="#d6a2ff"/>
+        <circle cx="105" cy="120" r="2" fill="#e3c0ff"/>
+        <circle cx="118" cy="111" r="1.8" fill="#f0f0ff"/>
+        <circle cx="156" cy="95" r="2.1" fill="#f4d5ff"/>
+        <circle cx="184" cy="86" r="1.8" fill="#f5e8ff"/>
+        <circle cx="228" cy="65" r="2.2" fill="#ffdef4"/>
+        <circle cx="256" cy="103" r="2" fill="#d8d8ff"/>
+        <circle cx="288" cy="136" r="3.5" fill="#c0ffef"/>
+        <circle cx="310" cy="130" r="2.8" fill="#b2ffe8"/>
+        <circle cx="334" cy="75" r="2.1" fill="#d5d8ff"/>
+        <circle cx="364" cy="93" r="1.6" fill="#f8e0ff"/>
+        <circle cx="397" cy="81" r="2" fill="#ffe6ff"/>
+        <circle cx="430" cy="64" r="2.2" fill="#c0cfff"/>
+        <circle cx="470" cy="47" r="1.6" fill="#f6d3ff"/>
+        <circle cx="512" cy="99" r="3" fill="#ffe0f0"/>
+        <circle cx="560" cy="83" r="2.2" fill="#f1d2ff"/>
+        <circle cx="595" cy="76" r="2" fill="#d4e0ff"/>
+        <circle cx="650" cy="44" r="2.8" fill="#ffe7cc"/>
+        <circle cx="715" cy="48" r="2.4" fill="#fff3d6"/>
+        <circle cx="760" cy="57" r="1.8" fill="#f1d9ff"/>
+        <circle cx="805" cy="70" r="2.2" fill="#ffd1f9"/>
+        <circle cx="853" cy="58" r="2.4" fill="#f8d2ff"/>
+        <circle cx="904" cy="73" r="2.2" fill="#f2c9ff"/>
+        <circle cx="967" cy="86" r="2.1" fill="#d6cbff"/>
+        <circle cx="1010" cy="91" r="2.5" fill="#f3baff"/>
+        <circle cx="1053" cy="101" r="2.1" fill="#f0b4ff"/>
+        <circle cx="1108" cy="71" r="2" fill="#d1c8ff"/>
+        <circle cx="1160" cy="48" r="1.8" fill="#d8ddff"/>
+        <circle cx="1203" cy="66" r="2.4" fill="#d9c9ff"/>
+      </g>
+      <g filter="url(#blur2)" opacity="0.75">
+        <circle cx="20" cy="89" r="8" fill="#7ef7ff"/>
+        <circle cx="84" cy="119" r="9" fill="#b05dff"/>
+        <circle cx="121" cy="137" r="5" fill="#ff8dee"/>
+        <circle cx="281" cy="137" r="10" fill="#7dffe3"/>
+        <circle cx="314" cy="135" r="11" fill="#79ffd7"/>
+        <circle cx="711" cy="37" r="9" fill="#ffe2c1"/>
+        <circle cx="887" cy="69" r="7" fill="#fcb2ff"/>
+        <circle cx="1037" cy="108" r="8" fill="#f7a1ff"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="page-num">26</div>
+</div>
+</body>
+</html>

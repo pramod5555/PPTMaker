@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>J.P. Morgan Asset Management Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececed;
+    color:#111;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .title{
+    left:38px;
+    top:58px;
+    width:1180px;
+    font-size:29px;
+    line-height:1.12;
+    font-weight:700;
+    color:#111;
+  }
+  .top-rule{
+    left:38px;
+    top:103px;
+    width:1202px;
+    height:1px;
+    background:#666;
+  }
+  .subtitle{
+    left:38px;
+    top:112px;
+    width:760px;
+    font-size:23px;
+    line-height:1.2;
+    font-weight:400;
+    color:#222;
+  }
+  .section{
+    left:38px;
+    top:150px;
+    width:430px;
+    font-size:21px;
+    line-height:1.1;
+    font-weight:700;
+    color:#111;
+  }
+  .section-rule{
+    left:38px;
+    top:172px;
+    width:818px;
+    height:1px;
+    background:#6d6d6d;
+  }
+  .subhead-left,.subhead-right{
+    font-size:16px;
+    line-height:1.15;
+    font-weight:700;
+    color:#111;
+  }
+  .subhead-left{ left:38px; top:181px; width:260px; }
+  .subhead-right{ left:480px; top:181px; width:250px; }
+
+  .footnote-sup{
+    font-size:.58em;
+    vertical-align:super;
+    font-weight:600;
+  }
+
+  .v-sep{
+    left:456px;
+    top:184px;
+    width:1px;
+    height:377px;
+    border-left:1px dotted #888;
+  }
+
+  .left-label{
+    font-size:16px;
+    line-height:1.06;
+    font-weight:700;
+    fill:#222;
+  }
+  .numlabel{
+    font-size:15px;
+    line-height:1;
+    font-weight:400;
+    fill:#222;
+  }
+  .center-amt{
+    font-size:25px;
+    font-weight:400;
+    fill:#111;
+  }
+  .center-sub{
+    font-size:13px;
+    font-weight:700;
+    fill:#222;
+  }
+
+  .kpi{
+    color:#fff;
+  }
+  .kpi-blue{ background:#1490e8; }
+  .kpi-green{ background:#05a66d; }
+  .kpi .big{
+    font-size:35px;
+    line-height:1;
+    font-weight:400;
+    color:#fff;
+  }
+  .kpi .small{
+    font-size:14px;
+    line-height:1.15;
+    font-weight:400;
+    color:#fff;
+  }
+  .kpi-divider{
+    position:absolute;
+    top:12px;
+    width:1px;
+    height:80px;
+    background:rgba(0,0,0,.45);
+  }
+
+  .region-band{
+    background:#7348bf;
+    color:#fff;
+  }
+  .region-title{
+    font-size:15px;
+    line-height:1.1;
+    font-weight:700;
+    color:#fff;
+    text-align:center;
+  }
+  .region-num{
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+    color:#fff;
+    text-align:center;
+  }
+  .region-name{
+    font-size:15px;
+    line-height:1.1;
+    font-weight:400;
+    color:#fff;
+    text-align:center;
+  }
+  .region-divider{
+    width:1px;
+    height:34px;
+    background:rgba(0,0,0,.45);
+  }
+
+  .sidebar-shadow{
+    left:871px;
+    top:116px;
+    width:36px;
+    height:514px;
+    background:#d4d5d7;
+    clip-path:polygon(0 6%, 82% 0, 82% 94%, 0 100%);
+  }
+  .sidebar{
+    left:907px;
+    top:116px;
+    width:299px;
+    height:514px;
+    background:#e3e4e6;
+  }
+  .sidebar-title{
+    left:935px;
+    top:136px;
+    width:240px;
+    font-size:18px;
+    line-height:1.2;
+    font-weight:700;
+    color:#111;
+  }
+  .sidebar-rule{
+    left:932px;
+    top:164px;
+    width:232px;
+    height:1px;
+    background:#6e6e6e;
+  }
+  .acc-rank{
+    font-size:24px;
+    line-height:1;
+    font-weight:400;
+    color:#111;
+  }
+  .acc-text{
+    font-size:17px;
+    line-height:1.1;
+    font-weight:400;
+    color:#222;
+  }
+
+  .footnotes{
+    left:37px;
+    top:638px;
+    width:1185px;
+    font-size:10px;
+    line-height:1.22;
+    font-weight:400;
+    color:#222;
+  }
+  .footnotes i{
+    font-style:italic;
+    font-weight:700;
+  }
+  .bottom-rule{
+    left:36px;
+    top:690px;
+    width:1188px;
+    height:1px;
+    background:#8f8f8f;
+  }
+  .page{
+    left:38px;
+    top:706px;
+    width:20px;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+  }
+  .logo{
+    left:1097px;
+    top:702px;
+    width:145px;
+    color:#111;
+  }
+  .logo .jp{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:26px;
+    line-height:1;
+    font-weight:400;
+    letter-spacing:-0.03em;
+  }
+  .logo .am{
+    margin-top:5px;
+    font-size:11px;
+    line-height:1.1;
+    font-weight:700;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">J.P. Morgan Asset Management: Broad, diversified $4.3T active manager</div>
+  <div class="top-rule"></div>
+  <div class="subtitle">The power of perspective to build stronger portfolios</div>
+
+  <div class="section">Assets under supervision ($B)</div>
+  <div class="section-rule"></div>
+  <div class="subhead-left">By Asset Class<span class="footnote-sup">1,2</span></div>
+  <div class="subhead-right">By Client Segment<span class="footnote-sup">1</span></div>
+  <div class="v-sep"></div>
+
+  <svg style="left:52px; top:209px; width:341px; height:231px;" viewBox="0 0 341 231" aria-hidden="true">
+    <g transform="translate(140,108)">
+      <circle cx="0" cy="0" r="85" fill="none" stroke="#0a4a93" stroke-width="32"
+              stroke-linecap="butt" transform="rotate(-120)"
+              stroke-dasharray="143.1 391.0" stroke-dashoffset="0"></circle>
+      <circle cx="0" cy="0" r="85" fill="none" stroke="#2b86ee" stroke-width="32"
+              stroke-linecap="butt" transform="rotate(-23.9)"
+              stroke-dasharray="185.2 348.9" stroke-dashoffset="0"></circle>
+      <circle cx="0" cy="0" r="85" fill="none" stroke="#0d6eb7" stroke-width="32"
+              stroke-linecap="butt" transform="rotate(100.5)"
+              stroke-dasharray="116.5 417.6" stroke-dashoffset="0"></circle>
+      <circle cx="0" cy="0" r="85" fill="none" stroke="#1680d8" stroke-width="32"
+              stroke-linecap="butt" transform="rotate(178.8)"
+              stroke-dasharray="25.6 508.5" stroke-dashoffset="0"></circle>
+      <circle cx="0" cy="0" r="55" fill="#ececed" stroke="#d6d6d6" stroke-width="4"></circle>
+      <text x="0" y="-45" text-anchor="middle" class="center-sub">Solutions</text>
+      <text x="0" y="10" text-anchor="middle" class="center-amt">$4.3T</text>
+      <text x="0" y="64" text-anchor="middle" class="numlabel">$530</text>
+    </g>
+
+    <text x="18" y="100" class="numlabel">$997</text>
+    <text x="18" y="117" class="left-label">
+      <tspan x="18" dy="0">Fixed</tspan>
+      <tspan x="18" dy="18">Income</tspan>
+    </text>
+
+    <text x="50" y="14" class="numlabel">$220</text>
+    <text x="50" y="31" class="left-label">Alternatives</text>
+
+    <text x="223" y="38" class="numlabel">$1,223</text>
+    <text x="223" y="55" class="left-label">Equities</text>
+
+    <text x="208" y="196" class="numlabel">$1,584</text>
+    <text x="198" y="213" class="left-label">Liquidity</text>
+  </svg>
+
+  <svg style="left:486px; top:214px; width:321px; height:221px;" viewBox="0 0 321 221" aria-hidden="true">
+    <g transform="translate(157,111)">
+      <circle cx="0" cy="0" r="80" fill="none" stroke="#05a86f" stroke-width="33"
+              stroke-linecap="butt" transform="rotate(-90)"
+              stroke-dasharray="216.8 285.9"></circle>
+      <circle cx="0" cy="0" r="80" fill="none" stroke="#006b3e" stroke-width="33"
+              stroke-linecap="butt" transform="rotate(65.2)"
+              stroke-dasharray="122.3 380.4"></circle>
+      <circle cx="0" cy="0" r="80" fill="none" stroke="#078558" stroke-width="33"
+              stroke-linecap="butt" transform="rotate(152.8)"
+              stroke-dasharray="163.6 339.1"></circle>
+      <circle cx="0" cy="0" r="49" fill="#ececed"></circle>
+      <text x="0" y="9" text-anchor="middle" class="center-amt">$4.3T</text>
+    </g>
+
+    <text x="10" y="24" class="numlabel">$1,864</text>
+    <text x="10" y="41" class="left-label">
+      <tspan x="10" dy="0">Financial</tspan>
+      <tspan x="10" dy="18">Intermediaries</tspan>
+    </text>
+
+    <text x="250" y="60" class="numlabel">$1,406</text>
+    <text x="236" y="77" class="left-label">Liquidity</text>
+
+    <text x="234" y="193" class="numlabel">$1,055</text>
+    <text x="204" y="210" class="left-label">Institutional</text>
+  </svg>
+
+  <div class="kpi kpi-blue" style="left:38px; top:456px; width:389px; height:98px;">
+    <div style="position:absolute; left:21px; top:13px; width:170px;" class="big">$525M+</div>
+    <div style="position:absolute; left:21px; top:59px; width:150px;" class="small">Annual research<br>budget<span class="footnote-sup">3,4</span></div>
+    <div class="kpi-divider" style="left:178px;"></div>
+    <div style="position:absolute; left:217px; top:14px; width:90px;" class="big">70+</div>
+    <div style="position:absolute; left:217px; top:62px; width:108px;" class="small">Investment<br>engines<span class="footnote-sup">4</span></div>
+  </div>
+
+  <div class="kpi kpi-green" style="left:479px; top:456px; width:377px; height:98px;">
+    <div style="position:absolute; left:27px; top:13px; width:110px;" class="big">55%</div>
+    <div style="position:absolute; left:27px; top:59px; width:148px;" class="small">Largest pensions /<br>SWFs as clients<span class="footnote-sup">4</span></div>
+    <div class="kpi-divider" style="left:183px;"></div>
+    <div style="position:absolute; left:209px; top:13px; width:120px;" class="big">&gt;70%</div>
+    <div style="position:absolute; left:209px; top:59px; width:138px;" class="small">Coverage of industry<br>assets<span class="footnote-sup">5</span></div>
+  </div>
+
+  <div class="region-band" style="left:38px; top:562px; width:818px; height:68px;"></div>
+  <div class="region-title" style="left:268px; top:568px; width:360px;">With revenue diversified across regions<span class="footnote-sup">1</span></div>
+  <div class="region-num" style="left:129px; top:592px; width:46px;">67%</div>
+  <div class="region-name" style="left:102px; top:613px; width:100px;">Americas</div>
+  <div class="region-divider" style="left:247px; top:587px;"></div>
+  <div class="region-num" style="left:413px; top:592px; width:46px;">23%</div>
+  <div class="region-name" style="left:391px; top:613px; width:92px;">EMEA</div>
+  <div class="region-divider" style="left:465px; top:587px;"></div>
+  <div class="region-num" style="left:691px; top:588px; width:58px;">10%</div>
+  <div class="region-name" style="left:691px; top:609px; width:58px;">APAC</div>
+
+  <div class="sidebar-shadow"></div>
+  <div class="sidebar"></div>
+  <div class="sidebar-title">Global Accolades</div>
+  <div class="sidebar-rule"></div>
+
+  <div style="left:936px; top:185px; width:42px;" class="acc-rank">#1</div>
+  <div style="left:998px; top:189px; width:180px;" class="acc-text">Active Flows<span class="footnote-sup">6</span></div>
+
+  <div style="left:936px; top:238px; width:42px;" class="acc-rank">#1</div>
+  <div style="left:998px; top:242px; width:180px;" class="acc-text">Active ETF Flows<span class="footnote-sup">7</span></div>
+
+  <div style="left:936px; top:291px; width:42px;" class="acc-rank">#1</div>
+  <div style="left:998px; top:295px; width:194px;" class="acc-text">Active Equity Flows<span class="footnote-sup">6</span></div>
+
+  <div style="left:936px; top:346px; width:42px;" class="acc-rank">#2</div>
+  <div style="left:998px; top:350px; width:208px;" class="acc-text">Active Fixed Income Flows<span class="footnote-sup">6</span></div>
+
+  <div style="left:936px; top:414px; width:42px;" class="acc-rank">#1</div>
+  <div style="left:998px; top:416px; width:210px;" class="acc-text">Institutional Money Market<br>Fund Flows<span class="footnote-sup">8</span></div>
+
+  <div style="left:922px; top:493px; width:74px;" class="acc-rank">Top 2</div>
+  <div style="left:1002px; top:491px; width:168px;" class="acc-text">U.S. core real estate<br>manager<span class="footnote-sup">9</span></div>
+
+  <div style="left:924px; top:576px; width:60px;" class="acc-rank">83%</div>
+  <div style="left:997px; top:573px; width:205px;" class="acc-text">LT fund AUM outperforming<br>peer median over 10Y<span class="footnote-sup">10</span></div>
+
+  <div class="footnotes">
+    Data as of 3/31/2026; unless otherwise noted. <span class="footnote-sup">1</span>As of 3/31/2026. Includes custom glide path and retail advisory assets; Due to rounding, data may not always add up to the total assets under supervision (AUS);<br>
+    <span class="footnote-sup">2</span>AUS by asset class includes AUM managed behalf of other investment teams; <span class="footnote-sup">3</span>Only for AM; <span class="footnote-sup">4</span>J.P. Morgan Asset Management as of 12/31/2025; <span class="footnote-sup">5</span>J.P. Morgan Asset Management Business Intelligence, as of 12/31/2025,<br>
+    and includes U.S. Advisors only; <span class="footnote-sup">6</span>Public filings, Morningstar, J.P. Morgan estimates, based on 2025 rankings; <span class="footnote-sup">7</span>Bloomberg and FactSet, based on 2025 rankings; <span class="footnote-sup">8</span>iMoneyNet, based on 2025 rankings; <span class="footnote-sup">9</span>ODCE Index,<br>
+    based on 2025 rankings. Strategic Property Fund is top 2 core fund; <span class="footnote-sup">10</span>As of 3/31/2026. <i>Past performance is not indicative of future returns.</i>
+  </div>
+
+  <div class="bottom-rule"></div>
+  <div class="page">2</div>
+
+  <div class="logo">
+    <div class="jp">J.P.Morgan</div>
+    <div class="am">ASSET MANAGEMENT</div>
+  </div>
+</div>
+</body>
+</html>

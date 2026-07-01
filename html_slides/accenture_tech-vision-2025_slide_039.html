@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #511287;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #511287;
+    color: #f2eef8;
+  }
+
+  /* Background decorative forms */
+  .bg-right-glow {
+    position: absolute;
+    left: 1006px;
+    top: -96px;
+    width: 335px;
+    height: 675px;
+    border-radius: 170px;
+    background:
+      radial-gradient(ellipse at 72% 30%, rgba(188, 44, 255, 0.95) 0%, rgba(165, 22, 239, 0.92) 30%, rgba(116, 11, 176, 0.65) 58%, rgba(81, 18, 135, 0) 74%);
+    transform: rotate(10deg);
+    filter: blur(2px);
+  }
+  .bg-right-ring1 {
+    position: absolute;
+    left: 1038px;
+    top: -34px;
+    width: 270px;
+    height: 560px;
+    border-radius: 50%;
+    border: 16px solid rgba(58, 15, 96, 0.85);
+    box-shadow:
+      inset 0 0 0 5px rgba(153, 33, 219, 0.28),
+      0 0 0 2px rgba(171, 44, 239, 0.10);
+    transform: rotate(-8deg);
+    opacity: 0.85;
+  }
+  .bg-right-ring2 {
+    position: absolute;
+    left: 1085px;
+    top: -24px;
+    width: 240px;
+    height: 530px;
+    border-radius: 50%;
+    border: 7px solid rgba(208, 78, 255, 0.35);
+    transform: rotate(-10deg);
+    opacity: 0.45;
+  }
+  .bg-right-stroke,
+  .bg-right-stroke2,
+  .bg-right-stroke3,
+  .bg-right-stroke4,
+  .bg-right-stroke5 {
+    position: absolute;
+    background: rgba(60, 20, 95, 0.9);
+    border-radius: 999px;
+  }
+  .bg-right-stroke { left: 1206px; top: 35px; width: 10px; height: 128px; transform: rotate(18deg); }
+  .bg-right-stroke2 { left: 1243px; top: 67px; width: 7px; height: 113px; transform: rotate(-22deg); }
+  .bg-right-stroke3 { left: 1127px; top: 83px; width: 8px; height: 141px; transform: rotate(28deg); opacity: 0.8; }
+  .bg-right-stroke4 { left: 1166px; top: 17px; width: 4px; height: 108px; transform: rotate(34deg); opacity: 0.4; }
+  .bg-right-stroke5 { left: 1053px; top: 2px; width: 3px; height: 95px; transform: rotate(32deg); opacity: 0.25; }
+
+  .bg-bottom-arc {
+    position: absolute;
+    left: 123px;
+    top: 527px;
+    width: 754px;
+    height: 279px;
+    border-radius: 50%;
+    border: 24px solid rgba(103, 25, 160, 0.28);
+    border-top-color: rgba(122, 38, 183, 0.18);
+    border-left-color: rgba(122, 38, 183, 0.18);
+    transform: rotate(-8deg);
+    opacity: 0.9;
+  }
+  .bg-bottom-core {
+    position: absolute;
+    left: 350px;
+    top: 632px;
+    width: 563px;
+    height: 132px;
+    border-radius: 50%;
+    background:
+      radial-gradient(ellipse at 50% 65%, rgba(186, 33, 255, 0.96) 0%, rgba(163, 22, 233, 0.92) 30%, rgba(108, 16, 165, 0.78) 55%, rgba(81, 18, 135, 0) 82%);
+    transform: rotate(3deg);
+  }
+  .bg-bottom-ring {
+    position: absolute;
+    left: 411px;
+    top: 644px;
+    width: 436px;
+    height: 82px;
+    border-radius: 50%;
+    border: 8px solid rgba(60, 14, 95, 0.9);
+    box-shadow: inset 0 0 0 3px rgba(188, 44, 255, 0.25);
+    transform: rotate(3deg);
+  }
+  .bg-bottom-highlight {
+    position: absolute;
+    left: 680px;
+    top: 638px;
+    width: 185px;
+    height: 23px;
+    background: rgba(198, 88, 255, 0.65);
+    border-radius: 999px;
+    transform: rotate(6deg);
+  }
+  .bg-bottom-scratch1,
+  .bg-bottom-scratch2,
+  .bg-bottom-scratch3,
+  .bg-bottom-scratch4,
+  .bg-bottom-scratch5 {
+    position: absolute;
+    background: rgba(66, 20, 100, 0.95);
+    border-radius: 999px;
+  }
+  .bg-bottom-scratch1 { left: 699px; top: 645px; width: 137px; height: 5px; transform: rotate(11deg); }
+  .bg-bottom-scratch2 { left: 720px; top: 652px; width: 154px; height: 4px; transform: rotate(13deg); }
+  .bg-bottom-scratch3 { left: 408px; top: 679px; width: 151px; height: 5px; transform: rotate(5deg); opacity: 0.6; }
+  .bg-bottom-scratch4 { left: 766px; top: 666px; width: 112px; height: 4px; transform: rotate(16deg); opacity: 0.75; }
+  .bg-bottom-scratch5 { left: 795px; top: 676px; width: 87px; height: 4px; transform: rotate(18deg); opacity: 0.75; }
+
+  .dot1, .dot2, .dot3 {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(215, 191, 235, 0.22);
+  }
+  .dot1 { left: 411px; top: 624px; width: 5px; height: 5px; }
+  .dot2 { left: 461px; top: 605px; width: 3px; height: 3px; }
+  .dot3 { left: 755px; top: 573px; width: 4px; height: 4px; }
+
+  /* Header */
+  .top-left {
+    position: absolute;
+    left: 64px;
+    top: 37px;
+    font-size: 16px;
+    line-height: 1;
+    color: #d7c5e8;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+  .top-right {
+    position: absolute;
+    left: 1124px;
+    top: 36px;
+    font-size: 16px;
+    line-height: 1;
+    color: #e6daf2;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .page {
+    position: absolute;
+    left: 1258px;
+    top: 36px;
+    font-size: 20px;
+    line-height: 1;
+    color: #ffffff;
+    font-weight: 400;
+  }
+
+  /* Content */
+  .title {
+    position: absolute;
+    left: 62px;
+    top: 227px;
+    font-size: 41px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .rule {
+    position: absolute;
+    left: 63px;
+    top: 279px;
+    width: 463px;
+    height: 2px;
+    background: rgba(213, 198, 228, 0.45);
+  }
+  .body {
+    position: absolute;
+    left: 62px;
+    top: 307px;
+    width: 461px;
+    font-size: 18px;
+    line-height: 1.15;
+    color: #f1eaf8;
+    font-weight: 400;
+  }
+  .bullets {
+    position: absolute;
+    left: 100px;
+    top: 469px;
+    width: 520px;
+    font-size: 18px;
+    line-height: 1.25;
+    color: #ffffff;
+    font-weight: 700;
+  }
+  .bullets div {
+    position: relative;
+    margin-bottom: 18px;
+  }
+  .bullets div::before {
+    content: "•";
+    position: absolute;
+    left: -12px;
+    top: 0;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .accent {
+    position: absolute;
+    left: 58px;
+    top: 716px;
+    font-size: 54px;
+    line-height: 0.5;
+    color: #b40fff;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="bg-right-glow"></div>
+    <div class="bg-right-ring1"></div>
+    <div class="bg-right-ring2"></div>
+    <div class="bg-right-stroke"></div>
+    <div class="bg-right-stroke2"></div>
+    <div class="bg-right-stroke3"></div>
+    <div class="bg-right-stroke4"></div>
+    <div class="bg-right-stroke5"></div>
+
+    <div class="bg-bottom-arc"></div>
+    <div class="bg-bottom-core"></div>
+    <div class="bg-bottom-ring"></div>
+    <div class="bg-bottom-highlight"></div>
+    <div class="bg-bottom-scratch1"></div>
+    <div class="bg-bottom-scratch2"></div>
+    <div class="bg-bottom-scratch3"></div>
+    <div class="bg-bottom-scratch4"></div>
+    <div class="bg-bottom-scratch5"></div>
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+    <div class="dot3"></div>
+
+    <div class="top-left">Technology Vision 2025&nbsp;&nbsp;|&nbsp;&nbsp;AI: A Declaration of Autonomy</div>
+    <div class="top-right">When LLMs get their Bodies</div>
+    <div class="page">39</div>
+
+    <div class="title">The Technology</div>
+    <div class="rule"></div>
+
+    <div class="body">
+      Today’s skyrocketing potential for generalist robots<br>
+      began with the emergence of foundation models.<br>
+      They opened the doors to the possibility of real-world<br>
+      reasoning, adaptability, and autonomy—and to bring<br>
+      this to life, leaders are exploring new techniques,<br>
+      working to resolve training data shortages, and<br>
+      building a new generation of robot hardware.
+    </div>
+
+    <div class="bullets">
+      <div>Foundation Models for Robotics / Embodied AI</div>
+      <div>Robot Training / Data Collection</div>
+      <div>Multipurpose Robot Bodies</div>
+    </div>
+
+    <div class="accent">&gt;</div>
+  </div>
+</body>
+</html>

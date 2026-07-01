@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Contacts Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#f3f3f4;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f4;
+    color:#5f6270;
+  }
+  .top-accent{
+    position:absolute;
+    left:0;
+    top:0;
+    width:47px;
+    height:78px;
+    background:#b8b9c3;
+  }
+  .title{
+    position:absolute;
+    left:56px;
+    top:50px;
+    font-size:31px;
+    line-height:1;
+    font-weight:400;
+    color:#7a7c88;
+  }
+  .top-rule{
+    position:absolute;
+    left:0;
+    top:78px;
+    width:1280px;
+    height:2px;
+    background:#c5c7d0;
+  }
+
+  .nav-btn{
+    position:absolute;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:#bcbcc6;
+    color:#3f4150;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+    font-weight:700;
+  }
+  .nav-left{ left:951px; top:34px; }
+  .nav-right{ left:1009px; top:34px; }
+
+  .section-title{
+    position:absolute;
+    left:56px;
+    top:117px;
+    font-size:17px;
+    line-height:1.1;
+    font-weight:700;
+    color:#6c6f7a;
+  }
+
+  .table-wrap{
+    position:absolute;
+    left:56px;
+    top:141px;
+    width:939px;
+    height:528px;
+  }
+  .header-grey{
+    position:absolute;
+    top:0;
+    height:28px;
+    background:#aeb0bb;
+    color:#2f3138;
+    font-size:14px;
+    line-height:28px;
+    font-weight:700;
+    padding-left:7px;
+    box-sizing:border-box;
+  }
+  .subhead{
+    position:absolute;
+    height:19px;
+    background:#f1dc00;
+    color:#9a8700;
+    font-size:13px;
+    line-height:19px;
+    font-weight:700;
+    padding-left:8px;
+    box-sizing:border-box;
+  }
+  .vline{
+    position:absolute;
+    top:0;
+    width:1px;
+    height:528px;
+    background:#b7b9c2;
+  }
+  .row-sep{
+    position:absolute;
+    left:0;
+    width:939px;
+    height:1px;
+    background:#d1d2d8;
+  }
+  .cell{
+    position:absolute;
+    font-size:12px;
+    line-height:1.15;
+    color:#575b68;
+  }
+  .name{
+    font-size:12px;
+    line-height:14px;
+    color:#1267cb;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .num{
+    margin-top:1px;
+    font-size:12px;
+    line-height:14px;
+    color:#5d616d;
+    white-space:nowrap;
+  }
+
+  .side-tab{
+    position:absolute;
+    left:1009px;
+    width:79px;
+    background:#3d3b4c;
+    color:#fff;
+    padding:7px 7px 7px 7px;
+    box-sizing:border-box;
+    font-size:12px;
+    line-height:14px;
+    font-weight:400;
+  }
+  .side-tab.light{
+    background:#8d8f9a;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:56px;
+    top:730px;
+    transform:translateY(-100%);
+    font-size:10px;
+    line-height:1;
+    color:#7d7f88;
+    font-weight:600;
+  }
+
+  .footer-nav{
+    position:absolute;
+    top:711px;
+    transform:translateY(-100%);
+    color:#4d4f5b;
+    font-weight:700;
+  }
+  .footer-nav .btn{
+    position:absolute;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:#bcbcc6;
+    color:#4d4f5b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+    font-weight:700;
+    top:0;
+  }
+  .footer-nav .txt{
+    position:absolute;
+    top:3px;
+    font-size:12px;
+    line-height:14px;
+    color:#4c4f58;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-accent"></div>
+  <div class="title">Contacts</div>
+  <div class="top-rule"></div>
+
+  <div class="nav-btn nav-left">◀</div>
+  <div class="nav-btn nav-right">▶</div>
+
+  <div class="section-title">Global Trade contacts by jurisdiction</div>
+
+  <div class="table-wrap">
+    <div class="header-grey" style="left:0;width:563px;">Americas</div>
+    <div class="header-grey" style="left:563px;width:376px;">Asia-Pacific</div>
+
+    <div class="vline" style="left:188px;"></div>
+    <div class="vline" style="left:375px;"></div>
+    <div class="vline" style="left:563px;"></div>
+    <div class="vline" style="left:751px;"></div>
+
+    <div class="subhead" style="left:0;top:28px;width:188px;">Argentina</div>
+    <div class="subhead" style="left:188px;top:28px;width:187px;">The Caribbean</div>
+    <div class="subhead" style="left:375px;top:28px;width:188px;">United States</div>
+    <div class="subhead" style="left:563px;top:28px;width:188px;">Australia</div>
+    <div class="subhead" style="left:751px;top:28px;width:188px;">Korea (South)</div>
+
+    <div class="subhead" style="left:0;top:82px;width:188px;">Brazil</div>
+    <div class="subhead" style="left:188px;top:82px;width:187px;">Colombia</div>
+    <div class="subhead" style="left:563px;top:82px;width:188px;">China Mainland</div>
+    <div class="subhead" style="left:751px;top:82px;width:188px;">Malaysia</div>
+
+    <div class="subhead" style="left:188px;top:136px;width:187px;">Mexico</div>
+    <div class="subhead" style="left:751px;top:136px;width:188px;">New Zealand</div>
+
+    <div class="subhead" style="left:0;top:194px;width:188px;">Canada</div>
+    <div class="subhead" style="left:751px;top:190px;width:188px;">Phillipines</div>
+
+    <div class="subhead" style="left:188px;top:218px;width:187px;">Peru</div>
+    <div class="subhead" style="left:751px;top:244px;width:188px;">Singapore</div>
+
+    <div class="subhead" style="left:751px;top:298px;width:188px;">Taiwan</div>
+    <div class="subhead" style="left:563px;top:352px;width:188px;">Hong Kong</div>
+    <div class="subhead" style="left:751px;top:352px;width:188px;">Thailand</div>
+    <div class="subhead" style="left:563px;top:406px;width:188px;">Japan</div>
+    <div class="subhead" style="left:751px;top:406px;width:188px;">Vietnam</div>
+
+    <div class="row-sep" style="top:47px;"></div>
+    <div class="row-sep" style="top:82px;"></div>
+    <div class="row-sep" style="top:101px;"></div>
+    <div class="row-sep" style="top:136px;"></div>
+    <div class="row-sep" style="top:155px;"></div>
+    <div class="row-sep" style="top:190px;"></div>
+    <div class="row-sep" style="top:218px;"></div>
+    <div class="row-sep" style="top:244px;"></div>
+    <div class="row-sep" style="top:298px;"></div>
+    <div class="row-sep" style="top:352px;"></div>
+    <div class="row-sep" style="top:406px;"></div>
+
+    <div class="cell" style="left:9px;top:48px;width:170px;">
+      <div class="name">Sergio Stepanenko▶</div>
+      <div class="num">+ 54 11 4318 1648</div>
+    </div>
+
+    <div class="cell" style="left:197px;top:48px;width:170px;">
+      <div class="name">Rose Boevé▶</div>
+      <div class="num">+ 599 0 430 5076</div>
+    </div>
+
+    <div class="cell" style="left:385px;top:48px;width:170px;">
+      <div class="name">Jay Bezek▶</div>
+      <div class="num">+ 1 704 331 1975</div>
+    </div>
+    <div class="cell" style="left:385px;top:102px;width:170px;">
+      <div class="name">Lynlee Brown▶</div>
+      <div class="num">+ 1 858 535 7357</div>
+    </div>
+    <div class="cell" style="left:385px;top:132px;width:170px;">
+      <div class="name">Jon Cowley▶</div>
+      <div class="num">+ 1 206 288 5115</div>
+    </div>
+    <div class="cell" style="left:385px;top:162px;width:170px;">
+      <div class="name">Sergio Fontenelle▶</div>
+      <div class="num">+ 1 212 466 9780</div>
+    </div>
+    <div class="cell" style="left:385px;top:192px;width:170px;">
+      <div class="name">Nathan Gollaher▶</div>
+      <div class="num">+ 1 312 879 2055</div>
+    </div>
+    <div class="cell" style="left:385px;top:222px;width:170px;">
+      <div class="name">Michael Heldebrand▶</div>
+      <div class="num">+ 1 408 947 6820</div>
+    </div>
+    <div class="cell" style="left:385px;top:252px;width:170px;">
+      <div class="name">Bryan Schillinger▶</div>
+      <div class="num">+ 1 713 750 5209</div>
+    </div>
+    <div class="cell" style="left:385px;top:282px;width:170px;">
+      <div class="name">Prentice Wells▶</div>
+      <div class="num">+ 1 408 947 5438</div>
+    </div>
+    <div class="cell" style="left:385px;top:312px;width:170px;">
+      <div class="name">Shane Williams▶</div>
+      <div class="num">+ 1 713 751 5715</div>
+    </div>
+
+    <div class="cell" style="left:573px;top:48px;width:170px;">
+      <div class="name">Luke Branson▶</div>
+      <div class="num">+ 61 3 9288 8369</div>
+    </div>
+    <div class="cell" style="left:573px;top:78px;width:170px;">
+      <div class="name">Kylie Norman▶</div>
+      <div class="num">+ 61 2 9248 4765</div>
+    </div>
+
+    <div class="cell" style="left:761px;top:48px;width:170px;">
+      <div class="name">Dongo Park▶</div>
+      <div class="num">+ 82 23 787 4337</div>
+    </div>
+
+    <div class="cell" style="left:9px;top:102px;width:170px;">
+      <div class="name">Ian Craig▶</div>
+      <div class="num">+ 55 21 32637362</div>
+    </div>
+    <div class="cell" style="left:9px;top:132px;width:170px;">
+      <div class="name">Fernando Fagiani▶</div>
+      <div class="num">+ 55 11 2573 6913</div>
+    </div>
+    <div class="cell" style="left:9px;top:162px;width:170px;">
+      <div class="name">Cesar Finotti▶</div>
+      <div class="num">+ 55 11 2573 6465</div>
+    </div>
+    <div class="cell" style="left:9px;top:192px;width:170px;">
+      <div class="name">Gabriel Martins▶</div>
+      <div class="num">+ 55 21 3263 7201</div>
+    </div>
+    <div class="cell" style="left:9px;top:222px;width:170px;">
+      <div class="name">Waine Peron▶</div>
+      <div class="num">+ 55 11 2573 3559</div>
+    </div>
+
+    <div class="cell" style="left:197px;top:102px;width:176px;">
+      <div class="name">Nicole Velasquez Amaya▶</div>
+      <div class="num">+ 57 1 4847036</div>
+    </div>
+
+    <div class="cell" style="left:573px;top:102px;width:170px;">
+      <div class="name">Lynette Dong▶</div>
+      <div class="num">+ 86 21 2228 4107</div>
+    </div>
+    <div class="cell" style="left:573px;top:132px;width:170px;">
+      <div class="name">Yao Lu▶</div>
+      <div class="num">+ 86 139 1015 1448</div>
+    </div>
+    <div class="cell" style="left:573px;top:162px;width:170px;">
+      <div class="name">Bryan Tang▶</div>
+      <div class="num">+ 86 21 2228 2294</div>
+    </div>
+    <div class="cell" style="left:573px;top:192px;width:170px;">
+      <div class="name">Hong Li Wang▶</div>
+      <div class="num">+ 86 10 5815 2307</div>
+    </div>
+    <div class="cell" style="left:573px;top:222px;width:170px;">
+      <div class="name">Dong Xu▶</div>
+      <div class="num">+ 86 21 2228 3216</div>
+    </div>
+    <div class="cell" style="left:573px;top:252px;width:170px;">
+      <div class="name">Tina GY Zhang▶</div>
+      <div class="num">+ 86 10 58152197</div>
+    </div>
+
+    <div class="cell" style="left:761px;top:102px;width:170px;">
+      <div class="name">Jalbir Singh Riar▶</div>
+      <div class="num">+ 60 3749 58329</div>
+    </div>
+    <div class="cell" style="left:761px;top:156px;width:170px;">
+      <div class="name">Paul Smith▶</div>
+      <div class="num">+ 64 9 348 8409</div>
+    </div>
+    <div class="cell" style="left:761px;top:210px;width:170px;">
+      <div class="name">Lucil Vicerra▶</div>
+      <div class="num">+ 63 288 948 115</div>
+    </div>
+
+    <div class="cell" style="left:197px;top:156px;width:170px;">
+      <div class="name">Karla Cardenas▶</div>
+      <div class="num">+ 52 664 681 7844</div>
+    </div>
+    <div class="cell" style="left:197px;top:186px;width:170px;">
+      <div class="name">Roberto Chapa▶</div>
+      <div class="num">+ 52 818 152 1853</div>
+    </div>
+    <div class="cell" style="left:197px;top:216px;width:170px;">
+      <div class="name">Rocio Mejia▶</div>
+      <div class="num">+ 52 555 283 8672</div>
+    </div>
+    <div class="cell" style="left:197px;top:246px;width:170px;">
+      <div class="name">Jorge Nasif▶</div>
+      <div class="num">+ 52 551 101 7327</div>
+    </div>
+
+    <div class="cell" style="left:9px;top:210px;width:170px;">
+      <div class="name">Helen Dyp▶</div>
+      <div class="num">+ 1 613 598 0418</div>
+    </div>
+    <div class="cell" style="left:9px;top:264px;width:170px;">
+      <div class="name">Kristian Kot▶</div>
+      <div class="num">+ 1 2502 948384</div>
+    </div>
+    <div class="cell" style="left:9px;top:318px;width:170px;">
+      <div class="name">Sylvain Golsse▶</div>
+      <div class="num">+ 1 4169 325165</div>
+    </div>
+
+    <div class="cell" style="left:197px;top:240px;width:170px;">
+      <div class="name">Giancarlo Riva▶</div>
+      <div class="num">+ 51 1411 4448</div>
+    </div>
+
+    <div class="cell" style="left:761px;top:264px;width:170px;">
+      <div class="name">Donald Thomson▶</div>
+      <div class="num">+ 65 6309 8636</div>
+    </div>
+    <div class="cell" style="left:761px;top:318px;width:170px;">
+      <div class="name">Vivian Wu▶</div>
+      <div class="num">+ 886 2 2728 8833</div>
+    </div>
+
+    <div class="cell" style="left:573px;top:372px;width:170px;">
+      <div class="name">Tina Robb▶</div>
+      <div class="num">+852 31894435</div>
+    </div>
+    <div class="cell" style="left:761px;top:372px;width:170px;">
+      <div class="name">William Chea▶</div>
+      <div class="num">+ 662 264 9090</div>
+    </div>
+
+    <div class="cell" style="left:573px;top:426px;width:170px;">
+      <div class="name">Yumi Haraoka▶</div>
+      <div class="num">+ 81 3 3506 2110</div>
+    </div>
+    <div class="cell" style="left:573px;top:456px;width:170px;">
+      <div class="name">Yoichi Ohira▶</div>
+      <div class="num">+ 81 3 3506 2110</div>
+    </div>
+    <div class="cell" style="left:761px;top:426px;width:170px;">
+      <div class="name">Anh Tuan Thach▶</div>
+      <div class="num">+ 84 28 3629 7366</div>
+    </div>
+  </div>
+
+  <div class="side-tab" style="top:120px;height:36px;">Contents</div>
+  <div class="side-tab" style="top:170px;height:36px;">Insights</div>
+  <div class="side-tab" style="top:220px;height:47px;">New on<br>ey.com</div>
+  <div class="side-tab" style="top:281px;height:36px;">Tax alerts</div>
+  <div class="side-tab light" style="top:330px;height:51px;">Additional<br>resources</div>
+  <div class="side-tab light" style="top:392px;height:36px;">Contacts</div>
+
+  <div class="footer-left">71&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+
+  <div class="footer-nav" style="left:619px;width:250px;height:32px;">
+    <div class="btn" style="left:0;">◀</div>
+    <div class="txt" style="left:38px;width:200px;">Global and Trade<br>knowledge team contacts</div>
+  </div>
+
+  <div class="footer-nav" style="left:815px;width:355px;height:32px;">
+    <div class="txt" style="left:0;width:190px;">Europe, Middle East,<br>India and Africa contacts</div>
+    <div class="btn" style="left:138px;">▶</div>
+  </div>
+</div>
+</body>
+</html>

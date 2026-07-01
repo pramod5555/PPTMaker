@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #efefef;
+  }
+
+  .top-band {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 67px;
+    background:
+      radial-gradient(ellipse at 10% 20%, rgba(214,118,255,0.85) 0%, rgba(214,118,255,0.2) 30%, rgba(214,118,255,0) 60%),
+      radial-gradient(ellipse at 30% 30%, rgba(255,170,255,0.65) 0%, rgba(255,170,255,0.12) 28%, rgba(255,170,255,0) 56%),
+      radial-gradient(ellipse at 50% 25%, rgba(87,0,43,0.95) 0%, rgba(87,0,43,0.45) 18%, rgba(87,0,43,0) 45%),
+      radial-gradient(ellipse at 61% 28%, rgba(245,95,120,0.75) 0%, rgba(245,95,120,0.18) 26%, rgba(245,95,120,0) 52%),
+      radial-gradient(ellipse at 80% 25%, rgba(201,26,180,0.8) 0%, rgba(201,26,180,0.18) 28%, rgba(201,26,180,0) 54%),
+      radial-gradient(ellipse at 97% 25%, rgba(216,162,255,0.85) 0%, rgba(216,162,255,0.2) 30%, rgba(216,162,255,0) 58%),
+      linear-gradient(90deg, #b04bd0 0%, #c772dd 22%, #5c0036 49%, #d23f87 63%, #bc1fb4 82%, #ca8de8 100%);
+  }
+
+  .bottom-band {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 1280px;
+    height: 20px;
+    background:
+      radial-gradient(ellipse at 7% 50%, rgba(235,206,244,0.9) 0%, rgba(235,206,244,0.15) 32%, rgba(235,206,244,0) 58%),
+      radial-gradient(ellipse at 18% 50%, rgba(181,26,63,0.85) 0%, rgba(181,26,63,0.18) 35%, rgba(181,26,63,0) 60%),
+      radial-gradient(ellipse at 41% 50%, rgba(255,0,87,0.9) 0%, rgba(255,0,87,0.18) 26%, rgba(255,0,87,0) 55%),
+      radial-gradient(ellipse at 59% 50%, rgba(255,71,97,0.8) 0%, rgba(255,71,97,0.16) 28%, rgba(255,71,97,0) 56%),
+      radial-gradient(ellipse at 82% 50%, rgba(160,0,120,0.85) 0%, rgba(160,0,120,0.16) 30%, rgba(160,0,120,0) 56%),
+      radial-gradient(ellipse at 98% 50%, rgba(243,226,255,0.95) 0%, rgba(243,226,255,0.2) 28%, rgba(243,226,255,0) 58%),
+      linear-gradient(90deg, #dab5e4 0%, #b70922 18%, #cb0012 41%, #ff1b64 52%, #cf0025 71%, #a40056 89%, #eadff5 100%);
+  }
+
+  .body {
+    position: absolute;
+    left: 0;
+    top: 67px;
+    width: 1280px;
+    height: 633px;
+    background: #f2f2f2;
+  }
+
+  .text {
+    position: absolute;
+    color: #2e2e2e;
+    line-height: 1.45;
+    letter-spacing: 0;
+  }
+
+  .purple {
+    color: #8d36e6;
+    font-weight: 400;
+  }
+
+  .small {
+    font-size: 18px;
+  }
+
+  .para {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .heading {
+    font-size: 22px;
+    line-height: 1.45;
+  }
+
+  .footer {
+    position: absolute;
+    right: 31px;
+    bottom: 7px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.92);
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    z-index: 3;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-band"></div>
+    <div class="body"></div>
+
+    <div class="text small" style="left:63px; top:116px; width:343px;">
+      The value created at each stage of the customer journey has its own unique hallmarks. In some cases, there’s overlap, but each cluster of touchpoints has a specialty.
+    </div>
+
+    <div class="text heading purple" style="left:63px; top:234px; width:320px;">
+      Marketing:<br>
+      Where awareness is generated
+    </div>
+
+    <div class="text para" style="left:63px; top:312px; width:333px;">
+      Sharing the right message with the right customer at the right time. Creativity and strategy lead the charge, developing compelling messages and targeted campaigns powered by technology and intelligence. This optimizes reach and engagement, turning awareness into action and driving enterprise growth.
+    </div>
+
+    <div class="text heading purple" style="left:484px; top:117px; width:362px;">
+      Design and Digital Products:<br>
+      Where the customer engages
+    </div>
+
+    <div class="text para" style="left:484px; top:191px; width:381px;">
+      Empowering customers to achieve their goals effortlessly. Thoughtful design centered on people’s needs ensures that each touchpoint is smooth and engaging, driving customer satisfaction, increased adoption and loyalty, ultimately generating significant enterprise value through improved efficiency and sustained customer relationships.
+    </div>
+
+    <div class="text heading purple" style="left:484px; top:406px; width:290px;">
+      Commerce:<br>
+      Where purchase happens
+    </div>
+
+    <div class="text para" style="left:484px; top:482px; width:375px;">
+      Using technology to power smooth transactions, while strategic planning ensures the shopping experience aligns with customers’ needs and design makes purchasing effortless. This harmony drives higher conversion rates, customer satisfaction and repeat business, ultimately increasing revenue and long-term value by optimizing each critical touchpoint.
+    </div>
+
+    <div class="text heading purple" style="left:905px; top:117px; width:287px;">
+      Service:<br>
+      Where issues are handled
+    </div>
+
+    <div class="text para" style="left:905px; top:191px; width:311px;">
+      Meeting customer needs efficiently at every touchpoint. Strategy ensures that support is aligned with customer expectations, while technology enables quick, efficient responses. An integrated approach with a constant data, feedback and improvement loop resolves issues effectively and enhances customer satisfaction and loyalty.
+    </div>
+
+    <div class="bottom-band"></div>
+
+    <div class="footer">
+      <div>Accenture Life Trends 2025</div>
+      <div>86</div>
+    </div>
+  </div>
+</body>
+</html>

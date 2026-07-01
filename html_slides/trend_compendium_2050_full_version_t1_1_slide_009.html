@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, 'Segoe UI', sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .sidebar{
+    left:0px; top:0px; width:148px; height:720px;
+    background:#4a4f55;
+    z-index:5;
+  }
+  .mainbg{
+    left:148px; top:0px; width:1132px; height:720px;
+    background:#f3f3f3;
+    z-index:0;
+  }
+  .ghost{
+    left:181px; top:215px; width:1087px; height:457px;
+    z-index:1;
+    opacity:0.12;
+    filter:grayscale(100%);
+  }
+  .title{
+    left:221px; top:31px; width:962px; height:86px;
+    color:#202020;
+    font-size:23px;
+    line-height:1.12;
+    font-weight:700;
+    z-index:30;
+  }
+  .subleft{
+    left:220px; top:139px; width:301px; height:58px;
+    color:#838a93;
+    font-size:22px;
+    line-height:1.08;
+    font-weight:400;
+    z-index:30;
+  }
+  .subright{
+    left:743px; top:139px; width:448px; height:58px;
+    color:#838a93;
+    font-size:22px;
+    line-height:1.08;
+    font-weight:400;
+    z-index:30;
+  }
+  .sidebar-title{
+    left:14px; top:36px; width:102px;
+    color:#ffffff;
+    font-size:23px;
+    line-height:1.05;
+    font-weight:700;
+    z-index:30;
+  }
+  .stepnum-active{
+    color:#aeb500;
+    font-size:28px;
+    font-weight:700;
+    line-height:1;
+  }
+  .stepnum{
+    color:#7b8188;
+    font-size:28px;
+    font-weight:700;
+    line-height:1;
+  }
+  .steplabel-active{
+    color:#aeb500;
+    font-size:15px;
+    font-weight:700;
+    line-height:1.1;
+  }
+  .steplabel{
+    color:#7b8188;
+    font-size:15px;
+    font-weight:400;
+    line-height:1.1;
+  }
+  .chart-label{
+    color:#333;
+    font-size:17px;
+    font-weight:400;
+    line-height:1;
+    z-index:35;
+  }
+  .chart-value{
+    color:#222;
+    font-size:17px;
+    font-weight:700;
+    line-height:1;
+    z-index:35;
+  }
+  .segment-val{
+    color:#202020;
+    font-size:16px;
+    font-weight:400;
+    line-height:1;
+    z-index:35;
+  }
+  .legend{
+    color:#333;
+    font-size:17px;
+    line-height:1;
+    font-weight:400;
+    z-index:35;
+  }
+  .year{
+    color:#333;
+    font-size:17px;
+    font-weight:400;
+    line-height:1;
+    z-index:35;
+  }
+  .foot{
+    color:#4a4a4a;
+    font-size:12px;
+    line-height:1.3;
+    font-weight:400;
+    z-index:35;
+  }
+  .region{
+    color:#222;
+    font-size:18px;
+    font-weight:700;
+    line-height:1.05;
+    z-index:35;
+  }
+  .country{
+    color:#333;
+    font-size:17px;
+    line-height:1.05;
+    font-weight:400;
+    z-index:35;
+  }
+  .smallsup{
+    font-size:12px;
+    vertical-align:top;
+  }
+  .logo-text{
+    color:#6a6a6a;
+    font-size:12px;
+    line-height:0.95;
+    font-weight:400;
+  }
+  .page{
+    color:#ffffff;
+    font-size:16px;
+    line-height:1;
+    font-weight:400;
+    z-index:35;
+    opacity:0.9;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="mainbg"></div>
+  <div class="sidebar"></div>
+
+  <svg class="ghost" viewBox="0 0 1087 457" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="1087" height="457" fill="#d9d9d9"/>
+    <g fill="#b9b9b9">
+      <circle cx="60" cy="160" r="26"/><rect x="39" y="184" width="42" height="64" rx="12"/>
+      <circle cx="124" cy="145" r="22"/><rect x="101" y="167" width="46" height="84" rx="14"/>
+      <circle cx="190" cy="165" r="24"/><rect x="165" y="189" width="50" height="82" rx="15"/>
+      <circle cx="260" cy="150" r="23"/><rect x="237" y="173" width="46" height="90" rx="14"/>
+      <circle cx="330" cy="165" r="24"/><rect x="305" y="189" width="50" height="84" rx="15"/>
+      <circle cx="395" cy="149" r="22"/><rect x="373" y="171" width="44" height="90" rx="13"/>
+      <circle cx="458" cy="160" r="24"/><rect x="433" y="184" width="50" height="80" rx="15"/>
+      <circle cx="525" cy="145" r="23"/><rect x="502" y="168" width="46" height="92" rx="14"/>
+      <circle cx="590" cy="158" r="24"/><rect x="565" y="182" width="50" height="82" rx="15"/>
+      <circle cx="660" cy="145" r="22"/><rect x="638" y="167" width="44" height="90" rx="13"/>
+      <circle cx="724" cy="160" r="24"/><rect x="699" y="184" width="50" height="81" rx="15"/>
+      <circle cx="790" cy="149" r="23"/><rect x="767" y="172" width="46" height="91" rx="14"/>
+      <circle cx="854" cy="164" r="24"/><rect x="829" y="188" width="50" height="82" rx="15"/>
+      <circle cx="920" cy="150" r="22"/><rect x="898" y="172" width="44" height="90" rx="13"/>
+      <circle cx="985" cy="160" r="24"/><rect x="960" y="184" width="50" height="82" rx="15"/>
+      <circle cx="1045" cy="152" r="22"/><rect x="1023" y="174" width="44" height="88" rx="13"/>
+      <circle cx="86" cy="250" r="22"/><rect x="63" y="272" width="46" height="84" rx="14"/>
+      <circle cx="160" cy="242" r="24"/><rect x="135" y="266" width="50" height="89" rx="15"/>
+      <circle cx="235" cy="252" r="22"/><rect x="212" y="274" width="46" height="82" rx="14"/>
+      <circle cx="308" cy="241" r="24"/><rect x="283" y="265" width="50" height="90" rx="15"/>
+      <circle cx="381" cy="252" r="22"/><rect x="358" y="274" width="46" height="82" rx="14"/>
+      <circle cx="454" cy="241" r="24"/><rect x="429" y="265" width="50" height="90" rx="15"/>
+      <circle cx="526" cy="252" r="22"/><rect x="503" y="274" width="46" height="82" rx="14"/>
+      <circle cx="600" cy="241" r="24"/><rect x="575" y="265" width="50" height="90" rx="15"/>
+      <circle cx="673" cy="252" r="22"/><rect x="650" y="274" width="46" height="82" rx="14"/>
+      <circle cx="746" cy="241" r="24"/><rect x="721" y="265" width="50" height="90" rx="15"/>
+      <circle cx="819" cy="252" r="22"/><rect x="796" y="274" width="46" height="82" rx="14"/>
+      <circle cx="892" cy="241" r="24"/><rect x="867" y="265" width="50" height="90" rx="15"/>
+      <circle cx="965" cy="252" r="22"/><rect x="942" y="274" width="46" height="82" rx="14"/>
+    </g>
+  </svg>
+
+  <div class="sidebar-title">People &amp;<br>Society</div>
+
+  <!-- Sidebar step 1 -->
+  <svg style="left:8px; top:141px; width:74px; height:74px; z-index:20;" viewBox="0 0 74 74" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="22,3 52,3 71,37 52,71 22,71 3,37" fill="#f2f2f2" stroke="#aeb500" stroke-width="4"/>
+    <clipPath id="hexclip1"><polygon points="22,6 52,6 68,37 52,68 22,68 6,37"/></clipPath>
+    <g clip-path="url(#hexclip1)">
+      <rect x="6" y="6" width="62" height="62" fill="#ddd"/>
+      <g>
+        <circle cx="16" cy="16" r="3" fill="#c44"/><circle cx="23" cy="18" r="3" fill="#4a7"/>
+        <circle cx="30" cy="15" r="3" fill="#47a"/><circle cx="37" cy="17" r="3" fill="#cc8"/>
+        <circle cx="44" cy="15" r="3" fill="#888"/><circle cx="51" cy="18" r="3" fill="#a56"/>
+        <circle cx="58" cy="16" r="3" fill="#6a6"/><circle cx="14" cy="24" r="3" fill="#666"/>
+        <circle cx="21" cy="26" r="3" fill="#c96"/><circle cx="29" cy="24" r="3" fill="#b44"/>
+        <circle cx="36" cy="26" r="3" fill="#557"/><circle cx="43" cy="24" r="3" fill="#d88"/>
+        <circle cx="50" cy="26" r="3" fill="#888"/><circle cx="57" cy="24" r="3" fill="#79a"/>
+        <circle cx="16" cy="33" r="3" fill="#a55"/><circle cx="23" cy="35" r="3" fill="#7a7"/>
+        <circle cx="30" cy="33" r="3" fill="#777"/><circle cx="37" cy="35" r="3" fill="#b95"/>
+        <circle cx="44" cy="33" r="3" fill="#48a"/><circle cx="51" cy="35" r="3" fill="#965"/>
+        <circle cx="58" cy="33" r="3" fill="#888"/><circle cx="14" cy="42" r="3" fill="#5a8"/>
+        <circle cx="21" cy="44" r="3" fill="#c44"/><circle cx="29" cy="42" r="3" fill="#777"/>
+        <circle cx="36" cy="44" r="3" fill="#d99"/><circle cx="43" cy="42" r="3" fill="#557"/>
+        <circle cx="50" cy="44" r="3" fill="#9a5"/><circle cx="57" cy="42" r="3" fill="#777"/>
+        <circle cx="16" cy="51" r="3" fill="#b66"/><circle cx="23" cy="53" r="3" fill="#7a9"/>
+        <circle cx="30" cy="51" r="3" fill="#a84"/><circle cx="37" cy="53" r="3" fill="#666"/>
+        <circle cx="44" cy="51" r="3" fill="#c55"/><circle cx="51" cy="53" r="3" fill="#799"/>
+        <circle cx="58" cy="51" r="3" fill="#888"/>
+      </g>
+    </g>
+  </svg>
+  <div style="left:96px; top:145px; width:30px; height:24px; z-index:30;" class="stepnum-active">1</div>
+  <div style="left:96px; top:178px; width:49px; height:26px; z-index:30;" class="steplabel-active">Population</div>
+
+  <!-- Sidebar step 2 -->
+  <svg style="left:8px; top:261px; width:74px; height:74px; z-index:20;" viewBox="0 0 74 74" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="22,3 52,3 71,37 52,71 22,71 3,37" fill="#f2f2f2" stroke="#c7c7c7" stroke-width="4"/>
+    <clipPath id="hexclip2"><polygon points="22,6 52,6 68,37 52,68 22,68 6,37"/></clipPath>
+    <g clip-path="url(#hexclip2)">
+      <rect x="6" y="6" width="62" height="62" fill="#555"/>
+      <rect x="12" y="20" width="50" height="28" fill="#9a9a9a"/>
+      <line x1="14" y1="24" x2="60" y2="44" stroke="#e5e5e5" stroke-width="2"/>
+      <polygon points="56,40 62,45 54,46" fill="#e5e5e5"/>
+      <text x="17" y="33" font-family="Arial" font-size="8" fill="#f2f2f2">Immigration</text>
+      <text x="25" y="40" font-family="Arial" font-size="7" fill="#f2f2f2">vs Emigration</text>
+    </g>
+  </svg>
+  <div style="left:96px; top:264px; width:30px; height:24px; z-index:30;" class="stepnum">2</div>
+  <div style="left:96px; top:297px; width:60px; height:22px; z-index:30;" class="steplabel">Migration</div>
+
+  <!-- Sidebar step 3 -->
+  <svg style="left:8px; top:381px; width:74px; height:74px; z-index:20;" viewBox="0 0 74 74" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="22,3 52,3 71,37 52,71 22,71 3,37" fill="#f2f2f2" stroke="#c7c7c7" stroke-width="4"/>
+    <clipPath id="hexclip3"><polygon points="22,6 52,6 68,37 52,68 22,68 6,37"/></clipPath>
+    <g clip-path="url(#hexclip3)">
+      <rect x="6" y="6" width="62" height="62" fill="#dadada"/>
+      <rect x="10" y="40" width="54" height="8" fill="#4f4f4f"/>
+      <path d="M14 44 C20 20, 28 18, 34 44" fill="none" stroke="#7d7d7d" stroke-width="5"/>
+      <path d="M40 44 C46 18, 54 20, 60 44" fill="none" stroke="#7d7d7d" stroke-width="5"/>
+      <line x1="20" y1="19" x2="20" y2="48" stroke="#999" stroke-width="2"/>
+      <line x1="54" y1="19" x2="54" y2="48" stroke="#999" stroke-width="2"/>
+    </g>
+  </svg>
+  <div style="left:96px; top:385px; width:30px; height:24px; z-index:30;" class="stepnum">3</div>
+  <div style="left:96px; top:418px; width:40px; height:22px; z-index:30;" class="steplabel">Values</div>
+
+  <!-- Sidebar step 4 -->
+  <svg style="left:8px; top:501px; width:74px; height:74px; z-index:20;" viewBox="0 0 74 74" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="22,3 52,3 71,37 52,71 22,71 3,37" fill="#f2f2f2" stroke="#c7c7c7" stroke-width="4"/>
+    <clipPath id="hexclip4"><polygon points="22,6 52,6 68,37 52,68 22,68 6,37"/></clipPath>
+    <g clip-path="url(#hexclip4)">
+      <rect x="6" y="6" width="62" height="62" fill="#e0e0e0"/>
+      <rect x="14" y="16" width="26" height="16" rx="2" fill="#bcbcbc"/>
+      <rect x="40" y="18" width="16" height="12" rx="2" fill="#a7a7a7"/>
+      <rect x="14" y="34" width="42" height="16" rx="2" fill="#c7c7c7"/>
+      <circle cx="52" cy="47" r="8" fill="#6a6a6a"/>
+      <path d="M47 47 l3 3 l6 -7" fill="none" stroke="#fff" stroke-width="2"/>
+      <line x1="18" y1="22" x2="35" y2="22" stroke="#888" stroke-width="2"/>
+      <line x1="18" y1="26" x2="32" y2="26" stroke="#888" stroke-width="2"/>
+      <line x1="18" y1="40" x2="50" y2="40" stroke="#8d8d8d" stroke-width="2"/>
+      <line x1="18" y1="44" x2="42" y2="44" stroke="#8d8d8d" stroke-width="2"/>
+    </g>
+  </svg>
+  <div style="left:96px; top:505px; width:30px; height:24px; z-index:30;" class="stepnum">4</div>
+  <div style="left:96px; top:538px; width:61px; height:22px; z-index:30;" class="steplabel">Education</div>
+
+  <!-- bottom icon -->
+  <svg style="left:53px; top:681px; width:82px; height:54px; z-index:20;" viewBox="0 0 82 54" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#8a8f94">
+      <circle cx="41" cy="13" r="11"/>
+      <circle cx="25" cy="16" r="10"/>
+      <circle cx="57" cy="16" r="10"/>
+      <circle cx="13" cy="22" r="9"/>
+      <circle cx="69" cy="22" r="9"/>
+      <circle cx="26" cy="32" r="9"/>
+      <circle cx="56" cy="32" r="9"/>
+      <circle cx="41" cy="30" r="9"/>
+      <path d="M8 44 c0-7 8-12 18-12 s18 5 18 12 v8 H8z"/>
+      <path d="M38 44 c0-7 8-12 18-12 s18 5 18 12 v8 H38z"/>
+      <path d="M23 41 c0-8 8-14 18-14 s18 6 18 14 v11 H23z"/>
+    </g>
+  </svg>
+
+  <div class="page" style="left:9px; top:748px; width:10px; height:10px;">9</div>
+
+  <div class="title">Over the next three decades, Africa's population will increase by more<br>than 1.1 billion – Asia remains the world's population giant</div>
+
+  <div class="subleft">Population by continent<br>2020 and 2050 [m]</div>
+  <div class="subright">Top five countries per region by population<br>2050 [m]<span class="smallsup">1)</span></div>
+
+  <!-- left chart -->
+  <svg style="left:205px; top:209px; width:416px; height:472px; z-index:20;" viewBox="0 0 416 472" xmlns="http://www.w3.org/2000/svg">
+    <!-- bracket and callout -->
+    <line x1="62" y1="17" x2="62" y2="96" stroke="#9aa0a6" stroke-width="1.5"/>
+    <line x1="62" y1="17" x2="214" y2="17" stroke="#9aa0a6" stroke-width="1.5"/>
+    <line x1="214" y1="17" x2="214" y2="30" stroke="#9aa0a6" stroke-width="1.5"/>
+    <polygon points="210,30 218,30 214,38" fill="#9aa0a6"/>
+    <rect x="102" y="1" width="102" height="32" rx="16" fill="#f8f8f8" stroke="#676767" stroke-width="1.5"/>
+    <text x="153" y="22" text-anchor="middle" font-family="Arial" font-size="16" font-weight="700" fill="#333">+24.8%</text>
+
+    <!-- bars baseline area -->
+    <rect x="15" y="460" width="390" height="1" fill="#d8d8d8"/>
+
+    <!-- 2020 stacked bar -->
+    <rect x="79" y="141" width="89" height="186" fill="#aeb500"/>
+    <rect x="79" y="327" width="89" height="55" fill="#d8da7a"/>
+    <rect x="79" y="382" width="89" height="30" fill="#91a9c8"/>
+    <rect x="79" y="412" width="89" height="27" fill="#5f87b5"/>
+    <rect x="79" y="439" width="89" height="22" fill="#00548a"/>
+    <text x="124" y="133" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#333">7,796</text>
+
+    <text x="124" y="239" text-anchor="middle" font-family="Arial" font-size="16" fill="#222">4,641</text>
+    <text x="124" y="360" text-anchor="middle" font-family="Arial" font-size="16" fill="#222">1,341</text>
+    <text x="124" y="403" text-anchor="middle" font-family="Arial" font-size="16" fill="#222">748</text>
+    <text x="124" y="435" text-anchor="middle" font-family="Arial" font-size="16" fill="#ffffff">654</text>
+    <text x="95" y="457" font-family="Arial" font-size="16" fill="#ffffff">43</text>
+    <text x="132" y="457" font-family="Arial" font-size="16" fill="#ffffff">369</text>
+
+    <!-- 2050 stacked bar -->
+    <rect x="232" y="61" width="91" height="216" fill="#aeb500"/>
+    <rect x="232" y="277" width="91" height="100" fill="#d8da7a"/>
+    <rect x="232" y="377" width="91" height="31" fill="#91a9c8"/>
+    <rect x="232" y="408" width="91" height="29" fill="#5f87b5"/>
+    <rect x="232" y="437" width="91" height="24" fill="#00548a"/>
+    <text x="278" y="53" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#333">9,733</text>
+
+    <text x="278" y="174" text-anchor="middle" font-family="Arial" font-size="16" fill="#222">5,290</text>
+    <text x="278" y="333" text-anchor="middle" font-family="Arial" font-size="16" fill="#222">2,489</text>
+    <text x="278" y="400" text-anchor="middle" font-family="Arial" font-size="16" fill="#222">762</text>
+    <text x="278" y="431" text-anchor="middle" font-family="Arial" font-size="16" fill="#222">710</text>
+    <text x="237" y="456" font-family="Arial" font-size="16" fill="#ffffff">57</text>
+    <text x="286" y="456" font-family="Arial" font-size="16" fill="#ffffff">425</text>
+
+    <!-- legend -->
+    <rect x="337" y="61" width="26" height="20" fill="#aeb500"/>
+    <rect x="337" y="91" width="26" height="20" fill="#d8da7a"/>
+    <rect x="337" y="121" width="26" height="20" fill="#91a9c8"/>
+    <rect x="337" y="151" width="26" height="20" fill="#d9dfb2"/>
+    <rect x="337" y="181" width="26" height="20" fill="#5f87b5"/>
+    <rect x="337" y="211" width="26" height="20" fill="#00548a"/>
+  </svg>
+
+  <div class="legend" style="left:511px; top:274px; width:90px;">Asia</div>
+  <div class="legend" style="left:511px; top:304px; width:90px;">Africa</div>
+  <div class="legend" style="left:511px; top:334px; width:126px;">LatAm/Caribbean</div>
+  <div class="legend" style="left:511px; top:364px; width:90px;">Europe</div>
+  <div class="legend" style="left:511px; top:394px; width:140px;">Northern America</div>
+  <div class="legend" style="left:511px; top:424px; width:90px;">Oceania</div>
+
+  <div class="year" style="left:248px; top:684px; width:50px;">2020</div>
+  <div class="year" style="left:401px; top:684px; width:50px;">2050</div>
+
+  <!-- right table -->
+  <svg style="left:742px; top:248px; width:589px; height:407px; z-index:20;" viewBox="0 0 589 407" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#d0d0d0" stroke-width="1">
+      <line x1="20" y1="45" x2="583" y2="45"/>
+      <line x1="20" y1="114" x2="583" y2="114"/>
+      <line x1="20" y1="183" x2="583" y2="183"/>
+      <line x1="20" y1="252" x2="583" y2="252"/>
+      <line x1="20" y1="321" x2="583" y2="321"/>
+      <line x1="20" y1="390" x2="583" y2="390"/>
+    </g>
+    <line x1="3" y1="46" x2="78" y2="46" stroke="#aeb500" stroke-width="10" stroke-linecap="round"/>
+    <line x1="3" y1="115" x2="78" y2="115" stroke="#d8da7a" stroke-width="10" stroke-linecap="round"/>
+    <line x1="3" y1="184" x2="78" y2="184" stroke="#5f87b5" stroke-width="10" stroke-linecap="round"/>
+    <line x1="3" y1="253" x2="78" y2="253" stroke="#d9dfb2" stroke-width="10" stroke-linecap="round"/>
+    <line x1="3" y1="322" x2="78" y2="322" stroke="#1d7eb5" stroke-width="10" stroke-linecap="round"/>
+    <line x1="3" y1="391" x2="78" y2="391" stroke="#00548a" stroke-width="10" stroke-linecap="round"/>
+  </svg>
+
+  <!-- region labels -->
+  <div class="region" style="left:742px; top:248px; width:70px;">Asia</div>
+  <div class="region" style="left:742px; top:317px; width:70px;">Africa</div>
+  <div class="region" style="left:742px; top:386px; width:92px;">LatAm/<br>Caribbean</div>
+  <div class="region" style="left:742px; top:524px; width:92px;">Northern<br>America</div>
+  <div class="region" style="left:742px; top:593px; width:90px;">Oceania</div>
+  <div class="region" style="left:742px; top:455px; width:70px;">Europe</div>
+
+  <!-- row 1 -->
+  <div class="country" style="left:839px; top:248px; width:80px;">India<br>1,639</div>
+  <div class="country" style="left:938px; top:248px; width:80px;">China<br>1,402</div>
+  <div class="country" style="left:1037px; top:248px; width:80px;">Pakistan<br>338</div>
+  <div class="country" style="left:1135px; top:248px; width:80px;">Indonesia<br>331</div>
+  <div class="country" style="left:1233px; top:248px; width:90px;">Bangladesh<br>193</div>
+
+  <!-- row 2 -->
+  <div class="country" style="left:839px; top:317px; width:80px;">Nigeria<br>401</div>
+  <div class="country" style="left:938px; top:317px; width:80px;">Ethiopia<br>205</div>
+  <div class="country" style="left:1037px; top:317px; width:80px;">D.R. Congo<br>194</div>
+  <div class="country" style="left:1135px; top:317px; width:80px;">Egypt<br>160</div>
+  <div class="country" style="left:1233px; top:317px; width:80px;">Tanzania<br>129</div>
+
+  <!-- row 3 -->
+  <div class="country" style="left:839px; top:386px; width:80px;">Brazil<br>229</div>
+  <div class="country" style="left:938px; top:386px; width:80px;">Mexico<br>155</div>
+  <div class="country" style="left:1037px; top:386px; width:80px;">Colombia<br>56</div>
+  <div class="country" style="left:1135px; top:386px; width:80px;">Argentina<br>55</div>
+  <div class="country" style="left:1233px; top:386px; width:70px;">Peru<br>40</div>
+
+  <!-- row 4 -->
+  <div class="country" style="left:839px; top:455px; width:80px;">Russia<br>136</div>
+  <div class="country" style="left:938px; top:455px; width:80px;">Germany<br>80</div>
+  <div class="country" style="left:1037px; top:455px; width:80px;">UK<br>74</div>
+  <div class="country" style="left:1135px; top:455px; width:80px;">France<br>68</div>
+  <div class="country" style="left:1233px; top:455px; width:70px;">Italy<br>54</div>
+
+  <!-- row 5 -->
+  <div class="country" style="left:839px; top:524px; width:80px;">USA<br>379</div>
+  <div class="country" style="left:938px; top:524px; width:80px;">Canada<br>46</div>
+
+  <!-- row 6 -->
+  <div class="country" style="left:839px; top:593px; width:90px;">Australia<br>33</div>
+  <div class="country" style="left:938px; top:593px; width:96px;">Papua N.<br>Guinea 14</div>
+  <div class="country" style="left:1037px; top:593px; width:84px;">New<br>Zealand 6</div>
+
+  <div class="foot" style="left:220px; top:736px; width:420px;">1) Only countries with at least 5 million inhabitants are included<br>Source: UN Population Division; Roland Berger</div>
+
+  <!-- bottom right logo -->
+  <div style="left:1275px; top:729px; width:57px; height:30px; z-index:50;">
+    <div class="logo-text" style="position:absolute; left:0px; top:2px; width:34px; text-align:right;">Rol

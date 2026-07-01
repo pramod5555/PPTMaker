@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#e9e9e9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e9e9e9;
+  }
+  .slide > div, .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .qmark{
+    left:44px;
+    top:45px;
+    font-size:39px;
+    line-height:39px;
+    font-weight:700;
+    color:#000;
+  }
+  .left-copy{
+    left:53px;
+    top:155px;
+    width:305px;
+    color:#666666;
+    font-size:19px;
+    line-height:1.28;
+    font-weight:400;
+  }
+  .main-statement{
+    left:53px;
+    top:259px;
+    width:300px;
+    color:#575757;
+    font-size:28px;
+    line-height:1.2;
+    font-weight:700;
+  }
+  .footnote{
+    left:53px;
+    top:610px;
+    width:292px;
+    color:#8a8a8a;
+    font-size:11px;
+    line-height:1.45;
+    font-style:italic;
+    font-weight:400;
+  }
+  .small-report{
+    left:49px;
+    top:729px;
+    width:220px;
+    color:#4c4c4c;
+    font-size:11px;
+    line-height:12px;
+    font-weight:400;
+  }
+  .chart-title{
+    left:376px;
+    top:22px;
+    color:#6d6d6d;
+    font-size:30px;
+    line-height:30px;
+    font-weight:400;
+    transform:scale(0.52);
+    transform-origin:left top;
+  }
+  .legend-likely-box{
+    left:554px;
+    top:24px;
+    width:16px;
+    height:16px;
+    background:#27b3b4;
+  }
+  .legend-likely{
+    left:577px;
+    top:22px;
+    color:#6d6d6d;
+    font-size:17px;
+    line-height:18px;
+    font-weight:400;
+  }
+  .legend-unlikely-box{
+    left:1113px;
+    top:23px;
+    width:16px;
+    height:16px;
+    background:#1b246d;
+  }
+  .legend-unlikely{
+    left:1137px;
+    top:22px;
+    color:#6d6d6d;
+    font-size:17px;
+    line-height:18px;
+    font-weight:400;
+  }
+  .rule-left{
+    left:370px;
+    top:52px;
+    width:168px;
+    height:1px;
+    background:#8093a4;
+  }
+  .rule-right{
+    left:550px;
+    top:52px;
+    width:648px;
+    height:1px;
+    background:#8093a4;
+  }
+  .chart-area{
+    left:365px;
+    top:82px;
+    width:867px;
+    height:588px;
+  }
+  .page{
+    left:675px;
+    top:726px;
+    width:20px;
+    color:#494949;
+    font-size:22px;
+    line-height:22px;
+    font-weight:400;
+    transform:scale(0.56);
+    transform-origin:left top;
+    text-align:center;
+  }
+  .ipsos{
+    left:1212px;
+    top:691px;
+    width:54px;
+    height:50px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qmark">Q.</div>
+
+  <div class="left-copy">
+    For each of the following, please<br>
+    tell me how likely or unlikely you<br>
+    think they are to happen...?
+  </div>
+
+  <div class="main-statement">
+    Strict rules for large<br>
+    technology companies<br>
+    will be introduced by<br>
+    the Government in<br>
+    [ COUNTRY ]
+  </div>
+
+  <div class="footnote">
+    Base: 23,721 adults aged 18 years and older in India, 18-74 in<br>
+    Canada, Republic of Ireland, Malaysia, the Philippines, South<br>
+    Africa, Turkey, and the United States, 20-74 in Thailand, 21-74<br>
+    in Indonesia and Singapore, and 16-74 in all other countries.<br>
+    Friday, October 25 – Friday November 8, 2024
+  </div>
+
+  <div class="small-report">© Ipsos Predictions 2025 Report</div>
+
+  <div class="chart-title">Market</div>
+  <div class="legend-likely-box"></div>
+  <div class="legend-likely">Likely</div>
+  <div class="legend-unlikely-box"></div>
+  <div class="legend-unlikely">Unlikely</div>
+  <div class="rule-left"></div>
+  <div class="rule-right"></div>
+
+  <svg class="chart-area" viewBox="0 0 867 588" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <style>
+        .label{fill:#777777;font-size:11px;font-family:Arial, Helvetica, sans-serif;font-weight:400}
+        .pctL{fill:#ffffff;font-size:12px;font-family:Arial, Helvetica, sans-serif;font-weight:700}
+        .pctR{fill:#ffffff;font-size:12px;font-family:Arial, Helvetica, sans-serif;font-weight:700;text-anchor:end}
+      </style>
+    </defs>
+
+    <!-- Global average -->
+    <text class="label" x="145" y="15" text-anchor="end">Global Country Average</text>
+    <rect x="156" y="3" width="307" height="14" fill="none" stroke="#27b3b4" stroke-width="1"/>
+    <text x="164" y="15" fill="#27b3b4" font-size="12" font-family="Arial" font-weight="700">47%</text>
+    <rect x="553" y="3" width="262" height="14" fill="none" stroke="#1b246d" stroke-width="1"/>
+    <text x="811" y="15" fill="#1b246d" font-size="12" font-family="Arial" font-weight="700" text-anchor="end">40%</text>
+
+    <text class="label" x="145" y="33" text-anchor="end">Indonesia</text>
+    <rect x="156" y="21" width="559" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="33">85%</text>
+    <rect x="746" y="21" width="68" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="33">11%</text>
+
+    <text class="label" x="145" y="51" text-anchor="end">Malaysia</text>
+    <rect x="156" y="39" width="497" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="51">75%</text>
+    <rect x="684" y="39" width="130" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="51">18%</text>
+
+    <text class="label" x="145" y="69" text-anchor="end">Philippines</text>
+    <rect x="156" y="57" width="482" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="69">73%</text>
+    <rect x="676" y="57" width="138" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="69">21%</text>
+
+    <text class="label" x="145" y="87" text-anchor="end">China</text>
+    <rect x="156" y="75" width="459" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="87">70%</text>
+    <rect x="652" y="75" width="162" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="87">25%</text>
+
+    <text class="label" x="145" y="105" text-anchor="end">Singapore</text>
+    <rect x="156" y="93" width="403" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="105">61%</text>
+    <rect x="641" y="93" width="173" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="105">26%</text>
+
+    <text class="label" x="145" y="123" text-anchor="end">India</text>
+    <rect x="156" y="111" width="381" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="123">58%</text>
+    <rect x="613" y="111" width="201" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="123">31%</text>
+
+    <text class="label" x="145" y="141" text-anchor="end">Thailand</text>
+    <rect x="156" y="129" width="368" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="141">56%</text>
+    <rect x="581" y="129" width="233" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="141">35%</text>
+
+    <text class="label" x="145" y="159" text-anchor="end">South Africa</text>
+    <rect x="156" y="147" width="359" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="159">54%</text>
+    <rect x="578" y="147" width="236" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="159">36%</text>
+
+    <text class="label" x="145" y="177" text-anchor="end">Mexico</text>
+    <rect x="156" y="165" width="352" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="177">53%</text>
+    <rect x="576" y="165" width="238" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="177">37%</text>
+
+    <text class="label" x="145" y="195" text-anchor="end">Colombia</text>
+    <rect x="156" y="183" width="335" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="195">51%</text>
+    <rect x="610" y="183" width="204" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="195">32%</text>
+
+    <text class="label" x="145" y="213" text-anchor="end">Türkiye</text>
+    <rect x="156" y="201" width="323" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="213">49%</text>
+    <rect x="540" y="201" width="274" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="213">42%</text>
+
+    <text class="label" x="145" y="231" text-anchor="end">Spain</text>
+    <rect x="156" y="219" width="316" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="231">48%</text>
+    <rect x="581" y="219" width="233" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="231">36%</text>
+
+    <!-- Highlight -->
+    <rect x="32" y="224" width="894" height="19" fill="none" stroke="#2ab56f" stroke-width="2"/>
+
+    <text class="label" x="145" y="249" text-anchor="end">Australia</text>
+    <rect x="156" y="237" width="316" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="249">48%</text>
+    <rect x="562" y="237" width="252" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="249">39%</text>
+
+    <text class="label" x="145" y="267" text-anchor="end">Brazil</text>
+    <rect x="156" y="255" width="308" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="267">47%</text>
+    <rect x="580" y="255" width="234" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="267">37%</text>
+
+    <text class="label" x="145" y="285" text-anchor="end">United States</text>
+    <rect x="156" y="273" width="301" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="285">46%</text>
+    <rect x="580" y="273" width="234" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="285">37%</text>
+
+    <text class="label" x="145" y="303" text-anchor="end">Ireland</text>
+    <rect x="156" y="291" width="292" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="303">45%</text>
+    <rect x="531" y="291" width="283" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="303">44%</text>
+
+    <text class="label" x="145" y="321" text-anchor="end">Great Britain</text>
+    <rect x="156" y="309" width="288" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="321">44%</text>
+    <rect x="571" y="309" width="243" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="321">38%</text>
+
+    <text class="label" x="145" y="339" text-anchor="end">Belgium</text>
+    <rect x="156" y="327" width="276" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="339">42%</text>
+    <rect x="537" y="327" width="277" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="339">43%</text>
+
+    <text class="label" x="145" y="357" text-anchor="end">Canada</text>
+    <rect x="156" y="345" width="271" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="357">41%</text>
+    <rect x="555" y="345" width="259" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="357">41%</text>
+
+    <text class="label" x="145" y="375" text-anchor="end">Netherlands</text>
+    <rect x="156" y="363" width="271" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="375">41%</text>
+    <rect x="513" y="363" width="301" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="375">47%</text>
+
+    <text class="label" x="145" y="393" text-anchor="end">Peru</text>
+    <rect x="156" y="381" width="264" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="393">40%</text>
+    <rect x="522" y="381" width="292" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="393">46%</text>
+
+    <text class="label" x="145" y="411" text-anchor="end">France</text>
+    <rect x="156" y="399" width="257" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="411">39%</text>
+    <rect x="521" y="399" width="293" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="411">47%</text>
+
+    <text class="label" x="145" y="429" text-anchor="end">Romania</text>
+    <rect x="156" y="417" width="257" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="429">39%</text>
+    <rect x="504" y="417" width="310" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="429">49%</text>
+
+    <text class="label" x="145" y="447" text-anchor="end">Argentina</text>
+    <rect x="156" y="435" width="253" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="447">39%</text>
+    <rect x="537" y="435" width="277" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="447">44%</text>
+
+    <text class="label" x="145" y="465" text-anchor="end">South Korea</text>
+    <rect x="156" y="453" width="250" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="465">38%</text>
+    <rect x="512" y="453" width="302" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="465">47%</text>
+
+    <text class="label" x="145" y="483" text-anchor="end">Switzerland</text>
+    <rect x="156" y="471" width="236" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="483">36%</text>
+    <rect x="518" y="471" width="296" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="483">46%</text>
+
+    <text class="label" x="145" y="501" text-anchor="end">Chile</text>
+    <rect x="156" y="489" width="236" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="501">36%</text>
+    <rect x="485" y="489" width="329" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="501">51%</text>
+
+    <text class="label" x="145" y="519" text-anchor="end">Hungary</text>
+    <rect x="156" y="507" width="228" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="519">35%</text>
+    <rect x="513" y="507" width="301" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="519">47%</text>
+
+    <text class="label" x="145" y="537" text-anchor="end">Italy</text>
+    <rect x="156" y="525" width="221" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="537">34%</text>
+    <rect x="497" y="525" width="317" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="537">49%</text>
+
+    <text class="label" x="145" y="555" text-anchor="end">Germany</text>
+    <rect x="156" y="543" width="210" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="555">32%</text>
+    <rect x="506" y="543" width="308" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="555">48%</text>
+
+    <text class="label" x="145" y="573" text-anchor="end">Poland</text>
+    <rect x="156" y="561" width="204" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="573">31%</text>
+    <rect x="489" y="561" width="325" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="573">51%</text>
+
+    <text class="label" x="145" y="591" text-anchor="end">Sweden</text>
+    <rect x="156" y="579" width="183" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="591">29%</text>
+    <rect x="484" y="579" width="330" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="591">52%</text>
+
+    <text class="label" x="145" y="609" text-anchor="end">Japan</text>
+    <rect x="156" y="597" width="156" height="14" fill="#27b3b4"/>
+    <text class="pctL" x="164" y="609">24%</text>
+    <rect x="474" y="597" width="340" height="14" fill="#1b246d"/>
+    <text class="pctR" x="811" y="609">53%</text>
+  </svg>
+
+  <div class="page">40</div>
+
+  <svg class="ipsos" viewBox="0 0 54 50" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0 H54 L54 34 Q53 44 47 50 H0 Z" fill="#2d4f9e"/>
+    <path d="M24 0 H54 L54 34 Q53 44 47 50 H24 Z" fill="#16a7a6"/>
+    <circle cx="31" cy="11" r="7" fill="#6e4ca3" opacity="0.9"/>
+    <rect x="24" y="12" width="10" height="19" rx="5" fill="#2b6ab1" opacity="0.95"/>
+    <circle cx="31" cy="20" r="6.5" fill="#2ea66f" opacity="0.85"/>
+    <text x="6" y="41" fill="#ffffff" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="700">Ipsos</text>
+  </svg>
+</div>
+</body>
+</html>

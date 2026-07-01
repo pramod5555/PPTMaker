@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{margin:0;background:#bcbcbc;font-family:Arial,Helvetica,sans-serif;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f2;
+  }
+  #slide > div, #slide > svg{position:absolute;box-sizing:border-box;}
+
+  .sidebar{
+    left:0;top:0;width:180px;height:720px;
+    background:#4a4d52;
+    z-index:5;
+  }
+  .main{
+    left:180px;top:0;width:1100px;height:720px;
+    background:#f3f3f2;
+    z-index:0;
+  }
+
+  .bgwash{
+    left:520px; top:92px; width:515px; height:590px;
+    background:
+      radial-gradient(circle at 60% 17%, rgba(255,255,255,.55) 0, rgba(255,255,255,.2) 16%, rgba(255,255,255,0) 32%),
+      radial-gradient(circle at 51% 45%, rgba(255,255,255,.38) 0, rgba(255,255,255,.12) 18%, rgba(255,255,255,0) 34%),
+      radial-gradient(circle at 43% 68%, rgba(255,255,255,.26) 0, rgba(255,255,255,.08) 16%, rgba(255,255,255,0) 33%);
+    opacity:.55;
+    filter:blur(1px);
+    z-index:1;
+  }
+
+  .sb-title{
+    left:14px; top:34px;
+    color:#fff;
+    font-size:30px;
+    line-height:1.04;
+    font-weight:700;
+    z-index:20;
+  }
+
+  .hex{
+    width:66px;height:58px;
+    clip-path:polygon(25% 3%,75% 3%,97% 50%,75% 97%,25% 97%,3% 50%);
+    border:4px solid #c4c800;
+    background:#d8d8d8;
+    overflow:hidden;
+    z-index:20;
+  }
+  .hex.grayborder{border-color:#cfd2d4;}
+  .hex .mini{
+    position:absolute; inset:5px;
+    clip-path:polygon(25% 3%,75% 3%,97% 50%,75% 97%,25% 97%,3% 50%);
+    overflow:hidden;
+  }
+  .hex .crowd{
+    background:
+      radial-gradient(circle at 15% 18%, #5e7ea3 0 5%, transparent 6%),
+      radial-gradient(circle at 27% 18%, #b36c4d 0 5%, transparent 6%),
+      radial-gradient(circle at 38% 17%, #8d8d8d 0 5%, transparent 6%),
+      radial-gradient(circle at 50% 16%, #708a3a 0 5%, transparent 6%),
+      radial-gradient(circle at 63% 18%, #7f5b7a 0 5%, transparent 6%),
+      radial-gradient(circle at 75% 17%, #b84e4a 0 5%, transparent 6%),
+      radial-gradient(circle at 20% 31%, #9b9b9b 0 5%, transparent 6%),
+      radial-gradient(circle at 32% 31%, #c59c45 0 5%, transparent 6%),
+      radial-gradient(circle at 44% 31%, #6d8fa5 0 5%, transparent 6%),
+      radial-gradient(circle at 56% 31%, #ad7b5f 0 5%, transparent 6%),
+      radial-gradient(circle at 68% 31%, #8e8e8e 0 5%, transparent 6%),
+      radial-gradient(circle at 80% 31%, #6b865d 0 5%, transparent 6%),
+      radial-gradient(circle at 14% 46%, #7f6b57 0 5%, transparent 6%),
+      radial-gradient(circle at 26% 46%, #aa6c74 0 5%, transparent 6%),
+      radial-gradient(circle at 38% 46%, #8b8b8b 0 5%, transparent 6%),
+      radial-gradient(circle at 50% 46%, #607a9d 0 5%, transparent 6%),
+      radial-gradient(circle at 62% 46%, #b0864c 0 5%, transparent 6%),
+      radial-gradient(circle at 74% 46%, #7e9268 0 5%, transparent 6%),
+      radial-gradient(circle at 24% 61%, #8d8d8d 0 5%, transparent 6%),
+      radial-gradient(circle at 36% 61%, #b55f49 0 5%, transparent 6%),
+      radial-gradient(circle at 48% 61%, #758f48 0 5%, transparent 6%),
+      radial-gradient(circle at 60% 61%, #748aa1 0 5%, transparent 6%),
+      radial-gradient(circle at 72% 61%, #9a7f64 0 5%, transparent 6%),
+      radial-gradient(circle at 28% 76%, #7c7c7c 0 5%, transparent 6%),
+      radial-gradient(circle at 42% 76%, #b08955 0 5%, transparent 6%),
+      radial-gradient(circle at 56% 76%, #6e839a 0 5%, transparent 6%),
+      radial-gradient(circle at 70% 76%, #808d6b 0 5%, transparent 6%),
+      linear-gradient(135deg,#f0f0f0,#b6b6b6);
+  }
+  .hex .road{
+    background:
+      linear-gradient(150deg, transparent 0 26%, #eaeaea 26% 35%, transparent 35% 100%),
+      linear-gradient(30deg, transparent 0 42%, #ececec 42% 49%, transparent 49% 100%),
+      linear-gradient(0deg,#4d4d4d,#7a7a7a);
+  }
+  .hex .building{
+    background:
+      linear-gradient(90deg,#686868 0 17%,#d9d9d9 17% 28%,#757575 28% 44%,#ececec 44% 56%,#7d7d7d 56% 73%,#d5d5d5 73% 84%,#696969 84% 100%);
+  }
+  .hex .edu{
+    background:
+      linear-gradient(145deg, transparent 0 50%, #2e2e2e 50% 56%, transparent 56% 100%),
+      radial-gradient(circle at 66% 67%, #efefef 0 10%, transparent 11%),
+      linear-gradient(0deg,#cfcfcf,#8d8d8d);
+  }
+
+  .sb-num{
+    color:#b8bf00;
+    font-size:22px;
+    line-height:1;
+    font-weight:700;
+    z-index:20;
+  }
+  .sb-num.gray{color:#73777d;}
+  .sb-label{
+    color:#b8bf00;
+    font-size:27px;
+    line-height:1;
+    font-weight:700;
+    transform:scale(.5);
+    transform-origin:left top;
+    z-index:20;
+  }
+  .sb-label.gray{
+    color:#73777d;
+    font-weight:400;
+  }
+
+  .page{
+    left:10px; top:706px;
+    color:#fff;
+    font-size:19px;
+    line-height:1;
+    z-index:20;
+  }
+
+  .people-icon{
+    left:55px; top:650px; width:112px; height:64px;
+    z-index:15;
+    opacity:.95;
+  }
+
+  .title{
+    left:220px; top:31px; width:980px;
+    color:#222;
+    font-size:27px;
+    line-height:1.1;
+    font-weight:700;
+    z-index:20;
+  }
+  .subtitle{
+    left:220px; top:138px; width:770px;
+    color:#8f969f;
+    font-size:28px;
+    line-height:1.06;
+    font-weight:400;
+    z-index:20;
+  }
+  .subtitle sup{font-size:15px;}
+
+  .chartwrap{
+    left:220px; top:223px; width:790px; height:376px;
+    z-index:20;
+  }
+
+  .legend{
+    left:220px; top:699px; width:340px; height:18px;
+    color:#444;
+    font-size:13px;
+    line-height:1;
+    z-index:20;
+  }
+  .legend-box{
+    width:20px;height:15px;display:inline-block;vertical-align:middle;margin-right:6px;
+  }
+
+  .footnote{
+    left:220px; top:720px; width:790px;
+    color:#444;
+    font-size:10px;
+    line-height:1.28;
+    transform:translateY(-33px);
+    z-index:20;
+  }
+
+  .callout{
+    left:1033px; top:140px; width:247px; height:579px;
+    background:#d8d9dc;
+    padding:11px 14px 10px 14px;
+    z-index:10;
+  }
+  .callout p{
+    margin:0 0 11px 0;
+    color:#262626;
+    font-size:17px;
+    line-height:1.15;
+    font-weight:400;
+  }
+  .callout .bullet{
+    position:relative;
+    padding-left:15px;
+  }
+  .callout .bullet:before{
+    content:">";
+    position:absolute;
+    left:0; top:0;
+    color:#222;
+    font-weight:700;
+  }
+  .callout strong{font-weight:700;}
+
+  .logo{
+    left:1217px; top:691px; width:51px; height:24px;
+    z-index:20;
+  }
+
+  .axislabel{font-size:15px;fill:#333;font-weight:400;}
+  .barvalue{font-size:14px;fill:#aab400;font-weight:700;}
+  .insidevalue{font-size:14px;fill:#fff;font-weight:400;}
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="main"></div>
+  <div class="bgwash"></div>
+  <div class="sidebar"></div>
+
+  <div class="sb-title">People &amp;<br>Society</div>
+
+  <div class="hex" style="left:8px; top:141px;"><div class="mini crowd"></div></div>
+  <div class="sb-num" style="left:97px; top:144px;">1</div>
+  <div class="sb-label" style="left:97px; top:177px;">Population</div>
+
+  <div class="hex grayborder" style="left:8px; top:260px;"><div class="mini road"></div></div>
+  <div class="sb-num gray" style="left:97px; top:263px;">2</div>
+  <div class="sb-label gray" style="left:97px; top:296px;">Migration</div>
+
+  <div class="hex grayborder" style="left:8px; top:380px;"><div class="mini building"></div></div>
+  <div class="sb-num gray" style="left:97px; top:383px;">3</div>
+  <div class="sb-label gray" style="left:97px; top:416px;">Values</div>
+
+  <div class="hex grayborder" style="left:8px; top:500px;"><div class="mini edu"></div></div>
+  <div class="sb-num gray" style="left:97px; top:503px;">4</div>
+  <div class="sb-label gray" style="left:97px; top:536px;">Education</div>
+
+  <svg class="people-icon" viewBox="0 0 118 67">
+    <g fill="#7b7f83">
+      <circle cx="59" cy="18" r="12"></circle>
+      <circle cx="39" cy="22" r="10"></circle>
+      <circle cx="79" cy="22" r="10"></circle>
+      <circle cx="25" cy="31" r="8"></circle>
+      <circle cx="93" cy="31" r="8"></circle>
+      <circle cx="46" cy="37" r="9"></circle>
+      <circle cx="72" cy="37" r="9"></circle>
+      <path d="M42 30h34a12 12 0 0 1 12 12v13H30V42a12 12 0 0 1 12-12z"></path>
+      <path d="M26 34h25a11 11 0 0 1 11 11v11H15V45a11 11 0 0 1 11-11z"></path>
+      <path d="M67 34h25a11 11 0 0 1 11 11v11H56V45a11 11 0 0 1 11-11z"></path>
+      <path d="M6 40h23a9 9 0 0 1 9 9v10H-3V49a9 9 0 0 1 9-9z"></path>
+      <path d="M89 40h23a9 9 0 0 1 9 9v10H80V49a9 9 0 0 1 9-9z"></path>
+      <circle cx="59" cy="49" r="12"></circle>
+      <path d="M44 54h30a14 14 0 0 1 14 13H30a14 14 0 0 1 14-13z"></path>
+    </g>
+  </svg>
+
+  <div class="page">14</div>
+
+  <div class="title">Future retirement ages will continue to rise in most countries – The<br>pandemic is heightening the need for further retirement reforms</div>
+
+  <div class="subtitle">Normal retirement age for men current (2018) and prospective,<br>selected OECD and non-OECD countries<sup>1)</sup> [years]</div>
+
+  <svg class="chartwrap" viewBox="0 0 790 376">
+    <line x1="180" y1="302" x2="788" y2="302" stroke="#585858" stroke-width="1"/>
+
+    <rect x="10" y="95.7" width="27" height="206.3" fill="#004b7d"/>
+    <rect x="10" y="22.0" width="27" height="73.7" fill="#b4b900"/>
+    <text x="23.5" y="14" text-anchor="middle" class="barvalue">74</text>
+    <text x="23.5" y="205" text-anchor="middle" class="insidevalue">65</text>
+    <text x="23.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 23.5 334)">Denmark</text>
+
+    <rect x="57" y="79.8" width="27" height="222.2" fill="#004b7d"/>
+    <rect x="57" y="38.6" width="27" height="41.2" fill="#b4b900"/>
+    <text x="70.5" y="30.6" text-anchor="middle" class="barvalue">71</text>
+    <text x="70.5" y="197" text-anchor="middle" class="insidevalue">67</text>
+    <text x="70.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 70.5 334)">Italy</text>
+
+    <rect x="104" y="83.0" width="27" height="219.0" fill="#004b7d"/>
+    <rect x="104" y="38.6" width="27" height="44.4" fill="#b4b900"/>
+    <text x="117.5" y="30.6" text-anchor="middle" class="barvalue">71</text>
+    <text x="117.5" y="197" text-anchor="middle" class="insidevalue">66</text>
+    <text x="117.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 117.5 334)">Netherlands</text>
+
+    <rect x="151" y="95.7" width="27" height="206.3" fill="#004b7d"/>
+    <rect x="151" y="70.3" width="27" height="25.4" fill="#b4b900"/>
+    <text x="164.5" y="62.3" text-anchor="middle" class="barvalue">68</text>
+    <text x="164.5" y="205" text-anchor="middle" class="insidevalue">65</text>
+    <text x="164.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 164.5 334)">UK</text>
+
+    <rect x="198" y="83.0" width="27" height="219.0" fill="#004b7d"/>
+    <rect x="198" y="73.5" width="27" height="9.5" fill="#b4b900"/>
+    <text x="211.5" y="65.5" text-anchor="middle" class="barvalue">67</text>
+    <text x="211.5" y="197" text-anchor="middle" class="insidevalue">66</text>
+    <text x="211.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 211.5 334)">USA</text>
+
+    <rect x="245" y="83.0" width="27" height="219.0" fill="#004b7d"/>
+    <rect x="245" y="73.5" width="27" height="9.5" fill="#b4b900"/>
+    <text x="258.5" y="65.5" text-anchor="middle" class="barvalue">67</text>
+    <text x="258.5" y="197" text-anchor="middle" class="insidevalue">66</text>
+    <text x="258.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 258.5 334)">Germany</text>
+
+    <rect x="292" y="92.5" width="27" height="209.5" fill="#004b7d"/>
+    <rect x="292" y="82.9" width="27" height="9.6" fill="#b4b900"/>
+    <text x="305.5" y="74.9" text-anchor="middle" class="barvalue">66</text>
+    <text x="305.5" y="206" text-anchor="middle" class="insidevalue">63</text>
+    <text x="305.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 305.5 334)">France</text>
+
+    <rect x="339" y="95.7" width="27" height="206.3" fill="#004b7d"/>
+    <text x="352.5" y="65.5" text-anchor="middle" class="barvalue">65</text>
+    <text x="352.5" y="205" text-anchor="middle" class="insidevalue">65</text>
+    <text x="352.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 352.5 334)">Japan</text>
+
+    <rect x="386" y="108.4" width="27" height="193.6" fill="#004b7d"/>
+    <rect x="386" y="95.7" width="27" height="12.7" fill="#b4b900"/>
+    <text x="399.5" y="87.7" text-anchor="middle" class="barvalue">65</text>
+    <text x="399.5" y="210" text-anchor="middle" class="insidevalue">61</text>
+    <text x="399.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 399.5 334)">Korea</text>
+
+    <rect x="433" y="140.1" width="27" height="161.9" fill="#004b7d"/>
+    <rect x="433" y="41.8" width="27" height="98.3" fill="#b4b900"/>
+    <text x="446.5" y="33.8" text-anchor="middle" class="barvalue">62</text>
+    <text x="446.5" y="224" text-anchor="middle" class="insidevalue">51</text>
+    <text x="446.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 446.5 334)">Turkey</text>
+
+    <rect x="527" y="124.3" width="27" height="177.7" fill="#004b7d"/>
+    <rect x="527" y="95.7" width="27" height="28.6" fill="#b4b900"/>
+    <text x="540.5" y="87.7" text-anchor="middle" class="barvalue">65</text>
+    <text x="540.5" y="213" text-anchor="middle" class="insidevalue">56</text>
+    <text x="540.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 540.5 334)">Indonesia</text>
+
+    <rect x="574" y="111.6" width="27" height="190.4" fill="#004b7d"/>
+    <rect x="574" y="98.9" width="27" height="12.7" fill="#b4b900"/>
+    <text x="587.5" y="90.9" text-anchor="middle" class="barvalue">64</text>
+    <text x="587.5" y="211" text-anchor="middle" class="insidevalue">60</text>
+    <text x="587.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 587.5 334)">Russia</text>
+
+    <rect x="621" y="111.6" width="27" height="190.4" fill="#004b7d"/>
+    <text x="634.5" y="87.7" text-anchor="middle" class="barvalue">60</text>
+    <text x="634.5" y="211" text-anchor="middle" class="insidevalue">60</text>
+    <text x="634.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 634.5 334)">China</text>
+
+    <rect x="668" y="118.0" width="27" height="184.0" fill="#004b7d"/>
+    <text x="681.5" y="95.7" text-anchor="middle" class="barvalue">58</text>
+    <text x="681.5" y="214" text-anchor="middle" class="insidevalue">58</text>
+    <text x="681.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 681.5 334)">India</text>
+
+    <rect x="715" y="124.3" width="27" height="177.7" fill="#004b7d"/>
+    <text x="728.5" y="101.9" text-anchor="middle" class="barvalue">57</text>
+    <text x="728.5" y="214" text-anchor="middle" class="insidevalue">57</text>
+    <text x="728.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 728.5 334)">Brazil</text>
+
+    <rect x="762" y="270.3" width="27" height="31.7" fill="#004b7d"/>
+    <rect x="762" y="254.4" width="27" height="15.9" fill="#b4b900"/>
+    <text x="775.5" y="246.4" text-anchor="middle" class="barvalue">47</text>
+    <text x="775.5" y="291" text-anchor="middle" class="insidevalue">47</text>
+    <text x="775.5" y="334" text-anchor="middle" class="axislabel" transform="rotate(-90 775.5 334)">Saudi Arabia</text>
+  </svg>
+
+  <div class="legend">
+    <span class="legend-box" style="background:#004b7d;"></span><span style="margin-right:18px;">Current</span>
+    <span class="legend-box" style="background:#b4b900;"></span><span>Prospective</span>
+  </div>
+
+  <div class="footnote">1) The current retirement age is calculated for a man with a full career from age 22 and based on the year 2018. Prospective refers to the year in which<br>a person is eligible for full retirement benefits from all mandatory components in a country, without reduction, assuming labor market entry at age 22 in 2018</div>
+
+  <div class="callout">
+    <p class="bullet">Future normal <strong>retirement ages will continue to rise</strong> for both men and women, albeit at different rates</p>
+    <p class="bullet"><strong>On average</strong> across all <strong>OECD countries</strong> and assuming labor market entry at age 22 in 2018, the normal retirement age will increase from <strong>64.2 to 66.1 for men</strong> and from <strong>63.5 to 65.7 for women</strong></p>
+    <p class="bullet">Currently, <strong>gender differences in the normal retirement age</strong> exist in around one-third of OECD countries but these <strong>will be mostly phased out after 2050</strong> apart from a very small number of countries (Switzerland, Poland, Israel)</p>
+    <p class="bullet">The economic crisis triggered by the coronavirus pandemic has heightened the strain on the <strong>future of national pension systems</strong> – billions of people now face working longer, or having less income in later life; governments will need to adopt a <strong>significant range of reforms</strong> to shore up long-term outcomes for future pensioners and their security in retirement</p>
+  </div>
+
+  <div class="logo">
+    <svg viewBox="0 0 51 24" width="51" height="24">
+      <text x="0" y="10" font-size="8" fill="#7b7b7b" font-family="Arial,Helvetica,sans-serif">Roland</text>
+      <text x="0" y="19" font-size="8" fill="#7b7b7b" font-family="Arial,Helvetica,sans-serif">Berger</text>
+      <path d="M35,1 h5 c6,0 10,3 10,8 c0,4 -2,6 -6,7 c4,1 6,3 6,7 h-8 c0,-3 -2,-5 -6,-5 h-2 v5 h-8 v-22 h9z M34,6 v7 h2 c4,0 6,-1 6,-3.5 c0,-2.3 -2,-3.5 -6,-3.5z" fill="#9d9ea2"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

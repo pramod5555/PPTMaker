@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#cfcfcf;font-family:Arial, Helvetica, "Segoe UI", sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  .slide > div, .slide > svg{position:absolute;box-sizing:border-box;}
+  .sidebar{
+    left:0;top:0;width:180px;height:720px;background:#30343b;
+  }
+  .sidebar-line{
+    left:179px;top:0;width:2px;height:720px;background:#7558c5;
+  }
+  .brand-title{
+    left:12px;top:33px;width:150px;
+    color:#f0f0f0;font-size:23px;line-height:1.08;font-weight:700;
+  }
+  .side-item{width:155px;height:74px;}
+  .hex{
+    position:absolute;width:48px;height:48px;
+    border:4px solid #8f959d;
+    clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0 50%);
+    background:rgba(255,255,255,0.05);
+  }
+  .hex.purple{border-color:#9a76ea;}
+  .hex.graylight{border-color:#afb4bb;}
+  .hex-inner{
+    position:absolute;left:6px;top:6px;width:32px;height:32px;
+    clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0 50%);
+    background:rgba(255,255,255,0.1);
+    overflow:hidden;
+  }
+  .num{
+    position:absolute;left:84px;top:-1px;
+    font-size:23px;line-height:1;font-weight:700;
+  }
+  .itemlabel{
+    position:absolute;left:84px;top:26px;
+    font-size:15px;line-height:1.02;font-weight:400;
+  }
+  .graytxt{color:#7f8690;}
+  .purpletxt{color:#8c69df;}
+  .maintitle{
+    left:220px;top:33px;width:1025px;
+    color:#202020;font-size:28px;line-height:1.03;font-weight:700;
+  }
+  .subtitle{
+    left:220px;top:139px;width:900px;
+    color:#8f959c;font-size:28px;line-height:1.08;font-weight:300;
+  }
+  .left-heading{
+    left:220px;top:184px;width:500px;
+    color:#212121;font-size:21px;line-height:1.08;font-weight:700;
+  }
+  .xr-box{
+    left:221px;top:245px;width:531px;height:477px;
+    background:linear-gradient(180deg, rgba(205,197,223,0.96) 0%, rgba(199,191,220,0.95) 22%, rgba(181,167,216,0.93) 100%);
+    border-radius:10px;
+  }
+  .xr-toptext{
+    left:232px;top:255px;width:500px;
+    color:#252228;font-size:20px;line-height:1.07;font-weight:400;
+  }
+  .xr-toptext b{font-weight:700;}
+  .purple-panel{
+    left:238px;top:348px;width:497px;height:360px;border-radius:13px;overflow:hidden;
+    background:
+      radial-gradient(circle at 22% 72%, rgba(255,255,255,0.16), rgba(255,255,255,0) 22%),
+      radial-gradient(circle at 52% 47%, rgba(174,220,255,0.14), rgba(174,220,255,0) 18%),
+      linear-gradient(135deg, #4c2e7f 0%, #56368b 45%, #563483 100%);
+  }
+  .mrtext{
+    left:248px;top:361px;width:455px;
+    color:#f1eff7;font-size:17px;line-height:1.08;font-weight:400;
+  }
+  .mrtext b{font-weight:700;}
+  .inner-card{
+    top:458px;height:212px;border-radius:10px;
+    background:rgba(184,165,231,0.50);
+    color:#f1eef8;padding:12px 12px 10px 12px;
+    font-size:18px;line-height:1.12;font-weight:400;
+  }
+  .inner-card b{font-weight:700;}
+  .inner-left{left:250px;width:213px;}
+  .inner-right{left:473px;width:249px;}
+  .chart-title{
+    left:775px;top:185px;width:235px;
+    color:#222;font-size:18px;line-height:1.08;font-weight:700;
+  }
+  .chart-area{left:768px;top:259px;width:230px;height:425px;}
+  .chart-base{left:0;top:417px;width:227px;height:2px;background:#787878;}
+  .bar1{left:25px;top:411px;width:62px;height:8px;background:#005086;}
+  .bar2{left:138px;top:31px;width:63px;height:388px;background:#005086;}
+  .val1{
+    left:47px;top:378px;color:#202020;font-size:18px;line-height:1;font-weight:700;
+  }
+  .val2{
+    left:142px;top:3px;color:#202020;font-size:18px;line-height:1;font-weight:700;
+  }
+  .lab1{left:35px;top:428px;color:#333;font-size:17px;line-height:1;font-weight:400;}
+  .lab2{left:149px;top:428px;color:#333;font-size:17px;line-height:1;font-weight:400;}
+  .callout{
+    left:1018px;top:185px;width:262px;height:535px;background:#d8d8db;
+    padding:0;
+  }
+  .bullet{
+    left:1030px;width:238px;color:#2d2d2d;
+    font-size:17px;line-height:1.08;font-weight:400;
+  }
+  .bullet b{font-weight:700;}
+  .b1{top:198px;}
+  .b2{top:347px;}
+  .b3{top:460px;}
+  .b4{top:592px;}
+  .source-bottom{
+    left:220px;top:753px;width:760px;
+    color:#484848;font-size:10px;line-height:1.15;font-weight:400;
+  }
+  .page-bottom{
+    left:10px;top:748px;color:#f2f2f2;font-size:10px;line-height:1;font-weight:400;
+  }
+  .gearicon{
+    left:51px;top:660px;width:76px;height:50px;
+  }
+  .rb-name{
+    left:1208px;top:736px;width:34px;
+    color:#7e7e7e;font-size:6px;line-height:0.95;text-align:right;
+  }
+  .rb-logo{
+    left:1245px;top:729px;width:28px;height:31px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="sidebar"></div>
+  <div class="sidebar-line"></div>
+
+  <div class="brand-title">Technology &amp;<br>Innovation</div>
+
+  <div class="side-item" style="left:8px;top:141px;">
+    <div class="hex"></div>
+    <div class="hex-inner">
+      <svg style="position:absolute;left:-2px;top:-2px;width:38px;height:38px" viewBox="0 0 38 38">
+        <rect x="2" y="21" width="10" height="8" fill="rgba(255,255,255,0.72)"/>
+        <rect x="14" y="16" width="9" height="13" fill="rgba(255,255,255,0.72)"/>
+        <rect x="25" y="11" width="9" height="18" fill="rgba(255,255,255,0.72)"/>
+        <polyline points="3,26 10,19 18,21 26,13 33,16" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.4"/>
+      </svg>
+    </div>
+    <div class="num graytxt">1</div>
+    <div class="itemlabel graytxt" style="width:62px;">Value of<br>Innovation</div>
+  </div>
+
+  <div class="side-item" style="left:8px;top:273px;">
+    <div class="hex purple"></div>
+    <div class="hex-inner">
+      <svg style="position:absolute;left:-2px;top:-2px;width:38px;height:38px" viewBox="0 0 38 38">
+        <circle cx="19" cy="19" r="5" fill="rgba(255,255,255,0.82)"/>
+        <circle cx="11" cy="15" r="2" fill="rgba(255,255,255,0.62)"/>
+        <circle cx="26" cy="12" r="2" fill="rgba(255,255,255,0.62)"/>
+        <circle cx="28" cy="23" r="2" fill="rgba(255,255,255,0.62)"/>
+        <circle cx="13" cy="26" r="2" fill="rgba(255,255,255,0.62)"/>
+        <line x1="19" y1="19" x2="11" y2="15" stroke="rgba(255,255,255,0.68)" stroke-width="1"/>
+        <line x1="19" y1="19" x2="26" y2="12" stroke="rgba(255,255,255,0.68)" stroke-width="1"/>
+        <line x1="19" y1="19" x2="28" y2="23" stroke="rgba(255,255,255,0.68)" stroke-width="1"/>
+        <line x1="19" y1="19" x2="13" y2="26" stroke="rgba(255,255,255,0.68)" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="num purpletxt">2</div>
+    <div class="itemlabel purpletxt" style="width:76px;">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="side-item" style="left:8px;top:405px;">
+    <div class="hex graylight"></div>
+    <div class="hex-inner">
+      <svg style="position:absolute;left:-1px;top:1px;width:36px;height:30px" viewBox="0 0 36 30">
+        <path d="M10 17 C12 13, 15 13, 17 16 C19 19, 22 19, 25 15" fill="none" stroke="rgba(255,255,255,0.92)" stroke-width="2"/>
+        <path d="M11 19 L5 13 C3 11,3 8,5 6 C7 4,10 4,12 6 L17 11" fill="none" stroke="rgba(255,255,255,0.92)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M25 17 L31 11 C33 9,33 6,31 4 C29 2,26 2,24 4 L19 9" fill="none" stroke="rgba(255,255,255,0.92)" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="num graytxt">3</div>
+    <div class="itemlabel graytxt" style="width:74px;">Humans &amp;<br>Machines</div>
+  </div>
+
+  <svg class="gearicon" viewBox="0 0 76 50">
+    <g opacity="0.38" fill="none" stroke="#bdbdbd" stroke-width="3">
+      <circle cx="26" cy="28" r="12"></circle>
+      <path d="M26 10 L26 2 M26 54 L26 46 M8 28 L0 28 M52 28 L44 28 M13 15 L7 9 M39 41 L45 47 M13 41 L7 47 M39 15 L45 9"/>
+    </g>
+    <g transform="translate(34,10)" opacity="0.38">
+      <circle cx="20" cy="16" r="9" fill="none" stroke="#bdbdbd" stroke-width="3"/>
+      <circle cx="20" cy="16" r="3" fill="#bdbdbd"/>
+      <path d="M20 2 L20 7 M20 25 L20 30 M6 16 L11 16 M29 16 L34 16 M10 6 L13 9 M27 23 L30 26 M10 26 L13 23 M27 9 L30 6" stroke="#bdbdbd" stroke-width="3" fill="none"/>
+    </g>
+    <path d="M30 48 C31 39, 33 33, 39 27" stroke="#bdbdbd" stroke-width="3" fill="none" opacity="0.38"/>
+  </svg>
+
+  <div class="maintitle">Our immersive future: The concept of extended reality merges physical and<br>digital worlds …</div>
+  <div class="subtitle">The many realities that extend, mix and augment our future lives</div>
+  <div class="left-heading">Innovative technologies that aim to create a form of virtual<br>experiences</div>
+
+  <div class="xr-box"></div>
+  <div class="xr-toptext"><b>Extended reality (XR)</b> is used as a term for <b>any immersive<br>reality that could include all senses and future<br>interactions via human-machine interfaces</b></div>
+
+  <div class="purple-panel"></div>
+
+  <svg style="left:338px;top:344px;width:328px;height:205px;position:absolute;z-index:2;opacity:0.22" viewBox="0 0 328 205">
+    <circle cx="94" cy="108" r="56" fill="none" stroke="#b8a8e7" stroke-width="3"/>
+    <circle cx="94" cy="108" r="41" fill="none" stroke="#b8a8e7" stroke-width="2"/>
+    <circle cx="94" cy="108" r="24" fill="none" stroke="#b8a8e7" stroke-width="2"/>
+    <text x="195" y="67" font-family="Arial" font-size="25" fill="#b8a8e7">D</text>
+    <text x="228" y="79" font-family="Arial" font-size="24" fill="#b8a8e7">D</text>
+    <text x="260" y="95" font-family="Arial" font-size="23" fill="#b8a8e7">0</text>
+    <text x="157" y="145" font-family="Arial" font-size="26" fill="#b8a8e7">4</text>
+    <text x="238" y="159" font-family="Arial" font-size="25" fill="#b8a8e7">2</text>
+    <text x="282" y="167" font-family="Arial" font-size="25" fill="#b8a8e7">P</text>
+    <text x="204" y="186" font-family="Arial" font-size="24" fill="#b8a8e7">9</text>
+  </svg>
+
+  <div class="mrtext"><b>Mixed reality (MR)</b> is a combination of <b>VR</b> and <b>AR</b><br>systems creating a <b>hybrid environment</b></div>
+
+  <div class="inner-card inner-left"><b>Augmented reality<br>(AR)</b> lets us view the<br>physical world directly<br>or indirectly and adds<br>virtual objects</div>
+  <div class="inner-card inner-right"><b>Virtual reality (VR)</b> is a<br>fully digital experience<br>that, by using a headset,<br>creates an audio-visual<br>and potential physical<br>virtually simulated<br>environment</div>
+
+  <svg style="left:724px;top:300px;width:300px;height:270px;position:absolute;opacity:0.65" viewBox="0 0 300 270">
+    <defs>
+      <radialGradient id="g1" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.45"/>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="g2" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ccffff" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#ccffff" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="g3" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#72b8ff" stop-opacity="0.28"/>
+        <stop offset="100%" stop-color="#72b8ff" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="g4" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffb7b7" stop-opacity="0.32"/>
+        <stop offset="100%" stop-color="#ffb7b7" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <ellipse cx="72" cy="44" rx="10" ry="10" fill="url(#g1)"/>
+    <ellipse cx="110" cy="160" rx="15" ry="15" fill="url(#g2)"/>
+    <ellipse cx="230" cy="210" rx="21" ry="21" fill="url(#g3)"/>
+    <ellipse cx="200" cy="60" rx="14" ry="14" fill="url(#g4)"/>
+    <path d="M20 35 C90 48, 120 42, 195 36 C230 34, 252 30, 284 18" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="12" stroke-linecap="round"/>
+  </svg>
+
+  <div class="chart-title">Market size of extended<br>reality technologies,<br>[bn USD]</div>
+  <div class="chart-area">
+    <div class="chart-base"></div>
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="val1">19</div>
+    <div class="val2">1,006</div>
+    <div class="lab1">2018</div>
+    <div class="lab2">2030</div>
+  </div>
+
+  <div class="callout"></div>
+
+  <div class="bullet b1">&gt; <b>Extended reality (XR)</b> has the<br>potential to <b>impact large parts of our<br>economy</b> across a wide range of<br>sectors going forward: In <b>enginee-<br>ring</b> and <b>healthcare</b>, XR will open<br>new possibilities in working methods<br>and visualization possibilities</div>
+
+  <div class="bullet b2">&gt; The ability to interact with <b>virtual<br>products</b> will also disrupt the <b>retail<br>sector</b>. New possibilities in the <b>perso-<br>nalization of advertising</b> will change<br>the <b>marketing</b> sector</div>
+
+  <div class="bullet b3">&gt; A particularly impactful point con-<br>cerns <b>education and training</b>, where<br>XR offers entirely new opportunities<br>for academia as well as businesses to<br>interact with learners and objects in<br>novel ways</div>
+
+  <div class="bullet b4">&gt; <b>Future progress</b> towards extended<br>reality is based on the <b>innovation of<br>core technologies</b> such as AI, but<br>also includes hardware devices and<br>data transfer via cloud systems and<br>5G</div>
+
+  <div class="source-bottom">Sources: Bloomberg; Prescient &amp; Strategic Intelligence; Ionos; IPlytics; Mobile App Daily; Huawei; Roland Berger</div>
+  <div class="page-bottom">50</div>
+
+  <div class="rb-name">Roland<br>Berger</div>
+  <svg class="rb-logo" viewBox="0 0 30 31">
+    <path d="M8 1 L16 1 C21 1,25 5,25 10 C25 14,22 17,18 18 C22 19,25 22,25 26 C25 29,23 31,19 31 L8 31 Z" fill="#9b9b9b"/>
+    <path d="M8 1 L8 31 L3 31 L3 1 Z" fill="#bdbdbd"/>
+    <path d="M8 16 L16 16 C19 16,21 14,21 11 C21 8,19 6,16 6 L8 6 Z" fill="#d7d7d7"/>
+    <path d="M8 21 L17 21 C20 21,21 23,21 25 C21 27,20 28,17 28 L8 28 Z" fill="#c9c9c9"/>
+  </svg>
+</div>
+</body>
+</html>

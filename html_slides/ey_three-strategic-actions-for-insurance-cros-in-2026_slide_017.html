@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #dedede;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: #11162a;
+  }
+  .slide > div, .slide > svg { position: absolute; box-sizing: border-box; }
+
+  .bg-left {
+    left: 0;
+    top: 0;
+    width: 492px;
+    height: 720px;
+    background:
+      radial-gradient(circle at 75% 14%, rgba(91,123,255,.18) 0 18px, rgba(91,123,255,0) 19px),
+      radial-gradient(circle at 86% 16%, rgba(190,113,255,.18) 0 34px, rgba(190,113,255,0) 35px),
+      radial-gradient(circle at 82% 31%, rgba(255,116,219,.16) 0 23px, rgba(255,116,219,0) 24px),
+      radial-gradient(circle at 69% 19%, rgba(43,152,255,.21) 0 21px, rgba(43,152,255,0) 22px),
+      radial-gradient(circle at 83% 43%, rgba(28,119,255,.18) 0 27px, rgba(28,119,255,0) 28px),
+      linear-gradient(180deg, #010511 0%, #031022 30%, #061730 61%, #04112a 100%);
+    z-index: 1;
+  }
+
+  .bg-right {
+    right: 0;
+    top: 0;
+    width: 126px;
+    height: 720px;
+    background:
+      radial-gradient(circle at 72% 8%, rgba(205,104,255,.40) 0 28px, rgba(205,104,255,.10) 41px, rgba(205,104,255,0) 42px),
+      radial-gradient(circle at 18% 28%, rgba(116,136,255,.34) 0 32px, rgba(116,136,255,.08) 50px, rgba(116,136,255,0) 51px),
+      radial-gradient(circle at 75% 40%, rgba(232,142,255,.28) 0 34px, rgba(232,142,255,.06) 54px, rgba(232,142,255,0) 55px),
+      radial-gradient(circle at 28% 62%, rgba(109,179,255,.22) 0 30px, rgba(109,179,255,0) 48px),
+      radial-gradient(circle at 74% 78%, rgba(206,122,255,.18) 0 26px, rgba(206,122,255,0) 44px),
+      linear-gradient(180deg, #4d256b 0%, #3d2d73 35%, #27418a 68%, #1b2d58 100%);
+    z-index: 1;
+  }
+
+  .chapter-pill {
+    left: 0;
+    top: 0;
+    width: 70px;
+    height: 28px;
+    background: #6f707c;
+    color: #fff;
+    border-radius: 0 0 12px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 28px;
+    text-align: center;
+    z-index: 60;
+  }
+
+  .vert-label {
+    left: -27px;
+    top: 384px;
+    width: 100px;
+    transform: rotate(-90deg);
+    color: rgba(41,44,49,.95);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    z-index: 30;
+  }
+
+  .vert-line {
+    left: 14px;
+    top: 378px;
+    width: 2px;
+    height: 66px;
+    background: rgba(33,38,44,.55);
+    z-index: 29;
+  }
+
+  .hero {
+    left: 487px;
+    top: 2px;
+    width: 691px;
+    height: 218px;
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(130,134,189,.95) 0%, rgba(128,131,182,.98) 100%);
+    border: 1px solid rgba(255,255,255,.38);
+    z-index: 22;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 55% 8%, rgba(255,255,255,.35) 0 50px, rgba(255,255,255,0) 140px),
+      radial-gradient(circle at 62% 22%, rgba(255,255,255,.18) 0 38px, rgba(255,255,255,0) 100px);
+    filter: blur(7px);
+  }
+  .hero .strand {
+    position: absolute;
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(195,216,255,.50) 42%, rgba(219,154,255,.35) 74%, rgba(255,255,255,0));
+    opacity: .95;
+    box-shadow: 0 0 5px rgba(255,255,255,.18);
+  }
+  .hero .s1  { left: 144px; top: -25px; height: 248px; transform: rotate(-12deg); }
+  .hero .s2  { left: 159px; top: -33px; height: 262px; transform: rotate(-8deg); }
+  .hero .s3  { left: 177px; top: -18px; height: 235px; transform: rotate(-3deg); }
+  .hero .s4  { left: 196px; top: -22px; height: 242px; transform: rotate(2deg); }
+  .hero .s5  { left: 218px; top: -36px; height: 267px; transform: rotate(8deg); }
+  .hero .s6  { left: 245px; top: -44px; height: 282px; transform: rotate(14deg); }
+  .hero .s7  { left: 274px; top: -40px; height: 278px; transform: rotate(18deg); }
+  .hero .s8  { left: 307px; top: -36px; height: 264px; transform: rotate(23deg); }
+  .hero .s9  { left: 340px; top: -24px; height: 247px; transform: rotate(29deg); }
+  .hero .s10 { left: 372px; top: -16px; height: 227px; transform: rotate(34deg); }
+  .hero .s11 { left: 120px; top: -30px; height: 257px; transform: rotate(-18deg); opacity: .65; }
+  .hero .s12 { left: 398px; top: -18px; height: 232px; transform: rotate(39deg); opacity: .72; }
+  .hero .s13 { left: 285px; top: -45px; height: 276px; transform: rotate(6deg); opacity: .62; }
+  .hero .s14 { left: 171px; top: -36px; height: 272px; transform: rotate(12deg); opacity: .7; }
+  .hero .s15 { left: 256px; top: -34px; height: 270px; transform: rotate(-5deg); opacity: .6; }
+  .hero .dot {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #f2d2ff;
+    box-shadow: 0 0 9px rgba(255,255,255,.7);
+  }
+
+  .panel {
+    left: 487px;
+    top: 218px;
+    width: 691px;
+    height: 502px;
+    background: #181824;
+    border-radius: 0 0 16px 16px;
+    border-left: 1px solid rgba(255,255,255,.35);
+    border-right: 1px solid rgba(255,255,255,.35);
+    border-bottom: 1px solid rgba(255,255,255,.35);
+    z-index: 20;
+  }
+
+  .left-copy {
+    left: 46px;
+    top: 74px;
+    width: 360px;
+    color: #f1f1f2;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.45;
+    z-index: 30;
+  }
+
+  .quote-box {
+    left: 46px;
+    top: 319px;
+    width: 268px;
+    height: 196px;
+    z-index: 31;
+  }
+  .quote-box .corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: rgba(255,255,255,.66);
+    border-style: solid;
+  }
+  .quote-box .tl { left: 0; top: 0; border-width: 2px 0 0 2px; }
+  .quote-box .tr { right: 0; top: 0; border-width: 2px 2px 0 0; }
+  .quote-box .bl { left: 0; bottom: 0; border-width: 0 0 2px 2px; }
+  .quote-box .br { right: 0; bottom: 0; border-width: 0 2px 2px 0; }
+
+  .quote-mark {
+    left: 32px;
+    top: 14px;
+    color: #ffe400;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1;
+    z-index: 32;
+  }
+  .quote-title {
+    left: 34px;
+    top: 52px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    z-index: 32;
+  }
+  .quote-text {
+    left: 34px;
+    top: 76px;
+    width: 176px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.45;
+    z-index: 32;
+  }
+
+  .panel-title {
+    left: 526px;
+    top: 246px;
+    color: #ffe400;
+    font-size: 17px;
+    font-weight: 700;
+    z-index: 35;
+  }
+  .panel-body {
+    left: 526px;
+    top: 285px;
+    width: 608px;
+    color: #ececef;
+    font-size: 15px;
+    line-height: 1.45;
+    z-index: 35;
+  }
+  .panel-sub {
+    left: 526px;
+    top: 361px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    z-index: 35;
+  }
+
+  .metric {
+    top: 405px;
+    height: 182px;
+    z-index: 35;
+  }
+  .m1 { left: 526px; width: 136px; }
+  .m2 { left: 688px; width: 140px; }
+  .m3 { left: 848px; width: 140px; }
+  .m4 { left: 1007px; width: 143px; }
+
+  .metric-sep1, .metric-sep2, .metric-sep3 {
+    top: 404px;
+    width: 1px;
+    height: 180px;
+    background: rgba(175,178,190,.35);
+    z-index: 34;
+  }
+  .metric-sep1 { left: 662px; }
+  .metric-sep2 { left: 827px; }
+  .metric-sep3 { left: 987px; }
+
+  .metric .num {
+    color: transparent;
+    -webkit-text-stroke: 1.4px #ffe400;
+    font-size: 43px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.02em;
+  }
+  .metric .text {
+    position: absolute;
+    top: 48px;
+    width: 130px;
+    color: #efeff2;
+    font-size: 14px;
+    line-height: 1.38;
+  }
+  .m4 .text { width: 136px; }
+
+  .footer-link {
+    left: 526px;
+    top: 618px;
+    color: #d7d9df;
+    font-size: 15px;
+    z-index: 35;
+  }
+  .footer-link .blue { color: #136bcc; }
+
+  .page-no {
+    left: 19px;
+    bottom: 15px;
+    color: rgba(255,255,255,.86);
+    font-size: 10px;
+    font-weight: 700;
+    z-index: 40;
+  }
+
+  .jump {
+    right: 20px;
+    top: 20px;
+    width: 49px;
+    height: 49px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.72);
+    background: rgba(123,71,180,.16);
+    z-index: 60;
+  }
+  .jump-inner {
+    left: 7px;
+    top: 11px;
+    width: 34px;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1.06;
+    text-align: center;
+    z-index: 61;
+  }
+  .jump-dot {
+    right: 7px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffe400;
+    z-index: 62;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bg-left"></div>
+  <div class="bg-right"></div>
+
+  <div class="hero">
+    <div class="strand s1"></div>
+    <div class="strand s2"></div>
+    <div class="strand s3"></div>
+    <div class="strand s4"></div>
+    <div class="strand s5"></div>
+    <div class="strand s6"></div>
+    <div class="strand s7"></div>
+    <div class="strand s8"></div>
+    <div class="strand s9"></div>
+    <div class="strand s10"></div>
+    <div class="strand s11"></div>
+    <div class="strand s12"></div>
+    <div class="strand s13"></div>
+    <div class="strand s14"></div>
+    <div class="strand s15"></div>
+
+    <div class="dot" style="left:144px; top:28px;"></div>
+    <div class="dot" style="left:161px; top:50px; background:#dce8ff;"></div>
+    <div class="dot" style="left:174px; top:82px;"></div>
+    <div class="dot" style="left:197px; top:63px; background:#fff;"></div>
+    <div class="dot" style="left:222px; top:101px;"></div>
+    <div class="dot" style="left:257px; top:34px; background:#bee8ff;"></div>
+    <div class="dot" style="left:289px; top:124px;"></div>
+    <div class="dot" style="left:314px; top:83px; background:#e6c1ff;"></div>
+    <div class="dot" style="left:346px; top:138px;"></div>
+    <div class="dot" style="left:382px; top:65px; background:#fff;"></div>
+    <div class="dot" style="left:416px; top:111px;"></div>
+    <div class="dot" style="left:441px; top:85px; background:#c7f1ff;"></div>
+    <div class="dot" style="left:472px; top:134px;"></div>
+    <div class="dot" style="left:507px; top:99px; background:#f0d3ff;"></div>
+    <div class="dot" style="left:531px; top:151px;"></div>
+    <div class="dot" style="left:205px; top:143px; background:#bfe6ff;"></div>
+    <div class="dot" style="left:268px; top:93px; background:#f8d5ff;"></div>
+    <div class="dot" style="left:360px; top:97px; background:#d8f1ff;"></div>
+  </div>
+
+  <div class="panel"></div>
+
+  <div class="chapter-pill">CHAPTER 2</div>
+  <div class="vert-label">CHAPTER 2</div>
+  <div class="vert-line"></div>
+
+  <div class="left-copy">
+    Other research related to AI usage in financial<br>
+    services – including the annual study conducted by<br>
+    IIF-EY (see sidebar) – confirms that the business<br>
+    has so far realized greater value than the risk<br>
+    management function has in initial AI deployments.<br>
+    However, through our engagement with risk<br>
+    leaders across the financial services industry, and<br>
+    particularly in insurance, firms are continuing to<br>
+    identify new use cases to drive efficiency and shift<br>
+    the way traditional work has been performed.
+  </div>
+
+  <div class="quote-box">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+    <div class="quote-mark">“</div>
+    <div class="quote-title">What CROs say:</div>
+    <div class="quote-text">
+      We see AI as efficiency in the near<br>
+      term, with strong capabilities coming<br>
+      later. AI is everywhere except for<br>
+      the P&amp;L right now. It provides a<br>
+      huge uplift in productivity and the<br>
+      operational side.
+    </div>
+  </div>
+
+  <div class="panel-title">IIF-EY research on AI:</div>
+  <div class="panel-body">
+    To put these findings in context, the latest IIF-EY Annual Survey Report on AI Use in Financial Services<br>
+    shows how insurers are adopting this revolutionary technology across all parts of the business,<br>
+    complementing our annual risk management survey. It's clear that deployments in different functions are<br>
+    outpacing those in risk management.
+  </div>
+  <div class="panel-sub">Among this year's highlights:</div>
+
+  <div class="metric m1">
+    <div class="num">100%</div>
+    <div class="text">
+      of institutions planning<br>
+      changes in their<br>
+      AI investments are<br>
+      looking to increase<br>
+      their spending.
+    </div>
+  </div>
+
+  <div class="metric-sep1"></div>
+
+  <div class="metric m2">
+    <div class="num">83%</div>
+    <div class="text">
+      of financial institutions<br>
+      (FIs) reported some<br>
+      level of work on<br>
+      agentic AI – 23% are<br>
+      in production, 34% are<br>
+      piloting and 26% are<br>
+      still planning.
+    </div>
+  </div>
+
+  <div class="metric-sep2"></div>
+
+  <div class="metric m3">
+    <div class="num">79%</div>
+    <div class="text">
+      of all institutions and<br>
+      100% of insurance<br>
+      firms said data quality<br>
+      was the top challenge<br>
+      for AI development,<br>
+      with data availability a<br>
+      very close second.
+    </div>
+  </div>
+
+  <div class="metric-sep3"></div>
+
+  <div class="metric m4">
+    <div class="num">77%</div>
+    <div class="text">
+      of FIs use third-party<br>
+      platforms to address<br>
+      challenges (e.g., data<br>
+      preparation, access<br>
+      to training data and<br>
+      AI talent) and bring AI<br>
+      into production.
+    </div>
+  </div>
+
+  <div class="footer-link">Read the full report <span class="blue">here</span>.</div>
+  <div class="page-no">17</div>
+
+  <div class="jump">
+    <div class="jump-inner">Jump to<br>contents</div>
+    <div class="jump-dot"></div>
+  </div>
+
+  <svg width="1280" height="720" style="left:0; top:0; z-index:12;">
+    <defs>
+      <filter id="blurGlow">
+        <feGaussianBlur stdDeviation="4.5"/>
+      </filter>
+    </defs>
+
+    <g opacity="0.95">
+      <path d="M41 698 C72 586, 102 480, 157 400" stroke="#02111f" stroke-width="8" fill="none"/>
+      <path d="M54 707 C97 563, 151 452, 210 361" stroke="#04182d" stroke-width="6.4" fill="none"/>
+      <path d="M95 706 C136 568, 195 454, 259 356" stroke="#06305f" stroke-width="4.5" fill="none"/>
+      <path d="M123 706 C170 555, 238 437, 322 335" stroke="#0a4c9b" stroke-width="2.6" fill="none"/>
+      <path d="M166 707 C214 572, 282 454, 370 367" stroke="#0d65cc" stroke-width="1.9" fill="none"/>
+      <path d="M207 706 C262 564, 346 456, 432 380" stroke="#0f53b9" stroke-width="2.6" fill="none"/>
+      <path d="M236 706 C283 593, 361 502, 444 419" stroke="#083a88" stroke-width="1.9" fill="none"/>
+      <path d="M260 706 C311 600, 384 515, 467 443" stroke="#0d65cc" stroke-width="1.6" fill="none"/>
+      <path d="M287 706 C346 614, 422 545, 503 487" stroke="#09408d" stroke-width="1.3" fill="none"/>
+
+      <path d="M29 216 C85 291, 143 358, 213 431" stroke="#0d2444" stroke-width="5.1" fill="none" opacity=".45"/>
+      <path d="M1088 534 L1233 469" stroke="#08204a" stroke-width="2.6" fill="none"/>
+      <path d="M1114 625 L1245 625" stroke="#12386d" stroke-width="2.6" fill="none" opacity=".5"/>
+      <path d="M1110 499 L1236 470" stroke="#041128" stroke-width="3.1" fill="none"/>
+      <path d="M1160 503 L1235 472" stroke="#0d65cc" stroke-width="1.3" fill="none" opacity=".9"/>
+    </g>
+
+    <g opacity="0.8" filter="url(#blurGlow)">
+      <circle cx="360" cy="93" r="19" fill="rgba(120,66,178,0.35)"/>
+      <circle cx="382" cy="128" r="28" fill="rgba(154,77,207,0.22)"/>
+      <circle cx="335" cy="93" r="18" fill="rgba(28,118,255,0.20)"/>
+      <circle cx="403" cy="95" r="18" fill="rgba(187,91,255,0.18)"/>
+      <circle cx="419" cy="256" r="20" fill="rgba(230,129,255,0.24)"/>
+      <circle cx="356" cy="228" r="19" fill="rgba(28,118,255,0.20)"/>
+      <circle cx="246" cy="502" r="17" fill="rgba(139,86,245,0.18)"/>
+      <circle cx="271" cy="436" r="15" fill="rgba(37,152,255,0.18)"/>
+      <circle cx="157" cy="566" r="19" fill="rgba(194,93,255,0.12)"/>
+      <circle cx="1187" cy="190" r="26" fill="rgba(84,120,255,0.28)"/>
+      <circle cx="1212" cy="310" r="31" fill="rgba(231,139,255,0.25)"/>
+      <circle cx="1246" cy="31" r="20" fill="rgba(208,91,255,0.23)"/>
+      <circle cx="1185" cy="438" r="19" fill="rgba(98,174,255,0.20)"/>
+      <circle cx="1230" cy="541" r="27" fill="rgba(183,112,255,0.16)"/>
+      <circle cx="1201" cy="644" r="23" fill="rgba(81,126,255,0.12)"/>
+    </g>
+
+    <g opacity="0.92">
+      <circle cx="14" cy="270" r="6" fill="#006cc8"/>
+      <circle cx="29" cy="246" r="6" fill="#0e73d3"/>
+      <circle cx="49" cy="255" r="5" fill="#0b57a8"/>
+    </g>
+  </svg>
+</div>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{margin:0;background:#000;font-family:Arial, Helvetica, sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+    color:#111;
+  }
+  .slide > div, .slide > svg {position:absolute; box-sizing:border-box;}
+  .kicker{
+    left:82px; top:26px;
+    font-size:19px; line-height:22px; color:#8f9499; font-weight:700;
+  }
+  .title{
+    left:82px; top:82px; width:940px;
+    font-size:37px; line-height:43px; font-weight:400; color:#111;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    left:82px; top:186px; width:860px;
+    font-size:28px; line-height:34px; font-weight:400; color:#8f9499;
+  }
+  .logo{
+    right:48px; top:22px; width:150px; height:58px;
+  }
+  .logo .roland{
+    position:absolute; right:40px; top:3px;
+    font-size:24px; line-height:20px; color:#4d4f52; text-align:right;
+    transform:scale(0.46); transform-origin:top right;
+    width:120px;
+  }
+  .logo .berger{
+    position:absolute; right:42px; top:17px;
+    font-size:30px; line-height:30px; color:#2f3133; text-align:right;
+    font-weight:400;
+  }
+  .logo .icon{
+    position:absolute; right:0; top:2px; width:34px; height:50px;
+    background:linear-gradient(180deg,#c7cbcf 0%, #72777d 100%);
+    border-top-right-radius:18px;
+    border-bottom-right-radius:18px;
+    border-top-left-radius:2px;
+    border-bottom-left-radius:2px;
+  }
+  .logo .icon:before{
+    content:"";
+    position:absolute; left:0; top:0; width:16px; height:50px;
+    background:linear-gradient(180deg,#878c91 0%, #dde0e3 100%);
+    border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+  }
+
+  .ranking-title{
+    left:820px; top:245px; width:260px;
+    font-size:22px; line-height:24px; font-weight:700; color:#111;
+  }
+  .rank-list{
+    left:818px; top:307px; width:340px; height:340px;
+  }
+  .rank-row{
+    position:absolute; left:0; width:340px; height:30px;
+    font-size:18px; line-height:30px; color:#222;
+  }
+  .rank-box{
+    position:absolute; left:0; top:0; width:30px; height:30px;
+    background:#1672a6; color:#fff; font-weight:700; text-align:center;
+    line-height:30px; font-size:17px;
+    border:1px solid rgba(255,255,255,0.28);
+  }
+  .rank-text{
+    position:absolute; left:40px; top:0; width:300px; height:30px;
+    font-size:17px; line-height:30px; color:#222; font-weight:400;
+  }
+  .rank-text b{font-weight:700;}
+
+  .foot1{
+    left:82px; top:697px; width:760px;
+    font-size:12px; line-height:14px; color:#333;
+  }
+  .source{
+    left:82px; top:731px; width:220px;
+    font-size:12px; line-height:14px; color:#333;
+    transform:translateY(-18px);
+  }
+  .pagebar{
+    left:1037px; top:703px; width:2px; height:15px; background:#b8bcc0;
+  }
+  .page{
+    left:1051px; top:701px; font-size:18px; line-height:18px; color:#9ca1a6;
+  }
+
+  svg text{font-family:Arial, Helvetica, sans-serif;}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="kicker">1. Power of innovation – Driver of economic prosperity</div>
+  <div class="title">Innovation drives wealth – BRIC countries have to catch up but<br>Chinese corporations gain pace</div>
+  <div class="subtitle">GDP per capita and PCT<sup style="font-size:14px;line-height:0;">1)</sup> applications relative to population in 2016</div>
+
+  <div class="logo">
+    <div class="roland">Roland</div>
+    <div class="berger">Berger</div>
+    <div class="icon"></div>
+  </div>
+
+  <svg width="1280" height="720" style="left:0;top:0;">
+    <!-- chart background -->
+    <rect x="146" y="245" width="606" height="402" fill="#d4d6d9"/>
+
+    <!-- axes -->
+    <line x1="147" y1="645" x2="751" y2="645" stroke="#111" stroke-width="2.2"/>
+    <line x1="147" y1="248" x2="147" y2="645" stroke="#111" stroke-width="2.2"/>
+
+    <!-- arrowheads -->
+    <polygon points="147,245 141,257 153,257" fill="#111"/>
+    <polygon points="752,645 739,638 739,652" fill="#111"/>
+
+    <!-- y ticks -->
+    <g stroke="#111" stroke-width="1.3" fill="#222" font-size="15">
+      <line x1="141" y1="645" x2="147" y2="645"/><text x="132" y="650" text-anchor="end">0</text>
+      <line x1="141" y1="603" x2="147" y2="603"/><text x="132" y="608" text-anchor="end">10,000</text>
+      <line x1="141" y1="561" x2="147" y2="561"/><text x="132" y="566" text-anchor="end">20,000</text>
+      <line x1="141" y1="519" x2="147" y2="519"/><text x="132" y="524" text-anchor="end">30,000</text>
+      <line x1="141" y1="477" x2="147" y2="477"/><text x="132" y="482" text-anchor="end">40,000</text>
+      <line x1="141" y1="435" x2="147" y2="435"/><text x="132" y="440" text-anchor="end">50,000</text>
+      <line x1="141" y1="393" x2="147" y2="393"/><text x="132" y="398" text-anchor="end">60,000</text>
+      <line x1="141" y1="351" x2="147" y2="351"/><text x="132" y="356" text-anchor="end">70,000</text>
+      <line x1="141" y1="309" x2="147" y2="309"/><text x="132" y="314" text-anchor="end">80,000</text>
+      <line x1="141" y1="267" x2="147" y2="267"/><text x="132" y="272" text-anchor="end">90,000</text>
+    </g>
+
+    <!-- x ticks -->
+    <g stroke="#111" stroke-width="1.3" fill="#222" font-size="15">
+      <line x1="147" y1="645" x2="147" y2="651"/><text x="147" y="680" text-anchor="middle">0</text>
+      <line x1="214" y1="645" x2="214" y2="651"/><text x="214" y="680" text-anchor="middle">50</text>
+      <line x1="282" y1="645" x2="282" y2="651"/><text x="282" y="680" text-anchor="middle">100</text>
+      <line x1="349" y1="645" x2="349" y2="651"/><text x="349" y="680" text-anchor="middle">150</text>
+      <line x1="417" y1="645" x2="417" y2="651"/><text x="417" y="680" text-anchor="middle">200</text>
+      <line x1="484" y1="645" x2="484" y2="651"/><text x="484" y="680" text-anchor="middle">250</text>
+      <line x1="551" y1="645" x2="551" y2="651"/><text x="551" y="680" text-anchor="middle">300</text>
+      <line x1="618" y1="645" x2="618" y2="651"/><text x="618" y="680" text-anchor="middle">350</text>
+      <line x1="685" y1="645" x2="685" y2="651"/><text x="685" y="680" text-anchor="middle">400</text>
+      <line x1="752" y1="645" x2="752" y2="651"/><text x="752" y="680" text-anchor="middle">450</text>
+    </g>
+
+    <!-- axis titles -->
+    <text x="156" y="265" font-size="15" fill="#222">GDP per capita [USD]</text>
+    <text x="628" y="617" font-size="15" fill="#222">Patent applications</text>
+    <text x="628" y="635" font-size="15" fill="#222">per 1 mio inhabitants</text>
+
+    <!-- points -->
+    <g stroke="#f3f3f3" stroke-width="1.5">
+      <!-- developed countries -->
+      <g fill="#1a78aa">
+        <circle cx="182" cy="546" r="9"/>
+        <circle cx="207" cy="519" r="9"/>
+        <circle cx="242" cy="471" r="9"/>
+        <circle cx="260" cy="450" r="9"/>
+        <circle cx="276" cy="488" r="9"/>
+        <circle cx="322" cy="430" r="9"/>
+        <circle cx="328" cy="451" r="9"/>
+        <circle cx="341" cy="407" r="9"/>
+        <circle cx="398" cy="450" r="9"/>
+        <circle cx="398" cy="486" r="9"/>
+        <circle cx="433" cy="443" r="9"/>
+        <circle cx="549" cy="486" r="9"/>
+        <circle cx="560" cy="420" r="9"/>
+        <circle cx="701" cy="310" r="9"/>
+      </g>
+
+      <!-- emerging markets -->
+      <g fill="#8d9095">
+        <circle cx="151" cy="606" r="8.5"/>
+        <circle cx="177" cy="614" r="8.5"/>
+        <circle cx="149" cy="633" r="8.5"/>
+        <circle cx="471" cy="561" r="8.5"/>
+        <circle cx="160" cy="623" r="8.5"/>
+      </g>
+    </g>
+
+    <!-- labels -->
+    <g fill="#222" font-size="16">
+      <text x="164" y="556">Spain</text>
+      <text x="149" y="578">Brazil</text>
+      <text x="175" y="599">China</text>
+      <text x="160" y="639">India</text>
+      <text x="165" y="636">Russia</text>
+
+      <text x="218" y="528">Italy</text>
+      <text x="230" y="478">UK</text>
+      <text x="239" y="425">Singapore</text>
+      <text x="232" y="458">Belgium</text>
+      <text x="287" y="492">France</text>
+      <text x="337" y="458">Austria</text>
+      <text x="352" y="412">USA</text>
+
+      <text x="408" y="449">Netherlands</text>
+      <text x="407" y="482">Germany</text>
+      <text x="381" y="516">Israel</text>
+      <text x="488" y="551">South Korea</text>
+      <text x="567" y="488">Japan</text>
+      <text x="571" y="426">Sweden</text>
+      <text x="662" y="336">Switzerland</text>
+    </g>
+
+    <!-- legend -->
+    <circle cx="91" cy="703" r="9" fill="#1a78aa"/>
+    <text x="106" y="708" font-size="14" fill="#222">Developed countries</text>
+    <circle cx="252" cy="703" r="9" fill="#8d9095"/>
+    <text x="267" y="708" font-size="14" fill="#222">Emerging markets</text>
+  </svg>
+
+  <div class="ranking-title">Largest corporate<br>PCT applicants 2015</div>
+  <div class="rank-list">
+    <div class="rank-row" style="top:0px;"><div class="rank-box">1.</div><div class="rank-text"><b>Huawei</b> (3,898; CN)</div></div>
+    <div class="rank-row" style="top:34px;"><div class="rank-box">2.</div><div class="rank-text"><b>Qualcomm</b>(2,442; US)</div></div>
+    <div class="rank-row" style="top:68px;"><div class="rank-box">3.</div><div class="rank-text"><b>ZTE</b> (2,155; CN)</div></div>
+    <div class="rank-row" style="top:102px;"><div class="rank-box">4.</div><div class="rank-text"><b>Samsung</b> (1,683; KR)</div></div>
+    <div class="rank-row" style="top:136px;"><div class="rank-box">5.</div><div class="rank-text"><b>Mitsubishi</b> (1,593; JP)</div></div>
+    <div class="rank-row" style="top:170px;"><div class="rank-box">6.</div><div class="rank-text"><b>Ericsson</b> (1,481; SE)</div></div>
+    <div class="rank-row" style="top:204px;"><div class="rank-box">7.</div><div class="rank-text"><b>LG</b> (1,457; KR)</div></div>
+    <div class="rank-row" style="top:238px;"><div class="rank-box">8.</div><div class="rank-text"><b>Sony</b> (1,381; JP)</div></div>
+    <div class="rank-row" style="top:272px;"><div class="rank-box">9.</div><div class="rank-text"><b>Philips</b> (1,378; NL)</div></div>
+    <div class="rank-row" style="top:306px;"><div class="rank-box">10.</div><div class="rank-text"><b>HP</b> (1,310; US)</div></div>
+  </div>
+
+  <div class="foot1">1) Patent Cooperation Treaty: Intellectual property rights enforced in 148 countries worldwide</div>
+  <div class="source">Source: IMF, Wipo, WEF</div>
+  <div class="pagebar"></div>
+  <div class="page">9</div>
+</div>
+</body>
+</html>

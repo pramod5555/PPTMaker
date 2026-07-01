@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Deloitte Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#f1f1f1;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f1f1f1;
+  }
+  .left-title{
+    position:absolute;
+    left:48px;
+    top:44px;
+    width:335px;
+    color:#000;
+    font-size:39px;
+    line-height:1.02;
+    font-weight:800;
+    letter-spacing:-0.03em;
+    z-index:5;
+  }
+  .chart-panel{
+    position:absolute;
+    left:485px;
+    top:46px;
+    width:836px;
+    height:670px;
+    background:#ebebeb;
+    z-index:1;
+  }
+  .chart-title{
+    position:absolute;
+    left:515px;
+    top:71px;
+    width:735px;
+    font-size:18px;
+    line-height:22px;
+    font-weight:700;
+    color:#111;
+    z-index:5;
+  }
+  .chart-subtitle{
+    position:absolute;
+    left:515px;
+    top:95px;
+    width:660px;
+    font-size:15px;
+    line-height:19px;
+    font-style:italic;
+    font-weight:400;
+    color:#222;
+    z-index:5;
+  }
+  .legend{
+    position:absolute;
+    left:514px;
+    top:124px;
+    width:620px;
+    height:24px;
+    z-index:5;
+    font-size:16px;
+    color:#222;
+  }
+  .legend .dot{
+    position:absolute;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    top:2px;
+  }
+  .legend .line{
+    position:absolute;
+    height:0;
+    border-top:3px solid #111;
+    top:10px;
+    width:24px;
+  }
+  .bar{
+    position:absolute;
+    z-index:4;
+  }
+  .black{ background:#000; }
+  .green{ background:#76BE00; }
+  .pct{
+    position:absolute;
+    font-size:16px;
+    line-height:18px;
+    font-weight:400;
+    color:#333;
+    text-align:center;
+    z-index:6;
+  }
+  .category{
+    position:absolute;
+    font-size:16px;
+    line-height:20px;
+    font-weight:400;
+    color:#222;
+    text-align:center;
+    z-index:6;
+  }
+  .intent-line{
+    position:absolute;
+    height:0;
+    border-top:3px solid #111;
+    z-index:6;
+  }
+  .axis-line{
+    position:absolute;
+    left:514px;
+    top:537px;
+    width:779px;
+    height:1px;
+    background:#8c8c8c;
+    z-index:3;
+  }
+  .axis-dot{
+    position:absolute;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#000;
+    z-index:6;
+  }
+  .group-label{
+    position:absolute;
+    font-size:18px;
+    line-height:22px;
+    font-weight:700;
+    color:#111;
+    z-index:6;
+  }
+  .footnote{
+    position:absolute;
+    left:515px;
+    top:648px;
+    width:740px;
+    font-size:11px;
+    line-height:14px;
+    font-weight:400;
+    color:#333;
+    z-index:6;
+  }
+  .bottom-left{
+    position:absolute;
+    left:47px;
+    bottom:12px;
+    font-size:11px;
+    line-height:11px;
+    color:#333;
+    z-index:6;
+  }
+  .bottom-right{
+    position:absolute;
+    right:42px;
+    bottom:12px;
+    font-size:11px;
+    line-height:11px;
+    color:#333;
+    z-index:6;
+    white-space:nowrap;
+  }
+  .page{
+    position:absolute;
+    right:7px;
+    bottom:12px;
+    width:14px;
+    font-size:11px;
+    line-height:11px;
+    color:#333;
+    text-align:right;
+    z-index:6;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-title">Americans with<br>household income<br>of $100K to $199K<br>show fastest<br>intent growth in<br>demand for<br>hotels, rentals,<br>and flights</div>
+
+  <div class="chart-panel"></div>
+
+  <div class="chart-title">Travel segment usage, full summer, $100K to $199K household income</div>
+  <div class="chart-subtitle">Percentage of US travelers using each across summer trips</div>
+
+  <div class="legend">
+    <div class="dot" style="left:0;background:#000;"></div>
+    <div style="position:absolute;left:19px;top:0;">2025</div>
+    <div class="dot" style="left:79px;background:#76BE00;"></div>
+    <div style="position:absolute;left:98px;top:0;">2026</div>
+    <div class="line" style="left:162px;"></div>
+    <div style="position:absolute;left:191px;top:0;white-space:nowrap;">Intent among $200K+ income group</div>
+  </div>
+
+  <!-- Hotel -->
+  <div class="bar black" style="left:535px; top:216px; width:55px; height:272px;"></div>
+  <div class="bar green" style="left:594px; top:203px; width:57px; height:285px;"></div>
+  <div class="pct" style="left:544px; top:190px; width:38px;">80%</div>
+  <div class="pct" style="left:604px; top:177px; width:38px;">84%</div>
+  <div class="category" style="left:544px; top:499px; width:100px;">Hotel</div>
+
+  <!-- Private rental -->
+  <div class="bar black" style="left:740px; top:407px; width:56px; height:81px;"></div>
+  <div class="bar green" style="left:801px; top:369px; width:56px; height:119px;"></div>
+  <div class="pct" style="left:749px; top:383px; width:38px;">24%</div>
+  <div class="pct" style="left:810px; top:345px; width:38px;">35%</div>
+  <div class="category" style="left:714px; top:499px; width:170px;">Private rental</div>
+
+  <!-- Domestic flight -->
+  <div class="bar black" style="left:945px; top:281px; width:57px; height:207px;"></div>
+  <div class="bar green" style="left:1007px; top:262px; width:57px; height:226px;"></div>
+  <div class="pct" style="left:955px; top:256px; width:38px;">61%</div>
+  <div class="pct" style="left:1017px; top:238px; width:38px;">67%</div>
+  <div class="intent-line" style="left:953px; top:232px; width:53px;"></div>
+  <div class="pct" style="left:959px; top:213px; width:42px;">74%</div>
+  <div class="intent-line" style="left:1006px; top:214px; width:55px;"></div>
+  <div class="pct" style="left:1012px; top:194px; width:42px;">78%</div>
+  <div class="category" style="left:921px; top:499px; width:170px;">Domestic flight</div>
+
+  <!-- International flight -->
+  <div class="bar black" style="left:1153px; top:387px; width:56px; height:101px;"></div>
+  <div class="bar green" style="left:1214px; top:356px; width:56px; height:132px;"></div>
+  <div class="pct" style="left:1162px; top:362px; width:38px;">30%</div>
+  <div class="pct" style="left:1223px; top:331px; width:38px;">39%</div>
+  <div class="intent-line" style="left:1154px; top:353px; width:54px;"></div>
+  <div class="pct" style="left:1161px; top:334px; width:42px;">40%</div>
+  <div class="intent-line" style="left:1213px; top:325px; width:54px;"></div>
+  <div class="pct" style="left:1220px; top:306px; width:42px;">49%</div>
+  <div class="category" style="left:1115px; top:499px; width:192px;">International flight</div>
+
+  <div class="axis-line"></div>
+  <div class="axis-dot" style="left:510px; top:533px;"></div>
+  <div class="axis-dot" style="left:893px; top:533px;"></div>
+  <div class="axis-dot" style="left:907px; top:533px;"></div>
+  <div class="axis-dot" style="left:1289px; top:533px;"></div>
+
+  <div class="group-label" style="left:656px; top:561px;">Lodging</div>
+  <div class="group-label" style="left:1035px; top:561px;">Transportation</div>
+
+  <div class="footnote">Note: Question: “Across your travels this summer, which accommodation/transportation options are you likely to use?” (Select all that apply)<br>(n = 1,948).<br>Source: 2026 Deloitte Summer Travel Survey.</div>
+
+  <div class="bottom-left">2026 Deloitte Summer Travel Survey</div>
+  <div class="bottom-right">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="page">19</div>
+</div>
+</body>
+</html>

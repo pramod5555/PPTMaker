@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>European Tech M&A Outlook 2025 — Sample Deck</title>
+<style>
+/* ── Reset ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #e8e8e8; font-family: Arial, Helvetica, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px 0 80px; gap: 32px; }
+
+/* ── Slide shell ────────────────────────────────────── */
+.slide {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+}
+
+/* ── Shared logo ────────────────────────────────────── */
+.logo {
+  position: absolute;
+  right: 38px;
+  top: 22px;
+  width: 148px;
+  height: 56px;
+  color: #111;
+}
+.logo .txt {
+  position: absolute;
+  right: 46px;
+  top: 0;
+  text-align: right;
+  line-height: 1;
+}
+.logo .txt .small { font-size: 16px; color: #444; display: block; margin-bottom: 2px; }
+.logo .txt .big   { font-size: 29px; font-weight: 500; color: #111; }
+.logo .mark {
+  position: absolute;
+  right: 0; top: 0;
+  width: 36px; height: 52px;
+  border-radius: 0 17px 17px 0;
+  background: linear-gradient(90deg, #7f878e 0%, #c8ced3 45%, #7a8289 100%);
+}
+.logo .mark::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0;
+  width: 22px; height: 26px;
+  background: inherit;
+  border-bottom-right-radius: 13px;
+}
+.logo .mark::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 22px; height: 26px;
+  background: inherit;
+  border-top-right-radius: 13px;
+}
+
+/* ── Shared footer / page ───────────────────────────── */
+.foot {
+  position: absolute;
+  bottom: 18px;
+  left: 82px;
+  font-size: 13px;
+  color: #aaa;
+}
+.pg {
+  position: absolute;
+  bottom: 18px;
+  right: 28px;
+  font-size: 15px;
+  color: #8a9099;
+}
+
+/* ════════════════════════════════════════════════════
+   SLIDE 1 — COVER
+═══════════════════════════════════════════════════════ */
+#s1 { background: #f9f9fa; }
+
+#s1 .tag {
+  position: absolute;
+  left: 80px; top: 94px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1c78b0;
+  font-weight: 600;
+}
+
+#s1 .headline {
+  position: absolute;
+  left: 80px; top: 148px;
+  width: 480px;
+  font-size: 62px;
+  line-height: 1.03;
+  font-weight: 400;
+  color: #111;
+  letter-spacing: -1px;
+}
+
+#s1 .sub {
+  position: absolute;
+  left: 80px; top: 410px;
+  width: 380px;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #555;
+}
+
+#s1 .date-line {
+  position: absolute;
+  left: 80px; top: 510px;
+  width: 200px;
+  height: 2px;
+  background: #1c78b0;
+}
+#s1 .date {
+  position: absolute;
+  left: 80px; top: 522px;
+  font-size: 15px;
+  color: #888;
+}
+
+/* Hero illustration — abstract circuit/data orb */
+#s1 .hero {
+  position: absolute;
+  right: 60px; top: 80px;
+  width: 560px; height: 560px;
+}
+
+/* Large outer ring */
+#s1 .ring-out {
+  position: absolute;
+  left: 30px; top: 30px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  border: 1px solid rgba(28,120,176,0.12);
+}
+#s1 .ring-mid {
+  position: absolute;
+  left: 80px; top: 80px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  border: 1px solid rgba(28,120,176,0.18);
+}
+#s1 .ring-in {
+  position: absolute;
+  left: 140px; top: 140px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 38%, #e8f3fb 0%, #d0e8f5 40%, #bbd8ef 100%);
+  border: 1.5px solid rgba(28,120,176,0.22);
+}
+
+/* Network dots */
+#s1 .nd {
+  position: absolute;
+  border-radius: 50%;
+  background: #1c78b0;
+}
+#s1 .nd.n1 { width:10px; height:10px; left:270px; top:30px; }
+#s1 .nd.n2 { width:7px;  height:7px;  left:480px; top:160px; }
+#s1 .nd.n3 { width:8px;  height:8px;  left:460px; top:340px; }
+#s1 .nd.n4 { width:6px;  height:6px;  left:280px; top:500px; }
+#s1 .nd.n5 { width:9px;  height:9px;  left:62px;  top:340px; }
+#s1 .nd.n6 { width:6px;  height:6px;  left:86px;  top:160px; }
+
+/* Connector lines (thin) */
+#s1 .cl {
+  position: absolute;
+  height: 1px;
+  background: rgba(28,120,176,0.25);
+  transform-origin: left center;
+}
+#s1 .cl.c1 { width:182px; left:275px; top:35px;  transform: rotate(66deg); }
+#s1 .cl.c2 { width:190px; left:468px; top:165px; transform: rotate(134deg); }
+#s1 .cl.c3 { width:165px; left:285px; top:505px; transform: rotate(212deg); }
+#s1 .cl.c4 { width:178px; left:66px;  top:345px; transform: rotate(300deg); }
+
+/* Center bar chart CSS */
+#s1 .chart-bars {
+  position: absolute;
+  left: 168px; bottom: 120px;
+  width: 224px; height: 110px;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+#s1 .cb { border-radius: 3px 3px 0 0; }
+#s1 .cb.b1 { width:28px; height:55px;  background:#bbd4e9; }
+#s1 .cb.b2 { width:28px; height:75px;  background:#7fb3d6; }
+#s1 .cb.b3 { width:28px; height:62px;  background:#4b93c4; }
+#s1 .cb.b4 { width:28px; height:90px;  background:#1c78b0; }
+#s1 .cb.b5 { width:28px; height:68px;  background:#2f68a7; }
+#s1 .cb.b6 { width:28px; height:106px; background:#1c78b0; }
+
+/* Floating stat callout */
+#s1 .stat {
+  position: absolute;
+  right: 38px; bottom: 160px;
+  background: #fff;
+  border-left: 3px solid #1c78b0;
+  padding: 10px 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+#s1 .stat .val { font-size: 30px; font-weight: 700; color: #1c78b0; }
+#s1 .stat .lbl { font-size: 13px; color: #666; }
+
+/* ════════════════════════════════════════════════════
+   SLIDE 2 — EXECUTIVE SUMMARY
+═══════════════════════════════════════════════════════ */
+#s2 { background: #f6f7f8; }
+
+#s2 .kicker {
+  position: absolute;
+  left: 82px; top: 26px;
+  font-size: 16px;
+  color: #8a9099;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+#s2 .title {
+  position: absolute;
+  left: 82px; top: 70px;
+  width: 1100px;
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 500;
+  color: #111;
+}
+#s2 .items {
+  position: absolute;
+  left: 82px; top: 200px;
+  width: 1116px;
+}
+#s2 .item {
+  position: relative;
+  width: 1116px;
+  padding: 0 0 0 88px;
+  margin-bottom: 0;
+}
+#s2 .item .num {
+  position: absolute;
+  left: 0; top: 0;
+  width: 66px; height: 66px;
+  border: 2px dotted #1c78b0;
+  border-radius: 50%;
+  color: #1c78b0;
+  font-size: 26px;
+  line-height: 62px;
+  text-align: center;
+  font-weight: 500;
+}
+#s2 .item .body {
+  padding-top: 4px;
+  font-size: 17px;
+  line-height: 1.38;
+  color: #111;
+  min-height: 66px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#s2 .item .body strong { font-weight: 700; }
+#s2 .rule {
+  width: 100%;
+  height: 1px;
+  background: #d8dadc;
+  margin: 8px 0 8px 88px;
+  width: calc(100% - 88px);
+}
+
+/* ════════════════════════════════════════════════════
+   SLIDE 3 — SECTION DIVIDER
+═══════════════════════════════════════════════════════ */
+#s3 { background: #0e1e30; }
+
+#s3 .left-band {
+  position: absolute;
+  left: 0; top: 0;
+  width: 6px; height: 720px;
+  background: #1c78b0;
+}
+#s3 .prefix {
+  position: absolute;
+  left: 80px; top: 260px;
+  font-size: 100px;
+  font-weight: 700;
+  color: rgba(28,120,176,0.18);
+  letter-spacing: -4px;
+  line-height: 1;
+}
+#s3 .label {
+  position: absolute;
+  left: 80px; top: 285px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #1c78b0;
+  font-weight: 600;
+}
+#s3 .heading {
+  position: absolute;
+  left: 80px; top: 330px;
+  width: 540px;
+  font-size: 52px;
+  line-height: 1.05;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: -0.6px;
+}
+#s3 .sub-text {
+  position: absolute;
+  left: 80px; top: 508px;
+  width: 480px;
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.55);
+}
+
+/* Abstract right illustration — grid + data nodes */
+#s3 .grid-bg {
+  position: absolute;
+  right: 0; top: 0;
+  width: 580px; height: 720px;
+  background:
+    repeating-linear-gradient(0deg,   rgba(28,120,176,0.06) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(90deg,  rgba(28,120,176,0.06) 0 1px, transparent 1px 48px);
+}
+#s3 .glow {
+  position: absolute;
+  right: 80px; top: 160px;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(28,120,176,0.22) 0%, transparent 70%);
+}
+
+/* Data cards */
+#s3 .dc {
+  position: absolute;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(28,120,176,0.3);
+  border-radius: 4px;
+  padding: 14px 20px;
+}
+#s3 .dc .dval { font-size: 28px; font-weight: 700; color: #1c78b0; }
+#s3 .dc .dlbl { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+#s3 .dc.d1 { right: 340px; top: 180px; width: 160px; }
+#s3 .dc.d2 { right: 130px; top: 250px; width: 180px; }
+#s3 .dc.d3 { right: 280px; top: 420px; width: 170px; }
+
+/* Connector dots */
+#s3 .dot { position: absolute; border-radius: 50%; }
+#s3 .dot.o1 { width:8px; height:8px; right:330px; top:176px; background:#1c78b0; }
+#s3 .dot.o2 { width:6px; height:6px; right:122px; top:246px; background:#1c78b0; opacity:0.7; }
+#s3 .dot.o3 { width:7px; height:7px; right:272px; top:416px; background:#1c78b0; opacity:0.8; }
+
+/* Logo variant for dark slide */
+#s3 .logo .txt .small { color: rgba(255,255,255,0.5); }
+#s3 .logo .txt .big   { color: #fff; }
+
+/* ════════════════════════════════════════════════════
+   SLIDE 4 — KEY DATA
+═══════════════════════════════════════════════════════ */
+#s4 { background: #f6f7f8; }
+
+#s4 .kicker {
+  position: absolute;
+  left: 82px; top: 26px;
+  font-size: 16px; color: #8a9099; font-weight: 600;
+}
+#s4 .title {
+  position: absolute;
+  left: 82px; top: 70px;
+  width: 820px;
+  font-size: 30px; line-height: 1.25; font-weight: 500; color: #111;
+}
+
+/* Left: grouped bar chart */
+#s4 .chart-area {
+  position: absolute;
+  left: 82px; top: 170px;
+  width: 640px; height: 460px;
+}
+#s4 .y-axis {
+  position: absolute;
+  left: 44px; top: 0;
+  width: 1px; height: 380px;
+  background: #ccd0d5;
+}
+#s4 .x-axis {
+  position: absolute;
+  left: 44px; bottom: 60px;
+  width: 590px; height: 1px;
+  background: #ccd0d5;
+}
+
+/* Y grid lines */
+#s4 .yl {
+  position: absolute;
+  left: 44px; width: 590px; height: 1px;
+  background: rgba(200,205,210,0.5);
+}
+#s4 .yl.y1 { bottom: 155px; }
+#s4 .yl.y2 { bottom: 250px; }
+#s4 .yl.y3 { bottom: 345px; }
+
+/* Y labels */
+#s4 .ylbl {
+  position: absolute;
+  left: 0; width: 38px;
+  font-size: 12px; color: #999; text-align: right;
+}
+#s4 .ylbl.l0 { bottom: 55px; }
+#s4 .ylbl.l1 { bottom: 150px; }
+#s4 .ylbl.l2 { bottom: 245px; }
+#s4 .ylbl.l3 { bottom: 340px; }
+
+/* Grouped bars — 4 groups × 2 bars */
+#s4 .bars-wrap {
+  position: absolute;
+  left: 52px; bottom: 61px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-end;
+}
+#s4 .grp {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+}
+#s4 .bar {
+  width: 36px;
+  border-radius: 3px 3px 0 0;
+}
+#s4 .bar.prev { background: #bbd4e9; }
+#s4 .bar.curr { background: #1c78b0; }
+
+/* X labels */
+#s4 .xlbls {
+  position: absolute;
+  left: 52px; bottom: 35px;
+  display: flex;
+  gap: 18px;
+}
+#s4 .xlbl {
+  width: 76px;
+  font-size: 13px; color: #888; text-align: center;
+}
+
+/* Legend */
+#s4 .legend {
+  position: absolute;
+  left: 52px; bottom: 0;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+#s4 .leg-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px; color: #666;
+}
+#s4 .leg-sq { width:12px; height:12px; border-radius:2px; }
+#s4 .leg-sq.prev { background:#bbd4e9; }
+#s4 .leg-sq.curr { background:#1c78b0; }
+
+/* Right: stat callouts */
+#s4 .stats-col {
+  position: absolute;
+  right: 60px; top: 170px;
+  width: 440px;
+}
+#s4 .stat-card {
+  background: #fff;
+  border-left: 4px solid #1c78b0;
+  padding: 18px 20px 18px 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+}
+#s4 .stat-card.accent { border-color: #2f68a7; }
+#s4 .stat-card.muted  { border-color: #7fb3d6; }
+#s4 .sc-val { font-size: 40px; font-weight: 700; color: #1c78b0; line-height: 1; }
+#s4 .sc-val.down { color: #c0392b; }
+#s4 .stat-card.accent .sc-val { color: #2f68a7; }
+#s4 .stat-card.muted  .sc-val { color: #7fb3d6; }
+#s4 .sc-label { font-size: 16px; font-weight: 600; color: #111; margin-top: 4px; }
+#s4 .sc-sub   { font-size: 13px; color: #888; margin-top: 3px; line-height: 1.4; }
+
+/* ════════════════════════════════════════════════════
+   SLIDE 5 — RECOMMENDATIONS & CONTACTS
+═══════════════════════════════════════════════════════ */
+#s5 { background: #f9f9fa; }
+
+#s5 .kicker {
+  position: absolute;
+  left: 82px; top: 26px;
+  font-size: 16px; color: #8a9099; font-weight: 600;
+}
+#s5 .title {
+  position: absolute;
+  left: 82px; top: 70px;
+  width: 900px;
+  font-size: 30px; line-height: 1.25; font-weight: 500; color: #111;
+}
+#s5 .rule {
+  position: absolute;
+  left: 82px; top: 148px;
+  width: 1116px; height: 1px;
+  background: #d0d3d7;
+}
+
+/* Left — recommendation rows */
+#s5 .recs {
+  position: absolute;
+  left: 82px; top: 168px;
+  width: 590px;
+}
+#s5 .rec {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 22px;
+}
+#s5 .rec-num {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #1c78b0;
+  color: #fff;
+  font-size: 18px; font-weight: 700;
+  line-height: 36px; text-align: center;
+}
+#s5 .rec-body { padding-top: 2px; }
+#s5 .rec-head { font-size: 17px; font-weight: 700; color: #111; }
+#s5 .rec-sub  { font-size: 14px; color: #666; line-height: 1.45; margin-top: 2px; }
+
+/* Right — contact cards */
+#s5 .contacts {
+  position: absolute;
+  right: 60px; top: 168px;
+  width: 470px;
+}
+#s5 .contact {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #e0e2e5;
+}
+#s5 .contact:last-child { border-bottom: none; }
+#s5 .avatar {
+  flex-shrink: 0;
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 700; color: #fff;
+}
+#s5 .av1 { background: linear-gradient(135deg, #1c78b0, #2f68a7); }
+#s5 .av2 { background: linear-gradient(135deg, #2f68a7, #1a5a8a); }
+#s5 .av3 { background: linear-gradient(135deg, #4b93c4, #1c78b0); }
+#s5 .c-info .c-name  { font-size: 16px; font-weight: 700; color: #111; }
+#s5 .c-info .c-role  { font-size: 13px; color: #888; margin-top: 2px; }
+#s5 .c-info .c-email { font-size: 13px; color: #1c78b0; margin-top: 3px; }
+
+/* CTA strip */
+#s5 .cta-strip {
+  position: absolute;
+  left: 82px; bottom: 52px;
+  width: 1116px; height: 54px;
+  background: #1c78b0;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  gap: 20px;
+}
+#s5 .cta-strip .cta-text { color: #fff; font-size: 17px; font-weight: 500; flex: 1; }
+#s5 .cta-strip .cta-btn {
+  background: #fff;
+  color: #1c78b0;
+  font-size: 14px; font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+}
+
+/* ── Navigation ────────────────────────────────────── */
+.nav {
+  position: fixed;
+  bottom: 28px;
+  display: flex;
+  gap: 12px;
+  z-index: 100;
+}
+.nav button {
+  background: #1c78b0;
+  color: #fff;
+  border: none;
+  padding: 10px 28px;
+  font-size: 15px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.nav button:hover { background: #155f8e; }
+.counter {
+  position: fixed;
+  bottom: 34px;
+  font-size: 14px;
+  color: #666;
+  font-family: Arial, sans-serif;
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ SLIDE 1 — COVER ══════════════════ -->
+<div class="slide" id="s1">
+  <div class="logo">
+    <div class="txt"><span class="small">Client</span><span class="big">/Name</span></div>
+    <div class="mark"></div>
+  </div>
+
+  <div class="tag">Strategy Report · 2025</div>
+  <div class="headline">European<br>Tech M&amp;A<br>Outlook 2025</div>
+  <div class="sub">Navigating market consolidation, valuation compression, and cross-border deal dynamics in a high-rate environment.</div>
+  <div class="date-line"></div>
+  <div class="date">Frankfurt, January 2025</div>
+
+  <!-- Hero illustration -->
+  <div class="hero">
+    <div class="ring-out"></div>
+    <div class="ring-mid"></div>
+    <div class="ring-in"></div>
+    <div class="nd n1"></div>
+    <div class="nd n2"></div>
+    <div class="nd n3"></div>
+    <div class="nd n4"></div>
+    <div class="nd n5"></div>
+    <div class="nd n6"></div>
+    <div class="cl c1"></div>
+    <div class="cl c2"></div>
+    <div class="cl c3"></div>
+    <div class="cl c4"></div>
+    <div class="chart-bars">
+      <div class="cb b1"></div>
+      <div class="cb b2"></div>
+      <div class="cb b3"></div>
+      <div class="cb b4"></div>
+      <div class="cb b5"></div>
+      <div class="cb b6"></div>
+    </div>
+    <div class="stat">
+      <div class="val">€142B</div>
+      <div class="lbl">European tech deal value, 2024</div>
+    </div>
+  </div>
+
+  <div class="foot">Confidential · For client use only</div>
+  <div class="pg">| 1</div>
+</div>
+
+<!-- ══════════════════ SLIDE 2 — EXEC SUMMARY ══════════════════ -->
+<div class="slide" id="s2">
+  <div class="logo">
+    <div class="txt"><span class="small">Client</span><span class="big">/Name</span></div>
+    <div class="mark"></div>
+  </div>
+  <div class="kicker">Executive summary</div>
+  <div class="title">European tech M&amp;A is recalibrating — deal volume stabilizes while quality premiums widen</div>
+
+  <div class="items">
+    <div class="item">
+      <div class="num">1</div>
+      <div class="body"><strong>Deal volume has stabilized after a two-year correction</strong>, with European tech transactions expected to rise 8–12% in 2025 — driven by mid-market consolidation in SaaS, fintech, and cybersecurity</div>
+    </div>
+    <div class="rule"></div>
+    <div class="item">
+      <div class="num">2</div>
+      <div class="body"><strong>Valuation multiples are bifurcating</strong>: high-growth, profitable businesses command 12–18× EBITDA while undifferentiated assets face compression to 5–8×, creating significant selection risk for acquirers</div>
+    </div>
+    <div class="rule"></div>
+    <div class="item">
+      <div class="num">3</div>
+      <div class="body"><strong>Strategic acquirers are outbidding PE</strong> in AI-adjacent assets by 15–25%, as corporations pursue capability gaps; PE is pivoting to carve-outs and add-ons where synergies are pre-negotiated</div>
+    </div>
+    <div class="rule"></div>
+    <div class="item">
+      <div class="num">4</div>
+      <div class="body"><strong>Cross-border complexity has increased</strong>: EU screening frameworks now cover 18 member states, adding 3–7 months to close timelines — deal teams must price regulatory risk at term sheet stage</div>
+    </div>
+    <div class="rule"></div>
+    <div class="item">
+      <div class="num">5</div>
+      <div class="body"><strong>Value creation emphasis has shifted post-acquisition</strong>: 72% of surveyed acquirers name operational transformation (not multiple expansion) as the primary return driver for 2025–2027 hold periods</div>
+    </div>
+  </div>
+
+  <div class="foot">Confidential · For client use only</div>
+  <div class="pg">| 2</div>
+</div>
+
+<!-- ══════════════════ SLIDE 3 — SECTION DIVIDER ══════════════════ -->
+<div class="slide" id="s3">
+  <div class="left-band"></div>
+
+  <div class="logo">
+    <div class="txt"><span class="small">Client</span><span class="big">/Name</span></div>
+    <div class="mark"></div>
+  </div>
+
+  <div class="prefix">A.</div>
+  <div class="label">Section One</div>
+  <div class="heading">Market<br>landscape &amp;<br>deal activity</div>
+  <div class="sub-text">An overview of European tech transaction volume, sector concentration, and deal structure trends across 2022–2025.</div>
+
+  <!-- Right abstract illustration -->
+  <div class="grid-bg"></div>
+  <div class="glow"></div>
+
+  <div class="dc d1">
+    <div class="dval">+11%</div>
+    <div class="dlbl">YoY deal volume 2025E</div>
+  </div>
+  <div class="dc d2">
+    <div class="dval">€38B</div>
+    <div class="dlbl">Avg quarterly deal value</div>
+  </div>
+  <div class="dc d3">
+    <div class="dval">6.2×</div>
+    <div class="dlbl">Median revenue multiple</div>
+  </div>
+
+  <div class="dot o1"></div>
+  <div class="dot o2"></div>
+  <div class="dot o3"></div>
+
+  <div class="pg">| 3</div>
+</div>
+
+<!-- ══════════════════ SLIDE 4 — KEY DATA ══════════════════ -->
+<div class="slide" id="s4">
+  <div class="logo">
+    <div class="txt"><span class="small">Client</span><span class="big">/Name</span></div>
+    <div class="mark"></div>
+  </div>
+  <div class="kicker">Market data</div>
+  <div class="title">Deal volume recovering across all segments — software and infrastructure lead recovery</div>
+
+  <div class="chart-area">
+    <div class="y-axis"></div>
+    <div class="x-axis"></div>
+    <div class="yl y1"></div>
+    <div class="yl y2"></div>
+    <div class="yl y3"></div>
+    <div class="ylbl l0">0</div>
+    <div class="ylbl l1">25</div>
+    <div class="ylbl l2">50</div>
+    <div class="ylbl l3">75</div>
+
+    <div class="bars-wrap">
+      <!-- Q1 -->
+      <div class="grp">
+        <div class="bar prev" style="height:148px"></div>
+        <div class="bar curr" style="height:172px"></div>
+      </div>
+      <!-- Q2 -->
+      <div class="grp">
+        <div class="bar prev" style="height:163px"></div>
+        <div class="bar curr" style="height:196px"></div>
+      </div>
+      <!-- Q3 -->
+      <div class="grp">
+        <div class="bar prev" style="height:118px"></div>
+        <div class="bar curr" style="height:152px"></div>
+      </div>
+      <!-- Q4 -->
+      <div class="grp">
+        <div class="bar prev" style="height:192px"></div>
+        <div class="bar curr" style="height:220px"></div>
+      </div>
+    </div>
+
+    <div class="xlbls">
+      <div class="xlbl">Q1</div>
+      <div class="xlbl">Q2</div>
+      <div class="xlbl">Q3</div>
+      <div class="xlbl">Q4</div>
+    </div>
+    <div class="legend">
+      <div class="leg-item"><div class="leg-sq prev"></div>2024</div>
+      <div class="leg-item"><div class="leg-sq curr"></div>2025E</div>
+    </div>
+  </div>
+
+  <div class="stats-col">
+    <div class="stat-card">
+      <div class="sc-val">+18%</div>
+      <div class="sc-label">Software deal volume Q4 2025E</div>
+      <div class="sc-sub">Largest quarterly gain since Q2 2021, driven by AI integration plays and infrastructure SaaS</div>
+    </div>
+    <div class="stat-card accent">
+      <div class="sc-val">€2.4B</div>
+      <div class="sc-label">Average deal size, software</div>
+      <div class="sc-sub">Up from €1.8B in 2024 — larger assets returning to market as sellers reset valuation expectations</div>
+    </div>
+    <div class="stat-card muted">
+      <div class="sc-val">63%</div>
+      <div class="sc-label">Cross-border share of deals</div>
+      <div class="sc-sub">US acquirers account for 34% of inbound European tech M&A; intra-EU cross-border at 29%</div>
+    </div>
+  </div>
+
+  <div class="foot">Source: [Client Name] analysis, PitchBook, Mergermarket 2025</div>
+  <div class="pg">| 4</div>
+</div>
+
+<!-- ══════════════════ SLIDE 5 — RECOMMENDATIONS & CONTACTS ══════════════════ -->
+<div class="slide" id="s5">
+  <div class="logo">
+    <div class="txt"><span class="small">Client</span><span class="big">/Name</span></div>
+    <div class="mark"></div>
+  </div>
+  <div class="kicker">Our recommendations</div>
+  <div class="title">Three strategic priorities for 2025 — focus on quality assets, regulatory preparation, and operational value creation</div>
+  <div class="rule"></div>
+
+  <div class="recs">
+    <div class="rec">
+      <div class="rec-num">1</div>
+      <div class="rec-body">
+        <div class="rec-head">Tighten target screening around profitability, not just growth</div>
+        <div class="rec-sub">In a bifurcated market, undifferentiated growth assets will continue to reprice downward. Prioritize EBITDA-positive businesses with defensible ARR and clear path to margin expansion.</div>
+      </div>
+    </div>
+    <div class="rec">
+      <div class="rec-num">2</div>
+      <div class="rec-body">
+        <div class="rec-head">Embed regulatory timelines into deal economics from day one</div>
+        <div class="rec-sub">FDI screening and sector-specific review can add 4–8 months to close. Model this into IRR assumptions and build regulatory contingency clauses into LOIs.</div>
+      </div>
+    </div>
+    <div class="rec">
+      <div class="rec-num">3</div>
+      <div class="rec-body">
+        <div class="rec-head">Shift value creation planning pre-LOI, not post-close</div>
+        <div class="rec-sub">With multiple expansion constrained, operational transformation must be scoped and resourced before signing. Integration costs built into pricing protect against post-close erosion.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contacts">
+    <div class="contact">
+      <div class="avatar av1">AK</div>
+      <div class="c-info">
+        <div class="c-name">Alex Kaufmann</div>
+        <div class="c-role">Partner, Corporate Finance · Frankfurt</div>
+        <div class="c-email">a.kaufmann@[clientname].com</div>
+      </div>
+    </div>
+    <div class="contact">
+      <div class="avatar av2">SR</div>
+      <div class="c-info">
+        <div class="c-name">Sophie Renard</div>
+        <div class="c-role">Associate Principal, Tech M&A · Paris</div>
+        <div class="c-email">s.renard@[clientname].com</div>
+      </div>
+    </div>
+    <div class="contact">
+      <div class="avatar av3">MV</div>
+      <div class="c-info">
+        <div class="c-name">Marco Visconti</div>
+        <div class="c-role">Senior Analyst, Strategy · Milan</div>
+        <div class="c-email">m.visconti@[clientname].com</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-strip">
+    <div class="cta-text">Ready to discuss your M&amp;A pipeline for 2025?</div>
+    <div class="cta-btn">REQUEST A BRIEFING</div>
+  </div>
+
+  <div class="pg">| 5</div>
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button onclick="prev()">&#8592; Prev</button>
+  <button onclick="next()">Next &#8594;</button>
+</div>
+<div class="counter" id="ctr">1 / 5</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides.forEach((s, i) => s.style.display = i === n ? 'block' : 'none');
+    document.getElementById('ctr').textContent = (n+1) + ' / ' + slides.length;
+    cur = n;
+  }
+  function next() { show((cur + 1) % slides.length); }
+  function prev() { show((cur - 1 + slides.length) % slides.length); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prev();
+  });
+  show(0);
+</script>
+</body>
+</html>

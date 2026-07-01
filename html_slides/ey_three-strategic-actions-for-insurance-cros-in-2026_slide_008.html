@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#000;
+    margin:0;
+  }
+  .top-band{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:92px;
+    background:linear-gradient(90deg,#01233b 0%, #002742 35%, #00233d 62%, #022845 100%);
+    z-index:2;
+  }
+  .right-glow{
+    position:absolute;
+    right:0;
+    top:92px;
+    width:285px;
+    height:628px;
+    background:
+      radial-gradient(circle at 83% 85%, rgba(255,0,145,.42) 0%, rgba(255,0,145,.18) 18%, rgba(255,0,145,0) 42%),
+      radial-gradient(circle at 77% 42%, rgba(255,167,0,.42) 0%, rgba(255,167,0,.17) 18%, rgba(255,167,0,0) 40%),
+      linear-gradient(180deg,#130d00 0%, #130d00 100%);
+    z-index:1;
+  }
+  .chapter-pill{
+    position:absolute;
+    left:0;
+    top:0;
+    width:69px;
+    height:31px;
+    background:#767682;
+    border-radius:0 0 10px 10px;
+    z-index:10;
+  }
+  .chapter-pill span{
+    position:absolute;
+    left:12px;
+    top:8px;
+    color:#fff;
+    font-size:10px;
+    line-height:10px;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+  }
+  .side-label{
+    position:absolute;
+    left:-10px;
+    top:367px;
+    width:60px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    color:#1e1e1e;
+    font-size:13px;
+    line-height:13px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-weight:500;
+    z-index:5;
+  }
+  .side-rule{
+    position:absolute;
+    left:14px;
+    top:376px;
+    width:1px;
+    height:37px;
+    background:#5b5b5b;
+    z-index:5;
+  }
+  .main-title{
+    position:absolute;
+    left:47px;
+    top:119px;
+    width:670px;
+    color:#ececec;
+    font-size:25px;
+    line-height:1.36;
+    font-weight:600;
+    z-index:4;
+  }
+  .gradient-rule{
+    position:absolute;
+    left:46px;
+    top:205px;
+    width:664px;
+    height:3px;
+    background:linear-gradient(90deg,#d6dd00 0%, #f3d300 27%, #ff40c8 63%, #00efff 100%);
+    z-index:4;
+  }
+  .figure-title{
+    position:absolute;
+    left:47px;
+    top:271px;
+    width:394px;
+    color:#fff;
+    font-size:13px;
+    line-height:1.38;
+    z-index:4;
+  }
+  .figure-title strong{font-weight:700;}
+  .figure-title span{font-weight:400;color:#f1f1f1;}
+  .chart{
+    position:absolute;
+    left:46px;
+    top:348px;
+    width:392px;
+    height:302px;
+    z-index:4;
+  }
+  .body-copy{
+    position:absolute;
+    left:462px;
+    top:271px;
+    width:250px;
+    color:#d7d7d7;
+    font-size:13px;
+    line-height:1.42;
+    font-weight:400;
+    z-index:4;
+  }
+  .hero-card{
+    position:absolute;
+    left:760px;
+    top:2px;
+    width:415px;
+    height:701px;
+    border:1px solid rgba(255,255,255,.58);
+    border-radius:15px;
+    overflow:hidden;
+    background:linear-gradient(180deg,#020a15 0%, #050309 54%, #0b0209 100%);
+    z-index:3;
+  }
+  .hero-image{
+    position:absolute;
+    inset:0 auto auto 0;
+    width:415px;
+    height:313px;
+    background:linear-gradient(135deg,#061127 0%, #1b0a39 30%, #341158 55%, #0a103a 74%, #040816 100%);
+  }
+  .hero-image svg{
+    position:absolute;
+    left:0; top:0;
+    width:415px; height:313px;
+    display:block;
+  }
+  .card-title{
+    position:absolute;
+    left:27px;
+    top:350px;
+    width:355px;
+    color:#ffe600;
+    font-size:14px;
+    line-height:1.35;
+    font-weight:700;
+    z-index:4;
+  }
+  .card-copy{
+    position:absolute;
+    left:27px;
+    top:388px;
+    width:352px;
+    color:#e7e7e7;
+    font-size:12px;
+    line-height:1.5;
+    font-weight:400;
+    z-index:4;
+  }
+  .card-copy p{margin:0 0 11px 0;}
+  .jump{
+    position:absolute;
+    right:27px;
+    top:28px;
+    width:50px;
+    height:50px;
+    z-index:12;
+  }
+  .jump .circle{
+    position:absolute;
+    inset:0;
+    border:1px solid rgba(255,255,255,.7);
+    border-radius:50%;
+  }
+  .jump .dot{
+    position:absolute;
+    right:4px;
+    top:5px;
+    width:8px;
+    height:8px;
+    background:#ffd900;
+    border-radius:50%;
+  }
+  .jump .text{
+    position:absolute;
+    left:8px;
+    top:14px;
+    width:33px;
+    color:#fff;
+    font-size:9px;
+    line-height:1.05;
+    text-align:center;
+    font-weight:400;
+  }
+  .page{
+    position:absolute;
+    left:18px;
+    bottom:14px;
+    color:#bfbfbf;
+    font-size:13px;
+    line-height:13px;
+    font-weight:500;
+    z-index:6;
+  }
+  svg text{font-family: Arial, Helvetica, "Segoe UI", sans-serif;}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-band"></div>
+  <div class="right-glow"></div>
+
+  <div class="chapter-pill"><span>CHAPTER 1</span></div>
+  <div class="side-label">CHAPTER 1</div>
+  <div class="side-rule"></div>
+
+  <div class="main-title">Near-term risk priorities – cyber leads, while strategic and interconnected risks rise</div>
+  <div class="gradient-rule"></div>
+
+  <div class="figure-title"><strong>Figure 1:</strong> <span>Over the next 12 months, what are the top five risks that<br>will require the most attention from the CRO?</span></div>
+
+  <div class="chart">
+    <svg width="392" height="302" viewBox="0 0 392 302" xmlns="http://www.w3.org/2000/svg">
+      <!-- row 1 -->
+      <text x="105" y="21" fill="#d9d9d9" font-size="11">Cybersecurity</text>
+      <text x="102" y="37" fill="#ffffff" font-size="10" font-weight="700">▲</text>
+      <text x="114" y="37" fill="#bebebe" font-size="9">Up 14% pts YOY</text>
+      <rect x="183" y="10" width="198" height="25" fill="none" stroke="#5a5a5a" stroke-width="1"/>
+      <rect x="183" y="10" width="158" height="25" fill="#6633ad"/>
+      <text x="352" y="29" fill="#ededed" font-size="13" font-weight="700">80%</text>
+      <text x="183" y="45" fill="#8e8e8e" font-size="7">90% Asia-Pacific | 80% EMEIA | 79% Americas</text>
+
+      <!-- row 2 -->
+      <text x="104" y="82" fill="#d9d9d9" font-size="11">Strategic risk</text>
+      <text x="102" y="98" fill="#ffffff" font-size="10" font-weight="700">▲</text>
+      <text x="114" y="98" fill="#bebebe" font-size="9">Up 20% pts YOY</text>
+      <rect x="183" y="71" width="198" height="25" fill="none" stroke="#5a5a5a" stroke-width="1"/>
+      <rect x="183" y="71" width="87" height="25" fill="#6633ad"/>
+      <text x="353" y="90" fill="#ededed" font-size="13" font-weight="700">44%</text>
+      <text x="183" y="106" fill="#8e8e8e" font-size="7">30% Asia-Pacific | 39% EMEIA | 52% Americas</text>
+
+      <!-- row 3 -->
+      <text x="36" y="143" fill="#d9d9d9" font-size="11">Regulatory/compliance risk</text>
+      <text x="102" y="159" fill="#ffffff" font-size="10" font-weight="700">▲</text>
+      <text x="114" y="159" fill="#bebebe" font-size="9">Up 12% pts YOY</text>
+      <rect x="183" y="132" width="198" height="25" fill="none" stroke="#5a5a5a" stroke-width="1"/>
+      <rect x="183" y="132" width="81" height="25" fill="#6633ad"/>
+      <text x="353" y="151" fill="#ededed" font-size="13" font-weight="700">41%</text>
+      <text x="183" y="167" fill="#8e8e8e" font-size="7">40% Asia-Pacific | 48% EMEIA | 35% Americas</text>
+
+      <!-- row 4 -->
+      <text x="103" y="204" fill="#d9d9d9" font-size="11">Third-party risk</text>
+      <text x="102" y="220" fill="#ffffff" font-size="10" font-weight="700">▲</text>
+      <text x="114" y="220" fill="#bebebe" font-size="9">Up 8% pts YOY</text>
+      <rect x="183" y="193" width="198" height="25" fill="none" stroke="#5a5a5a" stroke-width="1"/>
+      <rect x="183" y="193" width="79" height="25" fill="#6633ad"/>
+      <text x="353" y="212" fill="#ededed" font-size="13" font-weight="700">40%</text>
+      <text x="183" y="228" fill="#8e8e8e" font-size="7">50% Asia-Pacific | 43% EMEIA | 35% Americas</text>
+
+      <!-- row 5 -->
+      <text x="51" y="265" fill="#d9d9d9" font-size="11">Geopolitical/market risk</text>
+      <text x="102" y="281" fill="#ffffff" font-size="10" font-weight="700">▲</text>
+      <text x="114" y="281" fill="#bebebe" font-size="9">Up 17% pts YOY</text>
+      <rect x="183" y="254" width="198" height="25" fill="none" stroke="#5a5a5a" stroke-width="1"/>
+      <rect x="183" y="254" width="75" height="25" fill="#6633ad"/>
+      <text x="353" y="273" fill="#ededed" font-size="13" font-weight="700">38%</text>
+      <text x="183" y="289" fill="#8e8e8e" font-size="7">30% Asia-Pacific | 50% EMEIA | 29% Americas</text>
+    </svg>
+  </div>
+
+  <div class="body-copy">
+    Beyond cyber, the broader CRO agenda has<br>
+    remained largely stable across third-party<br>
+    risk, regulatory- and compliance-related<br>
+    risks risk and core financial exposures<br>
+    (credit, market and interest rate risk).<br>
+    This pattern suggests CROs are managing<br>
+    technology-driven threats alongside more<br>
+    traditional balance sheet and market risks –<br>
+    often in combination rather than isolation.
+  </div>
+
+  <div class="hero-card">
+    <div class="hero-image">
+      <svg viewBox="0 0 415 313" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="bgGlow" cx="50%" cy="50%" r="70%">
+            <stop offset="0%" stop-color="#5c1f87" stop-opacity=".28"/>
+            <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="blurSmall"><feGaussianBlur stdDeviation="1.3"/></filter>
+          <filter id="blurMed"><feGaussianBlur stdDeviation="2.4"/></filter>
+          <linearGradient id="s1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#3423ac"/>
+            <stop offset="45%" stop-color="#9157d8"/>
+            <stop offset="100%" stop-color="#19135a"/>
+          </linearGradient>
+          <linearGradient id="s2" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1a1238"/>
+            <stop offset="50%" stop-color="#4d2ac2"/>
+            <stop offset="100%" stop-color="#070d31"/>
+          </linearGradient>
+        </defs>
+
+        <rect width="415" height="313" fill="url(#bgGlow)"/>
+
+        <g opacity=".95" fill="none" stroke-linecap="round">
+          <path d="M-30,40 C30,15 85,10 138,35 C197,63 225,121 210,175 C199,214 164,242 131,252 C94,263 58,257 19,236" stroke="url(#s2)" stroke-width="4"/>
+          <path d="M-24,61 C33,38 90,33 142,56 C194,79 224,127 214,173 C205,212 175,245 138,259 C101,273 58,270 16,249" stroke="url(#s1)" stroke-width="3.6"/>
+          <path d="M-28,91 C35,73 89,73 143,94 C194,114 222,149 223,190 C223,231 204,261 168,281 C128,304 76,304 24,287" stroke="url(#s2)" stroke-width="4.5"/>
+          <path d="M-8,137 C62,121 116,126 171,151 C224,175 267,214 302,257 C322,281 335,298 350,320" stroke="url(#s1)" stroke-width="4.2"/>
+          <path d="M-10,162 C63,145 121,151 182,176 C239,198 288,234 332,278" stroke="url(#s2)" stroke-width="5.1"/>
+          <path d="M-12,188 C69,171 135,176 202,200 C260,221 311,257 358,305" stroke="url(#s1)" stroke-width="4.2"/>
+
+          <path d="M18,305 C42,262 60,224 70,186 C82,138 84,93 72,-8" stroke="url(#s2)" stroke-width="5"/>
+          <path d="M64,314 C92,264 117,217 126,165 C135,114 132,63 118,-8" stroke="url(#s1)" stroke-width="4"/>
+          <path d="M109,318 C141,269 173,216 188,163 C202,114 205,59 196,-8" stroke="url(#s2)" stroke-width="5"/>
+          <path d="M163,322 C200,280 245,227 268,176 C289,128 295,74 292,-8" stroke="url(#s1)" stroke-width="4"/>
+          <path d="M228,320 C274,292 321,247 349,202 C377,158 391,108 401,39" stroke="url(#s2)" stroke-width="5"/>
+
+          <path d="M30,211 C83,177 124,151 165,140 C208,128 245,130 278,150 C313,171 326,206 317,231 C308,255 277,267 251,260 C229,255 214,238 213,217 C212,196 228,182 247,182 C265,182 279,194 279,210 C279,223 269,234 256,235 C246,236 238,231 234,222" stroke="#7e49cf" stroke-width="4"/>
+          <path d="M22,226 C83,191 124,165 165,154 C208,143 245,146 275,163 C304,179 314,205 306,226 C298,247 273,259 252,254 C232,250 220,236 220,219 C220,203 233,191 248,191 C262,191 272,201 272,213 C272,224 264,230 255,230" stroke="#2e33b8" stroke-width="5"/>
+          <path d="M11,242 C70,209 117,188 163,180 C203,173 239,177 268,192 C292,204 302,223 299,241 C295,258 282,272 258,279" stroke="#191b63" stroke-width="3.2"/>
+        </g>
+
+        <g fill="#5cf0ff" filter="url(#blurSmall)" opacity=".95">
+          <circle cx="18" cy="22" r="3"/><circle cx="39" cy="25" r="3"/><circle cx="73" cy="13" r="3"/><circle cx="99" cy="24" r="3"/>
+          <circle cx="121" cy="8" r="2.8"/><circle cx="145" cy="18" r="3"/><circle cx="177" cy="13" r="3"/><circle cx="206" cy="20" r="2.8"/>
+          <circle cx="231" cy="6" r="3"/><circle cx="255" cy="17" r="2.8"/><circle cx="282" cy="22" r="3"/><circle cx="300" cy="11" r="2.8"/>
+          <circle cx="322" cy="26" r="2.8"/><circle cx="350" cy="20" r="3"/><circle cx="380" cy="31" r="2.8"/>
+
+          <circle cx="9" cy="113" r="2.8"/><circle cx="26" cy="122" r="2.8"/><circle cx="56" cy="108" r="3"/><circle cx="84" cy="95" r="2.8"/>
+          <circle cx="112" cy="100" r="2.8"/><circle cx="140" cy="109" r="3"/><circle cx="174" cy="97" r="2.8"/><circle cx="205" cy="110" r="2.8"/>
+          <circle cx="232" cy="122" r="2.8"/><circle cx="266" cy="109" r="3"/><circle cx="292" cy="123" r="2.8"/><circle cx="323" cy="113" r="2.8"/>
+          <circle cx="351" cy="104" r="2.8"/><circle cx="378" cy="121" r="3"/>
+
+          <circle cx="16" cy="257" r="2.8"/><circle cx="41" cy="246" r="2.8"/><circle cx="73" cy="232" r="2.8"/><circle cx="110" cy="228" r="3"/>
+          <circle cx="142" cy="243" r="2.8"/><circle cx="176" cy="255" r="2.8"/><circle cx="214" cy="244" r="3"/><circle cx="244" cy="227" r="2.8"/>
+          <circle cx="274" cy="211" r="2.8"/><circle cx="307" cy="212" r="3"/><circle cx="338" cy="224" r="2.8"/><circle cx="373" cy="241" r="2.8"/>
+          <circle cx="389" cy="127" r="2.8"/><circle cx="359" cy="151" r="2.8"/><circle cx="326" cy="169" r="2.8"/><circle cx="293" cy="182" r="2.8"/>
+        </g>
+        <g fill="#b7f8ff" opacity=".9">
+          <circle cx="24" cy="21" r="1.4"/><circle cx="84" cy="96" r="1.2"/><circle cx="145" cy="18" r="1.2"/><circle cx="266" cy="109" r="1.3"/>
+          <circle cx="307" cy="212" r="1.2"/><circle cx="373" cy="241" r="1.2"/><circle cx="56" cy="108" r="1.2"/><circle cx="205" cy="110" r="1.2"/>
+        </g>
+        <g opacity=".35" filter="url(#blurMed)">
+          <circle cx="95" cy="45" r="16" fill="#2f5cff"/>
+          <circle cx="305" cy="41" r="13" fill="#2f5cff"/>
+          <circle cx="63" cy="211" r="14" fill="#223df0"/>
+          <circle cx="338" cy="230" r="15" fill="#223df0"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="card-title">Comparing risk priorities: Insurance vs. banking</div>
+
+    <div class="card-copy">
+      <p>Insurance markets are evolving with complex product innovation, sidecars and increased private-equity involvement, driving more sophisticated, capital-efficient and interconnected operating models. In contrast, banking – especially among global systemically important banks (G-SIBs) and the largest institutions – is accelerating strategic planning around digital assets like tokenization, smart contracts and digital currencies.</p>
+      <p>While cybersecurity tops the risk list for both sectors, it remains a greater concern in banking (86% vs. 80%). Digital fraud (59% vs. 25%) and data risks (41% vs. 25%) also weigh more heavily on banking CROs. Meanwhile, insurers prioritize strategic risk more highly (44%, second place) compared to banking (33%, eighth place), with market risk ranking in insurers’ top five but falling outside banking’s top 10.</p>
+    </div>
+  </div>
+
+  <div class="jump">
+    <div class="circle"></div>
+    <div class="dot"></div>
+    <div class="text">Jump to<br>contents</div>
+  </div>
+
+  <div class="page">8</div>
+</div>
+</body>
+</html>

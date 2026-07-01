@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Executive summary</title>
+<style>
+  body{
+    margin:0;
+    background:#d8d8d8;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d8d8d8;
+    box-sizing:border-box;
+  }
+  #slide > *{ position:absolute; box-sizing:border-box; }
+
+  .page{
+    left:31px;
+    top:31px;
+    width:1303px;
+    height:705px;
+    background:#f3f3f3;
+    border:1px solid #d2d2d2;
+    z-index:1;
+  }
+
+  .hero{
+    left:553px;
+    top:31px;
+    width:781px;
+    height:186px;
+    overflow:hidden;
+    z-index:10;
+    background:
+      radial-gradient(circle at 7% 30%, rgba(255,255,255,0.85) 0 4%, rgba(113,215,255,0.55) 8%, rgba(0,0,0,0) 22%),
+      radial-gradient(circle at 12% 58%, rgba(255,122,88,0.70) 0 6%, rgba(255,122,88,0.25) 10%, rgba(0,0,0,0) 23%),
+      radial-gradient(circle at 37% 42%, rgba(255,60,220,0.55) 0 10%, rgba(148,64,255,0.25) 15%, rgba(0,0,0,0) 29%),
+      radial-gradient(circle at 66% 30%, rgba(255,255,255,0.72) 0 5%, rgba(255,186,96,0.44) 10%, rgba(0,0,0,0) 26%),
+      radial-gradient(circle at 82% 44%, rgba(255,126,34,0.34) 0 12%, rgba(0,0,0,0) 29%),
+      linear-gradient(90deg, #071229 0%, #0d1530 16%, #271537 34%, #59284f 50%, #734768 61%, #71472a 77%, #37251d 90%, #100f13 100%);
+  }
+  .hero:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0 1px, rgba(0,0,0,0) 1px 4px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0 1px, rgba(0,0,0,0) 1px 5px);
+    opacity:.55;
+    mix-blend-mode:screen;
+  }
+  .hero:after{
+    content:"";
+    position:absolute;
+    left:-10px;
+    top:-4px;
+    width:240px;
+    height:194px;
+    background:
+      radial-gradient(circle at 28% 40%, rgba(255,255,255,.7), rgba(255,255,255,0) 43%),
+      radial-gradient(circle at 54% 66%, rgba(111,205,255,.8), rgba(111,205,255,0) 36%),
+      radial-gradient(circle at 73% 28%, rgba(255,112,112,.55), rgba(255,112,112,0) 31%);
+    filter:blur(2px);
+  }
+
+  .person{
+    left:673px;
+    top:15px;
+    width:128px;
+    height:214px;
+    z-index:12;
+  }
+
+  .jump{
+    left:1263px;
+    top:58px;
+    width:40px;
+    height:40px;
+    border:1px solid rgba(255,255,255,0.55);
+    border-radius:20px;
+    color:#fff;
+    font-size:9px;
+    line-height:10px;
+    text-align:center;
+    padding-top:9px;
+    z-index:60;
+    font-weight:400;
+  }
+  .jump-dot{
+    left:1295px;
+    top:61px;
+    width:8px;
+    height:8px;
+    background:#f0d400;
+    border-radius:50%;
+    z-index:61;
+  }
+
+  .title1{
+    left:81px;
+    top:81px;
+    width:365px;
+    font-size:63px;
+    line-height:61px;
+    font-weight:700;
+    color:#191b29;
+    letter-spacing:-0.02em;
+    z-index:30;
+  }
+  .title2{
+    left:81px;
+    top:148px;
+    width:270px;
+    font-size:50px;
+    line-height:51px;
+    font-weight:300;
+    color:#191b29;
+    letter-spacing:-0.02em;
+    z-index:30;
+  }
+
+  .rule-yellow{
+    left:76px;
+    top:214px;
+    width:160px;
+    height:3px;
+    background:#f0d400;
+    z-index:20;
+  }
+  .rule-magenta{
+    left:236px;
+    top:214px;
+    width:159px;
+    height:3px;
+    background:#c83cff;
+    z-index:20;
+  }
+  .rule-blue{
+    left:395px;
+    top:214px;
+    width:159px;
+    height:3px;
+    background:#5a88ff;
+    z-index:20;
+  }
+
+  .side-label{
+    left:8px;
+    top:372px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    font-size:13px;
+    line-height:13px;
+    color:#303030;
+    letter-spacing:.04em;
+    z-index:30;
+  }
+  .side-line{
+    left:14px;
+    top:390px;
+    width:1px;
+    height:34px;
+    background:#717171;
+    z-index:30;
+  }
+
+  .dropcap{
+    left:77px;
+    top:263px;
+    width:34px;
+    height:56px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:63px;
+    line-height:50px;
+    font-weight:700;
+    color:#000;
+    z-index:30;
+  }
+
+  .col1-text{
+    left:112px;
+    top:261px;
+    width:238px;
+    font-size:13px;
+    line-height:1.42;
+    color:#525252;
+    z-index:30;
+  }
+  .col1-text p{ margin:0 0 10px 0; }
+
+  .bullet-list{
+    left:77px;
+    top:595px;
+    width:278px;
+    font-size:13px;
+    line-height:1.38;
+    color:#474747;
+    z-index:30;
+  }
+  .bullet-list .item{
+    position:relative;
+    padding-left:14px;
+    margin-bottom:7px;
+  }
+  .bullet-list .item:before{
+    content:"■";
+    position:absolute;
+    left:0;
+    top:0;
+    font-size:7px;
+    line-height:18px;
+    color:#2b2b2b;
+  }
+
+  .callout1{
+    left:359px;
+    top:264px;
+    width:215px;
+    height:231px;
+    border:2px solid #c8c8cf;
+    background:#f3f3f3;
+    z-index:25;
+  }
+  .callout1 > div, .callout2 > div{ position:absolute; box-sizing:border-box; }
+  .callout1 .quote{
+    left:28px;
+    top:26px;
+    font-size:39px;
+    line-height:39px;
+    color:#f0d400;
+    font-weight:700;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .callout1 .h{
+    left:30px;
+    top:48px;
+    width:150px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:17px;
+    line-height:22px;
+    color:#3b3b3b;
+    font-weight:400;
+  }
+  .callout1 .t{
+    left:30px;
+    top:79px;
+    width:155px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:15px;
+    line-height:1.45;
+    color:#3b3b3b;
+    font-weight:400;
+  }
+  .callout1-dot1{
+    left:543px;
+    top:262px;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#b9bac3;
+    z-index:26;
+  }
+  .callout1-dot2{
+    left:570px;
+    top:322px;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#b9bac3;
+    z-index:26;
+  }
+
+  .mid-note{
+    left:365px;
+    top:536px;
+    width:214px;
+    font-size:13px;
+    line-height:1.45;
+    color:#555;
+    z-index:30;
+  }
+  .mid-note .link{
+    color:#4c82d7;
+    text-decoration:underline;
+  }
+
+  .col2{
+    left:604px;
+    top:257px;
+    width:205px;
+    font-size:13px;
+    line-height:1.42;
+    color:#525252;
+    z-index:30;
+  }
+  .col3{
+    left:839px;
+    top:257px;
+    width:212px;
+    font-size:13px;
+    line-height:1.42;
+    color:#525252;
+    z-index:30;
+  }
+  .col4{
+    left:1081px;
+    top:257px;
+    width:221px;
+    font-size:13px;
+    line-height:1.42;
+    color:#525252;
+    z-index:30;
+  }
+  .col2 p,.col3 p,.col4 p{ margin:0 0 10px 0; }
+
+  .callout2{
+    left:839px;
+    top:503px;
+    width:216px;
+    height:189px;
+    border:2px solid #c8c8cf;
+    background:#f3f3f3;
+    z-index:25;
+  }
+  .callout2 .quote{
+    left:28px;
+    top:26px;
+    font-size:39px;
+    line-height:39px;
+    color:#f0d400;
+    font-weight:700;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .callout2 .h{
+    left:30px;
+    top:49px;
+    width:150px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:17px;
+    line-height:22px;
+    color:#3b3b3b;
+    font-weight:400;
+  }
+  .callout2 .t{
+    left:30px;
+    top:79px;
+    width:160px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:15px;
+    line-height:1.45;
+    color:#3b3b3b;
+    font-weight:400;
+  }
+  .callout2-dot1{
+    left:1024px;
+    top:502px;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#b9bac3;
+    z-index:26;
+  }
+  .callout2-dot2{
+    left:1050px;
+    top:552px;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#b9bac3;
+    z-index:26;
+  }
+
+  .page-num{
+    left:50px;
+    top:710px;
+    width:20px;
+    font-size:11px;
+    line-height:11px;
+    color:#414141;
+    z-index:30;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="page"></div>
+
+  <div class="hero"></div>
+
+  <svg class="person" viewBox="0 0 128 214" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="skin" x1="0" x2="1">
+        <stop offset="0" stop-color="#7b4d45"/>
+        <stop offset="1" stop-color="#c78d73"/>
+      </linearGradient>
+      <linearGradient id="hair" x1="0" x2="1">
+        <stop offset="0" stop-color="#05060d"/>
+        <stop offset="1" stop-color="#1d1323"/>
+      </linearGradient>
+      <linearGradient id="coat" x1="0" x2="1">
+        <stop offset="0" stop-color="#070711"/>
+        <stop offset="1" stop-color="#161223"/>
+      </linearGradient>
+    </defs>
+    <path d="M42 61 C47 18, 98 5, 110 41 C115 59,104 83,88 95 C78 103,73 112,74 126 C56 125,39 113,31 98 C23 82,32 72,42 61Z" fill="url(#hair)"/>
+    <path d="M81 43 C90 41, 98 45, 100 54 C102 64, 98 73, 90 76 C82 79, 73 76, 70 68 C67 58, 72 46, 81 43Z" fill="url(#skin)"/>
+    <path d="M90 58 C94 57, 99 57, 105 59 C100 60, 96 61, 91 62 Z" fill="#f4d7c5"/>
+    <path d="M71 78 C79 90, 84 105, 82 121 C77 130, 69 138, 60 143 C53 135, 52 121, 56 110 C59 97, 63 87, 71 78Z" fill="url(#hair)"/>
+    <path d="M13 170 C27 146, 49 135, 74 132 C90 131, 105 140, 114 156 L124 210 L0 210 Z" fill="url(#coat)"/>
+    <path d="M44 64 C40 88, 41 112, 47 142 C40 136, 33 124, 29 110 C25 96, 26 77, 30 63 C33 52, 36 41, 48 29 C55 22, 61 15, 64 0 C55 3, 46 10, 40 18 C27 34, 18 47, 17 66 C16 86, 22 108, 30 122 C22 107, 15 89, 15 73 C15 56, 20 42, 28 31 C34 22, 39 16, 45 11 C52 5, 58 2, 66 0 C54 18, 55 36, 44 64Z" fill="url(#hair)"/>
+  </svg>
+
+  <div class="jump">Jump to<br>contents</div>
+  <div class="jump-dot"></div>
+
+  <div class="title1">Executive</div>
+  <div class="title2">summary</div>
+
+  <div class="rule-yellow"></div>
+  <div class="rule-magenta"></div>
+  <div class="rule-blue"></div>
+
+  <div class="side-label">EXECUTIVE SUMMARY</div>
+  <div class="side-line"></div>
+
+  <div class="dropcap">T</div>
+
+  <div class="col1-text">
+    <p>he results of the 15th annual EY/IIF global bank risk management survey indicate a shift in the primary drivers of the agendas of chief risk officers (CROs). As our previous research has shown, the priorities of bank CROs have been largely determined by the policy agenda (including regulation and supervision) and a particular focus on cyber threats and operational resilience, along with credit risk. Even as CROs assumed more strategic roles, regulatory matters – including compliance, reporting and remediation – demanded a great deal of time and attention.</p>
+    <p>This year’s findings indicate that the CRO agenda is being reordered by emerging risks associated with different forms of innovation and market developments, including:</p>
+  </div>
+
+  <div class="bullet-list">
+    <div class="item">The widespread deployment of artificial intelligence (AI)</div>
+    <div class="item">Increasing adoption of digital assets, cryptocurrencies and tokenization</div>
+    <div class="item">The rise of private credit as a major force in the industry</div>
+  </div>
+
+  <div class="callout1">
+    <div class="quote">“</div>
+    <div class="h">What CROs say:</div>
+    <div class="t">It used to be that risk meetings were consumed by regulatory matters. Now they are strategic discussions tailored to our own institution and about how to grow the business.</div>
+  </div>
+  <div class="callout1-dot1"></div>
+  <div class="callout1-dot2"></div>
+
+  <div class="mid-note">
+    As these trends play out against the backdrop of <span class="link">nonlinear, accelerated, volatile and interconnected (NAVI) change</span>, CROs are evaluating a broader range of commercial and regulatory consequences. Our results suggest a renewal of strategic risk management approaches - that is, more CROs are proactively
+  </div>
+
+  <div class="col2">
+    <p>designing strategies and modernizing frameworks to promote responsible innovation and protect the business, rather than working backward from compliance requirements. For instance, the growth of private credit and ongoing economic volatility, rather than regulatory change, have pushed financial risks back to the top of CROs’ list of priorities after several years outside the top 10.</p>
+    <p>Given the backdrop of persistent geopolitical tensions across multiple regions, a strategic, value-driven approach to risk management seems particularly well suited to today’s environment. Significant shifts in regulator objectives across jurisdictions have led to a perceived loosening of oversight in some markets but tightening in others. Even in jurisdictions that have promoted “competitiveness,” legal requirements for financial institutions</p>
+  </div>
+
+  <div class="col3">
+    <p>have remained largely untouched, despite a softening of political and, in some markets, supervisory stances. We also see greater localization of regulation in many jurisdictions, reflecting the uncertain environment, with an emphasis on operational resilience and avoiding over-reliance on some third parties.</p>
+    <p>On one level, these developments add to overall uncertainty and raise</p>
+  </div>
+
+  <div class="callout2">
+    <div class="quote">“</div>
+    <div class="h">What CROs say:</div>
+    <div class="t">The role is no longer the chief risk officer. It is the ‘chief uncertainty officer.’ It is what we don’t know that keeps us up at night.</div>
+  </div>
+  <div class="callout2-dot1"></div>
+  <div class="callout2-dot2"></div>
+
+  <div class="col4">
+    <p>questions about future regulatory risk. On another, they increase the urgency for CROs to engage deeply with strategic business initiatives (e.g., AI adoption, product innovation). Further, they compel CROs to invest in risk enhancements that benefit the business, as well as satisfying regulatory requirements.</p>
+    <p>Different institutions will feel the impact of policy, regulation and broader market drivers in different ways, based on their unique geographical footprint, operating model, customer base, growth strategies and risk appetites. Similarly, CROs in different markets and at regional and mid-sized banks will have different concerns and priorities than those at global systemically important banks (G-SIBs) and at institutions with more assets, as we highlight throughout this report.</p>
+  </div>
+
+  <div class="page-num">3</div>
+</div>
+</body>
+</html>

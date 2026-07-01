@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>AI: A Declaration of Autonomy</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ededed;
+  }
+
+  /* Left visual panel */
+  .left-panel{
+    position:absolute;
+    left:0;
+    top:0;
+    width:653px;
+    height:720px;
+    background:
+      radial-gradient(ellipse at 40% 35%, rgba(193,32,255,0.85) 0%, rgba(152,19,224,0.88) 28%, rgba(88,20,146,0.92) 60%, rgba(76,21,126,1) 100%);
+  }
+  .left-panel:before{
+    content:"";
+    position:absolute;
+    left:24px;
+    top:37px;
+    width:402px;
+    height:457px;
+    border-radius:52% 44% 44% 50% / 40% 44% 56% 58%;
+    background:
+      radial-gradient(circle at 42% 30%, rgba(223,146,255,0.65) 0%, rgba(188,44,255,0.85) 24%, rgba(145,10,213,0.98) 62%, rgba(116,15,173,0.98) 100%);
+    transform:rotate(10deg);
+    filter:blur(0.5px);
+  }
+  .left-panel:after{
+    content:"";
+    position:absolute;
+    left:-57px;
+    top:163px;
+    width:812px;
+    height:90px;
+    border-radius:90px;
+    background:linear-gradient(90deg, rgba(86,21,132,0.0) 0%, rgba(188,43,255,0.68) 22%, rgba(115,23,169,0.78) 50%, rgba(184,50,246,0.48) 72%, rgba(85,20,132,0.0) 100%);
+    transform:rotate(-36deg);
+    box-shadow:
+      0 -11px 0 rgba(58,12,99,0.65),
+      0 12px 0 rgba(80,14,127,0.55),
+      0 23px 0 rgba(103,18,156,0.38);
+  }
+  .arc1{
+    position:absolute;
+    left:-29px;
+    top:280px;
+    width:778px;
+    height:24px;
+    border-radius:24px;
+    background:linear-gradient(90deg, rgba(123,27,190,0) 0%, rgba(151,31,230,0.4) 15%, rgba(60,11,108,0.92) 46%, rgba(162,44,240,0.3) 72%, rgba(123,27,190,0) 100%);
+    transform:rotate(-36deg);
+  }
+  .arc2{
+    position:absolute;
+    left:346px;
+    top:636px;
+    width:330px;
+    height:53px;
+    border-radius:26px;
+    background:linear-gradient(180deg, rgba(177,34,255,0.75), rgba(99,17,159,0.95));
+    transform:rotate(-18deg);
+    opacity:0.9;
+  }
+  .arc3{
+    position:absolute;
+    left:432px;
+    top:121px;
+    width:266px;
+    height:429px;
+    border-radius:50%;
+    border-left:18px solid rgba(143,24,219,0.55);
+    border-top:14px solid rgba(143,24,219,0.2);
+    border-right:0 solid transparent;
+    border-bottom:0 solid transparent;
+    transform:rotate(-33deg);
+    opacity:0.5;
+  }
+  .face{
+    position:absolute;
+    left:255px;
+    top:171px;
+    width:336px;
+    height:401px;
+    border-radius:47% 43% 44% 48% / 37% 40% 55% 59%;
+    background:
+      radial-gradient(circle at 50% 26%, rgba(219,105,255,0.6) 0%, rgba(177,42,241,0.72) 19%, rgba(115,20,181,0.85) 58%, rgba(89,18,144,0.95) 100%);
+    transform:rotate(18deg);
+    opacity:0.9;
+    filter:blur(0.8px);
+  }
+  .visor{
+    position:absolute;
+    left:83px;
+    top:226px;
+    width:607px;
+    height:16px;
+    border-radius:10px;
+    background:rgba(55,10,94,0.8);
+    transform:rotate(-36deg);
+    box-shadow:
+      0 8px 0 rgba(138,32,208,0.35),
+      0 -7px 0 rgba(65,13,109,0.55);
+  }
+
+  /* Right content area */
+  .content{
+    position:absolute;
+    left:653px;
+    top:0;
+    width:627px;
+    height:720px;
+    background:#efefef;
+  }
+
+  .title{
+    position:absolute;
+    left:41px;
+    top:57px;
+    width:257px;
+    color:#111;
+    font-size:24px;
+    line-height:1.08;
+    font-weight:700;
+    letter-spacing:-0.4px;
+  }
+  .subtitle{
+    position:absolute;
+    left:41px;
+    top:116px;
+    width:247px;
+    color:#222;
+    font-size:18px;
+    line-height:1.15;
+    font-weight:400;
+  }
+  .rule{
+    position:absolute;
+    left:41px;
+    top:177px;
+    width:262px;
+    height:1px;
+    background:#8f8f8f;
+  }
+
+  .intro-label{
+    position:absolute;
+    right:41px;
+    top:37px;
+    color:#334;
+    font-size:14px;
+    line-height:1;
+  }
+  .page-num{
+    position:absolute;
+    right:17px;
+    top:37px;
+    color:#334;
+    font-size:14px;
+    line-height:1;
+    font-weight:600;
+  }
+
+  .col-left{
+    position:absolute;
+    left:41px;
+    top:203px;
+    width:295px;
+    color:#222;
+  }
+  .col-right{
+    position:absolute;
+    left:356px;
+    top:69px;
+    width:236px;
+    color:#333;
+  }
+
+  .lead{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:22px;
+    line-height:1.08;
+    font-weight:700;
+    letter-spacing:-0.2px;
+    margin:0 0 17px 0;
+  }
+  .section{
+    font-size:14px;
+    line-height:1.45;
+    margin:0 0 15px 0;
+  }
+  .smallhead{
+    font-size:14px;
+    line-height:1.25;
+    font-weight:700;
+    margin:10px 0 12px 0;
+  }
+  sup{
+    font-size:9px;
+    line-height:0;
+    vertical-align:super;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-panel">
+      <div class="face"></div>
+      <div class="visor"></div>
+      <div class="arc1"></div>
+      <div class="arc2"></div>
+      <div class="arc3"></div>
+    </div>
+
+    <div class="content">
+      <div class="intro-label">Introduction</div>
+      <div class="page-num">4</div>
+
+      <div class="title">AI: A Declaration<br>of Autonomy</div>
+      <div class="subtitle">Is trust the limit of AI's<br>limitless possibilities?</div>
+      <div class="rule"></div>
+
+      <div class="col-left">
+        <p class="lead">We are entering a new chapter in technology—one shaped by a generalization of AI. Today’s proliferation of accessible and ever-present AI will drive new levels of autonomy all throughout the business, evolving the ability to reinvent with tech, data and AI. It will bring nearly limitless possibilities for innovation and growth, but also challenge enterprises’ confidence in systems and the way they think about trust.</p>
+
+        <p class="section">The rush of an AI race is undeniable.</p>
+
+        <p class="section">We’ve seen it before. In 1997, Garry Kasparov lost a six-game chess match against IBM’s Deep Blue.<sup>1</sup> It was the first time a computer ever beat a chess grandmaster, after decades of testing machine capability against humans using this game. The victory set off a storm of excitement and questions about AI and the future. Now, a new race is underway. Many companies building today’s cutting-edge AI models have their sights set</p>
+      </div>
+
+      <div class="col-right">
+        <p class="section">on Artificial General Intelligence (AGI).<sup>2,3</sup> And like before, the race has captivated business leaders, governments, and the world at large.</p>
+
+        <p class="section">But it’s a red herring—a distraction most business leaders can’t afford. Someday, AGI will be hugely consequential, but today it’s still far away with deep technical and ethical challenges to address. Instead, it’s vitally important that leaders see the far more pressing matter already here: the generalization of artificial intelligence, which will bring a new level of autonomy and capability to enterprises’ systems, workforces, and operations long before AGI comes into play.</p>
+
+        <p class="smallhead">The Generalization of AI</p>
+
+        <p class="section">To understand this generalization of AI, one simply needs to look around and see how rooted AI is becoming in our lives. It’s been nearly 30 years since Kasparov’s game, and now models that could make Deep Blue look like an average player are sitting in everyone’s pockets. The Turing Test, once considered the loftiest benchmark for machine intelligence, is effectively broken every day by conversations people have with Large Language Model (LLM)-backed customer service bots and sales agents. Today’s AI models have shrugged off the deep but specific and linear approaches of the past and are demonstrating more autonomy than ever—in how they learn, approach tasks, and in what they ultimately can do. And they’re bringing this autonomy to work, where 75% of knowledge workers report using generative AI; to how we interact with technology, as a coding copilot and by expanding voice assistant capabilities; and to nearly everything else, from robotics, to cars, to health care.<sup>4,5,6,7,8,9,10</sup> Highly capable advanced AI</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

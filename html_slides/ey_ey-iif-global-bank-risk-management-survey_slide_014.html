@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1365, initial-scale=1.0" />
+<title>Chapter 2 Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#dfdfdf;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1365px;
+    height:768px;
+    overflow:hidden;
+    background:#dfdfdf;
+  }
+  .frame{
+    position:absolute;
+    left:31px;
+    top:31px;
+    width:1302px;
+    height:705px;
+    border:1px solid #cfcfd3;
+    box-sizing:border-box;
+    background:#f6f6f7;
+  }
+  .left-bg{
+    position:absolute;
+    left:32px;
+    top:32px;
+    width:930px;
+    height:703px;
+    background:#f7f7f8;
+  }
+  .right-panel{
+    position:absolute;
+    left:962px;
+    top:31px;
+    width:371px;
+    height:705px;
+    background:#131425;
+  }
+
+  .title{
+    position:absolute;
+    left:78px;
+    top:79px;
+    font-size:64px;
+    line-height:1;
+    font-weight:300;
+    color:#191b26;
+    letter-spacing:-0.5px;
+  }
+  .rainbow{
+    position:absolute;
+    left:77px;
+    top:162px;
+    width:885px;
+    height:3px;
+    background:linear-gradient(90deg,#eedb00 0%,#eedb00 49%,#d44fcf 67%,#2f8df7 100%);
+  }
+  .headline{
+    position:absolute;
+    left:78px;
+    top:187px;
+    font-size:16px;
+    line-height:1.2;
+    font-weight:700;
+    color:#20212b;
+    width:760px;
+  }
+
+  .side-line{
+    position:absolute;
+    left:14px;
+    top:410px;
+    width:1px;
+    height:35px;
+    background:#595c63;
+  }
+  .side-label{
+    position:absolute;
+    left:10px;
+    top:394px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    font-size:12px;
+    letter-spacing:0.18em;
+    color:#2a2c35;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+
+  .col{
+    position:absolute;
+    font-size:13px;
+    line-height:1.35;
+    color:#53555e;
+  }
+  .col1{ left:79px; top:264px; width:206px; }
+  .col2{ left:329px; top:264px; width:224px; }
+  .dropbar{
+    position:absolute;
+    left:95px;
+    top:269px;
+    width:6px;
+    height:40px;
+    background:#44464e;
+  }
+  .col1 .text{
+    margin-left:40px;
+  }
+
+  .figure-title{
+    position:absolute;
+    left:590px;
+    top:264px;
+    font-size:12px;
+    line-height:1.2;
+    color:#3a3d46;
+    font-weight:700;
+    width:310px;
+  }
+
+  .chart{
+    position:absolute;
+    left:588px;
+    top:300px;
+    width:314px;
+    height:330px;
+    color:#555760;
+  }
+  .row{
+    position:absolute;
+    left:0;
+    width:314px;
+    height:43px;
+  }
+  .label{
+    position:absolute;
+    left:0;
+    top:4px;
+    width:135px;
+    text-align:right;
+    font-size:12px;
+    line-height:1.2;
+    color:#565961;
+  }
+  .barbox{
+    position:absolute;
+    left:145px;
+    top:10px;
+    width:168px;
+    height:22px;
+    border:1px solid #b8bac2;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:20px;
+    background:#5b31b4;
+  }
+  .value{
+    position:absolute;
+    right:7px;
+    top:3px;
+    font-size:11px;
+    color:#575961;
+  }
+  .sub{z-index:1;
+    position:absolute;
+    left:145px;
+    top:35px;
+    font-size:8px;
+    line-height:1;
+    color:#6d7078;
+  }
+
+  .jump-circle{
+    position:absolute;
+    left:1264px;
+    top:60px;
+    width:40px;
+    height:40px;
+    border:1px dashed rgba(255,255,255,0.7);
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+  .jump-dot{
+    position:absolute;
+    left:1294px;
+    top:61px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#f0dd00;
+  }
+  .jump-text{
+    position:absolute;
+    left:1270px;
+    top:70px;
+    width:30px;
+    font-size:9px;
+    line-height:1.05;
+    color:#fff;
+    text-align:center;
+  }
+
+  .quote-box{
+    position:absolute;
+    left:1039px;
+    top:133px;
+    width:216px;
+    height:218px;
+    border:1px solid rgba(255,255,255,0.55);
+    box-sizing:border-box;
+  }
+  .quote-top-ext{
+    position:absolute;
+    left:1039px;
+    top:133px;
+    width:188px;
+    height:1px;
+    background:rgba(255,255,255,0.55);
+  }
+  .quote-top-dot{
+    position:absolute;
+    left:1224px;
+    top:131px;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.8);
+  }
+  .quote-right-ext{
+    position:absolute;
+    left:1254px;
+    top:182px;
+    width:1px;
+    height:170px;
+    background:rgba(255,255,255,0.55);
+  }
+  .quote-right-dot{
+    position:absolute;
+    left:1252px;
+    top:180px;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.8);
+  }
+  .quote-mark{
+    position:absolute;
+    left:1068px;
+    top:153px;
+    font-size:46px;
+    line-height:1;
+    color:#f0dd00;
+    font-weight:700;
+    font-family:Georgia, "Times New Roman", serif;
+  }
+  .quote-text{
+    position:absolute;
+    left:1071px;
+    top:175px;
+    width:150px;
+    color:#fff;
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:15px;
+    line-height:1.15;
+  }
+
+  .photo{
+    position:absolute;
+    left:962px;
+    top:422px;
+    width:371px;
+    height:314px;
+    overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(53,110,163,0.18) 0%, rgba(7,13,27,0.15) 100%),
+      linear-gradient(180deg,#7dbbdb 0%, #3f88b7 23%, #1a3f67 48%, #0b162d 73%, #060810 100%);
+  }
+  .page{
+    position:absolute;
+    left:50px;
+    top:712px;
+    font-size:11px;
+    color:#3e4149;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="frame"></div>
+  <div class="left-bg"></div>
+  <div class="right-panel"></div>
+
+  <div class="title">Chapter 2</div>
+  <div class="rainbow"></div>
+  <div class="headline">The return of financial and traditional risks in new forms</div>
+
+  <div class="side-line"></div>
+  <div class="side-label">CHAPTER 2</div>
+
+  <div class="dropbar"></div>
+
+  <div class="col col1">
+    <div class="text">
+      In last year’s survey, no financial risk made the top 10 of near-term risk priorities, perhaps reflecting CRO confidence in the strength of the risk management capabilities that have been developed and strengthened in the last decade. This year, however, CROs indicated that several forms of financial risk have returned to prominence.<br><br>
+      Almost two-thirds (62%) of respondents said credit risk was a top five risk requiring CRO attention for the next year, second only to cyber threats. CROs at European banks are most concerned by credit risk (75%), while those at banks in the Middle East and North Africa (50%) express the least concern. Digital fraud (cited by 59% of respondents) and financial crime risk (43%, up from 23% last year) were next on the list, with liquidity risk coming in the sixth-highest priority (20%). Interest rate risk in the banking book (IRRBB) was 10th (14%).
+    </div>
+  </div>
+
+  <div class="col col2">
+    When asked about financial risks specifically, an equal proportion (30%) of respondents chose retail and wholesale credit risk as the top risk for the next 12 months. In 2025, 24% of CROs named consumer/retail credit risk as the top financial risk. Among G-SIB CROs, 50% said wholesale credit risk was the top financial risk, and 17% said retail credit risk.<br><br>
+    The increased focus on credit risk in particular and financial risks in general reflects uncertain macroeconomic conditions. However, CROs also seem to have concerns about inflation and potential recession and their downstream impacts on markets and consumers.
+  </div>
+
+  <div class="figure-title">Figure 6: Top financial risks for the next 12 months</div>
+
+  <div class="chart">
+    <div class="row" style="top:0px;">
+      <div class="label">Consumer/retail credit risk</div>
+      <div class="barbox">
+        <div class="fill" style="width:50px;"></div>
+        <div class="value">30%</div>
+      </div>
+      <div class="sub">G-SIBs: 17%</div>
+    </div>
+
+    <div class="row" style="top:52px;">
+      <div class="label">Wholesale credit risk</div>
+      <div class="barbox">
+        <div class="fill" style="width:50px;"></div>
+        <div class="value">30%</div>
+      </div>
+      <div class="sub">G-SIBs: 50%</div>
+    </div>
+
+    <div class="row" style="top:106px;">
+      <div class="label">Liquidity/funding risk</div>
+      <div class="barbox">
+        <div class="fill" style="width:27px;"></div>
+        <div class="value">16%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:159px;">
+      <div class="label">IRRBB</div>
+      <div class="barbox">
+        <div class="fill" style="width:22px;"></div>
+        <div class="value">13%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:213px;">
+      <div class="label">Counterparty credit risk</div>
+      <div class="barbox">
+        <div class="fill" style="width:15px;"></div>
+        <div class="value">9%</div>
+      </div>
+    </div>
+
+    <div class="row" style="top:266px;">
+      <div class="label">Trading book market risk<br>(including currency risk)</div>
+      <div class="barbox">
+        <div class="fill" style="width:5px;"></div>
+        <div class="value">3%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-top-ext"></div>
+  <div class="quote-top-dot"></div>
+  <div class="quote-right-ext"></div>
+  <div class="quote-right-dot"></div>
+  <div class="quote-box"></div>
+  <div class="quote-mark">“</div>
+  <div class="quote-text">
+    What CROs say:<br>
+    We have a pristine loan<br>
+    portfolio but, seeing<br>
+    some of the data on the<br>
+    softening of the labor<br>
+    market and on consumer<br>
+    spending, we expect that<br>
+    to show up in our risk/loss<br>
+    numbers.
+  </div>
+
+  <div class="jump-circle"></div>
+  <div class="jump-dot"></div>
+  <div class="jump-text">Jump to<br>contents</div>
+
+  <div class="photo">
+    <svg viewBox="0 0 371 314" width="371" height="314" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#78bada"/>
+          <stop offset="22%" stop-color="#4d92bf"/>
+          <stop offset="50%" stop-color="#193f68"/>
+          <stop offset="78%" stop-color="#0b1730"/>
+          <stop offset="100%" stop-color="#060810"/>
+        </linearGradient>
+        <linearGradient id="tower" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#25679a"/>
+          <stop offset="40%" stop-color="#133457"/>
+          <stop offset="100%" stop-color="#09101d"/>
+        </linearGradient>
+        <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ff0e9b"/>
+          <stop offset="45%" stop-color="#ff6300"/>
+          <stop offset="100%" stop-color="#ffd541"/>
+        </linearGradient>
+      </defs>
+
+      <rect width="371" height="314" fill="url(#sky)"/>
+
+      <polygon points="0,35 72,0 35,314 0,314" fill="#0b1627"/>
+      <polygon points="14,0 78,0 42,314 3,314" fill="#102033" opacity="0.9"/>
+      <polygon points="304,122 371,122 371,314 334,314" fill="#0a1728"/>
+      <polygon points="285,0 371,0 371,160 345,314 322,314" fill="#0c1a2b" opacity="0.75"/>
+
+      <path d="M72 314 C83 210, 104 88, 185 16 C242 8, 286 33, 306 93 C297 195, 290 261, 283 314 Z" fill="url(#tower)"/>
+      <path d="M96 314 C104 228, 121 119, 187 29 C223 28, 251 47, 266 83 C259 186, 254 253, 249 314 Z" fill="#0e2644" opacity="0.95"/>
+      <path d="M134 314 C138 235, 145 145, 188 47 C209 48, 228 64, 238 91 C233 192, 229 251, 225 314 Z" fill="#173a60" opacity="0.95"/>
+
+      <g stroke="#16314e" stroke-width="1">
+        <path d="M107 314 C111 226,128 117,188 28"/>
+        <path d="M120 314 C124 231,139 126,196 35"/>
+        <path d="M133 314 C137 234,149 135,204 43"/>
+        <path d="M146 314 C149 238,159 143,212 53"/>
+        <path d="M159 314 C162 241,170 152,220 64"/>
+        <path d="M172 314 C175 244,181 161,228 76"/>
+        <path d="M185 314 C187 247,192 170,236 89"/>
+        <path d="M198 314 C199 249,203 178,243 103"/>
+        <path d="M211 314 C211 251,214 185,250 117"/>
+        <path d="M224 314 C223 252,225 192,257 132"/>
+      </g>
+
+      <g stroke="#6a87a6" stroke-width="1" opacity="0.45">
+        <line x1="91" y1="224" x2="288" y2="224"/>
+        <line x1="95" y1="207" x2="292" y2="207"/>
+        <line x1="99" y1="190" x2="295" y2="190"/>
+        <line x1="104" y1="173" x2="298" y2="173"/>
+        <line x1="109" y1="156" x2="301" y2="156"/>
+        <line x1="114" y1="139" x2="304" y2="139"/>
+      </g>
+
+      <rect x="118" y="231" width="112" height="60" fill="url(#glow)" opacity="0.9"/>
+      <rect x="106" y="240" width="137" height="48" fill="url(#glow)" opacity="0.55"/>
+
+      <g fill="#07090e">
+        <rect x="0" y="275" width="371" height="39"/>
+        <path d="M0 301 L46 247 L56 247 L38 301 Z"/>
+        <path d="M315 301 L350 258 L359 258 L343 301 Z"/>
+      </g>
+
+      <g stroke="#ff6d00" stroke-width="1" opacity="0.45">
+        <line x1="18" y1="18" x2="24" y2="24"/>
+        <line x1="29" y1="8" x2="37" y2="16"/>
+        <line x1="12" y1="42" x2="19" y2="49"/>
+        <line x1="36" y1="33" x2="43" y2="40"/>
+        <line x1="55" y1="14" x2="62" y2="21"/>
+        <line x1="45" y1="55" x2="52" y2="62"/>
+        <line x1="28" y1="68" x2="34" y2="74"/>
+      </g>
+
+      <g stroke="#f5a65f" stroke-width="1" opacity="0.25">
+        <line x1="27" y1="230" x2="53" y2="230"/>
+        <line x1="25" y1="237" x2="51" y2="237"/>
+      </g>
+
+      <path d="M325 0 C335 26,343 58,347 95 C340 79,333 72,320 68 C321 47,322 25,325 0 Z" fill="#1b2937" opacity="0.42"/>
+      <path d="M333 34 C344 37,352 46,356 59 C349 56,343 56,337 57 C336 50,335 43,333 34 Z" fill="#131b28" opacity="0.4"/>
+
+      <path d="M343 0 C344 17,344 35,344 52" stroke="#1a2430" stroke-width="2" fill="none"/>
+      <path d="M335 0 C336 20,336 41,335 60" stroke="#1a2430" stroke-width="2" fill="none"/>
+
+      <path d="M332 0 C338 8,344 18,349 29" stroke="#19232f" stroke-width="2" fill="none" opacity="0.45"/>
+      <path d="M356 0 C350 11,347 24,346 37" stroke="#19232f" stroke-width="2" fill="none" opacity="0.45"/>
+    </svg>
+  </div>
+
+  <div class="page">14</div>
+</div>
+</body>
+</html>

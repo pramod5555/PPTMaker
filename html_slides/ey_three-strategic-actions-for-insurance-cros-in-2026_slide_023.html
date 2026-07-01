@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1365, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dedede;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .frame{
+    position:relative;
+    width:1365px;
+    height:768px;
+    margin:0 auto;
+    background:#dedede;
+  }
+  .slide{
+    position:absolute;
+    left:31px;
+    top:31px;
+    width:1303px;
+    height:706px;
+    overflow:hidden;
+    background:#000;
+  }
+
+  .top-band{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1303px;
+    height:91px;
+    background:
+      radial-gradient(900px 180px at 62% 0%, rgba(92,27,156,.55) 0%, rgba(64,12,110,.38) 35%, rgba(0,0,0,0) 70%),
+      linear-gradient(90deg,#01030a 0%, #06091b 20%, #111448 39%, #2c0d63 66%, #3b0054 100%);
+  }
+  .main-bg{
+    position:absolute;
+    left:0;
+    top:91px;
+    width:1303px;
+    height:615px;
+    background:#000;
+  }
+
+  .bottom-glow{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:1303px;
+    height:260px;
+    background:
+      radial-gradient(ellipse at 53% 102%, rgba(255,173,0,.78) 0%, rgba(255,154,0,.55) 12%, rgba(168,72,0,.25) 24%, rgba(0,0,0,0) 46%),
+      radial-gradient(ellipse at 76% 102%, rgba(124,0,120,.50) 0%, rgba(124,0,120,.20) 18%, rgba(0,0,0,0) 34%),
+      radial-gradient(ellipse at 0% 100%, rgba(100,0,50,.34) 0%, rgba(100,0,50,.12) 18%, rgba(0,0,0,0) 33%),
+      radial-gradient(ellipse at 100% 100%, rgba(80,0,115,.40) 0%, rgba(80,0,115,.17) 18%, rgba(0,0,0,0) 36%);
+    filter:blur(1px);
+  }
+  .streak{
+    position:absolute;
+    transform-origin:left center;
+    filter:blur(7px);
+    opacity:.58;
+  }
+  .s1{left:368px; top:522px; width:305px; height:22px; background:linear-gradient(90deg,rgba(255,136,0,0),rgba(255,136,0,.62),rgba(255,136,0,0)); transform:rotate(40deg);}
+  .s2{left:453px; top:518px; width:330px; height:24px; background:linear-gradient(90deg,rgba(255,155,0,0),rgba(255,155,0,.76),rgba(255,155,0,0)); transform:rotate(48deg);}
+  .s3{left:545px; top:505px; width:305px; height:24px; background:linear-gradient(90deg,rgba(255,170,0,0),rgba(255,170,0,.78),rgba(255,170,0,0)); transform:rotate(57deg);}
+  .s4{left:638px; top:501px; width:280px; height:22px; background:linear-gradient(90deg,rgba(255,185,0,0),rgba(255,185,0,.73),rgba(255,185,0,0)); transform:rotate(66deg);}
+  .s5{left:704px; top:505px; width:246px; height:18px; background:linear-gradient(90deg,rgba(197,0,110,0),rgba(197,0,110,.58),rgba(197,0,110,0)); transform:rotate(54deg);}
+  .s6{left:777px; top:515px; width:216px; height:18px; background:linear-gradient(90deg,rgba(182,0,118,0),rgba(182,0,118,.56),rgba(182,0,118,0)); transform:rotate(62deg);}
+  .s7{left:279px; top:523px; width:300px; height:15px; background:linear-gradient(90deg,rgba(120,30,0,0),rgba(120,30,0,.45),rgba(120,30,0,0)); transform:rotate(15deg);}
+
+  .chapter-pill{
+    position:absolute;
+    left:0;
+    top:-18px;
+    width:69px;
+    height:18px;
+    background:#7d7f8a;
+    border-radius:10px 10px 0 0;
+    color:#fff;
+    font-size:9px;
+    font-weight:700;
+    line-height:18px;
+    text-align:center;
+    letter-spacing:.06em;
+  }
+
+  .left-vert{
+    position:absolute;
+    left:-22px;
+    top:300px;
+    width:30px;
+    height:140px;
+  }
+  .left-vert .txt{
+    position:absolute;
+    left:-17px;
+    top:34px;
+    width:70px;
+    transform:rotate(-90deg);
+    color:#2f3137;
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .left-vert .line{
+    position:absolute;
+    left:6px;
+    top:78px;
+    width:1px;
+    height:38px;
+    background:#4c4c4c;
+  }
+
+  .jump{
+    position:absolute;
+    right:20px;
+    top:27px;
+    width:56px;
+    height:56px;
+  }
+  .jump .label{
+    position:absolute;
+    left:12px;
+    top:17px;
+    width:31px;
+    color:#fff;
+    font-size:9px;
+    line-height:10px;
+    text-align:center;
+    font-weight:500;
+  }
+
+  .left-text{
+    position:absolute;
+    left:52px;
+    top:145px;
+    width:314px;
+    color:#d7d7d7;
+    font-size:14px;
+    line-height:1.42;
+    font-weight:400;
+  }
+  .left-text .intro{margin-bottom:22px;}
+  .bullet{
+    position:relative;
+    padding-left:13px;
+    margin-bottom:16px;
+  }
+  .bullet:last-child{margin-bottom:0;}
+  .sq{
+    position:absolute;
+    left:0;
+    top:8px;
+    width:5px;
+    height:5px;
+    background:#f1d400;
+  }
+  .bullet b{color:#fff;font-weight:700;}
+
+  .figure-title{
+    position:absolute;
+    left:419px;
+    top:147px;
+    width:785px;
+    color:#e7e7e7;
+    font-size:12px;
+    line-height:1.3;
+    font-weight:600;
+  }
+
+  .chart-label{
+    position:absolute;
+    color:#cfcfcf;
+    font-size:11px;
+    line-height:1.25;
+    font-weight:400;
+    text-align:right;
+  }
+  .barbox{
+    position:absolute;
+    width:199px;
+    height:26px;
+    border:1px solid #40464d;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .barfill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:25px;
+    background:#1f5fae;
+  }
+  .rank{
+    position:absolute;
+    left:4px;
+    bottom:2px;
+    color:#fff;
+    font-size:6px;
+    line-height:1;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .pct{
+    position:absolute;
+    right:4px;
+    top:4px;
+    color:#d8d8d8;
+    font-size:18px;
+    line-height:1;
+    font-weight:400;
+  }
+
+  .callout{
+    position:absolute;
+    left:952px;
+    top:421px;
+    width:275px;
+    height:176px;
+  }
+  .callout .v1,.callout .v2,
+  .callout .h1,.callout .h2,.callout .h3,.callout .h4{
+    position:absolute;
+    background:#c7c7c7;
+  }
+  .callout .v1{left:0; top:14px; width:1px; height:145px;}
+  .callout .v2{right:0; top:14px; width:1px; height:145px;}
+  .callout .h1{left:0; top:14px; width:31px; height:1px;}
+  .callout .h2{left:0; top:159px; width:31px; height:1px;}
+  .callout .h3{right:0; top:14px; width:31px; height:1px;}
+  .callout .h4{right:0; top:159px; width:31px; height:1px;}
+  .callout .d{
+    position:absolute;
+    width:3px;height:3px;border-radius:50%;background:#fff;
+  }
+  .callout .d1{left:30px;top:13px;}
+  .callout .d2{left:30px;top:158px;}
+  .callout .d3{right:30px;top:13px;}
+  .callout .d4{right:30px;top:158px;}
+  .callout .quote{
+    position:absolute;
+    left:34px;
+    top:24px;
+    color:#f2d400;
+    font-size:42px;
+    line-height:1;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight:700;
+  }
+  .callout .title{
+    position:absolute;
+    left:36px;
+    top:49px;
+    color:#fff;
+    font-size:14px;
+    line-height:1.2;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight:400;
+  }
+  .callout .body{
+    position:absolute;
+    left:36px;
+    top:71px;
+    width:186px;
+    color:#fff;
+    font-size:15px;
+    line-height:1.33;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight:400;
+  }
+
+  .page{
+    position:absolute;
+    left:17px;
+    bottom:15px;
+    color:#fff;
+    font-size:11px;
+    line-height:1;
+    font-weight:400;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="slide">
+    <div class="top-band"></div>
+    <div class="main-bg"></div>
+    <div class="bottom-glow"></div>
+    <div class="streak s1"></div>
+    <div class="streak s2"></div>
+    <div class="streak s3"></div>
+    <div class="streak s4"></div>
+    <div class="streak s5"></div>
+    <div class="streak s6"></div>
+    <div class="streak s7"></div>
+
+    <div class="chapter-pill">CHAPTER 4</div>
+
+    <div class="left-vert">
+      <div class="txt">CHAPTER 4</div>
+      <div class="line"></div>
+    </div>
+
+    <div class="jump">
+      <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true">
+        <circle cx="28" cy="28" r="20" fill="none" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="28 6 12 6 18 80" transform="rotate(-32 28 28)"></circle>
+        <circle cx="42" cy="12" r="5" fill="#f0d400"></circle>
+        <path d="M38 9 L42 12 L37 14 Z" fill="#f0d400"></path>
+      </svg>
+      <div class="label">Jump to contents</div>
+    </div>
+
+    <div class="left-text">
+      <div class="intro">
+        Over the past three years, the focus has shifted from strengthening foundational frameworks to modernizing how controls are executed, monitored and evidenced through technology and data-driven approaches:
+      </div>
+
+      <div class="bullet">
+        <div class="sq"></div>
+        <div><b>2023:</b> standardized control frameworks, increased automation and closed execution gaps across first and second lines.</div>
+      </div>
+
+      <div class="bullet">
+        <div class="sq"></div>
+        <div><b>2024:</b> operationalized controls with greater emphasis on design, performance metrics, testing coordination, oversight, and early use of AI and analytics for control design and monitoring.</div>
+      </div>
+
+      <div class="bullet">
+        <div class="sq"></div>
+        <div><b>2025:</b> accelerated technology-enabled execution, AI adoption and greater clarity about which controls matter most and how effectively they operate. Companies also reflect the need to streamline fragmented compliance efforts due to expanding regulatory requirements.</div>
+      </div>
+    </div>
+
+    <div class="figure-title">
+      Figure 12: What are the organization’s top three priorities in the next 12 months related to enhancing the internal control environment?
+    </div>
+
+    <div class="chart-label" style="left:419px; top:189px; width:196px;">
+      Improve the internal controls<br>framework (including standard<br>for risk identification, assessment,<br>control design)
+    </div>
+    <div class="barbox" style="left:628px; top:188px;">
+      <div class="barfill" style="width:107px;"></div>
+      <div class="rank">42% top ranked</div>
+      <div class="pct">54%</div>
+    </div>
+
+    <div class="chart-label" style="left:419px; top:252px; width:196px;">
+      Leverage AI and emerging technologies<br>for efficient control monitoring,<br>testing and documentation
+    </div>
+    <div class="barbox" style="left:628px; top:248px;">
+      <div class="barfill" style="width:84px;"></div>
+      <div class="rank">11% top ranked</div>
+      <div class="pct">42%</div>
+    </div>
+
+    <div class="chart-label" style="left:434px; top:315px; width:181px;">
+      Advance control automation<br>and technical capabilities
+    </div>
+    <div class="barbox" style="left:628px; top:308px;">
+      <div class="barfill" style="width:72px;"></div>
+      <div class="rank">10% top ranked</div>
+      <div class="pct">36%</div>
+    </div>
+
+    <div class="chart-label" style="left:419px; top:381px; width:196px;">
+      Enhance the testing and<br>monitoring of controls to maintain<br>a robust control environment
+    </div>
+    <div class="barbox" style="left:628px; top:388px;">
+      <div class="barfill" style="width:68px;"></div>
+      <div class="rank">3% top ranked</div>
+      <div class="pct">34%</div>
+    </div>
+
+    <div class="chart-label" style="left:878px; top:189px; width:190px;">
+      Identify and rationalize key<br>controls to optimize oversight and<br>strengthen governance
+    </div>
+    <div class="barbox" style="left:1049px; top:188px;">
+      <div class="barfill" style="width:59px;"></div>
+      <div class="rank">15% top ranked</div>
+      <div class="pct" style="font-size:17px;">30%</div>
+    </div>
+
+    <div class="chart-label" style="left:914px; top:252px; width:154px;">
+      Strengthen risk assessment<br>methodology
+    </div>
+    <div class="barbox" style="left:1049px; top:248px;">
+      <div class="barfill" style="width:49px;"></div>
+      <div class="rank">8% top ranked</div>
+      <div class="pct" style="font-size:17px;">25%</div>
+    </div>
+
+    <div class="chart-label" style="left:922px; top:315px; width:146px;">
+      Improve control documentation
+    </div>
+    <div class="barbox" style="left:1049px; top:308px;">
+      <div class="barfill" style="width:49px;"></div>
+      <div class="rank">5% top ranked</div>
+      <div class="pct" style="font-size:17px;">25%</div>
+    </div>
+
+    <div class="callout">
+      <div class="v1"></div>
+      <div class="v2"></div>
+      <div class="h1"></div>
+      <div class="h2"></div>
+      <div class="h3"></div>
+      <div class="h4"></div>
+      <div class="d d1"></div>
+      <div class="d d2"></div>
+      <div class="d d3"></div>
+      <div class="d d4"></div>
+      <div class="quote">“</div>
+      <div class="title">What CROs say:</div>
+      <div class="body">The rapid expansion of regulatory requirements has often resulted in fragmented compliance efforts, underscoring the need to rationalize and streamline controls.</div>
+    </div>
+
+    <div class="page">23</div>
+  </div>
+</div>
+</body>
+</html>

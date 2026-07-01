@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280, initial-scale=1.0" />
+  <title>Replicated Slide</title>
+  <style>
+    body {
+      margin: 0;
+      background: #2d0a4e;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .slide {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+      background: #4a137f;
+      color: #ffffff;
+    }
+
+    .top-left {
+      position: absolute;
+      left: 60px;
+      top: 37px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.82);
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .top-right {
+      position: absolute;
+      right: 31px;
+      top: 37px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.88);
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 19px;
+    }
+
+    .title {
+      position: absolute;
+      left: 60px;
+      top: 219px;
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .rule {
+      position: absolute;
+      left: 60px;
+      top: 280px;
+      width: 462px;
+      height: 2px;
+      background: rgba(255,255,255,0.35);
+    }
+
+    .body-text {
+      position: absolute;
+      left: 60px;
+      top: 308px;
+      width: 390px;
+      font-size: 17px;
+      line-height: 1.18;
+      color: rgba(255,255,255,0.92);
+      font-weight: 400;
+    }
+
+    .bullets {
+      position: absolute;
+      left: 97px;
+      top: 447px;
+      width: 340px;
+      color: #ffffff;
+      font-size: 17px;
+      line-height: 1.9;
+      font-weight: 700;
+    }
+
+    .bullets div::before {
+      content: "• ";
+      font-weight: 700;
+    }
+
+    .corner-mark {
+      position: absolute;
+      left: 59px;
+      bottom: -7px;
+      font-size: 51px;
+      line-height: 1;
+      color: #b20fff;
+      font-weight: 700;
+    }
+
+    /* Decorative right-side flowing forms */
+    .wave1 {
+      position: absolute;
+      right: -238px;
+      top: 108px;
+      width: 721px;
+      height: 746px;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse at 70% 65%, rgba(199,32,255,0.95) 0%, rgba(161,18,233,0.92) 30%, rgba(124,17,189,0.86) 55%, rgba(92,11,143,0.55) 73%, rgba(74,19,127,0) 82%);
+      transform: rotate(16deg);
+      filter: blur(1px);
+    }
+
+    .wave2 {
+      position: absolute;
+      right: -190px;
+      top: 206px;
+      width: 578px;
+      height: 615px;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse at 70% 60%, rgba(214,61,255,0.96) 0%, rgba(168,19,236,0.95) 34%, rgba(120,15,184,0.85) 65%, rgba(74,19,127,0) 83%);
+      transform: rotate(18deg);
+      opacity: 0.95;
+    }
+
+    .ribbon1 {
+      position: absolute;
+      right: 180px;
+      top: 310px;
+      width: 120px;
+      height: 515px;
+      border-radius: 60px;
+      background: linear-gradient(180deg, rgba(175,59,255,0.0) 0%, rgba(170,51,255,0.75) 30%, rgba(117,18,197,0.95) 100%);
+      transform: rotate(34deg);
+      filter: blur(2px);
+      opacity: 0.9;
+    }
+
+    .ribbon2 {
+      position: absolute;
+      right: 231px;
+      top: 286px;
+      width: 59px;
+      height: 489px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(123,28,214,0.0) 0%, rgba(103,17,171,0.8) 40%, rgba(64,7,105,0.95) 100%);
+      transform: rotate(29deg);
+      opacity: 0.8;
+    }
+
+    .arc-dot {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(179,55,255,0.22);
+      box-shadow: 0 0 6px rgba(179,55,255,0.18);
+    }
+
+    .a1 { left: 222px; top: 708px; width: 5px; height: 5px; }
+    .a2 { left: 234px; top: 704px; width: 5px; height: 5px; }
+    .a3 { left: 246px; top: 700px; width: 5px; height: 5px; }
+    .a4 { left: 259px; top: 697px; width: 5px; height: 5px; }
+    .a5 { left: 273px; top: 694px; width: 5px; height: 5px; }
+    .a6 { left: 287px; top: 692px; width: 5px; height: 5px; }
+    .a7 { left: 301px; top: 690px; width: 5px; height: 5px; }
+    .a8 { left: 316px; top: 689px; width: 5px; height: 5px; }
+    .a9 { left: 331px; top: 688px; width: 5px; height: 5px; }
+    .a10 { left: 347px; top: 688px; width: 5px; height: 5px; }
+    .a11 { left: 363px; top: 688px; width: 5px; height: 5px; }
+    .a12 { left: 379px; top: 689px; width: 5px; height: 5px; }
+    .a13 { left: 396px; top: 690px; width: 5px; height: 5px; }
+    .a14 { left: 413px; top: 691px; width: 5px; height: 5px; }
+    .a15 { left: 430px; top: 693px; width: 5px; height: 5px; }
+    .a16 { left: 448px; top: 695px; width: 5px; height: 5px; }
+    .a17 { left: 466px; top: 697px; width: 5px; height: 5px; }
+    .a18 { left: 484px; top: 699px; width: 5px; height: 5px; }
+    .a19 { left: 503px; top: 700px; width: 5px; height: 5px; }
+    .a20 { left: 522px; top: 700px; width: 5px; height: 5px; }
+    .a21 { left: 541px; top: 700px; width: 5px; height: 5px; }
+    .a22 { left: 560px; top: 699px; width: 5px; height: 5px; }
+    .a23 { left: 579px; top: 697px; width: 5px; height: 5px; }
+    .a24 { left: 598px; top: 694px; width: 5px; height: 5px; }
+    .a25 { left: 617px; top: 690px; width: 5px; height: 5px; }
+    .a26 { left: 636px; top: 686px; width: 5px; height: 5px; }
+    .a27 { left: 655px; top: 680px; width: 5px; height: 5px; }
+    .a28 { left: 674px; top: 674px; width: 5px; height: 5px; }
+    .a29 { left: 693px; top: 666px; width: 5px; height: 5px; }
+    .a30 { left: 712px; top: 657px; width: 5px; height: 5px; }
+
+    .outer-dots {
+      position: absolute;
+      right: 129px;
+      top: 202px;
+      width: 470px;
+      height: 442px;
+      border-radius: 50%;
+      border: 5px dotted rgba(187,77,255,0.22);
+      border-left-color: transparent;
+      border-bottom-color: transparent;
+      transform: rotate(24deg);
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left">Technology Vision 2025&nbsp;&nbsp;|&nbsp;&nbsp;AI: A Declaration of Autonomy</div>
+
+    <div class="top-right">
+      <div>Your Face, in the Future</div>
+      <div>27</div>
+    </div>
+
+    <div class="title">The Technology</div>
+    <div class="rule"></div>
+
+    <div class="body-text">
+      Enterprises are clearly eager to bring generative<br>
+      AI and greater autonomy to customer-facing roles.<br>
+      But to do this in a way that will strengthen—rather<br>
+      than harm—ties with customers, they will need a<br>
+      deep understanding of the technological advances<br>
+      letting chatbots move beyond generic-ness.
+    </div>
+
+    <div class="bullets">
+      <div>Personified AI</div>
+      <div>Multimodal Models</div>
+      <div>Precision Data &amp; Context</div>
+    </div>
+
+    <div class="outer-dots"></div>
+    <div class="wave1"></div>
+    <div class="wave2"></div>
+    <div class="ribbon1"></div>
+    <div class="ribbon2"></div>
+
+    <div class="arc-dot a1"></div><div class="arc-dot a2"></div><div class="arc-dot a3"></div><div class="arc-dot a4"></div><div class="arc-dot a5"></div>
+    <div class="arc-dot a6"></div><div class="arc-dot a7"></div><div class="arc-dot a8"></div><div class="arc-dot a9"></div><div class="arc-dot a10"></div>
+    <div class="arc-dot a11"></div><div class="arc-dot a12"></div><div class="arc-dot a13"></div><div class="arc-dot a14"></div><div class="arc-dot a15"></div>
+    <div class="arc-dot a16"></div><div class="arc-dot a17"></div><div class="arc-dot a18"></div><div class="arc-dot a19"></div><div class="arc-dot a20"></div>
+    <div class="arc-dot a21"></div><div class="arc-dot a22"></div><div class="arc-dot a23"></div><div class="arc-dot a24"></div><div class="arc-dot a25"></div>
+    <div class="arc-dot a26"></div><div class="arc-dot a27"></div><div class="arc-dot a28"></div><div class="arc-dot a29"></div><div class="arc-dot a30"></div>
+
+    <div class="corner-mark">&gt;</div>
+  </div>
+</body>
+</html>

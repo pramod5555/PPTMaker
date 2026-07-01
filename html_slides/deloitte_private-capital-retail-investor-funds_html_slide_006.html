@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#f3f3f3;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+    color:#111;
+  }
+  .title{
+    position:absolute;
+    left:35px;
+    top:58px;
+    width:1180px;
+    font-size:28px;
+    line-height:32px;
+    font-weight:700;
+    color:#000;
+  }
+  .top-rule{
+    position:absolute;
+    left:37px;
+    top:101px;
+    width:1204px;
+    height:1px;
+    background:#6c6c6c;
+  }
+
+  .callout-left{
+    position:absolute;
+    left:33px;
+    top:117px;
+    width:386px;
+    height:69px;
+    background:#ebedef;
+  }
+  .callout-left .txt{
+    position:absolute;
+    left:16px;
+    top:7px;
+    width:354px;
+    font-size:18px;
+    line-height:1.06;
+    font-weight:400;
+    color:#1d1d1d;
+    text-align:center;
+  }
+
+  .callout-right{
+    position:absolute;
+    left:459px;
+    top:117px;
+    width:774px;
+    height:69px;
+    background:#ebedef;
+  }
+  .callout-right .txt{
+    position:absolute;
+    left:15px;
+    top:14px;
+    width:740px;
+    font-size:18px;
+    line-height:1.12;
+    font-weight:400;
+    color:#1d1d1d;
+  }
+
+  .blue{
+    color:#1386ea;
+    font-weight:700;
+  }
+
+  .divider{
+    position:absolute;
+    left:432px;
+    top:131px;
+    width:1px;
+    height:458px;
+    background:#565656;
+  }
+
+  .donut-wrap{
+    position:absolute;
+    left:54px;
+    top:233px;
+    width:330px;
+    height:236px;
+  }
+  .donut-label-top{
+    position:absolute;
+    left:0;
+    top:0;
+    width:132px;
+    font-size:17px;
+    line-height:1.03;
+    font-weight:700;
+    color:#8cc7fb;
+    text-align:left;
+  }
+  .donut{
+    position:absolute;
+    left:34px;
+    top:19px;
+    width:220px;
+    height:220px;
+  }
+  .donut-center{
+    position:absolute;
+    left:69px;
+    top:91px;
+    width:152px;
+    font-size:16px;
+    line-height:1.1;
+    font-weight:400;
+    color:#1b1b1b;
+    text-align:center;
+  }
+  .donut-center b{
+    font-weight:700;
+  }
+  .donut-label-bottom{
+    position:absolute;
+    left:202px;
+    top:192px;
+    width:130px;
+    font-size:17px;
+    line-height:1.03;
+    font-weight:700;
+    color:#1288eb;
+    text-align:left;
+  }
+
+  .left-bottom-copy{
+    position:absolute;
+    left:46px;
+    top:515px;
+    width:340px;
+    font-size:17px;
+    line-height:1.07;
+    font-weight:400;
+    color:#1d1d1d;
+    text-align:center;
+  }
+  .left-bottom-copy b{
+    font-weight:700;
+  }
+
+  .chart-title{
+    position:absolute;
+    left:730px;
+    top:216px;
+    width:290px;
+    font-size:18px;
+    line-height:20px;
+    font-weight:700;
+    color:#1d1d1d;
+    text-align:center;
+  }
+
+  .chart-area{
+    position:absolute;
+    left:469px;
+    top:239px;
+    width:754px;
+    height:324px;
+  }
+
+  .y-label{
+    position:absolute;
+    width:48px;
+    font-size:15px;
+    line-height:15px;
+    font-weight:400;
+    color:#232323;
+    text-align:right;
+  }
+
+  .x-label{
+    position:absolute;
+    font-size:13px;
+    line-height:13px;
+    font-weight:400;
+    color:#2b2b2b;
+    transform-origin:left top;
+    transform:rotate(-45deg);
+    white-space:nowrap;
+  }
+
+  .footnotes{
+    position:absolute;
+    left:39px;
+    top:648px;
+    width:1165px;
+    font-size:10px;
+    line-height:1.35;
+    font-weight:400;
+    color:#222;
+  }
+
+  .bottom-rule{
+    position:absolute;
+    left:39px;
+    top:689px;
+    width:1203px;
+    height:1px;
+    background:#9d9d9d;
+  }
+
+  .page{
+    position:absolute;
+    left:38px;
+    top:733px;
+    transform:translateY(-100%);
+    font-size:22px;
+    line-height:22px;
+    font-weight:700;
+    color:#111;
+  }
+
+  .logo{
+    position:absolute;
+    right:38px;
+    bottom:14px;
+    width:145px;
+    height:44px;
+    color:#111;
+  }
+  .logo .jp{
+    position:absolute;
+    right:0;
+    top:0;
+    width:145px;
+    text-align:left;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:24px;
+    line-height:24px;
+    font-weight:400;
+    letter-spacing:-0.03em;
+  }
+  .logo .am{
+    position:absolute;
+    right:0;
+    top:29px;
+    width:145px;
+    text-align:left;
+    font-size:11px;
+    line-height:11px;
+    font-weight:700;
+    letter-spacing:0.02em;
+  }
+
+  sup{
+    font-size:10px;
+    line-height:0;
+    vertical-align:super;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">Increase equity diversification by tapping into a larger opportunity set</div>
+  <div class="top-rule"></div>
+
+  <div class="callout-left">
+    <div class="txt">
+      Private markets provide <span class="blue">~6x the<br>opportunity set</span> compared to<br>increasingly concentrated public markets
+    </div>
+  </div>
+
+  <div class="callout-right">
+    <div class="txt">
+      The number of listed companies is declining as <span class="blue">companies stay private for longer</span>;<br>
+      median age to IPO is <span class="blue">14 years</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="donut-wrap">
+    <div class="donut-label-top">14% - Public<br>Companies</div>
+
+    <svg class="donut" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="110" cy="110" r="78" fill="none" stroke="#d2d2d2" stroke-width="25"></circle>
+      <circle cx="110" cy="110" r="78" fill="none" stroke="#1288eb" stroke-width="25"
+              stroke-linecap="butt"
+              stroke-dasharray="421 490"
+              transform="rotate(-90 110 110)"></circle>
+    </svg>
+
+    <div class="donut-center">
+      <b>21,000 companies</b><br>
+      with annual revenue<br>
+      greater than $100m<br>
+      in the U.S.<sup>1</sup>
+    </div>
+
+    <div class="donut-label-bottom">86% - Private<br>Companies</div>
+  </div>
+
+  <div class="left-bottom-copy">
+    Total investable universe of <b>non-backed,<br>
+    privately-owned companies is ~2.6<br>
+    million companies</b> across the U.S. and<br>
+    Europe<sup>2</sup>
+  </div>
+
+  <div class="chart-title">Listed U.S. Companies<sup>3</sup></div>
+
+  <div class="chart-area">
+    <div class="y-label" style="left:0px; top:11px;">8,000</div>
+    <div class="y-label" style="left:0px; top:81px;">7,000</div>
+    <div class="y-label" style="left:0px; top:151px;">6,000</div>
+    <div class="y-label" style="left:0px; top:221px;">5,000</div>
+    <div class="y-label" style="left:0px; top:291px;">4,000</div>
+
+    <svg style="position:absolute; left:60px; top:6px; width:692px; height:289px;" viewBox="0 0 692 289" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="180" y1="288" x2="692" y2="288" stroke="#cdcdcd" stroke-width="1"/>
+      <polyline fill="none" stroke="#84bfee" stroke-width="4"
+        points="
+        11,47
+        38,63
+        64,112
+        90,147
+        115,153
+        141,160
+        167,161
+        192,166
+        218,202
+        244,186
+        269,192
+        295,201
+        321,206
+        346,198
+        372,172
+        398,170
+        423,177
+        449,174
+        475,165
+        500,106
+        526,130
+        552,92
+        577,100
+        603,136
+        629,158
+        654,158
+        " />
+    </svg>
+
+    <div class="x-label" style="left:50px; top:303px;">1999</div>
+    <div class="x-label" style="left:76px; top:303px;">2000</div>
+    <div class="x-label" style="left:102px; top:303px;">2001</div>
+    <div class="x-label" style="left:128px; top:303px;">2002</div>
+    <div class="x-label" style="left:154px; top:303px;">2003</div>
+    <div class="x-label" style="left:180px; top:303px;">2004</div>
+    <div class="x-label" style="left:206px; top:303px;">2005</div>
+    <div class="x-label" style="left:232px; top:303px;">2006</div>
+    <div class="x-label" style="left:258px; top:303px;">2007</div>
+    <div class="x-label" style="left:284px; top:303px;">2008</div>
+    <div class="x-label" style="left:310px; top:303px;">2009</div>
+    <div class="x-label" style="left:336px; top:303px;">2010</div>
+    <div class="x-label" style="left:362px; top:303px;">2011</div>
+    <div class="x-label" style="left:388px; top:303px;">2012</div>
+    <div class="x-label" style="left:414px; top:303px;">2013</div>
+    <div class="x-label" style="left:440px; top:303px;">2014</div>
+    <div class="x-label" style="left:466px; top:303px;">2015</div>
+    <div class="x-label" style="left:492px; top:303px;">2016</div>
+    <div class="x-label" style="left:518px; top:303px;">2017</div>
+    <div class="x-label" style="left:544px; top:303px;">2018</div>
+    <div class="x-label" style="left:570px; top:303px;">2019</div>
+    <div class="x-label" style="left:596px; top:303px;">2020</div>
+    <div class="x-label" style="left:622px; top:303px;">2021</div>
+    <div class="x-label" style="left:648px; top:303px;">2022</div>
+    <div class="x-label" style="left:674px; top:303px;">2023</div>
+    <div class="x-label" style="left:700px; top:303px;">2024</div>
+    <div class="x-label" style="left:726px; top:303px;">2025</div>
+  </div>
+
+  <div class="footnotes">
+    1 Source: S&amp;P Capital IQ, as of 7/23/2025. 21,000 companies with annual revenue greater than $100 million in the US. Analysis by J.P. Morgan.<br>
+    2 Source: PitchBook Q2 2023 Analyst Note.<br>
+    3 Source: World Bank, Number of Listed Companies for United States, retrieved from FRED, Federal Reserve Bank of St. Louis. United Nations – World Population Prospects.
+  </div>
+
+  <div class="bottom-rule"></div>
+  <div class="page">6</div>
+
+  <div class="logo">
+    <div class="jp">J.P.Morgan</div>
+    <div class="am">ASSET MANAGEMENT</div>
+  </div>
+</div>
+</body>
+</html>

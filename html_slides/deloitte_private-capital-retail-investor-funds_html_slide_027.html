@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, 'Segoe UI', sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+    color:#111;
+  }
+  #slide > *{ position:absolute; box-sizing:border-box; }
+
+  .title{
+    left:31px;
+    top:59px;
+    width:1210px;
+    font-size:29px;
+    line-height:1.12;
+    font-weight:700;
+    color:#111;
+    letter-spacing:-0.01em;
+  }
+  .toprule{
+    left:31px;
+    top:102px;
+    width:1210px;
+    height:1px;
+    background:#666;
+  }
+
+  .divider{
+    width:1px;
+    background:#7d7d7d;
+  }
+  .d1{ left:342px; top:120px; height:512px; }
+  .d2{ left:679px; top:120px; height:512px; }
+
+  .colhead{
+    text-align:center;
+    font-size:22px;
+    line-height:1.12;
+    font-weight:700;
+    color:#4a4a4a;
+    letter-spacing:.01em;
+  }
+  .h1{ left:46px; top:141px; width:252px; }
+  .h2{ left:375px; top:141px; width:268px; }
+  .h3{ left:716px; top:141px; width:252px; }
+
+  .callout{
+    background:#e3e3e3;
+    color:#222;
+    text-align:center;
+    font-size:17px;
+    line-height:1.18;
+    font-weight:400;
+    padding:12px 14px 0 14px;
+  }
+  .call1{ left:31px; top:183px; width:298px; height:65px; }
+  .call2{ left:361px; top:183px; width:300px; height:65px; }
+  .call3{ left:693px; top:183px; width:302px; height:65px; }
+
+  .blue{ color:#1292F6; font-weight:700; }
+
+  .subttl{
+    text-align:center;
+    color:#1f1f1f;
+    font-weight:700;
+    font-size:16px;
+    line-height:1.1;
+  }
+  .subsub{
+    text-align:center;
+    color:#333;
+    font-weight:400;
+    font-size:12px;
+    line-height:1.08;
+  }
+  .footnote{
+    font-size:9px;
+    vertical-align:super;
+    line-height:1;
+  }
+
+  .st1{ left:56px; top:262px; width:250px; }
+  .st2{ left:396px; top:268px; width:246px; }
+  .st3{ left:752px; top:264px; width:204px; }
+
+  .ss2{ left:424px; top:286px; width:190px; }
+  .ss3{ left:755px; top:286px; width:200px; }
+
+  .leftlabel{
+    position:absolute;
+    font-size:14px;
+    line-height:1.1;
+    color:#222;
+    font-weight:700;
+  }
+  .leftsmall{
+    position:absolute;
+    font-size:11px;
+    line-height:1.1;
+    color:#333;
+    font-weight:400;
+  }
+
+  .chartbox{
+    border:1px solid #8ec8fa;
+  }
+  .barlabel{
+    font-size:15px;
+    line-height:1;
+    font-weight:700;
+    color:#444;
+    text-align:center;
+  }
+  .xlabel{
+    font-size:11px;
+    line-height:1.15;
+    font-weight:400;
+    color:#222;
+    text-align:center;
+  }
+  .axislabel{
+    font-size:11px;
+    line-height:1;
+    font-weight:700;
+    color:#222;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    white-space:nowrap;
+  }
+  .axisbottom{
+    font-size:11px;
+    line-height:1;
+    font-weight:700;
+    color:#222;
+    text-align:center;
+  }
+
+  .footnotes{
+    left:30px;
+    top:636px;
+    width:1090px;
+    font-size:10px;
+    line-height:1.1;
+    color:#2d2d2d;
+    font-weight:400;
+  }
+  .pagenum{
+    left:30px;
+    top:700px;
+    width:25px;
+    font-size:16px;
+    line-height:1;
+    font-weight:700;
+    color:#222;
+  }
+
+  .logo{
+    left:1088px;
+    top:672px;
+    width:170px;
+    color:#1f1f1f;
+    text-align:left;
+  }
+  .logo .jp{
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size:22px;
+    line-height:1;
+    font-weight:400;
+  }
+  .logo .am{
+    margin-top:4px;
+    font-size:11px;
+    line-height:1.05;
+    font-weight:700;
+    letter-spacing:.04em;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">The small &amp; mid-market is the largest and least efficient market segment…</div>
+  <div class="toprule"></div>
+
+  <div class="divider d1"></div>
+  <div class="divider d2"></div>
+
+  <div class="colhead h1">Target Rich Environment</div>
+  <div class="colhead h2">Attractive Entry Valuations</div>
+  <div class="colhead h3">Less Reliance on Leverage</div>
+
+  <div class="callout call1"><span class="blue">10x greater</span> opportunity set than the<br>larger segments of the market</div>
+  <div class="callout call2">Median purchase multiples are<br><span class="blue">~10% lower</span></div>
+  <div class="callout call3">Companies with EV &lt;$1bn are more<br>than <span class="blue">20% less levered</span> on average</div>
+
+  <div class="subttl st1">Distribution of U.S. Private<br>Companies by Size<span class="footnote">1</span></div>
+
+  <div class="subttl st2">Median Purchase Price Multiples</div>
+  <div class="subsub ss2">Buyouts 2010 – Q2 2024<span class="footnote">2</span></div>
+
+  <div class="subttl st3">Average Leverage Multiple</div>
+  <div class="subsub ss3">Acquisition Years 2000 – 2020<span class="footnote">3</span></div>
+
+  <!-- Left pyramid -->
+  <div style="left:32px; top:310px; width:286px; height:306px; position:absolute;">
+    <svg width="286" height="306" viewBox="0 0 286 306" xmlns="http://www.w3.org/2000/svg" style="position:absolute; left:0; top:0;">
+      <polygon points="0,305 101,0 203,305" fill="#0b4d91"/>
+      <polygon points="77,56 101,0 125,56" fill="#6fbaf4"/>
+      <polygon points="58,113 144,113 154,144 48,144" fill="#188ce3"/>
+      <polyline points="102,48 166,48 166,58" fill="none" stroke="#8ec8fa" stroke-width="2"/>
+      <polyline points="119,104 201,104 201,114" fill="none" stroke="#8ec8fa" stroke-width="2"/>
+      <polyline points="136,121 220,121 220,305 193,305" fill="none" stroke="#8ec8fa" stroke-width="2"/>
+      <text x="102" y="214" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#f4f6f8">~90% of U.S.</text>
+      <text x="102" y="238" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#f4f6f8">Private</text>
+      <text x="102" y="262" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#f4f6f8">Companies</text>
+    </svg>
+
+    <div class="leftlabel" style="left:122px; top:17px; width:140px;">$300mm+ Annual Revenue</div>
+    <div class="leftsmall" style="left:122px; top:37px; width:100px;">~5k companies</div>
+
+    <div class="leftlabel" style="left:139px; top:73px; width:145px;">$100 - $300mm Annual Revenue</div>
+    <div class="leftsmall" style="left:139px; top:92px; width:95px;">~7k companies</div>
+
+    <div class="leftlabel" style="left:176px; top:179px; width:106px;">$10-$100mm Annual Revenue</div>
+    <div class="leftsmall" style="left:176px; top:203px; width:88px;">~92k companies</div>
+  </div>
+
+  <!-- Center chart -->
+  <div class="chartbox" style="left:379px; top:326px; width:86px; height:287px;"></div>
+  <div class="axislabel" style="left:372px; top:511px;">EV / EBITDA</div>
+
+  <div style="left:398px; top:364px; width:51px; height:214px; background:#188ce3;"></div>
+  <div style="left:487px; top:352px; width:51px; height:226px; background:#0b4d91;"></div>
+  <div style="left:576px; top:345px; width:51px; height:233px; background:#f4b938;"></div>
+
+  <div style="left:379px; top:579px; width:268px; height:1px; background:#d5d5d5;"></div>
+
+  <div class="barlabel" style="left:385px; top:343px; width:77px;">12.2x</div>
+  <div class="barlabel" style="left:474px; top:331px; width:77px;">12.9x</div>
+  <div class="barlabel" style="left:563px; top:322px; width:77px;">13.3x</div>
+
+  <div class="xlabel" style="left:376px; top:585px; width:92px;">$100 million - $1<br>billion</div>
+  <div class="xlabel" style="left:465px; top:585px; width:95px;">$1 billion - $2.5<br>billion</div>
+  <div class="xlabel" style="left:563px; top:585px; width:76px;">&gt;$2.5 billion</div>
+  <div class="axisbottom" style="left:438px; top:615px; width:150px;">Company Enterprise Value</div>
+
+  <!-- Right chart -->
+  <div class="chartbox" style="left:730px; top:358px; width:194px; height:255px;"></div>
+  <div class="axislabel" style="left:722px; top:518px;">Net Debt / EBITDA</div>
+
+  <div style="left:741px; top:453px; width:55px; height:126px; background:#188ce3;"></div>
+  <div style="left:823px; top:399px; width:55px; height:180px; background:#0b4d91;"></div>
+  <div style="left:906px; top:348px; width:56px; height:231px; background:#f4b938;"></div>
+
+  <div style="left:726px; top:579px; width:250px; height:1px; background:#d5d5d5;"></div>
+
+  <div class="barlabel" style="left:730px; top:435px; width:77px;">3.2x</div>
+  <div class="barlabel" style="left:812px; top:381px; width:77px;">4.6x</div>
+  <div class="barlabel" style="left:896px; top:329px; width:77px;">5.9x</div>
+
+  <div class="xlabel" style="left:728px; top:585px; width:82px;">&lt; $250 million</div>
+  <div class="xlabel" style="left:806px; top:585px; width:92px;">$250 million -<br>$1 billion</div>
+  <div class="xlabel" style="left:902px; top:585px; width:70px;">$1 billion+</div>
+  <div class="axisbottom" style="left:779px; top:615px; width:100px;">Company Enterprise Value</div>
+
+  <div class="footnotes">
+    1 Source: FactSet as of 2/6/2025.<br>
+    2 Source: Pitchbook. Median Transaction Value / EBITDA Multiples of US buyout deals occurring between 2010 and 6/30/2024.<br>
+    3 Source: Cambridge Associates LLC Private Investments database (as reported by investment managers), FactSet Research Systems, and Frank Russell Company. Reflecting averages as of 12/31/2020~, and outliers were identified and excluded from calculations. Includes unrealized and realized US-based buyout and growth equity companies acquired between 2000 and 2020. USPE counts vary by metric and size ranging from 677 to 4,938 companies. Company size based on enterprise value at acquisition. Small cap = enterprise values of less than $250 million, mid cap = enterprise values from $250 million to $1 billion, and large cap = enterprise values greater than $1 billion.
+  </div>
+
+  <div class="pagenum">27</div>
+
+  <div class="logo">
+    <div class="jp">J.P.Morgan</div>
+    <div class="am">ASSET MANAGEMENT</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Personified AI Slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #7d7d7e;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: linear-gradient(to right, #f2f2f2 0 56.1%, #000 56.1% 100%);
+  }
+
+  .top-left {
+    position: absolute;
+    left: 60px;
+    top: 36px;
+    font-size: 14px;
+    color: #4b5b60;
+    letter-spacing: -0.1px;
+  }
+  .top-left .purple {
+    color: #a13cff;
+  }
+
+  .top-right {
+    position: absolute;
+    right: 60px;
+    top: 36px;
+    font-size: 14px;
+    color: #d8d8d8;
+  }
+  .top-right .page {
+    margin-left: 24px;
+  }
+
+  .title {
+    position: absolute;
+    left: 60px;
+    top: 118px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: -0.4px;
+  }
+
+  .col1 {
+    position: absolute;
+    left: 60px;
+    top: 172px;
+    width: 245px;
+    color: #2a2a2a;
+  }
+  .col2 {
+    position: absolute;
+    left: 375px;
+    top: 172px;
+    width: 265px;
+    color: #2a2a2a;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: #262626;
+    margin-bottom: 14px;
+    letter-spacing: -0.2px;
+  }
+  .body-text {
+    font-size: 13px;
+    line-height: 1.24;
+    color: #343434;
+  }
+
+  .spacer-large {
+    height: 44px;
+  }
+
+  .chevron {
+    position: absolute;
+    left: 57px;
+    bottom: 14px;
+    color: #b000ff;
+    font-size: 54px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .right-title {
+    position: absolute;
+    left: 748px;
+    top: 176px;
+    width: 430px;
+    font-size: 16px;
+    color: #b691e8;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .right-copy {
+    position: absolute;
+    left: 748px;
+    top: 196px;
+    width: 445px;
+    font-size: 13px;
+    line-height: 1.24;
+    color: #d0d0d0;
+  }
+
+  .chart-subtitle {
+    position: absolute;
+    left: 748px;
+    top: 278px;
+    width: 405px;
+    font-size: 12px;
+    line-height: 1.2;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .chart {
+    position: absolute;
+    left: 720px;
+    top: 316px;
+    width: 420px;
+    height: 290px;
+  }
+
+  .y-label {
+    position: absolute;
+    left: 0;
+    font-size: 11px;
+    color: #c8c8c8;
+  }
+  .x-label {
+    position: absolute;
+    font-size: 11px;
+    color: #ffffff;
+    font-weight: 700;
+    transform: translateX(-50%);
+  }
+
+  .x-axis {
+    position: absolute;
+    left: 68px;
+    bottom: 0;
+    width: 378px;
+    height: 1px;
+    background: #888;
+  }
+
+  .line-seg {
+    position: absolute;
+    height: 2px;
+    background: #b000ff;
+    transform-origin: left center;
+  }
+
+  .annotation {
+    position: absolute;
+    left: 130px;
+    top: 44px;
+    width: 118px;
+    font-size: 11px;
+    line-height: 1.2;
+    color: #d9d9d9;
+  }
+
+  .arrow-vert {
+    position: absolute;
+    left: 254px;
+    top: 44px;
+    width: 4px;
+    height: 156px;
+    background: #d9d9d9;
+  }
+  .arrow-vert:before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: -12px;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 14px solid #d9d9d9;
+  }
+  .arrow-top {
+    position: absolute;
+    left: 254px;
+    top: 44px;
+    width: 154px;
+    height: 2px;
+    background: #d9d9d9;
+  }
+  .multiplier {
+    position: absolute;
+    left: 270px;
+    top: 50px;
+    font-size: 25px;
+    color: #d9d9d9;
+    font-weight: 700;
+  }
+
+  .footnote {
+    position: absolute;
+    left: 748px;
+    bottom: 44px;
+    width: 465px;
+    font-size: 9px;
+    line-height: 1.25;
+    color: #bdbdbd;
+  }
+
+  .divider {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 720px;
+    background: rgba(255,255,255,0.08);
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left"><span class="purple">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+    <div class="top-right">Your Face, in the Future <span class="page">28</span></div>
+
+    <div class="title">Personified AI</div>
+
+    <div class="col1">
+      <div class="section-title">What is it?</div>
+      <div class="body-text">
+        Organizations are exploring how to take powerful generative AI models and give them human-like personalities. Through training, fine-tuning, and other techniques, they are starting to specify the words or phrases a model uses, how it structures sentences, or its speech patterns and tone. And when chatbots are accompanied by visual avatars, facial expressions can also help AI feel real.
+      </div>
+
+      <div class="spacer-large"></div>
+
+      <div class="section-title">How does it connect to the trend?</div>
+      <div class="body-text">
+        Personified AI might just seem like an interesting exercise in how models present themselves, but it will be a core differentiator for businesses in the future—both in how customers will interact with the business on their channels and how businesses will be represented by agents in other AI applications.
+      </div>
+    </div>
+
+    <div class="col2">
+      <div class="section-title">Who is doing it today?</div>
+      <div class="body-text">
+        AI leaders are starting to build personified AI capabilities. OpenAI described its GPT-4o, for instance, as a step toward more natural interactions between human and computer. It can talk to people with near-human response time in a convincingly human voice. Previously, people could use “Voice Mode” to converse with ChatGPT, but these interactions converted spoken queries into text, generated a response, then converted that response back to speech—which took time. GPT-4o is a single model trained across text, vision, and audio, meaning all inputs and outputs are processed by the same neural network.
+      </div>
+    </div>
+
+    <div class="right-title">Growing interest in AI for customer solutions</div>
+    <div class="right-copy">
+      Since the release of ChatGPT, executives have become more outspoken about AI involvement in customer interactions. As companies look to implement generative AI technologies, they need to carefully consider how the development of their customer-facing AIs will shape how customers perceive their organization.
+    </div>
+
+    <div class="chart-subtitle">
+      Number of mentions relating to AI and customer solutions<br>
+      in earnings call transcripts, 2020 - 2024*
+    </div>
+
+    <div class="chart">
+      <div class="y-label" style="left:32px; top:8px;">300</div>
+      <div class="y-label" style="left:32px; top:53px;">250</div>
+      <div class="y-label" style="left:32px; top:98px;">200</div>
+      <div class="y-label" style="left:32px; top:143px;">150</div>
+      <div class="y-label" style="left:32px; top:188px;">100</div>
+      <div class="y-label" style="left:32px; top:233px;">50</div>
+      <div class="y-label" style="left:47px; top:276px;">0</div>
+
+      <div class="x-axis"></div>
+
+      <div class="x-label" style="left:102px; bottom:-24px;">2020</div>
+      <div class="x-label" style="left:180px; bottom:-24px;">2021</div>
+      <div class="x-label" style="left:255px; bottom:-24px;">2022</div>
+      <div class="x-label" style="left:330px; bottom:-24px;">2023</div>
+      <div class="x-label" style="left:406px; bottom:-24px;">2024*</div>
+
+      <div class="line-seg" style="left:104px; top:206px; width:79px; transform: rotate(-14deg);"></div>
+      <div class="line-seg" style="left:180px; top:187px; width:79px; transform: rotate(21deg);"></div>
+      <div class="line-seg" style="left:255px; top:216px; width:82px; transform: rotate(-37deg);"></div>
+      <div class="line-seg" style="left:330px; top:166px; width:130px; transform: rotate(-52deg);"></div>
+
+      <div class="annotation">
+        Executive interest in<br>
+        AI-driven customer<br>
+        solutions surged<br>
+        after the release of<br>
+        ChatGPT (Nov 2022)
+      </div>
+      <div class="arrow-vert"></div>
+      <div class="arrow-top"></div>
+      <div class="multiplier">4x</div>
+    </div>
+
+    <div class="footnote">
+      Note: *2024 contains partial data through Oct 2024<br>
+      Source: Accenture Research analysis on earnings call transcripts of G3K companies; Jan 2020 – Oct 2024
+    </div>
+
+    <div class="chevron">&gt;</div>
+    <div class="divider"></div>
+  </div>
+</body>
+</html>

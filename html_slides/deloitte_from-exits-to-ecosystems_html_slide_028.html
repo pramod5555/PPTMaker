@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ececec;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+    color:#5c5c5c;
+  }
+  .slide > *{position:absolute; box-sizing:border-box;}
+
+  .qmark{
+    left:46px; top:46px;
+    font-size:38px; line-height:1;
+    font-weight:700; color:#000;
+  }
+
+  .left-copy{
+    left:54px; top:154px; width:305px;
+    font-size:19px; line-height:1.28;
+    font-weight:400; color:#666666;
+  }
+
+  .headline{
+    left:54px; top:260px; width:315px;
+    font-size:30px; line-height:1.14;
+    font-weight:700; color:#555555;
+  }
+
+  .base{
+    left:53px; top:610px; width:318px;
+    font-size:11px; line-height:1.45;
+    font-style:italic; color:#8a8a8a;
+  }
+
+  .report-line{
+    left:49px; top:728px;
+    transform:translateY(-100%);
+    font-size:12px; line-height:14px; color:#4c4c4c;
+  }
+
+  .page-line{
+    left:676px; top:728px;
+    transform:translateY(-100%);
+    width:30px; text-align:center;
+    font-size:12px; line-height:14px; color:#4c4c4c;
+  }
+
+  .chart-title{
+    left:376px; top:22px;
+    font-size:31px; line-height:1;
+    font-weight:400; color:#6a6a6a;
+    transform:scale(0.5);
+    transform-origin:left top;
+  }
+
+  .legend-likely{
+    left:554px; top:24px; width:16px; height:16px;
+    background:#27b2b2;
+    border:1px solid #27b2b2;
+  }
+  .legend-likely-text{
+    left:577px; top:22px;
+    font-size:15px; line-height:19px; color:#6b6b6b;
+  }
+  .legend-unlikely{
+    left:1114px; top:24px; width:16px; height:16px;
+    background:#1b246f;
+    border:1px solid #1b246f;
+  }
+  .legend-unlikely-text{
+    left:1137px; top:22px;
+    font-size:15px; line-height:19px; color:#6b6b6b;
+  }
+
+  .top-rule{
+    left:370px; top:52px; width:826px; height:1px;
+    background:#8192a0;
+  }
+  .short-rule{
+    left:370px; top:52px; width:168px; height:1px;
+    background:#8192a0;
+  }
+
+  .chart{
+    left:378px; top:84px; width:800px; height:588px;
+  }
+
+  .row-label{
+    position:absolute;
+    left:0; width:131px;
+    text-align:right;
+    font-size:11px; line-height:16px;
+    color:#777777;
+  }
+
+  .bar-l{
+    position:absolute;
+    left:141px; height:16px;
+    background:#28b2b3;
+    border-top:1px solid rgba(255,255,255,.45);
+    border-bottom:1px solid rgba(255,255,255,.45);
+  }
+  .bar-l.avg{
+    background:transparent;
+    border:1px solid #4ac4c8;
+    height:15px;
+  }
+
+  .val-l{
+    position:absolute;
+    left:150px; width:50px; height:16px;
+    font-size:11px; line-height:16px;
+    font-weight:700; color:#ffffff;
+  }
+
+  .bar-r{
+    position:absolute;
+    height:16px;
+    background:#1b246f;
+    border-top:1px solid rgba(255,255,255,.28);
+    border-bottom:1px solid rgba(255,255,255,.28);
+  }
+  .bar-r.avg{
+    background:transparent;
+    border:1px solid #1b246f;
+    height:15px;
+  }
+
+  .val-r{
+    position:absolute;
+    width:46px; height:16px;
+    font-size:11px; line-height:16px;
+    font-weight:700; color:#ffffff;
+    text-align:right; padding-right:4px;
+  }
+  .val-r.avg{ color:#1b246f; }
+
+  .highlight{
+    left:432px; top:532px; width:895px; height:20px;
+    border:2px solid #22b36f;
+    background:transparent;
+    z-index:10;
+  }
+
+  .ipsos{
+    right:12px; bottom:11px;
+    width:55px; height:50px;
+    background:#2c3f90;
+    overflow:hidden;
+  }
+  .ipsos .teal{
+    position:absolute; right:0; top:0;
+    width:29px; height:50px; background:#18b5ae;
+    clip-path:polygon(28% 0,100% 0,100% 100%,0 100%,18% 62%);
+  }
+  .ipsos .green{
+    position:absolute; left:20px; top:5px;
+    width:18px; height:28px; background:#48b56d;
+    border-radius:10px 10px 10px 10px / 13px 13px 9px 9px;
+    clip-path:polygon(42% 0,74% 8%,88% 24%,80% 44%,92% 66%,72% 100%,38% 92%,22% 71%,17% 46%,21% 18%);
+    opacity:.95;
+  }
+  .ipsos .text{
+    position:absolute; left:6px; bottom:5px;
+    font-size:14px; line-height:14px;
+    font-weight:700; color:#fff;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qmark">Q.</div>
+
+  <div class="left-copy">
+    For each of the following, please<br>
+    tell me how likely or unlikely you<br>
+    think they are to happen...?
+  </div>
+
+  <div class="headline">
+    Taxes in my country<br>
+    will be higher in 2025<br>
+    than in 2024
+  </div>
+
+  <div class="base">
+    Base: 23,721 adults aged 18 years and older in India, 18-74 in<br>
+    Canada, Republic of Ireland, Malaysia, the Philippines, South<br>
+    Africa, Turkey, and the United States, 20-74 in Thailand, 21-74<br>
+    in Indonesia and Singapore, and 16-74 in all other countries.<br>
+    Friday, October 25 – Friday November 8, 2024
+  </div>
+
+  <div class="chart-title">Market</div>
+  <div class="legend-likely"></div>
+  <div class="legend-likely-text">Likely</div>
+  <div class="legend-unlikely"></div>
+  <div class="legend-unlikely-text">Unlikely</div>
+  <div class="top-rule"></div>
+  <div class="short-rule"></div>
+
+  <div class="chart">
+    <div class="row-label" style="top:0px;">Global Country Average</div>
+    <div class="bar-l avg" style="top:1px; width:489px;"></div>
+    <div class="val-l" style="top:0px; color:#28b2b3;">74%</div>
+    <div class="bar-r avg" style="top:1px; left:539px; width:119px;"></div>
+    <div class="val-r avg" style="top:0px; left:612px;">18%</div>
+
+    <div class="row-label" style="top:18px;">Romania</div>
+    <div class="bar-l" style="top:18px; width:581px;"></div>
+    <div class="val-l" style="top:18px;">88%</div>
+    <div class="bar-r" style="top:18px; left:600px; width:59px;"></div>
+    <div class="val-r" style="top:18px; left:613px;">9%</div>
+
+    <div class="row-label" style="top:36px;">Türkiye</div>
+    <div class="bar-l" style="top:36px; width:581px;"></div>
+    <div class="val-l" style="top:36px;">88%</div>
+    <div class="bar-r" style="top:36px; left:593px; width:66px;"></div>
+    <div class="val-r" style="top:36px; left:613px;">10%</div>
+
+    <div class="row-label" style="top:54px;">Indonesia</div>
+    <div class="bar-l" style="top:54px; width:574px;"></div>
+    <div class="val-l" style="top:54px;">87%</div>
+    <div class="bar-r" style="top:54px; left:593px; width:66px;"></div>
+    <div class="val-r" style="top:54px; left:613px;">10%</div>
+
+    <div class="row-label" style="top:72px;">Philippines</div>
+    <div class="bar-l" style="top:72px; width:574px;"></div>
+    <div class="val-l" style="top:72px;">87%</div>
+    <div class="bar-r" style="top:72px; left:600px; width:59px;"></div>
+    <div class="val-r" style="top:72px; left:613px;">9%</div>
+
+    <div class="row-label" style="top:90px;">France</div>
+    <div class="bar-l" style="top:90px; width:568px;"></div>
+    <div class="val-l" style="top:90px;">86%</div>
+    <div class="bar-r" style="top:90px; left:600px; width:59px;"></div>
+    <div class="val-r" style="top:90px; left:613px;">9%</div>
+
+    <div class="row-label" style="top:108px;">Great Britain</div>
+    <div class="bar-l" style="top:108px; width:561px;"></div>
+    <div class="val-l" style="top:108px;">85%</div>
+    <div class="bar-r" style="top:108px; left:607px; width:46px;"></div>
+    <div class="val-r" style="top:108px; left:607px;">7%</div>
+
+    <div class="row-label" style="top:126px;">Netherlands</div>
+    <div class="bar-l" style="top:126px; width:554px;"></div>
+    <div class="val-l" style="top:126px;">84%</div>
+    <div class="bar-r" style="top:126px; left:581px; width:72px;"></div>
+    <div class="val-r" style="top:126px; left:607px;">11%</div>
+
+    <div class="row-label" style="top:144px;">South Africa</div>
+    <div class="bar-l" style="top:144px; width:541px;"></div>
+    <div class="val-l" style="top:144px;">82%</div>
+    <div class="bar-r" style="top:144px; left:555px; width:98px;"></div>
+    <div class="val-r" style="top:144px; left:607px;">15%</div>
+
+    <div class="row-label" style="top:162px;">Malaysia</div>
+    <div class="bar-l" style="top:162px; width:528px;"></div>
+    <div class="val-l" style="top:162px;">80%</div>
+    <div class="bar-r" style="top:162px; left:555px; width:98px;"></div>
+    <div class="val-r" style="top:162px; left:607px;">15%</div>
+
+    <div class="row-label" style="top:180px;">Colombia</div>
+    <div class="bar-l" style="top:180px; width:521px;"></div>
+    <div class="val-l" style="top:180px;">79%</div>
+    <div class="bar-r" style="top:180px; left:545px; width:112px;"></div>
+    <div class="val-r" style="top:180px; left:611px;">17%</div>
+
+    <div class="row-label" style="top:198px;">Belgium</div>
+    <div class="bar-l" style="top:198px; width:521px;"></div>
+    <div class="val-l" style="top:198px;">79%</div>
+    <div class="bar-r" style="top:198px; left:571px; width:86px;"></div>
+    <div class="val-r" style="top:198px; left:611px;">13%</div>
+
+    <div class="row-label" style="top:216px;">Chile</div>
+    <div class="bar-l" style="top:216px; width:521px;"></div>
+    <div class="val-l" style="top:216px;">79%</div>
+    <div class="bar-r" style="top:216px; left:555px; width:98px;"></div>
+    <div class="val-r" style="top:216px; left:607px;">15%</div>
+
+    <div class="row-label" style="top:234px;">Canada</div>
+    <div class="bar-l" style="top:234px; width:508px;"></div>
+    <div class="val-l" style="top:234px;">77%</div>
+    <div class="bar-r" style="top:234px; left:571px; width:86px;"></div>
+    <div class="val-r" style="top:234px; left:611px;">13%</div>
+
+    <div class="row-label" style="top:252px;">Hungary</div>
+    <div class="bar-l" style="top:252px; width:508px;"></div>
+    <div class="val-l" style="top:252px;">77%</div>
+    <div class="bar-r" style="top:252px; left:551px; width:106px;"></div>
+    <div class="val-r" style="top:252px; left:611px;">16%</div>
+
+    <div class="row-label" style="top:270px;">South Korea</div>
+    <div class="bar-l" style="top:270px; width:508px;"></div>
+    <div class="val-l" style="top:270px;">77%</div>
+    <div class="bar-r" style="top:270px; left:545px; width:112px;"></div>
+    <div class="val-r" style="top:270px; left:611px;">17%</div>
+
+    <div class="row-label" style="top:288px;">Singapore</div>
+    <div class="bar-l" style="top:288px; width:502px;"></div>
+    <div class="val-l" style="top:288px;">76%</div>
+    <div class="bar-r" style="top:288px; left:545px; width:112px;"></div>
+    <div class="val-r" style="top:288px; left:611px;">17%</div>
+
+    <div class="row-label" style="top:306px;">Spain</div>
+    <div class="bar-l" style="top:306px; width:502px;"></div>
+    <div class="val-l" style="top:306px;">76%</div>
+    <div class="bar-r" style="top:306px; left:555px; width:98px;"></div>
+    <div class="val-r" style="top:306px; left:607px;">15%</div>
+
+    <div class="row-label" style="top:324px;">Germany</div>
+    <div class="bar-l" style="top:324px; width:495px;"></div>
+    <div class="val-l" style="top:324px;">75%</div>
+    <div class="bar-r" style="top:324px; left:555px; width:98px;"></div>
+    <div class="val-r" style="top:324px; left:607px;">15%</div>
+
+    <div class="row-label" style="top:342px;">Thailand</div>
+    <div class="bar-l" style="top:342px; width:495px;"></div>
+    <div class="val-l" style="top:342px;">75%</div>
+    <div class="bar-r" style="top:342px; left:515px; width:138px;"></div>
+    <div class="val-r" style="top:342px; left:607px;">21%</div>
+
+    <div class="row-label" style="top:360px;">Mexico</div>
+    <div class="bar-l" style="top:360px; width:482px;"></div>
+    <div class="val-l" style="top:360px;">73%</div>
+    <div class="bar-r" style="top:360px; left:508px; width:145px;"></div>
+    <div class="val-r" style="top:360px; left:607px;">22%</div>
+
+    <div class="row-label" style="top:378px;">Poland</div>
+    <div class="bar-l" style="top:378px; width:482px;"></div>
+    <div class="val-l" style="top:378px;">73%</div>
+    <div class="bar-r" style="top:378px; left:545px; width:106px;"></div>
+    <div class="val-r" style="top:378px; left:605px;">16%</div>
+
+    <div class="row-label" style="top:396px;">Brazil</div>
+    <div class="bar-l" style="top:396px; width:475px;"></div>
+    <div class="val-l" style="top:396px;">72%</div>
+    <div class="bar-r" style="top:396px; left:521px; width:132px;"></div>
+    <div class="val-r" style="top:396px; left:607px;">20%</div>
+
+    <div class="row-label" style="top:414px;">Japan</div>
+    <div class="bar-l" style="top:414px; width:469px;"></div>
+    <div class="val-l" style="top:414px;">71%</div>
+    <div class="bar-r" style="top:414px; left:546px; width:105px;"></div>
+    <div class="val-r" style="top:414px; left:605px;">16%</div>
+
+    <div class="row-label" style="top:432px;">Italy</div>
+    <div class="bar-l" style="top:432px; width:462px;"></div>
+    <div class="val-l" style="top:432px;">70%</div>
+    <div class="bar-r" style="top:432px; left:521px; width:132px;"></div>
+    <div class="val-r" style="top:432px; left:607px;">20%</div>
+
+    <div class="row-label" style="top:450px;">Peru</div>
+    <div class="bar-l" style="top:450px; width:462px;"></div>
+    <div class="val-l" style="top:450px;">70%</div>
+    <div class="bar-r" style="top:450px; left:515px; width:138px;"></div>
+    <div class="val-r" style="top:450px; left:607px;">21%</div>
+
+    <div class="row-label" style="top:468px;">Australia</div>
+    <div class="bar-l" style="top:468px; width:442px;"></div>
+    <div class="val-l" style="top:468px;">67%</div>
+    <div class="bar-r" style="top:468px; left:502px; width:151px;"></div>
+    <div class="val-r" style="top:468px; left:607px;">23%</div>
+
+    <div class="row-label" style="top:486px;">Argentina</div>
+    <div class="bar-l" style="top:486px; width:442px;"></div>
+    <div class="val-l" style="top:486px;">67%</div>
+    <div class="bar-r" style="top:486px; left:489px; width:164px;"></div>
+    <div class="val-r" style="top:486px; left:607px;">25%</div>
+
+    <div class="row-label" style="top:504px;">Switzerland</div>
+    <div class="bar-l" style="top:504px; width:436px;"></div>
+    <div class="val-l" style="top:504px;">66%</div>
+    <div class="bar-r" style="top:504px; left:508px; width:145px;"></div>
+    <div class="val-r" style="top:504px; left:607px;">22%</div>
+
+    <div class="row-label" style="top:522px;">United States</div>
+    <div class="bar-l" style="top:522px; width:403px;"></div>
+    <div class="val-l" style="top:522px;">61%</div>
+    <div class="bar-r" style="top:522px; left:502px; width:151px;"></div>
+    <div class="val-r" style="top:522px; left:607px;">23%</div>
+
+    <div class="row-label" style="top:540px;">Ireland</div>
+    <div class="bar-l" style="top:540px; width:403px;"></div>
+    <div class="val-l" style="top:540px;">61%</div>
+    <div class="bar-r" style="top:540px; left:454px; width:205px;"></div>
+    <div class="val-r" style="top:540px; left:613px;">31%</div>
+
+    <div class="row-label" style="top:558px;">India</div>
+    <div class="bar-l" style="top:558px; width:396px;"></div>
+    <div class="val-l" style="top:558px;">60%</div>
+    <div class="bar-r" style="top:558px; left:454px; width:205px;"></div>
+    <div class="val-r" style="top:558px; left:613px;">31%</div>
+
+    <div class="row-label" style="top:576px;">China</div>
+    <div class="bar-l" style="top:576px; width:343px;"></div>
+    <div class="val-l" style="top:576px;">52%</div>
+    <div class="bar-r" style="top:576px; left:409px; width:264px;"></div>
+    <div class="val-r" style="top:576px; left:627px;">40%</div>
+
+    <div class="row-label" style="top:594px;">Sweden</div>
+    <div class="bar-l" style="top:594px; width:310px;"></div>
+    <div class="val-l" style="top:594px;">47%</div>
+    <div class="bar-r" style="top:594px; left:393px; width:277px;"></div>
+    <div class="val-r" style="top:594px; left:624px;">42%</div>
+  </div>
+
+  <div class="highlight"></div>
+
+  <div class="report-line">© Ipsos Predictions 2025 Report</div>
+  <div class="page-line">28</div>
+
+  <div class="ipsos">
+    <div class="teal"></div>
+    <div class="green"></div>
+    <div class="text">Ipsos</div>
+  </div>
+</div>
+</body>
+</html>

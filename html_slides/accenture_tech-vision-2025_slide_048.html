@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Timeline Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#030304;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#030304;
+    color:#d9d9de;
+  }
+
+  .top-left{
+    position:absolute;
+    left:30px;
+    top:36px;
+    font-size:15px;
+    color:#d7d4dc;
+    white-space:nowrap;
+  }
+  .top-left .accent{ color:#9f76cf; }
+  .top-right{
+    position:absolute;
+    right:40px;
+    top:36px;
+    font-size:15px;
+    color:#d7d4dc;
+    white-space:nowrap;
+  }
+  .top-right .num{
+    display:inline-block;
+    margin-left:18px;
+    color:#d7d4dc;
+  }
+
+  .box{
+    position:absolute;
+    border:1px dotted #31004D;
+    box-sizing:border-box;
+  }
+
+  .top-box{
+    left:30px;
+    top:101px;
+    width:1238px;
+    height:182px;
+  }
+
+  .mid-box{
+    left:30px;
+    top:309px;
+    width:1238px;
+    height:184px;
+  }
+
+  .line{
+    position:absolute;
+    height:1px;
+    background:#8d8695;
+  }
+
+  .tick{
+    position:absolute;
+    width:2px;
+    background:#8d8695;
+  }
+
+  .purple-line{
+    position:absolute;
+    height:2px;
+    background:#9a00ff;
+  }
+
+  .purple-tick{
+    position:absolute;
+    width:2px;
+    background:#9a00ff;
+  }
+
+  .arrow-head{
+    position:absolute;
+    width:0;
+    height:0;
+    border-top:5px solid transparent;
+    border-bottom:5px solid transparent;
+    border-left:6px solid #9a00ff;
+  }
+
+  .event{
+    position:absolute;
+    color:#ddd9df;
+  }
+  .event .year{
+    font-size:15px;
+    line-height:1;
+    margin-bottom:18px;
+    color:#d8d5dc;
+    font-weight:400;
+  }
+  .event .desc{
+    font-size:14px;
+    line-height:1.35;
+    color:#d8d5dc;
+  }
+
+  .event.future .year{
+    color:#b100ff;
+  }
+
+  .bottom-mark{
+    position:absolute;
+    left:25px;
+    bottom:-2px;
+    color:#b100ff;
+    font-size:54px;
+    line-height:1;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-left"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+  <div class="top-right">The New Learning Loop <span class="num">48</span></div>
+
+  <div class="box top-box"></div>
+  <div class="line" style="left:31px; top:101px; width:1237px;"></div>
+
+  <div class="tick" style="left:31px; top:101px; height:16px;"></div>
+  <div class="tick" style="left:211px; top:101px; height:16px;"></div>
+  <div class="tick" style="left:391px; top:101px; height:16px;"></div>
+  <div class="tick" style="left:571px; top:101px; height:16px;"></div>
+  <div class="tick" style="left:751px; top:101px; height:16px;"></div>
+  <div class="tick" style="left:931px; top:101px; height:16px;"></div>
+  <div class="tick" style="left:1106px; top:101px; height:16px;"></div>
+
+  <div class="event" style="left:42px; top:110px; width:145px;">
+    <div class="year">1760</div>
+    <div class="desc">The Industrial Revolution starts a shift from an agrarian and handicraft economy to machine manufacturing¹¹</div>
+  </div>
+
+  <div class="event" style="left:225px; top:110px; width:137px;">
+    <div class="year">1800</div>
+    <div class="desc">75% of the U.S. paid labor force is in agriculture¹²</div>
+  </div>
+
+  <div class="event" style="left:401px; top:110px; width:151px;">
+    <div class="year">1890</div>
+    <div class="desc">The U.S. census incorporates tabulators, cutting calculation time from seven to three years¹³,¹⁴</div>
+  </div>
+
+  <div class="event" style="left:582px; top:110px; width:142px;">
+    <div class="year">1913</div>
+    <div class="desc">Henry Ford installs the first moving assembly line for cars¹⁵</div>
+  </div>
+
+  <div class="event" style="left:763px; top:110px; width:144px;">
+    <div class="year">1964</div>
+    <div class="desc">IBM releases the IBM Magnetic Tape/Selectric Typewriter, transforming desk work¹⁶</div>
+  </div>
+
+  <div class="event" style="left:940px; top:110px; width:151px;">
+    <div class="year">1980</div>
+    <div class="desc">Steve Jobs likens the personal computer to a bicycle—machines that amplify people's abilities¹⁷</div>
+  </div>
+
+  <div class="event" style="left:1117px; top:110px; width:117px;">
+    <div class="year">1994</div>
+    <div class="desc">Netscape Navigator is released and transforms how people access information¹⁸</div>
+  </div>
+
+  <div class="box mid-box"></div>
+  <div class="purple-line" style="left:31px; top:309px; width:1237px;"></div>
+
+  <div class="purple-tick" style="left:31px; top:309px; height:17px;"></div>
+  <div class="purple-tick" style="left:212px; top:309px; height:17px;"></div>
+  <div class="purple-tick" style="left:391px; top:309px; height:17px;"></div>
+  <div class="purple-tick" style="left:571px; top:309px; height:17px;"></div>
+  <div class="purple-tick" style="left:752px; top:309px; height:17px;"></div>
+  <div class="purple-tick" style="left:931px; top:309px; height:17px;"></div>
+  <div class="purple-tick" style="left:1107px; top:309px; height:17px;"></div>
+
+  <div class="event" style="left:41px; top:318px; width:145px;">
+    <div class="year">2000</div>
+    <div class="desc">2% of the U.S. paid labor force is in agriculture¹⁹</div>
+  </div>
+
+  <div class="event" style="left:225px; top:318px; width:144px;">
+    <div class="year">2020</div>
+    <div class="desc">OpenAI unveils GPT-3, which has abilities like writing code²⁰</div>
+  </div>
+
+  <div class="event" style="left:401px; top:318px; width:148px;">
+    <div class="year">2023</div>
+    <div class="desc">Microsoft launches Microsoft 365 Copilot, calling it “the most powerful productivity tool on the planet”²¹</div>
+  </div>
+
+  <div class="event future" style="left:582px; top:318px; width:95px;">
+    <div class="year">Future</div>
+  </div>
+
+  <div class="event" style="left:760px; top:318px; width:134px;">
+    <div class="year">2025</div>
+    <div class="desc">75% of knowledge workers have employer-provided generative AI tools</div>
+  </div>
+
+  <div class="event" style="left:940px; top:318px; width:145px;">
+    <div class="year">2027</div>
+    <div class="desc">A major company starts a program to reward employees for automating tasks</div>
+  </div>
+
+  <div class="event" style="left:1117px; top:318px; width:118px;">
+    <div class="year">2030</div>
+    <div class="desc">More than half of Fortune 500 companies have autonomous supply chain management systems</div>
+  </div>
+
+  <div class="purple-line" style="left:31px; top:518px; width:359px;"></div>
+  <div class="purple-tick" style="left:31px; top:518px; height:15px;"></div>
+  <div class="purple-tick" style="left:212px; top:518px; height:15px;"></div>
+  <div class="arrow-head" style="left:389px; top:513px;"></div>
+
+  <div class="event" style="left:41px; top:528px; width:145px;">
+    <div class="year" style="color:#b100ff;">2032</div>
+    <div class="desc">Unions and construction companies reach an agreement on using human-robot teams in Europe</div>
+  </div>
+
+  <div class="event" style="left:223px; top:528px; width:171px;">
+    <div class="year" style="color:#b100ff;">2035</div>
+    <div class="desc">Most industries see profit-per-employee double over the last decade</div>
+  </div>
+
+  <div class="bottom-mark">&gt;</div>
+</div>
+</body>
+</html>

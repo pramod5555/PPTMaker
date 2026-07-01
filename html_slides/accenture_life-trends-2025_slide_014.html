@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#b9b9cb;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+
+  .left-title{
+    position:absolute;
+    left:60px;
+    top:52px;
+    width:310px;
+    color:#7a28d8;
+    font-size:28px;
+    line-height:1.42;
+    font-weight:300;
+    letter-spacing:-0.2px;
+  }
+
+  .hero{
+    position:absolute;
+    left:435px;
+    top:0px;
+    width:782px;
+    height:383px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 15% 75%, rgba(255,152,64,0.85) 0 3%, rgba(255,152,64,0.1) 5%, transparent 9%),
+      radial-gradient(circle at 25% 70%, rgba(255,245,215,0.9) 0 5%, rgba(255,245,215,0.15) 9%, transparent 16%),
+      radial-gradient(circle at 78% 58%, rgba(255,223,112,0.8) 0 3%, rgba(255,223,112,0.1) 6%, transparent 10%),
+      radial-gradient(circle at 84% 56%, rgba(255,231,121,0.85) 0 3%, rgba(255,231,121,0.08) 6%, transparent 10%),
+      radial-gradient(circle at 90% 57%, rgba(255,221,87,0.75) 0 3%, rgba(255,221,87,0.08) 6%, transparent 9%),
+      radial-gradient(circle at 95% 18%, rgba(108,180,255,0.35) 0 2%, transparent 8%),
+      linear-gradient(90deg, rgba(18,14,52,0.96) 0%, rgba(24,26,80,0.88) 48%, rgba(28,54,126,0.9) 100%);
+  }
+  .hero:before{
+    content:"";
+    position:absolute;
+    left:285px;
+    top:95px;
+    width:250px;
+    height:220px;
+    border-radius:45% 35% 45% 35%;
+    background:
+      radial-gradient(circle at 48% 32%, rgba(255,232,218,0.95) 0 18%, rgba(244,214,196,0.8) 21%, rgba(0,0,0,0) 36%),
+      radial-gradient(circle at 58% 60%, rgba(245,224,209,0.88) 0 18%, rgba(239,203,180,0.55) 28%, transparent 43%),
+      linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0));
+    filter: blur(10px);
+    transform: rotate(10deg);
+    opacity:0.95;
+  }
+  .hero:after{
+    content:"";
+    position:absolute;
+    left:176px;
+    top:-4px;
+    width:310px;
+    height:220px;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 55% 40%, rgba(14,12,41,0.98) 0 38%, rgba(28,20,66,0.92) 50%, transparent 60%),
+      linear-gradient(180deg, rgba(30,28,82,0.95), rgba(18,17,59,0.85));
+    filter: blur(4px);
+    transform: rotate(14deg);
+    opacity:0.92;
+  }
+  .ear{
+    position:absolute;
+    left:710px;
+    top:50px;
+    width:76px;
+    height:58px;
+    border-radius:52% 48% 50% 50%;
+    background:
+      radial-gradient(circle at 55% 48%, rgba(121,73,69,0.95) 0 10%, rgba(215,170,145,0.95) 26%, rgba(138,92,86,0.9) 48%, rgba(236,197,172,0.9) 68%, rgba(109,68,66,0.8) 100%);
+    filter: blur(1px);
+    transform: rotate(18deg);
+    opacity:0.95;
+  }
+  .shoulder{
+    position:absolute;
+    left:745px;
+    top:151px;
+    width:265px;
+    height:232px;
+    background:
+      linear-gradient(120deg, rgba(238,225,209,0.92) 0 28%, rgba(250,246,244,0.9) 45%, rgba(72,70,112,0.75) 72%, rgba(46,41,94,0.85) 100%);
+    border-radius:40% 10% 0 0;
+    filter: blur(7px);
+    opacity:0.86;
+  }
+
+  .blur-box{
+    position:absolute;
+    left:62px;
+    top:383px;
+    width:373px;
+    height:329px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 17% 48%, rgba(255,156,79,0.85) 0 4%, rgba(255,156,79,0.1) 7%, transparent 12%),
+      radial-gradient(circle at 27% 75%, rgba(240,240,225,0.95) 0 4%, rgba(240,240,225,0.1) 8%, transparent 16%),
+      radial-gradient(circle at 64% 23%, rgba(230,238,166,0.8) 0 5%, rgba(230,238,166,0.1) 10%, transparent 18%),
+      radial-gradient(circle at 69% 39%, rgba(255,246,224,0.9) 0 9%, rgba(255,246,224,0.12) 16%, transparent 23%),
+      radial-gradient(circle at 90% 88%, rgba(89,117,255,0.7) 0 5%, rgba(89,117,255,0.08) 10%, transparent 17%),
+      linear-gradient(135deg, rgba(7,15,70,0.98) 0%, rgba(9,14,52,0.92) 60%, rgba(21,40,101,0.95) 100%);
+  }
+
+  .text-panel{
+    position:absolute;
+    left:435px;
+    top:383px;
+    width:782px;
+    height:329px;
+    background:#f1f1f1;
+  }
+  .col{
+    position:absolute;
+    top:48px;
+    width:346px;
+    color:#222;
+    font-size:18px;
+    line-height:1.38;
+    font-weight:400;
+  }
+  .col.left{ left:48px; }
+  .col.right{ left:468px; }
+
+  .footer-bar{
+    position:absolute;
+    left:435px;
+    top:712px;
+    width:782px;
+    height:8px;
+    background:#575678;
+  }
+
+  .footer-note{
+    position:absolute;
+    right:72px;
+    bottom:18px;
+    color:#f0f0f5;
+    font-size:14px;
+    line-height:1;
+    font-weight:400;
+  }
+  .footer-page{
+    position:absolute;
+    right:20px;
+    bottom:18px;
+    color:#777;
+    font-size:14px;
+    line-height:1;
+  }
+
+  .side-tab{
+    position:absolute;
+    right:0px;
+    top:22px;
+    width:34px;
+    height:122px;
+    background:linear-gradient(180deg, #f2f2f2 0%, #e4e4e4 100%);
+    border-radius:0 0 0 10px;
+  }
+  .side-tab span{
+    position:absolute;
+    left:7px;
+    top:12px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    color:#7a28d8;
+    font-size:16px;
+    font-weight:600;
+  }
+
+  .side-label{
+    position:absolute;
+    right:11px;
+    top:169px;
+    height:445px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    color:#6d6d6d;
+    font-size:13px;
+    line-height:1.1;
+    letter-spacing:0.2px;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-title">
+      For years,<br>
+      organizations have<br>
+      been asking people<br>
+      to prove who they<br>
+      are. Now, brands are<br>
+      on the hook to do<br>
+      the same.
+    </div>
+
+    <div class="hero"></div>
+    <div class="ear"></div>
+    <div class="shoulder"></div>
+
+    <div class="blur-box"></div>
+
+    <div class="text-panel">
+      <div class="col left">
+        In the absence of adequate action from those<br>
+        responsible for moderating this technology,<br>
+        people are increasingly skeptical of what they see<br>
+        online, leading to a risk that they hesitate to sign<br>
+        up, opt in or buy now. Search, social, commerce<br>
+        and consumption channels must tread carefully.<br>
+        Trust is easier broken than built, and the early signs<br>
+        are that consumers may already be seeking<br>
+        alternatives. Brands will need to be ready.
+      </div>
+
+      <div class="col right">
+        Is people’s well-being simply considered the cost<br>
+        of progress? Digital interactions are now riddled<br>
+        with pitfalls and confusion, and inaction implies<br>
+        that the impact on people’s lives doesn’t matter.<br>
+        Brands’ best route to enabling people to engage<br>
+        online without hesitation is to focus on reassurance<br>
+        and trust to serve their needs—not at the expense<br>
+        of strategic targets, but in addition to them. People<br>
+        need clear reasons to trust and engage with a<br>
+        brand online.
+      </div>
+    </div>
+
+    <div class="footer-bar"></div>
+    <div class="footer-note">Accenture Life Trends 2025</div>
+    <div class="footer-page">14</div>
+
+    <div class="side-tab"><span>Cost of hesitations</span></div>
+    <div class="side-label">/ The parent trap &nbsp;&nbsp; / &nbsp;&nbsp; Impatience economy &nbsp;&nbsp; / &nbsp;&nbsp; The dignity of work &nbsp;&nbsp; / &nbsp;&nbsp; Social rewilding</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Travel trends in brief</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #ececec;
+  }
+
+  .left-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 486px;
+    height: 720px;
+    background: #ececec;
+    z-index: 3;
+  }
+
+  .hero-bg {
+    position: absolute;
+    left: 486px;
+    top: 0;
+    width: 794px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(113,124,153,0.55) 0px, rgba(214,194,183,0.35) 42px, rgba(157,163,196,0.18) 93px, rgba(233,226,223,0.06) 180px, rgba(239,233,228,0) 260px),
+      linear-gradient(180deg, #e8ddd3 0%, #e9ddd3 100%);
+    z-index: 0;
+  }
+
+  .sky-band1,
+  .sky-band2,
+  .sky-band3 {
+    position: absolute;
+    left: 486px;
+    width: 794px;
+    z-index: 1;
+    filter: blur(1.2px);
+  }
+  .sky-band1 {
+    top: 3px;
+    height: 24px;
+    background: rgba(179, 155, 144, 0.34);
+  }
+  .sky-band2 {
+    top: 74px;
+    height: 12px;
+    background: rgba(134, 144, 182, 0.25);
+  }
+  .sky-band3 {
+    top: 123px;
+    height: 10px;
+    background: rgba(176, 164, 186, 0.16);
+  }
+
+  .sea {
+    position: absolute;
+    left: 486px;
+    top: 232px;
+    width: 794px;
+    height: 226px;
+    background:
+      linear-gradient(180deg, rgba(167,202,222,0.92) 0%, rgba(120,171,201,0.96) 36%, rgba(132,182,210,0.95) 70%, rgba(176,196,206,0.85) 100%);
+    z-index: 1;
+  }
+
+  .sand {
+    position: absolute;
+    left: 486px;
+    top: 446px;
+    width: 794px;
+    height: 274px;
+    background:
+      repeating-linear-gradient(163deg, rgba(216,201,186,0.18) 0 2px, rgba(239,229,221,0) 2px 16px),
+      repeating-linear-gradient(10deg, rgba(227,214,201,0.18) 0 1px, rgba(241,233,225,0) 1px 13px),
+      linear-gradient(180deg, #eadfd6 0%, #e7dcd2 55%, #e8ddd3 100%);
+    z-index: 1;
+  }
+
+  .dune-left {
+    position: absolute;
+    left: 486px;
+    top: 387px;
+    width: 252px;
+    height: 118px;
+    background:
+      linear-gradient(180deg, rgba(188,180,154,0.12) 0%, rgba(229,220,211,0.92) 100%);
+    clip-path: polygon(0 30%, 11% 18%, 20% 11%, 31% 15%, 40% 10%, 49% 14%, 59% 16%, 69% 13%, 80% 16%, 90% 22%, 100% 34%, 100% 100%, 0 100%);
+    z-index: 2;
+  }
+
+  .dune-right {
+    position: absolute;
+    left: 1046px;
+    top: 386px;
+    width: 234px;
+    height: 106px;
+    background:
+      linear-gradient(180deg, rgba(188,180,154,0.12) 0%, rgba(229,220,211,0.95) 100%);
+    clip-path: polygon(0 35%, 12% 22%, 24% 15%, 38% 12%, 52% 15%, 67% 12%, 82% 18%, 100% 30%, 100% 100%, 0 100%);
+    z-index: 2;
+  }
+
+  .grass-left-bg {
+    position: absolute;
+    left: 516px;
+    top: 338px;
+    width: 76px;
+    height: 160px;
+    z-index: 2;
+    background:
+      linear-gradient(82deg, transparent 0 43%, #809366 43% 45%, transparent 45% 100%),
+      linear-gradient(90deg, transparent 0 31%, #94a774 31% 33%, transparent 33% 100%),
+      linear-gradient(98deg, transparent 0 58%, #71865c 58% 60%, transparent 60% 100%),
+      linear-gradient(108deg, transparent 0 68%, #90a273 68% 70%, transparent 70% 100%),
+      linear-gradient(72deg, transparent 0 80%, #8da170 80% 82%, transparent 82% 100%);
+    opacity: 0.85;
+  }
+
+  .grass-right-bg {
+    position: absolute;
+    left: 1195px;
+    top: 334px;
+    width: 62px;
+    height: 160px;
+    z-index: 2;
+    background:
+      linear-gradient(104deg, transparent 0 24%, #7d9265 24% 26%, transparent 26% 100%),
+      linear-gradient(96deg, transparent 0 40%, #90a476 40% 42%, transparent 42% 100%),
+      linear-gradient(84deg, transparent 0 58%, #6f8558 58% 60%, transparent 60% 100%),
+      linear-gradient(75deg, transparent 0 74%, #8da16f 74% 76%, transparent 76% 100%);
+    opacity: 0.78;
+  }
+
+  .circle-crop {
+    position: absolute;
+    left: 564px;
+    top: 2px;
+    width: 714px;
+    height: 714px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #eff1f2;
+    z-index: 20;
+  }
+
+  .circle-sky {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 714px;
+    height: 270px;
+    background: #f0f2f3;
+  }
+
+  .beam-top {
+    position: absolute;
+    left: 164px;
+    top: 24px;
+    width: 194px;
+    height: 16px;
+    background: linear-gradient(90deg, #8d6c47 0%, #ba9465 55%, #9b7750 100%);
+    transform: rotate(-12deg);
+    transform-origin: left center;
+    border-radius: 2px;
+  }
+
+  .rope1, .rope2, .rope3, .rope4, .rope5, .rope6 {
+    position: absolute;
+    top: 29px;
+    width: 3px;
+    background: #ccb38e;
+    transform-origin: top center;
+    opacity: 0.88;
+  }
+  .rope1 { left: 150px; height: 186px; transform: rotate(-28deg); }
+  .rope2 { left: 180px; height: 214px; transform: rotate(-25deg); }
+  .rope3 { left: 210px; height: 242px; transform: rotate(-22deg); }
+  .rope4 { left: 240px; height: 268px; transform: rotate(-19deg); }
+  .rope5 { left: 271px; height: 292px; transform: rotate(-16deg); }
+  .rope6 { left: 302px; height: 315px; transform: rotate(-13deg); }
+
+  .beam-left {
+    position: absolute;
+    left: 19px;
+    top: 151px;
+    width: 57px;
+    height: 418px;
+    background: linear-gradient(90deg, #816347 0%, #af8c63 45%, #886c4d 100%);
+    clip-path: polygon(34% 0, 100% 5%, 79% 100%, 0 95%);
+  }
+
+  .beam-left-notch {
+    position: absolute;
+    left: 8px;
+    top: 154px;
+    width: 90px;
+    height: 402px;
+    background:
+      radial-gradient(circle at 18px 42px, rgba(0,0,0,0.15) 0 5px, transparent 5px),
+      radial-gradient(circle at 21px 84px, rgba(0,0,0,0.14) 0 5px, transparent 5px),
+      radial-gradient(circle at 14px 132px, rgba(0,0,0,0.13) 0 4px, transparent 4px),
+      radial-gradient(circle at 22px 174px, rgba(0,0,0,0.12) 0 4px, transparent 4px),
+      radial-gradient(circle at 15px 220px, rgba(0,0,0,0.12) 0 4px, transparent 4px),
+      radial-gradient(circle at 22px 266px, rgba(0,0,0,0.11) 0 4px, transparent 4px),
+      radial-gradient(circle at 15px 314px, rgba(0,0,0,0.11) 0 4px, transparent 4px);
+    clip-path: polygon(20% 0, 100% 0, 66% 100%, 0 100%);
+    opacity: 0.45;
+  }
+
+  .sea-circle {
+    position: absolute;
+    left: 0;
+    top: 229px;
+    width: 714px;
+    height: 218px;
+    background: linear-gradient(180deg, #a8d0e3 0%, #79afcf 45%, #8fbed6 100%);
+  }
+
+  .grass-left {
+    position: absolute;
+    left: 0;
+    top: 305px;
+    width: 118px;
+    height: 154px;
+    background:
+      linear-gradient(73deg, transparent 0 35%, #71885f 35% 36%, transparent 36% 100%),
+      linear-gradient(80deg, transparent 0 53%, #8f9f74 53% 54%, transparent 54% 100%),
+      linear-gradient(95deg, transparent 0 25%, #768f65 25% 26%, transparent 26% 100%),
+      linear-gradient(109deg, transparent 0 60%, #92a374 60% 61%, transparent 61% 100%),
+      linear-gradient(86deg, transparent 0 75%, #7f946a 75% 76%, transparent 76% 100%);
+    opacity: 0.85;
+  }
+
+  .grass-right {
+    position: absolute;
+    right: 0;
+    top: 305px;
+    width: 114px;
+    height: 150px;
+    background:
+      linear-gradient(103deg, transparent 0 38%, #819567 38% 39%, transparent 39% 100%),
+      linear-gradient(96deg, transparent 0 58%, #91a777 58% 59%, transparent 59% 100%),
+      linear-gradient(75deg, transparent 0 28%, #738a60 28% 29%, transparent 29% 100%),
+      linear-gradient(86deg, transparent 0 72%, #899d6d 72% 73%, transparent 73% 100%);
+    opacity: 0.74;
+  }
+
+  .sand-circle {
+    position: absolute;
+    left: 0;
+    top: 486px;
+    width: 714px;
+    height: 228px;
+    background:
+      repeating-linear-gradient(164deg, rgba(214,200,186,0.19) 0 2px, rgba(240,231,223,0) 2px 16px),
+      linear-gradient(180deg, #e8ddd3 0%, #e5dacf 100%);
+  }
+
+  .hammock-back {
+    position: absolute;
+    left: 132px;
+    top: 134px;
+    width: 320px;
+    height: 442px;
+    background: linear-gradient(180deg, #d4e3dc 0%, #b8d5cb 55%, #9dc2b9 100%);
+    border-radius: 160px 160px 56px 56px / 215px 215px 48px 48px;
+    transform: rotate(-6deg);
+    box-shadow: inset -16px 0 24px rgba(90,120,110,0.15);
+  }
+
+  .arm {
+    position: absolute;
+    left: 176px;
+    top: 191px;
+    width: 252px;
+    height: 340px;
+    background:
+      linear-gradient(180deg, rgba(248,208,226,0.97) 0%, rgba(247,192,221,0.97) 35%, rgba(243,210,228,0.95) 58%, rgba(233,242,243,0.94) 100%),
+      repeating-linear-gradient(27deg, rgba(255,152,191,0.34) 0 18px, rgba(255,255,255,0) 18px 42px);
+    border-radius: 115px 145px 125px 125px / 138px 138px 160px 160px;
+    transform: rotate(-30deg);
+    box-shadow: inset -14px -12px 26px rgba(197,154,180,0.16);
+  }
+
+  .person-head {
+    position: absolute;
+    left: 318px;
+    top: 185px;
+    width: 179px;
+    height: 214px;
+    background: linear-gradient(180deg, #f4c6ad 0%, #e8ae91 72%, #d99b7c 100%);
+    border-radius: 45% 55% 54% 46% / 43% 41% 60% 57%;
+    transform: rotate(19deg);
+    z-index: 3;
+  }
+
+  .hair {
+    position: absolute;
+    left: 293px;
+    top: 160px;
+    width: 206px;
+    height: 172px;
+    background:
+      radial-gradient(circle at 42px 54px, #4d291f 0 18px, transparent 19px),
+      radial-gradient(circle at 72px 48px, #5a2f22 0 20px, transparent 21px),
+      radial-gradient(circle at 106px 47px, #4a251d 0 19px, transparent 20px),
+      radial-gradient(circle at 140px 62px, #5a3125 0 18px, transparent 19px),
+      radial-gradient(circle at 169px 84px, #4e281d 0 16px, transparent 17px),
+      radial-gradient(circle at 130px 95px, #5d3528 0 22px, transparent 23px),
+      radial-gradient(circle at 92px 96px, #4b261d 0 20px, transparent 21px),
+      radial-gradient(circle at 54px 98px, #573023 0 18px, transparent 19px),
+      radial-gradient(circle at 152px 40px, #573023 0 12px, transparent 13px);
+    transform: rotate(14deg);
+    opacity: 0.98;
+    z-index: 4;
+  }
+
+  .ear {
+    position: absolute;
+    left: 351px;
+    top: 276px;
+    width: 20px;
+    height: 24px;
+    background: #e2a788;
+    border-radius: 50%;
+    z-index: 4;
+  }
+
+  .headphone {
+    position: absolute;
+    left: 337px;
+    top: 267px;
+    width: 38px;
+    height: 56px;
+    background: #e1b337;
+    border-radius: 18px;
+    box-shadow: inset 0 0 0 3px rgba(169,124,11,0.28);
+    z-index: 5;
+  }
+
+  .neck {
+    position: absolute;
+    left: 405px;
+    top: 368px;
+    width: 78px;
+    height: 56px;
+    background: linear-gradient(180deg, #e3a484 0%, #d79d7d 100%);
+    border-radius: 20px;
+    transform: rotate(10deg);
+    z-index: 2;
+  }
+
+  .shirt {
+    position: absolute;
+    left: 400px;
+    top: 420px;
+    width: 218px;
+    height: 112px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(245,241,239,0.96) 100%);
+    border-radius: 92px 96px 62px 62px / 58px 58px 48px 48px;
+    transform: rotate(4deg);
+    z-index: 2;
+  }
+
+  .nose {
+    position: absolute;
+    left: 468px;
+    top: 282px;
+    width: 18px;
+    height: 10px;
+    border-top: 2px solid rgba(164,101,71,0.55);
+    border-right: 2px solid rgba(164,101,71,0.55);
+    border-radius: 0 10px 0 0;
+    transform: rotate(18deg);
+    z-index: 6;
+  }
+
+  .mouth {
+    position: absolute;
+    left: 461px;
+    top: 316px;
+    width: 24px;
+    height: 8px;
+    border-bottom: 2px solid rgba(157,95,68,0.62);
+    border-radius: 0 0 18px 18px;
+    transform: rotate(16deg);
+    z-index: 6;
+  }
+
+  .hammock-front {
+    position: absolute;
+    left: 223px;
+    top: 438px;
+    width: 560px;
+    height: 170px;
+    background: linear-gradient(180deg, #c7d7bf 0%, #afbea6 48%, #94a483 100%);
+    border-radius: 46% 54% 12% 12% / 57% 65% 24% 20%;
+    transform: rotate(-10deg);
+    box-shadow: inset 0 -18px 30px rgba(60,86,58,0.18);
+    z-index: 6;
+  }
+
+  .hammock-front2 {
+    position: absolute;
+    left: 370px;
+    top: 506px;
+    width: 356px;
+    height: 105px;
+    background: linear-gradient(180deg, rgba(188,205,181,0.96) 0%, rgba(160,178,151,0.98) 100%);
+    border-radius: 46px 38px 18px 18px;
+    transform: rotate(-10deg);
+    opacity: 0.96;
+    z-index: 7;
+  }
+
+  .text-title {
+    position: absolute;
+    left: 47px;
+    top: 177px;
+    width: 300px;
+    font-size: 40px;
+    line-height: 46px;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: -0.2px;
+    z-index: 30;
+  }
+
+  .text-sub {
+    position: absolute;
+    left: 47px;
+    top: 278px;
+    width: 330px;
+    font-size: 28px;
+    line-height: 32px;
+    font-weight: 400;
+    color: #1f1f1f;
+    z-index: 30;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    position: absolute;
+    bottom: 17px;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 400;
+    color: #4b4b4b;
+    z-index: 50;
+    white-space: nowrap;
+  }
+
+  .footer-left {
+    left: 47px;
+  }
+
+  .footer-center {
+    left: 983px;
+  }
+
+  .footer-right {
+    right: 22px;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="hero-bg"></div>
+    <div class="sky-band1"></div>
+    <div class="sky-band2"></div>
+    <div class="sky-band3"></div>
+    <div class="sea"></div>
+    <div class="dune-left"></div>
+    <div class="dune-right"></div>
+    <div class="grass-left-bg"></div>
+    <div class="grass-right-bg"></div>
+    <div class="sand"></div>
+
+    <div class="left-panel"></div>
+
+    <div class="circle-crop">
+      <div class="circle-sky"></div>
+      <div class="beam-top"></div>
+      <div class="rope1"></div>
+      <div class="rope2"></div>
+      <div class="rope3"></div>
+      <div class="rope4"></div>
+      <div class="rope5"></div>
+      <div class="rope6"></div>
+      <div class="beam-left"></div>
+      <div class="beam-left-notch"></div>
+      <div class="sea-circle"></div>
+      <div class="grass-left"></div>
+      <div class="grass-right"></div>
+      <div class="sand-circle"></div>
+      <div class="hammock-back"></div>
+      <div class="arm"></div>
+      <div class="neck"></div>
+      <div class="shirt"></div>
+      <div class="person-head"></div>
+      <div class="hair"></div>
+      <div class="ear"></div>
+      <div class="headphone"></div>
+      <div class="nose"></div>
+      <div class="mouth"></div>
+      <div class="hammock-front"></div>
+      <div class="hammock-front2"></div>
+    </div>
+
+    <div class="text-title">Travel trends in<br>brief</div>
+    <div class="text-sub">Luxury, loyalty, and laptop<br>lugging</div>
+
+    <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+    <div class="footer-center">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+    <div class="footer-right">38</div>
+  </div>
+</body>
+</html>

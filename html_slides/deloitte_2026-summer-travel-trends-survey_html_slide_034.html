@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Deloitte Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ebebeb;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ebebeb;
+  }
+  .title{
+    position:absolute;
+    left:46px;
+    top:44px;
+    width:1190px;
+    font-size:41px;
+    line-height:0.98;
+    font-weight:800;
+    color:#000;
+    letter-spacing:-0.5px;
+  }
+  .panel{
+    position:absolute;
+    left:46px;
+    top:146px;
+    width:1274px;
+    height:570px;
+    background:#e1e1e1;
+  }
+  .panel-title{
+    position:absolute;
+    left:76px;
+    top:172px;
+    font-size:19px;
+    line-height:1.1;
+    font-weight:700;
+    color:#111;
+  }
+  .legend{
+    position:absolute;
+    left:76px;
+    top:198px;
+    height:28px;
+    font-size:16px;
+    color:#2b2b2b;
+  }
+  .legend-item{
+    position:absolute;
+    top:0;
+    height:24px;
+    line-height:24px;
+    white-space:nowrap;
+    font-weight:400;
+  }
+  .dot{
+    position:absolute;
+    left:0;
+    top:4px;
+    width:15px;
+    height:15px;
+    border-radius:50%;
+  }
+
+  .chart{
+    position:absolute;
+    left:90px;
+    top:297px;
+    width:520px;
+    height:315px;
+  }
+  .baseline{
+    position:absolute;
+    left:0;
+    top:314px;
+    width:515px;
+    height:1px;
+    background:#cfcfcf;
+  }
+  .bar{
+    position:absolute;
+    width:72px;
+    bottom:1px;
+    height:315px;
+  }
+  .seg{
+    position:absolute;
+    left:0;
+    width:72px;
+    box-sizing:border-box;
+    border-top:1px solid rgba(255,255,255,0.85);
+  }
+  .seg.first{ border-top:none; }
+  .seg span{
+    position:absolute;
+    left:0;
+    top:10px;
+    width:72px;
+    text-align:center;
+    font-size:15px;
+    line-height:1;
+    font-weight:400;
+    color:#fff;
+  }
+  .year{
+    position:absolute;
+    top:329px;
+    width:72px;
+    text-align:center;
+    font-size:17px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+  }
+
+  .call-line, .call-v{
+    position:absolute;
+    background:#6e6e6e;
+  }
+  .call-line{ height:1px; }
+  .call-v{ width:1px; }
+
+  .callout{
+    position:absolute;
+    color:#222;
+    font-size:18px;
+    line-height:1.18;
+    font-weight:400;
+  }
+  .link{
+    color:#10a6e8;
+    text-decoration:underline;
+    font-weight:700;
+  }
+
+  .note{
+    position:absolute;
+    left:76px;
+    top:661px;
+    width:770px;
+    font-size:10px;
+    line-height:1.35;
+    color:#333;
+  }
+  .footer-left{
+    position:absolute;
+    left:48px;
+    bottom:13px;
+    font-size:12px;
+    line-height:1;
+    color:#4a4a4a;
+  }
+  .footer-center{
+    position:absolute;
+    right:42px;
+    bottom:13px;
+    font-size:12px;
+    line-height:1;
+    color:#4a4a4a;
+  }
+  .footer-page{
+    position:absolute;
+    right:9px;
+    bottom:13px;
+    width:22px;
+    text-align:right;
+    font-size:12px;
+    line-height:1;
+    color:#4a4a4a;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">The traveling population mix by generation remains roughly<br>consistent, but Gen Z growth stalls a bit as millennials gain</div>
+
+  <div class="panel"></div>
+
+  <div class="panel-title">Traveling population share, by generation</div>
+
+  <div class="legend">
+    <div class="legend-item" style="left:0px;">
+      <div class="dot" style="background:#126eac;"></div>
+      <div style="position:absolute; left:20px; top:0;">Gen Z</div>
+    </div>
+    <div class="legend-item" style="left:95px;">
+      <div class="dot" style="background:#834892;"></div>
+      <div style="position:absolute; left:20px; top:0;">Millennials</div>
+    </div>
+    <div class="legend-item" style="left:224px;">
+      <div class="dot" style="background:#17a1a0;"></div>
+      <div style="position:absolute; left:20px; top:0;">Gen X</div>
+    </div>
+    <div class="legend-item" style="left:324px;">
+      <div class="dot" style="background:#0b6e5b;"></div>
+      <div style="position:absolute; left:20px; top:0;">Boomers</div>
+    </div>
+  </div>
+
+  <div class="chart">
+    <div class="baseline"></div>
+
+    <div class="bar" style="left:28px;">
+      <div class="seg first" style="bottom:0; height:89px; background:#0b6e5b;"><span>28%</span></div>
+      <div class="seg" style="bottom:89px; height:75px; background:#17a1a0;"><span>23%</span></div>
+      <div class="seg" style="bottom:164px; height:112px; background:#834892;"><span>35%</span></div>
+      <div class="seg" style="bottom:276px; height:39px; background:#126eac;"><span>12%</span></div>
+      <div class="year" style="left:0;">2023</div>
+    </div>
+
+    <div class="bar" style="left:156px;">
+      <div class="seg first" style="bottom:0; height:109px; background:#0b6e5b;"><span>34%</span></div>
+      <div class="seg" style="bottom:109px; height:77px; background:#17a1a0;"><span>24%</span></div>
+      <div class="seg" style="bottom:186px; height:95px; background:#834892;"><span>30%</span></div>
+      <div class="seg" style="bottom:281px; height:34px; background:#126eac;"><span>9%</span></div>
+      <div class="year" style="left:0;">2024</div>
+    </div>
+
+    <div class="bar" style="left:285px;">
+      <div class="seg first" style="bottom:0; height:89px; background:#0b6e5b;"><span>28%</span></div>
+      <div class="seg" style="bottom:89px; height:77px; background:#17a1a0;"><span>24%</span></div>
+      <div class="seg" style="bottom:166px; height:93px; background:#834892;"><span>29%</span></div>
+      <div class="seg" style="bottom:259px; height:56px; background:#126eac;"><span>16%</span></div>
+      <div class="year" style="left:0;">2025</div>
+    </div>
+
+    <div class="bar" style="left:413px;">
+      <div class="seg first" style="bottom:0; height:86px; background:#0b6e5b;"><span>27%</span></div>
+      <div class="seg" style="bottom:86px; height:77px; background:#17a1a0;"><span>24%</span></div>
+      <div class="seg" style="bottom:163px; height:98px; background:#834892;"><span>31%</span></div>
+      <div class="seg" style="bottom:261px; height:54px; background:#126eac;"><span>15%</span></div>
+      <div class="year" style="left:0;">2026</div>
+    </div>
+  </div>
+
+  <div class="call-line" style="left:582px; top:374px; width:258px;"></div>
+  <div class="call-v" style="left:840px; top:307px; height:142px;"></div>
+  <div class="callout" style="left:863px; top:304px; width:390px;">
+    Millennials are major shapers of travel<br>
+    demand in 2026. They represent almost a<br>
+    third of travelers, and have the biggest<br>
+    budgets. For more on high-earning<br>
+    millennials’ unique travel tendencies, see<br>
+    <span class="link">slide 36.</span>
+  </div>
+
+  <div class="call-line" style="left:582px; top:569px; width:258px;"></div>
+  <div class="call-v" style="left:840px; top:509px; height:117px;"></div>
+  <div class="callout" style="left:863px; top:509px; width:392px;">
+    Boomers seem most impacted by the rise in<br>
+    travel and everyday prices. They have the<br>
+    weakest financial perceptions, and are the<br>
+    only generation cutting back on travel<br>
+    budgets. See <span class="link">slide 35</span> for more.
+  </div>
+
+  <div class="note">Note: Question: “What activities are you planning to partake in summer 2026 (between Memorial Day and the end of September)?” (n = 1,808).<br>Source: 2026 Deloitte Summer Travel Survey.</div>
+
+  <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+  <div class="footer-center">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="footer-page">34</div>
+</div>
+</body>
+</html>

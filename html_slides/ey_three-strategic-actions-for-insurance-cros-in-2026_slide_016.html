@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1365, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9db;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1365px;
+    height:768px;
+    overflow:hidden;
+    background:#dddddf;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .body{
+    font-size:13px;
+    line-height:1.38;
+    color:#4a4b50;
+    font-weight:400;
+  }
+  .header-pill{
+    left:31px;
+    top:15px;
+    width:70px;
+    height:18px;
+    background:#7b7d86;
+    border-radius:11px 11px 0 0;
+    color:#fff;
+    font-size:9px;
+    font-weight:700;
+    line-height:18px;
+    text-align:center;
+    letter-spacing:.06em;
+  }
+  .page{
+    left:50px;
+    bottom:16px;
+    font-size:10px;
+    color:#33353a;
+  }
+  .vlabel{
+    left:8px;
+    top:396px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    font-size:12px;
+    line-height:12px;
+    color:#33353a;
+    letter-spacing:.18em;
+    font-weight:500;
+    text-transform:uppercase;
+  }
+  .vline{
+    left:14px;
+    top:409px;
+    width:1px;
+    height:36px;
+    background:#55565b;
+  }
+
+  .col1{ left:78px; top:108px; width:185px; }
+  .col2{ left:304px; top:108px; width:212px; }
+
+  .chart-title{
+    left:562px;
+    top:107px;
+    width:390px;
+    font-size:13px;
+    line-height:1.35;
+    color:#2f3136;
+    font-weight:700;
+  }
+
+  .chart-area{
+    left:548px;
+    top:160px;
+    width:404px;
+    height:420px;
+  }
+  .cat{
+    font-size:11px;
+    line-height:1.25;
+    color:#56585d;
+    text-align:right;
+    font-weight:400;
+  }
+  .pct{
+    font-size:12px;
+    line-height:1;
+    color:#56585d;
+    text-align:right;
+    font-weight:400;
+  }
+  .sub{z-index:1;
+    font-size:6px;
+    line-height:1.2;
+    color:#66686d;
+    text-align:left;
+    font-weight:400;
+    letter-spacing:.01em;
+  }
+  .barbox{
+    border:1px solid #acafb5;
+    background:transparent;
+  }
+  .barfill{
+    background:#1f78c8;
+    height:100%;
+  }
+
+  .right-panel{
+    left:1021px;
+    top:31px;
+    width:313px;
+    height:706px;
+    background:#000;
+  }
+
+  .jump{
+    left:1265px;
+    top:58px;
+    width:46px;
+    height:47px;
+  }
+  .jump svg{ position:absolute; left:0; top:0; }
+  .jump-text{
+    position:absolute;
+    left:5px;
+    top:11px;
+    width:30px;
+    font-size:8px;
+    line-height:1.05;
+    color:#fff;
+    text-align:center;
+    font-weight:500;
+  }
+
+  .quote-box{
+    left:1062px;
+    top:170px;
+    width:232px;
+    height:208px;
+  }
+  .quote-mark{
+    left:1096px;
+    top:185px;
+    font-size:43px;
+    line-height:32px;
+    color:#f0d400;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight:700;
+  }
+  .quote-text{
+    left:1098px;
+    top:210px;
+    width:175px;
+    font-size:15px;
+    line-height:1.42;
+    color:#fff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight:400;
+  }
+  .quote-text b{ font-weight:700; }
+
+  .fiber{
+    left:1070px;
+    top:412px;
+    width:264px;
+    height:294px;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="header-pill">CHAPTER 2</div>
+
+  <div class="vlabel">CHAPTER 2</div>
+  <div class="vline"></div>
+
+  <div class="col1 body">
+    <div style="position:absolute; left:0; top:0; width:185px;">
+      Overall direction is consistent across regions, but adoption and execution constraints vary. APAC respondents are the most assertive on AI adoption, with the strongest prioritization of AI-enabled risk solutions. The Americas follow closely, pairing AI priorities with automated control testing and enterprise GRC. EMEIA adoption is more measured and is often framed around governance, compliance and integration with existing control frameworks.
+    </div>
+    <div style="position:absolute; left:0; top:255px; width:185px;">
+      In this year’s survey, AI-enabled risk solutions emerge as the clear headline priority across regions. Enterprise GRC platforms remain a major focus, automated controls testing remains prominent, and investment in centralized risk data hubs continues to grow – reinforcing the importance of data and controls alongside AI.
+    </div>
+    <div style="position:absolute; left:0; top:441px; width:185px;">
+      Commitment to improving risk technology is also strengthening. The share of respondents indicating it is “too early to
+    </div>
+  </div>
+
+  <div class="col2 body">
+    <div style="position:absolute; left:0; top:0; width:212px;">
+      tell” declined from 20% in 2024 to 13% in 2025, signaling a shift from experimentation toward clearer roadmaps and investment decisions.
+    </div>
+    <div style="position:absolute; left:0; top:73px; width:212px;">
+      Current patterns of AI use reinforce this shift. Early adoption is focused on fraud detection and monitoring. By 2025, AI-style enablement – chatbots and document/legal analysis – dominates across regions. APAC shows particularly high adoption in chatbots and operational risk monitoring, while the Americas and EMEIA show broader use across cyber analytics, underwriting and controls.
+    </div>
+  </div>
+
+  <div class="chart-title">
+    Figure 8: What are the most significant areas in which your organization<br>
+    is currently using artificial intelligence (AI) in risk management?
+  </div>
+
+  <div class="chart-area">
+    <div class="cat" style="position:absolute; left:0; top:4px; width:181px;">General use of chatbots (e.g.,<br>LLM integration with certain<br>applications)</div>
+    <div class="barbox" style="position:absolute; left:192px; top:5px; width:199px; height:25px;">
+      <div class="barfill" style="width:113px;"></div>
+    </div>
+    <div class="pct" style="position:absolute; left:363px; top:12px; width:22px;">57%</div>
+    <div class="sub" style="position:absolute; left:192px; top:35px; width:165px;">70% Asia-Pacific | 61% EMEIA | 50% Americas</div>
+
+    <div class="cat" style="position:absolute; left:0; top:64px; width:181px;">Legal and document analysis<br>(e.g., contract review,<br>documentation automation)</div>
+    <div class="barbox" style="position:absolute; left:192px; top:66px; width:199px; height:25px;">
+      <div class="barfill" style="width:84px;"></div>
+    </div>
+    <div class="pct" style="position:absolute; left:363px; top:73px; width:22px;">42%</div>
+    <div class="sub" style="position:absolute; left:192px; top:96px; width:165px;">50% Asia-Pacific | 39% EMEIA | 42% Americas</div>
+
+    <div class="cat" style="position:absolute; left:0; top:122px; width:181px;">Cyber (e.g., anomaly detection,<br>network surveillance, threat<br>intelligence automation)</div>
+    <div class="barbox" style="position:absolute; left:192px; top:126px; width:199px; height:25px;">
+      <div class="barfill" style="width:76px;"></div>
+    </div>
+    <div class="pct" style="position:absolute; left:363px; top:133px; width:22px;">38%</div>
+    <div class="sub" style="position:absolute; left:192px; top:156px; width:165px;">20% Asia-Pacific | 27% EMEIA | 50% Americas</div>
+
+    <div class="cat" style="position:absolute; left:0; top:181px; width:181px;">Digital fraud and financial crime<br>detection (e.g., anti-money<br>laundering (AML), transaction<br>monitoring, pattern recognition)</div>
+    <div class="barbox" style="position:absolute; left:192px; top:186px; width:199px; height:25px;">
+      <div class="barfill" style="width:54px;"></div>
+    </div>
+    <div class="pct" style="position:absolute; left:363px; top:193px; width:22px;">27%</div>
+    <div class="sub" style="position:absolute; left:192px; top:216px; width:165px;">20% Asia-Pacific | 30% EMEIA | 27% Americas</div>
+
+    <div class="cat" style="position:absolute; left:0; top:245px; width:181px;">Underwriting and pricing</div>
+    <div class="barbox" style="position:absolute; left:192px; top:245px; width:199px; height:25px;">
+      <div class="barfill" style="width:52px;"></div>
+    </div>
+    <div class="pct" style="position:absolute; left:363px; top:252px; width:22px;">26%</div>
+    <div class="sub" style="position:absolute; left:192px; top:275px; width:165px;">20% Asia-Pacific | 25% EMEIA | 29% Americas</div>
+
+    <div class="cat" style="position:absolute; left:0; top:304px; width:181px;">Horizon scanning and emerging risk<br>identification (e.g., identifying new<br>and evolving risks, trend analysis)</div>
+    <div class="barbox" style="position:absolute; left:192px; top:305px; width:199px; height:25px;">
+      <div class="barfill" style="width:24px;"></div>
+    </div>
+    <div class="pct" style="position:absolute; left:363px; top:312px; width:22px;">12%</div>
+    <div class="sub" style="position:absolute; left:192px; top:335px; width:165px;">20% Asia-Pacific | 14% EMEIA | 10% Americas</div>
+
+    <div class="cat" style="position:absolute; left:0; top:367px; width:181px;">Not currently using AI in risk<br>management</div>
+    <div class="barbox" style="position:absolute; left:192px; top:369px; width:199px; height:25px;">
+      <div class="barfill" style="width:28px;"></div>
+    </div>
+    <div class="pct" style="position:absolute; left:363px; top:376px; width:22px;">14%</div>
+    <div class="sub" style="position:absolute; left:192px; top:399px; width:165px;">10% Asia-Pacific | 14% EMEIA | 15% Americas</div>
+  </div>
+
+  <div class="right-panel"></div>
+
+  <div class="jump">
+    <svg width="46" height="87" viewBox="0 0 46 87" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="22" cy="21" r="20" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1"/>
+      <path d="M20 1.5 A20 20 0 0 1 33.5 5.5" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
+      <path d="M41 23 A20 20 0 0 1 34 36.5" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
+      <circle cx="37" cy="5" r="4.5" fill="#f0d400"/>
+    </svg>
+    <div class="jump-text">Jump to<br>contents</div>
+  </div>
+
+  <div class="quote-box">
+    <svg width="232" height="248" viewBox="0 0 232 248" xmlns="http://www.w3.org/2000/svg">
+      <line x1="1" y1="1" x2="33" y2="1" stroke="#d9d9d9" stroke-width="1"/>
+      <line x1="1" y1="1" x2="1" y2="39" stroke="#d9d9d9" stroke-width="1"/>
+      <line x1="1" y1="207" x2="33" y2="207" stroke="#d9d9d9" stroke-width="1"/>
+      <line x1="1" y1="169" x2="1" y2="207" stroke="#d9d9d9" stroke-width="1"/>
+      <line x1="231" y1="1" x2="199" y2="1" stroke="#d9d9d9" stroke-width="1"/>
+      <line x1="231" y1="1" x2="231" y2="39" stroke="#d9d9d9" stroke-width="1"/>
+      <line x1="231" y1="207" x2="199" y2="207" stroke="#d9d9d9" stroke-width="1"/>
+      <line x1="231" y1="169" x2="231" y2="207" stroke="#d9d9d9" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="quote-mark">“</div>
+  <div class="quote-text">
+    <b>What CROs say:</b><br><br>
+    While AI has marginally improved efficiency, it has not yet transformed how we work. Its main contribution is automating routine tasks, not fundamentally changing our operations.
+  </div>
+
+  <svg class="fiber" viewBox="0 0 264 294" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="glowBlue" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#0c2a35" stop-opacity="0"/>
+        <stop offset="1" stop-color="#7ee8ff" stop-opacity="0.7"/>
+      </linearGradient>
+      <linearGradient id="glowRed" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#511015" stop-opacity="0"/>
+        <stop offset="1" stop-color="#ff715b" stop-opacity="0.7"/>
+      </linearGradient>
+      <filter id="blur2"><feGaussianBlur stdDeviation="1.2"/></filter>
+      <filter id="blur4"><feGaussianBlur stdDeviation="2.4"/></filter>
+    </defs>
+
+    <ellipse cx="118" cy="257" rx="88" ry="28" fill="#3b0c0d" opacity=".52" filter="url(#blur4)"/>
+    <ellipse cx="175" cy="225" rx="92" ry="26" fill="#112d36" opacity=".42" filter="url(#blur4)"/>
+
+    <g stroke-linecap="round" opacity=".95">
+      <line x1="36" y1="94" x2="155" y2="58" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="49" y1="105" x2="175" y2="66" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="61" y1="114" x2="192" y2="78" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="73" y1="127" x2="210" y2="90" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="84" y1="139" x2="224" y2="102" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="95" y1="151" x2="238" y2="116" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="108" y1="162" x2="252" y2="128" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="120" y1="175" x2="260" y2="141" stroke="url(#glowBlue)" stroke-width="4"/>
+
+      <line x1="50" y1="121" x2="163" y2="92" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="63" y1="134" x2="181" y2="106" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="76" y1="147" x2="198" y2="119" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="88" y1="161" x2="214" y2="133" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="100" y1="174" x2="229" y2="146" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="111" y1="187" x2="242" y2="160" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="126" y1="197" x2="255" y2="175" stroke="url(#glowBlue)" stroke-width="4"/>
+
+      <line x1="22" y1="204" x2="128" y2="145" stroke="url(#glowRed)" stroke-width="4"/>
+      <line x1="33" y1="216" x2="139" y2="154" stroke="url(#glowRed)" stroke-width="4"/>
+      <line x1="44" y1="226" x2="150" y2="165" stroke="url(#glowRed)" stroke-width="4"/>
+      <line x1="56" y1="236" x2="163" y2="176" stroke="url(#glowRed)" stroke-width="4"/>
+      <line x1="68" y1="245" x2="176" y2="186" stroke="url(#glowRed)" stroke-width="4"/>
+      <line x1="82" y1="251" x2="190" y2="194" stroke="url(#glowRed)" stroke-width="4"/>
+
+      <line x1="98" y1="177" x2="182" y2="252" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="108" y1="164" x2="198" y2="245" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="122" y1="152" x2="215" y2="238" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="136" y1="141" x2="232" y2="230" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="148" y1="130" x2="246" y2="221" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="161" y1="120" x2="260" y2="207" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="93" y1="191" x2="170" y2="264" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="80" y1="201" x2="157" y2="278" stroke="url(#glowBlue)" stroke-width="4"/>
+
+      <line x1="60" y1="93" x2="152" y2="179" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="79" y1="89" x2="168" y2="173" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="98" y1="86" x2="183" y2="166" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="118" y1="83" x2="201" y2="160" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="136" y1="80" x2="218" y2="155" stroke="url(#glowBlue)" stroke-width="4"/>
+      <line x1="154" y1="77" x2="235" y2="149" stroke="url(#glowBlue)" stroke-width="4"/>
+    </g>
+
+    <g fill="#7ee8ff" opacity=".75">
+      <circle cx="36" cy="94" r="3"/><circle cx="49" cy="105" r="3"/><circle cx="61" cy="114" r="3"/>
+      <circle cx="73" cy="127" r="3"/><circle cx="84" cy="139" r="3"/><circle cx="95" cy="151" r="3"/>
+      <circle cx="108" cy="162" r="3"/><circle cx="120" cy="175" r="3"/>
+      <circle cx="50" cy="121" r="3"/><circle cx="63" cy="134" r="3"/><circle cx="76" cy="147" r="3"/>
+      <circle cx="88" cy="161" r="3"/><circle cx="100" cy="174" r="3"/><circle cx="111" cy="187" r="3"/><circle cx="126" cy="197" r="3"/>
+
+      <circle cx="155" cy="58" r="3"/><circle cx="175" cy="66" r="3"/><circle cx="192" cy="78" r="3"/>
+      <circle cx="210" cy="90" r="3"/><circle cx="224" cy="102" r="3"/><circle cx="238" cy="116" r="3"/>
+      <circle cx="252" cy="128" r="3"/><circle cx="260" cy="141" r="3"/>
+      <circle cx="163" cy="92" r="3"/><circle cx="181" cy="106" r="3"/><circle cx="198" cy="119" r="3"/>
+      <circle cx="214" cy="133" r="3"/><circle cx="229" cy="146" r="3"/><circle cx="242" cy="160" r="3"/><circle cx="255" cy="175" r="3"/>
+
+      <circle cx="182" cy="252" r="3"/><circle cx="198" cy="245" r="3"/><circle cx="215" cy="238" r="3"/>
+      <circle cx="232" cy="230" r="3"/><circle cx="246" cy="221" r="3"/><circle cx="260" cy="207" r="3"/>
+      <circle cx="170" cy="264" r="3"/><circle cx="157" cy="278" r="3"/>
+    </g>
+
+    <g fill="#ff6d68" opacity=".78">
+      <circle cx="22" cy="204" r="3"/><circle cx="33" cy="216" r="3"/><circle cx="44" cy="226" r="3"/>
+      <circle cx="56" cy="236" r="3"/><circle cx="68" cy="245" r="3"/><circle cx="82" cy="251" r="3"/>
+      <circle cx="128" cy="145" r="3"/><circle cx="139" cy="154" r="3"/><circle cx="150" cy="165" r="3"/>
+      <circle cx="163" cy="176" r="3"/><circle cx="176" cy="186" r="3"/><circle cx="190" cy="194" r="3"/>
+    </g>
+
+    <g fill="#ffe670" opacity=".95" filter="url(#blur2)">
+      <circle cx="98" cy="208" r="4"/>
+      <circle cx="109" cy="199" r="4"/>
+      <circle cx="121" cy="193" r="4"/>
+      <circle cx="132" cy="185" r="4"/>
+      <circle cx="142" cy="176" r="4"/>
+    </g>
+
+    <g opacity=".23" stroke="#63e8ff" stroke-width="1">
+      <line x1="61" y1="114" x2="214" y2="133"/>
+      <line x1="50" y1="121" x2="229" y2="146"/>
+      <line x1="88" y1="161" x2="255" y2="175"/>
+      <line x1="44" y1="226" x2="190" y2="194"/>
+      <line x1="98" y1="177" x2="246" y2="221"/>
+    </g>
+  </svg>
+
+  <div class="page">16</div>
+</div>
+</body>
+</html>

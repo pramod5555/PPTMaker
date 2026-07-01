@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Consumer survey – Cluster profiles (1/2)</title>
+<style>
+  body{
+    margin:0;
+    background:#e0dfdf;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e0dfdf;
+    color:#000;
+  }
+
+  .title{
+    position:absolute;
+    left:48px;
+    top:22px;
+    width:1180px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:40px;
+    line-height:1.15;
+    font-weight:400;
+    letter-spacing:-0.2px;
+  }
+
+  .subtitle{
+    position:absolute;
+    left:48px;
+    top:141px;
+    font-size:26px;
+    line-height:1;
+    color:#b3201f;
+    font-weight:700;
+  }
+  .subtitle .light{
+    font-weight:400;
+    color:#b3201f;
+  }
+
+  .respondents{
+    position:absolute;
+    left:48px;
+    top:179px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+    color:#111;
+  }
+  .hashbox{
+    width:22px;
+    height:18px;
+    background:#b3201f;
+    color:#fff;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+    line-height:1;
+  }
+  .resp-text{
+    font-style:italic;
+    font-size:14px;
+  }
+
+  .left-panel{
+    position:absolute;
+    left:48px;
+    top:260px;
+    width:298px;
+  }
+  .qbox{
+    position:relative;
+    width:298px;
+    height:80px;
+    background:#000;
+    margin-bottom:9px;
+    color:#fff;
+  }
+  .icon-area{
+    position:absolute;
+    left:11px;
+    top:12px;
+    width:51px;
+    height:51px;
+  }
+  .qtext{
+    position:absolute;
+    left:73px;
+    top:16px;
+    width:212px;
+    font-size:18px;
+    line-height:1.12;
+    font-style:italic;
+    font-weight:700;
+  }
+
+  .columns{
+    position:absolute;
+    left:365px;
+    top:188px;
+    display:flex;
+    gap:22px;
+  }
+  .col{
+    position:relative;
+    width:298px;
+    height:509px;
+    background:#dcdcdc;
+  }
+
+  .badge{
+    position:absolute;
+    top:-13px;
+    left:129px;
+    width:38px;
+    height:38px;
+    border-radius:19px;
+    color:#fff;
+    font-size:19px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .badge.red1{ background:#c32826; }
+  .badge.red2{ background:#e05269; }
+  .badge.gray{ background:#4e4e4e; }
+
+  .col-title{
+    position:absolute;
+    top:24px;
+    width:100%;
+    text-align:center;
+    font-size:28px;
+    font-weight:700;
+  }
+  .rule{
+    position:absolute;
+    left:8px;
+    top:65px;
+    width:282px;
+    height:3px;
+    background:#b63a4f;
+  }
+  .rule.gray{ background:#595959; }
+
+  .income{
+    position:absolute;
+    top:92px;
+    width:100%;
+    text-align:center;
+    font-size:28px;
+    font-style:italic;
+    font-weight:700;
+  }
+  .income .big{
+    font-size:46px;
+  }
+  .income .k{
+    font-size:28px;
+    font-weight:700;
+    margin-left:3px;
+  }
+
+  .age{
+    position:absolute;
+    top:180px;
+    width:100%;
+    text-align:center;
+    font-size:28px;
+    font-style:italic;
+    font-weight:700;
+  }
+  .age .big{
+    font-size:39px;
+  }
+
+  .bar{
+    position:absolute;
+    left:37px;
+    width:218px;
+    height:42px;
+    border:3px solid #7c7c7c;
+    border-radius:12px;
+    background:#ececec;
+    overflow:visible;
+  }
+  .bar:after{
+    content:"";
+    position:absolute;
+    right:-9px;
+    top:10px;
+    width:9px;
+    height:18px;
+    background:#7c7c7c;
+    border-radius:0 5px 5px 0;
+  }
+  .fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:42px;
+    border-radius:9px 0 0 9px;
+    display:flex;
+    align-items:center;
+    padding-left:14px;
+    box-sizing:border-box;
+    color:#fff;
+    font-size:17px;
+    font-weight:700;
+    font-style:italic;
+    white-space:nowrap;
+  }
+  .fill b{
+    font-style:normal;
+    margin-right:5px;
+    font-size:17px;
+  }
+  .fill .small{
+    font-weight:400;
+  }
+
+  .red-dark{ background:#b61f1f; }
+  .red-mid{ background:#dd546a; }
+  .gray-fill{ background:#4f4f4f; }
+
+  .footer-left{
+    position:absolute;
+    left:48px;
+    bottom:17px;
+    font-size:14px;
+    line-height:1.15;
+    color:#222;
+  }
+  .footer-center{
+    position:absolute;
+    left:444px;
+    bottom:16px;
+    font-size:13px;
+    color:#222;
+  }
+  .footer-right{
+    position:absolute;
+    right:27px;
+    bottom:16px;
+    font-size:14px;
+    color:#222;
+    text-align:right;
+    line-height:1.1;
+  }
+
+  /* Simple CSS icons */
+  .wallet{
+    position:absolute; left:0; top:10px; width:43px; height:27px;
+    border:3px solid #fff; border-radius:3px; box-sizing:border-box;
+  }
+  .wallet:before{
+    content:""; position:absolute; left:6px; top:-9px; width:22px; height:10px;
+    border:3px solid #fff; border-bottom:none; border-radius:3px 3px 0 0;
+    transform:skew(-18deg);
+    box-sizing:border-box;
+  }
+  .wallet:after{
+    content:""; position:absolute; left:16px; top:10px; width:6px; height:6px;
+    background:#fff; border-radius:50%;
+    box-shadow:12px 0 0 #fff;
+  }
+
+  .idcard{
+    position:absolute; left:2px; top:11px; width:41px; height:31px;
+    border:3px solid #fff; border-radius:4px; box-sizing:border-box;
+  }
+  .idcard:before{
+    content:""; position:absolute; left:7px; top:7px; width:8px; height:8px;
+    background:#fff; border-radius:50%;
+    box-shadow:0 10px 0 0 #fff;
+  }
+  .idcard:after{
+    content:""; position:absolute; right:6px; top:7px; width:10px; height:16px;
+    border-right:3px solid #fff; border-left:3px solid #fff; border-bottom:3px solid #fff;
+    border-radius:0 0 8px 8px;
+    box-sizing:border-box;
+  }
+
+  .gender{
+    position:absolute; left:0; top:9px; width:45px; height:34px;
+  }
+  .gender .g1, .gender .g2{
+    position:absolute; border-radius:50%; background:#fff;
+  }
+  .gender .g1{ width:16px; height:16px; left:6px; top:0; background:transparent; border:2px solid #fff; box-sizing:border-box; }
+  .gender .g2{ width:16px; height:16px; left:23px; top:3px; }
+  .gender .b1, .gender .b2{
+    position:absolute; border:2px solid #fff; border-bottom:none; border-radius:12px 12px 0 0;
+    box-sizing:border-box;
+  }
+  .gender .b1{ left:0; top:15px; width:22px; height:13px; }
+  .gender .b2{ left:19px; top:17px; width:23px; height:12px; background:#fff; border:none; border-radius:10px 10px 0 0; }
+
+  .buildings{
+    position:absolute; left:0; top:8px; width:43px; height:36px;
+  }
+  .buildings .bld1, .buildings .bld2, .buildings .bld3{
+    position:absolute; bottom:0; background:#fff;
+  }
+  .buildings .bld1{ left:0; width:11px; height:22px; }
+  .buildings .bld2{ left:13px; width:12px; height:33px; }
+  .buildings .bld3{ left:28px; width:11px; height:27px; }
+  .buildings .bld1:before, .buildings .bld2:before, .buildings .bld3:before{
+    content:""; position:absolute; inset:4px 2px 3px 2px;
+    background:
+      linear-gradient(#0000 0, #0000 3px, #000 3px, #000 5px, #0000 5px, #0000 8px, #000 8px, #000 10px, #0000 10px, #0000 13px, #000 13px, #000 15px, #0000 15px),
+      linear-gradient(90deg, #0000 0, #0000 2px, #000 2px, #000 4px, #0000 4px, #0000 6px, #000 6px, #000 8px, #0000 8px);
+    opacity:.75;
+  }
+
+  .parking{
+    position:absolute; left:2px; top:6px; width:40px; height:40px;
+    background:#fff; border-radius:8px;
+  }
+  .parking:before{
+    content:"P"; position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    color:#000; font-size:22px; font-weight:700; font-style:normal;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">
+    EV Owners, prospects, and sceptics exhibit distinct characteristics in<br>
+    terms of income, mobility requirements, and demographic profiles
+  </div>
+
+  <div class="subtitle">
+    Consumer survey – <span class="light">Cluster profiles (1/2)</span>
+  </div>
+
+  <div class="respondents">
+    <div class="hashbox">#</div>
+    <div class="resp-text">16,778 respondents</div>
+  </div>
+
+  <div class="left-panel">
+    <div class="qbox">
+      <div class="icon-area"><div class="wallet"></div></div>
+      <div class="qtext">What is your annual<br>gross income?</div>
+    </div>
+
+    <div class="qbox">
+      <div class="icon-area"><div class="idcard"></div></div>
+      <div class="qtext" style="top:26px;">What is your age?</div>
+    </div>
+
+    <div class="qbox">
+      <div class="icon-area">
+        <div class="gender">
+          <div class="g1"></div><div class="g2"></div>
+          <div class="b1"></div><div class="b2"></div>
+        </div>
+      </div>
+      <div class="qtext" style="top:28px;">What is your gender?</div>
+    </div>
+
+    <div class="qbox">
+      <div class="icon-area">
+        <div class="buildings">
+          <div class="bld1"></div><div class="bld2"></div><div class="bld3"></div>
+        </div>
+      </div>
+      <div class="qtext" style="top:28px;">Where do you live?</div>
+    </div>
+
+    <div class="qbox">
+      <div class="icon-area"><div class="parking"></div></div>
+      <div class="qtext">Do you have a private<br>parking spot at home?</div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="col">
+      <div class="badge red1">1</div>
+      <div class="col-title">EV Owners</div>
+      <div class="rule"></div>
+
+      <div class="income">€ <span class="big">94</span><span class="k">k</span></div>
+      <div class="age"><span class="big">41</span>years</div>
+
+      <div class="bar" style="top:270px;">
+        <div class="fill red-dark" style="width:116px;"><b>51%</b><span class="small">male</span></div>
+      </div>
+      <div class="bar" style="top:357px;">
+        <div class="fill red-dark" style="width:174px;"><b>78%</b><span class="small">city center</span></div>
+      </div>
+      <div class="bar" style="top:442px;">
+        <div class="fill red-dark" style="width:163px;"><b>73%</b><span class="small">yes</span></div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="badge red2">2</div>
+      <div class="col-title">EV prospects</div>
+      <div class="rule" style="background:#d8586d;"></div>
+
+      <div class="income">€ <span class="big">75</span><span class="k">k</span></div>
+      <div class="age"><span class="big">41</span>years</div>
+
+      <div class="bar" style="top:270px;">
+        <div class="fill red-mid" style="width:118px;"><b>52%</b><span class="small">male</span></div>
+      </div>
+      <div class="bar" style="top:357px;">
+        <div class="fill red-mid" style="width:172px;"><b>78%</b><span class="small">city center</span></div>
+      </div>
+      <div class="bar" style="top:442px;">
+        <div class="fill red-mid" style="width:130px;"><b>57%</b><span class="small">yes</span></div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="badge gray">3</div>
+      <div class="col-title">EV sceptics</div>
+      <div class="rule gray"></div>
+
+      <div class="income">€ <span class="big">47</span><span class="k">k</span></div>
+      <div class="age"><span class="big">48</span>years</div>
+
+      <div class="bar" style="top:270px;">
+        <div class="fill gray-fill" style="width:102px;"><b>45%</b><span class="small">male</span></div>
+      </div>
+      <div class="bar" style="top:357px;">
+        <div class="fill gray-fill" style="width:133px;"><b>60%</b><span class="small">city center</span></div>
+      </div>
+      <div class="bar" style="top:442px;">
+        <div class="fill gray-fill" style="width:140px;"><b>63%</b><span class="small">yes</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-left">
+    eReadiness Report 2024<br>
+    Strategy&
+  </div>
+
+  <div class="footer-center">
+    Source: Strategy& analysis on feedback from consumer survey
+  </div>
+
+  <div class="footer-right">
+    September 2024<br>
+    10
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Research methodology and participants</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#f6f6f6;
+  }
+  .slide > div, .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .frame{
+    left:0;
+    top:0;
+    width:1280px;
+    height:720px;
+    border:1px solid #c9ced3;
+    background:#f6f6f6;
+    z-index:1;
+  }
+
+  .left-panel{
+    left:0;
+    top:0;
+    width:593px;
+    height:720px;
+    background:#f6f6f6;
+    z-index:2;
+  }
+
+  .right-panel{
+    left:593px;
+    top:0;
+    width:687px;
+    height:720px;
+    background:#000;
+    z-index:2;
+  }
+
+  .divider{
+    left:593px;
+    top:0;
+    width:1px;
+    height:720px;
+    background:#222;
+    opacity:.45;
+    z-index:3;
+  }
+
+  .tab{
+    left:0;
+    top:0;
+    width:206px;
+    height:16px;
+    background:#7f818a;
+    border-radius:0 0 12px 12px;
+    z-index:40;
+  }
+
+  .tab-text{
+    left:10px;
+    top:3px;
+    width:188px;
+    font-size:9px;
+    line-height:10px;
+    font-weight:700;
+    letter-spacing:.03em;
+    color:#fff;
+    text-transform:uppercase;
+    z-index:41;
+    white-space:nowrap;
+  }
+
+  .title{
+    left:47px;
+    top:47px;
+    width:455px;
+    font-size:64px;
+    line-height:59px;
+    font-weight:400;
+    letter-spacing:-0.03em;
+    color:#1b1b28;
+    z-index:20;
+  }
+
+  .ey-line{
+    left:46px;
+    top:244px;
+    width:459px;
+    height:3px;
+    background:linear-gradient(90deg,#f0e200 0 44%, #ff49dc 73%, #19d7e8 100%);
+    z-index:20;
+  }
+
+  .body-text{
+    left:47px;
+    top:288px;
+    width:463px;
+    font-size:13px;
+    line-height:1.42;
+    font-weight:400;
+    color:#5a5e66;
+    z-index:20;
+  }
+
+  .vert-label{
+    left:-214px;
+    top:445px;
+    width:430px;
+    font-size:13px;
+    line-height:13px;
+    font-weight:400;
+    color:#363a40;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    letter-spacing:.02em;
+    z-index:20;
+    white-space:nowrap;
+  }
+
+  .vert-mark{
+    left:14px;
+    top:463px;
+    width:1px;
+    height:36px;
+    background:#585d64;
+    z-index:20;
+  }
+
+  .page-no{
+    left:18px;
+    top:698px;
+    font-size:12px;
+    line-height:12px;
+    color:#3b3f45;
+    z-index:20;
+  }
+
+  .top-copy{
+    left:700px;
+    top:48px;
+    width:505px;
+    text-align:center;
+    font-size:14px;
+    line-height:18px;
+    font-weight:400;
+    color:#e9e9e9;
+    z-index:25;
+  }
+
+  .big-number{
+    left:707px;
+    top:73px;
+    width:490px;
+    text-align:center;
+    font-size:289px;
+    line-height:250px;
+    font-weight:700;
+    letter-spacing:-0.05em;
+    color:transparent;
+    -webkit-text-stroke:2px #e5d600;
+    text-stroke:2px #e5d600;
+    z-index:24;
+  }
+
+  .bottom-copy{
+    left:692px;
+    top:307px;
+    width:492px;
+    text-align:center;
+    font-size:18px;
+    line-height:1.42;
+    font-weight:400;
+    color:#f2f2f2;
+    z-index:25;
+  }
+
+  .jump-circle{
+    left:1208px;
+    top:29px;
+    width:43px;
+    height:43px;
+    border:1px solid #8f949a;
+    border-radius:50%;
+    z-index:30;
+  }
+
+  .jump-dot{
+    left:1242px;
+    top:31px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#f0df00;
+    z-index:31;
+  }
+
+  .jump-text{
+    left:1215px;
+    top:39px;
+    width:30px;
+    text-align:center;
+    font-size:8px;
+    line-height:8px;
+    color:#fff;
+    z-index:31;
+  }
+
+  .photo-base{
+    left:593px;
+    top:237px;
+    width:687px;
+    height:483px;
+    background:
+      linear-gradient(180deg, rgba(63,17,0,.20) 0%, rgba(14,4,0,.12) 10%, rgba(0,0,0,0) 26%),
+      radial-gradient(ellipse at 46% 66%, rgba(12,132,224,.18) 0%, rgba(8,64,122,.10) 26%, rgba(0,0,0,0) 52%),
+      radial-gradient(ellipse at 60% 86%, rgba(0,96,176,.20) 0%, rgba(0,0,0,0) 46%),
+      #000;
+    z-index:5;
+  }
+
+  .hand-svg{
+    left:593px;
+    top:237px;
+    width:687px;
+    height:483px;
+    z-index:6;
+  }
+
+  .scribble-svg{
+    left:593px;
+    top:365px;
+    width:687px;
+    height:325px;
+    z-index:7;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="frame"></div>
+  <div class="left-panel"></div>
+  <div class="right-panel"></div>
+  <div class="divider"></div>
+
+  <div class="tab"></div>
+  <div class="tab-text">RESEARCH METHODOLOGY AND PARTICIPANTS</div>
+
+  <div class="title">Research<br>methodology and<br>participants</div>
+  <div class="ey-line"></div>
+
+  <div class="body-text">
+    The global EY organization, in collaboration with the IIF, surveyed CROs and<br>
+    other senior risk executives from 106 IIF member firms and other insurance<br>
+    companies in EMEIA, the Americas and Asia-Pacific between November 2025<br>
+    and January 2026. Participants were interviewed, completed an online survey<br>
+    or both. The research included a cross-section of the insurance sector in terms<br>
+    of asset size, geographic reach and line of business (e.g., property and casualty,<br>
+    life, health, reinsurance and specialty).
+  </div>
+
+  <div class="vert-label">RESEARCH METHODOLOGY AND PARTICIPANTS</div>
+  <div class="vert-mark"></div>
+  <div class="page-no">32</div>
+
+  <div class="top-copy">CROs and other senior risk executives surveyed from</div>
+  <div class="big-number">106</div>
+  <div class="bottom-copy">IIF member firms and other insurance companies in<br>EMEIA, the Americas and Asia-Pacific.</div>
+
+  <div class="jump-circle"></div>
+  <div class="jump-dot"></div>
+  <div class="jump-text">Jump to<br>contents</div>
+
+  <div class="photo-base"></div>
+
+  <svg class="hand-svg" viewBox="0 0 687 483" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <radialGradient id="glowA" cx="52%" cy="73%" r="45%">
+        <stop offset="0%" stop-color="#0e91ea" stop-opacity=".40"/>
+        <stop offset="48%" stop-color="#0a58a4" stop-opacity=".18"/>
+        <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="handGrad" x1="8%" y1="8%" x2="92%" y2="85%">
+        <stop offset="0%" stop-color="#1f0700" stop-opacity=".96"/>
+        <stop offset="32%" stop-color="#0a0b11" stop-opacity=".97"/>
+        <stop offset="66%" stop-color="#08355f" stop-opacity=".92"/>
+        <stop offset="100%" stop-color="#0b4a84" stop-opacity=".88"/>
+      </linearGradient>
+      <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="10"/>
+      </filter>
+    </defs>
+
+    <ellipse cx="365" cy="344" rx="260" ry="92" fill="url(#glowA)" filter="url(#blurGlow)"/>
+
+    <path d="M-20 35 C106 40, 205 59, 286 58 C352 57, 385 70, 410 95 C442 128, 441 165, 414 185
+             C390 204, 357 198, 329 187 C298 175, 266 170, 235 181 C199 194, 175 219, 177 251
+             C180 282, 202 303, 233 308 C277 315, 322 291, 357 280 C390 270, 429 272, 471 286
+             C516 301, 536 332, 520 359 C501 391, 456 399, 408 390 C349 379, 296 356, 244 341
+             C177 321, 118 314, 67 314 C18 314, -8 321, -18 332 Z"
+          fill="url(#handGrad)" opacity=".92"/>
+
+    <path d="M126 111 C154 88, 204 83, 245 93 C284 102, 332 114, 383 126 C437 139, 467 156, 478 183
+             C487 206, 475 230, 445 238 C404 248, 358 232, 312 206 C269 182, 229 169, 185 166
+             C153 164, 131 149, 126 111 Z"
+          fill="#0e5e9f" opacity=".34"/>
+
+    <path d="M222 142 C247 126, 276 126, 307 136 C339 147, 370 159, 403 176 C430 190, 442 209, 437 227
+             C431 248, 409 252, 381 244 C345 233, 314 213, 283 192 C251 170, 229 159, 222 142 Z"
+          fill="#1a8be3" opacity=".23"/>
+
+    <ellipse cx="205" cy="355" rx="92" ry="116" fill="#000" opacity=".58"/>
+  </svg>
+
+  <svg class="scribble-svg" viewBox="0 0 687 325" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="2.4" result="b"/>
+        <feMerge>
+          <feMergeNode in="b"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+
+    <ellipse cx="346" cy="184" rx="315" ry="107" fill="none" stroke="#0e7ddb" stroke-opacity=".12" stroke-width="2"/>
+    <ellipse cx="353" cy="198" rx="278" ry="89" fill="none" stroke="#14b5ff" stroke-opacity=".16" stroke-width="2"/>
+
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+      <path d="M16 188 C56 164, 99 146, 154 153 C202 160, 228 182, 271 190 C319 198, 345 173, 381 161 C438 142, 505 146, 558 166 C604 184, 633 205, 670 223" stroke="#08d7ff" stroke-width="2.1" stroke-opacity=".74"/>
+      <path d="M28 206 C77 186, 126 174, 161 181 C198 189, 225 220, 271 228 C319 236, 361 199, 413 196 C463 194, 513 219, 578 232 C619 241, 646 239, 675 229" stroke="#129fff" stroke-width="1.8" stroke-opacity=".67"/>
+      <path d="M44 171 C75 124, 122 112, 160 119 C211 130, 229 164, 266 173 C315 185, 343 147, 381 136 C438 120, 511 132, 560 154 C613 180, 653 212, 681 236" stroke="#1cc8ff" stroke-width="1.9" stroke-opacity=".70"/>
+      <path d="M34 240 C82 221, 121 211, 152 218 C190 226, 210 257, 253 268 C311 282, 368 248, 426 241 C484 235, 542 251, 603 269 C636 279, 659 283, 684 276" stroke="#0d84ff" stroke-width="1.7" stroke-opacity=".56"/>
+      <path d="M56 150 C86 164, 106 196, 136 204 C169 212, 198 186, 232 186 C271 185, 297 210, 332 221 C369 233, 404 225, 438 206 C487 180, 546 171, 608 181 C636 186, 662 198, 684 214" stroke="#08d1ff" stroke-width="1.8" stroke-opacity=".71"/>
+      <path d="M16 220 C41 205, 54 182, 66 164 C83 139, 107 131, 134 144 C162 156, 179 189, 206 205 C241 225, 279 226, 317 214 C363 201, 399 175, 451 172 C499 168, 530 186, 572 210 C605 231, 643 246, 681 252" stroke="#10b6ff" stroke-width="1.9" stroke-opacity=".65"/>
+      <path d="M89 120 C111 141, 106 183, 125 205 C146 230, 184 236, 212 220 C244 202, 256 165, 286 149 C321 130, 359 140, 391 161 C421 181, 440 212, 476 223 C520 238, 569 224, 607 209" stroke="#08d7ff" stroke-width="1.6" stroke-opacity=".63"/>
+      <path d="M82 252 C113 266, 123 292, 152 299 C183 307, 217 296, 249 279 C290 257, 324 226, 373 221 C427 216, 478 249, 529 263 C570 275, 620 272, 670 256" stroke="#1090ff" stroke-width="1.7" stroke-opacity=".61"/>
+      <path d="M121 106 C143 116, 166 152, 194 157 C228 163, 254 126, 291 121 C329 117, 353 149, 390 159 C432 171, 470 165, 510 149 C544 136, 581 130, 619 138" stroke="#1ab6ff" stroke-width="1.6" stroke-opacity=".60"/>
+      <path d="M18 170 C38 220, 72 248, 105 251 C134 254, 156 233, 180 228 C210 221, 234 227, 268 242 C299 255, 323 268, 359 272 C399 277, 428 269, 465 255 C506 240, 552 225, 596 228 C633 231, 659 245, 682 265" stroke="#08b4ff" stroke-width="1.7" stroke-opacity=".64"/>
+
+      <path d="M10 190 C58 170, 88 176, 120 200 C154 224, 176 274, 216 282 C251 289, 280 253, 308 237 C352 212, 400 210, 443 226 C494 245, 531 286, 596 291 C628 293, 656 286, 681 272" stroke="#06d0ff" stroke-width="1.4" stroke-opacity=".65"/>
+      <path d="M25 156 C54 165, 71 197, 90 226 C111 258, 137 282, 165 286 C195 291, 224 274, 252 251 C283 225, 310 195, 349 184 C398 169, 450 180, 496 199 C551 222, 592 255, 662 266" stroke="#0da1ff" stroke-width="1.3" stroke-opacity=".62"/>
+      <path d="M48 139 C67 111, 87 98, 113 101 C143 105, 166 129, 188 156 C211 185, 231 213, 264 222 C298 232, 329 215, 360 196 C392 176, 424 158, 462 157 C504 156, 540 176, 573 198 C610 223, 642 248, 680 258" stroke="#17c5ff" stroke-width="1.2" stroke-opacity=".63"/>
+      <path d="M70 210 C102 189, 126 178, 160 185 C191 191, 215 216, 244 231 C277 249, 306 257, 343 251 C387 244, 416 217, 451 204 C486 192, 529 193, 567 208 C611 225, 648 253, 678 278" stroke="#0cd1ff" stroke-width="1.2" stroke-opacity=".66"/>
+      <path d="M63 254 C89 232, 98 204, 116 181 C135 155, 164 143, 195 150 C224 157, 244 183, 269 199 C299 218, 326 230, 357 223 C388 216, 405 190, 434 178 C470 163, 512 172, 548 188 C589 205, 636 237, 684 256" stroke="#0dafef" stroke-width="1.2" stroke-opacity=".59"/>
+      <path d="M130 124 C157 132, 178 161, 200 186 C222 211, 246 237, 278 244 C308 250, 339 235, 366 213 C395 190, 420 164, 453 156 C490 146, 533 154, 570 169 C607 184, 644 209, 677 239" stroke="#18d3ff" stroke-width="1.2" stroke-opacity=".56"/>
+      <path d="M4 222 C39 239, 54 275, 86 289 C117 302, 161 292, 199 277 C251 255, 290 221, 343 214 C396 208, 444 222, 494 245 C539 265, 582 292, 633 298 C651 300, 668 299, 686 294" stroke="#0a8dff" stroke-width="1.2" stroke-opacity=".57"/>
+      <path d="M84 174 C109 156, 126 127, 154 117 C184 107, 220 119, 249 135 C286 155, 317 184, 358 191 C401 199, 439 181, 478 165 C520 148, 562 136, 604 145 C634 151, 660 169, 686 192" stroke="#0cbcff" stroke-width="1.2" stroke-opacity=".59"/>
+      <path d="M13 149 C38 164, 58 191, 76 217 C94 243, 112 271, 139 278 C166 285, 194 270, 217 249 C243 225, 260 196, 288 176 C319 154, 350 144, 383 150 C426 157, 455 194, 498 208 C542 222, 598 215, 656 206" stroke="#10d7ff" stroke-width="1.1" stroke-opacity=".56"/>
+      <path d="M28 268 C55 252, 79 226, 104 221 C129 216, 148 238, 168 254 C189 272, 216 285, 244 281 C272 277, 294 258, 318 241 C341 225, 365 211, 393 209 C432 205, 470 225, 506 241 C552 261, 607 276, 677 277" stroke="#09b2ff" stroke-width="1.1" stroke-opacity=".58"/>
+      <path d="M113 142 C128 172, 118 219, 134 245 C148 267, 184 271, 212 261 C245 249, 270 225, 302 213 C341 198, 376 191, 410 199 C454 210, 484 247, 529 258 C579 270, 631 249, 679 232" stroke="#14c2ff" stroke-width="1.1" stroke-opacity=".57"/>
+      <path d="M169 114 C187 128, 198 162, 219 182 C244 205, 279 209, 311 199 C350 186, 381 153, 423 143 C467 133, 514 145, 551 170 C589 195, 616 231, 648 245" stroke="#00d9ff" stroke-width="1.1" stroke-opacity=".56"/>
+    </g>
+
+    <g fill="#36d8ff" opacity=".70">
+      <circle cx="80" cy="165" r="3.2"/>
+      <circle cx="118" cy="150" r="2.6"/>
+      <circle cx="173" cy="198" r="2.7"/>
+      <circle cx="250" cy="181" r="2.4"/>
+      <circle cx="342" cy="219" r="3.0"/>
+      <circle cx="431" cy="201" r="2.8"/>
+      <circle cx="511" cy="183" r="2.6"/>
+      <circle cx="586" cy="212" r="3.1"/>
+      <circle cx="636" cy="247" r="2.7"/>
+      <circle cx="155" cy="279" r="3.0"/>
+      <circle cx="307" cy="259" r="2.6"/>
+      <circle cx="466" cy="265" r="2.8"/>
+    </g>
+  </svg>
+</div>
+</body>
+</html>

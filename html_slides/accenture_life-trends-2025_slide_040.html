@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#fdfdfd;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#fdfdfd;
+    margin:0 auto;
+  }
+
+  .title-small{
+    position:absolute;
+    left:60px;
+    top:112px;
+    font-size:23px;
+    line-height:1.1;
+    color:#7f21dd;
+    font-weight:300;
+    letter-spacing:0.2px;
+  }
+  .title-big{
+    position:absolute;
+    left:126px;
+    top:148px;
+    font-size:57px;
+    line-height:0.95;
+    color:#7618d6;
+    font-weight:300;
+    letter-spacing:-0.5px;
+  }
+
+  .body-text{
+    position:absolute;
+    left:60px;
+    top:246px;
+    width:382px;
+    font-size:18px;
+    line-height:1.48;
+    color:#222;
+    font-weight:400;
+  }
+
+  .photos{
+    position:absolute;
+    left:528px;
+    top:0;
+    width:422px;
+    height:720px;
+  }
+  .panel{
+    position:absolute;
+    left:0;
+    width:422px;
+    overflow:hidden;
+  }
+  .panel.top{ top:0; height:255px; }
+  .panel.mid{ top:255px; height:256px; }
+  .panel.bot{ top:511px; height:209px; }
+
+  .scene{
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(90deg, rgba(50,10,40,0.68) 0 15%, rgba(255,255,255,0) 15% 100%),
+      linear-gradient(90deg, #e4d8df 0 52%, #c5a7b1 52% 57%, #eadde2 57% 66%, #c8b2bb 66% 72%, #efdfe4 72% 100%);
+  }
+
+  .person-left{
+    position:absolute;
+    left:8px;
+    top:18px;
+    width:120px;
+    height:185px;
+  }
+  .hair{
+    position:absolute;
+    left:10px;
+    top:0;
+    width:78px;
+    height:93px;
+    background:
+      radial-gradient(circle at 30% 15%, #ff66d4 0 22%, #8f1f7b 23% 48%, #111 49% 100%);
+    border-radius:40px 40px 26px 26px;
+    filter:saturate(1.2);
+  }
+  .face{
+    position:absolute;
+    left:28px;
+    top:34px;
+    width:50px;
+    height:62px;
+    background:linear-gradient(180deg,#f5d1cd,#e7b0b0);
+    border-radius:24px 24px 28px 24px;
+  }
+  .body{
+    position:absolute;
+    left:26px;
+    top:92px;
+    width:70px;
+    height:96px;
+    background:#111219;
+    border-radius:10px 10px 0 0;
+  }
+  .arm{
+    position:absolute;
+    background:linear-gradient(180deg,#f5d1cd,#e7b0b0);
+    border-radius:12px;
+  }
+  .arm.a1{ left:50px; top:82px; width:14px; height:52px; transform:rotate(-36deg); }
+  .arm.a2{ left:81px; top:64px; width:12px; height:38px; transform:rotate(28deg); }
+
+  .mirror-blur{
+    position:absolute;
+    right:-38px;
+    top:-10px;
+    width:185px;
+    height:280px;
+    background:
+      radial-gradient(circle at 44% 30%, rgba(255,176,233,0.95) 0 10%, rgba(242,108,213,0.88) 20%, rgba(255,207,244,0.75) 38%, rgba(255,255,255,0.08) 58%, rgba(0,0,0,0) 70%),
+      linear-gradient(180deg, rgba(255,187,237,0.86), rgba(246,132,214,0.82));
+    filter:blur(8px);
+    border-radius:60px;
+    opacity:0.95;
+  }
+  .mirror-face{
+    position:absolute;
+    right:92px;
+    top:58px;
+    width:60px;
+    height:90px;
+    background:linear-gradient(180deg, rgba(255,221,230,0.55), rgba(239,168,193,0.35));
+    border-radius:30px;
+    filter:blur(5px);
+  }
+
+  .mid .person-left{ top:10px; left:8px; }
+  .mid .hair{ top:4px; left:8px; width:82px; height:94px; }
+  .mid .face{ left:26px; top:36px; }
+  .mid .body{ left:22px; top:92px; width:82px; height:112px; }
+  .mid .arm.a1{ left:68px; top:92px; width:14px; height:48px; transform:rotate(74deg); }
+  .mid .arm.a2{ left:29px; top:118px; width:12px; height:44px; transform:rotate(-18deg); }
+
+  .scissors{
+    position:absolute;
+    left:61px;
+    top:95px;
+    width:92px;
+    height:28px;
+    transform:rotate(-9deg);
+  }
+  .blade, .blade2{
+    position:absolute;
+    left:20px;
+    top:11px;
+    width:50px;
+    height:3px;
+    background:#d8d8d8;
+    transform-origin:left center;
+  }
+  .blade{ transform:rotate(6deg); }
+  .blade2{ transform:rotate(-7deg); }
+  .handle1, .handle2{
+    position:absolute;
+    width:14px;
+    height:14px;
+    border:3px solid #0d0d0d;
+    border-radius:50%;
+    top:6px;
+  }
+  .handle1{ left:2px; }
+  .handle2{ left:15px; }
+
+  .mid .mirror-blur{
+    right:-56px;
+    top:-8px;
+    width:214px;
+    height:272px;
+    background:
+      radial-gradient(circle at 38% 40%, rgba(255,234,248,0.9) 0 8%, rgba(244,115,214,0.85) 16%, rgba(255,203,240,0.75) 28%, rgba(255,255,255,0.16) 44%, rgba(0,0,0,0) 64%),
+      linear-gradient(180deg, rgba(255,173,231,0.9), rgba(238,117,205,0.82));
+    filter:blur(10px);
+  }
+
+  .bot .scene{
+    background:
+      linear-gradient(90deg, rgba(50,10,40,0.35) 0 13%, rgba(255,255,255,0) 13% 100%),
+      linear-gradient(90deg, #d8cdd3 0 52%, #b999a6 52% 57%, #eadde2 57% 66%, #c8b2bb 66% 72%, #efdfe4 72% 100%);
+  }
+  .bot .person-left{
+    left:15px; top:8px; transform:scale(0.9); transform-origin:top left;
+    opacity:0.8;
+  }
+  .bot .mirror-blur{
+    right:-8px;
+    top:-22px;
+    width:276px;
+    height:248px;
+    background:
+      radial-gradient(circle at 52% 18%, rgba(255,250,255,0.92) 0 6%, rgba(255,195,239,0.86) 14%, rgba(239,84,198,0.9) 30%, rgba(154,18,128,0.86) 50%, rgba(255,204,238,0.55) 70%, rgba(0,0,0,0) 86%),
+      linear-gradient(180deg, rgba(255,194,238,0.62), rgba(234,80,192,0.8));
+    filter:blur(12px);
+  }
+  .bot .fog{
+    position:absolute;
+    left:92px;
+    top:0;
+    width:250px;
+    height:220px;
+    background:
+      radial-gradient(circle at 42% 26%, rgba(255,255,255,0.9), rgba(255,225,248,0.75) 26%, rgba(255,192,238,0.55) 45%, rgba(255,255,255,0.1) 70%, rgba(0,0,0,0) 100%);
+    filter:blur(12px);
+  }
+
+  .callout{
+    position:absolute;
+    left:991px;
+    top:285px;
+    width:217px;
+    color:#333;
+  }
+  .percent{
+    font-size:27px;
+    line-height:1;
+    color:#8a23e6;
+    font-weight:300;
+  }
+  .bolt{
+    display:inline-block;
+    font-size:26px;
+    color:#8a23e6;
+    margin-left:3px;
+    transform:translateY(-1px);
+  }
+  .callout p{
+    margin:0;
+    font-size:17px;
+    line-height:1.38;
+    color:#333;
+    font-weight:400;
+  }
+  .source{
+    margin-top:14px;
+    font-size:14px;
+    line-height:1.2;
+    color:#111;
+    font-weight:700;
+  }
+
+  .right-rail{
+    position:absolute;
+    top:35px;
+    right:16px;
+    width:26px;
+    height:590px;
+    color:#777;
+    font-size:12px;
+    letter-spacing:0.2px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+  }
+  .right-rail .purple{
+    color:#a020f0;
+    font-weight:700;
+  }
+
+  .footer{
+    position:absolute;
+    right:32px;
+    bottom:17px;
+    font-size:13px;
+    color:#7d7d7d;
+  }
+  .footer .year{
+    color:#8a23e6;
+  }
+  .page{
+    position:absolute;
+    right:14px;
+    bottom:17px;
+    font-size:13px;
+    color:#7d7d7d;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title-small">What’s</div>
+    <div class="title-big">going on</div>
+
+    <div class="body-text">
+      Two interconnected catalysts are driving people toward taking initiatives to speed up their pursuit of their life goals. First, technology has made it easier to find new routes to pursue a goal. Second, people seeking advice on navigating life’s complexities are finding it in social channels, often delivered by someone to whom they relate. Bolstered by the knowledge of the digital crowd, they find the confidence to create a new path instead of following traditional ones.
+    </div>
+
+    <div class="photos">
+      <div class="panel top">
+        <div class="scene"></div>
+        <div class="person-left">
+          <div class="hair"></div>
+          <div class="face"></div>
+          <div class="body"></div>
+          <div class="arm a1"></div>
+          <div class="arm a2"></div>
+        </div>
+        <div class="mirror-face"></div>
+        <div class="mirror-blur"></div>
+      </div>
+
+      <div class="panel mid">
+        <div class="scene"></div>
+        <div class="person-left">
+          <div class="hair"></div>
+          <div class="face"></div>
+          <div class="body"></div>
+          <div class="arm a1"></div>
+          <div class="arm a2"></div>
+        </div>
+        <div class="scissors">
+          <div class="handle1"></div>
+          <div class="handle2"></div>
+          <div class="blade"></div>
+          <div class="blade2"></div>
+        </div>
+        <div class="mirror-blur"></div>
+      </div>
+
+      <div class="panel bot">
+        <div class="scene"></div>
+        <div class="person-left">
+          <div class="hair"></div>
+          <div class="face"></div>
+          <div class="body"></div>
+          <div class="arm a1"></div>
+          <div class="arm a2"></div>
+        </div>
+        <div class="fog"></div>
+        <div class="mirror-blur"></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="percent">55%<span class="bolt">↯</span></div>
+      <p>of people prefer quick solutions over traditional methods and many are willing to explore riskier routes to achieve their health and financial goals</p>
+      <div class="source">Accenture Life Trends survey, 2024</div>
+    </div>
+
+    <div class="right-rail">Cost of hesitations / The parent trap / <span class="purple">Impatience economy</span> / The dignity of work / Social rewilding</div>
+
+    <div class="footer">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="page">40</div>
+  </div>
+</body>
+</html>

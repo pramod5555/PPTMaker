@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Cyberattacks slide replica</title>
+<style>
+  body{margin:0;background:#ffffff;}
+  #root{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+    color:#222;
+  }
+  #root > div, #root > svg{position:absolute;box-sizing:border-box;}
+  .sidebar{
+    left:0;top:0;width:181px;height:720px;
+    background:#31353b;
+    z-index:5;
+  }
+  .purple-line{
+    left:179px;top:0;width:2px;height:720px;
+    background:#7a56b5;z-index:6;
+  }
+  .title-left{
+    left:12px;top:33px;width:146px;height:72px;
+    color:#f1f1f1;font-size:22px;line-height:1.06;font-weight:700;z-index:30;
+  }
+
+  .step{width:150px;height:96px;left:8px;z-index:30;color:#6e747b;}
+  .hex{position:absolute;left:0;top:0;width:77px;height:63px;filter:drop-shadow(0 0 1px rgba(255,255,255,0.35));}
+  .step-num{
+    position:absolute;left:85px;top:1px;width:22px;
+    font-size:30px;line-height:1;font-weight:700;color:#73797f;
+  }
+  .step-text{
+    position:absolute;left:85px;top:27px;width:62px;
+    font-size:15px;line-height:1.05;font-weight:400;color:#666c73;
+  }
+  .step.active .step-num,.step.active .step-text{color:#8b66c4;font-weight:700;}
+  .gear-icon{left:39px;top:668px;width:82px;height:47px;z-index:25;color:#6e747b;}
+  .page{
+    left:10px;top:748px;width:20px;height:10px;
+    color:#efefef;font-size:20px;line-height:10px;font-weight:400;z-index:50;
+  }
+
+  .main-title{
+    left:220px;top:30px;width:930px;height:84px;
+    font-size:28px;line-height:1.06;font-weight:700;color:#1f1f21;z-index:30;
+    letter-spacing:-0.2px;
+  }
+  .sub-title{
+    left:220px;top:139px;width:700px;height:34px;
+    font-size:24px;line-height:1.1;font-weight:300;color:#8b9097;z-index:30;
+  }
+  .section-left-title{
+    left:220px;top:186px;width:340px;height:54px;
+    font-size:18px;line-height:1.05;font-weight:700;color:#222;z-index:30;
+  }
+  .section-right-title{
+    left:607px;top:186px;width:340px;height:54px;
+    font-size:18px;line-height:1.05;font-weight:700;color:#222;z-index:30;
+  }
+
+  .bg-illustration{
+    left:258px;top:228px;width:680px;height:448px;z-index:10;opacity:0.2;
+    background:
+      radial-gradient(circle at 48% 24%, rgba(255,255,255,0.8) 0, rgba(255,255,255,0.35) 20%, rgba(255,255,255,0) 38%),
+      linear-gradient(90deg, rgba(255,255,255,0.09) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 58px),
+      linear-gradient(180deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0) 120px, rgba(255,255,255,0.06) 240px, rgba(255,255,255,0) 340px);
+    border-radius:6px;
+  }
+
+  .left-labels{
+    left:220px;top:248px;width:108px;height:470px;z-index:30;
+    font-size:17px;line-height:33px;font-weight:400;color:#2c2c2c;
+  }
+  .left-bars{
+    left:323px;top:252px;width:210px;height:465px;z-index:30;
+  }
+  .bar-row{position:absolute;left:0;width:210px;height:24px;}
+  .bar{
+    position:absolute;left:0;top:6px;height:19px;background:#53337f;
+  }
+  .bar-value{
+    position:absolute;top:3px;font-size:16px;line-height:20px;font-weight:400;color:#333;
+  }
+
+  .loss-labels{
+    left:594px;top:284px;width:190px;height:390px;z-index:30;
+    font-size:17px;line-height:1.08;font-weight:400;color:#2d2d2d;
+  }
+  .loss-chart{
+    left:781px;top:254px;width:220px;height:465px;z-index:30;
+  }
+
+  .source{
+    left:220px;top:734px;width:660px;height:16px;
+    font-size:11px;line-height:1.1;font-weight:400;color:#444;z-index:30;
+  }
+
+  .callout{
+    left:1001px;top:140px;width:279px;height:579px;
+    background:#d6d6d9;z-index:20;padding:11px 14px 8px 14px;
+  }
+  .callout p{
+    margin:0 0 11px 0;
+    font-size:17px;line-height:1.12;font-weight:400;color:#2a2a2a;width:248px;
+  }
+  .callout b{font-weight:700;}
+  .rb-logo{left:1221px;top:690px;width:47px;height:24px;z-index:50;}
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="sidebar"></div>
+  <div class="purple-line"></div>
+
+  <div class="title-left">Technology &amp;<br>Innovation</div>
+
+  <div class="step" style="top:142px;">
+    <svg class="hex" viewBox="0 0 77 63">
+      <defs><clipPath id="clip1"><polygon points="19,2 58,2 75,31.5 58,61 19,61 2,31.5"></polygon></clipPath></defs>
+      <polygon points="19,2 58,2 75,31.5 58,61 19,61 2,31.5" fill="#4b4f55" stroke="#9ba0a6" stroke-width="3"></polygon>
+      <g clip-path="url(#clip1)">
+        <rect x="2" y="2" width="73" height="59" fill="#777c83"></rect>
+        <path d="M0,44 L15,24 L28,33 L43,16 L60,30 L77,13 L77,63 L0,63 Z" fill="#bfc2c7" opacity="0.75"></path>
+        <path d="M7,18 L27,45 M19,11 L39,33 M37,8 L56,41 M50,14 L70,28" stroke="#efefef" stroke-width="1.4" opacity="0.9"></path>
+        <circle cx="17" cy="22" r="3" fill="#efefef"></circle>
+        <circle cx="35" cy="19" r="2.5" fill="#efefef"></circle>
+        <circle cx="54" cy="25" r="3" fill="#efefef"></circle>
+      </g>
+    </svg>
+    <div class="step-num">1</div>
+    <div class="step-text">Value of<br>Innovation</div>
+  </div>
+
+  <div class="step" style="top:275px;">
+    <svg class="hex" viewBox="0 0 77 63">
+      <defs><clipPath id="clip2"><polygon points="19,2 58,2 75,31.5 58,61 19,61 2,31.5"></polygon></clipPath></defs>
+      <polygon points="19,2 58,2 75,31.5 58,61 19,61 2,31.5" fill="#4b4f55" stroke="#9ba0a6" stroke-width="3"></polygon>
+      <g clip-path="url(#clip2)">
+        <rect x="2" y="2" width="73" height="59" fill="#767b82"></rect>
+        <circle cx="26" cy="26" r="13" fill="none" stroke="#d9d9d9" stroke-width="1.2"></circle>
+        <circle cx="48" cy="22" r="9" fill="none" stroke="#d9d9d9" stroke-width="1.2"></circle>
+        <circle cx="41" cy="38" r="14" fill="none" stroke="#d9d9d9" stroke-width="1.2"></circle>
+        <path d="M15,23 L33,28 L50,21 L44,39 L27,35 Z" fill="#c9ccd0" opacity="0.8"></path>
+      </g>
+    </svg>
+    <div class="step-num">2</div>
+    <div class="step-text">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="step active" style="top:408px;">
+    <svg class="hex" viewBox="0 0 77 63">
+      <defs><clipPath id="clip3"><polygon points="19,2 58,2 75,31.5 58,61 19,61 2,31.5"></polygon></clipPath></defs>
+      <polygon points="19,2 58,2 75,31.5 58,61 19,61 2,31.5" fill="#f5f0fb" stroke="#8d67c7" stroke-width="4"></polygon>
+      <g clip-path="url(#clip3)">
+        <rect x="2" y="2" width="73" height="59" fill="#ead5c8"></rect>
+        <rect x="0" y="0" width="77" height="63" fill="#efd7ce" opacity="0.72"></rect>
+        <circle cx="25" cy="29" r="8" fill="#f1c8b7"></circle>
+        <circle cx="53" cy="28" r="8" fill="#f1c8b7"></circle>
+        <rect x="21" y="35" width="9" height="14" rx="4" fill="#8ca7bd"></rect>
+        <rect x="49" y="34" width="9" height="15" rx="4" fill="#c58f73"></rect>
+        <path d="M30,38 L41,35 L47,39" stroke="#ffffff" stroke-width="3" fill="none"></path>
+        <path d="M29,39 L38,44 L49,36" stroke="#5a4034" stroke-width="2" fill="none"></path>
+      </g>
+    </svg>
+    <div class="step-num">3</div>
+    <div class="step-text">Humans &amp;<br>Machines</div>
+  </div>
+
+  <svg class="gear-icon" viewBox="0 0 100 60">
+    <g fill="none" stroke="#6e747b" stroke-width="4" opacity="0.86">
+      <circle cx="32" cy="36" r="16"></circle>
+      <path d="M32 10 L32 17 M14 18 L19 23 M6 36 L13 36 M14 54 L19 49 M32 62 L32 55 M50 54 L45 49 M58 36 L51 36 M50 18 L45 23"></path>
+    </g>
+    <g fill="#6e747b" opacity="0.86">
+      <circle cx="72" cy="31" r="11"></circle>
+      <rect x="70" y="13" width="4" height="8"></rect>
+      <rect x="70" y="41" width="4" height="8"></rect>
+      <rect x="54" y="29" width="8" height="4"></rect>
+      <rect x="82" y="29" width="8" height="4"></rect>
+      <rect x="59" y="18" width="4" height="8" transform="rotate(-45 61 22)"></rect>
+      <rect x="81" y="40" width="4" height="8" transform="rotate(-45 83 44)"></rect>
+      <rect x="59" y="40" width="4" height="8" transform="rotate(45 61 44)"></rect>
+      <rect x="81" y="18" width="4" height="8" transform="rotate(45 83 22)"></rect>
+      <path d="M72 24 C68 24,66 27,66 30 C66 38,78 35,78 42 C78 46,74 48,71 48 C67 48,63 46,61 43" fill="none" stroke="#32363c" stroke-width="3"></path>
+    </g>
+  </svg>
+
+  <div class="page">62</div>
+
+  <div class="main-title">Cyberattacks are on the rise carrying considerable infrastructure and<br>socioeconomic costs – USA is a key target</div>
+  <div class="sub-title">Cyberattacks are an evolving global and costly phenomenon</div>
+
+  <div class="section-left-title">Total number of significant<br>cyberattacks, 2006-2020</div>
+  <div class="section-right-title">Estimated losses from disasters<br>in the US [USD bn]</div>
+
+  <div class="bg-illustration"></div>
+  <svg style="left:260px; top:226px; width:692px; height:450px; z-index:11; opacity:0.18;" viewBox="0 0 692 450">
+    <g stroke="#ffffff" stroke-width="1.2" fill="none">
+      <path d="M286,17 C336,30 383,90 392,164 C399,225 366,288 313,330" opacity="0.65"></path>
+      <path d="M307,25 C355,56 385,127 381,194 C377,247 349,300 306,339" opacity="0.55"></path>
+      <path d="M274,41 C252,103 254,173 268,231 C282,291 301,320 338,357" opacity="0.55"></path>
+      <path d="M381,115 C426,136 468,159 516,203" opacity="0.45"></path>
+      <path d="M357,192 C405,214 447,260 469,315" opacity="0.45"></path>
+      <path d="M189,79 L211,366" opacity="0.35"></path>
+      <path d="M114,50 L130,311" opacity="0.35"></path>
+      <path d="M528,95 L544,344" opacity="0.35"></path>
+      <path d="M609,44 L618,284" opacity="0.35"></path>
+    </g>
+    <g fill="#ffffff" opacity="0.32" font-family="Arial" font-size="18">
+      <text x="114" y="82">1</text>
+      <text x="94" y="205">x</text>
+      <text x="155" y="262">A</text>
+      <text x="49" y="167">⊥</text>
+      <text x="104" y="337">x</text>
+      <text x="420" y="58">φ</text>
+      <text x="528" y="71">φ</text>
+      <text x="572" y="242">U</text>
+      <text x="583" y="178">C</text>
+      <text x="625" y="291">0</text>
+      <text x="629" y="127">Q</text>
+      <text x="441" y="347">2</text>
+      <text x="366" y="308">1</text>
+      <text x="389" y="367">ω</text>
+      <text x="309" y="432">i</text>
+      <text x="249" y="427">3</text>
+      <text x="214" y="149">α</text>
+      <text x="284" y="24">ψ</text>
+    </g>
+  </svg>
+
+  <div class="left-labels">
+    US<br>
+    UK<br>
+    India<br>
+    Germany<br>
+    South Korea<br>
+    Australia<br>
+    Ukraine<br>
+    China<br>
+    Iran<br>
+    Saudi Arabia<br>
+    Japan<br>
+    Canada<br>
+    France<br>
+    Israel
+  </div>
+
+  <div class="left-bars">
+    <div class="bar-row" style="top:0px;">
+      <div class="bar" style="width:171px;"></div>
+      <div class="bar-value" style="left:177px;">156</div>
+    </div>
+    <div class="bar-row" style="top:33px;">
+      <div class="bar" style="width:52px;"></div>
+      <div class="bar-value" style="left:58px;">47</div>
+    </div>
+    <div class="bar-row" style="top:66px;">
+      <div class="bar" style="width:25px;"></div>
+      <div class="bar-value" style="left:31px;">23</div>
+    </div>
+    <div class="bar-row" style="top:99px;">
+      <div class="bar" style="width:23px;"></div>
+      <div class="bar-value" style="left:29px;">21</div>
+    </div>
+    <div class="bar-row" style="top:132px;">
+      <div class="bar" style="width:20px;"></div>
+      <div class="bar-value" style="left:26px;">18</div>
+    </div>
+    <div class="bar-row" style="top:165px;">
+      <div class="bar" style="width:18px;"></div>
+      <div class="bar-value" style="left:24px;">16</div>
+    </div>
+    <div class="bar-row" style="top:198px;">
+      <div class="bar" style="width:18px;"></div>
+      <div class="bar-value" style="left:24px;">16</div>
+    </div>
+    <div class="bar-row" style="top:231px;">
+      <div class="bar" style="width:17px;"></div>
+      <div class="bar-value" style="left:23px;">15</div>
+    </div>
+    <div class="bar-row" style="top:264px;">
+      <div class="bar" style="width:17px;"></div>
+      <div class="bar-value" style="left:23px;">15</div>
+    </div>
+    <div class="bar-row" style="top:297px;">
+      <div class="bar" style="width:17px;"></div>
+      <div class="bar-value" style="left:23px;">15</div>
+    </div>
+    <div class="bar-row" style="top:330px;">
+      <div class="bar" style="width:14px;"></div>
+      <div class="bar-value" style="left:20px;">13</div>
+    </div>
+    <div class="bar-row" style="top:363px;">
+      <div class="bar" style="width:13px;"></div>
+      <div class="bar-value" style="left:19px;">12</div>
+    </div>
+    <div class="bar-row" style="top:396px;">
+      <div class="bar" style="width:12px;"></div>
+      <div class="bar-value" style="left:18px;">11</div>
+    </div>
+    <div class="bar-row" style="top:429px;">
+      <div class="bar" style="width:12px;"></div>
+      <div class="bar-value" style="left:18px;">11</div>
+    </div>
+  </div>
+
+  <div class="loss-labels">
+    <div style="position:absolute; left:0px; top:16px; width:190px;">Cyber attack on a major<br>regional electricity<br>utility in the US<sup style="font-size:10px;">1)</sup></div>
+    <div style="position:absolute; left:0px; top:174px; width:190px;">Hurricane Katrina<br>(2005)</div>
+    <div style="position:absolute; left:0px; top:329px; width:190px;">California wildfires<br>(2018)</div>
+  </div>
+
+  <svg class="loss-chart" viewBox="0 0 220 465">
+    <line x1="0.5" y1="0" x2="0.5" y2="465" stroke="#666666" stroke-width="1"></line>
+
+    <rect x="1" y="35" width="154" height="87" fill="#53337f"></rect>
+    <rect x="1" y="189" width="110" height="87" fill="#a696c6"></rect>
+    <rect x="1" y="343" width="39" height="87" fill="#b8a9d5"></rect>
+
+    <polygon points="7,123 13,123 38,29 32,29" fill="#f3f0e8" stroke="#575757" stroke-width="1"></polygon>
+    <polygon points="7,277 13,277 38,183 32,183" fill="#f3f0e8" stroke="#575757" stroke-width="1"></polygon>
+    <polygon points="7,431 13,431 38,337 32,337" fill="#f3f0e8" stroke="#575757" stroke-width="1"></polygon>
+
+    <text x="159" y="84" font-family="Arial" font-size="17" font-weight="700" fill="#2c2c2c">194</text>
+    <text x="115" y="238" font-family="Arial" font-size="17" font-weight="700" fill="#2c2c2c">175</text>
+    <text x="44" y="392" font-family="Arial" font-size="17" font-weight="700" fill="#2c2c2c">145</text>
+  </svg>
+
+  <div class="source">1) Disruption of power generation across the grid for five days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Source: Statista; Center for Strategic and International Studies; Software; WEF; FDD &amp; Intangic; Roland Berger</div>
+
+  <div class="callout">
+    <p>&gt; Cyberattacks are continuing to evolve and use <b>innovations in information technology</b> – such as the Internet – as <b>vectors to commit cyber crimes</b>. With the rise of the Internet, more (sensitive) private sector data is transferred, while important <b>public infrastructure is also controlled</b> in this way, <b>widening the scope for top risk security breaches</b></p>
+    <p>&gt; In recent years, the scale and <b>robustness of cyberattacks has increased rapidly</b> and at a faster rate than our ability to deal with hostile attacks, according to the WEF</p>
+    <p>&gt; Especially the <b>USA faces a significant number of cyberattacks</b>, aimed at both public and private organizations. A major, successfully executed cyber-attack aimed at sensitive infrastructure, carries a <b>potential cost of almost USD 200 billion – a sum considerably larger than</b> the costs associated with the widescale destruction created by <b>hurricane Katrina</b>. Moreover, around 100,000 people could lose their jobs as a result</p>
+  </div>
+
+  <svg class="rb-logo" viewBox="0 0 52 25">
+    <text x="1" y="10" font-family="Arial" font-size="5" fill="#7a7a7a">Roland</text>
+    <path d="M24,3 C33,2 39,6 39,12 C39,18 33,22 24,22 L18,22 L18,3 Z" fill="#a4a7ab"></path>
+    <path d="M28,3 C38,3 45,7 45,12 C45,17 38,22 28,22 L25,22 L25,3 Z" fill="#6d7176"></path>
+  </svg>
+</div>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Physical Copilots</title>
+<style>
+  body {
+    margin: 0;
+    background: #222;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: linear-gradient(to right, #f3f3f3 0 56.2%, #000000 56.2% 100%);
+    color: #111;
+  }
+
+  .top-left {
+    position: absolute;
+    left: 60px;
+    top: 37px;
+    font-size: 13px;
+    color: #5a5a5a;
+    white-space: nowrap;
+  }
+  .top-left .accent {
+    color: #a100ff;
+  }
+
+  .top-right {
+    position: absolute;
+    right: 61px;
+    top: 37px;
+    font-size: 13px;
+    color: #d4d4d4;
+    white-space: nowrap;
+  }
+  .top-right .page {
+    margin-left: 28px;
+  }
+
+  .left-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 719px;
+    height: 720px;
+  }
+
+  .title {
+    position: absolute;
+    left: 60px;
+    top: 118px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .col {
+    position: absolute;
+    top: 173px;
+    color: #333;
+  }
+
+  .col1 {
+    left: 60px;
+    width: 255px;
+  }
+
+  .col2 {
+    left: 375px;
+    width: 265px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: #2b2b2b;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .body-text {
+    font-size: 15px;
+    line-height: 1.38;
+    color: #3c3c3c;
+  }
+
+  .section-gap {
+    margin-top: 36px;
+  }
+
+  .bottom-mark {
+    position: absolute;
+    left: 58px;
+    bottom: 20px;
+    font-size: 53px;
+    line-height: 1;
+    color: #a100ff;
+    font-weight: 700;
+  }
+
+  .right-panel {
+    position: absolute;
+    left: 719px;
+    top: 0;
+    width: 561px;
+    height: 720px;
+    color: #fff;
+  }
+
+  .chart-title {
+    position: absolute;
+    left: 33px;
+    top: 176px;
+    width: 490px;
+    font-size: 15px;
+    line-height: 1.3;
+    color: #caa0ff;
+    font-weight: 700;
+  }
+
+  .chart-desc {
+    position: absolute;
+    left: 33px;
+    top: 196px;
+    width: 500px;
+    font-size: 13px;
+    line-height: 1.32;
+    color: #e6e6e6;
+  }
+
+  .question {
+    position: absolute;
+    left: 33px;
+    top: 273px;
+    width: 503px;
+    font-size: 12px;
+    line-height: 1.25;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .chart-area {
+    position: absolute;
+    left: 34px;
+    top: 326px;
+    width: 514px;
+    height: 264px;
+  }
+
+  .axis {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 514px;
+    height: 2px;
+    background: #8a8a8a;
+  }
+
+  .bar-group {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    color: #fff;
+  }
+
+  .bar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 2px;
+    width: 74px;
+    background: linear-gradient(to bottom, #c100ff 0%, #8f00ff 100%);
+  }
+
+  .pct {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  .label {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 236px;
+    width: 95px;
+    font-size: 10px;
+    line-height: 1.2;
+    color: #f3f3f3;
+  }
+
+  .g1 { left: 6px; width: 96px; }
+  .g1 .bar { height: 238px; }
+  .g1 .pct { bottom: 248px; }
+  .g1 .label { width: 92px; }
+
+  .g2 { left: 116px; width: 96px; }
+  .g2 .bar { height: 163px; }
+  .g2 .pct { bottom: 173px; }
+  .g2 .label { width: 88px; }
+
+  .g3 { left: 225px; width: 100px; }
+  .g3 .bar { height: 141px; }
+  .g3 .pct { bottom: 151px; }
+  .g3 .label { width: 96px; }
+
+  .g4 { left: 336px; width: 99px; }
+  .g4 .bar { height: 112px; }
+  .g4 .pct { bottom: 122px; }
+  .g4 .label { width: 95px; }
+
+  .g5 { left: 448px; width: 66px; }
+  .g5 .bar { height: 53px; width: 74px; }
+  .g5 .pct { bottom: 63px; }
+  .g5 .label { width: 84px; }
+
+  .source {
+    position: absolute;
+    left: 33px;
+    bottom: 46px;
+    font-size: 9px;
+    color: #cfcfcf;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+    <div class="top-right">The New Learning Loop <span class="page">55</span></div>
+
+    <div class="left-panel">
+      <div class="title">Physical Copilots</div>
+
+      <div class="col col1">
+        <div class="section-title">What is it?</div>
+        <div class="body-text">
+          Not all automations will be digital. Physical copilots are about to bring a new level of autonomy to the world. These are machines like robots or exoskeletons that can help people act or act on their behalf. With generative AI, they’re beginning to have greater contextual understanding of the world and the ability to take more flexible and general-purpose actions in it.
+        </div>
+
+        <div class="section-gap"></div>
+        <div class="section-title">How does it connect to the trend?</div>
+        <div class="body-text">
+          Embodied agents will allow robots to tackle a huge number of new tasks in the physical world and closely collaborate with people. Jobs that have never been up for automation suddenly are—albeit with more of a focus on complementary applications than full automation. Companies should be looking beyond knowledge work when considering what automation tools could empower their people to do more and drive growth and innovation for the company.
+        </div>
+      </div>
+
+      <div class="col col2">
+        <div class="section-title">Who is doing it today?</div>
+        <div class="body-text">
+          Magna, whose manufacturing facilities assemble vehicles for leading automakers including Mercedes-Benz, BMW, and Jaguar, has announced it will pilot the use of Sanctuary AI’s humanoid robot “Phoenix.” The latest Phoenix robot, their 7th generation, is capable of automating new tasks in less than 24 hours. An earlier version of the same robot had been used in a Canadian retail store to complete activities that ranged from cleaning to labeling, picking, and packing merchandise.<sup>132</sup>
+        </div>
+      </div>
+
+      <div class="bottom-mark">&gt;</div>
+    </div>
+
+    <div class="right-panel">
+      <div class="chart-title">Executives see opportunities for physical copilots</div>
+      <div class="chart-desc">
+        Physical copilots offer the potential to augment and automate how physical work gets done. Executives see performing dull repetitive tasks and assisting workers directly to complete a task (such as holding or lifting) as being the most impacted by physical copilots.
+      </div>
+      <div class="question">
+        In which of the following ways, if any, would you expect workers in your organization to leverage physical copilots over the next 5-10 years?
+      </div>
+
+      <div class="chart-area">
+        <div class="axis"></div>
+
+        <div class="bar-group g1">
+          <div class="bar"></div>
+          <div class="pct">66%</div>
+          <div class="label">Performing dull repetitive tasks</div>
+        </div>
+
+        <div class="bar-group g2">
+          <div class="bar"></div>
+          <div class="pct">45%</div>
+          <div class="label">Assisting workers directly to complete a task</div>
+        </div>
+
+        <div class="bar-group g3">
+          <div class="bar"></div>
+          <div class="pct">39%</div>
+          <div class="label">Allowing workers to perform tasks at a distance</div>
+        </div>
+
+        <div class="bar-group g4">
+          <div class="bar"></div>
+          <div class="pct">31%</div>
+          <div class="label">Performing dangerous tasks</div>
+        </div>
+
+        <div class="bar-group g5">
+          <div class="bar"></div>
+          <div class="pct">15%</div>
+          <div class="label">Performing dirty tasks</div>
+        </div>
+      </div>
+
+      <div class="source">Source: Accenture Technology Vision 2025 Executive Survey, N=4,021</div>
+    </div>
+  </div>
+</body>
+</html>

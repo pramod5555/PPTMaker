@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#d9d9db;font-family:Arial,Helvetica,'Segoe UI',sans-serif;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#eeeeef;
+  }
+  #slide > div, #slide > svg{position:absolute;box-sizing:border-box;}
+  .leftbar{
+    left:0;top:0;width:181px;height:720px;
+    background:#35383f;
+    border-right:2px solid #6e4ab2;
+    z-index:5;
+  }
+  .left-header{
+    left:13px;top:32px;width:150px;
+    color:#f3f3f3;font-size:22px;line-height:1.05;font-weight:700;
+    z-index:20;
+  }
+  .title{
+    left:220px;top:28px;width:1030px;
+    color:#1e1f23;font-size:26px;line-height:1.13;font-weight:800;
+    z-index:20;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    left:220px;top:138px;width:700px;
+    color:#8a8f97;font-size:25px;line-height:1.12;font-weight:300;
+    z-index:20;
+  }
+  .nav-item{z-index:25;}
+  .nav-num{
+    font-size:29px;font-weight:700;line-height:1;color:#7a7f86;
+  }
+  .nav-title{
+    font-size:14px;line-height:1.08;color:#666b72;font-weight:400;
+  }
+  .nav-title.sel{color:#7d58b6;font-weight:700;}
+  .hexsvg{width:72px;height:72px;}
+  .section-head-purple{
+    color:#34235d;font-size:24px;line-height:1.04;font-weight:700;
+  }
+  .section-head-blue{
+    color:#004f7d;font-size:22px;line-height:1.02;font-weight:700;
+  }
+  .section-head-midblue{
+    color:#5b87b6;font-size:20px;line-height:1.02;font-weight:700;
+  }
+  .bullets{
+    color:#232428;font-size:17px;line-height:1.12;font-weight:400;
+  }
+  .bullets .item{position:absolute;left:0;width:100%;}
+  .bullets .bullet{position:absolute;left:0;top:0;width:16px;}
+  .bullets .text{position:absolute;left:18px;top:0;}
+  .swirl{left:258px;top:152px;width:660px;height:540px;opacity:.52;z-index:8;}
+  .cycle-wrap{left:384px;top:230px;width:405px;height:405px;z-index:15;}
+  .right-callout{
+    left:1013px;top:140px;width:267px;height:580px;
+    background:#d8d8db;z-index:12;
+  }
+  .callout-text{
+    left:1026px;top:150px;width:236px;
+    color:#232428;font-size:17px;line-height:1.08;font-weight:400;
+    z-index:20;
+  }
+  .callout-text b{font-weight:800;}
+  .footer-source{
+    left:220px;top:699px;width:360px;
+    color:#3b3d42;font-size:11px;line-height:1.1;font-weight:400;
+    z-index:30;
+  }
+  .page-num{
+    left:8px;top:715px;width:22px;
+    color:#f0f0f0;font-size:18px;line-height:1;font-weight:400;
+    z-index:30;
+  }
+  .bottom-left-icons{left:65px;top:642px;width:88px;height:62px;z-index:20;}
+  .rb-logo{left:1210px;top:685px;width:58px;height:28px;z-index:30;}
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="leftbar"></div>
+
+  <div class="left-header">Technology &amp;<br>Innovation</div>
+
+  <div class="nav-item" style="left:6px;top:138px;width:160px;height:82px;">
+    <svg class="hexsvg" viewBox="0 0 72 72" style="left:0;top:0;position:absolute;">
+      <polygon points="19,4 53,4 68,36 53,68 19,68 4,36" fill="#6a6f76" stroke="#b9bec4" stroke-width="3"/>
+      <clipPath id="clip1"><polygon points="19,4 53,4 68,36 53,68 19,68 4,36"/></clipPath>
+      <g clip-path="url(#clip1)">
+        <rect x="8" y="10" width="56" height="50" fill="#54585e"/>
+        <g opacity="0.9">
+          <rect x="10" y="13" width="52" height="42" fill="#70757b"/>
+          <g stroke="#ffffff" stroke-width="1.2" opacity="0.8">
+            <line x1="13" y1="44" x2="26" y2="23"/>
+            <line x1="22" y1="48" x2="37" y2="18"/>
+            <line x1="31" y1="46" x2="49" y2="24"/>
+            <line x1="13" y1="26" x2="54" y2="39"/>
+            <line x1="18" y1="18" x2="58" y2="28"/>
+          </g>
+          <g fill="#d6d6d6" opacity=".65">
+            <rect x="18" y="27" width="20" height="14"/>
+            <rect x="40" y="19" width="11" height="20"/>
+          </g>
+        </g>
+      </g>
+    </svg>
+    <div class="nav-num" style="left:87px;top:7px;position:absolute;">1</div>
+    <div class="nav-title" style="left:87px;top:34px;width:68px;position:absolute;">Value of<br>Innovation</div>
+  </div>
+
+  <div class="nav-item" style="left:6px;top:270px;width:160px;height:82px;">
+    <svg class="hexsvg" viewBox="0 0 72 72" style="left:0;top:0;position:absolute;">
+      <polygon points="19,4 53,4 68,36 53,68 19,68 4,36" fill="#6a6f76" stroke="#b9bec4" stroke-width="3"/>
+      <clipPath id="clip2"><polygon points="19,4 53,4 68,36 53,68 19,68 4,36"/></clipPath>
+      <g clip-path="url(#clip2)">
+        <rect x="8" y="10" width="56" height="50" fill="#5d6168"/>
+        <g stroke="#d9dde1" stroke-width="1.3" fill="none" opacity=".9">
+          <circle cx="24" cy="34" r="3"/>
+          <circle cx="36" cy="24" r="3"/>
+          <circle cx="47" cy="34" r="3"/>
+          <circle cx="31" cy="44" r="3"/>
+          <circle cx="21" cy="26" r="2"/>
+          <circle cx="43" cy="24" r="2"/>
+          <line x1="24" y1="34" x2="36" y2="24"/>
+          <line x1="36" y1="24" x2="47" y2="34"/>
+          <line x1="24" y1="34" x2="31" y2="44"/>
+          <line x1="31" y1="44" x2="47" y2="34"/>
+          <line x1="21" y1="26" x2="36" y2="24"/>
+          <line x1="43" y1="24" x2="47" y2="34"/>
+        </g>
+      </g>
+    </svg>
+    <div class="nav-num" style="left:87px;top:7px;position:absolute;">2</div>
+    <div class="nav-title" style="left:87px;top:34px;width:74px;position:absolute;">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="nav-item" style="left:6px;top:402px;width:164px;height:82px;">
+    <svg class="hexsvg" viewBox="0 0 72 72" style="left:0;top:0;position:absolute;">
+      <polygon points="19,4 53,4 68,36 53,68 19,68 4,36" fill="#eadff0" stroke="#8d63c4" stroke-width="3"/>
+      <clipPath id="clip3"><polygon points="19,4 53,4 68,36 53,68 19,68 4,36"/></clipPath>
+      <g clip-path="url(#clip3)">
+        <rect x="8" y="10" width="56" height="50" fill="#f2e7ef"/>
+        <g fill="#d4b9a9" opacity=".65">
+          <rect x="8" y="10" width="56" height="50"/>
+        </g>
+        <g stroke="#84685a" stroke-width="2" fill="none" opacity=".95">
+          <path d="M18,34 C22,28 26,26 30,26 C34,26 38,29 42,33 C46,37 49,39 54,38"/>
+          <path d="M18,39 C22,45 28,47 34,44 C37,42 39,39 42,37 C46,34 50,34 54,38"/>
+          <line x1="29" y1="26" x2="34" y2="33"/>
+          <line x1="40" y1="32" x2="45" y2="38"/>
+        </g>
+      </g>
+    </svg>
+    <div class="nav-num" style="left:87px;top:7px;position:absolute;color:#7d58b6;">3</div>
+    <div class="nav-title sel" style="left:87px;top:34px;width:76px;position:absolute;">Humans &amp;<br>Machines</div>
+  </div>
+
+  <div class="title">AI's future journey is rooted in the computation of human perceptions –<br>Efforts are needed to counteract embedding discriminatory bias into systems</div>
+  <div class="subtitle">Vicious cycle of discrimination and bias aggravated by AI</div>
+
+  <svg class="swirl" viewBox="0 0 660 540">
+    <defs>
+      <filter id="blur1"><feGaussianBlur stdDeviation="2.2"/></filter>
+    </defs>
+    <g fill="none" stroke="#ffffff" stroke-linecap="round" filter="url(#blur1)">
+      <path d="M77,286 C115,182 240,116 366,118 C473,119 563,159 606,240 C648,319 623,414 553,474 C484,533 390,553 286,540 C188,527 100,479 60,400 C22,327 30,238 88,181" stroke-width="5.5" opacity=".48"/>
+      <path d="M105,296 C137,206 240,147 350,148 C448,149 531,182 570,249 C607,313 587,394 527,448 C467,503 383,522 294,513 C205,504 129,470 91,408 C58,354 53,290 92,228" stroke-width="5.5" opacity=".38"/>
+      <path d="M132,301 C160,229 248,177 343,177 C431,177 503,203 542,258 C576,307 566,374 520,424 C469,480 391,498 312,493 C232,488 166,460 126,415 C92,378 85,328 109,275" stroke-width="4.8" opacity=".30"/>
+      <path d="M162,308 C186,249 255,205 335,203 C409,201 471,224 507,274 C537,316 531,367 495,409 C454,455 392,474 324,473 C254,472 196,450 157,418 C123,391 111,346 127,301" stroke-width="4.2" opacity=".24"/>
+      <path d="M196,314 C216,270 269,235 327,233 C382,231 429,248 463,286 C490,316 488,357 461,392 C427,433 375,451 321,451 C266,451 221,434 189,406 C162,382 152,347 162,317" stroke-width="3.8" opacity=".18"/>
+      <path d="M229,318 C243,286 278,262 322,262 C364,262 400,273 426,300 C448,325 447,354 428,381 C402,416 360,431 320,431 C279,431 246,419 221,398 C201,381 191,352 197,326" stroke-width="3.2" opacity=".14"/>
+      <path d="M494,124 C463,151 437,165 395,176" stroke-width="3.2" opacity=".24"/>
+      <path d="M536,142 C503,159 474,167 431,174" stroke-width="2.6" opacity=".20"/>
+      <path d="M566,173 C526,179 490,183 448,181" stroke-width="2.4" opacity=".16"/>
+      <path d="M75,400 C100,420 126,437 160,446" stroke-width="2.7" opacity=".16"/>
+      <path d="M64,356 C90,382 116,398 149,409" stroke-width="2.3" opacity=".15"/>
+    </g>
+  </svg>
+
+  <div style="left:220px;top:214px;width:286px;z-index:20;">
+    <div class="section-head-purple" style="position:absolute;left:0;top:0;width:278px;">Real world patterns of<br>inequality and discrimination</div>
+    <div class="bullets" style="position:absolute;left:0;top:60px;width:280px;height:118px;">
+      <div class="item" style="top:0;height:37px;">
+        <div class="bullet">&gt;</div>
+        <div class="text" style="width:250px;">Unequal access &amp; resource<br>allocation</div>
+      </div>
+      <div class="item" style="top:41px;height:22px;">
+        <div class="bullet">&gt;</div>
+        <div class="text" style="width:250px;">Discriminatory processes</div>
+      </div>
+      <div class="item" style="top:74px;height:22px;">
+        <div class="bullet">&gt;</div>
+        <div class="text" style="width:250px;">Biased decision making</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="left:767px;top:240px;width:228px;z-index:20;">
+    <div class="section-head-purple" style="position:absolute;left:0;top:0;width:220px;">Discriminatory data</div>
+    <div class="bullets" style="position:absolute;left:0;top:35px;width:224px;height:116px;">
+      <div class="item" style="top:0;height:42px;">
+        <div class="bullet">&gt;</div>
+        <div class="text" style="width:204px;">Sampling biases and lack of<br>representative datasets</div>
+      </div>
+      <div class="item" style="top:46px;height:58px;">
+        <div class="bullet">&gt;</div>
+        <div class="text" style="width:204px;">Patterns of bias and<br>discrimination baked into<br>data distributions</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="left:220px;top:543px;width:330px;z-index:20;">
+    <div class="section-head-blue" style="position:absolute;left:0;top:0;width:300px;">Application injustices</div>
+    <div class="bullets" style="position:absolute;left:0;top:36px;width:316px;height:120px;">
+      <div class="item" style="top:0;height:40px;">
+        <div class="bullet">&gt;</div>
+        <div class="text" style="width:292px;">Disregarding and deepening digital<br>devices</div>
+      </div>
+      <div class="item" style="top:45px;height:42px;">
+        <div class="bullet">&gt;</div>
+        <div class="text" style="width:292px;">Exacerbating global inequality &amp;<br>rich-poor gaps</div>
+      </div>
+      <div class="item" style="top:92px;height:44px;">
+        <div class="bullet">&gt;</div>
+        <div class="text" style="width:300px;">Hazardous &amp; discriminatory<br>repurposing of biased AI systems</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="left:767px;top:460px;width:248px;z-index:20;">
+    <div class="section-head-midblue" style="position:absolute;left:0;top:0;width:245px;">Biased AI design and<br>deployment practices</div>
+    <div class="bullets" style="position:absolute;left:0;top:60px;width:242px;height:145px;">
+      <div class="item" style="top:0;height:49px;">
+        <div class="bullet">&gt;</div>
+        <div class="text" style="width:220px;">Power imbalances in agenda<br>setting &amp; problem<br>formulation</div>
+      </div>
+      <div class="item" style="top:67px;height:47px;">
+        <div class="bullet">&gt;</div>
+        <div class="text" style="width:220px;">Biased and exclusionary<br>design, model building and<br>testing practices</div>
+      </div>
+      <div class="item" style="top:130px;height:22px;">
+        <div class="bullet">&gt;</div>
+        <div class="text" style="width:220px;">Biased deployment</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cycle-wrap">
+    <svg width="405" height="405" viewBox="0 0 405 405">
+      <circle cx="202.5" cy="202.5" r="171" fill="#f0f0f2"/>
+      <path d="M203,31.5
+               A171,171 0 0,1 365.5,141
+               L305.5,165
+               A106,106 0 0,0 203,97 Z" fill="#4e327f"/>
+      <path d="M365.5,141
+               A171,171 0 0,1 351,299
+               L296,254
+               A106,106 0 0,0 305.5,165 Z" fill="#5c438f"/>
+      <path d="M351,299
+               A171,171 0 0,1 164,369
+               L185,309
+               A106,106 0 0,0 296,254 Z" fill="#6f9ac4"/>
+      <path d="M164,369
+               A171,171 0 0,1 33,188
+               L98,191
+               A106,106 0 0,0 185,309 Z" fill="#005183"/>
+      <path d="M33,188
+               A171,171 0 0,1 203,31.5
+               L203,97
+               A106,106 0 0,0 98,191 Z" fill="#2f2366"/>
+
+      <circle cx="202.5" cy="202.5" r="75" fill="#efeff1"/>
+      <circle cx="202.5" cy="202.5" r="56" fill="#f8f8f9"/>
+
+      <circle cx="183" cy="83" r="30" fill="#f7f7f7"/>
+      <circle cx="324" cy="206" r="30" fill="#f7f7f7"/>
+      <circle cx="189" cy="327" r="30" fill="#f7f7f7"/>
+      <circle cx="67" cy="203" r="30" fill="#f7f7f7"/>
+
+      <text x="59" y="162" font-size="24" font-weight="700" fill="#ffffff" font-family="Arial, Helvetica, sans-serif">World</text>
+      <text x="258" y="137" font-size="23" font-weight="700" fill="#ffffff" font-family="Arial, Helvetica, sans-serif">Data</text>
+      <text x="266" y="287" font-size="21" font-weight="700" fill="#ffffff" font-family="Arial, Helvetica, sans-serif">Design</text>
+      <text x="93" y="300" font-size="21" font-weight="700" fill="#ffffff" font-family="Arial, Helvetica, sans-serif">Use</text>
+
+      <g transform="translate(151,150)">
+        <path d="M51,9 L51,65" stroke="#263f82" stroke-width="5" stroke-linecap="round"/>
+        <path d="M32,26 L51,17 L70,26" fill="none" stroke="#263f82" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M27,45 H75" stroke="#263f82" stroke-width="5" stroke-linecap="round"/>
+        <path d="M34,74 H68" stroke="#263f82" stroke-width="5" stroke-linecap="round"/>
+        <path d="M21,46 C21,53 26,58 33,58 C40,58 45,53 45,46 Z" fill="none" stroke="#263f82" stroke-width="3"/>
+        <path d="M57,46 C57,53 62,58 69,58 C76,58 81,53 81,46 Z" fill="none" stroke="#263f82" stroke-width="3"/>
+        <path d="M15,46 L33,28 L51,46" fill="none" stroke="#263f82" stroke-width="2.5"/>
+        <path d="M51,46 L69,28 L87,46" fill="none" stroke="#263f82" stroke-width="2.5"/>
+        <path d="M15,22 C15,13 22,7 31,7 C40,7 46,13 46,22 C46,31 40,37 31,37" fill="none" stroke="#4f3b87" stroke-width="4"/>
+        <path d="M88,22 C88,13 81,7 72,7" fill="none" stroke="#4f3b87" stroke-width="4"/>
+        <path d="M72,7 C63,7 57,13 57,22" fill="none" stroke="#4f3b87" stroke-width="4"/>
+        <path d="M88,22 L88,58 C88,69 80,77 69,77" fill="none" stroke="#4f3b87" stroke-width="4"/>
+      </g>
+
+      <g transform="translate(161,60)">
+        <circle cx="22" cy="22" r="18" fill="none" stroke="#4e327f" stroke-width="3"/>
+        <path d="M6,22 H38 M22,6 V38" stroke="#4e327f" stroke-width="2"/>
+        <path d="M11,12 C18,14 20,18 22,22 C25,28 28,30 33,32" fill="none" stroke="#4e327f" stroke-width="2"/>
+        <path d="M12,31 C18,28 24,23 30,13" fill="none" stroke="#4e327f" stroke-width="2"/>
+      </g>
+
+      <g transform="translate(301,188)" stroke="#8470b3" stroke-width="3" fill="#8470b3">
+        <circle cx="12" cy="14" r="3.5"/>
+        <circle cx="29" cy="14" r="3.5"/>
+        <circle cx="20.5" cy="5" r="3.5"/>
+        <circle cx="20.5" cy="23" r="3.5"/>
+        <circle cx="5" cy="31" r="3.5"/>
+        <circle cx="36" cy="31" r="3.5"/>
+        <line x1="12" y1="14" x2="29" y2="14"/>
+        <line x1="20.5" y1="5" x2="20.5" y2="23"/>
+        <line x1="12" y1="14" x2="20.5" y2="5"/>
+        <line x1="29" y1="14" x2="20.5" y2="5"/>
+        <line x1="12" y1="14" x2="5" y2="31"/>
+        <line x1="29" y1="14" x2="36" y2="31"/>
+        <line x1="20.5" y1="23" x2="5" y2="31"/>
+        <line x1="20.5" y1="23" x2="36" y2="31"/>
+      </g>
+
+      <g transform="translate(165,305)" fill="none" stroke="#87aac9">
+        <path d="M16,28 C10,12 22,4 34,7 C45,10 50,20 48,30 C46,40 38,45 30,43 C27,51 18,53 14,46 C6,45 2,38 4,31 C5,24 10,21 16,28 Z" stroke-width="4"/>
+        <rect x="40" y="16" width="24" height="24" rx="2" stroke-width="4"/>
+        <circle cx="31" cy="28" r="8" stroke-width="4"/>
+        <path d="M31,15 V11 M31,41 V45 M18,28 H14 M48,28 H52 M22,19 L19,16 M40,37 L43,40 M40,19 L43,16 M22,37 L19,40" stroke-width="3" stroke-linecap="round"/>
+      </g>
+
+      <g transform="translate(48,171)" fill="none" stroke="#ffffff">
+        <rect x="13" y="10" width="22" height="34" rx="2" stroke-width="4"/>
+        <rect x="16" y="14" width="16" height="24" stroke-width="2"/>
+        <circle cx="24" cy="8" r="4" stroke-width="3"/>
+        <path d="M4,19 H10 V37 H4" stroke-width="3"/>
+        <path d="M38,19 H44 V37 H38" stroke-width="3"/>
+        <line x1="19" y1="48" x2="29" y2="48" stroke-width="3"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="right-callout"></div>
+  <div class="callout-text">
+    &gt; All societies are afflicted with<br>
+    &nbsp;&nbsp;&nbsp;inequalities and biases; <b>AI</b><br>
+    &nbsp;&nbsp;&nbsp;<b>systems adopt these biases</b><br>
+    &nbsp;&nbsp;&nbsp;through several ways: the use of<br>
+    &nbsp;&nbsp;&nbsp;discriminatory data stemming<br>
+    &nbsp;&nbsp;&nbsp;from sampling errors or lack of<br>
+    &nbsp;&nbsp;&nbsp;information, or through biased AI<br>
+    &nbsp;&nbsp;&nbsp;design and deployment practices<br><br>
+    &gt; Applying biased or discriminatory<br>
+    &nbsp;&nbsp;&nbsp;AI to the real world, <b>enforces a</b><br>
+    &nbsp;&nbsp;&nbsp;<b>vicious cycle</b> – as was the case<br>
+    &nbsp;&nbsp;&nbsp;of Amazon and their use of AI to<br>
+    &nbsp;&nbsp;&nbsp;review job applicants' CVs in<br>
+    &nbsp;&nbsp;&nbsp;order to automate the search for<br>
+    &nbsp;&nbsp;&nbsp;talent; the AI deployed turned out<br>
+    &nbsp;&nbsp;&nbsp;to be inherently biased, having<br>
+    &nbsp;&nbsp;&nbsp;been trained to vet applications<br>
+    &nbsp;&nbsp;&nbsp;by observing patterns in<br>
+    &nbsp;&nbsp;&nbsp;resumes submitted to the<br>
+    &nbsp;&nbsp;&nbsp;company over a 10-year period.<br>
+    &nbsp;&nbsp;&nbsp;As most CVs were submitted by<br>
+    &nbsp;&nbsp;&nbsp;men, the system <b>showed a clear</b><br>
+    &nbsp;&nbsp;&nbsp;<b>bias toward women applicants</b>
+  </div>
+
+  <svg class="bottom-left-icons" viewBox="0 0 88 62">
+    <g fill="none" stroke="#737980" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".95">
+      <path d="M21,40 C17,28 22,18 34,15 C42,13 49,16 54,22"/>
+      <path d="M23,36 C31,38 37,35 42,29"/>
+      <path d="M34,15 L34,7 M24,18 L19,11 M17,26 L9,25 M18,36 L10,40"/>
+      <circle cx="55" cy="35" r="12"/>
+      <path d="M55,19 V12 M55,58 V51 M39,35 H32 M78,35 H71 M44,24 L39,19 M66,24 L71,19 M44,46 L39,51 M66,46 L71,51"/>
+      <path d="M53,47 L49,59 L61,59 Z"/>
+      <circle cx="38" cy="50" r="2"/>
+    </g>
+  </svg>
+
+  <div class="page-num">72</div>
+  <div class="footer-source">Sources: British Medical Journal; Reuters; Roland Berger</div>
+
+  <svg class="rb-logo" viewBox="0 0 58 28">
+    <text x="0" y="12" font-size="10" font-weight="400" fill="#4c4e52" font-family="Arial, Helvetica, sans-serif">Roland</text>
+    <text x="0" y="21" font-size="10" font-weight="400" fill="#4c4e52" font-family="Arial, Helvetica, sans-serif">Berger</text>
+    <path d="M40,1 C48,1 54,5 54,11 C54,16 50,19 46,20 C51,21 57,23 57,28 L45,28 C45,22 43,20 37,20 L35,20 L35,28 L25,28 L25,0 Z
+             M35,7 L35,13 L41,13 C44,13 46,11.8 46,10 C46,8 44,7 41,7 Z" fill="#8d9298"/>
+  </svg>
+</div>
+</body>
+</html>

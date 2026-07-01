@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Environmental concerns and social anxieties persist</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d9d9d7;
+    color:#111;
+  }
+  .slide > *{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .title{
+    left:50px;
+    top:47px;
+    width:930px;
+    font-size:37px;
+    line-height:1.12;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-0.3px;
+  }
+
+  .icon-circle{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .env-icon{
+    left:49px;
+    top:177px;
+    background:#24adb1;
+  }
+
+  .soc-icon{
+    left:537px;
+    top:183px;
+    width:82px;
+    height:82px;
+    background:#8fcfbe;
+  }
+
+  .env-head{
+    left:158px;
+    top:181px;
+    width:345px;
+    font-size:22px;
+    line-height:1.1;
+    font-weight:700;
+    color:#1faeb2;
+  }
+  .env-sub{
+    left:158px;
+    top:243px;
+    width:345px;
+    font-size:18px;
+    line-height:1.05;
+    font-weight:700;
+    color:#111;
+  }
+  .env-body{
+    left:158px;
+    top:317px;
+    width:360px;
+    font-size:17px;
+    line-height:1.02;
+    font-weight:400;
+    color:#222;
+  }
+
+  .soc-head{
+    left:644px;
+    top:181px;
+    width:345px;
+    font-size:22px;
+    line-height:1.1;
+    font-weight:700;
+    color:#b5e3d6;
+  }
+  .soc-sub{
+    left:644px;
+    top:244px;
+    width:345px;
+    font-size:18px;
+    line-height:1.05;
+    font-weight:700;
+    color:#111;
+  }
+  .soc-body{
+    left:644px;
+    top:299px;
+    width:345px;
+    font-size:17px;
+    line-height:1.02;
+    font-weight:400;
+    color:#222;
+  }
+
+  .photo{
+    left:1026px;
+    top:0;
+    width:254px;
+    height:666px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 78% 3%, rgba(255,255,255,0.95) 0 18px, rgba(245,232,213,0.7) 19px 30px, transparent 31px),
+      radial-gradient(circle at 24% 24%, rgba(225,56,52,0.95) 0 8px, #ffffff 9px 18px, rgba(225,56,52,0.95) 19px 24px, transparent 25px),
+      radial-gradient(circle at 23.5% 24.5%, rgba(79,128,204,0.75) 0 4px, transparent 5px),
+      radial-gradient(circle at 58% 12%, rgba(83,107,29,0.95) 0 26px, rgba(38,60,14,0.75) 27px 40px, transparent 41px),
+      radial-gradient(circle at 11% 2%, rgba(236,241,241,0.95) 0 24px, transparent 25px),
+      linear-gradient(180deg, #666a63 0%, #797d75 9%, #48513f 18%, #2d3821 28%, #7e7656 38%, #6e6342 46%, #46381e 56%, #2a2f1a 71%, #22210f 100%);
+  }
+  .photo::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.48) 0px, rgba(255,255,255,0.08) 115px, rgba(255,255,255,0) 230px),
+      radial-gradient(ellipse at 67% 73%, rgba(247,235,183,0.16) 0 95px, transparent 96px),
+      radial-gradient(ellipse at 57% 84%, rgba(232,216,146,0.2) 0 128px, transparent 129px),
+      radial-gradient(ellipse at 47% 97%, rgba(23,20,11,0.9) 0 82px, transparent 83px),
+      repeating-radial-gradient(ellipse at 56% 82%, rgba(255,244,201,0.22) 0 2px, rgba(255,255,255,0) 7px 17px),
+      linear-gradient(180deg, rgba(0,0,0,0) 0 50%, rgba(111,90,41,0.12) 59%, rgba(18,15,9,0.44) 100%);
+  }
+  .photo::after{
+    content:"";
+    position:absolute;
+    left:95px;
+    top:0;
+    width:41px;
+    height:575px;
+    border-radius:3px;
+    background:
+      linear-gradient(180deg, #7b5b0c 0%, #98771c 10%, #8f6d17 21%, #9d7c1d 35%, #8b6b16 50%, #a98522 66%, #9f7a18 82%, #8c6b12 100%);
+    box-shadow:
+      inset 4px 0 0 rgba(255,255,255,0.14),
+      inset -4px 0 0 rgba(0,0,0,0.18);
+  }
+
+  .pole-cap{
+    left:1122px;
+    top:0;
+    width:12px;
+    height:31px;
+    background:linear-gradient(180deg,#d8d7d0,#f5f5ef);
+    border-radius:0 0 4px 4px;
+  }
+  .strap{
+    left:1089px;
+    top:243px;
+    width:63px;
+    height:3px;
+    background:#161616;
+    border-radius:2px;
+  }
+  .button{
+    left:1122px;
+    top:264px;
+    width:32px;
+    height:62px;
+    background:linear-gradient(180deg,#1f3660,#04152e);
+    border-radius:14px;
+    box-shadow: inset 0 0 0 2px rgba(207,220,229,0.38);
+  }
+  .button::before{
+    content:"";
+    position:absolute;
+    left:8px;
+    top:27px;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #c6d8e8 0 3px, #7492ab 4px 7px, #223a5d 8px);
+  }
+  .button::after{
+    content:"";
+    position:absolute;
+    left:6px;
+    top:8px;
+    width:20px;
+    height:14px;
+    background:#174178;
+    clip-path:polygon(50% 0%, 100% 56%, 74% 56%, 74% 100%, 26% 100%, 26% 56%, 0% 56%);
+    box-shadow:0 0 0 1px rgba(186,208,229,0.32) inset;
+  }
+
+  .photo-corner{
+    left:1241px;
+    top:627px;
+    width:39px;
+    height:39px;
+    background:#d9d9d7;
+    clip-path:polygon(100% 0, 100% 100%, 0 100%);
+  }
+
+  .footer-left{
+    left:49px;
+    bottom:14px;
+    font-size:12px;
+    line-height:1;
+    color:#333;
+  }
+  .footer-center{
+    left:682px;
+    bottom:14px;
+    transform:translateX(-50%);
+    font-size:12px;
+    line-height:1;
+    color:#333;
+    text-align:center;
+  }
+
+  .ipsos{
+    left:1262px;
+    top:691px;
+    width:54px;
+    height:50px;
+    transform:translateX(-50%);
+    background:linear-gradient(90deg,#2b4ea2 0 47%, #19aba5 47% 100%);
+    clip-path:polygon(0 0, 100% 0, 88% 100%, 0 100%);
+  }
+  .ipsos > *{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .ipsos .tree1{
+    left:22px;
+    top:4px;
+    width:11px;
+    height:20px;
+    background:#2ead5f;
+    border-radius:8px 8px 5px 5px;
+  }
+  .ipsos .tree2{
+    left:18px;
+    top:12px;
+    width:14px;
+    height:19px;
+    background:#6f79ca;
+    border-radius:10px 10px 8px 8px;
+  }
+  .ipsos .label{
+    left:6px;
+    top:25px;
+    font-size:14px;
+    line-height:1;
+    font-weight:700;
+    color:#fff;
+  }
+
+  svg{display:block}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">Environmental concerns and social anxieties persist</div>
+
+  <div class="icon-circle env-icon">
+    <svg width="80" height="80" viewBox="0 0 80 80" aria-hidden="true">
+      <g fill="none" stroke="#f4f1ee" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="40" cy="26" rx="20" ry="7"></ellipse>
+        <path d="M20 26c0 8 9 10 20 10s20-2 20-10"></path>
+        <path d="M24 36c0 5 7 7 16 7s16-2 16-7"></path>
+        <path d="M28 43c0 4 5 6 12 6s12-2 12-6"></path>
+        <path d="M32 49c0 4 3 6 8 6s8-2 8-6"></path>
+        <path d="M36 55c0 3 2 5 4 5s4-2 4-5"></path>
+      </g>
+    </svg>
+  </div>
+
+  <div class="icon-circle soc-icon">
+    <svg width="82" height="82" viewBox="0 0 82 82" aria-hidden="true">
+      <g transform="translate(16,13)">
+        <g fill="none" stroke="#d8b14a" stroke-width="1.6" stroke-linejoin="round">
+          <path d="M12 7 L34 2 L42 9 L42 28 L20 33 L12 26 Z" fill="#97d2c1"/>
+          <path d="M8 18 L30 13 L38 20 L38 39 L16 44 L8 37 Z" fill="#97d2c1"/>
+          <rect x="16" y="23" width="12" height="12" rx="1"></rect>
+          <path d="M19 30l2-3 2 2 2-4 2 5"></path>
+          <path d="M22 23v12M16 29h12"></path>
+          <path d="M26 15l3 3 1-3"></path>
+          <path d="M18 6l6 4M21 5l-4 7"></path>
+          <path d="M27 7h8M27 10h6M11 39h9M11 42h13"></path>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="env-head">The public outlook for the environment for 2025</div>
+  <div class="env-sub">Environmental concerns persist while faith in government action and technological solutions wane.</div>
+  <div class="env-body">
+    Global anxieties surrounding climate<br>
+    change persist, with 80% expecting rising<br>
+    global temperatures, (-1 percentage point<br>
+    from 2023), this is significantly more than<br>
+    the 71% who agreed with this statement in<br>
+    2017 when we first asked this question.<br>
+    72% globally also anticipate more extreme<br>
+    weather events (+1 percentage point from<br>
+    2023).<br><br>
+    This unease is reflected in the 42% who<br>
+    believe parts of their country will become<br>
+    uninhabitable due to extreme weather.<br>
+    Regional disparities are stark.
+  </div>
+
+  <div class="soc-head">The public outlook for society for 2025</div>
+  <div class="soc-sub">Societal anxieties persist, with low hopes<br>for progress.</div>
+  <div class="soc-body">
+    Global anxieties around immigration,<br>
+    persistent gender inequality, and evolving<br>
+    work patterns dominate public<br>
+    expectations for 2025, while optimism for<br>
+    increased societal tolerance remains<br>
+    muted.<br><br>
+    Globally, 67% of people anticipate<br>
+    increased immigration, down 4<br>
+    percentage points from last year, despite<br>
+    this perception often diverging from<br>
+    actual migration trends. Countries like<br>
+    Türkiye (84%) and Spain (80%) express<br>
+    higher expectations than nations with<br>
+    historically higher immigration levels like<br>
+    the US (56%) and Canada (55%). This<br>
+    suggests anxieties, rather than empirical<br>
+    data, may be driving these perceptions.
+  </div>
+
+  <div class="photo"></div>
+  <div class="pole-cap"></div>
+  <div class="strap"></div>
+  <div class="button"></div>
+  <div class="photo-corner"></div>
+
+  <div class="footer-left">© Ipsos Predictions 2025 Report</div>
+  <div class="footer-center">9</div>
+
+  <div class="ipsos">
+    <div class="tree1"></div>
+    <div class="tree2"></div>
+    <div class="label">Ipsos</div>
+  </div>
+</div>
+</body>
+</html>

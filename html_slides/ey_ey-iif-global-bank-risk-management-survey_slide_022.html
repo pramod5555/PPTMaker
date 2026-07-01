@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdf;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#f3f3f5;
+  }
+  .slide > *{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .chapter{
+    left:7px;
+    top:302px;
+    font-size:12px;
+    line-height:12px;
+    color:#2d2d33;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    font-weight:500;
+  }
+  .chapter-line{
+    left:14px;
+    top:378px;
+    width:2px;
+    height:37px;
+    background:#6d6d73;
+  }
+
+  .page{
+    left:48px;
+    top:676px;
+    font-size:12px;
+    line-height:12px;
+    color:#3b3b42;
+    font-weight:400;
+  }
+
+  .text-col{
+    left:77px;
+    top:79px;
+    width:248px;
+    color:#4d4d55;
+    font-size:13px;
+    line-height:18px;
+    font-weight:400;
+  }
+  .text-col p{
+    margin:0 0 14px 0;
+  }
+  .text-col strong{
+    color:#2d2d33;
+    font-weight:700;
+  }
+
+  .title{
+    font-size:13px;
+    line-height:18px;
+    color:#2f2f36;
+    font-weight:700;
+  }
+  .title span{
+    font-weight:400;
+  }
+
+  .bar-label,
+  .small-label{
+    font-size:12px;
+    line-height:15px;
+    color:#585860;
+    font-weight:400;
+    text-align:right;
+  }
+
+  .bar-box{
+    height:27px;
+    border:1px solid #a9a9b1;
+    background:transparent;
+  }
+  .bar-fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:25px;
+    background:#2489d8;
+  }
+  .bar-value{
+    position:absolute;
+    right:6px;
+    top:5px;
+    font-size:12px;
+    line-height:14px;
+    color:#505058;
+    font-weight:400;
+  }
+
+  .fig14-note{
+    font-size:7px;
+    line-height:8px;
+    color:#6d6d74;
+    font-weight:400;
+    text-align:left;
+  }
+
+  .jump{
+    left:1207px;
+    top:28px;
+    width:53px;
+    height:53px;
+  }
+  .jump svg{
+    display:block;
+    width:53px;
+    height:53px;
+  }
+  .jump-text{
+    font-size:8px;
+    fill:#2d2d33;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="chapter">CHAPTER 3</div>
+  <div class="chapter-line"></div>
+  <div class="page">22</div>
+
+  <div class="text-col">
+    <p><strong>Digital assets:</strong> tokenization, smart contracts and digital currencies continue to gain traction in the market, particularly with G-SIBs and the largest institutions. Our engagement with business and tech leaders across the industry suggests that banks will continue to accelerate strategic planning for digital assets. Those institutions that are active in the space today are focused on traditional clients with digital asset exposures (29%) and providing digital asset services (16%).</p>
+
+    <p>All G-SIBs participating in our survey have a digital asset strategy, with 83% serving clients with digital asset exposure and 58% offering digital asset services. . Among banks with assets of US$1 trillion or more, 70% have a digital asset strategy. They reported increases in digital asset activities, including a 35% increase in digital asset services offerings. However, among all CRO respondents, 60% say their banks don't have a digital asset strategy. Latin American CROs are most likely (86%) to say their institution lacks a digital asset strategy and North American CROs are least likely (48%).</p>
+
+    <p>CROs see cybersecurity/technology risk (82%) and financial crime (78%) as by far the biggest risk exposures relative to digital assets, with consistency across regions and types of banks. Asia-Pacific CROs see financial risk as a much greater concern (63% vs. 38% among all respondents).</p>
+  </div>
+
+  <div class="title" style="left:427px; top:81px;">Figure 14: <span>Current digital assets strategy and/or activity</span></div>
+
+  <div class="bar-label" style="left:700px; top:131px; width:284px;">N/A – digital assets are currently not part of our strategy</div>
+  <div class="bar-box" style="left:998px; top:126px; width:168px;">
+    <div class="bar-fill" style="width:101px;"></div>
+    <div class="bar-value">60%</div>
+  </div>
+
+  <div class="bar-label" style="left:433px; top:184px; width:551px; height:31px;">*We serve traditional clients that have exposure to digital assets (e.g., corporate clients who have digital assets<br>as part of their treasury strategy, cryptocurrency focused asset managers or hedge funds)</div>
+  <div class="bar-box" style="left:998px; top:187px; width:168px;">
+    <div class="bar-fill" style="width:49px;"></div>
+    <div class="bar-value">29%</div>
+  </div>
+
+  <div class="bar-label" style="left:508px; top:246px; width:476px; height:31px;">We offer digital assets services (e.g., custody, payments, buying and selling, tokenized deposits,<br>stablecoin distribution, financing of digital assets)</div>
+  <div class="bar-box" style="left:998px; top:248px; width:168px;">
+    <div class="bar-fill" style="width:27px;"></div>
+    <div class="bar-value">16%</div>
+  </div>
+
+  <div class="bar-label" style="left:619px; top:307px; width:365px; height:31px;">We have clients that are considered digital asset natives (e.g., exchanges,<br>NFT marketplaces, DeFi platforms)</div>
+  <div class="bar-box" style="left:998px; top:309px; width:168px;">
+    <div class="bar-fill" style="width:22px;"></div>
+    <div class="bar-value">13%</div>
+  </div>
+
+  <div class="fig14-note" style="left:937px; top:367px; width:220px;">*When disaggregated by size of institution, the results vary interestingly.</div>
+
+  <div class="title" style="left:427px; top:422px;">Figure 15: <span>Risk categories requiring the most enhancements to manage risks associated with digital assets</span></div>
+
+  <div class="small-label" style="left:431px; top:474px; width:149px;">Cybersecurity/technology risk</div>
+  <div class="bar-box" style="left:592px; top:469px; width:167px;">
+    <div class="bar-fill" style="width:138px;"></div>
+    <div class="bar-value">83%</div>
+  </div>
+
+  <div class="small-label" style="left:460px; top:535px; width:120px;">Financial crime</div>
+  <div class="bar-box" style="left:592px; top:530px; width:167px;">
+    <div class="bar-fill" style="width:130px;"></div>
+    <div class="bar-value">78%</div>
+  </div>
+
+  <div class="small-label" style="left:449px; top:588px; width:131px; height:30px;">Financial risk (e.g., credit,<br>market, liquidity)</div>
+  <div class="bar-box" style="left:592px; top:591px; width:167px;">
+    <div class="bar-fill" style="width:63px;"></div>
+    <div class="bar-value">38%</div>
+  </div>
+
+  <div class="small-label" style="left:905px; top:474px; width:81px;">Operational risk</div>
+  <div class="bar-box" style="left:998px; top:469px; width:167px;">
+    <div class="bar-fill" style="width:58px;"></div>
+    <div class="bar-value">35%</div>
+  </div>
+
+  <div class="small-label" style="left:864px; top:527px; width:122px; height:30px;">Other compliance<br>and regulatory risks</div>
+  <div class="bar-box" style="left:998px; top:530px; width:167px;">
+    <div class="bar-fill" style="width:50px;"></div>
+    <div class="bar-value">30%</div>
+  </div>
+
+  <div class="small-label" style="left:836px; top:588px; width:150px; height:30px;">Legal (enforceability of digital<br>asset contracts)</div>
+  <div class="bar-box" style="left:998px; top:591px; width:167px;">
+    <div class="bar-fill" style="width:34px;"></div>
+    <div class="bar-value">20%</div>
+  </div>
+
+  <div class="jump">
+    <svg viewBox="0 0 53 53" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="26.5" cy="26.5" r="20.2" fill="none" stroke="#66666d" stroke-width="1.1" stroke-dasharray="8 5"/>
+      <circle cx="44.4" cy="10.8" r="3.9" fill="#d8d230"/>
+      <text x="26.5" y="22.5" text-anchor="middle" class="jump-text">Jump to</text>
+      <text x="26.5" y="31.5" text-anchor="middle" class="jump-text">contents</text>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

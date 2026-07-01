@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ececec;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+    color:#5f5f5f;
+  }
+  .slide *{ box-sizing:border-box; position:absolute; }
+
+  .qmark{
+    left:45px; top:44px;
+    font-size:40px; line-height:40px;
+    font-weight:700; color:#000;
+  }
+
+  .left-intro{
+    left:53px; top:154px; width:285px;
+    font-size:18px; line-height:1.34;
+    color:#666;
+    font-weight:400;
+  }
+
+  .left-statement{
+    left:53px; top:286px; width:295px;
+    font-size:27px; line-height:1.28;
+    color:#575757;
+    font-weight:700;
+  }
+
+  .footnote{
+    left:53px; top:610px; width:298px;
+    font-size:11px; line-height:1.42;
+    font-style:italic;
+    color:#8a8a8a;
+  }
+
+  .copyright{
+    left:49px; bottom:14px;
+    font-size:11px; line-height:11px;
+    color:#4a4a4a;
+  }
+
+  .page{
+    left:677px; bottom:14px;
+    transform:translateX(-50%);
+    font-size:13px; line-height:13px;
+    color:#3f3f3f;
+  }
+
+  .chart-title-market{
+    left:376px; top:22px;
+    font-size:29px;
+    line-height:29px;
+    font-weight:300;
+    color:#6a6a6a;
+    transform:scale(0.62);
+    transform-origin:left top;
+  }
+  .line-left{
+    left:370px; top:52px; width:169px; height:1px; background:#7f8d98;
+  }
+
+  .agree-square{
+    left:553px; top:24px; width:16px; height:16px;
+    background:#24b0b2;
+  }
+  .chart-title-agree{
+    left:577px; top:21px;
+    font-size:17px; line-height:17px;
+    color:#666;
+    font-weight:400;
+  }
+  .line-main{
+    left:553px; top:52px; width:657px; height:1px; background:#7f8d98;
+  }
+
+  .disagree-square{
+    left:1103px; top:23px; width:17px; height:17px;
+    background:#1c246f;
+  }
+  .chart-title-disagree{
+    left:1128px; top:21px;
+    font-size:17px; line-height:17px;
+    color:#666;
+    font-weight:400;
+  }
+
+  .change-title{
+    left:1241px; top:17px; width:88px;
+    font-size:14px; line-height:1.15;
+    text-align:center;
+    color:#3f3f3f;
+    font-weight:400;
+  }
+  .line-right{
+    left:1240px; top:52px; width:89px; height:1px; background:#7f8d98;
+  }
+
+  .chart-area{
+    left:378px; top:84px; width:951px; height:591px;
+  }
+
+  .row-label{
+    left:0;
+    width:132px;
+    text-align:right;
+    padding-right:10px;
+    font-size:11px;
+    line-height:14px;
+    color:#767676;
+    font-weight:400;
+    height:14px;
+  }
+
+  .bar-wrap{
+    left:142px;
+    width:659px;
+    height:15px;
+    background:transparent;
+  }
+
+  .agree{
+    left:0; top:0; height:15px;
+    background:#27b1b3;
+  }
+  .disagree{
+    top:0; height:15px;
+    background:#1b236f;
+  }
+
+  .pct-left,.pct-right{
+    top:0;
+    height:15px;
+    font-size:11px;
+    line-height:15px;
+    font-weight:700;
+    color:#fff;
+    white-space:nowrap;
+  }
+  .pct-left{ left:8px; }
+  .pct-right{ right:6px; }
+
+  .change-box{
+    left:872px;
+    width:74px;
+    height:17px;
+    background:#e3e3e6;
+    border-top:1px solid #efefef;
+    font-size:11px;
+    line-height:17px;
+    text-align:center;
+    color:#4b4b4b;
+  }
+
+  .highlight{
+    left:54px;
+    width:895px;
+    height:20px;
+    border:2px solid #2fbf73;
+    pointer-events:none;
+  }
+
+  .ipsos{
+    right:22px; bottom:14px;
+    width:49px; height:49px;
+    background:#294a9e;
+    overflow:hidden;
+  }
+  .ipsos:before{
+    content:"";
+    position:absolute;
+    right:0; top:0;
+    width:25px; height:49px;
+    background:#1ca79a;
+    clip-path:polygon(35% 0,100% 0,100% 100%,0 100%,17% 79%,29% 62%,22% 48%,33% 31%,25% 15%);
+  }
+  .ipsos:after{
+    content:"";
+    position:absolute;
+    left:17px; top:7px;
+    width:15px; height:25px;
+    background:#5070c2;
+    border-radius:8px 8px 6px 6px;
+    clip-path:polygon(40% 0,70% 0,100% 24%,100% 100%,0 100%,0 26%);
+    opacity:.95;
+  }
+  .ipsos span{
+    position:absolute;
+    left:6px; bottom:5px;
+    font-size:13px; line-height:13px;
+    font-weight:700; color:#fff;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qmark">Q.</div>
+
+  <div class="left-intro">
+    Please indicate if you agree very<br>
+    much, agree somewhat, disagree<br>
+    somewhat or disagree very much<br>
+    with the following statements:
+  </div>
+
+  <div class="left-statement">
+    I am optimistic that<br>
+    2025 will be a better<br>
+    year for me than it was<br>
+    in 2024
+  </div>
+
+  <div class="footnote">
+    Base: 23,721 adults aged 18 years and older in India, 18-74 in<br>
+    Canada, Republic of Ireland, Malaysia, the Philippines, South<br>
+    Africa, Turkey, and the United States, 20-74 in Thailand, 21-74<br>
+    in Indonesia and Singapore, and 16-74 in all other countries.<br>
+    Friday, October 25 – Friday November 8, 2024
+  </div>
+
+  <div class="copyright">© Ipsos Predictions 2025 Report</div>
+  <div class="page">19</div>
+
+  <div class="chart-title-market">Market</div>
+  <div class="line-left"></div>
+
+  <div class="agree-square"></div>
+  <div class="chart-title-agree">Agree</div>
+  <div class="line-main"></div>
+
+  <div class="disagree-square"></div>
+  <div class="chart-title-disagree">Disagree</div>
+
+  <div class="change-title">Change agree<br>vs 2023</div>
+  <div class="line-right"></div>
+
+  <div class="chart-area">
+    <div class="row-label" style="top:0px;">Global Country Average</div>
+    <div class="bar-wrap" style="top:1px; border:1px solid #24b0b2;">
+      <div class="agree" style="width:468px; background:#ececec;"></div>
+      <div class="disagree" style="left:468px; width:191px; background:#ececec; border:1px solid #1b236f;"></div>
+      <div class="pct-left" style="color:#24b0b2;">71%</div>
+      <div class="pct-right" style="color:#1b236f;">29%</div>
+    </div>
+    <div class="change-box" style="top:0px;">1%</div>
+
+    <div class="row-label" style="top:17px;">Indonesia</div>
+    <div class="bar-wrap" style="top:17px;">
+      <div class="agree" style="width:593px;"></div>
+      <div class="disagree" style="left:593px; width:66px;"></div>
+      <div class="pct-left">90%</div>
+      <div class="pct-right">10%</div>
+    </div>
+    <div class="change-box" style="top:17px;">−1%</div>
+
+    <div class="row-label" style="top:34px;">Colombia</div>
+    <div class="bar-wrap" style="top:34px;">
+      <div class="agree" style="width:580px;"></div>
+      <div class="disagree" style="left:580px; width:79px;"></div>
+      <div class="pct-left">88%</div>
+      <div class="pct-right">12%</div>
+    </div>
+    <div class="change-box" style="top:34px;">9%</div>
+
+    <div class="row-label" style="top:51px;">China</div>
+    <div class="bar-wrap" style="top:51px;">
+      <div class="agree" style="width:573px;"></div>
+      <div class="disagree" style="left:573px; width:86px;"></div>
+      <div class="pct-left">87%</div>
+      <div class="pct-right">13%</div>
+    </div>
+    <div class="change-box" style="top:51px;">0%</div>
+
+    <div class="row-label" style="top:68px;">Philippines</div>
+    <div class="bar-wrap" style="top:68px;">
+      <div class="agree" style="width:573px;"></div>
+      <div class="disagree" style="left:573px; width:92px;"></div>
+      <div class="pct-left">87%</div>
+      <div class="pct-right">14%</div>
+    </div>
+    <div class="change-box" style="top:68px;">1%</div>
+
+    <div class="row-label" style="top:85px;">Peru</div>
+    <div class="bar-wrap" style="top:85px;">
+      <div class="agree" style="width:560px;"></div>
+      <div class="disagree" style="left:560px; width:99px;"></div>
+      <div class="pct-left">85%</div>
+      <div class="pct-right">15%</div>
+    </div>
+    <div class="change-box" style="top:85px;">2%</div>
+
+    <div class="row-label" style="top:102px;">South Africa</div>
+    <div class="bar-wrap" style="top:102px;">
+      <div class="agree" style="width:553px;"></div>
+      <div class="disagree" style="left:553px; width:106px;"></div>
+      <div class="pct-left">84%</div>
+      <div class="pct-right">16%</div>
+    </div>
+    <div class="change-box" style="top:102px;">5%</div>
+
+    <div class="row-label" style="top:119px;">Mexico</div>
+    <div class="bar-wrap" style="top:119px;">
+      <div class="agree" style="width:553px;"></div>
+      <div class="disagree" style="left:553px; width:106px;"></div>
+      <div class="pct-left">84%</div>
+      <div class="pct-right">16%</div>
+    </div>
+    <div class="change-box" style="top:119px;">−3%</div>
+
+    <div class="row-label" style="top:136px;">Malaysia</div>
+    <div class="bar-wrap" style="top:136px;">
+      <div class="agree" style="width:534px;"></div>
+      <div class="disagree" style="left:534px; width:125px;"></div>
+      <div class="pct-left">81%</div>
+      <div class="pct-right">19%</div>
+    </div>
+    <div class="change-box" style="top:136px;">8%</div>
+
+    <div class="row-label" style="top:153px;">Thailand</div>
+    <div class="bar-wrap" style="top:153px;">
+      <div class="agree" style="width:521px;"></div>
+      <div class="disagree" style="left:521px; width:138px;"></div>
+      <div class="pct-left">79%</div>
+      <div class="pct-right">21%</div>
+    </div>
+    <div class="change-box" style="top:153px;">2%</div>
+
+    <div class="row-label" style="top:170px;">Argentina</div>
+    <div class="bar-wrap" style="top:170px;">
+      <div class="agree" style="width:521px;"></div>
+      <div class="disagree" style="left:521px; width:138px;"></div>
+      <div class="pct-left">79%</div>
+      <div class="pct-right">21%</div>
+    </div>
+    <div class="change-box" style="top:170px;">10%</div>
+
+    <div class="row-label" style="top:187px;">Brazil</div>
+    <div class="bar-wrap" style="top:187px;">
+      <div class="agree" style="width:521px;"></div>
+      <div class="disagree" style="left:521px; width:138px;"></div>
+      <div class="pct-left">79%</div>
+      <div class="pct-right">21%</div>
+    </div>
+    <div class="change-box" style="top:187px;">1%</div>
+
+    <div class="row-label" style="top:204px;">Chile</div>
+    <div class="bar-wrap" style="top:204px;">
+      <div class="agree" style="width:521px;"></div>
+      <div class="disagree" style="left:521px; width:138px;"></div>
+      <div class="pct-left">79%</div>
+      <div class="pct-right">21%</div>
+    </div>
+    <div class="change-box" style="top:204px;">0%</div>
+
+    <div class="row-label" style="top:221px;">India</div>
+    <div class="bar-wrap" style="top:221px;">
+      <div class="agree" style="width:501px;"></div>
+      <div class="disagree" style="left:501px; width:158px;"></div>
+      <div class="pct-left">76%</div>
+      <div class="pct-right">24%</div>
+    </div>
+    <div class="change-box" style="top:221px;">11%</div>
+
+    <div class="row-label" style="top:238px;">Poland</div>
+    <div class="bar-wrap" style="top:238px;">
+      <div class="agree" style="width:474px;"></div>
+      <div class="disagree" style="left:474px; width:185px;"></div>
+      <div class="pct-left">72%</div>
+      <div class="pct-right">28%</div>
+    </div>
+    <div class="change-box" style="top:238px;">2%</div>
+
+    <div class="row-label" style="top:255px;">Singapore</div>
+    <div class="bar-wrap" style="top:255px;">
+      <div class="agree" style="width:474px;"></div>
+      <div class="disagree" style="left:474px; width:185px;"></div>
+      <div class="pct-left">72%</div>
+      <div class="pct-right">28%</div>
+    </div>
+    <div class="change-box" style="top:255px;">1%</div>
+
+    <div class="row-label" style="top:272px;">Hungary</div>
+    <div class="bar-wrap" style="top:272px;">
+      <div class="agree" style="width:474px;"></div>
+      <div class="disagree" style="left:474px; width:185px;"></div>
+      <div class="pct-left">72%</div>
+      <div class="pct-right">28%</div>
+    </div>
+    <div class="change-box" style="top:272px;">−4%</div>
+
+    <div class="row-label" style="top:289px;">Australia</div>
+    <div class="bar-wrap" style="top:289px;">
+      <div class="agree" style="width:468px;"></div>
+      <div class="disagree" style="left:468px; width:191px;"></div>
+      <div class="pct-left">71%</div>
+      <div class="pct-right">29%</div>
+    </div>
+    <div class="change-box" style="top:289px;">3%</div>
+    <div class="highlight" style="top:292px;"></div>
+
+    <div class="row-label" style="top:306px;">Canada</div>
+    <div class="bar-wrap" style="top:306px;">
+      <div class="agree" style="width:468px;"></div>
+      <div class="disagree" style="left:468px; width:191px;"></div>
+      <div class="pct-left">71%</div>
+      <div class="pct-right">29%</div>
+    </div>
+    <div class="change-box" style="top:306px;">8%</div>
+
+    <div class="row-label" style="top:323px;">United States</div>
+    <div class="bar-wrap" style="top:323px;">
+      <div class="agree" style="width:461px;"></div>
+      <div class="disagree" style="left:461px; width:198px;"></div>
+      <div class="pct-left">70%</div>
+      <div class="pct-right">30%</div>
+    </div>
+    <div class="change-box" style="top:323px;">5%</div>
+
+    <div class="row-label" style="top:340px;">Romania</div>
+    <div class="bar-wrap" style="top:340px;">
+      <div class="agree" style="width:461px;"></div>
+      <div class="disagree" style="left:461px; width:198px;"></div>
+      <div class="pct-left">70%</div>
+      <div class="pct-right">30%</div>
+    </div>
+    <div class="change-box" style="top:340px;">2%</div>
+
+    <div class="row-label" style="top:357px;">Ireland</div>
+    <div class="bar-wrap" style="top:357px;">
+      <div class="agree" style="width:455px;"></div>
+      <div class="disagree" style="left:455px; width:204px;"></div>
+      <div class="pct-left">69%</div>
+      <div class="pct-right">31%</div>
+    </div>
+    <div class="change-box" style="top:357px;">N/A</div>
+
+    <div class="row-label" style="top:374px;">Switzerland</div>
+    <div class="bar-wrap" style="top:374px;">
+      <div class="agree" style="width:455px;"></div>
+      <div class="disagree" style="left:455px; width:204px;"></div>
+      <div class="pct-left">69%</div>
+      <div class="pct-right">31%</div>
+    </div>
+    <div class="change-box" style="top:374px;">8%</div>
+
+    <div class="row-label" style="top:391px;">Netherlands</div>
+    <div class="bar-wrap" style="top:391px;">
+      <div class="agree" style="width:441px;"></div>
+      <div class="disagree" style="left:441px; width:218px;"></div>
+      <div class="pct-left">67%</div>
+      <div class="pct-right">33%</div>
+    </div>
+    <div class="change-box" style="top:391px;">−1%</div>
+
+    <div class="row-label" style="top:408px;">Sweden</div>
+    <div class="bar-wrap" style="top:408px;">
+      <div class="agree" style="width:435px;"></div>
+      <div class="disagree" style="left:435px; width:224px;"></div>
+      <div class="pct-left">66%</div>
+      <div class="pct-right">34%</div>
+    </div>
+    <div class="change-box" style="top:408px;">2%</div>
+
+    <div class="row-label" style="top:425px;">Spain</div>
+    <div class="bar-wrap" style="top:425px;">
+      <div class="agree" style="width:435px;"></div>
+      <div class="disagree" style="left:435px; width:224px;"></div>
+      <div class="pct-left">66%</div>
+      <div class="pct-right">34%</div>
+    </div>
+    <div class="change-box" style="top:425px;">0%</div>
+
+    <div class="row-label" style="top:442px;">Great Britain</div>
+    <div class="bar-wrap" style="top:442px;">
+      <div class="agree" style="width:402px;"></div>
+      <div class="disagree" style="left:402px; width:257px;"></div>
+      <div class="pct-left">61%</div>
+      <div class="pct-right">39%</div>
+    </div>
+    <div class="change-box" style="top:442px;">−3%</div>
+
+    <div class="row-label" style="top:459px;">Türkiye</div>
+    <div class="bar-wrap" style="top:459px;">
+      <div class="agree" style="width:389px;"></div>
+      <div class="disagree" style="left:389px; width:270px;"></div>
+      <div class="pct-left">59%</div>
+      <div class="pct-right">41%</div>
+    </div>
+    <div class="change-box" style="top:459px;">0%</div>
+
+    <div class="row-label" style="top:476px;">Italy</div>
+    <div class="bar-wrap" style="top:476px;">
+      <div class="agree" style="width:382px;"></div>
+      <div class="disagree" style="left:382px; width:277px;"></div>
+      <div class="pct-left">58%</div>
+      <div class="pct-right">42%</div>
+    </div>
+    <div class="change-box" style="top:476px;">−1%</div>
+
+    <div class="row-label" style="top:493px;">Germany</div>
+    <div class="bar-wrap" style="top:493px;">
+      <div class="agree" style="width:369px;"></div>
+      <div class="disagree" style="left:369px; width:290px;"></div>
+      <div class="pct-left">56%</div>
+      <div class="pct-right">44%</div>
+    </div>
+    <div class="change-box" style="top:493px;">−1%</div>
+
+    <div class="row-label" style="top:510px;">South Korea</div>
+    <div class="bar-wrap" style="top:510px;">
+      <div class="agree" style="width:369px;"></div>
+      <div class="disagree" style="left:369px; width:290px;"></div>
+      <div class="pct-left">56%</div>
+      <div class="pct-right">44%</div>
+    </div>
+    <div class="change-box" style="top:510px;">3%</div>
+
+    <div class="row-label" style="top:527px;">Belgium</div>
+    <div class="bar-wrap" style="top:527px;">
+      <div class="agree" style="width:336px;"></div>
+      <div class="disagree" style="left:336px; width:323px;"></div>
+      <div class="pct-left">51%</div>
+      <div class="pct-right">49%</div>
+    </div>
+    <div class="change-box" style="top:527px;">−1%</div>
+
+    <div class="row-label" style="top:544px;">France</div>
+    <div class="bar-wrap" style="top:544px;">
+      <div class="agree" style="width:330px;"></div>
+      <div class="disagree" style="left:330px; width:329px;"></div>
+      <div class="pct-left">50%</div>
+      <div class="pct-right">50%</div>
+    </div>
+    <div class="change-box" style="top:544px;">4%</div>
+
+    <div class="row-label" style="top:561px;">Japan</div>
+    <div class="bar-wrap" style="top:561px;">
+      <div class="agree" style="width:250px;"></div>
+      <div class="disagree" style="left:250px; width:409px;"></div>
+      <div class="pct-left">38%</div>
+      <div class="pct-right">63%</div>
+    </div>
+    <div class="change-box" style="top:561px;">−1%</div>
+  </div>
+
+  <div class="ipsos"><span>Ipsos</span></div>
+</div>
+</body>
+</html>

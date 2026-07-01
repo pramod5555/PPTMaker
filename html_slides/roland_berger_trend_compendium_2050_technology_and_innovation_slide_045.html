@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{margin:0;background:#919296;font-family:Arial,Helvetica,'Segoe UI',sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  .leftbar{
+    position:absolute; left:0px; top:0px; width:169px; height:720px;
+    background:#31343b; z-index:5;
+  }
+  .purpleline{
+    position:absolute; left:168px; top:0px; width:1px; height:720px;
+    background:#6d50a5; z-index:15;
+  }
+  .title-small{
+    position:absolute; left:12px; top:34px; width:130px; height:70px;
+    color:#f2f2f2; font-size:22px; line-height:1.05; font-weight:700; z-index:30;
+  }
+  .main-title{
+    position:absolute; left:221px; top:32px; width:1010px;
+    color:#1f1f1f; font-size:27px; line-height:1.08; font-weight:700; z-index:30;
+  }
+  .section1{
+    position:absolute; left:221px; top:138px; width:328px;
+    color:#8a8f97; font-size:22px; line-height:1.1; font-weight:400; z-index:30;
+  }
+  .section2{
+    position:absolute; left:621px; top:138px; width:260px;
+    color:#8a8f97; font-size:20px; line-height:1.05; font-weight:400; z-index:30;
+  }
+  .section3{
+    position:absolute; left:908px; top:138px; width:190px;
+    color:#8a8f97; font-size:20px; line-height:1.05; font-weight:400; z-index:30;
+  }
+  .callout{
+    position:absolute; left:1086px; top:140px; width:194px; height:580px;
+    background:#d7d7d9; z-index:20;
+  }
+  .callout-text{
+    position:absolute; left:1098px; top:151px; width:166px;
+    color:#202020; font-size:16px; line-height:1.18; font-weight:400; z-index:35;
+  }
+  .callout-text b{font-weight:700;}
+  .bullet{display:block; margin-bottom:11px;}
+  .robots-label-2019{
+    position:absolute; left:246px; top:286px; width:50px;
+    color:#0b4f86; font-size:25px; line-height:1; font-weight:700; z-index:35;
+  }
+  .robots-label-2030{
+    position:absolute; left:396px; top:186px; width:60px;
+    color:#0b4f86; font-size:22px; line-height:1; font-weight:700; z-index:35;
+  }
+  .year2019{
+    position:absolute; left:250px; top:349px; width:55px;
+    color:#3a3a3a; font-size:17px; line-height:1; font-weight:400; z-index:35;
+  }
+  .year2030{
+    position:absolute; left:393px; top:349px; width:55px;
+    color:#3a3a3a; font-size:17px; line-height:1; font-weight:400; z-index:35;
+  }
+  .section4{
+    position:absolute; left:220px; top:385px; width:355px;
+    color:#8a8f97; font-size:20px; line-height:1.08; font-weight:400; z-index:30;
+  }
+  .barbase{
+    position:absolute; left:241px; top:676px; width:298px; height:1px;
+    background:#5e5e5e; z-index:22;
+  }
+  .small-bar1{
+    position:absolute; left:276px; top:635px; width:83px; height:41px;
+    background:#5b3c89; z-index:25;
+  }
+  .small-bar1-topline{
+    position:absolute; left:276px; top:615px; width:83px; height:20px;
+    background:#4b2f72; z-index:25;
+  }
+  .small-bar2a{
+    position:absolute; left:424px; top:662px; width:82px; height:14px;
+    background:#c8bbdf; z-index:25;
+  }
+  .small-bar2b{
+    position:absolute; left:424px; top:614px; width:82px; height:48px;
+    background:#7c65ab; z-index:25;
+  }
+  .small-bar2c{
+    position:absolute; left:424px; top:534px; width:82px; height:80px;
+    background:#4b2f72; z-index:25;
+  }
+  .bar-sep1{
+    position:absolute; left:276px; top:653px; width:83px; height:1px;
+    background:rgba(255,255,255,0.35); z-index:30;
+  }
+  .bar-sep2{
+    position:absolute; left:424px; top:663px; width:82px; height:1px;
+    background:rgba(255,255,255,0.35); z-index:30;
+  }
+  .bar-sep3{
+    position:absolute; left:424px; top:615px; width:82px; height:1px;
+    background:rgba(255,255,255,0.35); z-index:30;
+  }
+  .bar-val{
+    position:absolute; color:#2f2f2f; font-size:16px; line-height:1; font-weight:400; z-index:35;
+  }
+  .bar-in{
+    position:absolute; color:#ffffff; font-size:16px; line-height:1; font-weight:400; z-index:35;
+  }
+  .years-bottom{
+    position:absolute; color:#3a3a3a; font-size:16px; line-height:1; font-weight:400; z-index:35;
+  }
+  .legend{
+    position:absolute; color:#333; font-size:17px; line-height:1; font-weight:400; z-index:35;
+  }
+  .brace-svg{
+    position:absolute; left:314px; top:470px; width:160px; height:118px; z-index:30;
+  }
+  .bubble{
+    position:absolute; left:354px; top:471px; width:75px; height:32px;
+    border:1px solid #8e8e8e; border-radius:16px; background:#f3f3f3;
+    color:#2d2d2d; font-size:17px; line-height:32px; text-align:center; font-weight:700; z-index:35;
+  }
+
+  .chart-area{
+    position:absolute; left:623px; top:258px; width:372px; height:462px; z-index:30;
+  }
+  .axis{
+    position:absolute; left:102px; top:0px; width:1px; height:462px; background:#5f5f5f; z-index:30;
+  }
+  .country{
+    position:absolute; left:0px; width:95px; color:#333; font-size:16px; line-height:1; font-weight:400; z-index:35;
+  }
+  .hbar{
+    position:absolute; left:103px; height:25px; background:#0b5b8f; z-index:32;
+  }
+  .value{
+    position:absolute; color:#333; font-size:16px; line-height:1; font-weight:400; z-index:35;
+  }
+  .pill{
+    position:absolute; width:59px; height:22px; border-radius:11px; background:#5b3c89;
+    color:#fff; font-size:14px; line-height:22px; text-align:center; font-weight:700; z-index:35;
+  }
+
+  .ghost{
+    position:absolute; left:781px; top:190px; width:255px; height:532px; z-index:12;
+    opacity:0.18;
+  }
+
+  .nav-item{
+    position:absolute; left:8px; width:150px; height:88px; z-index:30;
+  }
+  .hex{
+    position:absolute; left:0px; top:0px; width:60px; height:68px; z-index:31;
+  }
+  .nav-num{
+    position:absolute; left:84px; top:0px; width:20px; color:#8a8f97; font-size:20px; line-height:1; font-weight:700; z-index:35;
+  }
+  .nav-text{
+    position:absolute; left:84px; top:22px; width:64px; color:#666c75; font-size:14px; line-height:1.12; font-weight:400; z-index:35;
+  }
+  .nav-text.purple{color:#7f67b2; font-weight:700;}
+  .page{
+    position:absolute; left:9px; top:748px; width:20px;
+    color:#ffffff; font-size:11px; line-height:1; font-weight:400; z-index:35;
+  }
+  .page2{
+    position:absolute; left:9px; top:716px; width:20px;
+    color:#ffffff; font-size:11px; line-height:1; font-weight:400; z-index:35;
+  }
+
+  .footer{
+    position:absolute; left:221px; top:752px; width:400px;
+    color:#494949; font-size:10px; line-height:1; font-weight:400; z-index:35;
+  }
+  .footer-real{
+    position:absolute; left:221px; top:754px; width:400px;
+    color:#494949; font-size:10px; line-height:1; font-weight:400; z-index:35;
+  }
+  .sources{
+    position:absolute; left:221px; top:753px; width:400px;
+    color:#494949; font-size:10px; line-height:1; font-weight:400; z-index:35;
+  }
+  .sources2{
+    position:absolute; left:221px; top:754px; width:400px;
+    color:#494949; font-size:10px; line-height:1; font-weight:400; z-index:35;
+  }
+  .sources-main{
+    position:absolute; left:221px; top:752px; width:420px;
+    color:#4a4a4a; font-size:10px; line-height:1; font-weight:400; z-index:35;
+  }
+  .sources-visible{
+    position:absolute; left:221px; top:753px; width:420px;
+    color:#4a4a4a; font-size:10px; line-height:1; font-weight:400; z-index:35;
+  }
+  .sources-bottom{
+    position:absolute; left:221px; top:754px; width:420px;
+    color:#4a4a4a; font-size:10px; line-height:1; font-weight:400; z-index:35;
+  }
+  .source-final{
+    position:absolute; left:221px; top:753px; width:420px;
+    color:#4a4a4a; font-size:10px; line-height:1; font-weight:400; z-index:35;
+  }
+  .footnote{
+    position:absolute; left:221px; top:753px; width:420px;
+    color:#4a4a4a; font-size:10px; line-height:1; font-weight:400; z-index:35;
+  }
+  .rb-logo{
+    position:absolute; left:1276px; top:728px; width:0px; height:0px; z-index:50;
+  }
+  .rb-wrap{
+    position:absolute; left:1195px; top:729px; width:61px; height:26px; z-index:50;
+  }
+  .rb-text{
+    position:absolute; left:0px; top:6px; width:41px; color:#4a4a4a; font-size:10px; line-height:1; font-weight:400; z-index:51;
+  }
+  .rb-b{
+    position:absolute; left:40px; top:0px; width:18px; height:26px; z-index:51;
+  }
+  .gearbulb{
+    position:absolute; left:68px; top:668px; width:82px; height:82px; z-index:20; opacity:0.55;
+  }
+  .src{
+    position:absolute; left:221px; top:754px; width:450px; color:#4a4a4a; font-size:10px; line-height:1; font-weight:400; z-index:35;
+  }
+  .real-source{
+    position:absolute; left:221px; top:702px; width:450px; color:#4a4a4a; font-size:10px; line-height:1; font-weight:400; z-index:35;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="leftbar"></div>
+  <div class="purpleline"></div>
+
+  <div class="title-small">Technology &amp;<br>Innovation</div>
+
+  <div class="main-title">Smart robotics is a growth area expected to play a significant role across a<br>variety of applications – Asian countries lead in terms of robots deployed</div>
+
+  <div class="section1">Robots in use worldwide [m]</div>
+  <div class="section2">Number of industrial robots<br>per 100' employees in<br>manufacturing, 2019</div>
+  <div class="section3">Industrial robots,<br>newly installed<br>in 2020 ['000]</div>
+
+  <div class="callout"></div>
+  <div class="callout-text">
+    <span class="bullet">&gt; <b>Smart robots</b> are<br><b>autonomous AI systems</b> that are capable of <b>learning</b> from and <b>interacting</b> with their environment – this allows for <b>collaboration with humans</b></span>
+    <span class="bullet">&gt; Pending further developments in AI as well as robotics, future smart robotics will see considerable <b>growth in service robots for professional applications in medicine, logistics and field use</b>; for example, smart robots could be deployed in the maintenance industry to repair or retrofit water pipes</span>
+    <span class="bullet">&gt; Based on the theory of swarm behavior, <b>swarm robotics</b> champions the idea to deploy a group of small/cheap(er) smart robots equipped with sensors to identify defects in buildings or infrastructure</span>
+  </div>
+
+  <div class="robots-label-2019">2.25</div>
+  <div class="robots-label-2030">20</div>
+  <div class="year2019">2019</div>
+  <div class="year2030">2030</div>
+
+  <!-- robot icons left -->
+  <svg style="position:absolute; left:245px; top:221px; width:54px; height:111px; z-index:30;" viewBox="0 0 54 111">
+    <g fill="#0b4f86">
+      <g transform="translate(0,40)">
+        <rect x="8" y="9" width="11" height="10" rx="1"/><rect x="6" y="19" width="15" height="10" rx="1"/>
+        <circle cx="11" cy="12" r="1.2" fill="#efefef"/><circle cx="16" cy="12" r="1.2" fill="#efefef"/>
+        <rect x="5" y="22" width="3" height="8"/><rect x="19" y="22" width="3" height="8"/>
+        <rect x="8" y="29" width="3" height="8"/><rect x="16" y="29" width="3" height="8"/>
+        <rect x="11.8" y="3" width="3" height="6"/><circle cx="13.3" cy="1.8" r="1.5"/>
+        <rect x="2" y="13" width="5" height="2"/><rect x="20" y="13" width="5" height="2"/>
+      </g>
+      <g transform="translate(24,40)">
+        <rect x="8" y="9" width="11" height="10" rx="1"/><rect x="6" y="19" width="15" height="10" rx="1"/>
+        <circle cx="11" cy="12" r="1.2" fill="#efefef"/><circle cx="16" cy="12" r="1.2" fill="#efefef"/>
+        <rect x="5" y="22" width="3" height="8"/><rect x="19" y="22" width="3" height="8"/>
+        <rect x="8" y="29" width="3" height="8"/><rect x="16" y="29" width="3" height="8"/>
+        <rect x="11.8" y="3" width="3" height="6"/><circle cx="13.3" cy="1.8" r="1.5"/>
+        <rect x="2" y="13" width="5" height="2"/><rect x="20" y="13" width="5" height="2"/>
+      </g>
+    </g>
+  </svg>
+
+  <!-- robot icons right group -->
+  <svg style="position:absolute; left:356px; top:219px; width:121px; height:128px; z-index:30;" viewBox="0 0 121 128">
+    <defs>
+      <g id="rbt" fill="#0b4f86">
+        <rect x="8" y="9" width="11" height="10" rx="1"/><rect x="6" y="19" width="15" height="10" rx="1"/>
+        <circle cx="11" cy="12" r="1.2" fill="#efefef"/><circle cx="16" cy="12" r="1.2" fill="#efefef"/>
+        <rect x="5" y="22" width="3" height="8"/><rect x="19" y="22" width="3" height="8"/>
+        <rect x="8" y="29" width="3" height="8"/><rect x="16" y="29" width="3" height="8"/>
+        <rect x="11.8" y="3" width="3" height="6"/><circle cx="13.3" cy="1.8" r="1.5"/>
+        <rect x="2" y="13" width="5" height="2"/><rect x="20" y="13" width="5" height="2"/>
+      </g>
+    </defs>
+    <use href="#rbt" x="0" y="0"/><use href="#rbt" x="23" y="0"/><use href="#rbt" x="46" y="0"/><use href="#rbt" x="69" y="0"/><use href="#rbt" x="92" y="0"/>
+    <use href="#rbt" x="0" y="24"/><use href="#rbt" x="23" y="24"/><use href="#rbt" x="46" y="24"/><use href="#rbt" x="69" y="24"/><use href="#rbt" x="92" y="24"/>
+    <use href="#rbt" x="0" y="48"/><use href="#rbt" x="23" y="48"/><use href="#rbt" x="46" y="48"/><use href="#rbt" x="69" y="48"/><use href="#rbt" x="92" y="48"/>
+    <use href="#rbt" x="0" y="72"/><use href="#rbt" x="23" y="72"/><use href="#rbt" x="46" y="72"/><use href="#rbt" x="69" y="72"/><use href="#rbt" x="92" y="72"/>
+  </svg>
+
+  <div class="section4">Service robots for professional<br>use, turnover of major<br>applications, 2019 [USD bn]</div>
+
+  <svg class="brace-svg" viewBox="0 0 160 118">
+    <path d="M2 116 L2 0 L152 0 L152 12" stroke="#9c9c9c" stroke-width="1.5" fill="none"/>
+    <path d="M148 12 L152 20 L156 12" stroke="#9c9c9c" stroke-width="1.5" fill="none"/>
+  </svg>
+  <div class="bubble">+251%</div>
+
+  <div class="barbase"></div>
+  <div class="small-bar1"></div>
+  <div class="small-bar1-topline"></div>
+  <div class="small-bar2a"></div>
+  <div class="small-bar2b"></div>
+  <div class="small-bar2c"></div>
+  <div class="bar-sep1"></div>
+  <div class="bar-sep2"></div>
+  <div class="bar-sep3"></div>
+
+  <div class="bar-val" style="left:305px; top:611px;">6.3</div>
+  <div class="bar-val" style="left:448px; top:510px;">22.1</div>
+
+  <div class="bar-in" style="left:286px; top:640px;">1.3</div>
+  <div class="bar-in" style="left:286px; top:620px;">4.1</div>
+  <div class="bar-in" style="left:453px; top:666px; color:#4b3a63;">2.0</div>
+  <div class="bar-in" style="left:454px; top:633px;">7.5</div>
+  <div class="bar-in" style="left:449px; top:569px;">12.6</div>
+  <div class="bar-in" style="left:323px; top:640px;">0.9</div>
+
+  <div class="years-bottom" style="left:298px; top:687px;">2018</div>
+  <div class="years-bottom" style="left:449px; top:687px;">2023</div>
+
+  <div class="legend" style="left:524px; top:565px;">Medical</div>
+  <div class="legend" style="left:524px; top:624px;">Logistics</div>
+  <div class="legend" style="left:524px; top:652px;">Field</div>
+
+  <!-- center right ghost robot/network -->
+  <svg class="ghost" viewBox="0 0 255 532">
+    <defs>
+      <linearGradient id="fadeG" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+        <stop offset="40%" stop-color="#ffffff" stop-opacity="0.45"/>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0.1"/>
+      </linearGradient>
+    </defs>
+    <ellipse cx="138" cy="136" rx="79" ry="115" fill="none" stroke="url(#fadeG)" stroke-width="1.2"/>
+    <path d="M79 50 L168 224 M89 38 L194 176 M58 102 L200 118 M87 226 L150 37 M121 260 L188 68" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1"/>
+    <circle cx="104" cy="84" r="4" fill="#ffffff" fill-opacity="0.35"/>
+    <circle cx="155" cy="108" r="4" fill="#ffffff" fill-opacity="0.35"/>
+    <circle cx="117" cy="172" r="4" fill="#ffffff" fill-opacity="0.35"/>
+    <circle cx="181" cy="157" r="4" fill="#ffffff" fill-opacity="0.35"/>
+    <circle cx="143" cy="225" r="6" fill="#ffffff" fill-opacity="0.28"/>
+    <circle cx="75" cy="128" r="3" fill="#ffffff" fill-opacity="0.3"/>
+    <path d="M103 287
+             c22 -32 37 -48 57 -61
+             c15 -10 26 -12 35 -10
+             c9 3 13 12 12 22
+             c-1 12 -8 18 -20 23
+             c-12 6 -18 12 -21 25
+             c-3 12 -4 24 -3 42
+             c2 20 9 46 16 70
+             c4 12 -3 18 -16 18
+             h-26
+             c-12 0 -19 -5 -18 -17
+             c1 -27 -4 -56 -14 -85
+             c-8 -22 -9 -38 -2 -53z"
+          fill="#ffffff" fill-opacity="0.55"/>
+    <path d="M130 360 c-10 0 -17 7 -17 17 v28 h34 v-28 c0 -10 -7 -17 -17 -17z" fill="#ffffff" fill-opacity="0.6"/>
+    <path d="M113 405 c-19 7 -31 17 -37 27 c-7 13 -4 29 10 47 h88 c9 -18 10 -34 3 -47 c-7 -11 -20 -20 -39 -27z" fill="#ffffff" fill-opacity="0.55"/>
+    <circle cx="90" cy="411" r="25" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="3"/>
+    <circle cx="94" cy="414" r="11" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="2"/>
+  </svg>
+
+  <div class="chart-area">
+    <div class="axis"></div>
+
+    <div class="country" style="top:16px;">Singapore</div>
+    <div class="hbar" style="top:10px; width:124px;"></div>
+    <div class="value" style="left:231px; top:15px;">918</div>
+    <div class="pill" style="left:342px; top:12px;">5</div>
+
+    <div class="country" style="top:62px;">South Korea</div>
+    <div class="hbar" style="top:56px; width:118px;"></div>
+    <div class="value" style="left:227px; top:61px;">868</div>
+    <div class="pill" style="left:342px; top:58px;">31</div>
+
+    <div class="country" style="top:108px;">Japan</div>
+    <div class="hbar" style="top:102px; width:49px;"></div>
+    <div class="value" style="left:156px; top:107px;">364</div>
+    <div class="pill" style="left:342px; top:104px;">39</div>
+
+    <div class="country" style="top:154px;">Germany</div>
+    <div class="hbar" style="top:148px; width:47px;"></div>
+    <div class="value" style="left:139px; top:153px;">346</div>
+    <div class="pill" style="left:342px; top:150px;">22</div>
+
+    <div class="country" style="top:200px;">US</div>
+    <div class="hbar" style="top:194px; width:31px;"></div>
+    <div class="value" style="left:141px; top:199px;">228</div>
+    <div class="pill" style="left:342px; top:196px;">31</div>
+
+    <div class="country" style="top:246px;">Italy</div>
+    <div class="hbar" style="top:240px; width:28px;"></div>
+    <div class="value" style="left:140px; top:245px;">212</div>
+    <div class="pill" style="left:342px; top:242px;">9</div>
+
+    <div class="country" style="top:292px;">Spain</div>
+    <div class="hbar" style="top:286px; width:25px;"></div>
+    <div class="value" style="left:140px; top:291px;">191</div>
+    <div class="pill" style="left:342px; top:288px;">3</div>
+
+    <div class="country" style="top:338px;">China</div>
+    <div class="hbar" style="top:332px; width:25px;"></div>
+    <div class="value" style="left:140px; top:337px;">187</div>
+    <div class="pill" style="left:342px; top:334px;">168</div>
+
+    <div class="country" style="top:384px;">France</div>
+    <div class="hbar" style="top:378px; width:24px;"></div>
+    <div class="value" style="left:140px; top:383px;">177</div>
+    <div class="pill" style="left:342px; top:380px;">5</div>
+
+    <div class="country" style="top:430px;">Canada</div>
+    <div class="hbar" style="top:424px; width:22px;"></div>
+    <div class="value" style="left:140px; top:429px;">165</div>
+    <div class="pill" style="left:342px; top:426px;">3</div>
+  </div>
+
+  <!-- left navigation -->
+  <div class="nav-item" style="top:143px;">
+    <svg class="hex" viewBox="0 0 60 68">
+      <polygon points="15,3 45,3 58,34 45,65 15,65 2,34" fill="none" stroke="#6a6d72" stroke-width="3"/>
+      <polygon points="15,3 45,3 58,34 45,65 15,65 2,34" fill="#fafafa" opacity="0.08"/>
+      <circle cx="30" cy="34" r="18" fill="#ffffff" opacity="0.12"/>
+      <path d="M16 43 L22 27 L28 32 L35 22 L44 40" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.5"/>
+      <path d="M18 18 h24 v24 h-24z" stroke="#ffffff" stroke-width="1" fill="none" opacity="0.35"/>
+      <path d="M16 26 h28 M16 34 h28 M16 42 h28 M24 18 v24 M32 18 v24 M40 18 v24" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+    </svg>
+    <div class="nav-num">1</div>
+    <div class="nav-text">Value of<br>Innovation</div>
+  </div>
+
+  <div class="nav-item" style="top:276px;">
+    <svg class="hex" viewBox="0 0 60 68">
+      <polygon points="15,3 45,3 58,34 45,65 15,65 2,34" fill="none" stroke="#8b6bc7" stroke-width="4"/>
+      <polygon points="15,3 45,3 58,34 45,65 15,65 2,34" fill="#a98ce1" opacity="0.12"/>
+      <circle cx="23" cy="30" r="12" fill="#ffffff" opacity="0.12"/>
+      <circle cx="34" cy="26" r="10" fill="#ffffff" opacity="0.08"/>
+      <path d="M14 39 C21 29, 28 25, 37 28 C43 30, 46 37, 47 44" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.45"/>
+      <circle cx="20" cy="21" r="1.5" fill="#ffffff" opacity="0.4"/><circle cx="28" cy="18" r="1.5" fill="#ffffff" opacity="0.4"/><circle cx="36" cy="22" r="1.5" fill="#ffffff" opacity="0.4"/><circle cx="24" cy="32" r="1.5" fill="#ffffff" opacity="0.4"/><circle cx="33" cy="34" r="1.5" fill="#ffffff" opacity="0.4"/>
+    </svg>
+    <div class="nav-num" style="color:#8b6bc7;">2</div>
+    <div class="nav-text purple">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="nav-item" style="top:408px;">
+    <svg class="hex" viewBox="0 0 60 68">
+      <polygon points="15,3 45,3 58,34 45,65 15,65 2,34" fill="none" stroke="#6a6d72" stroke-width="3"/>
+      <polygon points="15,3 45,3 58,34 45,65 15,65 2,34" fill="#fafafa" opacity="0.08"/>
+      <path d="M17 37 c5 -8 10 -8 16 -2 l4 4 c6 6 11 6 16 -2" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.55"/>
+      <rect x="14" y="28" width="10" height="8" rx="2" fill="#ffffff" opacity="0.4"/>
+      <rect x="36" y="28" width="10" height="8" rx="2" fill="#ffffff" opacity="0.4"/>
+    </svg>
+    <div class="nav-num">3</div>
+    <div class="nav-text">Humans &amp;<br>Machines</div>
+  </div>
+
+  <!-- bottom left icon -->
+  <svg class="gearbulb" viewBox="0 0 82 82">
+    <g fill="none" stroke="#8a8f97" stroke-width="3" opacity="0.7">
+      <circle cx="58" cy="32" r="11"/>
+      <path d="M58 15 v7 M58 42 v7 M41 32 h7 M68 32 h7 M47 21 l5 5 M64 38 l5 5 M47 43 l5-5 M64 26 l5-5"/>
+      <path d="M28 17 c-13 0 -23 10 -23 23 c0 9 4 16 11 20 c3 2 5 5 5 9 h14 c0-4 2-7 5-9 c7-4 11-11 11-20 c0-13-10-23-23-23z"/>
+      <path d="M28 25 c-4

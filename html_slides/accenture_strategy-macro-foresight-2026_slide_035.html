@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>AI arms race slide</title>
+<style>
+  body{
+    margin:0;
+    background:#cecbcf;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d6d4d6;
+    color:#111;
+  }
+
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:25px;
+    background:#ecebea;
+    border-bottom:1px solid #c9c6c9;
+    font-size:10px;
+    color:#7b7b7b;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    box-sizing:border-box;
+    padding:0 6px;
+  }
+  .tab.active{
+    background:#55107b;
+    color:#fff;
+  }
+  .tab.underline{
+    color:#55107b;
+    border-bottom:2px solid #8b2be2;
+  }
+
+  .title{
+    position:absolute;
+    left:44px;
+    top:58px;
+    width:1180px;
+    font-size:28px;
+    line-height:29px;
+    font-weight:800;
+    color:#060606;
+    letter-spacing:-0.3px;
+  }
+  .subtitle{
+    position:absolute;
+    left:44px;
+    top:121px;
+    font-size:24px;
+    line-height:24px;
+    color:#9a19ff;
+    font-weight:800;
+  }
+
+  .nonex{
+    position:absolute;
+    right:70px;
+    top:129px;
+    width:160px;
+    text-align:center;
+    font-size:14px;
+    font-weight:800;
+    color:#111;
+  }
+  .nonex:before,
+  .nonex:after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:160px;
+    height:1px;
+    background:#666;
+  }
+  .nonex:before{ top:-8px; }
+  .nonex:after{ top:18px; }
+
+  .headerline{
+    position:absolute;
+    left:151px;
+    top:199px;
+    width:1184px;
+    height:2px;
+    background:#a61cff;
+  }
+
+  .region{
+    position:absolute;
+    top:172px;
+    width:200px;
+    text-align:center;
+    font-size:18px;
+    font-weight:800;
+    color:#111;
+  }
+
+  .map{
+    position:absolute;
+    top:206px;
+    width:78px;
+    height:56px;
+    opacity:0.22;
+    background:#8f8f8f;
+  }
+  .map:before,.map:after{
+    content:"";
+    position:absolute;
+    background:#8f8f8f;
+  }
+
+  .latam-map{
+    left:210px;
+    clip-path: polygon(17% 8%, 29% 1%, 40% 10%, 52% 13%, 53% 22%, 64% 27%, 62% 39%, 57% 43%, 52% 53%, 45% 64%, 39% 75%, 37% 88%, 30% 97%, 26% 89%, 29% 75%, 24% 65%, 22% 54%, 17% 45%, 14% 34%, 8% 25%, 0 17%, 8% 11%);
+  }
+  .latam-map:before{
+    left:8px; top:5px; width:18px; height:10px;
+    clip-path: polygon(0 50%, 30% 0, 80% 10%, 100% 50%, 55% 100%, 15% 90%);
+  }
+  .latam-map:after{
+    left:45px; top:8px; width:22px; height:16px;
+    clip-path: polygon(0 20%, 20% 0, 95% 25%, 90% 70%, 65% 100%, 10% 85%);
+  }
+
+  .eu-map{
+    left:478px;
+    clip-path: polygon(14% 42%, 22% 25%, 32% 22%, 39% 11%, 47% 17%, 53% 11%, 58% 21%, 67% 19%, 76% 28%, 70% 39%, 74% 51%, 64% 57%, 58% 68%, 47% 64%, 39% 71%, 28% 66%, 17% 69%, 9% 58%);
+  }
+  .eu-map:before{
+    left:5px; top:2px; width:18px; height:22px;
+    clip-path: polygon(40% 0, 65% 9%, 70% 27%, 54% 43%, 57% 63%, 42% 100%, 20% 80%, 25% 53%, 15% 29%);
+  }
+  .eu-map:after{
+    left:51px; top:18px; width:20px; height:15px;
+    clip-path: polygon(0 35%, 26% 5%, 95% 0, 100% 45%, 60% 100%, 15% 84%);
+  }
+
+  .me-map{
+    left:706px;
+    clip-path: polygon(30% 5%, 49% 0, 58% 8%, 56% 18%, 63% 31%, 63% 48%, 69% 61%, 59% 72%, 44% 83%, 36% 100%, 25% 92%, 18% 78%, 15% 62%, 7% 46%, 10% 29%, 19% 18%);
+  }
+  .me-map:before{
+    left:15px; top:34px; width:40px; height:18px;
+    clip-path: polygon(0 30%, 32% 0, 100% 5%, 88% 65%, 48% 100%, 10% 78%);
+  }
+  .me-map:after{
+    left:41px; top:4px; width:20px; height:14px;
+    clip-path: polygon(20% 0, 72% 5%, 100% 32%, 82% 100%, 15% 88%, 0 38%);
+  }
+
+  .india-map{
+    left:930px;
+    clip-path: polygon(46% 0, 58% 10%, 54% 26%, 67% 39%, 58% 55%, 55% 76%, 48% 100%, 37% 82%, 29% 55%, 25% 31%, 36% 15%);
+  }
+  .india-map:before{
+    left:32px; top:0; width:15px; height:12px;
+    clip-path: polygon(30% 0, 100% 20%, 70% 100%, 0 60%);
+  }
+  .india-map:after{
+    left:49px; top:22px; width:12px; height:14px;
+    clip-path: polygon(0 20%, 65% 0, 100% 38%, 55% 100%, 10% 75%);
+  }
+
+  .sea-map{
+    left:1132px;
+    clip-path: polygon(7% 27%, 19% 14%, 35% 20%, 44% 9%, 55% 18%, 50% 31%, 60% 42%, 78% 44%, 92% 56%, 98% 72%, 83% 78%, 68% 68%, 55% 72%, 39% 66%, 30% 74%, 20% 64%, 10% 52%);
+  }
+  .sea-map:before{
+    left:0px; top:5px; width:28px; height:18px;
+    clip-path: polygon(0 35%, 30% 0, 85% 8%, 100% 42%, 60% 100%, 12% 86%);
+  }
+  .sea-map:after{
+    left:48px; top:28px; width:26px; height:16px;
+    clip-path: polygon(0 20%, 50% 0, 100% 28%, 76% 100%, 15% 75%);
+  }
+
+  .table{
+    position:absolute;
+    left:30px;
+    top:296px;
+    width:1245px;
+    height:420px;
+    font-size:15px;
+    color:#2b2b2b;
+  }
+  .label{
+    position:absolute;
+    left:0;
+    width:120px;
+    background:#000;
+    color:#fff;
+    font-weight:800;
+    text-align:right;
+    padding:8px 10px 0 8px;
+    box-sizing:border-box;
+    line-height:1.05;
+    font-size:17px;
+  }
+
+  .row1{ top:0; height:138px; }
+  .row2{ top:138px; height:49px; }
+  .row3{ top:187px; height:234px; }
+
+  .hline{
+    position:absolute;
+    left:0;
+    width:1245px;
+    height:2px;
+    background:#99948e;
+  }
+  .h1{ top:138px; height:2px; }
+  .h2{ top:187px; height:2px; }
+
+  .col{
+    position:absolute;
+    top:0;
+    width:208px;
+    padding:0 8px 0 18px;
+    box-sizing:border-box;
+    line-height:1.12;
+  }
+  .r1{ top:5px; }
+  .r2{ top:148px; }
+  .r3{ top:193px; }
+
+  ul{
+    margin:0;
+    padding-left:18px;
+  }
+  li{
+    margin:0 0 6px 0;
+  }
+
+  .foot-left{
+    position:absolute;
+    left:42px;
+    bottom:14px;
+    color:#7f7b7d;
+    font-size:12px;
+  }
+  .foot-left .arrow{
+    display:inline-block;
+    color:#a61cff;
+    font-size:36px;
+    line-height:0;
+    vertical-align:middle;
+    margin-right:10px;
+    transform:translateY(5px);
+    font-weight:800;
+  }
+  .foot-right{
+    position:absolute;
+    right:82px;
+    bottom:14px;
+    color:#666;
+    font-size:12px;
+  }
+  .page{
+    position:absolute;
+    right:20px;
+    bottom:14px;
+    color:#666;
+    font-size:12px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar">
+    <div class="tab active" style="left:0px;width:105px;">Top 10 trends</div>
+    <div class="tab" style="left:105px;width:135px;">Multi-speed growth</div>
+    <div class="tab" style="left:240px;width:118px;">Tariff impacts</div>
+    <div class="tab" style="left:358px;width:126px;">Financial fragility</div>
+    <div class="tab" style="left:484px;width:110px;">Affordability</div>
+    <div class="tab" style="left:594px;width:126px;">AI productivity</div>
+    <div class="tab" style="left:720px;width:116px;">China exports</div>
+    <div class="tab" style="left:836px;width:136px;">Europe struggle</div>
+    <div class="tab underline" style="left:972px;width:122px;">AI arms race</div>
+    <div class="tab" style="left:1094px;width:110px;">Power crunch</div>
+    <div class="tab" style="left:1204px;width:76px;">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">
+    The US-China AI race is forcing governments and companies to choose between rival tech ecosystems, or hybridize them, to balance technology security and affordability
+  </div>
+  <div class="subtitle">8. Business considerations</div>
+
+  <div class="nonex">NON-EXHAUSTIVE</div>
+
+  <div class="region" style="left:151px;">Latin America</div>
+  <div class="region" style="left:405px;">Western Europe</div>
+  <div class="region" style="left:644px;">Middle East</div>
+  <div class="region" style="left:907px;">India</div>
+  <div class="region" style="left:1085px;width:170px;">Southeast Asia</div>
+
+  <div class="headerline"></div>
+
+  <div class="map latam-map"></div>
+  <div class="map eu-map"></div>
+  <div class="map me-map"></div>
+  <div class="map india-map"></div>
+  <div class="map sea-map"></div>
+
+  <div class="table">
+    <div class="label row1">Policy focus<br>area</div>
+    <div class="label row2">Technology<br>leaning</div>
+    <div class="label row3">Business<br>implications</div>
+
+    <div class="hline h1"></div>
+    <div class="hline h2"></div>
+
+    <div class="col r1" style="left:132px;">
+      <ul>
+        <li>US National Security Strategy has put renewed emphasis on its role in the LATAM region</li>
+        <li>Brazil and Chile are both pushing for increasing domestic capabilities</li>
+      </ul>
+    </div>
+    <div class="col r1" style="left:372px;">
+      <ul>
+        <li>Europe is pushing for more technology sovereignty, but they remain very reliant on the US technology stack</li>
+        <li>France, Germany, Netherlands are pushing for EU sovereignty agendas</li>
+      </ul>
+    </div>
+    <div class="col r1" style="left:610px;">
+      <ul>
+        <li>Strong focus to develop sovereign AI economies (e.g., Saudi Arabia)</li>
+        <li>Saudi Arabia has developed partnerships with leading US AI companies</li>
+      </ul>
+    </div>
+    <div class="col r1" style="left:850px;">
+      <ul>
+        <li>India is making an assertive push toward model, and chip sovereignty</li>
+        <li>“Made in India” chip initiative focused on developing a local ecosystem</li>
+      </ul>
+    </div>
+    <div class="col r1" style="left:1090px;">
+      <ul>
+        <li>Countries in the region are having to deal with a more transactional US policy approach and greater Chinese presence</li>
+      </ul>
+    </div>
+
+    <div class="col r2" style="left:132px;">
+      <ul><li>Somewhat-US leaning</li></ul>
+    </div>
+    <div class="col r2" style="left:372px;">
+      <ul><li>US-aligned</li></ul>
+    </div>
+    <div class="col r2" style="left:610px;">
+      <ul><li>Somewhat US-leaning</li></ul>
+    </div>
+    <div class="col r2" style="left:850px;">
+      <ul><li>Largely US-aligned</li></ul>
+    </div>
+    <div class="col r2" style="left:1090px;">
+      <ul><li>Mixed</li></ul>
+    </div>
+
+    <div class="col r3" style="left:132px;">
+      <ul>
+        <li>Strong reliance on US-origin hardware, with countries like Brazil subsidising domestic semiconductor production to avoid this</li>
+        <li>Plan for continued reliance on US ecosystems until regional players emerge; China will also continue to push to make inroads in the region</li>
+      </ul>
+    </div>
+    <div class="col r3" style="left:372px;">
+      <ul>
+        <li>Expect continued reliance on US technology. Attempts to drive sovereignty have relied on US firms e.g., AWS European Sovereign Cloud</li>
+        <li>Some pockets of European firms will emerge</li>
+        <li>Companies should plan to drive more sovereignty across their technology stack and ecosystem</li>
+      </ul>
+    </div>
+    <div class="col r3" style="left:610px;">
+      <ul>
+        <li>Expect further close collaboration between the GCC and western AI technology companies</li>
+        <li>Businesses should align their strategies to regional AI sovereignty strategies e.g., UAE G42 or Saudi Arabia HUMAIN</li>
+        <li>Still expect to see growth in Chinese models, use cases, and worker training</li>
+      </ul>
+    </div>
+    <div class="col r3" style="left:850px;">
+      <ul>
+        <li>India’s tech / services ecosystem is closely integrated with the US</li>
+        <li>Chinese LLM adoption should grow in the country, but there is still caution between India-China ties</li>
+        <li>Expect more domestic initiatives to improve India’s AI ecosystem</li>
+      </ul>
+    </div>
+    <div class="col r3" style="left:1090px;">
+      <ul>
+        <li>Most of the region is reliant on US hardware / infrastructure</li>
+        <li>The software layer will see more duality in Chinese and US ecosystems</li>
+        <li>Companies should develop technology strategies focused on competing US-China AI ecosystems</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot-left"><span class="arrow">&gt;</span>Source(s): Accenture Strategy analysis</div>
+  <div class="foot-right">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="page">35</div>
+</div>
+</body>
+</html>

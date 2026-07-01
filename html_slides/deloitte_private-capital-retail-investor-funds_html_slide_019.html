@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Case Study: Project Chime</title>
+<style>
+  body{
+    margin:0;
+    background:#f2f2f2;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+    color:#111;
+  }
+  #slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .title{
+    left:38px;
+    top:60px;
+    font-size:29px;
+    line-height:32px;
+    font-weight:700;
+    color:#000;
+  }
+  .logo{
+    left:1073px;
+    top:28px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:56px;
+    line-height:56px;
+    color:#0f6f46;
+    letter-spacing:0.01em;
+  }
+  .logo-line{
+    left:1086px;
+    top:102px;
+    width:157px;
+    height:1px;
+    background:#6a6a6a;
+  }
+  .subtitle{
+    left:39px;
+    top:115px;
+    width:1040px;
+    font-size:19px;
+    line-height:24px;
+    font-style:italic;
+    font-weight:700;
+    color:#1487f3;
+  }
+
+  .box{
+    border:2px solid #2b9cff;
+    background:transparent;
+  }
+  .section-title{
+    font-size:18px;
+    line-height:20px;
+    font-weight:700;
+    color:#111;
+    background:#f2f2f2;
+    padding:0 10px;
+    letter-spacing:0.04em;
+  }
+
+  .overview-box{
+    left:42px;
+    top:154px;
+    width:584px;
+    height:226px;
+  }
+  .overview-title{
+    left:50px;
+    top:141px;
+  }
+  .overview-close{
+    left:82px;
+    top:166px;
+    width:268px;
+    height:22px;
+    background:#a8cff0;
+  }
+  .overview-close-text{
+    left:84px;
+    top:169px;
+    font-size:14px;
+    line-height:16px;
+    font-style:italic;
+    color:#222;
+  }
+  .overview-text{
+    left:63px;
+    top:198px;
+    width:535px;
+    font-size:16px;
+    line-height:21px;
+    color:#222;
+  }
+  .bullet-line{
+    position:relative;
+    padding-left:21px;
+    margin-bottom:14px;
+  }
+  .bullet{
+    position:absolute;
+    left:0;
+    top:7px;
+    width:4px;
+    height:4px;
+    background:#1599ff;
+  }
+  .label-bold{
+    margin-top:2px;
+    margin-bottom:4px;
+    font-size:16px;
+    line-height:20px;
+    font-weight:700;
+    color:#111;
+  }
+
+  .thesis-box{
+    left:657px;
+    top:154px;
+    width:585px;
+    height:226px;
+  }
+  .thesis-title{
+    left:673px;
+    top:141px;
+  }
+  .chev-list{
+    left:675px;
+    top:176px;
+    width:520px;
+    font-size:16px;
+    line-height:21px;
+    color:#111;
+    font-weight:700;
+  }
+  .chev-item{
+    position:relative;
+    padding-left:25px;
+    margin-bottom:18px;
+  }
+  .chev{
+    position:absolute;
+    left:0;
+    top:0;
+    color:#1599ff;
+    font-size:24px;
+    line-height:18px;
+    font-weight:700;
+  }
+
+  .metrics-title{
+    left:42px;
+    top:396px;
+    font-size:17px;
+    line-height:24px;
+    font-weight:700;
+    color:#111;
+    letter-spacing:0.08em;
+  }
+  .metrics-title sup{
+    font-size:10px;
+    vertical-align:super;
+  }
+  .metric-row{
+    position:absolute;
+    width:584px;
+    height:44px;
+  }
+  .metric-left{
+    position:absolute;
+    left:0;
+    top:0;
+    width:115px;
+    height:45px;
+    border:2px solid #2b9cff;
+    background:#fff;
+    font-size:19px;
+    line-height:41px;
+    text-align:center;
+    font-weight:700;
+    font-style:italic;
+    color:#111;
+  }
+  .metric-right{
+    position:absolute;
+    left:130px;
+    top:0;
+    width:454px;
+    height:45px;
+    background:#eceeef;
+    padding-left:18px;
+    font-size:16px;
+    line-height:45px;
+    color:#222;
+  }
+
+  .update-box{
+    left:657px;
+    top:402px;
+    width:585px;
+    height:227px;
+  }
+  .update-title{
+    left:679px;
+    top:389px;
+  }
+  .update-list{
+    left:678px;
+    top:417px;
+    width:520px;
+    font-size:16px;
+    line-height:21px;
+    color:#222;
+  }
+  .update-line{
+    position:relative;
+    padding-left:18px;
+    margin-bottom:10px;
+  }
+  .update-dot{
+    position:absolute;
+    left:0;
+    top:8px;
+    width:4px;
+    height:4px;
+    background:#1599ff;
+  }
+
+  .footer-text{
+    left:38px;
+    top:637px;
+    width:1207px;
+    font-size:11px;
+    line-height:13px;
+    color:#222;
+  }
+  .footer-line{
+    left:38px;
+    top:690px;
+    width:1204px;
+    height:1px;
+    background:#b6b6b6;
+  }
+  .page{
+    left:39px;
+    top:707px;
+    font-size:18px;
+    line-height:12px;
+    font-weight:700;
+    color:#111;
+  }
+  .jp{
+    left:1102px;
+    top:671px;
+    width:150px;
+    color:#111;
+    text-align:left;
+  }
+  .jp .main{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:26px;
+    line-height:26px;
+    font-weight:400;
+  }
+  .jp .sub{z-index:1;
+    margin-top:4px;
+    font-size:10px;
+    line-height:12px;
+    font-weight:700;
+    letter-spacing:0.04em;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">Case Study: Project Chime</div>
+  <div class="logo">GTCR</div>
+  <div class="logo-line"></div>
+  <div class="subtitle">GP-led single-asset continuation vehicle of leading postpaid mobile virtual network operator</div>
+
+  <div class="box overview-box"></div>
+  <div class="section-title overview-title">Opportunity Overview</div>
+  <div class="overview-close"></div>
+  <div class="overview-close-text">Closed: December 9, 2025</div>
+  <div class="overview-text">
+    <div class="bullet-line"><span class="bullet"></span>Leading U.S. postpaid mobile virtual network operator primarily serving<br>the 55+ demographic</div>
+    <div class="bullet-line"><span class="bullet"></span>Operates nationwide, leveraging an exclusive wholesale network<br>agreement with AT&amp;T to deliver cellular coverage to 99% of the US<br>population</div>
+    <div class="label-bold">GTCR</div>
+    <div class="bullet-line"><span class="bullet"></span>Chicago-based firm investing in high-growth sectors; PEG has had<br>relationship since 1980 and holds an Advisory Board seat</div>
+  </div>
+
+  <div class="box thesis-box"></div>
+  <div class="section-title thesis-title">Investment Thesis</div>
+  <div class="chev-list">
+    <div class="chev-item"><span class="chev">&raquo;</span>Recognized for its prominent brand within the senior community</div>
+    <div class="chev-item"><span class="chev">&raquo;</span>Longstanding GP relationship and known asset</div>
+    <div class="chev-item"><span class="chev">&raquo;</span>Well-positioned for significant growth through a variety of strategic<br>initiatives</div>
+    <div class="chev-item"><span class="chev">&raquo;</span>Strong GP and management alignment with high performing<br>management team</div>
+  </div>
+
+  <div class="metrics-title">Key Investment Metrics<sup>1</sup></div>
+
+  <div class="metric-row" style="left:39px; top:429px;">
+    <div class="metric-left">10.3x</div>
+    <div class="metric-right">Entry EBITDA Multiple</div>
+  </div>
+  <div class="metric-row" style="left:39px; top:493px;">
+    <div class="metric-left">36%</div>
+    <div class="metric-right">Entry EBITDA Margin</div>
+  </div>
+  <div class="metric-row" style="left:39px; top:557px;">
+    <div class="metric-left">6.2x</div>
+    <div class="metric-right">Entry Net Debt Leverage Ratio</div>
+  </div>
+
+  <div class="box update-box"></div>
+  <div class="section-title update-title">Investment Update<sup style="font-size:10px;vertical-align:super;">2</sup></div>
+  <div class="update-list">
+    <div class="update-line"><span class="update-dot"></span>Investment closed December 2025</div>
+    <div class="update-line"><span class="update-dot"></span>Since 2021, churn has remained low at ~1.4% monthly</div>
+    <div class="update-line"><span class="update-dot"></span>Recent investments in marketing, product expansion, and retail footprint to<br>drive growth</div>
+  </div>
+
+  <div class="footer-text">
+    This example is included solely to illustrate strategies which have been utilized by PEG. It is expected that the portfolio will include a larger number of investments than the example set forth.<br>
+    There can be no guarantee or assurance that the portfolio will be able to make similar investments on similar terms in the future. Not all investments had or will have similar results. Not all investments had or will have similar results. The<br>
+    logos presented are registered trademarks of their respective companies. The inclusion of such companies should not be interpreted as a recommendation to buy or sell.<br>
+    1 Key investment metrics at time of closing 12/9/2025. EBITDA multiple based on May 2025 EBITDA. 2 Investment updates as of closing 12/9/2025.
+  </div>
+  <div class="footer-line"></div>
+  <div class="page">19</div>
+
+  <div class="jp">
+    <div class="main">J.P.Morgan</div>
+    <div class="sub">ASSET MANAGEMENT</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>A Portrait of the Future</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #020202;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #020202;
+    color: #f2f2f2;
+  }
+
+  .top-left {
+    position: absolute;
+    left: 60px;
+    top: 36px;
+    font-size: 15px;
+    color: #d7d7d7;
+    letter-spacing: -0.1px;
+    white-space: nowrap;
+  }
+
+  .top-right {
+    position: absolute;
+    right: 70px;
+    top: 36px;
+    font-size: 15px;
+    color: #d7d7d7;
+    white-space: nowrap;
+  }
+
+  .page {
+    position: absolute;
+    right: 22px;
+    top: 36px;
+    font-size: 15px;
+    color: #d7d7d7;
+  }
+
+  .title {
+    position: absolute;
+    left: 60px;
+    top: 189px;
+    font-size: 23px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #b999ff;
+    letter-spacing: -0.3px;
+  }
+
+  .col {
+    position: absolute;
+    font-size: 16px;
+    line-height: 1.48;
+    color: #e7e7e7;
+    font-weight: 400;
+  }
+
+  .col.left {
+    left: 60px;
+    top: 272px;
+    width: 274px;
+  }
+
+  .col.mid {
+    left: 375px;
+    top: 272px;
+    width: 312px;
+  }
+
+  .image-panel {
+    position: absolute;
+    left: 764px;
+    top: 126px;
+    width: 368px;
+    height: 526px;
+    background:
+      radial-gradient(120px 200px at 20% 85%, rgba(222,23,255,0.95), rgba(222,23,255,0.0) 70%),
+      radial-gradient(140px 140px at 46% 58%, rgba(0,103,177,0.85), rgba(0,103,177,0) 62%),
+      radial-gradient(90px 200px at 75% 68%, rgba(196,45,255,0.8), rgba(196,45,255,0) 65%),
+      linear-gradient(180deg, #f3f3f3 0%, #efefef 55%, #f2f2f2 100%);
+    overflow: hidden;
+  }
+
+  .image-panel .torso {
+    position: absolute;
+    left: 143px;
+    top: 67px;
+    width: 110px;
+    height: 210px;
+    background:
+      linear-gradient(180deg, rgba(173,22,255,0.95), rgba(111,33,193,0.82) 45%, rgba(255,60,214,0.82) 100%);
+    border-radius: 48px 48px 28px 28px / 70px 70px 30px 30px;
+    transform: rotate(7deg);
+    filter: blur(0.2px);
+    opacity: 0.96;
+  }
+
+  .image-panel .head {
+    position: absolute;
+    left: 149px;
+    top: 15px;
+    width: 54px;
+    height: 76px;
+    background: linear-gradient(180deg, rgba(154,23,255,0.95), rgba(209,42,255,0.9));
+    border-radius: 42px;
+    transform: rotate(13deg);
+    box-shadow: 8px 0 0 rgba(233,74,255,0.35);
+  }
+
+  .image-panel .neck {
+    position: absolute;
+    left: 174px;
+    top: 84px;
+    width: 22px;
+    height: 24px;
+    background: rgba(189,31,255,0.92);
+    border-radius: 8px;
+    transform: rotate(15deg);
+  }
+
+  .image-panel .collar1 {
+    position: absolute;
+    left: 147px;
+    top: 63px;
+    width: 88px;
+    height: 36px;
+    background: rgba(37,10,56,0.95);
+    border-radius: 26px;
+    transform: rotate(-20deg);
+  }
+
+  .image-panel .collar2 {
+    position: absolute;
+    left: 160px;
+    top: 82px;
+    width: 82px;
+    height: 26px;
+    background: rgba(23,8,39,0.96);
+    border-radius: 20px;
+    transform: rotate(20deg);
+  }
+
+  .image-panel .arm-left {
+    position: absolute;
+    left: 81px;
+    top: 193px;
+    width: 132px;
+    height: 28px;
+    background: linear-gradient(90deg, rgba(40,13,51,0.95), rgba(147,26,255,0.9), rgba(232,82,255,0.6));
+    border-radius: 24px;
+    transform: rotate(-36deg);
+    filter: blur(0.2px);
+  }
+
+  .image-panel .arm-right {
+    position: absolute;
+    left: 234px;
+    top: 210px;
+    width: 156px;
+    height: 30px;
+    background: linear-gradient(90deg, rgba(119,26,225,0.9), rgba(214,83,255,0.75));
+    border-radius: 24px;
+    transform: rotate(58deg);
+  }
+
+  .image-panel .forearm-right {
+    position: absolute;
+    left: 305px;
+    top: 317px;
+    width: 145px;
+    height: 30px;
+    background: linear-gradient(90deg, rgba(221,88,255,0.8), rgba(201,68,255,0.65));
+    border-radius: 24px;
+    transform: rotate(53deg);
+  }
+
+  .image-panel .skirt {
+    position: absolute;
+    left: 74px;
+    top: 236px;
+    width: 240px;
+    height: 220px;
+    background:
+      linear-gradient(135deg, rgba(31,23,60,0.95) 8%, rgba(210,48,255,0.92) 30%, rgba(0,111,188,0.92) 58%, rgba(26,12,39,0.98) 83%),
+      radial-gradient(circle at 35% 35%, rgba(255,125,92,0.7), transparent 22%);
+    clip-path: polygon(18% 5%, 51% 0%, 87% 18%, 100% 76%, 77% 100%, 22% 95%, 0% 52%);
+    transform: rotate(9deg);
+    opacity: 0.95;
+    filter: saturate(1.2);
+  }
+
+  .image-panel .leg-left {
+    position: absolute;
+    left: 136px;
+    top: 402px;
+    width: 60px;
+    height: 136px;
+    background: linear-gradient(180deg, rgba(217,112,255,0.65), rgba(251,188,255,0.7));
+    border-radius: 40px;
+    transform: rotate(-18deg);
+  }
+
+  .image-panel .leg-right {
+    position: absolute;
+    left: 230px;
+    top: 388px;
+    width: 78px;
+    height: 173px;
+    background: linear-gradient(180deg, rgba(39,20,55,0.96), rgba(162,31,255,0.85), rgba(231,90,255,0.72));
+    border-radius: 44px;
+    transform: rotate(18deg);
+  }
+
+  .image-panel .flare-bottom {
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 285px;
+    height: 168px;
+    background: radial-gradient(circle at 38% 15%, rgba(255,60,226,0.85), rgba(210,37,255,0.78) 35%, rgba(210,37,255,0.0) 78%);
+    filter: blur(6px);
+  }
+
+  .image-panel .stroke,
+  .image-panel .stroke:before,
+  .image-panel .stroke:after {
+    content: "";
+    position: absolute;
+    border-top: 2px solid rgba(255,255,255,0.55);
+    border-radius: 50%;
+  }
+
+  .image-panel .stroke.s1 {
+    left: 75px;
+    top: 131px;
+    width: 146px;
+    height: 45px;
+    transform: rotate(21deg);
+  }
+
+  .image-panel .stroke.s1:before {
+    left: -4px;
+    top: 6px;
+    width: 152px;
+    height: 45px;
+    border-top-color: rgba(255,0,255,0.35);
+  }
+
+  .image-panel .stroke.s1:after {
+    left: -9px;
+    top: 12px;
+    width: 160px;
+    height: 48px;
+    border-top-color: rgba(0,160,170,0.25);
+  }
+
+  .image-panel .stroke.s2 {
+    left: 80px;
+    top: 300px;
+    width: 78px;
+    height: 28px;
+    transform: rotate(31deg);
+  }
+
+  .image-panel .stroke.s2:before {
+    left: -3px;
+    top: 6px;
+    width: 81px;
+    height: 28px;
+    border-top-color: rgba(255,0,255,0.4);
+  }
+
+  .image-panel .stroke.s2:after {
+    left: -7px;
+    top: 11px;
+    width: 86px;
+    height: 30px;
+    border-top-color: rgba(255,255,255,0.35);
+  }
+
+  .image-panel .swipe1,
+  .image-panel .swipe2,
+  .image-panel .swipe3 {
+    position: absolute;
+    background: linear-gradient(90deg, rgba(226,79,255,0.0), rgba(226,79,255,0.72), rgba(255,255,255,0.0));
+    border-radius: 20px;
+    filter: blur(0.4px);
+  }
+
+  .image-panel .swipe1 {
+    left: 233px;
+    top: 7px;
+    width: 82px;
+    height: 14px;
+    transform: rotate(-56deg);
+  }
+
+  .image-panel .swipe2 {
+    left: 249px;
+    top: 33px;
+    width: 80px;
+    height: 11px;
+    transform: rotate(-49deg);
+  }
+
+  .image-panel .swipe3 {
+    left: 272px;
+    top: 60px;
+    width: 54px;
+    height: 9px;
+    transform: rotate(-42deg);
+  }
+
+  .image-panel .highlight {
+    position: absolute;
+    left: 307px;
+    top: 324px;
+    width: 13px;
+    height: 190px;
+    background: rgba(255,255,255,0.78);
+    border-radius: 10px;
+    transform: rotate(19deg);
+  }
+
+  .image-panel .face-line {
+    position: absolute;
+    left: 146px;
+    top: 39px;
+    width: 35px;
+    height: 2px;
+    background: rgba(255,255,255,0.45);
+    border-radius: 2px;
+    transform: rotate(-9deg);
+  }
+
+  .bottom-mark {
+    position: absolute;
+    left: 56px;
+    bottom: 26px;
+    font-size: 32px;
+    line-height: 1;
+    color: #d024fd;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left">Technology Vision 2025&nbsp;&nbsp;|&nbsp;&nbsp;AI: A Declaration of Autonomy</div>
+    <div class="top-right">The New Learning Loop</div>
+    <div class="page">58</div>
+
+    <div class="title">A Portrait of the Future</div>
+
+    <div class="col left">
+      Sam is creative director at BlueDot Apparel—a sustainable fashion brand—and her team is gearing up to start next year’s product line. She kicks off the season with a challenge: “Ask for any AI tool you need; Use them how you want. But give me designs I’ve never seen before.”<br><br>
+      Her designers jump in. They’re fresh from a generative AI training program, where they spent two weeks learning fundamentals and experimenting with design automation tools. They’re ready to test their ideas.<br><br>
+      Some use a mood board copilot to inspire their creativity. The copilot follows what the designers’ put on their boards, finds similar images, suggests color palettes, and even generates designs to help them get started. Others begin with hand drawing. For them, imagining something new is the best part. But they’re still using AI assistants, tuned on material characteristics, to help pick the right fabrics and construction techniques.
+    </div>
+
+    <div class="col mid">
+      And one designer is trying something very different. He requested a tabletop weaving machine and image-to-CAD tool that can turn 2D images into real-world 3D prototypes in under an hour. He’s hoping the chance to physically test more options will give him the freedom to be bolder in his designs.<br><br>
+      Sam is thrilled to see the energy. She thinks they’ll deliver the company’s most innovative ideas yet. And she has her own AI experiment underway too. She’s working with a startup to create hundreds of virtual AI personas of their customers, which will give feedback on their products before they’re actually released. Then, with this feedback and her own expertise, she’ll evaluate her designers’ work, making final selections with the likeliest chance of success.
+    </div>
+
+    <div class="image-panel">
+      <div class="head"></div>
+      <div class="face-line"></div>
+      <div class="neck"></div>
+      <div class="collar1"></div>
+      <div class="collar2"></div>
+      <div class="torso"></div>
+      <div class="arm-left"></div>
+      <div class="arm-right"></div>
+      <div class="forearm-right"></div>
+      <div class="skirt"></div>
+      <div class="leg-left"></div>
+      <div class="leg-right"></div>
+      <div class="stroke s1"></div>
+      <div class="stroke s2"></div>
+      <div class="swipe1"></div>
+      <div class="swipe2"></div>
+      <div class="swipe3"></div>
+      <div class="highlight"></div>
+      <div class="flare-bottom"></div>
+    </div>
+
+    <div class="bottom-mark">&gt;</div>
+  </div>
+</body>
+</html>

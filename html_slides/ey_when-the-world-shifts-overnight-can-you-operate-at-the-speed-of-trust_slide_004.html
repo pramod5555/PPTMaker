@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#000;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e3e3e3;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .headline{
+    color:#162232;
+    font-size:31px;
+    line-height:1.12;
+    font-weight:400;
+    letter-spacing:0;
+  }
+  .body{
+    color:#4b5563;
+    font-size:10px;
+    line-height:1.42;
+    font-weight:400;
+  }
+  .foot{
+    color:#3f4954;
+    font-size:5px;
+    line-height:1.15;
+    font-weight:400;
+  }
+  .bottom-mini{
+    color:#1b2430;
+    font-size:6px;
+    line-height:1.15;
+    font-weight:600;
+  }
+  .callout{
+    color:#162232;
+    font-size:20px;
+    line-height:1.12;
+    font-weight:600;
+  }
+  .quote-line{
+    background:#2f3a48;
+  }
+  .photo-wrap{
+    overflow:hidden;
+    border-radius:2px;
+    background:#000;
+  }
+  .star-layer{ position:absolute; inset:0; }
+</style>
+</head>
+<body>
+<div id="slide">
+
+  <div class="photo-wrap" style="left:33px; top:47px; width:529px; height:666px; z-index:20;">
+    <svg class="star-layer" width="529" height="666" viewBox="0 0 529 666" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0.62" y2="1">
+          <stop offset="0%" stop-color="#05070c"/>
+          <stop offset="26%" stop-color="#0d1019"/>
+          <stop offset="58%" stop-color="#3b2b20"/>
+          <stop offset="84%" stop-color="#9e6f18"/>
+          <stop offset="100%" stop-color="#ddb764"/>
+        </linearGradient>
+        <radialGradient id="milky1" cx="74%" cy="39%" r="37%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.88"/>
+          <stop offset="20%" stop-color="#e5e1ef" stop-opacity="0.52"/>
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="milky2" cx="45%" cy="74%" r="30%">
+          <stop offset="0%" stop-color="#f4e9c6" stop-opacity="0.95"/>
+          <stop offset="36%" stop-color="#d5b377" stop-opacity="0.48"/>
+          <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+        </radialGradient>
+        <clipPath id="photoClip">
+          <path d="M0,0 H365 L365,14 H529 V666 H0 Z"/>
+        </clipPath>
+      </defs>
+
+      <g clip-path="url(#photoClip)">
+        <rect x="0" y="0" width="529" height="666" fill="url(#skyGrad)"/>
+        <ellipse cx="392" cy="216" rx="175" ry="250" fill="url(#milky1)" transform="rotate(-24 392 216)"/>
+        <ellipse cx="236" cy="497" rx="185" ry="145" fill="url(#milky2)" transform="rotate(-24 236 497)"/>
+
+        <g opacity="0.95">
+          <circle cx="20" cy="30" r="1.1" fill="#ffffff"/><circle cx="33" cy="70" r="0.9" fill="#dbe6ff"/><circle cx="41" cy="112" r="0.8" fill="#ffffff"/><circle cx="52" cy="18" r="1.2" fill="#9bb7ff"/><circle cx="65" cy="50" r="0.8" fill="#ffffff"/><circle cx="79" cy="86" r="1.0" fill="#ffffff"/><circle cx="96" cy="43" r="1.4" fill="#d7dfff"/><circle cx="112" cy="20" r="0.8" fill="#ffffff"/><circle cx="121" cy="76" r="0.9" fill="#9aa8ff"/><circle cx="136" cy="106" r="1.0" fill="#ffffff"/><circle cx="149" cy="57" r="0.8" fill="#ffffff"/><circle cx="165" cy="33" r="0.9" fill="#cbd6ff"/><circle cx="184" cy="90" r="1.3" fill="#ffffff"/><circle cx="199" cy="62" r="0.8" fill="#ffffff"/><circle cx="216" cy="22" r="1.0" fill="#7182ff"/><circle cx="231" cy="75" r="0.9" fill="#ffffff"/><circle cx="246" cy="40" r="1.2" fill="#ffffff"/><circle cx="262" cy="98" r="0.9" fill="#9fa8ff"/><circle cx="281" cy="28" r="1.0" fill="#ffffff"/><circle cx="296" cy="84" r="1.5" fill="#7886ff"/><circle cx="312" cy="55" r="0.9" fill="#ffffff"/><circle cx="329" cy="16" r="1.1" fill="#ffffff"/><circle cx="342" cy="70" r="0.8" fill="#d6dcff"/><circle cx="359" cy="101" r="0.9" fill="#ffffff"/><circle cx="374" cy="43" r="1.1" fill="#919eff"/><circle cx="388" cy="21" r="0.8" fill="#ffffff"/><circle cx="405" cy="61" r="1.4" fill="#ffffff"/><circle cx="422" cy="34" r="1.0" fill="#7684ff"/><circle cx="439" cy="90" r="0.8" fill="#ffffff"/><circle cx="452" cy="49" r="1.2" fill="#ffffff"/><circle cx="469" cy="18" r="0.9" fill="#dbe4ff"/><circle cx="486" cy="67" r="0.8" fill="#ffffff"/><circle cx="502" cy="40" r="1.4" fill="#8190ff"/><circle cx="518" cy="91" r="0.9" fill="#ffffff"/>
+          <circle cx="12" cy="154" r="0.8" fill="#ffffff"/><circle cx="29" cy="181" r="1.3" fill="#8998ff"/><circle cx="46" cy="139" r="0.9" fill="#ffffff"/><circle cx="58" cy="210" r="1.0" fill="#ffffff"/><circle cx="71" cy="173" r="0.8" fill="#e4eaff"/><circle cx="88" cy="145" r="1.1" fill="#ffffff"/><circle cx="105" cy="192" r="0.9" fill="#808cff"/><circle cx="121" cy="157" r="0.8" fill="#ffffff"/><circle cx="139" cy="225" r="1.0" fill="#ffffff"/><circle cx="156" cy="180" r="0.9" fill="#d2dbff"/><circle cx="170" cy="146" r="1.5" fill="#ffffff"/><circle cx="188" cy="211" r="0.8" fill="#7c8cff"/><circle cx="203" cy="169" r="1.0" fill="#ffffff"/><circle cx="218" cy="138" r="0.9" fill="#ffffff"/><circle cx="235" cy="196" r="1.2" fill="#b9c7ff"/><circle cx="251" cy="160" r="0.8" fill="#ffffff"/><circle cx="270" cy="222" r="1.1" fill="#ffffff"/><circle cx="285" cy="176" r="1.3" fill="#6273ff"/><circle cx="300" cy="141" r="0.8" fill="#ffffff"/><circle cx="316" cy="205" r="1.0" fill="#ffffff"/><circle cx="334" cy="163" r="0.9" fill="#d4deff"/><circle cx="347" cy="136" r="1.1" fill="#ffffff"/><circle cx="364" cy="192" r="0.8" fill="#8999ff"/><circle cx="381" cy="157" r="1.0" fill="#ffffff"/><circle cx="398" cy="224" r="0.9" fill="#ffffff"/><circle cx="412" cy="181" r="1.4" fill="#8090ff"/><circle cx="430" cy="144" r="0.8" fill="#ffffff"/><circle cx="445" cy="204" r="1.0" fill="#ffffff"/><circle cx="463" cy="169" r="0.8" fill="#dce5ff"/><circle cx="479" cy="136" r="1.1" fill="#ffffff"/><circle cx="495" cy="190" r="1.6" fill="#8894ff"/><circle cx="512" cy="162" r="0.9" fill="#ffffff"/>
+          <circle cx="16" cy="257" r="0.9" fill="#ffffff"/><circle cx="36" cy="292" r="1.1" fill="#dfe5ff"/><circle cx="52" cy="246" r="0.8" fill="#ffffff"/><circle cx="68" cy="318" r="1.0" fill="#7c8cff"/><circle cx="84" cy="278" r="0.9" fill="#ffffff"/><circle cx="101" cy="241" r="1.2" fill="#ffffff"/><circle cx="118" cy="303" r="0.8" fill="#d6ddff"/><circle cx="136" cy="261" r="1.0" fill="#ffffff"/><circle cx="152" cy="328" r="0.9" fill="#ffffff"/><circle cx="168" cy="289" r="1.4" fill="#7b8aff"/><circle cx="187" cy="250" r="0.8" fill="#ffffff"/><circle cx="203" cy="309" r="1.0" fill="#ffffff"/><circle cx="219" cy="270" r="0.9" fill="#e1e8ff"/><circle cx="237" cy="236" r="1.3" fill="#ffffff"/><circle cx="251" cy="296" r="0.8" fill="#8a98ff"/><circle cx="270" cy="259" r="1.0" fill="#ffffff"/><circle cx="286" cy="323" r="0.9" fill="#ffffff"/><circle cx="301" cy="283" r="1.2" fill="#d8deff"/><circle cx="319" cy="247" r="0.8" fill="#ffffff"/><circle cx="336" cy="304" r="1.0" fill="#ffffff"/><circle cx="354" cy="266" r="1.4" fill="#8b95ff"/><circle cx="371" cy="232" r="0.9" fill="#ffffff"/><circle cx="387" cy="295" r="1.1" fill="#ffffff"/><circle cx="404" cy="258" r="0.8" fill="#e3ebff"/><circle cx="421" cy="323" r="1.0" fill="#ffffff"/><circle cx="436" cy="280" r="1.2" fill="#7183ff"/><circle cx="453" cy="246" r="0.9" fill="#ffffff"/><circle cx="471" cy="307" r="0.8" fill="#ffffff"/><circle cx="487" cy="271" r="1.0" fill="#cfd8ff"/><circle cx="503" cy="234" r="1.3" fill="#ffffff"/><circle cx="519" cy="300" r="0.9" fill="#7d8bff"/>
+          <circle cx="20" cy="358" r="0.8" fill="#ffffff"/><circle cx="38" cy="391" r="1.2" fill="#ffffff"/><circle cx="55" cy="351" r="0.9" fill="#8f9cff"/><circle cx="72" cy="419" r="0.8" fill="#ffffff"/><circle cx="89" cy="380" r="1.0" fill="#ffffff"/><circle cx="105" cy="344" r="1.1" fill="#d7dfff"/><circle cx="123" cy="405" r="0.8" fill="#ffffff"/><circle cx="139" cy="366" r="0.9" fill="#ffffff"/><circle cx="157" cy="428" r="1.0" fill="#7e8cff"/><circle cx="173" cy="389" r="0.8" fill="#ffffff"/><circle cx="190" cy="349" r="1.2" fill="#ffffff"/><circle cx="208" cy="410" r="0.9" fill="#e0e7ff"/><circle cx="223" cy="372" r="0.8" fill="#ffffff"/><circle cx="241" cy="434" r="1.1" fill="#ffffff"/><circle cx="257" cy="395" r="0.9" fill="#8290ff"/><circle cx="275" cy="357" r="0.8" fill="#ffffff"/><circle cx="292" cy="416" r="1.0" fill="#ffffff"/><circle cx="309" cy="381" r="1.3" fill="#dbe3ff"/><circle cx="326" cy="344" r="0.8" fill="#ffffff"/><circle cx="343" cy="407" r="1.1" fill="#ffffff"/><circle cx="361" cy="370" r="0.9" fill="#7d8dff"/><circle cx="377" cy="433" r="0.8" fill="#ffffff"/><circle cx="393" cy="392" r="1.0" fill="#ffffff"/><circle cx="411" cy="353" r="1.2" fill="#cfd8ff"/><circle cx="428" cy="417" r="0.8" fill="#ffffff"/><circle cx="445" cy="376" r="1.0" fill="#ffffff"/><circle cx="462" cy="438" r="0.9" fill="#8793ff"/><circle cx="479" cy="398" r="0.8" fill="#ffffff"/><circle cx="496" cy="360" r="1.2" fill="#ffffff"/><circle cx="514" cy="422" r="0.9" fill="#d8e0ff"/>
+          <circle cx="24" cy="468" r="0.9" fill="#ffffff"/><circle cx="42" cy="504" r="1.0" fill="#8997ff"/><circle cx="59" cy="462" r="0.8" fill="#ffffff"/><circle cx="76" cy="530" r="1.1" fill="#ffffff"/><circle cx="93" cy="490" r="0.9" fill="#dfe6ff"/><circle cx="111" cy="455" r="1.0" fill="#ffffff"/><circle cx="129" cy="517" r="0.8" fill="#7a88ff"/><circle cx="146" cy="477" r="1.2" fill="#ffffff"/><circle cx="163" cy="541" r="0.9" fill="#ffffff"/><circle cx="181" cy="500" r="0.8" fill="#dae2ff"/><circle cx="198" cy="464" r="1.0" fill="#ffffff"/><circle cx="215" cy="525" r="1.1" fill="#ffffff"/><circle cx="233" cy="487" r="0.9" fill="#8694ff"/><circle cx="249" cy="451" r="0.8" fill="#ffffff"/><circle cx="267" cy="512" r="1.0" fill="#ffffff"/><circle cx="284" cy="474" r="1.3" fill="#d5ddff"/><circle cx="301" cy="539" r="0.8" fill="#ffffff"/><circle cx="319" cy="495" r="1.0" fill="#7e8cff"/><circle cx="336" cy="460" r="0.9" fill="#ffffff"/><circle cx="354" cy="522" r="0.8" fill="#ffffff"/><circle cx="371" cy="482" r="1.2" fill="#dce3ff"/><circle cx="388" cy="447" r="0.9" fill="#ffffff"/><circle cx="406" cy="509" r="1.0" fill="#ffffff"/><circle cx="423" cy="470" r="0.8" fill="#8190ff"/><circle cx="440" cy="534" r="0.9" fill="#ffffff"/><circle cx="458" cy="493" r="1.0" fill="#ffffff"/><circle cx="475" cy="456" r="1.3" fill="#e0e7ff"/><circle cx="492" cy="519" r="0.8" fill="#ffffff"/><circle cx="510" cy="480" r="1.0" fill="#7e8cff"/>
+          <circle cx="18" cy="575" r="0.8" fill="#ffffff"/><circle cx="37" cy="609" r="1.1" fill="#ffffff"/><circle cx="54" cy="570" r="0.9" fill="#8a98ff"/><circle cx="70" cy="639" r="0.8" fill="#ffffff"/><circle cx="88" cy="599" r="1.0" fill="#ffffff"/><circle cx="105" cy="562" r="0.8" fill="#d8dfff"/><circle cx="122" cy="624" r="1.2" fill="#ffffff"/><circle cx="140" cy="583" r="0.9" fill="#ffffff"/><circle cx="157" cy="646" r="0.8" fill="#7d8dff"/><circle cx="174" cy="606" r="1.0" fill="#ffffff"/><circle cx="192" cy="567" r="0.9" fill="#ffffff"/><circle cx="209" cy="631" r="1.0" fill="#dfe7ff"/><circle cx="226" cy="590" r="0.8" fill="#ffffff"/><circle cx="244" cy="653" r="1.2" fill="#ffffff"/><circle cx="261" cy="613" r="0.9" fill="#8693ff"/><circle cx="278" cy="574" r="0.8" fill="#ffffff"/><circle cx="296" cy="636" r="1.0" fill="#ffffff"/><circle cx="313" cy="597" r="1.3" fill="#dbe3ff"/><circle cx="330" cy="559" r="0.8" fill="#ffffff"/><circle cx="347" cy="621" r="0.9" fill="#ffffff"/><circle cx="365" cy="584" r="1.1" fill="#7f8dff"/><circle cx="382" cy="646" r="0.8" fill="#ffffff"/><circle cx="399" cy="607" r="1.0" fill="#ffffff"/><circle cx="417" cy="569" r="0.9" fill="#d8e0ff"/><circle cx="434" cy="632" r="0.8" fill="#ffffff"/><circle cx="451" cy="592" r="1.0" fill="#ffffff"/><circle cx="468" cy="653" r="0.9" fill="#7f8cff"/><circle cx="486" cy="615" r="1.2" fill="#ffffff"/><circle cx="503" cy="577" r="0.8" fill="#ffffff"/><circle cx="519" cy="638" r="0.9" fill="#dae2ff"/>
+        </g>
+
+        <g opacity="0.98" fill="#000000">
+          <path d="M0 578 L0 666 L529 666 L529 603 L473 598 L435 598 L414 593 L383 596 L327 589 L261 596 L192 588 L110 595 L47 587 Z"/>
+          <path d="M0 199 L39 224 L78 252 L114 284 L151 319 L185 347 L223 384 L259 415 L259 448 L230 430 L210 417 L192 409 L171 398 L153 387 L132 370 L114 357 L96 345 L79 327 L61 314 L42 297 L25 283 L0 267 Z"/>
+          <path d="M112 227 L149 214 L153 238 L146 263 L129 292 L110 320 L92 347 L72 365 L54 388 L44 416 L45 567 L64 566 L66 520 L83 519 L83 505 L99 505 L99 485 L78 485 L78 469 L96 468 L93 438 L116 431 L123 366 L139 320 L150 280 Z"/>
+          <path d="M43 541 L98 541 L132 573 L80 572 Z"/>
+          <path d="M0 383 L0 409 L23 401 Z"/>
+          <path d="M0 428 L0 442 L42 440 L57 434 L34 429 Z"/>
+          <path d="M86 233 L150 219 L151 248 L110 262 Z"/>
+          <path d="M51 228 L82 221 L150 214 L131 233 L90 244 Z"/>
+          <path d="M145 198 L168 177 L176 170 L182 164 L191 154 L197 148 L194 145 L190 146 L181 156 L174 165 L168 171 L160 181 L150 191 Z"/>
+          <path d="M172 181 L177 181 L188 190 L195 203 L201 218 L205 233 L209 250 L212 270 L216 291 L219 314 L221 332 L223 354 L225 376 L223 378 L220 357 L216 335 L213 314 L210 294 L206 274 L203 254 L198 233 L192 215 L184 198 Z"/>
+          <path d="M149 215 L163 213 L175 210 L187 207 L202 204 L221 200 L241 196 L260 191 L259 198 L239 202 L219 207 L201 212 L186 217 L175 221 L162 226 Z"/>
+          <path d="M121 397 L210 383 L258 415 L166 429 Z"/>
+          <path d="M132 370 L198 363 L241 394 L170 401 Z"/>
+          <path d="M99 401 L123 395 L123 433 L101 438 Z"/>
+          <path d="M22 387 L39 383 L59 395 L41 400 Z"/>
+
+          <path d="M301 286 L335 318 L369 345 L409 379 L446 409 L484 442 L519 479 L519 448 L478 421 L443 394 L406 365 L372 338 L341 314 L314 301 Z"/>
+          <path d="M303 284 L323 380 L369 501 L377 565 L395 565 L392 531 L411 531 L411 516 L430 516 L430 501 L405 501 L402 483 L425 483 L420 449 L401 444 L389 388 L363 330 L333 296 Z"/>
+          <path d="M341 313 L429 297 L474 349 L389 365 Z"/>
+          <path d="M356 350 L407 344 L519 447 L519 451 L437 456 L388 417 Z"/>
+          <path d="M367 442 L405 434 L430 466 L392 474 Z"/>
+          <path d="M331 475 L378 470 L406 495 L356 499 Z"/>
+          <path d="M318 549 L408 549 L445 572 L332 573 Z"/>
+          <path d="M441 329 L452 319 L463 307 L471 298 L475 292 L471 290 L463 296 L454 307 L445 317 L438 326 Z"/>
+          <path d="M450 321 L455 321 L464 330 L471 344 L477 360 L481 378 L485 396 L488 414 L492 434 L495 455 L496 476 L498 498 L499 521 L497 522 L494 501 L491 480 L489 459 L485 439 L482 420 L477 399 L472 379 L466 360 L459 343 Z"/>
+          <path d="M337 317 L349 344 L361 373 L370 400 L376 429 L381 460 L384 488 L386 512 L385 514 L381 492 L377 465 L372 435 L366 408 L358 379 L349 351 L340 326 Z"/>
+          <path d="M307 283 L317 299 L326 313 L336 331 L347 348 L360 367 L372 384 L384 401 L395 418 L405 433 L415 449 L423 463 L419 464 L407 449 L396 433 L385 417 L374 400 L362 384 L349 366 L337 348 L326 331 L316 314 L307 297 Z"/>
+          <path d="M363 437 L419 431 L443 447 L389 455 Z"/>
+
+          <path d="M314 377 L330 383 L338 375 L326 369 Z"/>
+          <path d="M329 386 L346 392 L355 384 L339 378 Z"/>
+          <path d="M343 394 L360 401 L369 392 L352 386 Z"/>
+          <path d="M358 402 L376 409 L386 399 L367 393 Z"/>
+          <path d="M373 409 L392 417 L402 406 L383 400 Z"/>
+
+          <path d="M164 216 L166 216 L176 228 L183 239 L190 252 L198 267 L206 284 L214 302 L222 320 L229 339 L236 359 L241 378 L237 379 L230 360 L223 341 L216 322 L209 304 L202 287 L194 270 L186 255 L178 241 L171 229 Z"/>
+          <path d="M110 322 L138 347 L162 369 L189 394 L218 420 L249 449 L246 451 L214 423 L185 396 L157 371 L132 349 L106 326 Z"/>
+          <path d="M144 319 L144 354 L147 354 L147 319 Z"/>
+          <path d="M150 307 L150 354 L153 354 L153 307 Z"/>
+          <path d="M156 294 L156 354 L159 354 L159 294 Z"/>
+          <path d="M162 283 L162 354 L165 354 L165 283 Z"/>
+          <path d="M168 270 L168 354 L171 354 L171 270 Z"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="headline" style="left:627px; top:58px; width:555px; z-index:30;">
+    In a NAVI environment, trust<br>
+    is earned through real-time<br>
+    decisions, not periodic reviews
+  </div>
+
+  <div class="body" style="left:628px; top:210px; width:174px; z-index:30;">
+    In November 2025, as a record-breaking US government shutdown stretched into its sixth week, the Federal Aviation Administration (FAA) ordered a temporary reduction in flights – first by 4%, and a week later by 10% – across 40 high-traffic US airports. While the scale of the action was remarkable, the stated justification was not. The FAA's press release explained that its response had been prompted by “staffing triggers” that were creating “increased reports of strain on the system.”<sup>1</sup><br><br>
+    The use of data-driven triggers to manage systemic risk is common in the aviation industry. This is both a sector in which incidents can set off chain reactions across intricate networks and one in which precise protocols govern everything from airplane maintenance to cockpit checklists. So, many airlines have identified a series of risk-based triggers, ranging from IT failures and inclement weather to aviation accidents – along with predefined response protocols, such as preplanned rerouting, backup IT systems and standardized communications procedures.<br><br>
+    A couple of months before the FAA action, a different trigger – a technology issue with a US-based airline's flight tracking and resource management system – had prompted the carrier to ground flights at many major hubs. If you're having trouble recalling the incident, it's for good reason. The protocols did their job, and the issue was resolved within hours. It barely made a blip in the day’s news coverage. That’s what effective triggers produce: controlled, fast containment that prevents escalation and preserves trust.
+  </div>
+
+  <div class="body" style="left:843px; top:210px; width:266px; z-index:30;">
+    Contrast that with more memorable and infamous incidents in which events expanded into full-blown crises that dragged on for days, costing stricken airlines dearly – not just in financial performance and fines, but also in damaged reputations and diminished stakeholder trust.<br><br>
+    Trust is the outcome stakeholders experience when risk is managed well. Today's nonlinear, accelerated, volatile and interconnected (NAVI) operating environment has implications for both. The familiar saying – that trust is built slowly but can be destroyed in an instant – is more relevant than ever in a world in which crises strike more frequently, escalate rapidly and cascade in unforeseen ways. Add to that a backdrop in which trust has been steadily diminishing, and the stakes are higher than ever.
+  </div>
+
+  <div class="quote-line" style="left:880px; top:506px; width:2px; height:95px; z-index:40;"></div>
+  <div class="callout" style="left:898px; top:505px; width:285px; z-index:40;">
+    Trust is the outcome<br>
+    stakeholders experience<br>
+    when risk is<br>
+    managed well.
+  </div>
+
+  <div class="foot" style="left:628px; top:706px; width:360px; z-index:30;">
+    1. https://www.faa.gov/newsroom/dot-faa-announce-temporary-10-reduction-flights-40-airports
+  </div>
+
+  <div class="bottom-mini" style="left:32px; top:741px; width:8px; z-index:50;">1</div>
+  <div class="bottom-mini" style="left:51px; top:741px; width:330px; z-index:50;">
+    | &nbsp; When the world shifts overnight how can you operate at the speed of trust
+  </div>
+
+  <div class="bottom-mini" style="left:1084px; top:741px; width:109px; text-align:right; z-index:50;">
+    Global Risk Transformation Series
+  </div>
+  <div class="bottom-mini" style="left:1214px; top:741px; width:8px; z-index:50;">|</div>
+  <div class="bottom-mini" style="left:1231px; top:741px; width:10px; z-index:50;">2</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#e5e5e5;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f4f4f4;
+    color:#5f5f67;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .top-grey{
+    left:0;
+    top:0;
+    width:1280px;
+    height:79px;
+    background:#e1e1e1;
+    z-index:1;
+  }
+  .yellow-block{
+    left:0;
+    top:0;
+    width:47px;
+    height:79px;
+    background:#f1d400;
+    z-index:5;
+  }
+  .yellow-line{
+    left:0;
+    top:78px;
+    width:1280px;
+    height:2px;
+    background:#e4c500;
+    z-index:6;
+  }
+  .header-text{
+    left:56px;
+    top:50px;
+    font-size:18px;
+    line-height:22px;
+    font-weight:400;
+    color:#4c4c54;
+    z-index:10;
+  }
+  .nav-btn{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#c9c9d1;
+    z-index:20;
+  }
+  .nav-btn .arrow{
+    position:absolute;
+    top:4px;
+    width:36px;
+    text-align:center;
+    font-size:26px;
+    line-height:28px;
+    color:#444553;
+    font-weight:700;
+  }
+  .title{
+    left:57px;
+    top:112px;
+    width:640px;
+    font-size:34px;
+    line-height:1.18;
+    font-weight:700;
+    color:#7a7986;
+    letter-spacing:-0.2px;
+    z-index:15;
+  }
+  .col1{
+    left:56px;
+    top:312px;
+    width:286px;
+    font-size:15px;
+    line-height:1.34;
+    font-weight:400;
+    color:#5b5b63;
+    z-index:15;
+  }
+  .col2-head{
+    left:373px;
+    top:313px;
+    width:305px;
+    font-size:17px;
+    line-height:1.25;
+    font-weight:700;
+    color:#33343d;
+    z-index:15;
+  }
+  .col2{
+    left:373px;
+    top:358px;
+    width:300px;
+    font-size:15px;
+    line-height:1.34;
+    font-weight:400;
+    color:#5b5b63;
+    z-index:15;
+  }
+  .col3{
+    left:691px;
+    top:422px;
+    width:291px;
+    font-size:15px;
+    line-height:1.34;
+    font-weight:400;
+    color:#5b5b63;
+    z-index:15;
+  }
+  .photo{
+    left:692px;
+    top:79px;
+    width:588px;
+    height:323px;
+    overflow:hidden;
+    z-index:8;
+    background:#0d4f84;
+  }
+  .side-menu{
+    left:1008px;
+    top:120px;
+    width:272px;
+    height:286px;
+    z-index:30;
+  }
+  .menu-item{
+    position:absolute;
+    right:0;
+    width:72px;
+    min-height:36px;
+    background:#575a61;
+    border-left:2px solid #d7cc27;
+    color:#ededed;
+    font-size:12px;
+    line-height:13px;
+    font-weight:400;
+    padding:9px 6px 8px 7px;
+  }
+  .footer{
+    left:56px;
+    top:703px;
+    transform:translateY(-100%);
+    font-size:10px;
+    line-height:12px;
+    color:#7f8087;
+    font-weight:400;
+    z-index:20;
+  }
+  .footnotes{
+    left:691px;
+    top:646px;
+    width:510px;
+    font-size:8px;
+    line-height:1.4;
+    color:#6b6c72;
+    font-weight:400;
+    z-index:20;
+  }
+  .footnotes .blue{ color:#176db2; }
+  sup{
+    font-size:65%;
+    line-height:0;
+    vertical-align:super;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="top-grey"></div>
+  <div class="yellow-block"></div>
+  <div class="yellow-line"></div>
+
+  <div class="header-text">Insights: Asia-Pacific</div>
+
+  <div class="nav-btn" style="left:950px; top:33px;">
+    <div class="arrow">◀</div>
+  </div>
+  <div class="nav-btn" style="left:994px; top:33px;">
+    <div class="arrow">▶</div>
+  </div>
+
+  <div class="title">
+    Australia: Moving to strengthen<br>
+    trade protections as Anti-Dumping<br>
+    Commission takes control of<br>
+    safeguard measures
+  </div>
+
+  <div class="col1">
+    Australia's trade remedy framework is set to<br>
+    undergo a significant institutional shift with<br>
+    implications for the posture of future safeguard<br>
+    measure investigations and import restrictions. In<br>
+    an environment already characterized by heightened<br>
+    geopolitical risk, supply chain disruption and a<br>
+    renewed focus on domestic manufacturing capability,<br>
+    the Australian Government has announced that<br>
+    responsibility for safeguard investigations will<br>
+    move from the Productivity Commission to the<br>
+    Anti-Dumping Commission.<br><br>
+    While the practical implications of this change will<br>
+    emerge over time, the direction of travel is clear.<br>
+    Consolidating safeguard and anti dumping functions<br>
+    within the Anti-Dumping Commission signals a more<br>
+    protection focused approach to trade remedies,<br>
+    with implications for domestic producers, importers<br>
+    and multinational businesses supplying into the<br>
+    Australian market.
+  </div>
+
+  <div class="col2-head">
+    Background to Australia's approach to<br>
+    trade remedies
+  </div>
+
+  <div class="col2">
+    The three principal trade remedy instruments<br>
+    available under World Trade Organization (WTO)<br>
+    rules are anti dumping measures, countervailing<br>
+    duties and safeguard measures.<sup>1</sup> Each serves a<br>
+    distinct purpose, but all are designed to protect<br>
+    domestic industries from certain forms of<br>
+    injurious imports.<br><br>
+    Anti dumping measures address situations where<br>
+    goods are exported to Australia at prices below<br>
+    their “normal value” and cause material injury<br>
+    to domestic Australian industry. Countervailing<br>
+    measures respond to subsidized imports. Both are<br>
+    administered by the Anti Dumping Commission<br>
+    within the Department of Industry, Science<br>
+    and Resources (DISR).<sup>2</sup> The Anti-Dumping<br>
+    Commission conducts investigations and makes<br>
+    recommendations to the Minister.<br><br>
+    Safeguard measures, by contrast, apply where a<br>
+    surge in imports causes or threatens serious injury
+  </div>
+
+  <div class="col3">
+    to domestic producers. Historically, safeguard<br>
+    inquiries have been conducted by the Productivity<br>
+    Commission, reflecting Australia's long standing<br>
+    emphasis on productivity, competition and economy<br>
+    wide impacts rather than industry protection.<br>
+    Current anti dumping and countervailing measures<br>
+    are concentrated in a small number of sectors, most<br>
+    notably steel and steel related products. As of the<br>
+    Anti-Dumping Commission's January 2026 Status<br>
+    Report, there were 53 active anti-dumping measures<br>
+    in place.<sup>3</sup> A significant proportion of these measures<br>
+    apply to steel products originating from China and
+  </div>
+
+  <div class="photo">
+    <svg width="588" height="323" viewBox="0 0 588 323" xmlns="http://www.w3.org/2000/svg" style="position:absolute;left:0;top:0">
+      <defs>
+        <linearGradient id="bggrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0a3f73"/>
+          <stop offset="52%" stop-color="#0d5f9e"/>
+          <stop offset="100%" stop-color="#0a456d"/>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="588" height="323" fill="url(#bggrad)"/>
+      <g stroke="#1b3e64" stroke-width="2">
+        <line x1="0" y1="19" x2="588" y2="0"/>
+        <line x1="0" y1="63" x2="588" y2="44"/>
+        <line x1="0" y1="107" x2="588" y2="88"/>
+        <line x1="0" y1="151" x2="588" y2="132"/>
+        <line x1="0" y1="195" x2="588" y2="176"/>
+        <line x1="0" y1="239" x2="588" y2="220"/>
+        <line x1="0" y1="283" x2="588" y2="264"/>
+      </g>
+      <g stroke="#a6cde5" stroke-width="4">
+        <line x1="38" y1="0" x2="20" y2="323"/>
+        <line x1="89" y1="0" x2="71" y2="323"/>
+        <line x1="140" y1="0" x2="122" y2="323"/>
+        <line x1="191" y1="0" x2="173" y2="323"/>
+        <line x1="242" y1="0" x2="224" y2="323"/>
+        <line x1="293" y1="0" x2="275" y2="323"/>
+        <line x1="344" y1="0" x2="326" y2="323"/>
+        <line x1="395" y1="0" x2="377" y2="323"/>
+        <line x1="446" y1="0" x2="428" y2="323"/>
+        <line x1="497" y1="0" x2="479" y2="323"/>
+        <line x1="548" y1="0" x2="530" y2="323"/>
+      </g>
+      <g fill="#f5efdb" opacity="0.95">
+        <circle cx="78" cy="239" r="3"/>
+        <circle cx="119" cy="233" r="3"/>
+        <circle cx="160" cy="226" r="3"/>
+        <circle cx="203" cy="219" r="3"/>
+        <circle cx="247" cy="212" r="3"/>
+        <circle cx="289" cy="205" r="3"/>
+        <circle cx="332" cy="198" r="3"/>
+        <circle cx="374" cy="191" r="3"/>
+        <circle cx="417" cy="184" r="3"/>
+        <circle cx="460" cy="177" r="3"/>
+        <circle cx="503" cy="170" r="3"/>
+      </g>
+
+      <rect x="267" y="34" width="4" height="255" fill="#8f796e"/>
+      <circle cx="269" cy="34" r="6" fill="#b4917c"/>
+
+      <g transform="translate(173,79) rotate(-8)">
+        <path d="M0,66 C30,20 66,0 117,8 L132,14 C129,48 127,77 131,110 C89,108 49,112 12,99 C4,90 -5,80 0,66 Z" fill="#1b246e"/>
+        <path d="M4,31 C28,18 47,13 64,10 L64,60 L4,31 Z" fill="#1f2d7c"/>
+        <path d="M64,10 L97,13 L64,42 Z" fill="#f7f7f7"/>
+        <path d="M4,31 L43,43 L64,60 L29,57 Z" fill="#f7f7f7"/>
+        <path d="M8,28 L24,30 L64,46 L64,54 L51,52 L19,41 L8,40 Z" fill="#d61f3c"/>
+        <path d="M64,14 L75,14 L64,40 Z" fill="#d61f3c"/>
+        <polygon points="86,57 90,65 99,65 92,71 95,80 86,75 77,80 80,71 73,65 82,65" fill="#ffffff"/>
+        <polygon points="111,46 114,51 120,51 115,55 117,61 111,58 105,61 107,55 102,51 108,51" fill="#ffffff"/>
+        <polygon points="61,87 64,92 70,92 65,96 67,102 61,99 55,102 57,96 52,92 58,92" fill="#ffffff"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="side-menu">
+    <div class="menu-item" style="top:0;">Contents</div>
+    <div class="menu-item" style="top:50px;">Insights</div>
+    <div class="menu-item" style="top:100px;">New on<br>ey.com</div>
+    <div class="menu-item" style="top:150px;">Tax alerts</div>
+    <div class="menu-item" style="top:200px;">Additional<br>resources</div>
+    <div class="menu-item" style="top:250px;">Contacts</div>
+  </div>
+
+  <div class="footer">53&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+
+  <div class="footnotes">
+    1&nbsp;&nbsp;&nbsp;&nbsp;“Trade remedies”, <i>Australian Government Department of Foreign Affair and Trade</i><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;website, accessed March 17, 2026. <span class="blue">Find it here</span><br>
+    2&nbsp;&nbsp;&nbsp;&nbsp;“Anti-Dumping Commission”, <i>Australian Government Department of Industry,</i><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Science and Resources</i> website, accessed March 17, 2026. <span class="blue">Find it here</span><br>
+    3&nbsp;&nbsp;&nbsp;&nbsp;“Anti-Dumping Notice No. 2026/024”, <i>Australian Government Anti-Dumping</i><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Commission</i> website, accessed March 17, 2026. <span class="blue">Find it here</span>
+  </div>
+</div>
+</body>
+</html>

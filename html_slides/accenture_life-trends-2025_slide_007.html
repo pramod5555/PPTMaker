@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ba99a0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      radial-gradient(220px 180px at 2% 85%, rgba(93,15,30,0.70), transparent 70%),
+      radial-gradient(130px 110px at 1% 35%, rgba(211,117,47,0.55), transparent 65%),
+      radial-gradient(100px 90px at 2% 56%, rgba(248,235,196,0.70), transparent 70%),
+      radial-gradient(220px 180px at 72% 72%, rgba(138,0,10,0.80), transparent 65%),
+      radial-gradient(160px 130px at 85% 44%, rgba(250,247,229,0.92), transparent 60%),
+      radial-gradient(180px 120px at 88% 72%, rgba(255,174,0,0.95), transparent 62%),
+      radial-gradient(120px 90px at 95% 44%, rgba(20,8,28,0.80), transparent 55%),
+      radial-gradient(120px 100px at 69% 13%, rgba(88,58,106,0.72), transparent 58%),
+      radial-gradient(260px 220px at 66% 47%, rgba(208,94,0,0.78), transparent 60%),
+      linear-gradient(90deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.00) 8%, rgba(255,255,255,0.00) 100%),
+      linear-gradient(180deg, #d7b2b9 0%, #e4bbc0 24%, #e9bebd 38%, #d98b60 52%, #b24d10 67%, #7d2a0f 82%, #54111f 100%);
+  }
+
+  .bg-blur {
+    position: absolute;
+    inset: 0;
+    filter: blur(14px);
+    transform: scale(1.05);
+    pointer-events: none;
+  }
+
+  .bg-blur::before,
+  .bg-blur::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  .bg-blur::before {
+    background:
+      radial-gradient(180px 120px at 55% 47%, rgba(255,161,0,0.95), transparent 58%),
+      radial-gradient(110px 85px at 61% 34%, rgba(55,9,11,0.85), transparent 58%),
+      radial-gradient(140px 100px at 72% 42%, rgba(255,176,0,0.98), transparent 60%),
+      radial-gradient(160px 70px at 86% 55%, rgba(246,246,233,0.96), transparent 60%),
+      radial-gradient(110px 70px at 74% 55%, rgba(243,239,212,0.9), transparent 55%),
+      radial-gradient(80px 80px at 82% 73%, rgba(244,250,208,0.9), transparent 54%),
+      radial-gradient(170px 65px at 91% 75%, rgba(255,177,0,0.96), transparent 60%),
+      radial-gradient(95px 50px at 94% 45%, rgba(25,15,33,0.86), transparent 55%),
+      radial-gradient(220px 160px at 70% 18%, rgba(94,57,109,0.80), transparent 58%),
+      radial-gradient(200px 160px at 51% 78%, rgba(202,92,0,0.70), transparent 62%),
+      radial-gradient(140px 90px at 67% 85%, rgba(97,0,25,0.78), transparent 60%);
+  }
+
+  .panel {
+    position: absolute;
+    left: 61px;
+    top: 0;
+    width: 468px;
+    height: 720px;
+    background: #f1f1f1;
+  }
+
+  .text {
+    position: absolute;
+    left: 112px;
+    top: 98px;
+    width: 350px;
+    color: #222222;
+    font-size: 18px;
+    line-height: 1.31;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .text p {
+    margin: 0 0 18px 0;
+  }
+
+  .footer {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    color: #f2f2f2;
+    font-size: 13px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .footer .brand {
+    margin-right: 34px;
+    opacity: 0.95;
+  }
+
+  .footer .page {
+    display: inline-block;
+    width: 12px;
+    text-align: right;
+    font-weight: 400;
+  }
+
+/* fix: correct background color */
+.slide { background: #BA99A0 !important; background-color: #BA99A0 !important; }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="bg-blur"></div>
+
+    <div class="panel"></div>
+
+    <div class="text">
+      <p>The innate trustworthiness of digital technology is under threat, and its additive value for people’s daily lives has become diluted by authenticity and trust issues. It’s now incredibly easy to create all kinds of digital content, so a flood of scams is blurring the lines between what’s real and what’s deceptive, making it harder for people to tell them apart. This introduces hesitation into all interactions, which is disrupting people’s online experiences.</p>
+
+      <p>Generative AI is a revelatory tool both for honest enterprises and bad actors. It’s ushering in a new era of confusion and concern, challenging people’s trust in digital in deeply personal ways. As people weigh up the possibility of dialing down their dependence on the internet, trust should become a top priority. While the scams may occur on channels, brands suffer from the consequences of hesitation.</p>
+    </div>
+
+    <div class="footer">
+      <span class="brand">Accenture Life Trends 2025</span>
+      <span class="page">7</span>
+    </div>
+  </div>
+</body>
+</html>

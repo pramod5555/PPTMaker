@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Roland Berger Slide Replica</title>
+<style>
+  body { margin: 0; background: #8f9195; }
+  #slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f2f2f3;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+    color: #222;
+  }
+  #slide > div, #slide > svg { position: absolute; box-sizing: border-box; }
+
+  .sidebar {
+    left: 0; top: 0; width: 181px; height: 720px;
+    background: #34383e;
+    z-index: 5;
+  }
+  .purple-line {
+    left: 179px; top: 0; width: 2px; height: 720px;
+    background: #7c64b2;
+    z-index: 6;
+  }
+
+  .sidebar-title {
+    left: 12px; top: 34px; width: 150px;
+    font-size: 24px; line-height: 1.04; font-weight: 700; color: #f2f2f2;
+    z-index: 30;
+  }
+
+  .side-item { width: 160px; height: 96px; left: 6px; z-index: 30; }
+  .side-num {
+    position: absolute;
+    left: 86px; top: 6px;
+    font-size: 29px; line-height: 1; font-weight: 700; color: #767c85;
+  }
+  .side-text {
+    position: absolute;
+    left: 86px; top: 40px;
+    font-size: 14px; line-height: 1.08; font-weight: 400; color: #767c85;
+  }
+  .side-item.active .side-num, .side-item.active .side-text {
+    color: #7b63b0;
+    font-weight: 700;
+  }
+
+  .title-main {
+    left: 220px; top: 31px; width: 1110px;
+    font-size: 27px; line-height: 1.13; font-weight: 700; color: #202020;
+    z-index: 30;
+    letter-spacing: -0.2px;
+  }
+  .subtitle {
+    left: 220px; top: 137px; width: 760px;
+    font-size: 28px; line-height: 1.15; font-weight: 300; color: #8a909a;
+    z-index: 30;
+  }
+  .chart-title {
+    left: 220px; top: 183px; width: 780px;
+    font-size: 17px; line-height: 1.12; font-weight: 700; color: #1f1f1f;
+    z-index: 30;
+  }
+
+  .chart-area {
+    left: 220px; top: 257px; width: 740px; height: 456px;
+    z-index: 20;
+  }
+  .chart-bg {
+    left: 0; top: 0; width: 740px; height: 430px;
+    background: linear-gradient(rgba(244,244,244,0.92), rgba(241,241,241,0.92));
+    z-index: 20;
+  }
+  .bg-photo {
+    left: 0; top: 0; width: 740px; height: 430px;
+    opacity: 0.18; z-index: 21;
+  }
+  .axis-line {
+    left: 528px; top: 0; width: 1px; height: 456px;
+    background: #4a4a4a; z-index: 35;
+  }
+
+  .bar {
+    height: 85px;
+    z-index: 32;
+  }
+  .bar1 { left: 237px; top: 34px; width: 291px; background: #aa9bc8; }
+  .bar2 { left: 171px; top: 185px; width: 357px; background: #816cb4; }
+  .bar3 { left: 37px; top: 338px; width: 491px; background: #50337f; }
+
+  .bar-value, .bar-label-right {
+    font-size: 17px; line-height: 1.1; color: #2a2a2a; z-index: 36; font-weight: 400;
+  }
+
+  .footnote {
+    left: 220px; top: 734px; width: 470px;
+    font-size: 10px; line-height: 1.2; color: #444; z-index: 30;
+  }
+
+  .note-box {
+    left: 1019px; top: 140px; width: 345px; height: 579px;
+    background: #d5d6da;
+    z-index: 20;
+    padding: 12px 12px 10px 12px;
+  }
+  .note-box p {
+    margin: 0 0 9px 0;
+    font-size: 17px;
+    line-height: 1.1;
+    color: #222;
+    font-weight: 400;
+  }
+  .note-box b { font-weight: 700; }
+
+  .footer-page {
+    left: 10px; top: 746px; width: 30px;
+    font-size: 18px; line-height: 1; color: #f0f0f0; z-index: 50;
+  }
+  .rb-logo {
+    left: 1315px; top: 729px; width: 48px; height: 30px; z-index: 50;
+  }
+  .rb-text {
+    left: 1278px; top: 736px; width: 34px;
+    font-size: 9px; line-height: 0.9; color: #666; z-index: 50; text-align: right;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="purple-line"></div>
+
+  <div class="sidebar-title">Technology &amp;<br>Innovation</div>
+
+  <div class="side-item" style="top:136px;">
+    <svg width="160" height="136" viewBox="0 0 160 136" style="position:absolute; left:0; top:0;">
+      <polygon points="20,8 56,8 74,37 56,66 20,66 2,37" fill="none" stroke="#8e939a" stroke-width="4"/>
+      <polygon points="22,12 54,12 70,37 54,62 22,62 6,37" fill="#5a5f66"/>
+      <image href="" />
+      <rect x="12" y="20" width="48" height="32" fill="rgba(255,255,255,0.12)"/>
+      <path d="M12 40 L22 28 L30 32 L38 22 L48 35 L58 20 L60 52 L12 52 Z" fill="rgba(255,255,255,0.32)"/>
+      <circle cx="26" cy="31" r="5" fill="rgba(255,255,255,0.18)"/>
+      <circle cx="43" cy="28" r="6" fill="rgba(255,255,255,0.12)"/>
+    </svg>
+    <div class="side-num">1</div>
+    <div class="side-text" style="width:58px;">Value of<br>Innovation</div>
+  </div>
+
+  <div class="side-item" style="top:268px;">
+    <svg width="160" height="136" viewBox="0 0 160 136" style="position:absolute; left:0; top:0;">
+      <polygon points="20,8 56,8 74,37 56,66 20,66 2,37" fill="none" stroke="#8e939a" stroke-width="4"/>
+      <polygon points="22,12 54,12 70,37 54,62 22,62 6,37" fill="#666b72"/>
+      <circle cx="38" cy="36" r="14" fill="rgba(255,255,255,0.08)"/>
+      <path d="M18 40 C26 24,50 22,62 37 M16 30 C29 18,48 18,64 31 M22 48 C34 40,46 42,58 24" stroke="rgba(255,255,255,0.42)" stroke-width="1.5" fill="none"/>
+      <circle cx="26" cy="31" r="1.6" fill="rgba(255,255,255,0.6)"/>
+      <circle cx="42" cy="27" r="1.6" fill="rgba(255,255,255,0.6)"/>
+      <circle cx="56" cy="34" r="1.6" fill="rgba(255,255,255,0.6)"/>
+    </svg>
+    <div class="side-num">2</div>
+    <div class="side-text" style="width:66px;">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="side-item active" style="top:401px;">
+    <svg width="160" height="136" viewBox="0 0 160 136" style="position:absolute; left:0; top:0;">
+      <polygon points="20,8 56,8 74,37 56,66 20,66 2,37" fill="none" stroke="#7b65ac" stroke-width="5"/>
+      <polygon points="22,12 54,12 70,37 54,62 22,62 6,37" fill="#f0ebff"/>
+      <rect x="12" y="20" width="48" height="32" rx="2" fill="#f5f5f5"/>
+      <path d="M17 38 C22 29,28 28,34 34 C39 39,35 45,29 45 C23 45,20 42,17 38 Z" fill="#d79f7c"/>
+      <path d="M36 38 C41 29,47 28,53 34 C58 39,54 45,48 45 C42 45,39 42,36 38 Z" fill="#d79f7c"/>
+      <rect x="28" y="33" width="12" height="8" fill="#ffffff"/>
+      <rect x="25" y="36" width="20" height="6" rx="2" fill="#dddddd"/>
+      <line x1="13" y1="24" x2="27" y2="36" stroke="#6f89a7" stroke-width="2"/>
+      <line x1="58" y1="24" x2="43" y2="36" stroke="#6f89a7" stroke-width="2"/>
+    </svg>
+    <div class="side-num">3</div>
+    <div class="side-text" style="width:68px;">Humans &amp;<br>Machines</div>
+  </div>
+
+  <svg width="78" height="118" viewBox="0 0 78 118" style="left:58px; top:653px; z-index:30; opacity:0.5;">
+    <circle cx="27" cy="41" r="11" fill="none" stroke="#8d9197" stroke-width="3"/>
+    <circle cx="52" cy="26" r="8" fill="#8d9197"/>
+    <rect x="33" y="35" width="8" height="23" fill="#8d9197"/>
+    <path d="M16 57 L24 65 L44 65 L56 55" fill="none" stroke="#8d9197" stroke-width="3"/>
+    <line x1="10" y1="16" x2="16" y2="19" stroke="#8d9197" stroke-width="3"/>
+    <line x1="20" y1="9" x2="22" y2="16" stroke="#8d9197" stroke-width="3"/>
+    <line x1="8" y1="29" x2="16" y2="29" stroke="#8d9197" stroke-width="3"/>
+    <line x1="61" y1="10" x2="57" y2="17" stroke="#8d9197" stroke-width="3"/>
+    <line x1="69" y1="20" x2="62" y2="23" stroke="#8d9197" stroke-width="3"/>
+    <line x1="69" y1="34" x2="61" y2="33" stroke="#8d9197" stroke-width="3"/>
+    <line x1="63" y1="47" x2="58" y2="41" stroke="#8d9197" stroke-width="3"/>
+  </svg>
+
+  <div class="title-main">Automation and robotics compete with workers particularly in manufacturing<br>and low-income countries – Each additional robot replaces 1.6 workers</div>
+
+  <div class="subtitle">Low-income countries undergo stronger substitutive effects</div>
+
+  <div class="chart-title">Changes in the number of jobs due to one additional robot being deployed in the<br>manufacturing sector in the long term¹), by income level of country</div>
+
+  <div class="chart-area">
+    <div class="chart-bg"></div>
+    <svg class="bg-photo" width="740" height="470" viewBox="0 0 740 470">
+      <defs>
+        <filter id="blur"><feGaussianBlur stdDeviation="3"/></filter>
+      </defs>
+      <rect x="0" y="0" width="740" height="430" fill="#f3f3f3"/>
+      <rect x="35" y="130" width="120" height="190" fill="#d9d9d9" filter="url(#blur)"/>
+      <rect x="318" y="150" width="104" height="162" fill="#d0d0d0" filter="url(#blur)"/>
+      <rect x="572" y="130" width="120" height="190" fill="#d9d9d9" filter="url(#blur)"/>
+      <ellipse cx="140" cy="68" rx="130" ry="58" fill="#dddddd" filter="url(#blur)"/>
+      <ellipse cx="370" cy="58" rx="150" ry="70" fill="#e1e1e1" filter="url(#blur)"/>
+      <ellipse cx="610" cy="70" rx="110" ry="54" fill="#dedede" filter="url(#blur)"/>
+      <circle cx="370" cy="96" r="46" fill="#d4d4d4" filter="url(#blur)"/>
+      <rect x="350" y="122" width="40" height="100" rx="12" fill="#cdcdcd" filter="url(#blur)"/>
+      <rect x="338" y="100" width="64" height="18" rx="7" fill="#dddddd" filter="url(#blur)"/>
+      <circle cx="99" cy="186" r="8" fill="#bcbcbc"/>
+      <rect x="93" y="198" width="12" height="49" rx="4" fill="#bcbcbc"/>
+      <line x1="99" y1="247" x2="99" y2="286" stroke="#bcbcbc" stroke-width="5"/>
+      <circle cx="641" cy="186" r="8" fill="#bcbcbc"/>
+      <rect x="635" y="198" width="12" height="49" rx="4" fill="#bcbcbc"/>
+      <line x1="641" y1="247" x2="641" y2="286" stroke="#bcbcbc" stroke-width="5"/>
+      <circle cx="370" cy="264" r="11" fill="#bdbdbd"/>
+      <rect x="360" y="277" width="20" height="44" rx="6" fill="#bdbdbd"/>
+      <line x1="370" y1="321" x2="361" y2="343" stroke="#bdbdbd" stroke-width="6"/>
+      <line x1="370" y1="321" x2="379" y2="343" stroke="#bdbdbd" stroke-width="6"/>
+      <line x1="360" y1="289" x2="342" y2="304" stroke="#bdbdbd" stroke-width="6"/>
+      <line x1="380" y1="289" x2="398" y2="304" stroke="#bdbdbd" stroke-width="6"/>
+      <ellipse cx="370" cy="398" rx="330" ry="26" fill="#d8d8d8"/>
+    </svg>
+
+    <div class="axis-line"></div>
+
+    <div class="bar bar1"></div>
+    <div class="bar bar2"></div>
+    <div class="bar bar3"></div>
+
+    <div class="bar-value" style="left:196px; top:62px; width:35px; text-align:right;">-1.3</div>
+    <div class="bar-value" style="left:129px; top:214px; width:35px; text-align:right;">-1.6</div>
+    <div class="bar-value" style="left:-6px; top:367px; width:35px; text-align:right;">-2.2</div>
+
+    <div class="bar-label-right" style="left:541px; top:63px; width:220px; font-size:18px;">High-income countries</div>
+    <div class="bar-label-right" style="left:541px; top:216px; width:180px; font-size:18px;">Average effect</div>
+    <div class="bar-label-right" style="left:541px; top:369px; width:220px; font-size:18px;">Low-income countries</div>
+  </div>
+
+  <div class="note-box">
+    <p>&gt; <b>Technological progress is having an</b><br><b>ambivalent</b> impact on the labor market. Multiple socioeconomic and political factors determine its <b>sectoral impact</b> in which innovations are deployed</p>
+    <p>&gt; Traditionally, the <b>agricultural sector</b> has experienced <b>progressive levels of automation</b> over decades, if not centuries, in a steadily increasing number of countries</p>
+    <p>&gt; In the <b>manufacturing sector,</b><br><b>machines represent</b> a particularly <b>large competition for workers.</b> Here, on average, <b>each additional robot replaces 1.6 jobs.</b> It is estimated that 20 million jobs will be lost in the manufacturing sector by 2030</p>
+    <p>&gt; <b>Low-income countries are</b><br><b>particularly affected</b> since their manufacturing sector is not as heavily automated compared to high-income countries. By the sheer size of its present workforce, <b>most job losses due to automation will be noted in China</b></p>
+  </div>
+
+  <div class="footnote" style="top:736px;">1) The long-term effect builds over 10 to 15 years after robot installation<br>Source: Calculations based on Acemoglu and Restrepo, Roland Berger</div>
+
+  <div class="footer-page">59</div>
+
+  <div class="rb-text">Roland<br>Berger</div>
+  <svg class="rb-logo" viewBox="0 0 48 30">
+    <path d="M18 2 C13 2,10 5,10 11 L10 28 L17 28 C26 28,31 22,31 15 C31 9,26 2,18 2 Z" fill="#a6a8ab"/>
+    <path d="M29 2 C35 2,39 6,39 12 C39 18,35 22,29 22 L23 22 L23 2 Z" fill="#7f8388"/>
+  </svg>
+</div>
+</body>
+</html>

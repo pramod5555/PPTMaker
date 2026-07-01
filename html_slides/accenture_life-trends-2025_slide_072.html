@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>What's going on</title>
+<style>
+  :root{
+    --bg:#f5f5f6;
+    --text:#2d2d2d;
+    --muted:#6e6e73;
+    --purple:#7b1fd1;
+    --purple2:#8f35db;
+    --orange:#e88f21;
+  }
+  html,body{
+    margin:0;
+    padding:0;
+    background:#ffffff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:var(--bg);
+  }
+
+  .left{
+    position:absolute;
+    left:60px;
+    top:68px;
+    width:420px;
+    color:var(--text);
+  }
+  .kicker{
+    position:absolute;
+    left:0;
+    top:0;
+    font-size:28px;
+    line-height:1.1;
+    color:var(--purple);
+    font-weight:300;
+    letter-spacing:0.2px;
+  }
+  .title{
+    position:absolute;
+    left:62px;
+    top:34px;
+    font-size:58px;
+    line-height:1.02;
+    color:var(--purple);
+    font-weight:300;
+    letter-spacing:-1px;
+  }
+  .body{
+    position:absolute;
+    left:0;
+    top:132px;
+    width:430px;
+    font-size:16px;
+    line-height:1.36;
+    color:#2f2f33;
+    font-weight:400;
+    letter-spacing:0.1px;
+  }
+  .body p{
+    margin:0 0 18px 0;
+  }
+  .sup{
+    font-size:10px;
+    vertical-align:super;
+    line-height:0;
+  }
+
+  .photo-stack{
+    position:absolute;
+    left:562px;
+    top:0;
+    width:448px;
+    height:720px;
+  }
+  .photo{
+    position:absolute;
+    left:0;
+    width:448px;
+    overflow:hidden;
+  }
+  .p1{ top:0; height:258px; }
+  .p2{ top:258px; height:257px; }
+  .p3{ top:515px; height:205px; }
+
+  .photo::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 78% 18%, rgba(255,246,214,0.96) 0 7%, rgba(255,218,120,0.72) 12%, rgba(255,181,42,0.12) 34%, transparent 52%),
+      radial-gradient(circle at 80% 50%, rgba(255,172,28,0.75) 0 9%, rgba(255,172,28,0.15) 28%, transparent 48%),
+      radial-gradient(circle at 6% 88%, rgba(204,255,120,0.70) 0 3%, rgba(255,186,52,0.55) 6%, transparent 12%),
+      linear-gradient(180deg, rgba(114,71,27,0.55), rgba(164,89,10,0.08) 30%, rgba(238,155,38,0.30) 70%, rgba(189,96,21,0.35)),
+      linear-gradient(90deg, rgba(82,43,25,0.88) 0 23%, rgba(126,71,33,0.45) 34%, rgba(219,133,35,0.40) 58%, rgba(255,184,70,0.82) 82%, rgba(255,241,214,0.92) 100%);
+    filter:saturate(1.2) blur(0.2px);
+  }
+  .photo::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(102deg, transparent 0 38%, rgba(255,255,255,0.15) 39%, transparent 42%, rgba(255,255,255,0.12) 45%, transparent 48%),
+      linear-gradient(0deg, transparent 0 66%, rgba(51,28,18,0.55) 67%, rgba(138,80,31,0.46) 70%, transparent 72%),
+      linear-gradient(0deg, transparent 0 69%, rgba(51,28,18,0.35) 70%, transparent 71%),
+      linear-gradient(90deg, transparent 0 65%, rgba(255,185,68,0.10) 66%, rgba(255,249,235,0.22) 83%, transparent 100%);
+    mix-blend-mode:multiply;
+  }
+
+  .bike{
+    position:absolute;
+    left:96px;
+    top:26px;
+    width:250px;
+    height:190px;
+    transform:rotate(2deg);
+    opacity:0.55;
+  }
+  .p2 .bike{
+    left:92px;
+    top:30px;
+    transform:scale(1.02) rotate(4deg);
+    opacity:0.45;
+  }
+  .p3 .bike{
+    left:118px;
+    top:8px;
+    transform:scale(0.95) rotate(3deg);
+    opacity:0.58;
+  }
+
+  .wheel{
+    position:absolute;
+    width:72px;
+    height:72px;
+    border:4px solid rgba(78,44,28,0.55);
+    border-radius:50%;
+    bottom:10px;
+  }
+  .wheel.leftw{ left:30px; }
+  .wheel.rightw{ right:14px; }
+
+  .frame1,.frame2,.frame3,.frame4,.frame5,.frame6,.frame7{
+    position:absolute;
+    height:3px;
+    background:rgba(86,50,32,0.55);
+    transform-origin:left center;
+    border-radius:2px;
+  }
+  .frame1{ width:72px; left:78px; bottom:45px; transform:rotate(-28deg); }
+  .frame2{ width:63px; left:78px; bottom:45px; transform:rotate(22deg); }
+  .frame3{ width:52px; left:119px; bottom:69px; transform:rotate(78deg); }
+  .frame4{ width:58px; left:142px; bottom:46px; transform:rotate(-52deg); }
+  .frame5{ width:58px; left:150px; bottom:94px; transform:rotate(19deg); }
+  .frame6{ width:40px; left:171px; bottom:104px; transform:rotate(78deg); }
+  .frame7{ width:27px; left:141px; bottom:96px; transform:rotate(-13deg); }
+
+  .rider-body{
+    position:absolute;
+    left:72px;
+    top:24px;
+    width:112px;
+    height:76px;
+    background:rgba(108,59,34,0.62);
+    border-radius:48% 48% 45% 45%;
+    transform:rotate(8deg);
+    filter:blur(0.2px);
+  }
+  .rider-head{
+    position:absolute;
+    left:154px;
+    top:16px;
+    width:28px;
+    height:28px;
+    background:rgba(128,75,43,0.60);
+    border-radius:50%;
+  }
+  .leg1,.leg2,.arm1,.arm2{
+    position:absolute;
+    height:5px;
+    background:rgba(96,52,31,0.58);
+    border-radius:3px;
+    transform-origin:left center;
+  }
+  .leg1{ width:74px; left:102px; top:84px; transform:rotate(56deg); }
+  .leg2{ width:65px; left:122px; top:95px; transform:rotate(95deg); }
+  .arm1{ width:55px; left:150px; top:64px; transform:rotate(25deg); }
+  .arm2{ width:40px; left:161px; top:74px; transform:rotate(-8deg); }
+
+  .quote{
+    position:absolute;
+    left:1055px;
+    top:193px;
+    width:210px;
+    color:var(--purple2);
+    font-size:21px;
+    line-height:1.52;
+    font-weight:300;
+    letter-spacing:-0.1px;
+  }
+  .quote .author{
+    display:block;
+    margin-top:12px;
+    color:#1f1f22;
+    font-size:16px;
+    line-height:1.3;
+    font-weight:700;
+    letter-spacing:0;
+  }
+
+  .vertical{
+    position:absolute;
+    right:20px;
+    top:36px;
+    height:606px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-size:18px;
+    line-height:1;
+    color:#76767a;
+    letter-spacing:0.2px;
+  }
+  .vertical .hl{
+    color:var(--purple);
+    font-weight:600;
+  }
+
+  .footer-left{
+    position:absolute;
+    right:67px;
+    bottom:16px;
+    font-size:14px;
+    color:#7c7c80;
+    letter-spacing:0.1px;
+  }
+  .footer-left .year{
+    color:var(--purple);
+  }
+  .footer-page{
+    position:absolute;
+    right:28px;
+    bottom:16px;
+    font-size:14px;
+    color:#7c7c80;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left">
+      <div class="kicker">What’s</div>
+      <div class="title">going on</div>
+
+      <div class="body">
+        <p>We’re seeing signals of social rewilding, revealing a growing appreciation for the physical world and human connection—often both at once. Inspired by a similar concept around regenerating the natural world, social rewilding offers hope by restoring people’s natural rhythms and reestablishing connections to life, including the great outdoors, healthy routines and reviving lost hobbies and habits.<span class="sup">124</span></p>
+
+        <p>The past couple of decades have acted like an experiment to see how much human connection can be achieved in the digital world. Digital interactions make a lot of sense for busy modern life, delivering ease and convenience, so this is not a rejection of digital but a search for texture. There’s a notable shift in people being more intentional with their use of digital, rebalancing its use to amplify the joys of real-world experiences. They’re allocating digital a supportive role rather than continuing to allow it to pull them away from experiences through which they connect with people, places and culture.</p>
+      </div>
+    </div>
+
+    <div class="photo-stack">
+      <div class="photo p1">
+        <div class="bike">
+          <div class="wheel leftw"></div>
+          <div class="wheel rightw"></div>
+          <div class="frame1"></div><div class="frame2"></div><div class="frame3"></div>
+          <div class="frame4"></div><div class="frame5"></div><div class="frame6"></div><div class="frame7"></div>
+          <div class="rider-body"></div><div class="rider-head"></div>
+          <div class="leg1"></div><div class="leg2"></div><div class="arm1"></div><div class="arm2"></div>
+        </div>
+      </div>
+      <div class="photo p2">
+        <div class="bike">
+          <div class="wheel leftw"></div>
+          <div class="wheel rightw"></div>
+          <div class="frame1"></div><div class="frame2"></div><div class="frame3"></div>
+          <div class="frame4"></div><div class="frame5"></div><div class="frame6"></div><div class="frame7"></div>
+          <div class="rider-body"></div><div class="rider-head"></div>
+          <div class="leg1"></div><div class="leg2"></div><div class="arm1"></div><div class="arm2"></div>
+        </div>
+      </div>
+      <div class="photo p3">
+        <div class="bike">
+          <div class="wheel leftw"></div>
+          <div class="wheel rightw"></div>
+          <div class="frame1"></div><div class="frame2"></div><div class="frame3"></div>
+          <div class="frame4"></div><div class="frame5"></div><div class="frame6"></div><div class="frame7"></div>
+          <div class="rider-body"></div><div class="rider-head"></div>
+          <div class="leg1"></div><div class="leg2"></div><div class="arm1"></div><div class="arm2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote">“Living in the present and focusing on what’s in front of me is the most real and reliable for me. Online, I might just have a moment of happiness from reading a novel or watching a funny video but it’s fleeting.”
+      <span class="author">XJ, Li., 27, China</span>
+    </div>
+
+    <div class="vertical">Cost of hesitations &nbsp; / &nbsp; The parent trap &nbsp; / &nbsp; Impatience economy &nbsp; / &nbsp; The dignity of work &nbsp; / &nbsp; <span class="hl">Social rewilding</span></div>
+
+    <div class="footer-left">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="footer-page">72</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #efefef;
+    color: #2d2d2d;
+  }
+
+  .title {
+    position: absolute;
+    color: #8d35e6;
+    font-size: 21px;
+    line-height: 1.15;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+  }
+
+  .body {
+    position: absolute;
+    font-size: 16px;
+    line-height: 1.48;
+    color: #2e2e2e;
+    font-weight: 400;
+  }
+
+  .small-sup {
+    font-size: 11px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .photo-top {
+    position: absolute;
+    left: 942px;
+    top: 0px;
+    width: 279px;
+    height: 426px;
+    background:
+      radial-gradient(ellipse at 52% 24%, rgba(214,137,124,0.55) 0%, rgba(214,137,124,0.0) 28%),
+      radial-gradient(ellipse at 52% 62%, rgba(247,205,142,0.85) 0%, rgba(247,205,142,0.0) 30%),
+      radial-gradient(ellipse at 25% 49%, rgba(92,133,163,0.45) 0%, rgba(92,133,163,0.0) 18%),
+      radial-gradient(ellipse at 15% 78%, rgba(204,35,55,0.75) 0%, rgba(204,35,55,0.0) 22%),
+      radial-gradient(ellipse at 83% 76%, rgba(169,36,54,0.72) 0%, rgba(169,36,54,0.0) 24%),
+      linear-gradient(180deg, rgba(168,83,96,0.50) 0%, rgba(220,176,127,0.7) 38%, rgba(232,191,135,0.75) 60%, rgba(208,168,171,0.65) 100%);
+    filter: blur(3px) saturate(110%);
+  }
+  .photo-top:before {
+    content: "";
+    position: absolute;
+    left: 77px;
+    top: 225px;
+    width: 126px;
+    height: 112px;
+    background: radial-gradient(ellipse at 50% 45%, rgba(238,196,140,0.82) 0%, rgba(236,191,137,0.70) 58%, rgba(236,191,137,0.0) 100%);
+    border-radius: 50%;
+    filter: blur(6px);
+  }
+  .photo-top:after {
+    content: "";
+    position: absolute;
+    left: 69px;
+    top: 320px;
+    width: 142px;
+    height: 94px;
+    background: linear-gradient(180deg, rgba(248,246,249,0.88) 0%, rgba(224,210,222,0.80) 100%);
+    clip-path: polygon(18% 0%, 82% 0%, 100% 38%, 50% 100%, 0% 38%);
+    filter: blur(4px);
+  }
+
+  .photo-bottom {
+    position: absolute;
+    left: 565px;
+    top: 426px;
+    width: 378px;
+    height: 285px;
+    background:
+      radial-gradient(circle at 17% 70%, rgba(182,144,155,0.90) 0%, rgba(182,144,155,0.0) 16%),
+      radial-gradient(circle at 31% 79%, rgba(198,156,166,0.84) 0%, rgba(198,156,166,0.0) 14%),
+      radial-gradient(circle at 76% 66%, rgba(177,148,128,0.85) 0%, rgba(177,148,128,0.0) 14%),
+      linear-gradient(64deg, #0c315a 0%, #0b2b4f 30%, #183867 45%, #7e235f 68%, #aa2645 84%, #c79b8b 100%);
+    filter: blur(1.5px) saturate(110%);
+  }
+  .photo-bottom:before {
+    content: "";
+    position: absolute;
+    left: 26px;
+    top: 183px;
+    width: 168px;
+    height: 58px;
+    background: linear-gradient(180deg, rgba(180,145,159,0.88) 0%, rgba(161,126,142,0.88) 100%);
+    border-radius: 30px;
+    transform: rotate(-23deg);
+    filter: blur(5px);
+  }
+  .photo-bottom:after {
+    content: "";
+    position: absolute;
+    left: 214px;
+    top: 148px;
+    width: 84px;
+    height: 112px;
+    background: linear-gradient(180deg, rgba(176,150,126,0.70) 0%, rgba(209,187,158,0.78) 100%);
+    border-radius: 46px;
+    transform: rotate(28deg);
+    filter: blur(7px);
+  }
+
+  .quote-box {
+    position: absolute;
+    left: 943px;
+    top: 426px;
+    width: 278px;
+    height: 285px;
+    background: #ffffff;
+  }
+  .quote-text {
+    position: absolute;
+    left: 976px;
+    top: 457px;
+    width: 238px;
+    color: #8d35e6;
+    font-size: 23px;
+    line-height: 1.38;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+  }
+
+  .side-tab {
+    position: absolute;
+    left: 1243px;
+    top: 21px;
+    width: 24px;
+    height: 127px;
+    background: #efe7f8;
+    border-radius: 0 0 8px 8px;
+  }
+  .side-tab-text {
+    position: absolute;
+    left: 1246px;
+    top: 30px;
+    width: 18px;
+    color: #8d35e6;
+    font-size: 14px;
+    font-weight: 600;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.2px;
+  }
+
+  .side-nav {
+    position: absolute;
+    left: 1257px;
+    top: 160px;
+    height: 420px;
+    color: #6d6d6d;
+    font-size: 12px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.2px;
+  }
+
+  .footer {
+    position: absolute;
+    right: 45px;
+    bottom: 18px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.9;
+  }
+
+  .page {
+    position: absolute;
+    right: 10px;
+    bottom: 18px;
+    color: #666666;
+    font-size: 12px;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title" style="left:64px; top:134px;">Is this website real?</div>
+
+    <div class="body" style="left:64px; top:176px; width:347px;">
+      People are also being stung by visiting sites that bear all the hallmarks of the result they want to see, when they are just fronts for something else. For example, customers trying to reduce their carbon footprint by buying local are increasingly receiving their order from the other side of the planet, shrouded in plastic packaging. Worse, some pay and share their personal details and receive nothing.<span class="small-sup">13</span> When the deception becomes clear, people are left feeling naïve, victimized and angry.
+      <br><br>
+      Worse still, a tactic called “malvertising” uses online advertising as a route to attack people’s computers, but it doesn’t even require direct action from the user. Simply visiting a website hosting malvertising is enough to cause problems.<span class="small-sup">14</span>
+    </div>
+
+    <div class="title" style="left:485px; top:134px;">Is this review real?</div>
+
+    <div class="body" style="left:485px; top:176px; width:355px;">
+      Once a helpful shortcut to verifying credibility and quality, online reviews have also lost their dependability, with fake reviews becoming a pervasive issue—even more so now they are quickly scalable through AI. In 2022, TripAdvisor identified 1.3 million fake reviews, and in 2021, TrustPilot removed 2.7 million.<span class="small-sup">15</span>
+    </div>
+
+    <div class="photo-top"></div>
+    <div class="photo-bottom"></div>
+
+    <div class="quote-box"></div>
+    <div class="quote-text">
+      Our survey found that 38% of those surveyed have seen fraudulent product reviews online in the past year, and 52.8% often or always question the authenticity of product reviews when they see them.<span class="small-sup">16</span>
+    </div>
+
+    <div class="side-tab"></div>
+    <div class="side-tab-text">Cost of hesitations</div>
+
+    <div class="side-nav">/&nbsp; The parent trap &nbsp;&nbsp; / &nbsp;&nbsp; Impatience economy &nbsp;&nbsp; / &nbsp;&nbsp; The dignity of work &nbsp;&nbsp; / &nbsp;&nbsp; Social rewilding</div>
+
+    <div class="footer">Accenture Life Trends 2025</div>
+    <div class="page">11</div>
+  </div>
+</body>
+</html>

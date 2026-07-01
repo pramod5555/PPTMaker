@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Insights Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#c8c0bc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e2e2e2;
+  }
+
+  .top-photo{
+    position:absolute;
+    inset:0 auto auto 0;
+    width:1280px;
+    height:206px;
+    overflow:hidden;
+    background:
+      linear-gradient(90deg,
+        #8a6d58 0%,
+        #3d2a1f 9%,
+        #22160f 17%,
+        #39251a 27%,
+        #40281d 39%,
+        #7a3827 49%,
+        #a34831 58%,
+        #d48c5a 66%,
+        #ece7e3 79%,
+        #d7d0cf 100%);
+  }
+  .top-photo:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 2% 36%, rgba(242,214,185,.95) 0 4.5%, rgba(242,214,185,0) 11%),
+      radial-gradient(circle at 6% 22%, rgba(93,68,52,.85) 0 6%, rgba(93,68,52,0) 14%),
+      radial-gradient(circle at 10% 58%, rgba(61,41,29,.9) 0 10%, rgba(61,41,29,0) 22%),
+      radial-gradient(circle at 17% 45%, rgba(226,192,160,.8) 0 5%, rgba(226,192,160,0) 14%),
+      radial-gradient(circle at 24% 34%, rgba(45,28,20,.85) 0 8%, rgba(45,28,20,0) 17%),
+      radial-gradient(circle at 53% 10%, rgba(255,180,88,.95) 0 2.5%, rgba(255,180,88,0) 6%),
+      radial-gradient(circle at 56% 20%, rgba(255,116,78,.95) 0 3.2%, rgba(255,116,78,0) 7.5%),
+      radial-gradient(circle at 60% 46%, rgba(201,82,49,.98) 0 5.5%, rgba(201,82,49,0) 14%),
+      radial-gradient(circle at 63% 17%, rgba(255,220,84,.9) 0 1.7%, rgba(255,220,84,0) 5%),
+      radial-gradient(circle at 70% 27%, rgba(173,64,54,.95) 0 4.5%, rgba(173,64,54,0) 11%),
+      radial-gradient(circle at 72% 57%, rgba(77,52,39,.7) 0 3.5%, rgba(77,52,39,0) 11%),
+      linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,0));
+    filter:blur(3px);
+  }
+  .top-photo:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,.16), rgba(0,0,0,0) 22%),
+      linear-gradient(0deg, transparent 0 82%, rgba(255,255,255,.12) 100%),
+      linear-gradient(101deg, transparent 0 67%, rgba(113,88,65,.65) 67.15% 67.45%, transparent 67.6%),
+      linear-gradient(99deg, transparent 0 71%, rgba(113,88,65,.55) 71.15% 71.42%, transparent 71.62%),
+      linear-gradient(97deg, transparent 0 75.4%, rgba(113,88,65,.48) 75.52% 75.75%, transparent 75.95%),
+      linear-gradient(95deg, transparent 0 80%, rgba(113,88,65,.40) 80.08% 80.26%, transparent 80.46%),
+      linear-gradient(0deg, transparent 0 82.8%, rgba(143,116,92,.46) 83.0% 83.55%, transparent 83.7%),
+      linear-gradient(0deg, transparent 0 86.8%, rgba(143,116,92,.35) 87.0% 87.45%, transparent 87.65%);
+    opacity:.95;
+  }
+
+  .hero-title{
+    position:absolute;
+    left:54px;
+    top:60px;
+    z-index:10;
+    color:#fff;
+    font-size:96px;
+    line-height:1;
+    font-weight:700;
+    letter-spacing:-0.04em;
+  }
+
+  .train-right, .train-center{
+    position:absolute;
+    z-index:5;
+    transform-origin:center center;
+  }
+  .train-right{
+    left:1048px;
+    top:23px;
+    width:118px;
+    height:124px;
+  }
+  .train-center{
+    left:708px;
+    top:2px;
+    width:72px;
+    height:119px;
+    filter:blur(.3px);
+  }
+
+  .track-svg{
+    position:absolute;
+    left:752px;
+    top:112px;
+    width:456px;
+    height:94px;
+    z-index:6;
+  }
+
+  .circle-btn{
+    position:absolute;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:rgba(232,233,240,0.92);
+    color:#4a4a50;
+    z-index:20;
+    text-align:center;
+    line-height:36px;
+    font-size:22px;
+    font-weight:700;
+  }
+  .btn-left{ left:1160px; top:21px; }
+  .btn-right{ left:1205px; top:21px; }
+
+  .right-rail{
+    position:absolute;
+    left:1194px;
+    top:87px;
+    width:86px;
+    z-index:30;
+  }
+  .rail-box{
+    position:absolute;
+    left:0;
+    width:86px;
+    box-sizing:border-box;
+    padding:10px 8px 8px 10px;
+    font-size:13px;
+    line-height:15px;
+    font-weight:400;
+    color:#fff;
+  }
+  .rail-box.dark{ background:#2f2e39; }
+  .rail-box.light{ background:#c7c8ce; color:#fff; }
+  .rail-box.contents{ top:0; height:37px; border-left:2px solid #d7c400; }
+  .rail-box.insights{ top:57px; height:37px; }
+  .rail-box.new{ top:132px; height:54px; border-left:2px solid #d7c400; }
+  .rail-box.tax{ top:186px; height:39px; }
+  .rail-box.additional{ top:239px; height:54px; }
+  .rail-box.contacts{ top:293px; height:38px; }
+
+  .content{
+    position:absolute;
+    left:0;
+    top:206px;
+    width:1280px;
+    height:514px;
+    background:#e3e3e3;
+  }
+
+  .welcome{
+    position:absolute;
+    left:57px;
+    top:220px;
+    color:#35353a;
+    font-size:15px;
+    line-height:18px;
+    font-weight:700;
+    z-index:10;
+  }
+  .welcome em{
+    font-style:italic;
+    font-weight:700;
+  }
+  .issue-num{
+    position:absolute;
+    left:499px;
+    top:221px;
+    color:#8b8b92;
+    font-size:13px;
+    line-height:14px;
+    font-weight:400;
+    z-index:10;
+  }
+  .dot, .play{
+    display:inline-block;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#c6c7cd;
+    position:relative;
+    vertical-align:middle;
+  }
+  .issue-num .dot{
+    margin-left:4px;
+    top:-1px;
+  }
+  .dot:after, .play:after{
+    content:"";
+    position:absolute;
+    left:4px;
+    top:3px;
+    width:0;
+    height:0;
+    border-left:4px solid #8b8b92;
+    border-top:3px solid transparent;
+    border-bottom:3px solid transparent;
+  }
+
+  .hline{
+    position:absolute;
+    left:57px;
+    top:242px;
+    width:1081px;
+    height:1px;
+    background:#c6c7cb;
+  }
+
+  .vsep{
+    position:absolute;
+    top:243px;
+    width:1px;
+    height:477px;
+    background:#c9c9ce;
+  }
+  .v1{ left:235px; }
+  .v2{ left:421px; }
+  .v3{ left:627px; }
+  .v4{ left:814px; }
+  .v5{ left:1034px; }
+
+  .col{
+    position:absolute;
+    top:254px;
+    color:#55565d;
+  }
+  .hdr{
+    color:#33343a;
+    font-size:15px;
+    line-height:17px;
+    font-weight:700;
+  }
+  .yl{
+    height:2px;
+    background:#e1c600;
+    margin-top:4px;
+  }
+  .item{
+    width:100%;
+    border-top:1px solid #c9c9cf;
+    box-sizing:border-box;
+    color:#55565d;
+    font-size:13px;
+    line-height:16px;
+    font-weight:400;
+    padding-top:3px;
+    position:absolute;
+    left:0;
+  }
+  .item.first{
+    border-top:none;
+    padding-top:4px;
+  }
+  .numline{
+    display:block;
+    margin-top:1px;
+    color:#7c7d84;
+    font-size:12px;
+    line-height:14px;
+  }
+  .play{
+    margin-left:3px;
+    top:-1px;
+  }
+
+  .col-global{ left:57px; width:171px; }
+  .col-americas{ left:242px; width:171px; }
+  .col-emeia{ left:428px; width:192px; }
+  .col-apac{ left:635px; width:171px; }
+  .col-eycom{ left:821px; width:206px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-photo"></div>
+
+  <div class="hero-title">Insights</div>
+
+  <svg class="train-center" viewBox="0 0 72 119" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g>
+      <rect x="18" y="0" width="36" height="67" rx="5" fill="#c44833"/>
+      <rect x="22" y="8" width="28" height="17" fill="#8d241a"/>
+      <rect x="24" y="12" width="9" height="8" fill="#5d1412"/>
+      <rect x="38" y="12" width="9" height="8" fill="#5d1412"/>
+      <rect x="12" y="67" width="48" height="11" fill="#9d2f24"/>
+      <rect x="10" y="78" width="52" height="20" fill="#7e241d"/>
+      <line x1="22" y1="67" x2="22" y2="98" stroke="#57211a" stroke-width="2"/>
+      <line x1="50" y1="67" x2="50" y2="98" stroke="#57211a" stroke-width="2"/>
+      <line x1="16" y1="84" x2="56" y2="84" stroke="#c68463" stroke-width="2"/>
+      <circle cx="24" cy="104" r="6" fill="#2b2628"/>
+      <circle cx="48" cy="104" r="6" fill="#2b2628"/>
+      <rect x="31" y="25" width="10" height="43" fill="#df6c45"/>
+      <rect x="28" y="38" width="16" height="5" fill="#f0cb48"/>
+    </g>
+  </svg>
+
+  <svg class="train-right" viewBox="0 0 118 124" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g>
+      <rect x="16" y="6" width="86" height="74" rx="10" fill="#a43b32"/>
+      <polygon points="16,24 59,0 102,24" fill="#c24b3e"/>
+      <rect x="27" y="16" width="64" height="17" fill="#7e2621"/>
+      <rect x="22" y="80" width="74" height="16" fill="#8a2d26"/>
+      <rect x="18" y="96" width="82" height="19" fill="#6e2620"/>
+      <line x1="40" y1="33" x2="40" y2="115" stroke="#56211c" stroke-width="2"/>
+      <line x1="78" y1="33" x2="78" y2="115" stroke="#56211c" stroke-width="2"/>
+      <line x1="22" y1="57" x2="96" y2="57" stroke="#ca9278" stroke-width="2"/>
+      <line x1="22" y1="103" x2="96" y2="103" stroke="#ca9278" stroke-width="2"/>
+      <circle cx="34" cy="119" r="5" fill="#262226"/>
+      <circle cx="84" cy="119" r="5" fill="#262226"/>
+    </g>
+  </svg>
+
+  <svg class="track-svg" viewBox="0 0 456 94" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M18 87 C92 74, 174 72, 255 77 C324 81, 385 85, 438 89" stroke="#7a5138" stroke-width="3" fill="none"/>
+    <path d="M33 90 C104 78, 184 77, 266 81 C334 85, 395 88, 448 92" stroke="#b27752" stroke-width="3" fill="none"/>
+    <g stroke="#b4a18f" stroke-width="2">
+      <line x1="50" y1="83" x2="48" y2="91"/>
+      <line x1="93" y1="78" x2="91" y2="87"/>
+      <line x1="136" y1="75" x2="134" y2="84"/>
+      <line x1="179" y1="74" x2="177" y2="82"/>
+      <line x1="222" y1="75" x2="220" y2="83"/>
+      <line x1="265" y1="78" x2="263" y2="86"/>
+      <line x1="308" y1="81" x2="306" y2="88"/>
+      <line x1="351" y1="84" x2="349" y2="91"/>
+      <line x1="394" y1="87" x2="392" y2="93"/>
+    </g>
+  </svg>
+
+  <div class="circle-btn btn-left">◀</div>
+  <div class="circle-btn btn-right">▶</div>
+
+  <div class="right-rail">
+    <div class="rail-box dark contents">Contents</div>
+    <div class="rail-box light insights">Insights</div>
+    <div class="rail-box dark new">New on<br>ey.com</div>
+    <div class="rail-box dark tax">Tax alerts</div>
+    <div class="rail-box light additional">Additional<br>resources</div>
+    <div class="rail-box light contacts">Contacts</div>
+  </div>
+
+  <div class="content"></div>
+
+  <div class="welcome">Welcome to Issue 1 2026 of <em>TradeWatch</em></div>
+  <div class="issue-num">01 <span class="dot"></span></div>
+  <div class="hline"></div>
+
+  <div class="vsep v1"></div>
+  <div class="vsep v2"></div>
+  <div class="vsep v3"></div>
+  <div class="vsep v4"></div>
+  <div class="vsep v5"></div>
+
+  <div class="col col-global">
+    <div class="hdr">Global</div>
+    <div class="yl" style="width:171px;"></div>
+
+    <div class="item first" style="top:24px;height:55px;">
+      EU-Australia Trade Agreement:<br>
+      A new pillar in the trans-Pacific<br>
+      trade relationship
+      <span class="numline">03 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:82px;height:79px;">
+      EU-India Free Trade<br>
+      Agreement:A new anchor<br>
+      in an unsettled global trade<br>
+      environment
+      <span class="numline">06 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:161px;height:62px;">
+      Designing and implementing an<br>
+      automated sanctions screening<br>
+      technology solution
+      <span class="numline">08 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:223px;height:78px;">
+      EU-Mercosur Agreement:<br>
+      Trade liberalization and the<br>
+      road ahead for businesses
+      <span class="numline">12 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:301px;height:91px;">
+      The EU-Mercosur Agreement:<br>
+      Tariff policy opportunities,<br>
+      legal ambiguities and practical<br>
+      limitations
+      <span class="numline">15 <span class="play"></span></span>
+    </div>
+  </div>
+
+  <div class="col col-americas">
+    <div class="hdr">Americas</div>
+    <div class="yl" style="width:171px;"></div>
+
+    <div class="item first" style="top:24px;height:58px;">
+      AEO program in Brazil: New<br>
+      certification levels may bring<br>
+      competitive advantage
+      <span class="numline">18 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:84px;height:79px;">
+      Heightened scrutiny in Mexico:<br>
+      New materiality requirements<br>
+      and mandatory electronic<br>
+      customs valuation reporting
+      <span class="numline">20 <span class="play"></span></span>
+    </div>
+  </div>
+
+  <div class="col col-emeia">
+    <div class="hdr">EMEIA</div>
+    <div class="yl" style="width:192px;"></div>
+
+    <div class="item first" style="top:24px;height:58px;">
+      Authorized Economic Operator<br>
+      (AEO) program – trust-based trade<br>
+      facilitation
+      <span class="numline">25 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:84px;height:75px;">
+      Duty deferred, growth unleashed<br>
+      – the MOOW revolution for Make<br>
+      in India
+      <span class="numline">33 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:160px;height:44px;">
+      EU-CBAM entered in its<br>
+      definitive regime
+      <span class="numline">36 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:205px;height:60px;">
+      EUDR at the gates: Key customs,<br>
+      tax and supply-chain considerations
+      <span class="numline">39 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:267px;height:56px;">
+      Reforming the EU Customs Union<br>
+      for e-commerce
+      <span class="numline">42 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:327px;height:77px;">
+      Saudi Arabia introduces voluntary<br>
+      disclosure controls with full waiver<br>
+      of customs violations
+      <span class="numline">46 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:406px;height:79px;">
+      The EU’s overhaul of customs<br>
+      supervision in the era of explosive<br>
+      e-commerce growth and<br>
+      digitalization
+      <span class="numline">49 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:485px;height:58px;">
+      Pan-Euro Mediterranean<br>
+      convention on rules of origin
+      <span class="numline">52 <span class="play"></span></span>
+    </div>
+  </div>
+
+  <div class="col col-apac">
+    <div class="hdr">Asia-Pacific</div>
+    <div class="yl" style="width:171px;"></div>
+
+    <div class="item first" style="top:24px;height:78px;">
+      Australia: Moving to strengthen<br>
+      trade protections as Anti-<br>
+      Dumping Commission takes<br>
+      control of safeguard measures
+      <span class="numline">53 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:104px;height:78px;">
+      Japan 2026 tax reform:<br>
+      Abolition of 60% valuation<br>
+      rule and new domestic JCT<br>
+      framework on low-value goods
+      <span class="numline">56 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:184px;height:59px;">
+      Japan: Signing of the<br>
+      Japan-Bangladesh Economic<br>
+      Partnership Agreement
+      <span class="numline">58 <span class="play"></span></span>
+    </div>
+  </div>
+
+  <div class="col col-eycom">
+    <div class="hdr">New on ey.com</div>
+    <div class="yl" style="width:206px;"></div>
+
+    <div class="item first" style="top:24px;height:41px;">
+      Insights from ey.com
+      <span class="numline">60 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:68px;height:58px;">
+      EY Global Trade webcasts<br>
+      and podcasts
+      <span class="numline">61 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:129px;height:41px;">
+      EY Global Trade Analytics
+      <span class="numline">62 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:173px;height:59px;">
+      EY Sustainability Taxes and<br>
+      Incentives Radar (STIR)
+      <span class="numline">63 <span class="play"></span></span>
+    </div>
+
+    <div class="item" style="top:235px;height:59px;">
+      Worldwide VAT, GST and<br>
+      Sales Tax Guide 2026
+      <span class="numline">64 <span class="play"></span></span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

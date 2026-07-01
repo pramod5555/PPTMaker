@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1366, initial-scale=1.0" />
+<title>Macro environment challenges</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #e9e9e9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1366px;
+    height: 768px;
+    overflow: hidden;
+    background: #e9e9e9;
+  }
+  .title {
+    position: absolute;
+    left: 43px;
+    top: 38px;
+    width: 1160px;
+    font-size: 34px;
+    line-height: 1.14;
+    font-weight: 400;
+    color: #111;
+    letter-spacing: -0.01em;
+    z-index: 10;
+  }
+  .label-left {
+    position: absolute;
+    left: 41px;
+    top: 375px;
+    width: 170px;
+    font-size: 27px;
+    line-height: 1.14;
+    font-weight: 700;
+    color: #d50000;
+    z-index: 20;
+  }
+  .label-right {
+    position: absolute;
+    right: 33px;
+    top: 164px;
+    width: 220px;
+    font-size: 29px;
+    line-height: 1.08;
+    font-weight: 700;
+    color: #d50000;
+    text-align: right;
+    z-index: 20;
+  }
+  .trend-line {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .node {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #d50000;
+    z-index: 6;
+  }
+  .caption {
+    position: absolute;
+    font-size: 18px;
+    line-height: 1.12;
+    font-weight: 400;
+    color: #111;
+    z-index: 7;
+  }
+  .icon {
+    position: absolute;
+    z-index: 5;
+  }
+  .stroke {
+    fill: none;
+    stroke: #222;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .fill-light {
+    fill: #e9e9e9;
+    stroke: #222;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .tiny {
+    font-size: 11px;
+    line-height: 1;
+    font-weight: 700;
+    fill: #222;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <div class="title">The current macro environment poses a range of significant challenges<br>and continued uncertainty</div>
+  <div class="label-left">Trends<br>underway</div>
+  <div class="label-right">Potential for<br>delayed impacts</div>
+
+  <svg class="trend-line" viewBox="0 0 1366 768" aria-hidden="true">
+    <line x1="-10" y1="566" x2="1380" y2="320" stroke="#cfcfcf" stroke-width="1.3"/>
+  </svg>
+
+  <!-- 1 -->
+  <div class="icon" style="left:41px; top:481px; width:66px; height:50px;">
+    <svg width="66" height="90" viewBox="0 0 66 90">
+      <polygon points="18,27 31,8 45,27" class="stroke"></polygon>
+      <rect x="3" y="30" width="58" height="22" rx="1.3" class="fill-light"></rect>
+      <text x="32" y="45" text-anchor="middle" class="tiny" style="letter-spacing:0.08em;">CLOSED</text>
+    </svg>
+  </div>
+  <div class="node" style="left:61px; top:545px;"></div>
+  <div class="caption" style="left:63px; top:574px; width:145px;">Loss of Russia<br>and Ukraine<br>markets &amp;<br>assets</div>
+
+  <!-- 2 -->
+  <div class="icon" style="left:191px; top:448px; width:58px; height:57px;">
+    <svg width="58" height="97" viewBox="0 0 58 97">
+      <line x1="10" y1="46" x2="44" y2="46" class="stroke"></line>
+      <line x1="18" y1="8" x2="11" y2="46" class="stroke"></line>
+      <line x1="18" y1="8" x2="42" y2="15" class="stroke"></line>
+      <line x1="20" y1="19" x2="39" y2="23" class="stroke"></line>
+      <line x1="22" y1="28" x2="36" y2="31" class="stroke"></line>
+      <line x1="16" y1="22" x2="30" y2="46" class="stroke"></line>
+      <line x1="26" y1="18" x2="26" y2="46" class="stroke"></line>
+      <line x1="38" y1="16" x2="38" y2="46" class="stroke"></line>
+      <circle cx="48" cy="18" r="3" class="stroke"></circle>
+      <line x1="48" y1="21" x2="48" y2="47" class="stroke"></line>
+    </svg>
+  </div>
+  <div class="node" style="left:210px; top:522px;"></div>
+  <div class="caption" style="left:207px; top:555px; width:125px;">Natural<br>resource<br>shortages</div>
+
+  <!-- 3 -->
+  <div class="icon" style="left:340px; top:416px; width:50px; height:58px;">
+    <svg width="50" height="98" viewBox="0 0 50 98">
+      <rect x="5" y="2" width="40" height="50" rx="1.3" class="fill-light"></rect>
+      <line x1="7" y1="7" x2="3" y2="7" class="stroke"></line>
+      <line x1="7" y1="14" x2="3" y2="14" class="stroke"></line>
+      <line x1="7" y1="39" x2="3" y2="39" class="stroke"></line>
+      <line x1="7" y1="46" x2="3" y2="46" class="stroke"></line>
+      <line x1="43" y1="7" x2="47" y2="7" class="stroke"></line>
+      <line x1="43" y1="14" x2="47" y2="14" class="stroke"></line>
+      <line x1="43" y1="39" x2="47" y2="39" class="stroke"></line>
+      <line x1="43" y1="46" x2="47" y2="46" class="stroke"></line>
+      <rect x="14" y="11" width="22" height="30" rx="1.2" class="stroke"></rect>
+      <line x1="21" y1="14" x2="21" y2="35" class="stroke"></line>
+      <line x1="29" y1="14" x2="29" y2="35" class="stroke"></line>
+      <path d="M17 17 h16" class="stroke"></path>
+      <path d="M19 18 c2 2 2 5 2 7 c0 4 -2 6 -2 8" class="stroke"></path>
+      <path d="M31 18 c-2 2 -2 5 -2 7 c0 4 2 6 2 8" class="stroke"></path>
+    </svg>
+  </div>
+  <div class="node" style="left:356px; top:492px;"></div>
+  <div class="caption" style="left:352px; top:530px; width:145px;">Global food<br>pricing and<br>supply<br>disruption</div>
+
+  <!-- 4 -->
+  <div class="icon" style="left:478px; top:395px; width:56px; height:61px;">
+    <svg width="56" height="101" viewBox="0 0 56 101">
+      <path d="M8 5 L8 28 Q8 36 14 42 L23 54 L48 54 L40 43 Q36 39 36 33 L36 18 Q36 13 32 11 L24 8 Q18 5 12 5 Z" class="stroke"></path>
+      <circle cx="28" cy="17" r="3" class="stroke"></circle>
+      <circle cx="23" cy="11" r="2.4" class="stroke"></circle>
+      <circle cx="32" cy="27" r="3" class="stroke"></circle>
+      <circle cx="40" cy="18" r="2.7" class="stroke"></circle>
+      <circle cx="31" cy="36" r="2.6" class="stroke"></circle>
+    </svg>
+  </div>
+  <div class="node" style="left:496px; top:468px;"></div>
+  <div class="caption" style="left:497px; top:504px; width:125px;">Cascading<br>supply<br>shortfalls</div>
+
+  <!-- 5 -->
+  <div class="icon" style="left:628px; top:357px; width:60px; height:65px;">
+    <svg width="60" height="105" viewBox="0 0 60 105">
+      <circle cx="28" cy="13" r="7.5" class="stroke"></circle>
+      <circle cx="46" cy="24" r="6.5" class="stroke"></circle>
+      <line x1="33" y1="19" x2="40" y2="18" class="stroke"></line>
+      <line x1="24" y1="21" x2="21" y2="34" class="stroke"></line>
+      <line x1="46" y1="30" x2="38" y2="42" class="stroke"></line>
+      <line x1="21" y1="34" x2="38" y2="42" class="stroke"></line>
+      <rect x="2" y="37" width="38" height="20" class="fill-light"></rect>
+      <line x1="2" y1="47" x2="40" y2="47" class="stroke"></line>
+      <text x="21" y="52" text-anchor="middle" class="tiny" style="font-size:13px;">$</text>
+      <line x1="14" y1="40" x2="11" y2="55" class="stroke"></line>
+      <line x1="30" y1="40" x2="27" y2="55" class="stroke"></line>
+    </svg>
+  </div>
+  <div class="node" style="left:643px; top:439px;"></div>
+  <div class="caption" style="left:641px; top:479px; width:160px;">Mounting<br>inflation &amp;<br>recession risks</div>
+
+  <!-- 6 -->
+  <div class="icon" style="left:761px; top:350px; width:66px; height:43px;">
+    <svg width="66" height="83" viewBox="0 0 66 83">
+      <polyline points="2,5 14,20 24,14 34,23 45,17 58,30" class="stroke"></polyline>
+      <line x1="58" y1="30" x2="60" y2="19" class="stroke"></line>
+      <line x1="58" y1="30" x2="48" y2="28" class="stroke"></line>
+    </svg>
+  </div>
+  <div class="node" style="left:784px; top:416px;"></div>
+  <div class="caption" style="left:786px; top:453px; width:130px;">Financial<br>market<br>instability</div>
+
+  <!-- 7 -->
+  <div class="icon" style="left:910px; top:315px; width:63px; height:52px;">
+    <svg width="63" height="92" viewBox="0 0 63 92">
+      <rect x="4" y="12" width="8" height="34" class="fill-light"></rect>
+      <rect x="18" y="22" width="8" height="24" class="fill-light"></rect>
+      <rect x="32" y="29" width="8" height="17" class="fill-light"></rect>
+      <rect x="46" y="37" width="8" height="9" class="fill-light"></rect>
+      <line x1="6" y1="1" x2="50" y2="18" class="stroke"></line>
+      <line x1="50" y1="18" x2="41" y2="12" class="stroke"></line>
+    </svg>
+  </div>
+  <div class="node" style="left:930px; top:389px;"></div>
+  <div class="caption" style="left:931px; top:429px; width:150px;">Real economy<br>slowdown</div>
+
+  <!-- 8 -->
+  <div class="icon" style="left:1054px; top:279px; width:66px; height:68px;">
+    <svg width="66" height="108" viewBox="0 0 66 108">
+      <path d="M17 36
+               C9 36 4 30 4 23
+               C4 16 10 10 18 10
+               C20 4 26 1 33 1
+               C42 1 48 7 49 15
+               C57 15 62 21 62 29
+               C62 37 57 42 49 42
+               L17 42 Z" class="stroke"></path>
+      <rect x="5" y="44" width="13" height="12" class="fill-light"></rect>
+      <rect x="27" y="44" width="13" height="12" class="fill-light"></rect>
+      <rect x="49" y="44" width="13" height="12" class="fill-light"></rect>
+      <rect x="27" y="56" width="13" height="12" class="fill-light"></rect>
+      <line x1="33.5" y1="42" x2="33.5" y2="56" class="stroke"></line>
+    </svg>
+  </div>
+  <div class="node" style="left:1076px; top:363px;"></div>
+  <div class="caption" style="left:1073px; top:402px; width:150px;">Technological<br>disruption</div>
+
+  <!-- 9 -->
+  <div class="icon" style="left:1192px; top:245px; width:77px; height:73px;">
+    <svg width="77" height="113" viewBox="0 0 77 113">
+      <circle cx="38.5" cy="34" r="32.5" class="stroke"></circle>
+      <path d="M24 12
+               C27 15 28 18 27 22
+               C25 25 23 28 24 32
+               C26 35 29 37 31 39
+               C32 41 33 44 32 48
+               C36 48 40 49 42 52
+               C45 56 47 60 53 63
+               C54 57 56 54 59 51
+               C62 48 64 44 61 40
+               C58 37 57 34 59 31
+               C62 28 67 24 62 19
+               C58 16 57 12 60 10" class="stroke"></path>
+      <path d="M40 13 L45 18 L50 15 L49 21 L55 25" class="stroke"></path>
+    </svg>
+  </div>
+  <div class="node" style="left:1222px; top:338px;"></div>
+  <div class="caption" style="left:1219px; top:373px; width:126px;">Geopolitical<br>realignment</div>
+
+</div>
+</body>
+</html>

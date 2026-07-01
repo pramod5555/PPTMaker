@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#b6b8bc;font-family:Arial,Helvetica,'Segoe UI',sans-serif;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ededee;
+  }
+  #slide > div, #slide > svg { position:absolute; box-sizing:border-box; }
+  .sidebar{
+    left:0; top:0; width:181px; height:720px;
+    background:#30353d;
+    border-right:2px solid #7354bf;
+  }
+  .title-side{
+    left:12px; top:33px; width:150px;
+    color:#f1f1f1; font-weight:700; font-size:24px; line-height:30px;
+  }
+  .step{ width:155px; height:96px; }
+  .hex{
+    position:absolute; left:8px; top:0; width:60px; height:60px;
+    clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0% 50%);
+    border:3px solid #8b73d4;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.28), rgba(255,255,255,0) 40%),
+      linear-gradient(135deg,#2c6a92 0%, #5bc2df 45%, #214f74 100%);
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,0.18);
+    overflow:hidden;
+  }
+  .hex.gray{
+    border-color:#7a7d82;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,0) 40%),
+      linear-gradient(135deg,#6e7378 0%, #a5a8ab 50%, #55595e 100%);
+  }
+  .hex.light{
+    border-color:#8b8e92;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,0) 40%),
+      linear-gradient(135deg,#d7d8da 0%, #f0f0f1 45%, #9fa4a8 100%);
+  }
+  .num{
+    position:absolute; left:84px; top:0;
+    font-size:30px; line-height:30px; font-weight:700; color:#8b73d4;
+  }
+  .num.gray{ color:#76797e; }
+  .steptext{
+    position:absolute; left:84px; top:32px; width:68px;
+    font-size:15px; line-height:18px; font-weight:700; color:#8b73d4;
+  }
+  .steptext.gray{ color:#6f7378; font-weight:400; }
+  .gear-wrap{
+    left:69px; top:663px; width:82px; height:44px; color:#64686e;
+  }
+  .page{
+    left:10px; top:751px;
+    color:#fff; font-size:16px; line-height:16px;
+  }
+  .page-visible{
+    left:10px; top:750px;
+    color:#fff; font-size:16px; line-height:16px;
+  }
+  .main-title{
+    left:219px; top:31px; width:1080px;
+    color:#222; font-weight:700; font-size:28px; line-height:38px;
+  }
+  .sub-title{
+    left:220px; top:137px; width:860px;
+    color:#8a9097; font-weight:400; font-size:23px; line-height:28px;
+  }
+  .chart-bg{
+    left:246px; top:188px; width:700px; height:425px;
+    opacity:.28;
+    background:
+      radial-gradient(circle at 14% 74%, rgba(140,140,140,.18) 0 4px, transparent 5px),
+      radial-gradient(circle at 28% 47%, rgba(140,140,140,.14) 0 5px, transparent 6px),
+      radial-gradient(circle at 46% 18%, rgba(140,140,140,.12) 0 4px, transparent 5px),
+      radial-gradient(circle at 60% 14%, rgba(140,140,140,.12) 0 4px, transparent 5px),
+      radial-gradient(circle at 77% 12%, rgba(140,140,140,.12) 0 4px, transparent 5px),
+      radial-gradient(circle at 84% 24%, rgba(140,140,140,.12) 0 4px, transparent 5px),
+      radial-gradient(circle at 72% 33%, rgba(140,140,140,.10) 0 4px, transparent 5px),
+      radial-gradient(circle at 41% 70%, rgba(140,140,140,.11) 0 4px, transparent 5px);
+    filter:blur(.2px);
+  }
+  .callout{
+    left:1015px; top:186px; width:350px; height:533px;
+    background:#d4d4d6;
+    padding:10px 14px 10px 14px;
+  }
+  .callout p{
+    margin:0 0 8px 0;
+    width:320px;
+    color:#2c2c2c;
+    font-size:17px;
+    line-height:21px;
+    font-weight:400;
+  }
+  .callout b{font-weight:700;}
+  .footnote{
+    left:220px; top:721px; width:835px;
+    color:#4b4b4b; font-size:11px; line-height:13px;
+  }
+  .footnote-visible{
+    left:220px; top:721px; width:820px;
+    color:#4b4b4b; font-size:11px; line-height:13px;
+  }
+  .logo{
+    left:1210px; top:728px; width:60px; height:18px; color:#565b61;
+  }
+  .logo-visible{
+    left:1210px; top:728px; width:60px; height:18px; color:#565b61;
+  }
+  .rb-text{
+    position:absolute; left:0; top:6px; width:31px;
+    text-align:right; font-size:9px; line-height:9px; color:#5a5f65;
+  }
+  .legend-text{ font-size:17px; fill:#3c3c3c; }
+  .axis-text{ font-size:15px; fill:#373737; }
+  .label-text{ font-size:17px; fill:#2f2f2f; }
+  .axis-title{ font-size:18px; fill:#262626; font-weight:700; }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="title-side">Technology &amp;<br>Innovation</div>
+
+  <div class="step" style="left:8px; top:143px;">
+    <div class="hex">
+      <svg width="60" height="100" viewBox="0 0 60 100" style="position:absolute;left:0;top:0">
+        <g opacity=".55" stroke="#d9f6ff" stroke-width="1">
+          <line x1="9" y1="18" x2="50" y2="28"/><line x1="14" y1="14" x2="42" y2="41"/>
+          <line x1="8" y1="34" x2="50" y2="20"/><line x1="20" y1="8" x2="18" y2="46"/>
+          <line x1="30" y1="11" x2="33" y2="48"/><line x1="43" y1="13" x2="16" y2="40"/>
+          <line x1="11" y1="25" x2="47" y2="39"/>
+        </g>
+        <g fill="#e9ffff" opacity=".85">
+          <circle cx="14" cy="18" r="2"/><circle cx="23" cy="21" r="2"/><circle cx="32" cy="24" r="2"/>
+          <circle cx="41" cy="27" r="2"/><circle cx="20" cy="35" r="2"/><circle cx="29" cy="38" r="2"/>
+          <circle cx="38" cy="34" r="2"/><circle cx="47" cy="22" r="2"/><circle cx="12" cy="31" r="2"/>
+        </g>
+      </svg>
+    </div>
+    <div class="num">1</div>
+    <div class="steptext">Value of<br>Innovation</div>
+  </div>
+
+  <div class="step" style="left:8px; top:277px;">
+    <div class="hex gray">
+      <svg width="60" height="100" viewBox="0 0 60 100" style="position:absolute;left:0;top:0">
+        <g opacity=".45" stroke="#d4d6d8" stroke-width="1">
+          <line x1="13" y1="17" x2="47" y2="28"/><line x1="17" y1="14" x2="40" y2="42"/>
+          <line x1="11" y1="35" x2="48" y2="18"/><line x1="24" y1="11" x2="21" y2="46"/>
+          <line x1="32" y1="10" x2="35" y2="47"/><line x1="44" y1="17" x2="18" y2="39"/>
+        </g>
+        <g fill="#ececec" opacity=".7">
+          <circle cx="18" cy="18" r="2"/><circle cx="28" cy="22" r="2"/><circle cx="39" cy="26" r="2"/>
+          <circle cx="22" cy="35" r="2"/><circle cx="31" cy="38" r="2"/><circle cx="42" cy="31" r="2"/>
+        </g>
+      </svg>
+    </div>
+    <div class="num gray">2</div>
+    <div class="steptext gray">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="step" style="left:8px; top:410px;">
+    <div class="hex light">
+      <svg width="60" height="100" viewBox="0 0 60 100" style="position:absolute;left:0;top:0">
+        <g transform="translate(8,16)" fill="none" stroke="#8c8f93" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 14 c2-4 5-6 8-6 c3 0 5 2 7 5 c2-3 4-5 7-5 c3 0 5 2 7 6"/>
+          <path d="M3 16 l10 10 c2 2 5 2 7 0 l4-4 c1-1 3-1 4 0 l3 3 c2 2 5 2 7 0 l9-9"/>
+          <path d="M13 26 l5 5 M23 19 l4 4 M34 23 l4 4"/>
+        </g>
+      </svg>
+    </div>
+    <div class="num gray">3</div>
+    <div class="steptext gray">Humans &amp;<br>Machines</div>
+  </div>
+
+  <div class="gear-wrap">
+    <svg width="82" height="84" viewBox="0 0 82 84">
+      <g fill="none" stroke="#666b70" stroke-width="3">
+        <circle cx="23" cy="26" r="12"></circle>
+        <path d="M23 7 L23 13 M23 39 L23 45 M4 26 L10 26 M36 26 L42 26 M10 13 L14 17 M32 35 L36 39 M10 39 L14 35 M32 17 L36 13"></path>
+        <circle cx="23" cy="26" r="4" fill="#666b70"></circle>
+      </g>
+      <g fill="none" stroke="#666b70" stroke-width="3">
+        <circle cx="56" cy="20" r="10"></circle>
+        <path d="M56 6 L56 11 M56 29 L56 34 M42 20 L47 20 M65 20 L70 20 M46 11 L49 14 M63 27 L66 30 M46 29 L49 26 M63 14 L66 11"></path>
+        <path d="M57 12c-3 0-7 2-7 8c0 6 4 8 7 8c4 0 5-1 7-3" />
+      </g>
+    </svg>
+  </div>
+
+  <div style="left:10px; top:752px; color:#fff; font-size:16px;">8</div>
+  <div style="left:10px; top:748px; color:#fff; font-size:16px;">8</div>
+
+  <div class="main-title">Winning at innovation starts in the classroom – Becoming a future leader in<br>innovation requires investment in education …</div>
+  <div class="sub-title">Global Innovation Index 2021 plotted against average PISA outcome 2018 (China = 100)</div>
+
+  <div class="chart-bg"></div>
+
+  <svg style="left:221px; top:196px; width:748px; height:446px;" viewBox="0 0 748 446">
+    <circle cx="100" cy="26" r="5" fill="#ad9dce"></circle>
+    <text x="118" y="31" class="legend-text">Emerging markets &amp; developing economies</text>
+    <polygon points="95,55 105,55 100,44" fill="#294a8a"></polygon>
+    <text x="118" y="57" class="legend-text">Advanced countries</text>
+    <text x="96" y="86" class="legend-text">R: 0.68</text>
+
+    <line x1="82" y1="385" x2="745" y2="385" stroke="#555" stroke-width="1"></line>
+    <line x1="82" y1="385" x2="82" y2="75" stroke="#555" stroke-width="1"></line>
+
+    <g stroke="#555" stroke-width="1">
+      <line x1="82" y1="385" x2="82" y2="391"></line><line x1="115" y1="385" x2="115" y2="391"></line>
+      <line x1="148" y1="385" x2="148" y2="391"></line><line x1="181" y1="385" x2="181" y2="391"></line>
+      <line x1="214" y1="385" x2="214" y2="391"></line><line x1="247" y1="385" x2="247" y2="391"></line>
+      <line x1="280" y1="385" x2="280" y2="391"></line><line x1="313" y1="385" x2="313" y2="391"></line>
+      <line x1="346" y1="385" x2="346" y2="391"></line><line x1="379" y1="385" x2="379" y2="391"></line>
+      <line x1="412" y1="385" x2="412" y2="391"></line><line x1="445" y1="385" x2="445" y2="391"></line>
+      <line x1="478" y1="385" x2="478" y2="391"></line><line x1="511" y1="385" x2="511" y2="391"></line>
+      <line x1="544" y1="385" x2="544" y2="391"></line><line x1="577" y1="385" x2="577" y2="391"></line>
+      <line x1="610" y1="385" x2="610" y2="391"></line><line x1="643" y1="385" x2="643" y2="391"></line>
+      <line x1="676" y1="385" x2="676" y2="391"></line><line x1="709" y1="385" x2="709" y2="391"></line>
+      <line x1="745" y1="385" x2="745" y2="391"></line>
+      <line x1="76" y1="75" x2="82" y2="75"></line><line x1="76" y1="118" x2="82" y2="118"></line>
+      <line x1="76" y1="161" x2="82" y2="161"></line><line x1="76" y1="204" x2="82" y2="204"></line>
+      <line x1="76" y1="247" x2="82" y2="247"></line><line x1="76" y1="290" x2="82" y2="290"></line>
+      <line x1="76" y1="333" x2="82" y2="333"></line><line x1="76" y1="376" x2="82" y2="376"></line>
+    </g>
+
+    <line x1="73" y1="374" x2="89" y2="370" stroke="#555" stroke-width="1.5"></line>
+    <line x1="73" y1="381" x2="89" y2="377" stroke="#555" stroke-width="1.5"></line>
+
+    <g class="axis-text">
+      <text x="78" y="415">0</text><text x="111" y="415">5</text><text x="142" y="415">10</text><text x="177" y="415">15</text>
+      <text x="210" y="415">20</text><text x="243" y="415">25</text><text x="274" y="415">30</text><text x="307" y="415">35</text>
+      <text x="340" y="415">40</text><text x="373" y="415">45</text><text x="406" y="415">50</text><text x="439" y="415">55</text>
+      <text x="472" y="415">60</text><text x="505" y="415">65</text><text x="538" y="415">70</text><text x="571" y="415">75</text>
+      <text x="604" y="415">80</text><text x="637" y="415">85</text><text x="670" y="415">90</text><text x="703" y="415">95</text>
+      <text x="733" y="415">100</text>
+
+      <text x="45" y="80">70</text><text x="45" y="123">65</text><text x="45" y="166">60</text><text x="45" y="209">55</text>
+      <text x="45" y="252">50</text><text x="45" y="295">45</text><text x="45" y="338">40</text><text x="45" y="381">35</text>
+      <text x="50" y="391">0</text>
+    </g>
+
+    <text x="347" y="448" class="axis-title">PISA outcome<tspan baseline-shift="super" font-size="11">1)</tspan></text>
+    <g transform="translate(18,290) rotate(-90)">
+      <text class="axis-title">Global Innovation Index</text>
+    </g>
+
+    <line x1="123" y1="379" x2="746" y2="191" stroke="#404040" stroke-width="1.5"></line>
+
+    <g opacity="0.08" stroke="#8b8b8b" stroke-width="1" fill="none">
+      <path d="M160 330 L230 300 L290 275 L360 250 L430 225 L485 205 L560 175 L620 145"></path>
+      <path d="M175 310 L220 340 L280 320 L350 280 L410 260 L480 230 L540 200 L605 170"></path>
+      <path d="M395 70 L450 110 L510 140 L560 180 L620 200"></path>
+      <path d="M475 90 L470 140 L500 180 L535 210 L550 255"></path>
+      <path d="M555 104 L592 130 L615 170 L640 210 L646 250"></path>
+      <path d="M330 200 L370 215 L405 230 L440 250 L470 270"></path>
+      <path d="M365 165 L400 155 L430 160 L463 170 L495 182"></path>
+      <path d="M505 92 L558 94 L612 112 L654 138"></path>
+      <path d="M517 112 L560 130 L600 150 L631 182"></path>
+    </g>
+
+    <g fill="#aa99cc" opacity="0.95">
+      <circle cx="124" cy="215" r="5"></circle><circle cx="166" cy="325" r="5"></circle><circle cx="173" cy="313" r="5"></circle>
+      <circle cx="196" cy="352" r="5"></circle><circle cx="221" cy="338" r="6"></circle><circle cx="246" cy="328" r="5"></circle>
+      <circle cx="250" cy="350" r="5"></circle><circle cx="269" cy="336" r="5"></circle><circle cx="271" cy="314" r="6"></circle>
+      <circle cx="287" cy="289" r="5"></circle><circle cx="292" cy="349" r="5"></circle><circle cx="305" cy="337" r="5"></circle>
+      <circle cx="315" cy="294" r="6"></circle><circle cx="319" cy="335" r="5"></circle><circle cx="331" cy="335" r="5"></circle>
+      <circle cx="340" cy="328" r="5"></circle><circle cx="347" cy="288" r="5"></circle><circle cx="361" cy="291" r="6"></circle>
+      <circle cx="366" cy="229" r="6"></circle><circle cx="377" cy="313" r="5"></circle><circle cx="420" cy="330" r="5"></circle>
+      <circle cx="421" cy="267" r="5"></circle><circle cx="446" cy="307" r="5"></circle><circle cx="447" cy="247" r="5"></circle>
+      <circle cx="475" cy="327" r="6"></circle><circle cx="489" cy="294" r="5"></circle><circle cx="515" cy="283" r="5"></circle>
+      <circle cx="532" cy="247" r="5"></circle><circle cx="530" cy="224" r="6"></circle><circle cx="568" cy="311" r="5"></circle>
+      <circle cx="745" cy="211" r="5"></circle>
+    </g>
+
+    <g fill="#294b8b" opacity="0.98">
+      <polygon points="405,285 411,274 417,285"></polygon><polygon points="420,212 426,201 432,212"></polygon>
+      <polygon points="438,301 444,290 450,301"></polygon><polygon points="447,266 453,255 459,266"></polygon>
+      <polygon points="454,182 460,171 466,182"></polygon><polygon points="462,236 468,225 474,236"></polygon>
+      <polygon points="469,303 475,292 481,303"></polygon><polygon points="475,251 481,240 487,251"></polygon>
+      <polygon points="487,267 493,256 499,267"></polygon><polygon points="494,218 500,207 506,218"></polygon>
+      <polygon points="507,242 513,231 519,242"></polygon><polygon points="518,183 524,172 530,183"></polygon>
+      <polygon points="523,225 529,214 535,225"></polygon><polygon points="528,130 534,119 540,130"></polygon>
+      <polygon points="535,221 541,210 547,221"></polygon><polygon points="537,257 543,246 549,257"></polygon>
+      <polygon points="541,291 547,280 553,291"></polygon><polygon points="546,117 552,106 558,117"></polygon>
+      <polygon points="548,204 554,193 560,204"></polygon><polygon points="555,245 561,234 567,245"></polygon>
+      <polygon points="559,138 565,127 571,138"></polygon><polygon points="566,229 572,218 578,229"></polygon>
+      <polygon points="576,165 582,154 588,165"></polygon><polygon points="580,151 586,140 592,151"></polygon>
+      <polygon points="588,203 594,192 600,203"></polygon><polygon points="594,191 600,180 606,191"></polygon>
+      <polygon points="603,157 609,146 615,157"></polygon><polygon points="612,149 618,138 624,149"></polygon>
+      <polygon points="627,196 633,185 639,196"></polygon><polygon points="696,238 702,227 708,238"></polygon>
+    </g>
+
+    <text x="134" y="318" class="label-text">Philippines</text>
+    <text x="240" y="312" class="label-text">Brazil</text>
+    <text x="220" y="366" class="label-text">Indonesia</text>
+    <text x="453" y="194" class="label-text">Germany</text>
+    <text x="484" y="158" class="label-text">US</text>
+    <text x="534" y="121" class="label-text">Switzerland</text>
+    <text x="548" y="165" class="label-text">UK</text>
+    <text x="593" y="169" class="label-text">South Korea</text>
+    <text x="689" y="219" class="label-text">China</text>
+  </svg>
+
+  <div class="callout">
+    <p>&gt; Innovation has several driving factors,<br>an important one is its <b>educational<br>base</b> – a country's educational<br>provision</p>
+    <p>&gt; For innovation to occur, <b>high quality<br>human capital is required</b> that is<br>capable of <b>thinking beyond the<br>limitations of existing technologies</b>,<br>transforming ideas creatively into<br>reality</p>
+    <p>&gt; Economic growth models imply that<br>countries with <b>better educational<br>systems</b> experience <b>better abilities to<br>innovate</b></p>
+    <p>&gt; Empirically, countries that obtained a<br><b>higher outcome value in the 2018<br>PISA</b> study have, on average, a <b>higher</b><br>value in the <b>Global Innovation Index</b></p>
+    <p>&gt; Hence, improving a nation's <b>future<br>innovation capabilities</b> starts in the<br>classroom, <b>requiring best possible<br>educational resources</b> and investment<br>in students, teachers and facilities</p>
+  </div>
+
+  <div style="left:220px; top:722px; width:835px; color:#4b4b4b; font-size:11px; line-height:13px;">1) The value represents the country's average outcome in the PISA study (OECD Programme for International Student Assessment) in all three</div>
+  <div style="left:220px; top:735px; width:840px; color:#4b4b4b; font-size:11px; line-height:13px;">disciplines of reading, mathematics and science relative to China's outcome (China = 100) in 2018 and were edited as such by WIPO</div>
+
+  <div style="left:1275px; top:0; width:5px; height:720px; background:#ededee;"></div>
+
+  <div style="left:1212px; top:728px; width:58px; height:18px;">
+    <div class="rb-text">Roland<br>Berger</div>
+    <svg style="position:absolute;left:33px;top:0;width:18px;height:18px;" viewBox="0 0 18 18">
+      <path d="M1,1 L8,1 C12,1 15,3 15,7 C15,10 13,12 10,12 L1,12 Z" fill="#a9adb1"></path>
+      <path d="M1,12 L9,12 C13,12 16,14 16,17 L1,17 Z" fill="#656a70"></path>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

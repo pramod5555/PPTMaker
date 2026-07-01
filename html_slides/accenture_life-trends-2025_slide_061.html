@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#fbfbfb;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#fbfbfb;
+    color:#222;
+  }
+
+  .title-small{
+    position:absolute;
+    left:60px;
+    top:114px;
+    font-size:23px;
+    line-height:1.1;
+    color:#7c24df;
+    font-weight:300;
+    letter-spacing:0.2px;
+  }
+  .title-large{
+    position:absolute;
+    left:127px;
+    top:154px;
+    font-size:42px;
+    line-height:1;
+    color:#6e10d7;
+    font-weight:300;
+    letter-spacing:0.2px;
+  }
+
+  .body-text{
+    position:absolute;
+    left:60px;
+    top:246px;
+    width:390px;
+    font-size:18px;
+    line-height:1.34;
+    color:#222;
+    font-weight:400;
+  }
+  .body-text p{
+    margin:0 0 14px 0;
+  }
+
+  .photo-col{
+    position:absolute;
+    left:529px;
+    top:0;
+    width:422px;
+    height:720px;
+  }
+  .panel{
+    position:absolute;
+    left:0;
+    width:422px;
+    overflow:hidden;
+    background:
+      linear-gradient(90deg,
+        rgba(240,239,220,0.55) 0%,
+        rgba(44,39,47,0.35) 8%,
+        rgba(14,15,29,0.88) 22%,
+        rgba(84,61,216,0.90) 48%,
+        rgba(31,24,81,0.92) 67%,
+        rgba(249,92,51,0.95) 88%,
+        rgba(246,214,194,0.95) 100%);
+  }
+  .panel.top{ top:0; height:257px; }
+  .panel.mid{ top:257px; height:254px; }
+  .panel.bot{ top:511px; height:209px; }
+
+  .door{
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:3px;
+    background:rgba(8,10,16,0.72);
+    box-shadow: 0 0 0 1px rgba(20,20,20,0.12);
+  }
+  .door.d1{ left:68px; }
+  .door.d2{ left:114px; width:4px; }
+  .door.d3{ left:238px; width:4px; }
+  .door.d4{ left:326px; width:4px; }
+
+  .hline{
+    position:absolute;
+    left:0;
+    right:0;
+    height:1px;
+    background:rgba(255,255,255,0.25);
+  }
+
+  .seat{
+    position:absolute;
+    border-radius:40px 40px 22px 22px;
+    background:rgba(35,38,50,0.75);
+    filter:blur(0.2px);
+  }
+  .desk{
+    position:absolute;
+    background:#b88958;
+    border-radius:2px;
+    box-shadow:0 0 0 2px rgba(50,27,13,0.22) inset;
+  }
+  .person{
+    position:absolute;
+    border-radius:48% 52% 46% 54% / 38% 38% 62% 62%;
+    background:rgba(18,18,24,0.9);
+    filter:blur(0.3px);
+  }
+  .head{
+    position:absolute;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:#d6c6bb;
+  }
+  .leg{
+    position:absolute;
+    background:rgba(17,18,27,0.9);
+    border-radius:8px;
+    transform-origin:top left;
+  }
+  .arm{
+    position:absolute;
+    background:#c6bbb4;
+    border-radius:8px;
+    transform-origin:left center;
+  }
+
+  .blur-silhouette{
+    position:absolute;
+    background:rgba(14,12,20,0.9);
+    border-radius:50% 50% 40% 40%;
+    filter:blur(7px);
+    opacity:0.9;
+  }
+
+  /* top panel composition */
+  .top .desk.a{ left:121px; top:103px; width:32px; height:9px; }
+  .top .seat.a{ left:188px; top:129px; width:28px; height:52px; }
+  .top .person.a{ left:186px; top:78px; width:31px; height:60px; }
+  .top .head.a{ left:194px; top:49px; }
+  .top .arm.a{ left:206px; top:123px; width:28px; height:6px; transform:rotate(68deg); }
+  .top .leg.a{ left:204px; top:135px; width:11px; height:40px; transform:rotate(4deg); }
+
+  .top .desk.b{ left:329px; top:94px; width:25px; height:10px; }
+  .top .seat.b{ left:352px; top:132px; width:26px; height:50px; }
+  .top .person.b{ left:346px; top:87px; width:28px; height:56px; }
+  .top .head.b{ left:352px; top:56px; }
+  .top .arm.b{ left:344px; top:116px; width:25px; height:5px; transform:rotate(-8deg); }
+
+  .top .desk.c{ left:38px; top:145px; width:27px; height:8px; }
+  .top .seat.c{ left:21px; top:165px; width:28px; height:64px; background:rgba(144,151,140,0.55); }
+  .top .person.c{ left:18px; top:92px; width:30px; height:72px; background:rgba(228,220,222,0.85); }
+  .top .head.c{ left:14px; top:58px; background:#d3c5bc; }
+  .top .arm.c{ left:33px; top:119px; width:24px; height:5px; transform:rotate(58deg); background:#d0c2ba; }
+
+  /* mid panel */
+  .mid .desk.a{ left:118px; top:124px; width:33px; height:9px; }
+  .mid .seat.a{ left:188px; top:113px; width:29px; height:66px; }
+  .mid .person.a{ left:188px; top:70px; width:30px; height:54px; }
+  .mid .head.a{ left:194px; top:45px; }
+  .mid .arm.a{ left:194px; top:118px; width:24px; height:5px; transform:rotate(22deg); }
+
+  .mid .desk.b{ left:37px; top:134px; width:26px; height:8px; }
+  .mid .seat.b{ left:23px; top:155px; width:29px; height:61px; background:rgba(130,135,125,0.52); }
+  .mid .person.b{ left:18px; top:92px; width:29px; height:67px; background:rgba(228,224,223,0.9); }
+  .mid .head.b{ left:14px; top:59px; }
+  .mid .arm.b{ left:31px; top:120px; width:23px; height:5px; transform:rotate(62deg); background:#d7c9c0; }
+
+  .mid .desk.c{ left:332px; top:123px; width:23px; height:10px; }
+  .mid .seat.c{ left:352px; top:126px; width:25px; height:58px; }
+  .mid .person.c{ left:347px; top:82px; width:28px; height:54px; }
+  .mid .head.c{ left:352px; top:53px; }
+  .mid .arm.c{ left:343px; top:116px; width:24px; height:5px; transform:rotate(-8deg); }
+
+  .mid .blur-silhouette.one{
+    left:247px; top:52px; width:68px; height:170px;
+    transform:rotate(5deg);
+  }
+  .mid .blur-silhouette.two{
+    left:389px; top:104px; width:26px; height:133px;
+    transform:rotate(-2deg);
+    filter:blur(4px);
+  }
+
+  /* bottom panel */
+  .bot .desk.a{ left:120px; top:124px; width:33px; height:9px; }
+  .bot .seat.a{ left:190px; top:111px; width:28px; height:58px; }
+  .bot .person.a{ left:188px; top:68px; width:31px; height:53px; }
+  .bot .head.a{ left:194px; top:43px; }
+  .bot .arm.a{ left:194px; top:114px; width:23px; height:5px; transform:rotate(17deg); }
+
+  .bot .desk.b{ left:37px; top:133px; width:25px; height:8px; }
+  .bot .seat.b{ left:23px; top:153px; width:29px; height:58px; background:rgba(130,135,125,0.52); }
+  .bot .person.b{ left:18px; top:90px; width:30px; height:66px; background:rgba(228,224,223,0.9); }
+  .bot .head.b{ left:14px; top:57px; }
+  .bot .arm.b{ left:31px; top:120px; width:22px; height:5px; transform:rotate(58deg); background:#d7c9c0; }
+
+  .bot .desk.c{ left:332px; top:124px; width:23px; height:10px; }
+  .bot .seat.c{ left:352px; top:127px; width:24px; height:55px; }
+  .bot .person.c{ left:347px; top:84px; width:27px; height:52px; }
+  .bot .head.c{ left:352px; top:55px; }
+  .bot .arm.c{ left:343px; top:117px; width:24px; height:5px; transform:rotate(-8deg); }
+
+  .bot .blur-silhouette.one{
+    left:-8px; top:41px; width:42px; height:160px;
+    filter:blur(7px);
+    background:rgba(38,92,235,0.7);
+  }
+  .bot .blur-silhouette.two{
+    left:12px; top:23px; width:74px; height:174px;
+    transform:rotate(-7deg);
+    opacity:0.55;
+  }
+
+  .quote{
+    position:absolute;
+    left:1020px;
+    top:250px;
+    width:190px;
+    font-size:23px;
+    line-height:1.38;
+    color:#8e34e3;
+    font-weight:300;
+  }
+
+  .right-rail{
+    position:absolute;
+    right:12px;
+    top:35px;
+    width:18px;
+    height:600px;
+    color:#757575;
+    font-size:14px;
+    line-height:1;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    letter-spacing:0.2px;
+  }
+  .right-rail .active{
+    color:#8e34e3;
+    font-weight:500;
+  }
+
+  .footer{
+    position:absolute;
+    right:36px;
+    bottom:18px;
+    font-size:14px;
+    color:#7a7a7a;
+  }
+  .footer .year{ color:#8e34e3; }
+  .footer .num{
+    display:inline-block;
+    margin-left:36px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title-small">What’s</div>
+  <div class="title-large">next</div>
+
+  <div class="body-text">
+    <p>The demands made and endurance required of leaders—including CEOs, management and team leads—need a new mindset and a special kind of energy. Leaders have to lead for the world as it exists today, navigating complex challenges like cost pressures, dwindling team morale and the relentless need for organizational growth in a volatile environment.</p>
+    <p>It’s by no means a given that energy will be restored in the workplace, and the value exchange will find balance again. We believe that leaders who see the value of effecting positive change and creating the conditions that naturally raise enthusiasm in their teams will emerge as winners. Those who ignore what’s happening will increasingly notice a lack of dignity at work, resulting in poor culture, work and motivation—and worse outcomes for customers and business growth.</p>
+  </div>
+
+  <div class="photo-col">
+    <div class="panel top">
+      <div class="door d1"></div><div class="door d2"></div><div class="door d3"></div><div class="door d4"></div>
+      <div class="desk a"></div><div class="seat a"></div><div class="person a"></div><div class="head a"></div><div class="arm a"></div><div class="leg a"></div>
+      <div class="desk b"></div><div class="seat b"></div><div class="person b"></div><div class="head b"></div><div class="arm b"></div>
+      <div class="desk c"></div><div class="seat c"></div><div class="person c"></div><div class="head c"></div><div class="arm c"></div>
+    </div>
+
+    <div class="panel mid">
+      <div class="door d1"></div><div class="door d2"></div><div class="door d3"></div><div class="door d4"></div>
+      <div class="desk a"></div><div class="seat a"></div><div class="person a"></div><div class="head a"></div><div class="arm a"></div>
+      <div class="desk b"></div><div class="seat b"></div><div class="person b"></div><div class="head b"></div><div class="arm b"></div>
+      <div class="desk c"></div><div class="seat c"></div><div class="person c"></div><div class="head c"></div><div class="arm c"></div>
+      <div class="blur-silhouette one"></div>
+      <div class="blur-silhouette two"></div>
+    </div>
+
+    <div class="panel bot">
+      <div class="door d1"></div><div class="door d2"></div><div class="door d3"></div><div class="door d4"></div>
+      <div class="desk a"></div><div class="seat a"></div><div class="person a"></div><div class="head a"></div><div class="arm a"></div>
+      <div class="desk b"></div><div class="seat b"></div><div class="person b"></div><div class="head b"></div><div class="arm b"></div>
+      <div class="desk c"></div><div class="seat c"></div><div class="person c"></div><div class="head c"></div><div class="arm c"></div>
+      <div class="blur-silhouette one"></div>
+      <div class="blur-silhouette two"></div>
+    </div>
+  </div>
+
+  <div class="quote">
+    Centered on<br>
+    person-to-person<br>
+    connection,<br>
+    humanized leadership<br>
+    is key to restoring<br>
+    energy.
+  </div>
+
+  <div class="right-rail">
+    Cost of hesitations &nbsp;/&nbsp; The parent trap &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; <span class="active">The dignity of work</span> &nbsp;/&nbsp; Social rewilding
+  </div>
+
+  <div class="footer">
+    Accenture Life Trends <span class="year">2025</span>
+    <span class="num">61</span>
+  </div>
+</div>
+</body>
+</html>

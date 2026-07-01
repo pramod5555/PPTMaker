@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#e8e2e0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e8e2e0;
+    color:#222;
+  }
+
+  .top-image{
+    position:absolute;
+    left:60px;
+    top:0px;
+    width:365px;
+    height:80px;
+    background:
+      linear-gradient(135deg, rgba(138,73,46,0.95) 0 12%, rgba(230,220,214,0.85) 18% 32%, rgba(48,60,57,0.9) 38% 45%, rgba(227,220,214,0.85) 48% 63%, rgba(65,168,201,0.9) 68% 74%, rgba(231,223,217,0.9) 78% 100%);
+    filter: blur(2px);
+  }
+
+  .title{
+    position:absolute;
+    left:59px;
+    top:118px;
+    width:260px;
+    color:#7b1fe0;
+    font-size:27px;
+    line-height:1.18;
+    font-weight:400;
+    letter-spacing:-0.2px;
+  }
+
+  .photo{
+    position:absolute;
+    left:60px;
+    top:230px;
+    width:365px;
+    height:438px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 16% 18%, rgba(246,186,150,0.95) 0 8%, transparent 9%),
+      radial-gradient(circle at 27% 16%, rgba(73,208,201,0.85) 0 8%, transparent 9%),
+      radial-gradient(circle at 35% 11%, rgba(43,44,62,0.95) 0 7%, transparent 8%),
+      radial-gradient(circle at 68% 16%, rgba(201,134,104,0.95) 0 8%, transparent 9%),
+      linear-gradient(90deg, rgba(243,220,189,0.95) 0 12%, rgba(239,226,215,0.85) 12% 23%, rgba(78,170,170,0.95) 23% 36%, rgba(249,235,205,0.85) 36% 50%, rgba(236,236,233,0.9) 50% 58%, rgba(214,192,170,0.92) 58% 72%, rgba(239,228,219,0.92) 72% 100%),
+      linear-gradient(180deg, rgba(244,232,215,0.95) 0 10%, rgba(78,176,176,0.6) 10% 20%, rgba(233,226,220,0.96) 20% 48%, rgba(195,163,128,0.9) 48% 73%, rgba(240,234,230,0.96) 73% 100%);
+    filter: blur(3.2px) saturate(1.05);
+  }
+  .photo:before{
+    content:"";
+    position:absolute;
+    left:128px;
+    top:72px;
+    width:150px;
+    height:220px;
+    background:
+      linear-gradient(180deg, rgba(35,36,40,0.95) 0 18%, transparent 18% 100%),
+      repeating-linear-gradient(90deg, rgba(70,70,70,0.85) 0 3px, rgba(240,240,240,0.95) 3px 8px);
+    border-radius:65px 65px 28px 28px;
+    transform:skew(-6deg);
+    opacity:0.85;
+  }
+  .photo:after{
+    content:"";
+    position:absolute;
+    left:142px;
+    top:285px;
+    width:110px;
+    height:158px;
+    background:linear-gradient(180deg, rgba(232,207,184,0.95), rgba(226,192,163,0.95));
+    border-radius:18px;
+    filter:blur(1px);
+  }
+  .hand{
+    position:absolute;
+    left:237px;
+    top:289px;
+    width:36px;
+    height:72px;
+    background:linear-gradient(180deg, #f2d3c6, #e8bfb0);
+    border-radius:20px;
+    transform:rotate(-8deg);
+    filter:blur(1.2px);
+    opacity:0.9;
+  }
+  .cup-left{
+    position:absolute;
+    left:88px;
+    top:391px;
+    width:31px;
+    height:61px;
+    background:linear-gradient(180deg, #f2eee9 0 70%, #c49b74 70% 100%);
+    border-radius:4px 4px 8px 8px;
+    filter:blur(1px);
+  }
+  .cup-right{
+    position:absolute;
+    left:286px;
+    top:393px;
+    width:29px;
+    height:62px;
+    background:linear-gradient(180deg, #f2eee9 0 70%, #c8a27b 70% 100%);
+    border-radius:4px 4px 8px 8px;
+    filter:blur(1px);
+  }
+  .table-line1,.table-line2,.table-line3{
+    position:absolute;
+    left:0;
+    width:365px;
+    background:rgba(255,255,255,0.75);
+    filter:blur(1.4px);
+  }
+  .table-line1{ top:360px; height:12px; }
+  .table-line2{ top:433px; height:15px; }
+  .table-line3{ top:475px; height:13px; }
+
+  .col{
+    position:absolute;
+    font-size:16px;
+    line-height:1.48;
+    color:#222;
+    font-weight:400;
+  }
+  .col1{
+    left:485px;
+    top:84px;
+    width:355px;
+  }
+  .col2{
+    left:905px;
+    top:84px;
+    width:338px;
+  }
+  .col p{
+    margin:0 0 23px 0;
+  }
+  sup{
+    font-size:10px;
+    vertical-align:super;
+    line-height:0;
+  }
+
+  .footer-left{
+    position:absolute;
+    right:116px;
+    bottom:18px;
+    font-size:14px;
+    color:#757575;
+    letter-spacing:0;
+  }
+  .footer-left .year{
+    color:#7b1fe0;
+  }
+  .footer-num{
+    position:absolute;
+    right:43px;
+    bottom:18px;
+    font-size:14px;
+    color:#757575;
+  }
+
+  .side-rail{
+    position:absolute;
+    right:8px;
+    top:37px;
+    width:26px;
+    height:646px;
+    font-size:16px;
+    color:#6f6f6f;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    letter-spacing:0;
+  }
+  .side-rail .active{
+    color:#7b1fe0;
+    font-weight:600;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-image"></div>
+
+    <div class="title">Use AI, but value<br>humanity</div>
+
+    <div class="photo">
+      <div class="hand"></div>
+      <div class="cup-left"></div>
+      <div class="cup-right"></div>
+      <div class="table-line1"></div>
+      <div class="table-line2"></div>
+      <div class="table-line3"></div>
+    </div>
+
+    <div class="col col1">
+      <p>Accenture research found that 75% of organizations don’t yet have comprehensive strategies to ensure positive employee experiences and outcomes with generative AI.<sup>112</sup> As leaders start thinking about this, keeping employees front of mind becomes critical to beginning the change journey.</p>
+
+      <p>Leaders should be mindful not to treat people the same as they treat the tools within the organization—especially when generative AI begins to mature. If organizations fall into the trap of personifying AI agents, it could lead to a backlash and make people feel like their bosses see them and the bots as equals.<sup>113</sup> Success will require top-down action to enable the growth of a culture that works comfortably alongside AI from the bottom up.</p>
+
+      <p>It’s important to make conscious effort to treat people with dignity and recognize their value as experienced, skilled workers. Using generative AI tools as part of managerial work needs to be approached with care. Dignity and respect for individuals’ contributions must be kept in mind, even when generative AI tools are used for written performance feedback or reviewing work.</p>
+    </div>
+
+    <div class="col col2">
+      <p>People invest their time, effort and energy into their work so assessing their performance must make them feel valued and that what they do matters.</p>
+
+      <p>The tech sphere is awash with numerous opinions and predictions about generative AI’s potential impact on the workplace, running the gamut from underwhelming to transformative. At the transformative end of the scale are voices including Zoom CEO Eric Yuan, who speculates that people will have digital twins to attend meetings and make decisions on their behalf.<sup>114</sup> It could be that autonomous AI agents will increasingly automate tasks, which has potential to reduce jobs and to pivot people’s contribution from doing the work to managing the work.</p>
+
+      <p>Conversely, investors are reportedly getting nervous about whether they will ever see satisfactory returns.<sup>115</sup> How do people find their rightful place in this ambiguous, ever-changing AI picture?</p>
+    </div>
+
+    <div class="side-rail">Cost of hesitation  /  The parent trap  /  Impatience economy  /  <span class="active">The dignity of work</span>  /  Social rewilding</div>
+
+    <div class="footer-left">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="footer-num">63</div>
+  </div>
+</body>
+</html>

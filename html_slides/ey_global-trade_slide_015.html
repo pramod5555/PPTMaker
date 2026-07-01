@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>EU-Mercosur Agreement Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #d8d8d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #d8d8d9;
+  }
+  .topband {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 76px;
+    background: #dcdcdc;
+    z-index: 4;
+  }
+  .lefttab {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 47px;
+    height: 79px;
+    background: #c0c0c7;
+    z-index: 5;
+  }
+  .divider {
+    position: absolute;
+    left: 0;
+    top: 78px;
+    width: 1280px;
+    height: 1px;
+    background: #bfc2c9;
+    z-index: 6;
+  }
+  .whitepanel {
+    position: absolute;
+    left: 0;
+    top: 79px;
+    width: 531px;
+    height: 641px;
+    background: #efefef;
+    z-index: 1;
+  }
+
+  .photo {
+    position: absolute;
+    left: 531px;
+    top: 0;
+    width: 749px;
+    height: 720px;
+    z-index: 2;
+    overflow: hidden;
+    background: #d6d3cf;
+  }
+  .photo svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 749px;
+    height: 720px;
+    display: block;
+  }
+
+  .insights {
+    position: absolute;
+    left: 56px;
+    top: 50px;
+    font-size: 31px;
+    line-height: 1;
+    color: #777884;
+    font-weight: 400;
+    transform: scale(0.5);
+    transform-origin: left top;
+    z-index: 30;
+    white-space: nowrap;
+  }
+  .title {
+    position: absolute;
+    left: 58px;
+    top: 118px;
+    width: 465px;
+    font-size: 35px;
+    line-height: 1.17;
+    color: #767684;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    z-index: 30;
+  }
+  .body, .p1, .p2, .p3, .p4 {
+    font-size: 16px;
+    line-height: 1.34;
+    color: #54555d;
+    font-weight: 400;
+    z-index: 30;
+  }
+  .body {
+    position: absolute;
+    left: 56px;
+    top: 267px;
+    width: 461px;
+  }
+  .subhead {
+    position: absolute;
+    left: 56px;
+    top: 401px;
+    width: 250px;
+    font-size: 17px;
+    line-height: 1.15;
+    color: #30313a;
+    font-weight: 700;
+    z-index: 30;
+  }
+  .p1 {
+    position: absolute;
+    left: 56px;
+    top: 425px;
+    width: 458px;
+  }
+  .p2 {
+    position: absolute;
+    left: 56px;
+    top: 483px;
+    width: 458px;
+  }
+  .p3 {
+    position: absolute;
+    left: 56px;
+    top: 541px;
+    width: 459px;
+  }
+  .p4 {
+    position: absolute;
+    left: 56px;
+    top: 614px;
+    width: 458px;
+  }
+  .footer {
+    position: absolute;
+    left: 57px;
+    bottom: 20px;
+    font-size: 10px;
+    line-height: 1;
+    color: #6f7077;
+    font-weight: 400;
+    z-index: 30;
+    white-space: nowrap;
+  }
+  .footer b {
+    font-weight: 700;
+  }
+
+  .nav {
+    position: absolute;
+    right: 249px;
+    top: 33px;
+    width: 82px;
+    height: 34px;
+    z-index: 50;
+  }
+  .nav .btn {
+    position: absolute;
+    top: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(216,216,219,0.97);
+  }
+  .nav .btn.left { left: 0; }
+  .nav .btn.right { left: 48px; }
+  .nav .arrow {
+    position: absolute;
+    top: 7px;
+    color: #474850;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 700;
+    z-index: 51;
+  }
+  .nav .arrow.left { left: 11px; }
+  .nav .arrow.right { left: 61px; }
+
+  .menu {
+    position: absolute;
+    right: 0;
+    top: 119px;
+    width: 71px;
+    z-index: 60;
+  }
+  .menu .item {
+    position: absolute;
+    right: 0;
+    width: 71px;
+    background: #4c4d55;
+    color: #ececef;
+    font-size: 11px;
+    line-height: 1.05;
+    font-weight: 400;
+    box-sizing: border-box;
+    padding: 8px 7px 7px 7px;
+    border-left: 2px solid #d5d84a;
+  }
+  .menu .i1 { top: 0; height: 36px; }
+  .menu .i2 { top: 51px; height: 36px; }
+  .menu .i3 { top: 102px; height: 50px; }
+  .menu .i4 { top: 153px; height: 36px; }
+  .menu .i5 { top: 204px; height: 50px; }
+  .menu .i6 { top: 255px; height: 36px; }
+  .menu .item span { display: block; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topband"></div>
+  <div class="lefttab"></div>
+  <div class="divider"></div>
+  <div class="whitepanel"></div>
+
+  <div class="photo">
+    <svg viewBox="0 0 749 720" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="skyWin" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#d9edf5"/>
+          <stop offset="0.3" stop-color="#9fd1e4"/>
+          <stop offset="0.65" stop-color="#66a8c6"/>
+          <stop offset="1" stop-color="#486f86"/>
+        </linearGradient>
+        <linearGradient id="stone" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#e3e2e1"/>
+          <stop offset="1" stop-color="#c7c6c6"/>
+        </linearGradient>
+        <pattern id="pavers" width="18" height="10" patternUnits="userSpaceOnUse">
+          <path d="M0,8 Q9,0 18,8" fill="none" stroke="#c9c6bf" stroke-width="1"/>
+        </pattern>
+      </defs>
+
+      <rect width="749" height="720" fill="#d5d2cd"/>
+
+      <g transform="translate(0,0)">
+        <path d="M0,0 L520,0 C575,0 638,6 705,16 L749,20 L749,720 L0,720 Z" fill="#d2d0cc"/>
+        <path d="M0,0 L515,0 C605,0 676,9 749,23 L749,0 Z" fill="#f0f0f0"/>
+
+        <g transform="translate(19,0)">
+          <path d="M0,0 L494,0 C571,0 651,8 728,18 L711,25 C639,15 567,8 493,8 L0,8 Z" fill="#efefef"/>
+          <path d="M0,8 L493,8 C567,8 639,15 711,25 L706,33 C634,23 563,17 492,17 L0,17 Z" fill="#dadada"/>
+          <path d="M0,17 L492,17 C563,17 634,23 706,33 L701,42 C630,32 560,26 492,26 L0,26 Z" fill="#cbcbcc"/>
+
+          <path d="M20,31 L504,31 C565,31 626,36 686,46 L685,67 C627,57 567,51 506,51 L20,51 Z" fill="url(#stone)"/>
+          <path d="M20,51 L506,51 C567,51 627,57 685,67 L684,81 C626,71 566,65 506,65 L20,65 Z" fill="#dadada"/>
+          <path d="M20,65 L506,65 C566,65 626,71 684,81 L683,96 C625,86 565,80 506,80 L20,80 Z" fill="#cfcfd0"/>
+
+          <rect x="19" y="33" width="478" height="10" fill="#8bc0d8"/>
+          <g fill="#eef8ff" opacity="0.95">
+            <rect x="24" y="34" width="78" height="8"/>
+            <rect x="104" y="34" width="70" height="8"/>
+            <rect x="176" y="34" width="88" height="8"/>
+            <rect x="266" y="34" width="90" height="8"/>
+            <rect x="358" y="34" width="75" height="8"/>
+            <rect x="435" y="34" width="57" height="8"/>
+          </g>
+
+          <g fill="#6fb6d3" opacity="0.85">
+            <polygon points="113,43 122,33 124,43"/>
+            <polygon points="143,43 151,33 153,43"/>
+          </g>
+
+          <path d="M12,79 L504,79 C563,79 622,84 681,94 L681,132 C621,122 562,117 502,117 L12,117 Z" fill="#d9d8d8"/>
+          <path d="M14,117 L501,117 C561,117 620,122 679,132 L678,168 C618,158 560,152 500,152 L14,152 Z" fill="#d4d3d3"/>
+
+          <g>
+            <rect x="30" y="80" width="15" height="16" fill="#4a4f57"/>
+            <rect x="60" y="82" width="15" height="14" fill="#4a4f57"/>
+            <rect x="90" y="82" width="15" height="14" fill="#e7edf0"/>
+            <rect x="120" y="82" width="15" height="14" fill="#58abc9"/>
+            <rect x="150" y="82" width="15" height="14" fill="#d8edf7"/>
+            <rect x="180" y="82" width="15" height="14" fill="#4a4f57"/>
+            <rect x="210" y="82" width="15" height="14" fill="#ebf3f6"/>
+            <rect x="240" y="82" width="15" height="14" fill="#4a4f57"/>
+            <rect x="270" y="82" width="15" height="14" fill="#cfe7ef"/>
+            <rect x="300" y="82" width="15" height="14" fill="#4a4f57"/>
+            <rect x="330" y="82" width="15" height="14" fill="#dbeef7"/>
+            <rect x="360" y="82" width="15" height="14" fill="#4a4f57"/>
+            <rect x="390" y="82" width="15" height="14" fill="#5db3d3"/>
+            <rect x="420" y="82" width="15" height="14" fill="#dceef7"/>
+            <rect x="450" y="82" width="15" height="14" fill="#4a4f57"/>
+            <rect x="480" y="82" width="15" height="14" fill="#d7ebf4"/>
+            <rect x="510" y="82" width="15" height="14" fill="#58a6c7"/>
+            <rect x="540" y="82" width="15" height="14" fill="#ddeff8"/>
+            <rect x="570" y="82" width="15" height="14" fill="#4a4f57"/>
+            <rect x="600" y="82" width="15" height="14" fill="#d9edf5"/>
+          </g>
+
+          <path d="M31,140 L504,140 C563,140 621,145 676,154 L675,196 C617,187 560,182 501,182 L31,182 Z" fill="#31363e"/>
+          <path d="M34,150 L503,150 C560,150 616,154 671,163 L670,184 C614,176 559,171 502,171 L34,171 Z" fill="url(#skyWin)"/>
+
+          <g>
+            <rect x="25" y="147" width="21" height="337" fill="#d0cfce"/>
+            <rect x="46" y="147" width="6" height="337" fill="#6d7077"/>
+            <rect x="54" y="147" width="11" height="337" fill="#d4d2d1"/>
+            <rect x="65" y="147" width="13" height="337" fill="#666972"/>
+
+            <rect x="79" y="147" width="12" height="337" fill="#ececea"/>
+            <rect x="91" y="147" width="114" height="337" fill="#bdbdbd"/>
+            <rect x="205" y="147" width="12" height="337" fill="#e9e9e8"/>
+
+            <rect x="219" y="147" width="8" height="337" fill="#cfcfce"/>
+            <rect x="227" y="147" width="13" height="337" fill="#676a72"/>
+            <rect x="240" y="147" width="8" height="337" fill="#dddcdc"/>
+            <rect x="248" y="147" width="82" height="337" fill="#ecebea"/>
+            <rect x="330" y="147" width="8" height="337" fill="#d7d7d6"/>
+            <rect x="338" y="147" width="13" height="337" fill="#666972"/>
+            <rect x="351" y="147" width="8" height="337" fill="#dddcdc"/>
+
+            <rect x="359" y="147" width="114" height="337" fill="#bdbdbd"/>
+            <rect x="473" y="147" width="12" height="337" fill="#ececea"/>
+            <rect x="485" y="147" width="13" height="337" fill="#666972"/>
+            <rect x="498" y="147" width="10" height="337" fill="#d7d7d6"/>
+            <rect x="508" y="147" width="8" height="337" fill="#666972"/>
+
+            <rect x="516" y="147" width="16" height="337" fill="#d5d4d3"/>
+            <rect x="532" y="147" width="7" height="337" fill="#666972"/>
+            <rect x="539" y="147" width="18" height="337" fill="#d5d4d3"/>
+            <rect x="557" y="147" width="7" height="337" fill="#666972"/>
+            <rect x="564" y="147" width="17" height="337" fill="#d5d4d3"/>
+            <rect x="581" y="147" width="7" height="337" fill="#666972"/>
+            <rect x="588" y="147" width="17" height="337" fill="#d5d4d3"/>
+            <rect x="605" y="147" width="7" height="337" fill="#666972"/>
+            <rect x="612" y="147" width="17" height="337" fill="#d5d4d3"/>
+            <rect x="629" y="147" width="8" height="337" fill="#666972"/>
+          </g>
+
+          <g stroke="#dcedf5" stroke-width="1">
+            <rect x="96" y="195" width="102" height="262" fill="url(#skyWin)"/>
+            <rect x="366" y="195" width="102" height="262" fill="url(#skyWin)"/>
+            <g>
+              <line x1="109" y1="195" x2="109" y2="457"/>
+              <line x1="122" y1="195" x2="122" y2="457"/>
+              <line x1="135" y1="195" x2="135" y2="457"/>
+              <line x1="148" y1="195" x2="148" y2="457"/>
+              <line x1="161" y1="195" x2="161" y2="457"/>
+              <line x1="174" y1="195" x2="174" y2="457"/>
+              <line x1="187" y1="195" x2="187" y2="457"/>
+            </g>
+            <g>
+              <line x1="379" y1="195" x2="379" y2="457"/>
+              <line x1="392" y1="195" x2="392" y2="457"/>
+              <line x1="405" y1="195" x2="405" y2="457"/>
+              <line x1="418" y1="195" x2="418" y2="457"/>
+              <line x1="431" y1="195" x2="431" y2="457"/>
+              <line x1="444" y1="195" x2="444" y2="457"/>
+              <line x1="457" y1="195" x2="457" y2="457"/>
+            </g>
+            <g>
+              <line x1="96" y1="220" x2="198" y2="220"/>
+              <line x1="96" y1="245" x2="198" y2="245"/>
+              <line x1="96" y1="270" x2="198" y2="270"/>
+              <line x1="96" y1="295" x2="198" y2="295"/>
+              <line x1="96" y1="320" x2="198" y2="320"/>
+              <line x1="96" y1="345" x2="198" y2="345"/>
+              <line x1="96" y1="370" x2="198" y2="370"/>
+              <line x1="96" y1="395" x2="198" y2="395"/>
+              <line x1="96" y1="420" x2="198" y2="420"/>
+
+              <line x1="366" y1="220" x2="468" y2="220"/>
+              <line x1="366" y1="245" x2="468" y2="245"/>
+              <line x1="366" y1="270" x2="468" y2="270"/>
+              <line x1="366" y1="295" x2="468" y2="295"/>
+              <line x1="366" y1="320" x2="468" y2="320"/>
+              <line x1="366" y1="345" x2="468" y2="345"/>
+              <line x1="366" y1="370" x2="468" y2="370"/>
+              <line x1="366" y1="395" x2="468" y2="395"/>
+              <line x1="366" y1="420" x2="468" y2="420"/>
+            </g>
+
+            <rect x="249" y="195" width="79" height="262" fill="url(#skyWin)"/>
+            <line x1="268" y1="195" x2="268" y2="457"/>
+            <line x1="288" y1="195" x2="288" y2="457"/>
+            <line x1="308" y1="195" x2="308" y2="457"/>
+            <line x1="249" y1="220" x2="328" y2="220"/>
+            <line x1="249" y1="245" x2="328" y2="245"/>
+            <line x1="249" y1="270" x2="328" y2="270"/>
+            <line x1="249" y1="295" x2="328" y2="295"/>
+            <line x1="249" y1="320" x2="328" y2="320"/>
+            <line x1="249" y1="345" x2="328" y2="345"/>
+            <line x1="249" y1="370" x2="328" y2="370"/>
+            <line x1="249" y1="395" x2="328" y2="395"/>
+            <line x1="249" y1="420" x2="328" y2="420"/>
+          </g>
+
+          <g>
+            <path d="M97,225 L199,225 L182,239 L114,239 Z" fill="#26282d"/>
+            <path d="M104,225 L126,208 L170,208 L192,225 Z" fill="#7c7c7b"/>
+            <line x1="126" y1="208" x2="126" y2="239" stroke="#3f3f3f" stroke-width="2"/>
+            <line x1="148" y1="208" x2="148" y2="239" stroke="#3f3f3f" stroke-width="2"/>
+            <line x1="170" y1="208" x2="170" y2="239" stroke="#3f3f3f" stroke-width="2"/>
+
+            <path d="M367,225 L469,225 L452,239 L384,239 Z" fill="#26282d"/>
+            <path d="M374,225 L396,208 L440,208 L462,225 Z" fill="#7c7c7b"/>
+            <line x1="396" y1="208" x2="396" y2="239" stroke="#3f3f3f" stroke-width="2"/>
+            <line x1="418" y1="208" x2="418" y2="239" stroke="#3f3f3f" stroke-width="2"/>
+            <line x1="440" y1="208" x2="440" y2="239" stroke="#3f3f3f" stroke-width="2"/>
+          </g>
+
+          <rect x="56" y="458" width="506" height="22" fill="#474747"/>
+          <rect x="54" y="480" width="512" height="14" fill="#565656"/>
+
+          <g stroke="#707070" stroke-width="2">
+            <line x1="70" y1="432" x2="70" y2="529"/>
+            <line x1="82" y1="432" x2="82" y2="529"/>
+            <line x1="94" y1="432" x2="94" y2="529"/>
+            <line x1="106" y1="432" x2="106" y2="529"/>
+            <line x1="118" y1="432" x2="118" y2="529"/>
+            <line x1="130" y1="432" x2="130" y2="529"/>
+            <line x1="142" y1="432" x2="142" y2="529"/>
+            <line x1="154" y1="432" x2="154" y2="529"/>
+            <line x1="166" y1="432" x2="166" y2="529"/>
+            <line x1="178" y1="432" x2="178" y2="529"/>
+            <line x1="190" y1="432" x2="190" y2="529"/>
+            <line x1="202" y1="432" x2="202" y2="529"/>
+            <line x1="214" y1="432" x2="214" y2="529"/>
+            <line x1="226" y1="432" x2="226" y2="529"/>
+            <line x1="238" y1="432" x2="238" y2="529"/>
+            <line x1="250" y1="432" x2="250" y2="529"/>
+            <line x1="262" y1="432" x2="262" y2="529"/>
+            <line x1="274" y1="432" x2="274" y2="529"/>
+            <line x1="286" y1="432" x2="286" y2="529"/>
+            <line x1="298" y1="432" x2="298" y2="529"/>
+            <line x1="310" y1="432" x2="310" y2="529"/>
+            <line x1="322" y1="432" x2="322" y2="529"/>
+            <line x1="334" y1="432" x2="334" y2="529"/>
+            <line x1="346" y1="432" x2="346" y2="529"/>
+            <line x1="358" y1="432" x2="358" y2="529"/>
+            <line x1="370" y1="432" x2="370" y2="529"/>
+            <line x1="382" y1="432" x2="382" y2="529"/>
+            <line x1="394" y1="432" x2="394" y2="529"/>
+            <line x1="406" y1="432" x2="406" y2="529"/>
+            <line x1="418" y1="432" x2="418" y2="529"/>
+            <line x1="430" y1="432" x2="430" y2="529"/>
+            <line x1="442" y1="432" x2="442" y2="529"/>
+            <line x1="454" y1="432" x2="454" y2="529"/>
+            <line x1="466" y1="432" x2="466" y2="529"/>
+            <line x1="478" y1="432" x2="478" y2="529"/>
+            <line x1="490" y1="432" x2="490" y2="529"/>
+            <line x1="502" y1="432" x2="502" y2="529"/>
+            <line x1="514" y1="432" x2="514" y2="529"/>
+            <line x1="526" y1="432" x2="526" y2="529"/>
+            <line x1="538" y1="432" x2="538" y2="529"/>
+            <line x1="550" y1="432" x2="550" y2="529"/>
+            <line x1="562" y1="432" x2="562" y2="529"/>
+          </g>
+
+          <g>
+            <line x1="82" y1="421" x2="82" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M82,424 L98,431 L98,444 L82,438 Z" fill="#df3134"/>
+            <path d="M82,438 L98,444 L98,457 L82,451 Z" fill="#ffffff"/>
+            <path d="M82,451 L98,457 L98,470 L82,464 Z" fill="#2e63c3"/>
+
+            <line x1="112" y1="421" x2="112" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M112,424 L127,430 L127,466 L112,460 Z" fill="#1aa14c"/>
+            <path d="M127,430 L142,436 L142,472 L127,466 Z" fill="#d61e2f"/>
+
+            <line x1="145" y1="421" x2="145" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M145,424 L159,430 L159,456 L145,450 Z" fill="#ffffff"/>
+            <path d="M159,430 L173,436 L173,462 L159,456 Z" fill="#eceff3"/>
+            <path d="M145,450 L159,456 L159,482 L145,476 Z" fill="#f59a27"/>
+
+            <line x1="181" y1="421" x2="181" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M181,424 L198,431 L198,481 L181,474 Z" fill="#c92049"/>
+
+            <line x1="217" y1="421" x2="217" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M217,424 L233,430 L233,462 L217,456 Z" fill="#f4c313"/>
+            <path d="M233,430 L249,436 L249,468 L233,462 Z" fill="#1f9a53"/>
+
+            <line x1="255" y1="421" x2="255" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M255,424 L270,430 L270,481 L255,474 Z" fill="#fb4d8f"/>
+            <path d="M270,430 L286,436 L286,468 L270,462 Z" fill="#77d2ff"/>
+
+            <line x1="297" y1="421" x2="297" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M297,424 L315,430 L315,481 L297,474 Z" fill="#ffffff"/>
+            <path d="M315,430 L333,436 L333,481 L315,474 Z" fill="#d11f35"/>
+
+            <line x1="342" y1="421" x2="342" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M342,424 L360,430 L360,481 L342,474 Z" fill="#d61f2e"/>
+
+            <line x1="389" y1="421" x2="389" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M389,424 L407,430 L407,481 L389,474 Z" fill="#eef2f5"/>
+            <path d="M407,430 L425,436 L425,481 L407,474 Z" fill="#ffffff"/>
+
+            <line x1="438" y1="421" x2="438" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M438,424 L457,430 L457,481 L438,474 Z" fill="#ff254e"/>
+            <path d="M457,430 L476,436 L476,481 L457,474 Z" fill="#ffffff"/>
+            <path d="M438,449 L457,455 L457,468 L438,462 Z" fill="#1f60c2"/>
+
+            <line x1="489" y1="421" x2="489" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M489,424 L508,430 L508,481 L489,474 Z" fill="#d9212d"/>
+            <path d="M508,430 L527,436 L527,481 L508,474 Z" fill="#ffdd1c"/>
+
+            <line x1="545" y1="421" x2="545" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M545,424 L564,430 L564,481 L545,474 Z" fill="#0ea95b"/>
+            <path d="M564,430 L583,436 L583,466 L564,460 Z" fill="#e23931"/>
+
+            <line x1="610" y1="421" x2="610" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M610,424 L627,430 L627,481 L610,474 Z" fill="#e91b36"/>
+            <path d="M627,430 L643,436 L643,468 L627,462 Z" fill="#0f9f4d"/>
+
+            <line x1="647" y1="421" x2="647" y2="479" stroke="#bcbcbc" stroke-width="2"/>
+            <path d="M647,424 L664,430 L664,481 L647,474 Z" fill="#ffffff"/>
+            <path d="M664,430 L681,436 L681,468 L664,462 Z" fill="#d9283a"/>
+          </g>
+
+          <rect x="46" y="494" width="522" height="12" fill="#8e8b86"/>
+
+          <rect x="0" y="506" width="730" height="69" fill="#cfc3b6"/>
+          <rect x="0" y="575" width="730" height="30" fill="#c7b59f"/>
+          <rect x="0" y="605" width="730" height="115" fill="#dddcd8"/>
+          <rect x="0" y="624" width="730" height="82" fill="url(#pavers)"/>
+
+          <rect x="662" y="505" width="59" height="28" fill="#955931"/>
+          <rect x="667" y="498" width="49" height="17" fill="#7ba45f"/>
+
+          <g fill="#2b2b2b">
+            <rect x="112" y="541" width="4" height="18"/><circle cx="114" cy="541" r="3"/>
+            <rect x="169" y="541" width="4" height="18"/><circle cx="171" cy="541" r="3"/>
+            <rect x="226" y="541" width="4" height="18"/><circle cx="228" cy="541" r="3"/>
+            <rect x="283" y="541" width="4" height="18"/><circle cx="285" cy="541" r="3"/>
+            <rect x="340" y="541" width="4" height="18"/><circle cx="342" cy="541" r="3"/>
+            <rect x="397" y="541" width="4" height="18"/><circle cx="399" cy="541" r="3"/>
+            <rect x="454" y="541" width="4" height="18"/><circle cx="456" cy="541" r="3"/>
+            <rect x="511" y="541" width="4" height="18"/><circle cx="513" cy="541" r="3"/>
+          </g>
+
+          <g fill="#2b2b2b">
+            <rect x="16" y="647" width="5" height="22"/><circle cx="18.5" cy="647" r="4"/>
+            <rect x="123" y="647" width="5" height="22"/><circle cx="125.5" cy="647" r="4"/>
+            <rect x="239" y="647" width="5" height="22"/><circle cx="241.5" cy="647" r="4"/>
+            <rect x="414" y="647" width="5" height="22"/><circle cx="416.5" cy="647" r="4"/>
+          </g>
+
+          <g stroke="#9c8572" stroke-width="2" fill="none">
+            <path d="M0,668 L0,640 L17,640 L17,668"/>
+            <path d="M97,670 L97,650 L181,650 L181,670"/>
+          </g>
+        </g>
+
+        <path d="M709,0 L749,0 L749,720 L686,720 C707,468 719,229 709,0 Z" fill="#5e6269"/>
+        <path d="M706,0 L749,0 L749,76 L706,118 Z" fill="#737882" opacity="0.28"/>
+        <path d="M706,351 L749,363 L749,378 L706,366 Z" fill="#757983" opacity="0.32"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="insights">Insights: Global</div>
+
+  <div class="title">EU-Mercosur Agreement:<br>Trade liberalization and the<br>road ahead for businesses</div>
+
+  <div class="body">
+    The European Union (EU) formally approved the conclusion of the EU-Mercosur
+    trade agreement, marking a decisive milestone after more than two decades of
+    negotiations. From a Mercosur perspective, the agreement is expected to expand
+    access to the EU market for agri-food exports and support investment, industrial
+    modernization and integration into global value chains. While the agreement
+    is still subject to parliamentary approval, it is opening a significant window of
+    opportunity for companies operating across both blocs.
+  </div>
+
+  <div class="subhead">Recent developments</div>
+
+  <div class="p1">
+    On 9 January 2026, the ambassadors of the 27 Member States of the EU
+    approved, by qualified majority, the conclusion of the trade agreement with
+    Mercosur, bringing to an end a negotiation process that lasted 25 years.
+  </div>
+
+  <div class="p2">
+    The decision, taken in Brussels, represents a historic milestone for economic
+    integration between the two blocs and paves the way for the formal
+    internationalization of the agreement between Mercosur and the European Union.
+  </div>
+
+  <div class="p3">
+    The agreement was formally signed on 17 January 2026, and while the
+    ratification has been completed on the Mercosur side, its application within
+    the European Union will depend on institutional procedures, including
+    parliamentary review.
+  </div>
+
+  <div class="p4">
+    Implications for business This set of measures establishes a solid foundation
+    for economic and regulatory integration between the blocs while also requiring
+    protection mechanisms for sensitive sectors such as agriculture which were
+    recently addressed through specific safeguards to manage impacts and ensure
+    balance in trade relations.
+  </div>
+
+  <div class="footer">12&nbsp;&nbsp;|&nbsp;&nbsp;<b>TradeWatch</b> Issue 1 2026</div>
+
+  <div class="nav">
+    <div class="btn left"></div>
+    <div class="btn right"></div>
+    <div class="arrow left">◀</div>
+    <div class="arrow right">▶</div>
+  </div>
+
+  <div class="menu">
+    <div class="item i1"><span>Contents</span></div>
+    <div class="item i2"><span>Insights</span></div>
+    <div class="item i3"><span>New on</span><span>ey.com</span></div>
+    <div class="item i4"><span>Tax alerts</span></div>
+    <div class="item i5"><span>Additional</span><span>resources</span></div>
+    <div class="item i6"><span>Contacts</span></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Technology Likely / Unlikely Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+    color:#666666;
+  }
+  #slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .title-q{
+    left:44px; top:48px;
+    font-size:39px; line-height:38px; font-weight:700; color:#000;
+  }
+  .title-main{
+    left:56px; top:106px;
+    font-size:35px; line-height:38px; font-weight:700; color:#5c5c5c;
+  }
+  .intro{
+    left:56px; top:173px; width:270px;
+    font-size:28px; line-height:1.12; font-weight:400; color:#5f5f5f;
+  }
+
+  .header-left{
+    left:390px; top:24px;
+    font-size:16px; line-height:18px; color:#6a6a6a;
+  }
+  .line1{
+    left:385px; top:52px; width:308px; height:1px;
+    background:#8ca0aa;
+  }
+  .legend-likely-box{
+    left:716px; top:24px; width:17px; height:17px;
+    background:#542c75;
+  }
+  .legend-likely{
+    left:741px; top:24px;
+    font-size:16px; line-height:18px; color:#6a6a6a;
+  }
+  .legend-unlikely-box{
+    left:1108px; top:23px; width:17px; height:17px;
+    background:#2daead;
+  }
+  .legend-unlikely{
+    left:1131px; top:24px;
+    font-size:16px; line-height:18px; color:#6a6a6a;
+  }
+  .header-right{
+    left:1219px; top:24px; width:104px;
+    font-size:16px; line-height:18px; color:#6a6a6a;
+    text-align:left;
+    white-space:nowrap;
+  }
+  .line2{
+    left:797px; top:52px; width:529px; height:1px;
+    background:#8ca0aa;
+  }
+
+  .row-label{
+    width:405px;
+    font-size:15px;
+    line-height:1.18;
+    color:#666666;
+    text-align:right;
+  }
+
+  .bar-purple, .bar-teal{
+    height:27px;
+    background-clip:padding-box;
+  }
+  .bar-purple{ background:#542c75; }
+  .bar-teal{ background:#2daead; }
+
+  .pct-left, .pct-right{
+    top:4px;
+    font-size:14px;
+    line-height:18px;
+    font-weight:700;
+    color:#ffffff;
+  }
+  .pct-left{ left:10px; }
+  .pct-right{ right:10px; }
+
+  .yr{
+    width:44px;
+    font-size:14px;
+    line-height:18px;
+    color:#6a6a6a;
+    text-align:right;
+    white-space:nowrap;
+  }
+  .delta{
+    font-size:13px;
+    line-height:18px;
+    color:#8a8a8a;
+    white-space:nowrap;
+  }
+
+  .arrow-up{
+    width:0; height:0;
+    border-left:9px solid transparent;
+    border-right:9px solid transparent;
+    border-bottom:0;
+    border-top:18px solid #9ad9d1;
+  }
+  .arrow-down{
+    width:0; height:0;
+    border-left:9px solid transparent;
+    border-right:9px solid transparent;
+    border-top:18px solid #ff5f61;
+  }
+  .arrow-flat{
+    width:0; height:0;
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+    border-left:17px solid #cfcfcf;
+  }
+
+  .footnote{
+    left:53px; top:610px; width:315px;
+    font-size:11px; line-height:1.45; font-style:italic; color:#8b8b8b;
+  }
+
+  .footer{
+    left:50px; top:728px;
+    font-size:10px; line-height:12px; color:#4f4f4f;
+  }
+  .page{
+    left:675px; top:728px; width:20px;
+    font-size:11px; line-height:12px; color:#4f4f4f;
+    text-align:center;
+  }
+
+  .ipsos{
+    left:1212px; top:691px; width:54px; height:50px;
+    overflow:hidden;
+    border-radius:1px;
+    background:linear-gradient(180deg,#3344a6 0%, #2150a8 58%, #15639e 100%);
+  }
+  .ipsos-green{
+    left:29px; top:0; width:25px; height:50px;
+    background:#20a88a;
+    clip-path:polygon(16% 0%,100% 0%,100% 100%,0% 100%,18% 70%,8% 49%,18% 31%);
+  }
+  .ipsos-face{
+    left:18px; top:4px; width:16px; height:24px;
+    background:#4d70c9;
+    border-radius:9px 9px 7px 7px / 10px 10px 8px 8px;
+    opacity:.95;
+  }
+  .ipsos-neck{
+    left:20px; top:24px; width:13px; height:13px;
+    background:#4d70c9;
+    border-radius:7px 7px 4px 4px;
+  }
+  .ipsos-text{
+    left:6px; top:29px;
+    font-size:14px; line-height:16px; font-weight:700; color:#fff;
+    letter-spacing:-0.02em;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+
+  <div class="title-q">Q.</div>
+  <div class="title-main">Technology</div>
+  <div class="intro">For each of the following,<br>please tell me how likely<br>or unlikely you think they<br>are to happen...?</div>
+
+  <div class="header-left">Global averages</div>
+  <div class="line1"></div>
+  <div class="legend-likely-box"></div>
+  <div class="legend-likely">Likely</div>
+  <div class="legend-unlikely-box"></div>
+  <div class="legend-unlikely">Unlikely</div>
+  <div class="header-right">% Likely 2023</div>
+  <div class="line2"></div>
+
+  <div class="row-label" style="left:389px; top:76px;">Artificial intelligence will lead to many new jobs being lost in<br>[COUNTRY]</div>
+  <div class="row-label" style="left:389px; top:131px;">Many more people will live their lives in virtual worlds</div>
+  <div class="row-label" style="left:389px; top:179px;">My personal data will be leaked on the internet</div>
+  <div class="row-label" style="left:389px; top:223px;">Robots will look like, think like and speak like humans</div>
+  <div class="row-label" style="left:389px; top:269px;">Strict rules for large technology companies will be<br>introduced by the Government in [COUNTRY]</div>
+  <div class="row-label" style="left:389px; top:322px;">Smartphones will be banned from schools in [COUNTRY]</div>
+  <div class="row-label" style="left:389px; top:365px;">Artificial intelligence will lead to many new jobs being<br>created in [COUNTRY]</div>
+  <div class="row-label" style="left:389px; top:409px;">Self-driving cars will become a usual sight on the streets of<br>my town/city</div>
+  <div class="row-label" style="left:389px; top:467px;">We will find a cure for cancer</div>
+  <div class="row-label" style="left:389px; top:513px;">I will use social media less</div>
+  <div class="row-label" style="left:389px; top:558px;">We will find life on other planets</div>
+  <div class="row-label" style="left:389px; top:595px;">Children under 14 in [COUNTRY] will be banned from using<br>social media</div>
+  <div class="row-label" style="left:389px; top:649px;">Aliens will visit earth</div>
+
+  <div class="bar-purple" style="left:805px; top:80px; width:254px;"><div class="pct-left">65%</div></div>
+  <div class="bar-purple" style="left:805px; top:128px; width:231px;"><div class="pct-left">59%</div></div>
+  <div class="bar-purple" style="left:805px; top:176px; width:223px;"><div class="pct-left">57%</div></div>
+  <div class="bar-purple" style="left:805px; top:224px; width:188px;"><div class="pct-left">48%</div></div>
+  <div class="bar-purple" style="left:805px; top:272px; width:184px;"><div class="pct-left">47%</div></div>
+  <div class="bar-purple" style="left:805px; top:320px; width:172px;"><div class="pct-left">44%</div></div>
+  <div class="bar-purple" style="left:805px; top:368px; width:168px;"><div class="pct-left">43%</div></div>
+  <div class="bar-purple" style="left:805px; top:416px; width:156px;"><div class="pct-left">40%</div></div>
+  <div class="bar-purple" style="left:805px; top:464px; width:156px;"><div class="pct-left">40%</div></div>
+  <div class="bar-purple" style="left:805px; top:512px; width:144px;"><div class="pct-left">37%</div></div>
+  <div class="bar-purple" style="left:805px; top:560px; width:133px;"><div class="pct-left">34%</div></div>
+  <div class="bar-purple" style="left:805px; top:608px; width:109px;"><div class="pct-left">28%</div></div>
+  <div class="bar-purple" style="left:805px; top:656px; width:70px;"><div class="pct-left">18%</div></div>
+
+  <div class="bar-teal" style="left:1089px; top:80px; width:106px;"><div class="pct-right">27%</div></div>
+  <div class="bar-teal" style="left:1073px; top:128px; width:122px;"><div class="pct-right">31%</div></div>
+  <div class="bar-teal" style="left:1060px; top:176px; width:136px;"><div class="pct-right">30%</div></div>
+  <div class="bar-teal" style="left:1028px; top:224px; width:167px;"><div class="pct-right">43%</div></div>
+  <div class="bar-teal" style="left:1039px; top:272px; width:156px;"><div class="pct-right">40%</div></div>
+  <div class="bar-teal" style="left:1041px; top:320px; width:154px;"><div class="pct-right">47%</div></div>
+  <div class="bar-teal" style="left:1024px; top:368px; width:171px;"><div class="pct-right">46%</div></div>
+  <div class="bar-teal" style="left:998px; top:416px; width:197px;"><div class="pct-right">51%</div></div>
+  <div class="bar-teal" style="left:967px; top:464px; width:228px;"><div class="pct-right">48%</div></div>
+  <div class="bar-teal" style="left:981px; top:512px; width:214px;"><div class="pct-right">55%</div></div>
+  <div class="bar-teal" style="left:998px; top:560px; width:197px;"><div class="pct-right">51%</div></div>
+  <div class="bar-teal" style="left:955px; top:608px; width:240px;"><div class="pct-right">62%</div></div>
+  <div class="bar-teal" style="left:935px; top:656px; width:260px;"><div class="pct-right">67%</div></div>
+
+  <div class="yr" style="left:1239px; top:84px;">64%</div>
+  <div class="arrow-up" style="left:1280px; top:85px;"></div>
+  <div class="delta" style="left:1300px; top:82px;">+1 pp</div>
+
+  <div class="yr" style="left:1246px; top:132px;">N/A</div>
+
+  <div class="yr" style="left:1245px; top:180px;">55%</div>
+  <div class="arrow-up" style="left:1286px; top:181px;"></div>
+  <div class="delta" style="left:1306px; top:178px;">+2 pp</div>
+
+  <div class="yr" style="left:1245px; top:228px;">50%</div>
+  <div class="arrow-down" style="left:1286px; top:229px;"></div>
+  <div class="delta" style="left:1306px; top:226px;">-2 pp</div>
+
+  <div class="yr" style="left:1246px; top:276px;">N/A</div>
+  <div class="yr" style="left:1246px; top:324px;">N/A</div>
+
+  <div class="yr" style="left:1239px; top:372px;">43%</div>
+  <div class="arrow-flat" style="left:1279px; top:371px;"></div>
+  <div class="delta" style="left:1302px; top:370px;">No change</div>
+
+  <div class="yr" style="left:1246px; top:420px;">N/A</div>
+  <div class="yr" style="left:1246px; top:468px;">N/A</div>
+
+  <div class="yr" style="left:1239px; top:516px;">41%</div>
+  <div class="arrow-down" style="left:1281px; top:517px;"></div>
+  <div class="delta" style="left:1302px; top:514px;">-4 pp</div>
+
+  <div class="yr" style="left:1246px; top:564px;">N/A</div>
+  <div class="yr" style="left:1246px; top:612px;">N/A</div>
+  <div class="yr" style="left:1246px; top:660px;">N/A</div>
+
+  <div class="footnote">Base: 23,721 adults aged 18 years and older in India, 18-74 in<br>Canada, Republic of Ireland, Malaysia, the Philippines, South<br>Africa, Turkey, and the United States, 20-74 in Thailand, 21-74<br>in Indonesia and Singapore, and 16-74 in all other countries.<br>Friday, October 25 – Friday November 8, 2024</div>
+
+  <div class="footer">© Ipsos Predictions 2025 Report</div>
+  <div class="page">34</div>
+
+  <div class="ipsos">
+    <div class="ipsos-green"></div>
+    <div class="ipsos-face"></div>
+    <div class="ipsos-neck"></div>
+    <div class="ipsos-text">Ipsos</div>
+  </div>
+
+</div>
+</body>
+</html>

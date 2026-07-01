@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1366, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dddddd;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1366px;
+    height:768px;
+    overflow:hidden;
+    background:#f3f3f3;
+    color:#5d5d5d;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .qnum{
+    left:45px;
+    top:43px;
+    font-size:38px;
+    line-height:1;
+    font-weight:700;
+    color:#000;
+  }
+  .left-title{
+    left:55px;
+    top:105px;
+    width:220px;
+    font-size:34px;
+    line-height:1.15;
+    font-weight:700;
+    color:#5b5b5b;
+  }
+  .left-body{
+    left:55px;
+    top:176px;
+    width:265px;
+    font-size:29px;
+    line-height:1.08;
+    font-weight:400;
+    color:#5b5b5b;
+  }
+  .base-note{
+    left:53px;
+    top:611px;
+    width:320px;
+    font-size:11px;
+    line-height:1.45;
+    font-style:italic;
+    color:#8e8e8e;
+  }
+  .copyright{
+    left:49px;
+    top:729px;
+    font-size:12px;
+    color:#4f4f4f;
+  }
+
+  .hdr-left{
+    left:393px;
+    top:22px;
+    font-size:15px;
+    color:#6a6a6a;
+  }
+  .rule1{
+    left:388px;
+    top:52px;
+    width:312px;
+    height:1px;
+    background:#8ea1b0;
+  }
+
+  .legend-like-box{
+    left:722px;
+    top:24px;
+    width:18px;
+    height:18px;
+    background:#2cacab;
+  }
+  .legend-like{
+    left:748px;
+    top:22px;
+    font-size:15px;
+    color:#6a6a6a;
+  }
+
+  .legend-un-box{
+    left:1113px;
+    top:23px;
+    width:17px;
+    height:17px;
+    background:#1c246d;
+  }
+  .legend-un{
+    left:1137px;
+    top:22px;
+    font-size:15px;
+    color:#6a6a6a;
+  }
+
+  .legend-2023{
+    left:1223px;
+    top:22px;
+    font-size:15px;
+    color:#6a6a6a;
+  }
+  .rule2{
+    left:715px;
+    top:52px;
+    width:480px;
+    height:1px;
+    background:#8ea1b0;
+  }
+  .rule3{
+    left:1212px;
+    top:52px;
+    width:132px;
+    height:1px;
+    background:#8ea1b0;
+  }
+
+  .label{
+    font-size:16px;
+    line-height:1.18;
+    color:#6a6a6a;
+    text-align:right;
+    font-weight:400;
+  }
+
+  .bar-like{
+    background:#2cacab;
+    height:68px;
+  }
+  .bar-un{
+    background:#1c246d;
+    height:68px;
+  }
+  .pct-white{
+    color:#fff;
+    font-size:26px;
+    line-height:68px;
+    font-weight:700;
+    padding-left:10px;
+  }
+  .pct-white.right{
+    text-align:right;
+    padding-left:0;
+    padding-right:10px;
+  }
+
+  .change{
+    font-size:13px;
+    line-height:1.2;
+    color:#7a7a7a;
+    white-space:nowrap;
+  }
+  .yearval{
+    font-size:19px;
+    line-height:1.1;
+    color:#666;
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .page{
+    left:676px;
+    top:728px;
+    font-size:15px;
+    color:#333;
+  }
+
+  .arrow-down{
+    width:0;
+    height:0;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-top:18px solid #f45b60;
+  }
+  .arrow-up{
+    width:0;
+    height:0;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:18px solid #24a9aa;
+  }
+  .arrow-right{
+    width:0;
+    height:0;
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+    border-left:16px solid #bdbdbd;
+  }
+
+  .logo-box{
+    left:1262px;
+    top:691px;
+    width:55px;
+    height:50px;
+    background:#21479b;
+    overflow:hidden;
+  }
+  .logo-green{
+    left:1295px;
+    top:691px;
+    width:22px;
+    height:50px;
+    background:#1fb2a5;
+    border-top-left-radius:18px;
+    border-bottom-left-radius:18px;
+  }
+  .logo-circle1{
+    left:1284px;
+    top:694px;
+    width:15px;
+    height:15px;
+    border-radius:50%;
+    background:#1fb2a5;
+    opacity:.9;
+  }
+  .logo-circle2{
+    left:1286px;
+    top:708px;
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background:#3c63bf;
+    opacity:.95;
+  }
+  .logo-text{
+    left:1269px;
+    top:717px;
+    font-size:16px;
+    line-height:1;
+    font-weight:700;
+    color:#fff;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qnum">Q.</div>
+
+  <div class="left-title">Society</div>
+
+  <div class="left-body">
+    For each of the following,<br>
+    please tell me how likely<br>
+    or unlikely you think they<br>
+    are to happen...?
+  </div>
+
+  <div class="base-note">
+    Base: 23,721 adults aged 18 years and older in India, 18-74 in<br>
+    Canada, Republic of Ireland, Malaysia, the Philippines, South<br>
+    Africa, Turkey, and the United States, 20-74 in Thailand, 21-74<br>
+    in Indonesia and Singapore, and 16-74 in all other countries.<br>
+    Friday, October 25 – Friday November 8, 2024
+  </div>
+
+  <div class="copyright">© Ipsos Predictions 2025 Report</div>
+
+  <div class="hdr-left">Global averages</div>
+  <div class="rule1"></div>
+
+  <div class="legend-like-box"></div>
+  <div class="legend-like">Likely</div>
+  <div class="legend-un-box"></div>
+  <div class="legend-un">Unlikely</div>
+  <div class="legend-2023">% Likely 2023</div>
+  <div class="rule2"></div>
+  <div class="rule3"></div>
+
+  <div class="label" style="left:408px; top:114px; width:302px;">
+    The level of immigration into [COUNTRY] will<br>increase
+  </div>
+  <div class="bar-like" style="left:722px; top:97px; width:317px;">
+    <div class="pct-white">67%</div>
+  </div>
+  <div class="bar-un" style="left:1086px; top:97px; width:110px;">
+    <div class="pct-white right">23%</div>
+  </div>
+  <div class="arrow-down" style="left:1245px; top:102px;"></div>
+  <div class="change" style="left:1268px; top:103px;">−4 pp</div>
+  <div class="yearval" style="left:1253px; top:133px;">71%</div>
+
+  <div class="label" style="left:414px; top:236px; width:296px;">
+    Women will be paid the same as men for the<br>same work
+  </div>
+  <div class="bar-like" style="left:722px; top:218px; width:232px;">
+    <div class="pct-white">49%</div>
+  </div>
+  <div class="bar-un" style="left:993px; top:218px; width:203px;">
+    <div class="pct-white right">43%</div>
+  </div>
+  <div class="arrow-up" style="left:1246px; top:224px;"></div>
+  <div class="change" style="left:1268px; top:225px;">+1 pp</div>
+  <div class="yearval" style="left:1251px; top:255px;">48%</div>
+
+  <div class="label" style="left:395px; top:369px; width:315px;">
+    The total population size of [COUNTRY] will fall
+  </div>
+  <div class="bar-like" style="left:722px; top:340px; width:186px;">
+    <div class="pct-white">39%</div>
+  </div>
+  <div class="bar-un" style="left:953px; top:340px; width:243px;">
+    <div class="pct-white right">51%</div>
+  </div>
+  <div class="arrow-right" style="left:1229px; top:347px;"></div>
+  <div class="change" style="left:1251px; top:350px;">No change</div>
+  <div class="yearval" style="left:1253px; top:382px;">39%</div>
+
+  <div class="label" style="left:442px; top:481px; width:268px;">
+    People in [COUNTRY] will become more<br>tolerant of each other
+  </div>
+  <div class="bar-like" style="left:722px; top:463px; width:157px;">
+    <div class="pct-white">33%</div>
+  </div>
+  <div class="bar-un" style="left:915px; top:463px; width:281px;">
+    <div class="pct-white right">59%</div>
+  </div>
+  <div class="arrow-down" style="left:1245px; top:467px;"></div>
+  <div class="change" style="left:1268px; top:469px;">−2 pp</div>
+  <div class="yearval" style="left:1251px; top:498px;">35%</div>
+
+  <div class="label" style="left:424px; top:597px; width:286px;">
+    It will become normal for businesses in my<br>country to implement a four-day working week
+  </div>
+  <div class="bar-like" style="left:722px; top:585px; width:152px;">
+    <div class="pct-white">32%</div>
+  </div>
+  <div class="bar-un" style="left:915px; top:585px; width:281px;">
+    <div class="pct-white right">59%</div>
+  </div>
+  <div class="yearval" style="left:1244px; top:607px; font-size:18px;">N/A</div>
+
+  <div class="page">68</div>
+
+  <div class="logo-box"></div>
+  <div class="logo-green"></div>
+  <div class="logo-circle1"></div>
+  <div class="logo-circle2"></div>
+  <div class="logo-text">Ipsos</div>
+</div>
+</body>
+</html>

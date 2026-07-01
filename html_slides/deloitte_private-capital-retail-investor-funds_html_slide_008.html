@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>JPMorgan Private Markets Fund</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+    color:#111;
+  }
+  .title{
+    position:absolute;
+    left:31px;
+    top:31px;
+    width:1170px;
+    font-size:30px;
+    line-height:31px;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-0.2px;
+  }
+  .top-rule{
+    position:absolute;
+    left:30px;
+    top:102px;
+    width:1210px;
+    height:1px;
+    background:#666;
+  }
+
+  .section-title{
+    position:absolute;
+    font-size:24px;
+    line-height:26px;
+    font-weight:700;
+    color:#111;
+    text-align:center;
+  }
+  .section-line{
+    position:absolute;
+    height:6px;
+    background:#678297;
+  }
+
+  .left-sec-title{ left:173px; top:146px; width:270px; }
+  .left-sec-line{ left:47px; top:183px; width:541px; }
+
+  .right-sec-title{ left:794px; top:146px; width:330px; }
+  .right-sec-line{ left:691px; top:183px; width:528px; }
+
+  .divider{
+    position:absolute;
+    left:638px;
+    top:191px;
+    width:2px;
+    height:393px;
+    background:#9e9e9e;
+  }
+
+  .card{
+    position:absolute;
+    background:#e6e7e8;
+  }
+  .labelbox{
+    position:absolute;
+    background:#cfe2e6;
+  }
+  .vsep{
+    position:absolute;
+    width:5px;
+    background:#678297;
+  }
+
+  .box-title{
+    position:absolute;
+    left:0;
+    width:100%;
+    text-align:center;
+    font-weight:700;
+    color:#1a1a1a;
+  }
+  .bullet-text{
+    position:absolute;
+    font-size:19px;
+    line-height:24px;
+    font-weight:400;
+    color:#111;
+  }
+  .bullet-text ul{
+    margin:0;
+    padding-left:28px;
+  }
+  .bullet-text li{
+    margin:0 0 8px 0;
+  }
+  .sup{
+    font-size:10px;
+    vertical-align:super;
+  }
+
+  .l1-label{ left:42px; top:211px; width:205px; height:164px; }
+  .l1-sep{ left:254px; top:211px; height:164px; }
+  .l1-text{ left:262px; top:211px; width:349px; height:164px; }
+
+  .l2-label{ left:42px; top:393px; width:205px; height:164px; }
+  .l2-sep{ left:254px; top:393px; height:164px; }
+  .l2-text{ left:262px; top:393px; width:349px; height:164px; }
+
+  .r1-label{ left:670px; top:211px; width:205px; height:105px; }
+  .r1-sep{ left:883px; top:211px; height:105px; }
+  .r1-text{ left:891px; top:211px; width:350px; height:105px; }
+
+  .r2-label{ left:670px; top:332px; width:205px; height:106px; }
+  .r2-sep{ left:883px; top:332px; height:106px; }
+  .r2-text{ left:891px; top:332px; width:350px; height:106px; }
+
+  .r3-label{ left:670px; top:452px; width:205px; height:105px; }
+  .r3-sep{ left:883px; top:452px; height:105px; }
+  .r3-text{ left:891px; top:452px; width:350px; height:105px; }
+
+  .l-title{
+    top:15px;
+    font-size:20px;
+    line-height:22px;
+  }
+  .r-title{
+    top:9px;
+    font-size:18px;
+    line-height:20px;
+  }
+
+  .target-icon{ position:absolute; left:65px; top:74px; width:75px; height:75px; }
+  .tag-icon{ position:absolute; left:53px; top:74px; width:92px; height:76px; }
+  .coin-icon{ position:absolute; left:58px; top:58px; width:82px; height:54px; }
+  .network-icon{ position:absolute; left:63px; top:57px; width:74px; height:59px; }
+  .world-icon{ position:absolute; left:61px; top:57px; width:74px; height:63px; }
+
+  .footnotes{
+    position:absolute;
+    left:31px;
+    top:623px;
+    width:1182px;
+    font-size:11px;
+    line-height:13px;
+    color:#222;
+    font-weight:400;
+  }
+  .bottom-rule{
+    position:absolute;
+    left:31px;
+    top:690px;
+    width:1210px;
+    height:1px;
+    background:#9d9d9d;
+  }
+  .page{
+    position:absolute;
+    left:31px;
+    top:734px;
+    transform:translateY(-12px);
+    font-size:20px;
+    line-height:20px;
+    font-weight:400;
+    color:#111;
+  }
+
+  .logo{
+    position:absolute;
+    right:36px;
+    top:701px;
+    width:170px;
+    transform:translateY(-8px);
+    text-align:left;
+    color:#111;
+  }
+  .logo .jp{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:25px;
+    line-height:25px;
+    font-weight:400;
+    letter-spacing:-0.02em;
+  }
+  .logo .am{
+    margin-top:7px;
+    font-size:12px;
+    line-height:12px;
+    font-weight:700;
+    letter-spacing:0.03em;
+  }
+
+  svg{ display:block; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">JPMorgan Private Markets Fund (“JPMF”) provides investors private equity exposure in a simplified structure</div>
+  <div class="top-rule"></div>
+
+  <div class="section-title left-sec-title">Portfolio Solution</div>
+  <div class="section-line left-sec-line"></div>
+
+  <div class="section-title right-sec-title">Competitive Advantage</div>
+  <div class="section-line right-sec-line"></div>
+
+  <div class="divider"></div>
+
+  <div class="labelbox l1-label">
+    <div class="box-title l-title">Portfolio<br>Construction</div>
+    <div class="target-icon">
+      <svg width="75" height="75" viewBox="0 0 75 75" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="34" cy="42" r="28" fill="none" stroke="#4f4f4f" stroke-width="1.5"/>
+        <circle cx="34" cy="42" r="19" fill="#1e88e5"/>
+        <circle cx="34" cy="42" r="10" fill="#d9eff3"/>
+        <circle cx="34" cy="42" r="4" fill="#1e88e5"/>
+        <line x1="34" y1="42" x2="51" y2="25" stroke="#7a7a7a" stroke-width="2"/>
+        <path d="M48 20 L59 17 L56 22 L60 27 L50 28 L53 24 Z" fill="none" stroke="#7a7a7a" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+  <div class="vsep l1-sep"></div>
+  <div class="card l1-text">
+    <div class="bullet-text" style="left:10px; top:9px; width:322px;">
+      <ul>
+        <li>Global buyout investments</li>
+        <li>Secondaries &amp; co-investments<br>mitigate j-curve &amp; compound<br>returns</li>
+        <li>Core PE or complementary<br>small-mid exposure</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="labelbox l2-label">
+    <div class="box-title l-title">Simplified<br>Structure</div>
+    <div class="tag-icon">
+      <svg width="92" height="76" viewBox="0 0 92 76" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(10,8)">
+          <path d="M12 30 L34 8 L60 8 C66 8 70 12 70 18 L70 40 L42 66 Z" fill="none" stroke="#4f4f4f" stroke-width="1.6"/>
+          <circle cx="57" cy="20" r="5.3" fill="none" stroke="#4f4f4f" stroke-width="1.4"/>
+          <circle cx="36" cy="38" r="15" fill="#1e88e5"/>
+          <path d="M29 43 C30 39,31 37,34 35 C37 33,39 29,38 25" fill="none" stroke="#d9eff3" stroke-width="2" stroke-linecap="round"/>
+          <path d="M37 46 C37 42,39 38,43 36 C46 34,48 30,47 26" fill="none" stroke="#d9eff3" stroke-width="2" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="vsep l2-sep"></div>
+  <div class="card l2-text">
+    <div class="bullet-text" style="left:10px; top:8px; width:325px;">
+      <ul>
+        <li>Evergreen, tender-offer fund</li>
+        <li>Day-one exposure to PE</li>
+        <li>Monthly reporting, no capital<br>calls, potential quarterly<br>liquidity<span class="sup">1</span>, no K1s</li>
+        <li>Competitive fee schedule</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="labelbox r1-label">
+    <div class="box-title r-title">Small-Mid<br>Market Focus</div>
+    <div class="coin-icon">
+      <svg width="82" height="54" viewBox="0 0 82 54" xmlns="http://www.w3.org/2000/svg">
+        <line x1="10" y1="44" x2="55" y2="44" stroke="#4f4f4f" stroke-width="1.5"/>
+        <line x1="10" y1="44" x2="10" y2="12" stroke="#4f4f4f" stroke-width="1.5"/>
+        <line x1="14" y1="39" x2="34" y2="20" stroke="#4f4f4f" stroke-width="1.5"/>
+        <path d="M30 20 L37 20 L37 13 L44 20 L37 27 L37 22 Z" fill="none" stroke="#4f4f4f" stroke-width="1.5" stroke-linejoin="round"/>
+        <circle cx="55" cy="12" r="12" fill="#1e88e5"/>
+        <text x="55" y="17" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#d9eff3" font-weight="700">$</text>
+      </svg>
+    </div>
+  </div>
+  <div class="vsep r1-sep"></div>
+  <div class="card r1-text">
+    <div class="bullet-text" style="left:9px; top:17px; width:325px;">
+      <ul>
+        <li>Large investable universe</li>
+        <li>Multiple avenues for exit</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="labelbox r2-label">
+    <div class="box-title r-title">Multi-Manager<br>Strategy</div>
+    <div class="network-icon">
+      <svg width="74" height="59" viewBox="0 0 74 59" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="37" cy="30" r="22" fill="none" stroke="#4f4f4f" stroke-width="1.5"/>
+        <circle cx="37" cy="30" r="16" fill="#1e88e5"/>
+        <circle cx="28" cy="22" r="2.1" fill="#d9eff3"/>
+        <circle cx="46" cy="22" r="2.1" fill="#d9eff3"/>
+        <circle cx="28" cy="38" r="2.1" fill="#d9eff3"/>
+        <circle cx="46" cy="38" r="2.1" fill="#d9eff3"/>
+        <line x1="28" y1="22" x2="46" y2="38" stroke="#d9eff3" stroke-width="1.5"/>
+        <line x1="46" y1="22" x2="28" y2="38" stroke="#d9eff3" stroke-width="1.5"/>
+        <line x1="28" y1="22" x2="28" y2="38" stroke="#d9eff3" stroke-width="1.3"/>
+        <line x1="46" y1="22" x2="46" y2="38" stroke="#d9eff3" stroke-width="1.3"/>
+      </svg>
+    </div>
+  </div>
+  <div class="vsep r2-sep"></div>
+  <div class="card r2-text">
+    <div class="bullet-text" style="left:9px; top:16px; width:323px;">
+      <ul>
+        <li>Network of 260 managers<span class="sup">2</span></li>
+        <li>Access top quartile General<br>Partners</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="labelbox r3-label">
+    <div class="box-title r-title">Deep Knowledge<br>&amp; Expertise</div>
+    <div class="world-icon">
+      <svg width="74" height="63" viewBox="0 0 74 63" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="37" cy="31.5" r="22" fill="#1e88e5" stroke="#4f4f4f" stroke-width="1.4"/>
+        <path d="M20 29 L25 25 L31 26 L32 21 L38 19 L42 23 L46 22 L50 25 L55 27 L53 32 L48 33 L46 38 L40 37 L36 40 L34 46 L28 45 L27 39 L23 37 L22 33 Z" fill="#d9eff3"/>
+        <path d="M33 10 L37 12 L41 16 L40 20 L36 20 L33 17 L30 13 Z" fill="#d9eff3"/>
+        <path d="M49 39 L53 41 L55 45 L51 49 L46 48 L45 43 Z" fill="#d9eff3"/>
+        <line x1="15" y1="31.5" x2="59" y2="31.5" stroke="#4f4f4f" stroke-width="0.9" opacity="0.45"/>
+        <line x1="37" y1="10" x2="37" y2="53" stroke="#4f4f4f" stroke-width="0.9" opacity="0.45"/>
+      </svg>
+    </div>
+  </div>
+  <div class="vsep r3-sep"></div>
+  <div class="card r3-text">
+    <div class="bullet-text" style="left:9px; top:16px; width:325px;">
+      <ul>
+        <li>45+ years of experience<span class="sup">3</span></li>
+        <li>Access of world’s largest<br>financial institution</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footnotes">
+    1 The strategy expects to offer investors limited quarterly liquidity through a tender offer process. Under normal market conditions, the Adviser expects to recommend that the Fund<br>
+    repurchase 5% of its outstanding shares at their net asset value. No assurance can be given that such tender offers will be approved by the Board. If a tender offer is oversubscribed,<br>
+    investors may be subject to pro rata reduction in the Shares ultimately repurchased by the Fund. All terms of each tender offer will be publicly disclosed.<br>
+    2 Active GP relationships based on positive Net Asset Value (“NAV”) of PEG platform investments since inception as of 12/31/2025.<br>
+    3 Includes investing experience at both PEG and AT&amp;T Investment Management Corporation (ATTIMCO). Portfolio Management team average tenure represents voting eligible members.
+  </div>
+  <div class="bottom-rule"></div>
+  <div class="page">8</div>
+
+  <div class="logo">
+    <div class="jp">J.P.Morgan</div>
+    <div class="am">ASSET MANAGEMENT</div>
+  </div>
+</div>
+</body>
+</html>

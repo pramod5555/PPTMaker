@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Affordability Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#efecf0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efecf0;
+    color:#111;
+  }
+
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:24px;
+    background:#efefee;
+    border-bottom:1px solid #d8d5da;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:24px;
+    line-height:24px;
+    font-size:11px;
+    color:#88837f;
+    font-weight:700;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .tab.active-left{
+    background:#5b147e;
+    color:#fff;
+  }
+  .tab.active{
+    color:#4d1d78;
+  }
+  .tab-underline{
+    position:absolute;
+    top:21px;
+    height:2px;
+    background:#8e2de2;
+  }
+
+  .title{
+    position:absolute;
+    left:41px;
+    top:60px;
+    width:1175px;
+    font-size:28px;
+    line-height:28px;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    position:absolute;
+    left:41px;
+    top:120px;
+    font-size:25px;
+    line-height:25px;
+    color:#971bff;
+    font-weight:700;
+  }
+
+  .section-head{
+    position:absolute;
+    font-size:18px;
+    line-height:22px;
+    font-weight:700;
+    color:#55207f;
+  }
+  .body-text{
+    position:absolute;
+    font-size:15px;
+    line-height:18px;
+    color:#a8a3a6;
+    font-weight:400;
+  }
+
+  .bubble{
+    position:absolute;
+    border:3px solid #9f9c98;
+    border-radius:50%;
+    background:transparent;
+  }
+  .bubble-title{
+    position:absolute;
+    font-size:17px;
+    line-height:20px;
+    font-weight:700;
+    color:#55207f;
+    text-align:center;
+  }
+
+  .connector{
+    position:absolute;
+    background:#9f9c98;
+    transform-origin:left center;
+    border-radius:2px;
+  }
+
+  .photo{
+    position:absolute;
+    border-radius:50%;
+    overflow:hidden;
+    box-shadow:0 1px 4px rgba(0,0,0,0.25);
+    border:none;
+  }
+
+  /* left faux photo */
+  .photo-left{
+    background:
+      radial-gradient(circle at 50% 25%, rgba(255,255,255,0.95) 0 28%, transparent 29%),
+      radial-gradient(circle at 30% 52%, #f0d3be 0 9%, transparent 10%),
+      radial-gradient(circle at 65% 55%, #f2d1c0 0 9%, transparent 10%),
+      radial-gradient(circle at 45% 42%, #efcfb8 0 8%, transparent 9%),
+      radial-gradient(circle at 32% 47%, #2e2e34 0 11%, transparent 12%),
+      radial-gradient(circle at 66% 49%, #6f4b39 0 10%, transparent 11%),
+      radial-gradient(circle at 46% 37%, #3a342f 0 10%, transparent 11%),
+      linear-gradient(120deg, transparent 0 37%, #4b4b4b 38% 39%, transparent 40% 100%),
+      linear-gradient(45deg, transparent 0 55%, #8d7a6e 56% 57%, transparent 58% 100%),
+      radial-gradient(circle at 44% 62%, #7a8797 0 17%, transparent 18%),
+      radial-gradient(circle at 68% 68%, #f2e1df 0 13%, transparent 14%),
+      radial-gradient(circle at 22% 32%, #d8d8d8 0 6%, transparent 7%),
+      radial-gradient(circle at 80% 30%, #dad6d0 0 7%, transparent 8%),
+      linear-gradient(180deg, #f7f3ef 0%, #efedea 60%, #ddd8d1 100%);
+  }
+
+  /* right faux photo */
+  .photo-right{
+    background:
+      radial-gradient(circle at 53% 35%, #4a2d26 0 18%, transparent 19%),
+      radial-gradient(circle at 43% 34%, #2b1c1a 0 24%, transparent 25%),
+      radial-gradient(circle at 62% 37%, #281915 0 22%, transparent 23%),
+      radial-gradient(circle at 50% 46%, #a96c55 0 13%, transparent 14%),
+      radial-gradient(circle at 50% 54%, #d9b198 0 9%, transparent 10%),
+      radial-gradient(circle at 46% 49%, #d2a589 0 3%, transparent 4%),
+      radial-gradient(circle at 54% 49%, #d2a589 0 3%, transparent 4%),
+      radial-gradient(circle at 50% 52%, #5a4035 0 1.5%, transparent 2.5%),
+      radial-gradient(circle at 50% 58%, #ad6f56 0 4%, transparent 5%),
+      linear-gradient(180deg, transparent 0 60%, #8cb3c6 60% 100%),
+      linear-gradient(90deg, #2f7b8c 0%, #5c9b8f 28%, #8ea97f 45%, #b36f46 72%, #7b5643 100%);
+  }
+  .phone{
+    position:absolute;
+    left:111px;
+    top:96px;
+    width:34px;
+    height:58px;
+    border-radius:6px;
+    background:linear-gradient(180deg, #dfe4e7, #a9adb2);
+    box-shadow:0 1px 2px rgba(0,0,0,0.3);
+    transform:rotate(4deg);
+  }
+  .phone:before{
+    content:"";
+    position:absolute;
+    left:4px;
+    top:7px;
+    width:26px;
+    height:40px;
+    border-radius:3px;
+    background:linear-gradient(180deg, #8c9195, #c9cccf);
+  }
+  .phone:after{
+    content:"";
+    position:absolute;
+    left:14px;
+    top:50px;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#8f9499;
+  }
+
+  .source{
+    position:absolute;
+    left:41px;
+    top:727px;
+    transform:translateY(-100%);
+    font-size:12px;
+    color:#7f7d80;
+  }
+  .source-icon{
+    position:absolute;
+    left:40px;
+    top:694px;
+    width:22px;
+    height:16px;
+  }
+  .source-icon:before,
+  .source-icon:after{
+    content:"";
+    position:absolute;
+    top:3px;
+    width:20px;
+    height:0;
+    border-top:4px solid #971bff;
+    transform-origin:left center;
+  }
+  .source-icon:before{ left:0; transform:rotate(20deg); }
+  .source-icon:after{ left:0; transform:rotate(-20deg); }
+
+  .footer{
+    position:absolute;
+    right:40px;
+    bottom:18px;
+    font-size:11px;
+    color:#6c6a6d;
+  }
+  .page{
+    position:absolute;
+    right:18px;
+    bottom:18px;
+    font-size:16px;
+    color:#6c6a6d;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar">
+    <div class="tab active-left" style="left:0px;width:105px;">Top 10 trends</div>
+    <div class="tab" style="left:105px;width:136px;">Multi-speed growth</div>
+    <div class="tab" style="left:241px;width:112px;">Tariff impacts</div>
+    <div class="tab" style="left:353px;width:132px;">Financial fragility</div>
+    <div class="tab active" style="left:485px;width:125px;">Affordability</div>
+    <div class="tab-underline" style="left:485px;width:125px;"></div>
+    <div class="tab" style="left:610px;width:127px;">AI productivity</div>
+    <div class="tab" style="left:737px;width:123px;">China exports</div>
+    <div class="tab" style="left:860px;width:130px;">Europe struggle</div>
+    <div class="tab" style="left:990px;width:116px;">AI arms race</div>
+    <div class="tab" style="left:1106px;width:120px;">Power crunch</div>
+    <div class="tab" style="left:1226px;width:54px;">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">Companies need to understand how consumer’s lifestyles and consumption habits evolve<br>as affordability challenges persist in 2026 – this will also by different consumer segments</div>
+  <div class="subtitle">4. How consumers may react to affordability squeeze</div>
+
+  <!-- Left top -->
+  <div class="section-head" style="left:45px;top:198px;width:255px;">Shift to discount retailers</div>
+  <div class="body-text" style="left:45px;top:224px;width:245px;">Expect more consumers –<br>including middle- and high-<br>income ones – start to shift to<br>discount retailers</div>
+
+  <div class="section-head" style="left:353px;top:197px;width:264px;">Saving less for retirement</div>
+  <div class="body-text" style="left:353px;top:224px;width:265px;">Households will have less money at the<br>end of each month to contribute to<br>retirement. or rainy day, savings</div>
+
+  <!-- Left middle left -->
+  <div class="section-head" style="left:46px;top:349px;width:120px;">Adapting<br>lifestyles</div>
+  <div class="body-text" style="left:46px;top:397px;width:126px;">Plan for<br>households to cut<br>leisure and dining,<br>in place for at-<br>home activities</div>
+
+  <!-- Left middle right -->
+  <div class="section-head" style="left:573px;top:346px;width:140px;">Adapting travel<br>habits</div>
+  <div class="body-text" style="left:573px;top:393px;width:160px;">Consumers may shift<br>more to domestic<br>holidays which are<br>cheaper in nature</div>
+
+  <!-- Left bottom left -->
+  <div class="section-head" style="left:45px;top:583px;width:214px;">Shift to private label</div>
+  <div class="body-text" style="left:45px;top:609px;width:243px;">More consumers will shift to<br>private label goods, particularly<br>for everyday essentials where<br>there is little brand loyalty</div>
+
+  <!-- Left bottom center -->
+  <div class="section-head" style="left:305px;top:596px;width:220px;">Prioritizing essentials</div>
+  <div class="body-text" style="left:305px;top:622px;width:245px;">Consumers will prioritize<br>essentials like housing and<br>food</div>
+
+  <!-- Left circle and connectors -->
+  <div class="bubble" style="left:179px;top:286px;width:379px;height:273px;"></div>
+  <div class="bubble-title" style="left:287px;top:306px;width:157px;">Gen X / Millennial<br>consumers</div>
+  <div class="photo photo-left" style="left:251px;top:358px;width:215px;height:154px;"></div>
+
+  <div class="connector" style="left:254px;top:307px;width:36px;height:4px;transform:rotate(68deg);"></div>
+  <div class="connector" style="left:466px;top:314px;width:34px;height:4px;transform:rotate(113deg);"></div>
+  <div class="connector" style="left:153px;top:379px;width:35px;height:4px;transform:rotate(5deg);"></div>
+  <div class="connector" style="left:523px;top:358px;width:34px;height:4px;transform:rotate(-24deg);"></div>
+  <div class="connector" style="left:214px;top:538px;width:44px;height:4px;transform:rotate(123deg);"></div>
+  <div class="connector" style="left:369px;top:563px;width:33px;height:4px;transform:rotate(89deg);"></div>
+
+  <!-- Right top -->
+  <div class="section-head" style="left:679px;top:199px;width:317px;">Delaying marriage and home buying</div>
+  <div class="body-text" style="left:679px;top:225px;width:323px;">Expect more GenZ to delay major life<br>milestones as they perceive their financials<br>limit major decisions</div>
+
+  <div class="section-head" style="left:1043px;top:199px;width:174px;">Indulging selectively</div>
+  <div class="body-text" style="left:1043px;top:225px;width:191px;">GenZ still value luxuries, but<br>will do this selectively based<br>on trade-offs they need to<br>make in their budgets</div>
+
+  <!-- Right middle/bottom -->
+  <div class="section-head" style="left:575px;top:497px;width:106px;">Side hustles</div>
+  <div class="body-text" style="left:575px;top:524px;width:188px;">Expect more GenZ to take<br>on side jobs to boost their<br>disposable income</div>
+
+  <div class="section-head" style="left:675px;top:592px;width:162px;">Buying “dupes”</div>
+  <div class="body-text" style="left:675px;top:618px;width:213px;">GenZ are more likely to turn to<br>“dupes” given their constrained<br>financials and prominence on<br>social media platforms</div>
+
+  <div class="section-head" style="left:969px;top:592px;width:193px;">Savvier shopping habits</div>
+  <div class="body-text" style="left:969px;top:618px;width:219px;">GenZ will become even savvier<br>shoppers as they use price<br>comparison websites and AI to find<br>the best deals</div>
+
+  <!-- Right circle -->
+  <div class="bubble" style="left:743px;top:283px;width:377px;height:274px;"></div>
+  <div class="bubble-title" style="left:857px;top:316px;width:146px;">Gen Z consumers</div>
+  <div class="photo photo-right" style="left:821px;top:355px;width:216px;height:157px;">
+    <div class="phone"></div>
+  </div>
+
+  <div class="connector" style="left:882px;top:302px;width:27px;height:4px;transform:rotate(67deg);"></div>
+  <div class="connector" style="left:1009px;top:302px;width:22px;height:4px;transform:rotate(121deg);"></div>
+  <div class="connector" style="left:729px;top:495px;width:40px;height:4px;transform:rotate(-31deg);"></div>
+  <div class="connector" style="left:836px;top:541px;width:39px;height:4px;transform:rotate(116deg);"></div>
+  <div class="connector" style="left:1025px;top:547px;width:33px;height:4px;transform:rotate(76deg);"></div>
+
+  <div class="source-icon"></div>
+  <div class="source">Source(s): Accenture Strategy analysis</div>
+  <div class="footer">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="page">26</div>
+</div>
+</body>
+</html>

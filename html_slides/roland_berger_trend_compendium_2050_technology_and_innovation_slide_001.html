@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Megatrend 5 Technology &amp; Innovation</title>
+<style>
+  html, body {
+    margin: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #03131a;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 82% 14%, rgba(52,220,255,0.18) 0, rgba(52,220,255,0.10) 110px, rgba(0,0,0,0) 280px),
+      radial-gradient(circle at 93% 30%, rgba(35,200,235,0.20) 0, rgba(35,200,235,0.08) 140px, rgba(0,0,0,0) 330px),
+      radial-gradient(circle at 83% 54%, rgba(26,170,215,0.13) 0, rgba(26,170,215,0.06) 160px, rgba(0,0,0,0) 320px),
+      radial-gradient(circle at 24% 58%, rgba(0,110,150,0.14) 0, rgba(0,110,150,0.03) 180px, rgba(0,0,0,0) 360px),
+      linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(1,19,28,0.50) 28%, rgba(2,21,32,0.12) 58%, rgba(2,21,32,0.06) 100%),
+      #03131a;
+  }
+  .slide > div, .slide > svg{ position:absolute; box-sizing:border-box; }
+
+  .bg-noise{
+    inset:0;
+    z-index:1;
+    background:
+      radial-gradient(circle, rgba(70,235,255,0.55) 0 2px, rgba(70,235,255,0.20) 4px, rgba(0,0,0,0) 10px);
+    background-size: 82px 82px;
+    opacity:0.24;
+    filter: blur(2.4px);
+  }
+
+  .haze-left{
+    left:-120px; top:-50px; width:500px; height:820px; z-index:0;
+    background: radial-gradient(circle at 35% 50%, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.68) 35%, rgba(0,0,0,0.24) 64%, rgba(0,0,0,0) 100%);
+  }
+  .haze-right{
+    left:875px; top:-40px; width:480px; height:780px; z-index:0;
+    background: radial-gradient(circle at 60% 45%, rgba(0,220,255,0.18) 0%, rgba(0,180,230,0.10) 30%, rgba(0,0,0,0) 72%);
+    filter: blur(7px);
+    opacity:.8;
+  }
+
+  .network{ left:0; top:0; width:1280px; height:720px; z-index:8; }
+  .world{ left:370px; top:74px; width:680px; height:600px; z-index:10; opacity:.95; filter: drop-shadow(0 0 10px rgba(0,220,255,.12)); }
+  .bg-stars{ left:0; top:0; width:1280px; height:720px; z-index:9; }
+
+  .title-panel{
+    left:132px; top:302px; width:828px; height:255px; z-index:20;
+    background: rgba(5,24,33,0.74);
+  }
+
+  .title-1{
+    left:206px; top:319px; z-index:25;
+    color:#7655b7;
+    font-size:66px;
+    line-height:1;
+    font-weight:300;
+    letter-spacing:-1.3px;
+    white-space:nowrap;
+  }
+
+  .title-2{
+    left:207px; top:398px; z-index:25;
+    color:#ffffff;
+    font-size:69px;
+    line-height:1.06;
+    font-weight:300;
+    letter-spacing:-1.3px;
+  }
+
+  .purple-rule{
+    left:125px; top:549px; width:366px; height:15px; z-index:26;
+    background:#6b43a9;
+    border-radius:9px;
+  }
+
+  .hex-outer{
+    left:819px; top:264px; width:304px; height:329px; z-index:23;
+    background: rgba(233,239,243,0.86);
+    clip-path: polygon(24% 0%, 76% 0%, 100% 50%, 76% 100%, 24% 100%, 0% 50%);
+    border-radius:22px;
+    box-shadow: 0 0 26px rgba(255,255,255,0.12);
+  }
+  .hex-outer::after{
+    content:"";
+    position:absolute;
+    left:11px; top:11px; right:11px; bottom:11px;
+    clip-path: polygon(24% 0%, 76% 0%, 100% 50%, 76% 100%, 24% 100%, 0% 50%);
+    border-radius:20px;
+    background: rgba(255,255,255,0.10);
+  }
+  .hex-inner{
+    left:870px; top:292px; width:209px; height:274px; z-index:24;
+    background:#5a3d87;
+    clip-path: polygon(24% 0%, 76% 0%, 100% 50%, 76% 100%, 24% 100%, 0% 50%);
+    border-radius:18px;
+  }
+
+  .icon-svg{ left:925px; top:346px; width:132px; height:162px; z-index:30; }
+
+  .logo{
+    right:14px; bottom:8px; width:57px; height:24px; z-index:40;
+    color:#fff;
+    opacity:.92;
+    font-size:8px;
+    line-height:8px;
+  }
+  .logo .brand{
+    position:absolute;
+    right:18px; top:1px;
+    text-align:right;
+    letter-spacing:.1px;
+  }
+  .logo .bmark{
+    position:absolute;
+    right:0; top:-3px;
+    font-size:34px;
+    line-height:24px;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="haze-left"></div>
+  <div class="haze-right"></div>
+  <div class="bg-noise"></div>
+
+  <svg class="network" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
+        <feGaussianBlur stdDeviation="2.6" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="bigGlow" x="-120%" y="-120%" width="340%" height="340%">
+        <feGaussianBlur stdDeviation="8" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#2eefff" stop-opacity=".15"/>
+        <stop offset="45%" stop-color="#3df6ff" stop-opacity=".92"/>
+        <stop offset="100%" stop-color="#2eefff" stop-opacity=".16"/>
+      </linearGradient>
+      <linearGradient id="rayGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#35dfff" stop-opacity="0"/>
+        <stop offset="50%" stop-color="#35dfff" stop-opacity=".18"/>
+        <stop offset="100%" stop-color="#35dfff" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+
+    <g stroke="url(#rayGrad)" stroke-width="1">
+      <line x1="0" y1="16" x2="565" y2="332"/>
+      <line x1="18" y1="720" x2="548" y2="350"/>
+      <line x1="0" y1="184" x2="558" y2="347"/>
+      <line x1="44" y1="0" x2="547" y2="355"/>
+      <line x1="94" y1="0" x2="555" y2="345"/>
+      <line x1="0" y1="523" x2="575" y2="356"/>
+      <line x1="0" y1="690" x2="562" y2="356"/>
+      <line x1="168" y1="0" x2="586" y2="356"/>
+      <line x1="286" y1="0" x2="611" y2="350"/>
+      <line x1="360" y1="0" x2="624" y2="370"/>
+      <line x1="1280" y1="56" x2="720" y2="343"/>
+      <line x1="1280" y1="690" x2="725" y2="344"/>
+      <line x1="1280" y1="381" x2="723" y2="356"/>
+      <line x1="1280" y1="164" x2="709" y2="342"/>
+      <line x1="1054" y1="0" x2="694" y2="342"/>
+      <line x1="1218" y1="0" x2="709" y2="360"/>
+      <line x1="918" y1="0" x2="680" y2="345"/>
+      <line x1="804" y1="0" x2="664" y2="365"/>
+      <line x1="734" y1="0" x2="656" y2="338"/>
+      <line x1="640" y1="0" x2="640" y2="720" opacity=".08"/>
+    </g>
+
+    <g fill="none" stroke="url(#arcGrad)" stroke-width="2.7" filter="url(#softGlow)" opacity=".96">
+      <ellipse cx="668" cy="370" rx="322" ry="194" transform="rotate(-12 668 370)"/>
+      <ellipse cx="675" cy="372" rx="300" ry="173" transform="rotate(21 675 372)"/>
+      <ellipse cx="668" cy="367" rx="278" ry="129" transform="rotate(63 668 367)"/>
+      <ellipse cx="673" cy="366" rx="240" ry="96" transform="rotate(-54 673 366)"/>
+      <ellipse cx="671" cy="368" rx="344" ry="131" transform="rotate(5 671 368)"/>
+      <ellipse cx="668" cy="369" rx="202" ry="67" transform="rotate(31 668 369)"/>
+      <path d="M393,289 C458,204 544,174 648,164 C772,152 891,180 964,245" />
+      <path d="M405,565 C495,634 626,658 757,632 C880,608 957,551 998,472" />
+      <path d="M434,234 C492,286 512,342 516,398 C520,470 491,534 435,585" />
+      <path d="M930,250 C979,298 1000,359 1000,417 C1000,480 975,537 930,581" />
+      <path d="M518,181 C584,136 672,128 762,144 C847,160 918,202 962,261" />
+    </g>
+
+    <g filter="url(#bigGlow)">
+      <g fill="#eeffff">
+        <circle cx="620" cy="39" r="4.2"/>
+        <circle cx="703" cy="67" r="4.2"/>
+        <circle cx="853" cy="41" r="4.2"/>
+        <circle cx="502" cy="96" r="4.2"/>
+        <circle cx="392" cy="191" r="4.4"/>
+        <circle cx="767" cy="197" r="4.4"/>
+        <circle cx="575" cy="208" r="4.2"/>
+        <circle cx="1000" cy="205" r="4.2"/>
+        <circle cx="844" cy="254" r="4.4"/>
+        <circle cx="453" cy="302" r="4.2"/>
+        <circle cx="1037" cy="392" r="4.2"/>
+        <circle cx="454" cy="586" r="4.2"/>
+        <circle cx="963" cy="586" r="4.2"/>
+        <circle cx="521" cy="708" r="4.2"/>
+        <circle cx="708" cy="709" r="4.2"/>
+        <circle cx="486" cy="442" r="3.8"/>
+      </g>
+    </g>
+  </svg>
+
+  <svg class="world" viewBox="0 0 680 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="globeFill" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#46f2ff" stop-opacity=".92"/>
+        <stop offset="34%" stop-color="#1dcdf3" stop-opacity=".86"/>
+        <stop offset="78%" stop-color="#2a69e3" stop-opacity=".84"/>
+        <stop offset="100%" stop-color="#1a49b7" stop-opacity=".78"/>
+      </linearGradient>
+      <clipPath id="globeClip">
+        <ellipse cx="335" cy="275" rx="205" ry="255"/>
+      </clipPath>
+      <pattern id="diagPattern" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
+      </pattern>
+    </defs>
+
+    <ellipse cx="335" cy="275" rx="205" ry="255" fill="url(#globeFill)" opacity=".9"/>
+    <ellipse cx="335" cy="275" rx="205" ry="255" fill="url(#diagPattern)" opacity=".5"/>
+
+    <g clip-path="url(#globeClip)">
+      <path d="M191,168
+               C204,150 227,136 249,132
+               C277,127 307,139 330,160
+               C348,177 371,184 397,182
+               C429,180 466,186 497,204
+               C517,216 534,234 543,254
+               C558,287 553,321 530,350
+               C511,375 484,394 456,405
+               C425,417 397,438 379,465
+               C363,489 355,518 348,543
+               L310,543
+               C301,514 297,484 287,457
+               C269,408 247,389 223,376
+               C191,357 160,325 149,289
+               C139,255 150,214 172,190
+               C178,182 184,175 191,168 Z"
+            fill="#0c2554" opacity=".62"/>
+      <path d="M230,194
+               C244,174 267,168 291,171
+               C311,175 325,189 341,203
+               C353,213 369,218 386,218
+               C410,218 429,226 444,241
+               C458,255 468,273 474,294
+               C483,323 479,352 466,376
+               C451,404 426,427 401,441
+               C378,455 365,471 358,492
+               C348,521 350,546 345,563
+               L317,563
+               C311,539 309,512 304,487
+               C297,454 284,425 266,403
+               C248,381 224,366 210,340
+               C192,310 191,277 199,248
+               C205,229 216,211 230,194 Z"
+            fill="#163c93" opacity=".86"/>
+      <path d="M179,250
+               C186,236 197,227 212,226
+               C226,225 236,235 244,247
+               C253,262 263,271 278,275
+               C294,279 301,294 296,309
+               C291,327 276,335 259,334
+               C245,333 230,325 218,313
+               C203,298 185,285 179,268
+               C177,261 176,255 179,250 Z"
+            fill="#0a1d3f" opacity=".96"/>
+      <path d="M425,173
+               C447,161 472,159 494,166
+               C506,170 516,180 521,192
+               C526,205 523,219 515,231
+               C506,244 494,251 481,252
+               C469,253 462,246 451,240
+               C435,230 420,235 406,226
+               C395,219 389,205 394,194
+               C401,183 412,179 425,173 Z"
+            fill="#0c2554" opacity=".8"/>
+      <path d="M307,360
+               C323,357 337,365 350,376
+               C361,385 369,400 377,414
+               C386,429 395,445 399,464
+               C403,487 401,513 394,533
+               C387,550 375,563 361,571
+               C344,580 328,577 313,567
+               C294,555 282,538 276,518
+               C268,492 265,467 264,443
+               C263,420 267,400 276,382
+               C283,367 294,362 307,360 Z"
+            fill="#2b6ae5" opacity=".96"/>
+      <path d="M131,288
+               C143,279 156,278 167,284
+               C174,289 178,300 173,309
+               C167,321 156,329 144,335
+               C133,340 122,335 117,325
+               C112,313 119,296 131,288 Z"
+            fill="#0c2554" opacity=".86"/>
+      <path d="M509,289
+               C525,281 540,286 550,300
+               C558,316 560,333 556,349
+               C553,366 544,381 533,394
+               C521,408 509,408 500,395
+               C491,382 489,363 488,344
+               C487,324 492,305 509,289 Z"
+            fill="#2b6ae5" opacity=".9"/>
+      <path d="M445,395
+               C455,390 466,391 475,398
+               C486,406 488,419 487,433
+               C485,449 478,464 468,477
+               C457,490 444,493 435,484
+               C425,475 422,460 424,443
+               C427,424 434,404 445,395 Z"
+            fill="#1d57d2" opacity=".93"/>
+      <path d="M239,160
+               C245,153 255,152 261,159
+               C267,167 266,178 260,186
+               C254,194 244,198 235,195
+               C226,191 224,181 229,172
+               C231,167 235,163 239,160 Z"
+            fill="#07162b" opacity=".92"/>
+      <path d="M319,101
+               C339,92 364,89 383,94
+               C401,98 417,109 426,122
+               C433,131 434,141 429,150
+               C423,160 410,162 397,160
+               C381,157 367,149 352,147
+               C334,143 317,148 304,141
+               C294,136 292,123 299,114
+               C303,109 311,105 319,101 Z"
+            fill="#143579" opacity=".83"/>
+    </g>
+
+    <ellipse cx="335" cy="275" rx="205" ry="255" fill="none" stroke="rgba(173,246,255,0.16)" stroke-width="2"/>
+  </svg>
+
+  <div class="bg-stars" style="
+    background:
+      radial-gradient(circle at 49% 6%, rgba(255,255,255,.98) 0, rgba(167,247,255,.95) 4px, rgba(0,0,0,0) 20px),
+      radial-gradient(circle at 39% 13%, rgba(255,255,255,.96) 0, rgba(167,247,255,.92) 4px, rgba(0,0,0,0) 18px),
+      radial-gradient(circle at 48% 23%, rgba(255,255,255,.95) 0, rgba(167,247,255,.9) 4px, rgba(0,0,0,0) 18px),
+      radial-gradient(circle at 56% 27%, rgba(255,255,255,.95) 0, rgba(167,247,255,.9) 4px, rgba(0,0,0,0) 18px),
+      radial-gradient(circle at 63% 35%, rgba(255,255,255,.94) 0, rgba(167,247,255,.9) 4px, rgba(0,0,0,0) 18px),
+      radial-gradient(circle at 74% 29%, rgba(255,255,255,.95) 0, rgba(167,247,255,.9) 4px, rgba(0,0,0,0) 18px),
+      radial-gradient(circle at 78% 60%, rgba(255,255,255,.92) 0, rgba(167,247,255,.85) 4px, rgba(0,0,0,0) 18px),
+      radial-gradient(circle at 35% 81%, rgba(255,255,255,.96) 0, rgba(167,247,255,.88) 4px, rgba(0,0,0,0) 18px),
+      radial-gradient(circle at 51% 84%, rgba(255,255,255,.96) 0, rgba(167,247,255,.88) 4px, rgba(0,0,0,0) 18px),
+      radial-gradient(circle at 61% 82%, rgba(255,255,255,.93) 0, rgba(167,247,255,.86) 4px, rgba(0,0,0,0) 18px),
+      radial-gradient(circle at 71% 80%, rgba(255,255,255,.93) 0, rgba(167,247,255,.84) 4px, rgba(0,0,0,0) 18px),
+      radial-gradient(circle at 29% 27%, rgba(255,255,255,.94) 0, rgba(167,247,255,.88) 4px, rgba(0,0,0,0) 18px),
+      radial-gradient(circle at 89% 11%, rgba(255,255,255,.94) 0, rgba(167,247,255,.88) 4px, rgba(0,0,0,0) 18px);
+  "></div>
+
+  <div class="title-panel"></div>
+  <div class="title-1">Megatrend 5</div>
+  <div class="title-2">Technology<br>&amp; Innovation</div>
+  <div class="purple-rule"></div>
+
+  <div class="hex-outer"></div>
+  <div class="hex-inner"></div>
+
+  <svg class="icon-svg" viewBox="0 0 132 162" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#ffffff" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M63 126 L63 115
+               C63 106 58 100 50 93
+               C41 86 36 75 36 63
+               C36 39 54 22 79 22
+               C101 22 118 39 118 61
+               C118 76 111 86 102 93
+               C95 99 90 106 90 115
+               L90 126" />
+      <path d="M80 25
+               C75 34 77 44 84 52
+               C90 59 90 66 84 75
+               C77 83 75 91 77 99" />
+      <path d="M63 126 L90 126"/>
+      <path d="M65 138 L88 138"/>
+      <path d="M69 148 L85 148"/>
+
+      <circle cx="31" cy="97" r="13"/>
+      <path d="M31 79 L31 72 M31 122 L31 115 M13 97 L6 97 M56 97 L49 97
+               M19 85 L13 79 M43 109 L49 115 M19 109 L13 115 M43 85 L49 79"/>
+
+      <circle cx="107" cy="48" r="18"/>
+      <path d="M107 23 L107 15 M107 81 L107 73 M82 48 L74 48 M140 48 L132 48
+               M89 30 L83 24 M125 66 L131 72 M89 66 L83 72 M125 30 L131 24"/>
+
+      <path d="M4 37 L17 42"/>
+      <path d="M15 17 L25 26"/>
+      <path d="M36 5 L39 19"/>
+      <path d="M117 114 L128 123"/>
+      <path d="M109 133 L109 145"/>
+      <path d="M123 95 L132 94"/>
+    </g>
+  </svg>
+
+  <div class="logo">
+    <div class="brand">Roland<br>Berger</div>
+    <div class="bmark">B</div>
+  </div>
+</div>
+</body>
+</html>

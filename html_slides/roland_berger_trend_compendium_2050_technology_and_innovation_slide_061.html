@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Technology & Innovation - Collingridge Dilemma</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+  }
+  .leftbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:181px;
+    height:720px;
+    background:#34373d;
+  }
+  .leftbar:after{
+    content:"";
+    position:absolute;
+    top:0;
+    right:0;
+    width:2px;
+    height:720px;
+    background:#6c56a3;
+  }
+  .title-left{
+    position:absolute;
+    left:12px;
+    top:34px;
+    width:150px;
+    color:#f1f1f1;
+    font-size:24px;
+    line-height:1.06;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  .nav-item{
+    position:absolute;
+    left:8px;
+    width:164px;
+    height:98px;
+  }
+  .hex{
+    position:absolute;
+    left:0;
+    top:0;
+    width:72px;
+    height:72px;
+    clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0% 50%);
+    border:4px solid #7c7f84;
+    box-sizing:border-box;
+    background:linear-gradient(135deg,#6f7278 0%, #b9bcc0 100%);
+    overflow:hidden;
+  }
+  .hex svg{ position:absolute; inset:0; }
+  .nav-num{
+    position:absolute;
+    left:84px;
+    top:2px;
+    color:#8c9298;
+    font-size:19px;
+    line-height:1;
+    font-weight:700;
+  }
+  .nav-text{
+    position:absolute;
+    left:84px;
+    top:28px;
+    width:74px;
+    color:#676d74;
+    font-size:15px;
+    line-height:1.14;
+    font-weight:400;
+  }
+  .nav3 .hex{
+    border-color:#8f79c3;
+    background:linear-gradient(135deg,#f3d8d6 0%, #fbf6f6 100%);
+  }
+  .nav3 .nav-num,.nav3 .nav-text{
+    color:#775eac;
+    font-weight:700;
+  }
+  .footer-left{
+    position:absolute;
+    left:52px;
+    top:640px;
+    width:82px;
+    height:62px;
+    opacity:.9;
+  }
+  .page{
+    position:absolute;
+    left:9px;
+    bottom:6px;
+    color:#ffffff;
+    font-size:16px;
+    line-height:1;
+    font-weight:400;
+  }
+  .main-title{
+    position:absolute;
+    left:220px;
+    top:31px;
+    width:1018px;
+    color:#242424;
+    font-size:28px;
+    line-height:1.08;
+    font-weight:700;
+    letter-spacing:-0.02em;
+  }
+  .sub-title{
+    position:absolute;
+    left:220px;
+    top:138px;
+    width:730px;
+    color:#8f949b;
+    font-size:27px;
+    line-height:1.12;
+    font-weight:300;
+  }
+  .chart-area{
+    position:absolute;
+    left:208px;
+    top:177px;
+    width:640px;
+    height:475px;
+  }
+  .bg-watermark{
+    position:absolute;
+    left:18px;
+    top:145px;
+    width:620px;
+    height:250px;
+    opacity:.17;
+    background:
+      radial-gradient(circle at 44px 90px, rgba(255,255,255,.7) 0 16px, rgba(255,255,255,.16) 18px, rgba(255,255,255,0) 42px),
+      radial-gradient(circle at 145px 160px, rgba(255,255,255,.7) 0 21px, rgba(255,255,255,.17) 24px, rgba(255,255,255,0) 53px),
+      radial-gradient(circle at 265px 150px, rgba(255,255,255,.7) 0 19px, rgba(255,255,255,.14) 22px, rgba(255,255,255,0) 50px),
+      radial-gradient(circle at 387px 202px, rgba(255,255,255,.7) 0 18px, rgba(255,255,255,.15) 21px, rgba(255,255,255,0) 48px),
+      radial-gradient(circle at 517px 173px, rgba(255,255,255,.72) 0 18px, rgba(255,255,255,.15) 22px, rgba(255,255,255,0) 50px);
+    filter:blur(.4px);
+  }
+  .wm-text{
+    position:absolute;
+    color:#ffffff;
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:.01em;
+    opacity:.58;
+  }
+  .circle-callout{
+    position:absolute;
+    left:17px;
+    top:230px;
+    width:178px;
+    height:178px;
+    border-radius:50%;
+    background:#7b64ac;
+    box-shadow:0 3px 10px rgba(0,0,0,.18);
+  }
+  .circle-callout .inner{
+    position:absolute;
+    left:26px;
+    top:34px;
+    width:126px;
+    color:#ffffff;
+    text-align:center;
+  }
+  .circle-callout .l1{
+    font-size:18px;
+    line-height:1.08;
+    font-weight:700;
+  }
+  .circle-callout .l2{
+    margin-top:9px;
+    font-size:17px;
+    line-height:1.14;
+    font-weight:400;
+  }
+  .govern-box{
+    position:absolute;
+    left:102px;
+    top:292px;
+    width:535px;
+    height:154px;
+    background:rgba(123,100,172,.30);
+    border-radius:6px;
+  }
+  .govern-title{
+    position:absolute;
+    left:213px;
+    top:302px;
+    width:316px;
+    color:#202020;
+    font-size:18px;
+    line-height:1.18;
+    font-weight:400;
+    text-align:center;
+  }
+  .down1,.down2{
+    position:absolute;
+    color:#6f58a8;
+    font-size:42px;
+    line-height:1;
+    font-weight:400;
+  }
+  .down1{ left:269px; top:351px; }
+  .down2{ left:509px; top:351px; }
+  .left-desc,.right-desc{
+    position:absolute;
+    width:196px;
+    color:#2b2b2b;
+    font-size:17px;
+    line-height:1.16;
+    font-weight:400;
+    text-align:center;
+  }
+  .left-desc{ left:158px; top:380px; }
+  .right-desc{ left:406px; top:380px; }
+  .left-desc b,.right-desc b{ font-weight:700; }
+  .amp{
+    position:absolute;
+    left:388px;
+    top:391px;
+    color:#7b64ac;
+    font-size:53px;
+    line-height:1;
+    font-weight:700;
+  }
+  .bottom-band{
+    position:absolute;
+    left:103px;
+    top:470px;
+    width:571px;
+    height:69px;
+    background:#513481;
+    border-radius:3px;
+  }
+  .bottom-title{
+    position:absolute;
+    left:132px;
+    top:479px;
+    width:513px;
+    color:#ffffff;
+    font-size:16px;
+    line-height:1.15;
+    font-weight:700;
+    text-align:center;
+  }
+  .bottom-item{
+    position:absolute;
+    color:#ffffff;
+    font-size:17px;
+    line-height:1.1;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .bottom-item span{ font-weight:400; }
+  .right-panel{
+    position:absolute;
+    left:914px;
+    top:140px;
+    width:366px;
+    height:579px;
+    background:#d6d6d8;
+  }
+  .rp{
+    position:absolute;
+    left:926px;
+    width:334px;
+    color:#2d2d2d;
+    font-size:16px;
+    line-height:1.15;
+    font-weight:400;
+  }
+  .rp b{ font-weight:700; }
+  .sources{
+    position:absolute;
+    left:220px;
+    bottom:17px;
+    color:#3e3e3e;
+    font-size:12px;
+    line-height:1;
+    font-weight:400;
+  }
+  .logo{
+    position:absolute;
+    right:10px;
+    bottom:8px;
+    width:60px;
+    height:26px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="leftbar"></div>
+
+  <div class="title-left">Technology &amp;<br>Innovation</div>
+
+  <div class="nav-item" style="top:142px;">
+    <div class="hex">
+      <svg width="72" height="112" viewBox="0 0 72 112" aria-hidden="true">
+        <image href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23777a7f'/><stop offset='1' stop-color='%23bfc2c6'/></linearGradient></defs><rect width='72' height='72' fill='url(%23g)'/><g opacity='.55' stroke='white' stroke-width='1'><line x1='6' y1='18' x2='64' y2='52'/><line x1='10' y1='26' x2='58' y2='26'/><line x1='15' y1='12' x2='20' y2='60'/><line x1='29' y1='10' x2='34' y2='61'/><line x1='44' y1='12' x2='50' y2='59'/><line x1='12' y1='48' x2='61' y2='20'/></g><g fill='white' opacity='.85'><circle cx='19' cy='24' r='2.2'/><circle cx='28' cy='31' r='2'/><circle cx='40' cy='23' r='2.3'/><circle cx='49' cy='40' r='2.1'/><circle cx='24' cy='46' r='2.3'/><circle cx='34' cy='44' r='2.1'/></g></svg>" x="0" y="0" width="72" height="72"/>
+      </svg>
+    </div>
+    <div class="nav-num">1</div>
+    <div class="nav-text">Value of<br>Innovation</div>
+  </div>
+
+  <div class="nav-item" style="top:276px;">
+    <div class="hex">
+      <svg width="72" height="112" viewBox="0 0 72 112" aria-hidden="true">
+        <image href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72'><defs><linearGradient id='g2' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%2375797d'/><stop offset='1' stop-color='%23c1c4c7'/></linearGradient></defs><rect width='72' height='72' fill='url(%23g2)'/><g opacity='.5' stroke='white' stroke-width='1'><line x1='16' y1='18' x2='55' y2='46'/><line x1='21' y1='43' x2='49' y2='18'/><line x1='12' y1='32' x2='60' y2='32'/><line x1='14' y1='48' x2='58' y2='22'/></g><g fill='white' opacity='.87'><circle cx='18' cy='20' r='2.4'/><circle cx='31' cy='26' r='2.1'/><circle cx='43' cy='20' r='2.3'/><circle cx='53' cy='30' r='2.1'/><circle cx='38' cy='41' r='2.2'/><circle cx='23' cy='44' r='2'/></g></svg>" x="0" y="0" width="72" height="72"/>
+      </svg>
+    </div>
+    <div class="nav-num">2</div>
+    <div class="nav-text">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="nav-item nav3" style="top:408px;">
+    <div class="hex">
+      <svg width="72" height="112" viewBox="0 0 72 112" aria-hidden="true">
+        <rect width="72" height="72" fill="none"/>
+        <g stroke="#7b64ac" stroke-width="2" fill="none" stroke-linecap="round">
+          <path d="M21 37 C25 33, 29 31, 35 31 C40 31, 45 33, 49 38"/>
+          <path d="M34 31 C31 36, 28 40, 24 43"/>
+          <path d="M38 31 C41 36, 44 40, 48 43"/>
+        </g>
+        <circle cx="23" cy="45" r="5.2" fill="#e5bfaa" stroke="#7b64ac" stroke-width="1"/>
+        <circle cx="50" cy="45" r="5.2" fill="#e5bfaa" stroke="#7b64ac" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="nav-num">3</div>
+    <div class="nav-text">Humans &amp;<br>Machines</div>
+  </div>
+
+  <div class="footer-left">
+    <svg width="82" height="102" viewBox="0 0 82 102" aria-hidden="true">
+      <g stroke="#7b7f85" stroke-width="3" fill="none" stroke-linecap="round">
+        <path d="M28 11 C16 16, 10 29, 12 40 C14 51, 25 58, 37 56"/>
+        <path d="M43 13 C54 17, 60 26, 60 37 C60 46, 55 53, 48 56"/>
+        <circle cx="48" cy="20" r="7"/>
+        <circle cx="58" cy="35" r="4"/>
+        <line x1="13" y1="35" x2="5" y2="35"/>
+        <line x1="16" y1="24" x2="10" y2="19"/>
+        <line x1="21" y1="15" x2="17" y2="7"/>
+        <line x1="8" y1="48" x2="15" y2="44"/>
+        <line x1="61" y1="50" x2="69" y2="54"/>
+      </g>
+      <path d="M33 29 C31 24, 31 21, 33 17 C35 14, 40 14, 42 18 C44 22, 43 26, 40 29 C36 33, 36 38, 41 41" stroke="#7b7f85" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M36 42 L36 48" stroke="#7b7f85" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="page">61</div>
+
+  <div class="main-title">Future implications of technological advances regarding humanity are not<br>entirely foreseeable – Regulators face a double-bind dilemma</div>
+  <div class="sub-title">Innovation governance suffers from the Collingridge Dilemma</div>
+
+  <div class="chart-area">
+    <div class="bg-watermark"></div>
+    <div class="wm-text" style="left:164px; top:194px;">COLLABORATION</div>
+    <div class="wm-text" style="left:531px; top:141px;">STANDARDS</div>
+    <div class="wm-text" style="left:56px; top:317px;">REGULATIONS</div>
+    <div class="wm-text" style="left:278px; top:350px;">RULES</div>
+    <div class="wm-text" style="left:572px; top:252px;">PRACTICES</div>
+
+    <svg width="640" height="515" viewBox="0 0 640 515" style="position:absolute; left:0; top:0;">
+      <defs>
+        <marker id="arrowBlack" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto">
+          <polygon points="0 0, 7 3.5, 0 7" fill="#232323"></polygon>
+        </marker>
+        <marker id="arrowPurple" markerWidth="13" markerHeight="13" refX="9" refY="4.5" orient="auto">
+          <polygon points="0 0, 9 4.5, 0 9" fill="#7b64ac"></polygon>
+        </marker>
+      </defs>
+
+      <line x1="205" y1="242" x2="592" y2="242" stroke="#222" stroke-width="2" marker-end="url(#arrowBlack)"/>
+      <line x1="205" y1="242" x2="205" y2="54" stroke="#222" stroke-width="2" marker-end="url(#arrowBlack)"/>
+
+      <text x="157" y="85" font-size="18" font-weight="700" fill="#232323">High</text>
+      <text x="160" y="231" font-size="18" font-weight="700" fill="#232323">Low</text>
+      <text x="600" y="243" font-size="17" font-weight="700" fill="#232323">Time after</text>
+      <text x="613" y="264" font-size="17" font-weight="700" fill="#232323">innovation</text>
+
+      <text x="264" y="28" font-size="16" fill="#8a8e94">Optimal period to regulate</text>
+      <text x="329" y="48" font-size="16" fill="#8a8e94">new technology</text>
+
+      <line x1="347" y1="55" x2="347" y2="102" stroke="#8f949b" stroke-width="6"/>
+      <polygon points="335,101 359,101 347,116" fill="#8f949b"/>
+
+      <line x1="310" y1="242" x2="310" y2="194" stroke="#222" stroke-width="2"/>
+      <line x1="420" y1="242" x2="420" y2="108" stroke="#222" stroke-width="2"/>
+
+      <text x="212" y="124" font-size="17" fill="#333">Too early for</text>
+      <text x="225" y="144" font-size="17" fill="#333">appropriate</text>
+      <text x="225" y="164" font-size="17" fill="#333">restrictions</text>
+
+      <text x="428" y="124" font-size="17" fill="#333">Too late for easily</text>
+      <text x="430" y="144" font-size="17" fill="#333">applicable</text>
+      <text x="426" y="164" font-size="17" fill="#333">restrictions</text>
+
+      <path d="M253 65 C285 81, 311 108, 336 141 C358 171, 388 205, 429 214" fill="none" stroke="#97abc4" stroke-width="5" stroke-dasharray="16 12"/>
+      <path d="M223 216 C249 198, 283 182, 313 156 C350 123, 392 74, 448 54" fill="none" stroke="#0d77b2" stroke-width="5" stroke-dasharray="16 12"/>
+
+      <text x="476" y="54" font-size="16" fill="#2c80b8">Level of knowledge</text>
+      <text x="476" y="74" font-size="16" fill="#2c80b8">of impacts</text>
+
+      <text x="473" y="198" font-size="16" fill="#6f9ac9">Level of technological</text>
+      <text x="473" y="218" font-size="16" fill="#6f9ac9">flexibility &amp; influence</text>
+      <text x="473" y="238" font-size="16" fill="#6f9ac9">on innovation</text>
+
+      <path d="M176 287 C201 251, 236 229, 298 208" fill="none" stroke="#7b64ac" stroke-width="12" marker-end="url(#arrowPurple)"/>
+    </svg>
+
+    <div class="circle-callout">
+      <div class="inner">
+        <div class="l1">Collingridge<br>Dilemma:</div>
+        <div class="l2">When is the<br>optimal time<br>for regulation?</div>
+      </div>
+    </div>
+
+    <div class="govern-box"></div>
+    <div class="govern-title">Governance of innovation and technology<br>mitigating negative impact on society</div>
+    <div class="down1">↓</div>
+    <div class="down2">↓</div>
+    <div class="left-desc">Regulations affecting the<br><b>general process of<br>innovations</b></div>
+    <div class="amp">&amp;</div>
+    <div class="right-desc">Regulations affecting<br><b>specific technology<br>developments &amp; use</b></div>
+
+    <div class="bottom-band"></div>
+    <div class="bottom-title">Governance of innovation and technology requires clarification of:</div>
+    <div class="bottom-item" style="left:109px; top:512px;">Anticipation <span>(When?)</span></div>
+    <div class="bottom-item" style="left:308px; top:512px;">Inclusion <span>(Who?)</span></div>
+    <div class="bottom-item" style="left:487px; top:512px;">Directionality <span>(What? Why?)</span></div>
+  </div>
+
+  <div class="right-panel"></div>
+
+  <div class="rp" style="top:151px;">
+    &gt; How do you control technological progress – if we are<br>
+    unable to understand the extent of all its implications?<br>
+    The <b>Collingridge dilemma</b> highlights the <b>double-bind</b><br>
+    <b>quandary</b> regulators face regarding innovative<br>
+    technology: On the one hand, there exists an<br>
+    <b>information problem</b> where <b>impacts cannot be easily</b><br>
+    <b>predicted</b> until the <b>technology is developed</b> and widely<br>
+    <b>used</b>. In tandem, there is a <b>power problem</b> whereby<br>
+    control or <b>change is difficult, time-consuming and</b><br>
+    <b>expensive</b> once the <b>technology is widely adopted</b>
+  </div>
+
+  <div class="rp" style="top:347px;">
+    &gt; Popular new technologies also carry ethical, economic,<br>
+    environmental and/or health-related implications – a<br>
+    <b>perfect example is the internal combustion engine.</b><br>
+    Globally adopted, yet hardly regulated until 20 years ago,<br>
+    society now faces immense challenges to reign in its<br>
+    unforeseen global warming contribution
+  </div>
+
+  <div class="rp" style="top:468px;">
+    &gt; Yet, <b>early regulatory restrictions may hinder full</b><br>
+    <b>deployment</b> or can be inadequate. But once <b>technology</b><br>
+    <b>is prevalent it is too costly and difficult</b> to implement<br>
+    corrective measures
+  </div>
+
+  <div class="rp" style="top:556px;">
+    &gt; To <b>minimizing trade-offs</b>, combined regulatory<br>
+    <b>governance</b> of the <b>general process of innovation</b> and<br>
+    the <b>technology-specific developments</b> is key. For<br>
+    example, in the pharmaceutical sector, <b>general process</b><br>
+    regulations are reflected in rules regarding animal<br>
+    testing, while regulations concerning <b>specific</b><br>
+    <b>technology developments and their use</b> apply in<br>
+    instances of market approval of medications
+  </div>
+
+  <div class="sources">Sources: OECD; Roland Berger</div>
+
+  <div class="logo">
+    <svg width="60" height="66" viewBox="0 0 60 66" aria-hidden="true">
+      <text x="0" y="10" font-family="Arial, Helvetica, sans-serif" font-size="8" fill="#3f3f3f">Roland</text>
+      <text x="0" y="18" font-family="Arial, Helvetica, sans-serif" font-size="8" fill="#3f3f3f">Berger</text>
+      <path d="M50 1 C55 1, 59 5, 59 11 C59 15, 56 18, 52 20 C55 21, 59 23, 59 26 L50 26 Z" fill="#8f9398"/>
+      <path d="M50 1 L50 26 L41 26 L41 1 Z" fill="#b9bdc1"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

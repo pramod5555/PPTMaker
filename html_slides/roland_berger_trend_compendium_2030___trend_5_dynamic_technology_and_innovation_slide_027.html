@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Roland Berger IoT Slide</title>
+<style>
+  body{margin:0;background:#ffffff;font-family:Arial, Helvetica, 'Segoe UI', sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f5f5f5;
+    color:#111;
+  }
+  .top-kicker{
+    position:absolute;
+    left:83px;
+    top:27px;
+    font-size:18px;
+    line-height:22px;
+    color:#8f959b;
+    font-weight:600;
+    letter-spacing:-0.1px;
+  }
+  .logo{
+    position:absolute;
+    right:43px;
+    top:20px;
+    width:135px;
+    height:58px;
+  }
+  .logo .roland{
+    position:absolute;
+    right:41px;
+    top:2px;
+    font-size:21px;
+    line-height:21px;
+    color:#3c3c3c;
+    font-weight:400;
+  }
+  .logo .berger{
+    position:absolute;
+    right:41px;
+    top:18px;
+    font-size:48px;
+    line-height:42px;
+    color:#2f2f2f;
+    font-weight:400;
+    transform:scaleX(0.74);
+    transform-origin:right top;
+  }
+  .logo svg{
+    position:absolute;
+    right:0;
+    top:0;
+    width:40px;
+    height:52px;
+  }
+
+  .title{
+    position:absolute;
+    left:82px;
+    top:79px;
+    width:945px;
+    font-size:34px;
+    line-height:1.1;
+    color:#111;
+    font-weight:400;
+    letter-spacing:-0.4px;
+  }
+  .subtitle{
+    position:absolute;
+    left:82px;
+    top:188px;
+    width:760px;
+    font-size:26px;
+    line-height:30px;
+    color:#8d939a;
+    font-weight:400;
+    letter-spacing:-0.2px;
+  }
+
+  .chart{
+    position:absolute;
+    left:82px;
+    top:248px;
+    width:520px;
+    height:345px;
+  }
+  .axis{
+    position:absolute;
+    left:0;
+    top:297px;
+    width:466px;
+    height:2px;
+    background:#4a4a4a;
+  }
+  .bar{
+    position:absolute;
+    width:138px;
+    bottom:46px;
+  }
+  .bar2015{left:47px;height:148px;}
+  .bar2021{left:279px;height:270px;}
+  .seg{position:absolute;left:0;width:138px;}
+  .fixed{background:#8f949a;color:#fff;}
+  .mobile{background:#d0d1d5;color:#222;}
+  .pc{background:#9fb2cb;color:#222;}
+  .ce-non{background:#0f6fa1;color:#fff;}
+  .m2m-cell{background:#83cfdd;color:#222;}
+  .m2m-non{background:#15a7c4;color:#fff;}
+  .label{
+    position:absolute;
+    left:0;right:0;
+    top:50%;
+    transform:translateY(-50%);
+    text-align:center;
+    font-size:15px;
+    line-height:15px;
+    font-weight:400;
+  }
+  .tot{
+    position:absolute;
+    width:80px;
+    text-align:center;
+    font-size:17px;
+    line-height:17px;
+    font-weight:700;
+    color:#111;
+  }
+  .year{
+    position:absolute;
+    width:120px;
+    text-align:center;
+    font-size:33px;
+    line-height:33px;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-0.5px;
+  }
+
+  .rhs{
+    position:absolute;
+    left:571px;
+    top:266px;
+    width:585px;
+    color:#222;
+    font-size:21px;
+    line-height:1.12;
+  }
+  .bullet{
+    position:relative;
+    margin-bottom:12px;
+    padding-left:22px;
+    width:560px;
+  }
+  .bullet:before{
+    content:">";
+    position:absolute;
+    left:0;
+    top:0;
+    font-size:23px;
+    line-height:23px;
+    color:#111;
+  }
+  .bullet b{font-weight:700;}
+
+  .legend{
+    position:absolute;
+    left:88px;
+    top:626px;
+    width:1120px;
+    height:18px;
+    color:#222;
+    font-size:12px;
+    line-height:16px;
+  }
+  .legend-item{
+    position:absolute;
+    top:0;
+    height:16px;
+    white-space:nowrap;
+  }
+  .swatch{
+    position:absolute;
+    left:0;
+    top:1px;
+    width:19px;
+    height:14px;
+  }
+  .legend-text{
+    position:absolute;
+    left:25px;
+    top:0;
+  }
+
+  .notes{
+    position:absolute;
+    left:82px;
+    top:661px;
+    width:1040px;
+    font-size:11px;
+    line-height:1.25;
+    color:#222;
+  }
+  .source{
+    position:absolute;
+    left:82px;
+    top:705px;
+    font-size:11px;
+    line-height:11px;
+    color:#222;
+  }
+  .pageno{
+    position:absolute;
+    right:44px;
+    bottom:17px;
+    width:32px;
+    height:16px;
+    color:#9aa0a6;
+    font-size:14px;
+    line-height:14px;
+    text-align:right;
+  }
+  .pageno .sep{
+    position:absolute;
+    left:0;
+    top:1px;
+    width:1px;
+    height:14px;
+    background:#a4a8ad;
+  }
+  sup{font-size:65%; line-height:0; vertical-align:super;}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-kicker">3. Digital Transformation – The digital economy is here</div>
+
+  <div class="logo">
+    <div class="roland">Roland</div>
+    <div class="berger">Berger</div>
+    <svg viewBox="0 0 40 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="#d6d9dc"/>
+          <stop offset="0.55" stop-color="#8f959b"/>
+          <stop offset="1" stop-color="#676c71"/>
+        </linearGradient>
+      </defs>
+      <path d="M6 0 L18 0 C30 0 36 7 36 17 C36 24 32 29 25 31 C34 33 40 39 40 47 C40 55 33 52 19 52 L6 52 Z" fill="url(#g)"/>
+    </svg>
+  </div>
+
+  <div class="title">The Internet of Things is an important enabler of Digital<br>Transformation and its growth is accelerating</div>
+  <div class="subtitle">Forecast of connected devices<sup>1)</sup> by Ericsson 2015 vs. 2021 [bn]</div>
+
+  <div class="chart">
+    <svg width="360" height="120" style="position:absolute;left:110px;top:0;">
+      <path d="M6 100 L6 13 L275 13" fill="none" stroke="#b7bcc1" stroke-width="2"/>
+      <path d="M275 13 L275 27" fill="none" stroke="#b7bcc1" stroke-width="2"/>
+      <polygon points="268,27 282,27 275,40" fill="#a4a9af"/>
+      <rect x="86" y="0" rx="14" ry="14" width="69" height="30" fill="#f5f5f5" stroke-width="2"/>
+      <text x="120.5" y="20" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle" fill="#222">+83.1%</text>
+    </svg>
+
+    <div class="axis"></div>
+
+    <div class="bar bar2015">
+      <div class="seg fixed" style="bottom:0;height:14px;"><div class="label">1.3</div></div>
+      <div class="seg mobile" style="bottom:14px;height:66px;"><div class="label">7.1</div></div>
+      <div class="seg pc" style="bottom:80px;height:24px;"><div class="label">2.4</div></div>
+      <div class="seg ce-non" style="bottom:104px;height:17px;"><div class="label">1.6</div></div>
+      <div class="seg m2m-cell" style="bottom:121px;height:10px;"><div class="label">0.4</div></div>
+      <div class="seg m2m-non" style="bottom:131px;height:17px;"><div class="label">2.6</div></div>
+    </div>
+    <div class="tot" style="left:77px;top:160px;">15.4</div>
+    <div class="year" style="left:58px;top:317px;">2015</div>
+
+    <div class="bar bar2021">
+      <div class="seg fixed" style="bottom:0;height:17px;"><div class="label">1.4</div></div>
+      <div class="seg mobile" style="bottom:17px;height:82px;"><div class="label">8.7</div></div>
+      <div class="seg pc" style="bottom:99px;height:27px;"><div class="label">2.8</div></div>
+      <div class="seg ce-non" style="bottom:126px;height:30px;"><div class="label">3.1</div></div>
+      <div class="seg m2m-cell" style="bottom:156px;height:16px;"><div class="label">1.5</div></div>
+      <div class="seg m2m-non" style="bottom:172px;height:98px;"><div class="label">10.7</div></div>
+    </div>
+    <div class="tot" style="left:309px;top:38px;">28.2</div>
+    <div class="year" style="left:290px;top:317px;">2021</div>
+  </div>
+
+  <div class="rhs">
+    <div class="bullet">The <b>Internet of Things (IoT)</b> is a <b>network of physical<br>objects</b> (machines, cars, household devices etc.) that<br>contains embedded technology (electronics, software,<br>sensors and connectivity) enabled to <b>communicate</b> and<br>sense or interact with their internal states or the <b>external<br>environment</b> such as humans and (other) physical<br>objects/devices</div>
+
+    <div class="bullet">The <b>speed of innovation is difficult to predict</b> – overall<br>numbers are fluid but the direction and device category<br>developments are clear</div>
+
+    <div class="bullet">In 2013, Cisco predicted 50 bn things to be connected to<br>the internet in 2020, however now <b>halved this number to<br>around 25 bn devices in 2020</b> in their latest report<br>(06/2016). Gartner estimates 20.8 bn connected devices<br>by 2020</div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item" style="left:0px;width:132px;">
+      <div class="swatch" style="background:#15a7c4;"></div><div class="legend-text">M2M; non cellular</div>
+    </div>
+    <div class="legend-item" style="left:128px;width:242px;">
+      <div class="swatch" style="background:#83cfdd;"></div><div class="legend-text">M2M and consumer electronics; cellular</div>
+    </div>
+    <div class="legend-item" style="left:371px;width:212px;">
+      <div class="swatch" style="background:#0f6fa1;"></div><div class="legend-text">Consumer electronics; non cellular</div>
+    </div>
+    <div class="legend-item" style="left:586px;width:125px;">
+      <div class="swatch" style="background:#9fb2cb;"></div><div class="legend-text">PC, labtop, tablet</div>
+    </div>
+    <div class="legend-item" style="left:731px;width:113px;">
+      <div class="swatch" style="background:#d0d1d5;"></div><div class="legend-text">Mobile phones</div>
+    </div>
+    <div class="legend-item" style="left:862px;width:104px;">
+      <div class="swatch" style="background:#8f949a;"></div><div class="legend-text">Fixed phones</div>
+    </div>
+  </div>
+
+  <div class="notes">Notes: CE = Consumer Electronics&nbsp;&nbsp;1) a connected device is a physical object that has an IP stack, enabling two-way communication over a network interface (traditional landline phones<br>are included for legacy reasons)</div>
+  <div class="source">Source: Ericsson, Cisco, Gartner</div>
+
+  <div class="pageno"><div class="sep"></div>27</div>
+</div>
+</body>
+</html>

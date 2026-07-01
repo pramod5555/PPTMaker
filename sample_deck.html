@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>AI in Private Equity — Sample Deck 2025</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #1a1a1a;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 0;
+    gap: 12px;
+  }
+
+  /* ─── nav ─── */
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #aaa;
+    font-size: 14px;
+    user-select: none;
+  }
+  .nav button {
+    background: #333;
+    border: none;
+    color: #ddd;
+    padding: 8px 22px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .nav button:hover { background: #444; }
+  .nav button:disabled { opacity: 0.3; cursor: default; }
+  #counter { min-width: 64px; text-align: center; }
+
+  /* ─── deck ─── */
+  .deck { position: relative; width: 1280px; height: 720px; overflow: hidden; }
+  .slide {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    display: none;
+  }
+  .slide.active { display: block; }
+
+  /* ════════════════════════════════════════
+     SHARED: PLACEHOLDER LOGO
+     Teaches placement + bookmark structure.
+     Replace .logo-name text with client brand.
+  ════════════════════════════════════════ */
+  .logo-wrap {
+    position: absolute;
+    right: 36px;
+    top: 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .logo-name {
+    text-align: right;
+    line-height: 1;
+    letter-spacing: -0.3px;
+  }
+  .logo-name .top-line  { display: block; font-size: 16px; font-weight: 400; }
+  .logo-name .bot-line  { display: block; font-size: 28px; font-weight: 400; letter-spacing: -0.8px; }
+  /* bookmark shape */
+  .logo-mark {
+    width: 34px;
+    height: 50px;
+    border-radius: 3px 16px 16px 3px;
+    background: linear-gradient(90deg, #8c959c 0%, #c8cdd1 42%, #8a9298 68%, #6e777e 100%);
+    position: relative;
+    flex-shrink: 0;
+  }
+  /* two white cutouts that create the double-arc bookmark silhouette */
+  .logo-mark::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0;
+    width: 20px; height: 24px;
+    background: var(--logo-bg, #f9f9f9);
+    border-bottom-right-radius: 14px;
+  }
+  .logo-mark::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 20px; height: 24px;
+    background: var(--logo-bg, #f9f9f9);
+    border-top-right-radius: 14px;
+  }
+
+  /* dark variant (white text, semi-transparent cutouts) */
+  .logo-wrap.on-dark .logo-name { color: #fff; }
+  .logo-wrap.on-dark .logo-mark::before,
+  .logo-wrap.on-dark .logo-mark::after { background: rgba(255,255,255,0.07); }
+
+  /* ─── standard footer ─── */
+  .std-footer {
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 1280px; height: 34px;
+    border-top: 1px solid #dde2e8;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+  }
+  .std-footer .copy { font-size: 13px; color: #888; }
+  .std-footer .page { margin-left: auto; font-size: 13px; color: #888; }
+
+
+  /* ════════════════════════════════════════
+     SLIDE 1 — COVER
+  ════════════════════════════════════════ */
+  #s1 { background: #f9f9f9; }
+
+  #s1 .left-band {
+    position: absolute;
+    left: 0; top: 0;
+    width: 388px; height: 720px;
+    background: #004f84;
+  }
+
+  #s1 .cover-title {
+    position: absolute;
+    left: 48px; top: 188px;
+    width: 298px;
+    color: #fff;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -1.4px;
+  }
+
+  #s1 .cover-sub {
+    position: absolute;
+    left: 48px; top: 474px;
+    width: 294px;
+    color: rgba(255,255,255,0.68);
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  #s1 .cover-date {
+    position: absolute;
+    left: 48px; bottom: 52px;
+    color: rgba(255,255,255,0.42);
+    font-size: 14px;
+    letter-spacing: 0.4px;
+  }
+
+  #s1 .cover-visual {
+    position: absolute;
+    left: 430px; top: 80px;
+    width: 800px; height: 600px;
+  }
+
+  #s1 .hex-bg {
+    position: absolute;
+    clip-path: polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);
+    background: #e8eef5;
+  }
+
+  #s1 .cover-footer {
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 1280px; height: 34px;
+    background: #003d66;
+    display: flex; align-items: center;
+    padding: 0 40px;
+  }
+  #s1 .cover-footer span { color: rgba(255,255,255,0.38); font-size: 12px; }
+
+
+  /* ════════════════════════════════════════
+     SLIDE 2 — TABLE OF CONTENTS
+  ════════════════════════════════════════ */
+  #s2 { background: #f6f6f6; --logo-bg: #f6f6f6; }
+
+  #s2 .toc-header {
+    position: absolute;
+    left: 80px; top: 64px;
+    font-size: 33px; font-weight: 300;
+    color: #7a8086; letter-spacing: -0.5px;
+  }
+  #s2 .toc-page-col {
+    position: absolute;
+    right: 88px; top: 64px;
+    font-size: 33px; font-weight: 300;
+    color: #7a8086; letter-spacing: -0.5px;
+  }
+  #s2 .toc-rule {
+    position: absolute;
+    left: 68px; top: 130px;
+    width: 1148px; height: 2px;
+    background: #2e7aaa;
+  }
+
+  .toc-row {
+    position: absolute;
+    left: 68px; width: 1148px; height: 78px;
+    border-bottom: 1.5px solid #2e7aaa;
+    display: flex; align-items: center;
+  }
+  .toc-letter {
+    width: 62px; flex: 0 0 62px;
+    font-size: 56px; font-weight: 300;
+    color: #1a79ad; line-height: 1;
+  }
+  .toc-label {
+    flex: 1;
+    font-size: 27px; font-weight: 400;
+    color: #111; letter-spacing: -0.4px;
+    padding-left: 14px;
+  }
+  .toc-pg {
+    width: 54px; text-align: right;
+    font-size: 26px; color: #111;
+  }
+  .toc-row.current .toc-label { color: #004f84; font-weight: 700; }
+
+
+  /* ════════════════════════════════════════
+     SLIDE 3 — SECTION DIVIDER (dark)
+  ════════════════════════════════════════ */
+  #s3 {
+    background:
+      radial-gradient(180px 200px at 12% 70%, rgba(0,79,132,0.55), transparent 65%),
+      radial-gradient(240px 200px at 60% 45%, rgba(0,30,55,0.88), transparent 60%),
+      radial-gradient(200px 220px at 88% 20%, rgba(0,55,95,0.5), transparent 58%),
+      linear-gradient(160deg, #0a1929 0%, #042240 30%, #061830 65%, #020d1c 100%);
+  }
+
+  #s3 .sec-kicker {
+    position: absolute;
+    left: 180px; top: 298px;
+    color: rgba(0,79,132,0.8);
+    font-size: 13px; font-weight: 400;
+    letter-spacing: 4px; text-transform: uppercase;
+  }
+  #s3 .sec-num {
+    position: absolute;
+    left: 180px; top: 318px;
+    color: #bbc003;
+    font-size: 78px; font-weight: 300;
+    line-height: 1; letter-spacing: -2px;
+  }
+  #s3 .sec-title {
+    position: absolute;
+    left: 180px; top: 406px;
+    color: #f0f2f4;
+    font-size: 62px; font-weight: 300;
+    line-height: 1.04; letter-spacing: -1.6px;
+  }
+  #s3 .sec-bar {
+    position: absolute;
+    left: 174px; top: 580px;
+    width: 320px; height: 9px;
+    background: #bbc003; border-radius: 5px;
+  }
+
+  #s3 .hex-outer {
+    position: absolute;
+    right: 110px; top: 188px;
+    width: 390px; height: 342px;
+    clip-path: polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);
+    background: rgba(0,79,132,0.32);
+  }
+  #s3 .hex-mid {
+    position: absolute;
+    right: 138px; top: 216px;
+    width: 334px; height: 290px;
+    clip-path: polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);
+    background: #bbc003; opacity: 0.88;
+  }
+  #s3 .hex-core {
+    position: absolute;
+    right: 176px; top: 254px;
+    width: 258px; height: 218px;
+    clip-path: polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);
+    background: #0a2a44;
+  }
+
+  /* circuit nodes */
+  #s3 .node {
+    position: absolute;
+    border-radius: 50%;
+    background: #bbc003;
+  }
+  #s3 .wire {
+    position: absolute;
+    background: rgba(187,192,3,0.38);
+  }
+
+  #s3 .pg-num {
+    position: absolute;
+    right: 40px; bottom: 18px;
+    font-size: 15px; color: rgba(255,255,255,0.22);
+  }
+
+
+  /* ════════════════════════════════════════
+     SLIDE 4 — KEY FINDINGS (chart)
+  ════════════════════════════════════════ */
+  #s4 { background: #fafafa; --logo-bg: #fafafa; }
+
+  #s4 .s4-title {
+    position: absolute;
+    left: 68px; top: 42px;
+    width: 700px;
+    font-size: 22px; font-weight: 400;
+    color: #111; letter-spacing: -0.3px;
+    line-height: 1.22;
+  }
+  #s4 .s4-title em { font-style: normal; color: #004f84; }
+
+  #s4 .s4-sub {
+    position: absolute;
+    left: 68px; top: 134px;
+    font-size: 13px; color: #999; font-weight: 300;
+    letter-spacing: 0.2px;
+  }
+
+  #s4 .s4-rule {
+    position: absolute;
+    left: 68px; top: 156px;
+    width: 1148px; height: 1.5px;
+    background: #dde4eb;
+  }
+
+  /* chart area */
+  #s4 .chart-wrap {
+    position: absolute;
+    left: 60px; top: 184px;
+    width: 560px; height: 460px;
+  }
+  #s4 .chart-label {
+    position: absolute; left: 0; top: 0;
+    font-size: 11px; color: #777; font-weight: 400;
+    letter-spacing: 0.8px; text-transform: uppercase;
+  }
+  #s4 .chart-area {
+    position: absolute;
+    left: 0; top: 28px;
+    width: 540px; height: 380px;
+  }
+  #s4 .y-ax {
+    position: absolute;
+    left: 54px; top: 0; bottom: 26px;
+    width: 1.5px; background: #c8d0d8;
+  }
+  #s4 .x-ax {
+    position: absolute;
+    left: 54px; bottom: 26px; right: 0;
+    height: 1.5px; background: #c8d0d8;
+  }
+  #s4 .grid {
+    position: absolute;
+    left: 55px; right: 0; height: 1px;
+    background: rgba(0,0,0,0.055);
+  }
+  #s4 .y-lbl {
+    position: absolute;
+    left: 22px; font-size: 11px; color: #999;
+    width: 28px; text-align: right;
+  }
+  #s4 .grp {
+    position: absolute; bottom: 26px;
+    display: flex; align-items: flex-end; gap: 3px;
+  }
+  #s4 .cb {
+    width: 38px; border-radius: 2px 2px 0 0;
+  }
+  #s4 .cb.pri { background: #004f84; }
+  #s4 .cb.sec { background: #90b8d5; }
+  #s4 .cb.pri-alt { background: #7a8c00; }
+  #s4 .cb.sec-alt { background: #b8c832; opacity: 0.75; }
+  #s4 .x-lbl {
+    position: absolute; bottom: 6px;
+    font-size: 11px; color: #777; text-align: center;
+    width: 79px;
+  }
+  #s4 .x-lbl.hi { color: #5a6c00; font-weight: 700; }
+
+  #s4 .legend {
+    position: absolute; top: 428px; left: 56px;
+    display: flex; gap: 22px;
+  }
+  #s4 .leg {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 12px; color: #555;
+  }
+  #s4 .leg-dot {
+    width: 13px; height: 13px; border-radius: 2px;
+  }
+
+  /* insights column */
+  #s4 .insights {
+    position: absolute;
+    left: 688px; top: 184px;
+    width: 520px;
+  }
+  #s4 .ins {
+    padding: 20px 0 20px 22px;
+    border-bottom: 1px solid #dde4eb;
+    position: relative;
+  }
+  #s4 .ins::before {
+    content: "";
+    position: absolute; left: 0; top: 24px;
+    width: 7px; height: 7px;
+    background: #004f84; border-radius: 50%;
+  }
+  #s4 .ins-num {
+    font-size: 36px; font-weight: 300;
+    color: #004f84; line-height: 1; letter-spacing: -0.8px;
+  }
+  #s4 .ins-unit { font-size: 16px; color: #8aaecc; }
+  #s4 .ins-text {
+    font-size: 15px; color: #333;
+    line-height: 1.45; margin-top: 4px;
+  }
+
+
+  /* ════════════════════════════════════════
+     SLIDE 5 — CONTACTS / CLOSING
+  ════════════════════════════════════════ */
+  #s5 { background: #f6f6f6; --logo-bg: #f6f6f6; }
+
+  /* top accent stripe */
+  #s5 .top-stripe {
+    position: absolute;
+    left: 0; top: 0; width: 1280px; height: 5px;
+    background: #004f84;
+  }
+
+  /* left column — explicit height so bottom-anchored children resolve correctly */
+  #s5 .left-col {
+    position: absolute;
+    left: 68px; top: 66px;
+    width: 540px; height: 618px;
+  }
+  #s5 .kicker {
+    font-size: 13px; letter-spacing: 2.5px;
+    text-transform: uppercase; color: #004f84;
+  }
+  #s5 .main-title {
+    margin-top: 18px;
+    font-size: 48px; font-weight: 300;
+    color: #111; line-height: 1.05;
+    letter-spacing: -1.4px;
+  }
+  #s5 .body-copy {
+    margin-top: 26px;
+    font-size: 17px; color: #444;
+    line-height: 1.55; font-weight: 300;
+    max-width: 480px;
+  }
+  /* CTA now inside a tall left-col so bottom: 80px lands ~y=526 — well below body text */
+  #s5 .cta {
+    position: absolute;
+    left: 0; bottom: 80px;
+    width: 370px; height: 50px;
+    background: #004f84; border-radius: 2px;
+    display: flex; align-items: center;
+    padding: 0 22px;
+    color: #fff; font-size: 16px; font-weight: 400;
+  }
+  #s5 .cta::after { content: "→"; margin-left: auto; font-size: 20px; }
+
+  /* right column */
+  #s5 .right-col {
+    position: absolute;
+    right: 56px; top: 100px;
+    width: 526px;
+  }
+  .contact-card {
+    background: #fff;
+    border-radius: 3px;
+    padding: 24px 72px 20px 28px;
+    margin-bottom: 16px;
+    position: relative;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  }
+  .contact-card::before {
+    content: "";
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px; background: #004f84;
+    border-radius: 3px 0 0 3px;
+  }
+  .c-name  { font-size: 18px; font-weight: 400; color: #111; }
+  .c-title { font-size: 13px; color: #888; margin-top: 2px; }
+  .c-info  { margin-top: 10px; font-size: 13px; color: #555; line-height: 1.65; }
+  .c-info span { color: #004f84; }
+
+  /* CSS avatar */
+  .avatar {
+    position: absolute; right: 20px; top: 20px;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .avatar .head {
+    position: absolute; left: 50%; top: 20%;
+    transform: translateX(-50%);
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: #8aaabb;
+  }
+  .avatar .body {
+    position: absolute; left: 50%; top: 50%;
+    transform: translateX(-50%);
+    width: 34px; height: 26px;
+    border-radius: 17px 17px 0 0;
+    background: #8aaabb;
+  }
+  .avatar.a1 { background: linear-gradient(135deg,#c8d4df 0%,#90a8b8 100%); }
+  .avatar.a2 { background: linear-gradient(135deg,#d4c8df 0%,#9a8aab 100%); }
+  .avatar.a2 .head, .avatar.a2 .body { background: #9a8aab; }
+  .avatar.a3 { background: linear-gradient(135deg,#c8dfce 0%,#6a9870 100%); }
+  .avatar.a3 .head, .avatar.a3 .body { background: #6a9870; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <button id="prev" onclick="go(-1)" disabled>← Prev</button>
+  <span id="counter">1 / 5</span>
+  <button id="next" onclick="go(1)">Next →</button>
+</div>
+
+<div class="deck">
+
+  <!-- ══════════════════════════════════════
+       SLIDE 1 · COVER
+  ══════════════════════════════════════ -->
+  <div class="slide active" id="s1">
+
+    <div class="left-band"></div>
+
+    <div class="cover-title">AI in<br>Private<br>Equity</div>
+
+    <div class="cover-sub">How artificial intelligence is reshaping deal sourcing, due diligence and value creation across European markets</div>
+
+    <div class="cover-date">January 2025</div>
+
+    <!-- right-side abstract bar chart -->
+    <div class="cover-visual">
+      <div class="hex-bg" style="width:180px;height:155px;left:380px;top:20px;opacity:0.45;"></div>
+      <div class="hex-bg" style="width:220px;height:192px;left:440px;top:140px;background:#dce8f2;opacity:0.55;"></div>
+      <div class="hex-bg" style="width:130px;height:112px;left:526px;top:98px;opacity:0.3;"></div>
+
+      <div style="position:absolute;left:76px;top:100px;width:580px;height:400px;">
+        <!-- gridlines -->
+        <div style="position:absolute;left:0;bottom:80px;right:0;height:1px;background:rgba(0,79,132,0.07);"></div>
+        <div style="position:absolute;left:0;bottom:170px;right:0;height:1px;background:rgba(0,79,132,0.07);"></div>
+        <div style="position:absolute;left:0;bottom:260px;right:0;height:1px;background:rgba(0,79,132,0.07);"></div>
+        <!-- bars 2019–2025E -->
+        <div style="position:absolute;bottom:0;left:20px; width:54px;height:138px;background:linear-gradient(180deg,#7aaed4,#90bee4);opacity:.7;border-radius:2px 2px 0 0;"></div>
+        <div style="position:absolute;bottom:0;left:96px; width:54px;height:196px;background:linear-gradient(180deg,#4a8dbd,#5fa4d4);border-radius:2px 2px 0 0;"></div>
+        <div style="position:absolute;bottom:0;left:172px;width:54px;height:166px;background:linear-gradient(180deg,#7aaed4,#90bee4);opacity:.7;border-radius:2px 2px 0 0;"></div>
+        <div style="position:absolute;bottom:0;left:248px;width:54px;height:234px;background:linear-gradient(180deg,#004f84,#1a6699);border-radius:2px 2px 0 0;"></div>
+        <div style="position:absolute;bottom:0;left:324px;width:54px;height:206px;background:linear-gradient(180deg,#7aaed4,#90bee4);opacity:.7;border-radius:2px 2px 0 0;"></div>
+        <div style="position:absolute;bottom:0;left:400px;width:54px;height:272px;background:linear-gradient(180deg,#003a63,#004f84);border-radius:2px 2px 0 0;"></div>
+        <div style="position:absolute;bottom:0;left:476px;width:54px;height:316px;background:linear-gradient(180deg,#003050,#bbc003);border-radius:2px 2px 0 0;"></div>
+        <!-- baseline -->
+        <div style="position:absolute;left:0;bottom:0;right:0;height:2px;background:#c0cdd8;"></div>
+        <!-- labels -->
+        <div style="position:absolute;bottom:-20px;left:14px; font-size:11px;color:#888;">2019</div>
+        <div style="position:absolute;bottom:-20px;left:90px; font-size:11px;color:#888;">2020</div>
+        <div style="position:absolute;bottom:-20px;left:166px;font-size:11px;color:#888;">2021</div>
+        <div style="position:absolute;bottom:-20px;left:242px;font-size:11px;color:#888;">2022</div>
+        <div style="position:absolute;bottom:-20px;left:318px;font-size:11px;color:#888;">2023</div>
+        <div style="position:absolute;bottom:-20px;left:394px;font-size:11px;color:#888;">2024</div>
+        <div style="position:absolute;bottom:-20px;left:468px;font-size:11px;color:#bbc003;font-weight:700;">2025E</div>
+      </div>
+    </div>
+
+    <!-- placeholder logo (dark bg → white text) -->
+    <div class="logo-wrap on-dark" style="top:22px;right:36px;">
+      <div class="logo-name" style="color:#fff;">
+        <span class="top-line">Client</span>
+        <span class="bot-line">Name</span>
+      </div>
+      <div class="logo-mark" style="background:linear-gradient(90deg,#4a6a80,#8aa8bc 42%,#5a7a90 68%,#3a5a70 100%);">
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <span>Confidential — For internal use only &nbsp;|&nbsp; © [Client Name] 2025</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 2 · TABLE OF CONTENTS
+  ══════════════════════════════════════ -->
+  <div class="slide" id="s2">
+
+    <div class="logo-wrap" style="top:22px;right:36px;">
+      <div class="logo-name" style="color:#1d1d1d;">
+        <span class="top-line">Client</span>
+        <span class="bot-line">Name</span>
+      </div>
+      <div class="logo-mark"></div>
+    </div>
+
+    <div class="toc-header">Contents</div>
+    <div class="toc-page-col">Page</div>
+    <div class="toc-rule"></div>
+
+    <div class="toc-row" style="top:130px;">
+      <div class="toc-letter">A</div>
+      <div class="toc-label">Executive summary</div>
+      <div class="toc-pg">4</div>
+    </div>
+    <div class="toc-row" style="top:208px;">
+      <div class="toc-letter">B</div>
+      <div class="toc-label">AI adoption landscape in European PE</div>
+      <div class="toc-pg">8</div>
+    </div>
+    <div class="toc-row current" style="top:286px;">
+      <div class="toc-letter">C</div>
+      <div class="toc-label">Key findings &amp; deal flow impact</div>
+      <div class="toc-pg">14</div>
+    </div>
+    <div class="toc-row" style="top:364px;">
+      <div class="toc-letter">D</div>
+      <div class="toc-label">Value creation playbook</div>
+      <div class="toc-pg">22</div>
+    </div>
+    <div class="toc-row" style="top:442px;">
+      <div class="toc-letter">E</div>
+      <div class="toc-label">Recommended actions and roadmap</div>
+      <div class="toc-pg">30</div>
+    </div>
+    <div class="toc-row" style="top:520px;border-bottom:none;">
+      <div class="toc-letter">F</div>
+      <div class="toc-label">Your contacts</div>
+      <div class="toc-pg">36</div>
+    </div>
+
+    <div class="std-footer">
+      <span class="copy">© [Client Name]</span>
+      <span class="page">AI in Private Equity 2025 &nbsp;|&nbsp; 2</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 3 · SECTION DIVIDER
+  ══════════════════════════════════════ -->
+  <div class="slide" id="s3">
+
+    <div class="logo-wrap on-dark" style="top:22px;right:36px;">
+      <div class="logo-name" style="color:#fff;">
+        <span class="top-line">Client</span>
+        <span class="bot-line">Name</span>
+      </div>
+      <div class="logo-mark" style="background:linear-gradient(90deg,#4a6a80,#8aa8bc 42%,#5a7a90 68%,#3a5a70 100%);"></div>
+    </div>
+
+    <!-- glow overlay -->
+    <div style="position:absolute;left:0;top:0;width:1280px;height:320px;background:linear-gradient(180deg,rgba(255,255,255,0.05),transparent);pointer-events:none;"></div>
+
+    <div class="sec-kicker">Section C</div>
+    <div class="sec-num">Key Findings</div>
+    <div class="sec-title">Deal Flow<br>&amp; AI Impact</div>
+    <div class="sec-bar"></div>
+
+    <!-- nested hexagons -->
+    <div class="hex-outer"></div>
+    <div class="hex-mid"></div>
+    <div class="hex-core"></div>
+
+    <!-- circuit nodes inside hex -->
+    <div class="node" style="width:26px;height:26px;right:286px;top:334px;box-shadow:0 0 16px rgba(187,192,3,.6);z-index:2;position:absolute;"></div>
+    <div class="node" style="width:13px;height:13px;right:330px;top:298px;position:absolute;"></div>
+    <div class="node" style="width:13px;height:13px;right:242px;top:298px;position:absolute;"></div>
+    <div class="node" style="width:13px;height:13px;right:354px;top:347px;position:absolute;"></div>
+    <div class="node" style="width:13px;height:13px;right:218px;top:347px;position:absolute;"></div>
+    <div class="node" style="width:13px;height:13px;right:330px;top:394px;position:absolute;"></div>
+    <div class="node" style="width:13px;height:13px;right:242px;top:394px;position:absolute;"></div>
+    <!-- wires (horizontal / vertical stubs) -->
+    <div class="wire" style="width:2px;height:40px;right:298px;top:294px;position:absolute;"></div>
+    <div class="wire" style="width:2px;height:40px;right:298px;top:360px;position:absolute;"></div>
+    <div class="wire" style="width:50px;height:2px;right:305px;top:347px;position:absolute;"></div>
+    <div class="wire" style="width:50px;height:2px;right:218px;top:347px;position:absolute;"></div>
+
+    <div class="pg-num">14</div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 4 · KEY FINDINGS (chart)
+  ══════════════════════════════════════ -->
+  <div class="slide" id="s4">
+
+    <div class="logo-wrap" style="top:22px;right:36px;">
+      <div class="logo-name" style="color:#1d1d1d;">
+        <span class="top-line">Client</span>
+        <span class="bot-line">Name</span>
+      </div>
+      <div class="logo-mark"></div>
+    </div>
+
+    <!-- title block: 22px keeps it to 3 lines max, subtitle clears at top:134 -->
+    <div class="s4-title">
+      AI adoption is accelerating deal sourcing speed —
+      <em>funds using AI close 40% faster</em>
+      than those relying on traditional methods
+    </div>
+    <div class="s4-sub">Survey of 148 European PE funds, Q3 2024 &nbsp;|&nbsp; n = 148</div>
+    <div class="s4-rule"></div>
+
+    <!-- BAR CHART -->
+    <div class="chart-wrap">
+      <div class="chart-label">Average deal cycle time (weeks) by AI maturity</div>
+      <div class="chart-area">
+        <div class="y-ax"></div>
+        <div class="x-ax"></div>
+        <!-- grid -->
+        <div class="grid" style="bottom:94px;"></div>
+        <div class="grid" style="bottom:156px;"></div>
+        <div class="grid" style="bottom:220px;"></div>
+        <div class="grid" style="bottom:282px;"></div>
+        <!-- y labels -->
+        <div class="y-lbl" style="bottom:86px;">10</div>
+        <div class="y-lbl" style="bottom:148px;">20</div>
+        <div class="y-lbl" style="bottom:212px;">30</div>
+        <div class="y-lbl" style="bottom:276px;">40</div>
+        <!-- group: No AI -->
+        <div class="grp" style="left:64px;">
+          <div class="cb sec" style="height:316px;"></div>
+          <div class="cb pri" style="height:294px;"></div>
+        </div>
+        <div class="x-lbl" style="left:58px;">No AI</div>
+        <!-- group: Piloting -->
+        <div class="grp" style="left:162px;">
+          <div class="cb sec" style="height:252px;"></div>
+          <div class="cb pri" style="height:232px;"></div>
+        </div>
+        <div class="x-lbl" style="left:156px;">Piloting</div>
+        <!-- group: Scaling -->
+        <div class="grp" style="left:262px;">
+          <div class="cb sec" style="height:194px;"></div>
+          <div class="cb pri" style="height:176px;"></div>
+        </div>
+        <div class="x-lbl" style="left:256px;">Scaling</div>
+        <!-- group: AI-native -->
+        <div class="grp" style="left:362px;">
+          <div class="cb sec-alt" style="height:138px;"></div>
+          <div class="cb pri-alt" style="height:120px;"></div>
+        </div>
+        <div class="x-lbl hi" style="left:354px;">AI-native</div>
+      </div>
+
+      <div class="legend">
+        <div class="leg"><div class="leg-dot" style="background:#90b8d5;"></div>Sourcing phase</div>
+        <div class="leg"><div class="leg-dot" style="background:#004f84;"></div>Due diligence</div>
+      </div>
+    </div>
+
+    <!-- INSIGHTS -->
+    <div class="insights">
+      <div class="ins">
+        <div class="ins-num">40<span class="ins-unit">%</span></div>
+        <div class="ins-text">faster deal closure for AI-native funds vs. non-adopters — driven by automated document review and NLP-powered market scanning</div>
+      </div>
+      <div class="ins">
+        <div class="ins-num">3.2<span class="ins-unit">×</span></div>
+        <div class="ins-text">more proprietary deals sourced per quarter by funds with mature AI pipelines, relative to market average</div>
+      </div>
+      <div class="ins">
+        <div class="ins-num">€28<span class="ins-unit">bn</span></div>
+        <div class="ins-text">AUM is the inflection point — above this threshold, AI adoption jumps from 34% to 71% of funds surveyed</div>
+      </div>
+      <div class="ins">
+        <div class="ins-num">67<span class="ins-unit">%</span></div>
+        <div class="ins-text">of GPs plan to increase AI budgets by more than 25% in the next 12 months</div>
+      </div>
+    </div>
+
+    <div class="std-footer">
+      <span class="copy">© [Client Name]</span>
+      <span class="page">AI in Private Equity 2025 &nbsp;|&nbsp; 15</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 5 · CONTACTS / CLOSING
+  ══════════════════════════════════════ -->
+  <div class="slide" id="s5">
+
+    <div class="top-stripe"></div>
+
+    <div class="logo-wrap" style="top:22px;right:36px;">
+      <div class="logo-name" style="color:#1d1d1d;">
+        <span class="top-line">Client</span>
+        <span class="bot-line">Name</span>
+      </div>
+      <div class="logo-mark"></div>
+    </div>
+
+    <!-- left column: explicit height so .cta bottom-anchor resolves to slide bottom -->
+    <div class="left-col">
+      <div class="kicker">Section F</div>
+      <div class="main-title">Your contacts<br>at [Client Name]</div>
+      <div class="body-copy">Our private equity and technology practice teams are ready to support your AI transformation journey — from initial diagnostics through full-scale implementation.</div>
+      <div class="cta">Schedule a deep-dive session</div>
+    </div>
+
+    <!-- right column: three contact cards -->
+    <div class="right-col">
+      <div class="contact-card">
+        <div class="avatar a1"><div class="head"></div><div class="body"></div></div>
+        <div class="c-name">Dr. Markus Berger</div>
+        <div class="c-title">Partner, Private Equity Practice</div>
+        <div class="c-info">
+          Munich office<br>
+          <span>m.berger@[clientdomain].com</span><br>
+          +49 89 9230-8140
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="avatar a2"><div class="head"></div><div class="body"></div></div>
+        <div class="c-name">Sophie Laurent</div>
+        <div class="c-title">Partner, Digital &amp; AI Practice</div>
+        <div class="c-info">
+          Paris office<br>
+          <span>s.laurent@[clientdomain].com</span><br>
+          +33 1 5367-0900
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="avatar a3"><div class="head"></div><div class="body"></div></div>
+        <div class="c-name">James Whitmore</div>
+        <div class="c-title">Senior Project Manager, PE Tech</div>
+        <div class="c-info">
+          London office<br>
+          <span>j.whitmore@[clientdomain].com</span><br>
+          +44 20 7661-7620
+        </div>
+      </div>
+    </div>
+
+    <div class="std-footer">
+      <span class="copy">© [Client Name] 2025</span>
+      <span class="page">AI in Private Equity 2025 &nbsp;|&nbsp; 37</span>
+    </div>
+  </div>
+
+</div><!-- /deck -->
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function go(dir) {
+    slides[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(slides.length - 1, cur + dir));
+    slides[cur].classList.add('active');
+    document.getElementById('prev').disabled = cur === 0;
+    document.getElementById('next').disabled = cur === slides.length - 1;
+    document.getElementById('counter').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+  });
+</script>
+</body>
+</html>

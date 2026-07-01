@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#cfcfcf;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#222;
+  }
+  #slide>div,#slide>svg{position:absolute;box-sizing:border-box;}
+  .sidebar{
+    left:0;top:0;width:180px;height:720px;background:#33363c;
+  }
+  .purple-line{
+    left:179px;top:0;width:2px;height:720px;background:#7255bd;
+  }
+  .title-tech{
+    left:12px;top:33px;width:150px;color:#f4f4f4;
+    font-size:23px;line-height:1.08;font-weight:700;
+  }
+
+  .hex{
+    width:76px;height:66px;
+  }
+  .hex svg{width:100%;height:100%;display:block;}
+  .hex1{left:8px;top:142px;}
+  .hex2{left:8px;top:274px;}
+  .hex3{left:8px;top:406px;}
+
+  .nav-num{
+    font-size:22px;line-height:22px;font-weight:700;color:#7f848c;
+  }
+  .nav-label{
+    font-size:15px;line-height:1.1;color:#737983;font-weight:400;
+  }
+  .nav2 .nav-num,.nav2 .nav-label{color:#8d71d9;font-weight:700;}
+
+  .page{
+    left:10px;bottom:8px;color:#f3f3f3;font-size:18px;line-height:18px;
+  }
+
+  .bottom-icon{
+    left:63px;top:660px;width:74px;height:52px;opacity:.9;
+  }
+
+  .main-title{
+    left:220px;top:31px;width:1045px;
+    font-size:28px;line-height:1.1;font-weight:700;color:#1f1f1f;
+    letter-spacing:.1px;
+  }
+  .subtitle{
+    left:220px;top:140px;width:720px;
+    font-size:24px;line-height:1.2;font-weight:300;color:#8a8f98;
+  }
+  .section-left{
+    left:220px;top:220px;width:420px;
+    font-size:18px;line-height:1.15;font-weight:700;color:#222;
+  }
+  .big6g{
+    left:505px;top:201px;width:220px;
+    font-size:140px;line-height:1;font-weight:700;
+    color:rgba(255,255,255,.42);letter-spacing:-4px;
+  }
+  .big6g-net{
+    left:532px;top:220px;width:180px;height:95px;opacity:.33;
+  }
+  .section-right{
+    left:717px;top:220px;width:245px;
+    font-size:18px;line-height:1.15;font-weight:700;color:#222;
+  }
+
+  .chart-wrap{
+    left:218px;top:250px;width:430px;height:395px;
+  }
+
+  .use-list{
+    left:720px;top:280px;width:230px;height:420px;
+  }
+  .use-item{
+    position:absolute;left:0;width:230px;height:39px;
+  }
+  .icon-circle{
+    position:absolute;left:0;top:0;width:39px;height:39px;border-radius:50%;
+    background:#67409b;
+  }
+  .use-text{
+    position:absolute;left:48px;top:7px;width:180px;
+    font-size:15px;line-height:1.1;color:#333;
+  }
+
+  .callout{
+    left:970px;top:140px;width:310px;height:579px;background:#d6d6d8;
+  }
+  .callout-text{
+    left:982px;top:151px;width:286px;height:556px;
+    font-size:16px;line-height:1.18;color:#2c2c2c;font-weight:400;
+  }
+  .callout-text b{font-weight:700;}
+
+  .bottom-notes{
+    left:220px;top:747px;
+  }
+  .bottom-notes-text{
+    left:220px;top:742px;width:670px;
+    font-size:11px;line-height:1.25;color:#4a4a4a;
+  }
+
+  .logo{
+    left:1230px;top:680px;width:39px;height:28px;
+  }
+  .rb-word{
+    left:1188px;top:682px;width:42px;
+    font-size:10px;line-height:1;color:#444;text-align:right;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="purple-line"></div>
+
+  <div class="title-tech">Technology &amp;<br>Innovation</div>
+
+  <div class="hex hex1">
+    <svg viewBox="0 0 76 66">
+      <defs>
+        <clipPath id="hexClip1">
+          <polygon points="19,3 57,3 73,33 57,63 19,63 3,33"></polygon>
+        </clipPath>
+      </defs>
+      <polygon points="19,3 57,3 73,33 57,63 19,63 3,33" fill="#51545a" stroke="#9a9da3" stroke-width="3"/>
+      <image href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 80'><rect width='100' height='80' fill='%23727377'/><g fill='none' stroke='%23f0f0f0' stroke-width='1.5' opacity='.95'><path d='M8 55 L30 28 L52 43 L77 16 L92 26'/><path d='M10 23 L38 23 L38 60 L82 60'/><path d='M14 62 L26 46 L36 49 L44 37 L56 40 L67 30 L83 35'/><path d='M6 14 L20 14 L20 66'/><path d='M50 8 L50 72'/><path d='M0 40 L100 40'/><path d='M0 58 L100 58'/></g><g fill='%23ffffff' opacity='.7'><circle cx='28' cy='28' r='3'/><circle cx='52' cy='43' r='3'/><circle cx='77' cy='16' r='3'/><circle cx='67' cy='30' r='3'/></g></svg>" x="6" y="7" width="64" height="52" clip-path="url(#hexClip1)" preserveAspectRatio="xMidYMid slice"/>
+      <polygon points="19,3 57,3 73,33 57,63 19,63 3,33" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="nav-num" style="left:93px;top:145px;">1</div>
+  <div class="nav-label" style="left:93px;top:173px;">Value of<br>Innovation</div>
+
+  <div class="hex hex2">
+    <svg viewBox="0 0 76 66">
+      <defs>
+        <clipPath id="hexClip2">
+          <polygon points="19,3 57,3 73,33 57,63 19,63 3,33"></polygon>
+        </clipPath>
+      </defs>
+      <polygon points="19,3 57,3 73,33 57,63 19,63 3,33" fill="#4b4560" stroke="#8f72de" stroke-width="3"/>
+      <image href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 80'><rect width='100' height='80' fill='%2365656e'/><g fill='none' stroke='%23efefef' stroke-width='1.2' opacity='.85'><path d='M12 54 C24 40 38 32 52 28 C71 22 83 24 92 29'/><path d='M12 56 C30 49 45 44 65 44 C78 44 87 47 95 51'/><path d='M17 23 C35 30 42 39 51 56'/><path d='M40 15 C52 24 60 33 72 56'/><path d='M6 39 C27 34 47 34 66 37 C80 39 91 43 98 47'/></g><g fill='%23ffffff' opacity='.55'><circle cx='20' cy='22' r='2'/><circle cx='33' cy='31' r='2'/><circle cx='47' cy='37' r='2'/><circle cx='60' cy='43' r='2'/><circle cx='75' cy='49' r='2'/></g></svg>" x="6" y="7" width="64" height="52" clip-path="url(#hexClip2)" preserveAspectRatio="xMidYMid slice"/>
+      <polygon points="19,3 57,3 73,33 57,63 19,63 3,33" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="nav2">
+    <div class="nav-num" style="left:93px;top:275px;position:absolute;">2</div>
+    <div class="nav-label" style="left:93px;top:303px;position:absolute;">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="hex hex3">
+    <svg viewBox="0 0 76 66">
+      <defs>
+        <clipPath id="hexClip3">
+          <polygon points="19,3 57,3 73,33 57,63 19,63 3,33"></polygon>
+        </clipPath>
+      </defs>
+      <polygon points="19,3 57,3 73,33 57,63 19,63 3,33" fill="#61646a" stroke="#9fa3a8" stroke-width="3"/>
+      <image href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 80'><rect width='100' height='80' fill='%23e6e6e6'/><g stroke='%23888888' stroke-width='2.1' fill='none'><path d='M30 43 C36 31 46 29 54 36'/><path d='M54 36 C58 39 61 43 64 47'/><path d='M30 43 C26 39 22 36 18 34'/><path d='M18 34 C24 26 35 25 41 30'/><path d='M64 47 C71 53 79 53 86 47'/><path d='M86 47 C80 39 69 39 64 47'/></g><g fill='%23bbbbbb'><circle cx='30' cy='43' r='5'/><circle cx='54' cy='36' r='5'/><circle cx='18' cy='34' r='5'/><circle cx='64' cy='47' r='5'/><circle cx='86' cy='47' r='5'/></g></svg>" x="6" y="7" width="64" height="52" clip-path="url(#hexClip3)" preserveAspectRatio="xMidYMid slice"/>
+      <polygon points="19,3 57,3 73,33 57,63 19,63 3,33" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="nav-num" style="left:93px;top:407px;">3</div>
+  <div class="nav-label" style="left:93px;top:435px;">Humans &amp;<br>Machines</div>
+
+  <svg class="bottom-icon" viewBox="0 0 74 52">
+    <g fill="none" stroke="#7a7f86" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="42" cy="27" r="11"/>
+      <path d="M42 5 L42 10 M42 44 L42 49 M20 27 L25 27 M59 27 L64 27 M26 11 L30 15 M54 39 L58 43 M58 11 L54 15 M30 39 L26 43"/>
+      <path d="M19 43 C16 38 12 34 9 30 C5 25 4 20 4 16 C4 8 11 2 20 2 C27 2 32 6 35 12"/>
+      <path d="M22 43 L31 43 M23 48 L30 48"/>
+      <path d="M20 31 C16 27 13 23 13 18 C13 12 17 8 22 8"/>
+    </g>
+  </svg>
+
+  <div class="page">34</div>
+
+  <div class="main-title">New communications technologies are being developed faster supporting<br>fundamental innovation over the long term – Future 6G rollout a next step</div>
+
+  <div class="subtitle">6G commercialization is within reach supporting data-hungry<br>applications</div>
+
+  <div class="section-left">Timeline of wireless communication networks<br>and their differences across selected KPIs</div>
+  <div class="big6g">6G</div>
+  <svg class="big6g-net" viewBox="0 0 180 95">
+    <g fill="none" stroke="rgba(255,255,255,.72)" stroke-width="1">
+      <circle cx="34" cy="33" r="22"/>
+      <circle cx="90" cy="31" r="24"/>
+      <circle cx="144" cy="33" r="22"/>
+      <line x1="15" y1="25" x2="31" y2="16"/><line x1="18" y1="40" x2="32" y2="49"/><line x1="26" y1="12" x2="42" y2="14"/><line x1="40" y1="52" x2="51" y2="42"/>
+      <line x1="68" y1="16" x2="85" y2="8"/><line x1="76" y1="49" x2="102" y2="54"/><line x1="104" y1="12" x2="114" y2="26"/><line x1="67" y1="31" x2="54" y2="31"/>
+      <line x1="124" y1="18" x2="142" y2="12"/><line x1="131" y1="48" x2="149" y2="54"/><line x1="151" y1="13" x2="165" y2="24"/><line x1="115" y1="34" x2="122" y2="34"/>
+      <circle cx="15" cy="25" r="2"/><circle cx="18" cy="40" r="2"/><circle cx="26" cy="12" r="2"/><circle cx="42" cy="14" r="2"/><circle cx="40" cy="52" r="2"/><circle cx="51" cy="42" r="2"/>
+      <circle cx="68" cy="16" r="2"/><circle cx="85" cy="8" r="2"/><circle cx="76" cy="49" r="2"/><circle cx="102" cy="54" r="2"/><circle cx="104" cy="12" r="2"/><circle cx="114" cy="26" r="2"/>
+      <circle cx="124" cy="18" r="2"/><circle cx="142" cy="12" r="2"/><circle cx="131" cy="48" r="2"/><circle cx="149" cy="54" r="2"/><circle cx="151" cy="13" r="2"/><circle cx="165" cy="24" r="2"/>
+    </g>
+  </svg>
+  <div class="section-right">Selected use cases benefitting<br>most from 6G technology</div>
+
+  <svg class="chart-wrap" viewBox="0 0 430 395">
+    <defs>
+      <marker id="arrowHead" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+        <polygon points="0,0 14,7 0,14" fill="#ffffff"/>
+      </marker>
+    </defs>
+
+    <ellipse cx="208" cy="230" rx="207" ry="162" fill="#a694cf"/>
+    <ellipse cx="208" cy="230" rx="166" ry="129" fill="#d2cae1"/>
+    <ellipse cx="208" cy="230" rx="125" ry="98" fill="#8eaccd"/>
+    <ellipse cx="208" cy="230" rx="86" ry="69" fill="#4d89bf"/>
+    <ellipse cx="208" cy="230" rx="39" ry="40" fill="#0a4d81"/>
+
+    <rect x="2" y="214" width="367" height="28" fill="#f7f7f8"/>
+    <line x1="1" y1="228" x2="399" y2="228" stroke="#ffffff" stroke-width="4" marker-end="url(#arrowHead)"/>
+
+    <g stroke="#0b5b93" stroke-width="1.4">
+      <line x1="207" y1="228" x2="266" y2="172"/>
+      <line x1="207" y1="228" x2="314" y2="149"/>
+      <line x1="207" y1="228" x2="350" y2="181"/>
+      <line x1="207" y1="228" x2="392" y2="205"/>
+
+      <line x1="36" y1="228" x2="36" y2="287"/>
+      <line x1="80" y1="228" x2="144" y2="305"/>
+      <line x1="80" y1="228" x2="184" y2="323"/>
+      <line x1="123" y1="228" x2="229" y2="338"/>
+      <line x1="167" y1="228" x2="297" y2="347"/>
+      <line x1="209" y1="228" x2="331" y2="312"/>
+      <line x1="252" y1="228" x2="364" y2="334"/>
+    </g>
+
+    <g font-family="Arial, Helvetica, sans-serif" fill="#333">
+      <text x="271" y="126" font-size="15">Peak data rate</text>
+      <text x="349" y="163" font-size="15">Mobility</text>
+      <text x="405" y="225" font-size="15">Latency</text>
+      <text x="404" y="399" font-size="15">Devices/km<tspan dy="-4" font-size="10">2</tspan></text>
+      <text x="336" y="428" font-size="15">Mbps/m<tspan dy="-4" font-size="10">2</tspan></text>
+      <text x="281" y="462" font-size="15">Spectral efficiency</text>
+      <text x="141" y="472" font-size="15">Network energy</text>
+      <text x="162" y="490" font-size="15">efficiency</text>
+    </g>
+
+    <g font-family="Arial, Helvetica, sans-serif">
+      <text x="18" y="229" font-size="27" fill="#333">1G</text>
+      <text x="12" y="248" font-size="23" fill="#555">1980</text>
+      <text x="67" y="229" font-size="27" fill="#333">2G</text>
+      <text x="56" y="248" font-size="23" fill="#555">1990</text>
+      <text x="113" y="229" font-size="27" fill="#333">3G</text>
+      <text x="102" y="248" font-size="23" fill="#555">2000</text>
+      <text x="158" y="229" font-size="27" fill="#333">4G</text>
+      <text x="147" y="248" font-size="23" fill="#555">2010</text>
+      <text x="203" y="229" font-size="27" fill="#333">5G</text>
+      <text x="192" y="248" font-size="23" fill="#555">2020</text>
+      <text x="272" y="229" font-size="27" fill="#333">6G</text>
+      <text x="260" y="248" font-size="23" fill="#555">2030</text>
+    </g>
+
+    <g font-family="Arial, Helvetica, sans-serif">
+      <text x="34" y="186" font-size="16" fill="#d9ecfb" transform="rotate(-30 34 186)">50kbps</text>
+      <text x="69" y="163" font-size="14" fill="#21374d">21 Mbps</text>
+      <text x="94" y="134" font-size="14" fill="#21374d">100 Mbps</text>
+      <text x="149" y="107" font-size="14" fill="#333">20 Gbps</text>
+      <text x="184" y="85" font-size="14" fill="#333">≥1 Tbps</text>
+
+      <text x="127" y="201" font-size="14" fill="#21374d">100 ms</text>
+      <text x="188" y="190" font-size="14" fill="#21374d">10 ms</text>
+      <text x="252" y="181" font-size="14" fill="#333">1 ms</text>
+      <text x="321" y="193" font-size="14" fill="#333">10-100 µs</text>
+
+      <text x="149" y="149" font-size="14" fill="#21374d">350 km/h</text>
+      <text x="206" y="127" font-size="14" fill="#333">500 km/h</text>
+      <text x="286" y="127" font-size="14" fill="#333">≥1.000 km/h</text>
+
+      <text x="130" y="287" font-size="14" fill="#21374d">0.001</text>
+      <text x="191" y="295" font-size="14" fill="#21374d">0.1</text>
+      <text x="253" y="316" font-size="14" fill="#333">10</text>
+      <text x="323" y="340" font-size="14" fill="#333">1.000</text>
+
+      <text x="44" y="318" font-size="14" fill="#ffffff">0.01 x</text>
+      <text x="109" y="332" font-size="14" fill="#21374d">0.1 x</text>
+      <text x="123" y="362" font-size="14" fill="#21374d">1 x</text>
+      <text x="172" y="347" font-size="14" fill="#21374d">0,6 x</text>
+      <text x="205" y="390" font-size="14" fill="#333">3 x</text>
+      <text x="169" y="408" font-size="14" fill="#333">≥100 x</text>
+
+      <text x="162" y="279" font-size="14" fill="#21374d">10<tspan dy="-4" font-size="10">4</tspan></text>
+      <text x="203" y="297" font-size="14" fill="#21374d">10<tspan dy="-4" font-size="10">5</tspan></text>
+      <text x="266" y="312" font-size="14" fill="#333">10<tspan dy="-4" font-size="10">6</tspan></text>
+      <text x="327" y="337" font-size="14" fill="#333">10<tspan dy="-4" font-size="10">7</tspan></text>
+
+      <text x="143" y="380" font-size="14" fill="#333">≥10 x</text>
+      <text x="246" y="390" font-size="14" fill="#333">≥15 x</text>
+    </g>
+  </svg>
+
+  <div class="use-list">
+    <div class="use-item" style="top:0px;">
+      <div class="icon-circle">
+        <svg viewBox="0 0 39 39" width="39" height="39">
+          <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="21" height="15" rx="1"></rect>
+            <line x1="14" y1="24" x2="14" y2="29"></line>
+            <line x1="25" y1="24" x2="25" y2="29"></line>
+            <circle cx="15" cy="15" r="2.3"></circle>
+            <circle cx="24" cy="17.5" r="2.3"></circle>
+            <path d="M15 17.5 L18.5 20.5 L21.5 18"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="use-text">Remote healthcare</div>
+    </div>
+
+    <div class="use-item" style="top:47px;">
+      <div class="icon-circle">
+        <svg viewBox="0 0 39 39" width="39" height="39">
+          <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 22 C11 16 16 12 22 12 C26 12 29 15 29 19 C29 24 24 27 19 27 L15 30 L16 26 C13 25 11 24 11 22 Z"></path>
+            <circle cx="17" cy="19" r="1.5"></circle>
+            <circle cx="23" cy="19" r="1.5"></circle>
+            <path d="M22 10 L26 7"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="use-text">Smart environments</div>
+    </div>
+
+    <div class="use-item" style="top:94px;">
+      <div class="icon-circle">
+        <svg viewBox="0 0 39 39" width="39" height="39">
+          <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="20" cy="10" r="3"></circle>
+            <path d="M20 13 L20 20 M20 20 L15 25 M20 20 L24 24 M20 16 L15 18 M20 16 L24 18"></path>
+            <path d="M12 28 C14 24 19 23 23 23 C26 23 29 24 30 28"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="use-text">Industrial automation</div>
+    </div>
+
+    <div class="use-item" style="top:141px;">
+      <div class="icon-circle">
+        <svg viewBox="0 0 39 39" width="39" height="39">
+          <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 12 L17 12 L17 17 L12 17 Z"></path>
+            <path d="M12 19 L17 19 L17 24 L12 24 Z"></path>
+            <path d="M20 14 C23 14 26 17 26 20 C26 23 23 25 20 25"></path>
+            <path d="M20 20 L31 20"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="use-text">Precision agriculture</div>
+    </div>
+
+    <div class="use-item" style="top:188px;">
+      <div class="icon-circle">
+        <svg viewBox="0 0 39 39" width="39" height="39">
+          <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="20" r="7"></circle>
+            <path d="M25 15 C28 16 30 18 30 20 C30 22 28 24 25 25"></path>
+            <path d="M16 16 L16 24 M20 16 L20 24"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="use-text">Instant volumetric sensing</div>
+    </div>
+
+    <div class="use-item" style="top:235px;">
+      <div class="icon-circle">
+        <svg viewBox="0 0 39 39" width="39" height="39">
+          <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="9" y1="20" x2="30" y2="20"></line>
+            <line x1="19" y1="12" x2="19" y2="20"></line>
+            <circle cx="13" cy="20" r="2.4"></circle>
+            <circle cx="25" cy="20" r="2.4"></circle>
+            <path d="M26 14 L30 11"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="use-text">LTA drones<tspan style="font-size:10px;vertical-align:super;">1)</tspan></div>
+    </div>
+
+    <div class="use-item" style="top:282px;">
+      <div class="icon-circle">
+        <svg viewBox="0 0 39 39" width="39" height="39">
+          <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 24 C14 18 18 16 22 14"></path>
+            <path d="M22 14 C24 12 27 11 29 11"></path>
+            <circle cx="12" cy="24" r="2"></circle>
+            <circle cx="22" cy="14" r="2"></circle>
+            <circle cx="29" cy="11" r="2"></circle>
+            <path d="M16 11 L20 15"></path>
+            <path d="M19 23 L23 27"></path>
+            <path d="M10 14 L14 18"></path>
+            <path d="M25 20 L29 24"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="use-text">Space connectivity</div>
+    </div>
+
+    <div class="use-item" style="top:329px;">
+      <div class="icon-circle">
+        <svg viewBox="0 0 39 39" width="39" height="39">
+          <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="10" y="18" width="19" height="8" rx="2"></rect>
+            <path d="M14 18 L17 14 L23 14 L26 18"></path>
+            <circle cx="15" cy="27" r="2"></circle>
+            <circle cx="25" cy="27" r="2"></circle>
+          </g>
+        </svg>
+      </div>
+      <div class="use-text">Fully autonomous vehicles</div>
+    </div>
+
+    <div class="use-item" style="top:376px;">
+      <div class="icon-circle">
+        <svg viewBox="0 0 39 39" width="39" height="39">
+          <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 26 L10 13 L17 13 L17 26"></path>
+            <path d="M22 26 L22 17 L29 17 L29 26"></path>
+            <path d="M13 10 L20 8 L27 10"></path>
+            <line x1="14" y1="17" x2="14" y2="23"></line>
+            <line x1="25" y1="20" x2="25" y2="23"></line>
+          </g>
+        </svg>
+      </div>
+      <div class="use-text">Smart infrastructure</div>
+    </div>
+  </div>
+
+  <div class="callout"></div>
+  <div class="callout-text">
+    &gt; In the past, <b>commercialization</b> of communication technologies <b>was protracted</b>: Research on the 3G standard started in 1990 while its commercial phase will only come to an end in the mid-2020s<br><br>
+    &gt; Frontier communication technologies are important since their <b>enduring qualities support fundamental innovation</b>. Comparatively faster advanced, <b>6G</b> technology is already under research and will be <b>commercialized from 2030 onwards</b><br><br>
+    &gt; Driven by the capability of <b>reliable and low-latency communication</b> via 5G, there are trends for creating stand-alone networks in automated industries. Under 6G, this trend will continue for applications in more <b>special purpose networks and smaller sub-networks</b>, e.g. in networks of drone swarms<br><br>
+    &gt; The <b>higher data rate technology paves the way for more innovations</b>: Instant volumetric sensing (scanning and virtualizing 3D objects instantly), requires 6G's data transfer capabilities. Equally, fully <b>autonomous vehicles or smart interconnected infrastructure are data-hungry areas</b> where 6G is essential
+  </div>
+
+  <div class="bottom-notes-text">1) LTA: Lighter than air<br>Source: GSMA; Roland Berger; IEEE; Spatial Information Industry Outlook 2016; Roland Berger</div>
+
+  <div class="rb-word">Roland<br>Berger</div>
+  <svg class="logo" viewBox="0 0 39 28">
+    <path d="M19 1 C27 1 35 6 35 14 C35 22 27 27 19 27 Z" fill="#9ca1a8"/>
+    <path d="M19 1 C25 1 29 6 29 14 C29 22 25 27 19 27 Z" fill="#767d85"/>
+  </svg>
+</div>
+</body>
+</html>

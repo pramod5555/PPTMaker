@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    margin:0 auto;
+    background:
+      radial-gradient(circle at 18% 67%, rgba(255,0,96,0.38) 0, rgba(255,0,96,0.18) 2.4%, rgba(0,0,0,0) 5%),
+      radial-gradient(circle at 21% 66%, rgba(255,145,0,0.28) 0, rgba(255,145,0,0.12) 1.7%, rgba(0,0,0,0) 3.7%),
+      radial-gradient(circle at 25% 68%, rgba(110,255,20,0.28) 0, rgba(110,255,20,0.10) 1.4%, rgba(0,0,0,0) 3.2%),
+      radial-gradient(circle at 71% 29%, rgba(255,134,40,0.40) 0, rgba(255,134,40,0.15) 1.1%, rgba(0,0,0,0) 2.7%),
+      radial-gradient(circle at 71.5% 37%, rgba(255,134,40,0.36) 0, rgba(255,134,40,0.14) 1.0%, rgba(0,0,0,0) 2.4%),
+      radial-gradient(circle at 65% 0%, rgba(132,22,54,0.35) 0, rgba(132,22,54,0.12) 1.4%, rgba(0,0,0,0) 3.5%),
+      radial-gradient(circle at 66% 18%, rgba(160,42,82,0.22) 0, rgba(160,42,82,0.08) 1.4%, rgba(0,0,0,0) 3.5%),
+      radial-gradient(circle at 18% 43%, rgba(255,0,60,0.24) 0, rgba(255,0,60,0.1) 1.2%, rgba(0,0,0,0) 3%),
+      radial-gradient(circle at 90% 44%, rgba(255,160,210,0.85) 0, rgba(255,120,190,0.42) 2%, rgba(0,0,0,0) 4.8%),
+      linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.34) 18%, rgba(0,0,25,0.18) 35%, rgba(2,0,33,0.76) 60%, rgba(0,0,28,0.95) 100%),
+      linear-gradient(180deg, #0a0321 0%, #08001c 100%);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+  }
+
+  .photo-left{
+    position:absolute;
+    left:88px;
+    top:0px;
+    width:618px;
+    height:720px;
+    background:
+      radial-gradient(ellipse at 18% 12%, rgba(162,120,255,0.82) 0%, rgba(123,66,241,0.48) 18%, rgba(0,0,0,0) 33%),
+      radial-gradient(circle at 35% 13%, rgba(218,105,255,0.35) 0, rgba(0,0,0,0) 7%),
+      radial-gradient(circle at 48% 43%, rgba(255,123,236,0.74) 0, rgba(188,93,255,0.50) 8%, rgba(0,0,0,0) 18%),
+      radial-gradient(circle at 12% 83%, rgba(132,160,255,0.82) 0, rgba(112,114,255,0.30) 8%, rgba(0,0,0,0) 20%),
+      linear-gradient(180deg, rgba(22,8,57,0.40), rgba(5,2,22,0.20));
+    opacity:.98;
+  }
+
+  .screen-bar{
+    position:absolute;
+    left:92px;
+    top:0;
+    width:100px;
+    height:720px;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(36,25,77,0.14) 9%, rgba(121,91,255,0.28) 28%, rgba(146,124,255,0.72) 52%, rgba(99,64,215,0.36) 74%, rgba(0,0,0,0.70) 100%);
+    box-shadow:
+      inset 18px 0 18px rgba(0,0,0,0.45),
+      inset -12px 0 10px rgba(0,0,0,0.5);
+  }
+  .screen-bar:before{
+    content:"";
+    position:absolute;
+    left:33px;
+    top:0;
+    width:32px;
+    height:720px;
+    background:
+      repeating-linear-gradient(180deg,
+        rgba(255,255,255,0.10) 0px,
+        rgba(255,255,255,0.10) 1px,
+        rgba(0,0,0,0.0) 2px,
+        rgba(0,0,0,0.0) 4px);
+    opacity:.55;
+  }
+
+  .figure{
+    position:absolute;
+    left:338px;
+    top:160px;
+    width:350px;
+    height:530px;
+  }
+  .hair{
+    position:absolute;
+    left:92px;
+    top:2px;
+    width:226px;
+    height:420px;
+    background: linear-gradient(180deg, rgba(9,8,28,0.96), rgba(18,10,42,0.98) 50%, rgba(9,6,28,0.96) 100%);
+    border-radius: 130px 110px 120px 110px / 140px 130px 150px 140px;
+    transform: rotate(-8deg);
+    box-shadow: 0 0 35px rgba(20,0,55,0.55);
+  }
+  .face{
+    position:absolute;
+    left:128px;
+    top:70px;
+    width:100px;
+    height:180px;
+    background: linear-gradient(180deg, #f2c8ff 0%, #d78bff 55%, #b054cf 100%);
+    border-radius: 55px 45px 50px 54px / 55px 56px 90px 78px;
+    transform: rotate(6deg);
+    clip-path: polygon(30% 8%, 58% 5%, 80% 13%, 93% 27%, 97% 45%, 91% 60%, 79% 70%, 69% 78%, 54% 88%, 34% 92%, 20% 88%, 11% 75%, 6% 57%, 7% 35%, 14% 20%);
+    box-shadow: -10px 0 20px rgba(186,105,255,0.55);
+  }
+  .nose{
+    position:absolute;
+    left:197px;
+    top:157px;
+    width:16px;
+    height:12px;
+    border-top:2px solid rgba(116,48,141,0.65);
+    border-right:2px solid rgba(116,48,141,0.65);
+    border-radius: 0 8px 0 0;
+    transform: rotate(10deg);
+  }
+  .eye{
+    position:absolute;
+    left:175px;
+    top:135px;
+    width:19px;
+    height:6px;
+    border-top:2px solid rgba(54,30,92,0.85);
+    border-radius: 50%;
+    transform: rotate(10deg);
+  }
+  .mouth{
+    position:absolute;
+    left:179px;
+    top:193px;
+    width:22px;
+    height:8px;
+    border-bottom:2px solid rgba(149,82,172,0.8);
+    border-radius: 0 0 14px 14px;
+    transform: rotate(10deg);
+  }
+  .neck{
+    position:absolute;
+    left:154px;
+    top:226px;
+    width:40px;
+    height:52px;
+    background: linear-gradient(180deg, #c06fff, #9d4ccd);
+    border-radius: 14px;
+    transform: rotate(8deg);
+  }
+  .body{
+    position:absolute;
+    left:92px;
+    top:255px;
+    width:220px;
+    height:260px;
+    background: linear-gradient(180deg, rgba(58,39,77,0.96), rgba(26,20,54,0.98));
+    border-radius: 70px 48px 20px 28px / 90px 50px 30px 32px;
+    transform: rotate(8deg);
+    box-shadow: inset 0 0 25px rgba(140,100,255,0.18);
+  }
+  .arm{
+    position:absolute;
+    left:8px;
+    top:334px;
+    width:176px;
+    height:90px;
+    background: linear-gradient(180deg, rgba(54,44,80,0.95), rgba(28,22,52,0.98));
+    border-radius: 42px;
+    transform: rotate(35deg);
+  }
+  .hand{
+    position:absolute;
+    left:4px;
+    top:303px;
+    width:94px;
+    height:70px;
+    background: linear-gradient(180deg, #e4b8ff 0%, #b26cff 100%);
+    border-radius: 40px;
+    transform: rotate(26deg);
+    clip-path: polygon(8% 61%, 27% 38%, 42% 18%, 55% 3%, 66% 2%, 71% 11%, 68% 32%, 78% 39%, 87% 55%, 83% 73%, 72% 82%, 56% 78%, 36% 84%, 17% 81%);
+  }
+  .finger{
+    position:absolute;
+    left:42px;
+    top:255px;
+    width:20px;
+    height:116px;
+    background: linear-gradient(180deg, #ecc8ff 0%, #bb79ff 100%);
+    border-radius: 14px;
+    transform: rotate(-22deg);
+    box-shadow: 0 0 10px rgba(238,188,255,0.45);
+  }
+  .cuff{
+    position:absolute;
+    left:66px;
+    top:367px;
+    width:80px;
+    height:58px;
+    background: linear-gradient(180deg, rgba(115,108,132,0.95), rgba(79,74,92,0.98));
+    border-radius: 12px;
+    transform: rotate(35deg);
+  }
+
+  .title{
+    position:absolute;
+    left:26px;
+    top:18px;
+    color:#ffffff;
+    font-size:17px;
+    line-height:1;
+    letter-spacing:0;
+  }
+  .title .bold{font-weight:700;}
+  .title .sep{opacity:.8; padding:0 4px;}
+  .title .light{font-weight:400; opacity:.92;}
+
+  .text-col{
+    position:absolute;
+    left:745px;
+    top:176px;
+    width:430px;
+    color:rgba(255,255,255,0.62);
+    font-size:17px;
+    line-height:1.42;
+    font-weight:400;
+  }
+  .text-col p{
+    margin:0 0 15px 0;
+  }
+  .text-col sup{
+    font-size:10px;
+    vertical-align:super;
+    line-height:0;
+  }
+  .emphasis{
+    position:absolute;
+    left:745px;
+    top:535px;
+    width:380px;
+    color:#ffffff;
+    font-size:18px;
+    line-height:1.28;
+    font-weight:700;
+  }
+
+  .footer{
+    position:absolute;
+    right:26px;
+    bottom:22px;
+    color:rgba(255,255,255,0.62);
+    font-size:11px;
+    line-height:1;
+    white-space:nowrap;
+  }
+  .footer .strong{
+    color:#ffffff;
+    font-weight:700;
+  }
+  .footer .page{
+    color:#ffffff;
+    font-weight:700;
+    margin-left:18px;
+    font-size:18px;
+    position:relative;
+    top:2px;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="photo-left"></div>
+    <div class="screen-bar"></div>
+
+    <div class="figure">
+      <div class="hair"></div>
+      <div class="face"></div>
+      <div class="nose"></div>
+      <div class="eye"></div>
+      <div class="mouth"></div>
+      <div class="neck"></div>
+      <div class="body"></div>
+      <div class="arm"></div>
+      <div class="hand"></div>
+      <div class="finger"></div>
+      <div class="cuff"></div>
+    </div>
+
+    <div class="title">
+      <span class="bold">Trend 2</span><span class="sep">|</span><span class="light">Capturing the digital dividend</span>
+    </div>
+
+    <div class="text-col">
+      <p>BBVA is a good example of a bank that has transformed its operating model to (among other things) develop an end-to-end personalization capability, optimize its customer experiences, and improve the effectiveness of its customer acquisition and cross-selling. Just one of the metrics it has announced is a 30% improvement in its conversion rate for auto-loan sales.<sup>11</sup></p>
+
+      <p>The ultimate objective is to offer the same authentic, personal experience through digital channels as banks have always done face-to-face in their branches. Commerzbank believes its new mobile virtual assistant will do this, enabling private and small-business customers to have natural and engaging conversations on general topics as well as for financial advice.<sup>12</sup> By combining the convenience and efficiency of digital with the contextual relevance that comes from a deeper and more timely understanding of each customer, banks will be able to shift a growing proportion of their sales to digital while simultaneously reinforcing trust and loyalty.</p>
+    </div>
+
+    <div class="emphasis">
+      This is the digital dividend they have been pursuing for so long.
+    </div>
+
+    <div class="footer">
+      <span class="strong">Banking on AI</span> &nbsp;|&nbsp; Banking Top 10 Trends for 2024
+      <span class="page">13</span>
+    </div>
+  </div>
+</body>
+</html>

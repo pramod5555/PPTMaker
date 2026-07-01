@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Case Study Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#f3f3f3;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+    color:#111;
+  }
+  .title{
+    position:absolute;
+    left:31px;
+    top:57px;
+    font-size:28px;
+    line-height:1.1;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-0.01em;
+    white-space:nowrap;
+  }
+  .top-rule{
+    position:absolute;
+    left:31px;
+    top:102px;
+    width:1209px;
+    height:1px;
+    background:#777;
+  }
+  .subtitle{
+    position:absolute;
+    left:31px;
+    top:111px;
+    font-size:20px;
+    line-height:1.2;
+    font-style:italic;
+    font-weight:700;
+    color:#1186e8;
+    white-space:nowrap;
+  }
+
+  .logo-bpoc{
+    position:absolute;
+    left:1021px;
+    top:59px;
+    width:111px;
+    height:30px;
+    color:#2d2a6b;
+    font-family:Georgia, "Times New Roman", serif;
+    font-weight:700;
+    font-size:25px;
+    line-height:30px;
+  }
+  .logo-bpoc .dots{
+    position:absolute;
+    left:-22px;
+    top:3px;
+    width:18px;
+    height:18px;
+  }
+  .logo-bpoc .dots span{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:#6c58a9;
+  }
+
+  .logo-medicus{
+    position:absolute;
+    left:1140px;
+    top:58px;
+    width:101px;
+    height:34px;
+    color:#30576d;
+  }
+  .logo-medicus .star{
+    position:absolute;
+    left:0;
+    top:1px;
+    width:17px;
+    height:17px;
+  }
+  .logo-medicus .v,
+  .logo-medicus .h,
+  .logo-medicus .d1,
+  .logo-medicus .d2{
+    position:absolute;
+    background:#1c8fda;
+    border-radius:1px;
+  }
+  .logo-medicus .v{ left:7px; top:0; width:3px; height:17px; }
+  .logo-medicus .h{ left:0; top:7px; width:17px; height:3px; }
+  .logo-medicus .d1{ left:7px; top:-1px; width:3px; height:19px; transform:rotate(45deg); transform-origin:center; background:#5ca8dd; }
+  .logo-medicus .d2{ left:7px; top:-1px; width:3px; height:19px; transform:rotate(-45deg); transform-origin:center; background:#5ca8dd; }
+  .logo-medicus .name{
+    position:absolute;
+    left:21px;
+    top:-1px;
+    font-size:18px;
+    line-height:18px;
+    font-weight:700;
+    color:#456377;
+  }
+  .logo-medicus .sub{z-index:1;
+    position:absolute;
+    left:21px;
+    top:16px;
+    font-size:6px;
+    line-height:1;
+    font-weight:700;
+    color:#6b7b84;
+    letter-spacing:0.02em;
+    text-transform:lowercase;
+    white-space:nowrap;
+  }
+
+  .box{
+    position:absolute;
+    border:2px solid #2898f5;
+    background:transparent;
+  }
+  .section-head{
+    position:absolute;
+    background:#f3f3f3;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+    letter-spacing:0.06em;
+    padding:0 8px;
+  }
+  .small-head{
+    position:absolute;
+    font-size:13px;
+    line-height:1.15;
+    font-weight:700;
+    color:#111;
+  }
+  .body{
+    position:absolute;
+    font-size:15px;
+    line-height:1.28;
+    font-weight:400;
+    color:#222;
+  }
+  .body.bold{ font-weight:700; }
+  .bullet{
+    position:absolute;
+    color:#1e97ff;
+    font-size:14px;
+    line-height:1;
+    font-weight:700;
+  }
+  .arrow{
+    position:absolute;
+    color:#1e97ff;
+    font-size:26px;
+    line-height:1;
+    font-weight:700;
+  }
+
+  .close-bar{
+    position:absolute;
+    left:62px;
+    top:166px;
+    width:276px;
+    height:21px;
+    background:#9ec7e6;
+  }
+  .close-text{
+    position:absolute;
+    left:77px;
+    top:168px;
+    font-size:15px;
+    line-height:18px;
+    font-style:italic;
+    color:#2a2a2a;
+  }
+
+  .metrics-title{
+    position:absolute;
+    left:36px;
+    top:394px;
+    font-size:18px;
+    line-height:1.1;
+    font-weight:700;
+    letter-spacing:0.06em;
+    color:#111;
+  }
+  .metric-row-bg{
+    position:absolute;
+    left:161px;
+    width:338px;
+    height:43px;
+    background:#ebecee;
+  }
+  .metric-num{
+    position:absolute;
+    left:38px;
+    width:112px;
+    height:39px;
+    border:2px solid #2898f5;
+    background:transparent;
+  }
+  .metric-num span{
+    position:absolute;
+    inset:0;
+    display:block;
+    text-align:center;
+    font-size:16px;
+    line-height:39px;
+    font-style:italic;
+    font-weight:700;
+    color:#111;
+  }
+  .metric-label{
+    position:absolute;
+    left:169px;
+    font-size:17px;
+    line-height:43px;
+    color:#222;
+  }
+
+  .sup{
+    font-size:10px;
+    vertical-align:super;
+    line-height:0;
+  }
+
+  .footnote{
+    position:absolute;
+    left:32px;
+    top:637px;
+    width:1180px;
+    font-size:12px;
+    line-height:1.18;
+    color:#222;
+  }
+  .bottom-rule{
+    position:absolute;
+    left:31px;
+    top:688px;
+    width:1209px;
+    height:1px;
+    background:#bdbdbd;
+  }
+  .page{
+    position:absolute;
+    left:31px;
+    top:706px;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+    color:#222;
+  }
+  .jp{
+    position:absolute;
+    left:1098px;
+    top:700px;
+    width:150px;
+    color:#111;
+  }
+  .jp .main{
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:24px;
+    line-height:1;
+    font-weight:400;
+  }
+  .jp .sub{z-index:1;
+    margin-top:7px;
+    font-size:10px;
+    line-height:1;
+    font-weight:700;
+    letter-spacing:0.08em;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <div class="title">Case Study: BPOC Fund VI and Medicus Healthcare Solutions</div>
+
+  <div class="logo-bpoc">
+    <div class="dots">
+      <span style="left:0px;top:0px;"></span>
+      <span style="left:5px;top:0px;"></span>
+      <span style="left:10px;top:0px;"></span>
+      <span style="left:15px;top:0px;"></span>
+      <span style="left:0px;top:5px;"></span>
+      <span style="left:5px;top:5px;"></span>
+      <span style="left:10px;top:5px;"></span>
+      <span style="left:15px;top:5px;"></span>
+      <span style="left:0px;top:10px;"></span>
+      <span style="left:5px;top:10px;"></span>
+      <span style="left:10px;top:10px;"></span>
+      <span style="left:15px;top:10px;"></span>
+    </div>
+    BPOC
+  </div>
+
+  <div class="logo-medicus">
+    <div class="star">
+      <div class="v"></div>
+      <div class="h"></div>
+      <div class="d1"></div>
+      <div class="d2"></div>
+    </div>
+    <div class="name">medicus</div>
+    <div class="sub">healthcare solutions</div>
+  </div>
+
+  <div class="top-rule"></div>
+  <div class="subtitle">Stapled co-investment / primary centered around fast-growing healthcare services platform</div>
+
+  <div class="box" style="left:31px; top:151px; width:464px; height:224px;"></div>
+  <div class="section-head" style="left:43px; top:143px;">Opportunity Overview</div>
+  <div class="close-bar"></div>
+  <div class="close-text">Closed: April 27, 2024</div>
+
+  <div class="bullet" style="left:47px; top:194px;">▪</div>
+  <div class="body" style="left:62px; top:188px; width:410px;">Established in 1996 and based in Chicago, IL</div>
+
+  <div class="bullet" style="left:47px; top:226px;">▪</div>
+  <div class="body" style="left:62px; top:220px; width:415px;">Focus on middle market businesses in the healthcare industry</div>
+
+  <div class="bullet" style="left:47px; top:258px;">▪</div>
+  <div class="body" style="left:62px; top:252px; width:420px;">PEG has invested with BPOC since 2018 and previously completed two secondary transactions that are performing well to date</div>
+
+  <div class="small-head" style="left:47px; top:308px; font-size:15px;">Medicus Healthcare Solutions</div>
+
+  <div class="bullet" style="left:47px; top:327px;">▪</div>
+  <div class="body" style="left:62px; top:321px; width:410px;">Leading national provider of locum tenens (physician) staffing services</div>
+
+  <div class="bullet" style="left:47px; top:359px;">▪</div>
+  <div class="body" style="left:62px; top:353px; width:410px;">Specialties include Hospitalist, Radiology, Anesthesiology, Emergency Medicine, Psychiatry and Surgery</div>
+
+  <div class="box" style="left:528px; top:151px; width:466px; height:224px;"></div>
+  <div class="section-head" style="left:545px; top:143px;">Investment Thesis</div>
+
+  <div class="arrow" style="left:538px; top:171px;">»</div>
+  <div class="body bold" style="left:560px; top:168px; width:405px;">Seasoned Fund VI portfolio exhibiting strong momentum at the time of investment</div>
+
+  <div class="arrow" style="left:538px; top:222px;">»</div>
+  <div class="body bold" style="left:560px; top:219px; width:405px;">Attractive $1.5:$1 co-investment to primary commitment ratio</div>
+
+  <div class="arrow" style="left:538px; top:273px;">»</div>
+  <div class="body bold" style="left:560px; top:270px; width:405px;">Strong financial profile with organic revenue growth, margin expansion and free cash flow conversion</div>
+
+  <div class="arrow" style="left:538px; top:323px;">»</div>
+  <div class="body bold" style="left:560px; top:320px; width:410px;">Significant growth potential fueled by physician shortages and Medicus’ differentiated scale and unique offerings</div>
+
+  <div class="metrics-title">Key Investment Metrics</div>
+
+  <div class="metric-row-bg" style="top:429px;"></div>
+  <div class="metric-num" style="top:429px;"><span>14.1x</span></div>
+  <div class="metric-label" style="top:429px;">Effective Entry Multiple<span class="sup">1</span></div>
+
+  <div class="metric-row-bg" style="top:495px;"></div>
+  <div class="metric-num" style="top:495px;"><span>27%</span></div>
+  <div class="metric-label" style="top:495px;">LTM Revenue Growth<span class="sup">2</span></div>
+
+  <div class="metric-row-bg" style="top:560px;"></div>
+  <div class="metric-num" style="top:560px;"><span>40%</span></div>
+  <div class="metric-label" style="top:560px;">LTM Adjusted EBITDA Growth<span class="sup">2</span></div>
+
+  <div class="box" style="left:528px; top:400px; width:466px; height:224px;"></div>
+  <div class="section-head" style="left:546px; top:392px;">Investment Update<span class="sup">2</span></div>
+
+  <div class="small-head" style="left:544px; top:417px; font-size:14px;">Medicus Healthcare Solutions</div>
+
+  <div class="bullet" style="left:544px; top:444px;">▪</div>
+  <div class="body" style="left:559px; top:438px; width:405px;">Revenue and EBITDA are 12.8% and 23.0% ahead of budget, respectively</div>
+
+  <div class="bullet" style="left:544px; top:481px;">▪</div>
+  <div class="body" style="left:559px; top:475px; width:405px;">Outperformance driven by management’s core state strategy and a redefined production model, resulting in days worked rising</div>
+
+  <div class="bullet" style="left:544px; top:519px;">▪</div>
+  <div class="body" style="left:559px; top:513px; width:405px;">Strengthened forward visibility with a growing base of booked days</div>
+
+  <div class="small-head" style="left:544px; top:548px; font-size:14px;">BPOC Fund VI</div>
+
+  <div class="bullet" style="left:544px; top:573px;">▪</div>
+  <div class="body" style="left:559px; top:567px; width:405px;">Performance driven primarily by Medicus and a follow-on in Atlas Clinical Research</div>
+
+  <div class="footnote">
+    This example is included solely to illustrate strategies which have been utilized by PEG. It is expected that the portfolio will include a larger number of investments than the example set forth.<br>
+    There can be no guarantee or assurance that the portfolio will be able to make similar investments on similar terms in the future. Not all investments have had or will have similar results. The<br>
+    logos presented are registered trademarks of their respective companies. The inclusion of such companies should not be interpreted as a recommendation to buy or sell.<br>
+    1 As of transaction close on 4/27/2024. 2 Investment updates as of 12/31/2025.
+  </div>
+
+  <div class="bottom-rule"></div>
+  <div class="page">20</div>
+
+  <div class="jp">
+    <div class="main">J.P.Morgan</div>
+    <div class="sub">ASSET MANAGEMENT</div>
+  </div>
+
+</div>
+</body>
+</html>

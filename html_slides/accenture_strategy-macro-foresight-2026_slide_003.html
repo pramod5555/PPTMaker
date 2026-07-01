@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Executive Summary Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #1f0040;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 62% 2%, rgba(173, 0, 255, 0.95) 0%, rgba(173, 0, 255, 0.35) 14%, rgba(173, 0, 255, 0) 32%),
+      radial-gradient(circle at 98% 36%, rgba(255, 82, 212, 0.75) 0%, rgba(188, 0, 255, 0.55) 18%, rgba(120, 0, 200, 0.15) 40%, rgba(0,0,0,0) 58%),
+      radial-gradient(circle at 86% 88%, rgba(140, 0, 255, 0.85) 0%, rgba(140, 0, 255, 0.28) 18%, rgba(0,0,0,0) 38%),
+      linear-gradient(90deg, #2b0a5f 0%, #2e0a61 55%, #6111a0 82%, #8d1cd1 100%);
+    color: #fff;
+  }
+
+  .bottom-glow {
+    position: absolute;
+    left: 941px;
+    top: 559px;
+    width: 303px;
+    height: 161px;
+    background: radial-gradient(ellipse at 50% 50%, rgba(219, 92, 255, 0.95) 0%, rgba(153, 0, 255, 0.7) 30%, rgba(122, 0, 204, 0.2) 58%, rgba(0,0,0,0) 75%);
+    transform: rotate(-8deg);
+    filter: blur(2px);
+    opacity: 0.95;
+  }
+
+  .bottom-beam {
+    position: absolute;
+    left: 951px;
+    top: 515px;
+    width: 282px;
+    height: 222px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(245, 181, 255, 0.22) 38%, rgba(255,255,255,0.04) 65%, rgba(255,255,255,0) 100%);
+    clip-path: polygon(35% 0%, 100% 0%, 100% 100%, 62% 100%, 0% 38%);
+    opacity: 0.85;
+  }
+
+  .content {
+    position: absolute;
+    left: 40px;
+    top: 37px;
+    width: 950px;
+  }
+
+  .title {
+    position: absolute;
+    left: 24px;
+    top: 34px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+  }
+
+  .text {
+    position: absolute;
+    left: 20px;
+    top: 100px;
+    width: 935px;
+    font-size: 16px;
+    line-height: 1.18;
+    color: rgba(255,255,255,0.92);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .text p {
+    margin: 0 0 9px 0;
+  }
+
+  .bullets {
+    margin: 0;
+    padding-left: 22px;
+  }
+
+  .bullets li {
+    margin: 0 0 4px 0;
+  }
+
+  .side {
+    position: absolute;
+    left: 1060px;
+    top: 99px;
+    width: 188px;
+    color: #fff;
+  }
+
+  .person {
+    position: absolute;
+    width: 188px;
+  }
+
+  .person.one { top: 0; }
+  .person.two { top: 252px; }
+
+  .avatar {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin-left: 26px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.28);
+    background: #8a8a8a;
+  }
+
+  .avatar.one {
+    background:
+      radial-gradient(circle at 50% 34%, #f2d0b8 0 17%, transparent 17.5%),
+      radial-gradient(circle at 50% 23%, #4d3428 0 18%, transparent 18.5%),
+      radial-gradient(circle at 50% 60%, #17335f 0 24%, transparent 24.5%),
+      linear-gradient(180deg, #9a7a62 0 33%, #d7c2af 33% 46%, #17335f 46% 100%),
+      linear-gradient(90deg, #6e8c5a 0%, #a6b88b 48%, #6f8e62 100%);
+  }
+
+  .avatar.two {
+    background:
+      radial-gradient(circle at 50% 34%, #f0c6ab 0 17%, transparent 17.5%),
+      radial-gradient(circle at 50% 22%, #292929 0 18%, transparent 18.5%),
+      radial-gradient(circle at 50% 61%, #6d1f54 0 24%, transparent 24.5%),
+      linear-gradient(180deg, #5b5b5b 0 35%, #d4b9a6 35% 47%, #5b3b86 47% 100%),
+      linear-gradient(180deg, #5d5d66 0%, #575766 100%);
+  }
+
+  .name {
+    margin-top: 10px;
+    margin-left: 28px;
+    font-size: 15px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .role {
+    margin-top: 3px;
+    margin-left: 28px;
+    font-size: 12px;
+    line-height: 1.2;
+    color: rgba(255,255,255,0.95);
+    font-weight: 400;
+  }
+
+  .corner-mark {
+    position: absolute;
+    left: 40px;
+    bottom: 20px;
+    font-size: 40px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="bottom-glow"></div>
+    <div class="bottom-beam"></div>
+
+    <div class="title">A note to our readers:</div>
+
+    <div class="text">
+      <p>“2025 was a tumultuous year, marked by uncharacteristically high economic and policy uncertainty, geopolitical tensions, and rapid technological change. Most executives and boardrooms were consumed by uncertainty around the shift in US trade policies and the escalation of US-China tensions. The rapid acceleration in AI capex investments was another key feature of the landscape, contributing to economic resilience and propelling equity markets.</p>
+
+      <p>As we pivot to 2026, some of the policy uncertainty will subside but the lagged impacts of the decisions taken in 2025 will only intensify. Companies should plan for modest, albeit uneven, economic growth and a still-challenged business environment. Growth will increasingly diverge between AI “winners” and “losers”, while trade policy will continue to recalibrate value chains. In addition, we expect to see further competitive pressures globally from China as its export-led growth push suppresses prices and eats into the market share of foreign rivals.</p>
+
+      <p>There are a few key themes that cut across our economic outlook and top 10 macro trends for 2026, including:</p>
+      <ul class="bullets">
+        <li>AI: This will factor into almost every corporate decision. Much of the economic growth we expect next year will be predicated on the growing adoption of AI. At the same time, geostrategic competition for AI and calls for technology sovereignty will only intensify.</li>
+        <li>Affordability challenges: Many consumers are buckling under the pressure of years of persistent inflation. We see this trend continuing and influencing how consumers live, consume, and mobilize politically.</li>
+        <li>Geoeconomic fragmentation: Geopolitics and the realignments in global trade and supply chains they are triggering were a key disruptive force in 2025. We see the influence of geopolitics persisting in 2026 and shaping regional outlooks (e.g., European competitiveness) as well as sectoral dynamics (e.g., investments in AI, grid infrastructure, defense).</li>
+      </ul>
+
+      <p>In this time of uncertainty and rapid change, we advise executive teams to continue to focus on two fundamental priorities:</p>
+      <ul class="bullets">
+        <li>First, adopting AI across their enterprises and identifying ways to reinvent amidst the significant changes in the external environment. We will see reinvention at play across countless industries—whether it is automotive companies adapting to intense Chinese competition or retail and media companies adapting to the rapid consumer usage of AI in everyday situations.</li>
+        <li>Second, strengthening enterprise resilience given the wide range of potential economic, geopolitical and climate shocks. Resilience should cover commercial, workforce, technology, and operations. Embracing a “resilience first” mindset will be key.</li>
+      </ul>
+
+      <p>The other key skillsets which companies will need to master relate to scenario planning and foresight given the high economic uncertainty that will persist in 2026.</p>
+
+      <p>Finally, we want to thank all our avid and loyal readers. We continue to value your feedback and interactions, and we wish you a successful year ahead.”</p>
+    </div>
+
+    <div class="side">
+      <div class="person one">
+        <div class="avatar one"></div>
+        <div class="name">Chris Tomsovic</div>
+        <div class="role">Global Lead<br>Macro Foresight<br>London, UK</div>
+      </div>
+
+      <div class="person two">
+        <div class="avatar two"></div>
+        <div class="name">Nick Kojucharov</div>
+        <div class="role">Americas Lead<br>Macro Foresight<br>San Francisco, USA</div>
+      </div>
+    </div>
+
+    <div class="corner-mark">&gt;</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#a3a5a8;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  #slide > div, #slide > svg{ position:absolute; box-sizing:border-box; }
+
+  .sidebar{
+    left:0; top:0;
+    width:180px; height:720px;
+    background:#353941;
+    z-index:5;
+  }
+  .sidebar-line{
+    left:179px; top:0;
+    width:2px; height:720px;
+    background:#7c61c6;
+    z-index:6;
+  }
+  .side-title{
+    left:12px; top:33px;
+    width:150px;
+    color:#f1f1f1;
+    font-size:24px;
+    line-height:1.05;
+    font-weight:700;
+    z-index:20;
+  }
+
+  .hex1,.hex2,.hex3{ width:78px; height:78px; z-index:20; }
+  .hex1{ left:8px; top:138px; }
+  .hex2{ left:8px; top:273px; }
+  .hex3{ left:8px; top:405px; }
+
+  .side-num1,.side-num2,.side-num3{
+    width:20px;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+    z-index:20;
+  }
+  .side-num1{ left:93px; top:145px; color:#7d8289; }
+  .side-num2{ left:93px; top:278px; color:#8d73d5; }
+  .side-num3{ left:93px; top:410px; color:#7d8289; }
+
+  .side-text1,.side-text2,.side-text3{
+    width:72px;
+    font-size:14px;
+    line-height:1.08;
+    z-index:20;
+  }
+  .side-text1{ left:93px; top:173px; color:#6f757d; }
+  .side-text2{ left:93px; top:307px; color:#8d73d5; font-weight:700; }
+  .side-text3{ left:93px; top:438px; color:#6f757d; }
+
+  .bottom-icon{
+    left:66px; top:662px;
+    width:68px; height:68px;
+    transform:translateY(-60px);
+    z-index:20;
+  }
+  .page{
+    left:8px; bottom:12px;
+    color:#ffffff;
+    font-size:18px;
+    line-height:1;
+    font-weight:400;
+    z-index:25;
+  }
+
+  .title{
+    left:220px; top:29px;
+    width:1020px;
+    color:#222325;
+    font-size:28px;
+    line-height:1.12;
+    font-weight:800;
+    z-index:30;
+  }
+  .subtitle{
+    left:220px; top:139px;
+    width:690px;
+    color:#9298a0;
+    font-size:27px;
+    line-height:1.16;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .main-vline{
+    left:783px; top:194px;
+    width:1px; height:525px;
+    background:#c9c9cb;
+    z-index:12;
+  }
+  .main-hline{
+    left:220px; top:453px;
+    width:1131px; height:1px;
+    background:#bbbbbd;
+    z-index:12;
+  }
+
+  .globe-wrap{
+    left:310px; top:214px;
+    width:500px; height:500px;
+    z-index:1;
+    opacity:.48;
+  }
+
+  .leftblock,.rightblock{
+    color:#2d2d2d;
+    z-index:30;
+  }
+  .leftblock{ left:220px; top:195px; width:500px; }
+  .rightblock{ left:956px; top:195px; width:345px; }
+
+  .section-title-purple,
+  .section-title-blue,
+  .section-title-light{
+    margin:0;
+    font-size:17px;
+    line-height:1.18;
+    font-weight:700;
+  }
+  .section-title-purple{ color:#4d398f; }
+  .section-title-blue{ color:#005b97; }
+  .section-title-light{ color:#97afcf; }
+
+  .item{
+    margin:0;
+    font-size:17px;
+    line-height:1.23;
+    font-weight:400;
+    color:#2f2f2f;
+  }
+
+  .colA,.colB{ position:absolute; top:0; }
+  .colA{ left:0; width:276px; }
+  .colB{ left:294px; width:205px; }
+
+  .rcol1,.rcol2{ position:absolute; width:345px; }
+  .rcol1{ left:0; top:0; }
+  .rcol2{ left:58px; top:266px; width:287px; }
+
+  .chart-wrap{
+    left:548px; top:228px;
+    width:468px; height:430px;
+    z-index:25;
+  }
+
+  .source{
+    left:220px; bottom:13px;
+    color:#4d4d4d;
+    font-size:10px;
+    line-height:1.2;
+    z-index:30;
+  }
+
+  .logo{
+    right:12px; bottom:8px;
+    width:60px; height:24px;
+    z-index:40;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="sidebar-line"></div>
+
+  <div class="side-title">Technology &amp;<br>Innovation</div>
+
+  <svg class="hex1" viewBox="0 0 78 78" aria-hidden="true">
+    <defs>
+      <clipPath id="h1c"><polygon points="20,5 58,5 73,39 58,73 20,73 5,39"/></clipPath>
+      <linearGradient id="h1g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#dadbdd"/>
+        <stop offset="1" stop-color="#8e9398"/>
+      </linearGradient>
+    </defs>
+    <polygon points="20,5 58,5 73,39 58,73 20,73 5,39" fill="none" stroke="#8d9197" stroke-width="4"/>
+    <g clip-path="url(#h1c)">
+      <rect width="78" height="78" fill="url(#h1g)"/>
+      <rect x="7" y="45" width="7" height="18" fill="#efefef" opacity=".95"/>
+      <rect x="18" y="37" width="7" height="26" fill="#efefef" opacity=".95"/>
+      <rect x="29" y="28" width="7" height="35" fill="#efefef" opacity=".95"/>
+      <rect x="40" y="20" width="7" height="43" fill="#efefef" opacity=".95"/>
+      <rect x="51" y="31" width="7" height="32" fill="#efefef" opacity=".95"/>
+      <path d="M6 51 C18 36, 26 40, 38 25 S60 14, 72 23" fill="none" stroke="#f7f7f7" stroke-width="2"/>
+      <path d="M8 28 C20 25, 35 24, 71 54" fill="none" stroke="#dfe2e5" stroke-width="1.5" opacity=".8"/>
+      <circle cx="18" cy="37" r="2" fill="#ffffff"/>
+      <circle cx="37" cy="25" r="2" fill="#ffffff"/>
+      <circle cx="53" cy="20" r="2" fill="#ffffff"/>
+      <circle cx="63" cy="27" r="2" fill="#ffffff"/>
+    </g>
+  </svg>
+  <div class="side-num1">1</div>
+  <div class="side-text1">Value of<br>Innovation</div>
+
+  <svg class="hex2" viewBox="0 0 78 78" aria-hidden="true">
+    <defs>
+      <clipPath id="h2c"><polygon points="20,5 58,5 73,39 58,73 20,73 5,39"/></clipPath>
+      <linearGradient id="h2g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#7b5fd0"/>
+        <stop offset="1" stop-color="#b596ff"/>
+      </linearGradient>
+    </defs>
+    <polygon points="20,5 58,5 73,39 58,73 20,73 5,39" fill="none" stroke="#9b7ae7" stroke-width="4"/>
+    <g clip-path="url(#h2c)">
+      <rect width="78" height="78" fill="url(#h2g)"/>
+      <circle cx="25" cy="27" r="13" fill="#ffffff" opacity=".12"/>
+      <circle cx="45" cy="30" r="18" fill="#ffffff" opacity=".10"/>
+      <circle cx="32" cy="45" r="14" fill="#ffffff" opacity=".12"/>
+      <path d="M12 49 C16 28, 46 20, 63 48" fill="none" stroke="#f5eeff" stroke-width="1.5"/>
+      <path d="M17 20 L54 54 M20 55 L52 24" stroke="#f5eeff" stroke-width="1" opacity=".45"/>
+      <circle cx="20" cy="39" r="2" fill="#fff"/>
+      <circle cx="28" cy="29" r="2" fill="#fff"/>
+      <circle cx="38" cy="44" r="2" fill="#fff"/>
+      <circle cx="49" cy="34" r="2" fill="#fff"/>
+      <circle cx="58" cy="46" r="2" fill="#fff"/>
+    </g>
+  </svg>
+  <div class="side-num2">2</div>
+  <div class="side-text2">Frontier<br>Technologies</div>
+
+  <svg class="hex3" viewBox="0 0 78 78" aria-hidden="true">
+    <defs>
+      <clipPath id="h3c"><polygon points="20,5 58,5 73,39 58,73 20,73 5,39"/></clipPath>
+      <linearGradient id="h3g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#dedfe0"/>
+        <stop offset="1" stop-color="#9da2a7"/>
+      </linearGradient>
+    </defs>
+    <polygon points="20,5 58,5 73,39 58,73 20,73 5,39" fill="none" stroke="#8d9197" stroke-width="4"/>
+    <g clip-path="url(#h3c)">
+      <rect width="78" height="78" fill="url(#h3g)"/>
+      <path d="M20 43 C22 31, 33 30, 39 38 C44 31, 55 31, 58 43 C55 51, 47 55, 39 62 C31 56, 23 52, 20 43 Z" fill="#f3f3f3"/>
+      <rect x="21" y="36" width="15" height="8" rx="2" fill="#bdbdbd"/>
+      <rect x="42" y="36" width="15" height="8" rx="2" fill="#bdbdbd"/>
+      <path d="M26 40 L32 46 M52 40 L46 46" stroke="#8a8a8a" stroke-width="1.5"/>
+      <path d="M36 40 L42 40" stroke="#8a8a8a" stroke-width="1.5"/>
+    </g>
+  </svg>
+  <div class="side-num3">3</div>
+  <div class="side-text3">Humans &amp;<br>Machines</div>
+
+  <svg class="bottom-icon" viewBox="0 0 68 68" aria-hidden="true">
+    <g fill="none" stroke="#6f7379" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="43" cy="28" r="11"></circle>
+      <path d="M43 17 L43 9 M34 19 L29 14 M52 19 L57 14 M32 28 L24 28 M54 28 L62 28 M35 36 L30 41 M51 36 L56 41"/>
+      <path d="M20 54 C20 46, 25 40, 32 38"/>
+      <path d="M31 20 C27 17, 22 16, 17 17 C9 20, 6 27, 8 34 C9 39, 13 43, 18 46 L18 56 L26 56 L26 47 C30 45, 33 41, 33 36"/>
+      <path d="M16 60 L27 60"/>
+    </g>
+  </svg>
+  <div class="page">39</div>
+
+  <div class="title">Green technology innovations perfectly illustrate multi-varied beneficial interdependencies among new technologies, including AI and big data</div>
+  <div class="subtitle">The innovation landscape for renewable power integration</div>
+
+  <svg class="globe-wrap" viewBox="0 0 500 500" aria-hidden="true">
+    <defs>
+      <radialGradient id="glow" cx="45%" cy="42%" r="48%">
+        <stop offset="0" stop-color="#ffffff" stop-opacity=".80"/>
+        <stop offset=".48" stop-color="#d9d9d9" stop-opacity=".30"/>
+        <stop offset="1" stop-color="#efefef" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="250" cy="250" r="220" fill="url(#glow)"/>
+    <g stroke="#ffffff" stroke-opacity=".65" fill="none">
+      <circle cx="175" cy="127" r="6" fill="#fff" fill-opacity=".7"/>
+      <circle cx="214" cy="127" r="5" fill="#fff" fill-opacity=".65"/>
+      <circle cx="250" cy="127" r="5" fill="#fff" fill-opacity=".65"/>
+      <circle cx="287" cy="127" r="5" fill="#fff" fill-opacity=".65"/>
+      <circle cx="323" cy="127" r="6" fill="#fff" fill-opacity=".7"/>
+
+      <circle cx="164" cy="179" r="7" fill="#fff" fill-opacity=".65"/>
+      <circle cx="214" cy="179" r="6" fill="#fff" fill-opacity=".7"/>
+      <circle cx="250" cy="179" r="9" fill="#fff" fill-opacity=".8"/>
+      <circle cx="286" cy="179" r="6" fill="#fff" fill-opacity=".7"/>
+      <circle cx="336" cy="179" r="7" fill="#fff" fill-opacity=".65"/>
+
+      <circle cx="140" cy="250" r="8" fill="#fff" fill-opacity=".55"/>
+      <circle cx="190" cy="250" r="9" fill="#fff" fill-opacity=".65"/>
+      <circle cx="250" cy="250" r="10" fill="#fff" fill-opacity=".85"/>
+      <circle cx="309" cy="250" r="9" fill="#fff" fill-opacity=".65"/>
+      <circle cx="359" cy="250" r="8" fill="#fff" fill-opacity=".55"/>
+
+      <circle cx="164" cy="321" r="7" fill="#fff" fill-opacity=".65"/>
+      <circle cx="214" cy="321" r="6" fill="#fff" fill-opacity=".7"/>
+      <circle cx="250" cy="321" r="9" fill="#fff" fill-opacity=".8"/>
+      <circle cx="286" cy="321" r="6" fill="#fff" fill-opacity=".7"/>
+      <circle cx="336" cy="321" r="7" fill="#fff" fill-opacity=".65"/>
+
+      <circle cx="175" cy="373" r="6" fill="#fff" fill-opacity=".7"/>
+      <circle cx="214" cy="373" r="5" fill="#fff" fill-opacity=".65"/>
+      <circle cx="250" cy="373" r="5" fill="#fff" fill-opacity=".65"/>
+      <circle cx="287" cy="373" r="5" fill="#fff" fill-opacity=".65"/>
+      <circle cx="323" cy="373" r="6" fill="#fff" fill-opacity=".7"/>
+
+      <path d="M175 127 L214 127 L250 127 L287 127 L323 127"/>
+      <path d="M164 179 L214 179 L250 179 L286 179 L336 179"/>
+      <path d="M140 250 L190 250 L250 250 L309 250 L359 250"/>
+      <path d="M164 321 L214 321 L250 321 L286 321 L336 321"/>
+      <path d="M175 373 L214 373 L250 373 L287 373 L323 373"/>
+
+      <path d="M175 127 L164 179 L140 250 L164 321 L175 373"/>
+      <path d="M214 127 L214 179 L190 250 L214 321 L214 373"/>
+      <path d="M250 127 L250 179 L250 250 L250 321 L250 373"/>
+      <path d="M287 127 L286 179 L309 250 L286 321 L287 373"/>
+      <path d="M323 127 L336 179 L359 250 L336 321 L323 373"/>
+
+      <path d="M175 127 C205 165, 223 185, 250 179 C278 172, 296 161, 323 127"/>
+      <path d="M164 179 C193 212, 214 232, 250 250 C286 232, 307 212, 336 179"/>
+      <path d="M140 250 C187 270, 211 301, 250 321 C289 301, 313 270, 359 250"/>
+      <path d="M164 321 C196 332, 218 346, 250 373 C282 346, 304 332, 336 321"/>
+
+      <path d="M175 127 C180 168, 182 205, 190 250 C198 294, 205 330, 214 373"/>
+      <path d="M323 127 C318 168, 316 205, 309 250 C301 294, 294 330, 287 373"/>
+    </g>
+    <g opacity=".35">
+      <path d="M185 125 C195 150,205 170,220 190" stroke="#fff" stroke-width="14" stroke-linecap="round"/>
+      <circle cx="188" cy="195" r="18" fill="#fff"/>
+      <path d="M206 223 C237 245,271 259,312 271" stroke="#fff" stroke-width="16" stroke-linecap="round"/>
+      <circle cx="318" cy="274" r="20" fill="#fff"/>
+      <path d="M230 301 C235 328,236 353,230 389" stroke="#fff" stroke-width="18" stroke-linecap="round"/>
+      <circle cx="228" cy="403" r="24" fill="#fff"/>
+    </g>
+  </svg>
+
+  <div class="main-vline"></div>
+  <div class="main-hline"></div>
+
+  <div class="leftblock">
+    <div class="colA">
+      <p class="section-title-purple">Electrification of end-use sector</p>
+      <p class="item">EV smart charging</p>
+      <p class="item">Renewable power-to-heat</p>
+      <p class="item">Renewable power-to-hydrogen</p>
+
+      <div style="position:absolute; left:0; top:100px; width:276px;">
+        <p class="section-title-purple">Electricity storage</p>
+        <p class="item">Utility-scale batteries</p>
+        <p class="item">Behind-the-meter batteries</p>
+      </div>
+
+      <div style="position:absolute; left:0; top:201px; width:276px;">
+        <p class="section-title-purple">Dispatchable generation</p>
+        <p class="item">Flexibility in conventional powerplant</p>
+      </div>
+
+      <div style="position:absolute; left:0; top:268px; width:276px;">
+        <p class="section-title-blue">Grid reinforcement deferral</p>
+        <p class="item">Virtual power lines</p>
+        <p class="item">Dynamic line rating</p>
+      </div>
+
+      <div style="position:absolute; left:0; top:350px; width:290px;">
+        <p class="section-title-blue">Disrupted energy sources operation</p>
+        <p class="item">Future role of disruption system operators</p>
+        <p class="item">Co-operation between transmission and</p>
+        <p class="item">distribution system operator</p>
+      </div>
+
+      <div style="position:absolute; left:0; top:464px; width:438px;">
+        <p class="section-title-blue">Accommodating uncertainty</p>
+        <p class="item">Advanced forecasting of variable renewable power generation</p>
+        <p class="item">Innovative operation of pumped hydropower storage</p>
+      </div>
+    </div>
+
+    <div class="colB">
+      <p class="section-title-purple">Digital technologies</p>
+      <p class="item">Internet of things</p>
+      <p class="item">AI and big data</p>
+      <p class="item">Blockchain</p>
+
+      <div style="position:absolute; left:-80px; top:140px; width:220px;">
+        <p class="section-title-purple">New grids</p>
+        <p class="item">Renewable mini-grids</p>
+        <p class="item">Supergrids</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rightblock">
+    <div class="rcol1">
+      <p class="section-title-purple" style="color:#7f68bc;">Enabling renewable energy supply</p>
+      <p class="item">Community-ownership models</p>
+      <p class="item">Pay-as-you-go models</p>
+
+      <div style="position:absolute; left:58px; top:124px; width:287px;">
+        <p class="section-title-purple" style="color:#7f68bc;">Empowering the consumer</p>
+        <p class="item">Aggregators</p>
+        <p class="item">Peer-to-peer electricity trading</p>
+        <p class="item">Energy as-a-service</p>
+      </div>
+    </div>
+
+    <div class="rcol2">
+      <p class="section-title-light">Retail market</p>
+      <p class="item">Time-of-use tariffs</p>
+      <p class="item">Market integration of distributed energy</p>
+      <p class="item">resources</p>
+      <p class="item">Net billing schemes</p>
+
+      <div style="position:absolute; left:-22px; top:119px; width:309px;">
+        <p class="section-title-light">Wholesale market</p>
+        <p class="item">Increasing space and time granularity in</p>
+        <p class="item">electricity markets</p>
+        <p class="item">Innovative ancillary services</p>
+        <p class="item">Re-design capacity markets</p>
+        <p class="item">Regional markets</p>
+      </div>
+    </div>
+  </div>
+
+  <svg class="chart-wrap" viewBox="0 0 468 430" aria-hidden="true">
+    <defs>
+      <style>
+        .lblA{font:700 21px Arial, Helvetica, sans-serif; fill:#4b358a}
+        .lblB{font:700 21px Arial, Helvetica, sans-serif; fill:#7f68bc}
+        .lblC{font:700 21px Arial, Helvetica, sans-serif; fill:#98afcf}
+        .lblD{font:700 21px Arial, Helvetica, sans-serif; fill:#005489}
+        .ico{stroke:#ffffff; stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round}
+      </style>
+    </defs>
+
+    <path d="M234 41
+             C250 41,259 53,260 69
+             L285 69
+             C290 56,302 46,317 46
+             C328 46,338 50,346 57
+             L377 48
+             C386 53,394 60,399 69
+             L390 99
+             C397 108,401 118,401 129
+             C401 140,397 151,390 159
+             L399 189
+             C394 198,386 205,376 209
+             L346 199
+             C338 206,328 210,317 210
+             C302 210,290 200,285 187
+             L260 187
+             C257 203,247 216,234 216
+             Z" fill="#7f68bc"/>
+
+    <path d="M234 41
+             C218 41,209 53,208 69
+             L183 69
+             C178 56,166 46,151 46
+             C140 46,130 50,122 57
+             L91 48
+             C82 53,74 60,69 69
+             L78 99
+             C71 108,67 118,67 129
+             C67 140,71 151,78 159
+             L69 189
+             C74 198,82 205,92 209
+             L122 199
+             C130 206,140 210,151 210
+             C166 210,178 200,183 187
+             L208 187
+             C211 203,221 216,234 216
+             Z" fill="#4b358a"/>
+
+    <path d="M234 216
+             C250 216,259 228,260 244
+             L285 244
+             C290 231,302 221,317 221
+             C328 221,338 225,346 232
+             L376 223
+             C386 228,394 235,399 244
+             L390 274
+             C397 282,401 293,401 304
+             C401 315,397 326,390 334
+             L399 364
+             C394 374,386 381,376 385
+             L346 375
+             C338 382,328 386,317 386
+             C302 386,290 376,285 362
+             L260 362
+             C257 378,247 391,234 391
+             Z" fill="#9bb2d0"/>
+
+    <path d="M234 216
+             C218 216,209 228,208 244
+             L183 244
+             C178 231,166 221,151 221
+             C140 221,130 225,122 232
+             L92 223
+             C82 228,74 235,69 244
+             L78 274
+             C71 282,67 293,67 304
+             C67 315,71 326,78 334
+             L69 364
+             C74 374,82 381,92 385
+             L122 375
+             C130 382,140 386,151 386
+             C166 386,178 376,183 362
+             L208 362
+             C211 378,221 391,234 391
+             Z" fill="#005489"/>
+
+    <circle cx="234" cy="216" r="49" fill="#efefef"/>
+
+    <g transform="translate(96,124) rotate(-52)">
+      <text class="lblA">Technology</text>
+    </g>
+    <g transform="translate(321,69) rotate(24)">
+      <text class="lblB">Business models</text>
+    </g>
+    <g transform="translate(339,401) rotate(-52)">
+      <text class="lblC">Market design</text>
+    </g>
+    <g transform="translate(82,313) rotate(57)">
+      <text class="lblD">System operation</text>
+    </g>
+
+    <g transform="translate(123,123)">
+      <path class="ico" d="M16 39 C9 39,3 33,3 25 C3 18,8 13,14 12 C15 5,21 0,29 0 C37 0,43 6,44 13 C50 13,55 18,55 25 C55 31,51 36,45 38"/>
+      <circle class="ico" cx="23" cy="24" r="5"/>
+      <path class="ico" d="M23 16 L23 13 M23 35 L23 32 M15 24 L12 24 M34 24 L31 24 M18 19 L16 17 M30 31 L28 29 M30 19 L32 17 M18 29 L16 31"/>
+      <rect class="ico" x="35" y="10" width="27" height="27"/>
+      <path class="ico" d="M39 16 L43 16 M39 21 L47 21 M39 26 L50 26"/>
+    </g>
+
+    <g transform="translate(267,116)">
+      <circle class="ico" cx="24" cy="22" r="20"/>
+      <circle class="ico" cx="47" cy="43" r="12"/>
+      <circle class="ico" cx="28" cy="50" r="10"/>
+      <path class="ico" d="M38 9 L65 9 M45 31 L67 31 M37 22 L48 34 M34 44 L39 48"/>
+    </g>
+
+    <g transform="translate(298,247)">
+      <path class="ico" d="M15 47 L15 20 L28 20 L28 47"/>
+      <path class="ico" d="M29 47 L29 13 L42 13 L42 47"/>
+      <path class="ico" d="M43 47 L43 26 L56 26 L56 47"/>
+      <path class="ico" d="M7 47 L64 47"/>
+      <path class="ico" d="M7 20 C11 4, 22 0, 35 0 C48 0, 60 7, 64 20"/>
+      <path class="ico" d="M35 0 L35 47"/>
+      <path class="ico" d="M13 11 L58 11"/>
+    </g>
+
+    <g transform="translate(124,256)">
+      <circle class="ico" cx="23" cy="20" r="18"/>
+      <path class="ico" d="M23 9 C29 9,34 14,34 20 C34 26,29 31,23 31 C17 31,12 26,12 20"/>
+      <path class="ico" d="M40 10 L55 10 L55 23"/>
+      <path class="ico" d="M49 4 L55 10 L49 16"/>
+      <path class="ico" d="M40 31 L55 31 L55 44"/>
+      <path class="ico" d="M49 25 L55 31 L49 37"/>
+      <path class="ico" d="M23 3 L23 8 M23 32 L23 37 M8 20 L13 20 M33 20 L38 20 M12 10 L15 13 M31 27 L34 30 M31 13 L34 10 M12 30 L15 27"/>
+    </g>
+  </svg>
+
+  <div class="source">Sources: Irena; Roland Berger</div>
+
+  <svg class="logo" viewBox="0 0 60 24" aria-hidden="true">
+    <text x="0" y="10" font-family="Arial, Helvetica, sans-serif" font-size="6" fill="#61656b">Roland</text>
+    <path d="M28 1 L37 1 C45 1 49 5 49 12 C49 18 45 23 36 23 L28 23 Z" fill="#8a8f96"/>
+    <path d="M36 1 L45 1 C53 1 57 5 57 12 C57 18 53 23 44 23 L36 23 Z" fill="#6f757d"/>
+    <rect x="28" y="1" width="8" height="22" fill="#b1b5bb"/>
+  </svg>
+</div>
+</body>
+</html>

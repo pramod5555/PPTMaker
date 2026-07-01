@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Extreme behaviors and beliefs</title>
+<style>
+  body {
+    margin: 0;
+    background: #ddd;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #eae2e4;
+    color: #222;
+  }
+
+  .photo-top {
+    position: absolute;
+    left: 60px;
+    top: 0px;
+    width: 364px;
+    height: 121px;
+    background:
+      linear-gradient(12deg, rgba(236,171,145,0.95) 0%, rgba(239,192,179,0.9) 16%, rgba(224,223,237,0.82) 34%, rgba(89,86,149,0.55) 49%, rgba(24,13,25,0.95) 72%, rgba(0,0,0,1) 100%);
+    filter: blur(1px) saturate(1.1);
+  }
+  .photo-top::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    width: 138px;
+    height: 70px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(190,205,244,0.8));
+    box-shadow: 0 0 18px rgba(255,255,255,0.25);
+    transform: rotate(-2deg);
+  }
+  .photo-top::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 22px;
+    width: 84px;
+    height: 90px;
+    background: radial-gradient(circle at 35% 35%, rgba(245,191,166,0.95), rgba(217,127,103,0.8) 50%, rgba(132,69,46,0.5) 80%, rgba(0,0,0,0) 82%);
+    filter: blur(3px);
+  }
+
+  .title {
+    position: absolute;
+    left: 59px;
+    top: 162px;
+    width: 340px;
+    color: #842dde;
+    font-size: 37px;
+    line-height: 1.08;
+    font-weight: 300;
+    letter-spacing: -0.3px;
+  }
+
+  .photo-main {
+    position: absolute;
+    left: 60px;
+    top: 274px;
+    width: 364px;
+    height: 440px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 70% 14%, rgba(247,213,206,0.95) 0 10%, rgba(243,195,178,0.85) 12%, rgba(129,96,148,0.45) 18%, rgba(0,0,0,0) 24%),
+      radial-gradient(circle at 18% 7%, rgba(239,194,172,0.9) 0 14%, rgba(0,0,0,0) 16%),
+      linear-gradient(90deg, rgba(241,233,219,0.98) 0 22%, rgba(235,225,214,0.9) 22%, rgba(203,170,126,0.2) 26%, rgba(244,177,0,0.98) 45%, rgba(216,128,0,0.95) 100%);
+  }
+  .photo-main::before {
+    content: "";
+    position: absolute;
+    left: 36px;
+    top: 26px;
+    width: 255px;
+    height: 462px;
+    background:
+      radial-gradient(circle at 70% 8%, rgba(245,196,183,0.9) 0 11%, rgba(240,171,156,0.7) 14%, rgba(0,0,0,0) 17%),
+      radial-gradient(circle at 72% 17%, rgba(255,255,255,0.9) 0 10%, rgba(220,220,230,0.8) 12%, rgba(60,50,60,0.65) 16%, rgba(0,0,0,0) 19%),
+      linear-gradient(155deg, rgba(255,190,0,0.95) 8%, rgba(242,160,0,0.98) 44%, rgba(202,103,0,0.95) 76%, rgba(179,88,0,0.95) 100%);
+    border-radius: 120px 110px 60px 80px;
+    transform: rotate(-9deg);
+    filter: blur(2px);
+  }
+  .photo-main::after {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 0;
+    width: 145px;
+    height: 190px;
+    background: linear-gradient(175deg, rgba(243,206,181,0.98), rgba(231,155,114,0.9));
+    border-radius: 70px;
+    transform: rotate(-18deg);
+    filter: blur(3px);
+  }
+
+  .body-col {
+    position: absolute;
+    left: 480px;
+    top: 64px;
+    width: 402px;
+    font-size: 18px;
+    line-height: 1.42;
+    color: #242424;
+    font-weight: 400;
+  }
+  .body-col p {
+    margin: 0 0 16px 0;
+  }
+  .sup {
+    font-size: 12px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .divider {
+    position: absolute;
+    left: 900px;
+    top: 68px;
+    width: 2px;
+    height: 191px;
+    background: #d0c9cc;
+  }
+
+  .quote {
+    position: absolute;
+    left: 926px;
+    top: 61px;
+    width: 304px;
+    color: #8f34e3;
+    font-size: 24px;
+    line-height: 1.32;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+  }
+
+  .quote-author {
+    position: absolute;
+    left: 927px;
+    top: 242px;
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #171717;
+  }
+
+  .right-text {
+    position: absolute;
+    left: 900px;
+    top: 279px;
+    width: 330px;
+    font-size: 18px;
+    line-height: 1.42;
+    color: #2b2b2b;
+  }
+
+  .rail {
+    position: absolute;
+    right: 12px;
+    top: 36px;
+    width: 32px;
+    height: 612px;
+    color: #6d696d;
+    font-size: 11px;
+    line-height: 1;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.2px;
+  }
+  .rail .active {
+    color: #8f34e3;
+    font-weight: 700;
+  }
+
+  .footer-left {
+    position: absolute;
+    right: 82px;
+    bottom: 18px;
+    font-size: 14px;
+    color: #7a7679;
+  }
+  .footer-left .year {
+    color: #8f34e3;
+    font-weight: 700;
+  }
+  .footer-page {
+    position: absolute;
+    right: 25px;
+    bottom: 18px;
+    font-size: 14px;
+    color: #7a7679;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="photo-top"></div>
+
+    <div class="title">Extreme behaviors<br>and beliefs</div>
+
+    <div class="photo-main"></div>
+
+    <div class="body-col">
+      <p>Parents are also concerned about the influences their children are exposed to online. Those who are persuaded into extreme beliefs or behaviors can be coerced into problematic or dangerous actions that could harm themselves or others.</p>
+
+      <p>Social media can be a confusing place, serving a constant flow of content to people who aren’t always asking for it. Adults can find it overwhelming, and those with young, developing brains even more so. In a whirlwind of confusion, decisive voices provide something to hold on to. Unfortunately, some of the loudest voices promote toxic traits for shock purposes, which, once entertained, are perpetuated by algorithms.<span class="sup">43</span></p>
+
+      <p>For instance, misogyny isn’t new, but social media is changing it. According to research by University College, London and the University of Kent, after only five days using a popular social media platform, there was a fourfold increase in misogynistic content being served as suggested content. The algorithm delivered extreme videos, often focused on anger and blame directed at women.”<span class="sup">44</span> Research shows that Gen Z boys and young men are more likely than Baby Boomers to believe that feminism has done more harm than good.<span class="sup">45</span></p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="quote">“I think children spending a lot of time on digital screens is a bad thing. It makes them more isolated from the outside world. They become a bit detached from reality.”</div>
+
+    <div class="quote-author">Peter, 49, United Kingdom</div>
+
+    <div class="right-text">
+      There has also been a notable increase in avoidance of in-person interaction. In Japan, a form of extreme social withdrawal called Hikikomori has been a focus since the late-1990s, just as access to the internet became widespread and adolescent boys started retreating into solitude.<span class="sup">46, 47</span>
+    </div>
+
+    <div class="rail">Cost of hesitations / <span class="active">The parent trap</span> / Impatience economy / The dignity of work / Social rewiring</div>
+
+    <div class="footer-left">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="footer-page">28</div>
+  </div>
+</body>
+</html>

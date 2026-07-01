@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Deloitte Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#efefee;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefee;
+    color:#111;
+  }
+  #slide > *{ position:absolute; box-sizing:border-box; }
+
+  .title{
+    left:47px;
+    top:44px;
+    width:1170px;
+    font-size:39px;
+    line-height:44px;
+    font-weight:800;
+    color:#000;
+    letter-spacing:-0.4px;
+  }
+
+  .panel{
+    left:47px;
+    top:188px;
+    width:1273px;
+    height:527px;
+    background:#e4e4e3;
+  }
+
+  .panel-title{
+    left:77px;
+    top:213px;
+    font-size:19px;
+    line-height:24px;
+    font-weight:700;
+    color:#111;
+  }
+
+  .legend{
+    left:77px;
+    top:245px;
+    width:820px;
+    height:24px;
+    font-size:15px;
+    line-height:20px;
+    color:#222;
+  }
+  .legend-item{
+    position:absolute;
+    top:0;
+    height:20px;
+    white-space:nowrap;
+  }
+  .dot{
+    position:absolute;
+    left:0;
+    top:2px;
+    width:17px;
+    height:17px;
+    border-radius:50%;
+  }
+  .legend-text{
+    position:absolute;
+    left:21px;
+    top:0;
+  }
+  .line-swatch{
+    position:absolute;
+    left:0;
+    top:9px;
+    width:23px;
+    height:0;
+    border-top:4px solid #111;
+  }
+
+  .subhead-left{
+    left:77px;
+    top:285px;
+    font-size:18px;
+    line-height:23px;
+    color:#222;
+  }
+
+  .subhead-right{
+    left:729px;
+    top:285px;
+    font-size:18px;
+    line-height:23px;
+    color:#222;
+  }
+
+  .footnote{
+    left:77px;
+    top:662px;
+    width:1065px;
+    font-size:10px;
+    line-height:13px;
+    color:#333;
+  }
+
+  .footer-left{
+    left:47px;
+    top:727px;
+    transform:translateY(-100%);
+    font-size:11px;
+    line-height:13px;
+    color:#4b4b4b;
+  }
+  .footer-center{
+    left:984px;
+    top:727px;
+    transform:translateY(-100%);
+    font-size:11px;
+    line-height:13px;
+    color:#4b4b4b;
+    width:295px;
+    text-align:left;
+  }
+  .footer-right{
+    right:23px;
+    top:727px;
+    transform:translateY(-100%);
+    font-size:11px;
+    line-height:13px;
+    color:#4b4b4b;
+    text-align:right;
+    width:20px;
+  }
+
+  .small-grey{
+    fill:#5a5a5a;
+    font-size:12px;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .small-italic{
+    fill:#4c4c4c;
+    font-size:11px;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+    font-style:italic;
+  }
+  .donut-label-light{
+    fill:#f0f0f0;
+    font-size:14px;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+    font-weight:400;
+  }
+  .donut-label-dark{
+    fill:#111;
+    font-size:14px;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+    font-weight:400;
+  }
+  .axis{
+    stroke:#cfcfcd;
+    stroke-width:1;
+  }
+  .ticktext{
+    fill:#666;
+    font-size:12px;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .xlabel{
+    fill:#111;
+    font-size:16px;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">
+    Traditional agents account for just 13% of marquee flight<br>
+    bookings, but make gains led by lower- and middle-income<br>
+    travelers
+  </div>
+
+  <div class="panel"></div>
+
+  <div class="panel-title">Air booking channel</div>
+
+  <div class="legend">
+    <div class="legend-item" style="left:0px; width:170px;">
+      <div class="dot" style="background:#3f7f3a;"></div>
+      <div class="legend-text">Airline site or app</div>
+    </div>
+    <div class="legend-item" style="left:193px; width:190px;">
+      <div class="dot" style="background:#8bb534;"></div>
+      <div class="legend-text">Online travel agency</div>
+    </div>
+    <div class="legend-item" style="left:388px; width:160px;">
+      <div class="dot" style="background:#b8ce24;"></div>
+      <div class="legend-text">Traditional agent</div>
+    </div>
+    <div class="legend-item" style="left:578px; width:85px;">
+      <div class="dot" style="background:#c7c7c7;"></div>
+      <div class="legend-text">Other</div>
+    </div>
+    <div class="legend-item" style="left:696px; width:120px;">
+      <div class="line-swatch"></div>
+      <div class="legend-text" style="left:31px;">2025 intent</div>
+    </div>
+  </div>
+
+  <div class="subhead-left">All travelers</div>
+  <div class="subhead-right">Travelers by income</div>
+
+  <svg style="left:171px; top:313px; width:430px; height:302px;" viewBox="0 0 430 302">
+    <g transform="translate(170,149)">
+      <circle cx="0" cy="0" r="102" fill="none" stroke="#ffffff" stroke-width="67"></circle>
+
+      <circle cx="0" cy="0" r="102" fill="none" stroke="#2f6237" stroke-width="67"
+              stroke-dasharray="461.57 179.28" stroke-dashoffset="0"
+              transform="rotate(-90)"></circle>
+
+      <circle cx="0" cy="0" r="102" fill="none" stroke="#8fb53b" stroke-width="67"
+              stroke-dasharray="83.34 557.51" stroke-dashoffset="-461.57"
+              transform="rotate(-90)"></circle>
+
+      <circle cx="0" cy="0" r="102" fill="none" stroke="#bdd226" stroke-width="67"
+              stroke-dasharray="83.34 557.51" stroke-dashoffset="-544.91"
+              transform="rotate(-90)"></circle>
+
+      <circle cx="0" cy="0" r="102" fill="none" stroke="#f2f2f2" stroke-width="67"
+              stroke-dasharray="12.82 628.03" stroke-dashoffset="-628.25"
+              transform="rotate(-90)"></circle>
+    </g>
+
+    <text x="234" y="74" class="donut-label-light" text-anchor="middle">72%</text>
+    <text x="234" y="94" class="small-italic" text-anchor="middle">(vs. 74%)</text>
+
+    <text x="118" y="131" class="donut-label-dark" text-anchor="middle">13%</text>
+    <text x="118" y="151" class="small-italic" text-anchor="middle">(vs.15%)</text>
+
+    <text x="150" y="66" class="donut-label-dark" text-anchor="middle">13%</text>
+    <text x="150" y="86" class="small-italic" text-anchor="middle">(vs. 8%)</text>
+
+    <text x="164" y="16" class="small-grey" text-anchor="middle">2%</text>
+  </svg>
+
+  <svg style="left:728px; top:309px; width:565px; height:345px;" viewBox="0 0 565 345">
+    <g>
+      <line x1="48" y1="20" x2="563" y2="20" class="axis"/>
+      <line x1="48" y1="55.25" x2="563" y2="55.25" class="axis"/>
+      <line x1="48" y1="90.5" x2="563" y2="90.5" class="axis"/>
+      <line x1="48" y1="125.75" x2="563" y2="125.75" class="axis"/>
+      <line x1="48" y1="161" x2="563" y2="161" class="axis"/>
+      <line x1="48" y1="196.25" x2="563" y2="196.25" class="axis"/>
+      <line x1="48" y1="231.5" x2="563" y2="231.5" class="axis"/>
+      <line x1="48" y1="266.75" x2="563" y2="266.75" class="axis"/>
+      <line x1="48" y1="302" x2="563" y2="302" class="axis"/>
+
+      <text x="35" y="24" class="ticktext" text-anchor="end">80%</text>
+      <text x="35" y="59" class="ticktext" text-anchor="end">70%</text>
+      <text x="35" y="94" class="ticktext" text-anchor="end">60%</text>
+      <text x="35" y="129" class="ticktext" text-anchor="end">50%</text>
+      <text x="35" y="164" class="ticktext" text-anchor="end">40%</text>
+      <text x="35" y="199" class="ticktext" text-anchor="end">30%</text>
+      <text x="35" y="234" class="ticktext" text-anchor="end">20%</text>
+      <text x="35" y="269" class="ticktext" text-anchor="end">10%</text>
+      <text x="35" y="306" class="ticktext" text-anchor="end">0%</text>
+
+      <rect x="81" y="61.1" width="32" height="240.9" fill="#2f6237"/>
+      <line x1="81" y1="48.8" x2="111" y2="48.8" stroke="#111" stroke-width="3.2"/>
+      <rect x="118" y="249.1" width="32" height="52.9" fill="#8fb53b"/>
+      <line x1="118" y1="235.0" x2="148" y2="235.0" stroke="#111" stroke-width="3.2"/>
+      <rect x="155" y="256.1" width="32" height="45.9" fill="#bdd226"/>
+      <line x1="155" y1="273.8" x2="185" y2="273.8" stroke="#111" stroke-width="3.2"/>
+
+      <rect x="253" y="50.5" width="32" height="251.5" fill="#2f6237"/>
+      <line x1="253" y1="38.2" x2="283" y2="38.2" stroke="#111" stroke-width="3.2"/>
+      <rect x="290" y="263.2" width="32" height="38.8" fill="#8fb53b"/>
+      <line x1="290" y1="245.5" x2="320" y2="245.5" stroke="#111" stroke-width="3.2"/>
+      <rect x="327" y="249.1" width="32" height="52.9" fill="#bdd226"/>
+      <line x1="327" y1="270.3" x2="357" y2="270.3" stroke="#111" stroke-width="3.2"/>
+
+      <rect x="425" y="36.4" width="32" height="265.6" fill="#2f6237"/>
+      <line x1="425" y1="30.2" x2="455" y2="30.2" stroke="#111" stroke-width="3.2"/>
+      <rect x="462" y="249.1" width="32" height="52.9" fill="#8fb53b"/>
+      <line x1="462" y1="260.0" x2="492" y2="260.0" stroke="#111" stroke-width="3.2"/>
+      <rect x="499" y="273.8" width="29" height="28.2" fill="#bdd226"/>
+      <line x1="499" y1="274.0" x2="528" y2="274.0" stroke="#111" stroke-width="3.2"/>
+
+      <text x="135" y="332" class="xlabel" text-anchor="middle">Under $100K</text>
+      <text x="306" y="332" class="xlabel" text-anchor="middle">$100K to $199K</text>
+      <text x="481" y="332" class="xlabel" text-anchor="middle">Over $200K</text>
+    </g>
+  </svg>
+
+  <div class="footnote">
+    Note: Question: “Which channel did you or do you plan to use to book your lodging/flight for this trip?” (n = 1,563 travelers planning to book lodging; n = 1,023 travelers planning to book flights).<br>
+    Source: 2026 Deloitte Summer Travel Survey.
+  </div>
+
+  <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+  <div class="footer-center">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="footer-right">32</div>
+</div>
+</body>
+</html>

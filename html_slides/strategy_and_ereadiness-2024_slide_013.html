@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Mobility needs – Commuting</title>
+<style>
+  body {
+    margin: 0;
+    background: #efebeb;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #efebeb;
+    color: #111;
+  }
+
+  .title {
+    position: absolute;
+    left: 47px;
+    top: 28px;
+    width: 1160px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 41px;
+    line-height: 1.03;
+    color: #111;
+    font-weight: 400;
+  }
+
+  .subtitle {
+    position: absolute;
+    left: 47px;
+    top: 141px;
+    font-size: 26px;
+    line-height: 1;
+    color: #b32622;
+    font-weight: 400;
+  }
+  .subtitle .strong {
+    font-weight: 700;
+  }
+
+  .section-title {
+    position: absolute;
+    font-size: 22px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .red-line {
+    position: absolute;
+    height: 6px;
+    background: #b32622;
+  }
+
+  .resp-box {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #b32622;
+    color: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .resp-text {
+    position: absolute;
+    font-size: 14px;
+    color: #222;
+    font-style: italic;
+    line-height: 20px;
+  }
+
+  .panel-bg {
+    position: absolute;
+    left: 0;
+    top: 307px;
+    width: 1280px;
+    height: 384px;
+    background: #dddddd;
+  }
+
+  /* Left chart */
+  .left-chart {
+    position: absolute;
+    left: 49px;
+    top: 329px;
+    width: 470px;
+    height: 304px;
+  }
+  .axis-base {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 448px;
+    height: 1px;
+    background: #555;
+  }
+  .tick {
+    position: absolute;
+    bottom: -5px;
+    width: 1px;
+    height: 6px;
+    background: #555;
+  }
+
+  .bar {
+    position: absolute;
+    width: 84px;
+    bottom: 1px;
+  }
+  .seg {
+    position: absolute;
+    left: 0;
+    width: 84px;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .seg.black {
+    background: #000;
+  }
+  .seg.darkred {
+    background: #b21c1e;
+  }
+  .seg.midpink {
+    background: #d65268;
+  }
+
+  .bar-label {
+    position: absolute;
+    bottom: -34px;
+    width: 120px;
+    margin-left: -18px;
+    text-align: center;
+    font-size: 18px;
+    color: #1b1b1b;
+  }
+
+  .cat-label {
+    position: absolute;
+    left: 431px;
+    width: 175px;
+    font-size: 18px;
+    line-height: 1.12;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .line {
+    position: absolute;
+    border-top: 2px dashed #333;
+    transform-origin: left center;
+    opacity: 0.95;
+  }
+
+  /* Center divider */
+  .divider {
+    position: absolute;
+    left: 645px;
+    top: 328px;
+    width: 40px;
+    height: 322px;
+  }
+  .divider:before,
+  .divider:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    width: 2px;
+    background: #b32622;
+    transform-origin: top left;
+  }
+  .divider:before {
+    top: 154px;
+    height: 173px;
+    transform: rotate(20deg);
+  }
+  .divider:after {
+    top: 154px;
+    height: 173px;
+    transform: rotate(-20deg);
+  }
+
+  /* Right chart */
+  .right-chart {
+    position: absolute;
+    left: 731px;
+    top: 329px;
+    width: 483px;
+    height: 304px;
+  }
+  .rbar {
+    position: absolute;
+    width: 84px;
+    bottom: 1px;
+  }
+  .rseg {
+    position: absolute;
+    left: 0;
+    width: 84px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+  .r1 { background: #b13f54; color: #fff; }
+  .r2 { background: #cf4d63; color: #fff; }
+  .r3 { background: #d77f8d; color: #000; }
+  .r4 { background: #e5b8bf; color: #000; }
+
+  .right-label {
+    position: absolute;
+    left: 429px;
+    width: 120px;
+    font-size: 18px;
+    line-height: 1.12;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .footer-left {
+    position: absolute;
+    left: 47px;
+    top: 714px;
+    transform: translateY(-100%);
+    font-size: 14px;
+    line-height: 1.2;
+    color: #222;
+  }
+  .footer-center {
+    position: absolute;
+    left: 0;
+    width: 1280px;
+    top: 714px;
+    transform: translateY(-100%);
+    text-align: center;
+    font-size: 13px;
+    color: #222;
+  }
+  .footer-right {
+    position: absolute;
+    right: 24px;
+    top: 714px;
+    transform: translateY(-100%);
+    text-align: right;
+    font-size: 14px;
+    line-height: 1.2;
+    color: #222;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">
+    EV Owners commute primarily with their car and and are more likely<br>
+    to utilize multimodal solutions in comparison to sceptics
+  </div>
+
+  <div class="subtitle"><span class="strong">Mobility needs</span> – Commuting</div>
+
+  <div class="section-title" style="left:49px; top:204px;">Which of the following means do you use to commute?</div>
+  <div class="red-line" style="left:49px; top:241px; width:613px;"></div>
+  <div class="resp-box" style="left:49px; top:251px;">#</div>
+  <div class="resp-text" style="left:77px; top:251px;">16,778 respondents</div>
+
+  <div class="section-title" style="left:703px; top:204px;">Where do you typically park your car when you switching mean?</div>
+  <div class="red-line" style="left:703px; top:241px; width:614px;"></div>
+  <div class="resp-box" style="left:703px; top:251px;">#</div>
+  <div class="resp-text" style="left:731px; top:251px;">4,798 respondents</div>
+
+  <div class="panel-bg"></div>
+
+  <div class="left-chart">
+    <div class="axis-base"></div>
+    <div class="tick" style="left:0px;"></div>
+    <div class="tick" style="left:150px;"></div>
+    <div class="tick" style="left:331px;"></div>
+    <div class="tick" style="left:447px;"></div>
+
+    <div class="bar" style="left:33px; height:304px;">
+      <div class="seg black" style="bottom:256px; height:48px;">16%</div>
+      <div class="seg midpink" style="bottom:136px; height:120px;">39%</div>
+      <div class="seg darkred" style="bottom:0px; height:136px;">45%</div>
+      <div class="bar-label" style="left:0px;">EV Owners</div>
+    </div>
+
+    <div class="bar" style="left:183px; height:304px;">
+      <div class="seg black" style="bottom:241px; height:63px;">21%</div>
+      <div class="seg midpink" style="bottom:143px; height:98px;">32%</div>
+      <div class="seg darkred" style="bottom:0px; height:143px;">47%</div>
+      <div class="bar-label" style="left:0px;">Prospects</div>
+    </div>
+
+    <div class="bar" style="left:331px; height:304px;">
+      <div class="seg black" style="bottom:183px; height:121px;">40%</div>
+      <div class="seg midpink" style="bottom:132px; height:51px;">16%</div>
+      <div class="seg darkred" style="bottom:0px; height:132px;">44%</div>
+      <div class="bar-label" style="left:0px;">Sceptics</div>
+    </div>
+
+    <div class="line" style="left:117px; top:47px; width:69px; transform:rotate(13deg);"></div>
+    <div class="line" style="left:267px; top:63px; width:104px; transform:rotate(41deg);"></div>
+    <div class="line" style="left:117px; top:169px; width:150px; transform:rotate(-4deg);"></div>
+    <div class="line" style="left:267px; top:160px; width:111px; transform:rotate(11deg);"></div>
+
+    <div class="cat-label" style="top:13px;">Other<br>transportation<br>means</div>
+    <div class="cat-label" style="top:117px;">Car, in<br>combination<br>with other means</div>
+    <div class="cat-label" style="top:253px;">Car only</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="right-chart">
+    <div class="axis-base" style="left:0; width:448px;"></div>
+    <div class="tick" style="left:0px;"></div>
+    <div class="tick" style="left:152px;"></div>
+    <div class="tick" style="left:300px;"></div>
+    <div class="tick" style="left:447px;"></div>
+
+    <div class="rbar" style="left:34px; height:304px;">
+      <div class="rseg r4" style="bottom:288px; height:16px;">4%</div>
+      <div class="rseg r3" style="bottom:198px; height:90px;">29%</div>
+      <div class="rseg r2" style="bottom:116px; height:82px;">27%</div>
+      <div class="rseg r1" style="bottom:0px; height:116px;">40%</div>
+      <div class="bar-label" style="left:0px;">EV Owners</div>
+    </div>
+
+    <div class="rbar" style="left:182px; height:304px;">
+      <div class="rseg r4" style="bottom:280px; height:24px;">8%</div>
+      <div class="rseg r3" style="bottom:198px; height:82px;">27%</div>
+      <div class="rseg r2" style="bottom:122px; height:76px;">25%</div>
+      <div class="rseg r1" style="bottom:0px; height:122px;">40%</div>
+      <div class="bar-label" style="left:0px;">Prospects</div>
+    </div>
+
+    <div class="rbar" style="left:331px; height:304px;">
+      <div class="rseg r4" style="bottom:259px; height:45px;">15%</div>
+      <div class="rseg r3" style="bottom:165px; height:94px;">31%</div>
+      <div class="rseg r2" style="bottom:116px; height:49px;">16%</div>
+      <div class="rseg r1" style="bottom:0px; height:116px;">38%</div>
+      <div class="bar-label" style="left:0px;">Sceptics</div>
+    </div>
+
+    <div class="line" style="left:118px; top:2px; width:98px; transform:rotate(15deg);"></div>
+    <div class="line" style="left:266px; top:26px; width:70px; transform:rotate(23deg);"></div>
+    <div class="line" style="left:118px; top:97px; width:149px; transform:rotate(7deg);"></div>
+    <div class="line" style="left:266px; top:106px; width:69px; transform:rotate(29deg);"></div>
+    <div class="line" style="left:118px; top:180px; width:148px; transform:rotate(-2deg);"></div>
+    <div class="line" style="left:266px; top:178px; width:71px; transform:rotate(9deg);"></div>
+
+    <div class="right-label" style="top:7px;">On the<br>street</div>
+    <div class="right-label" style="top:82px;">In a public<br>parking</div>
+    <div class="right-label" style="top:154px;">In a park<br>and ride</div>
+    <div class="right-label" style="top:235px;">In a private<br>parking</div>
+  </div>
+
+  <div class="footer-left">
+    eReadiness Report 2024<br>
+    Strategy&
+  </div>
+
+  <div class="footer-center">Source: Strategy& analysis on feedback from consumer survey</div>
+
+  <div class="footer-right">
+    September 2024<br>
+    13
+  </div>
+</div>
+</body>
+</html>

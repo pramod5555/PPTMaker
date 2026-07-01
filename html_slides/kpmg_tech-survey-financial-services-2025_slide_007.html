@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Risk and regulation slide</title>
+<style>
+  body{
+    margin:0;
+    background:#cfcfcf;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ffffff;
+    margin:0 auto;
+  }
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:47px;
+    background:#d9d9d9;
+  }
+  .nav{
+    position:absolute;
+    top:19px;
+    font-size:12px;
+    color:#7d7d7d;
+    white-space:nowrap;
+  }
+  .nav.active{
+    color:#1d43ff;
+    font-weight:700;
+  }
+  .nav1{left:87px;}
+  .nav2{left:263px;}
+  .nav3{left:342px;}
+  .nav4{left:495px;}
+  .nav5{left:609px;}
+  .nav6{left:814px;}
+  .nav7{left:979px;}
+
+  .icon{
+    position:absolute;
+    top:14px;
+    width:22px;
+    height:22px;
+    color:#8e8e8e;
+  }
+  .icon.back{left:1197px;}
+  .icon.home{left:1221px;}
+  .icon.next{left:1249px;}
+
+  .back:before{
+    content:"";
+    position:absolute;
+    left:3px; top:4px;
+    width:13px; height:13px;
+    border-left:1.5px solid #8e8e8e;
+    border-bottom:1.5px solid #8e8e8e;
+    transform:rotate(45deg);
+  }
+  .next:before{
+    content:"";
+    position:absolute;
+    right:3px; top:4px;
+    width:13px; height:13px;
+    border-right:1.5px solid #8e8e8e;
+    border-top:1.5px solid #8e8e8e;
+    transform:rotate(45deg);
+  }
+  .home:before{
+    content:"";
+    position:absolute;
+    left:5px; top:2px;
+    width:12px; height:12px;
+    border-left:1.5px solid #8e8e8e;
+    border-right:1.5px solid #8e8e8e;
+    border-bottom:1.5px solid #8e8e8e;
+  }
+  .home:after{
+    content:"";
+    position:absolute;
+    left:3px; top:-1px;
+    width:16px; height:16px;
+    border-left:1.5px solid #8e8e8e;
+    border-top:1.5px solid #8e8e8e;
+    transform:rotate(45deg);
+    background:transparent;
+  }
+
+  .left{
+    position:absolute;
+    left:0;
+    top:47px;
+    width:655px;
+    height:673px;
+    background:#ffffff;
+  }
+  .right{
+    position:absolute;
+    left:655px;
+    top:47px;
+    width:625px;
+    height:673px;
+    background:linear-gradient(90deg,#7b12e8 0%, #274be0 100%);
+  }
+
+  .left-title{
+    position:absolute;
+    left:90px;
+    top:106px;
+    width:497px;
+    color:#0d3d95;
+    font-size:17px;
+    line-height:1.18;
+    font-weight:700;
+  }
+
+  .ring{
+    position:absolute;
+    width:140px;
+    height:140px;
+    border-radius:70px;
+    box-sizing:border-box;
+    background:
+      conic-gradient(#364be2 0 162deg, transparent 162deg 360deg);
+  }
+  .ring.r2{
+    background:
+      conic-gradient(#364be2 0 180deg, transparent 180deg 360deg);
+  }
+  .ring:before{
+    content:"";
+    position:absolute;
+    inset:7px;
+    background:#fff;
+    border-radius:50%;
+    box-shadow:inset 0 0 0 2px #e5e5e5;
+  }
+  .ring:after{
+    content:"";
+    position:absolute;
+    left:35px;
+    top:-4px;
+    width:52px;
+    height:7px;
+    border-radius:4px;
+    background:#6d12e8;
+    transform:rotate(8deg);
+    transform-origin:center;
+  }
+  .ring.r2:after{
+    left:82px;
+    top:129px;
+    transform:rotate(-8deg);
+  }
+
+  .pct{
+    position:absolute;
+    color:#243f8f;
+    font-weight:700;
+    font-size:54px;
+    z-index:2;
+  }
+  .pct small{
+    font-size:33px;
+  }
+
+  .circle1{left:91px; top:166px;}
+  .circle2{left:418px; top:166px;}
+  .pct1{left:128px; top:213px;}
+  .pct2{left:454px; top:213px;}
+
+  .mid-label{
+    position:absolute;
+    left:251px;
+    top:229px;
+    color:#2951f1;
+    font-size:15px;
+  }
+  .label-under{
+    position:absolute;
+    color:#2951f1;
+    font-size:15px;
+  }
+  .under1{left:115px; top:321px;}
+  .under2{left:455px; top:321px;}
+
+  .small-question{
+    position:absolute;
+    left:90px;
+    top:351px;
+    width:497px;
+    color:#2b57a7;
+    font-size:8px;
+  }
+
+  .callout{
+    position:absolute;
+    left:90px;
+    top:385px;
+    width:510px;
+    height:250px;
+    background:#d8d8d8;
+    padding:14px 16px;
+    box-sizing:border-box;
+  }
+  .callout h3{
+    margin:0 0 6px 0;
+    color:#3246e3;
+    font-size:16px;
+    line-height:1.1;
+  }
+  .callout .sub{z-index:1;
+    color:#0d3d95;
+    font-size:13px;
+    line-height:1.25;
+    font-weight:400;
+    margin-bottom:8px;
+  }
+  .callout ul{
+    margin:6px 0 10px 13px;
+    padding:0;
+    color:#2b57a7;
+    font-size:11px;
+    line-height:1.25;
+  }
+  .callout li{ margin-bottom:6px; }
+  .callout p{
+    margin:0;
+    color:#2b57a7;
+    font-size:11px;
+    line-height:1.25;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:88px;
+    top:715px;
+    transform:translateY(-100%);
+    width:480px;
+    color:#b0b0b0;
+    font-size:8px;
+    line-height:1.15;
+  }
+
+  .right-title{
+    position:absolute;
+    left:707px;
+    top:106px;
+    width:507px;
+    color:#ffffff;
+    font-size:16px;
+    line-height:1.2;
+    font-weight:700;
+  }
+
+  .section{
+    position:absolute;
+    left:707px;
+    width:507px;
+    color:#ffffff;
+  }
+  .section .heading{
+    font-size:23px;
+    font-weight:700;
+    margin-bottom:2px;
+  }
+  .section .body{
+    font-size:11px;
+    line-height:1.22;
+    color:#ece8ff;
+  }
+
+  .s1{top:160px;}
+  .s2{top:288px;}
+  .s3{top:414px;}
+  .s4{top:542px;}
+
+  .iconbox{
+    position:absolute;
+    left:706px;
+    width:38px;
+    height:38px;
+    border:0;
+  }
+  .i1{top:165px;}
+  .i2{top:293px;}
+  .i3{top:419px;}
+  .i4{top:547px;}
+
+  .iconbox .stroke{
+    position:absolute;
+    border:2px solid rgba(255,255,255,0.95);
+    box-sizing:border-box;
+  }
+
+  /* icon 1 */
+  .i1 .person{
+    position:absolute; left:14px; top:10px; width:8px; height:18px;
+    border:2px solid #fff; border-top:none; border-radius:0 0 3px 3px;
+  }
+  .i1 .head{
+    position:absolute; left:15px; top:3px; width:6px; height:6px;
+    border:2px solid #fff; border-radius:50%;
+  }
+  .i1 .arm1,.i1 .arm2,.i1 .leg1,.i1 .leg2,.i1 .arr1,.i1 .arr2,.i1 .arr3,.i1 .arr4{
+    position:absolute; background:#fff;
+  }
+  .i1 .arm1{left:7px; top:16px; width:8px; height:2px;}
+  .i1 .arm2{left:22px; top:16px; width:8px; height:2px;}
+  .i1 .leg1{left:15px; top:27px; width:2px; height:7px;}
+  .i1 .leg2{left:19px; top:27px; width:2px; height:7px;}
+  .i1 .arr1{left:2px; top:5px; width:8px; height:2px;}
+  .i1 .arr2{left:28px; top:5px; width:8px; height:2px;}
+  .i1 .arr3{left:2px; top:31px; width:8px; height:2px;}
+  .i1 .arr4{left:28px; top:31px; width:8px; height:2px;}
+  .i1:before,.i1:after{
+    content:"";
+    position:absolute;
+    width:8px;height:8px;border-top:2px solid #fff;border-right:2px solid #fff;
+  }
+  .i1:before{left:3px;top:3px;transform:rotate(-135deg);}
+  .i1:after{right:3px;bottom:3px;transform:rotate(45deg);}
+  .i1 .c1,.i1 .c2{
+    position:absolute;width:8px;height:8px;border-top:2px solid #fff;border-right:2px solid #fff;
+  }
+  .i1 .c1{right:3px;top:3px;transform:rotate(-45deg);}
+  .i1 .c2{left:3px;bottom:3px;transform:rotate(135deg);}
+
+  /* icon 2 gear+people */
+  .i2 .gear{
+    position:absolute; left:4px; top:4px; width:21px; height:21px;
+    border:2px solid #fff; border-radius:50%;
+  }
+  .i2 .gear:before{
+    content:""; position:absolute; left:6px; top:6px; width:5px; height:5px; border:2px solid #fff; border-radius:50%;
+  }
+  .i2 .tooth1,.i2 .tooth2,.i2 .tooth3,.i2 .tooth4,.i2 .tooth5,.i2 .tooth6{
+    position:absolute; background:#fff;
+  }
+  .i2 .tooth1{left:13px; top:-1px; width:2px; height:6px;}
+  .i2 .tooth2{left:13px; top:20px; width:2px; height:6px;}
+  .i2 .tooth3{left:-1px; top:13px; width:6px; height:2px;}
+  .i2 .tooth4{left:20px; top:13px; width:6px; height:2px;}
+  .i2 .tooth5{left:3px; top:3px; width:5px; height:2px; transform:rotate(-45deg);}
+  .i2 .tooth6{left:18px; top:18px; width:5px; height:2px; transform:rotate(-45deg);}
+  .i2 .p1,.i2 .p2,.i2 .p3{
+    position:absolute; border:2px solid #fff; border-radius:50%;
+    width:6px; height:6px;
+  }
+  .i2 .p1{left:4px; top:27px;}
+  .i2 .p2{left:15px; top:27px;}
+  .i2 .p3{left:26px; top:27px;}
+  .i2 .b1,.i2 .b2,.i2 .b3{
+    position:absolute; width:10px; height:5px; border:2px solid #fff; border-top:none; border-radius:0 0 8px 8px;
+  }
+  .i2 .b1{left:2px; top:33px;}
+  .i2 .b2{left:13px; top:33px;}
+  .i2 .b3{left:24px; top:33px;}
+
+  /* icon 3 chat + gear */
+  .i3 .gear{
+    position:absolute; left:1px; top:3px; width:17px; height:17px; border:2px solid #fff; border-radius:50%;
+  }
+  .i3 .gear:before{
+    content:""; position:absolute; left:4px; top:4px; width:5px; height:5px; border:2px solid #fff; border-radius:50%;
+  }
+  .i3 .bubble{
+    position:absolute; left:17px; top:18px; width:18px; height:12px; border:2px solid #fff; border-radius:4px;
+  }
+  .i3 .bubble:after{
+    content:""; position:absolute; left:3px; bottom:-6px; width:8px; height:8px; border-left:2px solid #fff; border-bottom:2px solid #fff; transform:skewX(-25deg);
+  }
+  .i3 .dots{
+    position:absolute; left:23px; top:23px; width:2px; height:2px; background:#fff;
+    box-shadow:5px 0 0 #fff, 10px 0 0 #fff;
+  }
+  .i3 .arc{
+    position:absolute; left:7px; top:17px; width:18px; height:18px; border:2px solid #fff; border-left-color:transparent; border-bottom-color:transparent; border-radius:50%;
+    transform:rotate(20deg);
+  }
+  .i3 .arrow{
+    position:absolute; left:22px; top:12px; width:0; height:0; border-left:5px solid #fff; border-top:3px solid transparent; border-bottom:3px solid transparent; transform:rotate(25deg);
+  }
+
+  /* icon 4 clipboard */
+  .i4 .board{
+    position:absolute; left:7px; top:5px; width:23px; height:27px; border:2px solid #fff; border-radius:2px;
+  }
+  .i4 .clip{
+    position:absolute; left:14px; top:1px; width:9px; height:7px; border:2px solid #fff; border-radius:3px;
+  }
+  .i4 .line1,.i4 .line2,.i4 .line3,.i4 .line4{
+    position:absolute; left:12px; width:14px; height:2px; background:#fff;
+  }
+  .i4 .line1{top:12px;}
+  .i4 .line2{top:17px;}
+  .i4 .line3{top:22px;}
+  .i4 .line4{top:27px; width:9px;}
+  .i4 .sq1,.i4 .sq2,.i4 .sq3{
+    position:absolute; left:9px; width:3px; height:3px; border:1.5px solid #fff;
+  }
+  .i4 .sq1{top:11px;}
+  .i4 .sq2{top:16px;}
+  .i4 .sq3{top:21px;}
+  .i4 .pen{
+    position:absolute; right:2px; bottom:3px; width:12px; height:2px; background:#fff; transform:rotate(-45deg);
+  }
+  .i4 .pen:after{
+    content:""; position:absolute; right:-3px; top:-1px; width:0; height:0; border-left:4px solid #fff; border-top:2px solid transparent; border-bottom:2px solid transparent;
+  }
+
+  .bottom-strip{
+    position:absolute;
+    left:655px;
+    top:715px;
+    transform:translateY(-100%);
+    width:625px;
+    height:18px;
+    background:rgba(255,255,255,0.25);
+  }
+  .pagenum{
+    position:absolute;
+    right:8px;
+    top:2px;
+    color:#ffffff;
+    font-size:14px;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar">
+    <div class="nav nav1">Executive summary</div>
+    <div class="nav nav2">Key findings</div>
+    <div class="nav nav3 active">Risk and regulation</div>
+    <div class="nav nav4">Data and AI</div>
+    <div class="nav nav5">Simplification and modernization</div>
+    <div class="nav nav6">How KPMG can help</div>
+    <div class="nav nav7">Methodology</div>
+    <div class="icon back"></div>
+    <div class="icon home"></div>
+    <div class="icon next"></div>
+  </div>
+
+  <div class="left">
+    <div class="left-title">
+      Financial services is more likely than other sectors to take a data-centric approach to responding to market risks with agility
+    </div>
+
+    <div class="ring circle1"></div>
+    <div class="ring r2 circle2"></div>
+
+    <div class="pct pct1">45<small>%</small></div>
+    <div class="pct pct2">50<small>%</small></div>
+
+    <div class="mid-label">Data-centric decision making</div>
+    <div class="label-under under1">Cross-sector average</div>
+    <div class="label-under under2">Financial services</div>
+
+    <div class="small-question">
+      Which of the following tactics do you use to adapt your digital transformation strategy in response to evolving market trends and risks?
+    </div>
+
+    <div class="callout">
+      <h3>Compliance powered by AI</h3>
+      <div class="sub">
+        KPMG in Australia’s platform, <b>Compliance powered by AI</b>, demonstrates how AI technology, when combined with a well-defined strategy, can be leveraged to:
+      </div>
+      <ul>
+        <li>Turn dense regulations into a clear set of obligations, making compliance easier to understand and act upon</li>
+        <li>Examine processes and detect the fine threads between obligations and risks, and strengthen these connections</li>
+        <li>Rapidly grasp an ever-evolving inventory of controls evaluated by AI against industry-leading practices</li>
+      </ul>
+      <p>
+        Powered by the advanced capabilities of a GenAI platform, the solution is designed to decipher and manage the regulatory maze with exceptional intelligence and efficiency. It synthesizes and scrutinizes data, uncovering vital connections and identifying any discrepancies against a robust set of frameworks and controls.
+      </p>
+    </div>
+
+    <div class="footer-left">
+      © 2025 KPMG LLP, a Delaware limited liability partnership and a member firm of the KPMG global organization of independent member firms affiliated with KPMG International Limited, a private English company limited by guarantee. All rights reserved. USC026447-2A
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="right-title">
+      Drawing on our experience working with digital leaders in highly regulated sectors, we suggest the following actions are critical:
+    </div>
+
+    <div class="iconbox i1">
+      <div class="head"></div><div class="person"></div><div class="arm1"></div><div class="arm2"></div><div class="leg1"></div><div class="leg2"></div><div class="arr1"></div><div class="arr2"></div><div class="arr3"></div><div class="arr4"></div><div class="c1"></div><div class="c2"></div>
+    </div>
+    <div class="section s1">
+      <div class="heading">Baseline</div>
+      <div class="body">
+        Develop an understanding of current and future risks, regulatory obligations, and critical operations and controls at an organizational level. Consider how technologies and solution options are evolving that could have an impact on your strategy and decisions taken in the short term. Prioritize those areas most critical to resolve now while forming a position on future scenarios.
+      </div>
+    </div>
+
+    <div class="iconbox i2">
+      <div class="gear"></div><div class="tooth1"></div><div class="tooth2"></div><div class="tooth3"></div><div class="tooth4"></div><div class="tooth5"></div><div class="tooth6"></div>
+      <div class="p1"></div><div class="p2"></div><div class="p3"></div><div class="b1"></div><div class="b2"></div><div class="b3"></div>
+    </div>
+    <div class="section s2">
+      <div class="heading">Manage</div>
+      <div class="body">
+        Build and implement a robust risk management framework, incorporating certifications such as ISO 42001, to hone best practice and strengthen controls. Explore how AI can be leveraged to accelerate the modernization of your controls, predict the impact of control changes to your processes and systems, and sustain them in a rapidly evolving and uncertain environment.
+      </div>
+    </div>
+
+    <div class="iconbox i3">
+      <div class="gear"></div><div class="bubble"></div><div class="dots"></div><div class="arc"></div><div class="arrow"></div>
+    </div>
+    <div class="section s3">
+      <div class="heading">Implement</div>
+      <div class="body">
+        Prepare a vision and strategy that consider the evolving risk and technologies environment, immediate priorities and future scenarios that could play out. Evaluate architectural options, with a view towards a cloud-based composable architecture that can adapt to future changes, leveraging XaaS solutions to accelerate and de-risk, enabled by AI and data.
+      </div>
+    </div>
+
+    <div class="iconbox i4">
+      <div class="board"></div><div class="clip"></div><div class="line1"></div><div class="line2"></div><div class="line3"></div><div class="line4"></div><div class="sq1"></div><div class="sq2"></div><div class="sq3"></div><div class="pen"></div>
+    </div>
+    <div class="section s4">
+      <div class="heading">Prepare</div>
+      <div class="body">
+        Design and mobilize the program teams needed to uplift your control environment, leveraging third party providers that bring grounded advice and global experience. Establish the delivery cadence and governance needed to surface and resolve design and delivery issues as they arise. Design and prepare the ‘business-as-usual’ operating model to sustain the control environment and avoid drift.
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-strip">
+    <div class="pagenum">7</div>
+  </div>
+</div>
+</body>
+</html>

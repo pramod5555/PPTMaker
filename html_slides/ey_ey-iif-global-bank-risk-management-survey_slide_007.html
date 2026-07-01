@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1365, initial-scale=1.0" />
+<title>Executive Summary Slide Replica</title>
+<style>
+  html, body {
+    margin: 0;
+    width: 1365px;
+    height: 768px;
+    background: #dddddd;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .frame{
+    position: relative;
+    width: 1365px;
+    height: 768px;
+    background: #dddddd;
+    overflow: hidden;
+  }
+  #slide{
+    position:absolute;
+    left:31px;
+    top:31px;
+    width:1303px;
+    height:705px;
+    overflow:hidden;
+    background:#151724;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .photo{
+    left:0;
+    top:0;
+    width:346px;
+    height:705px;
+    background:
+      radial-gradient(190px 80px at 116px 537px, rgba(255,149,0,.82) 0%, rgba(220,65,17,.68) 26%, rgba(0,0,0,0) 56%),
+      radial-gradient(160px 70px at 84px 548px, rgba(34,174,255,.85) 0%, rgba(29,86,170,.54) 26%, rgba(0,0,0,0) 55%),
+      radial-gradient(170px 72px at 178px 559px, rgba(255,74,140,.55) 0%, rgba(110,0,48,.25) 24%, rgba(0,0,0,0) 55%),
+      radial-gradient(120px 55px at 132px 661px, rgba(255,190,70,.45) 0%, rgba(0,0,0,0) 58%),
+      linear-gradient(180deg, rgba(6,8,22,.2), rgba(5,6,18,.45)),
+      linear-gradient(90deg,
+        #0a1020 0 22px, #0d1730 22px 44px, #1b0b17 44px 67px, #081124 67px 94px,
+        #120717 94px 118px, #071126 118px 147px, #1c0a17 147px 171px, #08132a 171px 201px,
+        #1a0916 201px 228px, #071127 228px 258px, #190916 258px 284px, #081229 284px 313px,
+        #190915 313px 346px);
+  }
+  .photo:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(99deg, rgba(255,255,255,0) 0 8%, rgba(0,0,0,.68) 8.6% 12%, rgba(255,255,255,0) 13% 23%, rgba(0,0,0,.7) 23.6% 27%, rgba(255,255,255,0) 28% 40%, rgba(0,0,0,.72) 40.4% 44%, rgba(255,255,255,0) 45% 58%, rgba(0,0,0,.72) 58.4% 62%, rgba(255,255,255,0) 63% 76%, rgba(0,0,0,.75) 76.3% 80%, rgba(255,255,255,0) 81%),
+      linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.05) 25%, rgba(0,0,0,.22) 100%);
+    opacity:.95;
+  }
+  .photo:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(22px 145px at 23px 145px, rgba(39,162,255,.9), rgba(0,0,0,0) 68%),
+      radial-gradient(22px 125px at 56px 110px, rgba(255,64,64,.5), rgba(0,0,0,0) 68%),
+      radial-gradient(26px 145px at 92px 102px, rgba(50,185,255,.9), rgba(0,0,0,0) 70%),
+      radial-gradient(24px 130px at 150px 90px, rgba(255,127,32,.42), rgba(0,0,0,0) 70%),
+      radial-gradient(26px 150px at 195px 92px, rgba(25,146,255,.92), rgba(0,0,0,0) 72%),
+      radial-gradient(26px 145px at 260px 90px, rgba(34,185,255,.9), rgba(0,0,0,0) 72%);
+    filter: blur(4px);
+    opacity:.9;
+  }
+
+  .left-label{
+    left:-11px;
+    top:340px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    color:#fafafa;
+    font-size:13px;
+    line-height:13px;
+    letter-spacing:.03em;
+    font-weight:400;
+    text-transform:uppercase;
+  }
+  .left-mark{
+    left:14px;
+    top:359px;
+    width:1px;
+    height:35px;
+    background:#ececec;
+    opacity:.9;
+  }
+  .page{
+    left:20px;
+    bottom:14px;
+    color:#ffffff;
+    font-size:12px;
+    line-height:12px;
+    font-weight:400;
+  }
+
+  .section{
+    color:#fff;
+  }
+  .num-ring{
+    width:74px;
+    height:74px;
+    left:0;
+    top:0;
+  }
+  .num{
+    position:absolute;
+    left:23px;
+    top:11px;
+    width:28px;
+    text-align:center;
+    color:#fff;
+    font-size:52px;
+    line-height:52px;
+    font-weight:700;
+  }
+  .headline{
+    color:#f4f4f4;
+    font-size:18px;
+    line-height:1.08;
+    font-weight:400;
+  }
+  .body{
+    color:#d9dae3;
+    font-size:13px;
+    line-height:1.42;
+    font-weight:400;
+  }
+
+  .quote-outline{
+    left:867px;
+    top:371px;
+    width:225px;
+    height:292px;
+  }
+  .quote-mark{
+    color:#ffe100;
+    font-size:46px;
+    line-height:36px;
+    font-weight:700;
+  }
+  .quote-label{
+    color:#f1f1f1;
+    font-size:14px;
+    line-height:18px;
+    font-weight:400;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .quote-text{
+    color:#f1f1f1;
+    font-size:16px;
+    line-height:1.3;
+    font-weight:400;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+
+  .jump{
+    right:20px;
+    top:26px;
+    width:56px;
+    height:56px;
+  }
+  .jump .circle{
+    position:absolute;
+    left:0;
+    top:0;
+    width:40px;
+    height:40px;
+    border:1px solid rgba(255,255,255,.72);
+    border-radius:50%;
+  }
+  .jump .dot{
+    position:absolute;
+    left:31px;
+    top:4px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#ffe100;
+  }
+  .jump .txt{
+    position:absolute;
+    left:5px;
+    top:8px;
+    width:31px;
+    color:#fff;
+    font-size:9px;
+    line-height:10px;
+    text-align:center;
+    font-weight:400;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div id="slide">
+    <div class="photo"></div>
+
+    <div class="left-label">EXECUTIVE SUMMARY</div>
+    <div class="left-mark"></div>
+    <div class="page">7</div>
+
+    <div class="section" style="left:414px; top:49px; width:392px; height:620px;">
+      <div class="num-ring">
+        <svg width="74" height="74" viewBox="0 0 74 74" style="position:absolute; left:0; top:0;">
+          <defs>
+            <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffe100"/>
+              <stop offset="58%" stop-color="#ffe100"/>
+              <stop offset="100%" stop-color="#6f2bff"/>
+            </linearGradient>
+          </defs>
+          <circle cx="37" cy="37" r="34" fill="none" stroke="url(#grad3)" stroke-width="2"/>
+        </svg>
+        <div class="num">3</div>
+      </div>
+
+      <div class="headline" style="position:absolute; left:77px; top:17px; width:310px;">
+        Credit risk has returned as a<br>
+        top priority, thanks to macro<br>
+        conditions and private credit.
+      </div>
+
+      <div class="body" style="position:absolute; left:0; top:149px; width:377px;">
+        Credit risk has returned as a major priority for banking CROs. That's<br>
+        a function of both traditional financial concerns (rising potential for<br>
+        defaults and delinquencies among overextended consumers) and<br>
+        market developments (the rise of private credit as a competitive threat<br>
+        and strategic opportunity).
+      </div>
+
+      <div class="body" style="position:absolute; left:0; top:244px; width:379px;">
+        There's also a sense of a fundamental shift as private credit takes on<br>
+        a more prominent role in the industry and grows as an asset class.<br>
+        Though significant percentages of banks have little or no direct<br>
+        exposure to private credit, recent market events exposed weaknesses<br>
+        in collateral management processes and systems, suggesting that<br>
+        there might be more “unknown unknowns” than many stakeholders<br>
+        realize. Thus, it's safe to say that private credit will influence the CRO<br>
+        agenda for many years to come.
+      </div>
+
+      <div class="body" style="position:absolute; left:0; top:396px; width:379px;">
+        In some ways, the growth of private credit represents the latest<br>
+        evolution of concerns about the shadow banking system. Certainly,<br>
+        CROs at G-SIBs and larger banks will understand how private credit and<br>
+        private equity reduce the transparency of the overall financial system.
+      </div>
+
+      <div class="body" style="position:absolute; left:0; top:487px; width:381px;">
+        To take advantage of the significant growth potential of private<br>
+        credit – an opportunity CROs recognize, according to our results –<br>
+        the industry will need to address the opacity that prevents regulators<br>
+        from detecting early-warning signals and other institutions from<br>
+        gauging their own exposures. Clear regulatory guardrails, standard<br>
+        disclosures, pricing signals, consistent valuations and other forms<br>
+        of market discipline will help create visibility into underlying risks of<br>
+        private credit.
+      </div>
+    </div>
+
+    <div class="section" style="left:865px; top:49px; width:330px; height:620px;">
+      <div class="num-ring">
+        <svg width="74" height="74" viewBox="0 0 74 74" style="position:absolute; left:0; top:0;">
+          <defs>
+            <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffe100"/>
+              <stop offset="58%" stop-color="#ffe100"/>
+              <stop offset="100%" stop-color="#6f2bff"/>
+            </linearGradient>
+          </defs>
+          <circle cx="37" cy="37" r="34" fill="none" stroke="url(#grad4)" stroke-width="2"/>
+        </svg>
+        <div class="num">4</div>
+      </div>
+
+      <div class="headline" style="position:absolute; left:79px; top:17px; width:260px;">
+        Talent and workforce<br>
+        needs remain urgent.
+      </div>
+
+      <div class="body" style="position:absolute; left:0; top:149px; width:320px;">
+        Even in the age of AI, CROs view talent as critical to success for<br>
+        both the risk management function and the overall business.<br>
+        However, this year's results show more CROs planning to reduce<br>
+        the number of FTEs or slow their rate of hiring. That's primarily<br>
+        a function of the rise of AI (which is expected to automate many<br>
+        administrative jobs), but also an indication of the evolution toward<br>
+        fewer and more specialized roles, as we highlight in chapter five.
+      </div>
+    </div>
+
+    <svg class="quote-outline" viewBox="0 0 225 292">
+      <path d="M2 0 H186" stroke="rgba(232,232,236,.78)" stroke-width="2" fill="none"/>
+      <circle cx="186" cy="0" r="3.2" fill="rgba(232,232,236,.88)"/>
+      <path d="M2 0 V276 H216 V59" stroke="rgba(232,232,236,.78)" stroke-width="2" fill="none"/>
+      <circle cx="214" cy="59" r="3.2" fill="rgba(232,232,236,.88)"/>
+    </svg>
+
+    <div class="quote-mark" style="left:899px; top:405px;">“</div>
+    <div class="quote-label" style="left:899px; top:432px; width:110px;">What CROs say:</div>
+    <div class="quote-text" style="left:899px; top:458px; width:164px;">
+      As fast as new technologies<br>
+      arrive and the world<br>
+      changes, the need for<br>
+      evolving skills comes with<br>
+      it. Talent needs to be at<br>
+      the forefront in our ability<br>
+      to engage with clients,<br>
+      offer the products they<br>
+      want and ensure proper<br>
+      risk and controls.
+    </div>
+
+    <div class="jump">
+      <div class="circle"></div>
+      <div class="dot"></div>
+      <div class="txt">Jump to<br>contents</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

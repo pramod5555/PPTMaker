@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1024, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1024px;
+    height:768px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  .title{
+    position:absolute;
+    left:19px;
+    top:14px;
+    width:950px;
+    font-size:36px;
+    line-height:1.11;
+    font-weight:400;
+    color:#111;
+    letter-spacing:0;
+  }
+  .red-rule{
+    position:absolute;
+    left:0;
+    top:102px;
+    width:992px;
+    height:13px;
+    background:#db0000;
+    clip-path:polygon(0 0, 100% 0, 99.35% 100%, 0 100%);
+  }
+
+  .box{
+    position:absolute;
+    top:164px;
+    height:116px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+  .box1{ left:34px; width:227px; background:#b2b2b2; }
+  .box2{ left:277px; width:226px; background:#828282; }
+  .box3{ left:519px; width:226px; background:#343233; }
+  .box4{ left:762px; width:226px; background:#0b6d9c; }
+
+  .box1 span{
+    color:#111;
+    font-size:28px;
+    font-weight:400;
+    line-height:1.05;
+  }
+  .box2 span,.box3 span,.box4 span{
+    color:#f2f2f2;
+    font-size:29px;
+    font-weight:400;
+    line-height:1.08;
+  }
+
+  .col{
+    position:absolute;
+    top:292px;
+    color:#1a1a1a;
+    font-size:22px;
+    line-height:1.08;
+  }
+  .col1{ left:37px; width:214px; }
+  .col2{ left:281px; width:225px; }
+  .col3{ left:525px; width:214px; }
+  .col4{ left:768px; width:210px; }
+
+  .bullet-item{
+    position:relative;
+    padding-left:22px;
+  }
+  .bullet-item:before{
+    content:"•";
+    position:absolute;
+    left:0;
+    top:-1px;
+    font-size:20px;
+    line-height:1;
+    color:#000;
+  }
+  .bold{ font-weight:700; }
+
+  .sublist{
+    margin-top:2px;
+    margin-left:8px;
+    font-size:18px;
+    line-height:1.18;
+    color:#222;
+  }
+  .sublist div{
+    position:relative;
+    padding-left:20px;
+    margin:0 0 2px 0;
+  }
+  .sublist div:before{
+    content:"-";
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .sublist3{
+    margin-top:4px;
+    margin-left:11px;
+    font-size:17px;
+    line-height:1.18;
+    color:#222;
+  }
+  .sublist3 div{
+    position:relative;
+    padding-left:19px;
+    margin:0 0 3px 0;
+  }
+  .sublist3 div:before{
+    content:"-";
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .item-spacer-1{ margin-top:10px; }
+  .item-spacer-2{ margin-top:8px; }
+  .item-spacer-3{ margin-top:11px; }
+
+  .footer-line{
+    position:absolute;
+    left:0;
+    bottom:35px;
+    width:1024px;
+    height:1px;
+    background:#9b9b9b;
+  }
+  .page{
+    position:absolute;
+    right:48px;
+    bottom:10px;
+    font-size:28px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+  }
+  .bain-mark{
+    position:absolute;
+    right:18px;
+    bottom:8px;
+    width:20px;
+    height:20px;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title">The diagnostic process included extensive interviews,<br>data gathering, and a campus-wide survey</div>
+    <div class="red-rule"></div>
+
+    <div class="box box1"><span>Interviews</span></div>
+    <div class="box box2"><span>Data gathering<br>and analysis</span></div>
+    <div class="box box3"><span>Benchmarking</span></div>
+    <div class="box box4"><span>Survey</span></div>
+
+    <div class="col col1">
+      <div class="bullet-item">
+        <span class="bold">110+ interviews<br>across campus</span><br>
+        including:
+        <div class="sublist">
+          <div>Faculty</div>
+          <div>Deans</div>
+          <div>Central<br>administrators</div>
+          <div>Administrative<br>staff in the<br>Schools and<br>Colleges</div>
+          <div>Students</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col2">
+      <div class="bullet-item">
+        <span class="bold">Financial data</span><br>
+        from the Budget<br>
+        office
+      </div>
+
+      <div class="bullet-item item-spacer-1">
+        <span class="bold">Course and<br>enrollment data</span><br>
+        from OIRA and the<br>
+        Registrar
+      </div>
+
+      <div class="bullet-item item-spacer-2">
+        <span class="bold">Course and<br>faculty data</span> from<br>
+        schools and<br>
+        colleges
+      </div>
+
+      <div class="bullet-item item-spacer-3">
+        <span class="bold">Function-specific<br>data</span> from relevant<br>
+        University<br>
+        departments
+      </div>
+    </div>
+
+    <div class="col col3">
+      <div class="bullet-item">
+        <span class="bold">Comparative<br>data</span> from:
+        <div class="sublist3">
+          <div>IPEDS</div>
+          <div>NACUBO</div>
+          <div>Chronicle of Higher<br>Education</div>
+          <div>Specialty firms</div>
+          <div>Peer institutions</div>
+          <div>Bain experience</div>
+          <div>Other sources</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col4">
+      <div class="bullet-item">
+        Feedback from<br>
+        <span class="bold">1200 Syracuse<br>employees</span><br>
+        including ~400<br>
+        faculty members<br>
+        and~800 staff
+      </div>
+    </div>
+
+    <div class="footer-line"></div>
+    <div class="page">7</div>
+    <svg class="bain-mark" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#db0000" stroke-width="2"></circle>
+      <path d="M12 4.5 L13.7 10.8 L20 10.8 L14.8 14.7 L16.7 20.6 L12 16.8 L7.3 20.6 L9.2 14.7 L4 10.8 L10.3 10.8 Z" fill="#db0000" transform="scale(0.45) translate(14.7,13.2)"></path>
+      <path d="M12 6 L16.2 13 L7.8 13 Z" fill="#db0000"></path>
+    </svg>
+  </div>
+</body>
+</html>

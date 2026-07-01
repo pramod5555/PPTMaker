@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bain Slide Replica</title>
+<style>
+  body{margin:0;background:#ececec;font-family:Arial, Helvetica, sans-serif;}
+  #slide{
+    position:relative;
+    width:1087px;
+    height:768px;
+    overflow:hidden;
+    background:#ececec;
+  }
+  #slide > div, #slide > svg {position:absolute; box-sizing:border-box;}
+  .title{
+    left:35px; top:28px; width:930px;
+    font-size:43px; line-height:1.02; color:#111; font-weight:400;
+    letter-spacing:0;
+  }
+  .redband{
+    left:16px; top:114px; width:1022px; height:13px;
+    background:#e00000;
+    clip-path:polygon(0 0,100% 0,99.4% 100%,0 100%);
+  }
+  .subleft{
+    left:32px; top:171px; font-size:31px; line-height:1; color:#222; font-weight:400;
+    transform:scale(0.58); transform-origin:left top;
+    width:760px;
+  }
+  .subright{
+    right:34px; top:168px; font-size:33px; line-height:1; color:#222; font-weight:400;
+    transform:scale(0.58); transform-origin:right top;
+    width:300px; text-align:right;
+  }
+  .chartframe{
+    left:167px; top:223px; width:809px; height:331px;
+    border:2px solid #222; background:#c6c6c6;
+  }
+  .vline{top:224px; width:1px; background:#efefef; height:329px;}
+  .ylabel{
+    width:52px; text-align:right; font-size:31px; line-height:1; color:#222;
+    transform:scale(0.58); transform-origin:right top;
+  }
+  .topnum{
+    font-size:31px; line-height:1; color:#222; text-align:center;
+    transform:scale(0.58); transform-origin:center top;
+  }
+  .catlab{
+    font-size:18px; line-height:1.12; color:#222; text-align:center; font-weight:400;
+  }
+  .legend{
+    left:54px; top:607px; width:436px; height:42px;
+    border:3px solid #222; background:#ececec;
+  }
+  .legendbox{
+    left:64px; top:617px; width:31px; height:22px;
+    border:2px solid #222; background:#efd050;
+  }
+  .legendtext{
+    left:111px; top:619px; width:340px;
+    font-size:30px; line-height:1; color:#222; font-style:italic;
+    transform:scale(0.58); transform-origin:left top;
+  }
+  .note{
+    left:40px; top:654px; width:985px;
+    font-size:13px; line-height:1.18; color:#2a2a2a;
+  }
+  .source{
+    left:39px; top:702px; width:960px;
+    font-size:12px; line-height:1.15; color:#2a2a2a;
+  }
+  .footerline{
+    left:16px; top:717px; width:1038px; height:1px; background:#9a9a9a;
+  }
+  .footerleft{
+    left:26px; top:728px; width:690px;
+    font-size:9px; line-height:1; color:#555;
+  }
+  .footermid{
+    left:745px; top:728px; width:28px;
+    font-size:9px; line-height:1; color:#555;
+  }
+  .footerright{
+    left:787px; top:728px; width:230px;
+    font-size:9px; line-height:1; color:#555;
+  }
+  .pageno{
+    left:1042px; top:727px; width:10px;
+    font-size:12px; line-height:1; color:#111;
+  }
+  .bainmark{
+    left:1069px; top:722px; width:20px; height:20px;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">In each luxury category, the top 5 brands account for<br>~50% of sales</div>
+  <div class="redband"></div>
+
+  <div class="subleft">2010 China domestic luxury spend (RMB B)</div>
+  <div class="subright">Total = RMB 87B</div>
+
+  <div class="chartframe"></div>
+
+  <div class="ylabel" style="left:112px; top:215px;">100%</div>
+  <div class="ylabel" style="left:121px; top:281px;">80</div>
+  <div class="ylabel" style="left:121px; top:347px;">60</div>
+  <div class="ylabel" style="left:121px; top:413px;">40</div>
+  <div class="ylabel" style="left:121px; top:479px;">20</div>
+  <div class="ylabel" style="left:121px; top:545px;">0</div>
+
+  <div class="vline" style="left:375px;"></div>
+  <div class="vline" style="left:567px;"></div>
+  <div class="vline" style="left:668px;"></div>
+  <div class="vline" style="left:749px;"></div>
+  <div class="vline" style="left:802px;"></div>
+  <div class="vline" style="left:844px;"></div>
+  <div class="vline" style="left:877px;"></div>
+
+  <div class="topnum" style="left:247px; top:201px; width:48px;">22.5</div>
+  <div class="topnum" style="left:448px; top:201px; width:48px;">20.6</div>
+  <div class="topnum" style="left:596px; top:201px; width:44px;">11.0</div>
+  <div class="topnum" style="left:687px; top:201px; width:44px;">8.7</div>
+  <div class="topnum" style="left:757px; top:201px; width:36px;">5.6</div>
+  <div class="topnum" style="left:807px; top:201px; width:36px;">4.6</div>
+  <div class="topnum" style="left:847px; top:201px; width:36px;">3.5</div>
+  <div class="topnum" style="left:909px; top:201px; width:42px;">10.6</div>
+
+  <svg style="left:169px; top:225px; width:806px; height:327px;" viewBox="0 0 806 327">
+    <rect x="0" y="142" width="207" height="185" fill="#efd050"/>
+    <rect x="207" y="203" width="191" height="124" fill="#efd050"/>
+    <rect x="398" y="147" width="101" height="180" fill="#efd050"/>
+    <rect x="499" y="154" width="81" height="173" fill="#efd050"/>
+    <rect x="580" y="111" width="53" height="216" fill="#efd050"/>
+    <rect x="633" y="161" width="42" height="166" fill="#efd050"/>
+    <rect x="675" y="163" width="33" height="164" fill="#efd050"/>
+
+    <text x="104" y="178" text-anchor="middle" font-size="25" font-style="italic" font-family="Georgia, 'Times New Roman', serif" font-weight="700">Cartier</text>
+    <text x="104" y="214" text-anchor="middle" font-size="19" font-family="Georgia, 'Times New Roman', serif" font-weight="700">LONGINES</text>
+    <line x1="56" y1="206" x2="152" y2="206" stroke="#6b88a7" stroke-width="2"/>
+    <text x="104" y="249" text-anchor="middle" font-size="20" font-family="Arial" font-weight="400">OMEGA</text>
+    <text x="104" y="284" text-anchor="middle" font-size="18" font-family="Georgia, 'Times New Roman', serif" font-weight="700">ROLEX</text>
+    <rect x="91" y="297" width="24" height="16" fill="#111"/>
+    <rect x="97" y="301" width="12" height="8" fill="#d81f26"/>
+    <rect x="102" y="302" width="2" height="6" fill="#fff"/>
+    <rect x="100" y="304" width="6" height="2" fill="#fff"/>
+    <text x="104" y="320" text-anchor="middle" font-size="17" font-family="Arial" font-weight="700">TISSOT</text>
+
+    <text x="302" y="219" text-anchor="middle" font-size="17" font-family="Arial" font-weight="800">CHANEL</text>
+    <text x="302" y="242" text-anchor="middle" font-size="17" font-family="Georgia, 'Times New Roman', serif" font-weight="700">Dior</text>
+    <text x="302" y="269" text-anchor="middle" font-size="14" font-family="Arial" font-weight="700">ESTÉE LAUDER</text>
+    <text x="302" y="298" text-anchor="middle" font-size="16" font-family="Georgia, 'Times New Roman', serif" fill="#3c4c91">LANCÔME</text>
+    <text x="302" y="322" text-anchor="middle" font-size="17" font-family="Georgia, 'Times New Roman', serif" fill="#8a3459" font-style="italic">SHISEIDO</text>
+
+    <text x="448" y="184" text-anchor="middle" font-size="17" font-family="Arial" font-weight="800">CHANEL</text>
+    <text x="448" y="218" text-anchor="middle" font-size="18" font-family="Georgia, 'Times New Roman', serif" letter-spacing="4" font-weight="700">GUCCI</text>
+    <text x="448" y="244" text-anchor="middle" font-size="16" font-family="Georgia, 'Times New Roman', serif" font-weight="700">HERMES</text>
+    <text x="448" y="285" text-anchor="middle" font-size="14" font-family="Arial" font-weight="700">LOUIS VUITTON</text>
+    <text x="448" y="319" text-anchor="middle" font-size="16" font-family="Arial" font-weight="900" letter-spacing="1">PRADA</text>
+
+    <text x="539" y="197" text-anchor="middle" font-size="18" font-family="Georgia, 'Times New Roman', serif" font-weight="700">ARMANI</text>
+    <text x="539" y="225" text-anchor="middle" font-size="18" font-family="Arial" font-weight="800">BOSS</text>
+    <text x="539" y="250" text-anchor="middle" font-size="15" font-family="Georgia, 'Times New Roman', serif" font-weight="700">BURBERRY</text>
+    <text x="539" y="294" text-anchor="middle" font-size="18" font-family="Arial" font-weight="700">dunhill</text>
+    <line x1="528" y1="264" x2="528" y2="303" stroke="#222" stroke-width="3"/>
+    <line x1="548" y1="264" x2="548" y2="303" stroke="#222" stroke-width="3"/>
+    <text x="539" y="314" text-anchor="middle" font-size="9" font-family="Arial" font-weight="700">Ermenegildo Zegna</text>
+    <line x1="500" y1="309" x2="578" y2="309" stroke="#222" stroke-width="3"/>
+
+    <text x="607" y="146" text-anchor="middle" font-size="11" font-family="Arial" font-weight="800" letter-spacing="1">BVLGARI</text>
+    <text x="607" y="179" text-anchor="middle" font-size="15" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="700">Cartier</text>
+    <g transform="translate(607,212)">
+      <circle cx="-18" cy="0" r="8" fill="none" stroke="#666" stroke-width="3"/>
+      <circle cx="-21" cy="0" r="3" fill="none" stroke="#666" stroke-width="2"/>
+      <rect x="-29" y="9" width="22" height="10" fill="none" stroke="#666" stroke-width="2"/>
+      <text x="-18" y="24" text-anchor="middle" font-size="6" font-family="Arial" fill="#666" font-weight="700">de beers</text>
+    </g>
+    <text x="607" y="271" text-anchor="middle" font-size="14" font-family="Arial" font-weight="700">TIFFANY</text>
+    <text x="607" y="295" text-anchor="middle" font-size="7" font-family="Georgia, 'Times New Roman', serif" fill="#2c4e7d">Van Cleef &amp; Arpels</text>
+
+    <text x="654" y="214" text-anchor="middle" font-size="12" font-family="Arial" font-weight="800">BALLY</text>
+    <text x="654" y="238" text-anchor="middle" font-size="6" font-family="Arial" fill="#607086" font-weight="700">Salvatore Ferragamo</text>
+    <text x="654" y="266" text-anchor="middle" font-size="12" font-family="Georgia, 'Times New Roman', serif" letter-spacing="2" font-weight="700">GUCCI</text>
+    <text x="654" y="289" text-anchor="middle" font-size="7" font-family="Arial" font-weight="700">Louis Vuitton</text>
+    <text x="654" y="318" text-anchor="middle" font-size="16" font-family="Georgia, 'Times New Roman', serif" font-weight="700">TOD'S</text>
+
+    <text x="692" y="214" text-anchor="middle" font-size="10" font-family="Arial" font-weight="700">ARMANI</text>
+    <text x="692" y="238" text-anchor="middle" font-size="10" font-family="Georgia, 'Times New Roman', serif" font-weight="700">BURBERRY</text>
+    <text x="692" y="265" text-anchor="middle" font-size="9" font-family="Arial" font-weight="800">CHANEL</text>
+    <text x="692" y="291" text-anchor="middle" font-size="7" font-family="Arial" font-weight="700">MaxMara</text>
+    <text x="692" y="318" text-anchor="middle" font-size="13" font-family="Arial" font-weight="900">PRADA</text>
+  </svg>
+
+  <div class="catlab" style="left:221px; top:558px; width:96px;">Watches</div>
+  <div class="catlab" style="left:392px; top:558px; width:181px;">Cosmetics, Perfume<br>and Personal care</div>
+  <div class="catlab" style="left:587px; top:557px; width:64px;">Leather<br>goods</div>
+  <div class="catlab" style="left:675px; top:558px; width:73px;">Menswear</div>
+  <div class="catlab" style="left:733px; top:581px; width:72px;">Jewelery</div>
+  <div class="catlab" style="left:799px; top:558px; width:50px;">Shoes</div>
+  <div class="catlab" style="left:824px; top:581px; width:77px;">Women's<br>wear</div>
+  <div class="catlab" style="left:900px; top:558px; width:58px;">Other</div>
+
+  <div class="legend"></div>
+  <div class="legendbox"></div>
+  <div class="legendtext">Top 5 brands by category in alphabetical order</div>
+
+  <div class="note">Note: Market value is composed of sales at retail value; “Other” category includes tableware/silverware, stationery, sunglasses,<br>&nbsp;&nbsp;&nbsp;&nbsp;accessories and other niche luxury goods items; “Leather goods” includes smaller items such as wallets; ranking of luxury<br>&nbsp;&nbsp;&nbsp;&nbsp;brands is in alphabetical order; Armani brand includes Giorgio Armani, Emporio Armani and Armani Collezioni</div>
+  <div class="source">Source: Expert interviews; Brand interviews; Analyst reports; Company websites and reports; Literature search; Bain analysis</div>
+
+  <div class="footerline"></div>
+  <div class="footerleft">This information is confidential and was prepared by Bain &amp; Company solely for the use of our client; it is not to be relied on by any 3rd party without Bain's prior written consent</div>
+  <div class="footermid">SHA</div>
+  <div class="footerright">2011 Bain China Luxury Market Study_Media release_vf</div>
+  <div class="pageno">8</div>
+
+  <svg class="bainmark" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="11" fill="none" stroke="#d71920" stroke-width="2"/>
+    <path d="M12 3 L14 12 L21 12" fill="none" stroke="#d71920" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</div>
+</body>
+</html>

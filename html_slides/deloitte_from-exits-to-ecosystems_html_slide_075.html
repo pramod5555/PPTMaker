@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, 'Segoe UI', sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#F3F5F6;
+    color:#5a5a5a;
+  }
+  .slide > div,
+  .slide > svg{
+    position:absolute;
+  }
+  .qmark{
+    left:43px;
+    top:41px;
+    width:38px;
+    height:42px;
+    font-size:40px;
+    line-height:42px;
+    font-weight:700;
+    color:#000;
+  }
+  .left-copy{
+    left:51px;
+    top:154px;
+    width:272px;
+    font-size:20px;
+    line-height:1.24;
+    font-weight:400;
+    color:#5f5f5f;
+  }
+  .big-question{
+    left:51px;
+    top:259px;
+    width:292px;
+    font-size:34px;
+    line-height:1.23;
+    font-weight:700;
+    color:#575757;
+  }
+  .footnote{
+    left:50px;
+    top:610px;
+    width:262px;
+    font-size:10px;
+    line-height:1.55;
+    font-style:italic;
+    color:#8a8a8a;
+  }
+  .copyright{
+    left:49px;
+    top:727px;
+    transform:translateY(-10px);
+    width:170px;
+    font-size:13px;
+    line-height:1.2;
+    color:#4e4e4e;
+  }
+  .chart-head-left{
+    left:376px;
+    top:22px;
+    width:92px;
+    font-size:16px;
+    line-height:1.2;
+    font-weight:400;
+    color:#666;
+  }
+  .head-line-left{
+    left:371px;
+    top:52px;
+    width:167px;
+    height:1px;
+    background:#6e879d;
+  }
+  .legend-likely-box{
+    left:553px;
+    top:23px;
+    width:16px;
+    height:16px;
+    background:#2AB2B0;
+  }
+  .legend-likely{
+    left:576px;
+    top:21px;
+    width:82px;
+    font-size:16px;
+    line-height:1.2;
+    color:#6b6b6b;
+  }
+  .legend-unlikely-box{
+    left:1113px;
+    top:22px;
+    width:16px;
+    height:16px;
+    background:#1B2472;
+  }
+  .legend-unlikely{
+    left:1135px;
+    top:21px;
+    width:87px;
+    font-size:16px;
+    line-height:1.2;
+    color:#6b6b6b;
+  }
+  .change-title{
+    left:1232px;
+    top:18px;
+    width:76px;
+    font-size:12px;
+    line-height:1.18;
+    text-align:center;
+    color:#333;
+    font-weight:400;
+  }
+  .head-line-mid{
+    left:655px;
+    top:52px;
+    width:543px;
+    height:1px;
+    background:#6e879d;
+  }
+  .head-line-right{
+    left:1208px;
+    top:52px;
+    width:89px;
+    height:1px;
+    background:#6e879d;
+  }
+
+  .chart-area{
+    left:378px;
+    top:84px;
+    width:855px;
+    height:585px;
+  }
+  .logo{
+    left:1211px;
+    top:692px;
+    width:58px;
+    height:49px;
+    transform:translateY(-10px);
+  }
+  .page{
+    left:679px;
+    top:728px;
+    transform:translate(-50%,-10px);
+    width:20px;
+    font-size:22px;
+    line-height:1;
+    color:#4a4a4a;
+    text-align:center;
+  }
+
+  .row-label{
+    font-size:11px;
+    line-height:18px;
+    color:#767676;
+    text-align:right;
+    white-space:nowrap;
+  }
+  .pct-left, .pct-right{
+    font-size:13px;
+    line-height:18px;
+    font-weight:700;
+    color:#ffffff;
+    white-space:nowrap;
+  }
+  .change-cell{
+    background:#E2E2E4;
+    font-size:12px;
+    line-height:18px;
+    color:#4d4d4d;
+    text-align:center;
+  }
+  .highlight{
+    border:2px solid #24b26b;
+    box-sizing:border-box;
+    background:transparent;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qmark">Q.</div>
+
+  <div class="left-copy">
+    For each of the following, please<br>
+    tell me how likely or unlikely you<br>
+    think they are to happen...?
+  </div>
+
+  <div class="big-question">
+    People in my country<br>
+    will become more<br>
+    tolerant of each other
+  </div>
+
+  <div class="footnote">
+    Base: 23,721 adults aged 18 years and older in India, 18-74 in Canada, Republic of Ireland, Malaysia, the Philippines, South Africa, Turkey, and the United States, 20-74 in Thailand, 21-74 in Indonesia and Singapore, and 16-74 in all other countries. Friday, October 25 – Friday November 8, 2024
+  </div>
+
+  <div class="copyright">© Ipsos Predictions 2025 Report</div>
+
+  <div class="chart-head-left">Market</div>
+  <div class="head-line-left"></div>
+  <div class="legend-likely-box"></div>
+  <div class="legend-likely">Likely</div>
+  <div class="legend-unlikely-box"></div>
+  <div class="legend-unlikely">Unlikely</div>
+  <div class="change-title">Change likely<br>vs 2023</div>
+  <div class="head-line-mid"></div>
+  <div class="head-line-right"></div>
+
+  <div class="chart-area">
+    <svg width="855" height="585" viewBox="0 0 855 585" xmlns="http://www.w3.org/2000/svg" style="position:absolute; left:0; top:0;">
+      <!-- Global average outline -->
+      <rect x="142" y="1" width="214" height="14" fill="none" stroke="#2AB2B0" stroke-width="1"/>
+      <rect x="410" y="1" width="390" height="14" fill="none" stroke="#1B2472" stroke-width="1"/>
+
+      <!-- Likely bars -->
+      <rect x="142" y="18" width="533" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="35" width="523" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="52" width="472" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="69" width="382" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="86" width="373" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="103" width="371" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="120" width="290" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="137" width="278" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="154" width="224" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="171" width="223" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="188" width="213" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="205" width="203" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="222" width="191" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="239" width="190" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="256" width="187" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="273" width="186" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="290" width="185" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="307" width="183" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="324" width="181" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="341" width="180" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="358" width="171" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="375" width="159" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="392" width="158" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="409" width="151" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="426" width="149" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="443" width="149" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="460" width="142" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="477" width="127" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="494" width="115" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="511" width="114" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="528" width="96" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="545" width="84" height="14" fill="#2AB2B0"/>
+      <rect x="142" y="562" width="78" height="14" fill="#2AB2B0"/>
+
+      <!-- Unlikely bars -->
+      <rect x="676" y="18" width="104" height="14" fill="#1B2472"/>
+      <rect x="665" y="35" width="115" height="14" fill="#1B2472"/>
+      <rect x="614" y="52" width="166" height="14" fill="#1B2472"/>
+      <rect x="524" y="69" width="256" height="14" fill="#1B2472"/>
+      <rect x="515" y="86" width="265" height="14" fill="#1B2472"/>
+      <rect x="560" y="103" width="220" height="14" fill="#1B2472"/>
+      <rect x="459" y="120" width="321" height="14" fill="#1B2472"/>
+      <rect x="469" y="137" width="311" height="14" fill="#1B2472"/>
+      <rect x="413" y="154" width="367" height="14" fill="#1B2472"/>
+      <rect x="393" y="171" width="387" height="14" fill="#1B2472"/>
+      <rect x="402" y="188" width="378" height="14" fill="#1B2472"/>
+      <rect x="360" y="205" width="420" height="14" fill="#1B2472"/>
+      <rect x="411" y="222" width="369" height="14" fill="#1B2472"/>
+      <rect x="389" y="239" width="391" height="14" fill="#1B2472"/>
+      <rect x="387" y="256" width="393" height="14" fill="#1B2472"/>
+      <rect x="379" y="273" width="401" height="14" fill="#1B2472"/>
+      <rect x="376" y="290" width="404" height="14" fill="#1B2472"/>
+      <rect x="389" y="307" width="391" height="14" fill="#1B2472"/>
+      <rect x="389" y="324" width="391" height="14" fill="#1B2472"/>
+      <rect x="369" y="341" width="411" height="14" fill="#1B2472"/>
+      <rect x="335" y="358" width="445" height="14" fill="#1B2472"/>
+      <rect x="361" y="375" width="419" height="14" fill="#1B2472"/>
+      <rect x="360" y="392" width="420" height="14" fill="#1B2472"/>
+      <rect x="350" y="409" width="430" height="14" fill="#1B2472"/>
+      <rect x="352" y="426" width="428" height="14" fill="#1B2472"/>
+      <rect x="351" y="443" width="429" height="14" fill="#1B2472"/>
+      <rect x="330" y="460" width="450" height="14" fill="#1B2472"/>
+      <rect x="345" y="477" width="435" height="14" fill="#1B2472"/>
+      <rect x="289" y="494" width="491" height="14" fill="#1B2472"/>
+      <rect x="314" y="511" width="466" height="14" fill="#1B2472"/>
+      <rect x="287" y="528" width="493" height="14" fill="#1B2472"/>
+      <rect x="290" y="545" width="490" height="14" fill="#1B2472"/>
+      <rect x="263" y="562" width="517" height="14" fill="#1B2472"/>
+
+      <!-- Highlight row -->
+      <rect x="56" y="205" width="894" height="18" fill="none" stroke="#24b26b" stroke-width="2"/>
+
+      <!-- White separator at midpoint -->
+      <line x1="400" y1="0" x2="400" y2="576" stroke="#F3F5F6" stroke-width="14"/>
+    </svg>
+
+    <!-- labels and percentages -->
+    <div class="row-label" style="left:0px; top:0px; width:130px; height:18px;">Global Country Average</div>
+    <div class="pct-left" style="left:149px; top:0px; width:35px; height:18px;">33%</div>
+    <div class="pct-right" style="left:764px; top:0px; width:35px; height:18px; text-align:right;">59%</div>
+    <div class="change-cell" style="left:800px; top:0px; width:74px; height:18px;">-2%</div>
+
+    <div class="row-label" style="left:39px; top:17px; width:91px; height:18px;">Indonesia</div>
+    <div class="pct-left" style="left:149px; top:17px; width:35px; height:18px;">81%</div>
+    <div class="pct-right" style="left:764px; top:17px; width:35px; height:18px; text-align:right;">16%</div>
+    <div class="change-cell" style="left:800px; top:17px; width:74px; height:18px;">-1%</div>
+
+    <div class="row-label" style="left:64px; top:34px; width:66px; height:18px;">China</div>
+    <div class="pct-left" style="left:149px; top:34px; width:35px; height:18px;">79%</div>
+    <div class="pct-right" style="left:764px; top:34px; width:35px; height:18px; text-align:right;">18%</div>
+    <div class="change-cell" style="left:800px; top:34px; width:74px; height:18px;">-1%</div>
+
+    <div class="row-label" style="left:35px; top:51px; width:95px; height:18px;">Malaysia</div>
+    <div class="pct-left" style="left:149px; top:51px; width:35px; height:18px;">71%</div>
+    <div class="pct-right" style="left:764px; top:51px; width:35px; height:18px; text-align:right;">24%</div>
+    <div class="change-cell" style="left:800px; top:51px; width:74px; height:18px;">0%</div>
+
+    <div class="row-label" style="left:21px; top:68px; width:109px; height:18px;">Philippines</div>
+    <div class="pct-left" style="left:149px; top:68px; width:35px; height:18px;">58%</div>
+    <div class="pct-right" style="left:764px; top:68px; width:35px; height:18px; text-align:right;">37%</div>
+    <div class="change-cell" style="left:800px; top:68px; width:74px; height:18px;">-12%</div>
+
+    <div class="row-label" style="left:34px; top:85px; width:96px; height:18px;">Thailand</div>
+    <div class="pct-left" style="left:149px; top:85px; width:35px; height:18px;">56%</div>
+    <div class="pct-right" style="left:764px; top:85px; width:35px; height:18px; text-align:right;">41%</div>
+    <div class="change-cell" style="left:800px; top:85px; width:74px; height:18px;">-7%</div>
+
+    <div class="row-label" style="left:66px; top:102px; width:64px; height:18px;">India</div>
+    <div class="pct-left" style="left:149px; top:102px; width:35px; height:18px;">56%</div>
+    <div class="pct-right" style="left:764px; top:102px; width:35px; height:18px; text-align:right;">34%</div>
+    <div class="change-cell" style="left:800px; top:102px; width:74px; height:18px;">-10%</div>
+
+    <div class="row-label" style="left:0px; top:119px; width:130px; height:18px;">South Africa</div>
+    <div class="pct-left" style="left:149px; top:119px; width:35px; height:18px;">44%</div>
+    <div class="pct-right" style="left:764px; top:119px; width:35px; height:18px; text-align:right;">49%</div>
+    <div class="change-cell" style="left:800px; top:119px; width:74px; height:18px;">4%</div>
+
+    <div class="row-label" style="left:31px; top:136px; width:99px; height:18px;">Singapore</div>
+    <div class="pct-left" style="left:149px; top:136px; width:35px; height:18px;">42%</div>
+    <div class="pct-right" style="left:764px; top:136px; width:35px; height:18px; text-align:right;">48%</div>
+    <div class="change-cell" style="left:800px; top:136px; width:74px; height:18px;">-15%</div>
+
+    <div class="row-label" style="left:55px; top:153px; width:75px; height:18px;">Ireland</div>
+    <div class="pct-left" style="left:149px; top:153px; width:35px; height:18px;">34%</div>
+    <div class="pct-right" style="left:764px; top:153px; width:35px; height:18px; text-align:right;">56%</div>
+    <div class="change-cell" style="left:800px; top:153px; width:74px; height:18px;">N/A</div>
+
+    <div class="row-label" style="left:56px; top:170px; width:74px; height:18px;">Mexico</div>
+    <div class="pct-left" style="left:149px; top:170px; width:35px; height:18px;">34%</div>
+    <div class="pct-right" style="left:764px; top:170px; width:35px; height:18px; text-align:right;">60%</div>
+    <div class="change-cell" style="left:800px; top:170px; width:74px; height:18px;">-3%</div>
+
+    <div class="row-label" style="left:35px; top:187px; width:95px; height:18px;">Romania</div>
+    <div class="pct-left" style="left:149px; top:187px; width:35px; height:18px;">32%</div>
+    <div class="pct-right" style="left:764px; top:187px; width:35px; height:18px; text-align:right;">61%</div>
+    <div class="change-cell" style="left:800px; top:187px; width:74px; height:18px;">7%</div>
+
+    <div class="row-label" style="left:50px; top:204px; width:80px; height:18px;">Australia</div>
+    <div class="pct-left" style="left:149px; top:204px; width:35px; height:18px;">31%</div>
+    <div class="pct-right" style="left:764px; top:204px; width:35px; height:18px; text-align:right;">61%</div>
+    <div class="change-cell" style="left:800px; top:204px; width:74px; height:18px;">-4%</div>
+
+    <div class="row-label" style="left:67px; top:221px; width:63px; height:18px;">Brazil</div>
+    <div class="pct-left" style="left:149px; top:221px; width:35px; height:18px;">28%</div>
+    <div class="pct-right" style="left:764px; top:221px; width:35px; height:18px; text-align:right;">62%</div>
+    <div class="change-cell" style="left:800px; top:221px; width:74px; height:18px;">-7%</div>
+
+    <div class="row-label" style="left:84px; top:238px; width:46px; height:18px;">Peru</div>
+    <div class="pct-left" style="left:149px; top:238px; width:35px; height:18px;">28%</div>
+    <div class="pct-right" style="left:764px; top:238px; width:35px; height:18px; text-align:right;">60%</div>
+    <div class="change-cell" style="left:800px; top:238px; width:74px; height:18px;">-1%</div>
+
+    <div class="row-label" style="left:30px; top:255px; width:100px; height:18px;">Switzerland</div>
+    <div class="pct-left" style="left:149px; top:255px; width:35px; height:18px;">27%</div>
+    <div class="pct-right" style="left:764px; top:255px; width:35px; height:18px; text-align:right;">63%</div>
+    <div class="change-cell" style="left:800px; top:255px; width:74px; height:18px;">-2%</div>
+
+    <div class="row-label" style="left:80px; top:272px; width:50px; height:18px;">Spain</div>
+    <div class="pct-left" style="left:149px; top:272px; width:35px; height:18px;">27%</div>
+    <div class="pct-right" style="left:764px; top:272px; width:35px; height:18px; text-align:right;">63%</div>
+    <div class="change-cell" style="left:800px; top:272px; width:74px; height:18px;">0%</div>
+
+    <div class="row-label" style="left:67px; top:289px; width:63px; height:18px;">Poland</div>
+    <div class="pct-left" style="left:149px; top:289px; width:35px; height:18px;">26%</div>
+    <div class="pct-right" style="left:764px; top:289px; width:35px; height:18px; text-align:right;">64%</div>
+    <div class="change-cell" style="left:800px; top:289px; width:74px; height:18px;">-7%</div>
+
+    <div class="row-label" style="left:1px; top:306px; width:129px; height:18px;">United States</div>
+    <div class="pct-left" style="left:149px; top:306px; width:35px; height:18px;">26%</div>
+    <div class="pct-right" style="left:764px; top:306px; width:35px; height:18px; text-align:right;">63%</div>
+    <div class="change-cell" style="left:800px; top:306px; width:74px; height:18px;">-1%</div>
+
+    <div class="row-label" style="left:49px; top:323px; width:81px; height:18px;">Canada</div>
+    <div class="pct-left" style="left:149px; top:323px; width:35px; height:18px;">25%</div>
+    <div class="pct-right" style="left:764px; top:323px; width:35px; height:18px; text-align:right;">63%</div>
+    <div class="change-cell" style="left:800px; top:323px; width:74px; height:18px;">-2%</div>
+
+    <div class="row-label" style="left:42px; top:340px; width:88px; height:18px;">Colombia</div>
+    <div class="pct-left" style="left:149px; top:340px; width:35px; height:18px;">25%</div>
+    <div class="pct-right" style="left:764px; top:340px; width:35px; height:18px; text-align:right;">65%</div>
+    <div class="change-cell" style="left:800px; top:340px; width:74px; height:18px;">0%</div>
+
+    <div class="row-label" style="left:40px; top:357px; width:90px; height:18px;">Argentina</div>
+    <div class="pct-left" style="left:149px; top:357px; width:35px; height:18px;">25%</div>
+    <div class="pct-right" style="left:764px; top:357px; width:35px; height:18px; text-align:right;">63%</div>
+    <div class="change-cell" style="left:800px; top:357px; width:74px; height:18px;">4%</div>
+
+    <div class="row-label" style="left:46px; top:374px; width:84px; height:18px;">Türkiye</div>
+    <div class="pct-left" style="left:149px; top:374px; width:35px; height:18px;">24%</div>
+    <div class="pct-right" style="left:764px; top:374px; width:35px; height:18px; text-align:right;">73%</div>
+    <div class="change-cell" style="left:800px; top:374px; width:74px; height:18px;">-12%</div>
+
+    <div class="row-label" style="left:82px; top:391px; width:48px; height:18px;">Chile</div>
+    <div class="pct-left" style="left:149px; top:391px; width:35px; height:18px;">22%</div>
+    <div class="pct-right" style="left:764px; top:391px; width:35px; height:18px; text-align:right;">69%</div>
+    <div class="change-cell" style="left:800px; top:391px; width:74px; height:18px;">0%</div>
+
+    <div class="row-label" style="left:57px; top:408px; width:73px; height:18px;">Sweden</div>
+    <div class="pct-left" style="left:149px; top:408px; width:35px; height:18px;">22%</div>
+    <div class="pct-right" style="left:764px; top:408px; width:35px; height:18px; text-align:right;">69%</div>
+    <div class="change-cell" style="left:800px; top:408px; width:74px; height:18px;">5%</div>
+
+    <div class="row-label" style="left:65px; top:425px; width:65px; height:18px;">Germany</div>
+    <div class="pct-left" style="left:149px; top:425px; width:35px; height:18px;">21%</div>
+    <div class="pct-right" style="left:764px; top:425px; width:35px; height:18px; text-align:right;">70%</div>
+    <div class="change-cell" style="left:800px; top:425px; width:74px; height:18px;">0%</div>
+
+    <div class="row-label" style="left:90px; top:442px; width:40px; height:18px;">Italy</div>
+    <div class="pct-left" style="left:149px; top:442px; width:35px; height:18px;">21%</div>
+    <div class="pct-right" style="left:764px; top:442px; width:35px; height:18px; text-align:right;">70%</div>
+    <div class="change-cell" style="left:800px; top:442px; width:74px; height:18px;">-6%</div>
+
+    <div class="row-label" style="left:28px; top:459px; width:102px; height:18px;">South Korea</div>
+    <div class="pct-left" style="left:149px; top:459px; width:35px; height:18px;">21%</div>
+    <div class="pct-right" style="left:764px; top:459px; width:35px; height:18px; text-align:right;">73%</div>
+    <div class="change-cell" style="left:800px; top:459px; width:74px; height:18px;">0%</div>
+
+    <div class="row-label" style="left:17px; top:476px; width:113px; height:18px;">Great Britain</div>
+    <div class="pct-left" style="left:149px; top:476px; width:35px; height:18px;">19%</div>
+    <div class="pct-right" style="left:764px; top:476px; width:35px; height:18px; text-align:right;">71%</div>
+    <div class="change-cell" style="left:800px; top:476px; width:74px; height:18px;">-4%</div>
+
+    <div class="row-label" style="left:80px; top:493px; width:50px; height:18px;">Japan</div>
+    <div class="pct-left" style="left:149px; top:493px; width:35px; height:18px;">17%</div>
+    <div class="pct-right" style="left:764px; top:493px; width:35px; height:18px; text-align:right;">64%</div>
+    <div class="change-cell" style="left:800px; top:493px; width:74px; height:18px;">-1%</div>
+
+    <div class="row-label" style="left:53px; top:510px; width:77px; height:18px;">Hungary</div>
+    <div class="pct-left" style="left:149px; top:510px; width:35px; height:18px;">15%</div>
+    <div class="pct-right" style="left:764px; top:510px; width:35px; height:18px; text-align:right;">78%</div>
+    <div class="change-cell" style="left:800px; top:510px; width:74px; height:18px;">-1%</div>
+
+    <div class="row-label" style="left:70px; top:527px; width:60px; height:18px;">France</div>
+    <div class="pct-left" style="left:149px; top:527px; width:35px; height:18px;">13%</div>
+    <div class="pct-right" style="left:764px; top:527px; width:35px; height:18px; text-align:right;">80%</div>
+    <div class="change-cell" style="left:800px; top:527px; width:74px; height:18px;">-1%</div>
+
+    <div class="row-label" style="left:61px; top:544px; width:69px; height:18px;">Belgium</div>
+    <div class="pct-left" style="left:149px; top:544px; width:35px; height:18px;">13%</div>
+    <div class="pct-right" style="left:764px; top:544px; width:35px; height:18px; text-align:right;">79%</div>
+    <div class="change-cell" style="left:800px; top:544px; width:74px; height:18px;">-7%</div>
+
+    <div class="row-label" style="left:23px; top:561px; width:107px; height:18px;">Netherlands</div>
+    <div class="pct-left" style="left:149px; top:561px; width:35px; height:18px;">12%</div>
+    <div class="pct-right" style="

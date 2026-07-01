@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f4f4f4;
+  }
+
+  .bottom-band{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:1280px;
+    height:48px;
+    background:#000;
+  }
+
+  .title-block{
+    position:absolute;
+    left:47px;
+    top:404px;
+    color:#111;
+    font-weight:400;
+    font-size:35px;
+    line-height:1.1;
+    letter-spacing:-0.04em;
+    z-index:5;
+  }
+  .title-row{
+    display:flex;
+    align-items:flex-start;
+    white-space:nowrap;
+  }
+  .title-row .sec{
+    display:inline-block;
+    width:58px;
+  }
+  .title-row .txt{
+    display:inline-block;
+  }
+  .title-row.second{
+    margin-left:59px;
+    margin-top:4px;
+  }
+
+  .logo{
+    position:absolute;
+    top:24px;
+    right:31px;
+    width:108px;
+    height:54px;
+  }
+  .logo .roland{
+    position:absolute;
+    right:42px;
+    top:2px;
+    font-size:21px;
+    color:#555;
+    line-height:1;
+    font-weight:400;
+    letter-spacing:-0.03em;
+  }
+  .logo .berger{
+    position:absolute;
+    right:42px;
+    top:18px;
+    font-size:29px;
+    color:#222;
+    line-height:1;
+    font-weight:400;
+    letter-spacing:-0.05em;
+  }
+  .logo svg{
+    position:absolute;
+    right:0;
+    top:0;
+    width:40px;
+    height:52px;
+  }
+
+  .b-wrap{
+    position:absolute;
+    left:515px;
+    top:181px;
+    width:340px;
+    height:414px;
+  }
+
+  .b-vert{
+    position:absolute;
+    left:1px;
+    top:0;
+    width:155px;
+    height:414px;
+    background:linear-gradient(180deg,#eef2f6 0%, #e9edf2 22%, #f5f7fa 100%);
+    overflow:hidden;
+  }
+  .b-vert:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:155px;
+    height:68px;
+    background:linear-gradient(180deg, rgba(239,242,245,0.95) 0%, rgba(239,242,245,0.55) 100%);
+  }
+  .b-vert:after{
+    content:"";
+    position:absolute;
+    left:18px;
+    top:50px;
+    width:88px;
+    height:70px;
+    border:1px solid rgba(210,216,223,.55);
+    opacity:.35;
+    transform:skewX(7deg);
+  }
+
+  .b-top{
+    position:absolute;
+    left:66px;
+    top:0;
+    width:274px;
+    height:233px;
+    border-top-right-radius:118px;
+    border-bottom-right-radius:118px;
+    overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0) 30%),
+      linear-gradient(130deg,#24363d 0%, #32474f 26%, #273941 41%, #36515f 59%, #4db1dd 86%, #6ec8ef 100%);
+  }
+  .b-top:before{
+    content:"";
+    position:absolute;
+    left:-58px;
+    top:0;
+    width:142px;
+    height:233px;
+    background:linear-gradient(180deg,#eef2f5 0%, #f7f9fb 100%);
+  }
+  .b-top .jacket-left{
+    position:absolute;
+    left:65px;
+    top:0;
+    width:98px;
+    height:215px;
+    background:linear-gradient(180deg,#26353b 0%, #3a4c53 100%);
+    transform:skewX(7deg);
+  }
+  .b-top .jacket-right{
+    position:absolute;
+    left:137px;
+    top:0;
+    width:83px;
+    height:224px;
+    background:linear-gradient(180deg,#2a3b42 0%, #40545c 100%);
+    transform:skewX(-8deg);
+    border-top-right-radius:10px;
+  }
+  .b-top .shirt{
+    position:absolute;
+    left:160px;
+    top:56px;
+    width:31px;
+    height:118px;
+    background:#fff;
+    transform:skewX(-5deg);
+  }
+  .b-top .tie{
+    position:absolute;
+    left:173px;
+    top:27px;
+    width:26px;
+    height:89px;
+    background:repeating-linear-gradient(135deg,#213057 0 4px,#d8dce7 4px 8px);
+    clip-path:polygon(21% 0,79% 0,100% 19%,70% 100%,30% 100%,0 19%);
+    transform:rotate(3deg);
+  }
+  .b-top .arm{
+    position:absolute;
+    left:18px;
+    top:110px;
+    width:146px;
+    height:72px;
+    background:linear-gradient(180deg,#485c64 0%, #32434a 100%);
+    transform:rotate(-12deg);
+    border-radius:10px;
+    opacity:.75;
+  }
+
+  .b-bottom{
+    position:absolute;
+    left:66px;
+    top:206px;
+    width:274px;
+    height:208px;
+    border-top-right-radius:104px;
+    border-bottom-right-radius:104px;
+    overflow:hidden;
+    background:linear-gradient(180deg,#eef2f6 0%, #f8fafc 100%);
+  }
+
+  .b-bottom .tablet{
+    position:absolute;
+    left:59px;
+    top:-4px;
+    width:128px;
+    height:216px;
+    background:#fff;
+    border-radius:8px;
+    transform:rotate(35deg);
+    box-shadow:0 0 0 2px #d4dbe2 inset;
+    z-index:3;
+  }
+  .b-bottom .tablet:before{
+    content:"";
+    position:absolute;
+    left:11px;
+    top:17px;
+    width:106px;
+    height:160px;
+    background:linear-gradient(180deg,#eef5fb 0%, #ffffff 100%);
+    border:1px solid #dde4ea;
+    box-sizing:border-box;
+  }
+  .b-bottom .tablet:after{
+    content:"";
+    position:absolute;
+    left:58px;
+    bottom:9px;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#c4ccd4;
+  }
+
+  .tablet .gridline{
+    position:absolute;
+    height:1px;
+    background:#dce6ef;
+    transform:rotate(0deg);
+    opacity:.85;
+  }
+  .tablet .g1{left:22px;top:38px;width:77px;}
+  .tablet .g2{left:22px;top:56px;width:77px;}
+  .tablet .g3{left:22px;top:74px;width:77px;}
+  .tablet .g4{left:22px;top:113px;width:77px;}
+  .tablet .g5{left:22px;top:132px;width:77px;}
+
+  .chart-bars{
+    position:absolute;
+    left:53px;
+    top:29px;
+    width:80px;
+    height:51px;
+    transform:rotate(0deg);
+  }
+  .chart-bars span{
+    position:absolute;
+    bottom:0;
+    width:6px;
+    background:#58aadd;
+    border-radius:1px 1px 0 0;
+  }
+  .chart-bars .b1{left:0;height:12px;}
+  .chart-bars .b2{left:10px;height:24px;}
+  .chart-bars .b3{left:20px;height:17px;}
+  .chart-bars .b4{left:30px;height:31px;}
+  .chart-bars .b5{left:40px;height:26px;}
+  .chart-bars .b6{left:50px;height:36px;}
+  .chart-bars .b7{left:60px;height:30px;}
+  .chart-bars .b8{left:70px;height:42px;}
+
+  .chart-small{
+    position:absolute;
+    left:28px;
+    top:101px;
+    width:90px;
+    height:52px;
+  }
+  .chart-small .pie{
+    position:absolute;
+    left:0;
+    top:12px;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:conic-gradient(#4c69c6 0 230deg,#8aa4e6 230deg 360deg);
+  }
+  .chart-small .barx{
+    position:absolute;
+    bottom:2px;
+    width:5px;
+    background:#3b5cc3;
+    border-radius:1px 1px 0 0;
+  }
+  .chart-small .x1{left:40px;height:18px;}
+  .chart-small .x2{left:49px;height:10px;}
+  .chart-small .x3{left:58px;height:27px;}
+  .chart-small .x4{left:67px;height:21px;}
+  .chart-small .linea{
+    position:absolute;
+    left:35px;
+    top:7px;
+    width:40px;
+    height:2px;
+    background:#89cad9;
+    transform:rotate(14deg);
+    transform-origin:left center;
+  }
+
+  .hand{
+    position:absolute;
+    left:-5px;
+    top:15px;
+    width:140px;
+    height:70px;
+    background:linear-gradient(180deg,#efd0c2 0%, #cda392 100%);
+    clip-path:polygon(0 66%, 39% 36%, 63% 0, 100% 25%, 72% 100%, 11% 100%);
+    z-index:4;
+  }
+  .finger{
+    position:absolute;
+    left:0;
+    top:84px;
+    width:124px;
+    height:17px;
+    background:linear-gradient(180deg,#c99e8a 0%, #a67967 100%);
+    border-radius:10px;
+    transform:rotate(-12deg);
+    z-index:4;
+  }
+
+  .clipboard{
+    position:absolute;
+    left:178px;
+    top:66px;
+    width:74px;
+    height:124px;
+    background:#f3f6f9;
+    box-shadow:0 0 0 1px #d6dce3 inset;
+    z-index:1;
+  }
+  .clip{
+    position:absolute;
+    left:211px;
+    top:61px;
+    width:16px;
+    height:12px;
+    background:#1e1e1e;
+    border-radius:0 0 5px 5px;
+    z-index:2;
+  }
+  .blue-strip{
+    position:absolute;
+    left:179px;
+    top:96px;
+    width:19px;
+    height:112px;
+    background:#2f86b7;
+    z-index:1;
+  }
+
+  .paper-lines{
+    position:absolute;
+    left:206px;
+    top:80px;
+    width:58px;
+    height:96px;
+    opacity:.85;
+    z-index:2;
+  }
+  .paper-lines .dot{
+    position:absolute;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#d86262;
+  }
+  .paper-lines .line{
+    position:absolute;
+    height:1px;
+    background:#85a7d7;
+    transform-origin:left center;
+  }
+  .paper-lines .d1{left:8px;top:16px;}
+  .paper-lines .d2{left:23px;top:29px;}
+  .paper-lines .d3{left:39px;top:20px;}
+  .paper-lines .d4{left:17px;top:55px;}
+  .paper-lines .d5{left:34px;top:62px;}
+  .paper-lines .d6{left:46px;top:74px;}
+  .paper-lines .l1{left:10px;top:18px;width:17px;transform:rotate(37deg);}
+  .paper-lines .l2{left:25px;top:29px;width:16px;transform:rotate(-29deg);}
+  .paper-lines .l3{left:19px;top:56px;width:18px;transform:rotate(18deg);}
+  .paper-lines .l4{left:36px;top:63px;width:15px;transform:rotate(38deg);}
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="bottom-band"></div>
+
+    <div class="title-block">
+      <div class="title-row">
+        <span class="sec">C.</span>
+        <span class="txt">Results of the PE</span>
+      </div>
+      <div class="title-row second">
+        <span class="txt">Outlook for 2019</span>
+      </div>
+    </div>
+
+    <div class="b-wrap">
+      <div class="b-vert"></div>
+
+      <div class="b-top">
+        <div class="jacket-left"></div>
+        <div class="jacket-right"></div>
+        <div class="shirt"></div>
+        <div class="tie"></div>
+        <div class="arm"></div>
+      </div>
+
+      <div class="b-bottom">
+        <div class="hand"></div>
+        <div class="finger"></div>
+
+        <div class="tablet">
+          <div class="gridline g1"></div>
+          <div class="gridline g2"></div>
+          <div class="gridline g3"></div>
+          <div class="gridline g4"></div>
+          <div class="gridline g5"></div>
+
+          <div class="chart-bars">
+            <span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span>
+            <span class="b5"></span><span class="b6"></span><span class="b7"></span><span class="b8"></span>
+          </div>
+          <div class="chart-small">
+            <div class="pie"></div>
+            <div class="barx x1"></div>
+            <div class="barx x2"></div>
+            <div class="barx x3"></div>
+            <div class="barx x4"></div>
+            <div class="linea"></div>
+          </div>
+        </div>
+
+        <div class="clipboard"></div>
+        <div class="clip"></div>
+        <div class="blue-strip"></div>
+
+        <div class="paper-lines">
+          <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
+          <div class="dot d4"></div><div class="dot d5"></div><div class="dot d6"></div>
+          <div class="line l1"></div><div class="line l2"></div><div class="line l3"></div><div class="line l4"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo">
+      <div class="roland">Roland</div>
+      <div class="berger">Berger</div>
+      <svg viewBox="0 0 44 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="rbg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#d9dde1"/>
+            <stop offset="48%" stop-color="#9ba4aa"/>
+            <stop offset="100%" stop-color="#5b666c"/>
+          </linearGradient>
+        </defs>
+        <path d="M6 0 H21 C33 0 41 8 41 18 C41 24 38 30 31 33 C39 36 44 42 44 52 C44 54 44 55 44 56 H6 Z" fill="url(#rbg)"/>
+        <path d="M17 1 V55" stroke="#eef1f4" stroke-width="1.1" opacity=".72"/>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>

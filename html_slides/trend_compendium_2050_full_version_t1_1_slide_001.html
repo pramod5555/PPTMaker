@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Megatrend 1 - People &amp; Society</title>
+<style>
+  body{
+    margin:0;
+    background:#1f1f1f;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 8% 70%, rgba(208,166,117,0.90) 0px, rgba(172,125,80,0.70) 42px, rgba(70,54,44,0.18) 96px, rgba(0,0,0,0) 138px),
+      radial-gradient(ellipse at 13% 47%, rgba(202,168,141,0.72) 0px, rgba(169,139,116,0.50) 28px, rgba(0,0,0,0) 58px),
+      radial-gradient(ellipse at 5% 82%, rgba(245,245,242,0.86) 0px, rgba(217,213,205,0.72) 80px, rgba(0,0,0,0) 138px),
+      radial-gradient(ellipse at 94% 49%, rgba(188,144,117,0.82) 0px, rgba(129,94,73,0.58) 38px, rgba(0,0,0,0) 72px),
+      radial-gradient(ellipse at 88% 38%, rgba(205,160,129,0.88) 0px, rgba(166,123,95,0.56) 34px, rgba(0,0,0,0) 70px),
+      radial-gradient(ellipse at 89% 64%, rgba(224,194,166,0.85) 0px, rgba(176,135,104,0.56) 38px, rgba(0,0,0,0) 76px),
+      radial-gradient(ellipse at 69% 33%, rgba(197,150,117,0.92) 0px, rgba(166,122,88,0.52) 30px, rgba(0,0,0,0) 64px),
+      radial-gradient(ellipse at 72% 50%, rgba(157,95,62,0.82) 0px, rgba(115,70,52,0.40) 40px, rgba(0,0,0,0) 76px),
+      radial-gradient(ellipse at 53% 40%, rgba(242,230,196,0.65) 0px, rgba(194,175,136,0.28) 25px, rgba(0,0,0,0) 52px),
+      radial-gradient(ellipse at 55% 37%, rgba(251,240,198,0.60) 0px, rgba(203,186,147,0.20) 23px, rgba(0,0,0,0) 50px),
+      linear-gradient(180deg, rgba(46,66,78,0.86) 0%, rgba(16,35,48,0.94) 44%, rgba(8,12,18,0.98) 100%);
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+  }
+
+  .silhouette{
+    border-radius:50%;
+    filter: blur(1.2px);
+    z-index:2;
+  }
+
+  .panel{
+    left:130px;
+    top:303px;
+    width:770px;
+    height:254px;
+    background:rgba(4,27,39,0.78);
+    z-index:20;
+  }
+
+  .title1{
+    left:206px;
+    top:359px;
+    width:410px;
+    color:#bcc400;
+    font-size:68px;
+    line-height:1;
+    font-weight:300;
+    z-index:30;
+  }
+
+  .title2{
+    left:206px;
+    top:431px;
+    width:560px;
+    color:#f1f1f1;
+    font-size:70px;
+    line-height:1.02;
+    font-weight:300;
+    z-index:30;
+  }
+
+  .accent-line{
+    left:125px;
+    top:549px;
+    width:366px;
+    height:15px;
+    background:#bcc400;
+    border-radius:8px;
+    z-index:31;
+  }
+
+  .hex-outer{
+    left:819px;
+    top:267px;
+    width:371px;
+    height:329px;
+    background:#dedede;
+    clip-path:polygon(23% 0%, 77% 0%, 100% 50%, 77% 100%, 23% 100%, 0% 50%);
+    border-radius:18px;
+    z-index:25;
+  }
+
+  .hex-inner{
+    left:851px;
+    top:293px;
+    width:308px;
+    height:274px;
+    background:#bcc400;
+    clip-path:polygon(23% 0%, 77% 0%, 100% 50%, 77% 100%, 23% 100%, 0% 50%);
+    border-radius:14px;
+    z-index:26;
+  }
+
+  .logo{
+    right:13px;
+    bottom:10px;
+    width:58px;
+    height:29px;
+    z-index:55;
+    color:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .logo .rb1{
+    position:absolute;
+    left:0;
+    top:7px;
+    font-size:5px;
+    line-height:1;
+    font-weight:400;
+    letter-spacing:0.02em;
+    opacity:0.95;
+  }
+  .logo .rb2{
+    position:absolute;
+    left:0;
+    top:12px;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+  }
+  .logo .shape{
+    position:absolute;
+    left:45px;
+    top:5px;
+    width:17px;
+    height:22px;
+    background:#ffffff;
+    border-radius:0 11px 11px 0;
+  }
+  .logo .shape:before{
+    content:"";
+    position:absolute;
+    left:-8px;
+    top:0;
+    width:11px;
+    height:22px;
+    background:#ffffff;
+    clip-path:polygon(0 0, 100% 15%, 100% 85%, 0 100%);
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="silhouette" style="left:-32px; top:226px; width:185px; height:420px; background:radial-gradient(ellipse at 44% 24%, rgba(196,154,118,0.95) 0px, rgba(156,114,84,0.70) 42px, rgba(28,30,38,0.96) 118px, rgba(6,8,13,0.98) 100%);"></div>
+  <div class="silhouette" style="left:22px; top:495px; width:204px; height:245px; background:radial-gradient(ellipse at 54% 26%, rgba(237,233,225,0.90) 0px, rgba(198,193,182,0.78) 62px, rgba(20,25,35,0.97) 130px, rgba(5,8,12,0.99) 100%);"></div>
+  <div class="silhouette" style="left:94px; top:85px; width:98px; height:170px; background:radial-gradient(ellipse at 50% 32%, rgba(186,141,115,0.95) 0px, rgba(155,117,92,0.75) 20px, rgba(13,15,22,0.95) 53px, rgba(6,7,11,0.98) 100%);"></div>
+  <div class="silhouette" style="left:177px; top:116px; width:180px; height:212px; background:radial-gradient(ellipse at 50% 24%, rgba(198,198,194,0.60) 0px, rgba(150,152,154,0.32) 24px, rgba(17,21,28,0.94) 74px, rgba(6,8,13,0.98) 100%);"></div>
+  <div class="silhouette" style="left:270px; top:150px; width:115px; height:260px; background:radial-gradient(ellipse at 50% 18%, rgba(95,58,43,0.85) 0px, rgba(76,47,37,0.68) 22px, rgba(10,16,25,0.96) 68px, rgba(5,8,13,0.99) 100%);"></div>
+  <div class="silhouette" style="left:330px; top:145px; width:128px; height:244px; background:radial-gradient(ellipse at 50% 21%, rgba(184,187,190,0.72) 0px, rgba(135,141,150,0.48) 24px, rgba(23,29,37,0.97) 72px, rgba(6,8,12,0.99) 100%);"></div>
+  <div class="silhouette" style="left:408px; top:90px; width:102px; height:270px; background:radial-gradient(ellipse at 50% 18%, rgba(102,76,62,0.86) 0px, rgba(76,56,45,0.62) 18px, rgba(15,27,44,0.96) 60px, rgba(8,14,22,0.99) 100%);"></div>
+  <div class="silhouette" style="left:495px; top:130px; width:138px; height:260px; background:radial-gradient(ellipse at 48% 18%, rgba(172,168,165,0.78) 0px, rgba(134,131,130,0.48) 24px, rgba(27,32,37,0.96) 74px, rgba(7,9,12,0.99) 100%);"></div>
+  <div class="silhouette" style="left:575px; top:102px; width:112px; height:248px; background:radial-gradient(ellipse at 50% 18%, rgba(118,74,52,0.84) 0px, rgba(93,58,43,0.58) 20px, rgba(20,29,40,0.96) 66px, rgba(7,10,14,0.99) 100%);"></div>
+  <div class="silhouette" style="left:648px; top:116px; width:106px; height:250px; background:radial-gradient(ellipse at 50% 18%, rgba(235,230,218,0.88) 0px, rgba(195,189,176,0.50) 22px, rgba(33,40,51,0.95) 70px, rgba(8,10,14,0.99) 100%);"></div>
+  <div class="silhouette" style="left:730px; top:74px; width:88px; height:196px; background:radial-gradient(ellipse at 50% 18%, rgba(166,168,170,0.78) 0px, rgba(123,127,132,0.46) 16px, rgba(28,31,35,0.95) 48px, rgba(10,11,14,0.99) 100%);"></div>
+  <div class="silhouette" style="left:786px; top:108px; width:92px; height:182px; background:radial-gradient(ellipse at 50% 18%, rgba(219,209,179,0.88) 0px, rgba(180,170,144,0.56) 18px, rgba(60,55,50,0.94) 50px, rgba(12,12,12,0.98) 100%);"></div>
+  <div class="silhouette" style="left:862px; top:64px; width:126px; height:242px; background:radial-gradient(ellipse at 50% 18%, rgba(195,164,144,0.90) 0px, rgba(160,129,109,0.58) 24px, rgba(43,43,46,0.95) 66px, rgba(8,9,12,0.99) 100%);"></div>
+  <div class="silhouette" style="left:982px; top:74px; width:101px; height:186px; background:radial-gradient(ellipse at 50% 18%, rgba(9,123,69,0.92) 0px, rgba(7,90,49,0.68) 20px, rgba(18,23,27,0.95) 50px, rgba(6,8,12,0.99) 100%);"></div>
+  <div class="silhouette" style="left:1096px; top:8px; width:144px; height:265px; background:radial-gradient(ellipse at 50% 18%, rgba(217,185,142,0.92) 0px, rgba(180,150,113,0.66) 25px, rgba(24,23,31,0.96) 72px, rgba(7,8,11,0.99) 100%);"></div>
+  <div class="silhouette" style="left:1035px; top:154px; width:123px; height:232px; background:radial-gradient(ellipse at 50% 18%, rgba(104,67,42,0.85) 0px, rgba(80,51,34,0.58) 20px, rgba(14,16,20,0.96) 64px, rgba(5,7,10,0.99) 100%);"></div>
+  <div class="silhouette" style="left:1145px; top:212px; width:135px; height:293px; background:radial-gradient(ellipse at 50% 18%, rgba(209,181,163,0.88) 0px, rgba(172,141,122,0.58) 26px, rgba(26,30,39,0.96) 72px, rgba(6,8,12,0.99) 100%);"></div>
+  <div class="silhouette" style="left:454px; top:392px; width:110px; height:328px; background:radial-gradient(ellipse at 50% 18%, rgba(54,31,27,0.88) 0px, rgba(40,23,21,0.58) 23px, rgba(10,11,15,0.98) 72px, rgba(3,4,6,0.99) 100%);"></div>
+  <div class="silhouette" style="left:910px; top:387px; width:116px; height:333px; background:radial-gradient(ellipse at 50% 18%, rgba(114,74,55,0.84) 0px, rgba(82,55,41,0.56) 22px, rgba(12,13,17,0.98) 74px, rgba(3,4,6,0.99) 100%);"></div>
+  <div class="silhouette" style="left:661px; top:232px; width:154px; height:488px; background:radial-gradient(ellipse at 50% 16%, rgba(216,203,167,0.62) 0px, rgba(168,156,122,0.26) 22px, rgba(12,15,21,0.98) 92px, rgba(2,4,7,1) 100%);"></div>
+
+  <div class="panel"></div>
+  <div class="title1">Megatrend 1</div>
+  <div class="title2">People &amp; Society</div>
+  <div class="accent-line"></div>
+
+  <div class="hex-outer"></div>
+  <div class="hex-inner"></div>
+
+  <svg width="160" height="120" viewBox="0 0 160 120" style="left:927px; top:358px; z-index:35;">
+    <g fill="#1f1f26">
+      <circle cx="80" cy="31" r="16"></circle>
+      <circle cx="58" cy="41" r="13"></circle>
+      <circle cx="102" cy="41" r="13"></circle>
+      <circle cx="33" cy="53" r="12"></circle>
+      <circle cx="58" cy="57" r="15"></circle>
+      <circle cx="80" cy="58" r="14"></circle>
+      <circle cx="102" cy="57" r="15"></circle>
+      <circle cx="127" cy="53" r="12"></circle>
+
+      <path d="M67 46c0-7 6-13 13-13s13 6 13 13v9c0 1-1 2-2 2H69c-1 0-2-1-2-2z"></path>
+      <path d="M46 55c0-7 5-12 12-12s12 5 12 12v8c0 1-1 2-2 2H48c-1 0-2-1-2-2z"></path>
+      <path d="M90 55c0-7 5-12 12-12s12 5 12 12v8c0 1-1 2-2 2H92c-1 0-2-1-2-2z"></path>
+      <path d="M20 63c0-6 5-11 13-11s13 5 13 11v10c0 1-1 2-2 2H22c-1 0-2-1-2-2z"></path>
+      <path d="M114 63c0-6 5-11 13-11s13 5 13 11v10c0 1-1 2-2 2h-22c-1 0-2-1-2-2z"></path>
+      <path d="M56 86c0-11 11-19 24-19s24 8 24 19v17c0 1-1 2-2 2H58c-1 0-2-1-2-2z"></path>
+    </g>
+  </svg>
+
+  <div class="logo">
+    <div class="rb1">Roland</div>
+    <div class="rb2">Berger</div>
+    <div class="shape"></div>
+  </div>
+</div>
+</body>
+</html>

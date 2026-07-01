@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Executive summary</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #e9e8e8;
+  }
+
+  .top-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 485px;
+    background:
+      linear-gradient(90deg,
+        rgba(8,8,10,0.85) 0%,
+        rgba(8,8,10,0.35) 18%,
+        rgba(20,12,8,0.85) 44%,
+        rgba(18,10,8,0.96) 59%,
+        rgba(65,45,20,0.65) 71%,
+        rgba(125,95,40,0.28) 100%
+      ),
+      radial-gradient(circle at 17% 19%, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.20) 16%, rgba(0,0,0,0) 36%),
+      linear-gradient(180deg, #31291f 0%, #120d0b 60%, #100908 100%);
+  }
+
+  .city-glow-1, .city-glow-2, .city-glow-3, .city-glow-4, .city-glow-5, .city-glow-6, .city-glow-7 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(2px);
+    opacity: 0.95;
+  }
+  .city-glow-1 { left: 966px; top: 134px; width: 44px; height: 44px; background: rgba(255,96,48,0.9); }
+  .city-glow-2 { left: 1012px; top: 183px; width: 16px; height: 16px; background: rgba(255,234,183,0.9); }
+  .city-glow-3 { left: 1084px; top: 196px; width: 22px; height: 10px; background: rgba(255,241,191,0.85); border-radius: 8px; }
+  .city-glow-4 { left: 1149px; top: 218px; width: 24px; height: 8px; background: rgba(255,242,187,0.9); border-radius: 8px; }
+  .city-glow-5 { left: 1215px; top: 409px; width: 48px; height: 20px; background: rgba(255,245,220,0.8); border-radius: 10px; }
+  .city-glow-6 { left: 1007px; top: 290px; width: 53px; height: 30px; background: rgba(255,215,135,0.9); border-radius: 12px; }
+  .city-glow-7 { left: 992px; top: 332px; width: 58px; height: 120px; background: linear-gradient(180deg, rgba(255,230,180,0.85), rgba(255,170,80,0.15)); opacity: 0.65; border-radius: 30px; }
+
+  .building {
+    position: absolute;
+    left: 931px;
+    top: 0;
+    width: 275px;
+    height: 142px;
+    background: rgba(144, 135, 63, 0.55);
+  }
+  .building:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(90deg,
+        transparent 0, transparent 14px,
+        rgba(35,35,20,0.65) 14px, rgba(35,35,20,0.65) 18px),
+      repeating-linear-gradient(180deg,
+        transparent 0, transparent 20px,
+        rgba(35,35,20,0.6) 20px, rgba(35,35,20,0.6) 24px);
+    opacity: 0.9;
+  }
+
+  .road-line {
+    position: absolute;
+    background: rgba(255,241,180,0.95);
+    border-radius: 6px;
+    transform: rotate(22deg);
+    box-shadow: 0 0 8px rgba(255,241,180,0.45);
+  }
+  .road1 { left: 1072px; top: 188px; width: 25px; height: 5px; }
+  .road2 { left: 1124px; top: 201px; width: 24px; height: 5px; }
+  .road3 { left: 1168px; top: 219px; width: 28px; height: 5px; }
+  .road4 { left: 1008px; top: 311px; width: 39px; height: 6px; transform: rotate(80deg); }
+  .road5 { left: 968px; top: 375px; width: 116px; height: 10px; transform: rotate(61deg); opacity: 0.8; }
+
+  .window-bar {
+    position: absolute;
+    background: rgba(255,204,120,0.45);
+    border-radius: 2px;
+  }
+  .wb1 { left: 968px; top: 52px; width: 8px; height: 8px; }
+  .wb2 { left: 988px; top: 48px; width: 8px; height: 11px; }
+  .wb3 { left: 1040px; top: 45px; width: 8px; height: 11px; }
+  .wb4 { left: 1090px; top: 48px; width: 8px; height: 11px; }
+  .wb5 { left: 1138px; top: 42px; width: 8px; height: 13px; }
+  .wb6 { left: 1185px; top: 36px; width: 8px; height: 15px; }
+
+  .person-head {
+    position: absolute;
+    left: 158px;
+    top: 93px;
+    width: 68px;
+    height: 68px;
+    background: #121212;
+    border-radius: 50%;
+    box-shadow: inset -8px -8px 0 rgba(255,255,255,0.03);
+  }
+  .person-face {
+    position: absolute;
+    left: 184px;
+    top: 124px;
+    width: 38px;
+    height: 39px;
+    background: #d2b29a;
+    border-radius: 45% 48% 52% 48%;
+    transform: rotate(-10deg);
+  }
+  .person-beard {
+    position: absolute;
+    left: 181px;
+    top: 136px;
+    width: 44px;
+    height: 26px;
+    background: #1a1614;
+    border-radius: 0 0 28px 22px;
+    transform: rotate(-8deg);
+  }
+  .person-body {
+    position: absolute;
+    left: 98px;
+    top: 160px;
+    width: 167px;
+    height: 214px;
+    background: linear-gradient(180deg, rgba(192,226,244,0.86), rgba(112,147,170,0.82));
+    border-radius: 36px 36px 18px 18px;
+    transform: skewX(-10deg);
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.06);
+  }
+  .arm {
+    position: absolute;
+    left: 204px;
+    top: 197px;
+    width: 36px;
+    height: 92px;
+    background: linear-gradient(180deg, rgba(182,217,233,0.92), rgba(110,141,162,0.88));
+    border-radius: 20px;
+    transform: rotate(18deg);
+  }
+  .hand {
+    position: absolute;
+    left: 234px;
+    top: 155px;
+    width: 28px;
+    height: 46px;
+    background: #d0ae92;
+    border-radius: 18px;
+    transform: rotate(16deg);
+  }
+  .watch {
+    position: absolute;
+    left: 214px;
+    top: 212px;
+    width: 18px;
+    height: 18px;
+    border: 3px solid #496980;
+    border-radius: 50%;
+    background: rgba(235,245,250,0.9);
+    transform: rotate(18deg);
+  }
+  .glasses {
+    position: absolute;
+    left: 210px;
+    top: 141px;
+    width: 28px;
+    height: 10px;
+    border-top: 2px solid rgba(220,220,220,0.8);
+    border-bottom: 2px solid rgba(120,120,120,0.5);
+    border-radius: 6px;
+    transform: rotate(4deg);
+  }
+
+  .monitor {
+    position: absolute;
+    left: 405px;
+    top: 123px;
+    width: 43px;
+    height: 151px;
+    background: linear-gradient(180deg, #f0f0f0, #dbdbdb);
+    border: 2px solid #444;
+    border-radius: 4px;
+    transform: rotate(1deg);
+    box-shadow: 0 0 18px rgba(255,255,255,0.15);
+  }
+  .monitor:before {
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 38px;
+    width: 5px;
+    height: 70px;
+    background: repeating-linear-gradient(180deg, #7fa6d9 0 7px, transparent 7px 10px);
+    transform: rotate(12deg);
+    opacity: 0.8;
+  }
+  .monitor-stand {
+    position: absolute;
+    left: 410px;
+    top: 274px;
+    width: 35px;
+    height: 7px;
+    background: #2b2b2b;
+    border-radius: 4px;
+  }
+
+  .desk {
+    position: absolute;
+    left: 187px;
+    top: 318px;
+    width: 319px;
+    height: 104px;
+    background: rgba(70,55,45,0.45);
+    border-radius: 0 0 40px 0;
+  }
+  .keyboard {
+    position: absolute;
+    left: 285px;
+    top: 286px;
+    width: 74px;
+    height: 39px;
+    background: #8d8d8d;
+    border-radius: 4px;
+    transform: skewX(-8deg);
+  }
+  .keyboard:before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(60,60,60,0.8) 0 4px, transparent 4px 6px),
+      repeating-linear-gradient(180deg, rgba(60,60,60,0.8) 0 4px, transparent 4px 6px);
+    opacity: 0.6;
+  }
+  .cup {
+    position: absolute;
+    left: 318px;
+    top: 381px;
+    width: 22px;
+    height: 31px;
+    background: #432318;
+    border-radius: 0 0 6px 6px;
+  }
+
+  .lamp-line {
+    position: absolute;
+    background: #0c0d0f;
+    transform-origin: left center;
+  }
+  .lamp1 { left: 352px; top: 353px; width: 212px; height: 4px; transform: rotate(-77deg); }
+  .lamp2 { left: 366px; top: 297px; width: 179px; height: 4px; transform: rotate(-55deg); }
+  .lamp3 { left: 402px; top: 226px; width: 108px; height: 4px; transform: rotate(-4deg); }
+  .lamp4 { left: 476px; top: 224px; width: 125px; height: 4px; transform: rotate(-55deg); }
+  .lamp5 { left: 365px; top: 333px; width: 97px; height: 4px; transform: rotate(83deg); }
+  .lamp-joint1, .lamp-joint2, .lamp-head, .lamp-top {
+    position: absolute;
+    background: #0c0d0f;
+  }
+  .lamp-joint1 { left: 399px; top: 217px; width: 15px; height: 15px; border-radius: 50%; }
+  .lamp-joint2 { left: 505px; top: 139px; width: 15px; height: 15px; border-radius: 50%; }
+  .lamp-head { left: 365px; top: 197px; width: 44px; height: 32px; border-radius: 3px 3px 6px 6px; transform: rotate(1deg); }
+  .lamp-top { left: 457px; top: 4px; width: 45px; height: 20px; transform: skewX(-20deg); }
+
+  .curtain {
+    position: absolute;
+    left: 605px;
+    top: 0;
+    width: 82px;
+    height: 485px;
+    background: linear-gradient(90deg, rgba(32,12,8,0.95), rgba(64,23,15,0.72), rgba(20,8,6,0.98));
+  }
+  .window-frame1, .window-frame2 {
+    position: absolute;
+    background: rgba(101,69,38,0.62);
+  }
+  .window-frame1 { left: 784px; top: 0; width: 10px; height: 485px; }
+  .window-frame2 { left: 874px; top: 0; width: 8px; height: 485px; }
+
+  .tram {
+    position: absolute;
+    left: 956px;
+    top: 245px;
+    width: 95px;
+    height: 64px;
+    background: linear-gradient(180deg, #f4dfc2 0 55%, #d96d3e 55% 100%);
+    border-radius: 12px 12px 10px 10px;
+    transform: skewX(-4deg);
+    box-shadow: 0 0 14px rgba(255,210,140,0.2);
+  }
+  .tram:before {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 18px;
+    width: 68px;
+    height: 18px;
+    background: #2c231b;
+    border-radius: 3px;
+    box-shadow:
+      0 24px 0 0 rgba(40,30,24,0.0);
+  }
+  .tram:after {
+    content: "";
+    position: absolute;
+    left: 18px;
+    top: 45px;
+    width: 12px;
+    height: 12px;
+    background: #ffe6a8;
+    border-radius: 50%;
+    box-shadow: 48px 0 0 #ffe6a8;
+  }
+
+  .tram-long {
+    position: absolute;
+    left: 1099px;
+    top: 350px;
+    width: 161px;
+    height: 89px;
+    background: linear-gradient(180deg, #f1dcc2 0 58%, #d46034 58% 100%);
+    border-radius: 8px;
+    transform: skewX(-18deg);
+    opacity: 0.95;
+  }
+  .tram-long:before {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 19px;
+    width: 133px;
+    height: 28px;
+    background: rgba(40,28,24,0.82);
+    border-radius: 3px;
+  }
+
+  .bottom {
+    position: absolute;
+    left: 0;
+    top: 485px;
+    width: 1280px;
+    height: 235px;
+    background: #ecebeb;
+  }
+
+  .divider {
+    position: absolute;
+    left: 633px;
+    top: 514px;
+    width: 2px;
+    height: 209px;
+    background: #8d18e8;
+  }
+
+  .title {
+    position: absolute;
+    left: 699px;
+    top: 548px;
+    font-size: 57px;
+    line-height: 1;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: -1.5px;
+    white-space: nowrap;
+  }
+
+  .logo {
+    position: absolute;
+    left: 42px;
+    top: 716px;
+    width: 23px;
+    height: 9px;
+    background: #9e18ff;
+    transform: rotate(21deg) skewX(-20deg);
+    transform-origin: left center;
+  }
+  .logo:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -8px;
+    width: 23px;
+    height: 9px;
+    background: #9e18ff;
+    transform: rotate(-42deg) skewX(20deg);
+    transform-origin: left center;
+  }
+
+  .copyright {
+    position: absolute;
+    right: 33px;
+    top: 733px;
+    transform: translateY(-100%);
+    font-size: 13px;
+    color: #6f6f6f;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-image"></div>
+
+    <div class="building"></div>
+    <div class="window-bar wb1"></div>
+    <div class="window-bar wb2"></div>
+    <div class="window-bar wb3"></div>
+    <div class="window-bar wb4"></div>
+    <div class="window-bar wb5"></div>
+    <div class="window-bar wb6"></div>
+
+    <div class="person-body"></div>
+    <div class="arm"></div>
+    <div class="hand"></div>
+    <div class="watch"></div>
+    <div class="person-head"></div>
+    <div class="person-face"></div>
+    <div class="person-beard"></div>
+    <div class="glasses"></div>
+
+    <div class="monitor"></div>
+    <div class="monitor-stand"></div>
+    <div class="desk"></div>
+    <div class="keyboard"></div>
+    <div class="cup"></div>
+
+    <div class="lamp-line lamp1"></div>
+    <div class="lamp-line lamp2"></div>
+    <div class="lamp-line lamp3"></div>
+    <div class="lamp-line lamp4"></div>
+    <div class="lamp-line lamp5"></div>
+    <div class="lamp-joint1"></div>
+    <div class="lamp-joint2"></div>
+    <div class="lamp-head"></div>
+    <div class="lamp-top"></div>
+
+    <div class="curtain"></div>
+    <div class="window-frame1"></div>
+    <div class="window-frame2"></div>
+
+    <div class="road-line road1"></div>
+    <div class="road-line road2"></div>
+    <div class="road-line road3"></div>
+    <div class="road-line road4"></div>
+    <div class="road-line road5"></div>
+
+    <div class="city-glow-1"></div>
+    <div class="city-glow-2"></div>
+    <div class="city-glow-3"></div>
+    <div class="city-glow-4"></div>
+    <div class="city-glow-5"></div>
+    <div class="city-glow-6"></div>
+    <div class="city-glow-7"></div>
+
+    <div class="tram"></div>
+    <div class="tram-long"></div>
+
+    <div class="bottom"></div>
+    <div class="divider"></div>
+    <div class="title">Executive summary</div>
+    <div class="logo"></div>
+    <div class="copyright">Copyright © 2025 Accenture. All rights reserved.</div>
+  </div>
+</body>
+</html>

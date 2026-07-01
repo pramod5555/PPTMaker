@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Regional Outlook Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#eeeaf1;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#eeeaf1;
+    color:#111;
+  }
+
+  .top-tabs{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:26px;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:26px;
+    line-height:26px;
+    font-size:13px;
+    font-weight:700;
+    text-align:center;
+  }
+  .tab.purple{
+    left:0;
+    width:114px;
+    background:#7d12c8;
+    color:#fff;
+  }
+  .tab.gray1{
+    left:114px;
+    width:94px;
+    color:#888;
+    background:transparent;
+  }
+  .tab.gray2{
+    left:208px;
+    width:118px;
+    color:#7d12c8;
+    background:transparent;
+    border-bottom:3px solid #7d12c8;
+    box-sizing:border-box;
+  }
+
+  .title{
+    position:absolute;
+    left:44px;
+    top:60px;
+    width:1190px;
+    font-size:28px;
+    line-height:1.02;
+    font-weight:800;
+    color:#000;
+    letter-spacing:-0.3px;
+  }
+  .subtitle{
+    position:absolute;
+    left:43px;
+    top:121px;
+    width:500px;
+    font-size:26px;
+    line-height:1;
+    font-weight:800;
+    color:#8f19f2;
+  }
+
+  .header-band{
+    position:absolute;
+    left:330px;
+    top:167px;
+    width:934px;
+    height:36px;
+    background:#e4e4e4;
+    border-left:1px solid #d2d2d2;
+    box-sizing:border-box;
+  }
+  .header-left{
+    position:absolute;
+    left:330px;
+    top:167px;
+    width:523px;
+    height:36px;
+    line-height:36px;
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#111;
+  }
+  .header-right{
+    position:absolute;
+    left:853px;
+    top:167px;
+    width:411px;
+    height:36px;
+    line-height:36px;
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#111;
+    border-left:1px solid #d2d2d2;
+    box-sizing:border-box;
+  }
+
+  .vline{
+    position:absolute;
+    top:167px;
+    left:853px;
+    width:1px;
+    height:548px;
+    background:#cfcfcf;
+  }
+
+  .hline{
+    position:absolute;
+    left:42px;
+    width:1218px;
+    height:1px;
+    background:#c9c9c9;
+  }
+  .hline.top{ top:203px; }
+  .hline.mid1{ top:460px; }
+  .hline.mid2{ top:484px; }
+  .hline.bottom{ top:714px; }
+
+  .group-label{
+    position:absolute;
+    left:50px;
+    width:120px;
+    font-size:18px;
+    font-weight:700;
+    color:#111;
+  }
+  .label-americas{ top:222px; }
+  .label-me{ top:533px; }
+
+  .continent{
+    position:absolute;
+    left:41px;
+    width:88px;
+    height:116px;
+    opacity:.22;
+  }
+  .continent svg{ width:100%; height:100%; display:block; fill:#777; }
+  .continent.americas{ top:268px; }
+  .continent.me{ top:583px; width:95px; height:95px; }
+
+  .country{
+    position:absolute;
+    left:182px;
+    width:100px;
+    font-size:14px;
+    color:#333;
+    line-height:1.05;
+  }
+
+  .bullet-col{
+    position:absolute;
+    left:336px;
+    width:492px;
+    font-size:14px;
+    line-height:1.18;
+    color:#333;
+  }
+  .watch-col{
+    position:absolute;
+    left:861px;
+    width:390px;
+    font-size:14px;
+    line-height:1.18;
+    color:#333;
+  }
+
+  .divider{
+    position:absolute;
+    left:238px;
+    width:1013px;
+    height:1px;
+    background:#d7d7d7;
+    border-top:1px dotted #d7d7d7;
+  }
+
+  ul{
+    margin:0;
+    padding-left:14px;
+  }
+  li{ margin:0 0 2px 0; }
+
+  .flag{
+    position:absolute;
+    left:184px;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    overflow:hidden;
+    box-shadow:0 2px 4px rgba(0,0,0,.25);
+    border:1px solid rgba(0,0,0,.08);
+    box-sizing:border-box;
+    background:#fff;
+  }
+
+  .flag.canada{ top:229px; background:#fff; }
+  .flag.canada:before, .flag.canada:after{
+    content:"";
+    position:absolute;
+    top:0; width:6px; height:100%;
+    background:#e43b2c;
+  }
+  .flag.canada:before{ left:0; }
+  .flag.canada:after{ right:0; }
+  .flag.canada .leaf{
+    position:absolute;
+    left:8px; top:5px;
+    width:12px; height:12px;
+    background:#e43b2c;
+    clip-path:polygon(50% 0%,58% 18%,76% 8%,70% 28%,92% 30%,76% 44%,82% 64%,61% 56%,58% 84%,50% 70%,42% 84%,39% 56%,18% 64%,24% 44%,8% 30%,30% 28%,24% 8%,42% 18%);
+  }
+  .flag.canada .stem{
+    position:absolute;
+    left:13px; top:15px; width:2px; height:7px; background:#e43b2c;
+  }
+
+  .flag.brazil{ top:312px; background:#0b9b43; }
+  .flag.brazil:before{
+    content:"";
+    position:absolute;
+    left:5px; top:5px;
+    width:16px; height:16px;
+    background:#f4cf2a;
+    transform:rotate(45deg);
+  }
+  .flag.brazil:after{
+    content:"";
+    position:absolute;
+    left:9px; top:9px;
+    width:10px; height:10px;
+    border-radius:50%;
+    background:#214a9a;
+  }
+  .flag.brazil .band{
+    position:absolute;
+    left:7px; top:12px;
+    width:14px; height:2px;
+    background:#fff;
+    border-radius:2px;
+    transform:rotate(-12deg);
+  }
+
+  .flag.mexico{ top:401px; background:linear-gradient(90deg,#0d8a52 0 33%, #fff 33% 66%, #dc4738 66% 100%); }
+  .flag.mexico:after{
+    content:"";
+    position:absolute;
+    left:12px; top:11px;
+    width:4px; height:6px;
+    border-radius:50%;
+    background:#9c7b34;
+  }
+
+  .flag.saudi{ top:527px; background:#057a3e; }
+  .flag.saudi:before{
+    content:"";
+    position:absolute;
+    left:5px; top:8px;
+    width:18px; height:6px;
+    color:#fff;
+    font-size:6px;
+    letter-spacing:.4px;
+    content:"✦✦✦✦";
+  }
+  .flag.saudi:after{
+    content:"";
+    position:absolute;
+    left:7px; top:18px;
+    width:14px; height:2px;
+    background:#fff;
+    border-radius:2px;
+  }
+
+  .flag.uae{ top:642px; background:linear-gradient(180deg,#1b9d4a 0 33%, #fff 33% 66%, #121212 66% 100%); }
+  .flag.uae:before{
+    content:"";
+    position:absolute;
+    left:0; top:0;
+    width:8px; height:100%;
+    background:#e5332a;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:42px;
+    top:729px;
+  }
+
+  .accent-mark{
+    position:absolute;
+    left:42px;
+    top:726px;
+    width:24px;
+    height:16px;
+  }
+  .accent-mark:before,
+  .accent-mark:after{
+    content:"";
+    position:absolute;
+    background:#8f19f2;
+    border-radius:1px;
+  }
+  .accent-mark:before{
+    left:0; top:4px;
+    width:20px; height:4px;
+    transform:skewX(35deg);
+  }
+  .accent-mark:after{
+    left:9px; top:9px;
+    width:12px; height:4px;
+    transform:skewX(-35deg);
+  }
+
+  .source{
+    position:absolute;
+    left:74px;
+    top:727px;
+    font-size:12px;
+    color:#888;
+  }
+
+  .copyright{
+    position:absolute;
+    right:66px;
+    top:727px;
+    font-size:11px;
+    color:#666;
+  }
+  .page{
+    position:absolute;
+    right:20px;
+    top:727px;
+    font-size:16px;
+    color:#666;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-tabs">
+    <div class="tab purple">2026 outlook</div>
+    <div class="tab gray1">Global</div>
+    <div class="tab gray2">Regional</div>
+  </div>
+
+  <div class="title">
+    Unwinding of OPEC production cuts will help GCC countries maintain strong growth in 2026,<br>
+    whereas Canada, Mexico and Brazil remain on shakier footing due to US/China exposures
+  </div>
+  <div class="subtitle">Other key country outlooks (1/2)</div>
+
+  <div class="header-band"></div>
+  <div class="header-left">Base case outlook</div>
+  <div class="header-right">What to watch for</div>
+  <div class="vline"></div>
+
+  <div class="hline top"></div>
+  <div class="hline mid1"></div>
+  <div class="hline mid2"></div>
+  <div class="hline bottom"></div>
+
+  <div class="group-label label-americas">Americas</div>
+  <div class="continent americas">
+    <svg viewBox="0 0 100 120" aria-hidden="true">
+      <path d="M34 10l10 4 7-2 8 4-3 6 8 3-6 5-4 8-8 5-1 9-9 9-4 7 3 13-5 13-6 8-1 17-10-7-4-14 1-15-8-8-9-3 0-13 8-12 6-8 7-9 11-6 9-8zM56 16l12 2 10-4 11 4-6 5 8 2-9 4-11 0-8 3-3-7-7-3 3-6z"/>
+    </svg>
+  </div>
+
+  <div class="group-label label-me">Middle East</div>
+  <div class="continent me">
+    <svg viewBox="0 0 120 100" aria-hidden="true">
+      <path d="M19 22l23 0 10 10 14-6 10 8 12 1 8 9 10 3-2 11 6 12-10 6-15-2-12 10-14-3-10-7-11 3-6-10-12 0 1-24-2-9 10-12z"/>
+    </svg>
+  </div>
+
+  <div class="flag canada"><div class="leaf"></div><div class="stem"></div></div>
+  <div class="country" style="top:241px;">Canada</div>
+  <div class="bullet-col" style="top:211px;">
+    <ul>
+      <li>Slight improvement vs. 2025 as the drag from past rate hikes fades,<br>though growth remains US demand-dependent and pressured by tariffs</li>
+      <li>Structural challenges—productivity, housing supply, limited fiscal room—<br>keep Canada in the lower-growth tier of the global multi-speed landscape</li>
+    </ul>
+  </div>
+  <div class="watch-col" style="top:211px;">
+    <ul>
+      <li>How quickly monetary easing transmits through a debt-heavy household sector</li>
+      <li>Outcome of USMCA renegotiations and any easing in tariffs</li>
+      <li>Signs of housing-market stabilization vs. renewed stress</li>
+    </ul>
+  </div>
+
+  <div class="divider" style="top:283px;"></div>
+
+  <div class="flag brazil"><div class="band"></div></div>
+  <div class="country" style="top:322px;">Brazil</div>
+  <div class="bullet-col" style="top:294px;">
+    <ul>
+      <li>Decelerating overall growth as tighter financial conditions and high real<br>rates weigh on domestic investment and consumer demand</li>
+      <li>Weaker global goods trade and China’s export overhang will also pressure<br>Brazil’s manufacturing and commodity-linked sectors</li>
+    </ul>
+  </div>
+  <div class="watch-col" style="top:294px;">
+    <ul>
+      <li>Interaction between rate cuts and inflation expectations amid currency volatility</li>
+      <li>Exposure to China’s demand for metals, agri., and energy</li>
+      <li>Execution of fiscal reforms and market reactions</li>
+    </ul>
+  </div>
+
+  <div class="divider" style="top:371px;"></div>
+
+  <div class="flag mexico"></div>
+  <div class="country" style="top:410px;">Mexico</div>
+  <div class="bullet-col" style="top:377px;">
+    <ul>
+      <li>Slight growth pickup supported by nearshoring, remittances, and a firm<br>labor market, but still constrained by weak investment, softer US/global<br>demand, and tariff headwinds</li>
+      <li>Tight financial/fiscal conditions—high real rates, limited fiscal room,<br>energy-sector bottlenecks—will temper benefits of disinflation</li>
+    </ul>
+  </div>
+  <div class="watch-col" style="top:377px;">
+    <ul>
+      <li>USMCA review and tariff decisions shaping nearshoring economics and export competitiveness</li>
+      <li>Banxico’s easing path and effects on credit and peso volatility</li>
+      <li>How fiscal and energy-sector signals (Pemex risks, power reliability, budget plans) affect investor confidence</li>
+    </ul>
+  </div>
+
+  <div class="flag saudi"></div>
+  <div class="country" style="top:535px;">Saudi<br>Arabia</div>
+  <div class="bullet-col" style="top:502px;">
+    <ul>
+      <li>Slight acceleration of growth as oil production normalizes from prior<br>OPEC+ cuts and non-oil activity remains resilient on the back of steady<br>investment, job creation, and low inflation</li>
+      <li>Momentum is partly tempered by higher living costs (housing), subsidy<br>adjustments, and a more cautious fiscal stance</li>
+    </ul>
+  </div>
+  <div class="watch-col" style="top:502px;">
+    <ul>
+      <li>Oil prices and OPEC+ quota decisions, the main swing factor for headline growth and fiscal space</li>
+      <li>Translation of committed public and private investments into actual project delivery and non-oil activity</li>
+      <li>Impact of subsidy reforms, housing costs, and public-sector wage dynamics on consumer sentiment</li>
+    </ul>
+  </div>
+
+  <div class="divider" style="top:597px;"></div>
+
+  <div class="flag uae"></div>
+  <div class="country" style="top:650px;">UAE</div>
+  <div class="bullet-col" style="top:613px;">
+    <ul>
+      <li>Growth is expected to moderate slightly from 2025’s strong pace as the<br>multi-year non-oil surge—led by real estate, tourism, and services—<br>normalizes, though it remains the primary driver of expansion.</li>
+      <li>Oil-sector growth turns modestly positive (from flatness in 2025) as<br>OPEC+ output curbs ease and new ADNOC capacity comes online</li>
+    </ul>
+  </div>
+  <div class="watch-col" style="top:613px;">
+    <ul>
+      <li>Durability of non-oil activity, especially in real estate, tourism, and consumer credit</li>
+      <li>Progress on trade, investment, and digital-economy agreements that enhance the UAE’s hub role</li>
+      <li>Sensitivity to global financial conditions, oil prices, and regional geopolitics affecting capital flows and confidence</li>
+    </ul>
+  </div>
+
+  <div class="accent-mark"></div>
+  <div class="source">Source(s): Accenture Strategy analysis</div>
+  <div class="copyright">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="page">15</div>
+</div>
+</body>
+</html>

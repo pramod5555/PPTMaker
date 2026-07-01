@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  .slide > div, .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .left-bg{
+    left:0;
+    top:0;
+    width:593px;
+    height:720px;
+    background:#efefef;
+    z-index:1;
+  }
+  .right-bg{
+    left:593px;
+    top:0;
+    width:687px;
+    height:720px;
+    background:#001733;
+    z-index:1;
+  }
+
+  .yellow-line{
+    left:0;
+    top:95px;
+    width:593px;
+    height:3px;
+    background:#efbe00;
+    z-index:12;
+  }
+  .circle{
+    left:356px;
+    top:77px;
+    width:41px;
+    height:41px;
+    border-radius:50%;
+    background:#efefef;
+    border:3px solid #efbe00;
+    z-index:20;
+  }
+  .circle-text{
+    left:367px;
+    top:88px;
+    width:20px;
+    font-size:16px;
+    line-height:16px;
+    color:#1d2530;
+    font-weight:700;
+    text-align:center;
+    z-index:30;
+  }
+
+  .trans-title{
+    left:356px;
+    top:132px;
+    width:150px;
+    font-size:16px;
+    line-height:20px;
+    color:#1a2430;
+    font-weight:700;
+    z-index:30;
+  }
+  .trans-body{
+    left:356px;
+    top:167px;
+    width:175px;
+    font-size:10px;
+    line-height:14px;
+    color:#3b4652;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .photo-left{
+    left:32px;
+    top:135px;
+    width:208px;
+    height:579px;
+    overflow:hidden;
+    border-radius:2px;
+    z-index:10;
+    background:
+      radial-gradient(circle at 32% 20%, rgba(255,255,255,.95) 0 .7px, transparent 1px),
+      radial-gradient(circle at 72% 16%, rgba(255,255,255,.95) 0 .7px, transparent 1px),
+      radial-gradient(circle at 56% 10%, rgba(255,255,255,.9) 0 .8px, transparent 1.1px),
+      radial-gradient(circle at 14% 34%, rgba(255,255,255,.8) 0 .7px, transparent 1px),
+      radial-gradient(circle at 78% 30%, rgba(255,255,255,.75) 0 .8px, transparent 1.1px),
+      radial-gradient(circle at 20% 56%, rgba(255,255,255,.9) 0 .7px, transparent 1px),
+      radial-gradient(circle at 90% 54%, rgba(255,255,255,.8) 0 .7px, transparent 1px),
+      radial-gradient(circle at 39% 44%, rgba(255,255,255,.75) 0 .8px, transparent 1.1px),
+      radial-gradient(circle at 12% 70%, rgba(255,255,255,.85) 0 .7px, transparent 1px),
+      radial-gradient(circle at 72% 73%, rgba(255,255,255,.75) 0 .8px, transparent 1.1px),
+      linear-gradient(180deg,#161f46 0%, #23295b 18%, #3d4361 36%, #c27f52 59%, #e9a963 67%, #162237 80%, #081322 100%);
+  }
+  .photo-left:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle, rgba(255,255,255,.95) 0 .75px, transparent 1px);
+    background-size:10px 10px;
+    opacity:.45;
+    mix-blend-mode:screen;
+  }
+  .photo-left:after{
+    content:"";
+    position:absolute;
+    inset:auto 0 0 0;
+    height:250px;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(8,14,21,.1) 10%, rgba(8,14,21,.75) 100%);
+  }
+
+  .mountains{
+    left:32px;
+    top:405px;
+    width:561px;
+    height:309px;
+    z-index:15;
+    pointer-events:none;
+  }
+
+  .guest-kicker{
+    left:627px;
+    top:43px;
+    font-size:12px;
+    line-height:14px;
+    color:#ffffff;
+    font-weight:700;
+    z-index:30;
+  }
+  .guest-name{
+    left:627px;
+    top:61px;
+    width:460px;
+    font-size:15px;
+    line-height:17px;
+    color:#ffd200;
+    font-weight:700;
+    z-index:30;
+  }
+
+  .top-photo{
+    left:627px;
+    top:109px;
+    width:588px;
+    height:214px;
+    overflow:hidden;
+    z-index:10;
+    background:
+      linear-gradient(180deg,#c6d9ea 0%, #95b6d2 32%, #5f84a1 60%, #3f5d72 100%);
+  }
+  .top-photo:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(ellipse at 21% 52%, rgba(255,255,255,.98) 0 11%, rgba(194,224,244,.9) 12% 16%, rgba(44,70,94,.8) 17% 20%, transparent 21%),
+      radial-gradient(ellipse at 46% 50%, rgba(255,255,255,.98) 0 11%, rgba(194,224,244,.9) 12% 16%, rgba(44,70,94,.8) 17% 20%, transparent 21%),
+      radial-gradient(ellipse at 72% 53%, rgba(255,255,255,.98) 0 11%, rgba(194,224,244,.9) 12% 16%, rgba(44,70,94,.8) 17% 20%, transparent 21%),
+      radial-gradient(ellipse at 90% 54%, rgba(255,255,255,.98) 0 11%, rgba(194,224,244,.9) 12% 16%, rgba(44,70,94,.8) 17% 20%, transparent 21%),
+      linear-gradient(90deg, rgba(255,255,255,.22), rgba(255,255,255,.04));
+  }
+  .top-photo:after{
+    content:"";
+    position:absolute;
+    left:436px;
+    top:12px;
+    width:86px;
+    height:150px;
+    background:
+      linear-gradient(162deg, transparent 0 44%, rgba(202,223,236,.98) 45% 55%, transparent 56%),
+      linear-gradient(94deg, transparent 0 47%, rgba(244,249,255,.96) 48% 51%, transparent 52%),
+      radial-gradient(circle at 51% 77%, rgba(255,255,255,.98) 0 3%, rgba(178,217,236,.98) 4% 6%, transparent 7%);
+    transform:rotate(13deg);
+    opacity:.95;
+  }
+
+  .small-thumb{
+    left:1134px;
+    top:61px;
+    width:108px;
+    height:47px;
+    z-index:25;
+    background:
+      radial-gradient(circle at 74% 18%, rgba(255,244,224,.95) 0 10%, rgba(235,216,196,.5) 11% 20%, transparent 21%),
+      radial-gradient(circle at 26% 68%, rgba(248,250,255,.8) 0 10%, rgba(210,224,238,.35) 11% 18%, transparent 19%),
+      linear-gradient(135deg,#95b0cd 0%, #cfd9e6 34%, #7d9fbf 64%, #c0b2ab 100%);
+  }
+
+  .headline{
+    left:627px;
+    top:345px;
+    width:548px;
+    font-size:29px;
+    line-height:1.12;
+    color:#f0f3f8;
+    font-weight:300;
+    letter-spacing:-0.2px;
+    z-index:30;
+  }
+
+  .body-left{
+    left:627px;
+    top:507px;
+    width:248px;
+    font-size:10px;
+    line-height:14px;
+    color:#d7e0ea;
+    font-weight:400;
+    z-index:30;
+  }
+  .body-right{
+    left:896px;
+    top:507px;
+    width:250px;
+    font-size:10px;
+    line-height:14px;
+    color:#d7e0ea;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .footer-left{
+    left:33px;
+    bottom:15px;
+    font-size:7px;
+    line-height:7px;
+    color:#1f2832;
+    font-weight:700;
+    z-index:40;
+    white-space:nowrap;
+  }
+  .footer-right{
+    right:33px;
+    bottom:15px;
+    font-size:7px;
+    line-height:7px;
+    color:#1f2832;
+    font-weight:700;
+    z-index:40;
+    white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-bg"></div>
+  <div class="right-bg"></div>
+
+  <div class="yellow-line"></div>
+  <div class="circle"></div>
+  <div class="circle-text">02</div>
+
+  <div class="trans-title">Transactions</div>
+  <div class="trans-body">
+    For larger companies, a major transaction can<br>
+    be an entry point to transform the risk operating<br>
+    model. Since such transactions typically involve<br>
+    transformation and the restructuring of operating<br>
+    models across the larger enterprise, this can<br>
+    provide the opportunity to reexamine the risk<br>
+    operating model at the same time. Making the<br>
+    business case is easier if risk transformation is<br>
+    tied to business outcomes and the strategic goals<br>
+    of the organization.<br><br>
+    The October 2025 spin-off of Solstice Advanced<br>
+    Materials from its parent company illustrates how<br>
+    a transaction creates opportunities to redesign<br>
+    the risk operating model. Solstice needed to stand<br>
+    up a new risk function, giving it the opportunity to<br>
+    decide on the optimal structure and approach for<br>
+    each component of its operating model.
+  </div>
+
+  <div class="photo-left"></div>
+
+  <svg class="mountains" viewBox="0 0 561 309" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="waterGlow" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f2b269" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#1f2c3d" stop-opacity="0.15"/>
+      </linearGradient>
+    </defs>
+    <path d="M0,134 L26,112 L46,92 L73,128 L101,145 L132,160 L168,171 L194,166 L220,138 L247,114 L278,139 L306,126 L334,106 L365,101 L393,114 L424,130 L458,112 L491,105 L528,121 L561,147 L561,309 L0,309 Z" fill="#1d2128"/>
+    <path d="M0,159 L29,149 L55,139 L80,160 L103,170 L126,177 L159,186 L188,183 L214,161 L243,144 L270,164 L299,154 L329,137 L358,134 L385,144 L414,157 L444,146 L475,142 L513,152 L561,171 L561,309 L0,309 Z" fill="#0b1017"/>
+    <path d="M0,144 L18,132 L45,118 L68,147 L95,162 L124,172 L161,182 L190,178 L215,157 L243,136 L271,156 L297,145 L327,128 L356,123 L383,134 L412,149 L442,135 L474,131 L507,141 L561,164" fill="none" stroke="#cfd6de" stroke-width="1.2" opacity="0.8"/>
+    <path d="M0,200 L54,208 L104,217 L152,226 L203,235 L255,244 L307,251 L359,258 L415,266 L485,274 L561,280 L561,309 L0,309 Z" fill="url(#waterGlow)" opacity="0.8"/>
+    <path d="M0,230 L59,236 L119,243 L177,250 L236,258 L295,264 L355,270 L417,277 L488,283 L561,288" fill="none" stroke="#f0b06a" stroke-width="1.2" opacity="0.45"/>
+  </svg>
+
+  <div class="guest-kicker">Guest perspective</div>
+  <div class="guest-name">Vinod Madhavan, Chief Information Security Officer<br>at Solstice Advanced Materials</div>
+  <div class="top-photo"></div>
+  <div class="small-thumb"></div>
+
+  <div class="headline">How Solstice Advanced<br>Materials established a risk<br>practice after a spinoff</div>
+
+  <div class="body-left">
+    When Solstice Advanced Materials was spun off, it created<br>
+    an imperative for us to develop our own approach to risk<br>
+    management. We carried over things that worked well, such as<br>
+    many robust processes we had previously, while we changed<br>
+    other aspects to suit the needs of the new company.<br><br>
+    The risk management process is similar to what it was prior to<br>
+    the spin, but risk tolerance and acceptance levels are different.<br>
+    Solstice, as a pure play, US$4b specialty materials company,<br>
+    has a different risk profile from a long-standing, conglomerate<br>
+    with a mix of various businesses.
+  </div>
+
+  <div class="body-right">
+    One aspect we are doing differently relates to some of the<br>
+    ways in which we use AI and technology. Since Solstice focuses<br>
+    on one sector, while its parent company spanned several, this<br>
+    affects how we quantify risks and the benchmarks we use.<br><br>
+    For a new company, the speed of getting up and running is<br>
+    crucial during a transaction. Building an internal team from<br>
+    scratch is impractical in some cases. We therefore decided to<br>
+    use the EY organization as a managed service provider, which<br>
+    helped build expertise and operational capabilities quickly.
+  </div>
+
+  <div class="footer-left">19&nbsp;&nbsp;|&nbsp;&nbsp;When the world shifts overnight how can you operate at the speed of trust</div>
+  <div class="footer-right">Global Risk Transformation Series&nbsp;&nbsp;|&nbsp;&nbsp;20</div>
+</div>
+</body>
+</html>

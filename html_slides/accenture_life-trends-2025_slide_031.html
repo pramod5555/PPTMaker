@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#fdfcfd;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#fdfcfd;
+    color:#222;
+  }
+
+  .title-small{
+    position:absolute;
+    left:60px;
+    top:114px;
+    font-size:24px;
+    line-height:1.1;
+    font-weight:300;
+    color:#7a1fe0;
+    letter-spacing:0.2px;
+  }
+  .title-big{
+    position:absolute;
+    left:126px;
+    top:154px;
+    font-size:58px;
+    line-height:0.95;
+    font-weight:300;
+    color:#6d12d9;
+    letter-spacing:0.3px;
+  }
+
+  .body-text{
+    position:absolute;
+    left:60px;
+    top:248px;
+    width:406px;
+    font-size:18px;
+    line-height:1.42;
+    color:#2b2b2b;
+    font-weight:400;
+  }
+  .body-text p{
+    margin:0 0 14px 0;
+  }
+
+  .photo-stack{
+    position:absolute;
+    left:520px;
+    top:0;
+    width:430px;
+    height:720px;
+  }
+  .panel{
+    position:absolute;
+    left:0;
+    width:430px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 28% 28%, rgba(255,255,255,0.42), rgba(255,255,255,0) 18%),
+      radial-gradient(circle at 77% 17%, rgba(255,120,40,0.50), rgba(255,120,40,0) 22%),
+      radial-gradient(circle at 74% 62%, rgba(110,160,255,0.55), rgba(110,160,255,0) 20%),
+      linear-gradient(90deg, rgba(95,45,40,0.75) 0%, rgba(241,190,33,0.85) 34%, rgba(236,171,7,0.82) 49%, rgba(166,195,255,0.72) 76%, rgba(133,161,222,0.85) 100%);
+    filter:saturate(1.1);
+  }
+  .panel.top{ top:0; height:257px; }
+  .panel.mid{ top:256px; height:256px; }
+  .panel.bot{ top:512px; height:208px; }
+
+  .person{
+    position:absolute;
+    border-radius:50% 50% 42% 42% / 36% 36% 48% 48%;
+    filter: blur(4px);
+    opacity:0.82;
+  }
+  .person.yellow{
+    background:
+      radial-gradient(circle at 50% 18%, rgba(248,227,190,0.95) 0 14%, rgba(0,0,0,0) 15%),
+      linear-gradient(180deg, rgba(203,141,52,0.95) 0 12%, rgba(232,179,47,0.96) 13% 70%, rgba(173,116,41,0.82) 71% 100%);
+  }
+  .person.blue{
+    background:
+      radial-gradient(circle at 52% 16%, rgba(241,215,197,0.95) 0 14%, rgba(0,0,0,0) 15%),
+      linear-gradient(180deg, rgba(171,177,215,0.95) 0 12%, rgba(164,192,243,0.95) 13% 60%, rgba(123,157,218,0.88) 61% 100%);
+  }
+
+  .top .yellow{ left:40px; top:-8px; width:166px; height:262px; transform:rotate(-4deg); }
+  .top .blue{ left:250px; top:-12px; width:150px; height:264px; transform:rotate(3deg); }
+
+  .mid .yellow{ left:35px; top:2px; width:174px; height:248px; transform:rotate(-6deg); }
+  .mid .blue{ left:272px; top:12px; width:138px; height:230px; transform:rotate(5deg); }
+
+  .bot .yellow{ left:48px; top:8px; width:176px; height:214px; transform:rotate(-4deg); }
+  .bot .blue{ left:266px; top:6px; width:140px; height:210px; transform:rotate(4deg); }
+
+  .blur-streak{
+    position:absolute;
+    background:rgba(255,255,255,0.14);
+    filter:blur(8px);
+    border-radius:80px;
+    transform:rotate(18deg);
+  }
+  .s1{ left:20px; top:30px; width:120px; height:24px; }
+  .s2{ left:230px; top:70px; width:145px; height:20px; }
+  .s3{ left:40px; top:340px; width:150px; height:28px; }
+  .s4{ left:245px; top:420px; width:130px; height:24px; }
+  .s5{ left:52px; top:575px; width:145px; height:22px; }
+  .s6{ left:250px; top:560px; width:120px; height:18px; }
+
+  .quote{
+    position:absolute;
+    left:994px;
+    top:246px;
+    width:220px;
+    font-size:22px;
+    line-height:1.45;
+    color:#8d35e9;
+    font-weight:300;
+  }
+  .quote .num{
+    font-size:16px;
+    vertical-align:super;
+  }
+  .author{
+    position:absolute;
+    left:998px;
+    top:508px;
+    width:215px;
+    font-size:14px;
+    line-height:1.35;
+    color:#181818;
+    font-weight:700;
+  }
+
+  .side-note{
+    position:absolute;
+    right:12px;
+    top:38px;
+    height:566px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-size:13px;
+    line-height:1;
+    color:#707070;
+    letter-spacing:0.2px;
+  }
+  .side-note .purple{
+    color:#8d35e9;
+    font-weight:600;
+  }
+
+  .footer{
+    position:absolute;
+    right:22px;
+    bottom:18px;
+    font-size:12px;
+    color:#777;
+    white-space:nowrap;
+  }
+  .footer .year{
+    color:#8d35e9;
+    font-weight:600;
+  }
+  .footer .page{
+    margin-left:30px;
+    color:#777;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title-small">What’s</div>
+    <div class="title-big">next</div>
+
+    <div class="body-text">
+      <p>Parents want their children to be happy and healthy. While debate continues around the extent to which smartphones and social media have caused health impacts in young people, conflicting media narratives and technology companies behaving defensively only add noise. Parents are seeing the impact with their own eyes—they’re feeling the urgency and all they want is solutions.</p>
+      <p>As the United States Surgeon General, Vivek Murthy, commented when recommending health warning labels for social media, “One of the most important lessons I learned in medical school was that in an emergency, you don’t have the luxury to wait for perfect information. You assess the available facts, you use your best judgment, and you act quickly.”</p>
+    </div>
+
+    <div class="photo-stack">
+      <div class="panel top">
+        <div class="person yellow"></div>
+        <div class="person blue"></div>
+      </div>
+      <div class="panel mid">
+        <div class="person yellow"></div>
+        <div class="person blue"></div>
+      </div>
+      <div class="panel bot">
+        <div class="person yellow"></div>
+        <div class="person blue"></div>
+      </div>
+      <div class="blur-streak s1"></div>
+      <div class="blur-streak s2"></div>
+      <div class="blur-streak s3"></div>
+      <div class="blur-streak s4"></div>
+      <div class="blur-streak s5"></div>
+      <div class="blur-streak s6"></div>
+    </div>
+
+    <div class="quote">“The mental health crisis among young people is an emergency—and social media has emerged as an important contributor.”<span class="num">57</span></div>
+
+    <div class="author">Vivek Murthy,<br>United States Surgeon General</div>
+
+    <div class="side-note">Cost of hesitations &nbsp;/&nbsp; <span class="purple">The parent trap</span> &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; Social rewilding</div>
+
+    <div class="footer">Accenture Life Trends <span class="year">2025</span><span class="page">31</span></div>
+  </div>
+</body>
+</html>

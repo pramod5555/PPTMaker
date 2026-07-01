@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>The Big Picture</title>
+<style>
+  body{
+    margin:0;
+    background:#e6e6e6;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+    color:#222;
+    margin:0 auto;
+  }
+
+  .top-left{
+    position:absolute;
+    left:60px;
+    top:36px;
+    font-size:15px;
+    color:#4e5a5f;
+    letter-spacing:-0.1px;
+    white-space:nowrap;
+  }
+  .top-left .accent{ color:#8a2be2; }
+
+  .top-right{
+    position:absolute;
+    right:38px;
+    top:35px;
+    font-size:15px;
+    color:#444;
+    white-space:nowrap;
+  }
+  .top-right .num{
+    font-weight:700;
+    margin-left:24px;
+    color:#47565a;
+  }
+
+  .hero{
+    position:absolute;
+    left:59px;
+    top:64px;
+    width:464px;
+    height:609px;
+    background:
+      radial-gradient(circle at 18% 63%, rgba(255,255,255,0.08), rgba(255,255,255,0) 20%),
+      radial-gradient(circle at 72% 78%, rgba(255,255,255,0.08), rgba(255,255,255,0) 22%),
+      linear-gradient(180deg, #b400ff 0%, #8a00d6 48%, #b700ff 100%);
+    overflow:hidden;
+  }
+
+  .hero .head{
+    position:absolute;
+    left:38px;
+    top:31px;
+    width:336px;
+    height:340px;
+    background:linear-gradient(135deg, rgba(88,18,143,0.95), rgba(116,25,170,0.95));
+    border-radius:52% 50% 42% 48% / 42% 40% 50% 50%;
+    transform:rotate(8deg);
+    box-shadow: inset -30px -20px 50px rgba(40,0,70,0.18);
+  }
+  .hero .neck{
+    position:absolute;
+    left:269px;
+    top:382px;
+    width:86px;
+    height:105px;
+    background:linear-gradient(180deg, rgba(104,24,164,0.95), rgba(122,26,176,0.95));
+    transform:skewX(-10deg) rotate(24deg);
+    border-radius:12px;
+  }
+  .hero .shoulder{
+    position:absolute;
+    left:-8px;
+    top:370px;
+    width:356px;
+    height:292px;
+    background:linear-gradient(180deg, rgba(108,24,165,0.95), rgba(117,24,167,0.98));
+    border-radius:28px 110px 0 0;
+  }
+  .hero .torso-cut{
+    position:absolute;
+    left:243px;
+    top:496px;
+    width:146px;
+    height:105px;
+    background:#b100ff;
+    transform:rotate(39deg);
+    border-radius:8px;
+  }
+  .hero .chin{
+    position:absolute;
+    left:324px;
+    top:327px;
+    width:141px;
+    height:69px;
+    background:linear-gradient(180deg, rgba(113,24,169,0.95), rgba(127,30,183,0.95));
+    border-radius:0 0 52px 52px / 0 0 42px 42px;
+    transform:rotate(-4deg);
+  }
+  .hero .face-cut{
+    position:absolute;
+    left:358px;
+    top:236px;
+    width:63px;
+    height:61px;
+    background:#b100ff;
+    border-radius:0 60% 50% 50%;
+    transform:rotate(32deg);
+  }
+  .hero .visor{
+    position:absolute;
+    left:32px;
+    top:229px;
+    width:354px;
+    height:78px;
+    background:linear-gradient(180deg, rgba(132,33,187,0.55), rgba(171,89,220,0.35));
+    border-radius:46px;
+    transform:rotate(20deg);
+  }
+  .hero .ear{
+    position:absolute;
+    left:143px;
+    top:184px;
+    width:83px;
+    height:107px;
+    border:4px solid rgba(105,25,165,0.95);
+    border-radius:50%;
+    background:rgba(153,64,213,0.16);
+  }
+  .hero .ear:before{
+    content:"";
+    position:absolute;
+    left:22px;
+    top:17px;
+    width:34px;
+    height:48px;
+    border-radius:50% 45% 50% 45%;
+    border:4px solid rgba(105,25,165,0.9);
+    border-left-color:transparent;
+    border-bottom-color:transparent;
+    transform:rotate(20deg);
+  }
+  .hero .jaw{
+    position:absolute;
+    left:313px;
+    top:247px;
+    width:87px;
+    height:130px;
+    background:linear-gradient(180deg, rgba(114,24,168,0.96), rgba(120,27,174,0.96));
+    border-radius:36% 46% 54% 38%;
+    transform:rotate(-10deg);
+  }
+  .hero .nose{
+    position:absolute;
+    left:360px;
+    top:253px;
+    width:43px;
+    height:34px;
+    background:linear-gradient(180deg, rgba(114,24,168,0.96), rgba(120,27,174,0.96));
+    border-radius:0 60% 60% 50%;
+    transform:rotate(11deg);
+  }
+  .hero .mouth{
+    position:absolute;
+    left:360px;
+    top:293px;
+    width:28px;
+    height:10px;
+    border-bottom:3px solid rgba(78,18,117,0.9);
+    border-radius:0 0 18px 18px;
+    transform:rotate(10deg);
+  }
+  .hero .detail1,
+  .hero .detail2,
+  .hero .detail3{
+    position:absolute;
+    background:rgba(255,255,255,0.07);
+    filter:blur(1px);
+  }
+  .hero .detail1{
+    left:157px; top:63px; width:6px; height:41px; transform:rotate(-35deg); border-radius:4px;
+  }
+  .hero .detail2{
+    left:258px; top:90px; width:17px; height:52px; transform:rotate(20deg); border-radius:50%;
+  }
+  .hero .detail3{
+    left:17px; top:90px; width:112px; height:6px; transform:rotate(17deg); border-radius:4px;
+  }
+
+  .title{
+    position:absolute;
+    left:695px;
+    top:157px;
+    width:230px;
+    font-size:31px;
+    line-height:0.93;
+    font-weight:700;
+    color:#000;
+  }
+
+  .left-col{
+    position:absolute;
+    left:696px;
+    top:291px;
+    width:300px;
+    font-size:12px;
+    line-height:1.34;
+    color:#303030;
+  }
+  .left-col .intro{
+    font-weight:700;
+    font-size:12px;
+    line-height:1.33;
+    margin-bottom:17px;
+  }
+  .left-col p{
+    margin:0 0 15px 0;
+  }
+  .sup{
+    font-size:8px;
+    vertical-align:super;
+    letter-spacing:-0.2px;
+  }
+
+  .right-col{
+    position:absolute;
+    left:1008px;
+    top:165px;
+    width:249px;
+    font-size:12px;
+    line-height:1.34;
+    color:#303030;
+  }
+  .right-col p{
+    margin:0 0 28px 0;
+  }
+
+  .bottom-mark{
+    position:absolute;
+    left:55px;
+    bottom:8px;
+    font-size:48px;
+    line-height:1;
+    color:#a000ff;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+    <div class="top-right">The New Learning Loop <span class="num">49</span></div>
+
+    <div class="hero">
+      <div class="head"></div>
+      <div class="neck"></div>
+      <div class="shoulder"></div>
+      <div class="torso-cut"></div>
+      <div class="chin"></div>
+      <div class="face-cut"></div>
+      <div class="visor"></div>
+      <div class="ear"></div>
+      <div class="jaw"></div>
+      <div class="nose"></div>
+      <div class="mouth"></div>
+      <div class="detail1"></div>
+      <div class="detail2"></div>
+      <div class="detail3"></div>
+    </div>
+
+    <div class="title">The Big<br>Picture</div>
+
+    <div class="left-col">
+      <p class="intro">There is no doubt that work will be profoundly different a decade from now—radically reshaped by generative AI. But ask employers and employees exactly how this transformation happens, or what the results will be, and it quickly becomes clear we are caught in a stare down.</p>
+
+      <p>Employees, on one hand, certainly see the role generative AI can play in their work. According to reports, 95% find value in it, and it makes many happier in their jobs.<span class="sup">122,123</span> On the other hand, many workforce leaders are racing to capture the immense advantages of AI, agents, and the increasingly autonomous systems they power—and naturally, one of the first applications that comes to mind is automation. It’s a situation brewing uncertainty and distrust, and risks holding back the technology’s adoption and potential.</p>
+
+      <p>But a solution exists; it lies in the nature of generative AI. Generative AI is inherently a learning technology. It can enhance and advance its skills over time, ultimately improving its value to the individual using it and to the organization as a whole.</p>
+    </div>
+
+    <div class="right-col">
+      <p>In other words, the more people use it, the better it gets, and then the more people <em>want</em> to use it.</p>
+
+      <p>The good news? People are already showing a desire to work with it. AI is diffusing across the workforce at unprecedented speed, and for perhaps the first time in history, the technology driving automation can be used by anyone. And this is why what happens next is so consequential for enterprises—because this pace of diffusion will grind to a halt if people are uncertain about what the future will hold.</p>
+
+      <p>When people think about automation, it is often evaluated for how it can remove people from the equation. But when it comes to generative AI, this would mean undercutting the very partnership that amplifies its value. Using generative AI for conventional automation would yield one-time benefits while turning workers’ enthusiasm into disenchantment—and possibly halt all further progress. Rather, to ignite this virtuous cycle, and have AI learn and unlock its true value, it needs to be used with people—not instead of them.</p>
+    </div>
+
+    <div class="bottom-mark">&gt;</div>
+  </div>
+</body>
+</html>

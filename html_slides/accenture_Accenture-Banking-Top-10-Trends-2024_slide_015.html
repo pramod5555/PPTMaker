@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Trend 3 | All the risk we cannot see</title>
+<style>
+  body {
+    margin: 0;
+    background: #e7e1de;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #e7e1de;
+    color: #111;
+  }
+
+  .header {
+    position: absolute;
+    left: 53px;
+    top: 47px;
+    font-size: 16px;
+    color: #111;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .header .bold {
+    font-weight: 700;
+  }
+  .header .sep,
+  .header .rest {
+    font-weight: 400;
+  }
+
+  .title-block {
+    position: absolute;
+    left: 134px;
+    top: 200px;
+    width: 415px;
+    color: #a02cff;
+    font-size: 29px;
+    line-height: 1.33;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+  }
+
+  .body-copy {
+    position: absolute;
+    left: 134px;
+    top: 409px;
+    width: 457px;
+    color: #666666;
+    font-size: 15px;
+    line-height: 1.38;
+    font-weight: 400;
+  }
+  .body-copy sup {
+    font-size: 9px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .photo {
+    position: absolute;
+    left: 691px;
+    top: 114px;
+    width: 589px;
+    height: 540px;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.28) 28%, rgba(0,0,0,0.14) 52%, rgba(0,0,0,0.04) 72%, rgba(0,0,0,0.00) 100%),
+      radial-gradient(circle at 94% 10%, rgba(255,226,169,0.95) 0 10px, rgba(255,180,90,0.7) 11px 18px, transparent 19px),
+      radial-gradient(circle at 91% 16%, rgba(255,228,177,0.95) 0 8px, rgba(255,180,90,0.65) 9px 15px, transparent 16px),
+      radial-gradient(circle at 96% 27%, rgba(255,228,177,0.92) 0 11px, rgba(255,162,70,0.55) 12px 20px, transparent 21px),
+      radial-gradient(circle at 88% 38%, rgba(255,245,220,0.8) 0 7px, rgba(255,180,100,0.45) 8px 16px, transparent 17px),
+      radial-gradient(circle at 92% 58%, rgba(255,236,197,0.85) 0 9px, rgba(255,171,72,0.45) 10px 17px, transparent 18px),
+      radial-gradient(circle at 85% 72%, rgba(255,226,180,0.8) 0 10px, rgba(255,151,68,0.35) 11px 21px, transparent 22px),
+      radial-gradient(circle at 80% 22%, rgba(255,226,180,0.7) 0 6px, rgba(255,151,68,0.3) 7px 14px, transparent 15px),
+      linear-gradient(90deg, #071127 0%, #0b1735 26%, #11131d 48%, #3d221e 64%, #6d3b24 82%, #1b120f 100%);
+    box-sizing: border-box;
+  }
+
+  .photo::before {
+    content: "";
+    position: absolute;
+    left: 27px;
+    top: 0;
+    width: 287px;
+    height: 540px;
+    background:
+      radial-gradient(circle, rgba(0,57,170,0.45) 0 1.3px, transparent 1.4px) 0 0/14px 14px,
+      linear-gradient(180deg, rgba(36,190,255,0.95) 0%, rgba(35,177,255,0.9) 100%);
+    clip-path: polygon(0% 82%, 0% 40%, 7% 28%, 12% 41%, 18% 36%, 24% 49%, 32% 53%, 38% 45%, 44% 56%, 50% 50%, 56% 33%, 61% 10%, 68% 0%, 75% 11%, 82% 7%, 89% 17%, 95% 20%, 100% 77%, 100% 100%, 0% 100%);
+    border-left: 2px solid rgba(68,214,255,0.65);
+    border-top: 2px solid rgba(68,214,255,0.65);
+    border-right: 2px solid rgba(68,214,255,0.5);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+  }
+
+  .photo::after {
+    content: "";
+    position: absolute;
+    left: 27px;
+    top: 0;
+    width: 287px;
+    height: 540px;
+    clip-path: polygon(0% 82%, 0% 40%, 7% 28%, 12% 41%, 18% 36%, 24% 49%, 32% 53%, 38% 45%, 44% 56%, 50% 50%, 56% 33%, 61% 10%, 68% 0%, 75% 11%, 82% 7%, 89% 17%, 95% 20%, 100% 77%);
+    border-top: 4px solid #ffb35f;
+    box-sizing: border-box;
+  }
+
+  .screen-edge {
+    position: absolute;
+    left: 301px;
+    top: 0;
+    width: 10px;
+    height: 540px;
+    background: linear-gradient(180deg, rgba(223,166,111,0.7), rgba(56,39,36,0.9), rgba(181,131,89,0.75));
+  }
+
+  .side-panel {
+    position: absolute;
+    left: 337px;
+    top: 0;
+    width: 104px;
+    height: 540px;
+    background: linear-gradient(180deg, rgba(55,31,34,0.75), rgba(24,18,23,0.7));
+  }
+
+  .numbers {
+    position: absolute;
+    left: 253px;
+    top: 92px;
+    width: 56px;
+    color: rgba(208,255,255,0.9);
+    font-size: 12px;
+    line-height: 1.8;
+    text-align: left;
+    text-shadow: 0 0 4px rgba(140,255,255,0.35);
+  }
+
+  .panel-text {
+    position: absolute;
+    left: 375px;
+    top: 102px;
+    width: 150px;
+    color: rgba(234,244,240,0.95);
+    font-size: 11px;
+    line-height: 1.5;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    transform: perspective(300px) rotateY(-18deg);
+    transform-origin: left center;
+  }
+
+  .panel-text .green {
+    color: #1fe370;
+  }
+  .panel-text .orange {
+    color: #ff7f4d;
+  }
+  .panel-text .blue {
+    color: #26a6ff;
+  }
+
+  .person {
+    position: absolute;
+    right: 30px;
+    bottom: 54px;
+    width: 34px;
+    height: 105px;
+  }
+  .person .head {
+    position: absolute;
+    left: 9px;
+    top: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #1b171a;
+  }
+  .person .body {
+    position: absolute;
+    left: 6px;
+    top: 14px;
+    width: 20px;
+    height: 52px;
+    background: #090b12;
+    border-radius: 8px 8px 4px 4px;
+  }
+  .person .leg1,
+  .person .leg2 {
+    position: absolute;
+    top: 61px;
+    width: 7px;
+    height: 38px;
+    background: #090b12;
+    border-radius: 4px;
+  }
+  .person .leg1 { left: 7px; transform: rotate(8deg); }
+  .person .leg2 { left: 18px; transform: rotate(-6deg); }
+
+  .footer-left {
+    position: absolute;
+    right: 173px;
+    bottom: 28px;
+    font-size: 15px;
+    color: #111;
+    white-space: nowrap;
+  }
+  .footer-left .bold {
+    font-weight: 700;
+  }
+  .footer-left .light {
+    font-weight: 400;
+    color: #666;
+  }
+
+  .page {
+    position: absolute;
+    right: 55px;
+    bottom: 28px;
+    font-size: 16px;
+    color: #111;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="header">
+      <span class="bold">Trend 3</span><span class="sep"> | </span><span class="rest">All the risk we cannot see</span>
+    </div>
+
+    <div class="title-block">
+      With hindsight, all risks are obvious.
+      Yet as we entered 2023, no one foresaw
+      that a bank failure in California would
+      escalate into a regional banking panic
+      and ultimately lead to the merger of
+      Switzerland’s last two major banks.
+    </div>
+
+    <div class="body-copy">
+      Given the far-reaching consequences of events such as these,
+      banks need to improve their planning for risks we cannot always
+      see. This is especially true as stability continues to elude the
+      industry and the market is serves. In our latest Risk Survey,
+      72% of senior banking risk professionals said their organization’s
+      risk management capabilities and processes have failed to
+      keep pace with the rapidly changing risk landscape.<sup>13</sup>
+    </div>
+
+    <div class="photo">
+      <div class="screen-edge"></div>
+      <div class="side-panel"></div>
+      <div class="numbers">
+        25,700<br>
+        25,600<br>
+        25,500<br>
+        25,400<br>
+        25,300<br>
+        25,200
+      </div>
+      <div class="panel-text">
+        DIGITAL<br>
+        SERVICES AND<br>
+        INVESTMENTS<br><br>
+        <span class="green">+0.14</span><br><br>
+        HIGH<br>
+        STABILITY<br>
+        INDEX<br><br>
+        <span class="green">STRONG BUY</span><br><br>
+        <span class="orange">NASDAQ 100</span><br>
+        <span class="blue">S&amp;P 500</span>
+      </div>
+      <div class="person">
+        <div class="head"></div>
+        <div class="body"></div>
+        <div class="leg1"></div>
+        <div class="leg2"></div>
+      </div>
+    </div>
+
+    <div class="footer-left">
+      <span class="bold">Banking on AI</span> <span class="bold">|</span> <span class="light">Banking Top 10 Trends for 2024</span>
+    </div>
+    <div class="page">15</div>
+  </div>
+</body>
+</html>

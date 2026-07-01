@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Bain Slide Replica</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #dedede;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    background: #dedede;
+    overflow: hidden;
+  }
+
+  .photo {
+    position: absolute;
+    left: 38px;
+    top: 33px;
+    width: 902px;
+    height: 705px;
+    overflow: hidden;
+    z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(15,20,28,0.32) 0%, rgba(15,20,28,0.12) 18%, rgba(10,14,20,0.20) 100%),
+      linear-gradient(180deg, #1a2430 0%, #2d3b4f 10%, #514c5c 18%, #8f7a75 28%, #7a7e86 34%, #526784 44%, #39577a 54%, #2b4663 61%, #2b3d57 67%, #53637f 73%, #7e94b3 79%, #52647f 86%, #121c2e 100%);
+  }
+  .photo svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .title1, .title2 {
+    position: absolute;
+    left: 66px;
+    color: #f2f2ef;
+    z-index: 5;
+    letter-spacing: 0;
+    font-weight: 300;
+    line-height: 1.04;
+  }
+  .title1 {
+    top: 79px;
+    font-size: 58px;
+    white-space: nowrap;
+  }
+  .title2 {
+    top: 142px;
+    font-size: 58px;
+    white-space: nowrap;
+  }
+  .title1 .bold {
+    font-weight: 700;
+  }
+
+  .panel {
+    position: absolute;
+    left: 131px;
+    top: 394px;
+    width: 1139px;
+    height: 269px;
+    background: #000;
+    z-index: 10;
+  }
+
+  .divider {
+    position: absolute;
+    top: 417px;
+    width: 1px;
+    height: 228px;
+    background: rgba(150,150,150,0.9);
+    z-index: 15;
+  }
+  .divider.d1 { left: 518px; }
+  .divider.d2 { left: 919px; }
+
+  .col {
+    position: absolute;
+    color: #f4f4f4;
+    font-size: 28px;
+    line-height: 1.21;
+    font-weight: 300;
+    z-index: 20;
+  }
+  .col .b { font-weight: 700; }
+
+  .col1 {
+    left: 163px;
+    top: 437px;
+    width: 286px;
+  }
+  .col2 {
+    left: 582px;
+    top: 437px;
+    width: 277px;
+  }
+  .col3 {
+    left: 960px;
+    top: 437px;
+    width: 276px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="photo">
+    <svg viewBox="0 0 902 705" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="skyGlow" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#e1c4a1" stop-opacity="0.28"/>
+          <stop offset="45%" stop-color="#e3b1a3" stop-opacity="0.10"/>
+          <stop offset="76%" stop-color="#b97aa0" stop-opacity="0.14"/>
+          <stop offset="100%" stop-color="#5670aa" stop-opacity="0.14"/>
+        </linearGradient>
+        <linearGradient id="seaBand" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#6d7988" stop-opacity="0.88"/>
+          <stop offset="100%" stop-color="#26344c" stop-opacity="0.96"/>
+        </linearGradient>
+        <linearGradient id="foam" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#d9e4f1" stop-opacity="0.60"/>
+          <stop offset="50%" stop-color="#b6c9e4" stop-opacity="0.48"/>
+          <stop offset="100%" stop-color="#e8edf4" stop-opacity="0.62"/>
+        </linearGradient>
+        <filter id="blur1">
+          <feGaussianBlur stdDeviation="4"/>
+        </filter>
+        <filter id="blur2">
+          <feGaussianBlur stdDeviation="7"/>
+        </filter>
+      </defs>
+
+      <rect x="0" y="0" width="902" height="705" fill="url(#skyGlow)" opacity="0.95"/>
+      <rect x="0" y="220" width="902" height="112" fill="url(#seaBand)" opacity="0.92"/>
+      <rect x="0" y="332" width="902" height="373" fill="#09111d" opacity="0.72"/>
+
+      <path d="M0 177 C160 182, 290 182, 435 180 C573 178, 715 177, 902 179" stroke="rgba(232,222,208,0.38)" stroke-width="1.4" fill="none"/>
+      <path d="M0 190 C120 191, 270 191, 398 192 C560 193, 710 193, 902 191" stroke="rgba(35,42,58,0.42)" stroke-width="2" fill="none"/>
+
+      <path d="M0 48 C145 64, 254 44, 390 50 C530 57, 700 63, 902 22" stroke="rgba(240,130,150,0.18)" stroke-width="24" fill="none" filter="url(#blur2)"/>
+      <path d="M615 42 C690 54, 770 60, 902 56" stroke="rgba(215,102,150,0.17)" stroke-width="18" fill="none" filter="url(#blur2)"/>
+
+      <path d="M0 286 C86 276, 180 292, 262 284 C355 276, 454 297, 542 292 C623 287, 738 274, 902 289" stroke="url(#foam)" stroke-width="19" fill="none" filter="url(#blur1)"/>
+      <path d="M0 310 C133 321, 245 299, 346 314 C467 333, 590 311, 679 319 C771 327, 839 302, 902 312" stroke="rgba(180,196,224,0.58)" stroke-width="15" fill="none" filter="url(#blur1)"/>
+      <path d="M0 339 C88 329, 143 335, 232 324 C321 312, 414 342, 524 335 C646 327, 760 346, 902 331" stroke="rgba(113,132,168,0.42)" stroke-width="13" fill="none" filter="url(#blur1)"/>
+
+      <path d="M0 399 C26 392, 40 450, 62 705" stroke="rgba(207,220,238,0.58)" stroke-width="18" fill="none" filter="url(#blur1)"/>
+      <path d="M31 395 C57 401, 76 454, 110 705" stroke="rgba(186,201,228,0.52)" stroke-width="14" fill="none" filter="url(#blur1)"/>
+      <path d="M82 387 C113 399, 130 457, 160 705" stroke="rgba(160,180,213,0.44)" stroke-width="12" fill="none" filter="url(#blur1)"/>
+      <path d="M130 382 C155 394, 178 454, 209 705" stroke="rgba(210,219,238,0.34)" stroke-width="10" fill="none" filter="url(#blur1)"/>
+      <path d="M177 374 C204 390, 225 456, 252 705" stroke="rgba(123,143,176,0.42)" stroke-width="9" fill="none" filter="url(#blur1)"/>
+      <path d="M232 369 C257 387, 279 454, 304 705" stroke="rgba(170,188,220,0.48)" stroke-width="10" fill="none" filter="url(#blur1)"/>
+      <path d="M290 364 C317 381, 339 450, 364 705" stroke="rgba(220,225,239,0.36)" stroke-width="8" fill="none" filter="url(#blur1)"/>
+      <path d="M344 370 C372 389, 396 453, 424 705" stroke="rgba(97,117,150,0.38)" stroke-width="9" fill="none" filter="url(#blur1)"/>
+      <path d="M402 376 C428 399, 454 460, 483 705" stroke="rgba(177,191,224,0.40)" stroke-width="9" fill="none" filter="url(#blur1)"/>
+      <path d="M458 384 C486 407, 515 463, 548 705" stroke="rgba(205,214,233,0.38)" stroke-width="8" fill="none" filter="url(#blur1)"/>
+      <path d="M525 381 C556 401, 587 460, 623 705" stroke="rgba(145,162,198,0.36)" stroke-width="10" fill="none" filter="url(#blur1)"/>
+      <path d="M602 370 C631 391, 662 458, 701 705" stroke="rgba(212,220,241,0.38)" stroke-width="8" fill="none" filter="url(#blur1)"/>
+      <path d="M666 361 C700 385, 736 459, 779 705" stroke="rgba(132,150,185,0.34)" stroke-width="11" fill="none" filter="url(#blur1)"/>
+      <path d="M742 355 C779 384, 820 463, 867 705" stroke="rgba(205,214,234,0.32)" stroke-width="9" fill="none" filter="url(#blur1)"/>
+
+      <path d="M0 452 C95 437, 165 440, 241 455 C332 474, 398 470, 478 452 C571 431, 633 435, 719 460 C803 484, 846 469, 902 456" stroke="rgba(230,235,245,0.34)" stroke-width="16" fill="none" filter="url(#blur2)"/>
+      <path d="M0 507 C111 487, 201 484, 297 504 C402 525, 503 522, 613 497 C717 473, 809 479, 902 506" stroke="rgba(66,80,106,0.48)" stroke-width="22" fill="none" filter="url(#blur2)"/>
+
+      <ellipse cx="386" cy="648" rx="11" ry="6" fill="rgba(255,145,70,0.42)" filter="url(#blur1)"/>
+      <ellipse cx="387" cy="637" rx="3" ry="3" fill="rgba(255,180,90,0.62)"/>
+    </svg>
+  </div>
+
+  <div class="title1">2022 was a <span class="bold">tale of two halves</span></div>
+  <div class="title2">in private equity industry</div>
+
+  <div class="panel"></div>
+  <div class="divider d1"></div>
+  <div class="divider d2"></div>
+
+  <div class="col col1">
+    <span class="b">Deals and exits</span><br>
+    slowed down<br>
+    substantially in the<br>
+    second half of 2022
+  </div>
+
+  <div class="col col2">
+    Average deal size fell<br>
+    by <span class="b">over 20%</span>, as<br>
+    banks pulled back on<br>
+    large buyout lending
+  </div>
+
+  <div class="col col3">
+    With <span class="b">LPs squeezed</span><br>
+    <span class="b">for cash</span>, the biggest,<br>
+    <span class="b">most experienced</span><br>
+    <span class="b">funds</span> are raising the<br>
+    most money
+  </div>
+</div>
+</body>
+</html>

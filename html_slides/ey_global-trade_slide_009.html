@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>EU-India Free Trade Agreement Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d8d5d0;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efedeb;
+    color:#55545d;
+  }
+  .top-band{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:79px;
+    background:#efefef;
+    z-index:2;
+  }
+  .left-cap{
+    position:absolute;
+    left:0;
+    top:0;
+    width:47px;
+    height:79px;
+    background:#b8b8c2;
+    z-index:3;
+  }
+  .top-line{
+    position:absolute;
+    left:0;
+    top:78px;
+    width:1280px;
+    height:1px;
+    background:#bfc1ca;
+    z-index:4;
+  }
+  .insights{
+    position:absolute;
+    left:57px;
+    top:50px;
+    font-size:13px;
+    line-height:16px;
+    color:#7d7e8a;
+    z-index:10;
+  }
+  .title{
+    position:absolute;
+    left:58px;
+    top:116px;
+    width:670px;
+    font-size:34px;
+    line-height:41px;
+    font-weight:700;
+    letter-spacing:-0.2px;
+    color:#72727e;
+    z-index:30;
+  }
+
+  .col{
+    position:absolute;
+    font-size:15px;
+    line-height:1.23;
+    color:#4f5058;
+    z-index:30;
+  }
+  .col p{
+    margin:0;
+    position:absolute;
+  }
+  .subhead{
+    font-weight:700;
+    color:#34353e;
+    font-size:16px;
+    line-height:20px;
+  }
+
+  .col1{ left:56px; top:270px; width:287px; height:400px; }
+  .col2{ left:376px; top:270px; width:287px; height:400px; }
+  .col3{ left:815px; top:339px; width:343px; height:340px; }
+
+  .photo{
+    position:absolute;
+    left:691px;
+    top:0;
+    width:589px;
+    height:309px;
+    background:
+      linear-gradient(145deg, rgba(242,240,239,0.96) 0%, rgba(236,231,227,0.9) 46%, rgba(190,168,145,0.92) 100%);
+    z-index:8;
+    overflow:hidden;
+  }
+  .photo:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05)),
+      linear-gradient(128deg, transparent 0 67%, rgba(120,88,58,0.48) 67% 100%),
+      radial-gradient(circle at 28% 20%, rgba(255,255,255,0.6) 0 120px, transparent 121px);
+    z-index:1;
+  }
+  .photo:after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
+      linear-gradient(0deg, rgba(0,0,0,0.03), rgba(0,0,0,0));
+    z-index:1;
+  }
+
+  .stand{
+    position:absolute;
+    width:3px;
+    background:#6d6d73;
+    z-index:12;
+  }
+  .base{
+    position:absolute;
+    border-radius:50%;
+    background:radial-gradient(circle at 40% 30%, #5a5a5f 0 18%, #161616 55%, #2a2a2d 100%);
+    z-index:12;
+    box-shadow:0 2px 3px rgba(0,0,0,0.22);
+  }
+  .flag-svg{
+    position:absolute;
+    z-index:13;
+  }
+
+  .circle-btn{
+    position:absolute;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:rgba(216,216,223,0.95);
+    color:#50505a;
+    font-size:20px;
+    line-height:36px;
+    text-align:center;
+    z-index:60;
+    font-weight:700;
+  }
+
+  .nav{
+    position:absolute;
+    left:1209px;
+    top:120px;
+    width:71px;
+    z-index:55;
+  }
+  .nav-item{
+    position:absolute;
+    left:0;
+    width:71px;
+    background:#4b4859;
+    color:#f4f4f4;
+    font-size:11px;
+    line-height:12px;
+    padding:7px 6px 7px 6px;
+    box-sizing:border-box;
+    border-left:2px solid #d4c500;
+  }
+  .nav-1{ top:0; height:36px; }
+  .nav-2{ top:51px; height:36px; }
+  .nav-3{ top:102px; height:41px; }
+  .nav-4{ top:153px; height:36px; }
+  .nav-5{ top:204px; height:49px; }
+  .nav-6{ top:258px; height:36px; }
+
+  .footer{
+    position:absolute;
+    left:57px;
+    bottom:14px;
+    font-size:11px;
+    line-height:13px;
+    color:#75757d;
+    z-index:30;
+  }
+  .footer b{ font-weight:700; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-band"></div>
+  <div class="left-cap"></div>
+  <div class="top-line"></div>
+
+  <div class="photo">
+    <svg class="flag-svg" style="left:11px; top:24px; width:201px; height:242px;" viewBox="0 0 201 242" aria-hidden="true">
+      <defs>
+        <linearGradient id="euBlue" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#072a87"/>
+          <stop offset="58%" stop-color="#0066d1"/>
+          <stop offset="100%" stop-color="#1a88d7"/>
+        </linearGradient>
+      </defs>
+      <polygon points="90,10 15,132 46,221 109,202 121,24" fill="url(#euBlue)"/>
+      <g fill="#f2d31b">
+        <polygon points="97,58 100,66 108,66 101,71 104,79 97,74 90,79 93,71 86,66 94,66"/>
+        <polygon points="122,67 125,75 133,75 126,80 129,88 122,83 115,88 118,80 111,75 119,75"/>
+        <polygon points="142,84 145,92 153,92 146,97 149,105 142,100 135,105 138,97 131,92 139,92"/>
+        <polygon points="151,109 154,117 162,117 155,122 158,130 151,125 144,130 147,122 140,117 148,117"/>
+        <polygon points="144,135 147,143 155,143 148,148 151,156 144,151 137,156 140,148 133,143 141,143"/>
+        <polygon points="126,156 129,164 137,164 130,169 133,177 126,172 119,177 122,169 115,164 123,164"/>
+        <polygon points="100,165 103,173 111,173 104,178 107,186 100,181 93,186 96,178 89,173 97,173"/>
+        <polygon points="76,158 79,166 87,166 80,171 83,179 76,174 69,179 72,171 65,166 73,166"/>
+        <polygon points="58,138 61,146 69,146 62,151 65,159 58,154 51,159 54,151 47,146 55,146"/>
+        <polygon points="49,112 52,120 60,120 53,125 56,133 49,128 42,133 45,125 38,120 46,120"/>
+        <polygon points="56,86 59,94 67,94 60,99 63,107 56,102 49,107 52,99 45,94 53,94"/>
+        <polygon points="75,66 78,74 86,74 79,79 82,87 75,82 68,87 71,79 64,74 72,74"/>
+      </g>
+    </svg>
+
+    <svg class="flag-svg" style="left:160px; top:20px; width:185px; height:244px;" viewBox="0 0 185 244" aria-hidden="true">
+      <defs>
+        <linearGradient id="saff" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#ef8f00"/>
+          <stop offset="100%" stop-color="#ffc51a"/>
+        </linearGradient>
+        <linearGradient id="green" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#009753"/>
+          <stop offset="100%" stop-color="#27d37a"/>
+        </linearGradient>
+      </defs>
+      <polygon points="95,10 48,144 71,220 100,206 92,19" fill="url(#green)"/>
+      <polygon points="95,10 92,19 100,206 151,186 141,11" fill="url(#saff)"/>
+      <polygon points="95,10 48,144 141,11 100,206" fill="#ffffff" opacity="0.95"/>
+      <circle cx="108" cy="124" r="16" fill="none" stroke="#1b6aad" stroke-width="4"/>
+      <g stroke="#1b6aad" stroke-width="1.2">
+        <line x1="108" y1="108" x2="108" y2="140"/>
+        <line x1="92" y1="124" x2="124" y2="124"/>
+        <line x1="96" y1="113" x2="120" y2="135"/>
+        <line x1="96" y1="135" x2="120" y2="113"/>
+        <line x1="101" y1="109" x2="115" y2="139"/>
+        <line x1="115" y1="109" x2="101" y2="139"/>
+        <line x1="94" y1="118" x2="122" y2="130"/>
+        <line x1="94" y1="130" x2="122" y2="118"/>
+      </g>
+    </svg>
+
+    <div class="stand" style="left:101px; top:33px; height:222px; transform:rotate(1deg);"></div>
+    <div class="stand" style="left:253px; top:30px; height:224px; transform:rotate(1deg);"></div>
+    <div class="base" style="left:75px; top:255px; width:40px; height:23px;"></div>
+    <div class="base" style="left:198px; top:254px; width:40px; height:23px;"></div>
+  </div>
+
+  <div class="circle-btn" style="left:947px; top:33px;">◀</div>
+  <div class="circle-btn" style="left:991px; top:33px;">▶</div>
+
+  <div class="insights">Insights: Global</div>
+
+  <div class="title">EU-India Free Trade Agreement:<br>A new anchor in an unsettled global<br>trade environment</div>
+
+  <div class="col col1">
+    <p style="left:0; top:0; width:287px;">
+      After nearly two decades of intermittent negotiations, the European Union (EU) and India announced on 27 January 2026 that they had successfully concluded talks on a comprehensive Free Trade Agreement (FTA). EU officials have described the outcome as the “mother of all deals,” emphasizing not only its breadth but also its strategic significance at a time when global trade relations continue to be reshaped by geopolitical tensions and supply chain reconfiguration. The agreement links two major economic blocs that together account for around two billion people and nearly one quarter of global gross domestic product (GDP), creating what has been called the world’s largest free trade zone.
+    </p>
+    <p class="subhead" style="left:0; top:265px; width:287px;">A transformative market access package</p>
+    <p style="left:0; top:297px; width:287px;">
+      The liberalization commitments agreed by both parties are among the most ambitious the EU has concluded with any partner. India will eliminate or substantially reduce tariffs on 96.6% of EU exports by value, a shift expected to double EU exports to India by 2032 and generate approximately €4 billion in annual duty savings for European companies. In return, the EU will phase out tariffs on 99.5% of Indian goods over a seven year period, giving Indian
+    </p>
+  </div>
+
+  <div class="col col2">
+    <p style="left:0; top:0; width:287px;">
+      producers broad new access to European markets across key sectors ranging from marine goods and leather products to gems, jewelry and a broad range of manufactured products.
+    </p>
+    <p style="left:0; top:83px; width:287px;">
+      Some of the most consequential changes arise in industries that have historically faced significant tariff barriers. In the automotive sector, for instance, India has agreed to reduce car import tariffs – previously as high as 110% – to 10% and 0% for car parts after five to 10 years, accompanied by a quota arrangement allowing up to 250,000 EU vehicles to enter the Indian market annually under preferential conditions. European wines and spirits, another long standing irritant in bilateral trade relations, will also benefit from sharply reduced tariffs as part of the agreement’s comprehensive liberalization framework.
+    </p>
+    <p class="subhead" style="left:0; top:308px; width:287px;">Services, mobility and the<br>digital economy</p>
+    <p style="left:0; top:369px; width:287px;">
+      Although the legal text has not yet been publicly released, the EU has confirmed that the agreement includes substantial provisions on services, particularly in digital trade, professional mobility and investment. India has sought greater predictability
+    </p>
+  </div>
+
+  <div class="col col3">
+    <p style="left:0; top:0; width:343px;">
+      for investors and clearer rules governing data, digital services and cross border supply. In parallel, the EU has announced the establishment of a new office dedicated to facilitating the mobility of skilled Indian professionals and students, signaling the strategic importance of talent flows in the broader partnership.
+    </p>
+    <p style="left:0; top:112px; width:343px;">
+      These elements are expected to create a more stable regulatory environment for companies operating across both jurisdictions. Given the EU’s pursuit of supply chain diversification and India’s ambition to solidify its role as a global digital services hub, the services chapter may ultimately become one of the agreement’s most influential components.
+    </p>
+    <p class="subhead" style="left:0; top:255px; width:343px;">A deepening strategic partnership</p>
+    <p style="left:0; top:287px; width:343px;">
+      The FTA was unveiled alongside a new EU-India security and defense partnership, underlining the extent to which economic cooperation is now intertwined with geopolitical considerations. This framework covers maritime security, defense
+    </p>
+  </div>
+
+  <div class="nav">
+    <div class="nav-item nav-1">Contents</div>
+    <div class="nav-item nav-2">Insights</div>
+    <div class="nav-item nav-3">New on<br>ey.com</div>
+    <div class="nav-item nav-4">Tax alerts</div>
+    <div class="nav-item nav-5">Additional<br>resources</div>
+    <div class="nav-item nav-6">Contacts</div>
+  </div>
+
+  <div class="footer">6&nbsp;&nbsp;|&nbsp;&nbsp;<b>TradeWatch</b> Issue 1 2026</div>
+</div>
+</body>
+</html>

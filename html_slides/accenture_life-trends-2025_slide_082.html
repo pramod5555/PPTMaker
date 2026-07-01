@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#cfcfcf;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dbd9d6;
+    margin:0 auto;
+    color:#222;
+  }
+
+  .col{
+    position:absolute;
+    font-size:17px;
+    line-height:1.38;
+    color:#222;
+    font-weight:400;
+  }
+  .col p{
+    margin:0 0 18px 0;
+  }
+
+  .left{
+    left:64px;
+    top:126px;
+    width:354px;
+  }
+
+  .middle{
+    left:486px;
+    top:126px;
+    width:353px;
+  }
+
+  .right-panel{
+    position:absolute;
+    left:935px;
+    top:0;
+    width:345px;
+    height:720px;
+    background:#efedeb;
+    overflow:hidden;
+  }
+
+  .top-photo{
+    position:absolute;
+    left:0;
+    top:0;
+    width:345px;
+    height:129px;
+    background:
+      radial-gradient(circle at 15% 18%, rgba(255,248,208,0.95) 0 10%, rgba(255,230,150,0.8) 11%, rgba(255,230,150,0.0) 24%),
+      radial-gradient(circle at 28% 32%, rgba(48,38,39,0.95) 0 11%, rgba(72,53,56,0.85) 12%, rgba(72,53,56,0.0) 24%),
+      radial-gradient(circle at 48% 28%, rgba(96,76,83,0.9) 0 10%, rgba(96,76,83,0.0) 24%),
+      radial-gradient(circle at 82% 22%, rgba(255,242,230,0.9) 0 15%, rgba(255,242,230,0.0) 30%),
+      radial-gradient(circle at 95% 42%, rgba(48,38,39,0.85) 0 8%, rgba(48,38,39,0.0) 18%),
+      linear-gradient(90deg, #e6c784 0%, #f0d39d 12%, #6e7242 33%, #5d6139 57%, #b59a8e 78%, #d4c7cd 100%);
+    filter:saturate(1.05) blur(0.2px);
+  }
+  .top-photo:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 20% 50%, rgba(255,255,255,0.9) 0 1%, rgba(255,255,255,0) 2%),
+      radial-gradient(circle at 32% 66%, rgba(255,255,255,0.7) 0 0.9%, rgba(255,255,255,0) 2%),
+      radial-gradient(circle at 42% 38%, rgba(255,255,255,0.85) 0 0.8%, rgba(255,255,255,0) 2%),
+      radial-gradient(circle at 72% 46%, rgba(255,255,255,0.7) 0 0.8%, rgba(255,255,255,0) 2%),
+      radial-gradient(circle at 88% 26%, rgba(255,255,255,0.7) 0 0.8%, rgba(255,255,255,0) 2%);
+    opacity:0.85;
+  }
+
+  .quote{
+    position:absolute;
+    left:0;
+    top:129px;
+    width:345px;
+    height:154px;
+    background:#f4f2f1;
+    color:#8b35df;
+    font-size:20px;
+    line-height:1.55;
+    padding:30px 26px 0 0;
+    box-sizing:border-box;
+  }
+  .quote .text{
+    position:absolute;
+    left:0;
+    top:30px;
+    width:295px;
+    padding-left:0;
+  }
+
+  .bottom-photo{
+    position:absolute;
+    left:0;
+    top:283px;
+    width:345px;
+    height:437px;
+    background:
+      radial-gradient(circle at 63% 33%, rgba(255,132,129,0.95) 0 8%, rgba(255,110,94,0.9) 9%, rgba(255,110,94,0) 18%),
+      radial-gradient(circle at 74% 36%, rgba(255,170,122,0.95) 0 7%, rgba(255,126,83,0.9) 8%, rgba(255,126,83,0) 18%),
+      radial-gradient(circle at 80% 43%, rgba(245,121,112,0.96) 0 7%, rgba(245,121,112,0) 18%),
+      radial-gradient(circle at 70% 48%, rgba(248,124,102,0.95) 0 8%, rgba(248,124,102,0) 18%),
+      radial-gradient(circle at 58% 50%, rgba(255,150,98,0.9) 0 6%, rgba(255,150,98,0) 16%),
+      radial-gradient(circle at 64% 65%, rgba(74,104,22,0.9) 0 5%, rgba(74,104,22,0) 14%),
+      radial-gradient(circle at 78% 71%, rgba(91,120,29,0.9) 0 5%, rgba(91,120,29,0) 14%),
+      radial-gradient(circle at 55% 74%, rgba(85,97,25,0.92) 0 5%, rgba(85,97,25,0) 14%),
+      radial-gradient(circle at 38% 84%, rgba(255,135,65,0.95) 0 7%, rgba(255,135,65,0) 18%),
+      radial-gradient(circle at 20% 70%, rgba(255,208,164,0.85) 0 10%, rgba(255,208,164,0) 22%),
+      linear-gradient(180deg, #e7dee4 0%, #d8d0e3 10%, #fff4ef 18%, #f0dfd8 26%, #f89c6e 47%, #f07c3f 58%, #d45f2b 68%, #8c6d35 79%, #5c6a1a 100%);
+    filter:saturate(1.1);
+  }
+  .bottom-photo:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 15% 15%, rgba(255,255,255,0.65) 0 2%, rgba(255,255,255,0) 4%),
+      radial-gradient(circle at 28% 28%, rgba(255,255,255,0.55) 0 1.6%, rgba(255,255,255,0) 4%),
+      radial-gradient(circle at 83% 22%, rgba(255,255,255,0.5) 0 1.5%, rgba(255,255,255,0) 4%),
+      radial-gradient(circle at 47% 67%, rgba(255,255,255,0.45) 0 1.5%, rgba(255,255,255,0) 4%),
+      radial-gradient(circle at 24% 90%, rgba(255,255,255,0.45) 0 1.4%, rgba(255,255,255,0) 4%);
+  }
+
+  .footer-note{
+    position:absolute;
+    right:18px;
+    bottom:18px;
+    font-size:14px;
+    color:#ffffff;
+    letter-spacing:0;
+  }
+
+  .page-num{
+    position:absolute;
+    right:14px;
+    bottom:12px;
+    font-size:12px;
+    color:#666;
+  }
+
+  .side-label{
+    position:absolute;
+    top:36px;
+    right:-3px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-size:18px;
+    line-height:1;
+    color:#6f6f6f;
+    letter-spacing:0.2px;
+  }
+  .side-label .accent{
+    color:#8b35df;
+    font-weight:600;
+  }
+
+  sup{
+    font-size:10px;
+    vertical-align:super;
+    line-height:0;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="col left">
+      <p>It has long been known that spending on long-term brand building is important for sustained growth, as quantified in Binet and Field’s seminal book, <i>The Long and the Short of it: Balancing Short and Long-Term Marketing Strategies.</i><sup>156</sup> They recommend allocating 60% of marketing budgets to long-term brand building, which grows equity through emotional engagement, and 40% to short-term tactics, which drive immediate sales. One well-known apparel brand has seen a significant decline in customer engagement in recent years, and there is speculation that this is at least in part down to performative marketing.</p>
+      <p>Initiatives that offer people real-life experiences that feel authentic to the brand will do well. The brand will then find a natural place in a newly</p>
+    </div>
+
+    <div class="col middle">
+      <p>balanced lifestyle where digital reclaims its crown as a phenomenally practical resource, and the real world regains a dominant role in people’s lived experience. Brands should balance the share of budget spent on digital, which delivers a shallow experience, with the share spent on providing tangible touchpoints that carry with them depth and sensory engagement.</p>
+      <p>Balance is the theme that trickles through all Life Trends this year. People are rebalancing the role of technology in their lives as facilitator rather than lead actor. They’re assessing their own digital habits, helping the next generation to learn from their experiences and redirecting their attention toward more enriching activities.</p>
+    </div>
+
+    <div class="right-panel">
+      <div class="top-photo"></div>
+      <div class="quote">
+        <div class="text">People are stopping to smell the proverbial roses—and even grow them, too.</div>
+      </div>
+      <div class="bottom-photo"></div>
+      <div class="footer-note">Accenture Life Trends 2025</div>
+    </div>
+
+    <div class="side-label">Cost of hesitations &nbsp;/&nbsp; The parent trap &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; <span class="accent">Social rewilding</span></div>
+
+    <div class="page-num">82</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Multimodal AI models</title>
+<style>
+  body{
+    margin:0;
+    background:#7d7d7e;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:linear-gradient(to right,#f2f2f2 0 56.3%, #000 56.3% 100%);
+    color:#111;
+  }
+  .top-left{
+    position:absolute;
+    left:60px;
+    top:37px;
+    font-size:14px;
+    color:#5a5a5a;
+    letter-spacing:-0.1px;
+  }
+  .top-left .accent{ color:#a200ff; }
+  .top-right{
+    position:absolute;
+    right:38px;
+    top:36px;
+    font-size:13px;
+    color:#e8e8e8;
+  }
+  .page{
+    position:absolute;
+    right:8px;
+    top:36px;
+    font-size:16px;
+    color:#d8d8d8;
+  }
+
+  .title{
+    position:absolute;
+    left:60px;
+    top:116px;
+    font-size:25px;
+    font-weight:700;
+    color:#111;
+    letter-spacing:-0.4px;
+  }
+
+  .col{
+    position:absolute;
+    color:#2a2a2a;
+  }
+  .col h2{
+    margin:0 0 12px 0;
+    font-size:20px;
+    line-height:1.15;
+    font-weight:400;
+    color:#252525;
+    letter-spacing:-0.2px;
+  }
+  .col p{
+    margin:0;
+    font-size:15px;
+    line-height:1.36;
+    color:#333;
+  }
+
+  .c1{ left:60px; top:175px; width:266px; }
+  .c2{ left:375px; top:175px; width:283px; }
+  .c3{ left:60px; top:381px; width:286px; }
+
+  .right-panel{
+    position:absolute;
+    left:721px;
+    top:0;
+    width:559px;
+    height:720px;
+    color:#fff;
+  }
+  .rp-title{
+    position:absolute;
+    left:32px;
+    top:175px;
+    width:470px;
+    font-size:17px;
+    font-weight:700;
+    color:#b98cf6;
+    line-height:1.2;
+    letter-spacing:-0.2px;
+  }
+  .rp-copy{
+    position:absolute;
+    left:32px;
+    top:196px;
+    width:470px;
+    font-size:14px;
+    line-height:1.33;
+    color:#d6d6d6;
+  }
+  .chart-title{
+    position:absolute;
+    left:32px;
+    top:275px;
+    width:470px;
+    font-size:13px;
+    font-weight:700;
+    color:#e9e9e9;
+  }
+
+  .axis{
+    position:absolute;
+    left:95px;
+    top:318px;
+    width:2px;
+    height:312px;
+    background:#d9d9d9;
+  }
+
+  .year{
+    position:absolute;
+    left:6px;
+    width:60px;
+    text-align:right;
+    font-size:16px;
+    font-weight:700;
+    color:#f5f5f5;
+  }
+  .bar{
+    position:absolute;
+    left:96px;
+    background:linear-gradient(to bottom,#b000ff,#8500d6);
+  }
+  .value{
+    position:absolute;
+    font-size:16px;
+    font-weight:700;
+    color:#fff;
+  }
+
+  .y2020{ top:342px; }
+  .b2020{ top:328px; width:8px; height:43px; }
+  .v2020{ left:105px; top:343px; }
+
+  .y2021{ top:402px; }
+  .b2021{ top:389px; width:21px; height:43px; }
+  .v2021{ left:119px; top:403px; }
+
+  .y2022{ top:463px; }
+  .b2022{ top:452px; width:53px; height:44px; }
+  .v2022{ left:114px; top:466px; }
+
+  .y2023{ top:524px; }
+  .b2023{ top:515px; width:252px; height:44px; }
+  .v2023{ left:300px; top:529px; }
+
+  .y2024{ top:584px; }
+  .b2024{ top:578px; width:387px; height:42px; }
+  .v2024{ left:432px; top:590px; }
+
+  .arrow-line{
+    position:absolute;
+    left:144px;
+    top:391px;
+    width:336px;
+    height:5px;
+    background:#8d00d4;
+  }
+  .arrow-head{
+    position:absolute;
+    left:473px;
+    top:384px;
+    width:0;
+    height:0;
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+    border-left:18px solid #8d00d4;
+  }
+  .arrow-vert{
+    position:absolute;
+    left:481px;
+    top:392px;
+    width:2px;
+    height:226px;
+    background:#8d00d4;
+  }
+  .annot{
+    position:absolute;
+    left:171px;
+    top:401px;
+    font-size:12px;
+    color:#d8d8d8;
+    line-height:1.25;
+  }
+  .mult{
+    position:absolute;
+    left:415px;
+    top:404px;
+    font-size:31px;
+    font-weight:700;
+    color:#a200ff;
+  }
+
+  .foot{
+    position:absolute;
+    left:32px;
+    top:654px;
+    width:370px;
+    font-size:10px;
+    color:#c8c8c8;
+    line-height:1.2;
+  }
+
+  .accent-mark{
+    position:absolute;
+    left:58px;
+    bottom:8px;
+    font-size:49px;
+    font-weight:700;
+    color:#a200ff;
+    line-height:1;
+    transform:scaleX(1.1);
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-left"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+  <div class="top-right">Your Face, in the Future</div>
+  <div class="page">29</div>
+
+  <div class="title">Multimodal AI models</div>
+
+  <div class="col c1">
+    <h2>What is it?</h2>
+    <p>
+      Companies are rapidly expanding the range of modalities foundation models can accept as inputs and produce as outputs.
+      Image input and generation is now table-stakes, and audio is quickly becoming standard as well. The commercialization
+      of models that accept video input is also starting. And while video output isn't widely commercialized yet, it has
+      been demonstrated in research and is becoming publicly available.
+    </p>
+  </div>
+
+  <div class="col c2">
+    <h2>Who is doing it today?</h2>
+    <p>
+      Runway’s Gen-3 Alpha is an AI model that can produce realistic videos from simple text prompts or still images.<sup>70</sup>
+      In July 2024, when the image-to-video feature was introduced, early demonstrations showed impressive quality and fast
+      turnaround times (for some, it took less than a minute to generate a video from an image). Runway is one of several
+      companies building video generation models. Others include OpenAI, Pika Labs, and Luma Labs.<sup>71</sup>
+    </p>
+  </div>
+
+  <div class="col c3">
+    <h2>How does it connect to the trend?</h2>
+    <p>
+      While text-based chatbots are becoming increasingly common for simple enterprise customer service, the addition of
+      audio, image, and video input/output will vastly expand the customer-facing ways AI can be used. These multimodal
+      models will be able to bring chatbots to life, letting them connect with people more deeply and even bring them to
+      life visually with facial expressions and an environment that all reflect the brand.
+    </p>
+  </div>
+
+  <div class="right-panel">
+    <div class="rp-title">Research into multimodal models has increased significantly</div>
+    <div class="rp-copy">
+      There is significant research interest in multimodal foundation models that go beyond language to image, audio,
+      video, and more. Creating models that can talk, see the world, and inhabit real-time embodiments is set to transform
+      how people interact with AI and thus organizations.
+    </div>
+    <div class="chart-title">Number of research papers relating to Multimodal Foundation Models, 2020 - 2024*</div>
+
+    <div class="axis"></div>
+
+    <div class="year y2020">2020</div>
+    <div class="bar b2020"></div>
+    <div class="value v2020">50</div>
+
+    <div class="year y2021">2021</div>
+    <div class="bar b2021"></div>
+    <div class="value v2021">147</div>
+
+    <div class="year y2022">2022</div>
+    <div class="bar b2022"></div>
+    <div class="value v2022">383</div>
+
+    <div class="year y2023">2023</div>
+    <div class="bar b2023"></div>
+    <div class="value v2023">1,842</div>
+
+    <div class="year y2024">2024*</div>
+    <div class="bar b2024"></div>
+    <div class="value v2024">2,834</div>
+
+    <div class="arrow-line"></div>
+    <div class="arrow-head"></div>
+    <div class="arrow-vert"></div>
+    <div class="annot">DALL-E release<br>(Jan 2021)</div>
+    <div class="mult">19x</div>
+
+    <div class="foot">
+      Note: *2024 contains partial data through Oct 2024<br>
+      Source: Accenture Research analysis on ArXiv papers; Jan 2020 – Oct 2024
+    </div>
+  </div>
+
+  <div class="accent-mark">&gt;</div>
+</div>
+</body>
+</html>

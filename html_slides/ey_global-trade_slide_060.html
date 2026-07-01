@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+    margin:0 auto;
+  }
+  .top-line{
+    position:absolute;
+    left:0;
+    top:78px;
+    width:1280px;
+    height:1px;
+    background:#c7c8cf;
+    z-index:6;
+  }
+  .photo-panel{
+    position:absolute;
+    left:47px;
+    top:0;
+    width:472px;
+    height:363px;
+    overflow:hidden;
+    background:linear-gradient(180deg,#4f8fbd 0%, #6ea8cf 28%, #96c5e0 50%, #88afc3 61%, #688996 72%, #65848d 75%, #5d7d86 100%);
+    z-index:2;
+  }
+  .photo-panel:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:
+      radial-gradient(ellipse at 31% 27%, rgba(255,255,255,.52) 0%, rgba(255,255,255,.18) 29%, rgba(255,255,255,0) 58%),
+      radial-gradient(ellipse at 58% 24%, rgba(255,255,255,.44) 0%, rgba(255,255,255,.15) 26%, rgba(255,255,255,0) 56%),
+      radial-gradient(ellipse at 82% 19%, rgba(255,255,255,.28) 0%, rgba(255,255,255,.08) 22%, rgba(255,255,255,0) 50%);
+    pointer-events:none;
+  }
+  .sea-band{
+    position:absolute;
+    left:0;
+    top:276px;
+    width:472px;
+    height:87px;
+    background:linear-gradient(180deg,#7da3af 0%, #71929d 36%, #5f7b80 100%);
+  }
+  .horizon{
+    position:absolute;
+    left:0;
+    top:310px;
+    width:472px;
+    height:2px;
+    background:rgba(231,239,242,.72);
+  }
+  .ship{
+    position:absolute;
+    left:117px;
+    top:164px;
+    width:302px;
+    height:156px;
+    z-index:4;
+  }
+  .title-insight{
+    position:absolute;
+    left:55px;
+    top:51px;
+    font-size:20px;
+    line-height:22px;
+    color:#f3f3f3;
+    font-weight:400;
+    z-index:8;
+    letter-spacing:.1px;
+  }
+  .left-text{
+    position:absolute;
+    left:56px;
+    top:389px;
+    width:455px;
+    color:#55555b;
+    z-index:30;
+  }
+  .left-text .heading{
+    font-size:14px;
+    line-height:18px;
+    color:#3e3e45;
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .left-text p{
+    margin:0 0 18px 14px;
+    width:438px;
+    font-size:13px;
+    line-height:1.36;
+    color:#5d5d62;
+    font-weight:400;
+  }
+
+  .right-text{
+    position:absolute;
+    left:547px;
+    top:118px;
+    width:450px;
+    z-index:30;
+    color:#57575d;
+  }
+  .right-text .intro{
+    width:448px;
+    font-size:13px;
+    line-height:1.31;
+    font-weight:400;
+    color:#55555b;
+  }
+
+  .table-wrap{
+    margin-top:8px;
+    width:448px;
+  }
+  table.compare{
+    width:448px;
+    border-collapse:collapse;
+    table-layout:fixed;
+    font-size:13px;
+    color:#4f4f54;
+  }
+  table.compare th{
+    font-size:13px;
+    line-height:15px;
+    font-weight:700;
+    color:#3f3f44;
+    padding:0 4px 4px 4px;
+    text-align:center;
+    border-bottom:3px solid #d6be16;
+  }
+  table.compare th:first-child{
+    text-align:left;
+    width:90px;
+  }
+  table.compare th:nth-child(2),
+  table.compare th:nth-child(3){
+    width:179px;
+  }
+  table.compare td{
+    vertical-align:top;
+    padding:5px 6px 5px 0;
+    border-bottom:1px solid #d2d2d2;
+    font-size:13px;
+    line-height:1.28;
+    color:#56565c;
+  }
+  table.compare td:first-child{
+    width:90px;
+    font-weight:700;
+    color:#3e3e43;
+    padding-right:8px;
+  }
+  .bold{
+    font-weight:700;
+    color:#313136;
+  }
+  .summary{
+    margin-top:21px;
+    width:448px;
+    font-size:13px;
+    line-height:1.34;
+    color:#5a5a60;
+  }
+
+  .contact-box{
+    position:absolute;
+    left:533px;
+    top:632px;
+    width:746px;
+    height:78px;
+    background:#f7f7f7;
+    border:1px solid #d8d8d8;
+    box-sizing:border-box;
+    z-index:35;
+  }
+  .contact-box .bar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:33px;
+    background:#f5dd00;
+  }
+  .contact-box .bartext{
+    position:absolute;
+    left:12px;
+    top:10px;
+    font-size:13px;
+    line-height:14px;
+    font-weight:700;
+    color:#2f2f2f;
+  }
+  .contact-box .info{
+    position:absolute;
+    left:12px;
+    top:47px;
+    font-size:13px;
+    line-height:15px;
+    color:#5a5a60;
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .contact-box .name{
+    font-weight:700;
+    color:#3d3d43;
+  }
+  .contact-box .mail{
+    color:#1f69b3;
+    text-decoration:none;
+    font-weight:400;
+  }
+
+  .nav{
+    position:absolute;
+    left:950px;
+    top:34px;
+    width:81px;
+    height:34px;
+    z-index:50;
+  }
+  .nav .circ{
+    position:absolute;
+    top:0;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#c6c6ce;
+  }
+  .nav .circ.left{ left:0; }
+  .nav .circ.right{ left:43px; }
+  .nav .arrow{
+    position:absolute;
+    top:5px;
+    font-size:22px;
+    line-height:22px;
+    color:#3f3f49;
+    font-weight:700;
+  }
+  .nav .arrow.left{ left:11px; }
+  .nav .arrow.right{ left:57px; }
+
+  .sidebar{
+    position:absolute;
+    left:1041px;
+    top:120px;
+    width:239px;
+    z-index:45;
+  }
+  .sidebar .item{
+    position:absolute;
+    right:0;
+    width:238px;
+    background:#2d2b3d;
+    color:#ffffff;
+    font-size:11px;
+    line-height:13px;
+    font-weight:400;
+    padding-left:12px;
+    box-sizing:border-box;
+    border-left:2px solid transparent;
+  }
+  .sidebar .i1{ top:0; height:39px; padding-top:9px; }
+  .sidebar .i2{ top:50px; height:35px; padding-top:9px; border-left-color:#f0db00; }
+  .sidebar .i3{ top:100px; height:39px; padding-top:6px; }
+  .sidebar .i4{ top:150px; height:35px; padding-top:9px; }
+  .sidebar .i5{ top:201px; height:35px; padding-top:5px; color:#d5d5dc; background:#7f7f8d; border-left-color:#f0db00; }
+  .sidebar .i6{ top:252px; height:35px; padding-top:9px; color:#d6d6dc; background:#7d7d89; border-left-color:#f0db00; }
+
+  .footer{
+    position:absolute;
+    left:56px;
+    bottom:15px;
+    font-size:10px;
+    line-height:10px;
+    color:#7a7a80;
+    font-weight:400;
+    z-index:60;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="photo-panel">
+    <div class="sea-band"></div>
+    <div class="horizon"></div>
+
+    <svg class="ship" viewBox="0 0 330 176" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="hullBlue" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0d356c"/>
+          <stop offset="100%" stop-color="#00489c"/>
+        </linearGradient>
+        <linearGradient id="hullRed" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#2f0a10"/>
+          <stop offset="100%" stop-color="#781916"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="172" cy="151" rx="138" ry="9" fill="rgba(255,255,255,0.18)"/>
+      <path d="M18 117 L198 117 L251 125 L307 121 L286 146 L48 146 L27 136 Z" fill="url(#hullRed)"/>
+      <path d="M20 103 L196 103 L254 113 L311 109 L287 131 L43 131 L25 122 Z" fill="url(#hullBlue)"/>
+      <rect x="56" y="58" width="95" height="48" fill="#efd9ab" stroke="#baa57d" stroke-width="1"/>
+      <rect x="72" y="43" width="56" height="18" fill="#f3e0bc" stroke="#bca67e" stroke-width="1"/>
+      <rect x="82" y="31" width="27" height="13" fill="#f3e0bc" stroke="#bca67e" stroke-width="1"/>
+      <rect x="65" y="70" width="10" height="8" fill="#596a7d"/>
+      <rect x="79" y="70" width="10" height="8" fill="#596a7d"/>
+      <rect x="93" y="70" width="10" height="8" fill="#596a7d"/>
+      <rect x="107" y="70" width="10" height="8" fill="#596a7d"/>
+      <rect x="121" y="70" width="10" height="8" fill="#596a7d"/>
+      <rect x="135" y="70" width="10" height="8" fill="#596a7d"/>
+      <rect x="74" y="48" width="7" height="5" fill="#5e6f81"/>
+      <rect x="84" y="48" width="7" height="5" fill="#5e6f81"/>
+      <rect x="94" y="48" width="7" height="5" fill="#5e6f81"/>
+      <rect x="104" y="48" width="7" height="5" fill="#5e6f81"/>
+      <rect x="114" y="48" width="7" height="5" fill="#5e6f81"/>
+      <rect x="88" y="34" width="4" height="4" fill="#5e6f81"/>
+      <rect x="95" y="34" width="4" height="4" fill="#5e6f81"/>
+      <line x1="175" y1="98" x2="175" y2="18" stroke="#6d5f49" stroke-width="2"/>
+      <line x1="274" y1="108" x2="274" y2="18" stroke="#6d5f49" stroke-width="2"/>
+      <line x1="173" y1="31" x2="188" y2="40" stroke="#6d5f49" stroke-width="1"/>
+      <line x1="173" y1="46" x2="159" y2="55" stroke="#6d5f49" stroke-width="1"/>
+      <line x1="272" y1="33" x2="287" y2="42" stroke="#6d5f49" stroke-width="1"/>
+      <line x1="272" y1="48" x2="258" y2="56" stroke="#6d5f49" stroke-width="1"/>
+      <line x1="175" y1="63" x2="195" y2="76" stroke="#6d5f49" stroke-width="1"/>
+      <line x1="274" y1="64" x2="294" y2="77" stroke="#6d5f49" stroke-width="1"/>
+      <circle cx="175" cy="18" r="3" fill="#b18d4d"/>
+      <circle cx="274" cy="18" r="3" fill="#b18d4d"/>
+      <rect x="148" y="91" width="10" height="17" fill="#2d2c31"/>
+      <rect x="160" y="89" width="12" height="19" fill="#2d2c31"/>
+      <rect x="186" y="95" width="12" height="13" fill="#2d2c31"/>
+      <rect x="201" y="96" width="16" height="12" fill="#2d2c31"/>
+      <rect x="220" y="98" width="14" height="10" fill="#2d2c31"/>
+      <rect x="234" y="101" width="10" height="7" fill="#2d2c31"/>
+      <rect x="41" y="95" width="6" height="10" fill="#1d1d22"/>
+      <line x1="44" y1="95" x2="44" y2="75" stroke="#4e433a" stroke-width="1.5"/>
+      <line x1="44" y1="76" x2="34" y2="84" stroke="#4e433a" stroke-width="1"/>
+      <line x1="44" y1="82" x2="54" y2="89" stroke="#4e433a" stroke-width="1"/>
+      <g fill="#101115">
+        <circle cx="55" cy="109" r="1.4"/>
+        <circle cx="64" cy="110" r="1.4"/>
+        <circle cx="74" cy="111" r="1.4"/>
+        <circle cx="84" cy="112" r="1.4"/>
+        <circle cx="94" cy="113" r="1.4"/>
+        <circle cx="104" cy="114" r="1.4"/>
+        <circle cx="114" cy="114" r="1.4"/>
+        <circle cx="124" cy="115" r="1.4"/>
+        <circle cx="134" cy="115" r="1.4"/>
+        <circle cx="144" cy="115" r="1.4"/>
+      </g>
+      <path d="M286 146 C296 143, 301 141, 309 140 C302 145, 298 149, 291 150 Z" fill="white" opacity="0.95"/>
+      <path d="M290 151 C300 149, 306 148, 315 149 C307 153, 301 156, 293 156 Z" fill="white" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <div class="title-insight">Insights: Asia-Pacific</div>
+  <div class="top-line"></div>
+
+  <div class="left-text">
+    <div class="heading">2. Domestic JCT on low-value goods (effective April 1, 2028)</div>
+    <p>
+      Under current rules, domestic JCT is not imposed on goods if their title<br>
+      transfers outside Japan before import clearance. However, this has created a<br>
+      loophole where low-value goods (&le; JPY 10,000) may escape both import and<br>
+      domestic JCT.
+    </p>
+    <p>
+      The proposed reform will impose domestic JCT on such goods regardless of<br>
+      where title transfers. Sellers will be required to collect and remit JCT unless<br>
+      the sale is made through a second-class platform operator, that is a fulfilment<br>
+      service and e-commerce platform operator with annual revenue (including<br>
+      JCT) of 5 billion JPY or more and obliged to collect JCT and remit the JCT<br>
+      to the tax office on behalf of overseas sellers. This change will transfer the<br>
+      obligation from the seller to the platform operator.
+    </p>
+    <p>
+      In a case where a shipment includes multiple items with different values, their<br>
+      JCT treatment will be rather complex. For example, if a consumer imports<br>
+      two items &ndash; one priced at JPY 9,000 and another at JPY 11,000 &ndash; the total<br>
+      shipment exceeds the import taxes exemption threshold of JPY 10,000 and<br>
+      import JCT will be incurred. Under the proposed JCT rules, however, the item<br>
+      of JPY 9,000 may also be subject to domestic JCT, potentially resulting in
+    </p>
+  </div>
+
+  <div class="right-text">
+    <div class="intro">
+      double taxation. In such a scenario, import JCT will not be charged to the item<br>
+      of JPY 9,000 if the seller is registered as a Designated Low-Value Goods (LVG)<br>
+      Seller (even if charged, the seller may credit import JCT in its tax return).<br>
+      There may still be operational challenges for implementation &ndash; for example, if<br>
+      the seller is a Designated LVG Seller, it would mean that the importer will be<br>
+      exempt from import JCT on Product A but will pay import JCT on Product B,<br>
+      and upon receipt of the goods the consumer will pay domestic JCT on Product<br>
+      A but not on Product B. As there is still time before implementation, we are<br>
+      hopeful that the final rules will address such operational challenges.
+    </div>
+
+    <div class="table-wrap">
+      <table class="compare">
+        <tr>
+          <th></th>
+          <th>Product A (9,000 JPY)</th>
+          <th>Product B (11,000 JPY)</th>
+        </tr>
+        <tr>
+          <td>Customs<br>duties</td>
+          <td><span class="bold">Yes</span><br>Total import value exceeds<br>JPY 10,000</td>
+          <td><span class="bold">Yes</span><br>Total import value exceeds<br>JPY 10,000</td>
+        </tr>
+        <tr>
+          <td>Import JCT</td>
+          <td><span class="bold">Yes/exempt if Designated<br>LVG Seller</span><br>Total import value exceeds<br>JPY 10,000</td>
+          <td><span class="bold">Yes</span><br>Total import value exceeds<br>JPY 10,000</td>
+        </tr>
+        <tr>
+          <td>Domestic JCT</td>
+          <td><span class="bold">Yes</span><br>Title transfers before import<br>clearance but LVG (value of<br>JPY 10,000 or less)</td>
+          <td><span class="bold">No</span><br>Title transfers before import<br>clearance and not LVG (value<br>exceeds JPY 10,000)</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="summary">
+      The 2026 tax reform marks a significant shift in Japan&rsquo;s approach to taxing<br>
+      low-value imports. Business engaged in cross-border e-commerce should begin<br>
+      preparing for these changes, including reviewing their import structures, status<br>
+      as platform operators and tax compliance systems. &#9632;
+    </div>
+  </div>
+
+  <div class="contact-box">
+    <div class="bar"></div>
+    <div class="bartext">For additional information, please contact:</div>
+    <div class="info"><span class="name">Yoichi Ohira</span> &nbsp;|&nbsp; + 81 905 990 9629 &nbsp;|&nbsp; <span class="mail">yoichi.ohira@jp.ey.com</span></div>
+  </div>
+
+  <div class="nav">
+    <div class="circ left"></div>
+    <div class="circ right"></div>
+    <div class="arrow left">◀</div>
+    <div class="arrow right">▶</div>
+  </div>
+
+  <div class="sidebar">
+    <div class="item i1">Contents</div>
+    <div class="item i2">Insights</div>
+    <div class="item i3">New on<br>ey.com</div>
+    <div class="item i4">Tax alerts</div>
+    <div class="item i5">Additional<br>resources</div>
+    <div class="item i6">Contacts</div>
+  </div>
+
+  <div class="footer">57&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+</div>
+</body>
+</html>

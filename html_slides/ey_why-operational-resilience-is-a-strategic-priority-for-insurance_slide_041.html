@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Chapter 10 Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9db;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d9d9db;
+  }
+  .slide > div, .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .top-num{
+    left:61px;
+    top:49px;
+    width:31px;
+    color:#6f7280;
+    font-size:38px;
+    line-height:38px;
+    text-align:right;
+    font-weight:400;
+    z-index:30;
+  }
+  .top-vline{
+    left:103px;
+    top:0;
+    width:1px;
+    height:93px;
+    background:#adb0b7;
+    z-index:10;
+  }
+  .top-caption{
+    left:116px;
+    top:58px;
+    width:200px;
+    color:#7a7c84;
+    font-size:9px;
+    line-height:11px;
+    font-weight:500;
+    text-transform:uppercase;
+    z-index:30;
+    letter-spacing:0.01em;
+  }
+
+  .left-rail-text{
+    left:13px;
+    top:426px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    color:#7b7d86;
+    font-size:11px;
+    line-height:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    z-index:30;
+  }
+  .left-rail-dot{
+    left:13px;
+    top:413px;
+    width:11px;
+    height:11px;
+    background:#efd300;
+    z-index:30;
+  }
+
+  .title{
+    left:102px;
+    top:130px;
+    width:320px;
+    color:#2f3140;
+    font-size:51px;
+    line-height:52px;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    z-index:30;
+  }
+
+  .ey-line{
+    left:102px;
+    top:214px;
+    width:260px;
+    height:3px;
+    z-index:30;
+    background:linear-gradient(90deg,#f2cd00 0 50%, #d143ff 73%, #2e86eb 100%);
+  }
+
+  .body-copy{
+    left:102px;
+    top:253px;
+    width:281px;
+    color:#55565f;
+    font-size:12px;
+    line-height:17px;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .figure-title{
+    left:502px;
+    top:210px;
+    width:380px;
+    color:#3d3e47;
+    font-size:12px;
+    line-height:17px;
+    font-weight:400;
+    z-index:30;
+  }
+  .figure-title b{font-weight:700;}
+
+  .chart{
+    left:503px;
+    top:246px;
+    width:311px;
+    height:372px;
+    z-index:30;
+  }
+  .chart .label{
+    color:#52545c;
+    font-size:11px;
+    line-height:13px;
+    font-weight:400;
+    text-align:right;
+  }
+  .chart .barbox{
+    border:1px solid #aeb1b7;
+    background:transparent;
+    height:26px;
+  }
+  .chart .fill{
+    background:#169796;
+    height:100%;
+  }
+  .chart .pct{
+    color:#555861;
+    font-size:11px;
+    line-height:26px;
+    font-weight:400;
+    text-align:right;
+  }
+
+  .right-strip{
+    left:960px;
+    top:0;
+    width:320px;
+    height:720px;
+    background:#f5f5f6;
+    z-index:0;
+  }
+  .right-edge{
+    left:1280px;
+    top:0;
+    width:53px;
+    height:720px;
+    background:#e8e8ea;
+    transform:translateX(-53px);
+    z-index:1;
+  }
+
+  .jump-pill{
+    left:1274px;
+    top:0;
+    width:60px;
+    height:46px;
+    transform:translateX(-60px);
+    background:#7b7d86;
+    border-bottom-left-radius:14px;
+    border-bottom-right-radius:14px;
+    color:#ffffff;
+    font-size:8px;
+    line-height:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    text-align:center;
+    padding-top:18px;
+    z-index:60;
+    letter-spacing:0.02em;
+  }
+
+  .panel{
+    overflow:hidden;
+    border-radius:15px;
+    background:#09122b;
+    z-index:20;
+  }
+  .photo-art svg{
+    display:block;
+    width:100%;
+    height:100%;
+  }
+
+  .p1{ left:960px; top:0; width:302px; height:181px; }
+  .p2{ left:960px; top:192px; width:154px; height:180px; }
+  .p3{ left:1127px; top:192px; width:135px; height:309px; }
+  .p4{ left:960px; top:383px; width:154px; height:118px; }
+  .p5{ left:960px; top:514px; width:302px; height:206px; }
+
+  .small-label{
+    font-size:7px;
+    fill:#9cc9ff;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="right-strip"></div>
+  <div class="right-edge"></div>
+
+  <div class="top-num">41</div>
+  <div class="top-vline"></div>
+  <div class="top-caption">SECOND ANNUAL EY/IIF GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+  <div class="left-rail-text">CHAPTER 10</div>
+  <div class="left-rail-dot"></div>
+
+  <div class="title">Chapter 10</div>
+  <div class="ey-line"></div>
+
+  <div class="body-copy">
+    In terms of the most important skill sets for the next
+    five years, CROs see several different types of talent
+    as comparably valuable. Diverse and holistic skills are
+    necessary for effective risk management on both the
+    first and second lines.<br><br>
+    On the first line, the priorities are cybersecurity (36%),
+    business/product knowledge (27%), change and
+    transformation (25%), operational risk and business
+    continuity (25%) and ML/AI (23%).
+  </div>
+
+  <div class="figure-title"><b>Figure 23:</b> What are the most important skill sets required in<br>the first line of risk management over the next five years?</div>
+
+  <div class="chart">
+    <div class="label" style="left:0; top:18px; width:132px; position:absolute;">Cybersecurity</div>
+    <div class="barbox" style="left:143px; top:10px; width:168px; position:absolute;">
+      <div class="fill" style="width:60px;"></div>
+    </div>
+    <div class="pct" style="left:276px; top:10px; width:27px; position:absolute;">36%</div>
+
+    <div class="label" style="left:0; top:72px; width:132px; position:absolute;">Business/product knowledge</div>
+    <div class="barbox" style="left:143px; top:64px; width:168px; position:absolute;">
+      <div class="fill" style="width:45px;"></div>
+    </div>
+    <div class="pct" style="left:276px; top:64px; width:27px; position:absolute;">27%</div>
+
+    <div class="label" style="left:0; top:126px; width:132px; position:absolute;">Change and transformation</div>
+    <div class="barbox" style="left:143px; top:118px; width:168px; position:absolute;">
+      <div class="fill" style="width:42px;"></div>
+    </div>
+    <div class="pct" style="left:276px; top:118px; width:27px; position:absolute;">25%</div>
+
+    <div class="label" style="left:0; top:171px; width:132px; position:absolute;">Operational risk and resilience/<br>business continuity</div>
+    <div class="barbox" style="left:143px; top:172px; width:168px; position:absolute;">
+      <div class="fill" style="width:42px;"></div>
+    </div>
+    <div class="pct" style="left:276px; top:172px; width:27px; position:absolute;">25%</div>
+
+    <div class="label" style="left:0; top:233px; width:132px; position:absolute;">Use of ML/AI</div>
+    <div class="barbox" style="left:143px; top:225px; width:168px; position:absolute;">
+      <div class="fill" style="width:39px;"></div>
+    </div>
+    <div class="pct" style="left:276px; top:225px; width:27px; position:absolute;">23%</div>
+
+    <div class="label" style="left:0; top:279px; width:132px; position:absolute;">Communication, leadership, and<br>critical thinking</div>
+    <div class="barbox" style="left:143px; top:279px; width:168px; position:absolute;">
+      <div class="fill" style="width:29px;"></div>
+    </div>
+    <div class="pct" style="left:276px; top:279px; width:27px; position:absolute;">17%</div>
+
+    <div class="label" style="left:0; top:342px; width:132px; position:absolute;">Actuarial</div>
+    <div class="barbox" style="left:143px; top:333px; width:168px; position:absolute;">
+      <div class="fill" style="width:24px;"></div>
+    </div>
+    <div class="pct" style="left:276px; top:333px; width:27px; position:absolute;">14%</div>
+  </div>
+
+  <div class="jump-pill">JUMP TO<br>CONTENTS</div>
+
+  <div class="panel p1 photo-art">
+    <svg viewBox="0 0 302 181" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#060d2a"/>
+          <stop offset="45%" stop-color="#091c57"/>
+          <stop offset="72%" stop-color="#3c0f5c"/>
+          <stop offset="100%" stop-color="#02040f"/>
+        </linearGradient>
+        <filter id="blur1"><feGaussianBlur stdDeviation="6"/></filter>
+      </defs>
+      <rect width="302" height="181" fill="url(#g1)"/>
+      <g opacity="0.9" stroke="#7d3cff" stroke-width="1.2" fill="none">
+        <path d="M10 18 L35 18 L51 34 L78 34 L90 20 L112 20"/>
+        <path d="M23 55 L49 55 L64 39 L84 39 L102 57 L131 57"/>
+        <path d="M145 12 L167 12 L184 28 L210 28 L229 10 L248 10"/>
+        <path d="M160 69 L184 69 L201 52 L230 52 L249 70 L275 70"/>
+        <path d="M186 109 L206 109 L221 95 L245 95 L258 81"/>
+        <path d="M74 106 L97 106 L111 89 L135 89 L153 105"/>
+        <path d="M14 126 L34 126 L53 111 L74 111 L91 128"/>
+        <path d="M221 138 L241 138 L257 121 L285 121"/>
+        <path d="M114 146 L133 146 L154 127 L171 127 L189 145"/>
+      </g>
+      <g opacity="0.5" stroke="#17c6ff" stroke-width="1">
+        <path d="M34 8 L50 24"/>
+        <path d="M128 63 L144 80"/>
+        <path d="M214 24 L230 40"/>
+        <path d="M257 146 L276 164"/>
+      </g>
+      <g fill="#00d4ff" filter="url(#blur1)">
+        <circle cx="67" cy="39" r="4"/>
+        <circle cx="114" cy="101" r="3"/>
+        <circle cx="194" cy="60" r="5"/>
+        <circle cx="264" cy="34" r="4"/>
+        <circle cx="141" cy="145" r="3"/>
+        <circle cx="248" cy="113" r="4"/>
+      </g>
+      <g fill="#ff4dcb" opacity="0.45" filter="url(#blur1)">
+        <rect x="-10" y="144" width="52" height="20" rx="8" transform="rotate(-28 16 154)"/>
+        <rect x="235" y="10" width="40" height="14" rx="6" transform="rotate(34 255 17)"/>
+        <rect x="271" y="67" width="24" height="10" rx="5" transform="rotate(-18 283 72)"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="panel p2 photo-art">
+    <svg viewBox="0 0 154 180" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#07122f"/>
+          <stop offset="45%" stop-color="#113b7a"/>
+          <stop offset="100%" stop-color="#08111c"/>
+        </linearGradient>
+        <filter id="b2"><feGaussianBlur stdDeviation="3"/></filter>
+      </defs>
+      <rect width="154" height="180" fill="url(#g2)"/>
+      <rect x="7" y="8" width="8" height="40" fill="#fe0d5d" opacity="0.8"/>
+      <rect x="25" y="20" width="10" height="26" fill="#2bc8ff" opacity="0.65"/>
+      <rect x="74" y="4" width="9" height="50" fill="#1b91ff" opacity="0.8"/>
+      <rect x="95" y="16" width="10" height="42" fill="#23e0ff" opacity="0.45"/>
+      <rect x="123" y="28" width="7" height="31" fill="#276cff" opacity="0.75"/>
+      <rect x="39" y="60" width="64" height="38" rx="4" fill="#0b1831" stroke="#395d8e" stroke-width="1"/>
+      <text x="63" y="83" class="small-label">0173</text>
+      <path d="M14 139 L44 112 L73 116 L97 86 L136 76" stroke="#87f1ff" stroke-width="2" fill="none"/>
+      <rect x="18" y="118" width="73" height="43" rx="3" fill="#111824" stroke="#4a6177" stroke-width="1"/>
+      <line x1="18" y1="132" x2="91" y2="132" stroke="#34475f" stroke-width="1"/>
+      <line x1="18" y1="146" x2="91" y2="146" stroke="#34475f" stroke-width="1"/>
+      <g fill="#0df4ff" filter="url(#b2)" opacity="0.7">
+        <circle cx="114" cy="78" r="4"/>
+        <circle cx="130" cy="22" r="3"/>
+        <circle cx="26" cy="96" r="3"/>
+      </g>
+      <line x1="71" y1="160" x2="103" y2="126" stroke="#0f0f10" stroke-width="3"/>
+      <line x1="71" y1="160" x2="79" y2="159" stroke="#0f0f10" stroke-width="3"/>
+    </svg>
+  </div>
+
+  <div class="panel p3 photo-art">
+    <svg viewBox="0 0 135 309" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#071229"/>
+          <stop offset="30%" stop-color="#52153f"/>
+          <stop offset="60%" stop-color="#274b87"/>
+          <stop offset="100%" stop-color="#110a16"/>
+        </linearGradient>
+        <filter id="bg3"><feGaussianBlur stdDeviation="8"/></filter>
+      </defs>
+      <rect width="135" height="309" fill="url(#g3)"/>
+      <ellipse cx="40" cy="56" rx="26" ry="40" fill="#1b1418" opacity="0.95"/>
+      <ellipse cx="70" cy="80" rx="12" ry="19" fill="#9d6d54"/>
+      <circle cx="72" cy="67" r="18" fill="#7d5c48"/>
+      <path d="M54 67 C58 38, 89 34, 95 63 C86 53, 67 51, 54 67 Z" fill="#18151a"/>
+      <rect x="59" y="85" width="40" height="79" rx="8" fill="#a8b0c4"/>
+      <rect x="59" y="106" width="40" height="18" fill="#eef1f8"/>
+      <path d="M47 151 C65 132, 93 134, 110 151 L123 217 L58 221 Z" fill="#6b86b5" opacity="0.45"/>
+      <rect x="83" y="94" width="12" height="5" rx="2" fill="#0f1218"/>
+      <line x1="60" y1="93" x2="83" y2="93" stroke="#1d2024" stroke-width="2"/>
+      <line x1="60" y1="97" x2="83" y2="97" stroke="#1d2024" stroke-width="2"/>
+      <path d="M63 110 C68 124, 80 134, 94 146" stroke="#1b2437" stroke-width="2" fill="none"/>
+      <circle cx="51" cy="66" r="44" fill="#cb305f" opacity="0.18" filter="url(#bg3)"/>
+      <circle cx="126" cy="43" r="22" fill="#15b6ff" opacity="0.2" filter="url(#bg3)"/>
+      <circle cx="106" cy="275" r="40" fill="#e3005c" opacity="0.18" filter="url(#bg3)"/>
+    </svg>
+  </div>
+
+  <div class="panel p4 photo-art">
+    <svg viewBox="0 0 154 118" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0c1024"/>
+          <stop offset="40%" stop-color="#2e0e29"/>
+          <stop offset="100%" stop-color="#060709"/>
+        </linearGradient>
+        <filter id="b4"><feGaussianBlur stdDeviation="4"/></filter>
+      </defs>
+      <rect width="154" height="118" fill="url(#g4)"/>
+      <rect x="4" y="9" width="69" height="15" rx="4" fill="#0a0a0f" opacity="0.8"/>
+      <rect x="14" y="27" width="54" height="8" rx="3" fill="#171923" opacity="0.7"/>
+      <ellipse cx="90" cy="54" rx="28" ry="13" fill="#b53047" opacity="0.45" filter="url(#b4)"/>
+      <path d="M50 78 C79 61, 93 54, 121 41" stroke="#eb2186" stroke-width="2" fill="none"/>
+      <path d="M41 69 C58 74, 82 86, 105 104" stroke="#2d8fff" stroke-width="1.5" fill="none" opacity="0.8"/>
+      <path d="M20 96 C40 78, 57 68, 74 59" stroke="#0f0f13" stroke-width="5" fill="none"/>
+      <circle cx="116" cy="39" r="7" fill="#1d1c25" opacity="0.8"/>
+    </svg>
+  </div>
+
+  <div class="panel p5 photo-art">
+    <svg viewBox="0 0 302 206" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#061132"/>
+          <stop offset="45%" stop-color="#020d40"/>
+          <stop offset="80%" stop-color="#201050"/>
+          <stop offset="100%" stop-color="#0c1b3f"/>
+        </linearGradient>
+        <filter id="bl5"><feGaussianBlur stdDeviation="6"/></filter>
+      </defs>
+      <rect width="302" height="206" fill="url(#g5)"/>
+      <g opacity="0.9" stroke="#6b2eff" stroke-width="1.3" fill="none">
+        <path d="M18 131 L44 131 L60 116 L87 116 L105 98 L129 98"/>
+        <path d="M69 29 L95 29 L116 46 L138 46 L156 28 L182 28"/>
+        <path d="M120 78 L142 78 L163 60 L191 60 L206 43 L230 43"/>
+        <path d="M178 112 L198 112 L216 95 L240 95 L260 78 L286 78"/>
+        <path d="M203 22 L227 22 L241 37 L267 37"/>
+      </g>
+      <g opacity="0.55" stroke="#15bfff" stroke-width="1.2" fill="none">
+        <path d="M43 164 L63 145 L80 145 L101 124"/>
+        <path d="M31 89 L58 89 L74 70"/>
+        <path d="M243 165 L259 148 L277 148"/>
+        <path d="M110 162 L134 162 L148 147"/>
+      </g>
+      <g fill="#22d4ff" filter="url(#bl5)" opacity="0.75">
+        <circle cx="54" cy="101" r="3"/>
+        <circle cx="124" cy="73" r="4"/>
+        <circle cx="173" cy="153" r="3"/>
+        <circle cx="258" cy="50" r="4"/>
+        <circle cx="288" cy="175" r="5"/>
+      </g>
+      <g fill="#ff42ce" filter="url(#bl5)" opacity="0.35">
+        <rect x="111" y="1" width="44" height="15" rx="7" transform="rotate(28 133 8)"/>
+        <rect x="249" y="12" width="30" height="10" rx="5" transform="rotate(-18 264 17)"/>
+      </g>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

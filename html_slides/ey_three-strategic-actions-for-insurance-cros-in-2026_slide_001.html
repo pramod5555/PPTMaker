@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>The new shape of risk</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #120022;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      radial-gradient(950px 560px at 73% 54%, rgba(164,46,255,0.18), rgba(18,0,34,0) 62%),
+      radial-gradient(520px 320px at 88% 28%, rgba(132,86,255,0.18), rgba(18,0,34,0) 58%),
+      radial-gradient(520px 180px at 58% 95%, rgba(48,125,255,0.20), rgba(18,0,34,0) 74%),
+      linear-gradient(180deg, #16002b 0%, #21055c 49%, #120021 100%);
+  }
+  .slide > div, .slide > svg {
+    position: absolute;
+  }
+
+  .bgglow1 {
+    left: 730px;
+    top: 168px;
+    width: 500px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(252,58,253,0.22) 0%, rgba(145,48,255,0.14) 35%, rgba(18,0,34,0) 74%);
+    filter: blur(10px);
+    z-index: 1;
+  }
+  .bgglow2 {
+    left: 250px;
+    top: 100px;
+    width: 420px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(190,94,255,0.09) 0%, rgba(18,0,34,0) 72%);
+    filter: blur(14px);
+    z-index: 1;
+  }
+  .bgglow3 {
+    left: 460px;
+    top: 520px;
+    width: 420px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(66,138,255,0.16) 0%, rgba(18,0,34,0) 72%);
+    filter: blur(18px);
+    z-index: 1;
+  }
+
+  .frame-left {
+    left: 52px;
+    top: 246px;
+    width: 10px;
+    height: 277px;
+    background: #ffe600;
+    z-index: 20;
+  }
+  .frame-top {
+    left: 52px;
+    top: 245px;
+    width: 633px;
+    height: 12px;
+    background: linear-gradient(90deg, #ffe600 0%, #ffd600 15%, #ff7f7a 33%, #f42dff 68%, #2fe9ff 100%);
+    transform: skewY(-9.7deg);
+    transform-origin: left center;
+    z-index: 20;
+  }
+  .frame-right {
+    left: 676px;
+    top: 136px;
+    width: 11px;
+    height: 411px;
+    background: linear-gradient(180deg, #2fe9ff 0%, #c534ff 58%, #ff5a9a 100%);
+    z-index: 20;
+  }
+  .frame-bottom {
+    left: 88px;
+    top: 534px;
+    width: 409px;
+    height: 12px;
+    background: #ffe600;
+    z-index: 20;
+  }
+  .frame-corner {
+    left: 661px;
+    top: 532px;
+    width: 31px;
+    height: 16px;
+    background: linear-gradient(90deg, #ff8b59 0%, #ff45ad 100%);
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    z-index: 21;
+  }
+
+  .dot1, .dot2, .dot3, .dot4 {
+    width: 12px;
+    height: 12px;
+    background: #ffe600;
+    z-index: 20;
+  }
+  .dot1 { left: 51px; top: 534px; }
+  .dot2 { left: 74px; top: 534px; }
+  .dot3 { left: 97px; top: 534px; }
+  .dot4 { left: 120px; top: 534px; }
+
+  .title {
+    left: 97px;
+    top: 286px;
+    width: 380px;
+    color: #ffffff;
+    font-size: 57px;
+    line-height: 0.98;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    z-index: 35;
+  }
+  .subtitle {
+    left: 97px;
+    top: 412px;
+    width: 625px;
+    color: #f4f1f8;
+    font-size: 17px;
+    line-height: 1.38;
+    font-weight: 400;
+    z-index: 35;
+  }
+  .subline {
+    left: 97px;
+    top: 476px;
+    width: 700px;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 700;
+    z-index: 35;
+  }
+
+  .footer-dots {
+    left: 51px;
+    top: 662px;
+    width: 47px;
+    height: 13px;
+    z-index: 30;
+  }
+  .footer-dots span {
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 13px;
+    background: #ffe600;
+  }
+  .footer-dots span:nth-child(1) { left: 0; }
+  .footer-dots span:nth-child(2) { left: 19px; }
+  .footer-dots span:nth-child(3) { left: 38px; }
+
+  .footer-text {
+    left: 51px;
+    top: 682px;
+    width: 430px;
+    color: #ffffff;
+    font-size: 17px;
+    line-height: 1.18;
+    font-weight: 400;
+    z-index: 35;
+  }
+
+  .ey-mark {
+    left: 968px;
+    top: 573px;
+    width: 170px;
+    height: 128px;
+    z-index: 40;
+  }
+  .ey-slash {
+    position: absolute;
+    left: 39px;
+    top: 0;
+    width: 83px;
+    height: 15px;
+    background: #ffe600;
+    transform: skewX(-29deg);
+  }
+  .ey-text {
+    position: absolute;
+    left: 30px;
+    top: 18px;
+    color: #ffffff;
+    font-size: 68px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+  }
+  .ey-tag {
+    position: absolute;
+    left: 1px;
+    top: 94px;
+    width: 165px;
+    color: #ffffff;
+    font-size: 17px;
+    line-height: 1.08;
+    font-weight: 700;
+  }
+
+  .iif {
+    left: 1166px;
+    top: 621px;
+    width: 114px;
+    height: 76px;
+    z-index: 40;
+    color: #ffffff;
+  }
+  .iif svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .iif-text {
+    position: absolute;
+    left: 31px;
+    top: 23px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .iif-lines {
+    position: absolute;
+    left: 78px;
+    top: 23px;
+    width: 40px;
+    color: #ffffff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 7px;
+    line-height: 1.05;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .fiber {
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 12;
+  }
+
+  .base-glow {
+    left: 508px;
+    top: 646px;
+    width: 330px;
+    height: 56px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,82,205,0.40) 0%, rgba(63,160,255,0.22) 38%, rgba(18,0,34,0) 74%);
+    filter: blur(10px);
+    z-index: 8;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bgglow1"></div>
+  <div class="bgglow2"></div>
+  <div class="bgglow3"></div>
+  <div class="base-glow"></div>
+
+  <svg class="fiber" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="gradA" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#4cf0ff" stop-opacity="0.78"/>
+        <stop offset="45%" stop-color="#8d61ff" stop-opacity="0.62"/>
+        <stop offset="100%" stop-color="#ff32f1" stop-opacity="0.40"/>
+      </linearGradient>
+      <linearGradient id="gradB" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0%" stop-color="#eefcff" stop-opacity="0.85"/>
+        <stop offset="30%" stop-color="#46b9ff" stop-opacity="0.58"/>
+        <stop offset="100%" stop-color="#ff55f2" stop-opacity="0.36"/>
+      </linearGradient>
+      <linearGradient id="gradC" x1="0" y1="0" x2="0.9" y2="0.1">
+        <stop offset="0%" stop-color="#fff0ff" stop-opacity="0.66"/>
+        <stop offset="100%" stop-color="#c055ff" stop-opacity="0.25"/>
+      </linearGradient>
+      <filter id="softGlow">
+        <feGaussianBlur stdDeviation="1.15" result="b"/>
+        <feMerge>
+          <feMergeNode in="b"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <filter id="heavyGlow">
+        <feGaussianBlur stdDeviation="8" result="b"/>
+        <feMerge>
+          <feMergeNode in="b"/>
+        </feMerge>
+      </filter>
+    </defs>
+
+    <ellipse cx="688" cy="689" rx="230" ry="16" fill="#16061f" opacity="0.58"/>
+
+    <g opacity="0.95" filter="url(#softGlow)" stroke-linecap="round" fill="none">
+      <path d="M598 739 Q596 618 561 509 Q502 327 241 143" stroke="url(#gradC)" stroke-width="1.25"/>
+      <path d="M598 739 Q600 610 574 499 Q532 320 258 108" stroke="url(#gradC)" stroke-width="1.15"/>
+      <path d="M598 739 Q594 600 560 482 Q519 340 303 70" stroke="url(#gradC)" stroke-width="1.05"/>
+      <path d="M598 739 Q602 612 584 492 Q560 332 338 31" stroke="url(#gradC)" stroke-width="1.0"/>
+      <path d="M598 739 Q603 622 603 504 Q603 288 389 15" stroke="url(#gradC)" stroke-width="1.0"/>
+      <path d="M598 739 Q606 610 620 487 Q644 280 474 -8" stroke="url(#gradC)" stroke-width="1.0"/>
+      <path d="M598 739 Q602 612 596 507 Q590 335 432 35" stroke="url(#gradC)" stroke-width="1.0"/>
+      <path d="M598 739 Q592 620 550 519 Q494 388 170 116" stroke="url(#gradC)" stroke-width="1.0"/>
+      <path d="M598 739 Q598 621 579 523 Q540 334 112 92" stroke="url(#gradC)" stroke-width="0.95"/>
+      <path d="M598 739 Q592 627 569 533 Q527 355 55 88" stroke="url(#gradC)" stroke-width="0.92"/>
+      <path d="M598 739 Q610 618 634 518 Q674 352 549 52" stroke="url(#gradC)" stroke-width="0.95"/>
+      <path d="M598 739 Q611 617 647 512 Q700 355 575 32" stroke="url(#gradC)" stroke-width="0.95"/>
+      <path d="M598 739 Q589 617 544 517 Q488 393 92 120" stroke="url(#gradC)" stroke-width="0.92"/>
+
+      <path d="M614 730 Q608 645 597 581 Q580 480 473 349" stroke="url(#gradA)" stroke-width="1.12"/>
+      <path d="M614 730 Q616 643 626 576 Q646 470 542 309" stroke="url(#gradA)" stroke-width="1.12"/>
+      <path d="M614 730 Q620 642 643 572 Q676 470 595 330" stroke="url(#gradA)" stroke-width="1.08"/>
+      <path d="M614 730 Q605 641 587 573 Q555 458 505 335" stroke="url(#gradA)" stroke-width="1.05"/>
+      <path d="M614 730 Q600 645 572 579 Q535 490 456 400" stroke="url(#gradA)" stroke-width="0.98"/>
+      <path d="M614 730 Q625 642 660 578 Q708 491 671 386" stroke="url(#gradA)" stroke-width="0.98"/>
+      <path d="M614 730 Q628 646 678 580 Q741 496 755 384" stroke="url(#gradA)" stroke-width="0.98"/>
+
+      <path d="M738 742 Q728 630 760 541 Q832 342 1024 77" stroke="url(#gradC)" stroke-width="1.18"/>
+      <path d="M738 742 Q742 623 787 534 Q872 365 1060 74" stroke="url(#gradC)" stroke-width="1.16"/>
+      <path d="M738 742 Q748 620 826 529 Q938 393 1108 72" stroke="url(#gradC)" stroke-width="1.08"/>
+      <path d="M738 742 Q751 617 852 529 Q994 404 1144 73" stroke="url(#gradC)" stroke-width="1.08"/>
+      <path d="M738 742 Q757 611 879 523 Q1059 405 1187 76" stroke="url(#gradC)" stroke-width="1.05"/>
+      <path d="M738 742 Q765 610 906 522 Q1101 418 1219 79" stroke="url(#gradC)" stroke-width="1.0"/>
+      <path d="M738 742 Q771 608 934 520 Q1146 427 1247 84" stroke="url(#gradC)" stroke-width="0.98"/>
+      <path d="M738 742 Q778 608 968 523 Q1188 444 1265 88" stroke="url(#gradC)" stroke-width="0.98"/>
+      <path d="M738 742 Q785 609 995 526 Q1210 462 1278 92" stroke="url(#gradC)" stroke-width="0.96"/>
+      <path d="M738 742 Q790 613 1018 532 Q1234 489 1284 98" stroke="url(#gradC)" stroke-width="0.92"/>
+      <path d="M738 742 Q724 622 748 537 Q791 385 955 173" stroke="url(#gradA)" stroke-width="1.05"/>
+      <path d="M738 742 Q718 625 725 540 Q736 411 878 252" stroke="url(#gradA)" stroke-width="1.05"/>
+      <path d="M738 742 Q713 626 699 540 Q677 408 791 351" stroke="url(#gradA)" stroke-width="0.98"/>
+      <path d="M738 742 Q748 625 811 548 Q924 412 1053 350" stroke="url(#gradA)" stroke-width="0.98"/>
+      <path d="M738 742 Q758 628 856 557 Q1007 448 1152 392" stroke="url(#gradA)" stroke-width="0.98"/>
+      <path d="M738 742 Q767 630 894 566 Q1070 477 1213 430" stroke="url(#gradA)" stroke-width="0.92"/>
+
+      <path d="M598 739 Q595 667 602 622 Q618 535 675 484" stroke="#dffaff" stroke-width="1.85" opacity="0.92"/>
+      <path d="M614 730 Q619 640 638 583 Q662 511 705 470" stroke="#dffaff" stroke-width="1.85" opacity="0.90"/>
+      <path d="M672 730 Q676 642 690 579 Q712 487 751 448" stroke="#dffaff" stroke-width="1.85" opacity="0.88"/>
+      <path d="M705 730 Q710 640 729 574 Q753 494 784 460" stroke="#dffaff" stroke-width="1.85" opacity="0.85"/>
+      <path d="M726 730 Q730 643 746 585 Q769 508 809 477" stroke="#dffaff" stroke-width="1.85" opacity="0.82"/>
+    </g>
+
+    <g opacity="0.58" filter="url(#softGlow)" stroke-linecap="round" fill="none">
+      <path d="M674 739 Q664 650 624 564 Q565 434 478 333" stroke="#38a6ff" stroke-width="1.35"/>
+      <path d="M674 739 Q688 650 717 570 Q765 440 867 357" stroke="#40b8ff" stroke-width="1.35"/>
+      <path d="M736 742 Q770 653 827 591 Q912 498 1026 454" stroke="#ff35ef" stroke-width="1.12"/>
+      <path d="M614 730 Q582 645 531 590 Q460 514 403 451" stroke="#3eb9ff" stroke-width="1.05"/>
+      <path d="M598 739 Q574 661 534 607 Q485 541 461 487" stroke="#7ee9ff" stroke-width="1.05"/>
+      <path d="M726 730 Q700 650 679 601 Q646 520 646 431" stroke="#ff57f3" stroke-width="1.05"/>
+      <path d="M810 730 Q805 648 823 584 Q860 478 930 407" stroke="#ff57f3" stroke-width="1.05"/>
+      <path d="M810 730 Q796 652 780 594 Q756 509 748 425" stroke="#8de8ff" stroke-width="1.05"/>
+    </g>
+
+    <g opacity="0.9" filter="url(#softGlow)" fill="#ffffff">
+      <circle cx="55" cy="92" r="1.7"/><circle cx="84" cy="118" r="1.6"/><circle cx="111" cy="86" r="1.6"/><circle cx="138" cy="88" r="1.6"/>
+      <circle cx="152" cy="117" r="1.7"/><circle cx="170" cy="87" r="1.6"/><circle cx="193" cy="90" r="1.6"/><circle cx="208" cy="81" r="1.5"/>
+      <circle cx="224" cy="73" r="1.5"/><circle cx="246" cy="77" r="1.5"/><circle cx="266" cy="57" r="1.6"/><circle cx="281" cy="45" r="1.6"/>
+      <circle cx="296" cy="56" r="1.6"/><circle cx="311" cy="71" r="1.5"/><circle cx="322" cy="33" r="1.7"/><circle cx="338" cy="41" r="1.7"/>
+      <circle cx="352" cy="39" r="1.7"/><circle cx="368" cy="27" r="1.7"/><circle cx="388" cy="13" r="1.7"/><circle cx="403" cy="2" r="1.6"/>
+      <circle cx="419" cy="27" r="1.7"/><circle cx="432" cy="0" r="1.7"/><circle cx="447" cy="30" r="1.7"/><circle cx="462" cy="42" r="1.6"/>
+      <circle cx="476" cy="28" r="1.6"/><circle cx="490" cy="61" r="1.6"/><circle cx="505" cy="84" r="1.6"/><circle cx="520" cy="99" r="1.5"/>
+      <circle cx="536" cy="84" r="1.5"/><circle cx="552" cy="93" r="1.5"/><circle cx="567" cy="112" r="1.4"/>
+
+      <circle cx="458" cy="340" r="1.5"/><circle cx="471" cy="329" r="1.5"/><circle cx="486" cy="318" r="1.4"/><circle cx="498" cy="334" r="1.5"/>
+      <circle cx="511" cy="345" r="1.4"/><circle cx="523" cy="324" r="1.4"/><circle cx="538" cy="352" r="1.4"/><circle cx="552" cy="360" r="1.4"/>
+      <circle cx="566" cy="373" r="1.5"/><circle cx="580" cy="381" r="1.5"/><circle cx="594" cy="350" r="1.5"/><circle cx="608" cy="376" r="1.6"/>
+      <circle cx="623" cy="390" r="1.4"/><circle cx="638" cy="365" r="1.4"/><circle cx="652" cy="385" r="1.4"/><circle cx="666" cy="400" r="1.4"/>
+      <circle cx="679" cy="379" r="1.4"/>
+
+      <circle cx="734" cy="357" r="1.6"/><circle cx="748" cy="392" r="1.4"/><circle cx="762" cy="405" r="1.4"/><circle cx="775" cy="419" r="1.5"/>
+      <circle cx="790" cy="430" r="1.5"/><circle cx="804" cy="444" r="1.5"/><circle cx="819" cy="455" r="1.5"/><circle cx="834" cy="431" r="1.4"/>
+      <circle cx="849" cy="445" r="1.4"/><circle cx="864" cy="458" r="1.4"/><circle cx="878" cy="470" r="1.4"/><circle cx="894" cy="482" r="1.4"/>
+      <circle cx="907" cy="496" r="1.4"/><circle cx="921" cy="472" r="1.4"/><circle cx="936" cy="485" r="1.4"/><circle cx="950" cy="498" r="1.4"/>
+
+      <circle cx="942" cy="254" r="1.6"/><circle cx="958" cy="234" r="1.5"/><circle cx="973" cy="214" r="1.5"/><circle cx="987" cy="183" r="1.5"/>
+      <circle cx="1001" cy="96" r="1.6"/><circle cx="1009" cy="76" r="1.5"/><circle cx="1026" cy="120" r="1.6"/><circle cx="1038" cy="94" r="1.5"/>
+      <circle cx="1052" cy="81" r="1.6"/><circle cx="1064" cy="72" r="1.5"/><circle cx="1079" cy="96" r="1.5"/><circle cx="1092" cy="88" r="1.5"/>
+      <circle cx="1105" cy="74" r="1.5"/><circle cx="1118" cy="71" r="1.5"/><circle cx="1131" cy="84" r="1.6"/><circle cx="1144" cy="72" r="1.6"/>
+      <circle cx="1158" cy="84" r="1.6"/><circle cx="1170" cy="90" r="1.5"/><circle cx="1184" cy="75" r="1.5"/><circle cx="1198" cy="83" r="1.5"/>
+      <circle cx="1211" cy="75" r="1.5"/><circle cx="1225" cy="80" r="1.5"/><circle cx="1238" cy="91" r="1.5"/><circle cx="1251" cy="84" r="1.5"/>
+      <circle cx="1266" cy="96" r="1.5"/><circle cx="1278" cy="104" r="1.5"/>
+
+      <circle cx="1014" cy="153" r="1.4"/><circle cx="1028" cy="161" r="1.4"/><circle cx="1042" cy="168" r="1.4"/><circle cx="1056" cy="177" r="1.4"/>
+      <circle cx="1070" cy="186" r="1.4"/><circle cx="1084" cy="193" r="1.4"/><circle cx="1099" cy="201" r="1.4"/><circle cx="1113" cy="210" r="1.4"/>
+      <circle cx="1127" cy="218" r="1.4"/><circle cx="1141" cy="226" r="1.4"/><circle cx="1155" cy="234" r="1.4"/><circle cx="1170" cy="241" r="1.4"/>
+      <circle cx="1184" cy="248" r="1.4"/><circle cx="1199" cy="256" r="1.4"/><circle cx="1213" cy="263" r="1.4"/><circle cx="1228" cy="272" r="1.4"/>
+      <circle cx="1241" cy="280" r="1.4"/><circle cx="1255" cy="287" r="1.4"/><circle cx="1268" cy="295" r="1.4"/>
+
+      <circle cx="598" cy="739" r="3.2" fill="#f4ebcc" opacity="0.62"/>
+      <circle cx="614" cy="730" r="3.2" fill="#f4ebcc" opacity="0.62"/>
+      <circle cx="672" cy="730" r="3.2" fill="#f4ebcc" opacity="0.62"/>
+      <circle cx="705" cy="730" r="3.2" fill="#f4ebcc" opacity="0.62"/>
+      <circle cx="726" cy="730" r="3.2" fill="#f4ebcc" opacity="0.62"/>
+      <circle cx="810" cy="730" r="3.2" fill="#f4ebcc" opacity="0.62"/>
+      <circle cx="824" cy="730" r="3.2" fill="#f4ebcc" opacity="0.62"/>
+    </g>
+
+    <g opacity="0.22" filter="url(#heavyGlow)">
+      <path d="M640 708 Q632 631 596 550 Q545 435 493 343" stroke="#25b7ff" stroke-width="18" fill="none" stroke-linecap="round"/>
+      <path d="M681 708 Q689 638 734 560 Q804 438 910 333" stroke="#ff38f6" stroke-width="22" fill="none" stroke-linecap="round"/>
+      <path d="M704 706 Q726 642 810 570 Q931 466 1104 421" stroke="#a944ff" stroke-width="17" fill="none" stroke-linecap="round"/>
+      <path d="M656 706 Q638 636 646 573 Q659 470 675 416" stroke="#ff59d9" stroke-width="13" fill="none" stroke-linecap="round"/>
+    </g>
+  </svg>
+
+  <div class="frame-left"></div>
+  <div class="frame-top"></div>
+  <div class="frame-right"></div>
+  <div class="frame-bottom"></div>
+  <div class="frame-corner"></div>
+
+  <div class="dot1"></div>
+  <div class="dot2"></div>
+  <div class="dot3"></div>
+  <div class="dot4"></div>
+
+  <div class="title">The new<br>shape of risk</div>
+  <div class="subtitle">How insurance CROs are leading in a world defined by speed,<br>volatility and interconnection</div>
+  <div class="subline">Third annual EY/IIF global insurance risk management survey</div>
+
+  <div class="footer-dots">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="footer-text">The better the question. The better the answer.<br>The better the world works.</div>
+
+  <div class="ey-mark">
+    <div class="ey-slash"></div>
+    <div class="ey-text">EY</div>
+    <div class="ey-tag">Shape the future<br>with confidence</div>
+  </div>
+
+  <div class="iif">
+    <svg width="68" height="68" viewBox="0 0 68 68" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="34" cy="34" r="27" fill="none" stroke="#ffe600" stroke-width="1.6"/>
+      <path d="M10 34h43" stroke="#ffe600" stroke-width="1.05"/>
+      <path d="M14 23h36" stroke="#ffe600" stroke-width="0.95"/>
+      <path d="M14 45h36" stroke="#ffe600" stroke-width="0.95"/>
+      <path d="M34 7v54" stroke="#ffe600" stroke-width="1.05"/>
+      <path d="M23 10c4.8 7 7.6 14.5 7.6 24S27.8 50.7 23 58" stroke="#ffe600" stroke-width="0.95" fill="none"/>
+      <path d="M45 10c-4.8 7-7.6 14.5-7.6 24S40.2 50.7 45 58" stroke="#ffe600" stroke-width="0.95" fill="none"/>
+      <path d="M7 20c6 4.7 10 8 12 13" stroke="#ffe600" stroke-width="0.95"/>
+      <path d="M57 48c-6-4.7-10-8-12-13" stroke="#ffe600" stroke-width="0.95"/>
+    </svg>
+    <div class="iif-text">IIF</div>
+    <div class="iif-lines">Institute of<br>International<br>Finance</div>
+  </div>
+</div>
+</body>
+</html>

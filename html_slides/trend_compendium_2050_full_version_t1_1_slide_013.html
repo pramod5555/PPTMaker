@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f4;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .sidebar{
+    left:0;
+    top:0;
+    width:148px;
+    height:720px;
+    background:#4b4f56;
+    z-index:5;
+  }
+  .sidebar-title{
+    left:14px;
+    top:33px;
+    width:110px;
+    color:#f4f4f4;
+    font-size:27px;
+    line-height:1.03;
+    font-weight:700;
+    z-index:20;
+  }
+
+  .nav-item{ z-index:25; }
+  .hex{
+    width:50px;
+    height:50px;
+    border:5px solid #bcc000;
+    clip-path:polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
+    overflow:hidden;
+    background:#d8d8d8;
+  }
+  .hex.gray{
+    border-color:#d6d7da;
+    background:#d8d8d8;
+  }
+  .hex-inner{
+    position:absolute;
+    left:4px;
+    top:4px;
+    width:42px;
+    height:42px;
+    clip-path:polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
+  }
+  .pattern1{
+    background:
+      radial-gradient(circle at 6px 7px,#8b6d5e 0 1px,transparent 1.8px),
+      radial-gradient(circle at 11px 8px,#d6d6d6 0 1px,transparent 1.8px),
+      radial-gradient(circle at 16px 7px,#56606a 0 1px,transparent 1.8px),
+      radial-gradient(circle at 22px 9px,#b88d71 0 1px,transparent 1.8px),
+      radial-gradient(circle at 29px 8px,#4f5660 0 1px,transparent 1.8px),
+      radial-gradient(circle at 34px 10px,#d1d1d1 0 1px,transparent 1.8px),
+      radial-gradient(circle at 8px 14px,#9e3f3f 0 1px,transparent 1.8px),
+      radial-gradient(circle at 14px 14px,#6a6a6a 0 1px,transparent 1.8px),
+      radial-gradient(circle at 19px 15px,#c3c3c3 0 1px,transparent 1.8px),
+      radial-gradient(circle at 25px 14px,#7b8f64 0 1px,transparent 1.8px),
+      radial-gradient(circle at 31px 15px,#7d5c49 0 1px,transparent 1.8px),
+      radial-gradient(circle at 36px 15px,#515151 0 1px,transparent 1.8px),
+      radial-gradient(circle at 7px 21px,#d2d2d2 0 1px,transparent 1.8px),
+      radial-gradient(circle at 12px 22px,#4e4e4e 0 1px,transparent 1.8px),
+      radial-gradient(circle at 18px 21px,#ae6f52 0 1px,transparent 1.8px),
+      radial-gradient(circle at 24px 22px,#6e7b8c 0 1px,transparent 1.8px),
+      radial-gradient(circle at 29px 21px,#d8d8d8 0 1px,transparent 1.8px),
+      radial-gradient(circle at 35px 22px,#8f8f8f 0 1px,transparent 1.8px),
+      radial-gradient(circle at 10px 28px,#6b7758 0 1px,transparent 1.8px),
+      radial-gradient(circle at 15px 29px,#d8d8d8 0 1px,transparent 1.8px),
+      radial-gradient(circle at 20px 29px,#555 0 1px,transparent 1.8px),
+      radial-gradient(circle at 26px 28px,#ab7e64 0 1px,transparent 1.8px),
+      radial-gradient(circle at 32px 29px,#6c6c6c 0 1px,transparent 1.8px),
+      radial-gradient(circle at 36px 29px,#cecece 0 1px,transparent 1.8px),
+      radial-gradient(circle at 9px 35px,#888 0 1px,transparent 1.8px),
+      radial-gradient(circle at 15px 35px,#c4c4c4 0 1px,transparent 1.8px),
+      radial-gradient(circle at 21px 35px,#4d5967 0 1px,transparent 1.8px),
+      radial-gradient(circle at 27px 35px,#9f684e 0 1px,transparent 1.8px),
+      radial-gradient(circle at 33px 35px,#6d7f62 0 1px,transparent 1.8px),
+      linear-gradient(45deg,#f1f1f1,#9c9c9c);
+  }
+  .pattern2{
+    background:
+      linear-gradient(140deg,#8c8c8c 0 30%,#e6e6e6 30% 48%,#696969 48% 72%,#b8b8b8 72% 100%);
+  }
+  .pattern3{
+    background:
+      linear-gradient(90deg,#777 0 22%,#efefef 22% 35%,#8c8c8c 35% 52%,#f5f5f5 52% 67%,#8f8f8f 67% 82%,#dcdcdc 82% 100%);
+  }
+  .pattern4{
+    background:
+      linear-gradient(145deg,#cfcfcf 0 34%,#7e7e7e 34% 47%,#ececec 47% 61%,#8a8a8a 61% 78%,#d7d7d7 78% 100%);
+  }
+
+  .nav-num{
+    color:#bcc000;
+    font-size:27px;
+    font-weight:700;
+    line-height:1;
+  }
+  .nav-num.gray{ color:#70757d; }
+  .nav-label{
+    color:#bcc000;
+    font-size:14px;
+    font-weight:700;
+    line-height:1.05;
+  }
+  .nav-label.gray{
+    color:#70757d;
+    font-weight:400;
+  }
+
+  .people-icon{
+    left:56px;
+    top:678px;
+    width:80px;
+    height:40px;
+    z-index:20;
+  }
+  .people-icon .c{
+    position:absolute;
+    border-radius:50%;
+    background:#8a8d92;
+  }
+  .people-icon .b{
+    position:absolute;
+    background:#8a8d92;
+    border-radius:14px 14px 3px 3px;
+  }
+
+  .page-no{
+    left:10px;
+    bottom:8px;
+    color:#ffffff;
+    font-size:16px;
+    line-height:1;
+    z-index:30;
+  }
+
+  .title{
+    left:220px;
+    top:31px;
+    width:1035px;
+    color:#202022;
+    font-size:25px;
+    line-height:1.08;
+    font-weight:700;
+    z-index:25;
+  }
+  .subtitle{
+    left:220px;
+    top:141px;
+    width:760px;
+    color:#8d939b;
+    font-size:26px;
+    line-height:1.12;
+    font-weight:400;
+    z-index:25;
+  }
+
+  .map{
+    left:203px;
+    top:228px;
+    width:847px;
+    height:415px;
+    z-index:8;
+  }
+
+  .region-label{
+    color:#222224;
+    font-size:25px;
+    font-weight:700;
+    line-height:1.02;
+    text-align:center;
+    z-index:30;
+  }
+
+  .legend{
+    left:220px;
+    top:723px;
+    width:690px;
+    height:20px;
+    color:#333;
+    font-size:14px;
+    z-index:30;
+  }
+  .source{
+    left:220px;
+    top:754px;
+    width:350px;
+    color:#444;
+    font-size:12px;
+    z-index:30;
+  }
+
+  .note-box{
+    left:1075px;
+    top:140px;
+    width:205px;
+    height:580px;
+    background:#d8d8da;
+    z-index:12;
+  }
+  .note-text{
+    left:1088px;
+    top:153px;
+    width:175px;
+    color:#222;
+    font-size:17px;
+    line-height:1.13;
+    font-weight:400;
+    z-index:20;
+  }
+  .note-text b{ font-weight:700; }
+
+  .logo{
+    left:1234px;
+    top:728px;
+    width:100px;
+    height:22px;
+    z-index:30;
+    color:#666;
+    font-size:11px;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="sidebar-title">People &amp;<br>Society</div>
+
+  <div class="nav-item" style="left:10px; top:142px; width:128px; height:70px;">
+    <div class="hex" style="position:absolute; left:0; top:0;">
+      <div class="hex-inner pattern1"></div>
+    </div>
+    <div class="nav-num" style="position:absolute; left:87px; top:2px;">1</div>
+    <div class="nav-label" style="position:absolute; left:87px; top:35px;">Population</div>
+  </div>
+
+  <div class="nav-item" style="left:10px; top:261px; width:128px; height:70px;">
+    <div class="hex gray" style="position:absolute; left:0; top:0;">
+      <div class="hex-inner pattern2"></div>
+    </div>
+    <div class="nav-num gray" style="position:absolute; left:87px; top:2px;">2</div>
+    <div class="nav-label gray" style="position:absolute; left:87px; top:35px;">Migration</div>
+  </div>
+
+  <div class="nav-item" style="left:10px; top:382px; width:128px; height:70px;">
+    <div class="hex gray" style="position:absolute; left:0; top:0;">
+      <div class="hex-inner pattern3"></div>
+    </div>
+    <div class="nav-num gray" style="position:absolute; left:87px; top:2px;">3</div>
+    <div class="nav-label gray" style="position:absolute; left:87px; top:35px;">Values</div>
+  </div>
+
+  <div class="nav-item" style="left:10px; top:503px; width:128px; height:70px;">
+    <div class="hex gray" style="position:absolute; left:0; top:0;">
+      <div class="hex-inner pattern4"></div>
+    </div>
+    <div class="nav-num gray" style="position:absolute; left:87px; top:2px;">4</div>
+    <div class="nav-label gray" style="position:absolute; left:87px; top:35px;">Education</div>
+  </div>
+
+  <div class="people-icon">
+    <div class="c" style="left:12px; top:2px; width:19px; height:19px;"></div>
+    <div class="c" style="left:31px; top:0px; width:20px; height:20px;"></div>
+    <div class="c" style="left:50px; top:2px; width:19px; height:19px;"></div>
+    <div class="c" style="left:2px; top:12px; width:19px; height:19px;"></div>
+    <div class="c" style="left:21px; top:11px; width:20px; height:20px;"></div>
+    <div class="c" style="left:40px; top:11px; width:20px; height:20px;"></div>
+    <div class="c" style="left:59px; top:12px; width:19px; height:19px;"></div>
+    <div class="c" style="left:31px; top:22px; width:20px; height:20px;"></div>
+    <div class="b" style="left:0px; top:21px; width:26px; height:18px;"></div>
+    <div class="b" style="left:14px; top:19px; width:26px; height:18px;"></div>
+    <div class="b" style="left:27px; top:18px; width:28px; height:19px;"></div>
+    <div class="b" style="left:42px; top:19px; width:26px; height:18px;"></div>
+    <div class="b" style="left:56px; top:21px; width:24px; height:18px;"></div>
+  </div>
+
+  <div class="page-no">13</div>
+
+  <div class="title">All regions are aging, with fewer people of working age having to support<br>more older people – Interregional differences remain significant</div>
+  <div class="subtitle">Median age [years] and old-age dependency ratio by region 2020 vs. 2050<br>[people 65+ / 100 people 20-64]</div>
+
+  <svg class="map" viewBox="0 0 847 415" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="#d8d8da">
+      <path d="M4 92 C41 72,101 75,142 92 C164 101,186 106,213 104 C241 102,265 87,294 73 C325 58,369 56,410 60 C449 64,486 72,521 77 C557 83,591 85,632 78 C676 70,724 71,767 79 C807 86,835 99,843 119 C834 127,817 127,802 125 C782 122,761 122,741 125 C721 128,702 140,682 149 C656 160,630 164,600 166 C573 168,546 171,521 179 C489 188,469 207,442 222 C410 240,377 241,341 234 C316 229,294 225,274 230 C251 236,236 252,218 271 C195 296,169 300,134 289 C112 282,93 279,74 285 C58 291,39 304,24 319 C14 311,10 296,8 280 C5 257,6 229,7 198 C8 164,8 127,4 92Z"/>
+      <path d="M219 307 C238 302,255 309,268 323 C279 336,286 355,286 372 C285 391,275 405,258 413 C237 423,213 419,198 404 C182 389,177 366,183 347 C188 330,201 313,219 307Z"/>
+      <path d="M509 237 C526 230,545 235,557 248 C569 260,573 278,569 296 C565 313,551 324,534 327 C517 330,500 324,488 312 C477 300,473 283,477 267 C481 254,493 243,509 237Z"/>
+      <path d="M691 306 C708 299,727 302,743 315 C756 326,763 341,763 359 C762 380,750 397,730 407 C709 416,685 414,669 401 C655 389,648 371,650 353 C653 333,669 315,691 306Z"/>
+      <path d="M208 65 C223 57,246 58,260 66 C272 73,275 83,272 95 C269 106,258 113,244 115 C228 117,213 112,205 102 C197 92,198 72,208 65Z"/>
+      <path d="M432 69 C448 61,472 61,486 69 C497 75,499 86,492 96 C486 105,471 110,455 110 C439 110,425 103,421 92 C418 84,422 74,432 69Z"/>
+    </g>
+  </svg>
+
+  <svg style="left:205px; top:222px; width:840px; height:430px; z-index:25;" viewBox="0 0 840 430" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- Northern America -->
+    <line x1="16" y1="155" x2="132" y2="155" stroke="#222" stroke-width="1.4"/>
+    <rect x="24" y="54" width="38" height="101" fill="#00548a"/>
+    <rect x="88" y="43" width="38" height="112" fill="#b3b700"/>
+    <text x="43" y="112" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" font-family="Arial">38.6</text>
+    <text x="107" y="112" text-anchor="middle" fill="#181818" font-size="18" font-weight="700" font-family="Arial">43.0</text>
+    <circle cx="179" cy="65" r="31" fill="#b3b700"/>
+    <circle cx="179" cy="127" r="27" fill="#00548a"/>
+    <text x="179" y="71" text-anchor="middle" fill="#181818" font-size="18" font-weight="700" font-family="Arial">41</text>
+    <text x="179" y="133" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" font-family="Arial">29</text>
+
+    <!-- Europe -->
+    <line x1="311" y1="139" x2="435" y2="139" stroke="#222" stroke-width="1.4"/>
+    <rect x="324" y="23" width="37" height="116" fill="#00548a"/>
+    <rect x="386" y="11" width="37" height="128" fill="#b3b700"/>
+    <text x="342.5" y="89" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" font-family="Arial">42.5</text>
+    <text x="404.5" y="92" text-anchor="middle" fill="#181818" font-size="18" font-weight="700" font-family="Arial">47.1</text>
+    <circle cx="481" cy="42" r="31" fill="#b3b700"/>
+    <circle cx="481" cy="109" r="27" fill="#00548a"/>
+    <text x="481" y="49" text-anchor="middle" fill="#181818" font-size="18" font-weight="700" font-family="Arial">54</text>
+    <text x="481" y="115" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" font-family="Arial">32</text>
+
+    <!-- Asia -->
+    <line x1="574" y1="177" x2="694" y2="177" stroke="#222" stroke-width="1.4"/>
+    <rect x="585" y="108" width="38" height="69" fill="#00548a"/>
+    <rect x="650" y="91" width="38" height="86" fill="#b3b700"/>
+    <text x="604" y="147" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" font-family="Arial">32.0</text>
+    <text x="669" y="147" text-anchor="middle" fill="#181818" font-size="18" font-weight="700" font-family="Arial">39.9</text>
+    <circle cx="744" cy="104" r="31" fill="#b3b700"/>
+    <circle cx="744" cy="165" r="27" fill="#00548a"/>
+    <text x="744" y="110" text-anchor="middle" fill="#181818" font-size="18" font-weight="700" font-family="Arial">31</text>
+    <text x="744" y="171" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" font-family="Arial">15</text>
+
+    <!-- Latin America and the Caribbean -->
+    <line x1="130" y1="359" x2="255" y2="359" stroke="#222" stroke-width="1.4"/>
+    <rect x="141" y="292" width="38" height="67" fill="#00548a"/>
+    <rect x="206" y="270" width="38" height="89" fill="#b3b700"/>
+    <text x="160" y="328" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" font-family="Arial">31.0</text>
+    <text x="225" y="319" text-anchor="middle" fill="#181818" font-size="18" font-weight="700" font-family="Arial">40.8</text>
+    <circle cx="319" cy="286" r="29" fill="#b3b700"/>
+    <circle cx="319" cy="340" r="21" fill="#00548a"/>
+    <text x="319" y="292" text-anchor="middle" fill="#181818" font-size="18" font-weight="700" font-family="Arial">33</text>
+    <text x="319" y="345" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" font-family="Arial">15</text>
+
+    <!-- Africa -->
+    <line x1="396" y1="321" x2="516" y2="321" stroke="#222" stroke-width="1.4"/>
+    <rect x="407" y="283" width="38" height="38" fill="#00548a"/>
+    <rect x="472" y="267" width="38" height="54" fill="#b3b700"/>
+    <text x="426" y="301" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" font-family="Arial">19.7</text>
+    <text x="491" y="301" text-anchor="middle" fill="#181818" font-size="18" font-weight="700" font-family="Arial">24.8</text>
+    <circle cx="550" cy="270" r="16" fill="#b3b700"/>
+    <circle cx="550" cy="307" r="16" fill="#00548a"/>
+    <text x="550" y="275" text-anchor="middle" fill="#181818" font-size="18" font-weight="700" font-family="Arial">11</text>
+    <text x="550" y="312" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" font-family="Arial">8</text>
+
+    <!-- Oceania -->
+    <line x1="631" y1="359" x2="750" y2="359" stroke="#222" stroke-width="1.4"/>
+    <rect x="635" y="321" width="38" height="38" fill="#00548a"/>
+    <rect x="700" y="315" width="38" height="44" fill="#b3b700"/>
+    <text x="654" y="340" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" font-family="Arial">33.4</text>
+    <text x="719" y="340" text-anchor="middle" fill="#181818" font-size="18" font-weight="700" font-family="Arial">37.2</text>
+    <circle cx="789" cy="308" r="29" fill="#b3b700"/>
+    <circle cx="789" cy="361" r="24" fill="#00548a"/>
+    <text x="789" y="314" text-anchor="middle" fill="#181818" font-size="18" font-weight="700" font-family="Arial">32</text>
+    <text x="789" y="367" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" font-family="Arial">23</text>
+  </svg>
+
+  <div class="region-label" style="left:214px; top:386px; width:210px;">Northern America</div>
+  <div class="region-label" style="left:561px; top:367px; width:84px;">Europe</div>
+  <div class="region-label" style="left:852px; top:403px; width:80px;">Asia</div>
+  <div class="region-label" style="left:334px; top:589px; width:215px;">Latin America<br>and the Caribbean</div>
+  <div class="region-label" style="left:672px; top:546px; width:82px;">Africa</div>
+  <div class="region-label" style="left:863px; top:621px; width:104px;">Oceania</div>
+
+  <div class="legend">
+    <span style="position:absolute; left:0; top:0;">Median age:</span>
+    <span style="position:absolute; left:80px; top:0; width:24px; height:16px; background:#00548a;"></span>
+    <span style="position:absolute; left:113px; top:0;">2020</span>
+    <span style="position:absolute; left:159px; top:0; width:24px; height:16px; background:#b3b700;"></span>
+    <span style="position:absolute; left:192px; top:0;">2050</span>
+
+    <span style="position:absolute; left:274px; top:0;">Old-age dependency ratio:</span>
+    <span style="position:absolute; left:431px; top:0; width:17px; height:17px; background:#00548a; border-radius:50%;"></span>
+    <span style="position:absolute; left:455px; top:0;">2020</span>
+    <span style="position:absolute; left:495px; top:0; width:17px; height:17px; background:#b3b700; border-radius:50%;"></span>
+    <span style="position:absolute; left:519px; top:0;">2050</span>
+  </div>
+
+  <div class="source">Sources: UN Population Division; Roland Berger</div>
+
+  <div class="note-box"></div>
+  <div class="note-text">
+    &gt; The old-age dependency ratio<br>
+    &nbsp;&nbsp;is the number of people aged<br>
+    &nbsp;&nbsp;<b>65+ (people</b> who are typically<br>
+    &nbsp;&nbsp;<b>not in the labor force)</b> per 100<br>
+    &nbsp;&nbsp;people aged <b>20-64</b> (people<br>
+    &nbsp;&nbsp;who are typically <b>in the labor</b><br>
+    &nbsp;&nbsp;<b>force)</b>. For example, in Europe<br>
+    &nbsp;&nbsp;in 2050, 100 working-age<br>
+    &nbsp;&nbsp;people will have to support 54<br>
+    &nbsp;&nbsp;people aged 65+, up from 32<br>
+    &nbsp;&nbsp;people aged 65+ in 2020<br><br>
+
+    &gt; A <b>high or increasing old-age</b><br>
+    &nbsp;&nbsp;<b>dependency ratio</b> can be a<br>
+    &nbsp;&nbsp;<b>burden</b> as it causes <b>high(er)</b><br>
+    &nbsp;&nbsp;<b>expenditure</b> on pensions,<br>
+    &nbsp;&nbsp;health and care<br><br>
+
+    &gt; However, this ratio ignores that<br>
+    &nbsp;&nbsp;<b>people above the age of 65</b><br>
+    &nbsp;&nbsp;<b>are not necessarily dependent</b><br>
+    &nbsp;&nbsp;<b>on support</b> as a rising<br>
+    &nbsp;&nbsp;proportion is in work; reversely<br>
+    &nbsp;&nbsp;not all of those considered of<br>
+    &nbsp;&nbsp;working age are actually in<br>
+    &nbsp;&nbsp;work
+  </div>
+
+  <div class="logo">
+    <div style="position:absolute; left:0; top:6px; width:50px; text-align:right; font-size:11px; line-height:0.95;">Roland<br>Berger</div>
+    <svg width="26" height="24" viewBox="0 0 26 24" style="position:absolute; left:54px; top:0;">
+      <path d="M8 1 C14 1,18 5,18 11 C18 16,14 20,9 20 L6 20 L6 1 Z" fill="#a7a9ac"/>
+      <path d="M12 4 C18 4,24 8,24 15 C24 20,20 23,15 23 L12 23 Z" fill="#a7a9ac"/>
+      <rect x="5" y="1" width="3" height="22" fill="#d7d8da"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

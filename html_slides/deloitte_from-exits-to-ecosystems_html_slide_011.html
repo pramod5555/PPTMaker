@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>2024 in retrospect</title>
+<style>
+  body{
+    margin:0;
+    background:#dddddd;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dddddd;
+  }
+  #slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .left-panel{
+    left:50px;
+    top:0;
+    width:290px;
+    height:665px;
+    background:#0f435b;
+    clip-path:polygon(0 0,100% 0,100% 94%,86% 100%,0 100%);
+  }
+
+  .title{
+    left:63px;
+    top:82px;
+    width:245px;
+    color:#f3f5f6;
+    font-size:29px;
+    line-height:34px;
+    font-weight:700;
+  }
+
+  .intro{
+    left:63px;
+    top:167px;
+    width:235px;
+    color:#eef3f5;
+    font-size:17px;
+    line-height:1.56;
+    font-weight:400;
+  }
+
+  .base{
+    left:63px;
+    top:596px;
+    width:230px;
+    color:#dbe6eb;
+    font-size:12px;
+    line-height:1.35;
+    font-weight:400;
+  }
+
+  .top-label-left{
+    left:393px;
+    top:22px;
+    width:190px;
+    color:#696969;
+    font-size:16px;
+    line-height:20px;
+    font-weight:400;
+  }
+
+  .top-rule-left{
+    left:388px;
+    top:52px;
+    width:313px;
+    height:1px;
+    background:#8799a4;
+  }
+
+  .legend-agree-box{
+    left:722px;
+    top:24px;
+    width:17px;
+    height:17px;
+    background:#2aaead;
+  }
+
+  .legend-agree{
+    left:748px;
+    top:22px;
+    width:80px;
+    color:#6b6b6b;
+    font-size:16px;
+    line-height:20px;
+    font-weight:400;
+  }
+
+  .legend-disagree-box{
+    left:1113px;
+    top:23px;
+    width:17px;
+    height:17px;
+    background:#1a226d;
+  }
+
+  .legend-disagree{
+    left:1137px;
+    top:22px;
+    width:80px;
+    color:#6b6b6b;
+    font-size:16px;
+    line-height:20px;
+    font-weight:400;
+  }
+
+  .legend-2023{
+    left:1222px;
+    top:22px;
+    width:110px;
+    color:#6b6b6b;
+    font-size:16px;
+    line-height:20px;
+    font-weight:400;
+  }
+
+  .top-rule-mid{
+    left:715px;
+    top:52px;
+    width:480px;
+    height:1px;
+    background:#8799a4;
+  }
+
+  .top-rule-right{
+    left:1213px;
+    top:52px;
+    width:120px;
+    height:1px;
+    background:#8799a4;
+  }
+
+  .q1{
+    left:402px;
+    top:209px;
+    width:304px;
+    color:#666666;
+    font-size:18px;
+    line-height:26px;
+    font-weight:400;
+    text-align:right;
+  }
+
+  .q2{
+    left:405px;
+    top:503px;
+    width:300px;
+    color:#666666;
+    font-size:18px;
+    line-height:26px;
+    font-weight:400;
+    text-align:right;
+  }
+
+  .bar1-agree{
+    left:722px;
+    top:126px;
+    width:309px;
+    height:191px;
+    background:#2baead;
+  }
+
+  .bar1-disagree{
+    left:1031px;
+    top:126px;
+    width:165px;
+    height:191px;
+    background:#1a226d;
+  }
+
+  .bar2-agree{
+    left:722px;
+    top:432px;
+    width:243px;
+    height:190px;
+    background:#2baead;
+  }
+
+  .bar2-disagree{
+    left:965px;
+    top:432px;
+    width:231px;
+    height:190px;
+    background:#1a226d;
+  }
+
+  .pct{
+    color:#ffffff;
+    font-size:19px;
+    line-height:22px;
+    font-weight:700;
+    text-align:right;
+  }
+
+  .pct1a{ left:972px; top:212px; width:50px; }
+  .pct1d{ left:1137px; top:212px; width:50px; }
+  .pct2a{ left:910px; top:517px; width:46px; }
+  .pct2d{ left:1137px; top:517px; width:46px; }
+
+  .arrow{
+    width:0;
+    height:0;
+    border-left:11px solid transparent;
+    border-right:11px solid transparent;
+    border-top:20px solid #ff5964;
+  }
+
+  .arrow1{ left:1238px; top:200px; }
+  .arrow2{ left:1238px; top:495px; }
+
+  .delta{
+    color:#8a8a8a;
+    font-size:16px;
+    line-height:18px;
+    font-weight:400;
+  }
+
+  .delta1{ left:1264px; top:201px; width:45px; }
+  .delta2{ left:1264px; top:496px; width:45px; }
+
+  .prev{
+    color:#616161;
+    font-size:18px;
+    line-height:22px;
+    font-weight:400;
+  }
+
+  .prev1{ left:1253px; top:234px; width:60px; font-size:19px; }
+  .prev2{ left:1253px; top:529px; width:60px; font-size:19px; }
+
+  .footer-left{
+    left:49px;
+    top:728px;
+    width:240px;
+    color:#4e4e4e;
+    font-size:12px;
+    line-height:14px;
+    font-weight:400;
+    transform:translateY(-100%);
+  }
+
+  .footer-center{
+    left:678px;
+    top:728px;
+    width:20px;
+    color:#333333;
+    font-size:12px;
+    line-height:14px;
+    font-weight:400;
+    text-align:center;
+    transform:translateY(-100%);
+  }
+
+  .logo{
+    left:1263px;
+    top:691px;
+    width:54px;
+    height:50px;
+    transform:translateX(-100%);
+  }
+
+  .logo-box{
+    left:0;
+    top:0;
+    width:54px;
+    height:50px;
+    background:#2b49a1;
+  }
+
+  .logo-teal{
+    left:24px;
+    top:0;
+    width:30px;
+    height:50px;
+    background:#18a7a2;
+    clip-path:polygon(18% 0,100% 0,100% 70%,91% 88%,100% 100%,0 100%,17% 51%,5% 20%);
+  }
+
+  .logo-purple1{
+    left:20px;
+    top:6px;
+    width:14px;
+    height:18px;
+    background:#5e4fb2;
+    border-radius:8px 8px 6px 6px;
+    opacity:.95;
+  }
+
+  .logo-purple2{
+    left:20px;
+    top:25px;
+    width:16px;
+    height:17px;
+    background:#5e4fb2;
+    border-radius:7px 7px 9px 9px;
+    opacity:.95;
+  }
+
+  .logo-text{
+    left:6px;
+    top:28px;
+    width:42px;
+    color:#ffffff;
+    font-size:16px;
+    line-height:18px;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="left-panel"></div>
+
+  <div class="title">2024 in retrospect</div>
+
+  <div class="intro">
+    Please indicate if you agree<br>
+    very much, agree somewhat,<br>
+    disagree somewhat or<br>
+    disagree very much with the<br>
+    following statements:
+  </div>
+
+  <div class="base">
+    Base: 23,721 online adults under the age of 75 across<br>
+    33 countries, interviewed 25 October - 8 November<br>
+    2024.
+  </div>
+
+  <div class="top-label-left">Global averages</div>
+  <div class="top-rule-left"></div>
+
+  <div class="legend-agree-box"></div>
+  <div class="legend-agree">Agree</div>
+
+  <div class="legend-disagree-box"></div>
+  <div class="legend-disagree">Disagree</div>
+
+  <div class="legend-2023">% Agree 2023</div>
+  <div class="top-rule-mid"></div>
+  <div class="top-rule-right"></div>
+
+  <div class="q1">2024 was a bad year for my country</div>
+  <div class="q2">2024 was a bad year for me and my<br>family</div>
+
+  <div class="bar1-agree"></div>
+  <div class="bar1-disagree"></div>
+  <div class="bar2-agree"></div>
+  <div class="bar2-disagree"></div>
+
+  <div class="pct pct1a">65%</div>
+  <div class="pct pct1d">35%</div>
+  <div class="pct pct2a">51%</div>
+  <div class="pct pct2d">49%</div>
+
+  <div class="arrow arrow1"></div>
+  <div class="delta delta1">-5 pp</div>
+  <div class="prev prev1">70%</div>
+
+  <div class="arrow arrow2"></div>
+  <div class="delta delta2">-2 pp</div>
+  <div class="prev prev2">53%</div>
+
+  <div class="footer-left">© Ipsos Predictions 2025 Report</div>
+  <div class="footer-center">11</div>
+
+  <div class="logo">
+    <div class="logo-box"></div>
+    <div class="logo-teal"></div>
+    <div class="logo-purple1"></div>
+    <div class="logo-purple2"></div>
+    <div class="logo-text">Ipsos</div>
+  </div>
+</div>
+</body>
+</html>

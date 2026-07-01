@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Accenture Life Trends 2025</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #cf82d6;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      radial-gradient(420px 260px at 16% 77%, rgba(255,244,248,0.78) 0%, rgba(255,244,248,0.28) 28%, rgba(255,244,248,0.06) 52%, rgba(255,244,248,0) 72%),
+      radial-gradient(360px 180px at 86% 92%, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.58) 38%, rgba(255,255,255,0.10) 62%, rgba(255,255,255,0) 76%),
+      radial-gradient(320px 190px at 82% 54%, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.18) 45%, rgba(255,255,255,0) 72%),
+      linear-gradient(180deg, rgba(232,120,231,0.72) 0%, rgba(219,129,221,0.52) 35%, rgba(245,238,244,0.90) 47%, rgba(247,245,247,0.94) 52%, rgba(221,123,205,0.44) 64%, rgba(190,88,186,0.55) 100%),
+      linear-gradient(90deg, #c874db 0%, #d58ae0 18%, #b94ccc 40%, #c8287f 53%, #d95f97 66%, #d57ee0 82%, #c36cda 100%);
+  }
+
+  .bg-blur {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(26px);
+    opacity: 0.92;
+    pointer-events: none;
+  }
+
+  .b1 {
+    left: 222px;
+    top: -39px;
+    width: 291px;
+    height: 440px;
+    background: linear-gradient(180deg, rgba(247,225,248,0.90), rgba(226,175,234,0.70));
+    transform: rotate(28deg);
+    border-radius: 48% 52% 44% 56% / 38% 44% 56% 62%;
+    filter: blur(12px);
+  }
+
+  .b2 {
+    left: 470px;
+    top: -87px;
+    width: 196px;
+    height: 588px;
+    background: linear-gradient(180deg, rgba(87,0,28,0.96), rgba(73,0,19,0.96));
+    transform: rotate(11deg);
+    border-radius: 40% 50% 38% 62% / 26% 24% 70% 74%;
+    filter: blur(10px);
+    opacity: 0.78;
+  }
+
+  .b3 {
+    left: 589px;
+    top: -13px;
+    width: 420px;
+    height: 372px;
+    background: radial-gradient(circle at 56% 38%, rgba(255,236,223,0.88) 0%, rgba(243,194,198,0.85) 38%, rgba(233,133,187,0.56) 65%, rgba(225,108,184,0.18) 100%);
+    border-radius: 44% 56% 52% 48% / 40% 48% 52% 60%;
+    filter: blur(16px);
+    opacity: 0.86;
+  }
+
+  .b4 {
+    left: 917px;
+    top: -24px;
+    width: 245px;
+    height: 188px;
+    background: radial-gradient(circle at 50% 50%, rgba(192,104,214,0.68) 0%, rgba(173,58,197,0.38) 52%, rgba(173,58,197,0.05) 100%);
+    border-radius: 50%;
+  }
+
+  .b5 {
+    left: 245px;
+    top: 281px;
+    width: 739px;
+    height: 484px;
+    background: linear-gradient(35deg, rgba(168,0,13,0.95) 0%, rgba(237,0,87,0.86) 28%, rgba(255,50,118,0.82) 52%, rgba(175,40,149,0.70) 78%, rgba(121,24,178,0.50) 100%);
+    transform: rotate(8deg);
+    border-radius: 30% 34% 26% 42% / 18% 26% 36% 34%;
+    filter: blur(14px);
+    opacity: 0.93;
+  }
+
+  .b6 {
+    left: 653px;
+    top: 395px;
+    width: 247px;
+    height: 217px;
+    background: radial-gradient(circle at 52% 48%, rgba(255,222,202,0.92) 0%, rgba(255,222,202,0.54) 30%, rgba(255,222,202,0.08) 62%, rgba(255,222,202,0) 100%);
+    border-radius: 50%;
+    filter: blur(10px);
+    opacity: 0.76;
+  }
+
+  .b7 {
+    left: 1044px;
+    top: 380px;
+    width: 171px;
+    height: 294px;
+    background: linear-gradient(180deg, rgba(217,110,230,0.80), rgba(121,0,117,0.78));
+    transform: rotate(-12deg);
+    border-radius: 46% 54% 42% 58% / 24% 30% 70% 76%;
+    filter: blur(14px);
+    opacity: 0.82;
+  }
+
+  .b8 {
+    left: 501px;
+    top: 615px;
+    width: 257px;
+    height: 114px;
+    background: linear-gradient(180deg, rgba(255,122,84,0.88), rgba(255,78,79,0.82));
+    transform: rotate(8deg);
+    border-radius: 46px;
+    filter: blur(8px);
+    opacity: 0.72;
+  }
+
+  .veil {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background:
+      radial-gradient(600px 340px at 68% 18%, rgba(255,217,230,0.20) 0%, rgba(255,217,230,0.06) 46%, rgba(255,217,230,0) 72%),
+      radial-gradient(420px 500px at 33% 27%, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0) 78%),
+      linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 38%, rgba(255,255,255,0.16) 49%, rgba(255,255,255,0.08) 57%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+  }
+
+  .logo {
+    position: absolute;
+    left: 59px;
+    top: 57px;
+    font-size: 23px;
+    color: #ffffff;
+    letter-spacing: 0;
+    font-weight: 400;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .logo strong {
+    font-weight: 700;
+  }
+
+  .title-wrap {
+    position: absolute;
+    left: 557px;
+    top: 370px;
+    color: #ffffff;
+    text-align: left;
+  }
+
+  .eyebrow {
+    font-size: 37px;
+    font-weight: 300;
+    line-height: 1;
+    margin: 0 0 16px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .main-title {
+    font-size: 82px;
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .year {
+    position: absolute;
+    left: 424px;
+    top: 183px;
+    font-size: 73px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: #ffffff;
+    white-space: nowrap;
+  }
+
+/* fix: correct background color */
+.slide { background: #CF82D6 !important; background-color: #CF82D6 !important; }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="bg-blur b1"></div>
+    <div class="bg-blur b2"></div>
+    <div class="bg-blur b3"></div>
+    <div class="bg-blur b4"></div>
+    <div class="bg-blur b5"></div>
+    <div class="bg-blur b6"></div>
+    <div class="bg-blur b7"></div>
+    <div class="bg-blur b8"></div>
+    <div class="veil"></div>
+
+    <div class="logo"><strong>Accenture</strong> Song</div>
+
+    <div class="title-wrap">
+      <div class="eyebrow">Accenture</div>
+      <div class="main-title">life trends</div>
+      <div class="year">2025</div>
+    </div>
+  </div>
+</body>
+</html>

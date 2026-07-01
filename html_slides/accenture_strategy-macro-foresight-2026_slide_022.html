@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Tariff impacts - Business considerations</title>
+<style>
+  body{
+    margin:0;
+    background:#e9e5ea;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ebe7eb;
+    color:#111;
+  }
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:26px;
+    background:#e8e4e7;
+    border-bottom:1px solid #cfc8d0;
+    font-size:12px;
+    color:#7e7a80;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:25px;
+    line-height:25px;
+    padding:0 12px;
+    box-sizing:border-box;
+  }
+  .tab.active{
+    background:#5c168d;
+    color:#fff;
+  }
+  .tab.under{
+    color:#4c2875;
+    border-bottom:2px solid #8b39d7;
+    height:26px;
+  }
+
+  .title{
+    position:absolute;
+    left:44px;
+    top:59px;
+    width:1168px;
+    font-size:29px;
+    line-height:0.97;
+    font-weight:800;
+    color:#000;
+  }
+  .subtitle{
+    position:absolute;
+    left:43px;
+    top:120px;
+    font-size:28px;
+    line-height:1;
+    color:#9620ff;
+    font-weight:800;
+  }
+
+  .ring{
+    position:absolute;
+    left:469px;
+    top:235px;
+    width:299px;
+    height:299px;
+    border:14px solid #d6d6d6;
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+
+  .center{
+    position:absolute;
+    left:531px;
+    top:342px;
+    width:113px;
+    height:113px;
+    border-radius:50%;
+    background:linear-gradient(180deg,#8f11e3 0%, #6c00b7 100%);
+    color:#fff;
+    text-align:center;
+    box-sizing:border-box;
+    padding-top:28px;
+  }
+  .center .icon{
+    position:absolute;
+    left:28px;
+    top:19px;
+    width:57px;
+    height:34px;
+  }
+  .center .icon span{
+    position:absolute;
+    width:7px;
+    height:7px;
+    border:2px solid #fff;
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+  .center .icon .n1{left:0;top:17px;}
+  .center .icon .n2{left:19px;top:0;}
+  .center .icon .n3{left:19px;top:17px;}
+  .center .icon .n4{left:19px;top:34px;}
+  .center .icon .n5{left:41px;top:0;}
+  .center .icon .n6{left:41px;top:17px;}
+  .center .line{
+    position:absolute;
+    background:#fff;
+    transform-origin:left center;
+    height:2px;
+  }
+  .center .l1{left:7px;top:22px;width:15px;transform:rotate(-45deg);}
+  .center .l2{left:7px;top:20px;width:15px;}
+  .center .l3{left:24px;top:8px;width:14px;transform:rotate(45deg);}
+  .center .l4{left:26px;top:21px;width:14px;}
+  .center .l5{left:24px;top:34px;width:14px;transform:rotate(-45deg);}
+  .center .txt{
+    position:relative;
+    top:11px;
+    font-size:17px;
+    line-height:1.02;
+    font-weight:700;
+  }
+
+  .node{
+    position:absolute;
+    border-radius:50%;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-weight:700;
+    line-height:1.02;
+    overflow:hidden;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+  }
+  .node::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    background:rgba(0,0,0,0.35);
+  }
+  .node span{
+    position:relative;
+    z-index:1;
+    font-size:18px;
+    text-shadow:0 1px 2px rgba(0,0,0,0.5);
+  }
+
+  .operational{
+    left:571px;
+    top:179px;
+    width:127px;
+    height:127px;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(255,255,255,0.18) 0 8%, transparent 9% 100%),
+      repeating-conic-gradient(from 0deg, #1a1037 0 8deg, #3c5169 8deg 14deg, #0d1525 14deg 22deg, #6b2c4e 22deg 28deg),
+      linear-gradient(135deg,#5e7386,#251733);
+  }
+  .technology{
+    left:383px;
+    top:370px;
+    width:127px;
+    height:127px;
+    background:
+      radial-gradient(circle at 45% 68%, rgba(255,199,0,0.55) 0 6%, transparent 7% 100%),
+      linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.4)),
+      linear-gradient(135deg,#050505 0%, #061437 42%, #001224 58%, #0a0a0a 100%);
+  }
+  .commercial{
+    left:761px;
+    top:370px;
+    width:127px;
+    height:127px;
+    background:
+      repeating-linear-gradient(90deg, #8a6834 0 8px, #d2b07d 8px 16px, #5f4727 16px 22px),
+      linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.25));
+  }
+  .people{
+    left:571px;
+    top:544px;
+    width:127px;
+    height:127px;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(255,255,255,0.18) 0 12%, transparent 13% 100%),
+      repeating-conic-gradient(from 0deg, #1a1a25 0 8deg, #6d7488 8deg 15deg, #23253a 15deg 22deg, #9aa2b6 22deg 28deg),
+      linear-gradient(135deg,#132646,#393344);
+  }
+
+  .connector{
+    position:absolute;
+    background:#bababa;
+  }
+  .vline{
+    width:4px;
+  }
+  .hline{
+    height:4px;
+  }
+
+  .bullet{
+    position:absolute;
+    font-size:14px;
+    line-height:1.17;
+    color:#2b2b2b;
+    font-style:italic;
+  }
+  .bullet ul{
+    margin:0;
+    padding-left:20px;
+  }
+  .bullet li{
+    margin:0 0 8px 0;
+  }
+
+  .banner{
+    position:absolute;
+    left:74px;
+    top:684px;
+    width:1190px;
+    height:29px;
+    background:#7c05c8;
+    color:#fff;
+    text-align:center;
+    font-size:14px;
+    font-weight:800;
+    line-height:29px;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:40px;
+    top:731px;
+    display:none;
+  }
+
+  .mark{
+    position:absolute;
+    left:41px;
+    top:729px;
+    display:none;
+  }
+
+  .accent-mark{
+    position:absolute;
+    left:39px;
+    top:730px;
+    display:none;
+  }
+
+  .footer-source{
+    position:absolute;
+    left:74px;
+    top:730px;
+    display:none;
+  }
+
+  .accent{
+    position:absolute;
+    left:39px;
+    top:726px;
+    display:none;
+  }
+
+  .mini-logo{
+    position:absolute;
+    left:40px;
+    top:726px;
+    width:24px;
+    height:16px;
+    display:none;
+  }
+
+  .bottom-logo{
+    position:absolute;
+    left:41px;
+    top:730px;
+    display:none;
+  }
+
+  .chev{
+    position:absolute;
+    left:40px;
+    top:728px;
+    display:none;
+  }
+
+  .footer{
+    position:absolute;
+    left:40px;
+    top:730px;
+    display:none;
+  }
+
+  .acc-mark{
+    position:absolute;
+    left:40px;
+    top:730px;
+    display:none;
+  }
+
+  .source{
+    position:absolute;
+    left:73px;
+    top:730px;
+    display:none;
+  }
+
+  .footerline{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .bottom{
+    position:absolute;
+    left:0;
+    top:720px;
+    display:none;
+  }
+
+  .srcmark{
+    position:absolute;
+    left:40px;
+    top:730px;
+    display:none;
+  }
+
+  .logo-arrow{
+    position:absolute;
+    left:41px;
+    top:729px;
+    display:none;
+  }
+
+  .foot-left{
+    position:absolute;
+    left:41px;
+    top:730px;
+    display:none;
+  }
+
+  .footer-real-left{
+    position:absolute;
+    left:42px;
+    top:731px;
+    display:none;
+  }
+
+  .acc-footer{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .source-row{
+    position:absolute;
+    left:42px;
+    top:730px;
+    display:none;
+  }
+
+  .footer-visible{
+    position:absolute;
+    left:41px;
+    top:729px;
+    display:none;
+  }
+
+  .bottom-left{
+    position:absolute;
+    left:41px;
+    top:729px;
+    display:none;
+  }
+
+  .footnote{
+    position:absolute;
+    left:41px;
+    top:729px;
+    display:none;
+  }
+
+  .copyright{
+    position:absolute;
+    right:57px;
+    top:730px;
+    display:none;
+  }
+
+  .page{
+    position:absolute;
+    right:18px;
+    top:730px;
+    display:none;
+  }
+
+  .real-footer-left{
+    position:absolute;
+    left:41px;
+    top:730px;
+    display:none;
+  }
+
+  .sourceText{
+    position:absolute;
+    left:73px;
+    top:730px;
+    display:none;
+  }
+
+  .actual-footer{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .footrow{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .footerbar{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .tiny{
+    font-size:12px;
+  }
+
+  .footer-left-visible{
+    position:absolute;
+    left:41px;
+    top:729px;
+    display:none;
+  }
+
+  .bottomnotes{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .source-area{
+    position:absolute;
+    left:41px;
+    top:729px;
+    display:none;
+  }
+
+  .copy-area{
+    position:absolute;
+    right:60px;
+    top:729px;
+    display:none;
+  }
+
+  .page-area{
+    position:absolute;
+    right:19px;
+    top:729px;
+    display:none;
+  }
+
+  .footer-now{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .brand{
+    position:absolute;
+    left:40px;
+    top:729px;
+    display:none;
+  }
+
+  .actual-bottom-left{
+    position:absolute;
+    left:42px;
+    top:730px;
+    display:none;
+  }
+
+  .footer-group{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .f-left{
+    position:absolute;
+    left:42px;
+    top:730px;
+    display:none;
+  }
+
+  .f-right{
+    position:absolute;
+    right:58px;
+    top:730px;
+    display:none;
+  }
+
+  .p-num{
+    position:absolute;
+    right:18px;
+    top:730px;
+    display:none;
+  }
+
+  .bottomrow{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .footerMain{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+
+  .visible-footer{
+    position:absolute;
+    left:42px;
+    top:731px;
+    width:1198px;
+    height:18px;
+    display:block;
+  }
+  .visible-footer .arrow{
+    position:absolute;
+    left:0;
+    top:-1px;
+    color:#9820ff;
+    font-size:34px;
+    line-height:16px;
+    font-weight:900;
+  }
+  .visible-footer .src{
+    position:absolute;
+    left:31px;
+    top:1px;
+    font-size:11px;
+    color:#888;
+  }
+  .visible-footer .copy{
+    position:absolute;
+    right:53px;
+    top:1px;
+    font-size:11px;
+    color:#666;
+  }
+  .visible-footer .pg{
+    position:absolute;
+    right:0;
+    top:1px;
+    font-size:11px;
+    color:#666;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar">
+    <div class="tab active" style="left:0px;">Top 10 trends</div>
+    <div class="tab" style="left:106px;">Multi-speed growth</div>
+    <div class="tab under" style="left:240px;">Tariff impacts</div>
+    <div class="tab" style="left:360px;">Financial fragility</div>
+    <div class="tab" style="left:509px;">Affordability</div>
+    <div class="tab" style="left:629px;">AI productivity</div>
+    <div class="tab" style="left:751px;">China exports</div>
+    <div class="tab" style="left:878px;">Europe struggle</div>
+    <div class="tab" style="left:1014px;">AI arms race</div>
+    <div class="tab" style="left:1137px;">Power crunch</div>
+    <div class="tab" style="left:1238px; padding:0 8px;">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">
+    Resiliency across commercials, operations, people and tech will be the key for companies<br>
+    to mitigate tariff impacts and reduce vulnerability to potential future trade policy shocks
+  </div>
+  <div class="subtitle">2. Business considerations</div>
+
+  <div class="ring"></div>
+
+  <div class="node operational"><span>Operational<br>Resilience</span></div>
+  <div class="node technology"><span>Technology<br>Resilience</span></div>
+  <div class="node commercial"><span>Commercial<br>Resilience</span></div>
+  <div class="node people"><span>People<br>Resilience</span></div>
+
+  <div class="center">
+    <div class="icon">
+      <span class="n1"></span><span class="n2"></span><span class="n3"></span>
+      <span class="n4"></span><span class="n5"></span><span class="n6"></span>
+      <div class="line l1"></div>
+      <div class="line l2"></div>
+      <div class="line l3"></div>
+      <div class="line l4"></div>
+      <div class="line l5"></div>
+    </div>
+    <div class="txt">Enterprise and<br>Financial<br>Resilience</div>
+  </div>
+
+  <div class="connector hline" style="left:323px; top:436px; width:52px;"></div>
+  <div class="connector vline" style="left:321px; top:345px; height:191px;"></div>
+
+  <div class="connector hline" style="left:696px; top:199px; width:79px;"></div>
+  <div class="connector vline" style="left:802px; top:154px; height:158px;"></div>
+  <div class="connector hline" style="left:775px; top:199px; width:26px;"></div>
+
+  <div class="connector hline" style="left:888px; top:430px; width:53px;"></div>
+  <div class="connector vline" style="left:938px; top:382px; height:149px;"></div>
+
+  <div class="connector hline" style="left:696px; top:602px; width:134px;"></div>
+  <div class="connector vline" style="left:832px; top:547px; height:116px;"></div>
+
+  <div class="bullet" style="left:51px; top:356px; width:253px;">
+    <ul>
+      <li>Embed autonomous AI agents across functions to continuously monitor real-time data and optimize decision making, e.g., flag risk exposure to new tariff codes</li>
+      <li>Accelerate AI efforts to drive enterprise productivity</li>
+      <li>Enable more secure processes given the risk of geopolitical and cyber threats</li>
+    </ul>
+  </div>
+
+  <div class="bullet" style="left:804px; top:163px; width:365px;">
+    <ul>
+      <li>Supply chain resilience to drive strategic changes in sourcing and procurement, as well as potential changes to network strategy</li>
+      <li>Cost and productivity reinvention covering spend and process enhancement to protect margins and boost productivity</li>
+    </ul>
+  </div>
+
+  <div class="bullet" style="left:961px; top:395px; width:280px;">
+    <ul>
+      <li>Pricing and commercial strategy given tariff uncertainties where companies consider:<br>
+        &ndash;&nbsp;&nbsp;How much cost to absorb?<br>
+        &ndash;&nbsp;&nbsp;How much to pass on?<br>
+        &ndash;&nbsp;&nbsp;Commercial structures that enable these changes
+      </li>
+      <li>Thinking opportunistically about growth and M&amp;A in a slower economic backdrop</li>
+    </ul>
+  </div>
+
+  <div class="bullet" style="left:845px; top:557px; width:346px;">
+    <ul>
+      <li>Shift in organizational structure</li>
+      <li>Upskilling individuals across geographies (incl. to support re-industrialization agendas)</li>
+      <li>Empowering multidisciplinary resilience squads (e.g., finance, legal. ops work together)</li>
+    </ul>
+  </div>
+
+  <div class="banner">Strengthen enterprise resilience through regular Scenario Planning exercises given the uncertain macro environment</div>
+
+  <div class="visible-footer">
+    <div class="arrow">&gt;</div>
+    <div class="src">Source(s): Accenture Strategy analysis</div>
+    <div class="copy">Copyright &copy; 2025 Accenture. All rights reserved.</div>
+    <div class="pg">22</div>
+  </div>
+</div>
+</body>
+</html>

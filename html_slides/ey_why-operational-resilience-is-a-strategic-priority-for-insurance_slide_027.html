@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1365, initial-scale=1.0" />
+<title>Climate Risk Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #dfdfdf;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .frame {
+    width: 1365px;
+    height: 768px;
+    margin: 0 auto;
+    position: relative;
+    background: #dfdfdf;
+  }
+  .slide {
+    position: absolute;
+    left: 31px;
+    top: 30px;
+    width: 1302px;
+    height: 706px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 57% 34%, rgba(182,158,255,0.52) 0%, rgba(113,94,184,0.22) 34%, rgba(22,26,64,0.02) 70%),
+      linear-gradient(90deg, rgba(10,11,20,1) 0%, rgba(22,26,56,0.98) 18%, rgba(38,35,82,0.94) 49%, rgba(21,28,78,0.97) 79%, rgba(8,14,46,1) 100%);
+  }
+  .slide > div,
+  .slide > svg {
+    position: absolute;
+  }
+
+  .sky-glow {
+    left: 270px;
+    top: 104px;
+    width: 815px;
+    height: 320px;
+    z-index: 2;
+    background: radial-gradient(ellipse at center, rgba(191,166,255,0.42) 0%, rgba(136,114,218,0.24) 34%, rgba(65,54,120,0.05) 63%, rgba(65,54,120,0) 75%);
+    filter: blur(2px);
+  }
+
+  .water {
+    left: 0;
+    top: 438px;
+    width: 1302px;
+    height: 268px;
+    z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(11,16,48,0.18) 0%, rgba(48,38,103,0.18) 13%, rgba(102,90,174,0.27) 48%, rgba(116,103,190,0.34) 72%, rgba(81,93,194,0.28) 100%);
+  }
+
+  .horizon {
+    left: 0;
+    top: 428px;
+    width: 1302px;
+    height: 2px;
+    background: rgba(205,205,225,0.35);
+    z-index: 5;
+  }
+
+  .shoreline {
+    left: 0;
+    top: 347px;
+    width: 1302px;
+    height: 120px;
+    z-index: 4;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(8,10,29,0.72) 42%, rgba(3,5,15,0.98) 100%);
+    clip-path: polygon(0 72%, 3% 71%, 7% 75%, 11% 73%, 16% 77%, 22% 70%, 28% 74%, 33% 68%, 39% 73%, 44% 67%, 50% 72%, 55% 66%, 61% 70%, 67% 64%, 73% 69%, 79% 62%, 86% 67%, 92% 61%, 97% 65%, 100% 63%, 100% 100%, 0 100%);
+  }
+
+  .left-six-ring {
+    left: -166px;
+    top: 38px;
+    width: 540px;
+    height: 540px;
+    border: 102px solid rgba(206,206,214,0.44);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    transform: rotate(-6deg);
+    z-index: 12;
+  }
+
+  .left-six-body {
+    left: -53px;
+    top: 284px;
+    width: 465px;
+    height: 425px;
+    border-radius: 0 0 230px 230px;
+    background: rgba(210,210,217,0.42);
+    z-index: 11;
+  }
+
+  .left-six-hole {
+    left: 26px;
+    top: 391px;
+    width: 294px;
+    height: 210px;
+    border-radius: 50%;
+    background: rgba(6,9,35,0.66);
+    z-index: 12;
+  }
+
+  .title-small {
+    left: 594px;
+    top: 12px;
+    width: 220px;
+    z-index: 40;
+    color: #f1f1f1;
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .title-main {
+    left: 206px;
+    top: 38px;
+    width: 980px;
+    z-index: 40;
+    color: #ffe600;
+    font-size: 142px;
+    font-weight: 800;
+    line-height: 0.93;
+    letter-spacing: -0.03em;
+    text-align: left;
+  }
+
+  .title-sub {
+    left: 428px;
+    top: 156px;
+    width: 500px;
+    z-index: 40;
+    color: #ffe600;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+    text-align: left;
+  }
+
+  .jump {
+    right: -8px;
+    top: -1px;
+    width: 68px;
+    height: 44px;
+    z-index: 60;
+    background: #8e8f98;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 10px;
+    text-align: center;
+    padding-top: 11px;
+    box-sizing: border-box;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .bottom-band {
+    left: 0;
+    bottom: 0;
+    width: 1302px;
+    height: 10px;
+    z-index: 50;
+    background: linear-gradient(90deg, #f3e61c 0%, #f2dd2c 38%, #bb46ff 69%, #4ea0ff 100%);
+  }
+
+  .plant-svg,
+  .smoke-svg,
+  .lights-svg,
+  .reflection-svg {
+    left: 0;
+    top: 0;
+    width: 1302px;
+    height: 706px;
+  }
+  .plant-svg { z-index: 6; }
+  .smoke-svg { z-index: 7; opacity: 0.75; }
+  .lights-svg { z-index: 8; }
+  .reflection-svg { z-index: 3; opacity: 0.78; }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <div class="slide">
+      <div class="sky-glow"></div>
+      <div class="water"></div>
+      <div class="shoreline"></div>
+      <div class="horizon"></div>
+
+      <svg class="reflection-svg" viewBox="0 0 1302 706" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="waterGlow" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffe08a" stop-opacity="0.82"/>
+            <stop offset="38%" stop-color="#ffc34f" stop-opacity="0.56"/>
+            <stop offset="100%" stop-color="#ffc34f" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="redGlow" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff1c6b" stop-opacity="0.78"/>
+            <stop offset="100%" stop-color="#ff1c6b" stop-opacity="0"/>
+          </linearGradient>
+          <filter id="blur2"><feGaussianBlur stdDeviation="1.5"/></filter>
+        </defs>
+        <rect x="67" y="518" width="2" height="56" fill="url(#redGlow)" filter="url(#blur2)"/>
+        <rect x="180" y="456" width="2" height="144" fill="url(#redGlow)" filter="url(#blur2)"/>
+        <rect x="292" y="417" width="2" height="158" fill="url(#waterGlow)" filter="url(#blur2)"/>
+        <rect x="328" y="418" width="2" height="145" fill="url(#waterGlow)" filter="url(#blur2)"/>
+        <rect x="356" y="418" width="2" height="153" fill="url(#waterGlow)" filter="url(#blur2)"/>
+        <rect x="492" y="518" width="2" height="76" fill="url(#redGlow)" filter="url(#blur2)"/>
+        <rect x="618" y="417" width="3" height="172" fill="url(#waterGlow)" filter="url(#blur2)"/>
+        <rect x="626" y="510" width="2" height="70" fill="url(#redGlow)" filter="url(#blur2)"/>
+        <rect x="684" y="418" width="4" height="175" fill="url(#waterGlow)" filter="url(#blur2)"/>
+        <rect x="703" y="420" width="3" height="157" fill="url(#waterGlow)" filter="url(#blur2)"/>
+        <rect x="761" y="423" width="3" height="152" fill="url(#waterGlow)" filter="url(#blur2)"/>
+        <rect x="805" y="420" width="3" height="177" fill="url(#waterGlow)" filter="url(#blur2)"/>
+        <rect x="829" y="420" width="4" height="166" fill="url(#waterGlow)" filter="url(#blur2)"/>
+        <rect x="842" y="425" width="2" height="145" fill="url(#waterGlow)" filter="url(#blur2)"/>
+        <rect x="856" y="423" width="2" height="158" fill="url(#waterGlow)" filter="url(#blur2)"/>
+        <rect x="870" y="425" width="2" height="148" fill="url(#waterGlow)" filter="url(#blur2)"/>
+        <rect x="893" y="425" width="2" height="141" fill="url(#waterGlow)" filter="url(#blur2)"/>
+      </svg>
+
+      <svg class="plant-svg" viewBox="0 0 1302 706" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="towerGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#565f78"/>
+            <stop offset="22%" stop-color="#767b8f"/>
+            <stop offset="100%" stop-color="#c7c2c7"/>
+          </linearGradient>
+          <linearGradient id="towerDark" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1a2148"/>
+            <stop offset="100%" stop-color="#686777"/>
+          </linearGradient>
+        </defs>
+
+        <path d="M178 288 L232 288 L220 419 L187 419 Z" fill="url(#towerGrad)" opacity="0.76"/>
+        <path d="M291 275 L355 275 L343 419 L304 419 Z" fill="url(#towerDark)" opacity="0.97"/>
+        <path d="M427 276 L484 276 L472 420 L438 420 Z" fill="url(#towerDark)" opacity="0.97"/>
+        <path d="M565 278 L623 278 L610 419 L578 419 Z" fill="url(#towerDark)" opacity="0.98"/>
+
+        <path d="M59 300 L106 300 L103 419 L64 419 Z" fill="#0a102d" opacity="0.95"/>
+        <path d="M803 318 L908 318 L913 419 L801 419 Z" fill="#152346" opacity="0.92"/>
+        <path d="M969 347 L1029 347 L1029 419 L969 419 Z" fill="#132040" opacity="0.92"/>
+        <path d="M1046 348 L1061 348 L1061 419 L1046 419 Z" fill="#101a37" opacity="0.86"/>
+
+        <rect x="521" y="317" width="73" height="42" fill="#f6c845" opacity="0.92"/>
+        <rect x="649" y="319" width="80" height="44" fill="#ffd85d" opacity="0.94"/>
+        <rect x="804" y="318" width="106" height="49" fill="#ffd54f" opacity="0.96"/>
+
+        <rect x="520" y="359" width="98" height="17" fill="#7c695c" opacity="0.75"/>
+        <rect x="647" y="363" width="95" height="15" fill="#7c695c" opacity="0.75"/>
+        <rect x="798" y="367" width="130" height="16" fill="#7c695c" opacity="0.75"/>
+
+        <g opacity="0.98">
+          <rect x="529" y="323" width="5" height="8" fill="#fff0a5"/>
+          <rect x="539" y="323" width="5" height="8" fill="#fff0a5"/>
+          <rect x="549" y="323" width="5" height="8" fill="#fff0a5"/>
+          <rect x="559" y="323" width="5" height="8" fill="#fff0a5"/>
+          <rect x="569" y="323" width="5" height="8" fill="#fff0a5"/>
+          <rect x="579" y="323" width="5" height="8" fill="#fff0a5"/>
+          <rect x="530" y="336" width="5" height="8" fill="#fff0a5"/>
+          <rect x="540" y="336" width="5" height="8" fill="#fff0a5"/>
+          <rect x="550" y="336" width="5" height="8" fill="#fff0a5"/>
+          <rect x="560" y="336" width="5" height="8" fill="#fff0a5"/>
+          <rect x="570" y="336" width="5" height="8" fill="#fff0a5"/>
+          <rect x="580" y="336" width="5" height="8" fill="#fff0a5"/>
+
+          <rect x="657" y="325" width="6" height="9" fill="#fff0a5"/>
+          <rect x="669" y="325" width="6" height="9" fill="#fff0a5"/>
+          <rect x="681" y="325" width="6" height="9" fill="#fff0a5"/>
+          <rect x="693" y="325" width="6" height="9" fill="#fff0a5"/>
+          <rect x="705" y="325" width="6" height="9" fill="#fff0a5"/>
+          <rect x="717" y="325" width="6" height="9" fill="#fff0a5"/>
+          <rect x="655" y="339" width="6" height="9" fill="#fff0a5"/>
+          <rect x="667" y="339" width="6" height="9" fill="#fff0a5"/>
+          <rect x="679" y="339" width="6" height="9" fill="#fff0a5"/>
+          <rect x="691" y="339" width="6" height="9" fill="#fff0a5"/>
+          <rect x="703" y="339" width="6" height="9" fill="#fff0a5"/>
+          <rect x="715" y="339" width="6" height="9" fill="#fff0a5"/>
+
+          <rect x="814" y="323" width="6" height="10" fill="#fff0a5"/>
+          <rect x="826" y="323" width="6" height="10" fill="#fff0a5"/>
+          <rect x="838" y="323" width="6" height="10" fill="#fff0a5"/>
+          <rect x="850" y="323" width="6" height="10" fill="#fff0a5"/>
+          <rect x="862" y="323" width="6" height="10" fill="#fff0a5"/>
+          <rect x="874" y="323" width="6" height="10" fill="#fff0a5"/>
+          <rect x="886" y="323" width="6" height="10" fill="#fff0a5"/>
+          <rect x="813" y="338" width="6" height="10" fill="#fff0a5"/>
+          <rect x="825" y="338" width="6" height="10" fill="#fff0a5"/>
+          <rect x="837" y="338" width="6" height="10" fill="#fff0a5"/>
+          <rect x="849" y="338" width="6" height="10" fill="#fff0a5"/>
+          <rect x="861" y="338" width="6" height="10" fill="#fff0a5"/>
+          <rect x="873" y="338" width="6" height="10" fill="#fff0a5"/>
+          <rect x="885" y="338" width="6" height="10" fill="#fff0a5"/>
+        </g>
+
+        <line x1="1004" y1="346" x2="1004" y2="419" stroke="#1c2948" stroke-width="3"/>
+        <line x1="993" y1="350" x2="1015" y2="350" stroke="#d8dae5" stroke-width="2"/>
+        <line x1="1029" y1="347" x2="1029" y2="419" stroke="#1c2948" stroke-width="3"/>
+
+        <g opacity="0.16" stroke="#ced3e6" stroke-width="2">
+          <line x1="63" y1="350" x2="165" y2="342"/>
+          <line x1="165" y1="342" x2="245" y2="355"/>
+          <line x1="245" y1="355" x2="371" y2="345"/>
+          <line x1="371" y1="345" x2="465" y2="353"/>
+        </g>
+
+        <circle cx="321" cy="275" r="2" fill="#ff1d6a"/>
+        <circle cx="337" cy="275" r="2" fill="#ff1d6a"/>
+        <circle cx="491" cy="275" r="2" fill="#ff1d6a"/>
+        <circle cx="628" cy="277" r="2" fill="#ff1d6a"/>
+      </svg>
+
+      <svg class="smoke-svg" viewBox="0 0 1302 706" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <filter id="smokeBlur"><feGaussianBlur stdDeviation="12"/></filter>
+          <linearGradient id="smokeFade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#b3aec2" stop-opacity="0.44"/>
+            <stop offset="100%" stop-color="#b3aec2" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M317 286 C279 236, 237 217, 198 214 C243 201, 312 205, 346 237 C366 256, 389 285, 415 287 C458 289, 475 253, 441 223 C502 222, 549 238, 567 270 C585 302, 629 314, 690 307 C648 278, 644 236, 688 226 C747 212, 810 237, 840 274" fill="none" stroke="url(#smokeFade)" stroke-width="30" stroke-linecap="round" filter="url(#smokeBlur)"/>
+        <path d="M480 288 C451 245, 430 229, 385 220 C446 217, 489 227, 514 253 C531 270, 560 295, 615 286" fill="none" stroke="url(#smokeFade)" stroke-width="24" stroke-linecap="round" filter="url(#smokeBlur)"/>
+        <path d="M623 291 C601 255, 589 239, 574 227 C615 226, 645 233, 664 252 C687 275, 722 293, 782 292" fill="none" stroke="url(#smokeFade)" stroke-width="20" stroke-linecap="round" filter="url(#smokeBlur)"/>
+      </svg>
+
+      <svg class="lights-svg" viewBox="0 0 1302 706" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <filter id="lightBlur"><feGaussianBlur stdDeviation="4"/></filter>
+        </defs>
+        <ellipse cx="554" cy="342" rx="39" ry="16" fill="#ffcb43" fill-opacity="0.35" filter="url(#lightBlur)"/>
+        <ellipse cx="690" cy="345" rx="46" ry="18" fill="#ffcb43" fill-opacity="0.35" filter="url(#lightBlur)"/>
+        <ellipse cx="856" cy="344" rx="58" ry="20" fill="#ffcb43" fill-opacity="0.35" filter="url(#lightBlur)"/>
+      </svg>
+
+      <div class="left-six-ring"></div>
+      <div class="left-six-body"></div>
+      <div class="left-six-hole"></div>
+
+      <div class="title-small">Chapter 6</div>
+      <div class="title-main">CLIMATE RISK:</div>
+      <div class="title-sub">taking the long-term view</div>
+
+      <div class="jump">JUMP TO<br>CONTENTS</div>
+      <div class="bottom-band"></div>
+    </div>
+  </div>
+</body>
+</html>

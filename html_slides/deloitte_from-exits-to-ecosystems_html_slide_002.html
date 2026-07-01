@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#111;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#0f4960;
+    color:#f4f4f2;
+  }
+  .title{
+    position:absolute;
+    left:50px;
+    top:45px;
+    width:1160px;
+    font-size:38px;
+    line-height:1.14;
+    font-weight:700;
+    color:#f2f2f0;
+    letter-spacing:-0.01em;
+  }
+  .sub{z-index:1;
+    position:absolute;
+    font-size:29px;
+    line-height:1.1;
+    font-weight:300;
+    color:#eef1f2;
+  }
+  .sub.left{left:259px; top:139px;}
+  .sub.right{left:809px; top:139px;}
+
+  .rule{
+    position:absolute;
+    height:0;
+    border-top:2px solid #d9e1e5;
+  }
+  .rule.r1{left:302px; top:196px; width:301px;}
+  .rule.r2{left:838px; top:194px; width:303px;}
+  .rule.r3{left:302px; top:473px; width:301px;}
+  .rule.r4{left:838px; top:472px; width:303px;}
+
+  .diag{
+    position:absolute;
+    width:25px;
+    height:2px;
+    background:#d9e1e5;
+    transform-origin:left center;
+  }
+  .diag.d1{left:284px; top:214px; transform:rotate(-45deg);}
+  .diag.d2{left:820px; top:212px; transform:rotate(-45deg);}
+  .diag.d3{left:284px; top:491px; transform:rotate(-45deg);}
+  .diag.d4{left:820px; top:490px; transform:rotate(-45deg);}
+
+  .donut{
+    position:absolute;
+    width:206px;
+    height:206px;
+  }
+  .donut svg{
+    position:absolute;
+    left:0;
+    top:0;
+    width:206px;
+    height:206px;
+  }
+  .ring-bg{
+    stroke:#f1f1f1;
+    stroke-width:26;
+    fill:none;
+  }
+  .ring-fg{
+    stroke:#6f8d9f;
+    stroke-width:26;
+    fill:none;
+    stroke-linecap:butt;
+    transform:rotate(-90deg);
+    transform-origin:103px 103px;
+  }
+  .iconwrap{
+    position:absolute;
+    left:43px;
+    top:43px;
+    width:120px;
+    height:120px;
+  }
+
+  .stat{
+    position:absolute;
+    color:#f4f4f2;
+  }
+  .pct{
+    font-size:66px;
+    line-height:0.95;
+    font-weight:700;
+    letter-spacing:-0.03em;
+    color:#f3f3f1;
+  }
+  .desc{
+    margin-top:10px;
+    width:285px;
+    font-size:17px;
+    line-height:1.13;
+    font-weight:300;
+    color:#f1f2f2;
+  }
+  .desc b{
+    font-weight:700;
+  }
+
+  .foot{
+    position:absolute;
+    left:49px;
+    bottom:15px;
+    font-size:13px;
+    line-height:1;
+    font-weight:300;
+    color:#e4eaee;
+  }
+
+  .home{
+    position:absolute;
+    left:672px;
+    bottom:8px;
+    width:20px;
+    height:20px;
+    opacity:0.85;
+  }
+
+  .logo{
+    position:absolute;
+    right:12px;
+    bottom:10px;
+    width:56px;
+    height:50px;
+  }
+
+  .stroke-icon path, .stroke-icon line, .stroke-icon polyline, .stroke-icon polygon, .stroke-icon circle, .stroke-icon rect, .stroke-icon ellipse{
+    stroke:#f4f1f3;
+    fill:none;
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+  .thin path, .thin line, .thin polyline, .thin polygon, .thin circle, .thin rect, .thin ellipse{
+    stroke-width:2.6;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">Some key numbers on how the global public is feeling</div>
+
+  <div class="sub left">2024 in retrospect</div>
+  <div class="sub right">Outlook for 2025</div>
+
+  <div class="diag d1"></div><div class="rule r1"></div>
+  <div class="diag d2"></div><div class="rule r2"></div>
+  <div class="diag d3"></div><div class="rule r3"></div>
+  <div class="diag d4"></div><div class="rule r4"></div>
+
+  <div class="donut" style="left:129px; top:202px;">
+    <svg viewBox="0 0 206 206" aria-hidden="true">
+      <circle class="ring-bg" cx="103" cy="103" r="89"></circle>
+      <circle class="ring-fg" cx="103" cy="103" r="89" stroke-dasharray="201 358"></circle>
+    </svg>
+    <div class="iconwrap">
+      <svg class="stroke-icon thin" viewBox="0 0 120 120">
+        <path d="M62 88c0-9 2-15 8-21l10-10V33c0-6-4-10-10-10H43c-6 0-10 4-10 10 0 3 2 6 5 8-5 1-9 5-9 10s4 9 9 10c-5 2-8 5-8 10s4 8 9 9c-4 2-6 5-6 9 0 6 5 10 11 10h18z"/>
+        <rect x="76" y="21" width="24" height="48" rx="4" ry="4"></rect>
+        <circle cx="84" cy="31" r="1.8" fill="#f4f1f3" stroke="none"></circle>
+      </svg>
+    </div>
+  </div>
+
+  <div class="stat" style="left:361px; top:225px; width:310px;">
+    <div class="pct">65%</div>
+    <div class="desc">
+      on average across 31<br>
+      countries say <b>“2024 was a<br>
+      bad year for my country”</b>,<br>
+      down from 70% last year<br>
+      and 73% the year before.
+    </div>
+  </div>
+
+  <div class="donut" style="left:666px; top:201px;">
+    <svg viewBox="0 0 206 206" aria-hidden="true">
+      <circle class="ring-bg" cx="103" cy="103" r="89"></circle>
+      <circle class="ring-fg" cx="103" cy="103" r="89" stroke-dasharray="162 397"></circle>
+    </svg>
+    <div class="iconwrap">
+      <svg class="stroke-icon thin" viewBox="0 0 120 120">
+        <path d="M34 98V82H25l7-18c4-12 16-19 29-19 12 0 21 4 29 14"></path>
+        <path d="M51 98V82"></path>
+        <g transform="translate(55,14)">
+          <polygon points="22,0 28,7 37,4 38,14 48,15 44,24 50,32 41,37 43,47 33,45 28,53 20,47 11,51 10,40 0,37 5,28 0,20 10,17 9,8 18,10"></polygon>
+          <circle cx="25" cy="26" r="15"></circle>
+          <circle cx="20" cy="22" r="2"></circle>
+          <circle cx="30" cy="22" r="2"></circle>
+          <path d="M18 30c3 3 11 3 14 0"></path>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="stat" style="left:899px; top:224px; width:308px;">
+    <div class="pct">71%</div>
+    <div class="desc">
+      on average across 31<br>
+      countries say they are<br>
+      <b>“optimistic that next year<br>
+      will be a better year than<br>
+      this year”</b>, up from 70% last<br>
+      year and 65% the year<br>
+      before.
+    </div>
+  </div>
+
+  <div class="donut" style="left:115px; top:470px;">
+    <svg viewBox="0 0 206 206" aria-hidden="true">
+      <circle class="ring-bg" cx="103" cy="103" r="89"></circle>
+      <circle class="ring-fg" cx="103" cy="103" r="89" stroke-dasharray="274 285"></circle>
+    </svg>
+    <div class="iconwrap" style="left:39px; top:39px;">
+      <svg class="stroke-icon thin" viewBox="0 0 120 120">
+        <circle cx="29" cy="24" r="8"></circle>
+        <path d="M20 35c-6 2-10 8-10 15v12h18V50c0-6-2-11-8-15z"></path>
+
+        <circle cx="91" cy="24" r="8"></circle>
+        <path d="M82 35c-6 2-10 8-10 15v17h19V50c0-7-4-13-9-15z"></path>
+
+        <circle cx="60" cy="58" r="8"></circle>
+        <path d="M48 69c0-8 5-13 12-13s12 5 12 13v18H48z"></path>
+
+        <circle cx="18" cy="56" r="7"></circle>
+        <path d="M9 66c-4 2-7 6-7 11v15h16V77c0-5-3-9-9-11z"></path>
+
+        <circle cx="102" cy="56" r="7"></circle>
+        <path d="M93 66c-6 2-9 6-9 11v15h16V77c0-5-3-9-7-11z"></path>
+
+        <path d="M31 79c8 3 16 6 29 6s21-3 29-6"></path>
+      </svg>
+    </div>
+  </div>
+
+  <div class="stat" style="left:362px; top:499px; width:317px;">
+    <div class="pct">51%</div>
+    <div class="desc">
+      on average across 31<br>
+      countries say <b>“2024 was a<br>
+      bad year for me and my<br>
+      family”</b>, down from 53%<br>
+      last year and 56% the year<br>
+      before.
+    </div>
+  </div>
+
+  <div class="donut" style="left:651px; top:469px;">
+    <svg viewBox="0 0 206 206" aria-hidden="true">
+      <circle class="ring-bg" cx="103" cy="103" r="89"></circle>
+      <circle class="ring-fg" cx="103" cy="103" r="89" stroke-dasharray="275 284"></circle>
+    </svg>
+    <div class="iconwrap">
+      <svg class="stroke-icon thin" viewBox="0 0 120 120">
+        <ellipse cx="40" cy="28" rx="21" ry="10"></ellipse>
+        <path d="M19 28v46c0 6 9 11 21 11s21-5 21-11V28"></path>
+        <path d="M19 40c0 6 9 11 21 11s21-5 21-11"></path>
+        <path d="M19 52c0 6 9 11 21 11s21-5 21-11"></path>
+        <path d="M19 64c0 6 9 11 21 11s21-5 21-11"></path>
+
+        <ellipse cx="90" cy="53" rx="20" ry="10"></ellipse>
+        <path d="M70 53v28c0 6 9 10 20 10s20-4 20-10V53"></path>
+        <path d="M70 63c0 6 9 10 20 10s20-4 20-10"></path>
+        <path d="M70 73c0 6 9 10 20 10s20-4 20-10"></path>
+      </svg>
+    </div>
+  </div>
+
+  <div class="stat" style="left:900px; top:498px; width:310px;">
+    <div class="pct">51%</div>
+    <div class="desc">
+      on average across 31<br>
+      countries say <b>“The global<br>
+      economy will be stronger<br>
+      next year than it was this<br>
+      year”</b>, up from 50% last year<br>
+      and 46% the year before.
+    </div>
+  </div>
+
+  <div class="foot">© Ipsos Predictions 2025 Service Report</div>
+
+  <div class="home">
+    <svg viewBox="0 0 24 24" class="stroke-icon thin" style="width:20px;height:20px;">
+      <path d="M4 11l8-7 8 7"></path>
+      <path d="M7 10v10h10V10"></path>
+    </svg>
+  </div>
+
+  <div class="logo">
+    <svg viewBox="0 0 56 50" style="width:56px;height:50px;">
+      <path d="M0 0 H56 L49 50 H0 Z" fill="#3451b2"></path>
+      <path d="M27 0 H56 L49 50 H24 Z" fill="#23b6a3"></path>
+      <path d="M23 7c9 0 12 9 8 14 6 3 8 12 0 17-7 5-15 0-15-9V18c0-7 3-11 7-11z" fill="#3451b2" opacity="0.95"></path>
+      <path d="M31 4c9 0 12 9 8 14 6 3 8 12 0 17-7 5-15 0-15-9V15c0-7 3-11 7-11z" fill="#23b6a3" opacity="0.95"></path>
+      <text x="6" y="42" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Ipsos</text>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

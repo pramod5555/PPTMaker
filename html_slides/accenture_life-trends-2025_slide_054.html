@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Trend 4: the dignity of work</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #0d2555;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(83,149,255,0.30) 0%, rgba(44,96,203,0.24) 42%, rgba(7,28,87,0.76) 100%),
+      linear-gradient(90deg, #2f77da 0%, #4c92f0 18%, #2a68d4 36%, #245ec7 52%, #194ca9 68%, #123e90 82%, #0a2359 100%);
+  }
+
+  .blur-backdrop {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background:
+      radial-gradient(ellipse at 16% 14%, rgba(39,83,255,0.65) 0%, rgba(39,83,255,0.34) 10%, rgba(39,83,255,0.00) 22%),
+      radial-gradient(ellipse at 24% 28%, rgba(45,78,255,0.52) 0%, rgba(45,78,255,0.26) 12%, rgba(45,78,255,0.00) 22%),
+      radial-gradient(ellipse at 58% 12%, rgba(19,28,233,0.65) 0%, rgba(19,28,233,0.28) 12%, rgba(19,28,233,0.00) 24%),
+      radial-gradient(ellipse at 70% 16%, rgba(25,34,122,0.48) 0%, rgba(25,34,122,0.18) 10%, rgba(25,34,122,0.00) 20%),
+      radial-gradient(ellipse at 61% 64%, rgba(5,10,35,0.76) 0%, rgba(5,10,35,0.45) 25%, rgba(5,10,35,0.00) 46%),
+      radial-gradient(ellipse at 88% 68%, rgba(5,17,64,0.88) 0%, rgba(5,17,64,0.55) 18%, rgba(5,17,64,0.00) 34%);
+    filter: blur(2px);
+  }
+
+  .building {
+    position: absolute;
+    left: 224px;
+    top: 381px;
+    width: 418px;
+    height: 292px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.03)),
+      linear-gradient(90deg, rgba(197,230,255,0.82) 0 24%, rgba(135,181,238,0.70) 24% 30%, rgba(220,240,255,0.82) 30% 56%, rgba(138,183,242,0.66) 56% 62%, rgba(231,243,255,0.84) 62% 100%);
+    border-radius: 8px;
+    filter: blur(2.5px);
+    opacity: 0.8;
+  }
+
+  .building:before {
+    content: "";
+    position: absolute;
+    left: 34px;
+    top: 44px;
+    width: 340px;
+    height: 160px;
+    background:
+      repeating-linear-gradient(180deg,
+        rgba(122,164,223,0.9) 0 22px,
+        rgba(241,246,255,0.92) 22px 46px,
+        rgba(214,43,34,0.55) 46px 54px,
+        rgba(241,246,255,0.92) 54px 82px
+      );
+    opacity: 0.75;
+    filter: blur(1px);
+  }
+
+  .building:after {
+    content: "";
+    position: absolute;
+    left: 56px;
+    top: 176px;
+    width: 280px;
+    height: 78px;
+    background:
+      repeating-linear-gradient(90deg,
+        rgba(210,224,238,0.85) 0 16px,
+        rgba(188,208,228,0.78) 16px 28px,
+        rgba(229,237,245,0.88) 28px 44px
+      );
+    opacity: 0.58;
+    filter: blur(1.5px);
+  }
+
+  .white-glow-left {
+    position: absolute;
+    left: 265px;
+    top: 574px;
+    width: 208px;
+    height: 66px;
+    background: rgba(255,255,255,0.78);
+    border-radius: 50px;
+    filter: blur(12px);
+    opacity: 0.72;
+  }
+
+  .white-glow-right {
+    position: absolute;
+    left: 987px;
+    top: 557px;
+    width: 126px;
+    height: 116px;
+    background: rgba(255,255,255,0.88);
+    border-radius: 44px;
+    filter: blur(8px);
+    opacity: 0.85;
+  }
+
+  .dark-mass {
+    position: absolute;
+    left: 389px;
+    top: 33px;
+    width: 686px;
+    height: 677px;
+    background:
+      radial-gradient(ellipse at 18% 44%, rgba(5,18,66,0.86) 0%, rgba(5,18,66,0.92) 42%, rgba(5,18,66,0.0) 44%),
+      radial-gradient(ellipse at 58% 8%, rgba(8,21,67,0.94) 0%, rgba(8,21,67,0.95) 18%, rgba(8,21,67,0.0) 19%),
+      radial-gradient(ellipse at 76% 20%, rgba(7,18,72,0.88) 0%, rgba(7,18,72,0.90) 10%, rgba(7,18,72,0.0) 12%),
+      radial-gradient(ellipse at 62% 48%, rgba(4,14,61,0.97) 0%, rgba(4,14,61,0.97) 28%, rgba(4,14,61,0.0) 29%),
+      radial-gradient(ellipse at 78% 73%, rgba(3,12,50,0.96) 0%, rgba(3,12,50,0.96) 16%, rgba(3,12,50,0.0) 18%),
+      linear-gradient(28deg, rgba(2,10,44,0) 0 21%, rgba(2,10,44,0.93) 21% 55%, rgba(2,10,44,0) 55% 100%);
+    opacity: 0.98;
+    filter: blur(1.5px);
+  }
+
+  .drip {
+    position: absolute;
+    top: -24px;
+    background: linear-gradient(180deg, rgba(9,16,58,0.96), rgba(9,16,58,0.98));
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.25);
+    opacity: 0.9;
+  }
+
+  .drip.d1 { left: 49px; width: 4px; height: 315px; }
+  .drip.d2 { left: 121px; width: 7px; height: 290px; }
+  .drip.d3 { left: 174px; width: 8px; height: 340px; }
+  .drip.d4 { left: 259px; width: 5px; height: 286px; }
+  .drip.d5 { left: 315px; width: 7px; height: 365px; }
+  .drip.d6 { left: 420px; width: 8px; height: 310px; }
+  .drip.d7 { left: 562px; width: 8px; height: 335px; }
+  .drip.d8 { left: 655px; width: 7px; height: 415px; }
+  .drip.d9 { left: 726px; width: 5px; height: 308px; }
+  .drip.d10 { left: 813px; width: 6px; height: 318px; }
+  .drip.d11 { left: 878px; width: 5px; height: 292px; }
+  .drip.d12 { left: 970px; width: 6px; height: 430px; }
+  .drip.d13 { left: 1121px; width: 6px; height: 396px; }
+  .drip.d14 { left: 1170px; width: 9px; height: 648px; background: linear-gradient(180deg, rgba(7,15,56,0.98), rgba(7,15,56,1)); }
+  .drip.d15 { left: 1178px; width: 53px; height: 623px; border-radius: 0; background: linear-gradient(180deg, rgba(8,18,59,0.99), rgba(8,18,59,1)); }
+  .drip.d16 { left: 1238px; width: 3px; height: 642px; }
+  .drip.d17 { left: 1051px; width: 3px; height: 417px; background: rgba(218,224,255,0.7); box-shadow: 0 0 6px rgba(255,255,255,0.3); }
+  .drip.d18 { left: 1168px; width: 3px; height: 620px; background: rgba(214,220,255,0.65); box-shadow: 0 0 6px rgba(255,255,255,0.28); }
+  .drip.d19 { left: 1244px; width: 3px; height: 640px; background: rgba(214,220,255,0.65); box-shadow: 0 0 6px rgba(255,255,255,0.28); }
+
+  .title-small {
+    position: absolute;
+    left: 448px;
+    top: 290px;
+    color: rgba(255,255,255,0.9);
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0;
+  }
+
+  .title-main {
+    position: absolute;
+    left: 447px;
+    top: 308px;
+    color: #ffffff;
+    font-size: 90px;
+    line-height: 0.95;
+    font-weight: 200;
+    letter-spacing: -2px;
+    text-shadow:
+      0 0 4px rgba(255,255,255,0.20),
+      0 14px 0 rgba(255,255,255,0.08),
+      0 21px 8px rgba(255,255,255,0.20);
+  }
+
+  .title-sub {
+    position: absolute;
+    left: 1014px;
+    top: 455px;
+    color: #ffffff;
+    font-size: 86px;
+    line-height: 1;
+    font-weight: 200;
+    letter-spacing: -2px;
+    white-space: nowrap;
+  }
+
+  .page {
+    position: absolute;
+    right: 10px;
+    bottom: 9px;
+    color: rgba(255,255,255,0.92);
+    font-size: 14px;
+    font-weight: 300;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="blur-backdrop"></div>
+    <div class="building"></div>
+    <div class="white-glow-left"></div>
+    <div class="white-glow-right"></div>
+    <div class="dark-mass"></div>
+
+    <div class="drip d1"></div>
+    <div class="drip d2"></div>
+    <div class="drip d3"></div>
+    <div class="drip d4"></div>
+    <div class="drip d5"></div>
+    <div class="drip d6"></div>
+    <div class="drip d7"></div>
+    <div class="drip d8"></div>
+    <div class="drip d9"></div>
+    <div class="drip d10"></div>
+    <div class="drip d11"></div>
+    <div class="drip d12"></div>
+    <div class="drip d13"></div>
+    <div class="drip d14"></div>
+    <div class="drip d15"></div>
+    <div class="drip d16"></div>
+    <div class="drip d17"></div>
+    <div class="drip d18"></div>
+    <div class="drip d19"></div>
+
+    <div class="title-small">Trend 4:</div>
+    <div class="title-main">the dignity</div>
+    <div class="title-sub">of work</div>
+    <div class="page">54</div>
+  </div>
+</body>
+</html>

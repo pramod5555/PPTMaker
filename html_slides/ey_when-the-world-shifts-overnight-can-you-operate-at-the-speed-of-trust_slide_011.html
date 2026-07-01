@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f1;
+  }
+
+  .right-panel{
+    position:absolute;
+    left:592px;
+    top:0;
+    width:688px;
+    height:720px;
+    background:#f3f3f1;
+    z-index:0;
+  }
+
+  .left-panel{
+    position:absolute;
+    left:0;
+    top:0;
+    width:592px;
+    height:720px;
+    z-index:1;
+    background:
+      radial-gradient(ellipse at 77% 15%, rgba(48,52,80,0.55) 0%, rgba(13,15,31,0.18) 18%, rgba(0,0,0,0) 34%),
+      radial-gradient(ellipse at 82% 44%, rgba(176,233,255,0.95) 0%, rgba(121,196,228,0.88) 10%, rgba(50,121,170,0.62) 18%, rgba(0,0,0,0.00) 34%),
+      radial-gradient(ellipse at 78% 42%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 23%, rgba(23,28,54,0.18) 29%, rgba(0,0,0,0) 32%),
+      radial-gradient(ellipse at 68% 33%, rgba(126,129,161,0.82) 0%, rgba(92,95,132,0.48) 10%, rgba(0,0,0,0) 15%),
+      radial-gradient(ellipse at 60% 30%, rgba(113,115,148,0.78) 0%, rgba(84,88,128,0.42) 9%, rgba(0,0,0,0) 14%),
+      linear-gradient(90deg, rgba(53,56,82,0.9) 0%, rgba(18,20,39,0.97) 19%, rgba(4,5,15,0.99) 55%, rgba(0,0,0,1) 100%);
+  }
+
+  .left-panel:before{
+    content:"";
+    position:absolute;
+    left:-14px;
+    top:150px;
+    width:245px;
+    height:525px;
+    border-radius:130px 0 0 130px;
+    background:
+      radial-gradient(ellipse at 72% 48%, rgba(236,210,198,0.96) 0%, rgba(191,152,140,0.9) 16%, rgba(86,66,73,0.26) 28%, rgba(0,0,0,0) 42%),
+      radial-gradient(ellipse at 62% 52%, rgba(255,232,217,0.98) 0%, rgba(217,179,160,0.72) 10%, rgba(0,0,0,0) 18%),
+      radial-gradient(ellipse at 34% 22%, rgba(25,26,39,0.98) 0%, rgba(10,11,20,1) 48%, rgba(0,0,0,0) 59%),
+      linear-gradient(180deg, rgba(8,10,24,0.99) 0%, rgba(18,19,34,0.92) 59%, rgba(7,11,26,0.99) 100%);
+    clip-path:ellipse(47% 50% at 42% 50%);
+    filter:blur(0.3px);
+    opacity:0.99;
+  }
+
+  .left-panel:after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:595px;
+    width:210px;
+    height:92px;
+    background:
+      linear-gradient(27deg, rgba(255,255,255,0.97) 0%, rgba(246,246,249,0.97) 18%, rgba(20,18,36,0.0) 21%),
+      linear-gradient(35deg, rgba(27,83,220,0.95) 0%, rgba(0,100,255,0.0) 18%);
+    clip-path:polygon(0 28%, 42% 59%, 66% 100%, 0 100%);
+    opacity:0.95;
+  }
+
+  .vline-yellow{
+    position:absolute;
+    left:81px;
+    top:65px;
+    width:2px;
+    height:648px;
+    background:#f0cf00;
+    z-index:20;
+  }
+
+  .vline-cyan{
+    position:absolute;
+    left:81px;
+    top:592px;
+    width:2px;
+    height:82px;
+    background:#00d7ef;
+    z-index:21;
+  }
+
+  .title{
+    position:absolute;
+    left:109px;
+    top:60px;
+    width:190px;
+    color:#f2f2f2;
+    font-size:29px;
+    line-height:1.1;
+    font-weight:400;
+    letter-spacing:0;
+    z-index:30;
+  }
+
+  .body-left{
+    position:absolute;
+    left:109px;
+    top:616px;
+    width:210px;
+    color:#efefef;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:16px;
+    line-height:1.22;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .big-number{
+    position:absolute;
+    left:382px;
+    top:566px;
+    width:195px;
+    color:#f3f3f3;
+    font-size:157px;
+    line-height:0.92;
+    font-weight:300;
+    letter-spacing:-0.045em;
+    z-index:30;
+  }
+
+  .top-text-left,
+  .top-text-right,
+  .quote-col,
+  .body-col{
+    color:#48515d;
+    font-size:10.9px;
+    line-height:1.46;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .top-text-left{
+    position:absolute;
+    left:735px;
+    top:60px;
+    width:214px;
+  }
+
+  .top-text-right{
+    position:absolute;
+    left:977px;
+    top:60px;
+    width:224px;
+  }
+
+  .section-rule{
+    position:absolute;
+    left:754px;
+    top:306px;
+    width:526px;
+    height:2px;
+    background:#efc400;
+    z-index:20;
+  }
+
+  .badge{
+    position:absolute;
+    left:734px;
+    top:286px;
+    width:34px;
+    height:34px;
+    border:2px solid #efc400;
+    border-radius:50%;
+    background:#f3f3f1;
+    color:#1f2937;
+    font-size:14px;
+    line-height:34px;
+    text-align:center;
+    font-weight:700;
+    z-index:40;
+  }
+
+  .section-title{
+    position:absolute;
+    left:735px;
+    top:340px;
+    width:300px;
+    color:#1f2937;
+    font-size:17px;
+    line-height:1.2;
+    font-weight:700;
+    z-index:30;
+  }
+
+  .quote-col{
+    position:absolute;
+    left:735px;
+    top:379px;
+    width:215px;
+  }
+
+  .body-col{
+    position:absolute;
+    left:976px;
+    top:379px;
+    width:216px;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:33px;
+    bottom:9px;
+    color:#ffffff;
+    font-size:7px;
+    line-height:1;
+    font-weight:600;
+    z-index:50;
+    white-space:nowrap;
+  }
+
+  .footer-right{
+    position:absolute;
+    right:40px;
+    bottom:9px;
+    color:#1f2937;
+    font-size:7px;
+    line-height:1;
+    font-weight:600;
+    z-index:50;
+    white-space:nowrap;
+  }
+
+  .page{
+    position:absolute;
+    right:29px;
+    bottom:8px;
+    color:#1f2937;
+    font-size:9px;
+    line-height:1;
+    font-weight:400;
+    z-index:50;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="right-panel"></div>
+  <div class="left-panel"></div>
+  <div class="vline-yellow"></div>
+  <div class="vline-cyan"></div>
+
+  <div class="title">Find your<br>entry point</div>
+
+  <div class="body-left">Growth, transactions<br>and breaches provide<br>opportunities to rethink<br>the operating model.</div>
+
+  <div class="big-number">04</div>
+
+  <div class="top-text-left">
+    Changing the risk operating model requires
+    transformation, and no two organizations
+    begin risk transformation from the same place.
+    Strategy-first and trigger-based design offers a
+    clear destination. The entry point depends on
+    a company’s specific circumstances, including
+    characteristics such as its sector, maturity, scale,
+    legacy processes and culture.
+  </div>
+
+  <div class="top-text-right">
+    The governing principle is simple. The first
+    move does not need to be large. It needs to be
+    directional. Every step should build toward a
+    trigger-based, strategy-first architecture rather
+    than reinforcing the slow, calendar-driven model
+    it replaces.<br><br>
+    Not every company can redesign its full operating
+    model at once. Some begin with growth
+    milestones, others with major transactions, and
+    others only after shocks create the urgency and
+    mandate. Examples include:
+  </div>
+
+  <div class="section-rule"></div>
+  <div class="badge">01</div>
+
+  <div class="section-title">Growth and maturation</div>
+
+  <div class="quote-col">
+    “Building risk management in a fast-moving
+    technology company presents unique challenges,”
+    says Walid Sleiman, Digital Technology GRC
+    Leader at ServiceNow. “There are three things
+    risk leaders must get right. First, think big,
+    start small, and move fast – you do this by
+    leveraging proven industry frameworks rather
+    than reinventing the wheel, and by tailoring
+    them to size, just to what your organization
+    actually needs. Second, use technology as a force
+    multiplier. Automation and AI are essential to
+    scaling risk management, enabling continuous
+    monitoring and decision-making at the speed of
+    the business. Third, ensure strong stakeholder
+    alignment. Effective risk management requires
+    consistent alignment across teams – connecting
+    individual and functional risks and translating
+    them into a unified, enterprise-level view that
+    leadership can act on. This alignment is
+    essential to driving value out of your risk
+    management program.”
+  </div>
+
+  <div class="body-col">
+    Startups typically begin with a relatively narrow
+    approach to risk management – for instance,
+    focusing primarily on regulatory compliance, or
+    on risk subtypes that are most critical for their
+    sector or business. Over time, needs such as
+    increasing headcount, new rounds of venture
+    funding, initial public offerings, or expansion into
+    new sectors or regions can help make the case for
+    a more robust approach.<br><br>
+    To succeed, this needs to be done in ways that
+    are adapted for and respect the nimble nature
+    of the organization. The accompanying guest
+    perspective by a risk management leader at a
+    global life sciences company provides an example
+    of an organization that used such an approach
+    after undergoing a rapid growth spurt.
+  </div>
+
+  <div class="footer-left">15&nbsp;&nbsp;|&nbsp;&nbsp;How can reimagining risk prepare you for an unpredictable world?</div>
+  <div class="footer-right">Global Risk Transformation Series&nbsp;&nbsp;|</div>
+  <div class="page">16</div>
+</div>
+</body>
+</html>

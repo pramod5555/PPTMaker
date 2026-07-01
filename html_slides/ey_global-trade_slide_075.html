@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Contacts Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f0f0f0;
+    color:#5f6270;
+  }
+
+  .top-left-band{
+    position:absolute;
+    left:0;
+    top:0;
+    width:47px;
+    height:79px;
+    background:#b8b9c1;
+  }
+  .top-rule{
+    position:absolute;
+    left:0;
+    top:78px;
+    width:1280px;
+    height:1px;
+    background:#c5c7cf;
+  }
+  .title{
+    position:absolute;
+    left:56px;
+    top:50px;
+    font-size:15px;
+    line-height:18px;
+    font-weight:400;
+    color:#7a7c86;
+    letter-spacing:0;
+  }
+  .subtitle{
+    position:absolute;
+    left:56px;
+    top:116px;
+    font-size:14px;
+    line-height:17px;
+    font-weight:400;
+    color:#8b8d97;
+  }
+  .subtitle .strong{
+    font-weight:700;
+    color:#6f727d;
+  }
+
+  .nav-circle{
+    position:absolute;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#c6c7ce;
+  }
+  .nav1{ left:951px; top:33px; }
+  .nav2{ left:994px; top:33px; }
+  .nav-circle span{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#3f4251;
+    font-size:20px;
+    font-weight:700;
+    line-height:1;
+  }
+
+  .sidebar{
+    position:absolute;
+    left:1040px;
+    top:120px;
+    width:78px;
+  }
+  .side-item{
+    position:absolute;
+    left:0;
+    width:78px;
+    min-height:36px;
+    background:#2f3040;
+    color:#efeff1;
+    font-size:11px;
+    line-height:12px;
+    font-weight:400;
+    padding:8px 7px 7px 7px;
+    box-sizing:border-box;
+  }
+  .side-item.active{
+    background:#666775;
+  }
+  .side-item.contents{ top:0; }
+  .side-item.insights{ top:50px; }
+  .side-item.newey{ top:100px; height:36px; }
+  .side-item.tax{ top:150px; }
+  .side-item.additional{ top:200px; height:36px; }
+  .side-item.contacts{ top:250px; }
+
+  .table-wrap{
+    position:absolute;
+    left:56px;
+    top:141px;
+    width:940px;
+    height:565px;
+  }
+  .table-header{
+    position:absolute;
+    left:0;
+    top:0;
+    width:940px;
+    height:27px;
+    background:#b9bac3;
+    color:#2d313a;
+    font-size:14px;
+    line-height:27px;
+    font-weight:700;
+    padding-left:8px;
+    box-sizing:border-box;
+  }
+
+  table.contacts{
+    position:absolute;
+    left:0;
+    top:27px;
+    width:940px;
+    border-collapse:collapse;
+    table-layout:fixed;
+  }
+  table.contacts td{
+    vertical-align:top;
+    border-right:1px solid #bcbec5;
+    padding:0;
+  }
+  table.contacts td:last-child{
+    border-right:none;
+  }
+
+  .col{
+    width:100%;
+  }
+  .country{
+    background:#f2db00;
+    color:#6a6d78;
+    font-size:12px;
+    line-height:14px;
+    font-weight:700;
+    padding:2px 8px 2px 8px;
+    box-sizing:border-box;
+  }
+  .entry{
+    padding:2px 8px 4px 8px;
+    box-sizing:border-box;
+    border-bottom:1px solid #c7c9cf;
+    min-height:36px;
+  }
+  .name{
+    font-size:12px;
+    line-height:14px;
+    font-weight:700;
+    color:#156dcc;
+    white-space:normal;
+  }
+  .phone{
+    margin-top:1px;
+    font-size:11px;
+    line-height:13px;
+    font-weight:400;
+    color:#5f6370;
+  }
+
+  .footer-note{
+    position:absolute;
+    left:56px;
+    top:731px;
+    transform:translateY(-100%);
+    font-size:10px;
+    line-height:12px;
+    font-weight:700;
+    color:#787a84;
+  }
+
+  .bottom-nav{
+    position:absolute;
+    left:619px;
+    top:711px;
+    transform:translateY(-100%);
+    width:367px;
+    height:33px;
+  }
+  .bottom-circle-left,
+  .bottom-circle-right{
+    position:absolute;
+    top:0;
+    width:31px;
+    height:31px;
+    border-radius:50%;
+    background:#bfc0c8;
+  }
+  .bottom-circle-left{ left:0; }
+  .bottom-circle-right{ right:0; }
+  .bottom-circle-left span,
+  .bottom-circle-right span{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#444756;
+    font-size:20px;
+    font-weight:700;
+    line-height:1;
+  }
+  .bottom-label{
+    position:absolute;
+    top:3px;
+    font-size:12px;
+    line-height:14px;
+    font-weight:700;
+    color:#4d4f59;
+  }
+  .bottom-label.left{
+    left:37px;
+    width:142px;
+  }
+  .bottom-label.right{
+    left:196px;
+    width:142px;
+  }
+  .bottom-underline{
+    position:absolute;
+    height:1px;
+    background:#b9bbc2;
+    top:31px;
+  }
+  .bottom-underline.left{
+    left:37px;
+    width:140px;
+  }
+  .bottom-underline.right{
+    left:196px;
+    width:144px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-left-band"></div>
+  <div class="top-rule"></div>
+
+  <div class="title">Contacts</div>
+  <div class="subtitle"><span class="strong">Global Trade contacts by jurisdiction</span> continued</div>
+
+  <div class="nav-circle nav1"><span>◀</span></div>
+  <div class="nav-circle nav2"><span>▶</span></div>
+
+  <div class="sidebar">
+    <div class="side-item active contents">Contents</div>
+    <div class="side-item insights">Insights</div>
+    <div class="side-item newey">New on<br>ey.com</div>
+    <div class="side-item tax">Tax alerts</div>
+    <div class="side-item additional">Additional<br>resources</div>
+    <div class="side-item active contacts">Contacts</div>
+  </div>
+
+  <div class="table-wrap">
+    <div class="table-header">Europe, Middle East, India and Africa</div>
+    <table class="contacts">
+      <colgroup>
+        <col style="width:188px">
+        <col style="width:188px">
+        <col style="width:188px">
+        <col style="width:188px">
+        <col style="width:188px">
+      </colgroup>
+      <tr>
+        <td>
+          <div class="col">
+            <div class="country">Albania, Bulgaria, Kosovo<br>and North Macedonia</div>
+            <div class="entry">
+              <div class="name">Milen Raikov &#9654;</div>
+              <div class="phone">+ 359 2 8177 155</div>
+            </div>
+
+            <div class="country">Austria</div>
+            <div class="entry">
+              <div class="name">Theresa Arlt &#9654;</div>
+              <div class="phone">+ 43 1 211 70 1102</div>
+            </div>
+
+            <div class="country">Belgium</div>
+            <div class="entry">
+              <div class="name">Antoine De Donder &#9654;</div>
+              <div class="phone">+ 32 2 749 36 90</div>
+            </div>
+            <div class="entry">
+              <div class="name">Erwin De Vos &#9654;</div>
+              <div class="phone">+ 32 2 774 93 75</div>
+            </div>
+            <div class="entry">
+              <div class="name">Jef d’Hollander &#9654;</div>
+              <div class="phone">+ 32 4 851 58 852</div>
+            </div>
+            <div class="entry">
+              <div class="name">Christina Horckmans &#9654;</div>
+              <div class="phone">+ 32 2 774 93 22</div>
+            </div>
+            <div class="entry">
+              <div class="name">Philippe Lesage &#9654;</div>
+              <div class="phone">+ 32 2 774 92 69</div>
+            </div>
+            <div class="entry">
+              <div class="name">Kristof Verbist &#9654;</div>
+              <div class="phone">+ 32 2 774 90 86</div>
+            </div>
+            <div class="entry">
+              <div class="name">Frederik Pena-Tolivia &#9654;</div>
+              <div class="phone">+ 32 4 702 11 045</div>
+            </div>
+
+            <div class="country">Denmark</div>
+            <div class="entry">
+              <div class="name">Anne-Mette Højriis &#9654;</div>
+              <div class="phone">+ 45 51582559</div>
+            </div>
+
+            <div class="country">France</div>
+            <div class="entry">
+              <div class="name">Marguerite Trzaska &#9654;</div>
+              <div class="phone">+ 33 1 46 93 84 32</div>
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <div class="col">
+            <div class="country">Germany</div>
+            <div class="entry">
+              <div class="name">Richard J Albert &#9654;</div>
+              <div class="phone">+ 49 211 9352 17756</div>
+            </div>
+            <div class="entry">
+              <div class="name">Robert Boehm &#9654;</div>
+              <div class="phone">+ 49 211 9352 10529</div>
+            </div>
+            <div class="entry">
+              <div class="name">Nadin Nottekämper &#9654;</div>
+              <div class="phone">+ 49 211 9352 26138</div>
+            </div>
+            <div class="entry">
+              <div class="name">Frank-Peter Ziegler &#9654;</div>
+              <div class="phone">+ 49 6196 996 14649</div>
+            </div>
+
+            <div class="country">Greece</div>
+            <div class="entry">
+              <div class="name">Nicoleta Merkouri &#9654;</div>
+              <div class="phone">+ 30 697 3773203</div>
+            </div>
+
+            <div class="country">Hungary</div>
+            <div class="entry">
+              <div class="name">Attila Fulop &#9654;</div>
+              <div class="phone">+ 36 30 559 1364</div>
+            </div>
+            <div class="entry">
+              <div class="name">Aron Nagy &#9654;</div>
+              <div class="phone">+ 36 1 451 8636</div>
+            </div>
+
+            <div class="country">India</div>
+            <div class="entry">
+              <div class="name">Ruchi Bhat &#9654;</div>
+              <div class="phone">+ 91 98 6044 1874</div>
+            </div>
+            <div class="entry">
+              <div class="name">Preetham Chennaveerappa<br>Narasim &#9654;</div>
+              <div class="phone">+ 91 98 8012 0381</div>
+            </div>
+            <div class="entry">
+              <div class="name">Sourabh Jain &#9654;</div>
+              <div class="phone">+ 91 98 1800 9094</div>
+            </div>
+            <div class="entry">
+              <div class="name">Suresh Nair &#9654;</div>
+              <div class="phone">+ 91 98 9275 7475</div>
+            </div>
+            <div class="entry">
+              <div class="name">Agneshwar Sen &#9654;</div>
+              <div class="phone">+ 91 98 11167838</div>
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <div class="col">
+            <div class="country">Ireland</div>
+            <div class="entry">
+              <div class="name">Colin Doolin &#9654;</div>
+              <div class="phone">+ 353 1 2212949</div>
+            </div>
+            <div class="entry">
+              <div class="name">Deirdre Hogan &#9654;</div>
+              <div class="phone">+ 353 1 221 2433</div>
+            </div>
+
+            <div class="country">Italy</div>
+            <div class="entry">
+              <div class="name">Alessandra Di Salvo &#9654;</div>
+              <div class="phone">+ 39 335 7361484</div>
+            </div>
+
+            <div class="country">Kenya/rest of Africa</div>
+            <div class="entry">
+              <div class="name">Hadijah Nanyomo &#9654;</div>
+              <div class="phone">+ 254 20 2886000</div>
+            </div>
+
+            <div class="country">Middle East and North<br>Africa</div>
+            <div class="entry">
+              <div class="name">Ramy Rass &#9654;</div>
+              <div class="phone">+ 971 4 7010900</div>
+            </div>
+
+            <div class="country">Netherlands</div>
+            <div class="entry">
+              <div class="name">Caspar Jansen &#9654;</div>
+              <div class="phone">+ 31 88 407 1441</div>
+            </div>
+            <div class="entry">
+              <div class="name">Bastiaan Kats &#9654;</div>
+              <div class="phone">+ 31 88 40 73806</div>
+            </div>
+            <div class="entry">
+              <div class="name">Martijn Schippers &#9654;</div>
+              <div class="phone">+ 31 88 407 9160</div>
+            </div>
+            <div class="entry">
+              <div class="name">Jeroen Scholten &#9654;</div>
+              <div class="phone">+ 31 88 407 1009</div>
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <div class="col">
+            <div class="country">Norway</div>
+            <div class="entry">
+              <div class="name">Øystein Arff Gulseth &#9654;</div>
+              <div class="phone">+ 47 982 06 387</div>
+            </div>
+            <div class="entry">
+              <div class="name">Nare Løvø &#9654;</div>
+              <div class="phone">+47 982 06 238</div>
+            </div>
+
+            <div class="country">Poland</div>
+            <div class="entry">
+              <div class="name">Sławomir Czajka &#9654;</div>
+              <div class="phone">+ 48 71 711 88 93</div>
+            </div>
+
+            <div class="country">Spain</div>
+            <div class="entry">
+              <div class="name">Hugo Gonzalez Collazo &#9654;</div>
+              <div class="phone">+ 34 915 725 139</div>
+            </div>
+
+            <div class="country">South Africa/rest of Africa</div>
+            <div class="entry">
+              <div class="name">Redge de Swardt &#9654;</div>
+              <div class="phone">+ 27 21 443 0637</div>
+            </div>
+
+            <div class="country">Sweden</div>
+            <div class="entry">
+              <div class="name">Linnea Jacobsen &#9654;</div>
+              <div class="phone">+ 46 76 8472624</div>
+            </div>
+
+            <div class="country">Switzerland</div>
+            <div class="entry">
+              <div class="name">Ashish Sinha &#9654;</div>
+              <div class="phone">+ 41 58 286 5906</div>
+            </div>
+
+            <div class="country">Turkey</div>
+            <div class="entry">
+              <div class="name">Sercan Bahadir &#9654;</div>
+              <div class="phone">+ 90 212 408 53 41</div>
+            </div>
+            <div class="entry">
+              <div class="name">Yakup Gunes &#9654;</div>
+              <div class="phone">+ 90 212 408 58 38</div>
+            </div>
+            <div class="entry">
+              <div class="name">Sedat Tasdemir &#9654;</div>
+              <div class="phone">+ 90 212 408 52 57</div>
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <div class="col">
+            <div class="country">United Kingdom</div>
+            <div class="entry">
+              <div class="name">Onelia Angelosanto &#9654;</div>
+              <div class="phone">+ 44 161 234 0508</div>
+            </div>
+            <div class="entry">
+              <div class="name">Marc Bunch &#9654;</div>
+              <div class="phone">+ 44 20 7980 0298</div>
+            </div>
+            <div class="entry">
+              <div class="name">Ross Freeman &#9654;</div>
+              <div class="phone">+ 44 20 7000 3988</div>
+            </div>
+            <div class="entry">
+              <div class="name">Penelope Isbecque &#9654;</div>
+              <div class="phone">+ 44 113 298 2447</div>
+            </div>
+            <div class="entry">
+              <div class="name">Gerard Koevoets &#9654;</div>
+              <div class="phone">+ 44 20 7951 6496</div>
+            </div>
+            <div class="entry">
+              <div class="name">Shenshen Lin &#9654;</div>
+              <div class="phone">+ 44 20 7951 2063</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="footer-note">72 | TradeWatch Issue 1 2026</div>
+
+  <div class="bottom-nav">
+    <div class="bottom-circle-left"><span>◀</span></div>
+    <div class="bottom-label left">Global and Trade<br>knowledge team contacts</div>
+    <div class="bottom-underline left"></div>
+    <div class="bottom-label right">Americas and<br>Asia-Pacific contacts</div>
+    <div class="bottom-underline right"></div>
+    <div class="bottom-circle-right"><span>▶</span></div>
+  </div>
+</div>
+</body>
+</html>

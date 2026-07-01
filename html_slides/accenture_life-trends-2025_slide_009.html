@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #cfcfd2;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #d7d7da;
+    color: #222;
+  }
+
+  .top-band {
+    position: absolute;
+    left: 63px;
+    top: 0;
+    width: 367px;
+    height: 81px;
+    background:
+      radial-gradient(ellipse at 12% 20%, rgba(20,91,180,0.9) 0%, rgba(20,91,180,0.0) 18%),
+      radial-gradient(ellipse at 40% 30%, rgba(8,33,70,0.9) 0%, rgba(8,33,70,0.0) 18%),
+      radial-gradient(ellipse at 71% 28%, rgba(33,108,210,0.8) 0%, rgba(33,108,210,0.0) 16%),
+      linear-gradient(90deg, #07131f 0%, #06101a 18%, #08111a 35%, #06131a 55%, #0b1720 70%, #071018 100%);
+  }
+
+  .title {
+    position: absolute;
+    left: 63px;
+    top: 112px;
+    width: 290px;
+    color: #8d2be2;
+    font-size: 24px;
+    line-height: 1.16;
+    font-weight: 300;
+    letter-spacing: -0.4px;
+  }
+
+  .photo {
+    position: absolute;
+    left: 63px;
+    top: 268px;
+    width: 367px;
+    height: 460px;
+    background:
+      linear-gradient(180deg, rgba(12,30,48,0.15) 0%, rgba(6,12,18,0.35) 100%),
+      radial-gradient(circle at 68% 10%, rgba(189,113,224,0.35) 0 10%, transparent 20%),
+      radial-gradient(circle at 82% 34%, rgba(70,255,196,0.35) 0 6%, transparent 15%),
+      radial-gradient(circle at 75% 17%, rgba(255,110,255,0.18) 0 8%, transparent 18%),
+      radial-gradient(circle at 26% 38%, rgba(255,196,154,0.65) 0 10%, transparent 19%),
+      radial-gradient(circle at 25% 28%, rgba(64,255,227,0.55) 0 28%, transparent 48%),
+      radial-gradient(circle at 72% 30%, rgba(47,150,233,0.45) 0 18%, transparent 38%),
+      linear-gradient(90deg, rgba(1,9,16,0.85) 0%, rgba(23,95,101,0.45) 24%, rgba(62,215,204,0.38) 38%, rgba(37,135,166,0.35) 57%, rgba(17,44,74,0.78) 100%),
+      linear-gradient(180deg, #173344 0%, #112434 100%);
+    filter: saturate(110%);
+  }
+  .photo:before {
+    content: "";
+    position: absolute;
+    left: 74px;
+    top: 28px;
+    width: 108px;
+    height: 166px;
+    border-radius: 50% 50% 44% 44%;
+    background: radial-gradient(circle at 52% 42%, rgba(214,173,141,0.75) 0 32%, rgba(100,58,48,0.3) 55%, transparent 63%);
+    opacity: 0.55;
+  }
+  .photo:after {
+    content: "";
+    position: absolute;
+    left: 48px;
+    top: 212px;
+    width: 245px;
+    height: 138px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55));
+    transform: skewX(-12deg);
+    opacity: 0.45;
+  }
+  .necklace {
+    position: absolute;
+    left: 91px;
+    top: 356px;
+    width: 55px;
+    height: 18px;
+    border-top: 3px dotted rgba(255,244,225,0.75);
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+  .screen-line {
+    position: absolute;
+    left: 312px;
+    top: 629px;
+    width: 117px;
+    height: 2px;
+    background: rgba(133,176,177,0.35);
+  }
+
+  .col1 {
+    position: absolute;
+    left: 485px;
+    top: 82px;
+    width: 392px;
+    font-size: 18px;
+    line-height: 1.48;
+    color: #222;
+  }
+
+  .callout {
+    position: absolute;
+    left: 485px;
+    top: 456px;
+    width: 332px;
+    padding-left: 24px;
+    border-left: 2px solid #c4c4c8;
+    color: #8d3be4;
+    font-size: 22px;
+    line-height: 1.45;
+    font-weight: 300;
+  }
+
+  .col2 {
+    position: absolute;
+    left: 906px;
+    top: 82px;
+    width: 350px;
+    font-size: 17px;
+    line-height: 1.48;
+    color: #222;
+  }
+
+  p {
+    margin: 0 0 28px 0;
+  }
+
+  sup {
+    font-size: 10px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .side-tab {
+    position: absolute;
+    right: -8px;
+    top: 23px;
+    width: 20px;
+    height: 127px;
+    background: linear-gradient(180deg, rgba(208,208,214,0.25), rgba(242,242,246,0.9));
+    border-radius: 0 0 0 10px;
+  }
+  .side-tab .vert {
+    position: absolute;
+    left: -30px;
+    top: 55px;
+    width: 80px;
+    text-align: center;
+    transform: rotate(90deg);
+    transform-origin: center;
+    font-size: 16px;
+    color: #8d2be2;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .side-notes {
+    position: absolute;
+    right: -112px;
+    top: 332px;
+    transform: rotate(90deg);
+    transform-origin: top right;
+    font-size: 17px;
+    color: #6f6f75;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
+
+  .footer {
+    position: absolute;
+    right: 24px;
+    bottom: 16px;
+    font-size: 14px;
+    color: #7c7c81;
+  }
+  .footer .year {
+    color: #8d2be2;
+  }
+  .page {
+    position: absolute;
+    right: 10px;
+    bottom: 16px;
+    font-size: 14px;
+    color: #7c7c81;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-band"></div>
+
+    <div class="title">Suggested,<br>recommended,<br>sponsored, for you?</div>
+
+    <div class="photo"></div>
+    <div class="necklace"></div>
+    <div class="screen-line"></div>
+
+    <div class="col1">
+      <p>The online discovery experience has become chaotic and frustrating. The digital places that were once reliably on-point for finding products, services and information have become less effective. There are three main factors causing this degradation. First, the search experience has become cluttered with suggested posts and related queries when people just want the results they’ve asked for. Second, people increasingly can’t trust that what they find is real, (more on that in a moment). Third, the apparent commercialization of every point in the online experience—driven by the need for a sustainable business model—means that almost half of people (48%) feel like shopping is being pushed on them whenever they go online.<sup>1</sup></p>
+    </div>
+
+    <div class="callout">
+      In a world where technological progress seems so highly prized, these things should be getting better, not worse.
+    </div>
+
+    <div class="col2">
+      <p>Search engine algorithms spawned an SEO industry that has subtly but indisputably changed the web by shaping word choices, page layouts and site maps to maximize visibility. Experts know how to make sure their content rises above genuine results that would be more helpful or relevant—and this tactic can now be supercharged by generative AI that can create against the algorithm’s guidelines.<sup>2</sup></p>
+
+      <p>Consequently, search results are clogged up by low-quality content, seemingly unrelated suggested posts and product recommendation lists motivated by affiliate marketing kickbacks, pushing genuinely relevant results down the page. Fundamentally, search engines now often respond to a user’s request for help by creating more work—and let’s not forget that their original purpose was to make navigating the internet easier.</p>
+
+      <p>This degradation is pushing people to create new routes to discovery. Many have lost patience with search engines and are going direct to a trusted source or retailer instead. Others are turning to places like Reddit and similar platforms, where short-form content focused on shopping recommendations has become popular.<sup>3,4</sup></p>
+    </div>
+
+    <div class="side-tab"><div class="vert">Cost of hesitations</div></div>
+
+    <div class="side-notes">/ The parent trap &nbsp;&nbsp;/&nbsp;&nbsp; Impatience economy &nbsp;&nbsp;/&nbsp;&nbsp; The dignity of work &nbsp;&nbsp;/&nbsp;&nbsp; Social rewiring</div>
+
+    <div class="footer">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="page">9</div>
+  </div>
+</body>
+</html>

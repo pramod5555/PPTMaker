@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Looking ahead - EY slide replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e6e6e8;
+    color:#2f3040;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .page-num{
+    left:58px;
+    top:50px;
+    width:36px;
+    height:30px;
+    font-size:20px;
+    line-height:30px;
+    font-weight:300;
+    color:#6d707d;
+  }
+  .top-divider{
+    left:101px;
+    top:0;
+    width:1px;
+    height:92px;
+    background:#aeb0b6;
+  }
+  .survey-label{
+    left:114px;
+    top:58px;
+    width:185px;
+    font-size:8px;
+    line-height:10px;
+    font-weight:400;
+    color:#7b7d85;
+    text-transform:uppercase;
+  }
+
+  .jump{
+    right:0;
+    top:0;
+    width:69px;
+    height:46px;
+    background:#787882;
+    border-bottom-left-radius:15px;
+    border-bottom-right-radius:15px;
+    color:#fff;
+    font-size:9px;
+    line-height:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    text-align:center;
+    padding-top:18px;
+  }
+
+  .title{
+    left:101px;
+    top:134px;
+    font-size:48px;
+    line-height:50px;
+    font-weight:700;
+    color:#2f3040;
+    letter-spacing:-0.5px;
+  }
+
+  .title-rule-yellow{
+    left:101px;
+    top:214px;
+    width:168px;
+    height:3px;
+    background:#f2cf00;
+  }
+  .title-rule-magenta{
+    left:269px;
+    top:214px;
+    width:127px;
+    height:3px;
+    background:#bb43ff;
+  }
+  .title-rule-blue{
+    left:396px;
+    top:214px;
+    width:33px;
+    height:3px;
+    background:#4a8dff;
+  }
+
+  .left-body{
+    left:100px;
+    top:251px;
+    width:332px;
+    font-size:13px;
+    line-height:18px;
+    font-weight:400;
+    color:#555862;
+  }
+
+  .left-vert-label{
+    left:13px;
+    top:434px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    font-size:11px;
+    line-height:11px;
+    font-weight:400;
+    color:#6f727b;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .left-vert-accent{
+    left:11px;
+    top:421px;
+    width:11px;
+    height:11px;
+    background:#f2cf00;
+  }
+
+  .fig-title{
+    left:541px;
+    top:131px;
+    width:405px;
+    font-size:13px;
+    line-height:19px;
+    font-weight:700;
+    color:#3f4149;
+  }
+
+  .chart-label{
+    font-size:12px;
+    line-height:14px;
+    font-weight:400;
+    color:#555862;
+    text-align:right;
+  }
+
+  .bar-box{
+    height:24px;
+    border:1px solid #a7aab2;
+    background:transparent;
+  }
+  .bar-fill{
+    height:22px;
+    background:#f2d400;
+  }
+  .bar-pct{
+    font-size:12px;
+    line-height:12px;
+    font-weight:400;
+    color:#555862;
+    text-align:right;
+  }
+  .bar-sub{
+    font-size:7px;
+    line-height:8px;
+    font-weight:400;
+    color:#6f7178;
+    white-space:nowrap;
+  }
+
+  .right-body{
+    left:542px;
+    width:374px;
+    font-size:13px;
+    line-height:19px;
+    font-weight:400;
+    color:#555862;
+  }
+
+  .callout{
+    left:992px;
+    top:337px;
+    width:272px;
+    height:384px;
+    background:linear-gradient(180deg,#17182a 0%, #141423 100%);
+    border-radius:14px;
+  }
+  .callout-rule-yellow{
+    left:1016px;
+    top:366px;
+    width:112px;
+    height:2px;
+    background:#f2cf00;
+  }
+  .callout-rule-magenta{
+    left:1128px;
+    top:366px;
+    width:82px;
+    height:2px;
+    background:#bb43ff;
+  }
+  .callout-rule-blue{
+    left:1210px;
+    top:366px;
+    width:32px;
+    height:2px;
+    background:#4a8dff;
+  }
+  .callout-title{
+    left:1016px;
+    top:382px;
+    font-size:15px;
+    line-height:18px;
+    font-weight:700;
+    color:#ffffff;
+  }
+  .quote-mark{
+    left:1017px;
+    top:405px;
+    font-size:37px;
+    line-height:24px;
+    font-weight:700;
+    color:#f2cf00;
+  }
+  .callout-text{
+    left:1018px;
+    top:427px;
+    width:218px;
+    font-size:12px;
+    line-height:19px;
+    font-weight:400;
+    color:#f4f4f6;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="page-num">46</div>
+    <div class="top-divider"></div>
+    <div class="survey-label">SECOND ANNUAL EY/IIF GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+    <div class="jump">JUMP TO<br>CONTENTS</div>
+
+    <div class="title">Looking ahead</div>
+    <div class="title-rule-yellow"></div>
+    <div class="title-rule-magenta"></div>
+    <div class="title-rule-blue"></div>
+
+    <div class="left-body">
+      Effective risk management has always been at the heart of the<br>
+      insurance business and remains so today. With a more diverse<br>
+      range of risks presenting greater threats to operations, CROs’ jobs<br>
+      are increasingly difficult. They’ve also never been more important.<br>
+      Risk leaders that can keep their organizations aware of the most<br>
+      threatening risks and ahead of tomorrow’s emerging risks will make<br>
+      the greatest contribution to growth and innovation.<br><br>
+      What’s clear from our results is that the trend toward more<br>
+      engagement with the business and more involvement with key<br>
+      initiatives will only accelerate. When asked how their roles will evolve<br>
+      over the next five years, our survey respondents selected increased<br>
+      involvement in strategic planning, business change and innovation<br>
+      as their top choice, followed by embedding a strong risk culture<br>
+      across the three lines of defense and serving as a “watchtower” for<br>
+      triangulating and advising the board and senior management on<br>
+      intersecting risks.
+    </div>
+
+    <div class="left-vert-label">LOOKING AHEAD</div>
+    <div class="left-vert-accent"></div>
+
+    <div class="fig-title">Figure 27: In what areas do you envision the role of the CRO<br>will evolve over the next five years?</div>
+
+    <div class="chart-label" style="left:551px; top:190px; width:165px;">
+      Increase involvement in strategic<br>planning, business change and<br>innovation
+    </div>
+    <div class="bar-box" style="left:729px; top:188px; width:169px;"></div>
+    <div class="bar-fill" style="left:730px; top:189px; width:71px;"></div>
+    <div class="bar-pct" style="left:868px; top:196px; width:24px;">42%</div>
+    <div class="bar-sub" style="left:730px; top:216px;">36% EMEIA | 58% Americas | 31% Asia-Pacific</div>
+
+    <div class="chart-label" style="left:552px; top:244px; width:164px;">
+      Embed a strong risk culture<br>across the three lines of defense
+    </div>
+    <div class="bar-box" style="left:729px; top:243px; width:169px;"></div>
+    <div class="bar-fill" style="left:730px; top:244px; width:64px;"></div>
+    <div class="bar-pct" style="left:870px; top:250px; width:22px;">38%</div>
+    <div class="bar-sub" style="left:730px; top:270px;">33% EMEIA | 50% Americas | 31% Asia-Pacific</div>
+
+    <div class="chart-label" style="left:546px; top:299px; width:170px;">
+      Identify opportunities for<br>“upside” risk taking
+    </div>
+    <div class="bar-box" style="left:729px; top:297px; width:169px;"></div>
+    <div class="bar-fill" style="left:730px; top:298px; width:52px;"></div>
+    <div class="bar-pct" style="left:870px; top:305px; width:22px;">31%</div>
+    <div class="bar-sub" style="left:730px; top:324px;">26% EMEIA | 38% Americas | 31% Asia-Pacific</div>
+
+    <div class="chart-label" style="left:545px; top:352px; width:171px;">
+      Serve as the “watchtower” for<br>
+      triangulating and advising the board and<br>
+      senior management on intersecting risks
+    </div>
+    <div class="bar-box" style="left:729px; top:351px; width:169px;"></div>
+    <div class="bar-fill" style="left:730px; top:352px; width:50px;"></div>
+    <div class="bar-pct" style="left:870px; top:359px; width:22px;">30%</div>
+    <div class="bar-sub" style="left:730px; top:378px;">26% EMEIA | 31% Americas | 38% Asia-Pacific</div>
+
+    <div class="chart-label" style="left:545px; top:406px; width:171px;">
+      Support the transition of risk<br>ownership to the first line of defense
+    </div>
+    <div class="bar-box" style="left:729px; top:405px; width:169px;"></div>
+    <div class="bar-fill" style="left:730px; top:406px; width:45px;"></div>
+    <div class="bar-pct" style="left:870px; top:413px; width:22px;">27%</div>
+    <div class="bar-sub" style="left:730px; top:432px;">29% EMEIA | 19% Americas | 38% Asia-Pacific</div>
+
+    <div class="chart-label" style="left:543px; top:460px; width:173px;">
+      Develop and grow the next generation<br>
+      of risk leaders and deepen succession<br>
+      strength in the second line
+    </div>
+    <div class="bar-box" style="left:729px; top:459px; width:169px;"></div>
+    <div class="bar-fill" style="left:730px; top:460px; width:42px;"></div>
+    <div class="bar-pct" style="left:870px; top:467px; width:22px;">25%</div>
+    <div class="bar-sub" style="left:730px; top:486px;">26% EMEIA | 19% Americas | 31% Asia-Pacific</div>
+
+    <div class="right-body" style="top:540px;">
+      This year’s EY-IIF survey of banking CROs found that developing and<br>
+      growing the next generation of risk leaders was the top priority, cited by<br>
+      55% of respondents.
+    </div>
+
+    <div class="right-body" style="top:592px;">
+      To effectively manage the many priorities on their agendas, insurance<br>
+      CROs are turning to modernized technology, richer data sets and new skill<br>
+      sets. Risk management teams need both deeper technical expertise and<br>
+      broader business knowledge and workers who are tech-savvy, data-fluent,<br>
+      and adept at critical thinking. Ironically, as risk management gets more<br>
+      automated and digitized, the value of effective communication, relationship<br>
+      building and seeing the “big picture” has never been clearer.
+    </div>
+
+    <div class="callout"></div>
+    <div class="callout-rule-yellow"></div>
+    <div class="callout-rule-magenta"></div>
+    <div class="callout-rule-blue"></div>
+    <div class="callout-title">CROs on future priorities</div>
+    <div class="quote-mark">“</div>
+    <div class="callout-text">
+      We need to rethink the value proposition<br>
+      of risk for the next five to 10 years.<br><br>
+      Let’s dictate the future risk management,<br>
+      not let the future get in front of us.<br><br>
+      If we don’t show value in the second and<br>
+      third lines, we will become obsolete.<br><br>
+      By positioning itself as a strategic advisor,<br>
+      risk management can significantly<br>
+      contribute to the organization’s overall<br>
+      success and resilience.
+    </div>
+  </div>
+</body>
+</html>

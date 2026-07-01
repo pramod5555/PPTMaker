@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Innovation Slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #989A9E;
+    font-family: Arial, Helvetica, 'Segoe UI', sans-serif;
+  }
+  #slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #efefef;
+  }
+  #slide > div, #slide > svg, #slide > table {
+    position: absolute;
+  }
+
+  .sidebar {
+    left: 0px;
+    top: 0px;
+    width: 173px;
+    height: 720px;
+    background: #33363d;
+    z-index: 5;
+  }
+  .sidebar-accent {
+    left: 171px;
+    top: 0px;
+    width: 2px;
+    height: 720px;
+    background: #7f63c8;
+    z-index: 6;
+  }
+  .title-main {
+    left: 220px;
+    top: 35px;
+    width: 1000px;
+    font-size: 23px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #202124;
+    z-index: 30;
+  }
+  .subtitle {
+    left: 220px;
+    top: 138px;
+    width: 760px;
+    font-size: 17px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: #818892;
+    z-index: 30;
+  }
+  .sb-head {
+    left: 12px;
+    top: 35px;
+    width: 130px;
+    color: #ffffff;
+    font-size: 23px;
+    line-height: 1.08;
+    font-weight: 700;
+    z-index: 30;
+  }
+  .hex {
+    width: 51px;
+    height: 44px;
+    clip-path: polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    border: 3px solid #8d7de2;
+    box-sizing: border-box;
+    background: linear-gradient(135deg,#68d8ff 0%, #245a7e 55%, #1b3d5b 100%);
+    z-index: 20;
+  }
+  .hex.grey {
+    border-color: #8a8a8a;
+    background: linear-gradient(135deg,#767a80 0%, #4c4f55 100%);
+  }
+  .hex.light {
+    border-color: #8a8a8a;
+    background: linear-gradient(135deg,#f4f4f4 0%, #a8a8a8 100%);
+  }
+  .step-num {
+    color: #7f63c8;
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 700;
+    z-index: 30;
+  }
+  .step-num.grey {
+    color: #737a82;
+  }
+  .step-label {
+    font-size: 15px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #7f63c8;
+    width: 70px;
+    z-index: 30;
+  }
+  .step-label.grey {
+    color: #737a82;
+    font-weight: 400;
+  }
+
+  .table-bg {
+    left: 220px;
+    top: 190px;
+    width: 1035px;
+    height: 360px;
+    background: rgba(255,255,255,0.35);
+    z-index: 20;
+  }
+  .watermark {
+    left: 442px;
+    top: 237px;
+    width: 740px;
+    height: 255px;
+    opacity: 0.13;
+    z-index: 21;
+  }
+
+  .hdr {
+    font-size: 15px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #2a2a2a;
+    text-align: center;
+    z-index: 30;
+  }
+  .hdr small {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.1;
+  }
+  .country-hdr {
+    text-align: left;
+  }
+
+  .rule-top {
+    left: 220px;
+    top: 249px;
+    width: 1113px;
+    height: 2px;
+    background: #979ca2;
+    z-index: 28;
+  }
+  .row-line {
+    height: 1px;
+    background: #c6c8cc;
+    z-index: 28;
+  }
+  .cell {
+    font-size: 16px;
+    line-height: 1;
+    color: #2d2d2d;
+    font-weight: 400;
+    text-align: center;
+    z-index: 30;
+  }
+  .country {
+    font-size: 16px;
+    line-height: 1;
+    color: #2d2d2d;
+    font-weight: 700;
+    text-align: left;
+    z-index: 30;
+  }
+
+  .flag {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15);
+    z-index: 31;
+  }
+
+  .callout {
+    left: 220px;
+    top: 566px;
+    width: 1116px;
+    height: 115px;
+    background: #d3d4d6;
+    z-index: 20;
+  }
+  .bullet {
+    font-size: 20px;
+    line-height: 1;
+    color: #2c2c2c;
+    z-index: 30;
+  }
+  .bullet-text {
+    font-size: 19px;
+    line-height: 1.07;
+    color: #2c2c2c;
+    font-weight: 400;
+    z-index: 30;
+  }
+  .bullet-text b {
+    font-weight: 700;
+  }
+  .footnote {
+    left: 220px;
+    top: 693px;
+    width: 960px;
+    font-size: 10px;
+    line-height: 1.15;
+    color: #4b4b4b;
+    font-weight: 400;
+    z-index: 30;
+  }
+  .page {
+    left: 9px;
+    top: 713px;
+    width: 20px;
+    font-size: 16px;
+    line-height: 1;
+    color: #ffffff;
+    font-weight: 400;
+    z-index: 50;
+  }
+  .rb-logo {
+    left: 1217px;
+    top: 683px;
+    width: 52px;
+    height: 28px;
+    z-index: 50;
+  }
+  .gearbox {
+    left: 67px;
+    top: 631px;
+    width: 54px;
+    height: 54px;
+    opacity: 0.55;
+    z-index: 20;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="sidebar-accent"></div>
+
+  <div class="sb-head">Technology &amp;<br>Innovation</div>
+
+  <div class="hex" style="left:8px; top:142px;"></div>
+  <svg style="position:absolute; left:17px; top:152px; width:34px; height:24px; z-index:31;" viewBox="0 0 34 24">
+    <path d="M2 20 L8 8 L13 13 L18 3 L25 9 L31 5" fill="none" stroke="#dff8ff" stroke-width="2"/>
+    <rect x="2" y="16" width="3" height="6" fill="#dff8ff"/>
+    <rect x="8" y="12" width="3" height="10" fill="#dff8ff"/>
+    <rect x="14" y="9" width="3" height="13" fill="#dff8ff"/>
+    <rect x="20" y="6" width="3" height="16" fill="#dff8ff"/>
+    <rect x="26" y="10" width="3" height="12" fill="#dff8ff"/>
+  </svg>
+  <div class="step-num" style="left:93px; top:145px;">1</div>
+  <div class="step-label" style="left:93px; top:177px;">Value of<br>Innovation</div>
+
+  <div class="hex grey" style="left:8px; top:276px;"></div>
+  <svg style="position:absolute; left:18px; top:286px; width:33px; height:23px; z-index:31;" viewBox="0 0 33 23">
+    <circle cx="6" cy="10" r="2" fill="#d0d0d0"/>
+    <circle cx="15" cy="6" r="2" fill="#d0d0d0"/>
+    <circle cx="25" cy="12" r="2" fill="#d0d0d0"/>
+    <circle cx="12" cy="17" r="2" fill="#d0d0d0"/>
+    <line x1="6" y1="10" x2="15" y2="6" stroke="#d0d0d0" stroke-width="1.5"/>
+    <line x1="15" y1="6" x2="25" y2="12" stroke="#d0d0d0" stroke-width="1.5"/>
+    <line x1="6" y1="10" x2="12" y2="17" stroke="#d0d0d0" stroke-width="1.5"/>
+    <line x1="12" y1="17" x2="25" y2="12" stroke="#d0d0d0" stroke-width="1.5"/>
+  </svg>
+  <div class="step-num grey" style="left:93px; top:279px;">2</div>
+  <div class="step-label grey" style="left:93px; top:311px;">Frontier<br>Technologies</div>
+
+  <div class="hex light" style="left:8px; top:406px;"></div>
+  <svg style="position:absolute; left:16px; top:417px; width:36px; height:21px; z-index:31;" viewBox="0 0 36 21">
+    <path d="M3 12 C6 6, 11 6, 14 12 C16 16, 20 16, 23 11 C27 4, 32 7, 34 11" fill="none" stroke="#6e6e6e" stroke-width="2"/>
+    <circle cx="8" cy="10" r="2" fill="#6e6e6e"/>
+    <circle cx="28" cy="10" r="2" fill="#6e6e6e"/>
+  </svg>
+  <div class="step-num grey" style="left:93px; top:409px;">3</div>
+  <div class="step-label grey" style="left:93px; top:441px;">Humans &amp;<br>Machines</div>
+
+  <svg class="gearbox" viewBox="0 0 60 60">
+    <g fill="none" stroke="#b7b7b9" stroke-width="3">
+      <circle cx="20" cy="30" r="8"/>
+      <path d="M20 10 L20 18 M20 42 L20 50 M2 30 L10 30 M30 30 L38 30 M7 17 L12 22 M28 38 L33 43 M7 43 L12 38 M28 22 L33 17"/>
+      <path d="M32 16 l4 -2 4 2 1 4 4 2 0 5 -4 2 -1 4 -4 2 -4 -2 -4 -2 -1 -4 0 -5 1 -4z"/>
+      <circle cx="41" cy="26" r="5"/>
+      <path d="M18 26 C12 26, 10 31, 13 35 C16 39, 24 39, 27 35 C30 31, 29 26, 24 24 C23 22, 23 20, 24 18 C25 15, 28 13, 31 12"/>
+    </g>
+  </svg>
+
+  <div class="title-main">A country's ability to innovate is indicated by a combination of enabling<br>factors – Top 10 innovative countries are advanced economies</div>
+  <div class="subtitle">Global Innovation Index (GII) rankings overall and by pillar, 2021<sup>1)</sup></div>
+
+  <div class="table-bg"></div>
+
+  <svg class="watermark" viewBox="0 0 740 255">
+    <polyline points="40,155 115,80 205,182 280,120 335,188 380,68 458,68 520,48 600,48 675,68" fill="none" stroke="#ffffff" stroke-width="12"/>
+    <rect x="394" y="39" width="22" height="70" fill="#ffffff"/>
+    <rect x="425" y="61" width="22" height="48" fill="#ffffff"/>
+    <rect x="456" y="51" width="22" height="58" fill="#ffffff"/>
+    <rect x="487" y="29" width="22" height="80" fill="#ffffff"/>
+    <rect x="518" y="21" width="22" height="88" fill="#ffffff"/>
+    <rect x="561" y="114" width="34" height="96" fill="#ffffff"/>
+    <rect x="602" y="89" width="32" height="121" fill="#ffffff"/>
+    <rect x="640" y="60" width="33" height="150" fill="#ffffff"/>
+    <rect x="321" y="160" width="18" height="50" fill="#ffffff"/>
+    <rect x="348" y="145" width="18" height="65" fill="#ffffff"/>
+    <rect x="375" y="128" width="18" height="82" fill="#ffffff"/>
+    <text x="448" y="82" font-size="34" fill="#ffffff" font-family="Arial" font-weight="700">$231m</text>
+    <text x="457" y="106" font-size="15" fill="#ffffff" font-family="Arial" font-weight="700">IN COST SAVINGS</text>
+    <text x="441" y="149" font-size="18" fill="#ffffff" font-family="Arial" font-weight="700">174512</text>
+    <text x="441" y="174" font-size="18" fill="#ffffff" font-family="Arial" font-weight="700">475282</text>
+    <text x="441" y="199" font-size="18" fill="#ffffff" font-family="Arial" font-weight="700">328923</text>
+    <text x="462" y="219" font-size="13" fill="#ffffff" font-family="Arial" font-weight="700">SALES INCREASE</text>
+  </svg>
+
+  <div class="hdr country-hdr" style="left:220px; top:203px; width:155px;">Country</div>
+  <div class="hdr" style="left:369px; top:184px; width:47px;">GII<small>(overall)</small></div>
+  <div class="hdr" style="left:462px; top:184px; width:85px;">Institutions</div>
+  <div class="hdr" style="left:565px; top:184px; width:127px;">Human capital<br>and research</div>
+  <div class="hdr" style="left:714px; top:184px; width:89px;">Infra-<br>structure</div>
+  <div class="hdr" style="left:827px; top:184px; width:109px;">Market<br>sophistication</div>
+  <div class="hdr" style="left:980px; top:184px; width:109px;">Business<br>sophistication</div>
+  <div class="hdr" style="left:1075px; top:184px; width:149px;">Knowledge and<br>technology outputs</div>
+  <div class="hdr" style="left:1232px; top:184px; width:94px;">Creative<br>outputs</div>
+
+  <div class="rule-top"></div>
+
+  <!-- Row lines -->
+  <div class="row-line" style="left:220px; top:279px; width:1113px;"></div>
+  <div class="row-line" style="left:220px; top:310px; width:1113px;"></div>
+  <div class="row-line" style="left:220px; top:341px; width:1113px;"></div>
+  <div class="row-line" style="left:220px; top:372px; width:1113px;"></div>
+  <div class="row-line" style="left:220px; top:403px; width:1113px;"></div>
+  <div class="row-line" style="left:220px; top:434px; width:1113px;"></div>
+  <div class="row-line" style="left:220px; top:465px; width:1113px;"></div>
+  <div class="row-line" style="left:220px; top:496px; width:1113px;"></div>
+  <div class="row-line" style="left:220px; top:527px; width:1113px;"></div>
+
+  <!-- Flags and country names -->
+  <!-- row1 -->
+  <div class="flag" style="left:220px; top:253px; background:#d52b1e;">
+    <svg viewBox="0 0 22 22" width="22" height="22">
+      <rect width="22" height="22" fill="#d52b1e"/>
+      <rect x="8.5" y="3" width="5" height="16" fill="#fff"/>
+      <rect x="3" y="8.5" width="16" height="5" fill="#fff"/>
+    </svg>
+  </div>
+  <div class="country" style="left:252px; top:259px; width:130px;">Switzerland</div>
+
+  <div class="flag" style="left:220px; top:284px; background:#006aa7;">
+    <svg viewBox="0 0 22 22" width="22" height="22">
+      <rect width="22" height="22" fill="#006aa7"/>
+      <rect x="8" y="0" width="4" height="22" fill="#fecc00"/>
+      <rect x="0" y="9" width="22" height="4" fill="#fecc00"/>
+    </svg>
+  </div>
+  <div class="country" style="left:252px; top:290px; width:90px;">Sweden</div>
+
+  <div class="flag" style="left:220px; top:315px; background:#fff;">
+    <svg viewBox="0 0 22 22" width="22" height="22">
+      <clipPath id="cUS"><circle cx="11" cy="11" r="11"/></clipPath>
+      <g clip-path="url(#cUS)">
+        <rect width="22" height="22" fill="#fff"/>
+        <g fill="#c0392b">
+          <rect y="0" width="22" height="2"/>
+          <rect y="4" width="22" height="2"/>
+          <rect y="8" width="22" height="2"/>
+          <rect y="12" width="22" height="2"/>
+          <rect y="16" width="22" height="2"/>
+          <rect y="20" width="22" height="2"/>
+        </g>
+        <rect width="10" height="9" fill="#2c4c9c"/>
+      </g>
+    </svg>
+  </div>
+  <div class="country" style="left:252px; top:321px; width:40px;">US</div>
+
+  <div class="flag" style="left:220px; top:346px; background:#012169;">
+    <svg viewBox="0 0 22 22" width="22" height="22">
+      <clipPath id="cUK"><circle cx="11" cy="11" r="11"/></clipPath>
+      <g clip-path="url(#cUK)">
+        <rect width="22" height="22" fill="#012169"/>
+        <path d="M0 0 L22 22 M22 0 L0 22" stroke="#fff" stroke-width="5"/>
+        <path d="M0 0 L22 22 M22 0 L0 22" stroke="#c8102e" stroke-width="2.5"/>
+        <rect x="9" width="4" height="22" fill="#fff"/>
+        <rect y="9" width="22" height="4" fill="#fff"/>
+        <rect x="10" width="2" height="22" fill="#c8102e"/>
+        <rect y="10" width="22" height="2" fill="#c8102e"/>
+      </g>
+    </svg>
+  </div>
+  <div class="country" style="left:252px; top:352px; width:35px;">UK</div>
+
+  <div class="flag" style="left:220px; top:377px; background:#fff;">
+    <svg viewBox="0 0 22 22" width="22" height="22">
+      <clipPath id="cKR"><circle cx="11" cy="11" r="11"/></clipPath>
+      <g clip-path="url(#cKR)">
+        <rect width="22" height="22" fill="#fff"/>
+        <path d="M11 7 A4 4 0 0 1 15 11 L11 11 Z" fill="#c60c30"/>
+        <path d="M11 15 A4 4 0 0 1 7 11 L11 11 Z" fill="#003478"/>
+        <circle cx="11" cy="9" r="2" fill="#c60c30"/>
+        <circle cx="11" cy="13" r="2" fill="#003478"/>
+        <g stroke="#000" stroke-width="1.2">
+          <line x1="4" y1="5" x2="7" y2="7"/><line x1="3" y1="7" x2="6" y2="9"/><line x1="5" y1="4" x2="8" y2="6"/>
+          <line x1="15" y1="16" x2="18" y2="18"/><line x1="16" y1="14" x2="19" y2="16"/><line x1="14" y1="17" x2="17" y2="19"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="country" style="left:252px; top:383px; width:120px;">South Korea</div>
+
+  <div class="flag" style="left:220px; top:408px; background:#fff;">
+    <svg viewBox="0 0 22 22" width="22" height="22">
+      <rect width="22" height="22" fill="#fff"/>
+      <rect y="0" width="22" height="7.33" fill="#ae1c28"/>
+      <rect y="14.67" width="22" height="7.33" fill="#21468b"/>
+    </svg>
+  </div>
+  <div class="country" style="left:252px; top:414px; width:110px;">Netherlands</div>
+
+  <div class="flag" style="left:220px; top:439px; background:#fff;">
+    <svg viewBox="0 0 22 22" width="22" height="22">
+      <rect width="22" height="22" fill="#fff"/>
+      <rect x="8" width="5" height="22" fill="#003580"/>
+      <rect y="8" width="22" height="5" fill="#003580"/>
+    </svg>
+  </div>
+  <div class="country" style="left:252px; top:445px; width:65px;">Finland</div>
+
+  <div class="flag" style="left:220px; top:470px; background:#ef3340;">
+    <svg viewBox="0 0 22 22" width="22" height="22">
+      <rect width="22" height="22" fill="#ef3340"/>
+      <circle cx="8" cy="8" r="3.5" fill="none" stroke="#fff" stroke-width="1.2"/>
+      <circle cx="9.5" cy="8" r="3.5" fill="#ef3340"/>
+      <g fill="#fff">
+        <circle cx="13.8" cy="5.8" r="0.6"/><circle cx="15.2" cy="7.1" r="0.6"/><circle cx="15.8" cy="9" r="0.6"/>
+        <circle cx="15.2" cy="10.8" r="0.6"/><circle cx="13.8" cy="12.2" r="0.6"/>
+      </g>
+    </svg>
+  </div>
+  <div class="country" style="left:252px; top:476px; width:84px;">Singapore</div>
+
+  <div class="flag" style="left:220px; top:501px; background:#c60c30;">
+    <svg viewBox="0 0 22 22" width="22" height="22">
+      <rect width="22" height="11" fill="#c60c30"/>
+      <rect y="11" width="22" height="11" fill="#fff"/>
+      <rect x="8.5" width="5" height="22" fill="#fff"/>
+      <rect y="8.5" width="22" height="5" fill="#fff"/>
+    </svg>
+  </div>
+  <div class="country" style="left:252px; top:507px; width:90px;">Denmark</div>
+
+  <div class="flag" style="left:220px; top:532px; background:#000;">
+    <svg viewBox="0 0 22 22" width="22" height="22">
+      <rect width="22" height="7.33" fill="#000"/>
+      <rect y="7.33" width="22" height="7.33" fill="#dd0000"/>
+      <rect y="14.67" width="22" height="7.33" fill="#ffce00"/>
+    </svg>
+  </div>
+  <div class="country" style="left:252px; top:538px; width:90px;">Germany</div>
+
+  <!-- data columns -->
+  <!-- x centers: 415, 510, 634, 761, 883, 1019, 1168, 1301 -->
+  <!-- row y positions: 259,290,321,352,383,414,445,476,507,538 -->
+  <!-- col 1 -->
+  <div class="cell" style="left:405px; top:259px; width:20px;">1</div>
+  <div class="cell" style="left:405px; top:290px; width:20px;">2</div>
+  <div class="cell" style="left:405px; top:321px; width:20px;">3</div>
+  <div class="cell" style="left:405px; top:352px; width:20px;">4</div>
+  <div class="cell" style="left:405px; top:383px; width:20px;">5</div>
+  <div class="cell" style="left:405px; top:414px; width:20px;">6</div>
+  <div class="cell" style="left:405px; top:445px; width:20px;">7</div>
+  <div class="cell" style="left:405px; top:476px; width:20px;">8</div>
+  <div class="cell" style="left:405px; top:507px; width:20px;">9</div>
+  <div class="cell" style="left:401px; top:538px; width:28px;">10</div>
+
+  <!-- col 2 -->
+  <div class="cell" style="left:500px; top:259px; width:20px;">13</div>
+  <div class="cell" style="left:500px; top:290px; width:20px;">9</div>
+  <div class="cell" style="left:500px; top:321px; width:20px;">12</div>
+  <div class="cell" style="left:500px; top:352px; width:20px;">15</div>
+  <div class="cell" style="left:500px; top:383px; width:20px;">28</div>
+  <div class="cell" style="left:500px; top:414px; width:20px;">6</div>
+  <div class="cell" style="left:500px; top:445px; width:20px;">2</div>
+  <div class="cell" style="left:500px; top:476px; width:20px;">1</div>
+  <div class="cell" style="left:500px; top:507px; width:20px;">8</div>
+  <div class="cell" style="left:500px; top:538px; width:20px;">17</div>
+
+  <!-- col 3 -->
+  <div class="cell" style="left:624px; top:259px; width:20px;">6</div>
+  <div class="cell" style="left:624px; top:290px; width:20px;">2</div>
+  <div class="cell" style="left:624px; top:321px; width:20px;">11</div>
+  <div class="cell" style="left:624px; top:352px; width:20px;">10</div>
+  <div class="cell" style="left:624px; top:383px; width:20px;">1</div>
+  <div class="cell" style="left:624px; top:414px; width:20px;">14</div>
+  <div class="cell" style="left:624px; top:445px; width:20px;">4</div>
+  <div class="cell" style="left:624px; top:476px; width:20px;">9</div>
+  <div class="cell" style="left:624px; top:507px; width:20px;">5</div>
+  <div class="cell" style="left:624px; top:538px; width:20px;">3</div>
+
+  <!-- col 4 -->
+  <div class="cell" style="left:751px; top:259px; width:20px;">2</div>
+  <div class="cell" style="left:751px; top:290px; width:20px;">3</div>
+  <div class="cell" style="left:747px; top:321px; width:28px;">23</div>
+  <div class="cell" style="left:751px; top:352px; width:20px;">10</div>
+  <div class="cell" style="left:751px; top:383px; width:20px;">12</div>
+  <div class="cell" style="left:751px; top:414px; width:20px;">16</div>
+  <div class="cell" style="left:751px; top:445px; width:20px;">11</div>
+  <div class="cell" style="left:751px; top:476px; width:20px;">15</div>
+  <div class="cell" style="left:751px; top:507px; width:20px;">5</div>
+  <div class="cell" style="left:747px; top:538px; width:28px;">21</div>
+
+  <!-- col 5 -->
+  <div class="cell" style="left:873px; top:259px; width:20px;">6</div>
+  <div class="cell" style="left:869px; top:290px; width:28px;">11</div>
+  <div class="cell" style="left:873px; top:321px; width:20px;">2</div>
+  <div class="cell" style="left:873px; top:352px; width:20px;">4</div>
+  <div class="cell" style="left:869px; top:383px; width:28px;">18</div>
+  <div class="cell" style="left:869px; top:414px; width:28px;">31</div>
+  <div class="cell" style="left:869px; top:445px; width:28px;">19</div>
+  <div class="cell" style="left:873px; top:476px; width:20px;">5</div>
+  <div class="cell" style="left:873px; top:507px; width:20px;">7</div>
+  <div class="cell" style="left:869px; top:538px; width:28px;">20</div>
+
+  <!-- col 6 -->
+  <div class="cell" style="left:1009px; top:259px; width:20px;">4</div>
+  <div class="cell" style="left:1009px; top:290px; width:20px;">1</div>
+  <div class="cell" style="left:1009px; top:321px; width:20px;">2</div>
+  <div class="cell" style="left:1005px; top:352px; width:28px;">21</div>
+  <div class="cell" style="left:1009px; top:383px; width:20px;">7</div>
+  <div class="cell" style="left:1009px; top:414px; width:20px;">5</div>
+  <div class="cell" style="left:1009px; top:445px; width:20px;">6</div>
+  <div class="cell" style="left:1009px; top:476px; width:20px;">3</div>
+  <div class="cell" style="left:1005px; top:507px; width:28px;">11</div>
+  <div class="cell" style="left:1005px; top:538px; width:28px;">12</div>
+
+  <!-- col 7 -->
+  <div class="cell" style="left:1158px; top:259px; width:20px;">1</div>
+  <div class="cell" style="left:1158px; top:290px; width:20px;">2</div>
+  <div class="cell" style="left:1158px; top:321px; width:20px;">3</div>
+  <div class="cell" style="left:1154px; top:352px; width:28px;">10</div>
+  <div class="cell" style="left:1158px; top:383px; width:20px;">8</div>
+  <div class="cell" style="left:1158px; top:414px; width:20px;">7</div>
+  <

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Technology & Innovation Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#b9b9bb;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  .left-panel{
+    position:absolute;
+    left:0;
+    top:0;
+    width:181px;
+    height:720px;
+    background:#33373d;
+  }
+  .divider{
+    position:absolute;
+    left:179px;
+    top:0;
+    width:2px;
+    height:720px;
+    background:#7c5bc4;
+  }
+  .panel-title{
+    position:absolute;
+    left:12px;
+    top:34px;
+    width:150px;
+    color:#f3f3f3;
+    font-size:24px;
+    line-height:1.08;
+    font-weight:700;
+  }
+  .step{
+    position:absolute;
+    left:10px;
+    width:160px;
+    height:98px;
+  }
+  .hex{
+    position:absolute;
+    left:0;
+    top:0;
+    width:71px;
+    height:62px;
+    clip-path:polygon(25% 4%, 75% 4%, 97% 50%, 75% 96%, 25% 96%, 3% 50%);
+    border:3px solid #7c5bc4;
+    box-sizing:border-box;
+    background:linear-gradient(135deg,#6fd6ff 0%,#205a78 100%);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
+  }
+  .hex.gray{
+    border-color:#8e9298;
+    background:linear-gradient(135deg,#90949a 0%,#565a60 100%);
+  }
+  .hex.light{
+    border-color:#8e9298;
+    background:linear-gradient(135deg,#f5f5f5 0%,#bababa 100%);
+  }
+  .hex svg{
+    position:absolute;
+    inset:6px;
+  }
+  .step-num{
+    position:absolute;
+    left:83px;
+    top:2px;
+    font-size:30px;
+    line-height:1;
+    font-weight:700;
+    color:#7c5bc4;
+  }
+  .step-num.gray{ color:#8d9197; }
+  .step-label{
+    position:absolute;
+    left:84px;
+    top:31px;
+    width:72px;
+    font-size:14px;
+    line-height:1.15;
+    font-weight:700;
+    color:#7c5bc4;
+  }
+  .step-label.gray{
+    color:#676c72;
+    font-weight:500;
+  }
+  .bottom-icon{
+    position:absolute;
+    left:68px;
+    top:662px;
+    width:74px;
+    height:48px;
+    opacity:.55;
+  }
+  .page{
+    position:absolute;
+    left:10px;
+    bottom:10px;
+    color:#ffffff;
+    font-size:18px;
+    font-weight:400;
+  }
+  .main-title{
+    position:absolute;
+    left:220px;
+    top:31px;
+    width:980px;
+    color:#222;
+    font-size:30px;
+    line-height:1.12;
+    font-weight:700;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    position:absolute;
+    left:220px;
+    top:137px;
+    width:760px;
+    color:#8c929a;
+    font-size:24px;
+    line-height:1.2;
+    font-weight:400;
+  }
+  .chart-title{
+    position:absolute;
+    color:#2a2a2a;
+    font-size:15px;
+    line-height:1.08;
+    font-weight:700;
+  }
+  .bg-glow{
+    position:absolute;
+    left:292px;
+    top:236px;
+    width:553px;
+    height:348px;
+    opacity:.65;
+    background:
+      radial-gradient(circle at 48% 48%, rgba(255,255,255,.75) 0, rgba(255,255,255,.28) 22%, rgba(255,255,255,.10) 42%, rgba(255,255,255,0) 66%);
+  }
+  .chart-left{
+    position:absolute;
+    left:220px;
+    top:268px;
+    width:337px;
+    height:400px;
+  }
+  .chart-right{
+    position:absolute;
+    left:615px;
+    top:268px;
+    width:352px;
+    height:400px;
+  }
+  .foot{
+    position:absolute;
+    left:220px;
+    top:735px;
+    width:660px;
+    transform:translateY(-100%);
+    color:#4b4b4b;
+    font-size:11px;
+    line-height:1.18;
+    font-weight:400;
+  }
+  .callout{
+    position:absolute;
+    left:1031px;
+    top:140px;
+    width:249px;
+    height:579px;
+    background:#d8d8da;
+  }
+  .callout-content{
+    position:absolute;
+    left:1044px;
+    top:151px;
+    width:220px;
+    color:#2f2f2f;
+    font-size:15px;
+    line-height:1.14;
+    font-weight:400;
+  }
+  .callout-content p{ margin:0 0 11px 0; }
+  .callout-content b{ font-weight:700; }
+  .logo{
+    position:absolute;
+    right:14px;
+    bottom:10px;
+    width:56px;
+    height:22px;
+  }
+  .rb-text{
+    position:absolute;
+    left:0;
+    top:2px;
+    width:27px;
+    color:#555;
+    font-size:8px;
+    line-height:1;
+    text-align:right;
+  }
+  svg text{ font-family: Arial, Helvetica, sans-serif; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-panel"></div>
+  <div class="divider"></div>
+
+  <div class="panel-title">Technology &amp;<br>Innovation</div>
+
+  <div class="step" style="top:141px;">
+    <div class="hex">
+      <svg viewBox="0 0 58 48" aria-hidden="true">
+        <defs>
+          <linearGradient id="hx1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#d8f6ff"/>
+            <stop offset="1" stop-color="#4ab2d8"/>
+          </linearGradient>
+        </defs>
+        <rect x="2" y="4" width="54" height="40" fill="url(#hx1)" opacity=".15"/>
+        <path d="M4 34 L14 24 L22 28 L33 15 L44 21 L54 11" stroke="#d8f6ff" stroke-width="2" fill="none" opacity=".9"/>
+        <path d="M5 38 L17 20 L25 26 L34 19 L42 25 L53 17" stroke="#9de8ff" stroke-width="1.6" fill="none" opacity=".8"/>
+        <g stroke="#baf0ff" stroke-width="1" opacity=".6">
+          <line x1="8" y1="10" x2="8" y2="40"/><line x1="16" y1="8" x2="16" y2="40"/><line x1="24" y1="8" x2="24" y2="40"/>
+          <line x1="32" y1="8" x2="32" y2="40"/><line x1="40" y1="8" x2="40" y2="40"/><line x1="48" y1="8" x2="48" y2="40"/>
+          <line x1="4" y1="14" x2="54" y2="14"/><line x1="4" y1="22" x2="54" y2="22"/><line x1="4" y1="30" x2="54" y2="30"/><line x1="4" y1="38" x2="54" y2="38"/>
+        </g>
+        <g fill="#ffffff" opacity=".85">
+          <circle cx="14" cy="24" r="2"/><circle cx="22" cy="28" r="2"/><circle cx="33" cy="15" r="2"/><circle cx="44" cy="21" r="2"/>
+        </g>
+      </svg>
+    </div>
+    <div class="step-num">1</div>
+    <div class="step-label">Value of<br>Innovation</div>
+  </div>
+
+  <div class="step" style="top:275px;">
+    <div class="hex gray">
+      <svg viewBox="0 0 58 48" aria-hidden="true">
+        <g fill="none" stroke="#d6d6d6" stroke-width="1" opacity=".55">
+          <path d="M8 34 C16 18, 30 10, 50 16"/>
+          <path d="M10 24 C22 30, 34 34, 48 30"/>
+          <path d="M12 14 C24 22, 34 22, 46 12"/>
+          <circle cx="18" cy="16" r="2"/><circle cx="28" cy="24" r="2"/><circle cx="40" cy="18" r="2"/><circle cx="36" cy="32" r="2"/>
+        </g>
+      </svg>
+    </div>
+    <div class="step-num gray">2</div>
+    <div class="step-label gray">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="step" style="top:410px;">
+    <div class="hex light">
+      <svg viewBox="0 0 58 48" aria-hidden="true">
+        <g fill="none" stroke="#707070" stroke-width="2" opacity=".85">
+          <path d="M15 26 C18 21, 21 18, 25 18 C28 18, 30 20, 32 22 L37 27"/>
+          <path d="M43 22 C40 27, 37 30, 33 30 C30 30, 28 28, 26 26 L21 21"/>
+        </g>
+        <g fill="#888">
+          <circle cx="17" cy="24" r="3"/><circle cx="41" cy="24" r="3"/>
+        </g>
+      </svg>
+    </div>
+    <div class="step-num gray">3</div>
+    <div class="step-label gray">Humans &amp;<br>Machines</div>
+  </div>
+
+  <svg class="bottom-icon" viewBox="0 0 100 64" aria-hidden="true">
+    <g fill="none" stroke="#8d9197" stroke-width="3.5">
+      <circle cx="28" cy="38" r="12"></circle>
+      <path d="M28 26 L28 10 C28 5 32 2 38 2 C44 2 48 6 48 11 C48 16 45 19 41 21 C37 23 35 26 35 30"></path>
+      <circle cx="60" cy="18" r="9"></circle>
+      <path d="M69 18 h8 M51 18 h-8 M60 9 v-8 M60 27 v8 M66 12 l6-5 M54 24 l-5 6 M66 24 l6 5 M54 12 l-5-6"></path>
+      <path d="M13 38 h-8 M16 29 l-7 -4 M16 47 l-7 4"></path>
+      <path d="M28 50 v8 M38 47 l6 6"></path>
+    </g>
+  </svg>
+
+  <div class="page">20</div>
+
+  <div class="main-title">Historically, rates of adoption of innovations have been facilitated by<br>globalization – Network effects strongly influence pace of adoption</div>
+  <div class="subtitle">Globalization and network effects foster technology diffusion</div>
+
+  <div class="chart-title" style="left:220px; top:194px; width:338px;">Trade Openness Index related to years until<br>adoption rate of 25% of US pop. [index, years]</div>
+  <div class="chart-title" style="left:616px; top:194px; width:328px;">GII related to Internet adoption rate for<br>selected countries [index, %]</div>
+
+  <div class="bg-glow"></div>
+  <svg style="position:absolute; left:300px; top:246px; width:530px; height:318px; z-index:1; opacity:.28;" viewBox="0 0 530 318" aria-hidden="true">
+    <g stroke="#ffffff" stroke-opacity=".2" fill="none">
+      <ellipse cx="265" cy="160" rx="98" ry="64"/>
+      <ellipse cx="265" cy="160" rx="127" ry="86"/>
+      <ellipse cx="265" cy="160" rx="160" ry="108"/>
+      <path d="M105 160 H425"/>
+      <path d="M265 52 V268"/>
+      <path d="M170 95 C220 122 310 128 360 98"/>
+      <path d="M170 225 C220 198 310 192 360 222"/>
+    </g>
+    <g fill="#ffffff" opacity=".6">
+      <circle cx="140" cy="96" r="4"/><circle cx="149" cy="107" r="3"/><circle cx="392" cy="115" r="4"/>
+      <circle cx="364" cy="233" r="4"/><circle cx="122" cy="228" r="3"/><circle cx="430" cy="154" r="4"/>
+      <circle cx="240" cy="82" r="3"/><circle cx="308" cy="72" r="5"/><circle cx="292" cy="236" r="3"/>
+      <circle cx="198" cy="254" r="4"/><circle cx="265" cy="160" r="5"/><circle cx="334" cy="201" r="3"/>
+      <circle cx="190" cy="152" r="3"/><circle cx="352" cy="138" r="5"/><circle cx="102" cy="156" r="4"/>
+      <circle cx="455" cy="196" r="3"/>
+    </g>
+  </svg>
+
+  <div class="chart-left">
+    <svg width="337" height="400" viewBox="0 0 337 400">
+      <text x="1" y="20" font-size="15" font-weight="700" fill="#242424">Years until adoption</text>
+      <text x="1" y="38" font-size="15" font-weight="700" fill="#242424">rate of 25% in the US</text>
+
+      <line x1="32" y1="324" x2="323" y2="324" stroke="#333" stroke-width="1.2"/>
+      <line x1="32" y1="324" x2="32" y2="51" stroke="#333" stroke-width="1.2"/>
+
+      <g stroke="#333" stroke-width="1">
+        <line x1="32" y1="324" x2="27" y2="324"/><line x1="32" y1="299" x2="27" y2="299"/><line x1="32" y1="274" x2="27" y2="274"/>
+        <line x1="32" y1="249" x2="27" y2="249"/><line x1="32" y1="224" x2="27" y2="224"/><line x1="32" y1="200" x2="27" y2="200"/>
+        <line x1="32" y1="175" x2="27" y2="175"/><line x1="32" y1="150" x2="27" y2="150"/><line x1="32" y1="125" x2="27" y2="125"/>
+        <line x1="32" y1="100" x2="27" y2="100"/><line x1="32" y1="75" x2="27" y2="75"/><line x1="32" y1="51" x2="27" y2="51"/>
+      </g>
+
+      <g font-size="13" fill="#333" text-anchor="end">
+        <text x="20" y="329">0</text><text x="20" y="304">2</text><text x="20" y="279">4</text><text x="20" y="254">6</text>
+        <text x="20" y="229">8</text><text x="20" y="205">10</text><text x="20" y="180">12</text><text x="20" y="155">14</text>
+        <text x="20" y="130">16</text><text x="20" y="105">18</text><text x="20" y="80">20</text><text x="20" y="56">22</text>
+      </g>
+
+      <line x1="47" y1="89" x2="299" y2="318" stroke="#4e4e4e" stroke-width="1.4"/>
+
+      <g fill="#6b57a2">
+        <circle cx="47" cy="65" r="6"/><circle cx="87" cy="115" r="6"/><circle cx="128" cy="152" r="6"/>
+        <circle cx="121" cy="218" r="6"/><circle cx="161" cy="230" r="6"/><circle cx="161" cy="244" r="6"/>
+        <circle cx="251" cy="176" r="6"/><circle cx="231" cy="274" r="6"/><circle cx="294" cy="299" r="6"/>
+      </g>
+
+      <g font-size="14" fill="#333">
+        <text x="58" y="71">Microcomputer</text>
+        <text x="98" y="121">PC</text>
+        <text x="139" y="148">Mobile phone</text>
+        <text x="102" y="214">World Wide Web</text>
+        <text x="173" y="245">VCR</text>
+        <text x="91" y="250">CD player</text>
+        <text x="206" y="165">Amazon Prime</text>
+        <text x="242" y="280">Facebook</text>
+        <text x="274" y="318">Tablets</text>
+        <text x="266" y="65">R: 0.60</text>
+      </g>
+
+      <g stroke="#333" stroke-width="1">
+        <line x1="32" y1="324" x2="32" y2="334"/><line x1="77" y1="324" x2="77" y2="329"/>
+        <line x1="160" y1="324" x2="160" y2="329"/><line x1="242" y1="324" x2="242" y2="329"/><line x1="323" y1="324" x2="323" y2="329"/>
+      </g>
+
+      <g font-size="13" fill="#333" text-anchor="middle">
+        <text x="32" y="349">0</text><text x="77" y="349">15</text><text x="160" y="349">20</text><text x="242" y="349">25</text><text x="323" y="349">30</text>
+      </g>
+
+      <path d="M29 315 l-4 14 M39 315 l-4 14" stroke="#333" stroke-width="1.5"/>
+      <text x="28" y="380" font-size="15" font-weight="700" fill="#222">Trade-Openness-Index [at year of invention, US]</text>
+      <text x="323" y="375" font-size="10" fill="#222">1)</text>
+    </svg>
+  </div>
+
+  <div class="chart-right">
+    <svg width="352" height="400" viewBox="0 0 352 400">
+      <text x="1" y="20" font-size="15" font-weight="700" fill="#242424">Adoption rate of the internet [%]</text>
+
+      <line x1="39" y1="324" x2="350" y2="324" stroke="#333" stroke-width="1.2"/>
+      <line x1="39" y1="324" x2="39" y2="51" stroke="#333" stroke-width="1.2"/>
+
+      <g stroke="#333" stroke-width="1">
+        <line x1="39" y1="324" x2="34" y2="324"/><line x1="39" y1="299" x2="34" y2="299"/><line x1="39" y1="274" x2="34" y2="274"/>
+        <line x1="39" y1="249" x2="34" y2="249"/><line x1="39" y1="224" x2="34" y2="224"/><line x1="39" y1="200" x2="34" y2="200"/>
+        <line x1="39" y1="175" x2="34" y2="175"/><line x1="39" y1="150" x2="34" y2="150"/><line x1="39" y1="125" x2="34" y2="125"/>
+        <line x1="39" y1="100" x2="34" y2="100"/><line x1="39" y1="75" x2="34" y2="75"/><line x1="39" y1="51" x2="34" y2="51"/>
+      </g>
+
+      <g font-size="13" fill="#333" text-anchor="end">
+        <text x="27" y="329">0</text><text x="27" y="304">55</text><text x="27" y="279">60</text><text x="27" y="254">65</text>
+        <text x="27" y="229">70</text><text x="27" y="205">75</text><text x="27" y="180">80</text><text x="27" y="155">85</text>
+        <text x="27" y="130">90</text><text x="27" y="105">95</text><text x="27" y="56">100</text>
+      </g>
+
+      <line x1="75" y1="213" x2="336" y2="118" stroke="#4f4f4f" stroke-width="1.4"/>
+
+      <g fill="#4b2d7b">
+        <circle cx="76" cy="285" r="6.2"/><circle cx="84" cy="257" r="6.2"/><circle cx="87" cy="113" r="6.2"/>
+        <circle cx="91" cy="126" r="6.2"/><circle cx="96" cy="149" r="6.2"/><circle cx="107" cy="140" r="6.2"/>
+        <circle cx="108" cy="285" r="6.2"/><circle cx="118" cy="165" r="6.2"/><circle cx="121" cy="200" r="6.2"/>
+        <circle cx="126" cy="227" r="6.2"/><circle cx="130" cy="176" r="6.2"/><circle cx="136" cy="184" r="6.2"/>
+        <circle cx="143" cy="183" r="6.2"/><circle cx="151" cy="184" r="6.2"/><circle cx="153" cy="146" r="6.2"/>
+        <circle cx="160" cy="144" r="6.2"/><circle cx="171" cy="110" r="6.2"/><circle cx="173" cy="125" r="6.2"/>
+        <circle cx="175" cy="120" r="6.2"/><circle cx="188" cy="259" r="6.2"/><circle cx="194" cy="92" r="6.2"/>
+        <circle cx="205" cy="165" r="6.2"/><circle cx="210" cy="133" r="6.2"/><circle cx="222" cy="173" r="6.2"/>
+        <circle cx="229" cy="98" r="6.2"/><circle cx="235" cy="56" r="6.2"/><circle cx="236" cy="70" r="6.2"/>
+        <circle cx="246" cy="44" r="6.2"/><circle cx="246" cy="95" r="6.2"/><circle cx="249" cy="120" r="6.2"/>
+        <circle cx="278" cy="226" r="6.2"/><circle cx="276" cy="173" r="6.2"/><circle cx="286" cy="145" r="6.2"/>
+        <circle cx="294" cy="85" r="6.2"/><circle cx="301" cy="54" r="6.2"/><circle cx="305" cy="150" r="6.2"/>
+        <circle cx="310" cy="44" r="6.2"/><circle cx="319" cy="66" r="6.2"/><circle cx="337" cy="51" r="6.2"/>
+      </g>
+
+      <text x="51" y="65" font-size="15" fill="#333">R: 0.39</text>
+
+      <g font-size="14" fill="#333">
+        <text x="110" y="171">Turkey</text>
+        <text x="50" y="293">Indonesia</text>
+        <text x="110" y="109">Russia</text>
+        <text x="246" y="116">South Korea</text>
+        <text x="312" y="74">UK</text>
+        <text x="295" y="156">Sweden</text>
+        <text x="247" y="116" visibility="hidden">South Korea</text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="246" y="118"></text>
+        <text x="266" y="118" visibility="hidden"></text>
+        <text x="266" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="246" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="247" y="118"></text>
+        <text x="246" y="118"></text>
+        <text x="267" y="145">Germany</text>
+        <text x="270" y="310">China</text>
+      </g>
+
+      <text x="286" y="52" font-size="14" fill="#333">South Korea</text>
+
+      <g stroke="#777" stroke-width="1">
+        <line x1="290" y1="55" x2="242" y2="45"/>
+        <line x1="310" y1="77" x2="320" y2="67"/>
+        <line x1="294" y1="145" x2="303" y2="153"/>
+        <line x1="270" y1="141" x2="249" y2="122"/>
+        <line x1="275" y1="304" x2="278" y2="231"/>
+      </g>
+
+      <g stroke="#333" stroke-width="1">
+        <line x1="39" y1="324" x2="39" y2="334"/><line x1="58" y1="324" x2="58" y2="329"/>
+        <line x1="99" y1="324" x2="99" y2="329"/><line x1="130" y1="324" x2="130" y2="329"/><line x1="170" y1="324" x2="170" y2="329"/>
+        <line x1="210" y1="324" x2="210" y2="329"/><line x1="250" y1="324" x2="250" y2="329"/><line x1="290" y1="324" x2="290" y2="329"/>
+        <line x1="330" y1="324" x2="330" y2="329"/><line x1="350" y1="324" x2="350" y2="334"/>
+      </g>
+
+      <g font-size="13" fill="#333" text-anchor="middle">
+        <text x="39" y="349">0</text><text x="99" y="349">30</text><text x="130" y="349">35</text><text x="170" y="349">40</text>
+        <text x="210" y="349">45</text><text x="250" y="349">50</text><text x="290" y="349">55</text><text x="330" y="349">60</text><text x="350" y="349">65</text>
+      </g>
+
+      <path d="M35 315 l-4 14 M45 315 l-4 14" stroke="#333" stroke-width="1.5"/>
+      <text x="205" y="380" font-size="15" font-weight="700" fill="#222">Global Innovation Index</text>
+    </svg>
+  </div>
+
+  <div class="callout"></div>
+  <div class="callout-content">
+    <p>&gt; The rate of adoption of innovations is profoundly linked to <b>networks</b> and societal <b>interactions</b>, particularly if technologies become more useful when used by many – often beyond their original or intended purpose. Such technologies are said to benefit from <b>network effects</b>. A prime example is the Internet, originally only used by the military and academia</p>
+    <p>&gt; <b>Globalization</b> – fostering interactions – represents one of the <b>main drivers</b> of the observed <b>acceleration in innovation adoption</b>. Empirically assessed, the higher the Trade Openness Index (a measure of globalization), the faster the rate of adoption of technology</p>
+    <p>&gt; Due to so-called <b>Slowbalization</b>, which describes a <b>decrease in the dynamics of globalization of the last decade</b>, the development of faster technology adoption might have come to an end</p>
+    <p>&gt; It is also important to consider <b>network effects</b> to such an extent that <b>further diffusion to other technologies</b> takes place. Where technological development is already more advanced, technological innovations are adopted faster</p>
+  </div>
+
+  <div class="foot">1) The Trade Openness Index relates the total values of imports and exports to the GDP of a country in a specific year [%]<br>Source: BCG, Roland Berger</div>
+
+  <div class="logo">
+    <div class="rb-text">Roland<br>Berger</div>
+    <svg viewBox="0 0 25 18" width="25" height="18" style="position:absolute; left:30px; top:0;">
+      <path d="M7 1 C14 1 17 4 17 9 C17 13.5 14 17 7 17 L7 1 Z" fill="#9fa3a7"/>
+      <path d="M6 1 C3 1 1 3 1 7 L1 17 L6 17 C10 17 12 14 12 10.5 C12 6.7 10 1 6 1 Z" fill="#c9cccf"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

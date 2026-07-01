@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #dcdcdc;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #e7e5e0;
+    margin: 0 auto;
+    color: #222;
+  }
+
+  .text {
+    position: absolute;
+    font-size: 17px;
+    line-height: 1.42;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .col1-top {
+    left: 64px;
+    top: 126px;
+    width: 315px;
+  }
+
+  .col1-bottom {
+    left: 64px;
+    top: 379px;
+    width: 339px;
+  }
+
+  .col2 {
+    left: 485px;
+    top: 126px;
+    width: 349px;
+  }
+
+  .quote-sup {
+    font-size: 10px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .top-photo {
+    position: absolute;
+    left: 936px;
+    top: 0px;
+    width: 344px;
+    height: 167px;
+    background:
+      radial-gradient(circle at 55% 88%, rgba(129,45,36,0.85) 0, rgba(129,45,36,0.75) 11%, rgba(180,114,99,0.45) 20%, rgba(255,255,255,0) 27%),
+      linear-gradient(90deg, rgba(120,127,110,0.6) 0%, rgba(238,236,225,0.85) 32%, rgba(246,245,239,0.95) 60%, rgba(229,223,207,0.7) 100%),
+      linear-gradient(180deg, #d4d0c2 0%, #efede4 45%, #e8d091 100%);
+    filter: blur(0.2px);
+  }
+  .top-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(90deg,
+        rgba(255,255,255,0.22) 0 5px,
+        rgba(130,130,130,0.08) 5px 9px,
+        rgba(255,255,255,0.14) 9px 16px);
+    opacity: 0.6;
+  }
+
+  .callout {
+    position: absolute;
+    left: 937px;
+    top: 203px;
+    width: 309px;
+    color: #1f1f1f;
+  }
+
+  .callout-line1 {
+    font-size: 16px;
+    line-height: 1.35;
+    font-weight: 400;
+  }
+
+  .percent {
+    color: #8a2be2;
+    font-size: 36px;
+    line-height: 1;
+    font-weight: 400;
+    display: inline-block;
+    vertical-align: baseline;
+    margin-right: 2px;
+  }
+
+  .percent-sign {
+    color: #8a2be2;
+    font-size: 23px;
+    margin-right: 8px;
+  }
+
+  .brain {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: -3px;
+    margin-right: 8px;
+  }
+  .brain::before {
+    content: "";
+    position: absolute;
+    inset: 2px 1px 1px 1px;
+    border: 2px solid #8a2be2;
+    border-radius: 12px 12px 10px 10px;
+    background:
+      radial-gradient(circle at 35% 35%, transparent 0 3px, #8a2be2 3px 3.8px, transparent 4px),
+      radial-gradient(circle at 62% 38%, transparent 0 2.7px, #8a2be2 2.7px 3.5px, transparent 3.7px),
+      radial-gradient(circle at 40% 58%, transparent 0 2.6px, #8a2be2 2.6px 3.3px, transparent 3.5px),
+      radial-gradient(circle at 62% 60%, transparent 0 2.6px, #8a2be2 2.6px 3.3px, transparent 3.5px);
+    box-sizing: border-box;
+  }
+  .brain::after {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 5px;
+    width: 2px;
+    height: 10px;
+    background: #8a2be2;
+    box-shadow:
+      -4px 3px 0 0 #8a2be2,
+      4px 3px 0 0 #8a2be2,
+      -3px 8px 0 0 #8a2be2,
+      3px 8px 0 0 #8a2be2;
+  }
+
+  .callout-source {
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .bottom-photo {
+    position: absolute;
+    left: 936px;
+    top: 369px;
+    width: 344px;
+    height: 351px;
+    background:
+      linear-gradient(90deg, rgba(239,235,223,0.95) 0 20%, rgba(255,255,255,0.12) 20% 22%, transparent 22%),
+      radial-gradient(circle at 47% 18%, rgba(19,207,57,0.95) 0 18%, rgba(17,183,51,0.9) 18% 28%, rgba(0,0,0,0) 30%),
+      linear-gradient(100deg, rgba(232,227,214,0.9) 0 22%, rgba(53,65,63,0.2) 22% 25%, rgba(0,0,0,0) 25%),
+      linear-gradient(68deg, rgba(27,33,43,0.95) 39%, rgba(20,27,36,0.98) 49%, rgba(0,0,0,0) 50%),
+      linear-gradient(180deg, rgba(223,209,170,0.8) 0 19%, rgba(226,223,211,0.9) 19% 58%, rgba(192,173,140,0.8) 58% 72%, rgba(214,205,190,0.95) 72% 100%);
+  }
+  .bottom-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(77deg, transparent 0 43%, rgba(25,30,42,0.94) 43% 63%, transparent 63%),
+      linear-gradient(95deg, transparent 0 72%, rgba(230,196,140,0.75) 72% 82%, transparent 82%),
+      repeating-linear-gradient(90deg,
+        rgba(255,255,255,0.12) 0 6px,
+        rgba(40,40,40,0.05) 6px 10px,
+        rgba(255,255,255,0.08) 10px 16px);
+    mix-blend-mode: normal;
+    opacity: 0.75;
+  }
+
+  .photo-credit {
+    position: absolute;
+    right: 23px;
+    bottom: 37px;
+    color: rgba(255,255,255,0.85);
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 400;
+  }
+
+  .side-rail {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 53px;
+    height: 720px;
+    background: #e7e5e0;
+  }
+
+  .side-divider {
+    position: absolute;
+    left: 21px;
+    top: 0;
+    width: 1px;
+    height: 720px;
+    background: #d7d3cb;
+  }
+
+  .side-text {
+    position: absolute;
+    left: -247px;
+    top: 296px;
+    width: 540px;
+    transform: rotate(90deg);
+    transform-origin: left top;
+    font-size: 13px;
+    color: #6a6a6a;
+    white-space: nowrap;
+    letter-spacing: 0.1px;
+  }
+
+  .side-text .active {
+    color: #8a2be2;
+    font-weight: 600;
+  }
+
+  .page-number {
+    position: absolute;
+    right: 9px;
+    bottom: 14px;
+    font-size: 14px;
+    color: #6f6f6f;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="text col1-top">
+      At this point, employees listening to a swirl of conflicting information are left feeling uncertain about their near future. However significant AI’s role turns out to be, if it becomes common in the workplace, employers will need to keep a close watch on the dehumanization impact on the people expected to take instruction from or collaborate with machines. And until AI is trustworthy enough to make critical choices (if it ever is), humans must maintain accountability.
+    </div>
+
+    <div class="text col1-bottom">
+      Leaders and employees are all reading the same headlines, but those in control take them differently from those who must roll with any changes, and we see little evidence of employers seeking to allay employee’s concerns. A recent study found just 17% of employees’ companies had clear AI policies, half encouraging and half prohibiting AI use.<span class="quote-sup">116</span> Employees are left feeling that this potentially radical reinvention of the workplace is happening to them and not with them. This is a dignity issue. Accenture found that 60% of employees are concerned about generative AI increasing their stress and burnout, but only 37% of leaders see this as a problem.<span class="quote-sup">117</span>
+    </div>
+
+    <div class="text col2">
+      The Economist articulates an excellent point: “The thing for managers to remember is that machines can make employees feel differently about their work. So, it matters whether new technologies are introduced in collaboration with employees or imposed from above, and whether they enhance or sap their sense of competence. Bosses who ignore these issues are missing something meaningful.”<span class="quote-sup">118</span>
+    </div>
+
+    <div class="top-photo"></div>
+
+    <div class="callout">
+      <div class="callout-line1">
+        <span class="percent">60</span><span class="percent-sign">%</span><span class="brain"></span><br>
+        of employees are concerned about<br>
+        generative AI increasing their stress<br>
+        and burnout
+      </div>
+      <div class="callout-source">Accenture Life Trends survey, 2024</div>
+    </div>
+
+    <div class="bottom-photo">
+      <div class="photo-credit">Accenture Life Trends 2025</div>
+    </div>
+
+    <div class="side-rail">
+      <div class="side-divider"></div>
+      <div class="side-text">
+        Cost of hesitations &nbsp;/&nbsp; The parent trap &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; <span class="active">The dignity of work</span> &nbsp;/&nbsp; Social rewiring
+      </div>
+      <div class="page-number">64</div>
+    </div>
+  </div>
+</body>
+</html>

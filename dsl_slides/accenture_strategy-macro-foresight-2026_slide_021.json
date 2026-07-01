@@ -1,0 +1,81 @@
+{
+  "description": "Create a two-column content slide on lagged tariff impacts with a left waterfall chart showing consumer price effects and a right table summarizing tariff-driven margin erosion by industry.",
+  "spec": {
+    "slide_type": "content",
+    "header": {
+      "kicker": "2. Lagged transmission of tariff impacts",
+      "headline": "As companies’ pre-tariff inventory buffers dwindle, the full brunt of the 15 p.p. increase in the effective US tariff rate (with additional sectoral tariffs still to come) will begin to be felt",
+      "sub": ""
+    },
+    "layout": "two-column",
+    "content": {
+      "left": {
+        "type": "waterfall-chart",
+        "title": "Potential increase in US consumer prices from tariffs",
+        "fmt": "percent",
+        "bars": [
+          {
+            "label": "Direct impact of higher consumer goods import prices (+)",
+            "value": 0.83,
+            "type": "positive"
+          },
+          {
+            "label": "Higher producer input costs (+)",
+            "value": 0.8,
+            "type": "positive"
+          },
+          {
+            "label": "Producers opportunistically raising prices (+)",
+            "value": 0.07,
+            "type": "positive"
+          },
+          {
+            "label": "Substitution to lower-tariff but higher-cost countries",
+            "value": 0.23,
+            "type": "positive"
+          },
+          {
+            "label": "USD depreciation (+)",
+            "value": 0.2,
+            "type": "positive"
+          },
+          {
+            "label": "Drag on inflation from weaker demand (-)",
+            "value": -0.1,
+            "type": "negative"
+          },
+          {
+            "label": "Total CPI increase",
+            "value": 2.03,
+            "type": "total"
+          }
+        ]
+      },
+      "right": {
+        "type": "table",
+        "headers": [
+          "Industry",
+          "Industry margin",
+          "Potential margin erosion"
+        ],
+        "rows": [
+          [
+            "Automotive",
+            "6%",
+            "8.2%"
+          ],
+          [
+            "Aerospace & Defense",
+            "10%",
+            "4.7%"
+          ]
+        ],
+        "highlight_col": 2
+      }
+    },
+    "footer": {
+      "source": "",
+      "page": 0
+    }
+  }
+}

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>AI productivity slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ece6ef;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ece6ef;
+    color:#111;
+  }
+
+  /* Top nav */
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:24px;
+    background:#efefef;
+    border-bottom:1px solid #cfcfcf;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:24px;
+    line-height:24px;
+    font-size:10px;
+    color:#8a8a8a;
+    font-weight:700;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .tab.active-left{
+    background:#5b198f;
+    color:#fff;
+  }
+  .tab.active{
+    color:#5b198f;
+  }
+  .tab.underline::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:2px;
+    background:#7d1ac8;
+  }
+
+  .title{
+    position:absolute;
+    left:41px;
+    top:59px;
+    width:1148px;
+    font-size:28px;
+    line-height:29px;
+    font-weight:800;
+    color:#000;
+  }
+  .subtitle{
+    position:absolute;
+    left:41px;
+    top:120px;
+    width:905px;
+    font-size:27px;
+    line-height:28px;
+    font-weight:800;
+    color:#9a1cff;
+  }
+
+  .left-head{
+    position:absolute;
+    left:46px;
+    top:174px;
+    width:462px;
+    font-size:15px;
+    font-weight:800;
+    color:#111;
+  }
+  .left-line{
+    position:absolute;
+    left:46px;
+    top:197px;
+    width:493px;
+    height:1px;
+    background:#4a4a4a;
+  }
+  .left-sub{
+    position:absolute;
+    left:46px;
+    top:204px;
+    font-size:13px;
+    color:#a0a0a0;
+  }
+
+  .right-head{
+    position:absolute;
+    left:606px;
+    top:174px;
+    width:398px;
+    font-size:15px;
+    font-weight:800;
+    color:#111;
+  }
+  .right-line{
+    position:absolute;
+    left:606px;
+    top:197px;
+    width:425px;
+    height:1px;
+    background:#4a4a4a;
+  }
+  .right-sub{
+    position:absolute;
+    left:606px;
+    top:204px;
+    font-size:13px;
+    color:#a0a0a0;
+  }
+
+  /* Left bar chart */
+  .bar-area{
+    position:absolute;
+    left:47px;
+    top:236px;
+    width:484px;
+    height:410px;
+  }
+  .ylabels{
+    position:absolute;
+    left:0;
+    top:0;
+    width:195px;
+    font-size:12px;
+    color:#2a2a2a;
+    line-height:15px;
+  }
+  .ylabels div{
+    position:absolute;
+    left:0;
+    width:180px;
+  }
+  .axis-v{
+    position:absolute;
+    left:212px;
+    top:0;
+    width:1px;
+    height:403px;
+    background:#3b3b3b;
+  }
+  .axis-h{
+    position:absolute;
+    left:179px;
+    bottom:0;
+    width:300px;
+    height:1px;
+    background:#3b3b3b;
+  }
+  .ticks{
+    position:absolute;
+    left:177px;
+    bottom:-1px;
+    width:308px;
+    height:22px;
+    font-size:12px;
+    color:#2a2a2a;
+  }
+  .ticks span{
+    position:absolute;
+    bottom:0;
+    transform:translateX(-50%);
+  }
+  .tickmark{
+    position:absolute;
+    bottom:18px;
+    width:1px;
+    height:5px;
+    background:#3b3b3b;
+  }
+  .bars{
+    position:absolute;
+    left:212px;
+    top:0;
+    width:267px;
+    height:385px;
+  }
+  .bar{
+    position:absolute;
+    left:0;
+    height:10px;
+  }
+  .bar.gray{ background:#d7d7d7; }
+  .bar.purple{ background:#7d18cb; }
+
+  .legend{
+    position:absolute;
+    left:300px;
+    top:318px;
+    font-size:14px;
+    color:#2a2a2a;
+  }
+  .legend .item{
+    position:relative;
+    margin-bottom:8px;
+    padding-left:24px;
+  }
+  .legend .sw{
+    position:absolute;
+    left:0;
+    top:2px;
+    width:20px;
+    height:16px;
+  }
+
+  /* Right line chart */
+  .line-chart{
+    position:absolute;
+    left:606px;
+    top:236px;
+    width:425px;
+    height:410px;
+  }
+  .lc-y{
+    position:absolute;
+    left:0;
+    top:0;
+    width:45px;
+    height:395px;
+    font-size:12px;
+    color:#2a2a2a;
+  }
+  .lc-y .lab{
+    position:absolute;
+    right:12px;
+    transform:translateY(50%);
+  }
+  .lc-axis-v{
+    position:absolute;
+    left:46px;
+    top:14px;
+    width:1px;
+    height:395px;
+    background:#444;
+  }
+  .lc-axis-h{
+    position:absolute;
+    left:46px;
+    top:409px;
+    width:379px;
+    height:1px;
+    background:#444;
+  }
+  .lc-x{
+    position:absolute;
+    left:46px;
+    top:411px;
+    width:379px;
+    height:20px;
+    font-size:12px;
+    color:#2a2a2a;
+  }
+  .lc-x span{
+    position:absolute;
+    top:3px;
+    transform:translateX(-50%);
+  }
+  .plot{
+    position:absolute;
+    left:46px;
+    top:0;
+    width:379px;
+    height:409px;
+  }
+  .forecast{
+    position:absolute;
+    left:330px;
+    top:0;
+    width:50px;
+    height:409px;
+    background:#cfcfcf;
+  }
+  .forecast .small{
+    position:absolute;
+    top:8px;
+    left:11px;
+    width:28px;
+    text-align:center;
+    font-size:10px;
+    line-height:10px;
+    font-weight:700;
+    color:#111;
+  }
+  .v-dash{
+    position:absolute;
+    left:188px;
+    top:12px;
+    width:0;
+    height:395px;
+    border-left:2px dashed #b7b7b7;
+  }
+  .h-dash{
+    position:absolute;
+    left:166px;
+    top:325px;
+    width:67px;
+    height:0;
+    border-top:2px dashed #b7b7b7;
+  }
+  .legend2{
+    position:absolute;
+    left:100px;
+    top:20px;
+    font-size:13px;
+    color:#353535;
+  }
+  .legend2 .litem{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:6px;
+  }
+  .legend2 .line{
+    position:absolute;
+    left:0;
+    top:9px;
+    width:18px;
+    height:0;
+    border-top:3px solid;
+    border-radius:2px;
+  }
+
+  .callout{
+    position:absolute;
+    background:#ececec;
+    border:2px solid #979797;
+    box-shadow:0 4px 6px rgba(0,0,0,0.18);
+    color:#333;
+  }
+  .callout:after{
+    content:"";
+    position:absolute;
+    width:0;height:0;
+    border-style:solid;
+  }
+  .callout.left{
+    left:74px;
+    top:87px;
+    width:134px;
+    padding:10px 10px;
+    font-size:15px;
+    line-height:1.14;
+  }
+  .callout.left:after{
+    left:111px;
+    top:148px;
+    border-width:16px 0 0 18px;
+    border-color:transparent transparent transparent #979797;
+    transform:rotate(28deg);
+  }
+  .callout.left:before{
+    content:"";
+    position:absolute;
+    left:113px;
+    top:149px;
+    width:0;height:0;
+    border-style:solid;
+    border-width:13px 0 0 15px;
+    border-color:transparent transparent transparent #ececec;
+    transform:rotate(28deg);
+  }
+  .callout.bottom{
+    left:240px;
+    top:326px;
+    width:154px;
+    padding:8px 10px;
+    font-size:14px;
+    line-height:1.15;
+  }
+
+  .ellipse{
+    position:absolute;
+    border:2px solid #585858;
+    border-radius:50%;
+    background:#f4f4f4;
+    text-align:center;
+    font-weight:700;
+    color:#111;
+  }
+  .arrow{
+    position:absolute;
+    width:3px;
+    background:#111;
+  }
+  .arrow:after{
+    content:"";
+    position:absolute;
+    left:-5px;
+    top:-9px;
+    width:0;height:0;
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-bottom:10px solid #111;
+  }
+
+  /* Commentary box */
+  .commentary{
+    position:absolute;
+    left:1052px;
+    top:173px;
+    width:267px;
+    height:460px;
+    background:#cfb6e5;
+    box-shadow:0 3px 6px rgba(0,0,0,0.25);
+  }
+  .commentary .head{
+    position:absolute;
+    left:11px;
+    top:10px;
+    font-size:16px;
+    font-weight:800;
+  }
+  .commentary .content{
+    position:absolute;
+    left:10px;
+    top:33px;
+    width:242px;
+    font-size:16px;
+    line-height:1.08;
+    color:#1e1e1e;
+  }
+  .commentary ul{
+    margin:0;
+    padding-left:20px;
+  }
+  .commentary li{
+    margin-bottom:10px;
+  }
+
+  .footer{
+    position:absolute;
+    left:75px;
+    top:685px;
+    width:990px;
+    font-size:11px;
+    color:#888;
+    line-height:1.15;
+  }
+  .copyright{
+    position:absolute;
+    left:1013px;
+    top:731px;
+    transform:translateY(-100%);
+    font-size:11px;
+    color:#666;
+    white-space:nowrap;
+  }
+  .pageno{
+    position:absolute;
+    right:19px;
+    bottom:9px;
+    font-size:14px;
+    color:#666;
+  }
+  .accent{
+    position:absolute;
+    left:39px;
+    bottom:3px;
+    color:#8d18d7;
+    font-size:57px;
+    font-weight:800;
+    line-height:1;
+  }
+
+  svg{
+    position:absolute;
+    left:0;
+    top:0;
+    overflow:visible;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <div class="topbar">
+    <div class="tab active-left" style="left:0px;width:98px;">Top 10 trends</div>
+    <div class="tab" style="left:99px;width:126px;">Multi-speed growth</div>
+    <div class="tab" style="left:226px;width:107px;">Tariff impacts</div>
+    <div class="tab" style="left:334px;width:111px;">Financial fragility</div>
+    <div class="tab" style="left:446px;width:128px;">Affordability</div>
+    <div class="tab active underline" style="left:575px;width:121px;">AI productivity</div>
+    <div class="tab" style="left:697px;width:115px;">China exports</div>
+    <div class="tab" style="left:813px;width:116px;">Europe struggle</div>
+    <div class="tab" style="left:930px;width:108px;">AI arms race</div>
+    <div class="tab" style="left:1039px;width:112px;">Power crunch</div>
+    <div class="tab" style="left:1152px;width:128px;">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">Early AI adopters are driving productivity and margin growth divergence at regional, firm and sectoral levels while slow adopters face cost pressure and eroding competitiveness</div>
+  <div class="subtitle">5. Growing AI diffusion widens productivity gaps between regions and firms</div>
+
+  <div class="left-head">Change in share of US firms adopting AI, by industry</div>
+  <div class="left-line"></div>
+  <div class="left-sub">Percentage points, as of September 2025</div>
+
+  <div class="right-head">Financial value gap between firms implementing AI<span style="font-size:9px; vertical-align:top;">1</span></div>
+  <div class="right-line"></div>
+  <div class="right-sub">Revenue growth, indexed (2019 = 100)</div>
+
+  <div class="bar-area">
+    <div class="ylabels">
+      <div style="top:5px;">Information</div>
+      <div style="top:35px;">Professional services</div>
+      <div style="top:64px;">Finance and insurance</div>
+      <div style="top:93px;">Education</div>
+      <div style="top:123px;">Real estate</div>
+      <div style="top:140px;">Health care and</div>
+      <div style="top:157px;">social assistance</div>
+      <div style="top:181px;">Retail trade</div>
+      <div style="top:211px;">Administrative</div>
+      <div style="top:240px;">Wholesale trade</div>
+      <div style="top:269px;">Manufacturing</div>
+      <div style="top:286px;">Transportation and</div>
+      <div style="top:303px;">warehousing</div>
+      <div style="top:328px;">Construction</div>
+      <div style="top:346px;">Accommodation and</div>
+      <div style="top:363px;">food services</div>
+      <div style="top:387px;">Other services</div>
+    </div>
+
+    <div class="axis-v"></div>
+    <div class="axis-h"></div>
+
+    <div class="bars">
+      <div class="bar gray"   style="top:7px; width:161px;"></div>
+      <div class="bar purple" style="top:4px; width:266px;"></div>
+
+      <div class="bar gray"   style="top:36px; width:134px;"></div>
+      <div class="bar purple" style="top:33px; width:233px;"></div>
+
+      <div class="bar gray"   style="top:65px; width:120px;"></div>
+      <div class="bar purple" style="top:62px; width:216px;"></div>
+
+      <div class="bar gray"   style="top:95px; width:75px;"></div>
+      <div class="bar purple" style="top:92px; width:165px;"></div>
+
+      <div class="bar gray"   style="top:124px; width:109px;"></div>
+      <div class="bar purple" style="top:121px; width:162px;"></div>
+
+      <div class="bar gray"   style="top:153px; width:80px;"></div>
+      <div class="bar purple" style="top:150px; width:119px;"></div>
+
+      <div class="bar gray"   style="top:182px; width:52px;"></div>
+      <div class="bar purple" style="top:179px; width:75px;"></div>
+
+      <div class="bar gray"   style="top:211px; width:55px;"></div>
+      <div class="bar purple" style="top:208px; width:74px;"></div>
+
+      <div class="bar gray"   style="top:240px; width:49px;"></div>
+      <div class="bar purple" style="top:237px; width:68px;"></div>
+
+      <div class="bar gray"   style="top:269px; width:40px;"></div>
+      <div class="bar purple" style="top:266px; width:52px;"></div>
+
+      <div class="bar gray"   style="top:299px; width:33px;"></div>
+      <div class="bar purple" style="top:296px; width:47px;"></div>
+
+      <div class="bar gray"   style="top:328px; width:20px;"></div>
+      <div class="bar purple" style="top:325px; width:35px;"></div>
+
+      <div class="bar gray"   style="top:358px; width:18px;"></div>
+      <div class="bar purple" style="top:355px; width:33px;"></div>
+
+      <div class="bar gray"   style="top:387px; width:0px;"></div>
+      <div class="bar purple" style="top:384px; width:21px;"></div>
+    </div>
+
+    <div class="ticks">
+      <div class="tickmark" style="left:0px;"></div>
+      <span style="left:0px;">-2</span>
+      <div class="tickmark" style="left:34px;"></div>
+      <span style="left:34px;">0</span>
+      <div class="tickmark" style="left:68px;"></div>
+      <span style="left:68px;">2</span>
+      <div class="tickmark" style="left:102px;"></div>
+      <span style="left:102px;">4</span>
+      <div class="tickmark" style="left:136px;"></div>
+      <span style="left:136px;">6</span>
+      <div class="tickmark" style="left:170px;"></div>
+      <span style="left:170px;">8</span>
+      <div class="tickmark" style="left:204px;"></div>
+      <span style="left:204px;">10</span>
+      <div class="tickmark" style="left:238px;"></div>
+      <span style="left:238px;">12</span>
+      <div class="tickmark" style="left:272px;"></div>
+      <span style="left:272px;">14</span>
+      <div class="tickmark" style="left:306px;"></div>
+      <span style="left:306px;">16</span>
+    </div>
+
+    <div class="legend">
+      <div class="item"><span class="sw" style="background:#7d18cb;"></span>Change from Sept 2023</div>
+      <div class="item"><span class="sw" style="background:#d7d7d7;"></span>Change from Sept 2024</div>
+    </div>
+  </div>
+
+  <div class="line-chart">
+    <div class="lc-y">
+      <div class="lab" style="top:7px;">200</div>
+      <div class="lab" style="top:47px;">190</div>
+      <div class="lab" style="top:87px;">180</div>
+      <div class="lab" style="top:127px;">170</div>
+      <div class="lab" style="top:167px;">160</div>
+      <div class="lab" style="top:207px;">150</div>
+      <div class="lab" style="top:247px;">140</div>
+      <div class="lab" style="top:287px;">130</div>
+      <div class="lab" style="top:327px;">120</div>
+      <div class="lab" style="top:367px;">110</div>
+      <div class="lab" style="top:407px;">100</div>
+    </div>
+    <div class="lc-axis-v"></div>
+    <div class="lc-axis-h"></div>
+    <div class="forecast"><div class="small">Fore<br>cast</div></div>
+    <div class="v-dash"></div>
+    <div class="h-dash"></div>
+
+    <div class="legend2">
+      <div class="litem"><span class="line" style="border-color:#7d18cb;"></span>“Reinventors”</div>
+      <div class="litem"><span class="line" style="border-color:#c795f0;"></span>All others</div>
+    </div>
+
+    <div class="plot">
+      <svg width="379" height="409" aria-hidden="true">
+        <polyline fill="none" stroke="#7d18cb" stroke-width="3"
+          points="23,409 72,314 117,245 165,196 212,153 261,75 318,6" />
+        <polyline fill="none" stroke="#c795f0" stroke-width="3"
+          points="23,409 72,353 117,313 165,293 212,245 261,205 318,157" />
+      </svg>
+
+      <div class="callout left">
+        Firms who embraced AI across their operating models drove a revenue growth gap of +15pp by 2022
+      </div>
+
+      <div class="ellipse" style="left:204px; top:271px; width:52px; height:24px; line-height:24px; font-size:13px;">+15pp</div>
+      <div class="arrow" style="left:237px; top:310px; height:37px;"></div>
+
+      <div class="ellipse" style="left:322px; top:93px; width:61px; height:24px; line-height:24px; font-size:13px;">+37pp</div>
+      <div class="arrow" style="left:355px; top:164px; height:108px;"></div>
+
+      <div class="callout bottom">
+        Revenue growth divergence is expected to increase to +37pp by 2026
+      </div>
+    </div>
+
+    <div class="lc-x">
+      <span style="left:26px;">2019</span>
+      <span style="left:72px;">2020</span>
+      <span style="left:118px;">2021</span>
+      <span style="left:166px;">2022</span>
+      <span style="left:213px;">2023</span>
+      <span style="left:260px;">2024</span>
+      <span style="left:307px;">2025</span>
+      <span style="left:354px;">2026</span>
+    </div>
+  </div>
+
+  <div class="commentary">
+    <div class="head">Commentary</div>
+    <div class="content">
+      <ul>
+        <li>Firms and industries that are slow or less innovative in adopting AI face rising cost pressures and margin compression as early adopters pull ahead</li>
+        <li>Winners are typically firms within highly-exposed sectors where the scope for AI adoption across workflows has increased drastically</li>
+        <li>Agentic AI is set to widen this gap further as early adopters are better positioned to leverage their existing AI capabilities and capture value faster than laggards</li>
+        <li>Regional winners and losers will be determined by sectoral composition, their exposure to AI and the propensity to drive AI-related capex</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">Notes: (1) “Reinventors” account for 9% of firms who have built the capability for continuous reinvention by embracing and investing in generative AI across their workflows and operating model. Accenture characterizes “reinventors” as firms whose digital core sits at the core of their competitive advantage and who have built the capabilities across technology, talent and processes to continuously reinvent their operating models<br>Source(s): Accenture Strategy analysis</div>
+
+  <div class="copyright">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="pageno">28</div>
+  <div class="accent">&gt;</div>
+
+</div>
+</body>
+</html>

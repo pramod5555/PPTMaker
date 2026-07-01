@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Insights: Americas</title>
+<style>
+  body{
+    margin:0;
+    background:#ecebe6;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ecebe6;
+    color:#4f4f59;
+  }
+  .top-accent{
+    position:absolute;
+    left:0;
+    top:0;
+    width:47px;
+    height:78px;
+    background:#bfc0c8;
+  }
+  .header-line{
+    position:absolute;
+    left:0;
+    top:78px;
+    width:1280px;
+    height:1px;
+    background:#b9bbc4;
+  }
+  .title{
+    position:absolute;
+    left:56px;
+    top:50px;
+    font-size:18px;
+    line-height:22px;
+    font-weight:400;
+    color:#7a7b86;
+    letter-spacing:0;
+  }
+
+  .nav{
+    position:absolute;
+    top:34px;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#c3c4cc;
+  }
+  .nav.left{ left:951px; }
+  .nav.right{ left:995px; }
+  .nav.left:before,
+  .nav.right:before{
+    content:"";
+    position:absolute;
+    top:10px;
+    width:0;height:0;
+  }
+  .nav.left:before{
+    left:11px;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+    border-right:10px solid #454754;
+  }
+  .nav.right:before{
+    left:14px;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+    border-left:10px solid #454754;
+  }
+
+  .left-col{
+    position:absolute;
+    left:56px;
+    top:118px;
+    width:435px;
+  }
+  .right-col{
+    position:absolute;
+    left:533px;
+    top:118px;
+    width:565px;
+  }
+
+  .p,.p-right,.bullets{
+    font-size:14px;
+    line-height:1.28;
+    font-weight:400;
+    color:#53545f;
+  }
+  .p{
+    width:430px;
+    margin:0 0 10px 0;
+  }
+  .section,.section-right{
+    font-size:16px;
+    line-height:1.2;
+    font-weight:700;
+    color:#2f313a;
+    margin:12px 0 6px 0;
+  }
+  .section-right{ width:540px; }
+  .p-right{
+    width:540px;
+    margin:0 0 4px 0;
+  }
+
+  .bullets{
+    width:545px;
+    margin:0;
+    padding:0;
+  }
+  .bullets .item{
+    position:relative;
+    padding-left:14px;
+    margin:0 0 7px 0;
+  }
+  .bullets .item:before{
+    content:"■";
+    position:absolute;
+    left:0;
+    top:1px;
+    font-size:7px;
+    line-height:18px;
+    color:#2f313a;
+  }
+  .bullets b{
+    font-weight:700;
+    color:#2f313a;
+  }
+
+  .sidebar{
+    position:absolute;
+    left:1040px;
+    top:120px;
+    width:240px;
+  }
+  .side-item{
+    position:absolute;
+    left:0;
+    width:240px;
+    height:35px;
+    background:#2f2d3d;
+    color:#f1f1f3;
+    font-size:12px;
+    line-height:14px;
+    font-weight:400;
+    box-sizing:border-box;
+    padding:8px 0 0 8px;
+    border-left:2px solid #f1dd00;
+  }
+  .side1{ top:0; }
+  .side2{ top:50px; }
+  .side3{ top:100px; }
+  .side4{ top:150px; }
+  .side5{ top:200px; }
+  .side6{ top:250px; }
+
+  .contact-box{
+    position:absolute;
+    left:533px;
+    top:632px;
+    width:755px;
+    height:79px;
+    border:1px solid #d1d1ca;
+    box-sizing:border-box;
+    background:#ecebe6;
+  }
+  .contact-band{
+    position:absolute;
+    left:-1px;
+    top:-1px;
+    width:755px;
+    height:35px;
+    background:#f1dd00;
+    border:1px solid #f1dd00;
+    box-sizing:border-box;
+  }
+  .contact-title{
+    position:absolute;
+    left:12px;
+    top:10px;
+    font-size:14px;
+    line-height:16px;
+    font-weight:700;
+    color:#2f313a;
+  }
+  .contact-info{
+    position:absolute;
+    left:12px;
+    top:48px;
+    font-size:13px;
+    line-height:16px;
+    color:#575862;
+    white-space:nowrap;
+  }
+  .contact-info .name{
+    font-weight:700;
+    color:#2f313a;
+  }
+  .contact-info .sep{
+    color:#8d8d95;
+    padding:0 10px;
+  }
+  .contact-info .email{
+    color:#1f67b2;
+    text-decoration:none;
+  }
+
+  .footer{
+    position:absolute;
+    left:56px;
+    top:733px;
+    transform:translateY(-100%);
+    font-size:10px;
+    line-height:12px;
+    color:#7d7d86;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-accent"></div>
+  <div class="header-line"></div>
+  <div class="title">Insights: Americas</div>
+
+  <div class="nav left"></div>
+  <div class="nav right"></div>
+
+  <div class="left-col">
+    <div class="p">
+      In recent years, the AEO Program has undergone relevant enhancements. New requirements and administrative procedures were intended to increase predictability for applicants and certified operators while maintaining alignment with international customs governance standards.
+    </div>
+
+    <div class="section">Recent updates on the program</div>
+
+    <div class="p">
+      The AEO-Integrated framework has also expanded the program’s scope, including the participation of other government agencies involved in foreign trade controls. This innovation allows additional trade benefits granted by these agencies, such as prioritized reviews on imports, simplified documentation requirements and more operational predictability during the customs clearance process.
+    </div>
+
+    <div class="p">
+      In parallel with these changes, in 2025, Brazil enacted Complementary Law No. 214 introducing the consumption tax reform, which brought provisions linking AEO certification to tax benefits. As the tax reform launches new taxes in Brazil, AEO operators may have the possibility of deferred payment of import taxes and the suspension of IBS and CBS on certain export-related transactions, particularly for certified trading companies.
+    </div>
+
+    <div class="p">
+      Although the application of these benefits still depends on further regulatory guidance, the subsequent legislation enacted by Brazilian authorities has placed the AEO Program within a broader structure of tax compliance alongside other initiatives such as the Confia and Sintonia Programs.
+    </div>
+
+    <div class="section">What businesses need to know</div>
+
+    <div class="p">
+      Confia is a Brazilian tax compliance program focused on large taxpayers with existing levels of governance and internal control and is designed to promote transparency and risk controls through voluntary participation and ongoing engagement with tax authorities. Sintonia is another tax program that classifies taxpayers based on criteria such as filing accuracy, consistency of information and payment regularity, granting differentiated treatment and priority services to those with higher compliance ratings, particularly the A+ classification. Both programs are recognized as part of Brazil’s federal “compliance pillar” alongside the AEO Program.
+    </div>
+  </div>
+
+  <div class="right-col">
+    <div class="p-right">The innovation brought by Brazilian authorities consists of:</div>
+
+    <div class="bullets" style="margin-top:2px;">
+      <div class="item">
+        Creation of the AEO-Essential Compliance level: specifically designed for trading companies engaged in export activities, with admission based on criteria that simplify the entry into the program. Continued participation at this level would be conditional upon compliance with additional requirements, assessed throughout the operator’s participation in the program.
+      </div>
+      <div class="item">
+        Creation of AEO-Excellence Compliance level: this modality is focused on operators already certified as AEO that are also participants in the Confia Program or hold an “A+” rating under the Sintonia Program. This level is the requirement to enjoy the possibility of deferral of import taxes.
+      </div>
+      <div class="item">
+        This framework marks a shift of the AEO Program to a new phase in which its benefits have clearly moved beyond reputational or customs and trade facilitation to include cash flow advantages for taxpayers.
+      </div>
+    </div>
+
+    <div class="section-right" style="margin-top:8px;">Next steps</div>
+
+    <div class="bullets">
+      <div class="item">
+        <b>Revisit AEO strategy</b><br>
+        AEO certification should be reassessed as a strategic tool capable of granting tax deferral and cash flow benefits.
+      </div>
+      <div class="item">
+        <b>Prepare for progression to higher certification tiers</b><br>
+        AEO-certified operators may consider whether their governance maturity supports progression to the proposed AEO-Excellence Compliance level, including alignment with Confia or Sintonia “A+” requirements.
+      </div>
+      <div class="item">
+        <b>Strengthen governance</b><br>
+        Early investment in tax and customs governance and risk management can drive companies to respond more efficiently to authorities’ eventual updates on the program.<span style="font-size:8px;color:#bebec5;"> ■</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="side-item side1">Contents</div>
+    <div class="side-item side2">Insights</div>
+    <div class="side-item side3">New on<br>ey.com</div>
+    <div class="side-item side4">Tax alerts</div>
+    <div class="side-item side5">Additional<br>resources</div>
+    <div class="side-item side6">Contacts</div>
+  </div>
+
+  <div class="contact-box">
+    <div class="contact-band"></div>
+    <div class="contact-title">For additional information, please contact:</div>
+    <div class="contact-info">
+      <span class="name">Ian Craig</span><span class="sep">|</span>+ 55 213 263 73625<span class="sep">|</span><a class="email" href="#">ian.craig@br.ey.com</a>
+    </div>
+  </div>
+
+  <div class="footer">19&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+</div>
+</body>
+</html>

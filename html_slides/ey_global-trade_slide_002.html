@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Contents Slide Replica</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 10% 18%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.72) 12%, rgba(0,0,0,0.38) 26%, rgba(0,0,0,0.08) 46%, rgba(0,0,0,0) 62%),
+      linear-gradient(180deg, #003868 0%, #0a4c87 42%, #083c6b 70%, #031a3a 100%);
+  }
+  #slide > * { position: absolute; box-sizing: border-box; }
+
+  .bg-water {
+    left: 0;
+    top: 406px;
+    width: 1280px;
+    height: 314px;
+    z-index: 0;
+    background:
+      radial-gradient(circle at 78% 40%, rgba(255,217,145,0.68) 0%, rgba(255,217,145,0) 10%),
+      radial-gradient(circle at 92% 58%, rgba(255,0,35,0.72) 0%, rgba(255,0,35,0) 18%),
+      radial-gradient(circle at 73% 66%, rgba(255,244,212,0.42) 0%, rgba(255,244,212,0) 9%),
+      linear-gradient(180deg, rgba(12,26,63,0.10) 0%, rgba(6,22,54,0.72) 24%, rgba(2,16,39,0.98) 100%);
+  }
+
+  .horizon-lights {
+    left: 0;
+    top: 365px;
+    width: 960px;
+    height: 55px;
+    z-index: 2;
+    background:
+      radial-gradient(circle at 44px 28px, rgba(255,255,215,0.95) 0 2px, rgba(255,255,215,0) 10px),
+      radial-gradient(circle at 66px 28px, rgba(255,244,180,0.9) 0 2px, rgba(255,244,180,0) 10px),
+      radial-gradient(circle at 92px 29px, rgba(255,255,215,0.9) 0 2px, rgba(255,255,215,0) 10px),
+      radial-gradient(circle at 128px 31px, rgba(255,240,180,0.9) 0 2px, rgba(255,240,180,0) 10px),
+      radial-gradient(circle at 160px 30px, rgba(255,255,220,0.9) 0 2px, rgba(255,255,220,0) 10px),
+      radial-gradient(circle at 192px 29px, rgba(255,242,185,0.9) 0 2px, rgba(255,242,185,0) 10px),
+      radial-gradient(circle at 226px 31px, rgba(255,255,220,0.9) 0 2px, rgba(255,255,220,0) 10px),
+      radial-gradient(circle at 260px 30px, rgba(255,242,185,0.9) 0 2px, rgba(255,242,185,0) 10px),
+      radial-gradient(circle at 294px 31px, rgba(255,255,220,0.92) 0 2px, rgba(255,255,220,0) 10px),
+      radial-gradient(circle at 328px 30px, rgba(255,240,180,0.88) 0 2px, rgba(255,240,180,0) 10px),
+      radial-gradient(circle at 362px 31px, rgba(255,255,220,0.88) 0 2px, rgba(255,255,220,0) 10px),
+      radial-gradient(circle at 396px 30px, rgba(255,240,180,0.88) 0 2px, rgba(255,240,180,0) 10px),
+      radial-gradient(circle at 430px 31px, rgba(255,255,220,0.88) 0 2px, rgba(255,255,220,0) 10px),
+      radial-gradient(circle at 464px 30px, rgba(255,240,180,0.88) 0 2px, rgba(255,240,180,0) 10px),
+      radial-gradient(circle at 498px 31px, rgba(255,255,220,0.88) 0 2px, rgba(255,255,220,0) 10px),
+      radial-gradient(circle at 532px 30px, rgba(255,240,180,0.88) 0 2px, rgba(255,240,180,0) 10px),
+      radial-gradient(circle at 566px 31px, rgba(255,255,220,0.88) 0 2px, rgba(255,255,220,0) 10px),
+      radial-gradient(circle at 600px 30px, rgba(255,240,180,0.88) 0 2px, rgba(255,240,180,0) 10px),
+      radial-gradient(circle at 634px 31px, rgba(255,255,220,0.88) 0 2px, rgba(255,255,220,0) 10px),
+      radial-gradient(circle at 668px 30px, rgba(255,240,180,0.88) 0 2px, rgba(255,240,180,0) 10px),
+      radial-gradient(circle at 702px 31px, rgba(255,255,220,0.88) 0 2px, rgba(255,255,220,0) 10px),
+      radial-gradient(circle at 736px 30px, rgba(255,240,180,0.88) 0 2px, rgba(255,240,180,0) 10px),
+      radial-gradient(circle at 770px 31px, rgba(255,255,220,0.88) 0 2px, rgba(255,255,220,0) 10px),
+      radial-gradient(circle at 804px 30px, rgba(255,240,180,0.88) 0 2px, rgba(255,240,180,0) 10px),
+      radial-gradient(circle at 838px 31px, rgba(255,255,220,0.88) 0 2px, rgba(255,255,220,0) 10px),
+      radial-gradient(circle at 872px 30px, rgba(255,240,180,0.88) 0 2px, rgba(255,240,180,0) 10px),
+      radial-gradient(circle at 906px 31px, rgba(255,255,220,0.88) 0 2px, rgba(255,255,220,0) 10px);
+    opacity: 0.9;
+  }
+
+  .dock {
+    left: 0;
+    top: 420px;
+    width: 770px;
+    height: 124px;
+    z-index: 2;
+    background: linear-gradient(180deg, rgba(132,108,87,0.97) 0%, rgba(120,97,71,0.97) 100%);
+    clip-path: polygon(0 18%, 67% 0, 100% 46%, 100% 100%, 0 100%);
+  }
+  .dock-front {
+    left: 0;
+    top: 542px;
+    width: 487px;
+    height: 28px;
+    z-index: 2;
+    background: #161315;
+  }
+  .dock-edge {
+    left: 0;
+    top: 539px;
+    width: 490px;
+    height: 4px;
+    z-index: 3;
+    background: #6a5f52;
+  }
+  .dock-pillars {
+    left: 0;
+    top: 565px;
+    width: 80px;
+    height: 155px;
+    z-index: 1;
+    background:
+      linear-gradient(90deg, rgba(18,15,18,0.95) 0 4px, transparent 4px 24px, rgba(18,15,18,0.95) 24px 28px, transparent 28px 48px, rgba(18,15,18,0.95) 48px 52px, transparent 52px 72px, rgba(18,15,18,0.95) 72px 76px, transparent 76px 80px);
+    opacity: 0.95;
+  }
+
+  .terminal-strip {
+    left: 0;
+    top: 392px;
+    width: 842px;
+    height: 46px;
+    z-index: 3;
+    background:
+      repeating-linear-gradient(90deg,
+        rgba(236,196,68,0.95) 0 2px,
+        rgba(78,64,47,0.95) 2px 24px
+      );
+    opacity: 0.5;
+  }
+
+  .container-stack div {
+    position: absolute;
+    box-sizing: border-box;
+    z-index: 3;
+  }
+  .c1 { left: 18px; top: 441px; width: 52px; height: 15px; background:#936a1a; }
+  .c2 { left: 76px; top: 442px; width: 44px; height: 15px; background:#d04f2b; }
+  .c3 { left: 126px; top: 440px; width: 58px; height: 15px; background:#9f251d; }
+  .c4 { left: 192px; top: 442px; width: 50px; height: 16px; background:#b48f2d; }
+  .c5 { left: 252px; top: 441px; width: 65px; height: 15px; background:#8c3926; }
+  .c6 { left: 324px; top: 443px; width: 40px; height: 14px; background:#c17029; }
+  .c7 { left: 372px; top: 440px; width: 60px; height: 15px; background:#994f21; }
+  .c8 { left: 439px; top: 442px; width: 58px; height: 16px; background:#6f7d1a; }
+  .c9 { left: 504px; top: 441px; width: 75px; height: 16px; background:#d14b22; }
+  .c10{ left: 587px; top: 442px; width: 58px; height: 15px; background:#924a1d; }
+  .c11{ left: 88px; top: 460px; width: 55px; height: 16px; background:#445d0c; }
+  .c12{ left: 154px; top: 460px; width: 44px; height: 15px; background:#b76e26; }
+  .c13{ left: 209px; top: 459px; width: 75px; height: 16px; background:#9f2d1b; }
+  .c14{ left: 292px; top: 459px; width: 57px; height: 15px; background:#6e5f1c; }
+  .c15{ left: 356px; top: 460px; width: 68px; height: 16px; background:#cf5826; }
+  .c16{ left: 431px; top: 459px; width: 48px; height: 15px; background:#ab3f22; }
+  .c17{ left: 489px; top: 460px; width: 60px; height: 16px; background:#6c7e22; }
+  .c18{ left: 558px; top: 458px; width: 72px; height: 18px; background:#7f3b20; }
+  .c19{ left: 636px; top: 460px; width: 58px; height: 15px; background:#c98a26; }
+  .c20{ left: 46px; top: 482px; width: 38px; height: 16px; background:#b57c2b; }
+  .c21{ left: 97px; top: 480px; width: 65px; height: 18px; background:#9a241c; }
+  .c22{ left: 171px; top: 480px; width: 60px; height: 17px; background:#c55a1a; }
+  .c23{ left: 240px; top: 480px; width: 42px; height: 17px; background:#63711f; }
+  .c24{ left: 292px; top: 481px; width: 55px; height: 17px; background:#913a1e; }
+  .c25{ left: 356px; top: 480px; width: 72px; height: 18px; background:#d1721f; }
+  .c26{ left: 438px; top: 482px; width: 59px; height: 16px; background:#8d4f20; }
+  .c27{ left: 504px; top: 480px; width: 38px; height: 17px; background:#4b6a18; }
+  .c28{ left: 552px; top: 481px; width: 59px; height: 18px; background:#c54a22; }
+  .c29{ left: 619px; top: 481px; width: 78px; height: 17px; background:#865820; }
+  .c30{ left: 167px; top: 505px; width: 44px; height: 17px; background:#47661a; }
+  .c31{ left: 221px; top: 504px; width: 65px; height: 18px; background:#b35e28; }
+  .c32{ left: 295px; top: 504px; width: 60px; height: 17px; background:#7c331b; }
+  .c33{ left: 364px; top: 504px; width: 44px; height: 17px; background:#996b1e; }
+  .c34{ left: 418px; top: 505px; width: 72px; height: 17px; background:#c94f20; }
+  .c35{ left: 500px; top: 505px; width: 59px; height: 16px; background:#6d7020; }
+  .c36{ left: 570px; top: 503px; width: 90px; height: 19px; background:#9f4322; }
+  .c37{ left: 669px; top: 504px; width: 56px; height: 18px; background:#c17d26; }
+
+  .ship-hull {
+    left: 782px;
+    top: 405px;
+    width: 462px;
+    height: 164px;
+    z-index: 7;
+    background: linear-gradient(180deg, #0a2c67 0%, #072057 52%, #041236 100%);
+    clip-path: polygon(0 25%, 72% 8%, 98% 24%, 100% 61%, 86% 79%, 17% 100%, 0 74%);
+  }
+  .ship-bottom {
+    left: 804px;
+    top: 534px;
+    width: 408px;
+    height: 32px;
+    z-index: 8;
+    background: linear-gradient(180deg, #901234 0%, #6c0e29 100%);
+    clip-path: polygon(0 0, 100% 0, 84% 100%, 10% 100%);
+  }
+  .ship-green {
+    left: 737px;
+    top: 378px;
+    width: 238px;
+    height: 72px;
+    z-index: 8;
+    background: linear-gradient(180deg, #447829 0%, #296419 100%);
+    clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
+  }
+  .ship-deck {
+    left: 755px;
+    top: 305px;
+    width: 348px;
+    height: 141px;
+    z-index: 9;
+  }
+  .ship-deck div { position:absolute; box-sizing:border-box; }
+
+  .sd1{left:0px;top:0px;width:39px;height:19px;background:#b38337;}
+  .sd2{left:41px;top:0px;width:24px;height:19px;background:#c45e2b;}
+  .sd3{left:68px;top:0px;width:29px;height:19px;background:#9f2324;}
+  .sd4{left:100px;top:0px;width:24px;height:19px;background:#6f8e2f;}
+  .sd5{left:127px;top:0px;width:31px;height:19px;background:#b84e30;}
+  .sd6{left:161px;top:0px;width:26px;height:19px;background:#7d2f4e;}
+  .sd7{left:190px;top:0px;width:32px;height:19px;background:#d08f1f;}
+  .sd8{left:225px;top:0px;width:24px;height:19px;background:#a82226;}
+  .sd9{left:252px;top:0px;width:31px;height:19px;background:#546b2a;}
+  .sd10{left:286px;top:0px;width:37px;height:19px;background:#c54d2a;}
+  .sd11{left:0px;top:21px;width:30px;height:20px;background:#7f9328;}
+  .sd12{left:33px;top:21px;width:27px;height:20px;background:#b6412a;}
+  .sd13{left:63px;top:21px;width:31px;height:20px;background:#d87f25;}
+  .sd14{left:97px;top:21px;width:25px;height:20px;background:#8f2b24;}
+  .sd15{left:125px;top:21px;width:30px;height:20px;background:#578839;}
+  .sd16{left:158px;top:21px;width:28px;height:20px;background:#c85a33;}
+  .sd17{left:189px;top:21px;width:31px;height:20px;background:#6d3554;}
+  .sd18{left:223px;top:21px;width:26px;height:20px;background:#cd9122;}
+  .sd19{left:252px;top:21px;width:30px;height:20px;background:#b02b2a;}
+  .sd20{left:285px;top:21px;width:38px;height:20px;background:#7b8025;}
+  .sd21{left:0px;top:43px;width:35px;height:20px;background:#c44c2b;}
+  .sd22{left:38px;top:43px;width:26px;height:20px;background:#a32622;}
+  .sd23{left:67px;top:43px;width:29px;height:20px;background:#638f34;}
+  .sd24{left:99px;top:43px;width:25px;height:20px;background:#c18427;}
+  .sd25{left:127px;top:43px;width:31px;height:20px;background:#944020;}
+  .sd26{left:161px;top:43px;width:27px;height:20px;background:#d65a28;}
+  .sd27{left:191px;top:43px;width:30px;height:20px;background:#6d7c26;}
+  .sd28{left:224px;top:43px;width:27px;height:20px;background:#b23524;}
+  .sd29{left:254px;top:43px;width:31px;height:20px;background:#d19429;}
+  .sd30{left:288px;top:43px;width:35px;height:20px;background:#8f2748;}
+  .sd31{left:0px;top:65px;width:27px;height:20px;background:#8d2c23;}
+  .sd32{left:30px;top:65px;width:33px;height:20px;background:#d27f23;}
+  .sd33{left:66px;top:65px;width:28px;height:20px;background:#6f7a26;}
+  .sd34{left:97px;top:65px;width:24px;height:20px;background:#c34d2b;}
+  .sd35{left:124px;top:65px;width:31px;height:20px;background:#983324;}
+  .sd36{left:158px;top:65px;width:29px;height:20px;background:#588a38;}
+  .sd37{left:190px;top:65px;width:31px;height:20px;background:#cb5d2f;}
+  .sd38{left:224px;top:65px;width:25px;height:20px;background:#7a3954;}
+  .sd39{left:252px;top:65px;width:31px;height:20px;background:#cb9326;}
+  .sd40{left:286px;top:65px;width:37px;height:20px;background:#b22926;}
+  .sd41{left:0px;top:87px;width:31px;height:22px;background:#5a7f29;}
+  .sd42{left:34px;top:87px;width:27px;height:22px;background:#c65a31;}
+  .sd43{left:64px;top:87px;width:31px;height:22px;background:#944127;}
+  .sd44{left:98px;top:87px;width:26px;height:22px;background:#d67e21;}
+  .sd45{left:127px;top:87px;width:30px;height:22px;background:#8f243d;}
+  .sd46{left:160px;top:87px;width:28px;height:22px;background:#6f8e2f;}
+  .sd47{left:191px;top:87px;width:31px;height:22px;background:#bb4429;}
+  .sd48{left:225px;top:87px;width:25px;height:22px;background:#d08d26;}
+  .sd49{left:253px;top:87px;width:31px;height:22px;background:#8b3023;}
+  .sd50{left:287px;top:87px;width:36px;height:22px;background:#5a6d24;}
+  .ship-super {
+    left: 1082px;
+    top: 332px;
+    width: 88px;
+    height: 72px;
+    z-index: 10;
+    background:
+      linear-gradient(180deg, rgba(255,228,170,0.95) 0 6px, rgba(180,120,60,0.95) 6px 9px, transparent 9px),
+      linear-gradient(180deg, #f5dba8 0%, #d3b279 100%);
+    clip-path: polygon(0 30%, 82% 14%, 100% 27%, 100% 80%, 16% 100%, 0 86%);
+    box-shadow: 0 0 12px rgba(255,212,130,0.2);
+  }
+
+  .cranes {
+    left: 690px;
+    top: 156px;
+    width: 560px;
+    height: 255px;
+    z-index: 6;
+  }
+
+  .light {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 12;
+    box-shadow: 0 0 8px 2px currentColor;
+  }
+  .l1 { left: 770px; top: 188px; width: 5px; height: 5px; color:#ff2730; background:#ff2730; }
+  .l2 { left: 922px; top: 225px; width: 5px; height: 5px; color:#ff2740; background:#ff2740; }
+  .l3 { left: 1006px; top: 250px; width: 5px; height: 5px; color:#ff2d3d; background:#ff2d3d; }
+  .l4 { left: 1085px; top: 277px; width: 6px; height: 6px; color:#ff2f33; background:#ff2f33; }
+  .l5 { left: 1170px; top: 304px; width: 5px; height: 5px; color:#ff3540; background:#ff3540; }
+  .l6 { left: 1222px; top: 336px; width: 6px; height: 6px; color:#ff4141; background:#ff4141; }
+  .l7 { left: 985px; top: 322px; width: 10px; height: 10px; color:#ffb126; background:#ffb126; box-shadow: 0 0 20px 6px rgba(255,177,38,0.9); }
+
+  .reflection {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.96;
+    filter: blur(0.25px);
+  }
+  .r1 { left: 941px; top: 529px; width: 34px; height: 142px; background: linear-gradient(180deg, rgba(255,226,162,0.96) 0%, rgba(255,226,162,0) 100%); clip-path: polygon(36% 0, 70% 0, 100% 100%, 0 100%); }
+  .r2 { left: 1168px; top: 505px; width: 82px; height: 215px; background: linear-gradient(180deg, rgba(255,0,34,0.90) 0%, rgba(255,0,34,0.0) 100%); clip-path: polygon(42% 0, 60% 0, 100% 100%, 0 100%); }
+  .r3 { left: 800px; top: 568px; width: 64px; height: 137px; background: linear-gradient(180deg, rgba(249,232,188,0.84) 0%, rgba(249,232,188,0.0) 100%); clip-path: polygon(44% 0, 63% 0, 100% 100%, 0 100%); }
+  .r4 { left: 66px; top: 495px; width: 26px; height: 110px; background: linear-gradient(180deg, rgba(255,255,212,0.82) 0%, rgba(255,255,212,0.0) 100%); clip-path: polygon(45% 0, 65% 0, 100% 100%, 0 100%); }
+  .r5 { left: 111px; top: 552px; width: 18px; height: 86px; background: linear-gradient(180deg, rgba(0,255,120,0.60) 0%, rgba(0,255,120,0.0) 100%); clip-path: polygon(43% 0, 60% 0, 100% 100%, 0 100%); }
+  .r6 { left: 4px; top: 529px; width: 34px; height: 122px; background: linear-gradient(180deg, rgba(255,164,38,0.82) 0%, rgba(255,164,38,0.0) 100%); clip-path: polygon(40% 0, 70% 0, 100% 100%, 0 100%); }
+
+  .headline {
+    left: 59px;
+    top: 64px;
+    width: 520px;
+    height: 108px;
+    z-index: 40;
+    color: #f2f2f2;
+    font-size: 90px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+
+  .card {
+    z-index: 30;
+    color: #f1f1f1;
+    overflow: hidden;
+  }
+  .dark-card {
+    background: rgba(41, 42, 57, 0.95);
+  }
+  .light-card {
+    background: rgba(134, 134, 149, 0.94);
+  }
+  .yellow-edge {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #f4e500;
+    z-index: 31;
+  }
+
+  .card-title {
+    position: absolute;
+    left: 18px;
+    top: 13px;
+    width: 215px;
+    color: #f4f4f4;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    z-index: 32;
+  }
+  .card-sep {
+    position: absolute;
+    left: 0;
+    top: 82px;
+    width: 100%;
+    height: 1px;
+    background: rgba(176,178,192,0.55);
+    z-index: 32;
+  }
+  .card-body {
+    position: absolute;
+    left: 18px;
+    top: 92px;
+    width: 214px;
+    color: #ececec;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    z-index: 32;
+  }
+
+  .small-title {
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    width: 210px;
+    color: #f4f4f4;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    z-index: 32;
+  }
+
+  .card1 { left: 56px;  top: 246px; width: 251px; height: 132px; }
+  .card2 { left: 336px; top: 246px; width: 251px; height: 132px; }
+  .card3 { left: 606px; top: 246px; width: 251px; height: 132px; }
+  .card4 { left: 56px;  top: 414px; width: 251px; height: 69px; }
+  .card5 { left: 336px; top: 414px; width: 251px; height: 69px; }
+
+  .nav {
+    z-index: 55;
+  }
+  .nav-circle {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(238,238,243,0.88);
+  }
+  .nav-left  { left: 1122px; top: 33px; }
+  .nav-right { left: 1174px; top: 33px; }
+
+  .nav-left:before,
+  .nav-right:before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    width: 0;
+    height: 0;
+  }
+  .nav-left:before {
+    left: 13px;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-right: 11px solid #45506f;
+  }
+  .nav-right:before {
+    left: 15px;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-left: 11px solid #45506f;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="bg-water"></div>
+  <div class="reflection r1"></div>
+  <div class="reflection r2"></div>
+  <div class="reflection r3"></div>
+  <div class="reflection r4"></div>
+  <div class="reflection r5"></div>
+  <div class="reflection r6"></div>
+
+  <div class="horizon-lights"></div>
+  <div class="terminal-strip"></div>
+  <div class="dock"></div>
+  <div class="dock-edge"></div>
+  <div class="dock-front"></div>
+  <div class="dock-pillars"></div>
+
+  <div class="container-stack">
+    <div class="c1"></div><div class="c2"></div><div class="c3"></div><div class="c4"></div><div class="c5"></div>
+    <div class="c6"></div><div class="c7"></div><div class="c8"></div><div class="c9"></div><div class="c10"></div>
+    <div class="c11"></div><div class="c12"></div><div class="c13"></div><div class="c14"></div><div class="c15"></div>
+    <div class="c16"></div><div class="c17"></div><div class="c18"></div><div class="c19"></div><div class="c20"></div>
+    <div class="c21"></div><div class="c22"></div><div class="c23"></div><div class="c24"></div><div class="c25"></div>
+    <div class="c26"></div><div class="c27"></div><div class="c28"></div><div class="c29"></div><div class="c30"></div>
+    <div class="c31"></div><div class="c32"></div><div class="c33"></div><div class="c34"></div><div class="c35"></div>
+    <div class="c36"></div><div class="c37"></div>
+  </div>
+
+  <div class="ship-green"></div>
+  <div class="ship-deck">
+    <div class="sd1"></div><div class="sd2"></div><div class="sd3"></div><div class="sd4"></div><div class="sd5"></div><div class="sd6"></div><div class="sd7"></div><div class="sd8"></div><div class="sd9"></div><div class="sd10"></div>
+    <div class="sd11"></div><div class="sd12"></div><div class="sd13"></div><div class="sd14"></div><div class="sd15"></div><div class="sd16"></div><div class="sd17"></div><div class="sd18"></div><div class="sd19"></div><div class="sd20"></div>
+    <div class="sd21"></div><div class="sd22"></div><div class="sd23"></div><div class="sd24"></div><div class="sd25"></div><div class="sd26"></div><div class="sd27"></div><div class="sd28"></div><div class="sd29"></div><div class="sd30"></div>
+    <div class="sd31"></div><div class="sd32"></div><div class="sd33"></div><div class="sd34"></div><div class="sd35"></div><div class="sd36"></div><div class="sd37"></div><div class="sd38"></div><div class="sd39"></div><div class="sd40"></div>
+    <div class="sd41"></div><div class="sd42"></div><div class="sd43"></div><div class="sd44"></div><div class="sd45"></div><div class="sd46"></div><div class="sd47"></div><div class="sd48"></div><div class="sd49"></div><div class="sd50"></div>
+  </div>
+  <div class="ship-super"></div>
+  <div class="ship-hull"></div>
+  <div class="ship-bottom"></div>
+
+  <svg class="cranes" viewBox="0 0 560 255" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="0.3"/>
+      </filter>
+    </defs>
+    <g stroke="#8e8187" stroke-width="2.2" fill="none" opacity="0.92" filter="url(#soft)">
+      <line x1="18" y1="188" x2="128" y2="36"/>
+      <line x1="128" y1="36" x2="198" y2="188"/>
+      <line x1="77" y1="188" x2="128" y2="36"/>
+      <line x1="42" y1="103" x2="230" y2="137"/>
+      <line x1="128" y1="36" x2="345" y2="105"/>
+      <line x1="198" y1="188" x2="345" y2="105"/>
+      <line x1="345" y1="105" x2="418" y2="186"/>
+      <line x1="276" y1="188" x2="345" y2="105"/>
+      <line x1="294" y1="188" x2="439" y2="131"/>
+      <line x1="375" y1="188" x2="439" y2="131"/>
+      <line x1="439" y1="131" x2="488" y2="188"/>
+      <line x1="405" y1="188" x2="439" y2="131"/>
+      <line x1="444" y1="142" x2="546" y2="139"/>
+      <line x1="503" y1="188" x2="546" y2="139"/>
+      <line x1="355" y1="105" x2="510" y2="142"/>
+      <line x1="122" y1="36" x2="136" y2="16"/>
+      <line x1="136" y1="16" x2="144" y2="72"/>
+      <line x1="340" y1="105" x2="355" y2="62"/>
+      <line x1="355" y1="62" x2="365" y2="111"/>
+      <line x1="523" y1="188" x2="535" y2="84"/>
+      <line x1="535" y1="84" x2="545" y2="88"/>
+    </g>
+    <g stroke="#726a73" stroke-width="1.2" fill="none" opacity="0.82">
+      <line x1="94" y1="110" x2="161" y2="111"/>
+      <line x1="309" y1="141" x2="392" y2="140"/>
+      <line x1="424" y1="153" x2="544" y2="151"/>
+      <line x1="125" y1="53" x2="340" y2="108"/>
+      <line x1="141" y1="67" x2="198" y2="187"/>
+    </g>
+    <g stroke="#c26b5f" stroke-width="2.1" fill="none" opacity="0.7">
+      <line x1="129" y1="36" x2="135" y2="34"/>
+      <line x1="344" y1="105" x2="350" y2="103"/>
+      <line x1="439" y1="131" x2="446" y2="129"/>
+      <line x1="547" y1="139" x2="551" y2="137"/>
+    </g>
+  </svg>
+
+  <div class="light l1"></div>
+  <div class="light l2"></div>
+  <div class="light l3"></div>
+  <div class="light l4"></div>
+  <div class="light l5"></div>
+  <div class="light l6"></div>
+  <div class="light l7"></div>
+
+  <div class="headline">Contents</div>
+
+  <div class="card dark-card card1">
+    <div class="yellow-edge"></div>
+    <div class="card-title">Insights</div>
+    <div class="card-sep"></div>
+    <div class="card-body">Articles and features on a<br>range of trade issues affecting<br>global businesses</div>
+  </div>
+
+  <div class="card dark-card card2">
+    <div class="yellow-edge"></div>
+    <div class="card-title">New on ey.com</div>
+    <div class="card-sep"></div>
+    <div class="card-body">Insights, webcasts and podcasts,<br>and more on global trade</div>
+  </div>
+
+  <div class="card dark-card card3">
+    <div class="yellow-edge"></div>
+    <div class="card-title">Tax alerts</div>
+    <div class="card-sep"></div>
+    <div class="card-body">Recent EY alerts detailing<br>customs and trade developments<br>around the world</div>
+  </div>
+
+  <div class="card light-card card4">
+    <div class="small-title">Additional resources</div>
+  </div>
+
+  <div class="card light-card card5">
+    <div class="small-title">Contacts</div>
+  </div>
+
+  <div class="nav">
+    <div class="nav-circle nav-left"></div>
+    <div class="nav-circle nav-right"></div>
+  </div>
+</div>
+</body>
+</html>

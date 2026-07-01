@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Why this matters now</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #d9d9d9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #e7e7e7;
+  }
+
+  .title {
+    position: absolute;
+    left: 60px;
+    top: 132px;
+    width: 340px;
+    color: #6d18d5;
+    font-size: 56px;
+    line-height: 1.18;
+    font-weight: 300;
+    letter-spacing: -0.8px;
+  }
+
+  .body-copy {
+    position: absolute;
+    left: 60px;
+    top: 294px;
+    width: 360px;
+    color: #262626;
+    font-size: 18px;
+    line-height: 1.56;
+    font-weight: 400;
+  }
+
+  .panel-top {
+    position: absolute;
+    left: 879px;
+    top: 0px;
+    width: 366px;
+    height: 295px;
+    background:
+      radial-gradient(circle at 68% 58%, rgba(18,178,238,0.65), rgba(18,178,238,0) 22%),
+      radial-gradient(circle at 84% 82%, rgba(255,196,82,0.70), rgba(255,196,82,0) 18%),
+      radial-gradient(circle at 72% 86%, rgba(255,127,153,0.55), rgba(255,127,153,0) 18%),
+      radial-gradient(circle at 38% 38%, rgba(236,180,150,0.95), rgba(236,180,150,0) 30%),
+      radial-gradient(circle at 33% 58%, rgba(110,73,62,0.85), rgba(110,73,62,0) 35%),
+      radial-gradient(circle at 58% 38%, rgba(36,28,30,0.55), rgba(36,28,30,0) 34%),
+      linear-gradient(180deg, #0b5fa4 0%, #156bab 38%, #0f8ac6 70%, #2b78ae 100%);
+    filter: saturate(1.05);
+  }
+  .panel-top::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 33% 55%, rgba(255,255,255,0.18), rgba(255,255,255,0) 32%),
+      radial-gradient(ellipse at 46% 28%, rgba(20,14,20,0.32), rgba(20,14,20,0) 22%),
+      radial-gradient(ellipse at 53% 73%, rgba(50,33,28,0.38), rgba(50,33,28,0) 24%),
+      radial-gradient(ellipse at 34% 73%, rgba(242,196,168,0.22), rgba(242,196,168,0) 18%);
+    backdrop-filter: blur(4px);
+    opacity: 0.95;
+  }
+
+  .panel-mid-left {
+    position: absolute;
+    left: 514px;
+    top: 295px;
+    width: 365px;
+    height: 349px;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(162,185,48,0.55), rgba(162,185,48,0) 10%),
+      radial-gradient(circle at 21% 43%, rgba(89,164,204,0.35), rgba(89,164,204,0) 12%),
+      radial-gradient(circle at 30% 57%, rgba(236,142,146,0.28), rgba(236,142,146,0) 17%),
+      radial-gradient(circle at 53% 21%, rgba(253,154,95,0.55), rgba(253,154,95,0) 18%),
+      radial-gradient(circle at 73% 30%, rgba(207,182,191,0.58), rgba(207,182,191,0) 20%),
+      radial-gradient(circle at 84% 58%, rgba(174,157,118,0.75), rgba(174,157,118,0) 26%),
+      radial-gradient(circle at 79% 82%, rgba(90,82,52,0.62), rgba(90,82,52,0) 23%),
+      radial-gradient(circle at 48% 82%, rgba(129,112,55,0.58), rgba(129,112,55,0) 18%),
+      linear-gradient(135deg, #c8c5bd 0%, #d8c8c0 25%, #bfaea7 45%, #b0a386 70%, #8f835d 100%);
+    filter: blur(0.3px) saturate(0.95);
+  }
+  .panel-mid-left::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(115deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 35%, rgba(171,122,92,0.22) 52%, rgba(255,255,255,0.06) 66%, rgba(0,0,0,0.08) 100%);
+    mix-blend-mode: screen;
+  }
+
+  .quote-box {
+    position: absolute;
+    left: 879px;
+    top: 295px;
+    width: 366px;
+    height: 349px;
+    background: #efecf0;
+  }
+  .quote-text {
+    position: absolute;
+    left: 30px;
+    top: 29px;
+    width: 290px;
+    color: #8e35e8;
+    font-size: 21px;
+    line-height: 1.52;
+    font-weight: 400;
+  }
+
+  .panel-bottom-right {
+    position: absolute;
+    left: 879px;
+    top: 644px;
+    width: 366px;
+    height: 76px;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(133,124,91,0.18), rgba(133,124,91,0) 26%),
+      linear-gradient(180deg, #6f6b57 0%, #504d3c 70%, #474432 100%);
+  }
+
+  .right-strip {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 35px;
+    height: 720px;
+    background: #f2f2f2;
+    border-left: 1px solid #d8d8d8;
+  }
+
+  .tab {
+    position: absolute;
+    right: 7px;
+    top: 32px;
+    width: 24px;
+    height: 112px;
+    background: #ebe5ef;
+    border-radius: 0 0 14px 14px;
+  }
+  .tab span {
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: #7a1fe0;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .side-nav {
+    position: absolute;
+    right: 11px;
+    top: 174px;
+    height: 430px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: #7b7b7b;
+    font-size: 13px;
+    line-height: 1;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+  }
+
+  .footer-left {
+    position: absolute;
+    right: 83px;
+    bottom: 18px;
+    color: #e8e8e8;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .footer-right {
+    position: absolute;
+    right: 24px;
+    bottom: 18px;
+    color: #7a7a7a;
+    font-size: 13px;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title">Why this<br>matters now</div>
+
+    <div class="body-copy">
+      In a matter of months, what people thought they knew and trusted about how they consumed information, socialized and shopped online changed. Generative AI’s ability to facilitate hyper-personalized harm and harassment, deep-fakes and scams has quickly become a serious issue. Every day, people are experiencing a pause—questioning the authenticity of the information they’re reading, the products they’re seeing, the websites they visit, and the calls, texts and emails they’re receiving.
+    </div>
+
+    <div class="panel-top"></div>
+    <div class="panel-mid-left"></div>
+
+    <div class="quote-box">
+      <div class="quote-text">
+        From sophisticated scams to engagement-farming slop, online content and experiences are becoming less trustworthy for consumers. If brands, organizations and platforms fail to prioritize authenticity and earn trust, people will stop engaging.
+      </div>
+    </div>
+
+    <div class="panel-bottom-right"></div>
+
+    <div class="right-strip">
+      <div class="tab"><span>Cost of hesitations</span></div>
+      <div class="side-nav">/ The parent trap &nbsp;&nbsp;/&nbsp;&nbsp; Impatience economy &nbsp;&nbsp;/&nbsp;&nbsp; The dignity of work &nbsp;&nbsp;/&nbsp;&nbsp; Social rewilding</div>
+    </div>
+
+    <div class="footer-left">Accenture Life Trends 2025</div>
+    <div class="footer-right">21</div>
+  </div>
+</body>
+</html>

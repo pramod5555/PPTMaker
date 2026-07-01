@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Authors Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+
+  .top-band{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:67px;
+    background:
+      radial-gradient(circle at 10% 30%, rgba(187,89,216,.95) 0, rgba(187,89,216,.95) 10%, rgba(187,89,216,0) 35%),
+      radial-gradient(circle at 32% 15%, rgba(215,157,235,.8) 0, rgba(215,157,235,0) 18%),
+      radial-gradient(circle at 49% 10%, rgba(78,0,42,.95) 0, rgba(78,0,42,.95) 8%, rgba(78,0,42,0) 22%),
+      radial-gradient(circle at 62% 35%, rgba(242,91,138,.95) 0, rgba(242,91,138,0) 23%),
+      radial-gradient(circle at 83% 18%, rgba(179,30,179,.85) 0, rgba(179,30,179,0) 18%),
+      radial-gradient(circle at 96% 12%, rgba(214,155,241,.95) 0, rgba(214,155,241,0) 16%),
+      linear-gradient(90deg, #ad4fd2 0%, #c96be0 25%, #6e003d 50%, #d21b61 67%, #b826c5 84%, #d69ef0 100%);
+  }
+
+  .bottom-band{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:1280px;
+    height:20px;
+    background:
+      radial-gradient(circle at 4% 60%, rgba(232,188,230,.95) 0, rgba(232,188,230,0) 16%),
+      radial-gradient(circle at 16% 40%, rgba(186,8,56,.85) 0, rgba(186,8,56,0) 17%),
+      radial-gradient(circle at 40% 50%, rgba(255,24,104,.95) 0, rgba(255,24,104,0) 10%),
+      radial-gradient(circle at 60% 35%, rgba(255,97,116,.75) 0, rgba(255,97,116,0) 16%),
+      radial-gradient(circle at 83% 60%, rgba(156,0,108,.95) 0, rgba(156,0,108,0) 16%),
+      radial-gradient(circle at 99% 55%, rgba(229,205,244,.95) 0, rgba(229,205,244,0) 13%),
+      linear-gradient(90deg, #d9b3db 0%, #b3001b 18%, #c70000 37%, #ff1468 50%, #d3133d 67%, #b4003f 83%, #e2c8f1 100%);
+  }
+
+  .title{
+    position:absolute;
+    left:62px;
+    top:95px;
+    font-size:39px;
+    line-height:1;
+    color:#7a2ad5;
+    font-weight:300;
+    letter-spacing:0;
+  }
+
+  .author{
+    position:absolute;
+    width:235px;
+    color:#1f1f1f;
+  }
+
+  .photo{
+    position:absolute;
+    left:0;
+    top:0;
+    width:112px;
+    height:148px;
+    border-radius:6px;
+    background:
+      linear-gradient(180deg, #d9d9d9 0%, #c6c6c6 100%);
+    overflow:hidden;
+  }
+  .photo .face{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:102px;
+    filter:grayscale(1);
+    color:#5b5b5b;
+    line-height:1;
+  }
+
+  .linkedin{
+    position:absolute;
+    left:116px;
+    top:126px;
+    width:24px;
+    height:24px;
+    background:#6c6c6c;
+    border-radius:3px;
+    color:#fff;
+    font-size:16px;
+    line-height:24px;
+    text-align:center;
+    font-weight:700;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .name{
+    position:absolute;
+    left:0;
+    top:164px;
+    font-size:24px;
+    color:#404040;
+    font-weight:400;
+    line-height:1.15;
+    width:230px;
+  }
+
+  .role{
+    position:absolute;
+    left:0;
+    top:208px;
+    width:232px;
+    font-size:16px;
+    line-height:1.15;
+    font-weight:700;
+    color:#121212;
+  }
+
+  .bio{
+    position:absolute;
+    left:0;
+    top:266px;
+    width:238px;
+    font-size:14px;
+    line-height:1.12;
+    color:#333333;
+    font-weight:400;
+  }
+
+  .footer-left{
+    position:absolute;
+    right:74px;
+    bottom:15px;
+    font-size:13px;
+    color:#f1dff5;
+    font-weight:400;
+  }
+  .footer-right{
+    position:absolute;
+    right:28px;
+    bottom:15px;
+    font-size:13px;
+    color:#f1dff5;
+    font-weight:400;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-band"></div>
+
+  <div class="title">Authors</div>
+
+  <div class="author" style="left:66px; top:173px;">
+    <div class="photo"><div class="face">👨</div></div>
+    <div class="linkedin">in</div>
+    <div class="name">Nick Law</div>
+    <div class="role">Creative Chairperson,<br>Accenture Song</div>
+    <div class="bio">
+      Nick Law is Accenture Song’s Creative Chairperson and lead of our Creative Strategic Priority. He is one of the world’s most innovative and versatile creative leaders, who believes all technology needs creativity to make it human, and all creativity needs technology to make it real. He has twice been named in the Creativity 50, a list of the world’s most influential creative people.
+    </div>
+  </div>
+
+  <div class="author" style="left:380px; top:173px;">
+    <div class="photo"><div class="face">👩</div></div>
+    <div class="linkedin">in</div>
+    <div class="name">Katie Burke</div>
+    <div class="role">Global Thought Leadership Lead,<br>Accenture Song</div>
+    <div class="bio">
+      Among other client facing roles, Katie is the global thought leadership lead for Accenture Song, focused on how future technologies are changing the future of interactions, human behavior, and marketing. With over 17 years of strategy experience, Katie serves as a futurist and the lead content writer for the annual Accenture Song Life Trends report.
+    </div>
+  </div>
+
+  <div class="author" style="left:695px; top:173px;">
+    <div class="photo"><div class="face">👩</div></div>
+    <div class="linkedin">in</div>
+    <div class="name">Agneta Björnsjö</div>
+    <div class="role">Global Research Lead,<br>Accenture Song</div>
+    <div class="bio">
+      Agneta is the global thought leadership research lead for Accenture Song. She has been with Accenture for nearly 24 years, focused on leading global research projects for a rich variety of industries and specialisms, including high tech, communications and media, and consumer technology. Agneta leads the research for Accenture Life Trends this year.
+    </div>
+  </div>
+
+  <div class="author" style="left:1008px; top:176px;">
+    <div class="photo"><div class="face">👨</div></div>
+    <div class="linkedin">in</div>
+    <div class="name">Alexandre Naressi</div>
+    <div class="role">Global R&amp;D Lead,<br>Accenture Song</div>
+    <div class="bio">
+      Alexandre leads R&amp;D for Accenture Song and incubates new areas such as Generative AI with a 3–5-year horizon at the intersection of human, business and technology trends. Alexandre also leads the Accenture Song Innovation Center in Sophia Antipolis, a unique ideation space dedicated to the future of customer experience. With a background in Computer Science and Physics Research, and 20+ years of international R&amp;D experience, Alexandre is a prolific inventor with a passion for AI, Marketing and UX.
+    </div>
+  </div>
+
+  <div class="bottom-band"></div>
+  <div class="footer-left">Accenture Life Trends 2025</div>
+  <div class="footer-right">87</div>
+</div>
+</body>
+</html>

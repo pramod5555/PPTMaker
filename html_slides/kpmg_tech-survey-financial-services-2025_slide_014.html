@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Simplification and modernization</title>
+<style>
+  body{
+    margin:0;
+    background:#cfcfcf;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ffffff;
+  }
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:47px;
+    background:#d9d9d9;
+  }
+  .nav{
+    position:absolute;
+    top:19px;
+    font-size:12px;
+    color:#7c7c7c;
+    white-space:nowrap;
+  }
+  .nav.active{
+    color:#2247e6;
+    font-weight:700;
+  }
+  .nav1{ left:87px; }
+  .nav2{ left:263px; }
+  .nav3{ left:377px; }
+  .nav4{ left:493px; }
+  .nav5{ left:602px; }
+  .nav6{ left:815px; }
+  .nav7{ left:979px; }
+
+  .icon-nav{
+    position:absolute;
+    top:15px;
+    color:#8a8a8a;
+  }
+  .arrow-left{
+    left:1206px;
+    width:0;height:0;
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+    border-right:12px solid #8d8d8d;
+    transform:scale(0.7);
+    transform-origin:left top;
+  }
+  .home{
+    left:1224px;
+    top:14px;
+    width:24px;height:22px;
+  }
+  .home:before{
+    content:"";
+    position:absolute;
+    left:3px; top:8px;
+    width:16px; height:12px;
+    border:1.5px solid #8d8d8d;
+    border-top:none;
+    box-sizing:border-box;
+  }
+  .home:after{
+    content:"";
+    position:absolute;
+    left:1px; top:0;
+    width:0;height:0;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:10px solid #8d8d8d;
+  }
+  .home .door{
+    position:absolute;
+    left:10px; top:14px;
+    width:4px; height:6px;
+    background:#d9d9d9;
+    border:1px solid #8d8d8d;
+    box-sizing:border-box;
+  }
+  .arrow-right{
+    left:1258px;
+    width:0;height:0;
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+    border-left:12px solid #8d8d8d;
+    transform:scale(0.7);
+    transform-origin:left top;
+  }
+
+  .left-panel{
+    position:absolute;
+    left:0;
+    top:47px;
+    width:577px;
+    height:673px;
+    background:#ffffff;
+  }
+  .right-panel{
+    position:absolute;
+    left:577px;
+    top:47px;
+    width:703px;
+    height:673px;
+    background:linear-gradient(90deg, #8512e9 0%, #5a1fe8 35%, #3047dc 100%);
+  }
+
+  .para{
+    position:absolute;
+    left:90px;
+    width:434px;
+    color:#3c66b3;
+    font-size:14px;
+    line-height:1.32;
+  }
+  .p1{ top:106px; }
+  .p2{ top:149px; }
+  .p3{ top:288px; }
+
+  .quote-mark-top{
+    position:absolute;
+    left:56px;
+    top:405px;
+    color:#4e28e0;
+    font-size:84px;
+    font-weight:700;
+    line-height:0.8;
+    letter-spacing:-6px;
+  }
+  .quote-block{
+    position:absolute;
+    left:90px;
+    top:473px;
+    width:445px;
+    color:#2447e6;
+  }
+  .quote-text{
+    font-size:18px;
+    line-height:1.28;
+    font-weight:500;
+  }
+  .quote-mark-bottom{
+    position:absolute;
+    right:22px;
+    bottom:6px;
+    color:#4e28e0;
+    font-size:64px;
+    font-weight:700;
+    line-height:0.8;
+    letter-spacing:-5px;
+  }
+  .author{
+    position:absolute;
+    left:0;
+    top:164px;
+    font-size:12px;
+    line-height:1.3;
+    color:#2447e6;
+  }
+  .author .name{
+    font-size:24px;
+    font-weight:700;
+    transform:scale(0.5);
+    transform-origin:left top;
+    width:240px;
+    height:12px;
+    margin-bottom:-2px;
+  }
+
+  .footnote{
+    position:absolute;
+    left:87px;
+    top:711px;
+    width:460px;
+    color:#a9a9a9;
+    font-size:8px;
+    line-height:1.15;
+  }
+
+  .right-title{
+    position:absolute;
+    left:629px;
+    top:104px;
+    width:560px;
+    color:#ffffff;
+    font-size:22px;
+    line-height:1.1;
+    font-weight:700;
+  }
+
+  .section{
+    position:absolute;
+    left:628px;
+    width:590px;
+    color:#ffffff;
+  }
+  .section .heading{
+    position:absolute;
+    left:79px;
+    top:0;
+    font-size:22px;
+    line-height:1;
+    font-weight:700;
+  }
+  .section .text{
+    position:absolute;
+    left:79px;
+    top:24px;
+    width:540px;
+    font-size:14px;
+    line-height:1.25;
+    color:#e4d7ff;
+  }
+
+  .s1{ top:214px; height:95px; }
+  .s2{ top:333px; height:122px; }
+  .s3{ top:483px; height:74px; }
+  .s4{ top:562px; height:107px; }
+
+  .icon{
+    position:absolute;
+    left:0;
+    top:3px;
+    width:55px;
+    height:55px;
+  }
+  .stroke{
+    stroke:#f0ddff;
+    stroke-width:2.2;
+    fill:none;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+
+  .bottom-strip{
+    position:absolute;
+    left:577px;
+    top:702px;
+    width:703px;
+    height:18px;
+    background:rgba(255,255,255,0.18);
+  }
+  .page{
+    position:absolute;
+    left:1263px;
+    top:715px;
+    color:#ffffff;
+    font-size:12px;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="topbar"></div>
+
+    <div class="nav nav1">Executive summary</div>
+    <div class="nav nav2">Key findings</div>
+    <div class="nav nav3">Risk and regulation</div>
+    <div class="nav nav4">Data and AI</div>
+    <div class="nav nav5 active">Simplification and modernization</div>
+    <div class="nav nav6">How KPMG can help</div>
+    <div class="nav nav7">Methodology</div>
+
+    <div class="icon-nav arrow-left"></div>
+    <div class="icon-nav home"><div class="door"></div></div>
+    <div class="icon-nav arrow-right"></div>
+
+    <div class="left-panel"></div>
+    <div class="right-panel"></div>
+
+    <div class="para p1">
+      will be a critical success factor. This balance of risk-mitigating and transformation is
+      essential for staying competitive in a fast-evolving marketplace.
+    </div>
+
+    <div class="para p2">
+      One of the unintended consequences of leaders embracing the challenges of technical debt and
+      the opportunities offered by XaaS, data, and AI is the creation of an overcrowded technology
+      transformation portfolio that can be difficult to manage. “Digital leaders need to excel in
+      multimodal thinking, enabling them to rapidly respond to shifting circumstances, and manage a
+      growing portfolio of change,” says Ryan. “This flexibility is crucial in a dynamic environment,
+      where companies need to stay ahead of evolving conditions, shifting customer preferences, and
+      technological advancements.”
+    </div>
+
+    <div class="para p3">
+      When done right, the benefits of this strategy and its successful execution can be significant.
+      By simplifying and modernizing systems, and effectively harnessing the power of data and AI,
+      organizations are better positioned to understand and swiftly respond to changing customer needs
+      and community expectations. This approach enables businesses to create digital experiences,
+      products, and services that are not only secure and resilient but also innovative and
+      differentiated in a competitive landscape.
+    </div>
+
+    <div class="quote-mark-top">“</div>
+
+    <div class="quote-block">
+      <div class="quote-text">
+        Customer feedback provides a clear view of the things that matter, but financial services
+        companies must move beyond this to unlock significant value. For example, soon I expect we
+        will see entirely AI-based service delivery models, which require a shift toward
+        component-based architectures. Senior executives are asking what those fundamentally different
+        end-to-end digital experiences could look like, and what the business needs to get there.
+      </div>
+      <div class="quote-mark-bottom">”</div>
+      <div class="author">
+        <div class="name">David DiCristofaro</div>
+        US Line of Business Leader for Financial Services<br/>
+        KPMG in the US
+      </div>
+    </div>
+
+    <div class="footnote">
+      © 2025 KPMG LLP, a Delaware limited liability partnership and a member firm of the KPMG global organization<br>
+      of independent member firms affiliated with KPMG International Limited, a private English company limited by<br>
+      guarantee. All rights reserved. USC3026447-2A
+    </div>
+
+    <div class="right-title">
+      Focusing on simplification and modernization can help organizations reduce complexity,
+      streamline processes, and build a more flexible and resilient technology environment.
+      We suggest financial services companies focus on four key actions:
+    </div>
+
+    <div class="section s1">
+      <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+        <rect x="8" y="12" width="34" height="46" rx="2" class="stroke"></rect>
+        <path d="M18 8h14M22 4h6" class="stroke"></path>
+        <circle cx="29" cy="33" r="11" class="stroke"></circle>
+        <path d="M24 33l4 4 7-8" class="stroke"></path>
+        <path d="M45 34c5 2 8 6 9 12" class="stroke"></path>
+        <path d="M49 40l5 6M54 39v13" class="stroke"></path>
+      </svg>
+      <div class="heading">Assess</div>
+      <div class="text">
+        Begin by evaluating existing legacy systems to identify inefficiencies and complexity that
+        may hinder agility. Focus on areas where simplification can yield immediate improvements in
+        performance, cost reduction, and operational speed. Engage with key stakeholders to align on
+        challenges and ensure a shared understanding of the need for modernization.
+      </div>
+    </div>
+
+    <div class="section s2">
+      <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="10" class="stroke"></circle>
+        <path d="M27 32l4 4 7-8" class="stroke"></path>
+        <path d="M32 8l5 3 6-1 3 5 6 2v7l4 4-2 6 2 6-4 4v7l-6 2-3 5-6-1-5 3-5-3-6 1-3-5-6-2v-7l-4-4 2-6-2-6 4-4v-7l6-2 3-5 6 1z" class="stroke"></path>
+      </svg>
+      <div class="heading">Prepare</div>
+      <div class="text">
+        Create a clear roadmap for removing unnecessary complexity and adopting more modern, flexible
+        technologies, such as cloud-based solutions. Prioritize areas with the highest impact on
+        operational efficiency and customer experience. Establish governance structures, leadership
+        models, and cross-functional squads to ensure alignment across the organization. This
+        foundational work ensures that the transformation is well-supported, with clear objectives
+        and communication pathways to guide execution.
+      </div>
+    </div>
+
+    <div class="section s3">
+      <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="30" cy="28" r="19" class="stroke"></circle>
+        <circle cx="30" cy="28" r="6" class="stroke"></circle>
+        <path d="M43 42l13 13" class="stroke"></path>
+        <path d="M12 28h4M44 28h4M30 10v4M30 42v4" class="stroke"></path>
+      </svg>
+      <div class="heading">Leverage</div>
+      <div class="text">
+        Identify where organizations can harness assets and experiences (e.g., from partners) to
+        expedite and de-risk the change, while maintaining focus on areas of differentiation.
+      </div>
+    </div>
+
+    <div class="section s4">
+      <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M10 34h21c6 0 11 5 11 11s-5 11-11 11H19" class="stroke"></path>
+        <path d="M16 28l-8 6 8 6" class="stroke"></path>
+        <circle cx="37" cy="45" r="10" class="stroke"></circle>
+        <path d="M37 39v4M37 47v4M31 45h4M39 45h4M33 41l3 2M41 49l-3-2M41 41l-3 2M33 49l3-2" class="stroke"></path>
+      </svg>
+      <div class="heading">Deliver</div>
+      <div class="text">
+        Design, build, and deliver towards a more resilient, composable, cloud-based infrastructure
+        that supports future growth and operational flexibility. Maintain a focus on continuous
+        improvement, tracking progress and refining systems to meet evolving market needs. Ensure
+        that simplification efforts are sustained, aligning with long-term business goals and
+        reducing complexity over time.
+      </div>
+    </div>
+
+    <div class="bottom-strip"></div>
+    <div class="page">14</div>
+  </div>
+</body>
+</html>

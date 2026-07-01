@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>EY Slide Replica</title>
+<style>
+  body{margin:0;background:#fff;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+    background:#000;
+  }
+  #slide > div, #slide > svg{position:absolute;box-sizing:border-box;}
+
+  .left-panel{
+    left:0;top:0;width:684px;height:720px;
+    background:#efefef;
+    z-index:2;
+  }
+
+  .photo-bg{
+    left:684px;top:0;width:596px;height:720px;
+    background:
+      radial-gradient(circle at 72% 36%, rgba(33,67,74,.12) 0, rgba(7,20,28,.55) 180px, rgba(0,0,0,.96) 390px),
+      linear-gradient(140deg,#0b1432 0%, #071020 28%, #04070e 58%, #091625 100%);
+    z-index:0;
+  }
+
+  .divider{
+    left:103px;top:0;width:1px;height:92px;background:#bfc2c6;z-index:30;
+  }
+
+  .page-num{
+    left:61px;top:51px;width:32px;
+    font-size:38px;line-height:38px;color:#6f7480;font-weight:300;
+    z-index:31;
+  }
+
+  .survey-title{
+    left:116px;top:60px;width:185px;
+    font-size:8px;line-height:11px;color:#777c84;font-weight:400;
+    text-transform:uppercase;
+    z-index:31;
+  }
+
+  .body-copy{
+    left:100px;top:132px;width:420px;
+    font-size:12px;line-height:16px;color:#4d5259;font-weight:400;
+    z-index:31;
+  }
+
+  .figure-title{
+    left:101px;top:236px;width:385px;
+    font-size:13px;line-height:18px;color:#31353a;font-weight:700;
+    z-index:31;
+  }
+  .figure-title span{font-weight:400;}
+
+  .vchapter{
+    left:13px;top:350px;width:14px;height:92px;
+    writing-mode:vertical-rl;transform:rotate(180deg);
+    font-size:11px;line-height:11px;color:#7b7f85;font-weight:400;
+    text-transform:uppercase;letter-spacing:.02em;
+    z-index:31;
+  }
+  .yellow-mark{
+    left:13px;top:408px;width:12px;height:13px;background:#f1d400;z-index:32;
+  }
+
+  .chart-area{
+    left:101px;top:286px;width:365px;height:255px;z-index:31;
+  }
+  .row-label{
+    position:absolute;left:0;width:177px;
+    font-size:11px;line-height:14px;color:#4d5259;font-weight:400;text-align:right;
+  }
+  .bar-wrap{
+    position:absolute;left:190px;width:169px;height:22px;
+    border:1px solid #aeb3b8;background:#ededed;
+  }
+  .bar-fill{
+    position:absolute;left:0;top:0;height:20px;background:#169997;
+  }
+  .bar-pct{
+    position:absolute;right:6px;top:3px;
+    font-size:11px;line-height:14px;color:#4b5056;font-weight:400;
+  }
+  .bar-sub{
+    position:absolute;left:190px;width:175px;
+    font-size:7px;line-height:10px;color:#5c6168;font-weight:400;
+  }
+
+  .overlay-svg{
+    left:684px;top:0;width:596px;height:720px;z-index:10;
+  }
+
+  .jump{
+    right:0;top:0;width:60px;height:46px;
+    background:#75717d;border-bottom-left-radius:16px;
+    color:#fff;font-size:8px;line-height:10px;font-weight:700;
+    text-transform:uppercase;text-align:center;padding-top:17px;
+    z-index:60;
+  }
+
+  .ring-holder{
+    left:748px;top:475px;width:158px;height:158px;z-index:50;
+  }
+  .percent-big{
+    left:773px;top:538px;width:110px;
+    font-size:50px;line-height:50px;color:#fff;font-weight:700;text-align:center;
+    z-index:55;
+  }
+  .ring-copy{
+    left:757px;top:640px;width:135px;
+    font-size:10px;line-height:14px;color:#fff;font-weight:700;text-align:center;
+    z-index:55;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="left-panel"></div>
+  <div class="photo-bg"></div>
+
+  <svg class="overlay-svg" viewBox="0 0 596 720" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="ringGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#641dff"/>
+        <stop offset="42%" stop-color="#f0a5ff"/>
+        <stop offset="100%" stop-color="#38c8ff"/>
+      </linearGradient>
+      <linearGradient id="ringGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ffd34a"/>
+        <stop offset="45%" stop-color="#ff9a35"/>
+        <stop offset="100%" stop-color="#ff58d4"/>
+      </linearGradient>
+      <linearGradient id="glass1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#081228"/>
+        <stop offset="100%" stop-color="#11203a"/>
+      </linearGradient>
+      <linearGradient id="glass2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#071322"/>
+        <stop offset="100%" stop-color="#132b45"/>
+      </linearGradient>
+      <filter id="blurSoft"><feGaussianBlur stdDeviation="1.2"/></filter>
+    </defs>
+
+    <polygon points="0,0 596,0 596,85 472,23 338,0" fill="rgba(255,255,255,0.03)"/>
+    <polygon points="0,0 304,0 82,184" fill="rgba(48,148,212,0.12)"/>
+    <polygon points="0,162 246,0 329,0 72,198" fill="rgba(174,62,255,0.10)"/>
+
+    <polygon points="88,103 362,0 520,0 205,229" fill="url(#glass1)" opacity="0.9"/>
+    <polygon points="425,590 596,490 596,720 372,720" fill="url(#glass2)" opacity="0.92"/>
+    <polygon points="0,329 0,167 93,101 290,388 183,459" fill="rgba(0,0,0,0.22)"/>
+
+    <g opacity="0.95">
+      <circle cx="244" cy="319" r="239" fill="none" stroke="url(#ringGrad1)" stroke-width="15"/>
+      <circle cx="244" cy="319" r="229" fill="none" stroke="#e8ddff" stroke-opacity="0.6" stroke-width="1.5"/>
+      <g stroke="#f6d7ff" stroke-width="1.6" stroke-opacity="0.58">
+        <path d="M44 219 L65 233 L85 206 L106 220 L126 192 L148 208 L171 180 L193 197 L215 168 L236 185 L258 156 L280 174 L302 144 L324 161 L346 132 L367 149 L388 121 L409 138 L430 110" fill="none"/>
+        <path d="M70 487 L95 463 L118 480 L141 454 L164 470 L188 446 L211 462 L235 437 L259 454 L282 430 L307 448 L332 423 L355 441 L379 415 L402 433 L426 409" fill="none"/>
+      </g>
+      <g stroke="#c7b2ff" stroke-width="0.8" stroke-opacity="0.34">
+        <path d="M34 252 C100 209,180 169,283 110" fill="none"/>
+        <path d="M39 440 C111 491,198 540,312 584" fill="none"/>
+        <path d="M101 152 C180 201,292 286,412 392" fill="none"/>
+      </g>
+    </g>
+
+    <g opacity="0.96">
+      <circle cx="611" cy="512" r="188" fill="none" stroke="url(#ringGrad2)" stroke-width="14"/>
+      <circle cx="611" cy="512" r="178" fill="none" stroke="#ffe7c7" stroke-opacity="0.56" stroke-width="1.4"/>
+      <g stroke="#ffd2a6" stroke-width="1.5" stroke-opacity="0.55">
+        <path d="M437 375 L459 390 L480 366 L502 383 L524 356 L546 373 L568 347 L590 364 L612 337 L634 355 L656 328 L678 344 L700 318 L721 333" fill="none"/>
+        <path d="M454 651 L477 627 L500 645 L522 620 L545 638 L567 613 L590 631 L611 605 L634 624 L656 597 L679 617 L701 589" fill="none"/>
+      </g>
+    </g>
+
+    <g opacity="0.34">
+      <path d="M0 0 L596 0 M0 26 L596 26 M0 52 L596 52 M0 78 L596 78 M0 104 L596 104 M0 130 L596 130 M0 156 L596 156 M0 182 L596 182 M0 208 L596 208 M0 234 L596 234 M0 260 L596 260 M0 286 L596 286 M0 312 L596 312 M0 338 L596 338 M0 364 L596 364 M0 390 L596 390 M0 416 L596 416 M0 442 L596 442 M0 468 L596 468 M0 494 L596 494 M0 520 L596 520 M0 546 L596 546 M0 572 L596 572 M0 598 L596 598 M0 624 L596 624 M0 650 L596 650 M0 676 L596 676"
+            stroke="#1ec7de" stroke-width="0.6" stroke-opacity="0.10"/>
+      <path d="M26 0 L26 720 M52 0 L52 720 M78 0 L78 720 M104 0 L104 720 M130 0 L130 720 M156 0 L156 720 M182 0 L182 720 M208 0 L208 720 M234 0 L234 720 M260 0 L260 720 M286 0 L286 720 M312 0 L312 720 M338 0 L338 720 M364 0 L364 720 M390 0 L390 720 M416 0 L416 720 M442 0 L442 720 M468 0 L468 720 M494 0 L494 720 M520 0 L520 720 M546 0 L546 720 M572 0 L572 720"
+            stroke="#1ec7de" stroke-width="0.6" stroke-opacity="0.08"/>
+    </g>
+
+    <g opacity="0.88">
+      <g stroke="#94fbff" stroke-width="1.1" stroke-opacity="0.35">
+        <path d="M58 58 L334 0"/>
+        <path d="M31 87 L365 11"/>
+        <path d="M5 118 L392 31"/>
+        <path d="M0 151 L418 53"/>
+        <path d="M0 184 L441 74"/>
+        <path d="M0 219 L466 98"/>
+        <path d="M0 255 L491 124"/>
+      </g>
+      <g stroke="#9fffff" stroke-width="0.8" stroke-opacity="0.23">
+        <path d="M95 0 L15 318"/>
+        <path d="M128 0 L41 335"/>
+        <path d="M163 0 L69 355"/>
+        <path d="M198 0 L98 377"/>
+        <path d="M232 0 L127 401"/>
+        <path d="M267 0 L159 426"/>
+        <path d="M302 0 L194 454"/>
+      </g>
+    </g>
+
+    <g opacity="0.82">
+      <g stroke="#73f7ff" stroke-width="1.2" stroke-opacity="0.32">
+        <path d="M384 655 L596 559"/>
+        <path d="M396 669 L596 579"/>
+        <path d="M408 684 L596 599"/>
+        <path d="M420 699 L596 619"/>
+      </g>
+      <g stroke="#b9ffff" stroke-width="0.8" stroke-opacity="0.20">
+        <path d="M460 516 L414 720"/>
+        <path d="M488 502 L441 720"/>
+        <path d="M516 488 L469 720"/>
+        <path d="M544 474 L497 720"/>
+        <path d="M572 460 L525 720"/>
+      </g>
+    </g>
+
+    <g filter="url(#blurSoft)" opacity="0.38">
+      <circle cx="93" cy="34" r="4" fill="#96f1ff"/>
+      <circle cx="184" cy="72" r="3" fill="#d87aff"/>
+      <circle cx="505" cy="16" r="4" fill="#fff2a3"/>
+      <circle cx="558" cy="110" r="3" fill="#9dfbff"/>
+      <circle cx="516" cy="586" r="4" fill="#9ffcff"/>
+    </g>
+  </svg>
+
+  <div class="divider"></div>
+  <div class="page-num">15</div>
+  <div class="survey-title">SECOND ANNUAL EY/EIU GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+  <div class="body-copy">
+    The likely impacts vary across regions: for example, CROs based in Asia-Pacific
+    are significantly more concerned about market volatility and monetary policy
+    impacting interest rates; their mitigating actions speak to that elevated concern,
+    with 62% of CROs at Asia-Pacific insurers saying they are adjusting their interest
+    rate risk management, compared with 29% of all CROs.
+  </div>
+
+  <div class="figure-title">Figure 6: <span>What strategies are you considering to mitigate<br>geopolitical risks?</span></div>
+
+  <div class="chart-area">
+    <div class="row-label" style="top:0px;">Enhancing cybersecurity<br>measures</div>
+    <div class="bar-wrap" style="top:5px;">
+      <div class="bar-fill" style="width:98px;"></div>
+      <div class="bar-pct">58%</div>
+    </div>
+    <div class="bar-sub" style="top:29px;">60% EMEIA | 54% Americas | 62% Asia-Pacific</div>
+
+    <div class="row-label" style="top:52px;">Increasing political risk<br>assessment and scenario planning</div>
+    <div class="bar-wrap" style="top:57px;">
+      <div class="bar-fill" style="width:74px;"></div>
+      <div class="bar-pct">44%</div>
+    </div>
+    <div class="bar-sub" style="top:81px;">44% EMEIA | 46% Americas | 38% Asia-Pacific</div>
+
+    <div class="row-label" style="top:104px;">Diversifying investment portfolios</div>
+    <div class="bar-wrap" style="top:109px;">
+      <div class="bar-fill" style="width:70px;"></div>
+      <div class="bar-pct">42%</div>
+    </div>
+    <div class="bar-sub" style="top:133px;">47% EMEIA | 32% Americas | 46% Asia-Pacific</div>
+
+    <div class="row-label" style="top:152px;">Strengthening compliance and<br>regulatory frameworks</div>
+    <div class="bar-wrap" style="top:159px;">
+      <div class="bar-fill" style="width:52px;"></div>
+      <div class="bar-pct">31%</div>
+    </div>
+    <div class="bar-sub" style="top:183px;">37% EMEIA | 25% Americas | 23% Asia-Pacific</div>
+
+    <div class="row-label" style="top:206px;">Adjusting interest rate risk<br>management</div>
+    <div class="bar-wrap" style="top:211px;">
+      <div class="bar-fill" style="width:49px;"></div>
+      <div class="bar-pct">29%</div>
+    </div>
+    <div class="bar-sub" style="top:235px;">23% EMEIA | 25% Americas | 62% Asia-Pacific</div>
+  </div>
+
+  <div class="vchapter">CHAPTER 2</div>
+  <div class="yellow-mark"></div>
+
+  <svg class="ring-holder" viewBox="0 0 158 158" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="kpiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="43%" stop-color="#55c6ff"/>
+        <stop offset="72%" stop-color="#d62cff"/>
+        <stop offset="100%" stop-color="#ffe100"/>
+      </linearGradient>
+    </defs>
+    <circle cx="79" cy="79" r="77" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+    <circle cx="79" cy="79" r="74" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.3"/>
+    <circle cx="79" cy="79" r="74" fill="none" stroke="url(#kpiGrad)" stroke-width="8"
+            stroke-linecap="butt"
+            stroke-dasharray="269 465"
+            stroke-dashoffset="120"
+            transform="rotate(-90 79 79)"/>
+  </svg>
+
+  <div class="percent-big">58%</div>
+  <div class="ring-copy">of CROs say they are<br>enhancing cybersecurity<br>measures</div>
+
+  <div class="jump">JUMP TO<br>CONTENTS</div>
+</div>
+</body>
+</html>

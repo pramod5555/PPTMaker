@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ffffff;
+  }
+
+  .left-panel{
+    position:absolute;
+    left:0;
+    top:0;
+    width:784px;
+    height:720px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 53% 50%, rgba(255,238,197,0.98) 0%, rgba(255,228,188,0.78) 9%, rgba(180,171,171,0.18) 18%, rgba(34,50,74,0.06) 28%, rgba(10,19,34,0.00) 36%),
+      radial-gradient(ellipse at 54% 70%, rgba(18,28,43,0.00) 0%, rgba(18,28,43,0.22) 42%, rgba(10,20,35,0.74) 76%, rgba(4,8,16,0.95) 100%),
+      linear-gradient(180deg, #01030d 0%, #041025 10%, #0a2a54 18%, #356ea7 22%, #899dba 28%, #788091 34%, #545965 43%, #3a3f4b 52%, #2a303a 62%, #18212b 78%, #0b1620 92%, #06111b 100%);
+  }
+  .space-glow{
+    position:absolute;
+    left:0;
+    top:0;
+    width:784px;
+    height:720px;
+    z-index:1;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.28) 15%, rgba(0,0,0,0.04) 26%, rgba(0,0,0,0.10) 56%, rgba(0,0,0,0.54) 100%);
+    mix-blend-mode:multiply;
+  }
+  .horizon{
+    position:absolute;
+    left:0;
+    top:145px;
+    width:784px;
+    height:34px;
+    z-index:2;
+    background:linear-gradient(180deg, rgba(115,188,255,0.00) 0%, rgba(89,175,255,0.68) 48%, rgba(227,242,255,0.50) 76%, rgba(255,255,255,0.00) 100%);
+    filter:blur(1px);
+  }
+
+  .cloud1,.cloud2,.cloud3,.cloud4,.cloud5,.cloud6,.cloud7,.cloud8,.cloud9,.cloud10,.cloud11,.cloud12{
+    position:absolute;
+    border-radius:50%;
+    z-index:3;
+    filter:blur(5px);
+  }
+  .cloud1{left:289px;top:295px;width:248px;height:92px;background:rgba(246,232,205,0.90);transform:rotate(-13deg);}
+  .cloud2{left:202px;top:349px;width:202px;height:74px;background:rgba(58,60,72,0.72);transform:rotate(11deg);}
+  .cloud3{left:333px;top:384px;width:258px;height:96px;background:rgba(93,94,103,0.54);transform:rotate(-8deg);}
+  .cloud4{left:97px;top:203px;width:292px;height:86px;background:rgba(183,193,208,0.56);transform:rotate(7deg);}
+  .cloud5{left:385px;top:209px;width:316px;height:66px;background:rgba(224,229,236,0.44);transform:rotate(5deg);}
+  .cloud6{left:52px;top:430px;width:161px;height:116px;background:rgba(24,33,45,0.86);}
+  .cloud7{left:231px;top:561px;width:120px;height:70px;background:rgba(19,30,44,0.93);}
+  .cloud8{left:563px;top:591px;width:86px;height:44px;background:rgba(11,21,34,0.94);}
+  .cloud9{left:596px;top:333px;width:126px;height:66px;background:rgba(210,214,221,0.22);}
+  .cloud10{left:45px;top:258px;width:84px;height:52px;background:rgba(216,218,225,0.34);}
+  .cloud11{left:300px;top:147px;width:96px;height:42px;background:rgba(235,241,246,0.42);transform:rotate(8deg);}
+  .cloud12{left:86px;top:329px;width:100px;height:50px;background:rgba(89,103,121,0.28);transform:rotate(-12deg);}
+
+  .storm-svg{
+    position:absolute;
+    left:0;
+    top:0;
+    width:784px;
+    height:720px;
+    z-index:4;
+  }
+
+  .left-accent{
+    position:absolute;
+    left:80px;
+    top:65px;
+    width:2px;
+    height:648px;
+    z-index:20;
+    background:linear-gradient(180deg, #ffd800 0%, #f4da00 32%, #d73698 70%, #11c2d9 100%);
+  }
+
+  .title{
+    position:absolute;
+    left:110px;
+    top:58px;
+    width:320px;
+    z-index:30;
+    color:#f3f5f7;
+    font-size:28px;
+    line-height:1.12;
+    font-weight:300;
+    letter-spacing:0;
+  }
+
+  .bottom-caption{
+    position:absolute;
+    left:107px;
+    top:666px;
+    width:245px;
+    z-index:30;
+    color:#f5f5f5;
+    font-size:16px;
+    line-height:1.08;
+    font-weight:300;
+  }
+
+  .page-no{
+    position:absolute;
+    left:381px;
+    top:598px;
+    width:220px;
+    z-index:30;
+    color:#f5f5f5;
+    font-size:160px;
+    line-height:0.92;
+    font-weight:300;
+    letter-spacing:-3px;
+  }
+
+  .right-panel{
+    position:absolute;
+    left:784px;
+    top:0;
+    width:496px;
+    height:720px;
+    z-index:10;
+    background:#f1f1f1;
+  }
+
+  .quote{
+    position:absolute;
+    left:842px;
+    top:58px;
+    width:292px;
+    z-index:30;
+    color:#a5abb1;
+    font-size:25px;
+    line-height:1.15;
+    font-weight:300;
+  }
+
+  .body{
+    position:absolute;
+    left:841px;
+    top:319px;
+    width:284px;
+    z-index:30;
+    color:#495057;
+    font-size:11px;
+    line-height:1.34;
+    font-weight:400;
+  }
+  .body p{
+    margin:0 0 11px 0;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:32px;
+    bottom:15px;
+    z-index:40;
+    color:#eef1f4;
+    font-size:6px;
+    line-height:1;
+    font-weight:600;
+    opacity:0.95;
+    letter-spacing:0;
+  }
+
+  .series{
+    position:absolute;
+    right:72px;
+    bottom:14px;
+    z-index:40;
+    color:#1c2329;
+    font-size:8px;
+    line-height:1;
+    font-weight:600;
+    text-align:right;
+    white-space:nowrap;
+  }
+
+  .footer-page{
+    position:absolute;
+    right:28px;
+    bottom:14px;
+    z-index:40;
+    color:#4d555c;
+    font-size:8px;
+    line-height:1;
+    font-weight:600;
+    text-align:right;
+    white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-panel"></div>
+  <div class="space-glow"></div>
+  <div class="horizon"></div>
+
+  <div class="cloud1"></div>
+  <div class="cloud2"></div>
+  <div class="cloud3"></div>
+  <div class="cloud4"></div>
+  <div class="cloud5"></div>
+  <div class="cloud6"></div>
+  <div class="cloud7"></div>
+  <div class="cloud8"></div>
+  <div class="cloud9"></div>
+  <div class="cloud10"></div>
+  <div class="cloud11"></div>
+  <div class="cloud12"></div>
+
+  <svg class="storm-svg" viewBox="0 0 784 720" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="blur2"><feGaussianBlur stdDeviation="1.15"/></filter>
+      <filter id="blur5"><feGaussianBlur stdDeviation="3.4"/></filter>
+      <filter id="blur8"><feGaussianBlur stdDeviation="6"/></filter>
+    </defs>
+
+    <ellipse cx="404" cy="404" rx="198" ry="102" fill="rgba(255,231,190,0.42)" filter="url(#blur8)"/>
+    <ellipse cx="456" cy="395" rx="112" ry="46" fill="rgba(255,248,231,0.56)" filter="url(#blur8)"/>
+    <ellipse cx="439" cy="437" rx="230" ry="110" fill="rgba(167,154,142,0.16)" filter="url(#blur8)"/>
+
+    <path d="M17 530 L28 520 L24 508 L38 498 L31 483 L45 477 L41 466 L53 456 L50 447"
+          stroke="rgba(255,202,150,0.92)" stroke-width="1.15" fill="none" filter="url(#blur2)"/>
+    <path d="M59 565 L65 555 L62 543 L73 531 L68 520 L82 507 L78 495"
+          stroke="rgba(255,205,156,0.86)" stroke-width="1.05" fill="none" filter="url(#blur2)"/>
+    <path d="M79 624 L92 615 L101 617 L113 607 L126 610 L137 602 L151 605 L165 597 L178 600 L192 593 L206 597 L220 589 L235 592 L248 586 L263 590 L278 583 L294 587 L309 579 L325 583 L340 575 L356 579 L372 571 L389 575 L405 568 L423 572 L439 564 L457 568 L474 560"
+          stroke="rgba(255,194,138,0.95)" stroke-width="1.15" fill="none" filter="url(#blur2)"/>
+    <path d="M549 628 L560 619 L568 621 L577 612 L586 613 L595 603 L605 604"
+          stroke="rgba(255,196,141,0.90)" stroke-width="1.0" fill="none" filter="url(#blur2)"/>
+
+    <path d="M40 308 C102 266, 183 257, 259 265 C336 273, 417 283, 534 274 C618 267, 690 246, 758 255"
+          stroke="rgba(255,255,255,0.17)" stroke-width="1.1" fill="none"/>
+    <path d="M88 174 C174 151, 297 142, 428 151 C552 160, 652 169, 753 171"
+          stroke="rgba(255,255,255,0.20)" stroke-width="1" fill="none"/>
+
+    <path d="M273 170 C297 132, 338 131, 369 156 C391 175, 389 211, 357 223 C323 237, 287 217, 274 188 Z"
+          fill="rgba(236,242,249,0.43)" filter="url(#blur5)"/>
+    <path d="M303 390 C331 368, 385 377, 414 408 C438 431, 442 468, 414 486 C388 501, 340 493, 315 469 C292 447, 281 406, 303 390 Z"
+          fill="rgba(47,49,61,0.56)" filter="url(#blur5)"/>
+    <path d="M339 486 C381 492, 418 513, 446 549 C459 567, 472 590, 470 614"
+          stroke="rgba(196,182,168,0.16)" stroke-width="22" fill="none" stroke-linecap="round" filter="url(#blur5)"/>
+  </svg>
+
+  <div class="left-accent"></div>
+
+  <div class="title">Trigger-based:<br>matching today’s<br>velocity</div>
+
+  <div class="bottom-caption">Shift from calendar-<br>driven reviews to<br>trigger-based action</div>
+
+  <div class="page-no">02</div>
+
+  <div class="right-panel"></div>
+
+  <div class="quote">
+    If a strategy-first approach<br>
+    defines what matters, a<br>
+    trigger-based operating<br>
+    model defines the risk<br>
+    architecture that makes fast,<br>
+    trusted action possible.
+  </div>
+
+  <div class="body">
+    <p>This does two things. First, it defines when decisions must happen and who can act, using signals, thresholds and pre-authorized decision rights. Second, it defines no-regret resilience moves that strengthen readiness (e.g., clarifying decision authority, identifying mitigation levers, rehearsing protocols through simulations including tabletop exercises, and closing gaps) before a trigger fires.</p>
+    <p>This is not a question of predicting every outcome or scripting every response. No model can anticipate every shock; unexpected risks and losses will still occur. The point is to give the organization a default pathway for most conditions and the discipline and capacity to improvise when it must.</p>
+    <p>This is the shift from describing risks to designing the conditions under which decisions are made. Organizations that adopt triggers create a faster, more coherent operating rhythm anchored in explicit thresholds rather than managerial discretion.</p>
+  </div>
+
+  <div class="footer-left">7 &nbsp; | &nbsp; How can reimagining risk prepare you for an unpredictable world?</div>
+  <div class="series">Global Risk Transformation Series &nbsp; |</div>
+  <div class="footer-page">8</div>
+</div>
+</body>
+</html>

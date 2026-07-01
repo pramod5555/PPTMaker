@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{margin:0;background:#eef1f2;font-family:Arial,Helvetica,'Segoe UI',sans-serif;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#eef1f2;
+    color:#111;
+  }
+  #slide > *{position:absolute; box-sizing:border-box;}
+  .small-grey{color:#8b9198;font-size:17.28px;line-height:20.16px;font-weight:600;}
+  .title{
+    color:#111;
+    font-size:28.8px;
+    line-height:1.14;
+    font-weight:400;
+    width:1022.91px;
+  }
+  .subtitle{
+    color:#8f959c;
+    font-size:22.08px;
+    line-height:26.88px;
+    font-weight:400;
+    width:765.95px;
+  }
+  .logo-wrap{width:101.63px;height:50.40px;}
+  .logo-text1{font-size:14.4px;line-height:14.4px;color:#333;font-weight:400;}
+  .logo-text2{font-size:17.76px;line-height:17.76px;color:#111;font-weight:400;}
+  .logo-b{
+    right:0;top:0;
+    width:39.00px;height:50.40px;
+    background:linear-gradient(90deg,#adb5bb 0%,#7a848c 55%,#cfd5d9 100%);
+    border-radius:11.52px 17.28px 17.28px 11.52px / 11.52px 14.4px 14.4px 11.52px;
+  }
+  .logo-b:before{
+    content:"";
+    position:absolute;
+    left:0;top:0;
+    width:21.84px;height:24.00px;
+    background:#eef1f2;
+    border-top-right-radius:14.4px;
+    border-bottom-right-radius:14.4px;
+  }
+  .logo-b:after{
+    content:"";
+    position:absolute;
+    left:0;bottom:0;
+    width:21.84px;height:24.00px;
+    background:#eef1f2;
+    border-top-right-radius:14.4px;
+    border-bottom-right-radius:14.4px;
+  }
+  .chart-label{
+    font-size:9.6px;
+    line-height:11.52px;
+    color:#111;
+    font-weight:400;
+    text-align:center;
+  }
+  .chart-total{
+    font-size:13.44px;
+    line-height:14.4px;
+    color:#111;
+    font-weight:700;
+    text-align:center;
+  }
+  .legend-text{
+    font-size:13.44px;
+    line-height:17.28px;
+    color:#222;
+    font-weight:400;
+  }
+  .legend-head{
+    font-size:13.44px;
+    line-height:16.32px;
+    color:#222;
+    font-weight:700;
+  }
+  .cagr-head{
+    font-size:13.44px;
+    line-height:16.32px;
+    color:#222;
+    font-weight:700;
+    text-align:center;
+  }
+  .pill{
+    border:1px solid #9ea5ab;
+    border-radius:10.56px;
+    font-size:13.44px;
+    line-height:17.28px;
+    color:#111;
+    font-weight:700;
+    text-align:center;
+    background:#f6f7f8;
+  }
+  .pill.fill1{background:#d9dde1;border:none;}
+  .pill.fill2{background:#b0bac4;border:none;}
+  .pill.fill3{background:#000;color:#fff;border:none;}
+  .pill.fill4{background:#8b8f94;color:#fff;border:none;}
+  .pill.fill5{background:#c6ccd1;border:none;}
+  .pill.fill6{background:#7ec8da;border:none;}
+  .pill.fill7{background:#11a7c8;color:#fff;border:none;}
+  .pill.fill8{background:#9fb5cf;border:none;}
+  .pill.fill9{background:#1a79ae;color:#fff;border:none;}
+  .bullet{
+    font-size:16.32px;
+    line-height:20.16px;
+    color:#111;
+    font-weight:400;
+  }
+  .footer{
+    font-size:11.52px;
+    line-height:13.44px;
+    color:#8e949a;
+    font-weight:400;
+  }
+  .source{
+    font-size:12.48px;
+    line-height:14.4px;
+    color:#111;
+    font-weight:400;
+  }
+  .separator{background:#aeb4b9;}
+  .yearline{background:#ccd3d8;}
+  .stack-seg{position:absolute;left:0;width:100%;}
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="small-grey" style="left:94.51px;top:29.28px;width:280px;height:20.16px;">Buyout transaction statistics</div>
+
+  <div class="title" style="left:94.51px;top:79.20px;height:72.96px;">
+    European buyout transaction volume slightly decreased to 1,209<br>deals in 2018
+  </div>
+
+  <div class="subtitle" style="left:94.51px;top:183.36px;height:26.88px;">
+    European buyout transaction volume by geography, 2000-2018 [# of deals]
+  </div>
+
+  <div class="logo-wrap" style="left:1168.83px;top:22.08px;">
+    <div class="logo-text1" style="left:26.59px;top:1.44px;position:absolute;">Roland</div>
+    <div class="logo-text2" style="left:0;top:16.80px;position:absolute;">Berger</div>
+    <div class="logo-b"></div>
+  </div>
+
+  <!-- Chart area -->
+  <div style="left:101.60px;top:246.24px;width:631.45px;height:410.40px;">
+    <!-- baseline -->
+    <div style="left:0;top:373.92px;width:631.45px;height:1px;background:#b7bdc3;"></div>
+
+    <!-- bars -->
+    <div style="left:0px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:244.32px;width:28px;height:14.4px;position:absolute;">416</div>
+      <div style="left:0;top:259.20px;width:22.45px;height:114.72px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:57.20px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:57.20px;height:14.30px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:71.50px;height:8.58px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:80.08px;height:4.29px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:84.37px;height:17.16px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:101.53px;height:5.72px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:107.25px;height:2.86px;background:#000;"></div>
+        <div class="stack-seg" style="bottom:110.11px;height:4.61px;background:#cfd7df;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2000</div>
+    </div>
+
+    <div style="left:34.08px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:234.24px;width:28px;height:14.4px;position:absolute;">437</div>
+      <div style="left:0;top:249.60px;width:22.45px;height:124.32px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:58.63px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:58.63px;height:15.54px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:74.17px;height:8.70px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:82.87px;height:4.97px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:87.84px;height:19.89px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:107.73px;height:5.59px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:113.32px;height:2.48px;background:#000;"></div>
+        <div class="stack-seg" style="bottom:115.80px;height:8.52px;background:#cfd7df;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2001</div>
+    </div>
+
+    <div style="left:68.16px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:223.20px;width:28px;height:14.4px;position:absolute;">459</div>
+      <div style="left:0;top:238.56px;width:22.45px;height:135.36px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:51.44px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:51.44px;height:17.59px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:69.03px;height:9.47px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:78.50px;height:5.41px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:83.91px;height:19.61px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:103.52px;height:7.44px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:110.96px;height:4.06px;background:#000;"></div>
+        <div class="stack-seg" style="bottom:115.02px;height:20.34px;background:#cfd7df;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2002</div>
+    </div>
+
+    <div style="left:102.24px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:171.84px;width:28px;height:14.4px;position:absolute;">738</div>
+      <div style="left:0;top:187.20px;width:22.45px;height:186.72px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:110.19px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:110.19px;height:11.20px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:121.39px;height:17.42px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:138.81px;height:9.96px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:148.77px;height:23.64px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:172.41px;height:7.47px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:179.88px;height:12.44px;background:#000;"></div>
+        <div class="stack-seg" style="bottom:192.32px;height:-5.60px;background:#cfd7df;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2003</div>
+    </div>
+
+    <div style="left:136.32px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:150.24px;width:28px;height:14.4px;position:absolute;">922</div>
+      <div style="left:0;top:165.60px;width:22.45px;height:208.32px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:117.01px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:117.01px;height:30.96px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:147.97px;height:20.64px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:168.61px;height:29.24px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:197.85px;height:5.16px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:203.01px;height:4.30px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:207.31px;height:8.60px;background:#000;"></div>
+        <div class="stack-seg" style="bottom:215.91px;height:-7.59px;background:#cfd7df;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2004</div>
+    </div>
+
+    <div style="left:170.40px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:116.64px;width:28px;height:14.4px;position:absolute;">1,164</div>
+      <div style="left:0;top:132.00px;width:22.45px;height:241.92px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:133.05px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:133.05px;height:53.22px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:186.27px;height:31.45px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:217.72px;height:40.85px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:258.57px;height:-34.78px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:223.79px;height:17.69px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:241.48px;height:19.66px;background:#000;"></div>
+        <div class="stack-seg" style="bottom:261.14px;height:-19.22px;background:#cfd7df;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2005</div>
+    </div>
+
+    <div style="left:204.48px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:101.28px;width:28px;height:14.4px;position:absolute;">1,409</div>
+      <div style="left:0;top:116.64px;width:22.45px;height:257.28px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:158.93px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:158.93px;height:62.07px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:221.00px;height:39.94px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:260.94px;height:54.93px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:315.87px;height:-74.76px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:241.11px;height:16.98px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:258.09px;height:21.22px;background:#000;"></div>
+        <div class="stack-seg" style="bottom:279.31px;height:-22.03px;background:#cfd7df;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2006</div>
+    </div>
+
+    <div style="left:238.56px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:85.44px;width:28px;height:14.4px;position:absolute;">1,460</div>
+      <div style="left:0;top:100.80px;width:22.45px;height:273.12px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:165.25px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:165.25px;height:64.54px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:229.79px;height:44.13px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:273.92px;height:59.26px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:333.18px;height:-87.17px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:246.01px;height:22.87px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:268.88px;height:25.13px;background:#000;"></div>
+        <div class="stack-seg" style="bottom:294.01px;height:-20.89px;background:#cfd7df;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2007</div>
+    </div>
+
+    <div style="left:272.64px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:122.40px;width:28px;height:14.4px;position:absolute;">1,203</div>
+      <div style="left:0;top:137.76px;width:22.45px;height:236.16px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:116.56px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:116.56px;height:49.38px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:165.94px;height:30.09px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:196.03px;height:37.81px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:233.84px;height:-14.61px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:219.23px;height:17.17px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:236.40px;height:32.47px;background:#000;"></div>
+        <div class="stack-seg" style="bottom:268.87px;height:-32.71px;background:#cfd7df;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2008</div>
+    </div>
+
+    <div style="left:306.72px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:206.88px;width:28px;height:14.4px;position:absolute;">639</div>
+      <div style="left:0;top:222.24px;width:22.45px;height:151.68px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:40.80px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:40.80px;height:18.72px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:59.52px;height:1.44px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:60.96px;height:23.52px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:84.48px;height:47.04px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:131.52px;height:12.00px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:143.52px;height:8.16px;background:#000;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2009</div>
+    </div>
+
+    <div style="left:340.80px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:173.28px;width:28px;height:14.4px;position:absolute;">992</div>
+      <div style="left:0;top:188.64px;width:22.45px;height:185.28px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:78.23px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:78.23px;height:28.87px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:107.10px;height:26.72px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:133.82px;height:40.07px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:173.89px;height:-5.50px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:168.39px;height:15.42px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:183.81px;height:11.32px;background:#000;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2010</div>
+    </div>
+
+    <div style="left:374.88px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:145.44px;width:28px;height:14.4px;position:absolute;">1,104</div>
+      <div style="left:0;top:160.80px;width:22.45px;height:213.12px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:74.59px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:74.59px;height:36.37px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:110.96px;height:30.31px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:141.27px;height:46.17px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:187.44px;height:-11.97px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:175.47px;height:14.74px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:190.21px;height:17.19px;background:#000;"></div>
+        <div class="stack-seg" style="bottom:207.40px;height:5.72px;background:#cfd7df;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2011</div>
+    </div>
+
+    <div style="left:408.96px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:179.52px;width:28px;height:14.4px;position:absolute;">934</div>
+      <div style="left:0;top:194.88px;width:22.45px;height:179.04px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:69.91px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:69.91px;height:35.60px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:105.51px;height:22.64px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:128.15px;height:22.64px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:150.79px;height:9.70px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:160.49px;height:10.67px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:171.16px;height:16.18px;background:#000;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2012</div>
+    </div>
+
+    <div style="left:443.04px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:190.08px;width:28px;height:14.4px;position:absolute;">894</div>
+      <div style="left:0;top:205.44px;width:22.45px;height:168.48px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:78.38px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:78.38px;height:24.99px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:103.37px;height:22.11px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:125.48px;height:36.05px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:161.53px;height:-7.03px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:154.50px;height:10.94px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:165.44px;height:16.65px;background:#000;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2013</div>
+    </div>
+
+    <div style="left:477.12px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:159.84px;width:28px;height:14.4px;position:absolute;">1,129</div>
+      <div style="left:0;top:175.20px;width:22.45px;height:198.72px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:117.66px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:117.66px;height:32.57px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:150.23px;height:25.06px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:175.29px;height:42.53px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:217.82px;height:-38.43px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:179.39px;height:18.61px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:198.00px;height:22.63px;background:#000;"></div>
+        <div class="stack-seg" style="bottom:220.63px;height:-21.91px;background:#cfd7df;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2014</div>
+    </div>
+
+    <div style="left:511.20px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:160.32px;width:28px;height:14.4px;position:absolute;">1,128</div>
+      <div style="left:0;top:175.68px;width:22.45px;height:198.24px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:107.05px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:107.05px;height:49.15px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:156.20px;height:33.10px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:189.30px;height:41.15px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:230.45px;height:-44.36px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:186.09px;height:17.27px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:203.36px;height:18.62px;background:#000;"></div>
+        <div class="stack-seg" style="bottom:221.98px;height:-23.74px;background:#cfd7df;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2015</div>
+    </div>
+
+    <div style="left:545.28px;top:0;width:22.45px;height:373.92px;">
+      <div class="chart-total" style="left:-2px;top:135.36px;width:28px;height:14.4px;position:absolute;">1,278</div>
+      <div style="left:0;top:150.72px;width:22.45px;height:223.20px;position:absolute;">
+        <div class="stack-seg" style="bottom:0;height:108.55px;background:#176fa4;"></div>
+        <div class="stack-seg" style="bottom:108.55px;height:67.73px;background:#9fb3cb;"></div>
+        <div class="stack-seg" style="bottom:176.28px;height:39.25px;background:#11a8c9;"></div>
+        <div class="stack-seg" style="bottom:215.53px;height:44.58px;background:#7fc7d8;"></div>
+        <div class="stack-seg" style="bottom:260.11px;height:-51.98px;background:#d0d2d4;"></div>
+        <div class="stack-seg" style="bottom:208.13px;height:17.37px;background:#8b8f94;"></div>
+        <div class="stack-seg" style="bottom:225.50px;height:22.87px;background:#000;"></div>
+        <div class="stack-seg" style="bottom:248.37px;height:-25.17px;background:#cfd7df;"></div>
+      </div>
+      <div class="chart-label" style="left:-4px;top:383.52px;width:30px;height:11.52px;position:absolute;">2016</div>
+    </div>
+
+    <div style="left:579.36px;top:0;width:22.45px;height:373

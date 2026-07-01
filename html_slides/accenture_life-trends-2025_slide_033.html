@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d7d8d6;
+    color:#222;
+  }
+
+  .left-top-photo{
+    position:absolute;
+    left:61px;
+    top:0px;
+    width:344px;
+    height:121px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0)),
+      linear-gradient(90deg, #c9c2ab 0 10%, #e7e0cb 10% 22%, #b7b09a 22% 24%, #f5edd8 24% 40%, #d8d1bc 40% 44%, #f3ecd8 44% 65%, #d0c8b3 65% 69%, #f3edd9 69% 100%);
+    filter: blur(0.2px);
+  }
+  .left-top-photo:before{
+    content:"";
+    position:absolute;
+    left:17px;
+    top:13px;
+    width:34px;
+    height:52px;
+    background:#16232b;
+    border-radius:2px;
+    box-shadow:
+      92px -5px 0 0 #0f1c22,
+      146px 7px 0 0 #d8d2c1,
+      162px 12px 0 0 #b4b09e,
+      203px 6px 0 0 #22343a;
+    opacity:.95;
+  }
+  .left-top-photo:after{
+    content:"";
+    position:absolute;
+    left:235px;
+    top:0;
+    width:55px;
+    height:121px;
+    background:
+      radial-gradient(circle at 50% 25%, #314b36 0 8px, transparent 9px),
+      linear-gradient(180deg, transparent 0 15px, #49664e 15px 22px, transparent 22px 36px, #5f7a63 36px 40px, transparent 40px),
+      linear-gradient(90deg, transparent 24px, #6b7e63 24px 27px, transparent 27px);
+    opacity:.8;
+  }
+
+  .title{
+    position:absolute;
+    left:60px;
+    top:160px;
+    width:346px;
+    font-size:23px;
+    line-height:1.18;
+    font-weight:400;
+    color:#7b1fe0;
+    letter-spacing:-0.2px;
+  }
+
+  .left-bottom-photo{
+    position:absolute;
+    left:61px;
+    top:274px;
+    width:344px;
+    height:446px;
+    background:
+      linear-gradient(180deg, #ede7d9 0 9%, #c3a891 9% 13%, #1d1f24 13% 100%);
+  }
+  .left-bottom-photo .couch{
+    position:absolute;
+    left:33px;
+    top:239px;
+    width:276px;
+    height:204px;
+    background:#142130;
+    border-radius:12px 12px 0 0;
+  }
+  .left-bottom-photo .boy-head{
+    position:absolute;
+    left:16px;
+    top:29px;
+    width:59px;
+    height:65px;
+    background:#c79c78;
+    border-radius:50%;
+    box-shadow: 0 -11px 0 9px #2d1f19;
+  }
+  .left-bottom-photo .boy-shirt{
+    position:absolute;
+    left:0px;
+    top:95px;
+    width:96px;
+    height:155px;
+    background:#20c37a;
+    border-radius:20px 20px 10px 10px;
+  }
+  .left-bottom-photo .boy-phone{
+    position:absolute;
+    left:31px;
+    top:230px;
+    width:29px;
+    height:50px;
+    background:#1a1a1a;
+    border-radius:5px;
+    transform:rotate(8deg);
+  }
+  .left-bottom-photo .boy-leg1{
+    position:absolute;
+    left:9px;
+    top:296px;
+    width:45px;
+    height:144px;
+    background:#204d79;
+    transform:skew(5deg) rotate(2deg);
+    border-radius:8px;
+  }
+  .left-bottom-photo .boy-leg2{
+    position:absolute;
+    left:48px;
+    top:296px;
+    width:40px;
+    height:144px;
+    background:#2f6ea0;
+    transform:skew(-3deg) rotate(-2deg);
+    border-radius:8px;
+  }
+  .left-bottom-photo .adult-head{
+    position:absolute;
+    left:191px;
+    top:0px;
+    width:79px;
+    height:76px;
+    background:#d69b76;
+    border-radius:46% 46% 50% 50%;
+    box-shadow: 0 -19px 0 18px #5a2d1e;
+  }
+  .left-bottom-photo .adult-body{
+    position:absolute;
+    left:145px;
+    top:68px;
+    width:150px;
+    height:189px;
+    background:#f15a00;
+    border-radius:24px 24px 8px 8px;
+    transform:skew(2deg);
+  }
+  .left-bottom-photo .adult-arm{
+    position:absolute;
+    left:222px;
+    top:116px;
+    width:23px;
+    height:90px;
+    background:#d89b77;
+    border-radius:12px;
+    transform:rotate(12deg);
+  }
+  .left-bottom-photo .adult-phone{
+    position:absolute;
+    left:282px;
+    top:140px;
+    width:27px;
+    height:51px;
+    background:#222;
+    border-radius:5px;
+    transform:rotate(6deg);
+  }
+  .left-bottom-photo .adult-leg{
+    position:absolute;
+    left:183px;
+    top:244px;
+    width:120px;
+    height:182px;
+    background:#e6e0d2;
+    border-radius:45% 45% 20% 20%;
+    transform:rotate(6deg);
+  }
+
+  .col1{
+    position:absolute;
+    left:455px;
+    top:127px;
+    width:334px;
+    font-size:19px;
+    line-height:1.47;
+    color:#2a2a2a;
+    letter-spacing:0.1px;
+  }
+  .col1 p{
+    margin:0 0 30px 0;
+  }
+
+  .col2{
+    position:absolute;
+    left:874px;
+    top:127px;
+    width:334px;
+    font-size:19px;
+    line-height:1.47;
+    color:#2a2a2a;
+    letter-spacing:0.1px;
+  }
+  .col2 p{
+    margin:0;
+  }
+
+  .right-rail{
+    position:absolute;
+    right:13px;
+    top:35px;
+    width:36px;
+    height:610px;
+    color:#6d6d6d;
+    font-size:17px;
+  }
+  .right-rail .vert{
+    position:absolute;
+    right:0;
+    transform-origin:top right;
+    transform:rotate(90deg) translateY(-100%);
+    white-space:nowrap;
+    font-size:17px;
+    letter-spacing:0.2px;
+  }
+  .right-rail .vert span.active{
+    color:#8a20eb;
+    font-weight:600;
+  }
+
+  .footer{
+    position:absolute;
+    right:33px;
+    bottom:18px;
+    font-size:16px;
+    color:#7d7d7d;
+    letter-spacing:0.1px;
+  }
+  .footer .year{
+    color:#8a20eb;
+  }
+  .footer .page{
+    margin-left:60px;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-top-photo"></div>
+
+    <div class="title">Difficult conversations<br>at home will continue</div>
+
+    <div class="left-bottom-photo">
+      <div class="couch"></div>
+      <div class="boy-head"></div>
+      <div class="boy-shirt"></div>
+      <div class="boy-phone"></div>
+      <div class="boy-leg1"></div>
+      <div class="boy-leg2"></div>
+      <div class="adult-head"></div>
+      <div class="adult-body"></div>
+      <div class="adult-arm"></div>
+      <div class="adult-phone"></div>
+      <div class="adult-leg"></div>
+    </div>
+
+    <div class="col1">
+      <p>Parent-teenager relationships have probably always been peppered with heated discussions as they struggle to balance what the child wants with what the parent believes is appropriate. The push and pull is emotional and challenging for both sides, and, whenever an agreement is made, it often doesn’t last long as a new temptation always pops up to upset the equilibrium.</p>
+      <p>By design, smartphones contain all the good and bad of the internet in a single device that goes everywhere with its user. Parents cannot possibly monitor everything their children do or see on their devices, and for every existing safeguard or mechanism, there appears to be a workaround that children find long before their parents.</p>
+    </div>
+
+    <div class="col2">
+      <p>Modern parenting often points to modeling desired behavior—whether it’s manners, creating a balanced diet, developing eco-conscious habits or use of digital devices. But parents’ lives are bundled into their own devices, making it almost impossible to model healthy behaviors. Even those who have stepped away from social media may have their finances, groceries, school apps, news sources, music, utilities and personal and professional communications wrapped up in their phones.</p>
+    </div>
+
+    <div class="right-rail">
+      <div class="vert">Cost of hesitations &nbsp;/&nbsp; <span class="active">The parent trap</span> &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; Social rewilding</div>
+    </div>
+
+    <div class="footer">Accenture Life Trends <span class="year">2025</span><span class="page">33</span></div>
+  </div>
+</body>
+</html>

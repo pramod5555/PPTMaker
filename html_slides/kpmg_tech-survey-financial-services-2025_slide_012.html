@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Simplification and modernization</title>
+<style>
+  body{
+    margin:0;
+    background:#9cafc7;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+  }
+
+  /* Top navigation */
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:47px;
+    background:#e8e8e8;
+  }
+  .nav{
+    position:absolute;
+    top:19px;
+    font-size:12px;
+    color:#7e7e7e;
+    line-height:1;
+    white-space:nowrap;
+  }
+  .nav.active{
+    color:#2249e6;
+    font-weight:600;
+  }
+  .nav1{ left:87px; }
+  .nav2{ left:262px; }
+  .nav3{ left:345px; }
+  .nav4{ left:493px; }
+  .nav5{ left:602px; }
+  .nav6{ left:814px; }
+  .nav7{ left:979px; }
+
+  .icon{
+    position:absolute;
+    top:15px;
+    width:22px;
+    height:22px;
+    color:#8d8d8d;
+  }
+  .icon.chev-left{ right:88px; }
+  .icon.home{ right:57px; }
+  .icon.chev-right{ right:28px; }
+
+  .chev-left:before,
+  .chev-right:before{
+    content:"";
+    position:absolute;
+    top:3px;
+    width:13px;
+    height:13px;
+    border-top:1.5px solid #9a9a9a;
+    border-right:1.5px solid #9a9a9a;
+  }
+  .chev-left:before{
+    left:6px;
+    transform:rotate(-135deg);
+  }
+  .chev-right:before{
+    left:2px;
+    transform:rotate(45deg);
+  }
+
+  .home:before{
+    content:"";
+    position:absolute;
+    left:5px;
+    top:8px;
+    width:11px;
+    height:9px;
+    border:1.5px solid #9a9a9a;
+    border-top:none;
+    box-sizing:border-box;
+  }
+  .home:after{
+    content:"";
+    position:absolute;
+    left:4px;
+    top:2px;
+    width:12px;
+    height:12px;
+    border-left:1.5px solid #9a9a9a;
+    border-top:1.5px solid #9a9a9a;
+    transform:rotate(45deg);
+    box-sizing:border-box;
+    background:transparent;
+  }
+
+  /* Left image panel */
+  .hero{
+    position:absolute;
+    left:0;
+    top:47px;
+    width:860px;
+    height:673px;
+    background:
+      radial-gradient(circle at 11% 63%, rgba(190,225,255,.75) 0 3%, rgba(255,245,180,.25) 3.2%, rgba(255,255,255,0) 6%),
+      radial-gradient(circle at 7.5% 73%, rgba(255,240,180,.75) 0 3.2%, rgba(160,200,255,.22) 3.3%, rgba(255,255,255,0) 6%),
+      radial-gradient(circle at 16% 50%, rgba(255,190,150,.25) 0 3.5%, rgba(255,255,255,0) 6%),
+      radial-gradient(circle at 36% 74%, rgba(255,215,120,.55) 0 3.5%, rgba(255,255,255,0) 6.5%),
+      radial-gradient(circle at 46% 67%, rgba(255,205,180,.55) 0 5%, rgba(255,255,255,0) 8%),
+      radial-gradient(circle at 57% 67%, rgba(255,196,170,.82) 0 6%, rgba(255,255,255,0) 12%),
+      radial-gradient(circle at 49% 55%, rgba(255,220,170,.35) 0 4%, rgba(255,255,255,0) 7%),
+      linear-gradient(180deg, rgba(100,180,220,.24), rgba(0,0,0,0) 46%),
+      repeating-linear-gradient(90deg, rgba(45,155,255,.18) 0 4px, rgba(0,0,0,0) 4px 23px),
+      linear-gradient(90deg, #3e8bc0 0%, #6ba6ca 28%, #8cb9d7 43%, #1d386e 58%, #071845 100%);
+  }
+  .hero:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(ellipse at 68% 35%, rgba(255,255,255,.18), rgba(255,255,255,0) 35%),
+      linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0) 45%, rgba(0,0,30,.22) 100%);
+    pointer-events:none;
+  }
+
+  /* Stylized digital face */
+  .face{
+    position:absolute;
+    left:448px;
+    top:4px;
+    width:406px;
+    height:711px;
+    filter:saturate(1.15);
+  }
+  .face .head{
+    position:absolute;
+    left:19px;
+    top:0;
+    width:336px;
+    height:700px;
+    background:
+      radial-gradient(circle at 62% 47%, rgba(135,230,255,.9) 0, rgba(135,230,255,.35) 20%, rgba(0,0,0,0) 37%),
+      radial-gradient(circle at 46% 56%, rgba(120,200,255,.8) 0, rgba(120,200,255,.22) 18%, rgba(0,0,0,0) 40%),
+      radial-gradient(circle at 50% 48%, rgba(0,0,0,0) 0 48%, rgba(95,190,255,.9) 49%, rgba(100,220,255,.8) 49.5%, rgba(0,0,0,0) 50.5%),
+      radial-gradient(circle at 49% 48%, rgba(0,0,0,0) 0 57%, rgba(85,180,255,.7) 58%, rgba(0,0,0,0) 59%),
+      radial-gradient(circle at 49% 48%, rgba(0,0,0,0) 0 66%, rgba(90,200,255,.55) 67%, rgba(0,0,0,0) 68%),
+      radial-gradient(circle at 49% 48%, rgba(0,0,0,0) 0 75%, rgba(120,220,255,.35) 76%, rgba(0,0,0,0) 77%),
+      linear-gradient(90deg, rgba(0,0,0,0) 0 24%, rgba(90,170,255,.18) 27%, rgba(170,245,255,.95) 50%, rgba(80,160,255,.65) 72%, rgba(0,0,0,0) 100%);
+    clip-path: polygon(42% 1%, 60% 3%, 76% 10%, 89% 24%, 94% 40%, 96% 52%, 95% 66%, 89% 79%, 80% 91%, 66% 99%, 43% 95%, 36% 83%, 34% 68%, 30% 58%, 24% 53%, 17% 48%, 11% 43%, 8% 37%, 10% 31%, 16% 28%, 22% 24%, 26% 18%, 30% 12%, 35% 6%);
+    box-shadow: 0 0 28px rgba(120,220,255,.35);
+    opacity:.95;
+  }
+  .face .hair{
+    position:absolute;
+    left:0;
+    top:0;
+    width:185px;
+    height:330px;
+    background:linear-gradient(180deg, rgba(35,21,66,.75), rgba(15,9,34,.15));
+    clip-path: polygon(44% 0, 74% 3%, 95% 21%, 100% 46%, 88% 79%, 57% 98%, 28% 92%, 11% 69%, 2% 37%, 13% 11%);
+    opacity:.8;
+  }
+  .face .mesh{
+    position:absolute;
+    left:16px;
+    top:24px;
+    width:330px;
+    height:650px;
+    background-image:
+      radial-gradient(circle, rgba(180,245,255,.95) 0 1px, rgba(0,0,0,0) 1.6px);
+    background-size:8px 8px;
+    clip-path: polygon(44% 1%, 60% 3%, 76% 10%, 89% 24%, 94% 40%, 96% 52%, 95% 66%, 89% 79%, 80% 91%, 66% 99%, 43% 95%, 36% 83%, 34% 68%, 30% 58%, 24% 53%, 17% 48%, 11% 43%, 8% 37%, 10% 31%, 16% 28%, 22% 24%, 26% 18%, 30% 12%, 35% 6%);
+    opacity:.55;
+  }
+  .face .scan{
+    position:absolute;
+    right:0;
+    top:52px;
+    width:246px;
+    height:500px;
+    background:
+      repeating-linear-gradient(180deg, rgba(130,220,255,.95) 0 2px, rgba(255,255,255,0) 2px 10px);
+    clip-path: polygon(0 16%, 70% 10%, 100% 0, 100% 100%, 18% 96%, 0 88%);
+    opacity:.9;
+  }
+  .face .streak,
+  .face .streak2,
+  .face .streak3,
+  .face .streak4,
+  .face .streak5,
+  .face .streak6{
+    position:absolute;
+    height:7px;
+    border-radius:8px;
+    background:linear-gradient(90deg, rgba(255,120,100,.95), rgba(255,160,140,.55), rgba(255,255,255,0));
+    box-shadow:0 0 10px rgba(255,110,90,.65);
+  }
+  .face .streak{ left:176px; top:120px; width:170px; transform:rotate(-24deg); }
+  .face .streak2{ left:168px; top:382px; width:136px; transform:rotate(-2deg); }
+  .face .streak3{ left:173px; top:503px; width:146px; transform:rotate(30deg); }
+  .face .streak4{ left:242px; top:52px; width:103px; transform:rotate(-69deg); }
+  .face .streak5{ left:188px; top:632px; width:120px; transform:rotate(28deg); }
+  .face .streak6{ left:218px; top:214px; width:105px; transform:rotate(4deg); }
+
+  .title{
+    position:absolute;
+    left:86px;
+    top:153px;
+    width:430px;
+    color:#f4f4f4;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size:43px;
+    line-height:0.95;
+    letter-spacing:-0.4px;
+    font-weight:700;
+  }
+
+  .copyright{
+    position:absolute;
+    left:87px;
+    bottom:17px;
+    width:470px;
+    font-size:10px;
+    color:rgba(255,255,255,.85);
+    line-height:1.15;
+  }
+
+  /* Right panel */
+  .right{
+    position:absolute;
+    left:860px;
+    top:47px;
+    width:420px;
+    height:673px;
+    background:#f3f3f3;
+  }
+  .quote{
+    position:absolute;
+    left:43px;
+    top:54px;
+    width:336px;
+    color:#2455ea;
+    font-size:16px;
+    line-height:1.2;
+    font-weight:400;
+  }
+  .body{
+    position:absolute;
+    left:43px;
+    top:356px;
+    width:336px;
+    color:#4470b3;
+    font-size:12px;
+    line-height:1.28;
+  }
+  .body p{
+    margin:0 0 15px 0;
+  }
+  .footnote{
+    position:absolute;
+    left:43px;
+    top:595px;
+    width:326px;
+    color:#5c84bc;
+    font-size:8px;
+    line-height:1.2;
+  }
+  .pageno{
+    position:absolute;
+    right:16px;
+    bottom:16px;
+    color:#1849ae;
+    font-size:14px;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="topbar">
+      <div class="nav nav1">Executive summary</div>
+      <div class="nav nav2">Key findings</div>
+      <div class="nav nav3">Risk and regulation</div>
+      <div class="nav nav4">Data and AI</div>
+      <div class="nav nav5 active">Simplification and modernization</div>
+      <div class="nav nav6">How KPMG can help</div>
+      <div class="nav nav7">Methodology</div>
+
+      <div class="icon chev-left"></div>
+      <div class="icon home"></div>
+      <div class="icon chev-right"></div>
+    </div>
+
+    <div class="hero">
+      <div class="title">Simplification and<br>modernization</div>
+
+      <div class="face">
+        <div class="hair"></div>
+        <div class="head"></div>
+        <div class="mesh"></div>
+        <div class="scan"></div>
+        <div class="streak"></div>
+        <div class="streak2"></div>
+        <div class="streak3"></div>
+        <div class="streak4"></div>
+        <div class="streak5"></div>
+        <div class="streak6"></div>
+      </div>
+
+      <div class="copyright">© 2025 KPMG LLP, a Delaware limited liability partnership and a member firm of the KPMG global organization of independent member firms affiliated with KPMG International Limited, a private English company limited by guarantee. All rights reserved. USCS026447-2A</div>
+    </div>
+
+    <div class="right">
+      <div class="quote">
+        The desire to accelerate transformation appears clear across financial services, with 74 percent of organizations suggesting that, over the next 12 months, they plan to focus on investing in new tech rather than focusing on maintaining their legacy technology. Mounting tech debt caused by years of aggregated cost pressures and the temptation of new technologies has left the sector with a tangled web of systems. “This dynamic increases the risk of outages and results in crowded technology transformation portfolios, which makes it difficult to deliver to customers with confidence” says David Ryan, Head of Technology for Financial Services, KPMG in Australia.
+      </div>
+
+      <div class="body">
+        <p>But the sector is starting to act. “Tech leaders and business sponsors want to tackle the legacy, tightly coupled systems that limit innovation, increase downtime, and erode the customer experience,” says Ryan. “Compared with 2–3 years ago, there is a much bigger appetite for modernizing systems that underpin financial service companies, from cards to payments, lending, claims, investment management, and core banking or registry systems, all while improving digital infrastructure and consumer experiences.”</p>
+
+        <p>Regulation around data transparency, fraud prevention, and digital payment systems is accelerating this modernization imperative. For example, the US Consumer Financial Protection Bureau’s section 1033 requires financial organizations to permit consumers access to their financial data, demanding a secure data management system is in place.<sup>6</sup></p>
+      </div>
+
+      <div class="footnote">6 Source: Consumer Financial Protection Bureau “Dodd-Frank Act Section 1033 – Consumer Access to Financial Records” (October 2020).</div>
+      <div class="pageno">12</div>
+    </div>
+  </div>
+</body>
+</html>

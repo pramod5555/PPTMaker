@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Trend 2 - Capturing the digital dividend</title>
+<style>
+  body {
+    margin: 0;
+    background: #dcdcdc;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #E9E4ED;
+    margin: 0 auto;
+  }
+
+  .kicker {
+    position: absolute;
+    left: 126px;
+    top: 163px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 31px;
+    line-height: 1;
+    font-weight: 700;
+    color: #A000FF;
+    letter-spacing: -0.5px;
+  }
+
+  .title {
+    position: absolute;
+    left: 126px;
+    top: 199px;
+    width: 336px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 51px;
+    line-height: 0.98;
+    font-weight: 400;
+    color: #000000;
+    letter-spacing: -1px;
+  }
+
+  .photo {
+    position: absolute;
+    left: 555px;
+    top: 110px;
+    width: 713px;
+    height: 564px;
+    background:
+      radial-gradient(ellipse at 88% 55%, rgba(255,255,255,0.72) 0%, rgba(247,175,255,0.48) 18%, rgba(188,255,232,0.28) 32%, rgba(0,0,0,0) 48%),
+      radial-gradient(circle at 79% 55%, rgba(182,255,64,0.50) 0%, rgba(182,255,64,0.18) 16%, rgba(0,0,0,0) 34%),
+      radial-gradient(circle at 67% 38%, rgba(186,61,36,0.92) 0%, rgba(186,61,36,0.55) 7%, rgba(0,0,0,0) 14%),
+      radial-gradient(circle at 65% 31%, rgba(109,26,34,0.95) 0%, rgba(109,26,34,0.7) 10%, rgba(0,0,0,0) 18%),
+      radial-gradient(circle at 62% 33%, rgba(36,16,28,0.95) 0%, rgba(36,16,28,0.85) 21%, rgba(0,0,0,0) 23%),
+      radial-gradient(ellipse at 67% 56%, rgba(197,132,88,0.95) 0%, rgba(196,130,86,0.95) 10%, rgba(160,96,67,0.95) 16%, rgba(0,0,0,0) 17%),
+      radial-gradient(ellipse at 66% 59%, rgba(242,200,170,0.92) 0%, rgba(221,172,136,0.88) 9%, rgba(0,0,0,0) 13%),
+      radial-gradient(ellipse at 69% 64%, rgba(194,144,112,0.9) 0%, rgba(0,0,0,0) 12%),
+      linear-gradient(106deg, rgba(247,171,210,0.85) 0 17%, rgba(75,25,60,0.0) 17.4%),
+      linear-gradient(54deg, rgba(53,18,54,0.96) 0 30%, rgba(96,26,112,0.72) 30%, rgba(0,0,0,0) 46%),
+      linear-gradient(72deg, rgba(171,96,61,0.95) 0 25%, rgba(205,154,121,0.94) 25%, rgba(213,165,133,0.93) 56%, rgba(0,0,0,0) 56.5%),
+      radial-gradient(ellipse at 64% 56%, rgba(20,14,25,0.98) 0%, rgba(13,10,21,0.96) 23%, rgba(0,0,0,0) 24%),
+      radial-gradient(ellipse at 53% 34%, rgba(6,5,17,0.98) 0%, rgba(7,6,18,0.98) 18%, rgba(20,15,35,0.9) 26%, rgba(0,0,0,0) 28%),
+      linear-gradient(96deg, rgba(216,141,170,0.85) 0 18%, rgba(116,36,77,0.22) 18%, rgba(0,0,0,0) 26%),
+      linear-gradient(79deg, rgba(220,89,247,0.95) 0 3%, rgba(88,25,116,0.95) 3% 5.5%, rgba(0,0,0,0) 6%),
+      linear-gradient(95deg, rgba(227,116,255,0.9) 0 4%, rgba(62,22,84,0.95) 4% 6%, rgba(0,0,0,0) 6.5%),
+      linear-gradient(180deg, rgba(70,24,86,0.92) 0%, rgba(20,10,29,0.95) 48%, rgba(40,17,52,0.95) 100%);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+  }
+  .photo::before {
+    content: "";
+    position: absolute;
+    left: 90px;
+    top: 0;
+    width: 24px;
+    height: 564px;
+    background:
+      linear-gradient(180deg, rgba(220,80,255,0.0) 0%, rgba(214,116,255,0.35) 25%, rgba(252,199,255,0.75) 55%, rgba(255,190,242,0.18) 100%);
+    transform: skewY(-6deg);
+    filter: blur(0.4px);
+  }
+  .photo::after {
+    content: "";
+    position: absolute;
+    left: 118px;
+    top: 145px;
+    width: 6px;
+    height: 210px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,245,255,0.95), rgba(255,255,255,0.0));
+    box-shadow:
+      512px 25px 0 0 rgba(255,255,255,0.55),
+      610px 18px 0 0 rgba(255,255,255,0.35),
+      0 290px 0 0 rgba(255,255,255,0.16);
+    border-radius: 3px;
+  }
+
+  .quote-box {
+    position: absolute;
+    left: 99px;
+    top: 376px;
+    width: 704px;
+    height: 247px;
+    background: linear-gradient(180deg, #A000FF 0%, #C91BFF 100%);
+  }
+
+  .quote {
+    position: absolute;
+    left: 134px;
+    top: 408px;
+    width: 605px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    line-height: 1.42;
+    font-style: italic;
+    font-weight: 400;
+    color: #F4E9FB;
+    letter-spacing: -0.2px;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="kicker">Trend: 2</div>
+
+    <div class="title">
+      Capturing the<br>
+      digital dividend
+    </div>
+
+    <div class="photo"></div>
+
+    <div class="quote-box"></div>
+
+    <div class="quote">
+      While most banks have mastered digital, its focus—more often than not—has been on servicing. Turning even a modest number of digital interactions into opportunities holds immense potential. To do that, banks will need to find ways to have meaningful conversations with customers across digital channels. AI may hold the key.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1365, initial-scale=1.0" />
+<title>Chapter 1 Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1365px;
+    height:768px;
+    margin:0 auto;
+    background:#dcdcdc;
+    overflow:hidden;
+  }
+  .frame{
+    position:absolute;
+    left:31px;
+    top:31px;
+    width:1302px;
+    height:704px;
+    background:#f6f6f6;
+    border:1px solid #cfcfd2;
+    box-sizing:border-box;
+  }
+
+  .left-panel{
+    position:absolute;
+    left:32px;
+    top:32px;
+    width:873px;
+    height:703px;
+    background:#f6f6f6;
+  }
+
+  .right-panel{
+    position:absolute;
+    left:905px;
+    top:32px;
+    width:428px;
+    height:703px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 26% 10%, rgba(234,215,177,.34) 0%, rgba(234,215,177,.12) 16%, rgba(0,0,0,0) 34%),
+      radial-gradient(ellipse at 77% 8%, rgba(181,46,89,.26) 0%, rgba(181,46,89,.08) 18%, rgba(0,0,0,0) 34%),
+      radial-gradient(ellipse at 16% 32%, rgba(240,196,117,.40) 0%, rgba(240,196,117,.14) 17%, rgba(0,0,0,0) 34%),
+      radial-gradient(ellipse at 28% 46%, rgba(237,75,194,.45) 0%, rgba(237,75,194,.16) 20%, rgba(0,0,0,0) 42%),
+      radial-gradient(ellipse at 68% 31%, rgba(186,72,224,.22) 0%, rgba(186,72,224,.08) 18%, rgba(0,0,0,0) 36%),
+      radial-gradient(ellipse at 84% 56%, rgba(67,155,232,.22) 0%, rgba(67,155,232,.08) 16%, rgba(0,0,0,0) 34%),
+      radial-gradient(ellipse at 31% 78%, rgba(212,132,255,.18) 0%, rgba(212,132,255,.06) 18%, rgba(0,0,0,0) 34%),
+      linear-gradient(180deg,#5c355f 0%, #633161 18%, #6a2f69 36%, #6b2468 52%, #55255e 75%, #4a234f 100%);
+  }
+  .right-panel:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(ellipse at 10% 48%, rgba(250,216,143,.34) 0%, rgba(250,216,143,.16) 14%, rgba(0,0,0,0) 34%),
+      radial-gradient(ellipse at 25% 57%, rgba(255,120,220,.45) 0%, rgba(255,120,220,.18) 20%, rgba(0,0,0,0) 44%),
+      radial-gradient(ellipse at 30% 74%, rgba(221,174,255,.28) 0%, rgba(221,174,255,.10) 18%, rgba(0,0,0,0) 36%),
+      radial-gradient(ellipse at 66% 10%, rgba(219,77,109,.24) 0%, rgba(219,77,109,.10) 15%, rgba(0,0,0,0) 34%),
+      radial-gradient(ellipse at 62% 40%, rgba(161,65,233,.18) 0%, rgba(161,65,233,.08) 17%, rgba(0,0,0,0) 34%),
+      radial-gradient(ellipse at 83% 44%, rgba(93,185,255,.18) 0%, rgba(93,185,255,.08) 15%, rgba(0,0,0,0) 32%);
+    mix-blend-mode:screen;
+    opacity:.95;
+  }
+  .smoke{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(12px);
+    mix-blend-mode:screen;
+    opacity:.95;
+  }
+  .s1{left:-15px;top:168px;width:120px;height:260px;background:radial-gradient(circle, rgba(255,231,168,.62) 0%, rgba(255,210,138,.42) 28%, rgba(255,185,128,.16) 46%, rgba(0,0,0,0) 72%);transform:rotate(-28deg);}
+  .s2{left:8px;top:260px;width:250px;height:185px;background:radial-gradient(circle, rgba(255,120,225,.62) 0%, rgba(230,88,197,.30) 35%, rgba(0,0,0,0) 72%);transform:rotate(16deg);}
+  .s3{left:86px;top:396px;width:220px;height:150px;background:radial-gradient(circle, rgba(226,172,255,.58) 0%, rgba(195,112,234,.22) 38%, rgba(0,0,0,0) 74%);transform:rotate(12deg);}
+  .s4{left:292px;top:58px;width:146px;height:246px;background:radial-gradient(circle, rgba(210,79,128,.40) 0%, rgba(160,39,113,.18) 36%, rgba(0,0,0,0) 74%);transform:rotate(18deg);}
+  .s5{left:248px;top:250px;width:162px;height:174px;background:radial-gradient(circle, rgba(194,70,230,.45) 0%, rgba(122,57,213,.16) 36%, rgba(0,0,0,0) 72%);transform:rotate(-18deg);}
+  .s6{left:298px;top:312px;width:124px;height:140px;background:radial-gradient(circle, rgba(105,187,247,.35) 0%, rgba(80,150,230,.14) 40%, rgba(0,0,0,0) 72%);transform:rotate(22deg);}
+  .s7{left:-6px;top:6px;width:236px;height:150px;background:radial-gradient(circle, rgba(216,190,158,.26) 0%, rgba(255,221,180,.10) 36%, rgba(0,0,0,0) 74%);}
+  .s8{left:120px;top:18px;width:132px;height:106px;background:radial-gradient(circle, rgba(244,214,171,.24) 0%, rgba(0,0,0,0) 72%);}
+
+  .floor{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:428px;
+    height:160px;
+    background:linear-gradient(180deg, rgba(67,26,76,0.02) 0%, rgba(62,21,72,0.25) 18%, rgba(44,14,53,0.66) 100%);
+  }
+  .floor-glow{
+    position:absolute;
+    left:122px;
+    top:570px;
+    width:185px;
+    height:34px;
+    border-radius:50%;
+    background:radial-gradient(ellipse, rgba(188,111,220,.30) 0%, rgba(188,111,220,.10) 42%, rgba(0,0,0,0) 78%);
+    filter:blur(5px);
+  }
+
+  .title{
+    position:absolute;
+    left:79px;
+    top:78px;
+    font-size:63px;
+    line-height:1;
+    font-weight:300;
+    color:#1b1d28;
+    letter-spacing:-0.02em;
+  }
+  .title strong{
+    font-weight:700;
+  }
+
+  .rule{
+    position:absolute;
+    left:77px;
+    top:162px;
+    width:828px;
+    height:3px;
+    background:linear-gradient(90deg,#efd900 0%, #efd900 50%, #cd49d6 69%, #2d8ff2 100%);
+  }
+
+  .subtitle{
+    position:absolute;
+    left:78px;
+    top:186px;
+    width:650px;
+    font-size:19px;
+    line-height:1.28;
+    font-weight:700;
+    color:#2f313c;
+  }
+
+  .dropcap{
+    position:absolute;
+    left:77px;
+    top:257px;
+    font-size:61px;
+    line-height:52px;
+    font-weight:400;
+    color:#2f313c;
+  }
+
+  .col{
+    position:absolute;
+    font-size:15px;
+    line-height:1.42;
+    color:#555963;
+    font-weight:400;
+  }
+  .col strong{
+    color:#383b45;
+    font-weight:700;
+  }
+  .col1{left:77px;top:260px;width:235px;}
+  .col2{left:339px;top:260px;width:234px;}
+  .col3{left:601px;top:260px;width:236px;}
+
+  .side-label{
+    position:absolute;
+    left:8px;
+    top:392px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    font-size:12px;
+    line-height:1;
+    letter-spacing:.14em;
+    color:#2d3038;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  .side-line{
+    position:absolute;
+    left:14px;
+    top:409px;
+    width:1px;
+    height:35px;
+    background:#2d3038;
+  }
+
+  .page-no{
+    position:absolute;
+    left:50px;
+    top:711px;
+    font-size:10px;
+    color:#2e313a;
+    line-height:1;
+  }
+
+  .callout{
+    position:absolute;
+    left:987px;
+    top:129px;
+    width:242px;
+    color:#fff;
+    font-size:17px;
+    line-height:1.42;
+    font-weight:300;
+  }
+  .callout strong{
+    font-weight:700;
+  }
+
+  .jump{
+    position:absolute;
+    right:29px;
+    top:59px;
+    width:42px;
+    height:42px;
+  }
+  .jump .ring{
+    position:absolute;
+    inset:0;
+    border:1.4px solid rgba(255,255,255,.78);
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+  .jump .gap{
+    position:absolute;
+    right:-1px;
+    top:2px;
+    width:9px;
+    height:9px;
+    background:#f1dd13;
+    border-radius:50%;
+  }
+  .jump .txt{
+    position:absolute;
+    left:5px;
+    top:9px;
+    width:31px;
+    font-size:8px;
+    line-height:1.05;
+    color:#fff;
+    text-align:center;
+    font-weight:400;
+  }
+
+  .figure{
+    position:absolute;
+    left:1138px;
+    top:404px;
+    width:118px;
+    height:280px;
+  }
+  .shadow{
+    position:absolute;
+    left:40px;
+    top:245px;
+    width:42px;
+    height:18px;
+    background:rgba(0,0,0,.28);
+    border-radius:50%;
+    filter:blur(4px);
+  }
+  .head{
+    position:absolute;
+    left:42px;
+    top:0;
+    width:27px;
+    height:34px;
+    background:#040308;
+    border-radius:50%;
+  }
+  .neck{
+    position:absolute;
+    left:49px;
+    top:30px;
+    width:11px;
+    height:13px;
+    background:#05040a;
+    border-radius:4px;
+  }
+  .torso{
+    position:absolute;
+    left:28px;
+    top:38px;
+    width:55px;
+    height:92px;
+    background:#040308;
+    clip-path:polygon(18% 0%,82% 0%,100% 30%,90% 100%,10% 100%,0% 30%);
+  }
+  .arm-l{
+    position:absolute;
+    left:22px;
+    top:53px;
+    width:11px;
+    height:94px;
+    background:#040308;
+    border-radius:7px;
+    transform:rotate(4deg);
+  }
+  .arm-r{
+    position:absolute;
+    left:84px;
+    top:53px;
+    width:11px;
+    height:94px;
+    background:#040308;
+    border-radius:7px;
+    transform:rotate(-4deg);
+  }
+  .hip{
+    position:absolute;
+    left:36px;
+    top:127px;
+    width:40px;
+    height:24px;
+    background:#040308;
+    border-radius:8px;
+  }
+  .leg-l{
+    position:absolute;
+    left:41px;
+    top:145px;
+    width:13px;
+    height:101px;
+    background:#040308;
+    border-radius:8px;
+    transform:rotate(2deg);
+  }
+  .leg-r{
+    position:absolute;
+    left:60px;
+    top:145px;
+    width:13px;
+    height:101px;
+    background:#040308;
+    border-radius:8px;
+    transform:rotate(-2deg);
+  }
+  .foot-l{
+    position:absolute;
+    left:39px;
+    top:239px;
+    width:18px;
+    height:10px;
+    background:#040308;
+    border-radius:8px;
+  }
+  .foot-r{
+    position:absolute;
+    left:58px;
+    top:239px;
+    width:18px;
+    height:10px;
+    background:#040308;
+    border-radius:8px;
+  }
+  .reflection{
+    position:absolute;
+    left:47px;
+    top:241px;
+    width:20px;
+    height:39px;
+    background:linear-gradient(180deg, rgba(0,0,0,.32) 0%, rgba(0,0,0,.12) 55%, rgba(0,0,0,0) 100%);
+    filter:blur(1px);
+    opacity:.75;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="frame"></div>
+    <div class="left-panel"></div>
+
+    <div class="right-panel">
+      <div class="smoke s1"></div>
+      <div class="smoke s2"></div>
+      <div class="smoke s3"></div>
+      <div class="smoke s4"></div>
+      <div class="smoke s5"></div>
+      <div class="smoke s6"></div>
+      <div class="smoke s7"></div>
+      <div class="smoke s8"></div>
+      <div class="floor"></div>
+      <div class="floor-glow"></div>
+    </div>
+
+    <div class="title">Chapter <strong>1</strong></div>
+    <div class="rule"></div>
+    <div class="subtitle">The macro forces framing the CRO agenda</div>
+
+    <div class="dropcap">G</div>
+
+    <div class="col col1">
+      iven their persistence and pervasive impacts, macroeconomic instability and geopolitical tensions are now viewed more like embedded risks than stand-alone threats. Our results suggest that CROs recognize how these risks intersect with various risk categories. In that sense, they are already “priced into” the CRO agenda. However, the long-term impacts of trade tensions, tariffs, deglobalization and military conflict on the banking industry, as well as other sectors, remain an open question.<br><br>
+      While this year’s top near-term priorities show notable differences from last year’s research, CROs seem to expect that conditions will remain as uncertain in 2026 as they have been in the past few years. Cyber's long-standing position as the top near-term priority makes it seem like a structural risk embedded across the business and closely linked to a range of risk categories.
+    </div>
+
+    <div class="col col2">
+      <strong>The geopolitical outlook:</strong> geopolitical concerns fell as an individual, near-term priority; it was CROs’ third-highest priority last year but is outside the top 15 this year. Fewer elections this past year, after a historically large number in 2024, may also have contributed to the decrease in immediate-term urgency.<br><br>
+      However, geopolitical risks are the second most powerful external force shaping the CRO agenda, suggesting that our survey respondents recognize armed conflict (including on the digital and cyber fronts), trade tensions and deglobalization as topics they must account for. The implication is that geopolitical issues need less day-to-day oversight but a broader, more strategic and longer-term view. Forward-looking CROs will already be investing time and resources to understand how future business will be shaped by new and ongoing military actions, shifting trade and economic alliances and other trends in global affairs.
+    </div>
+
+    <div class="col col3">
+      There are significant differences in the views of CROs across regions: 95% of European CROs and 90% of those in the Middle East and North Africa cited geopolitical concerns as a force shaping their strategic agenda, compared with only 57% of CROs in Latin America, who see technological advancements (76%) as a more powerful force.<br><br>
+      Shifts in trade policies, tariffs and economic sanctions (74%) are likely to have the greatest potential impacts from geopolitical risk, followed by increasing cyber threats (68%) and fiscal policy changes (53%). GSIB CROs are the most focused on geopolitical risk. To counter these risks, 82% of CROs plan to strengthen resilience plans (e.g., scenario planning, tabletop exercises), and 67% will enhance cybersecurity measures. Nearly half (48%) of Latin American CROs say their banks are planning to diversify their investment portfolios, while 76% of North American CROs plan to strengthen cybersecurity measures.
+    </div>
+
+    <div class="side-label">CHAPTER 1</div>
+    <div class="side-line"></div>
+    <div class="page-no">11</div>
+
+    <div class="callout">
+      CROs seem to expect that <strong>conditions will remain as uncertain in 2026</strong> as they have been in the past few years.
+    </div>
+
+    <div class="jump">
+      <div class="ring"></div>
+      <div class="gap"></div>
+      <div class="txt">Jump to<br>contents</div>
+    </div>
+
+    <div class="figure">
+      <div class="shadow"></div>
+      <div class="head"></div>
+      <div class="neck"></div>
+      <div class="torso"></div>
+      <div class="arm-l"></div>
+      <div class="arm-r"></div>
+      <div class="hip"></div>
+      <div class="leg-l"></div>
+      <div class="leg-r"></div>
+      <div class="foot-l"></div>
+      <div class="foot-r"></div>
+      <div class="reflection"></div>
+    </div>
+  </div>
+</body>
+</html>

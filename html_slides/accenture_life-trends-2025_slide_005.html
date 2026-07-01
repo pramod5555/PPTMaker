@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Contents Slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #fefefe;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f7f7f7;
+    color: #3f3f3f;
+  }
+
+  .title {
+    position: absolute;
+    left: 161px;
+    top: 116px;
+    font-size: 38px;
+    line-height: 1;
+    font-weight: 300;
+    color: #7d1fd1;
+    letter-spacing: 0.2px;
+  }
+
+  .trend {
+    position: absolute;
+    width: 214px;
+  }
+  .t1 { left: 161px; top: 221px; }
+  .t2 { left: 403px; top: 221px; }
+  .t3 { left: 645px; top: 221px; }
+  .t4 { left: 888px; top: 221px; }
+  .t5 { left: 1130px; top: 221px; }
+
+  .trend-label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 23px;
+    color: #444;
+    font-weight: 300;
+  }
+
+  .photo {
+    position: absolute;
+    left: 0;
+    top: 35px;
+    width: 214px;
+    height: 303px;
+    overflow: hidden;
+    background: #ddd;
+  }
+
+  /* Trend 1 image approximation */
+  .p1 {
+    background:
+      radial-gradient(circle at 18% 42%, rgba(255,247,228,0.95) 0 5%, rgba(255,194,145,0.55) 5% 11%, transparent 12%),
+      radial-gradient(circle at 82% 58%, rgba(255,246,217,0.95) 0 4%, rgba(255,174,44,0.75) 4% 10%, transparent 12%),
+      linear-gradient(0deg, rgba(117,5,22,0.68), rgba(117,5,22,0.18)),
+      radial-gradient(ellipse at 70% 20%, rgba(69,39,103,0.8) 0 14%, transparent 16%),
+      radial-gradient(ellipse at 52% 17%, rgba(241,203,215,0.9) 0 24%, transparent 26%),
+      linear-gradient(90deg, #f2c8cc 0%, #e3bcc9 35%, #f6d4dc 100%);
+  }
+  .p1::before {
+    content: "";
+    position: absolute;
+    left: 82px;
+    top: 13px;
+    width: 70px;
+    height: 214px;
+    border-radius: 38px 38px 30px 30px;
+    background: linear-gradient(180deg, rgba(70,52,102,0.85), rgba(46,26,50,0.45) 40%, rgba(35,24,31,0.15));
+    transform: rotate(5deg);
+    filter: blur(2px);
+  }
+  .p1::after {
+    content: "";
+    position: absolute;
+    left: 36px;
+    top: 187px;
+    width: 132px;
+    height: 102px;
+    border-radius: 55% 45% 40% 50%;
+    background:
+      radial-gradient(circle at 30% 70%, #c72982 0 8%, transparent 9%),
+      radial-gradient(circle at 50% 60%, #e24f90 0 9%, transparent 10%),
+      radial-gradient(circle at 62% 74%, #ff80b3 0 8%, transparent 9%),
+      radial-gradient(circle at 43% 42%, #efc856 0 6%, transparent 7%),
+      radial-gradient(circle at 70% 48%, #cf3f56 0 7%, transparent 8%),
+      linear-gradient(180deg, rgba(29,16,15,0.1), rgba(28,11,9,0.55));
+    transform: rotate(-8deg);
+    filter: blur(0.8px);
+  }
+
+  /* Trend 2 image approximation */
+  .p2 {
+    background:
+      radial-gradient(circle at 17% 12%, rgba(255,255,255,0.95) 0 4%, rgba(78,255,230,0.9) 5% 9%, transparent 11%),
+      radial-gradient(circle at 35% 20%, rgba(255,255,255,0.95) 0 3%, rgba(77,255,221,0.88) 4% 8%, transparent 10%),
+      radial-gradient(circle at 55% 14%, rgba(255,255,255,0.92) 0 3%, rgba(73,255,182,0.85) 4% 8%, transparent 10%),
+      radial-gradient(circle at 74% 28%, rgba(255,255,255,0.95) 0 3%, rgba(58,255,183,0.82) 4% 7%, transparent 9%),
+      radial-gradient(circle at 84% 45%, rgba(255,255,255,0.9) 0 2.5%, rgba(59,255,204,0.8) 3% 7%, transparent 9%),
+      radial-gradient(circle at 24% 52%, rgba(255,255,255,0.9) 0 2.5%, rgba(43,244,208,0.78) 3% 8%, transparent 9%),
+      linear-gradient(135deg, #003223 0%, #0a6648 35%, #20ca8f 70%, #106f6e 100%);
+  }
+  .p2::before {
+    content: "";
+    position: absolute;
+    left: 71px;
+    top: 141px;
+    width: 98px;
+    height: 112px;
+    border-radius: 48px;
+    background: linear-gradient(180deg, rgba(242,198,167,0.95), rgba(231,191,167,0.92));
+    transform: rotate(-18deg);
+    box-shadow:
+      -22px -9px 0 -8px rgba(241,202,175,0.95),
+      -9px -4px 0 -6px rgba(241,202,175,0.95),
+      11px 11px 0 -10px rgba(223,177,153,0.9);
+    filter: blur(0.5px);
+  }
+  .p2::after {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 150px;
+    width: 170px;
+    height: 76px;
+    background:
+      linear-gradient(180deg, transparent 0 44%, #ff5a2d 45% 53%, transparent 54%),
+      linear-gradient(90deg, #00d5c4 0 18%, #87f4ff 18% 52%, #4cc4f3 52% 78%, #f8df69 78% 100%);
+    transform: rotate(-2deg);
+    opacity: 0.95;
+  }
+
+  /* Trend 3 image approximation */
+  .p3 {
+    background:
+      linear-gradient(90deg, rgba(219,187,196,0.65) 0 36%, rgba(247,229,238,0.18) 37% 39%, rgba(255,184,233,0.55) 40% 100%),
+      linear-gradient(180deg, #d4b1be 0%, #f3d5e7 42%, #f99ced 100%);
+  }
+  .p3::before {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 20px;
+    width: 74px;
+    height: 149px;
+    border-radius: 34px 34px 24px 24px;
+    background:
+      linear-gradient(180deg, #b8606f 0 24%, #ef9dc5 24% 100%);
+    box-shadow:
+      0 44px 0 -18px rgba(17,14,23,0.9),
+      0 104px 0 -6px rgba(16,12,22,0.95);
+    filter: blur(0.4px);
+  }
+  .p3::after {
+    content: "";
+    position: absolute;
+    left: 100px;
+    top: 58px;
+    width: 73px;
+    height: 92px;
+    border-radius: 20px;
+    background:
+      linear-gradient(180deg, rgba(255,218,224,0.95), rgba(251,190,215,0.95));
+    transform: rotate(10deg);
+    box-shadow:
+      -27px 4px 0 -21px #cc5d71,
+      -44px 15px 0 -24px #1d1222,
+      -19px 87px 0 -16px #1c1320;
+  }
+
+  /* Trend 4 image approximation */
+  .p4 {
+    background:
+      linear-gradient(90deg,
+        #1159d8 0 8%, #2f79ea 8% 15%, #0f2d5d 15% 17%,
+        #4e95ec 17% 31%, #1d3e72 31% 33%,
+        #5ca2f1 33% 48%, #1d3564 48% 50%,
+        #6ca9f0 50% 63%, #1b2f58 63% 65%,
+        #5d95e8 65% 81%, #18325d 81% 83%,
+        #3163bf 83% 100%),
+      linear-gradient(180deg, #3b8cff 0%, #0f4fbe 55%, #0b2556 100%);
+  }
+  .p4::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 26px;
+    width: 182px;
+    height: 71px;
+    background: rgba(5, 38, 160, 0.72);
+    border-radius: 40px;
+    transform: rotate(21deg);
+    filter: blur(1px);
+  }
+  .p4::after {
+    content: "";
+    position: absolute;
+    left: 31px;
+    top: 194px;
+    width: 143px;
+    height: 72px;
+    background:
+      linear-gradient(90deg,
+        rgba(246,246,249,0.85) 0 13%,
+        rgba(208,219,243,0.95) 13% 28%,
+        rgba(239,233,231,0.85) 28% 43%,
+        rgba(178,202,240,0.95) 43% 58%,
+        rgba(246,245,239,0.88) 58% 73%,
+        rgba(233,220,222,0.88) 73% 86%,
+        rgba(211,231,251,0.9) 86% 100%);
+    box-shadow: 0 -12px 0 0 rgba(15,61,142,0.32);
+    opacity: 0.9;
+  }
+
+  /* Trend 5 image approximation */
+  .p5 {
+    background:
+      radial-gradient(circle at 89% 18%, rgba(255,242,164,0.95) 0 6%, rgba(255,184,58,0.9) 7% 16%, rgba(255,240,193,0.55) 17% 24%, transparent 28%),
+      radial-gradient(circle at 12% 68%, rgba(255,255,219,0.9) 0 3%, rgba(255,191,65,0.8) 4% 10%, transparent 12%),
+      linear-gradient(135deg, #f0cf92 0%, #9f5523 22%, #c67a35 48%, #f1a33e 72%, #fff4cc 100%);
+  }
+  .p5::before {
+    content: "";
+    position: absolute;
+    left: 64px;
+    top: 50px;
+    width: 66px;
+    height: 167px;
+    border-radius: 33px;
+    background: linear-gradient(180deg, rgba(187,111,63,0.92), rgba(59,31,18,0.62));
+    transform: rotate(19deg);
+    box-shadow:
+      26px -22px 0 -22px rgba(225,170,110,0.9),
+      24px 80px 0 -24px rgba(44,29,24,0.7);
+    filter: blur(0.8px);
+  }
+  .p5::after {
+    content: "";
+    position: absolute;
+    left: 38px;
+    top: 138px;
+    width: 139px;
+    height: 95px;
+    background:
+      radial-gradient(circle at 25% 70%, transparent 0 24px, rgba(34,44,63,0.75) 25px 28px, transparent 29px),
+      radial-gradient(circle at 80% 68%, transparent 0 26px, rgba(34,44,63,0.75) 27px 30px, transparent 31px),
+      linear-gradient(25deg, transparent 0 41%, rgba(44,47,62,0.72) 42% 44%, transparent 45%),
+      linear-gradient(-18deg, transparent 0 52%, rgba(44,47,62,0.72) 53% 55%, transparent 56%);
+    opacity: 0.9;
+  }
+
+  .desc {
+    position: absolute;
+    left: 0;
+    top: 354px;
+    width: 190px;
+    font-size: 22px;
+    line-height: 1.13;
+    color: #424242;
+    font-weight: 300;
+  }
+
+  .range {
+    position: absolute;
+    left: 0;
+    top: 431px;
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: 0.2px;
+  }
+
+  .footer-left {
+    position: absolute;
+    right: 78px;
+    bottom: 16px;
+    font-size: 12px;
+    color: #8a8a8a;
+    font-weight: 400;
+  }
+  .footer-left .year {
+    color: #8f33d6;
+    font-weight: 600;
+  }
+  .footer-page {
+    position: absolute;
+    right: 28px;
+    bottom: 16px;
+    font-size: 12px;
+    color: #6f6f6f;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title">Contents</div>
+
+    <div class="trend t1">
+      <div class="trend-label">Trend 1</div>
+      <div class="photo p1"></div>
+      <div class="desc">Cost of<br>hesitations</div>
+      <div class="range">6–22</div>
+    </div>
+
+    <div class="trend t2">
+      <div class="trend-label">Trend 2</div>
+      <div class="photo p2"></div>
+      <div class="desc">The parent<br>trap</div>
+      <div class="range">23–37</div>
+    </div>
+
+    <div class="trend t3">
+      <div class="trend-label">Trend 3</div>
+      <div class="photo p3"></div>
+      <div class="desc">Impatience<br>economy</div>
+      <div class="range">38–53</div>
+    </div>
+
+    <div class="trend t4">
+      <div class="trend-label">Trend 4</div>
+      <div class="photo p4"></div>
+      <div class="desc">The dignity<br>of work</div>
+      <div class="range">54–69</div>
+    </div>
+
+    <div class="trend t5">
+      <div class="trend-label">Trend 5</div>
+      <div class="photo p5"></div>
+      <div class="desc">Social<br>rewilding</div>
+      <div class="range">70–84</div>
+    </div>
+
+    <div class="footer-left">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="footer-page">5</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Chapter 3 Slide Replica</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #d9d9d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .frame {
+    width: 1340px;
+    margin: 31px auto;
+    position: relative;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #141624;
+  }
+  .slide > div, .slide > svg {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  .main-bg {
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background: #141624;
+    z-index: 0;
+  }
+
+  .left-panel {
+    left: 0;
+    top: 0;
+    width: 876px;
+    height: 720px;
+    background: linear-gradient(90deg, #171928 0%, #141624 100%);
+    z-index: 1;
+  }
+
+  .right-panel {
+    left: 876px;
+    top: 0;
+    width: 404px;
+    height: 720px;
+    background: #161726;
+    z-index: 1;
+  }
+
+  .divider {
+    left: 875px;
+    top: 0;
+    width: 1px;
+    height: 720px;
+    background: rgba(255,255,255,0.34);
+    z-index: 15;
+  }
+
+  .title {
+    left: 47px;
+    top: 46px;
+    color: #f3f3f5;
+    font-size: 64px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    z-index: 30;
+  }
+
+  .gradient-line {
+    left: 47px;
+    top: 131px;
+    width: 828px;
+    height: 3px;
+    background: linear-gradient(90deg, #f0df00 0%, #f0df00 48%, #bc33ff 74%, #2793ff 100%);
+    z-index: 20;
+  }
+
+  .subtitle {
+    left: 47px;
+    top: 159px;
+    width: 760px;
+    color: #f2f2f4;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    z-index: 30;
+  }
+
+  .dropcap {
+    left: 47px;
+    top: 236px;
+    color: #f6f6f7;
+    font-size: 60px;
+    font-weight: 300;
+    line-height: 0.9;
+    font-family: Georgia, "Times New Roman", serif;
+    z-index: 31;
+  }
+
+  .col {
+    color: rgba(243,243,246,0.94);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42;
+    z-index: 30;
+  }
+  .col strong {
+    font-weight: 700;
+    color: #f5f5f7;
+  }
+
+  .col1 {
+    left: 47px;
+    top: 236px;
+    width: 236px;
+    padding-left: 41px;
+  }
+
+  .col2 {
+    left: 304px;
+    top: 236px;
+    width: 238px;
+  }
+
+  .col3 {
+    left: 567px;
+    top: 236px;
+    width: 232px;
+  }
+
+  .hero {
+    left: 876px;
+    top: 0;
+    width: 404px;
+    height: 321px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 14% 33%, rgba(255,199,88,0.88) 0%, rgba(255,199,88,0.18) 7%, transparent 16%),
+      radial-gradient(circle at 23% 18%, rgba(255,110,55,0.45) 0%, transparent 12%),
+      radial-gradient(circle at 31% 14%, rgba(28,221,255,0.58) 0%, transparent 8%),
+      radial-gradient(circle at 54% 17%, rgba(230,79,255,0.65) 0%, transparent 11%),
+      radial-gradient(circle at 79% 12%, rgba(31,203,255,0.40) 0%, transparent 10%),
+      radial-gradient(circle at 19% 75%, rgba(34,255,238,0.55) 0%, transparent 14%),
+      radial-gradient(circle at 53% 58%, rgba(255,0,190,0.22) 0%, transparent 18%),
+      radial-gradient(circle at 83% 76%, rgba(37,141,255,0.28) 0%, transparent 18%),
+      linear-gradient(90deg, rgba(255,138,35,0.42) 0%, rgba(0,255,245,0.10) 28%, rgba(255,0,155,0.18) 60%, rgba(0,125,255,0.16) 100%),
+      linear-gradient(180deg, #140f1d 0%, #22152f 35%, #121523 100%);
+    z-index: 5;
+  }
+  .hero svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .jump-badge {
+    left: 1211px;
+    top: 30px;
+    width: 39px;
+    height: 30px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.72);
+    color: #ffffff;
+    font-size: 8px;
+    font-weight: 500;
+    line-height: 9px;
+    text-align: center;
+    padding-top: 7px;
+    background: rgba(20,22,36,0.16);
+    z-index: 60;
+  }
+
+  .jump-dot {
+    left: 1237px;
+    top: 28px;
+    width: 8px;
+    height: 8px;
+    background: #f0df00;
+    border-radius: 50%;
+    z-index: 61;
+  }
+
+  .callout-top-line {
+    left: 975px;
+    top: 374px;
+    width: 189px;
+    height: 1px;
+    background: rgba(255,255,255,0.77);
+    z-index: 20;
+  }
+  .callout-top-dot {
+    left: 1161px;
+    top: 371px;
+    width: 6px;
+    height: 6px;
+    background: rgba(255,255,255,0.86);
+    border-radius: 50%;
+    z-index: 21;
+  }
+  .callout-left-line {
+    left: 975px;
+    top: 374px;
+    width: 1px;
+    height: 260px;
+    background: rgba(255,255,255,0.77);
+    z-index: 20;
+  }
+  .callout-right-line {
+    left: 1191px;
+    top: 424px;
+    width: 1px;
+    height: 210px;
+    background: rgba(255,255,255,0.77);
+    z-index: 20;
+  }
+  .callout-right-dot {
+    left: 1188px;
+    top: 421px;
+    width: 6px;
+    height: 6px;
+    background: rgba(255,255,255,0.86);
+    border-radius: 50%;
+    z-index: 21;
+  }
+  .callout-bottom-line {
+    left: 975px;
+    top: 634px;
+    width: 216px;
+    height: 1px;
+    background: rgba(255,255,255,0.77);
+    z-index: 20;
+  }
+
+  .quote-box {
+    left: 1003px;
+    top: 414px;
+    width: 160px;
+    color: #f4f4f5;
+    z-index: 30;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .quote-mark {
+    left: 0;
+    top: 0;
+    color: #f0df00;
+    font-size: 41px;
+    font-weight: 700;
+    line-height: 22px;
+  }
+  .quote-head {
+    left: 0;
+    top: 25px;
+    color: #f1f1f4;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+  }
+  .quote-text {
+    left: 0;
+    top: 49px;
+    width: 165px;
+    color: #f3f3f6;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+
+  .chapter-side {
+    left: -28px;
+    top: 360px;
+    width: 96px;
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    color: #2b2b35;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    z-index: 50;
+  }
+  .chapter-side-line {
+    left: 14px;
+    top: 380px;
+    width: 1px;
+    height: 33px;
+    background: #6a6a72;
+    z-index: 50;
+  }
+
+  .page-num {
+    left: 18px;
+    top: 684px;
+    color: #f0f0f1;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 14px;
+    z-index: 50;
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <div class="slide">
+      <div class="main-bg"></div>
+      <div class="left-panel"></div>
+      <div class="right-panel"></div>
+      <div class="divider"></div>
+
+      <div class="title">Chapter 3</div>
+      <div class="gradient-line"></div>
+      <div class="subtitle">AI and disruptive technology – balancing risk and opportunity</div>
+
+      <div class="dropcap">C</div>
+
+      <div class="col col1">
+        ROs are balancing the upside opportunities and downside risks of AI and other emerging technologies. Agentic AI has the potential to transform processes both within risk management and the business. As it’s adopted, CROs will need to devise strategies for monitoring how AI agents analyze data, generate outputs and make decisions. Such capabilities will be critical for rolling out AI at scale and instilling responsible practices at every level of the organization.<br><br>
+        Lessons learned from AI can be applied to the next wave of disruptive tech. Relative to quantum computing, the near-term priority for CROs is likely to be monitoring business adoption. CROs will need to remain in close consultation with business leaders as banks seek the right answer to the question of how these technologies can drive better outcomes for customers, society and their own bottom lines.
+      </div>
+
+      <div class="col col2">
+        <strong>AI expansion and acceleration:</strong> relative to AI, risk leaders are increasingly focused on the business case – that is, driving tangible returns on the huge investments most banks are making. Nearly three-quarters (72%) of CROs say AI adoption within risk management is currently limited, though there is extensive experimentation with fraud prevention and other applications. Only 12% of respondents say they are already seeing and measuring the benefits after implementing AI strategies, governance frameworks, policies and use cases within risk management. Those CROs seeing benefits within risk management point to stronger fraud detection (e.g., fewer false positives) and transaction monitoring.<br><br>
+        CROs at G-SIBs report greater uptake of AI uses in risk management, with only 50% saying adoption is limited (compared with 72% of all respondents) and 33% are already realizing the benefits (compared
+      </div>
+
+      <div class="col col3">
+        with only 12% of all respondents). CROs from the largest banks (&gt;1 trillion in assets) are also more likely to say they are already seeing the benefits.<br><br>
+        Other research about AI usage in financial services – including the annual study conducted by EY/IIF (see sidebar) – confirms that the business has seen more value than those in risk management in initial AI deployments. Because our CRO survey includes a greater proportion of smaller institutions and focuses only on risk management, it’s not surprising that our AI survey, which features larger banks and all use cases across the business, shows both greater adoption and greater value realization.
+      </div>
+
+      <div class="hero">
+        <svg width="404" height="321" viewBox="0 0 404 321" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="vGlow1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ff8a3d" stop-opacity="0"/>
+              <stop offset="30%" stop-color="#ffb15b" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#ff6b00" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="vGlow2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#00f0ff" stop-opacity="0"/>
+              <stop offset="35%" stop-color="#6efbff" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#00e0ff" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="vGlow3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ff00b7" stop-opacity="0"/>
+              <stop offset="35%" stop-color="#ff63df" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#a100ff" stop-opacity="0"/>
+            </linearGradient>
+            <filter id="blur1"><feGaussianBlur stdDeviation="8"/></filter>
+            <filter id="blur2"><feGaussianBlur stdDeviation="2.4"/></filter>
+          </defs>
+
+          <g opacity="0.76" filter="url(#blur1)">
+            <rect x="18" y="0" width="8" height="321" fill="url(#vGlow1)"/>
+            <rect x="40" y="0" width="7" height="321" fill="url(#vGlow1)"/>
+            <rect x="87" y="0" width="8" height="321" fill="url(#vGlow2)"/>
+            <rect x="118" y="0" width="7" height="321" fill="url(#vGlow1)"/>
+            <rect x="145" y="0" width="7" height="321" fill="url(#vGlow2)"/>
+            <rect x="178" y="0" width="7" height="321" fill="url(#vGlow1)"/>
+            <rect x="204" y="0" width="8" height="321" fill="url(#vGlow3)"/>
+            <rect x="232" y="0" width="7" height="321" fill="url(#vGlow2)"/>
+            <rect x="263" y="0" width="8" height="321" fill="url(#vGlow3)"/>
+            <rect x="292" y="0" width="7" height="321" fill="url(#vGlow2)"/>
+            <rect x="326" y="0" width="8" height="321" fill="url(#vGlow3)"/>
+            <rect x="359" y="0" width="7" height="321" fill="url(#vGlow2)"/>
+            <rect x="386" y="0" width="8" height="321" fill="url(#vGlow1)"/>
+          </g>
+
+          <g opacity="0.57" stroke-linecap="round" fill="none" filter="url(#blur2)">
+            <path d="M172 0 C182 24,182 52,172 82 C162 112,162 140,172 166 C182 192,182 220,172 248 C162 276,162 300,172 321" stroke="#ff40d0" stroke-width="2"/>
+            <path d="M186 0 C196 22,196 55,186 83 C176 111,176 142,186 166 C196 190,196 220,186 248 C176 276,176 299,186 321" stroke="#35cfff" stroke-width="2"/>
+            <path d="M206 0 C216 20,216 52,206 80 C196 108,196 142,206 168 C216 194,216 224,206 252 C196 280,196 301,206 321" stroke="#ff6df0" stroke-width="2"/>
+            <path d="M223 0 C233 21,233 53,223 81 C213 109,213 143,223 169 C233 195,233 225,223 252 C213 279,213 301,223 321" stroke="#6ae8ff" stroke-width="2"/>
+            <path d="M245 0 C255 26,255 55,245 85 C235 115,235 142,245 166 C255 190,255 220,245 248 C235 276,235 300,245 321" stroke="#a54dff" stroke-width="2"/>
+            <path d="M268 0 C278 24,278 55,268 84 C258 113,258 140,268 166 C278 192,278 223,268 252 C258 281,258 300,268 321" stroke="#00e8ff" stroke-width="2"/>
+            <path d="M288 0 C298 22,298 52,288 82 C278 112,278 141,288 167 C298 193,298 223,288 252 C278 281,278 300,288 321" stroke="#ff69d8" stroke-width="2"/>
+            <path d="M308 0 C318 24,318 53,308 84 C298 115,298 142,308 166 C318 190,318 221,308 252 C298 283,298 300,308 321" stroke="#60dfff" stroke-width="2"/>
+            <path d="M328 0 C338 25,338 55,328 85 C318 115,318 142,328 166 C338 190,338 221,328 252 C318 283,318 300,328 321" stroke="#d74fff" stroke-width="2"/>
+          </g>
+
+          <g opacity="0.68" stroke-linecap="round" fill="none">
+            <path d="M0 108 C72 104,112 102,188 110 C258 118,330 116,404 106" stroke="#ff59d7" stroke-width="1.5"/>
+            <path d="M0 118 C76 116,114 115,188 122 C266 130,333 126,404 116" stroke="#2ddfff" stroke-width="1.5"/>
+            <path d="M0 130 C74 126,117 126,188 134 C264 142,334 139,404 130" stroke="#9a49ff" stroke-width="1.2"/>
+            <path d="M0 213 C84 205,120 198,185 198 C257 198,332 206,404 218" stroke="#00f4ff" stroke-width="2"/>
+            <path d="M0 229 C88 221,121 217,185 219 C254 221,334 232,404 244" stroke="#b74fff" stroke-width="1.6"/>
+            <path d="M0 248 C88 241,117 235,185 236 C257 237,336 248,404 260" stroke="#58cfff" stroke-width="1.6"/>
+          </g>
+
+          <polygon points="0,284 96,237 124,230 65,276" fill="rgba(71,255,255,0.78)" filter="url(#blur2)"/>
+          <polygon points="8,308 118,251 133,255 18,315" fill="rgba(0,151,255,0.42)" filter="url(#blur2)"/>
+
+          <rect x="332" y="160" width="44" height="66" fill="rgba(30,30,30,0.18)" />
+          <rect x="336" y="160" width="42" height="66" fill="rgba(255,194,110,0.12)" />
+
+          <g>
+            <ellipse cx="285" cy="93" rx="11" ry="13" fill="#08080c"/>
+            <rect x="279" y="106" width="12" height="67" rx="5" fill="#09090d"/>
+            <rect x="291" y="111" width="7" height="52" rx="3" fill="#0a0a10"/>
+            <rect x="275" y="110" width="7" height="44" rx="3" fill="#0a0a10"/>
+            <rect x="280" y="171" width="7" height="56" rx="3" transform="rotate(7 280 171)" fill="#09090d"/>
+            <rect x="288" y="171" width="7" height="58" rx="3" transform="rotate(-8 288 171)" fill="#09090d"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="jump-badge">Jump to<br>contents</div>
+      <div class="jump-dot"></div>
+
+      <div class="callout-top-line"></div>
+      <div class="callout-top-dot"></div>
+      <div class="callout-left-line"></div>
+      <div class="callout-right-line"></div>
+      <div class="callout-right-dot"></div>
+      <div class="callout-bottom-line"></div>
+
+      <div class="quote-box">
+        <div class="quote-mark">“</div>
+        <div class="quote-head">What CROs say:</div>
+        <div class="quote-text">
+          We see AI as efficiency in<br>
+          the near term, with strong<br>
+          capabilities coming later.<br><br>
+          AI is everywhere except<br>
+          for the P&amp;L right now.<br>
+          It provides a huge uplift<br>
+          in productivity and the<br>
+          operational side.
+        </div>
+      </div>
+
+      <div class="chapter-side">CHAPTER 3</div>
+      <div class="chapter-side-line"></div>
+      <div class="page-num">18</div>
+    </div>
+  </div>
+</body>
+</html>

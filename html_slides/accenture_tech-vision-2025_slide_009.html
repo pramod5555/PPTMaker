@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>The Binary Big Bang</title>
+<style>
+  body {
+    margin: 0;
+    background: #111;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #ececec;
+  }
+
+  .left-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 377px;
+    height: 720px;
+    background: #000;
+    color: #fff;
+  }
+
+  .kicker {
+    position: absolute;
+    left: 61px;
+    top: 36px;
+    font-size: 13px;
+    color: #d4c3f7;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .kicker .accent {
+    color: #b88df7;
+  }
+
+  .num {
+    position: absolute;
+    left: 64px;
+    top: 123px;
+    font-size: 27px;
+    font-weight: 700;
+    color: #c8a5ff;
+  }
+
+  .title {
+    position: absolute;
+    left: 64px;
+    top: 177px;
+    width: 255px;
+    font-size: 26px;
+    line-height: 0.97;
+    font-weight: 700;
+    color: #f2f2f2;
+  }
+
+  .subtitle {
+    position: absolute;
+    left: 64px;
+    top: 300px;
+    width: 270px;
+    font-size: 22px;
+    line-height: 1.02;
+    font-weight: 700;
+    color: #f0f0f0;
+  }
+
+  .bodycopy {
+    position: absolute;
+    left: 64px;
+    top: 421px;
+    width: 274px;
+    font-size: 14px;
+    line-height: 1.28;
+    font-weight: 400;
+    color: #e5e5e5;
+  }
+
+  .arrow {
+    position: absolute;
+    left: 59px;
+    top: 706px;
+    transform: translateY(-100%);
+    font-size: 29px;
+    line-height: 1;
+    font-weight: 700;
+    color: #b600ff;
+  }
+
+  .artboard {
+    position: absolute;
+    left: 377px;
+    top: 0;
+    width: 903px;
+    height: 720px;
+    background: #efefef;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    mix-blend-mode: normal;
+  }
+
+  .b1 {
+    left: -91px;
+    top: 260px;
+    width: 302px;
+    height: 365px;
+    background:
+      radial-gradient(ellipse at 34% 42%, rgba(255,160,180,0.90) 0%, rgba(206,93,255,0.88) 16%, rgba(116,29,114,0.88) 33%, rgba(73,49,102,0.96) 54%, rgba(73,49,102,0.96) 67%, rgba(213,0,255,0.82) 80%, rgba(181,0,255,0.55) 90%, rgba(181,0,255,0.0) 100%);
+    filter: blur(1px);
+  }
+
+  .b2 {
+    left: -18px;
+    top: 208px;
+    width: 393px;
+    height: 559px;
+    background:
+      radial-gradient(ellipse at 45% 63%, rgba(255,255,255,0.95) 0%, rgba(248,226,233,0.88) 16%, rgba(231,155,236,0.80) 34%, rgba(210,118,240,0.62) 53%, rgba(195,88,236,0.55) 70%, rgba(186,28,233,0.35) 86%, rgba(186,28,233,0.0) 100%);
+  }
+
+  .b3 {
+    left: 218px;
+    top: 235px;
+    width: 380px;
+    height: 336px;
+    background:
+      radial-gradient(circle at 52% 52%, rgba(183,0,255,0.85) 0%, rgba(166,10,240,0.92) 45%, rgba(137,18,182,0.85) 70%, rgba(124,21,173,0.0) 100%);
+  }
+
+  .b4 {
+    left: 331px;
+    top: 109px;
+    width: 429px;
+    height: 520px;
+    background:
+      radial-gradient(ellipse at 58% 47%, rgba(245,244,242,0.98) 0%, rgba(244,236,235,0.92) 18%, rgba(234,177,223,0.80) 33%, rgba(219,128,240,0.70) 49%, rgba(202,88,232,0.60) 67%, rgba(178,19,216,0.38) 85%, rgba(178,19,216,0.0) 100%);
+  }
+
+  .b5 {
+    left: 419px;
+    top: 211px;
+    width: 338px;
+    height: 300px;
+    background:
+      radial-gradient(ellipse at 50% 55%, rgba(255,190,197,0.85) 0%, rgba(211,154,216,0.80) 12%, rgba(158,88,190,0.88) 23%, rgba(87,45,112,0.96) 40%, rgba(80,41,108,0.96) 64%, rgba(185,0,223,0.78) 81%, rgba(185,0,223,0.0) 100%);
+    filter: blur(0.5px);
+  }
+
+  .b6 {
+    left: 697px;
+    top: -37px;
+    width: 492px;
+    height: 756px;
+    background:
+      radial-gradient(ellipse at 60% 22%, rgba(65,56,94,0.92) 0%, rgba(95,62,125,0.88) 13%, rgba(128,52,153,0.85) 25%, rgba(144,24,192,0.88) 38%, rgba(131,0,184,0.92) 49%, rgba(179,0,230,0.88) 66%, rgba(196,15,244,0.80) 80%, rgba(196,15,244,0.0) 100%);
+  }
+
+  .b7 {
+    left: 771px;
+    top: 187px;
+    width: 384px;
+    height: 276px;
+    background:
+      radial-gradient(ellipse at 44% 49%, rgba(200,0,245,0.65) 0%, rgba(165,23,180,0.70) 28%, rgba(118,45,137,0.72) 46%, rgba(145,0,178,0.74) 68%, rgba(190,0,236,0.0) 100%);
+  }
+
+  .softglow1 {
+    position: absolute;
+    left: 84px;
+    top: 272px;
+    width: 201px;
+    height: 210px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 50%, rgba(255,168,166,0.78) 0%, rgba(222,120,255,0.32) 36%, rgba(222,120,255,0.0) 72%);
+    filter: blur(6px);
+  }
+
+  .softglow2 {
+    position: absolute;
+    left: 478px;
+    top: 298px;
+    width: 126px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 48% 50%, rgba(255,214,224,0.72) 0%, rgba(217,181,246,0.28) 40%, rgba(217,181,246,0.0) 74%);
+    filter: blur(5px);
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-panel">
+      <div class="kicker"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+      <div class="num">01</div>
+      <div class="title">The Binary<br>Big Bang</div>
+      <div class="subtitle">When AI expands<br>exponentially, systems<br>are upended</div>
+      <div class="bodycopy">
+        Organizations are entering a generation-defining moment of transition: the Binary Big Bang. When foundation models cracked the natural language barrier, they kickstarted a shift in our technology systems: how we design them, use them, and how they operate. They are pushing the limits of software and programming, multiplying companies' digital output, and laying the foundation for cognitive digital brains that infuse AI deeply into enterprises' DNA. We are now at the precipice of more abundance, abstraction, and autonomy in our technology systems than ever before, and the decisions enterprises make today will profoundly impact what they can achieve for the next decade.
+      </div>
+      <div class="arrow">&gt;</div>
+    </div>
+
+    <div class="artboard">
+      <div class="blob b2"></div>
+      <div class="blob b1"></div>
+      <div class="blob b3"></div>
+      <div class="blob b4"></div>
+      <div class="blob b5"></div>
+      <div class="blob b6"></div>
+      <div class="blob b7"></div>
+      <div class="softglow1"></div>
+      <div class="softglow2"></div>
+    </div>
+  </div>
+</body>
+</html>

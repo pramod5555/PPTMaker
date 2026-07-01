@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Agenda Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dddddd;
+  }
+  .slide > div,
+  .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .left-photo{
+    left:16px;
+    top:17px;
+    width:352px;
+    height:735px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 28% 12%, rgba(255,255,255,0.28) 0, rgba(255,255,255,0.06) 10%, rgba(0,0,0,0) 24%),
+      radial-gradient(circle at 76% 9%, rgba(255,255,255,0.14) 0, rgba(0,0,0,0) 28%),
+      radial-gradient(circle at 16% 94%, rgba(255,255,255,0.18) 0, rgba(0,0,0,0) 20%),
+      linear-gradient(90deg, #7f7f7f 0%, #646464 15%, #555555 32%, #2d2d2d 58%, #525252 100%);
+    filter: grayscale(100%);
+  }
+  .left-photo:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0 1px, rgba(0,0,0,0) 1px 185px),
+      linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.08));
+    opacity:.95;
+    z-index:3;
+  }
+  .left-photo:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 22% 25%, rgba(255,255,255,.55) 0 6%, rgba(0,0,0,0) 7%),
+      radial-gradient(circle at 31% 28%, rgba(255,255,255,.28) 0 8%, rgba(0,0,0,0) 9%),
+      radial-gradient(circle at 27% 34%, rgba(255,255,255,.42) 0 12%, rgba(0,0,0,0) 13%),
+      radial-gradient(circle at 41% 39%, rgba(255,255,255,.25) 0 10%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 16% 49%, rgba(255,255,255,.28) 0 10%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 53% 45%, rgba(255,255,255,.33) 0 8%, rgba(0,0,0,0) 9%),
+      radial-gradient(circle at 25% 68%, rgba(255,255,255,.38) 0 12%, rgba(0,0,0,0) 13%),
+      radial-gradient(circle at 63% 58%, rgba(255,255,255,.22) 0 10%, rgba(0,0,0,0) 11%),
+      radial-gradient(circle at 48% 79%, rgba(255,255,255,.35) 0 10%, rgba(0,0,0,0) 11%);
+    opacity:.45;
+    z-index:2;
+  }
+
+  .title{
+    left:376px;
+    top:48px;
+    font-size:34px;
+    line-height:1;
+    font-weight:400;
+    color:#111111;
+    letter-spacing:0;
+    z-index:20;
+  }
+
+  .red-rule{
+    left:337px;
+    top:113px;
+    width:701px;
+    height:13px;
+    background:#e10600;
+    clip-path:polygon(0 0, 100% 0, 99.15% 100%, 0 100%);
+    z-index:10;
+  }
+
+  .agenda-box{
+    left:357px;
+    top:217px;
+    width:687px;
+    height:67px;
+    border:3px solid #d01010;
+    background:transparent;
+    z-index:10;
+  }
+
+  .bullet{
+    color:#000000;
+    font-size:33px;
+    line-height:1;
+    font-weight:400;
+    z-index:20;
+  }
+
+  .item{
+    color:#111111;
+    font-size:33px;
+    line-height:1.1;
+    font-weight:400;
+    white-space:nowrap;
+    z-index:20;
+  }
+
+  .bullet1{ left:381px; top:241px; }
+  .text1{ left:410px; top:234px; }
+
+  .bullet2{ left:381px; top:309px; }
+  .text2{ left:410px; top:302px; }
+
+  .bullet3{ left:381px; top:377px; }
+  .text3{ left:410px; top:370px; }
+
+  .footer-line{
+    left:338px;
+    top:717px;
+    width:732px;
+    height:1px;
+    background:#8d8d8d;
+    z-index:10;
+  }
+
+  .footer-text{
+    left:338px;
+    top:727px;
+    font-size:10px;
+    line-height:1;
+    color:#333333;
+    font-weight:400;
+    white-space:nowrap;
+    z-index:20;
+  }
+
+  .footer-sha{
+    left:746px;
+    top:727px;
+    font-size:10px;
+    line-height:1;
+    color:#333333;
+    font-weight:400;
+    white-space:nowrap;
+    z-index:20;
+  }
+
+  .footer-doc{
+    left:790px;
+    top:727px;
+    font-size:10px;
+    line-height:1;
+    color:#333333;
+    font-weight:400;
+    white-space:nowrap;
+    z-index:20;
+  }
+
+  .footer-page{
+    left:1038px;
+    top:722px;
+    width:20px;
+    height:20px;
+    z-index:30;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-photo">
+    <svg width="352" height="735" viewBox="0 0 353 720" style="position:absolute; left:0; top:0; z-index:1;">
+      <defs>
+        <filter id="grain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+          <feColorMatrix type="saturate" values="0"/>
+          <feComponentTransfer>
+            <feFuncA type="table" tableValues="0 0.08"/>
+          </feComponentTransfer>
+        </filter>
+      </defs>
+
+      <ellipse cx="80" cy="255" rx="68" ry="165" fill="#1b1b1b" transform="rotate(12 80 255)"/>
+      <ellipse cx="150" cy="190" rx="85" ry="150" fill="#6f6f6f" transform="rotate(-8 150 190)"/>
+      <ellipse cx="152" cy="182" rx="62" ry="110" fill="#a3a3a3" transform="rotate(-8 152 182)"/>
+      <ellipse cx="152" cy="183" rx="48" ry="90" fill="none" stroke="#2f2f2f" stroke-width="3" opacity=".7" transform="rotate(-8 152 183)"/>
+      <path d="M80 121 C101 87, 141 75, 192 95 C228 109, 246 146, 248 194 C250 255, 213 315, 150 338 C102 356, 61 333, 48 283 C29 208, 36 157, 80 121 Z"
+            fill="none" stroke="#d8d8d8" stroke-width="2" opacity=".35"/>
+      <path d="M70 112 C106 85, 145 73, 193 87" fill="none" stroke="#2b2b2b" stroke-width="9" stroke-linecap="round"/>
+      <path d="M77 117 C110 93, 145 83, 187 94" fill="none" stroke="#8c8c8c" stroke-width="4" stroke-linecap="round"/>
+
+      <ellipse cx="236" cy="118" rx="34" ry="13" fill="#2a2a2a" transform="rotate(-20 236 118)"/>
+      <ellipse cx="222" cy="112" rx="26" ry="9" fill="#6b6b6b" transform="rotate(-20 222 112)"/>
+      <path d="M183 75 C210 51, 247 42, 277 40 C257 52, 233 60, 198 78 Z" fill="#1f1f1f"/>
+      <path d="M171 68 C205 48, 241 42, 265 41 C248 52, 223 61, 183 77 Z" fill="#7a7a7a"/>
+      <ellipse cx="213" cy="58" rx="17" ry="5" fill="#171717" transform="rotate(-15 213 58)"/>
+
+      <path d="M205 164 C241 182, 270 230, 286 292" fill="none" stroke="#282828" stroke-width="21" stroke-linecap="round"/>
+      <path d="M210 164 C243 183, 271 229, 286 286" fill="none" stroke="#b1b1b1" stroke-width="10" stroke-linecap="round"/>
+      <path d="M230 171 C265 193, 293 238, 312 301" fill="none" stroke="#2e2e2e" stroke-width="15" stroke-linecap="round"/>
+      <path d="M232 170 C263 193, 289 236, 307 296" fill="none" stroke="#a5a5a5" stroke-width="7" stroke-linecap="round"/>
+
+      <ellipse cx="230" cy="381" rx="73" ry="85" fill="#555555" transform="rotate(8 230 381)"/>
+      <ellipse cx="230" cy="381" rx="58" ry="66" fill="#9c9c9c" transform="rotate(8 230 381)"/>
+      <path d="M180 335 C198 302, 248 289, 288 322" fill="none" stroke="#262626" stroke-width="9" stroke-linecap="round"/>
+      <path d="M183 338 C201 309, 245 300, 282 327" fill="none" stroke="#b6b6b6" stroke-width="4" stroke-linecap="round"/>
+      <path d="M195 300 L221 336 L199 338 Z" fill="#202020"/>
+      <path d="M268 301 L281 317 L262 319 Z" fill="#202020"/>
+
+      <path d="M264 279 C278 269, 294 270, 304 284 C296 284, 288 286, 280 291 Z" fill="#2a2a2a"/>
+      <path d="M273 282 C281 276, 291 276, 298 284" fill="none" stroke="#7b7b7b" stroke-width="3"/>
+
+      <ellipse cx="77" cy="489" rx="72" ry="53" fill="#3f3f3f" transform="rotate(-6 77 489)"/>
+      <rect x="15" y="445" width="130" height="87" rx="6" ry="6" fill="#a4a4a4" transform="rotate(10 80 489)"/>
+      <rect x="27" y="458" width="100" height="58" rx="4" ry="4" fill="none" stroke="#dadada" stroke-width="2" transform="rotate(10 80 489)"/>
+      <path d="M34 445 C29 416, 42 385, 67 367 C92 348, 119 355, 134 385" fill="none" stroke="#272727" stroke-width="11" stroke-linecap="round"/>
+      <path d="M37 447 C36 419, 48 394, 71 378 C91 364, 112 369, 126 392" fill="none" stroke="#b9b9b9" stroke-width="5" stroke-linecap="round"/>
+
+      <ellipse cx="273" cy="517" rx="26" ry="123" fill="#1c1c1c" transform="rotate(15 273 517)"/>
+      <ellipse cx="277" cy="516" rx="17" ry="108" fill="#8b8b8b" transform="rotate(15 277 516)"/>
+      <path d="M242 627 C257 608, 281 600, 301 610 C294 628, 277 661, 260 678 C249 670, 244 646, 242 627 Z" fill="#2e2e2e"/>
+      <path d="M248 625 C262 610, 281 607, 296 614 C289 631, 276 654, 263 668 C254 662, 249 643, 248 625 Z" fill="#7e7e7e"/>
+
+      <rect x="0" y="0" width="353" height="720" filter="url(#grain)" opacity=".75"/>
+    </svg>
+  </div>
+
+  <div class="title">Agenda</div>
+  <div class="red-rule"></div>
+
+  <div class="agenda-box"></div>
+
+  <div class="bullet bullet1">•</div>
+  <div class="item text1">China luxury market overview</div>
+
+  <div class="bullet bullet2">•</div>
+  <div class="item text2">Key trends of China luxury market</div>
+
+  <div class="bullet bullet3">•</div>
+  <div class="item text3">Implications for luxury brands in China</div>
+
+  <div class="footer-line"></div>
+  <div class="footer-text">the use of our client; it is not to be relied on by any 3rd party without Bain's prior written consent</div>
+  <div class="footer-sha">SHA</div>
+  <div class="footer-doc">2011 Bain China Luxury Market Study_Media release_vf&nbsp;&nbsp;2</div>
+
+  <div class="footer-page">
+    <svg viewBox="0 0 20 20" width="20" height="20">
+      <circle cx="10" cy="10" r="8.5" fill="none" stroke="#d60800" stroke-width="2"/>
+      <path d="M10 4 L10 9.7 L14.6 9.7" fill="none" stroke="#d60800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

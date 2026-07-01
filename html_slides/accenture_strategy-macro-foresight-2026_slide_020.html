@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Business considerations slide</title>
+<style>
+  body{
+    margin:0;
+    background:#f1eef3;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f1eef3;
+    color:#111;
+  }
+
+  /* Top tabs */
+  .tabs{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:24px;
+    background:#efefef;
+    border-bottom:1px solid #cfcfcf;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:24px;
+    line-height:24px;
+    font-size:10px;
+    font-weight:700;
+    color:#7c7c7c;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .tab.active{
+    background:#4d0e79;
+    color:#fff;
+  }
+  .tab.underline{
+    border-bottom:2px solid #8d1fff;
+    box-sizing:border-box;
+  }
+
+  /* Main title */
+  .title{
+    position:absolute;
+    left:42px;
+    top:60px;
+    width:1170px;
+    font-size:30px;
+    line-height:28px;
+    font-weight:800;
+    color:#000;
+    letter-spacing:-0.5px;
+  }
+  .subtitle{
+    position:absolute;
+    left:42px;
+    top:121px;
+    font-size:25px;
+    line-height:26px;
+    font-weight:800;
+    color:#9b16ff;
+  }
+
+  /* Section headings */
+  .left-head{
+    position:absolute;
+    left:42px;
+    top:165px;
+    font-size:18px;
+    line-height:20px;
+    font-weight:800;
+    color:#111;
+  }
+  .right-head{
+    position:absolute;
+    left:698px;
+    top:165px;
+    font-size:18px;
+    line-height:20px;
+    font-weight:800;
+    color:#111;
+  }
+  .rule-left{
+    position:absolute;
+    left:42px;
+    top:194px;
+    width:613px;
+    height:2px;
+    background:#333;
+  }
+  .rule-right{
+    position:absolute;
+    left:698px;
+    top:194px;
+    width:611px;
+    height:2px;
+    background:#333;
+  }
+
+  /* Left matrix area */
+  .matrix-title{
+    position:absolute;
+    left:42px;
+    top:226px;
+    font-size:17px;
+    line-height:18px;
+    font-weight:800;
+    color:#111;
+  }
+  .axis-y-label-top{
+    position:absolute;
+    left:56px;
+    top:256px;
+    font-size:14px;
+    font-style:italic;
+    color:#222;
+  }
+  .axis-y-label-bottom{
+    position:absolute;
+    left:58px;
+    top:610px;
+    font-size:14px;
+    font-style:italic;
+    color:#222;
+  }
+  .axis-x-label-left{
+    position:absolute;
+    left:120px;
+    top:652px;
+    font-size:14px;
+    color:#222;
+  }
+  .axis-x-label-right{
+    position:absolute;
+    left:603px;
+    top:652px;
+    font-size:14px;
+    font-style:italic;
+    color:#222;
+  }
+  .axis-y-title{
+    position:absolute;
+    left:18px;
+    top:358px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    font-size:0;
+  }
+  .axis-x-title{
+    position:absolute;
+    left:549px;
+    top:676px;
+    font-size:17px;
+    line-height:18px;
+    font-weight:800;
+    color:#111;
+  }
+  .axis-v{
+    position:absolute;
+    left:101px;
+    top:260px;
+    width:2px;
+    height:368px;
+    background:#b9b9b9;
+  }
+  .axis-h{
+    position:absolute;
+    left:116px;
+    top:648px;
+    width:531px;
+    height:2px;
+    background:#b9b9b9;
+  }
+
+  .quad{
+    position:absolute;
+    background:#ececec;
+  }
+  .quad h4{
+    margin:0;
+    position:absolute;
+    left:10px;
+    top:8px;
+    right:10px;
+    font-size:15px;
+    line-height:16px;
+    font-weight:800;
+    color:#6d17c5;
+  }
+  .quad p{
+    position:absolute;
+    left:14px;
+    right:14px;
+    top:48px;
+    margin:0;
+    font-size:16px;
+    line-height:1.15;
+    color:#7f7f7f;
+  }
+  .quad.right h4,
+  .quad.right p{
+    text-align:right;
+  }
+
+  /* Right tradeoff blocks */
+  .trade{
+    position:absolute;
+    left:698px;
+    width:612px;
+    height:110px;
+  }
+  .trade .label{
+    position:absolute;
+    left:0;
+    top:0;
+    width:140px;
+    height:110px;
+    background:linear-gradient(180deg,#6e08a2 0%, #65009a 55%, #6f06a8 100%);
+    color:#fff;
+    font-size:15px;
+    line-height:1.05;
+    font-weight:800;
+    padding:10px 10px;
+    box-sizing:border-box;
+  }
+  .trade .bullets{
+    position:absolute;
+    left:155px;
+    top:0;
+    width:445px;
+    color:#222;
+    font-size:16px;
+    line-height:1.18;
+  }
+  .trade .bullets div{
+    position:relative;
+    padding-left:14px;
+    margin-bottom:7px;
+  }
+  .trade .bullets div::before{
+    content:"•";
+    position:absolute;
+    left:0;
+    top:0;
+    color:#111;
+    font-size:18px;
+    line-height:16px;
+  }
+
+  /* Footer */
+  .brand{
+    position:absolute;
+    left:41px;
+    top:719px;
+    transform:translateY(-100%);
+    color:#a01fff;
+    font-size:46px;
+    font-weight:900;
+    line-height:32px;
+  }
+  .source{
+    position:absolute;
+    left:74px;
+    top:733px;
+    transform:translateY(-100%);
+    font-size:12px;
+    color:#777;
+  }
+  .copyright{
+    position:absolute;
+    left:1014px;
+    top:732px;
+    transform:translateY(-100%);
+    font-size:12px;
+    color:#666;
+    white-space:nowrap;
+  }
+  .page{
+    position:absolute;
+    right:20px;
+    top:732px;
+    transform:translateY(-100%);
+    font-size:18px;
+    color:#666;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="tabs">
+    <div class="tab active" style="left:0px;width:104px;">Top 10 trends</div>
+    <div class="tab underline" style="left:104px;width:133px;">Multi-speed growth</div>
+    <div class="tab" style="left:237px;width:120px;">Tariff impacts</div>
+    <div class="tab" style="left:357px;width:132px;">Financial fragility</div>
+    <div class="tab" style="left:489px;width:124px;">Affordability</div>
+    <div class="tab" style="left:613px;width:134px;">AI productivity</div>
+    <div class="tab" style="left:747px;width:126px;">China exports</div>
+    <div class="tab" style="left:873px;width:142px;">Europe struggle</div>
+    <div class="tab" style="left:1015px;width:113px;">AI arms race</div>
+    <div class="tab" style="left:1128px;width:118px;">Power crunch</div>
+    <div class="tab" style="left:1246px;width:34px;">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">K-shaped growth trajectories are creating a host of challenges and opportunities for different sectors, firms and consumer segments</div>
+  <div class="subtitle">1. Business considerations</div>
+
+  <div class="left-head">Firms should understand their current strategic positions...</div>
+  <div class="right-head">...while balancing across key trade-off considerations</div>
+  <div class="rule-left"></div>
+  <div class="rule-right"></div>
+
+  <div class="matrix-title">Tariff exposure</div>
+  <div class="axis-y-label-top">High</div>
+  <div class="axis-y-label-bottom">Low</div>
+  <div class="axis-x-label-left">Low</div>
+  <div class="axis-x-label-right">High</div>
+  <div class="axis-v"></div>
+  <div class="axis-h"></div>
+  <div class="axis-x-title">AI exposure</div>
+
+  <div class="quad" style="left:117px;top:259px;width:259px;height:183px;">
+    <h4>Tariff-challenged sectors</h4>
+    <p>Focus on margin resilience, tariff pass-through and where to invest in productivity versus exit</p>
+  </div>
+
+  <div class="quad right" style="left:386px;top:259px;width:261px;height:183px;">
+    <h4>AI race-exposed</h4>
+    <p>Balance AI-driven upside against capex load, platform dependence and regulatory risk</p>
+  </div>
+
+  <div class="quad" style="left:117px;top:452px;width:259px;height:181px;">
+    <h4>Stable but stagnant</h4>
+    <p>Provides earnings stability, so the agenda is capital discipline and operational efficiency rather than big thematic bets</p>
+  </div>
+
+  <div class="quad right" style="left:386px;top:452px;width:261px;height:181px;">
+    <h4>AI-powered growth</h4>
+    <p>Prioritise scale-up, talent and data moats while trade policy remains a secondary constraint</p>
+  </div>
+
+  <div class="trade" style="top:221px;">
+    <div class="label">Growth vs<br>resilience</div>
+    <div class="bullets">
+      <div>AI-linked bets offer higher potential growth but come with technology, regulatory, and execution risk</div>
+      <div>Tariff-exposed and slower segments may provide cash and stability but limited upside</div>
+    </div>
+  </div>
+
+  <div class="trade" style="top:337px;">
+    <div class="label">Scale vs<br>localization</div>
+    <div class="bullets">
+      <div>AI economics reward global scale, data pooling, and common platforms</div>
+      <div>Tariffs and industrial policy push toward more localised footprints, standards, and compliance</div>
+    </div>
+  </div>
+
+  <div class="trade" style="top:454px;">
+    <div class="label">Control vs<br>dependence</div>
+    <div class="bullets">
+      <div>Building on hyperscaler and frontier-model ecosystems accelerates time to value</div>
+      <div>Reliance on a small set of vendors and jurisdictions, with implications for pricing power and geopolitics</div>
+    </div>
+  </div>
+
+  <div class="trade" style="top:570px;height:110px;">
+    <div class="label" style="height:110px;">Talent focus vs<br>workforce<br>balance</div>
+    <div class="bullets">
+      <div>AI capabilities concentrate value in scarce technical and product talent</div>
+      <div>Large parts of the existing workforce sit in slower, often tariff-affected activities, raising questions on morale, redeployment, and social licence</div>
+    </div>
+  </div>
+
+  <div class="brand">&gt;</div>
+  <div class="source">Source(s): Accenture Strategy analysis</div>
+  <div class="copyright">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="page">20</div>
+</div>
+</body>
+</html>

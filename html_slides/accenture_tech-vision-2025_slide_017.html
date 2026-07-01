@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Generative UI Slide Replica</title>
+<style>
+  body {
+    margin: 0;
+    background: #7c7b7c;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: linear-gradient(to right, #efefef 0 56.4%, #000000 56.4% 100%);
+  }
+
+  .top-left {
+    position: absolute;
+    left: 60px;
+    top: 38px;
+    font-size: 15px;
+    color: #5e5e5e;
+    letter-spacing: -0.1px;
+  }
+  .top-left .accent {
+    color: #a500ff;
+  }
+
+  .title {
+    position: absolute;
+    left: 60px;
+    top: 116px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: -0.4px;
+  }
+
+  .h2 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.2px;
+  }
+  .body {
+    font-size: 14px;
+    line-height: 1.34;
+    color: #343434;
+    font-weight: 400;
+  }
+
+  .col1-top {
+    position: absolute;
+    left: 60px;
+    top: 174px;
+    width: 254px;
+  }
+  .col2-top {
+    position: absolute;
+    left: 376px;
+    top: 174px;
+    width: 258px;
+  }
+  .col1-bottom {
+    position: absolute;
+    left: 60px;
+    top: 430px;
+    width: 254px;
+  }
+
+  .section-title {
+    margin: 0 0 14px 0;
+    color: #222;
+  }
+  .section-text {
+    margin: 0;
+  }
+
+  .arrow {
+    position: absolute;
+    left: 56px;
+    bottom: 12px;
+    font-size: 44px;
+    font-weight: 700;
+    color: #a500ff;
+    line-height: 1;
+  }
+
+  .right-top {
+    position: absolute;
+    right: 108px;
+    top: 37px;
+    font-size: 12px;
+    color: #d9d9d9;
+    letter-spacing: -0.1px;
+  }
+  .page {
+    position: absolute;
+    right: 38px;
+    top: 37px;
+    font-size: 12px;
+    color: #d9d9d9;
+  }
+
+  .chart-block {
+    position: absolute;
+    left: 707px;
+    top: 174px;
+    width: 506px;
+    color: #fff;
+  }
+  .chart-title {
+    margin: 0 0 6px 0;
+    font-size: 18px;
+    line-height: 1.1;
+    color: #b48ce8;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+  }
+  .chart-copy {
+    margin: 0 0 16px 0;
+    font-size: 13px;
+    line-height: 1.28;
+    color: #d0d0d0;
+  }
+  .question {
+    margin: 0 0 18px 0;
+    font-size: 13px;
+    line-height: 1.28;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .chart {
+    position: relative;
+    width: 510px;
+    height: 355px;
+  }
+  .y-label {
+    position: absolute;
+    left: 6px;
+    font-size: 13px;
+    color: #d8d8d8;
+  }
+  .axis-line {
+    position: absolute;
+    left: 35px;
+    bottom: 48px;
+    width: 474px;
+    height: 2px;
+    background: #bdbdbd;
+  }
+
+  .bar-group {
+    position: absolute;
+    bottom: 50px;
+    width: 70px;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .bar {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    width: 30px;
+    background: linear-gradient(to bottom, #c02bff 0%, #a500ff 42%, #8a00ff 100%);
+  }
+  .pct {
+    position: absolute;
+    left: 0;
+    width: 70px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .xlabel {
+    position: absolute;
+    top: 10px;
+    left: -8px;
+    width: 86px;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .source {
+    position: absolute;
+    left: 707px;
+    bottom: 46px;
+    font-size: 10px;
+    color: #bdbdbd;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+
+    <div class="title">Generative UI</div>
+
+    <div class="col1-top">
+      <div class="h2 section-title">What is it?</div>
+      <p class="body section-text">
+        Generative UI is the concept of leveraging AI
+        techniques to generate user interfaces, commonly
+        with the goal of offering a personalized experience.
+        The long-term vision is a system that dynamically
+        generates interfaces in real-time, based on an
+        individual’s context and needs. And this is not just
+        populating a predefined layout with user-specific
+        content, but completely changing the structure,
+        flow, and interaction methods. These capabilities
+        can be applied to websites, applications, or even
+        agentic systems, and could rely on text, voice, or
+        other intuitive interactions.
+      </p>
+    </div>
+
+    <div class="col2-top">
+      <div class="h2 section-title">Who is doing it today?</div>
+      <p class="body section-text">
+        In one early example, Google demonstrated its
+        Gemini model generating interface elements to
+        help plan a birthday party.<sup>42</sup> Instead of responding
+        in a bulleted text list, Gemini generated an
+        interactive list of party themes, each with an
+        image, description, activities, and food options.
+        Vercel is also hoping to accelerate this transition
+        to generative UI with its AI SDK 3.0.<sup>43</sup> This update
+        lets apps use React Server Components to stream
+        UI components directly from LLMs, without heavy
+        client-side JavaScript, enabling a much more
+        engaging way for LLMs to respond to user requests.
+      </p>
+    </div>
+
+    <div class="col1-bottom">
+      <div class="h2 section-title">How does it connect to the trend?</div>
+      <p class="body section-text">
+        Agentic systems and composable digital cores
+        will radically transform how we think of the user
+        interface and unravel a core component of
+        today’s software paradigm. For decades, the high
+        cost of software development and the low cost
+        of software distribution have driven the idea of
+        creating a single UI that must work for every user.
+        But now, as agentic systems advance and begin to
+        take more actions on our behalf in the digital world,
+        they’re driving a new software paradigm where
+        cheaper code and language-first interfaces make
+        dynamically generated, custom UI components
+        increasingly feasible.
+      </p>
+    </div>
+
+    <div class="arrow">&gt;</div>
+
+    <div class="right-top">The Binary Big Bang</div>
+    <div class="page">17</div>
+
+    <div class="chart-block">
+      <h3 class="chart-title">Redefining our relationship with computing</h3>
+      <p class="chart-copy">
+        The GUI has been the predominant method of human-machine interaction
+        for many decades, but executives believe this is changing as agents become
+        available. This shift will involve natural language but also the ability for systems
+        to generate and compose UI elements dynamically to meet a user’s request.
+      </p>
+      <p class="question">
+        In your estimation, when do you think the general public will use AI agents
+        more frequently than apps or websites to complete day-to-day digital tasks?
+      </p>
+
+      <div class="chart">
+        <div class="y-label" style="bottom: 304px;">45%</div>
+        <div class="y-label" style="bottom: 275px;">40%</div>
+        <div class="y-label" style="bottom: 247px;">35%</div>
+        <div class="y-label" style="bottom: 218px;">30%</div>
+        <div class="y-label" style="bottom: 189px;">25%</div>
+        <div class="y-label" style="bottom: 159px;">20%</div>
+        <div class="y-label" style="bottom: 130px;">15%</div>
+        <div class="y-label" style="bottom: 101px;">10%</div>
+        <div class="y-label" style="bottom: 72px;">5%</div>
+        <div class="y-label" style="bottom: 43px;">0%</div>
+
+        <div class="axis-line"></div>
+
+        <div class="bar-group" style="left: 50px; height: 89px;">
+          <div class="pct" style="bottom: 91px;">15%</div>
+          <div class="bar" style="height: 89px;"></div>
+          <div class="xlabel">2025-2030</div>
+        </div>
+
+        <div class="bar-group" style="left: 142px; height: 220px;">
+          <div class="pct" style="bottom: 222px;">37%</div>
+          <div class="bar" style="height: 220px;"></div>
+          <div class="xlabel">2031-2035</div>
+        </div>
+
+        <div class="bar-group" style="left: 236px; height: 232px;">
+          <div class="pct" style="bottom: 234px;">39%</div>
+          <div class="bar" style="height: 232px;"></div>
+          <div class="xlabel">2036-2040</div>
+        </div>
+
+        <div class="bar-group" style="left: 330px; height: 48px;">
+          <div class="pct" style="bottom: 50px;">8%</div>
+          <div class="bar" style="height: 48px;"></div>
+          <div class="xlabel">2041-2045</div>
+        </div>
+
+        <div class="bar-group" style="left: 424px; height: 6px;">
+          <div class="pct" style="bottom: 8px;">1%</div>
+          <div class="bar" style="height: 6px;"></div>
+          <div class="xlabel">2046-2050+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="source">Source: Accenture Technology Vision 2025 Executive Survey, N=4,021</div>
+  </div>
+</body>
+</html>

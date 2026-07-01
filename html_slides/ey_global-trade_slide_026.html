@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Insights: Americas</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9da;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d9d9da;
+    color:#53535a;
+  }
+  .top-bg{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:79px;
+    background:#d9d9da;
+  }
+  .top-accent{
+    position:absolute;
+    left:0;
+    top:0;
+    width:47px;
+    height:79px;
+    background:#b2b4bb;
+  }
+  .divider{
+    position:absolute;
+    left:0;
+    top:78px;
+    width:1280px;
+    height:2px;
+    background:#b8bbc1;
+  }
+  .title{
+    position:absolute;
+    left:56px;
+    top:50px;
+    font-size:33px;
+    line-height:1;
+    color:#7a7c86;
+    font-weight:400;
+    transform:scale(0.52);
+    transform-origin:left top;
+    white-space:nowrap;
+  }
+  .nav{
+    position:absolute;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#b8b9c1;
+  }
+  .nav.left{ left:951px; top:32px; }
+  .nav.right{ left:995px; top:32px; }
+  .nav:before{
+    content:"";
+    position:absolute;
+    top:9px;
+    width:0;height:0;
+    border-top:9px solid transparent;
+    border-bottom:9px solid transparent;
+  }
+  .nav.left:before{
+    left:11px;
+    border-right:11px solid #40414b;
+  }
+  .nav.right:before{
+    left:15px;
+    border-left:11px solid #40414b;
+  }
+
+  .text{
+    position:absolute;
+    font-size:16px;
+    line-height:1.28;
+    color:#53535a;
+    font-weight:400;
+    z-index:5;
+  }
+  .text strong{
+    font-weight:700;
+    color:#33343d;
+  }
+  .subhead{
+    font-size:18px;
+    line-height:1.15;
+    font-weight:700;
+    color:#33343d;
+  }
+  .bullets{
+    position:absolute;
+    font-size:16px;
+    line-height:1.28;
+    color:#53535a;
+    z-index:5;
+  }
+  .item{
+    position:relative;
+    padding-left:14px;
+    margin-bottom:9px;
+  }
+  .item:before{
+    content:"▪";
+    position:absolute;
+    left:0;
+    top:0;
+    font-size:11px;
+    line-height:1.45;
+    color:#33343d;
+  }
+
+  .photo{
+    position:absolute;
+    left:0;
+    top:398px;
+    width:801px;
+    height:322px;
+    overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(7,31,37,.12), rgba(7,31,37,.18)),
+      linear-gradient(180deg, #567075 0%, #495f64 32%, #44585b 52%, #55645f 73%, #6f6a58 100%);
+  }
+  .photo:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(0deg,
+        rgba(20,37,42,.96) 0 3px,
+        rgba(0,0,0,0) 3px 34px),
+      repeating-linear-gradient(90deg,
+        rgba(21,39,44,.92) 0 4px,
+        rgba(0,0,0,0) 4px 41px);
+    opacity:.95;
+  }
+  .beam{
+    position:absolute;
+    background:#e1a22a;
+    z-index:3;
+  }
+  .floor{
+    position:absolute;
+    left:0;
+    top:615px;
+    width:801px;
+    height:105px;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 0, rgba(0,0,0,.06) 100%),
+      linear-gradient(180deg, #61706c 0%, #6b786f 100%);
+    clip-path:polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    z-index:1;
+  }
+  .aisle{
+    position:absolute;
+    left:261px;
+    top:593px;
+    width:334px;
+    height:127px;
+    background:linear-gradient(180deg,#697973 0%, #8e8b75 100%);
+    clip-path:polygon(30% 0, 70% 0, 100% 100%, 0 100%);
+    opacity:.72;
+    z-index:2;
+  }
+
+  .box{
+    position:absolute;
+    background:#b69467;
+    border:1px solid rgba(71,55,34,.4);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+    z-index:4;
+  }
+  .label{
+    position:absolute;
+    background:rgba(215,228,228,.88);
+    border:1px solid rgba(110,125,130,.35);
+    z-index:5;
+  }
+  .orange{
+    position:absolute;
+    background:#ef690c;
+    z-index:5;
+  }
+
+  .stack-right{
+    position:absolute;
+    right:478px;
+    top:472px;
+    width:145px;
+    height:248px;
+    z-index:6;
+  }
+  .stack-right .pallet{
+    position:absolute;
+    background:#d0b28a;
+    border:1px solid rgba(92,70,44,.35);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+  }
+
+  .person{
+    position:absolute;
+    left:323px;
+    top:643px;
+    width:42px;
+    height:67px;
+    z-index:8;
+  }
+  .person .head{
+    position:absolute;
+    left:15px; top:0;
+    width:10px; height:10px;
+    border-radius:50%;
+    background:#4d3525;
+  }
+  .person .torso{
+    position:absolute;
+    left:10px; top:9px;
+    width:19px; height:27px;
+    background:#d7f11e;
+    border:1px solid #234b5d;
+    border-radius:4px;
+  }
+  .person .stripe1,.person .stripe2{
+    position:absolute;
+    width:17px; height:2px;
+    background:#1e6078;
+    left:11px;
+  }
+  .person .stripe1{ top:17px; transform:rotate(18deg); }
+  .person .stripe2{ top:24px; transform:rotate(-18deg); }
+  .person .leg1,.person .leg2{
+    position:absolute;
+    width:4px; height:24px;
+    background:#122036;
+    top:35px;
+  }
+  .person .leg1{ left:15px; transform:rotate(8deg); }
+  .person .leg2{ left:22px; transform:rotate(-7deg); }
+  .person .arm1,.person .arm2{
+    position:absolute;
+    width:4px; height:17px;
+    background:#17304c;
+    top:15px;
+  }
+  .person .arm1{ left:6px; transform:rotate(40deg); }
+  .person .arm2{ left:27px; transform:rotate(-25deg); }
+  .person .tablet{
+    position:absolute;
+    left:28px; top:19px;
+    width:13px; height:10px;
+    background:#7fb8d1;
+    border:1px solid #ebf7ff;
+    transform:rotate(18deg);
+  }
+
+  .footer{
+    position:absolute;
+    left:58px;
+    top:706px;
+    transform:translateY(-100%);
+    font-size:10px;
+    line-height:1;
+    color:#ffffff;
+    font-weight:600;
+    letter-spacing:.1px;
+    z-index:9;
+    white-space:nowrap;
+  }
+
+  .sidebar{
+    position:absolute;
+    left:1009px;
+    top:120px;
+    width:77px;
+    z-index:20;
+  }
+  .sidebtn{
+    position:absolute;
+    left:0;
+    width:77px;
+    height:35px;
+    background:#343544;
+    color:#ececef;
+    font-size:11px;
+    line-height:13px;
+    box-sizing:border-box;
+    padding:8px 7px 0 7px;
+    border-left:2px solid #d4d10d;
+  }
+  .sidebtn.muted{
+    background:#7d7d89;
+    color:#f1f1f4;
+  }
+  .b1{ top:0; }
+  .b2{ top:50px; }
+  .b3{ top:100px; }
+  .b4{ top:150px; }
+  .b5{ top:201px; }
+  .b6{ top:252px; }
+
+  .col-mask{
+    position:absolute;
+    left:800px;
+    top:398px;
+    width:16px;
+    height:322px;
+    background:#d9d9da;
+    z-index:7;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-bg"></div>
+  <div class="top-accent"></div>
+  <div class="divider"></div>
+  <div class="title">Insights: Americas</div>
+  <div class="nav left"></div>
+  <div class="nav right"></div>
+
+  <div class="text" style="left:57px; top:116px; width:288px;">The documentation package typically includes:</div>
+
+  <div class="bullets" style="left:57px; top:141px; width:287px;">
+    <div class="item">Transaction documents such as commercial invoices, contracts, purchase orders and payment evidence.</div>
+    <div class="item">Transportation and logistics documentation, including bills of lading, packing lists, freight invoices and insurance documentation.</div>
+    <div class="item">Valuation-related documentation supporting adjustments to the customs value, such as royalties, commissions, assists or other relevant elements.</div>
+  </div>
+
+  <div class="text" style="left:57px; top:337px; width:288px;">This system significantly increases transparency in customs valuation and allows authorities to perform</div>
+
+  <div class="text" style="left:373px; top:116px; width:286px;">automated cross-checks between declared values and supporting documentation.</div>
+
+  <div class="text" style="left:373px; top:159px; width:287px;">In practice, companies are beginning to rely on digital tools that organize valuation documentation and prepare it for electronic transmission, reducing manual workload and managing the risk of submission errors.</div>
+
+  <div class="text subhead" style="left:373px; top:257px; width:292px;">Materiality and valuation reporting:<br>two distinct compliance regimes</div>
+
+  <div class="text" style="left:373px; top:304px; width:285px;">Although closely related, the materiality requirements and the electronic valuation reporting obligation operate under different compliance mechanisms.</div>
+
+  <div class="text" style="left:692px; top:116px; width:293px;">Valuation documentation must be transmitted electronically for each import transaction as part of the customs clearance process. By contrast, the broader materiality documentation must be retained internally and made available upon request during a customs audit or verification.</div>
+
+  <div class="text" style="left:692px; top:225px; width:287px;">Both regimes increase the importance of maintaining consistent documentation practices across the organization.</div>
+
+  <div class="text" style="left:692px; top:282px; width:286px;">Customs valuation has historically been one of the most sensitive audit areas in Mexico. The introduction of electronic reporting is expected to further strengthen authorities’ ability to identify inconsistencies between declared values and supporting documentation.</div>
+
+  <div class="text subhead" style="left:692px; top:395px; width:286px;">Technology and data management<br>considerations</div>
+
+  <div class="text" style="left:692px; top:441px; width:286px;">The expanded documentation requirements present a significant operational challenge for many organizations. Manual processes quickly become insufficient when companies must gather documentation from multiple systems and ensure that it aligns with a specific customs transaction.</div>
+
+  <div class="text" style="left:692px; top:548px; width:286px;">One recurring challenge we observe is that operational, financial and logistics systems were never designed to speak to each other, making coherence checks particularly complex under the new rules.</div>
+
+  <div class="text" style="left:692px; top:642px; width:286px;">As a result, businesses are increasingly looking to technology that centralizes documentation, automates completeness checks and, in more advanced applications, uses data driven logic to identify inconsistencies between the documentation and the underlying transaction.</div>
+
+  <div class="photo"></div>
+  <div class="beam" style="left:0; top:430px; width:801px; height:4px;"></div>
+  <div class="floor"></div>
+  <div class="aisle"></div>
+
+  <div class="box" style="left:18px; top:398px; width:27px; height:23px;"></div>
+  <div class="box" style="left:47px; top:400px; width:21px; height:20px;"></div>
+  <div class="box" style="left:74px; top:399px; width:24px; height:21px;"></div>
+  <div class="box" style="left:103px; top:398px; width:28px; height:23px;"></div>
+  <div class="label" style="left:20px; top:405px; width:10px; height:8px;"></div>
+  <div class="label" style="left:53px; top:406px; width:8px; height:7px;"></div>
+
+  <div class="box" style="left:166px; top:399px; width:26px; height:21px;"></div>
+  <div class="box" style="left:198px; top:398px; width:31px; height:23px;"></div>
+  <div class="box" style="left:236px; top:399px; width:25px; height:20px;"></div>
+  <div class="box" style="left:267px; top:398px; width:34px; height:23px;"></div>
+  <div class="label" style="left:203px; top:404px; width:15px; height:9px;"></div>
+  <div class="label" style="left:271px; top:405px; width:18px; height:8px;"></div>
+
+  <div class="box" style="left:340px; top:399px; width:31px; height:22px;"></div>
+  <div class="box" style="left:377px; top:399px; width:35px; height:21px;"></div>
+  <div class="orange" style="left:418px; top:393px; width:18px; height:33px;"></div>
+  <div class="box" style="left:442px; top:398px; width:28px; height:22px;"></div>
+  <div class="label" style="left:345px; top:404px; width:18px; height:8px;"></div>
+  <div class="label" style="left:447px; top:403px; width:12px; height:9px;"></div>
+
+  <div class="box" style="left:499px; top:399px; width:26px; height:21px;"></div>
+  <div class="box" style="left:529px; top:397px; width:30px; height:24px;"></div>
+  <div class="box" style="left:565px; top:399px; width:36px; height:20px;"></div>
+  <div class="box" style="left:607px; top:398px; width:34px; height:22px;"></div>
+  <div class="label" style="left:534px; top:403px; width:19px; height:8px;"></div>
+  <div class="label" style="left:611px; top:403px; width:20px; height:8px;"></div>
+
+  <div class="box" style="left:656px; top:399px; width:29px; height:21px;"></div>
+  <div class="box" style="left:691px; top:399px; width:26px; height:20px;"></div>
+  <div class="box" style="left:723px; top:399px; width:27px; height:22px;"></div>
+  <div class="box" style="left:756px; top:397px; width:25px; height:24px;"></div>
+  <div class="label" style="left:695px; top:404px; width:12px; height:8px;"></div>
+  <div class="label" style="left:758px; top:404px; width:11px; height:8px;"></div>
+
+  <div class="box" style="left:19px; top:436px; width:32px; height:25px;"></div>
+  <div class="box" style="left:57px; top:438px; width:24px; height:23px;"></div>
+  <div class="box" style="left:89px; top:437px; width:28px; height:22px;"></div>
+  <div class="box" style="left:124px; top:436px; width:31px; height:24px;"></div>
+  <div class="label" style="left:22px; top:443px; width:17px; height:8px;"></div>
+  <div class="label" style="left:95px; top:442px; width:12px; height:9px;"></div>
+
+  <div class="box" style="left:164px; top:437px; width:28px; height:22px;"></div>
+  <div class="box" style="left:197px; top:436px; width:28px; height:24px;"></div>
+  <div class="box" style="left:232px; top:437px; width:24px; height:21px;"></div>
+  <div class="box" style="left:262px; top:436px; width:31px; height:23px;"></div>
+  <div class="label" style="left:201px; top:442px; width:14px; height:8px;"></div>
+  <div class="label" style="left:266px; top:442px; width:17px; height:9px;"></div>
+
+  <div class="box" style="left:340px; top:436px; width:31px; height:24px;"></div>
+  <div class="orange" style="left:377px; top:433px; width:19px; height:32px;"></div>
+  <div class="box" style="left:400px; top:437px; width:35px; height:21px;"></div>
+  <div class="box" style="left:443px; top:436px; width:28px; height:23px;"></div>
+  <div class="label" style="left:405px; top:442px; width:19px; height:8px;"></div>
+  <div class="label" style="left:447px; top:442px; width:13px; height:8px;"></div>
+
+  <div class="box" style="left:499px; top:436px; width:26px; height:24px;"></div>
+  <div class="box" style="left:531px; top:436px; width:27px; height:23px;"></div>
+  <div class="box" style="left:564px; top:436px; width:34px; height:22px;"></div>
+  <div class="box" style="left:606px; top:437px; width:35px; height:21px;"></div>
+  <div class="label" style="left:534px; top:442px; width:13px; height:8px;"></div>
+  <div class="label" style="left:611px; top:442px; width:19px; height:8px;"></div>
+
+  <div class="box" style="left:656px; top:437px; width:29px; height:23px;"></div>
+  <div class="box" style="left:691px; top:437px; width:27px; height:21px;"></div>
+  <div class="box" style="left:724px; top:437px; width:26px; height:22px;"></div>
+  <div class="box" style="left:756px; top:436px; width:24px; height:24px;"></div>
+
+  <div class="box" style="left:20px; top:474px; width:28px; height:23px;"></div>
+  <div class="box" style="left:54px; top:475px; width:26px; height:21px;"></div>
+  <div class="box" style="left:88px; top:475px; width:28px; height:20px;"></div>
+  <div class="box" style="left:122px; top:474px; width:31px; height:22px;"></div>
+  <div class="box" style="left:164px; top:474px; width:27px; height:23px;"></div>
+  <div class="box" style="left:197px; top:475px; width:26px; height:21px;"></div>
+  <div class="box" style="left:231px; top:475px; width:23px; height:20px;"></div>
+  <div class="box" style="left:262px; top:474px; width:29px; height:22px;"></div>
+  <div class="box" style="left:341px; top:474px; width:30px; height:23px;"></div>
+  <div class="box" style="left:377px; top:474px; width:34px; height:21px;"></div>
+  <div class="box" style="left:418px; top:475px; width:18px; height:20px;"></div>
+  <div class="box" style="left:442px; top:474px; width:28px; height:22px;"></div>
+  <div class="box" style="left:499px; top:474px; width:25px; height:23px;"></div>
+  <div class="box" style="left:531px; top:475px; width:27px; height:20px;"></div>
+  <div class="box" style="left:564px; top:475px; width:33px; height:21px;"></div>
+  <div class="box" style="left:607px; top:474px; width:33px; height:22px;"></div>
+  <div class="box" style="left:657px; top:474px; width:28px; height:23px;"></div>
+  <div class="box" style="left:692px; top:475px; width:26px; height:20px;"></div>
+  <div class="box" style="left:724px; top:475px; width:25px; height:21px;"></div>
+  <div class="box" style="left:756px; top:474px; width:23px; height:22px;"></div>
+
+  <div class="box" style="left:21px; top:511px; width:27px; height:23px;"></div>
+  <div class="box" style="left:56px; top:512px; width:23px; height:21px;"></div>
+  <div class="box" style="left:88px; top:512px; width:27px; height:20px;"></div>
+  <div class="box" style="left:123px; top:511px; width:30px; height:22px;"></div>
+  <div class="box" style="left:165px; top:511px; width:27px; height:23px;"></div>
+  <div class="box" style="left:198px; top:512px; width:25px; height:20px;"></div>
+  <div class="box" style="left:231px; top:512px; width:23px; height:21px;"></div>
+  <div class="box" style="left:263px; top:511px; width:29px; height:22px;"></div>
+  <div class="box" style="left:341px; top:511px; width:30px; height:23px;"></div>
+  <div class="box" style="left:378px; top:512px; width:33px; height:20px;"></div>
+  <div class="orange" style="left:418px; top:508px; width:18px; height:31px;"></div>
+  <div class="box" style="left:443px; top:511px; width:28px; height:22px;"></div>
+  <div class="box" style="left:500px; top:511px; width:25px; height:23px;"></div>
+  <div class="box" style="left:531px; top:512px; width:27px; height:20px;"></div>
+  <div class="box" style="left:565px; top:512px; width:33px; height:21px;"></div>
+  <div class="box" style="left:607px; top:511px; width:34px; height:22px;"></div>
+  <div class="box" style="left:657px; top:511px; width:28px; height:23px;"></div>
+  <div class="box" style="left:691px; top:512px; width:27px; height:20px;"></div>
+  <div class="box" style="left:724px; top:512px; width:26px; height:21px;"></div>
+  <div class="box" style="left:756px; top:511px; width:24px; height:22px;"></div>
+
+  <div class="box" style="left:20px; top:548px; width:28px; height:22px;"></div>
+  <div class="box" style="left:55px; top:549px; width:25px; height:20px;"></div>
+  <div class="box" style="left:89px; top:549px; width:27px; height:19px;"></div>
+  <div class="box" style="left:123px; top:548px; width:30px; height:21px;"></div>
+  <div class="box" style="left:164px; top:548px; width:28px; height:22px;"></div>
+  <div class="box" style="left:198px; top:549px; width:26px; height:19px;"></div>
+  <div class="box" style="left:231px; top:549px; width:23px; height:20px;"></div>
+  <div class="box" style="left:263px; top:548px; width:29px; height:21px;"></div>
+  <div class="box" style="left:341px; top:548px; width:31px; height:22px;"></div>
+  <div class="box" style="left:378px; top:549px; width:34px; height:19px;"></div>
+  <div class="box" style="left:442px; top:548px; width:28px; height:21px;"></div>
+  <div class="box" style="left:499px; top:548px; width:25px; height:22px;"></div>
+  <div class="box" style="left:531px; top:549px; width:27px; height:19px;"></div>
+  <div class="box" style="left:565px; top:549px; width:34px; height:20px;"></div>
+  <div class="box" style="left:607px; top:548px; width:33px; height:21px;"></div>
+  <div class="box" style="left:657px; top:548px; width:29px; height:22px;"></div>
+  <div class="box" style="left:692px; top:549px; width:26px; height:19px;"></div>
+  <div class="box" style="left:724px; top:549px; width:26px; height:20px;"></div>
+  <div class="box" style="left:756px; top:548px; width:23px; height:21px;"></div>
+
+  <div class="box" style="left:20px; top:585px; width:28px; height:23px;"></div>
+  <div class="box" style="left:56px; top:586px; width:24px; height:20px;"></div>
+  <div class="box" style="left:90px; top:586px; width:26px; height:19px;"></div>
+  <div class="box" style="left:123px; top:585px; width:31px; height:21px;"></div>
+  <div class="box" style="left:165px; top:585px; width:27px; height:23px;"></div>
+  <div class="box" style="left:198px; top:586px; width:25px; height:20px;"></div>
+  <div class="box" style="left:232px; top:586px; width:22px; height:19px;"></div>
+  <div class="box" style="left:263px; top:585px; width:29px; height:21px;"></div>
+  <div class="box" style="left:342px; top:585px; width:30px; height:23px;"></div>
+  <div class="box" style="left:378px; top:586px; width:33px; height:20px;"></div>
+  <div class="box" style="left:443px; top:585px; width:28px; height:21px;"></div>
+  <div class="box" style="left:500px; top:585px; width:25px; height:23px;"></div>
+  <div class="box" style="left:531px; top:586px; width:27px; height:20px;"></div>
+  <div class="box" style="left:565px; top:586px; width:33px; height:19px;"></div>
+  <div class="box" style="left:607px; top:585px; width:34px; height:21px;"></div>
+  <div class="box" style="left:657px; top:585px; width:29px; height:23px;"></div>
+  <div class="box" style="left:692px; top:586px; width:26px; height:19px;"></div>
+  <div class="box" style="left:724px; top:586px; width:26px; height:20px;"></div>
+  <div class="box" style="left:756px; top:585px; width:24px; height:21px;"></div>
+
+  <div class="stack-right">
+    <div class="pallet" style="left:53px; top:0; width:34px; height:68px;"></div>
+    <div class="pallet" style="left:71px; top:26px; width:49px; height:110px;"></div>
+    <div class="pallet" style="left:43px; top:93px; width:42px; height:103px;"></div>
+    <div class="pallet" style="left:76px; top:144px; width:46px; height:92px;"></div>
+    <div class="pallet" style="left:28px; top:130px; width:26px; height:78px;"></div>
+    <div class="orange" style="left:79px; top:34px; width:17px; height:5px;"></div>
+    <div class="orange" style="left:60px; top:117px; width:16px; height:5px;"></div>
+    <div class="orange" style="left:81px; top:159px; width:17px; height:5px;"></div>
+  </div>
+
+  <div class="box" style="left:0; top:607px; width:22px; height:70px; z-index:6;"></div>
+  <div class="box" style="left:20px; top:594px; width:22px; height:56px; z-index:6;"></div>
+
+  <div class="person">
+    <div class="head"></div>
+    <div class="torso"></div>
+    <div class="stripe1"></div>
+    <div class="stripe2"></div>
+    <div class="leg1"></div>
+    <div class="leg2"></div>
+    <div class="arm1"></div>
+    <div class="arm2"></div>
+    <div class="tablet"></div>
+  </div>
+
+  <div class="col-mask"></div>
+
+  <div class="footer">23&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+
+  <div class="sidebar">
+    <div class="sidebtn b1">Contents</div>
+    <div class="sidebtn b2">Insights</div>
+    <div class="sidebtn b3">New on<br>ey.com</div>
+    <div class="sidebtn b4">Tax alerts</div>
+    <div class="sidebtn b5">Additional<br>resources</div>
+    <div class="sidebtn b6 muted">Contacts</div>
+  </div>
+</div>
+</body>
+</html>

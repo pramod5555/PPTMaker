@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Geostrategic hubs slide replica</title>
+<style>
+  :root{
+    --bg:#ece7ee;
+    --text:#111;
+    --muted:#6f6f6f;
+    --line:#b9b9b9;
+    --accent:#8f20ff;
+    --accent-dark:#5f1a8e;
+    --green:#12b45a;
+    --yellow:#f3b11b;
+    --red:#d83b32;
+    --header-gray:#ececec;
+    --country-col:#dfdfdf;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:#ddd;
+    font-family: system-ui, -apple-system, Segoe UI, Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    overflow:hidden;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    background:var(--bg);
+    color:var(--text);
+  }
+
+  /* top tabs */
+  .tabs{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:25px;
+    border-bottom:1px solid #b7b7b7;
+    background:#efefef;
+    display:flex;
+    align-items:stretch;
+    font-size:11px;
+    font-weight:600;
+    color:#888;
+  }
+  .tab{
+    padding:6px 14px 0 14px;
+    border-right:1px solid transparent;
+    white-space:nowrap;
+    line-height:18px;
+  }
+  .tab.active{
+    background:var(--accent-dark);
+    color:#fff;
+  }
+  .tab.last{
+    margin-left:auto;
+    color:#5d2d8b;
+    border-bottom:2px solid #7f2cc8;
+    padding-right:18px;
+  }
+
+  /* titles */
+  .title{
+    position:absolute;
+    left:41px;
+    top:57px;
+    width:1175px;
+    font-size:29px;
+    line-height:1.02;
+    font-weight:800;
+    color:#000;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    position:absolute;
+    left:41px;
+    top:119px;
+    width:1188px;
+    font-size:25px;
+    line-height:1.05;
+    font-weight:800;
+    color:var(--accent);
+    letter-spacing:-0.2px;
+  }
+
+  /* table */
+  .table{
+    position:absolute;
+    left:41px;
+    top:172px;
+    width:1175px;
+    height:526px;
+    font-size:12px;
+  }
+  .thead{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1175px;
+    height:31px;
+    display:grid;
+    grid-template-columns: 132px 243px 198px 207px 194px 201px;
+    align-items:end;
+    font-weight:800;
+    font-size:13px;
+  }
+  .thead > div{
+    height:31px;
+    padding:7px 8px 5px 8px;
+    white-space:nowrap;
+  }
+  .thead .country-head{
+    background:#dcdcdc;
+  }
+  .purple-line{
+    position:absolute;
+    left:0;
+    top:29px;
+    width:1175px;
+    height:2px;
+    background:#b228ff;
+  }
+
+  .tbody{
+    position:absolute;
+    left:0;
+    top:31px;
+    width:1175px;
+    height:495px;
+  }
+  .row{
+    position:relative;
+    width:1175px;
+    height:71px;
+    display:grid;
+    grid-template-columns: 132px 243px 198px 207px 194px 201px;
+    border-top:1px solid var(--line);
+  }
+  .row:first-child{ border-top:none; }
+  .cell{
+    position:relative;
+    padding:10px 10px 8px 10px;
+    font-size:12px;
+    line-height:1.12;
+    color:#2a2a2a;
+  }
+  .country{
+    background:var(--country-col);
+    padding:10px 8px 8px 8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:800;
+    font-size:14px;
+    color:#111;
+  }
+  .icon-status{
+    position:absolute;
+    left:14px;
+    top:22px;
+    font-size:21px;
+    font-weight:800;
+    line-height:1;
+  }
+  .green{ color:var(--green); }
+  .yellow{ color:var(--yellow); }
+  .red{ color:var(--red); }
+
+  .cell.pad-left{
+    padding-left:38px;
+  }
+
+  /* flags */
+  .flag{
+    position:relative;
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    flex:0 0 26px;
+    overflow:hidden;
+    box-shadow:0 1px 2px rgba(0,0,0,.35);
+    border:1px solid rgba(0,0,0,.08);
+    background:#fff;
+  }
+  .flag.mexico{
+    background:linear-gradient(90deg,#0e8a58 0 33.33%, #fff 33.33% 66.66%, #d74a43 66.66% 100%);
+  }
+  .flag.mexico::after{
+    content:"◉";
+    position:absolute;
+    left:9px; top:7px;
+    font-size:8px;
+    color:#9d7a2d;
+  }
+
+  .flag.india{
+    background:linear-gradient(#f48328 0 33.33%, #fff 33.33% 66.66%, #0a8b4c 66.66% 100%);
+  }
+  .flag.india::after{
+    content:"◉";
+    position:absolute; left:10px; top:8px;
+    font-size:7px; color:#2847b8;
+  }
+
+  .flag.vietnam{ background:#d72521; }
+  .flag.vietnam::after{
+    content:"★";
+    position:absolute; left:6px; top:2px;
+    font-size:14px; color:#ffdc38;
+  }
+
+  .flag.indonesia{
+    background:linear-gradient(#f01818 0 50%, #fff 50% 100%);
+  }
+
+  .flag.saudi{ background:#0b7b45; }
+  .flag.saudi::before{
+    content:"☪";
+    position:absolute; left:4px; top:4px;
+    font-size:10px; color:#fff;
+  }
+  .flag.saudi::after{
+    content:"≋";
+    position:absolute; right:4px; top:7px;
+    font-size:10px; color:#fff;
+  }
+
+  .flag.uae{
+    background:
+      linear-gradient(90deg,#e44343 0 25%, transparent 25% 100%),
+      linear-gradient(#0f9d58 0 33.33%, #fff 33.33% 66.66%, #111 66.66% 100%);
+  }
+
+  .flag.poland{
+    background:linear-gradient(#fff 0 50%, #e91818 50% 100%);
+  }
+
+  /* footer legend */
+  .source{
+    position:absolute;
+    left:40px;
+    bottom:20px;
+    color:#8a8a8a;
+    font-size:12px;
+  }
+  .arrow{
+    position:absolute;
+    left:39px;
+    bottom:12px;
+    color:#9b17ff;
+    font-size:38px;
+    line-height:1;
+    font-weight:900;
+  }
+  .legend{
+    position:absolute;
+    left:420px;
+    bottom:10px;
+    width:510px;
+    height:30px;
+    border:2px solid #333;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    font-size:13px;
+    color:#222;
+  }
+  .legend span b{
+    font-size:17px;
+    vertical-align:-1px;
+    margin-right:4px;
+  }
+  .copyright{
+    position:absolute;
+    right:82px;
+    bottom:20px;
+    font-size:11px;
+    color:#666;
+  }
+  .page{
+    position:absolute;
+    right:18px;
+    bottom:20px;
+    font-size:12px;
+    color:#666;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="tabs">
+    <div class="tab active">Top 10 trends</div>
+    <div class="tab">Multi-speed growth</div>
+    <div class="tab">Tariff impacts</div>
+    <div class="tab">Financial fragility</div>
+    <div class="tab">Affordability</div>
+    <div class="tab">AI productivity</div>
+    <div class="tab">China exports</div>
+    <div class="tab">Europe struggle</div>
+    <div class="tab">AI arms race</div>
+    <div class="tab">Power crunch</div>
+    <div class="tab last">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">
+    Regions with supply chain diversification appeal, data center readiness, and critical<br>
+    resources—e.g. Mexico, India, Middle East, ASEAN—are growing in geostrategic importance
+  </div>
+
+  <div class="subtitle">
+    10. Reshoring and resource security imperatives create geostrategic investment hotspots
+  </div>
+
+  <div class="table">
+    <div class="thead">
+      <div class="country-head">Country</div>
+      <div>Supply chain diversification hub</div>
+      <div>Data center readiness</div>
+      <div>Low-cost scalable energy</div>
+      <div>Critical minerals &amp; processing</div>
+      <div>Conducive policies/incentives</div>
+    </div>
+    <div class="purple-line"></div>
+
+    <div class="tbody">
+      <div class="row">
+        <div class="cell country">
+          <div class="flag mexico"></div>
+          <div>Mexico</div>
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          USMCA nearshoring gateway; strong manufacturing pull
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Growing DC clusters (e.g. Querétaro); hyperscaler build-outs
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status red">–</div>
+          Grid constraints + rising industrial tariffs
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status red">–</div>
+          Limited role in critical minerals
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Nearshoring incentives, SEZ reforms, tax breaks for strategic sectors
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="cell country">
+          <div class="flag india"></div>
+          <div>India</div>
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Major China+1 destination; strong domestic demand + reform momentum
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Rapid hyperscale growth; improving permitting
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Falling renewable tariffs; large solar/wind capacity
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          New lithium/REE finds; push for domestic processing
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          PLI schemes, infrastructure push, liberalized FDI rules, digital/AI incentives
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="cell country">
+          <div class="flag vietnam"></div>
+          <div>Vietnam</div>
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Leading China+1 hub; strong FDI in electronics &amp; apparel
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Early-stage DC growth; supportive industrial parks
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status yellow">~</div>
+          Competitive tariffs but grid reliability variable
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Large rare-earth reserves; expanding processing
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Strong FDI regime, SEZs, corporate tax incentives for high-tech
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="cell country">
+          <div class="flag indonesia"></div>
+          <div>Indonesia</div>
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Rising EV/battery hub; China+1 manufacturing alternative
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status yellow">~</div>
+          DC expansion underway but trailing top peers
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status yellow">~</div>
+          Abundant fossil + competitive renewables
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          World-scale nickel reserves + downstream battery processing
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Aggressive incentives for EV value chain, smelting, and tech manufacturing
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="cell country">
+          <div class="flag saudi"></div>
+          <div>Saudi Arabia</div>
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Vision 2030 manufacturing/logistics pivot connecting Asia–Europe–Africa
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          State-backed DC/AI megaprojects (NEOM, giga-projects)
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Ultra-low solar/gas costs; scalable energy
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Expanding exploration + processing ambitions
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Vision 2030 incentives, streamlined regulation, major FDI attraction programs
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="cell country">
+          <div class="flag uae"></div>
+          <div>UAE</div>
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Global logistics/re-export hub; competitive for regional supply-chain bases
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Mature DC market; strong submarine connectivity
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Lowest-cost solar globally + ample gas
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status yellow">~</div>
+          Emerging as a processing/trading hub
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Free zones, 0% corporate tax regimes in zones, fast permitting, AI/tech incentives
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="cell country">
+          <div class="flag poland"></div>
+          <div>Poland</div>
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Key “nearshoring inside Europe” location; integrated industrial base
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          Fastest-growing DC markets in Europe; investor-friendly permitting
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status yellow">~</div>
+          Not low-cost today; renewables + planned nuclear improving competitiveness
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status yellow">~</div>
+          Growing role in battery materials processing &amp; EV supply chains
+        </div>
+        <div class="cell pad-left">
+          <div class="icon-status green">✓</div>
+          EU-backed incentives, R&amp;D and energy-transition subsidies, strong manufacturing incentives
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow">&gt;</div>
+  <div class="source">Source(s): Accenture Strategy analysis</div>
+
+  <div class="legend">
+    <span><b class="green">✓</b>= clear strength</span>
+    <span><b class="yellow">~</b>= emerging/mixed</span>
+    <span><b class="red">–</b>= weak/underdeveloped)</span>
+  </div>
+
+  <div class="copyright">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="page">38</div>
+</div>
+</body>
+</html>

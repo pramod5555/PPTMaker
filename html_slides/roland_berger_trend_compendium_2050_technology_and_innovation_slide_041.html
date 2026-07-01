@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger - Wind energy innovations</title>
+<style>
+  body { margin: 0; background: #ffffff; }
+  #slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f2f2f3;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+  }
+  #slide > div, #slide > svg { position: absolute; box-sizing: border-box; }
+
+  .sidebar {
+    left: 0; top: 0; width: 180px; height: 720px;
+    background: #33373d;
+  }
+  .sidebar-line {
+    left: 179px; top: 0; width: 2px; height: 720px;
+    background: #7658bf;
+  }
+
+  .side-title {
+    left: 12px; top: 33px; width: 150px;
+    font-size: 25px; line-height: 1.06; font-weight: 700;
+    color: #f1f1f1;
+  }
+
+  .hex {
+    width: 78px; height: 68px;
+  }
+  .side-num {
+    font-size: 29px; line-height: 1; font-weight: 700;
+  }
+  .side-label {
+    font-size: 15px; line-height: 1.08; font-weight: 700;
+  }
+  .side-sub {
+    font-size: 14px; line-height: 1.08; font-weight: 400;
+    color: #767b82;
+  }
+
+  .gearbox {
+    left: 69px; top: 660px; width: 60px; height: 44px;
+    opacity: .62;
+  }
+
+  .page-no {
+    left: 8px; bottom: 7px;
+    font-size: 18px; line-height: 1;
+    color: #ffffff;
+  }
+
+  .title {
+    left: 219px; top: 30px; width: 1115px;
+    font-size: 26px; line-height: 1.06; font-weight: 700;
+    color: #222;
+  }
+
+  .subtitle {
+    left: 219px; top: 138px; width: 550px;
+    font-size: 29px; line-height: 1.1; font-weight: 300;
+    color: #8f959d;
+  }
+
+  .chart-area {
+    left: 219px; top: 188px; width: 683px; height: 395px;
+  }
+
+  .axis-label-x {
+    left: 427px; top: 624px; width: 360px;
+    font-size: 18px; line-height: 1.1; font-weight: 700;
+    color: #222;
+  }
+  .axis-label-y {
+    left: 226px; top: 462px;
+    font-size: 17px; line-height: 1.1; font-weight: 700;
+    color: #222;
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    white-space: nowrap;
+  }
+
+  .legend {
+    left: 220px; top: 682px; width: 640px; height: 32px;
+    font-size: 12px; color: #444;
+  }
+  .legend-item {
+    position: absolute;
+    height: 18px;
+    font-size: 12px;
+    line-height: 1.05;
+    color: #444;
+    white-space: nowrap;
+  }
+  .legend-swatch {
+    position: absolute;
+    left: 0; top: 1px; width: 23px; height: 18px;
+  }
+
+  .sources {
+    left: 220px; top: 753px;
+    display:none;
+  }
+
+  .sources-visible {
+    left: 220px; top: 752px;
+    display:none;
+  }
+
+  .source-line {
+    left: 220px; top: 753px;
+    display:none;
+  }
+
+  .sources-bottom {
+    left: 220px; top: 753px;
+    display:none;
+  }
+
+  .footnote {
+    left: 220px; top: 752px;
+    display:none;
+  }
+
+  .sourcesText {
+    left: 220px; top: 753px;
+    display:none;
+  }
+
+  .sources-real {
+    left: 220px; top: 752px;
+    display:none;
+  }
+
+  .src {
+    left: 220px; top: 752px;
+    display:none;
+  }
+
+  .source-visible {
+    left: 220px; top: 752px;
+    display:none;
+  }
+
+  .sources-line {
+    left: 220px; top: 754px;
+    display:none;
+  }
+
+  .sources-show {
+    left: 220px; top: 754px;
+    display:none;
+  }
+
+  .sources-final {
+    left: 220px; top: 753px;
+    display:none;
+  }
+
+  .callout {
+    left: 939px; top: 140px; width: 341px; height: 579px;
+    background: #d9d9db;
+    padding: 10px 14px 10px 14px;
+  }
+  .callout p {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    line-height: 1.08;
+    color: #2a2a2a;
+    font-weight: 400;
+  }
+  .callout b { font-weight: 700; }
+
+  .logo-wrap {
+    right: 8px; bottom: 6px; width: 62px; height: 18px;
+    color: #555;
+  }
+  .logo-text {
+    left: 0; top: -1px; width: 38px;
+    font-size: 10px; line-height: 0.9; font-weight: 400;
+    text-align: right;
+    color: #666;
+  }
+  .logo-mark {
+    left: 41px; top: -2px; width: 22px; height: 20px;
+  }
+
+  .bottom-source {
+    left: 220px; top: 753px;
+    display:none;
+  }
+
+  .actual-source {
+    left: 220px; bottom: 7px; width: 520px;
+    font-size: 11px; line-height: 1.05; font-weight: 400;
+    color: #444;
+  }
+
+  .bar-label {
+    font-size: 16px;
+    line-height: 1;
+    fill: #3d3d3d;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .tick-label {
+    font-size: 12px;
+    fill: #333;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="sidebar-line"></div>
+
+  <div class="side-title">Technology &amp;<br>Innovation</div>
+
+  <svg class="hex" style="left:8px; top:141px;" viewBox="0 0 78 68">
+    <polygon points="19,4 59,4 74,34 59,64 19,64 4,34" fill="none" stroke="#8f9399" stroke-width="4"/>
+    <defs>
+      <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#e3e3e3"/>
+        <stop offset="100%" stop-color="#6f6f6f"/>
+      </linearGradient>
+    </defs>
+    <polygon points="22,10 56,10 68,34 56,58 22,58 10,34" fill="url(#g1)" opacity="0.95"/>
+    <g stroke="#f5f5f5" stroke-opacity=".65" stroke-width="1">
+      <line x1="18" y1="46" x2="60" y2="22"/>
+      <line x1="20" y1="30" x2="56" y2="46"/>
+      <line x1="26" y1="18" x2="26" y2="52"/>
+      <line x1="38" y1="14" x2="38" y2="56"/>
+      <line x1="50" y1="18" x2="50" y2="52"/>
+      <line x1="16" y1="36" x2="62" y2="36"/>
+    </g>
+  </svg>
+  <div class="side-num" style="left:93px; top:145px; color:#80848b;">1</div>
+  <div class="side-sub" style="left:93px; top:174px; width:72px;">Value of<br>Innovation</div>
+
+  <svg class="hex" style="left:8px; top:273px;" viewBox="0 0 78 68">
+    <polygon points="19,4 59,4 74,34 59,64 19,64 4,34" fill="none" stroke="#8d6dd8" stroke-width="4"/>
+    <defs>
+      <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#b3b3b3"/>
+        <stop offset="100%" stop-color="#7a7a7a"/>
+      </linearGradient>
+    </defs>
+    <polygon points="22,10 56,10 68,34 56,58 22,58 10,34" fill="url(#g2)" opacity="0.9"/>
+    <g stroke="#d8d8d8" stroke-opacity=".45" stroke-width="1">
+      <circle cx="39" cy="34" r="3"/>
+      <line x1="39" y1="34" x2="22" y2="24"/>
+      <line x1="39" y1="34" x2="54" y2="20"/>
+      <line x1="39" y1="34" x2="57" y2="44"/>
+      <line x1="39" y1="34" x2="25" y2="49"/>
+      <circle cx="22" cy="24" r="2"/>
+      <circle cx="54" cy="20" r="2"/>
+      <circle cx="57" cy="44" r="2"/>
+      <circle cx="25" cy="49" r="2"/>
+    </g>
+  </svg>
+  <div class="side-num" style="left:93px; top:277px; color:#8c6fd1;">2</div>
+  <div class="side-label" style="left:93px; top:307px; width:85px; color:#8c6fd1;">Frontier<br>Technologies</div>
+
+  <svg class="hex" style="left:8px; top:405px;" viewBox="0 0 78 68">
+    <polygon points="19,4 59,4 74,34 59,64 19,64 4,34" fill="none" stroke="#8f9399" stroke-width="4"/>
+    <defs>
+      <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#ededed"/>
+        <stop offset="100%" stop-color="#9a9a9a"/>
+      </linearGradient>
+    </defs>
+    <polygon points="22,10 56,10 68,34 56,58 22,58 10,34" fill="url(#g3)" opacity="0.95"/>
+    <g fill="none" stroke="#f5f5f5" stroke-opacity=".7" stroke-width="1.5">
+      <path d="M22 38 C30 28, 48 28, 56 38"/>
+      <path d="M28 28 L24 20"/>
+      <path d="M50 28 L54 20"/>
+      <path d="M34 41 L39 47 L47 33"/>
+    </g>
+  </svg>
+  <div class="side-num" style="left:93px; top:409px; color:#80848b;">3</div>
+  <div class="side-sub" style="left:93px; top:438px; width:80px;">Humans &amp;<br>Machines</div>
+
+  <svg class="gearbox" viewBox="0 0 120 75">
+    <g fill="none" stroke="#8c8f94" stroke-width="5">
+      <circle cx="33" cy="37" r="18"></circle>
+      <circle cx="82" cy="28" r="14"></circle>
+      <path d="M54,37 C60,34 64,31 68,28"></path>
+      <path d="M53,48 C59,51 63,54 67,58"></path>
+      <path d="M78,42 L78,58"></path>
+      <path d="M31,8 L31,0 M31,74 L31,66 M3,37 L11,37 M51,37 L59,37 M12,16 L18,22 M44,52 L50,58 M12,58 L18,52 M44,22 L50,16"></path>
+      <path d="M82,8 L82,0 M82,56 L82,70 M60,28 L50,28 M104,28 L116,28 M67,13 L61,7 M97,49 L103,55 M67,43 L61,49 M97,7 L103,13"></path>
+      <path d="M46,56 C57,71 72,73 87,69"></path>
+    </g>
+    <path d="M61,67 C59,56 61,48 70,42 C76,38 79,31 78,25 C76,16 66,10 56,13 C47,16 42,24 44,34" fill="none" stroke="#8c8f94" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="60" cy="69" r="3.5" fill="#8c8f94"></circle>
+  </svg>
+
+  <div class="page-no">41</div>
+
+  <div class="title">Wind energy shows clear potential to expand – Next-generation turbines and floating foundations comprise the most important innovations</div>
+  <div class="subtitle">Innovations in offshore wind technology</div>
+
+  <svg class="chart-area" viewBox="0 0 683 395" xmlns="http://www.w3.org/2000/svg">
+    <!-- axes -->
+    <line x1="42" y1="0" x2="42" y2="395" stroke="#2b2b2b" stroke-width="1.5"/>
+    <line x1="42" y1="395" x2="683" y2="395" stroke="#2b2b2b" stroke-width="1.5"/>
+    <polygon points="42,0 38,9 46,9" fill="#2b2b2b"/>
+
+    <!-- gridlines -->
+    <line x1="134" y1="0" x2="134" y2="395" stroke="#d0d0d0" stroke-width="1"/>
+    <line x1="226" y1="0" x2="226" y2="395" stroke="#d0d0d0" stroke-width="1"/>
+    <line x1="318" y1="0" x2="318" y2="395" stroke="#d0d0d0" stroke-width="1"/>
+    <line x1="410" y1="0" x2="410" y2="395" stroke="#d0d0d0" stroke-width="1"/>
+    <line x1="502" y1="0" x2="502" y2="395" stroke="#d0d0d0" stroke-width="1"/>
+    <line x1="594" y1="0" x2="594" y2="395" stroke="#d0d0d0" stroke-width="1"/>
+
+    <!-- bars and labels -->
+    <rect x="146" y="7" width="106" height="20" fill="#97aec9"/>
+    <text x="257" y="23" class="bar-label">Next generation turbines</text>
+
+    <rect x="140" y="35" width="89" height="20" fill="#1d78a8"/>
+    <text x="234" y="51" class="bar-label">Floating foundations</text>
+
+    <rect x="153" y="63" width="170" height="20" fill="#97aec9"/>
+    <text x="329" y="79" class="bar-label">Airborne Wind</text>
+
+    <rect x="151" y="91" width="103" height="20" fill="#ccc6da"/>
+    <text x="261" y="107" class="bar-label">Integrated turbine and foundation installation</text>
+
+    <rect x="153" y="119" width="198" height="20" fill="#7e67b6"/>
+    <text x="358" y="135" class="bar-label">HVDC infrastructure</text>
+
+    <rect x="153" y="147" width="92" height="20" fill="#7e67b6"/>
+    <text x="252" y="163" class="bar-label">DC power take-off and array cables</text>
+
+    <rect x="54" y="175" width="105" height="20" fill="#0a5786"/>
+    <text x="166" y="191" class="bar-label">Site layout optimization</text>
+
+    <rect x="193" y="231" width="204" height="20" fill="#97aec9"/>
+    <text x="403" y="247" class="bar-label">Increases turbine rating</text>
+
+    <rect x="127" y="259" width="166" height="20" fill="#7e67b6"/>
+    <text x="297" y="275" class="bar-label">Reducing electrical infrastructure</text>
+
+    <rect x="46" y="287" width="95" height="20" fill="#2f1a63"/>
+    <text x="149" y="303" class="bar-label">Wind farm-level control strategies</text>
+
+    <rect x="160" y="315" width="112" height="20" fill="#97aec9"/>
+    <text x="278" y="331" class="bar-label">Blade design and manufacture</text>
+
+    <rect x="79" y="343" width="68" height="20" fill="#2f1a63"/>
+    <text x="155" y="359" class="bar-label">Personal access systems</text>
+
+    <rect x="149" y="371" width="94" height="20" fill="#ccc6da"/>
+    <text x="249" y="387" class="bar-label">Onshore turbine pre-commissioning</text>
+
+    <rect x="160" y="371" width="111" height="20" fill="#1d78a8" transform="translate(0,28)"/>
+    <text x="278" y="415" class="bar-label" visibility="hidden">Self-installing foundations</text>
+    <text x="278" y="415" class="bar-label" transform="translate(0,-28)">Self-installing foundations</text>
+
+    <!-- tick labels -->
+    <text x="23" y="423" class="tick-label">2015</text>
+    <text x="115" y="423" class="tick-label">2020</text>
+    <text x="207" y="423" class="tick-label">2025</text>
+    <text x="299" y="423" class="tick-label">2030</text>
+    <text x="391" y="423" class="tick-label">2035</text>
+    <text x="483" y="423" class="tick-label">2040</text>
+    <text x="575" y="423" class="tick-label">2045</text>
+  </svg>
+
+  <div class="axis-label-y">Relative importance</div>
+  <div class="axis-label-x">Expected period for commercialization</div>
+
+  <div class="legend">
+    <div class="legend-item" style="left:0px; top:0px;">
+      <div class="legend-swatch" style="background:#0a5786;"></div>
+      <div style="position:absolute; left:28px; top:2px;">Development</div>
+    </div>
+    <div class="legend-item" style="left:123px; top:0px;">
+      <div class="legend-swatch" style="background:#1d78a8;"></div>
+      <div style="position:absolute; left:28px; top:2px;">Support structure</div>
+    </div>
+    <div class="legend-item" style="left:272px; top:0px;">
+      <div class="legend-swatch" style="background:#97aec9;"></div>
+      <div style="position:absolute; left:28px; top:2px;">Turbines</div>
+    </div>
+    <div class="legend-item" style="left:372px; top:0px;">
+      <div class="legend-swatch" style="background:#ccc6da;"></div>
+      <div style="position:absolute; left:28px; top:2px;">Installation</div>
+    </div>
+    <div class="legend-item" style="left:482px; top:0px;">
+      <div class="legend-swatch" style="background:#7e67b6;"></div>
+      <div style="position:absolute; left:28px; top:2px;">Electrical interconnection</div>
+    </div>
+    <div class="legend-item" style="left:0px; top:19px;">
+      <div class="legend-swatch" style="background:#2f1a63;"></div>
+      <div style="position:absolute; left:28px; top:2px;">Operation, maintenance and service</div>
+    </div>
+  </div>
+
+  <div class="actual-source">Sources: Irena; IET; Airborne Wind Europe; Windeurope; Roland Berger</div>
+
+  <div class="callout">
+    <p>&gt; <b>Wind energy</b> constitutes – alongside solar power – an important and <b>essential part of the renewable energy mix</b>. As such, further future innovations, including those advancing efficiency increases, are a must</p>
+    <p>&gt; <b>Efficiency increases</b> can be attained in several ways: better turbines, more efficient installations, higher electrical interconnection, but also through an innovative support structure</p>
+    <p>&gt; <b>Innovations in blade, drivetrain and control technologies</b> will lead to <b>next generation turbines</b>. Such turbines will be larger and more reliable and will have higher capacity ratings</p>
+    <p>&gt; <b>Floating foundations</b> will also have a significant impact in the wind energy sector, being <b>more flexible and cheaper</b> than fixed structures. Especially countries with deeper sea levels will benefit from this technological innovation</p>
+    <p>&gt; <b>Significantly reducing construction costs</b> and materials, <b>airborne wind energy</b> could bring a profound change within the wind energy generation mix itself. Being comparable to the shape of a kite and taking advantage of the concentrated traction force of the wind, airborne wind energy has a <b>significantly lower visual impact on its environment</b></p>
+  </div>
+
+  <div class="logo-wrap">
+    <div class="logo-text">Roland<br>Berger</div>
+    <svg class="logo-mark" viewBox="0 0 40 36">
+      <path d="M13 2 C22 2, 25 7, 25 14 C25 22, 20 25, 13 25 Z" fill="#aeb0b4"/>
+      <path d="M13 2 L13 34 C27 34, 36 28, 36 17 C36 7, 28 2, 13 2 Z" fill="#767a81"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

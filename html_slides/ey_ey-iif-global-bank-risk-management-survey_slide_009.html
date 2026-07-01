@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>15 years of evolving CRO priorities</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#000;
+    margin:0 auto;
+  }
+  .slide > *{ position:absolute; box-sizing:border-box; }
+
+  .bg{
+    inset:0;
+    background:#000;
+    z-index:0;
+  }
+
+  .glow1{
+    left:-110px;
+    top:208px;
+    width:640px;
+    height:540px;
+    z-index:1;
+    background:
+      radial-gradient(circle at 16% 44%, rgba(255,118,0,0.82) 0%, rgba(182,39,0,0.58) 16%, rgba(96,10,0,0.40) 30%, rgba(0,0,0,0) 55%),
+      radial-gradient(circle at 13% 88%, rgba(255,213,0,0.78) 0%, rgba(255,154,45,0.52) 11%, rgba(164,60,53,0.32) 24%, rgba(0,0,0,0) 39%),
+      radial-gradient(circle at 39% 86%, rgba(201,97,135,0.42) 0%, rgba(126,32,87,0.24) 18%, rgba(0,0,0,0) 40%);
+    filter: blur(20px);
+  }
+  .glow2{
+    left:308px;
+    top:508px;
+    width:604px;
+    height:250px;
+    z-index:1;
+    background:
+      radial-gradient(ellipse at 46% 58%, rgba(238,196,0,0.88) 0%, rgba(180,138,0,0.62) 24%, rgba(115,79,22,0.26) 45%, rgba(0,0,0,0) 70%);
+    filter: blur(24px);
+  }
+  .glow3{
+    left:690px;
+    top:415px;
+    width:520px;
+    height:330px;
+    z-index:1;
+    background:
+      radial-gradient(ellipse at 68% 74%, rgba(0,130,255,0.28) 0%, rgba(0,78,189,0.22) 24%, rgba(0,0,0,0) 62%);
+    filter: blur(28px);
+  }
+
+  .left-curve{
+    left:-137px;
+    top:291px;
+    width:272px;
+    height:266px;
+    border:2px solid rgba(171,180,221,0.82);
+    border-radius:50%;
+    z-index:10;
+  }
+
+  .header{
+    left:47px;
+    top:38px;
+    color:#f2f2f2;
+    z-index:30;
+    white-space:nowrap;
+  }
+  .header .bold{
+    font-weight:800;
+    font-size:49px;
+    line-height:1;
+    letter-spacing:-0.03em;
+  }
+  .header .rest{
+    font-weight:600;
+    font-size:43px;
+    line-height:1;
+    letter-spacing:-0.03em;
+  }
+
+  .rule{
+    left:47px;
+    top:110px;
+    width:1258px;
+    height:3px;
+    z-index:12;
+    background:linear-gradient(90deg,#f6e400 0%,#efdc00 28%,#cd38ff 67%,#2b9cff 100%);
+  }
+
+  .subtitle{
+    left:48px;
+    top:129px;
+    width:1185px;
+    color:#f0f0f0;
+    font-size:18px;
+    line-height:1.24;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .vertical-label{
+    left:-38px;
+    top:340px;
+    width:170px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    color:#d9d9d9;
+    font-size:12px;
+    line-height:12px;
+    font-weight:500;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    z-index:30;
+  }
+  .vertical-tick{
+    left:13px;
+    top:359px;
+    width:2px;
+    height:35px;
+    background:#8f8f8f;
+    z-index:30;
+  }
+
+  .jump{
+    right:20px;
+    top:24px;
+    width:58px;
+    height:58px;
+    z-index:55;
+  }
+
+  .timeline{
+    left:0;
+    top:0;
+    width:1280px;
+    height:720px;
+    z-index:20;
+  }
+
+  .year{
+    color:#f3f3f3;
+    z-index:35;
+    text-align:center;
+  }
+  .year.big{
+    font-size:49px;
+    line-height:1;
+    font-weight:700;
+    letter-spacing:-0.03em;
+  }
+  .year.med{
+    font-size:24px;
+    line-height:1.1;
+    font-weight:400;
+  }
+
+  .desc{
+    color:#e7e7e7;
+    font-size:14px;
+    line-height:1.12;
+    font-weight:400;
+    text-align:center;
+    z-index:35;
+  }
+
+  .year2026{
+    left:968px;
+    top:360px;
+    width:140px;
+    color:#f5f5f5;
+    font-size:40px;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:-0.03em;
+    text-align:center;
+    z-index:40;
+  }
+  .desc2026{
+    left:928px;
+    top:401px;
+    width:285px;
+    color:#e7e7e7;
+    font-size:14px;
+    line-height:1.12;
+    font-weight:400;
+    text-align:center;
+    z-index:40;
+  }
+
+  .page{
+    left:20px;
+    bottom:12px;
+    color:#f2f2f2;
+    font-size:11px;
+    line-height:1;
+    font-weight:400;
+    z-index:50;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="bg"></div>
+    <div class="glow1"></div>
+    <div class="glow2"></div>
+    <div class="glow3"></div>
+    <div class="left-curve"></div>
+
+    <div class="header"><span class="bold">15 years</span> <span class="rest">of evolving CRO priorities</span></div>
+    <div class="rule"></div>
+    <div class="subtitle">For 15 years, the EY/IIF global bank risk management survey has tracked the evolution of the CRO role from compliance-centric<br>to strategy-focused and business-driven.</div>
+
+    <div class="vertical-label">EXECUTIVE SUMMARY</div>
+    <div class="vertical-tick"></div>
+
+    <svg class="jump" viewBox="0 0 61 61" aria-hidden="true">
+      <circle cx="30.5" cy="30.5" r="19" fill="none" stroke="#d8d8d8" stroke-width="1.1"/>
+      <path d="M18 22 A18 18 0 0 1 34.8 12.2" fill="none" stroke="#d8d8d8" stroke-width="1.1"/>
+      <path d="M43.2 39.5 A18 18 0 0 1 26.5 48.8" fill="none" stroke="#d8d8d8" stroke-width="1.1"/>
+      <circle cx="45.5" cy="15.5" r="4.5" fill="#f6e400"/>
+      <path d="M47.4 9.8 L49.6 14.7 L44.5 13.7 Z" fill="#f6e400"/>
+      <text x="30.5" y="25" text-anchor="middle" fill="#f0f0f0" font-size="8.4" font-family="Arial, Helvetica, sans-serif">Jump to</text>
+      <text x="30.5" y="34.5" text-anchor="middle" fill="#f0f0f0" font-size="8.4" font-family="Arial, Helvetica, sans-serif">(contents)</text>
+    </svg>
+
+    <svg class="timeline" viewBox="0 0 1280 720" aria-hidden="true">
+      <line x1="307" y1="421" x2="417" y2="421" stroke="#f6e400" stroke-width="2"/>
+      <line x1="417" y1="421" x2="760" y2="421" stroke="#b42cff" stroke-width="2"/>
+      <line x1="760" y1="421" x2="1279" y2="421" stroke="#2d96ff" stroke-width="2"/>
+
+      <line x1="307" y1="297" x2="307" y2="421" stroke="#d8d8dc" stroke-width="2"/>
+      <circle cx="307" cy="421" r="100" fill="#7d7e89"/>
+      <circle cx="206" cy="421" r="35" fill="#d0d1d8"/>
+      <circle cx="421" cy="421" r="35" fill="#d0d1d8"/>
+      <circle cx="307" cy="421" r="9.5" fill="#efefef"/>
+
+      <line x1="445" y1="421" x2="445" y2="548" stroke="#6f6f7a" stroke-width="2"/>
+      <circle cx="445" cy="421" r="9.5" fill="#7f7f86"/>
+
+      <line x1="581" y1="332" x2="581" y2="421" stroke="#d8d8dc" stroke-width="2"/>
+      <circle cx="565" cy="421" r="58" fill="#2d2d3f"/>
+      <circle cx="645" cy="421" r="33" fill="#a3a5b2"/>
+      <circle cx="581" cy="421" r="9.5" fill="#efefef"/>
+
+      <line x1="767" y1="421" x2="767" y2="520" stroke="#6f6f7a" stroke-width="2"/>
+      <circle cx="771" cy="421" r="58" fill="#2d2d3f"/>
+      <circle cx="767" cy="421" r="9.5" fill="#7f8194"/>
+
+      <circle cx="855" cy="421" r="5.2" fill="#2d96ff"/>
+
+      <path d="M911 277 C957 236, 1018 221, 1081 229 C1144 237, 1200 271, 1231 326 C1250 360, 1258 398, 1252 438" fill="none" stroke="#f6e400" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M1040 279 C1085 271, 1134 286, 1167 320 C1200 354, 1217 400, 1213 446 C1208 500, 1178 550, 1132 580 C1102 600, 1068 610, 1035 610" fill="none" stroke="#c133ff" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M1082 229 C1144 237, 1201 271, 1237 325 C1261 362, 1272 405, 1266 449 C1260 496, 1236 541, 1199 575" fill="none" stroke="#2d96ff" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M911 277 C953 236, 1005 214, 1062 214 C1125 214, 1188 239, 1233 284 C1276 328, 1298 389, 1294 451" fill="none" stroke="#f6e400" stroke-width="2.8" stroke-linecap="round" opacity="0"/>
+      <circle cx="911" cy="277" r="5.5" fill="#f6e400"/>
+      <circle cx="1216" cy="421" r="12" fill="#f6e400"/>
+      <circle cx="1041" cy="590" r="5.5" fill="#f6e400"/>
+
+      <circle cx="1038" cy="421" r="130" fill="none" stroke="#f6e400" stroke-width="2.3"/>
+      <path d="M1038 291
+               A130 130 0 0 1 1168 421
+               A130 130 0 0 1 1038 551" fill="none" stroke="#c133ff" stroke-width="2.3"/>
+
+      <circle cx="1038" cy="421" r="190" fill="none" stroke="#2d96ff" stroke-width="2.3" stroke-dasharray="0 9999"/>
+      <path d="M911 277
+               A190 190 0 0 1 1216 421" fill="none" stroke="#f6e400" stroke-width="2.3"/>
+    </svg>
+
+    <div class="year big" style="left:244px; top:196px; width:125px;">2009</div>
+    <div class="desc" style="left:190px; top:229px; width:232px;">Risk management was focused<br>on regulatory compliance and post-<br>crisis capital strength.</div>
+
+    <div class="year med" style="left:419px; top:568px; width:56px;">2014</div>
+    <div class="desc" style="left:356px; top:597px; width:184px;">Conduct risk and culture<br>moved to the forefront, driven<br>by high-profile failures and<br>regulatory pressure.</div>
+
+    <div class="year med" style="left:554px; top:236px; width:57px;">2019</div>
+    <div class="desc" style="left:476px; top:263px; width:210px;">Operational resilience and cyber<br>threats became priorities as digital<br>transformation accelerated.</div>
+
+    <div class="year med" style="left:739px; top:542px; width:57px;">2024</div>
+    <div class="desc" style="left:650px; top:570px; width:233px;">Nonfinancial risks, such as fraud,<br>financial crime and geopolitical shocks<br>surged, reflecting a more interconnected<br>risk landscape.</div>
+
+    <div class="year2026">2026</div>
+    <div class="desc2026">Credit risk returns as a top<br>concern, while macroeconomic<br>conditions, geopolitical tensions,<br>technology disruption and new<br>competition reset the agenda.</div>
+
+    <div class="page">9</div>
+  </div>
+</body>
+</html>

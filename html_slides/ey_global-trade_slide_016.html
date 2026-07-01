@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#c8c1c4;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  .slide > div, .slide > svg, .slide > img{
+    position:absolute;
+  }
+
+  .hero{
+    left:0;
+    top:0;
+    width:1280px;
+    height:438px;
+    object-fit:cover;
+    display:block;
+  }
+
+  .top-fade{
+    left:0;
+    top:0;
+    width:1280px;
+    height:438px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 40%, rgba(0,0,0,0.02) 100%);
+    z-index:2;
+    pointer-events:none;
+  }
+
+  .title{
+    left:56px;
+    top:51px;
+    color:#f2f2f2;
+    font-size:16px;
+    font-weight:400;
+    line-height:1;
+    letter-spacing:0;
+    z-index:20;
+  }
+
+  .circle-btn{
+    width:39px;
+    height:39px;
+    border-radius:50%;
+    background:rgba(233,233,236,0.86);
+    z-index:25;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#5c5c62;
+    font-size:19px;
+    font-weight:700;
+    line-height:39px;
+  }
+
+  .nav-box{
+    width:76px;
+    min-height:36px;
+    background:#4d4d56;
+    color:#f1f1f1;
+    font-size:11px;
+    font-weight:400;
+    line-height:12px;
+    padding:9px 7px 7px 7px;
+    box-sizing:border-box;
+    z-index:26;
+    border-left:2px solid #c6bc1c;
+  }
+
+  .content{
+    left:0;
+    top:438px;
+    width:1280px;
+    height:282px;
+    background:#efefef;
+    z-index:1;
+  }
+
+  .col-text{
+    color:#555;
+    font-size:12px;
+    font-weight:400;
+    line-height:1.34;
+    z-index:10;
+  }
+
+  .footer{
+    left:57px;
+    top:708px;
+    color:#666;
+    font-size:9px;
+    line-height:1;
+    z-index:10;
+  }
+  .footer b{font-weight:700;}
+</style>
+</head>
+<body>
+<div class="slide">
+  <img class="hero" alt="" src="data:image/png;base64,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" />
+  <div class="top-fade"></div>
+
+  <div class="title">Insights: Global</div>
+
+  <div class="circle-btn" style="left:1190px; top:14px;">◀</div>
+  <div class="circle-btn" style="left:1234px; top:14px;">▶</div>
+
+  <div class="nav-box" style="left:1203px; top:121px;">Contents</div>
+  <div class="nav-box" style="left:1203px; top:170px;">Insights</div>
+  <div class="nav-box" style="left:1203px; top:219px;">New on<br>ey.com</div>
+  <div class="nav-box" style="left:1203px; top:268px;">Tax alerts</div>
+  <div class="nav-box" style="left:1203px; top:317px;">Additional<br>resources</div>
+  <div class="nav-box" style="left:1203px; top:366px;">Contacts</div>
+
+  <div class="content"></div>
+
+  <div class="col-text" style="left:56px; top:465px; width:470px;">
+    This set of measures establishes a solid foundation for economic and regulatory<br>
+    integration between the blocs while also requiring protection mechanisms for<br>
+    sensitive sectors such as agriculture which were recently addressed through<br>
+    specific safeguards to manage impacts and ensure balance in trade relations.
+  </div>
+
+  <div class="col-text" style="left:56px; top:541px; width:470px;">
+    To manage impacts on European producers, agricultural safeguards were<br>
+    included allowing for the suspension of tariff preferences in the case of<br>
+    significant market distortions, in addition to sanitary and environmental controls<br>
+    and the creation of sectoral crisis funds.
+  </div>
+
+  <div class="col-text" style="left:56px; top:617px; width:470px;">
+    There was a reduction in the threshold that triggers investigations and a<br>
+    shortening of the deadlines for their conclusion, enabling faster application of<br>
+    corrective measures, such as temporary tariffs or volume limits. Regulatory<br>
+    requirements were also included, obliging Mercosur to adopt standards<br>
+    equivalent to those of the EU regarding pesticides, animal health and traceability.
+  </div>
+
+  <div class="col-text" style="left:566px; top:465px; width:660px;">
+    Although not formally included in the agreement text, these rules will be applied<br>
+    through European regulations, ensuring flexibility.
+  </div>
+
+  <div class="col-text" style="left:566px; top:510px; width:660px;">
+    From an economic perspective, the agreement is considered strategic for both<br>
+    blocs. For the European Union, it expands export opportunities for industrial<br>
+    products such as automobiles, machinery, pharmaceuticals and beverages. For<br>
+    Mercosur, it facilitates access to the European market for agricultural products<br>
+    and stimulates investment in infrastructure, industry and technology, fostering<br>
+    modernization of the industrial base and integration into global value chains.
+  </div>
+
+  <div class="col-text" style="left:566px; top:617px; width:660px;">
+    Although approved, the process still faces political challenges. Countries such as<br>
+    France, Poland, Austria, Ireland and Hungary expressed opposition, and Belgium<br>
+    abstained from the vote. The review by the European Parliament and potential<br>
+    national ratifications will be critical steps for the agreement’s entry into force.
+  </div>
+
+  <div class="footer">13&nbsp;&nbsp;|&nbsp;&nbsp;<b>TradeWatch</b> Issue 1 2026</div>
+</div>
+</body>
+</html>

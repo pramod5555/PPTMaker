@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 57% 10%, rgba(255,255,255,0.95) 0 1.4%, rgba(130,255,240,0.78) 1.5% 3.4%, rgba(0,0,0,0) 4.4%),
+      radial-gradient(circle at 66% 16%, rgba(255,255,255,0.95) 0 1.1%, rgba(150,255,245,0.72) 1.2% 3%, rgba(0,0,0,0) 4.1%),
+      radial-gradient(circle at 43% 8%, rgba(255,255,255,0.95) 0 0.9%, rgba(100,210,255,0.85) 1% 2.8%, rgba(0,0,0,0) 3.8%),
+      radial-gradient(circle at 37% 18%, rgba(255,255,255,0.95) 0 0.9%, rgba(80,230,255,0.65) 1% 2.5%, rgba(0,0,0,0) 3.5%),
+      radial-gradient(circle at 51% 24%, rgba(255,255,255,0.92) 0 0.8%, rgba(180,255,250,0.6) 1% 2.4%, rgba(0,0,0,0) 3.4%),
+      radial-gradient(circle at 27% 77%, rgba(120,255,220,0.25) 0 0.7%, rgba(0,0,0,0) 4%),
+      radial-gradient(circle at 58% 74%, rgba(255,255,255,0.75) 0 0.6%, rgba(180,255,245,0.28) 0.8% 2.2%, rgba(0,0,0,0) 4%),
+      radial-gradient(circle at 82% 26%, rgba(255,255,255,0.7) 0 0.5%, rgba(170,255,235,0.2) 0.8% 2.4%, rgba(0,0,0,0) 4%),
+      radial-gradient(circle at 15% 32%, rgba(0,80,0,0.95) 0 8%, rgba(0,0,0,0) 21%),
+      radial-gradient(circle at 67% 54%, rgba(0,180,120,0.45) 0 8%, rgba(0,0,0,0) 23%),
+      radial-gradient(circle at 75% 18%, rgba(0,255,180,0.25) 0 11%, rgba(0,0,0,0) 24%),
+      radial-gradient(circle at 62% 34%, rgba(0,255,170,0.22) 0 10%, rgba(0,0,0,0) 22%),
+      radial-gradient(circle at 37% 58%, rgba(0,255,165,0.18) 0 8%, rgba(0,0,0,0) 20%),
+      radial-gradient(circle at 50% 50%, rgba(0,255,150,0.12) 0 16%, rgba(0,0,0,0) 28%),
+      linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,25,0,0.35) 19%, rgba(0,40,15,0.14) 39%, rgba(0,20,0,0.05) 58%, rgba(0,0,0,0) 100%),
+      linear-gradient(180deg, rgba(5,15,8,0.55) 0%, rgba(0,45,18,0.25) 38%, rgba(0,55,20,0.18) 100%),
+      linear-gradient(120deg, #071007 0%, #0b2411 24%, #0f4126 49%, #176448 70%, #2d6f58 84%, #67593f 100%);
+  }
+
+  .title-small {
+    position: absolute;
+    left: 50px;
+    top: 64px;
+    color: rgba(255,255,255,0.78);
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0;
+  }
+
+  .title-main {
+    position: absolute;
+    left: 42px;
+    top: 104px;
+    color: rgba(255,255,255,0.92);
+    font-size: 77px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .title-sub {
+    position: absolute;
+    left: 333px;
+    top: 223px;
+    color: rgba(255,255,255,0.78);
+    font-size: 93px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -2px;
+    text-shadow: 0 0 6px rgba(255,255,255,0.18);
+  }
+
+  .stick {
+    position: absolute;
+    left: 24px;
+    top: 374px;
+    width: 724px;
+    height: 20px;
+    border-radius: 12px;
+    transform: rotate(-5deg);
+    background:
+      linear-gradient(90deg,
+        #f00094 0%,
+        #ff0da5 11%,
+        #7a1425 13.5%,
+        #f5b11a 16%,
+        #f8dd2a 27%,
+        #ff1a16 43%,
+        #ff4734 57%,
+        #84f5ef 67%,
+        #adefe9 77%,
+        #d3f17f 100%);
+    box-shadow:
+      0 0 10px rgba(255,0,100,0.45),
+      0 0 16px rgba(255,230,80,0.25);
+  }
+  .stick:before,
+  .stick:after {
+    content: "";
+    position: absolute;
+    top: -9px;
+    width: 100%;
+    height: 38px;
+    left: 0;
+    background:
+      radial-gradient(circle at 4% 55%, rgba(255,0,170,0.9) 0 1.4%, rgba(0,0,0,0) 1.6%),
+      radial-gradient(circle at 11% 58%, rgba(255,0,170,0.9) 0 1%, rgba(0,0,0,0) 1.2%),
+      radial-gradient(circle at 34% 49%, rgba(255,220,30,0.95) 0 1.1%, rgba(0,0,0,0) 1.3%),
+      radial-gradient(circle at 44% 46%, rgba(255,30,30,0.95) 0 1.1%, rgba(0,0,0,0) 1.3%),
+      radial-gradient(circle at 67% 45%, rgba(160,255,245,0.9) 0 1.1%, rgba(0,0,0,0) 1.3%),
+      radial-gradient(circle at 96% 52%, rgba(236,240,110,0.95) 0 1.1%, rgba(0,0,0,0) 1.3%);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .hand-back {
+    position: absolute;
+    left: 694px;
+    top: 261px;
+    width: 131px;
+    height: 239px;
+    background: linear-gradient(180deg, #e0a36e 0%, #f2c294 34%, #cd8b59 100%);
+    border-radius: 44px 44px 56px 56px;
+    transform: rotate(-27deg);
+    filter: blur(0.4px);
+    box-shadow: inset 0 0 10px rgba(120,50,20,0.25);
+    opacity: 0.86;
+  }
+
+  .hand-front {
+    position: absolute;
+    left: 769px;
+    top: 274px;
+    width: 148px;
+    height: 269px;
+    background: linear-gradient(180deg, #ffe2d3 0%, #f9dfd7 46%, #efc6b8 100%);
+    border-radius: 52px 52px 66px 66px;
+    transform: rotate(10deg);
+    box-shadow: inset 0 0 14px rgba(190,120,110,0.18);
+  }
+
+  .fingers {
+    position: absolute;
+    left: 709px;
+    top: 267px;
+    width: 176px;
+    height: 91px;
+    transform: rotate(11deg);
+  }
+  .fingers span {
+    position: absolute;
+    display: block;
+    width: 33px;
+    height: 84px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #f6c096 0%, #d88d5a 100%);
+    box-shadow: inset 0 0 5px rgba(120,60,20,0.22);
+  }
+  .fingers span:nth-child(1){left: 0; top: 8px; transform: rotate(-23deg);}
+  .fingers span:nth-child(2){left: 28px; top: 2px; transform: rotate(-10deg);}
+  .fingers span:nth-child(3){left: 58px; top: 0; transform: rotate(1deg);}
+  .fingers span:nth-child(4){left: 88px; top: 4px; transform: rotate(10deg);}
+  .fingers span:nth-child(5){left: 121px; top: 18px; transform: rotate(27deg); height: 69px;}
+
+  .sleeve {
+    position: absolute;
+    left: 837px;
+    top: 500px;
+    width: 159px;
+    height: 246px;
+    background:
+      linear-gradient(180deg, rgba(80,82,90,0.85) 0%, rgba(18,26,39,0.96) 18%, rgba(10,20,34,0.98) 100%),
+      repeating-linear-gradient(180deg, rgba(255,255,255,0.05) 0 2px, rgba(0,0,0,0) 2px 5px);
+    border-radius: 28px 28px 0 0;
+    transform: rotate(8deg);
+    box-shadow: inset 0 0 18px rgba(255,255,255,0.08);
+  }
+  .cuff {
+    position: absolute;
+    left: 824px;
+    top: 526px;
+    width: 116px;
+    height: 18px;
+    background: rgba(110,84,90,0.7);
+    border-radius: 8px;
+    transform: rotate(2deg);
+  }
+
+  .head {
+    position: absolute;
+    left: 352px;
+    top: 548px;
+    width: 326px;
+    height: 226px;
+    border-radius: 48% 55% 40% 42%;
+    background: linear-gradient(180deg, #50361f 0%, #6a4a2b 22%, #ddb387 64%, #dbb08e 100%);
+    transform: rotate(7deg);
+    box-shadow: 0 -20px 0 0 rgba(45,22,8,0.85) inset;
+    filter: blur(0.3px);
+  }
+  .hair {
+    position: absolute;
+    left: 346px;
+    top: 520px;
+    width: 357px;
+    height: 240px;
+    border-radius: 50%;
+    background:
+      repeating-radial-gradient(circle at 40% 36%, rgba(255,230,190,0.9) 0 1.2%, rgba(110,70,30,0) 1.3% 6%),
+      linear-gradient(180deg, #241409 0%, #6b4829 25%, #a27b4f 46%, #6b4b2d 69%, #2f1b0d 100%);
+    clip-path: ellipse(47% 40% at 43% 43%);
+    transform: rotate(8deg);
+    opacity: 0.95;
+  }
+  .glasses {
+    position: absolute;
+    left: 600px;
+    top: 602px;
+    width: 122px;
+    height: 66px;
+    transform: rotate(-18deg);
+  }
+  .glasses:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 74px;
+    height: 54px;
+    background: linear-gradient(135deg, rgba(255,0,0,0.92) 0%, rgba(255,40,40,0.98) 65%, rgba(255,230,0,0.82) 100%);
+    clip-path: polygon(15% 0, 100% 8%, 78% 100%, 0 77%);
+    border-radius: 6px;
+    box-shadow: 0 0 8px rgba(255,0,0,0.4);
+  }
+  .glasses:after {
+    content: "";
+    position: absolute;
+    left: 58px;
+    top: 28px;
+    width: 54px;
+    height: 3px;
+    background: rgba(190,215,255,0.85);
+    transform: rotate(18deg);
+  }
+
+  .pinata {
+    position: absolute;
+    left: 892px;
+    top: -7px;
+    width: 440px;
+    height: 700px;
+    transform: rotate(15deg);
+    transform-origin: top center;
+  }
+  .pinata .body {
+    position: absolute;
+    right: -26px;
+    top: 0;
+    width: 390px;
+    height: 692px;
+    clip-path: polygon(40% 0, 100% 0, 100% 94%, 75% 98%, 28% 100%, 0 83%, 10% 10%);
+    background:
+      repeating-linear-gradient(6deg,
+        #ff6f00 0 22px, #ff6f00 22px 27px,
+        #ff2aa2 27px 53px, #ff2aa2 53px 58px,
+        #5fb5ff 58px 87px, #5fb5ff 87px 92px,
+        #85f1ff 92px 121px, #85f1ff 121px 126px,
+        #d5f7e3 126px 156px, #d5f7e3 156px 161px,
+        #ffe76b 161px 191px, #ffe76b 191px 196px,
+        #ffa300 196px 227px, #ffa300 227px 232px,
+        #ffd3d3 232px 260px, #ffd3d3 260px 265px,
+        #5ab8ff 265px 293px, #5ab8ff 293px 298px,
+        #ff59cf 298px 327px, #ff59cf 327px 332px,
+        #1d1e28 332px 692px);
+    box-shadow: inset 0 0 45px rgba(255,255,255,0.12);
+    opacity: 0.95;
+  }
+  .pinata .fringe {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 405px;
+    height: 692px;
+    clip-path: polygon(40% 0, 100% 0, 100% 94%, 75% 98%, 28% 100%, 0 83%, 10% 10%);
+    background:
+      repeating-linear-gradient(6deg,
+        rgba(255,255,255,0.18) 0 2px, rgba(0,0,0,0) 2px 22px);
+    opacity: 0.4;
+  }
+
+  .footnote {
+    position: absolute;
+    right: 19px;
+    bottom: 13px;
+    color: rgba(255,255,255,0.9);
+    font-size: 15px;
+    font-weight: 300;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title-small">Trend 2:</div>
+    <div class="title-main">the parent</div>
+    <div class="title-sub">trap</div>
+
+    <div class="stick"></div>
+
+    <div class="hand-back"></div>
+    <div class="fingers">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="hand-front"></div>
+    <div class="cuff"></div>
+    <div class="sleeve"></div>
+
+    <div class="hair"></div>
+    <div class="head"></div>
+    <div class="glasses"></div>
+
+    <div class="pinata">
+      <div class="body"></div>
+      <div class="fringe"></div>
+    </div>
+
+    <div class="footnote">23</div>
+  </div>
+</body>
+</html>

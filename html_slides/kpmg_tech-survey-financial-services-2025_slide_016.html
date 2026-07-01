@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Methodology Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#f4f5f9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f4f5f9;
+    color:#173f9e;
+  }
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:50px;
+    background:#ddddde;
+  }
+  .nav{
+    position:absolute;
+    top:20px;
+    font-size:11px;
+    color:#7f7f83;
+    white-space:nowrap;
+  }
+  .nav.active{
+    color:#214be0;
+    font-weight:700;
+  }
+  .icon{
+    position:absolute;
+    top:15px;
+    color:#8a8a8d;
+  }
+  .chev-left,.chev-right{
+    width:13px;height:13px;
+    border-top:1.5px solid #8a8a8d;
+    border-right:1.5px solid #8a8a8d;
+    transform-origin:center;
+  }
+  .chev-left{ transform:rotate(-135deg); }
+  .chev-right{ transform:rotate(45deg); }
+  .home{
+    width:18px;height:18px;
+  }
+  .home:before{
+    content:"";
+    position:absolute;
+    left:2px; top:7px;
+    width:12px; height:9px;
+    border:1.5px solid #8a8a8d;
+    border-top:none;
+    box-sizing:border-box;
+  }
+  .home:after{
+    content:"";
+    position:absolute;
+    left:1px; top:1px;
+    width:14px; height:14px;
+    border-left:1.5px solid #8a8a8d;
+    border-top:1.5px solid #8a8a8d;
+    transform:rotate(45deg);
+    box-sizing:border-box;
+  }
+
+  .title{
+    position:absolute;
+    left:87px;
+    top:99px;
+    font-size:65px;
+    line-height:1;
+    font-weight:700;
+    color:#244bd9;
+    letter-spacing:-1px;
+  }
+  .subtitle{
+    position:absolute;
+    left:92px;
+    top:214px;
+    font-size:17px;
+    font-weight:700;
+    color:#123f99;
+  }
+
+  .map{
+    position:absolute;
+    left:83px;
+    top:268px;
+    width:570px;
+    height:318px;
+    opacity:0.18;
+  }
+  .map svg{
+    width:100%;
+    height:100%;
+  }
+
+  .pct{
+    position:absolute;
+    font-weight:700;
+    line-height:1;
+    letter-spacing:-1px;
+  }
+  .pct.cyan{ color:#13a9e5; }
+  .pct.blue{ color:#244bd9; }
+  .pct.purple{ color:#7b19de; }
+
+  .label{
+    position:absolute;
+    font-size:16px;
+    line-height:1.2;
+    color:#2d58b6;
+  }
+
+  .vline{
+    position:absolute;
+    width:2px;
+    background:#d1d1d4;
+  }
+
+  .bodytext{
+    position:absolute;
+    left:780px;
+    top:214px;
+    width:458px;
+    font-size:13px;
+    line-height:1.35;
+    color:#3f68bf;
+  }
+  .bodytext b{
+    color:#153b97;
+  }
+
+  .donut{
+    position:absolute;
+    width:158px;
+    height:158px;
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+  .donut .ring{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+  }
+  .donut .ring:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    background:conic-gradient(var(--c) 0 var(--deg), transparent var(--deg) 360deg);
+    -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 6px), #000 0);
+            mask:radial-gradient(farthest-side, transparent calc(100% - 6px), #000 0);
+  }
+  .donut .base{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    border:2px solid #d7d7d9;
+    box-sizing:border-box;
+  }
+  .donut .hole{
+    position:absolute;
+    inset:8px;
+    border-radius:50%;
+    background:#f4f5f9;
+  }
+  .donut .value{
+    position:absolute;
+    left:0; top:39px;
+    width:100%;
+    text-align:center;
+    font-size:35px;
+    font-weight:700;
+    color:#4b2adf;
+  }
+  .donut .caption{
+    position:absolute;
+    left:10px;
+    top:163px;
+    width:138px;
+    text-align:center;
+    font-size:12px;
+    line-height:1.15;
+    color:#284fe3;
+  }
+
+  .footer{
+    position:absolute;
+    left:86px;
+    bottom:17px;
+    width:760px;
+    font-size:9px;
+    line-height:1.15;
+    color:#b0b0b2;
+  }
+  .pageno{
+    position:absolute;
+    right:37px;
+    bottom:16px;
+    font-size:12px;
+    font-weight:700;
+    color:#123f99;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar"></div>
+
+  <div class="nav" style="left:87px;">Executive summary</div>
+  <div class="nav" style="left:262px;">Key findings</div>
+  <div class="nav" style="left:345px;">Risk and regulation</div>
+  <div class="nav" style="left:493px;">Data and AI</div>
+  <div class="nav" style="left:610px;">Simplification and modernization</div>
+  <div class="nav" style="left:815px;">How KPMG can help</div>
+  <div class="nav active" style="left:978px;">Methodology</div>
+
+  <div class="icon chev-left" style="left:1207px;"></div>
+  <div class="icon home" style="left:1228px;"></div>
+  <div class="icon chev-right" style="left:1257px;"></div>
+
+  <div class="title">Methodology</div>
+  <div class="subtitle">More than 20 countries/territories:</div>
+
+  <div class="map">
+    <svg viewBox="0 0 570 318" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="#bfc2c8">
+        <path d="M31 59l24-13 36-5 21 9 25-7 31 9 17-2 12 13-10 16-22 6-5 18-20 5-10 14-23 4-17-13-21-5-22-17-22-3-7-15 13-14z"/>
+        <path d="M141 133l18 13 14 9 11 25-9 22 6 15-10 17-5 25-13 13-12-5-3-21-12-21 4-22 11-14-5-20 5-18z"/>
+        <path d="M241 53l12-13 22-8 28 3 22-6 32 7 18 12-7 11 16 8 10 16-14 11-22 2-18 13-23-1-17-10-22 5-24-9-14 4-11-9 6-15-12-10z"/>
+        <path d="M378 99l18-3 17 5 20-4 23 6 11 12-13 8-9 15-14 5-20-5-17 9-14-11 3-15-9-10z"/>
+        <path d="M429 64l19-11 28-1 28 9 20 13-10 14 7 13-18 7-25-6-25 4-18-6-11-15 5-11z"/>
+        <path d="M453 146l16 8 15 16 24 9 20 15-8 16 14 18-16 8-21-10-13-21-20-13-17-20 6-26z"/>
+        <path d="M507 253l16 9 11 19-7 15-17 2-10-15 7-18z"/>
+        <path d="M299 143l15 10 5 18 16 13-3 22-17 13-6 18 7 18-11 14-17-12-7-24 8-25-11-18 7-21 14-16z"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="pct cyan" style="left:106px; top:319px; font-size:79px;">25%</div>
+  <div class="label" style="left:107px; top:421px;">Americas</div>
+
+  <div class="pct blue" style="left:315px; top:319px; font-size:79px;">38%</div>
+  <div class="label" style="left:316px; top:421px; width:189px;">Europe, Middle East<br>and Africa (EMEA)</div>
+
+  <div class="pct purple" style="left:530px; top:319px; font-size:79px;">36%</div>
+  <div class="label" style="left:529px; top:421px; width:167px;">Asia Pacific<br>(ASPAC)</div>
+
+  <div class="vline" style="left:737px; top:217px; height:372px;"></div>
+
+  <div class="bodytext">
+    This report draws upon the perspectives from 612 leaders across the financial services sector.
+    Survey respondents represented organizations with annual revenues above <b>US$1 billion</b> and
+    included a diverse group of technology leaders, such as <b>Chief Digital Officers, CIOs, CTOs,
+    CISOs, Chief AI Officers,</b> and others.
+  </div>
+
+  <div class="donut" style="left:780px; top:308px;">
+    <div class="base"></div>
+    <div class="ring" style="--c:#3847d8; --deg:162deg; transform:rotate(-90deg);"></div>
+    <div class="hole"></div>
+    <div class="value">45%</div>
+    <div class="caption">were board members or<br>members of the C-suite</div>
+  </div>
+
+  <div class="vline" style="left:1010px; top:322px; height:196px;"></div>
+
+  <div class="donut" style="left:1083px; top:315px;">
+    <div class="base"></div>
+    <div class="ring" style="--c:#5a28dd; --deg:266deg; transform:rotate(-85deg);"></div>
+    <div class="hole"></div>
+    <div class="value">74%</div>
+    <div class="caption">reported revenues in<br>excess of US$10 billion</div>
+  </div>
+
+  <div class="footer">
+    © 2025 KPMG LLP, a Delaware limited liability partnership and a member firm of the KPMG global organization of independent member firms affiliated with<br>
+    KPMG International Limited, a private English company limited by guarantee. All rights reserved. USCS026447-2A
+  </div>
+
+  <div class="pageno">16</div>
+</div>
+</body>
+</html>

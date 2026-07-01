@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#ddddde;
+  }
+  .slide > div, .slide > svg{position:absolute; box-sizing:border-box;}
+  .nav{
+    right:0;
+    top:0;
+    width:68px;
+    height:46px;
+    background:#7d7d84;
+    border-radius:0 0 14px 14px;
+    color:#fff;
+    font-size:8px;
+    line-height:1.15;
+    font-weight:700;
+    text-align:center;
+    padding-top:16px;
+    letter-spacing:.02em;
+  }
+  .page{
+    left:10px;
+    top:49px;
+    color:#6b6b79;
+    font-size:19px;
+    font-weight:400;
+    letter-spacing:.01em;
+  }
+  .vline{
+    left:52px;
+    top:0;
+    width:1px;
+    height:92px;
+    background:#b8b8bc;
+  }
+  .survey{
+    left:64px;
+    top:60px;
+    color:#7e7e84;
+    font-size:8px;
+    line-height:1.2;
+    text-transform:uppercase;
+    width:180px;
+  }
+  .bodytext{
+    left:50px;
+    top:132px;
+    width:318px;
+    color:#505057;
+    font-size:12px;
+    line-height:1.45;
+  }
+  .figure-title{
+    left:415px;
+    top:131px;
+    width:620px;
+    color:#3f3f46;
+    font-size:12px;
+    line-height:1.25;
+    font-weight:700;
+  }
+  .bar-label{
+    color:#5a5a61;
+    font-size:10px;
+    line-height:1.18;
+    text-align:right;
+  }
+  .bar-note{
+    color:#6d6d72;
+    font-size:6px;
+    line-height:1.2;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .barbox{
+    border:1px solid #a9a9ae;
+    background:#efefef;
+    height:21px;
+  }
+  .fill{
+    background:#49c2c5;
+    height:19px;
+  }
+  .pct{
+    color:#4d4d53;
+    font-size:10px;
+    line-height:21px;
+    text-align:right;
+    padding-right:8px;
+  }
+  .chapter{
+    left:12px;
+    top:423px;
+    color:#73737a;
+    font-size:10px;
+    letter-spacing:.06em;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+  }
+  .yellow{
+    left:1px;
+    top:409px;
+    width:12px;
+    height:12px;
+    background:#eed300;
+  }
+  .photo{
+    left:31px;
+    top:482px;
+    width:1250px;
+    height:253px;
+    border-radius:14px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 13.7% 44.5%, rgba(255,255,255,.95) 0 2px, rgba(255,255,255,.55) 3px, rgba(255,255,255,0) 14px),
+      radial-gradient(circle at 15.6% 37.5%, rgba(255,51,188,.95) 0 2px, rgba(255,51,188,0) 14px),
+      radial-gradient(circle at 52% 9%, rgba(231,61,214,.58) 0, rgba(231,61,214,.18) 18%, rgba(231,61,214,0) 42%),
+      radial-gradient(circle at 58% 12%, rgba(39,175,255,.16) 0, rgba(39,175,255,0) 25%),
+      linear-gradient(180deg, #0a245f 0%, #1a285f 22%, #080913 62%, #030303 100%);
+  }
+  .treeband{
+    left:0;
+    top:108px;
+    width:1250px;
+    height:92px;
+    background:
+      radial-gradient(ellipse at 8% 73%, rgba(96,132,28,.95) 0, rgba(96,132,28,0) 70px),
+      radial-gradient(ellipse at 37% 75%, rgba(115,165,24,.92) 0, rgba(115,165,24,0) 74px),
+      radial-gradient(ellipse at 52.5% 74%, rgba(170,190,19,.86) 0, rgba(170,190,19,0) 80px),
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(5,5,5,.86) 44%, rgba(0,0,0,1) 100%);
+  }
+  .groundglow{
+    left:0;
+    top:189px;
+    width:1250px;
+    height:64px;
+    background:
+      radial-gradient(circle at 18% 58%, rgba(255,236,122,.55) 0, rgba(255,236,122,0) 70px),
+      radial-gradient(circle at 51.8% 42%, rgba(255,203,0,.56) 0, rgba(255,203,0,0) 66px),
+      linear-gradient(180deg, rgba(255,225,64,0) 0%, rgba(196,144,8,.46) 72%, rgba(66,42,0,.5) 100%);
+  }
+  .building{
+    left:49px;
+    top:126px;
+    width:105px;
+    height:74px;
+    background:linear-gradient(180deg, rgba(255,245,180,.95) 0%, rgba(242,228,145,.95) 45%, rgba(173,145,58,.75) 100%);
+    clip-path:polygon(6% 22%, 46% 9%, 100% 24%, 95% 100%, 0 100%);
+    filter:blur(.15px);
+  }
+  .wheel{
+    left:999px;
+    top:510px;
+    width:176px;
+    height:176px;
+  }
+  .center60{
+    left:1042px;
+    top:562px;
+    width:90px;
+    color:#fff;
+    font-size:28px;
+    line-height:1;
+    font-weight:700;
+    text-align:center;
+  }
+  .caption{
+    left:1019px;
+    top:671px;
+    width:145px;
+    color:#fff;
+    font-size:10px;
+    line-height:1.25;
+    font-weight:700;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="nav">JUMP TO<br>CONTENTS</div>
+
+  <div class="page">29</div>
+  <div class="vline"></div>
+  <div class="survey">SECOND ANNUAL EY/EIO GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+  <div class="bodytext">
+    The fact that climate risk mechanisms are embedded is clear evidence of risk management’s maturation in this area. CROs in Asia-Pacific are also much more likely to say that they conduct scenario analysis and/or stress testing (92% of Asia-Pacific CROs versus 64% of all respondents), have policies in place for businesses impacted by climate change (54% of Asia-Pacific CROs versus 36% of overall), and quantitatively assess the potential impact of transition risks of moving to a lower carbon economy where relevant (46% versus 33% overall).<br><br>
+    Interestingly, the results of climate scenario analyses are used for internal, informational purposes only (56%) or inform regulatory requirements (49%). But only 20% of CROs say the results inform corporate strategy and only 16% say they inform the setting of risk appetite.
+  </div>
+
+  <div class="figure-title">Figure 16: How does your organization use the results of climate scenario analyses?</div>
+
+  <div class="bar-label" style="left:424px; top:170px; width:181px;">Results are for internal,<br>informational purposes only</div>
+  <div class="barbox" style="left:599px; top:169px; width:169px;">
+    <div class="fill" style="width:94px;"></div>
+  </div>
+  <div class="pct" style="left:599px; top:169px; width:169px; height:21px;">56%</div>
+  <div class="bar-note" style="left:596px; top:193px; width:173px;">57% EMEIA | 56% Americas | 54% Asia-Pacific</div>
+
+  <div class="bar-label" style="left:410px; top:208px; width:196px;">Results inform regulatory<br>requirements<br><span style="font-size:6px; line-height:1.15;">of insurance Commissioners (NAIC) in the US,<br>CSRD in the EU, Sustainable Reporting<br>Directive (SRD) and International Sustainability<br>Standards Board (ISSB) in the UK)</span></div>
+  <div style="position:absolute; left:487px; top:216px; width:120px; color:#6b6b70; font-size:6px; line-height:1.15; text-align:center;">(e.g., National Association</div>
+  <div class="barbox" style="left:599px; top:223px; width:169px;">
+    <div class="fill" style="width:83px;"></div>
+  </div>
+  <div class="pct" style="left:599px; top:223px; width:169px; height:21px;">49%</div>
+  <div class="bar-note" style="left:596px; top:247px; width:173px;">57% EMEIA | 37% Americas | 46% Asia-Pacific</div>
+
+  <div class="bar-label" style="left:438px; top:278px; width:168px;">Results inform corporate strategy</div>
+  <div class="barbox" style="left:599px; top:277px; width:169px;">
+    <div class="fill" style="width:34px;"></div>
+  </div>
+  <div class="pct" style="left:599px; top:277px; width:169px; height:21px;">20%</div>
+  <div class="bar-note" style="left:596px; top:301px; width:173px;">19% EMEIA | 15% Americas | 31% Asia-Pacific</div>
+
+  <div class="bar-label" style="left:840px; top:170px; width:180px;">Results inform the setting of risk<br>appetite</div>
+  <div class="barbox" style="left:1015px; top:169px; width:169px;">
+    <div class="fill" style="width:27px;"></div>
+  </div>
+  <div class="pct" style="left:1015px; top:169px; width:169px; height:21px;">16%</div>
+  <div class="bar-note" style="left:1012px; top:193px; width:173px;">24% EMEIA | 4% Americas | 15% Asia-Pacific</div>
+
+  <div class="bar-label" style="left:828px; top:223px; width:192px;">Results inform key performance<br>indicators (KPI) from a risk<br>management perspective</div>
+  <div class="barbox" style="left:1015px; top:223px; width:169px;">
+    <div class="fill" style="width:22px;"></div>
+  </div>
+  <div class="pct" style="left:1015px; top:223px; width:169px; height:21px;">13%</div>
+  <div class="bar-note" style="left:1012px; top:247px; width:173px;">12% EMEIA | 7% Americas | 31% Asia-Pacific</div>
+
+  <div class="chapter">CHAPTER 6</div>
+  <div class="yellow"></div>
+
+  <div class="photo">
+    <div class="treeband"></div>
+    <div class="groundglow"></div>
+    <div class="building"></div>
+    <svg width="1250" height="253" viewBox="0 0 1250 253" style="left:0;top:0;">
+      <g opacity="0.95">
+        <circle cx="112" cy="78" r="2.3" fill="#f251d3"/>
+        <circle cx="118" cy="71" r="1.5" fill="#ff70df"/>
+        <circle cx="126" cy="63" r="1.3" fill="#ffe2ff"/>
+        <circle cx="140" cy="41" r="1.8" fill="#ff4c54"/>
+        <circle cx="145" cy="36" r="2.5" fill="#ff3751"/>
+        <line x1="112" y1="78" x2="145" y2="36" stroke="#cf61ff" stroke-width="1"/>
+      </g>
+      <g opacity="0.75">
+        <circle cx="147" cy="57" r="0.8" fill="#ffffff"/>
+        <circle cx="113" cy="6" r="0.5" fill="#d7deff"/>
+        <circle cx="528" cy="20" r="0.5" fill="#ffffff"/>
+        <circle cx="735" cy="39" r="0.6" fill="#bcc8ff"/>
+      </g>
+
+      <g fill="#090909">
+        <rect x="690" y="225" width="46" height="25"/>
+        <rect x="737" y="220" width="56" height="30"/>
+      </g>
+
+      <g fill="#101010">
+        <path d="M57 198 C63 156, 75 104, 89 76 C92 71, 95 67, 99 61 C105 82, 106 140, 104 198 Z"/>
+        <path d="M85 198 C86 148, 95 108, 112 82 C116 76, 118 69, 124 64 C131 89, 132 144, 130 198 Z"/>
+        <path d="M131 198 C137 150, 143 112, 152 80 C158 61, 161 47, 164 30 C169 63, 171 123, 169 198 Z"/>
+        <path d="M186 198 C191 158, 198 123, 206 92 C211 72, 214 51, 216 32 C222 67, 224 126, 222 198 Z"/>
+        <path d="M236 198 C242 163, 247 128, 255 96 C262 66, 265 48, 268 28 C274 67, 276 128, 274 198 Z"/>
+
+        <path d="M966 199 C972 160, 978 119, 985 84 C989 62, 992 43, 995 19 C1000 51, 1002 126, 999 199 Z"/>
+        <path d="M990 199 C997 163, 1004 118, 1012 75 C1017 49, 1021 26, 1024 1 C1030 46, 1031 123, 1029 199 Z"/>
+        <path d="M1020 199 C1028 162, 1035 117, 1043 77 C1049 49, 1052 23, 1055 0 C1061 46, 1063 124, 1060 199 Z"/>
+      </g>
+
+      <g fill="#090909">
+        <path d="M1080 198 C1086 170, 1090 135, 1096 102 C1100 76, 1102 50, 1104 28 C1110 67, 1111 127, 1109 199 Z"/>
+        <path d="M1108 198 C1115 160, 1120 120, 1127 82 C1131 59, 1133 35, 1136 13 C1142 55, 1144 126, 1142 199 Z"/>
+      </g>
+
+      <g fill="#d7c46e" opacity="0.95">
+        <rect x="57" y="145" width="8" height="54"/>
+        <rect x="166" y="178" width="2" height="21"/>
+        <rect x="432" y="163" width="4" height="36"/>
+        <rect x="646" y="149" width="4" height="50"/>
+      </g>
+      <g fill="#fff4b0" opacity="0.6">
+        <circle cx="60" cy="145" r="4"/>
+        <circle cx="167" cy="178" r="2"/>
+        <circle cx="434" cy="163" r="3"/>
+        <circle cx="648" cy="149" r="4"/>
+      </g>
+
+      <g fill="#7a651d" opacity="0.75">
+        <rect x="103" y="212" width="13" height="3"/>
+        <rect x="119" y="211" width="12" height="4"/>
+        <rect x="139" y="212" width="9" height="3"/>
+        <rect x="558" y="214" width="10" height="3"/>
+        <rect x="584" y="213" width="13" height="4"/>
+      </g>
+    </svg>
+  </div>
+
+  <svg class="wheel" viewBox="0 0 176 176">
+    <circle cx="88" cy="88" r="76" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="88" cy="88" r="76" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="4 6" opacity="0"/>
+    <circle cx="88" cy="88" r="76" fill="none" stroke="#ffea00" stroke-width="6" stroke-linecap="butt"
+            stroke-dasharray="144 478" stroke-dashoffset="215"/>
+    <circle cx="88" cy="88" r="76" fill="none" stroke="#ff9f00" stroke-width="6" stroke-linecap="butt"
+            stroke-dasharray="31 591" stroke-dashoffset="72"/>
+    <circle cx="88" cy="88" r="76" fill="none" stroke="#e930d4" stroke-width="6" stroke-linecap="butt"
+            stroke-dasharray="40 582" stroke-dashoffset="39"/>
+    <circle cx="88" cy="88" r="76" fill="none" stroke="#5f74ff" stroke-width="6" stroke-linecap="butt"
+            stroke-dasharray="104 518" stroke-dashoffset="0"/>
+  </svg>
+
+  <div class="center60">60%</div>
+  <div class="caption">of CROs prioritize<br>the regulatory aspects of<br>climate risk</div>
+</div>
+</body>
+</html>

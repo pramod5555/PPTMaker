@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>EY Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#cfcfd2;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d8d8db;
+  }
+  .slide > *{ position:absolute; box-sizing:border-box; }
+
+  .left-rule{
+    left:103px; top:0; width:1px; height:720px;
+    background:#b3b5ba;
+  }
+  .page-num{
+    left:62px; top:50px;
+    font-size:18px; line-height:1;
+    color:#717580; font-weight:400;
+  }
+  .header-text{
+    left:115px; top:58px; width:220px;
+    font-size:9px; line-height:12px;
+    color:#7c7f85; font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+  }
+  .vert-label{
+    left:14px; top:430px;
+    font-size:10px; line-height:10px;
+    color:#787b82; font-weight:500;
+    letter-spacing:0.08em; text-transform:uppercase;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    white-space:nowrap;
+  }
+  .yellow-square{
+    left:13px; top:422px; width:11px; height:11px;
+    background:#f2d200;
+  }
+
+  .divider{
+    left:500px; top:31px; width:1px; height:707px;
+    border-left:1px dotted #a8aaaf;
+  }
+
+  .left-title{
+    left:102px; top:128px; width:355px;
+    font-size:18px; line-height:1.12;
+    color:#2f323a; font-weight:700;
+  }
+  .left-p1{
+    left:102px; top:242px; width:358px;
+    font-size:12px; line-height:1.42;
+    color:#585b62; font-weight:400;
+  }
+  .left-p2{
+    left:102px; top:388px; width:358px;
+    font-size:12px; line-height:1.42;
+    color:#585b62; font-weight:400;
+  }
+
+  .callout{
+    left:102px; top:505px; width:342px; height:197px;
+    background:linear-gradient(90deg,#171824 0%, #1c1e2b 62%, #161726 100%);
+    border-radius:15px;
+  }
+  .callout-line-yellow{
+    left:24px; top:30px; width:194px; height:2px;
+    background:#f4d300;
+  }
+  .callout-line-purple{
+    left:218px; top:30px; width:43px; height:2px;
+    background:#a43cf3;
+  }
+  .callout-line-blue{
+    left:261px; top:30px; width:49px; height:2px;
+    background:#2f8dff;
+  }
+  .callout-title{
+    left:24px; top:44px;
+    font-size:14px; line-height:18px;
+    color:#ffffff; font-weight:700;
+  }
+  .quote-mark{
+    left:22px; top:67px;
+    font-size:34px; line-height:20px;
+    color:#f4d300; font-weight:700;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .callout-text{
+    left:24px; top:89px; width:270px;
+    font-size:12px; line-height:1.32;
+    color:#f2f2f5; font-weight:400;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+
+  .right-title{
+    left:546px; top:129px; width:375px;
+    font-size:18px; line-height:1.12;
+    color:#2f323a; font-weight:700;
+  }
+  .right-p1{
+    left:546px; top:208px; width:344px;
+    font-size:12px; line-height:1.42;
+    color:#585b62; font-weight:400;
+  }
+  .right-p2{
+    left:546px; top:320px; width:343px;
+    font-size:12px; line-height:1.42;
+    color:#585b62; font-weight:400;
+  }
+
+  .jump{
+    right:0; top:0; width:61px; height:47px;
+    background:#7f8289;
+    border-bottom-left-radius:14px;
+    border-bottom-right-radius:14px;
+  }
+  .jump span{
+    position:absolute; left:0; right:0; top:18px;
+    font-size:9px; line-height:10px;
+    color:#fff; font-weight:700;
+    text-transform:uppercase; text-align:center;
+    letter-spacing:0.02em;
+  }
+
+  .img1,.img2,.img3,.img4,.img5{
+    overflow:hidden;
+    background:#0b1123;
+  }
+  .img1{
+    left:961px; top:0; width:301px; height:178px;
+    border-bottom-left-radius:14px; border-bottom-right-radius:14px;
+  }
+  .img2{
+    left:961px; top:191px; width:154px; height:181px;
+    border-radius:14px;
+  }
+  .img3{
+    left:1128px; top:191px; width:134px; height:310px;
+    border-radius:14px;
+  }
+  .img4{
+    left:961px; top:382px; width:154px; height:120px;
+    border-radius:14px;
+  }
+  .img5{
+    left:961px; top:514px; width:301px; height:206px;
+    border-top-left-radius:14px; border-top-right-radius:14px;
+  }
+
+  svg{ display:block; width:100%; height:100%; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-rule"></div>
+  <div class="page-num">7</div>
+  <div class="header-text">SECOND ANNUAL EY/IIF GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+  <div class="vert-label">NEXT TAKEAWAYS</div>
+  <div class="yellow-square"></div>
+  <div class="divider"></div>
+
+  <div class="left-title">
+    6. Looking ahead, CROs must build on the strong foundations of core capabilities they've established (e.g., robust controls) by strategically engaging with business leaders and boosting risk's value contribution.
+  </div>
+
+  <div class="left-p1">
+    CROs report an expanded role in engaging with business leaders on transformation initiatives, as well as an emphasis on positioning risk as an enabling force – rather than a roadblock – for seizing new opportunities and facilitating profitable growth. CROs expect their role to evolve in the next five years with increased involvement in strategic planning, business change and innovation (cited by 42% of respondents). These trends are reflected in other EY research; strategic risk is a growing priority for CEOs and boards, which increasingly recognize CROs' high-impact role and ability to provide leadership in addressing threats that affect the entire business.
+  </div>
+
+  <div class="left-p2">
+    To fulfill this more strategic role and add more value, CROs need to speak the same language as the business and seek ways to embed risk management practices within innovation and growth strategies. Deploying technology, leveraging data to a greater extent and taking a risk-based approach to resource allocation can help free up capacity and enable an emphasis on high-value activities, including risk analysis, scenario planning and advising the business.
+  </div>
+
+  <div class="callout">
+    <div class="callout-line-yellow"></div>
+    <div class="callout-line-purple"></div>
+    <div class="callout-line-blue"></div>
+    <div class="callout-title">Survey respondents</div>
+    <div class="quote-mark">“</div>
+    <div class="callout-text">
+      Now that we've matured core disciplines, the focus has shifted to embedding risk into strategy and in support of moving the organization forward.<br><br>
+      We have to show we are a connected part in deriving business value.
+    </div>
+  </div>
+
+  <div class="right-title">
+    7. Significant variations across regions suggest a "tale of many markets" and fragmentation across the global industry.
+  </div>
+
+  <div class="right-p1">
+    Given the fragmented state of regulation and varying economic conditions around the world, it's no surprise that CROs in different jurisdictions reported different priorities and plans for both the near and longer terms. Our findings also show significant variation across different types and sizes of carriers and by lines of business. Throughout this report, we highlight the largest differentials in our results.
+  </div>
+
+  <div class="right-p2">
+    These differences are not surprising given the size, reach and complexity of the global insurance business today. For CROs, that means tailoring action plans and investments to suit the unique needs and objectives of their organizations, though our findings and analysis reveal common themes and leading practices that apply broadly across the global insurance market.
+  </div>
+
+  <div class="jump"><span>JUMP TO<br>CONTENTS</span></div>
+
+  <div class="img1">
+    <svg viewBox="0 0 301 178" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#091023"/>
+          <stop offset="55%" stop-color="#040813"/>
+          <stop offset="100%" stop-color="#0b1734"/>
+        </linearGradient>
+        <filter id="blur1"><feGaussianBlur stdDeviation="3.2"/></filter>
+      </defs>
+      <rect width="301" height="178" fill="url(#g1)"/>
+      <g opacity="0.22" stroke="#1c2746" stroke-width="1">
+        <path d="M0 18H301M0 36H301M0 54H301M0 72H301M0 90H301M0 108H301M0 126H301M0 144H301M0 162H301"/>
+        <path d="M15 0V178M30 0V178M45 0V178M60 0V178M75 0V178M90 0V178M105 0V178M120 0V178M135 0V178M150 0V178M165 0V178M180 0V178M195 0V178M210 0V178M225 0V178M240 0V178M255 0V178M270 0V178M285 0V178"/>
+      </g>
+      <g filter="url(#blur1)" opacity="0.9">
+        <circle cx="16" cy="20" r="4" fill="#0d1d44"/><circle cx="42" cy="16" r="4" fill="#123c8d"/><circle cx="76" cy="10" r="4" fill="#1f356f"/>
+        <circle cx="112" cy="14" r="4" fill="#183372"/><circle cx="150" cy="19" r="4" fill="#1a469d"/><circle cx="188" cy="11" r="4" fill="#122a56"/>
+        <circle cx="227" cy="17" r="4" fill="#173a88"/><circle cx="264" cy="11" r="4" fill="#0f295d"/><circle cx="287" cy="18" r="4" fill="#1a67d9"/>
+        <circle cx="25" cy="49" r="5" fill="#102757"/><circle cx="57" cy="38" r="5" fill="#1f4caa"/><circle cx="92" cy="43" r="5" fill="#0e214f"/>
+        <circle cx="131" cy="55" r="5" fill="#12285f"/><circle cx="166" cy="37" r="5" fill="#173b83"/><circle cx="203" cy="46" r="5" fill="#1e4aa3"/>
+        <circle cx="232" cy="31" r="5" fill="#5d8a4d"/><circle cx="254" cy="49" r="5" fill="#a32a2e"/><circle cx="278" cy="35" r="5" fill="#15316c"/>
+        <circle cx="20" cy="84" r="5" fill="#10275a"/><circle cx="49" cy="76" r="5" fill="#1a4395"/><circle cx="84" cy="68" r="5" fill="#0f2148"/>
+        <circle cx="124" cy="86" r="6" fill="#223e7c"/><circle cx="160" cy="78" r="6" fill="#11254d"/><circle cx="200" cy="85" r="6" fill="#294b97"/>
+        <circle cx="236" cy="67" r="6" fill="#5f7b3a"/><circle cx="268" cy="84" r="6" fill="#24498f"/><circle cx="294" cy="74" r="6" fill="#6400a6"/>
+        <circle cx="14" cy="121" r="6" fill="#0d214a"/><circle cx="48" cy="109" r="5" fill="#173f8e"/><circle cx="84" cy="119" r="5" fill="#112655"/>
+        <circle cx="122" cy="124" r="6" fill="#19366f"/><circle cx="162" cy="111" r="6" fill="#193d87"/><circle cx="196" cy="127" r="6" fill="#173c88"/>
+        <circle cx="232" cy="120" r="6" fill="#486437"/><circle cx="265" cy="129" r="6" fill="#3d5e3c"/><circle cx="289" cy="118" r="6" fill="#18346c"/>
+        <circle cx="22" cy="156" r="6" fill="#12295d"/><circle cx="58" cy="147" r="6" fill="#173f8e"/><circle cx="95" cy="154" r="5" fill="#0f2148"/>
+        <circle cx="130" cy="149" r="6" fill="#183b84"/><circle cx="170" cy="155" r="6" fill="#112857"/><circle cx="210" cy="149" r="6" fill="#183b84"/>
+        <circle cx="247" cy="157" r="6" fill="#1b6f82"/><circle cx="278" cy="150" r="6" fill="#0f2856"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="img2">
+    <svg viewBox="0 0 154 181" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#95bfff"/>
+          <stop offset="34%" stop-color="#d9ebff"/>
+          <stop offset="70%" stop-color="#95beff"/>
+          <stop offset="100%" stop-color="#eff5ff"/>
+        </linearGradient>
+      </defs>
+      <rect width="154" height="181" fill="url(#g2)"/>
+      <rect width="154" height="181" fill="#ffffff" opacity="0.1"/>
+      <g opacity="0.32" stroke="#ffffff" stroke-width="1">
+        <path d="M0 28H154M0 56H154M0 84H154M0 112H154M0 140H154M0 168H154"/>
+        <path d="M19 0V181M38 0V181M57 0V181M76 0V181M95 0V181M114 0V181M133 0V181"/>
+      </g>
+      <path d="M-5 145 C22 122, 48 108, 71 83 C94 59, 118 39, 160 15" stroke="#cfe2ff" stroke-width="20" fill="none" opacity="0.55"/>
+      <g stroke="#7fb0ff" stroke-width="1.2" opacity="0.55">
+        <path d="M18 22 L18 172"/>
+        <path d="M50 22 L50 172"/>
+        <path d="M82 22 L82 172"/>
+      </g>
+      <g fill="#d96cb6" font-family="Arial, Helvetica, sans-serif" font-size="7" opacity="0.75">
+        <text x="44" y="32">24.1%</text>
+        <text x="17" y="70">8.52%</text>
+        <text x="98" y="102">32.60</text>
+        <text x="91" y="140">24.07</text>
+      </g>
+      <g stroke="#ffffff" stroke-width="2" opacity="0.78">
+        <path d="M10 156 L27 156"/>
+        <path d="M33 149 L50 149"/>
+        <path d="M56 151 L73 151"/>
+        <path d="M90 128 L108 128"/>
+        <path d="M116 119 L135 119"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="img3">
+    <svg viewBox="0 0 134 310" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#edf4fb"/>
+          <stop offset="26%" stop-color="#91beff"/>
+          <stop offset="63%" stop-color="#182540"/>
+          <stop offset="100%" stop-color="#4a2d21"/>
+        </linearGradient>
+      </defs>
+      <rect width="134" height="310" fill="url(#g3)"/>
+      <path d="M-10 238 C22 212, 45 180, 66 141 C87 102, 111 72, 145 52" stroke="#dff6ff" stroke-width="16" fill="none" opacity="0.46"/>
+      <g opacity="0.78">
+        <rect x="8" y="92" width="4" height="132" fill="#ffffff"/>
+        <rect x="16" y="118" width="4" height="106" fill="#cfeaff"/>
+        <rect x="24" y="149" width="4" height="75" fill="#ffffff"/>
+        <polyline points="8,189 18,178 27,182 38,166 50,154" fill="none" stroke="#dc8cff" stroke-width="2"/>
+      </g>
+      <g opacity="0.94">
+        <ellipse cx="99" cy="144" rx="34" ry="78" fill="#0c1120"/>
+        <path d="M57 113 C72 97, 99 92, 113 104 C120 110, 124 118, 124 129 C124 142, 117 151, 108 157 C97 165, 81 169, 68 164 C57 160, 50 149, 49 136 C48 127, 52 119, 57 113 Z" fill="#0b1020"/>
+        <rect x="68" y="119" width="15" height="9" rx="2" fill="#0b0f1f"/>
+        <circle cx="77" cy="128" r="6" fill="#1b2235"/>
+        <line x1="82" y1="124" x2="92" y2="127" stroke="#9db3d3" stroke-width="2"/>
+        <path d="M61 168 C75 181, 89 196, 97 216 C104 235, 108 253, 114 275" stroke="#332117" stroke-width="16" fill="none" opacity="0.85"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="img4">
+    <svg viewBox="0 0 154 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#4d74dd"/>
+          <stop offset="42%" stop-color="#8a6af6"/>
+          <stop offset="100%" stop-color="#10172e"/>
+        </linearGradient>
+      </defs>
+      <rect width="154" height="120" fill="url(#g4)"/>
+      <g opacity="0.28" stroke="#b6c7ff" stroke-width="1">
+        <path d="M0 20H154M0 40H154M0 60H154M0 80H154M0 100H154"/>
+        <path d="M20 0V120M40 0V120M60 0V120M80 0V120M100 0V120M120 0V120M140 0V120"/>
+      </g>
+      <path d="M0 87 C25 76, 45 66, 63 49 C82 31, 110 26, 154 32" stroke="#89d1ff" stroke-width="3" fill="none" opacity="0.78"/>
+      <path d="M0 59 C20 69, 35 71, 59 63 C82 56, 107 48, 154 56" stroke="#d191ff" stroke-width="2" fill="none" opacity="0.82"/>
+      <g opacity="0.86">
+        <rect x="10" y="24" width="5" height="18" fill="#d8f5ff"/>
+        <rect x="19" y="10" width="5" height="32" fill="#ffffff"/>
+        <rect x="28" y="19" width="5" height="23" fill="#d8f5ff"/>
+        <rect x="71" y="32" width="5" height="22" fill="#ffffff"/>
+        <rect x="80" y="18" width="5" height="36" fill="#d8f5ff"/>
+        <rect x="89" y="12" width="5" height="42" fill="#ffffff"/>
+      </g>
+      <g opacity="0.88">
+        <circle cx="15" cy="78" r="3" fill="#df91ff"/>
+        <circle cx="48" cy="65" r="3" fill="#df91ff"/>
+        <circle cx="78" cy="48" r="3" fill="#df91ff"/>
+      </g>
+      <g opacity="0.62">
+        <path d="M110 115 C107 99, 104 88, 99 75 C94 63, 86 50, 80 40" stroke="#e0a06e" stroke-width="9" fill="none"/>
+        <circle cx="98" cy="80" r="8" fill="#d59b74"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="img5">
+    <svg viewBox="0 0 301 206" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0a1020"/>
+          <stop offset="100%" stop-color="#111730"/>
+        </linearGradient>
+        <filter id="blur5"><feGaussianBlur stdDeviation="4.2"/></filter>
+      </defs>
+      <rect width="301" height="206" fill="url(#g5)"/>
+      <g opacity="0.18" fill="#1d2a50">
+        <rect x="8" y="24" width="12" height="160"/><rect x="28" y="8" width="10" height="176"/><rect x="49" y="36" width="11" height="148"/>
+        <rect x="71" y="18" width="12" height="166"/><rect x="95" y="44" width="9" height="140"/><rect x="114" y="14" width="12" height="170"/>
+        <rect x="140" y="28" width="9" height="156"/><rect x="160" y="18" width="12" height="166"/><rect x="184" y="42" width="10" height="142"/>
+        <rect x="207" y="10" width="11" height="174"/><rect x="228" y="28" width="12" height="156"/><rect x="253" y="18" width="10" height="166"/>
+        <rect x="274" y="36" width="11" height="148"/>
+      </g>
+      <g filter="url(#blur5)" opacity="0.85">
+        <circle cx="16" cy="18" r="7" fill="#1d58ff"/><circle cx="43" cy="20" r="6" fill="#51d1ff"/><circle cx="82" cy="34" r="8" fill="#20386e"/>
+        <circle cx="106" cy="16" r="6" fill="#223d7c"/><circle cx="153" cy="24" r="8" fill="#17356a"/><circle cx="185" cy="12" r="6" fill="#283e7f"/>
+        <circle cx="226" cy="33" r="8" fill="#152d61"/><circle cx="266" cy="19" r="7" fill="#0fb0ff"/><circle cx="291" cy="29" r="6" fill="#1d3d8d"/>
+        <circle cx="18" cy="72" r="8" fill="#f44761"/><circle cx="42" cy="63" r="6" fill="#233b7d"/><circle cx="82" cy="79" r="7" fill="#173566"/>
+        <circle cx="121" cy="69" r="8" fill="#2c5cff"/><circle cx="166" cy="81" r="8" fill="#1c4cb5"/><circle cx="206" cy="67" r="8" fill="#ff3e64"/>
+        <circle cx="247" cy="77" r="8" fill="#62ffd6"/><circle cx="280" cy="67" r="7" fill="#1d3d8d"/>
+        <circle cx="22" cy="118" r="8" fill="#0bc1ff"/><circle cx="60" cy="128" r="7" fill="#1f376e"/><circle cx="93" cy="111" r="8" fill="#243f83"/>
+        <circle cx="126" cy="126" r="8" fill="#f5537a"/><circle cx="167" cy="119" r="8" fill="#243f83"/><circle cx="206" cy="131" r="8" fill="#2dd2b4"/>
+        <circle cx="244" cy="123" r="8" fill="#1d3b75"/><circle cx="284" cy="111" r="7" fill="#ff5a6e"/>
+        <circle cx="17" cy="170" r="8" fill="#1f417c"/><circle cx="57" cy="157" r="7" fill="#0bbcff"/><circle cx="99" cy="173" r="8" fill="#17346a"/>
+        <circle cx="131" cy="156" r="8" fill="#2a3f7a"/><circle cx="172" cy="170" r="8" fill="#254084"/><circle cx="210" cy="158" r="8" fill="#0bffd0"/>
+        <circle cx="253" cy="170" r="8" fill="#ff4762"/><circle cx="286" cy="161" r="8" fill="#36c8ff"/>
+      </g>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

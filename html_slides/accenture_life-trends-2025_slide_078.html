@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#f0edec;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f0edec;
+    color:#222;
+  }
+
+  .para{
+    position:absolute;
+    font-size:18px;
+    line-height:1.33;
+    color:#232323;
+    letter-spacing:0.1px;
+  }
+  .para strong{font-weight:700;}
+  .sup{
+    font-size:11px;
+    vertical-align:super;
+  }
+
+  .top-photo{
+    position:absolute;
+    left:880px;
+    top:0px;
+    width:365px;
+    height:43px;
+    background:
+      radial-gradient(circle at 26% 44%, rgba(235,239,241,0.95) 0 10%, rgba(215,219,220,0.8) 18%, rgba(183,185,186,0.55) 32%, rgba(160,162,163,0.25) 48%, rgba(170,170,170,0) 58%),
+      linear-gradient(90deg, #a7a9aa 0%, #b9b9b7 100%);
+  }
+
+  .right-title{
+    position:absolute;
+    left:880px;
+    top:76px;
+    width:310px;
+    font-size:17px;
+    line-height:1.2;
+    font-weight:700;
+    color:#111;
+  }
+
+  .item{
+    position:absolute;
+    left:880px;
+    width:330px;
+    color:#4a4a4a;
+  }
+  .pct{
+    position:absolute;
+    left:0;
+    top:0;
+    font-size:24px;
+    line-height:1;
+    color:#8a1fff;
+    font-weight:400;
+    letter-spacing:0.2px;
+  }
+  .icon{
+    position:absolute;
+    left:95px;
+    top:-2px;
+    width:28px;
+    height:28px;
+    color:#8a1fff;
+  }
+  .label{
+    position:absolute;
+    left:0;
+    top:34px;
+    width:320px;
+    font-size:16px;
+    line-height:1.28;
+    color:#444;
+  }
+
+  .survey{
+    position:absolute;
+    left:880px;
+    top:476px;
+    font-size:13px;
+    font-weight:700;
+    color:#111;
+  }
+
+  .bottom-photo{
+    position:absolute;
+    left:880px;
+    top:529px;
+    width:365px;
+    height:191px;
+    background:
+      radial-gradient(circle at 23% 58%, rgba(24,41,52,0.55) 0 7%, rgba(31,49,59,0.18) 8%, rgba(0,0,0,0) 14%),
+      radial-gradient(circle at 82% 29%, rgba(45,63,76,0.75) 0 7%, rgba(0,0,0,0) 13%),
+      radial-gradient(ellipse at 55% 68%, rgba(184,74,24,0.82) 0 16%, rgba(200,112,64,0.68) 17%, rgba(0,0,0,0) 27%),
+      radial-gradient(ellipse at 42% 40%, rgba(181,108,58,0.85) 0 12%, rgba(0,0,0,0) 25%),
+      radial-gradient(ellipse at 88% 60%, rgba(80,151,171,0.9) 0 7%, rgba(0,0,0,0) 14%),
+      radial-gradient(ellipse at 17% 84%, rgba(50,77,91,0.78) 0 7%, rgba(0,0,0,0) 16%),
+      linear-gradient(135deg, #d7d4cb 0%, #e8e6dc 38%, #d6d4c8 60%, #cdbba8 100%);
+    filter: saturate(1.05) blur(0.3px);
+  }
+
+  .photo-caption{
+    position:absolute;
+    right:44px;
+    bottom:16px;
+    font-size:11px;
+    color:#f4f1ed;
+    opacity:0.95;
+  }
+
+  .vert{
+    position:absolute;
+    right:8px;
+    top:35px;
+    height:610px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-size:16px;
+    color:#777;
+    letter-spacing:0.2px;
+  }
+  .vert .active{
+    color:#8a1fff;
+    font-weight:700;
+  }
+
+  .page{
+    position:absolute;
+    right:10px;
+    bottom:10px;
+    font-size:12px;
+    color:#6d6d6d;
+  }
+
+  /* icons */
+  .icon-head{
+    position:relative;
+  }
+  .icon-head:before{
+    content:"";
+    position:absolute;
+    left:7px;
+    top:3px;
+    width:12px;
+    height:12px;
+    border:2px solid #8a1fff;
+    border-radius:50%;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .icon-head:after{
+    content:"";
+    position:absolute;
+    left:9px;
+    top:15px;
+    width:10px;
+    height:10px;
+    border:2px solid #8a1fff;
+    border-top:none;
+    border-radius:0 0 6px 6px;
+  }
+  .icon-head .heart{
+    position:absolute;
+    left:10px;
+    top:6px;
+    font-size:8px;
+    color:#8a1fff;
+    line-height:1;
+  }
+
+  .icon-basket{
+    position:relative;
+  }
+  .icon-basket:before{
+    content:"";
+    position:absolute;
+    left:5px;
+    top:9px;
+    width:18px;
+    height:14px;
+    border:2px solid #8a1fff;
+    box-sizing:border-box;
+    border-radius:1px;
+  }
+  .icon-basket:after{
+    content:"";
+    position:absolute;
+    left:9px;
+    top:3px;
+    width:10px;
+    height:8px;
+    border:2px solid #8a1fff;
+    border-bottom:none;
+    transform:skewX(-20deg);
+    box-sizing:border-box;
+  }
+  .icon-basket .line1,
+  .icon-basket .line2{
+    position:absolute;
+    top:12px;
+    width:2px;
+    height:10px;
+    background:#8a1fff;
+  }
+  .icon-basket .line1{ left:11px; }
+  .icon-basket .line2{ left:17px; }
+
+  .icon-dumbbell{
+    position:relative;
+    transform:rotate(-42deg);
+  }
+  .icon-dumbbell:before,
+  .icon-dumbbell:after{
+    content:"";
+    position:absolute;
+    top:12px;
+    width:16px;
+    height:4px;
+    background:#8a1fff;
+    left:6px;
+    border-radius:2px;
+  }
+  .icon-dumbbell .p1,
+  .icon-dumbbell .p2,
+  .icon-dumbbell .p3,
+  .icon-dumbbell .p4{
+    position:absolute;
+    width:4px;
+    height:12px;
+    background:#f0edec;
+    border:2px solid #8a1fff;
+    border-radius:2px;
+    box-sizing:border-box;
+  }
+  .icon-dumbbell .p1{ left:3px; top:8px; }
+  .icon-dumbbell .p2{ left:8px; top:8px; }
+  .icon-dumbbell .p3{ left:19px; top:8px; }
+  .icon-dumbbell .p4{ left:24px; top:8px; }
+
+  .icon-store{
+    position:relative;
+  }
+  .icon-store:before{
+    content:"";
+    position:absolute;
+    left:5px;
+    top:10px;
+    width:20px;
+    height:13px;
+    border:2px solid #8a1fff;
+    box-sizing:border-box;
+    border-top:none;
+  }
+  .icon-store:after{
+    content:"";
+    position:absolute;
+    left:4px;
+    top:4px;
+    width:22px;
+    height:8px;
+    border:2px solid #8a1fff;
+    border-radius:3px 3px 0 0;
+    box-sizing:border-box;
+    background:
+      linear-gradient(90deg,
+      transparent 0 18%,
+      #8a1fff 18% 20%,
+      transparent 20% 38%,
+      #8a1fff 38% 40%,
+      transparent 40% 58%,
+      #8a1fff 58% 60%,
+      transparent 60% 78%,
+      #8a1fff 78% 80%,
+      transparent 80% 100%);
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-photo"></div>
+
+    <div class="para" style="left:64px; top:138px; width:356px;">
+      Our survey reveals momentum in people taking control of their technology habits. We learned that 59.9% of people are questioning the authenticity of online content more than before, as indicated in our first trend, <strong>Cost of hesitations</strong>. Of that 59.9%, three quarters (76.9%) indicate they’re more intentional about their use of social media instead of doomscrolling, more than half (51.8%) are spending time with friends in person, and almost half (42.4%) are shopping in physical retail more than they did a year before. We see this social rewilding trend as a reaction to a drop in quality of content and experience.<span class="sup">151</span>
+    </div>
+
+    <div class="para" style="left:485px; top:138px; width:347px;">
+      It’s challenging to recognize movements as they emerge and it’s even harder when the symptoms aren’t easily captured by data, as is the case here, but the signals are growing in reach and number. Brands will need to assess how customers want to engage with them now, and carefully consider the real-world textures in their offerings. We expect to see companies in the startup space leading the charge toward an unbundling of complexity and a focus on simplicity and texture. This shift focuses on depth of feeling over compressed experiences.
+    </div>
+
+    <div class="right-title">
+      Top categories in which people want face-to-face interactions:
+    </div>
+
+    <div class="item" style="top:144px; height:70px;">
+      <div class="pct">60.8%</div>
+      <div class="icon icon-head"><div class="heart">♡</div></div>
+      <div class="label">Healthcare, wellness and mental health services</div>
+    </div>
+
+    <div class="item" style="top:246px; height:58px;">
+      <div class="pct">56.4%</div>
+      <div class="icon icon-basket"><div class="line1"></div><div class="line2"></div></div>
+      <div class="label">Grocery retailers</div>
+    </div>
+
+    <div class="item" style="top:325px; height:63px;">
+      <div class="pct">48.1%</div>
+      <div class="icon icon-dumbbell"><div class="p1"></div><div class="p2"></div><div class="p3"></div><div class="p4"></div></div>
+      <div class="label">Fitness centers, diet and nutrition experts</div>
+    </div>
+
+    <div class="item" style="top:405px; height:58px;">
+      <div class="pct">41.7%</div>
+      <div class="icon icon-store"></div>
+      <div class="label">Other retailers</div>
+    </div>
+
+    <div class="survey">Accenture Life Trends survey, 2024</div>
+
+    <div class="bottom-photo">
+      <div class="photo-caption">Accenture Life Trends 2025</div>
+    </div>
+
+    <div class="vert">
+      Cost of hesitations &nbsp;/&nbsp; The parent trap &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; <span class="active">Social rewilding</span>
+    </div>
+
+    <div class="page">78</div>
+  </div>
+</body>
+</html>

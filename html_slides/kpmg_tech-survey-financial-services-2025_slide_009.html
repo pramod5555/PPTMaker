@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>KPMG Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#f6f7f8;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f6f7f8;
+    color:#1f3f8f;
+  }
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:50px;
+    background:#e9e9ea;
+  }
+  .nav{
+    position:absolute;
+    top:19px;
+    font-size:11px;
+    color:#7e7e82;
+    white-space:nowrap;
+  }
+  .nav.active{
+    color:#2450d8;
+    font-weight:700;
+  }
+  .nav1{left:87px;}
+  .nav2{left:262px;}
+  .nav3{left:344px;}
+  .nav4{left:491px;}
+  .nav5{left:609px;}
+  .nav6{left:817px;}
+  .nav7{left:980px;}
+
+  .arrow-left, .arrow-right{
+    position:absolute;
+    top:16px;
+    width:0;height:0;
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+  }
+  .arrow-left{
+    left:1233px;
+    border-right:12px solid #8f8f92;
+  }
+  .arrow-right{
+    left:1292px;
+    display:none;
+  }
+  .home{
+    position:absolute;
+    left:1256px;
+    top:14px;
+    width:24px;
+    height:22px;
+  }
+  .home:before{
+    content:"";
+    position:absolute;
+    left:3px;
+    top:0;
+    width:0;height:0;
+    border-left:9px solid transparent;
+    border-right:9px solid transparent;
+    border-bottom:10px solid #8f8f92;
+  }
+  .home:after{
+    content:"";
+    position:absolute;
+    left:7px;
+    top:10px;
+    width:10px;
+    height:10px;
+    border:1px solid #8f8f92;
+    border-top:none;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .next{
+    position:absolute;
+    left:1290px;
+    top:16px;
+    width:0;height:0;
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+    border-left:12px solid #8f8f92;
+    display:none;
+  }
+  .nextvis{
+    position:absolute;
+    left:1290px;
+    top:16px;
+    width:0;height:0;
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+    border-left:12px solid #8f8f92;
+  }
+
+  .title{
+    position:absolute;
+    left:90px;
+    top:104px;
+    width:355px;
+    font-size:16px;
+    line-height:1.23;
+    color:#0d3d98;
+    font-weight:700;
+  }
+
+  .chart{
+    position:absolute;
+    left:90px;
+    top:190px;
+    width:366px;
+    height:256px;
+  }
+  .baseline{
+    position:absolute;
+    left:0;
+    top:240px;
+    width:366px;
+    height:1px;
+    background:#d9dde5;
+  }
+  .guide-left{
+    position:absolute;
+    left:0;
+    top:3px;
+    width:1px;
+    height:250px;
+    border-left:1px dotted #c9d0df;
+  }
+  .guide-second{
+    position:absolute;
+    left:42px;
+    top:3px;
+    width:1px;
+    height:250px;
+    border-left:1px dotted #c9d0df;
+  }
+
+  .bar-group{
+    position:absolute;
+    bottom:16px;
+    width:18px;
+    text-align:center;
+  }
+  .bar{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:18px;
+  }
+  .pct{
+    position:absolute;
+    top:-24px;
+    left:-4px;
+    width:28px;
+    font-size:11px;
+    color:#2a478f;
+    font-weight:700;
+  }
+
+  .g1{left:11px;height:216px;}
+  .g2{left:67px;height:224px;}
+  .g3{left:120px;height:217px;}
+  .g4{left:173px;height:229px;}
+  .g5{left:228px;height:224px;}
+  .g6{left:281px;height:216px;}
+  .g7{left:335px;height:213px;}
+
+  .b1{height:216px;background:#2f55db;}
+  .b2{height:224px;background:#2a438f;}
+  .b3{height:217px;background:#0a223f;}
+  .b4{height:229px;background:#08a7df;}
+  .b5{height:224px;background:#9cd2e7;}
+  .b6{height:216px;background:#6d1fdd;}
+  .b7{height:213px;background:#eb3d93;}
+
+  .chart-label{
+    position:absolute;
+    left:56px;
+    top:257px;
+    width:256px;
+    font-size:11px;
+    color:#2a478f;
+    font-weight:700;
+    text-align:center;
+  }
+
+  .legend{
+    position:absolute;
+    left:99px;
+    top:476px;
+    width:340px;
+    height:62px;
+    font-size:8px;
+    color:#6070a3;
+  }
+  .legend-item{
+    position:absolute;
+    height:12px;
+    line-height:12px;
+    white-space:nowrap;
+  }
+  .sw{
+    display:inline-block;
+    width:13px;
+    height:13px;
+    margin-right:5px;
+    vertical-align:middle;
+  }
+  .li1{left:0;top:0;}
+  .li2{left:138px;top:0;}
+  .li3{left:260px;top:0;}
+  .li4{left:0;top:23px;}
+  .li5{left:138px;top:23px;}
+  .li6{left:260px;top:23px;}
+  .li7{left:0;top:46px;}
+
+  .question{
+    position:absolute;
+    left:90px;
+    top:550px;
+    width:345px;
+    font-size:8px;
+    line-height:1.35;
+    color:#4d71c6;
+  }
+
+  .source{
+    position:absolute;
+    left:90px;
+    top:661px;
+    font-size:8px;
+    color:#4d71c6;
+  }
+
+  .footer{
+    position:absolute;
+    left:87px;
+    top:716px;
+    display:none;
+  }
+  .copyright{
+    position:absolute;
+    left:88px;
+    top:716px;
+    display:none;
+  }
+
+  .footertext{
+    position:absolute;
+    left:88px;
+    top:717px;
+    display:none;
+  }
+
+  .legal{
+    position:absolute;
+    left:88px;
+    top:716px;
+    display:none;
+  }
+
+  .bottomlegal{
+    position:absolute;
+    left:88px;
+    top:717px;
+    display:none;
+  }
+
+  .copyright-line{
+    position:absolute;
+    left:88px;
+    top:718px;
+    display:none;
+  }
+
+  .small-legal{
+    position:absolute;
+    left:88px;
+    top:716px;
+    display:none;
+  }
+
+  .footnote{
+    position:absolute;
+    left:88px;
+    top:716px;
+    display:none;
+  }
+
+  .legaltext{
+    position:absolute;
+    left:88px;
+    top:716px;
+    display:none;
+  }
+
+  .kpmg-legal{
+    position:absolute;
+    left:88px;
+    top:716px;
+    display:none;
+  }
+
+  .bottom-note{
+    position:absolute;
+    left:88px;
+    top:716px;
+    display:none;
+  }
+
+  .copyright-visible{
+    position:absolute;
+    left:88px;
+    top:716px;
+    display:none;
+  }
+
+  .legal-visible{
+    position:absolute;
+    left:88px;
+    top:716px;
+    display:none;
+  }
+
+  .footer-copy{
+    position:absolute;
+    left:88px;
+    top:717px;
+    display:none;
+  }
+
+  .tiny{
+    position:absolute;
+    left:88px;
+    top:717px;
+    display:none;
+  }
+
+  .legalblock{
+    position:absolute;
+    left:88px;
+    top:716px;
+    display:none;
+  }
+
+  .copyright2{
+    position:absolute;
+    left:87px;
+    top:716px;
+    display:none;
+  }
+
+  .footerline{
+    position:absolute;
+    left:88px;
+    top:717px;
+    display:none;
+  }
+
+  .bottom-left{
+    position:absolute;
+    left:88px;
+    top:717px;
+    display:none;
+  }
+
+  .corp{
+    position:absolute;
+    left:88px;
+    top:717px;
+    display:none;
+  }
+
+  .bottom-legal-visible{
+    position:absolute;
+    left:87px;
+    top:717px;
+    display:none;
+  }
+
+  .legal-real{
+    position:absolute;
+    left:88px;
+    top:717px;
+    width:620px;
+    font-size:8px;
+    color:#b0b0b3;
+    line-height:1.35;
+  }
+
+  .coltext{
+    position:absolute;
+    top:106px;
+    width:377px;
+    font-size:12px;
+    line-height:1.32;
+    color:#3e66bd;
+  }
+  .col1{left:497px;}
+  .col2{left:902px;}
+
+  .page{
+    position:absolute;
+    right:6px;
+    bottom:7px;
+    font-size:14px;
+    font-weight:700;
+    color:#0d3d98;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar"></div>
+
+  <div class="nav nav1">Executive summary</div>
+  <div class="nav nav2">Key findings</div>
+  <div class="nav nav3">Risk and regulation</div>
+  <div class="nav nav4 active">Data and AI</div>
+  <div class="nav nav5">Simplification and modernization</div>
+  <div class="nav nav6">How KPMG can help</div>
+  <div class="nav nav7">Methodology</div>
+
+  <div class="arrow-left"></div>
+  <div class="home"></div>
+  <div class="nextvis"></div>
+
+  <div class="title">Financial services’ proportion of AI-driven profitability, including subsectors, compared with the cross-sector average</div>
+
+  <div class="chart">
+    <div class="guide-left"></div>
+    <div class="guide-second"></div>
+    <div class="baseline"></div>
+
+    <div class="bar-group g1">
+      <div class="pct">88%</div>
+      <div class="bar b1"></div>
+    </div>
+    <div class="bar-group g2">
+      <div class="pct">92%</div>
+      <div class="bar b2"></div>
+    </div>
+    <div class="bar-group g3">
+      <div class="pct">89%</div>
+      <div class="bar b3"></div>
+    </div>
+    <div class="bar-group g4">
+      <div class="pct">94%</div>
+      <div class="bar b4"></div>
+    </div>
+    <div class="bar-group g5">
+      <div class="pct">92%</div>
+      <div class="bar b5"></div>
+    </div>
+    <div class="bar-group g6">
+      <div class="pct">88%</div>
+      <div class="bar b6"></div>
+    </div>
+    <div class="bar-group g7">
+      <div class="pct">87%</div>
+      <div class="bar b7"></div>
+    </div>
+
+    <div class="chart-label">AI and automation (including generative AI)</div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item li1"><span class="sw" style="background:#2f55db;"></span>Cross-sector average</div>
+    <div class="legend-item li2"><span class="sw" style="background:#2a438f;"></span>Financial services</div>
+    <div class="legend-item li3"><span class="sw" style="background:#0a223f;"></span>Asset management</div>
+    <div class="legend-item li4"><span class="sw" style="background:#08a7df;"></span>Banking and capital markets</div>
+    <div class="legend-item li5"><span class="sw" style="background:#9cd2e7;"></span>Insurance</div>
+    <div class="legend-item li6"><span class="sw" style="background:#6d1fdd;"></span>Private equity</div>
+    <div class="legend-item li7"><span class="sw" style="background:#eb3d93;"></span>Real estate</div>
+  </div>
+
+  <div class="question">Over the past 24 months, have your digital transformation efforts with the following technologies positively impacted your organization’s profitability/performance?</div>
+
+  <div class="source">4. Source: KPMG LLP, “KPMG global AI in finance report” (December 4, 2024).</div>
+
+  <div class="legal-real">© 2025 KPMG LLP, a Delaware limited liability partnership and a member firm of the KPMG global organization of independent member firms affiliated with<br>KPMG International Limited, a private English company limited by guarantee. All rights reserved. USCS026447-2A</div>
+
+  <div class="coltext col1">
+    Our discussions with financial services business and technology leaders suggest they are continuing to be inundated with requests for GenAI support, with delivery backlogs growing. There are multiple high-value use cases, including automated claims, automated credit assessment, fraud detection, risk assessment, controls optimization and development, personalization of products and services, fighting cyber-crime, and code generation. Financial services organizations are increasingly looking to AI to help tackle complex and time-intensive tasks and to streamline processes.<br><br>
+    Along with the opportunities, obstacles and barriers to adoption are also growing. Our research confirms that the sector has yet to master the art of scaling AI use cases to fully realize their potential. While 32 percent of financial services companies are already generating AI returns, 67 percent have not yet reached this stage.<br><br>
+    Rapidly evolving technologies are butting up against legacy IT systems, siloed data, and fiscal constraints. “AI is the next technology solution that financial services companies are investing in to become more modular and fast-moving. This has cost implications, especially since the wide range of digital solutions they are managing simultaneously turns digital debt into a serious risk,” says Paul Henninger, Head of Connected Technology, KPMG in the UK.<br><br>
+    One of the biggest concerns among financial services leaders is the state of their current systems. According to the 2024 KPMG Global AI in finance report<sup>4</sup>, nearly 30 percent of financial executives agree
+  </div>
+
+  <div class="coltext col2">
+    that difficulty with integrating existing tools is one of the biggest barriers to AI adoption. Legacy systems limit the ability to innovate, whether it be due to less money being made available for AI use cases, an inability to capitalize on new capabilities, or difficulty accessing siloed data sets. A failure to address these barriers risks increasing the divide between digital leaders (including fintechs) and wider functions.<br><br>
+    In parallel with unwinding legacy tech, digital leaders are shifting how they think about their AI investments from a technology perspective. Historically, organizations have looked at automation and AI technologies through a tool or platform-specific lens [applying robotic process automation to processes and ML models). The landscape has shifted to a much more integrated ecosystem, in which use cases may draw from multiple AI capability sets.<br><br>
+    “Ecosystem level AI blueprints consider how end-to-end value chains can be transformed, beyond automation of certain process steps that solve specific pain points but risk missing the wider change opportunity or impacts. As technologies mature and gain traction across the enterprise, we are seeing a significant and important interplay with how business leaders consider the future service delivery model for their respective functions, whether it be to transform the customer experience or optimize the cost base,” comments David Ryan, Head of Technology for Financial Services, KPMG in Australia.
+  </div>
+
+  <div class="page">9</div>
+</div>
+</body>
+</html>

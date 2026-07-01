@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#e5e0e0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e5e0e0;
+    color:#222;
+  }
+
+  .top-strip{
+    position:absolute;
+    left:61px;
+    top:0;
+    width:344px;
+    height:48px;
+    background:
+      radial-gradient(circle at 68% 18%, rgba(40,40,40,.35) 0 10%, rgba(40,40,40,0) 18%),
+      radial-gradient(circle at 46% 42%, rgba(182,102,31,.9) 0 8%, rgba(182,102,31,.4) 18%, rgba(182,102,31,0) 26%),
+      linear-gradient(90deg, #cfd4d4 0%, #d9dddd 55%, #c8cccc 100%);
+    filter: blur(0.2px);
+  }
+
+  .title{
+    position:absolute;
+    left:59px;
+    top:82px;
+    width:350px;
+    font-size:24px;
+    line-height:1.18;
+    color:#7d23e6;
+    font-weight:400;
+    letter-spacing:-0.2px;
+  }
+
+  .photo{
+    position:absolute;
+    left:60px;
+    top:194px;
+    width:346px;
+    height:558px;
+    overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(95,19,20,.55) 0%, rgba(255,166,46,.35) 18%, rgba(247,192,103,.45) 55%, rgba(180,188,201,.32) 72%, rgba(86,134,196,.18) 100%),
+      linear-gradient(180deg, #7a0e1a 0%, #d86d1b 12%, #f0c464 33%, #efb86d 58%, #c5bdb7 75%, #8fa8cb 100%);
+  }
+  .photo:before{
+    content:"";
+    position:absolute;
+    left:-8px;
+    top:12px;
+    width:146px;
+    height:520px;
+    background:
+      linear-gradient(180deg, rgba(240,114,20,.9) 0 9%, rgba(216,52,18,.95) 9% 18%, rgba(47,82,167,.98) 18% 68%, rgba(236,183,122,.95) 68% 86%, rgba(116,170,209,.92) 86% 100%);
+    clip-path: polygon(22% 0, 65% 0, 86% 10%, 80% 30%, 74% 58%, 82% 82%, 72% 100%, 16% 100%, 9% 78%, 15% 54%, 13% 26%);
+    filter: blur(1px);
+    opacity:.96;
+  }
+  .photo:after{
+    content:"";
+    position:absolute;
+    left:183px;
+    top:-8px;
+    width:160px;
+    height:426px;
+    background:
+      radial-gradient(circle at 40% 40%, rgba(255,126,26,.82) 0 18%, rgba(255,126,26,.15) 19% 34%, rgba(255,126,26,0) 35%),
+      linear-gradient(180deg, rgba(95,0,28,.88) 0 18%, rgba(255,123,0,.28) 18% 25%, rgba(247,170,69,.18) 25% 52%, rgba(55,28,24,.75) 52% 100%);
+    clip-path: polygon(40% 0, 74% 0, 100% 14%, 96% 36%, 90% 56%, 86% 78%, 71% 100%, 47% 100%, 35% 81%, 29% 58%, 30% 32%);
+    filter: blur(1.2px);
+    opacity:.95;
+  }
+  .ball{
+    position:absolute;
+    left:188px;
+    top:129px;
+    width:94px;
+    height:94px;
+    border-radius:50%;
+    background:
+      repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.12) 0 8px, rgba(255,255,255,0) 8px 16px),
+      radial-gradient(circle at 38% 34%, #ff9a43 0 18%, #f26b1a 35%, #cb4200 72%, #a53000 100%);
+    opacity:.88;
+    filter: blur(0.6px);
+    box-shadow: 0 0 0 2px rgba(180,70,5,.15) inset;
+  }
+  .shoe{
+    position:absolute;
+    left:29px;
+    bottom:24px;
+    width:105px;
+    height:38px;
+    background:#d7dde6;
+    border-radius:22px 18px 14px 20px;
+    transform:rotate(9deg);
+    box-shadow: inset -8px -6px 0 rgba(122,145,167,.55);
+  }
+  .shoe:before{
+    content:"";
+    position:absolute;
+    left:37px;
+    top:8px;
+    width:36px;
+    height:16px;
+    background:#0e1014;
+    border-radius:0 0 12px 12px;
+  }
+  .shoe:after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:102px;
+    height:10px;
+    background:#eef2f6;
+    border-radius:8px;
+  }
+
+  .col{
+    position:absolute;
+    font-size:18px;
+    line-height:1.52;
+    color:#2a2a2a;
+    letter-spacing:-0.1px;
+  }
+  .col p{ margin:0 0 18px 0; }
+  .col strong{ font-weight:700; }
+
+  .col-left{
+    left:454px;
+    top:58px;
+    width:347px;
+  }
+  .col-right{
+    left:874px;
+    top:58px;
+    width:349px;
+  }
+
+  .side-nav{
+    position:absolute;
+    right:10px;
+    top:35px;
+    height:604px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-size:16px;
+    color:#6f6f6f;
+    letter-spacing:0.2px;
+  }
+  .side-nav .active{
+    color:#8b1ff0;
+    font-weight:600;
+  }
+
+  .footer-left{
+    position:absolute;
+    right:82px;
+    bottom:17px;
+    font-size:15px;
+    color:#7c7c7c;
+  }
+  .footer-left .year{
+    color:#8b1ff0;
+    font-weight:700;
+  }
+  .footer-page{
+    position:absolute;
+    right:26px;
+    bottom:17px;
+    font-size:15px;
+    color:#7c7c7c;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-strip"></div>
+
+    <div class="title">Brand strategies need<br>a radical rethink</div>
+
+    <div class="photo">
+      <div class="ball"></div>
+      <div class="shoe"></div>
+    </div>
+
+    <div class="col col-left">
+      <p>Parents and children are huge demographics, so this trend is crucial for numerous organizations. We could be witnessing the start of a significant shift in dynamics. Marketing channels that have been reliable for over a decade could become significantly less effective, and people could start living more—and expecting brands to engage with them—in the real world. (More on this in our fifth trend, <strong>Social rewilding</strong>.)</p>
+
+      <p>We believe it’s reasonable to expect a societal shift toward banning smartphones for the under-14s (possibly the under-16s) on a local and maybe even global scale. Any business that targets children and teens will feel the impact, including social media, technology platforms, technology hardware, telcos, banks, fast-moving consumer goods (especially food and drink), hospitality and media.</p>
+
+      <p>Brands need to be ready for a world in which the next generation has been well shielded from smart devices and social media. They should develop engaging, offline experiences and products that encourage creativity, humanity and real-world social interaction. We could see a wholesale rethink of how and where to market to anyone under 16, which would decimate some services and create opportunities for others.</p>
+    </div>
+
+    <div class="col col-right">
+      <p>There will be new opportunities to shape technology services that treat young people’s developing brains with empathy and scientific awareness. Semi-dumb phones and telco plans for young people are likely under development as we write. The Yondr pouch has launched to limit the use of phones without removing them completely.<sup>65</sup> Alternative connected devices like watches will probably have a role, and AI may be deployed to moderate access to content.</p>
+
+      <p>It remains to be seen how dramatic the change will be. Even without outright bans, we expect to see a greater commitment to digital literacy and critical thinking, endorsed by governments and implemented by schools. But there will be a generation of young people who will strongly resist this change and seek workarounds. We expect the tension to continue for a long while yet.</p>
+    </div>
+
+    <div class="side-nav">Cost of hesitations &nbsp;/&nbsp; <span class="active">The parent trap</span> &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; Social rewilding</div>
+
+    <div class="footer-left">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="footer-page">35</div>
+  </div>
+</body>
+</html>

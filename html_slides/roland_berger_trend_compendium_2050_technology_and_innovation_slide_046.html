@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#b8b8b8;font-family:Arial, Helvetica, "Segoe UI", sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#eeeeee;
+  }
+  .leftbar{
+    position:absolute;
+    left:0;top:0;
+    width:181px;height:720px;
+    background:#34383e;
+  }
+  .leftbar:after{
+    content:"";
+    position:absolute;
+    right:0;top:0;
+    width:2px;height:720px;
+    background:#6d4fa7;
+  }
+  .brand-title{
+    position:absolute;
+    left:12px;top:34px;
+    width:150px;
+    color:#f0f0f0;
+    font-size:23px;
+    line-height:1.08;
+    font-weight:700;
+    letter-spacing:-0.2px;
+  }
+  .nav-item{
+    position:absolute;
+    left:8px;
+    width:162px;
+    height:92px;
+  }
+  .hex{
+    position:absolute;
+    left:0;top:7px;
+    width:64px;height:64px;
+    clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0% 50%);
+    background:rgba(255,255,255,0.16);
+    border:2px solid rgba(255,255,255,0.35);
+    box-sizing:border-box;
+    overflow:hidden;
+  }
+  .hex svg{position:absolute;inset:0}
+  .nav-num{
+    position:absolute;
+    left:84px;top:6px;
+    font-size:22px;
+    line-height:1;
+    font-weight:700;
+    color:#868a90;
+  }
+  .nav-label{
+    position:absolute;
+    left:84px;top:30px;
+    width:70px;
+    font-size:13px;
+    line-height:1.1;
+    color:#767b82;
+    font-weight:500;
+  }
+  .nav-item.active .hex{
+    background:rgba(135,97,209,.2);
+    border-color:#9b78e1;
+    box-shadow:0 0 0 2px rgba(155,120,225,.18) inset;
+  }
+  .nav-item.active .nav-num,
+  .nav-item.active .nav-label{
+    color:#8b69d1;
+    font-weight:700;
+  }
+  .gear{
+    position:absolute;
+    left:65px;top:626px;
+    width:64px;height:60px;
+    opacity:.6;
+  }
+  .pageno{
+    position:absolute;
+    left:10px;bottom:7px;
+    font-size:17px;
+    color:#ffffff;
+  }
+  .title{
+    position:absolute;
+    left:220px;top:30px;
+    width:1040px;
+    color:#222;
+    font-size:28px;
+    line-height:1.08;
+    font-weight:700;
+    letter-spacing:-0.3px;
+  }
+  .subtitle{
+    position:absolute;
+    left:220px;top:138px;
+    width:760px;
+    color:#8e959c;
+    font-size:21px;
+    line-height:1.15;
+    font-weight:400;
+  }
+  .chart{
+    position:absolute;
+    left:214px;top:188px;
+    width:774px;height:457px;
+  }
+  .callout{
+    position:absolute;
+    left:1016px;top:140px;
+    width:264px;height:580px;
+    background:#d5d5d6;
+  }
+  .callout-text{
+    position:absolute;
+    left:1028px;top:150px;
+    width:236px;
+    color:#222;
+    font-size:18px;
+    line-height:1.08;
+    font-weight:400;
+  }
+  .callout-text p{margin:0 0 16px 0}
+  .callout-text b{font-weight:700}
+  .footnote{
+    position:absolute;
+    left:220px;bottom:10px;
+    width:790px;
+    color:#555;
+    font-size:11px;
+    line-height:1.1;
+  }
+  .footer-logo{
+    position:absolute;
+    right:10px;bottom:7px;
+    width:63px;height:24px;
+    color:#666;
+  }
+  .footer-logo .name{
+    position:absolute;
+    right:20px;top:4px;
+    font-size:10px;
+    line-height:0.95;
+    text-align:right;
+    color:#6f6f6f;
+  }
+  .footer-logo .rb{
+    position:absolute;
+    right:0;top:-3px;
+    font-size:34px;
+    line-height:1;
+    font-weight:700;
+    color:#95989c;
+  }
+  .small{font-size:10px}
+  svg text{font-family:Arial, Helvetica, "Segoe UI", sans-serif}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="leftbar"></div>
+
+  <div class="brand-title">Technology &amp;<br>Innovation</div>
+
+  <div class="nav-item" style="top:136px;">
+    <div class="hex">
+      <svg width="64" height="104" viewBox="0 0 64 104">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ffffff" stop-opacity=".9"/>
+            <stop offset="1" stop-color="#bfc3c8" stop-opacity=".45"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="64" height="64" fill="url(#g1)" opacity=".18"/>
+        <path d="M9 17h45v28H9z" fill="none" stroke="#fff" stroke-width="1.4" opacity=".8"/>
+        <path d="M9 24h45M16 17v28M24 17v28M33 17v28M42 17v28M50 17v28" stroke="#fff" stroke-width="1" opacity=".72"/>
+        <polyline points="12,42 20,33 30,37 40,25 51,29" fill="none" stroke="#fff" stroke-width="2"/>
+        <circle cx="20" cy="33" r="2" fill="#fff"/><circle cx="30" cy="37" r="2" fill="#fff"/><circle cx="40" cy="25" r="2" fill="#fff"/><circle cx="51" cy="29" r="2" fill="#fff"/>
+      </svg>
+    </div>
+    <div class="nav-num">1</div>
+    <div class="nav-label">Value of<br>Innovation</div>
+  </div>
+
+  <div class="nav-item active" style="top:268px;">
+    <div class="hex">
+      <svg width="64" height="104" viewBox="0 0 64 104">
+        <circle cx="32" cy="32" r="16" fill="none" stroke="#fff" stroke-width="1.2" opacity=".85"/>
+        <path d="M12 35C21 13 42 13 52 31" fill="none" stroke="#fff" stroke-width="1.4" opacity=".75"/>
+        <path d="M13 27C24 43 39 42 52 23" fill="none" stroke="#fff" stroke-width="1.2" opacity=".75"/>
+        <path d="M17 18c8 6 19 9 30 23" fill="none" stroke="#fff" stroke-width="1" opacity=".45"/>
+        <circle cx="26" cy="26" r="1.8" fill="#fff"/><circle cx="38" cy="31" r="1.8" fill="#fff"/><circle cx="31" cy="39" r="1.8" fill="#fff"/>
+      </svg>
+    </div>
+    <div class="nav-num">2</div>
+    <div class="nav-label">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="nav-item" style="top:400px;">
+    <div class="hex">
+      <svg width="64" height="104" viewBox="0 0 64 104">
+        <circle cx="24" cy="26" r="8" fill="none" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="40" cy="26" r="8" fill="none" stroke="#fff" stroke-width="1.5"/>
+        <path d="M20 31l11 8M44 31l-11 8M28 37l8-8" stroke="#fff" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+    <div class="nav-num">3</div>
+    <div class="nav-label">Humans &amp;<br>Machines</div>
+  </div>
+
+  <svg class="gear" viewBox="0 0 80 70">
+    <g fill="none" stroke="#c3c6c8" stroke-width="3">
+      <circle cx="24" cy="41" r="13"></circle>
+      <path d="M24 14v8M24 60v8M-1 41h8M41 41h8M8 24l6 6M34 50l6 6M8 58l6-6M34 30l6-6"></path>
+      <path d="M25 31c4 0 8 3 8 8 0 6-6 8-9 10-2 1-4 3-4 6"></path>
+      <circle cx="54" cy="29" r="10"></circle>
+      <path d="M54 14v4M54 40v4M40 29h4M64 29h4M44 19l3 3M61 36l3 3M44 39l3-3M61 22l3-3"></path>
+    </g>
+  </svg>
+  <div class="pageno">46</div>
+
+  <div class="title">Human activities utilizing space assets will see continuous growth to 2050 –<br>Space activities depend on orbital distances to Earth and commercial appeal</div>
+  <div class="subtitle">Projected evolution of space activities up to geostationary orbit<sup class="small">1)</sup></div>
+
+  <div class="chart">
+    <svg width="774" height="497" viewBox="0 0 774 497">
+      <defs>
+        <linearGradient id="purpleFade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#5b428d"/>
+          <stop offset="72%" stop-color="#7259a8"/>
+          <stop offset="91%" stop-color="#d7d2e6"/>
+          <stop offset="100%" stop-color="#eeeeee"/>
+        </linearGradient>
+        <linearGradient id="purpleSolid" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#5b428d"/>
+          <stop offset="100%" stop-color="#6d55a3"/>
+        </linearGradient>
+        <linearGradient id="blueFade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#00497b"/>
+          <stop offset="75%" stop-color="#2d6e9f"/>
+          <stop offset="100%" stop-color="#b9cddd"/>
+        </linearGradient>
+        <linearGradient id="area1" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#8ea7c5"/>
+          <stop offset="100%" stop-color="#9cb2cc"/>
+        </linearGradient>
+        <linearGradient id="area2" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#cbc1db"/>
+          <stop offset="100%" stop-color="#d8d0e2"/>
+        </linearGradient>
+        <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#222"/>
+        </marker>
+        <marker id="arrowSmall" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="#222"/>
+        </marker>
+      </defs>
+
+      <line x1="60" y1="18" x2="60" y2="430" stroke="#222" stroke-width="1.3" marker-end="url(#arrow)"/>
+      <line x1="60" y1="430" x2="764" y2="430" stroke="#222" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+      <text x="19" y="103" transform="rotate(-90 19 103)" font-size="18" font-weight="700" fill="#111">GEO</text>
+      <text x="47" y="108" transform="rotate(-90 47 108)" font-size="15" font-weight="700" fill="#111">utilization</text>
+
+      <text x="19" y="215" transform="rotate(-90 19 215)" font-size="18" font-weight="700" fill="#111">LEO</text>
+      <text x="47" y="220" transform="rotate(-90 47 220)" font-size="15" font-weight="700" fill="#111">utilization</text>
+
+      <text x="19" y="337" transform="rotate(-90 19 337)" font-size="18" font-weight="700" fill="#111">Orbital</text>
+      <text x="47" y="349" transform="rotate(-90 47 349)" font-size="15" font-weight="700" fill="#111">transportation</text>
+
+      <text x="19" y="415" transform="rotate(-90 19 415)" font-size="18" font-weight="700" fill="#111">On the</text>
+      <text x="47" y="418" transform="rotate(-90 47 418)" font-size="15" font-weight="700" fill="#111">earth</text>
+
+      <path d="M60 293 L60 233 L327 226 L503 218 L629 199 L751 152 L751 293 Z" fill="url(#area1)"/>
+      <path d="M60 412 L60 380 L292 370 L499 356 L672 347 L751 341 L751 412 Z" fill="url(#area2)"/>
+      <path d="M60 430 L60 395 L751 395 L751 430 Z" fill="#9db6d0"/>
+
+      <text x="76" y="222" font-size="16" fill="#333">10 people</text>
+      <text x="288" y="214" font-size="16" fill="#333">100 people</text>
+      <text x="500" y="193" font-size="16" fill="#333">200 people</text>
+      <text x="696" y="177" font-size="16" fill="#333">300 people</text>
+
+      <text x="65" y="343" font-size="16" fill="#333">10 people/yr</text>
+      <text x="284" y="333" font-size="16" fill="#333">100 people/yr</text>
+      <text x="489" y="321" font-size="16" fill="#333">500 people/yr</text>
+      <text x="679" y="266" font-size="16" fill="#333">1,000 people/yr</text>
+
+      <text x="77" y="403" font-size="16" fill="#333">7 billion people</text>
+      <text x="277" y="392" font-size="16" fill="#333">8 billion people</text>
+      <text x="485" y="381" font-size="16" fill="#333">9 billion people</text>
+      <text x="676" y="374" font-size="16" fill="#333">10 billion people</text>
+
+      <rect x="110" y="66" width="278" height="28" fill="url(#purpleFade)"/>
+      <text x="119" y="84" font-size="14" font-weight="700" fill="#fff">Centimeter order positioning by Multi-GNSS</text>
+
+      <rect x="309" y="29" width="291" height="39" fill="url(#purpleFade)"/>
+      <text x="318" y="50" font-size="14" font-weight="700" fill="#fff">Space traffic management / Debris removal</text>
+
+      <rect x="633" y="20" width="112" height="48" fill="url(#purpleSolid)"/>
+      <text x="642" y="40" font-size="14" font-weight="700" fill="#fff">Space elevator</text>
+      <text x="642" y="57" font-size="14" font-weight="700" fill="#fff">demo</text>
+
+      <rect x="118" y="113" width="184" height="41" fill="url(#purpleFade)"/>
+      <text x="126" y="130" font-size="14" font-weight="700" fill="#fff">Expansion of GEO/MEO</text>
+      <text x="126" y="147" font-size="14" font-weight="700" fill="#fff">COMM service</text>
+
+      <rect x="306" y="101" width="273" height="29" fill="url(#purpleFade)"/>
+      <text x="315" y="120" font-size="14" font-weight="700" fill="#fff">24/7 monitoring from GEO</text>
+
+      <rect x="557" y="157" width="194" height="30" fill="url(#purpleFade)"/>
+      <text x="567" y="177" font-size="14" font-weight="700" fill="#fff">Orbit hotels / Economic activity bases</text>
+
+      <rect x="264" y="197" width="462" height="30" fill="url(#purpleFade)"/>
+      <text x="272" y="216" font-size="14" font-weight="700" fill="#fff">LEO manned platform / Entertainment and recreations for space residents</text>
+
+      <rect x="161" y="238" width="223" height="30" fill="url(#purpleSolid)"/>
+      <text x="171" y="257" font-size="14" font-weight="700" fill="#fff">LEO mega constellation</text>
+
+      <text x="443" y="283" text-anchor="middle" font-size="17" font-weight="700" fill="#111">Earth-Geo</text>
+
+      <rect x="323" y="316" width="214" height="49" fill="url(#purpleFade)"/>
+      <text x="333" y="339" font-size="14" font-weight="700" fill="#fff">Reusable space</text>
+      <text x="333" y="357" font-size="14" font-weight="700" fill="#fff">transportation system</text>
+
+      <rect x="567" y="312" width="169" height="49" fill="url(#purpleFade)"/>
+      <text x="578" y="335" font-size="14" font-weight="700" fill="#fff">Space-ports/</text>
+      <text x="578" y="353" font-size="14" font-weight="700" fill="#fff">Space passenger services</text>
+
+      <rect x="142" y="401" width="246" height="32" fill="url(#blueFade)"/>
+      <text x="151" y="422" font-size="14" font-weight="700" fill="#fff">Internet environment in developing countries</text>
+
+      <rect x="392" y="401" width="228" height="32" fill="url(#blueFade)"/>
+      <text x="401" y="422" font-size="14" font-weight="700" fill="#fff">Entertainment (i.e. VR) using space</text>
+
+      <rect x="611" y="390" width="140" height="47" fill="url(#blueFade)"/>
+      <text x="620" y="411" font-size="14" font-weight="700" fill="#fff">Space sightseeing /</text>
+      <text x="620" y="428" font-size="14" font-weight="700" fill="#fff">Business trip</text>
+
+      <rect x="120" y="437" width="174" height="27" fill="url(#blueFade)"/>
+      <text x="130" y="455" font-size="14" font-weight="700" fill="#fff">Automatic drive/delivery</text>
+
+      <rect x="348" y="437" width="163" height="27" fill="url(#blueFade)"/>
+      <text x="360" y="455" font-size="14" font-weight="700" fill="#fff">Disaster emergency response</text>
+
+      <text x="375" y="379" font-size="10.5" font-weight="700" fill="#333">Human activities not utilizing space asset</text>
+      <text x="595" y="394" font-size="10.5" font-weight="700" fill="#fff" transform="rotate(-6 595 394)">Human activities utilizing space asset</text>
+
+      <g stroke="#666" stroke-width="1">
+        <line x1="139" y1="154" x2="139" y2="422"/>
+        <line x1="181" y1="267" x2="181" y2="392"/>
+        <line x1="238" y1="268" x2="238" y2="401"/>
+        <line x1="354" y1="47" x2="354" y2="65"/>
+        <line x1="416" y1="68" x2="416" y2="198"/>
+        <line x1="435" y1="65" x2="435" y2="101"/>
+        <line x1="435" y1="130" x2="435" y2="197"/>
+        <line x1="449" y1="269" x2="449" y2="316"/>
+        <line x1="460" y1="365" x2="460" y2="401"/>
+        <line x1="469" y1="130" x2="469" y2="197"/>
+        <line x1="480" y1="365" x2="480" y2="437"/>
+        <line x1="592" y1="68" x2="592" y2="157"/>
+        <line x1="620" y1="68" x2="620" y2="157"/>
+        <line x1="620" y1="187" x2="620" y2="312"/>
+        <line x1="656" y1="68" x2="656" y2="312"/>
+        <line x1="671" y1="187" x2="671" y2="312"/>
+        <line x1="696" y1="187" x2="696" y2="390"/>
+      </g>
+
+      <g stroke="#333" stroke-width="1.2" fill="none" marker-end="url(#arrowSmall)">
+        <path d="M292 85V47h16"/>
+        <path d="M416 84V62"/>
+        <path d="M598 44h33"/>
+        <path d="M400 197v20"/>
+        <path d="M452 196v-20"/>
+        <path d="M535 172h22"/>
+        <path d="M539 340h26"/>
+        <path d="M181 433v11"/>
+        <path d="M392 433v11"/>
+        <path d="M465 433v11"/>
+        <path d="M621 389v-1"/>
+      </g>
+
+      <g stroke="#111" stroke-width="1" fill="none" marker-end="url(#arrowSmall)">
+        <path d="M589 68v97"/>
+        <path d="M410 130v28"/>
+        <path d="M583 68v110"/>
+        <path d="M378 227v15"/>
+        <path d="M663 157v20"/>
+        <path d="M382 268v11"/>
+        <path d="M618 187v125"/>
+        <path d="M350 365v34"/>
+        <path d="M622 361v29"/>
+      </g>
+
+      <text x="90" y="461" font-size="18" font-weight="700" fill="#111">2020</text>
+      <text x="300" y="461" font-size="18" font-weight="700" fill="#111">2030</text>
+      <text x="510" y="461" font-size="18" font-weight="700" fill="#111">2040</text>
+      <text x="719" y="461" font-size="18" font-weight="700" fill="#111">2050</text>
+    </svg>
+  </div>
+
+  <div class="callout"></div>
+  <div class="callout-text">
+    <p>&gt; <b>Depending on altitude,</b> i.e. distance from the Earth, there are <b>different current activities and planned future endeavors in space</b>: For example, satellites can be in a low earth orbit (LEO, altitude of 500-1,200 km), a medium earth orbit (MEO, 5,000-20,000 km) or a geostationary orbit (GEO, 36,000 km)</p>
+    <p>&gt; Sizeable leaps in public and private scientific and technological innovation and funding in areas of <b>transpor-<br>tation</b>, robotics and <b>spacecraft architecture</b> are essential to secure future space exploration and commercialization</p>
+    <p>&gt; <b>Transportation systems</b> could develop from today's reusable rockets to space ports with space passenger services as well as orbital multistage low-cost mass transportation vehicles <b>in 2050</b></p>
+    <p>&gt; For commercial and scientific <b>space utilization</b>, researchers foresee the <b>manufacturing, recycling and assem-<br>bly</b> of materials and devices in space</p>
+  </div>
+
+  <div class="footnote">1) Orbit: refers to the curved path of a celestial object or spacecraft round a star, planet, or moon, especially a periodic elliptical revolution</div>
+
+  <div class="footer-logo">
+    <div class="name">Roland<br>Berger</div>
+    <div class="rb">b</div>
+  </div>
+</div>
+</body>
+</html>

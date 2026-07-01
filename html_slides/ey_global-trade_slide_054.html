@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#e7e7e7;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e7e7e7;
+    color:#4c4c56;
+  }
+  #slide > *{ position:absolute; box-sizing:border-box; }
+
+  .topbar{
+    left:0; top:0; width:1280px; height:79px;
+    background:#ececec;
+    z-index:5;
+  }
+  .topbar-accent{
+    left:0; top:0; width:47px; height:79px;
+    background:#c7c7cf;
+    z-index:6;
+  }
+  .topline{
+    left:0; top:78px; width:1280px; height:1px;
+    background:#c3c4cb;
+    z-index:7;
+  }
+  .header-text{
+    left:56px; top:50px; width:470px; height:22px;
+    font-size:15px; line-height:18px; color:#7c7c89; font-weight:400;
+    z-index:30;
+  }
+
+  .nav-circle{
+    width:36px; height:36px; border-radius:50%;
+    background:#c5c5cd; color:#43434f; text-align:center;
+    line-height:36px; font-size:19px; font-weight:700; z-index:50;
+  }
+  .nav-left{ left:951px; top:33px; }
+  .nav-right{ left:995px; top:33px; }
+
+  .left-col{
+    left:56px; top:119px; width:618px; height:540px;
+    z-index:30;
+  }
+  .col1{
+    left:0; top:0; width:300px; height:540px;
+  }
+  .col2{
+    left:318px; top:0; width:302px; height:540px;
+  }
+
+  .h2{
+    font-size:18px; line-height:21px; font-weight:700; color:#2d2f38;
+    margin:0;
+  }
+  .p{
+    font-size:13px; line-height:1.45; font-weight:400; color:#4f5059;
+    margin:0;
+  }
+
+  .c1-h{ left:0; top:0; width:200px; }
+  .c1-p1{ left:0; top:28px; width:292px; }
+  .c1-p2{ left:0; top:215px; width:295px; }
+  .c1-p3{ left:0; top:322px; width:298px; }
+
+  .c2-p1{ left:0; top:0; width:294px; }
+  .c2-p2{ left:0; top:269px; width:140px; }
+  .c2-p3{ left:0; top:301px; width:295px; }
+
+  .right-panel{
+    left:692px; top:79px; width:588px; height:640px;
+    background:#ddd8d2;
+    border-left:1px solid #c9c9ce;
+    border-bottom:1px solid #c9c9ce;
+    z-index:20;
+    overflow:hidden;
+  }
+
+  .photo-area{
+    left:0; top:0; width:588px; height:499px;
+    background:#c6bbb0;
+    z-index:20;
+    overflow:hidden;
+  }
+
+  .concrete{
+    left:0; top:0; width:588px; height:499px;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(255,255,255,0.22) 0 2px, transparent 3px),
+      radial-gradient(circle at 20% 16%, rgba(255,255,255,0.18) 0 2px, transparent 3px),
+      radial-gradient(circle at 44% 10%, rgba(255,255,255,0.16) 0 2px, transparent 3px),
+      radial-gradient(circle at 70% 11%, rgba(255,255,255,0.15) 0 2px, transparent 3px),
+      repeating-linear-gradient(90deg, rgba(92,82,74,0.14) 0 1px, transparent 1px 147px),
+      repeating-linear-gradient(0deg, rgba(92,82,74,0.12) 0 1px, transparent 1px 138px),
+      linear-gradient(180deg, #c9bdb1 0%, #bdb1a6 100%);
+    filter:contrast(1.02) saturate(0.86);
+  }
+
+  .yard-line{
+    position:absolute; border:1px solid rgba(238,196,118,0.42); z-index:22;
+  }
+
+  .truck-shadow{
+    position:absolute; background:rgba(18,36,66,0.48); z-index:23;
+  }
+  .container{
+    position:absolute; z-index:25; border-radius:1px;
+    box-shadow:0 0 0 1px rgba(255,255,255,0.12) inset;
+  }
+  .rib{
+    position:absolute; z-index:26;
+    background:repeating-linear-gradient(90deg, rgba(255,255,255,0.18) 0 1px, rgba(0,0,0,0.03) 1px 6px);
+    opacity:.45;
+    mix-blend-mode:overlay;
+    pointer-events:none;
+  }
+  .cab{
+    position:absolute; z-index:26; background:#e3e6ea; border:1px solid #b8c0c8; border-radius:3px;
+  }
+  .cab-window{
+    position:absolute; z-index:27; background:#71a8ce; border-radius:2px;
+  }
+
+  .menu{
+    left:492px; top:41px; width:96px; height:325px; z-index:50;
+  }
+  .menu-item{
+    left:0; width:96px; height:35px;
+    background:rgba(84,82,93,0.88); color:#f5f5f6;
+    font-size:12px; line-height:14px; font-weight:400;
+    padding:8px 8px 0 8px; z-index:50;
+  }
+  .menu-item.active{ background:rgba(49,49,61,0.92); }
+  .menu-1{ top:0; }
+  .menu-2{ top:48px; }
+  .menu-3{ top:96px; }
+  .menu-4{ top:144px; }
+  .menu-5{ top:192px; }
+  .menu-6{ top:240px; }
+
+  .contact-strip{
+    left:0; top:499px; width:588px; height:35px;
+    background:#f1dd00;
+    z-index:35;
+  }
+  .contact-strip-text{
+    left:12px; top:507px; width:390px; height:20px;
+    font-size:14px; line-height:17px; font-weight:700; color:#1f1f24;
+    z-index:40;
+  }
+
+  .contacts{
+    left:0; top:534px; width:588px; height:106px;
+    background:#ececec;
+    z-index:30;
+  }
+
+  .contacts > div, .contacts a { position:absolute; }
+
+  .contact-name{
+    font-size:13px; line-height:16px; font-weight:700; color:#2e3038;
+  }
+  .contact-line{
+    font-size:13px; line-height:16px; font-weight:400; color:#4e4d57;
+  }
+  .link{
+    color:#0a66c2; text-decoration:none; font-weight:400;
+  }
+
+  .footer{
+    left:56px; top:731px; width:180px; height:14px;
+    font-size:10px; line-height:12px; font-weight:600; color:#8e8d96;
+    z-index:40;
+  }
+  .foot-visible{
+    left:56px; top:730px;
+    transform:translateY(-12px);
+  }
+  .foot-sep{
+    color:#8e8d96;
+    padding:0 4px;
+  }
+  .small-square{
+    display:inline-block; width:6px; height:6px; background:#b7b6bd; vertical-align:middle; margin-left:5px;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="topbar"></div>
+  <div class="topbar-accent"></div>
+  <div class="topline"></div>
+  <div class="header-text">Insights: Europe, Middle East, India and Africa</div>
+
+  <div class="nav-circle nav-left">◀</div>
+  <div class="nav-circle nav-right">▶</div>
+
+  <div class="left-col">
+    <div class="col1">
+      <div class="c1-h h2">Further changes</div>
+      <div class="c1-p1 p">
+        The revision would also entail many detailed<br>
+        changes in the customs operation. This includes<br>
+        shortening the time limit for the temporary storage<br>
+        of goods from 90 to three days (or six days for<br>
+        authorized consignees), which in practice amounts<br>
+        to its abolition. In many cases, this would force<br>
+        companies to apply instead for authorization to<br>
+        operate a customs warehouse. EU operators may<br>
+        take that potential change into consideration for<br>
+        their strategic planning of import structuring and<br>
+        authorizations for local entities.
+      </div>
+      <div class="c1-p2 p">
+        In addition to the already known Binding Tariff<br>
+        Information and Binding Origin Information,<br>
+        Binding Customs Valuation Information is finally<br>
+        also to become possible, which represents a great<br>
+        opportunity for importers to manage customs<br>
+        valuation risks better.
+      </div>
+      <div class="c1-p3 p">
+        A uniform risk management system based on EU-<br>
+        wide coordinated criteria is intended not only to<br>
+        improve monitoring of compliance with customs<br>
+        rules but also to enable close cooperation with other<br>
+        market surveillance and law enforcement authorities,<br>
+        such as the European Anti-Fraud Office (OLAF),<br>
+        the European Union Agency for Law Enforcement<br>
+        Cooperation (Europol) and the European Border<br>
+        and Coast Guard Agency (Frontex). This will mean,<br>
+        and it is already happening, that more and more<br>
+        investigations and cases arise that are initiated by<br>
+        authorities outside the country where the measures<br>
+        are taken (with the support of local authorities).
+      </div>
+    </div>
+
+    <div class="col2">
+      <div class="c2-p1 p">
+        The handling of sanctions and infringements –<br>
+        together with a defined minimum level for non-<br>
+        criminal sanctions – was also to be harmonized<br>
+        in order to prevent distortions of competition,<br>
+        loopholes and “customs tourism”. In the past,<br>
+        however, several attempts have failed or not been<br>
+        pursued further, citing Member State competency.<br>
+        The EU is now making a new attempt, but it indicates<br>
+        that the EU Council is again taking a reserved<br>
+        position to that change.<br><br>
+        This presentation of the changes resulting from the<br>
+        reform proposal does not claim to be exhaustive.<br>
+        Further redesigns concern, among other topics, the<br>
+        transfer of liability, comprehensive guarantees or the<br>
+        training of national customs authorities.
+      </div>
+      <div class="c2-p2 h2">Conclusion</div>
+      <div class="c2-p3 p">
+        The reform of EU customs law offers opportunities<br>
+        for businesses, but also requires investment in<br>
+        data availability and quality as well as in systems,<br>
+        processes and leadership. Significant acceleration<br>
+        and cost advantages are within reach. Clear roles,<br>
+        clean master data and robust interfaces are crucial,<br>
+        particularly in e-commerce, in order to remain<br>
+        operational and competitive in the new customs<br>
+        environment. The new rules will force marketplace<br>
+        operators to set a high bar for sellers active on<br>
+        their platforms, as marketplace operators will in the<br>
+        future be responsible, in their own name, for the<br>
+        correctness of customs processing.<span class="small-square"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="photo-area">
+      <div class="concrete"></div>
+
+      <div class="yard-line" style="left:60px; top:210px; width:101px; height:93px;"></div>
+      <div class="yard-line" style="left:163px; top:211px; width:67px; height:92px;"></div>
+      <div class="yard-line" style="left:268px; top:225px; width:56px; height:105px;"></div>
+      <div class="yard-line" style="left:344px; top:226px; width:39px; height:105px;"></div>
+      <div class="yard-line" style="left:58px; top:375px; width:60px; height:72px;"></div>
+      <div class="yard-line" style="left:126px; top:376px; width:64px; height:71px;"></div>
+      <div class="yard-line" style="left:198px; top:376px; width:54px; height:71px;"></div>
+      <div class="yard-line" style="left:301px; top:383px; width:60px; height:63px;"></div>
+      <div class="yard-line" style="left:376px; top:383px; width:59px; height:63px;"></div>
+      <div class="yard-line" style="left:61px; top:76px; width:37px; height:80px;"></div>
+      <div class="yard-line" style="left:129px; top:88px; width:52px; height:56px;"></div>
+      <div class="yard-line" style="left:232px; top:132px; width:47px; height:83px;"></div>
+
+      <div class="truck-shadow" style="left:0; top:327px; width:74px; height:170px;"></div>
+      <div class="truck-shadow" style="left:49px; top:286px; width:46px; height:200px;"></div>
+      <div class="truck-shadow" style="left:83px; top:286px; width:45px; height:200px;"></div>
+      <div class="truck-shadow" style="left:124px; top:287px; width:44px; height:200px;"></div>
+      <div class="truck-shadow" style="left:158px; top:304px; width:46px; height:180px;"></div>
+      <div class="truck-shadow" style="left:201px; top:304px; width:44px; height:180px;"></div>
+      <div class="truck-shadow" style="left:438px; top:190px; width:50px; height:162px; transform:skewY(22deg);"></div>
+      <div class="truck-shadow" style="left:530px; top:362px; width:44px; height:92px; transform:skewY(18deg);"></div>
+
+      <div class="container" style="left:0; top:209px; width:40px; height:196px; background:#f8ab11;"></div>
+      <div class="rib" style="left:0; top:209px; width:40px; height:196px;"></div>
+      <div class="container" style="left:41px; top:209px; width:40px; height:196px; background:#ffb111;"></div>
+      <div class="rib" style="left:41px; top:209px; width:40px; height:196px;"></div>
+
+      <div class="container" style="left:82px; top:209px; width:40px; height:199px; background:#2f7fb2;"></div>
+      <div class="rib" style="left:82px; top:209px; width:40px; height:199px;"></div>
+      <div class="container" style="left:123px; top:209px; width:40px; height:199px; background:#3f90c2;"></div>
+      <div class="rib" style="left:123px; top:209px; width:40px; height:199px;"></div>
+
+      <div class="container" style="left:165px; top:209px; width:39px; height:188px; background:#ee8356;"></div>
+      <div class="rib" style="left:165px; top:209px; width:39px; height:188px;"></div>
+      <div class="container" style="left:205px; top:209px; width:39px; height:188px; background:#ef8658;"></div>
+      <div class="rib" style="left:205px; top:209px; width:39px; height:188px;"></div>
+
+      <div class="container" style="left:486px; top:193px; width:44px; height:188px; background:#e51624; transform:rotate(-8deg); transform-origin:top left;"></div>
+      <div class="rib" style="left:486px; top:193px; width:44px; height:188px; transform:rotate(-8deg); transform-origin:top left;"></div>
+      <div class="container" style="left:529px; top:186px; width:43px; height:191px; background:#ff1d28; transform:rotate(-8deg); transform-origin:top left;"></div>
+      <div class="rib" style="left:529px; top:186px; width:43px; height:191px; transform:rotate(-8deg); transform-origin:top left;"></div>
+
+      <div class="cab" style="left:208px; top:59px; width:37px; height:27px; transform:rotate(-29deg);"></div>
+      <div class="cab-window" style="left:213px; top:64px; width:14px; height:10px; transform:rotate(-29deg);"></div>
+      <div class="cab-window" style="left:228px; top:71px; width:11px; height:9px; transform:rotate(-29deg);"></div>
+
+      <div class="truck-shadow" style="left:286px; top:109px; width:39px; height:160px; transform:rotate(-28deg);"></div>
+      <div class="container" style="left:270px; top:104px; width:41px; height:195px; background:#ff2430; transform:rotate(-8deg);"></div>
+      <div class="rib" style="left:270px; top:104px; width:41px; height:195px; transform:rotate(-8deg);"></div>
+      <div class="container" style="left:312px; top:111px; width:39px; height:193px; background:#ef2331; transform:rotate(-8deg);"></div>
+      <div class="rib" style="left:312px; top:111px; width:39px; height:193px; transform:rotate(-8deg);"></div>
+      <div class="cab" style="left:245px; top:85px; width:24px; height:20px; transform:rotate(-28deg); background:#0b4f8c; border-color:#153f67;"></div>
+
+      <div class="menu">
+        <div class="menu-item menu-1 active">Contents</div>
+        <div class="menu-item menu-2">Insights</div>
+        <div class="menu-item menu-3">New on<br>ey.com</div>
+        <div class="menu-item menu-4">Tax alerts</div>
+        <div class="menu-item menu-5">Additional<br>resources</div>
+        <div class="menu-item menu-6">Contacts</div>
+      </div>
+    </div>
+
+    <div class="contact-strip"></div>
+    <div class="contact-strip-text">For additional information, please contact:</div>
+
+    <div class="contacts">
+      <div style="left:12px; top:14px; width:170px; height:17px;" class="contact-name">Richard J. Albert</div>
+      <div style="left:12px; top:37px; width:520px; height:18px;" class="contact-line">
+        + 49 160 939 17756 <span style="color:#8a8993;">&nbsp;|&nbsp;</span> <a class="link" href="#">richard.j.albert@de.ey.com</a>
+      </div>
+
+      <div style="left:12px; top:58px; width:170px; height:17px;" class="contact-name">Franziska G&auml;rtner</div>
+      <div style="left:12px; top:81px; width:520px; height:18px;" class="contact-line">
+        + 49 160 939 16648 <span style="color:#8a8993;">&nbsp;|&nbsp;</span> <a class="link" href="#">franziska.gaertner@de.ey.com</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer foot-visible">51 <span class="foot-sep">|</span> TradeWatch Issue 1 2026</div>
+</div>
+</body>
+</html>

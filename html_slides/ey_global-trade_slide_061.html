@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Japan-Bangladesh EPA Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#f3f3f4;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f4;
+    color:#4f5058;
+  }
+  #slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .top-accent{
+    left:0;
+    top:0;
+    width:55px;
+    height:79px;
+    background:#c7c8cf;
+  }
+  .top-rule{
+    left:0;
+    top:78px;
+    width:1280px;
+    height:1px;
+    background:#c9cad1;
+  }
+  .section-label{
+    left:56px;
+    top:51px;
+    font-size:19px;
+    line-height:22px;
+    color:#7d7e88;
+    font-weight:400;
+    letter-spacing:-0.1px;
+  }
+
+  .nav{
+    position:absolute;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#c3c4cb;
+    top:33px;
+  }
+  .nav.prev{ left:951px; }
+  .nav.next{ left:995px; }
+  .nav:before{
+    content:"";
+    position:absolute;
+    top:11px;
+    width:0;height:0;
+    border-top:7px solid transparent;
+    border-bottom:7px solid transparent;
+  }
+  .nav.prev:before{
+    left:11px;
+    border-right:9px solid #3f4048;
+  }
+  .nav.next:before{
+    left:15px;
+    border-left:9px solid #3f4048;
+  }
+
+  .title{
+    left:58px;
+    top:118px;
+    width:470px;
+    font-size:36px;
+    line-height:40px;
+    font-weight:700;
+    letter-spacing:-0.6px;
+    color:#747583;
+  }
+
+  .left-subhead{
+    left:56px;
+    top:318px;
+    font-size:18px;
+    line-height:22px;
+    font-weight:700;
+    color:#2f3037;
+    letter-spacing:-0.1px;
+  }
+  .left-para{
+    left:56px;
+    top:342px;
+    width:505px;
+    font-size:13px;
+    line-height:17px;
+    color:#55565f;
+    font-weight:400;
+  }
+
+  .left-subhead2{
+    left:56px;
+    top:559px;
+    font-size:17px;
+    line-height:21px;
+    font-weight:700;
+    color:#2f3037;
+    letter-spacing:-0.1px;
+  }
+  .left-bullet-lead{
+    left:56px;
+    top:584px;
+    width:470px;
+    font-size:13px;
+    line-height:17px;
+    color:#363740;
+    font-weight:700;
+  }
+  .left-bullet{
+    left:72px;
+    top:610px;
+    width:462px;
+    font-size:13px;
+    line-height:17px;
+    color:#55565f;
+    font-weight:400;
+  }
+  .sq{
+    display:inline-block;
+    width:12px;
+    color:#2f3037;
+    font-weight:700;
+  }
+
+  .right-col{
+    left:548px;
+    top:118px;
+    width:450px;
+    font-size:13px;
+    line-height:17px;
+    color:#55565f;
+  }
+  .bullet-block{
+    position:absolute;
+    left:0;
+    width:450px;
+  }
+  .bullet-symbol{
+    position:absolute;
+    left:0;
+    top:0;
+    width:12px;
+    font-size:12px;
+    line-height:16px;
+    color:#2f3037;
+    font-weight:700;
+  }
+  .bullet-text{
+    position:absolute;
+    left:16px;
+    top:0;
+    width:434px;
+    font-size:13px;
+    line-height:17px;
+    color:#55565f;
+  }
+  .boldline{
+    font-weight:700;
+    color:#2f3037;
+  }
+  .indent-block{
+    position:absolute;
+    left:16px;
+    width:434px;
+  }
+  .indent-symbol{
+    position:absolute;
+    left:0;
+    top:0;
+    width:12px;
+    font-size:12px;
+    line-height:16px;
+    color:#2f3037;
+    font-weight:700;
+  }
+  .indent-text{
+    position:absolute;
+    left:16px;
+    top:0;
+    width:418px;
+    font-size:13px;
+    line-height:17px;
+    color:#55565f;
+  }
+
+  .foot-rule{
+    left:534px;
+    top:627px;
+    width:462px;
+    height:1px;
+    background:#cfcfd5;
+  }
+  .footnotes{
+    left:534px;
+    top:632px;
+    width:470px;
+    font-size:8px;
+    line-height:11px;
+    color:#666872;
+    font-weight:400;
+  }
+  .footnotes .row{
+    white-space:nowrap;
+  }
+  .footnotes .n{
+    display:inline-block;
+    width:12px;
+    color:#585a63;
+  }
+  .link{
+    color:#2c6bb0;
+  }
+
+  .side-menu{
+    left:1041px;
+    top:120px;
+    width:81px;
+  }
+  .menu-box{
+    position:absolute;
+    left:0;
+    width:81px;
+    height:35px;
+    background:#2d2c3d;
+    color:#e7e7eb;
+    font-size:11px;
+    line-height:13px;
+    font-weight:400;
+    padding:8px 8px 0 8px;
+    border-left:2px solid #d4c200;
+  }
+  .menu-box.dim{
+    background:#767784;
+    border-left-color:transparent;
+    color:#f1f1f4;
+  }
+  .menu-box.small2{
+    padding-top:5px;
+  }
+
+  .footer{
+    left:56px;
+    top:730px;
+    transform:translateY(-100%);
+    font-size:10px;
+    line-height:12px;
+    color:#7f8088;
+  }
+  .footer .strong{ font-weight:700; }
+
+  sup{
+    font-size:8px;
+    line-height:0;
+    vertical-align:super;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="top-accent"></div>
+  <div class="top-rule"></div>
+  <div class="section-label">Insights: Asia-Pacific</div>
+
+  <div class="nav prev"></div>
+  <div class="nav next"></div>
+
+  <div class="title">Japan: Signing of the<br>Japan-Bangladesh<br>Economic Partnership<br>Agreement</div>
+
+  <div class="left-subhead">Overview of the agreement</div>
+  <div class="left-para">
+    On 6 February 2026, Japan and Bangladesh signed the “Japan-Bangladesh<br>
+    Economic Partnership Agreement” in Tokyo, marking Bangladesh’s first-ever<br>
+    bilateral Economic Partnership Agreement (EPA).<sup>2</sup> The agreement is regarded<br>
+    as an “economic lifeline” for Bangladesh, as it will preserve duty-free access for<br>
+    Bangladeshi products to the Japanese market following Bangladesh’s scheduled<br>
+    graduation from Least Developed Country (LDC) status<sup>3</sup> in November 2026,<br>
+    which would otherwise result in the termination of preferential tariff treatment.<br>
+    In addition to the liberalization of trade in goods and services, this agreement<br>
+    introduces new rules across a broad range of areas, including investment<br>
+    protection, intellectual property and dispute settlement. The agreement is<br>
+    expected to make a significant contribution to strengthening economic relations<br>
+    between the two countries.
+  </div>
+
+  <div class="left-subhead2">Comparison with LDC preferential treatment</div>
+  <div class="left-bullet-lead"><span class="sq">▪</span> Product coverage and tariff reduction schedule</div>
+  <div class="left-bullet">
+    <span class="sq">▪</span> Under the LDC preferential tariff system, almost all products were eligible<br>
+    for duty-free treatment with the exception of certain sensitive items such as<br>
+    rice, selected agricultural products and some leather goods.
+  </div>
+
+  <div class="right-col">
+    <div class="bullet-block" style="top:0;height:203px;">
+      <div class="bullet-symbol">▪</div>
+      <div class="bullet-text">
+        Under the new agreement, Japan has committed to eliminating tariffs<br>
+        on approximately 91% of imports from Bangladesh (based on the trade<br>
+        value calculated from the average import value of 2022 and 2023)<sup>1</sup> either<br>
+        immediately or within 10 years of the agreement’s entry into force. Most<br>
+        products that previously benefited from duty-free treatment under the<br>
+        LDC system will continue to enjoy duty-free access under the agreement.<br>
+        In particular, for apparel products, duty free treatment will take effect<br>
+        immediately. As a result, uninterrupted duty free access to the Japanese<br>
+        market will be secured even after the termination of LDC preferences. It<br>
+        should be noted that leather products and footwear are initially excluded<br>
+        from the scope of the agreement and will be subject to review within 90<br>
+        days from the date of entry into force of the agreement.
+      </div>
+    </div>
+
+    <div class="bullet-block" style="top:208px;height:122px;">
+      <div class="bullet-symbol">▪</div>
+      <div class="bullet-text">
+        Bangladesh will eventually eliminate tariffs on approximately 83% of<br>
+        imports from Japan (based on the trade value calculated from the average<br>
+        import value of 2022 and 2023), with a maximum staging period of up to<br>
+        18 years. While Bangladesh has traditionally imposed relatively high tariffs<br>
+        on foreign products, it has committed to the phased elimination of tariffs on<br>
+        many industrial goods that constitute Japan’s key export items, including<br>
+        steel and automotive parts.
+      </div>
+    </div>
+
+    <div class="bullet-block" style="top:336px;height:18px;">
+      <div class="bullet-symbol">▪</div>
+      <div class="bullet-text"><span class="boldline">Rules of Origin</span></div>
+    </div>
+
+    <div class="indent-block" style="top:365px;height:120px;">
+      <div class="indent-symbol">▪</div>
+      <div class="indent-text">
+        Under the LDC preferential system, apparel products classified under<br>
+        Chapter 61 and 62 are subject to a change in tariff classification at the<br>
+        two-digit level (CC) whereas most other products are generally required to<br>
+        meet a four-digit change in tariff heading (CTH).<sup>5</sup> In this respect, for apparel<br>
+        products, the LDC preferential system applies a single transformation<br>
+        while many EPAs impose a two-process rule, requiring two qualifying<br>
+        manufacturing processes to be performed in the EPA contracting parties.
+      </div>
+    </div>
+  </div>
+
+  <div class="foot-rule"></div>
+  <div class="footnotes">
+    <div class="row"><span class="n">1</span>Japan-Bangladesh Economic Partnership Agreement, <i>Ministry of Foreign Affairs of Japan</i>. <span class="link">Find it here</span></div>
+    <div class="row"><span class="n">2</span>A Free Trade Agreement (FTA) mainly focuses on the trade in goods, whereas an EPA provides a broader framework covering</div>
+    <div class="row"><span class="n"></span>services, investment, the movement of people and related rules</div>
+    <div class="row"><span class="n">3</span>In Japan, imports from LDCs are eligible for more favorable tariff treatment than that available to developing countries under the</div>
+    <div class="row"><span class="n"></span>Generalized System of Preferences (GSP)</div>
+    <div class="row"><span class="n">4</span>Overview of the Japan-Bangladesh EPA<sup>3</sup>, <i>Ministry of Foreign Affairs of Japan</i>, accessed 2 March 2026. <span class="link">Find it here</span></div>
+    <div class="row"><span class="n">5</span>Appended Table (Article 9) of the Enforcement Regulations of the Temporary Customs Tariff Measures Act.</div>
+  </div>
+
+  <div class="side-menu">
+    <div class="menu-box" style="top:0;">Contents</div>
+    <div class="menu-box" style="top:50px;">Insights</div>
+    <div class="menu-box small2" style="top:100px;">New on<br>ey.com</div>
+    <div class="menu-box" style="top:150px;">Tax alerts</div>
+    <div class="menu-box dim small2" style="top:200px;">Additional<br>resources</div>
+    <div class="menu-box dim" style="top:250px;">Contacts</div>
+  </div>
+
+  <div class="footer">58&nbsp;&nbsp;|&nbsp;&nbsp;<span class="strong">TradeWatch</span> Issue 1 2026</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d9d9d9;
+    color:#172330;
+  }
+
+  .photo-panel{
+    position:absolute;
+    left:32px;
+    top:62px;
+    width:529px;
+    height:680px;
+    border-radius:2px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 46px 58px, rgba(255,255,255,0.95) 0 1px, transparent 2px),
+      radial-gradient(circle at 84px 91px, rgba(255,255,255,0.8) 0 1px, transparent 2px),
+      radial-gradient(circle at 126px 122px, rgba(255,255,255,0.65) 0 1px, transparent 2px),
+      radial-gradient(circle at 160px 84px, rgba(255,255,255,0.8) 0 1px, transparent 2px),
+      radial-gradient(circle at 214px 136px, rgba(255,255,255,0.6) 0 1px, transparent 2px),
+      radial-gradient(circle at 252px 94px, rgba(255,255,255,0.85) 0 1px, transparent 2px),
+      radial-gradient(circle at 295px 154px, rgba(255,255,255,0.6) 0 1px, transparent 2px),
+      radial-gradient(circle at 340px 112px, rgba(255,255,255,0.75) 0 1px, transparent 2px),
+      radial-gradient(circle at 388px 88px, rgba(255,255,255,0.65) 0 1px, transparent 2px),
+      radial-gradient(circle at 434px 138px, rgba(255,255,255,0.75) 0 1px, transparent 2px),
+      radial-gradient(circle at 470px 102px, rgba(255,255,255,0.8) 0 1px, transparent 2px),
+      radial-gradient(circle at 20px 18px, rgba(255,255,255,0.75) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 55px 24px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 75px 40px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 100px 28px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 120px 60px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 138px 18px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 168px 48px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 185px 24px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 210px 65px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 228px 34px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 252px 18px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 278px 42px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 302px 68px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 318px 24px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 338px 52px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 366px 18px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 392px 58px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 412px 26px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 438px 44px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 458px 18px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 482px 64px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(circle at 500px 30px, rgba(255,255,255,0.45) 0 0.8px, transparent 1.7px),
+      radial-gradient(ellipse at 48% 18%, rgba(255,222,220,0.18) 0%, rgba(243,220,232,0.13) 18%, rgba(255,255,255,0.04) 35%, rgba(255,255,255,0) 60%),
+      linear-gradient(to bottom, #243f68 0%, #335889 34%, #6d84ab 59%, #e4c1b1 76%, #f39a57 85%, #14233a 100%);
+    z-index:10;
+  }
+  .milkyway{
+    position:absolute;
+    left:196px;
+    top:0px;
+    width:162px;
+    height:360px;
+    background:linear-gradient(to bottom, rgba(255,248,230,0) 0%, rgba(255,236,214,0.12) 15%, rgba(255,238,231,0.42) 34%, rgba(249,232,237,0.58) 50%, rgba(252,244,248,0.18) 74%, rgba(255,255,255,0) 100%);
+    filter:blur(10px);
+    transform:rotate(-10deg);
+    z-index:11;
+  }
+  .shooting-star{
+    position:absolute;
+    left:361px;
+    top:78px;
+    width:72px;
+    height:1px;
+    background:linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.95), rgba(255,255,255,0));
+    transform:rotate(-67deg);
+    z-index:12;
+  }
+  .ground{
+    position:absolute;
+    left:32px;
+    top:520px;
+    width:529px;
+    height:222px;
+    background:
+      linear-gradient(to top, rgba(4,8,18,0.74), rgba(4,8,18,0.25)),
+      linear-gradient(to right, rgba(43,38,40,0.35), rgba(26,24,35,0.2));
+    z-index:12;
+  }
+  .dish-svg{
+    position:absolute;
+    left:182px;
+    top:292px;
+    width:230px;
+    height:232px;
+    z-index:13;
+  }
+  .title-top{
+    position:absolute;
+    left:66px;
+    top:276px;
+    width:390px;
+    font-size:70px;
+    line-height:0.96;
+    font-weight:700;
+    letter-spacing:0.2px;
+    color:#f7f7f7;
+    z-index:20;
+  }
+  .title-bottom{
+    position:absolute;
+    left:365px;
+    top:374px;
+    width:170px;
+    font-size:70px;
+    line-height:0.96;
+    font-weight:700;
+    letter-spacing:0.2px;
+    color:#f7f7f7;
+    z-index:20;
+  }
+  .notch{
+    position:absolute;
+    left:354px;
+    top:680px;
+    width:176px;
+    height:62px;
+    background:#d9d9d9;
+    z-index:21;
+  }
+
+  .top-rule-yellow{
+    position:absolute;
+    left:732px;
+    top:63px;
+    width:259px;
+    height:3px;
+    background:#f0cf1d;
+    z-index:5;
+  }
+  .top-rule-lavender{
+    position:absolute;
+    left:991px;
+    top:63px;
+    width:132px;
+    height:3px;
+    background:#8c82cf;
+    z-index:5;
+  }
+  .top-rule-blue{
+    position:absolute;
+    left:1123px;
+    top:63px;
+    width:67px;
+    height:3px;
+    background:#00a0e3;
+    z-index:5;
+  }
+
+  .foreword{
+    position:absolute;
+    left:732px;
+    top:74px;
+    width:150px;
+    font-size:31px;
+    line-height:1.05;
+    font-weight:700;
+    color:#172330;
+    z-index:30;
+  }
+
+  .col1{
+    position:absolute;
+    left:734px;
+    top:243px;
+    width:193px;
+    font-size:11px;
+    line-height:1.46;
+    font-weight:400;
+    color:#46515d;
+    z-index:30;
+  }
+  .col2{
+    position:absolute;
+    left:951px;
+    top:243px;
+    width:227px;
+    font-size:11px;
+    line-height:1.46;
+    font-weight:400;
+    color:#46515d;
+    z-index:30;
+  }
+
+  .avatar{
+    position:absolute;
+    left:736px;
+    top:619px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 50% 42%, #e6c0a3 0 11px, transparent 11px),
+      radial-gradient(circle at 50% 34%, #7c5a41 0 14px, transparent 14px),
+      linear-gradient(to bottom, transparent 0 27px, #6a88a6 27px 42px, #2f3946 42px 58px),
+      linear-gradient(135deg, #d7dce2 0%, #9aaabd 50%, #7f99ac 100%);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
+    z-index:31;
+  }
+  .avatar:before{
+    content:"";
+    position:absolute;
+    left:18px;
+    top:14px;
+    width:22px;
+    height:25px;
+    border-radius:50% 50% 45% 45%;
+    background:#e4bf9d;
+    z-index:2;
+  }
+  .avatar:after{
+    content:"";
+    position:absolute;
+    left:13px;
+    top:8px;
+    width:31px;
+    height:18px;
+    border-radius:50% 50% 35% 35%;
+    background:#6c563f;
+    z-index:3;
+  }
+  .name{
+    position:absolute;
+    left:808px;
+    top:628px;
+    width:250px;
+    font-size:32px;
+    line-height:1.05;
+    font-weight:700;
+    color:#172330;
+    z-index:31;
+  }
+  .role{
+    position:absolute;
+    left:809px;
+    top:655px;
+    width:240px;
+    font-size:20px;
+    line-height:1.2;
+    font-weight:400;
+    color:#4c5864;
+    z-index:31;
+  }
+
+  .page-left{
+    position:absolute;
+    left:32px;
+    top:738px;
+    font-size:8px;
+    line-height:1;
+    font-weight:400;
+    color:#2e3a46;
+    z-index:40;
+  }
+  .footer-left{
+    position:absolute;
+    left:51px;
+    top:738px;
+    width:370px;
+    font-size:7px;
+    line-height:1;
+    font-weight:700;
+    color:#22303c;
+    z-index:40;
+  }
+  .footer-right{
+    position:absolute;
+    left:1027px;
+    top:738px;
+    width:150px;
+    font-size:7px;
+    line-height:1;
+    font-weight:700;
+    color:#22303c;
+    z-index:40;
+    text-align:right;
+  }
+  .page-right{
+    position:absolute;
+    left:1182px;
+    top:738px;
+    font-size:8px;
+    line-height:1;
+    font-weight:400;
+    color:#2e3a46;
+    z-index:40;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="photo-panel"></div>
+  <div class="milkyway"></div>
+  <div class="shooting-star"></div>
+  <div class="ground"></div>
+
+  <svg class="dish-svg" viewBox="0 0 238 237" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="dishGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2a313d"/>
+        <stop offset="55%" stop-color="#1a2029"/>
+        <stop offset="100%" stop-color="#39424f"/>
+      </linearGradient>
+      <linearGradient id="mastGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#495462"/>
+        <stop offset="100%" stop-color="#202730"/>
+      </linearGradient>
+    </defs>
+    <ellipse cx="88" cy="62" rx="12" ry="10" fill="#20262f"/>
+    <rect x="85" y="69" width="6" height="14" fill="#242c35"/>
+    <line x1="88" y1="75" x2="48" y2="94" stroke="#454f5c" stroke-width="1.6"/>
+    <line x1="88" y1="75" x2="126" y2="96" stroke="#454f5c" stroke-width="1.6"/>
+    <line x1="88" y1="76" x2="88" y2="100" stroke="#596573" stroke-width="1.4"/>
+
+    <ellipse cx="98" cy="112" rx="79" ry="24" fill="url(#dishGrad)" stroke="#4b5663" stroke-width="2"/>
+    <ellipse cx="98" cy="104" rx="69" ry="17" fill="none" stroke="#566273" stroke-width="1.2"/>
+    <line x1="19" y1="112" x2="98" y2="165" stroke="#5a6470" stroke-width="1"/>
+    <line x1="177" y1="112" x2="98" y2="165" stroke="#5a6470" stroke-width="1"/>
+    <line x1="38" y1="98" x2="64" y2="132" stroke="#505966" stroke-width="1"/>
+    <line x1="58" y1="93" x2="75" y2="141" stroke="#505966" stroke-width="1"/>
+    <line x1="79" y1="90" x2="86" y2="145" stroke="#505966" stroke-width="1"/>
+    <line x1="98" y1="89" x2="98" y2="148" stroke="#505966" stroke-width="1"/>
+    <line x1="117" y1="90" x2="110" y2="145" stroke="#505966" stroke-width="1"/>
+    <line x1="138" y1="93" x2="121" y2="141" stroke="#505966" stroke-width="1"/>
+    <line x1="158" y1="98" x2="132" y2="132" stroke="#505966" stroke-width="1"/>
+
+    <polygon points="88,136 109,136 117,194 75,194" fill="url(#mastGrad)"/>
+    <rect x="85" y="145" width="27" height="12" fill="#2b313b"/>
+    <rect x="81" y="157" width="36" height="8" fill="#343c47"/>
+    <line x1="97" y1="136" x2="97" y2="194" stroke="#576371" stroke-width="1.2"/>
+    <line x1="88" y1="136" x2="80" y2="194" stroke="#46515d" stroke-width="1"/>
+    <line x1="109" y1="136" x2="118" y2="194" stroke="#46515d" stroke-width="1"/>
+
+    <line x1="79" y1="194" x2="58" y2="217" stroke="#3f4955" stroke-width="3"/>
+    <line x1="114" y1="194" x2="128" y2="218" stroke="#3f4955" stroke-width="3"/>
+    <line x1="90" y1="194" x2="86" y2="220" stroke="#3f4955" stroke-width="3"/>
+    <line x1="101" y1="194" x2="105" y2="220" stroke="#3f4955" stroke-width="3"/>
+
+    <line x1="55" y1="216" x2="130" y2="216" stroke="#56616d" stroke-width="2"/>
+    <line x1="60" y1="211" x2="60" y2="220" stroke="#56616d" stroke-width="1"/>
+    <line x1="74" y1="211" x2="74" y2="220" stroke="#56616d" stroke-width="1"/>
+    <line x1="88" y1="211" x2="88" y2="220" stroke="#56616d" stroke-width="1"/>
+    <line x1="102" y1="211" x2="102" y2="220" stroke="#56616d" stroke-width="1"/>
+    <line x1="116" y1="211" x2="116" y2="220" stroke="#56616d" stroke-width="1"/>
+
+    <rect x="149" y="182" width="46" height="22" fill="none" stroke="#48515e" stroke-width="1.4"/>
+    <line x1="149" y1="193" x2="195" y2="193" stroke="#48515e" stroke-width="1"/>
+    <line x1="160" y1="182" x2="160" y2="204" stroke="#48515e" stroke-width="1"/>
+    <line x1="171" y1="182" x2="171" y2="204" stroke="#48515e" stroke-width="1"/>
+    <line x1="182" y1="182" x2="182" y2="204" stroke="#48515e" stroke-width="1"/>
+    <line x1="138" y1="198" x2="149" y2="198" stroke="#48515e" stroke-width="1.4"/>
+
+    <rect x="0" y="214" width="238" height="3" fill="#121923" opacity="0.85"/>
+  </svg>
+
+  <div class="title-top">REIMAGINE</div>
+  <div class="title-bottom">RISK</div>
+  <div class="notch"></div>
+
+  <div class="top-rule-yellow"></div>
+  <div class="top-rule-lavender"></div>
+  <div class="top-rule-blue"></div>
+
+  <div class="foreword">Foreword</div>
+
+  <div class="col1">
+    When the world shifts, trust is tested. In today’s NAVI (nonlinear, accelerated, volatile and interconnected) environment, organizations are required to make decisions faster, under greater uncertainty and with consequences that travel further than ever before. Operating at the speed of trust means having the structures, decision rights and governance in place to act quickly and transparently – without confusion, delay or loss of control. This chapter, our latest in the EY Global Risk Transformation Series, explores what it takes to do exactly that.<br><br>
+    Our inaugural chapter in the series last year introduced the NAVI environment and the concept of the Risk Strategic. Since then, the response from clients and the broader risk community has been striking, with many leaders now actively considering how to better integrate risk with strategy.
+  </div>
+
+  <div class="col2">
+    This chapter focuses on what must be true to evolve and keep pace with an environment that is accelerating faster than traditional structures were designed to manage.<br><br>
+    The study highlights practical shifts underway among leading organizations: closer alignment between risk and strategy, trigger-based mechanisms that enable timely action and governance that supports speed without sacrificing oversight or trust.<br><br>
+    We hope these insights support meaningful dialogue and help organizations strengthen their ability to operate decisively and confidently at the speed of trust.
+  </div>
+
+  <div class="avatar"></div>
+  <div class="name">Kapish Vanvaria</div>
+  <div class="role">EY Global Risk Consulting Leader</div>
+
+  <div class="page-left">ii</div>
+  <div class="footer-left">|&nbsp;&nbsp;When the world shifts overnight how can you operate at the speed of trust</div>
+  <div class="footer-right">Global Risk Transformation Series&nbsp;&nbsp;|</div>
+  <div class="page-right">iii</div>
+</div>
+</body>
+</html>

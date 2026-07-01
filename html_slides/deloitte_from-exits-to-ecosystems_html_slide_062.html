@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#F3F5F6;font-family:Arial, Helvetica, 'Segoe UI', sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#F3F5F6;
+    color:#5a5a5a;
+  }
+  .slide > div, .slide > svg, .slide > table {position:absolute;}
+  .qmark{
+    left:43px; top:40px; width:45px; height:48px;
+    font-size:40px; line-height:48px; font-weight:700; color:#000;
+  }
+  .prompt{
+    left:53px; top:153px; width:260px;
+    font-size:20px; line-height:1.22; font-weight:400; color:#666;
+  }
+  .headline{
+    left:53px; top:257px; width:286px;
+    font-size:29px; line-height:1.16; font-weight:700; color:#555;
+  }
+  .footnote{
+    left:50px; top:611px; width:283px;
+    font-size:11px; line-height:1.45; font-style:italic; color:#8a8a8a;
+  }
+  .report{
+    left:48px; top:728px;
+  }
+  .report2{
+    left:48px; top:730px;
+    width:210px; font-size:11px; color:#4f4f4f;
+  }
+  .page{
+    left:675px; top:728px; width:24px;
+    font-size:11px; color:#3f3f3f; text-align:center;
+  }
+  .market{
+    left:377px; top:21px; width:80px;
+    font-size:16px; line-height:20px; color:#666;
+    font-weight:400;
+  }
+  .legendLikelyBox{
+    left:553px; top:24px; width:16px; height:16px;
+    background:#28b1b0;
+  }
+  .legendLikely{
+    left:577px; top:21px; width:80px;
+    font-size:16px; line-height:20px; color:#666;
+  }
+  .legendUnBox{
+    left:1113px; top:23px; width:16px; height:16px;
+    background:#1b246d;
+  }
+  .legendUn{
+    left:1137px; top:21px; width:90px;
+    font-size:16px; line-height:20px; color:#666;
+  }
+  .legendChange{
+    left:1225px; top:17px; width:90px;
+    font-size:14px; line-height:1.05; color:#333; text-align:center; font-weight:400;
+  }
+  .rule1{
+    left:371px; top:52px; width:168px; height:1px; background:#7c8f9d;
+  }
+  .rule2{
+    left:555px; top:52px; width:641px; height:1px; background:#7c8f9d;
+  }
+  .rule3{
+    left:1208px; top:52px; width:122px; height:1px; background:#7c8f9d;
+  }
+  .chartArea{
+    left:378px; top:84px; width:863px; height:584px;
+  }
+  .label{
+    font-size:11px; line-height:14px; color:#737373; text-align:right;
+    font-weight:400;
+  }
+  .pctL{
+    font-size:11px; line-height:14px; color:#fff; font-weight:700;
+  }
+  .pctR{
+    font-size:11px; line-height:14px; color:#fff; font-weight:700; text-align:right;
+  }
+  .chg{
+    font-size:11px; line-height:14px; color:#5f5f5f; text-align:center;
+  }
+  .changeCell{
+    background:#e2e2e4;
+    border-top:1px solid rgba(255,255,255,0.5);
+  }
+  .logoBox{
+    left:1230px; top:691px; width:50px; height:29px;
+    background:#00a79d;
+    clip-path:polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%);
+    z-index:50;
+  }
+  .logoNavy{
+    left:1230px; top:691px; width:25px; height:29px;
+    background:#30469a;
+    z-index:51;
+  }
+  .logoTxt{
+    left:1234px; top:709px; width:43px; font-size:11px; line-height:11px; color:#fff; font-weight:700; z-index:52;
+  }
+  .logoCir1,.logoCir2,.logoCir3,.logoCir4{
+    border-radius:50%; z-index:52;
+  }
+  .logoCir1{left:1247px; top:694px; width:10px; height:10px; background:#1db4a7;}
+  .logoCir2{left:1253px; top:697px; width:8px; height:8px; background:#35c1b8;}
+  .logoCir3{left:1250px; top:703px; width:10px; height:10px; background:#2aa3de;}
+  .logoCir4{left:1256px; top:705px; width:8px; height:8px; background:#2b6cc4;}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qmark">Q.</div>
+
+  <div class="prompt">For each of the following, please tell me how likely or unlikely you think they are to happen...?</div>
+
+  <div class="headline">There will be more extreme weather events in my country in 2025 than there were in 2024</div>
+
+  <div class="footnote">Base: 23,721 adults aged 18 years and older in India, 18-74 in Canada, Republic of Ireland, Malaysia, the Philippines, South Africa, Turkey, and the United States, 20-74 in Thailand, 21-74 in Indonesia and Singapore, and 16-74 in all other countries. Friday, October 25 &ndash; Friday November 8, 2024</div>
+
+  <div class="report2">&copy; Ipsos Predictions 2025 Report</div>
+  <div class="page">62</div>
+
+  <div class="market">Market</div>
+  <div class="legendLikelyBox"></div>
+  <div class="legendLikely">Likely</div>
+  <div class="legendUnBox"></div>
+  <div class="legendUn">Unlikely</div>
+  <div class="legendChange">Change likely<br>vs 2023</div>
+  <div class="rule1"></div>
+  <div class="rule2"></div>
+  <div class="rule3"></div>
+
+  <div class="chartArea">
+    <!-- labels -->
+    <div class="label" style="left:0px; top:0px; width:130px;">Global Country Average</div>
+    <div class="label" style="left:0px; top:18px; width:130px;">Philippines</div>
+    <div class="label" style="left:0px; top:36px; width:130px;">Indonesia</div>
+    <div class="label" style="left:0px; top:54px; width:130px;">France</div>
+    <div class="label" style="left:0px; top:72px; width:130px;">Singapore</div>
+    <div class="label" style="left:0px; top:90px; width:130px;">South Korea</div>
+    <div class="label" style="left:0px; top:108px; width:130px;">Chile</div>
+    <div class="label" style="left:0px; top:126px; width:130px;">Italy</div>
+    <div class="label" style="left:0px; top:144px; width:130px;">Malaysia</div>
+    <div class="label" style="left:0px; top:162px; width:130px;">South Africa</div>
+    <div class="label" style="left:0px; top:180px; width:130px;">T&uuml;rkiye</div>
+    <div class="label" style="left:0px; top:198px; width:130px;">Spain</div>
+    <div class="label" style="left:0px; top:216px; width:130px;">Netherlands</div>
+    <div class="label" style="left:0px; top:234px; width:130px;">Brazil</div>
+    <div class="label" style="left:0px; top:252px; width:130px;">Mexico</div>
+    <div class="label" style="left:0px; top:270px; width:130px;">Belgium</div>
+    <div class="label" style="left:0px; top:288px; width:130px;">Romania</div>
+    <div class="label" style="left:0px; top:306px; width:130px;">Australia</div>
+    <div class="label" style="left:0px; top:324px; width:130px;">Hungary</div>
+    <div class="label" style="left:0px; top:342px; width:130px;">Thailand</div>
+    <div class="label" style="left:0px; top:360px; width:130px;">Ireland</div>
+    <div class="label" style="left:0px; top:378px; width:130px;">Great Britain</div>
+    <div class="label" style="left:0px; top:396px; width:130px;">Sweden</div>
+    <div class="label" style="left:0px; top:414px; width:130px;">Poland</div>
+    <div class="label" style="left:0px; top:432px; width:130px;">Colombia</div>
+    <div class="label" style="left:0px; top:450px; width:130px;">Canada</div>
+    <div class="label" style="left:0px; top:468px; width:130px;">Japan</div>
+    <div class="label" style="left:0px; top:486px; width:130px;">United States</div>
+    <div class="label" style="left:0px; top:504px; width:130px;">China</div>
+    <div class="label" style="left:0px; top:522px; width:130px;">Switzerland</div>
+    <div class="label" style="left:0px; top:540px; width:130px;">Peru</div>
+    <div class="label" style="left:0px; top:558px; width:130px;">Germany</div>
+    <div class="label" style="left:0px; top:576px; width:130px;">Argentina</div>
+    <div class="label" style="left:0px; top:594px; width:130px;">India</div>
+
+    <!-- likely bars -->
+    <div style="left:142px; top:1px; width:472px; height:14px; background:#ffffff; border:1px solid #35bdbd;"></div>
+    <div style="left:142px; top:19px; width:575px; height:14px; background:#28b1b0;"></div>
+    <div style="left:142px; top:37px; width:568px; height:14px; background:#29b1b0;"></div>
+    <div style="left:142px; top:55px; width:525px; height:14px; background:#28b1b0;"></div>
+    <div style="left:142px; top:73px; width:519px; height:14px; background:#2aaead;"></div>
+    <div style="left:142px; top:91px; width:515px; height:14px; background:#2aaead;"></div>
+    <div style="left:142px; top:109px; width:514px; height:14px; background:#2aaead;"></div>
+    <div style="left:142px; top:127px; width:514px; height:14px; background:#2aaead;"></div>
+    <div style="left:142px; top:145px; width:502px; height:14px; background:#29aeac;"></div>
+    <div style="left:142px; top:163px; width:500px; height:14px; background:#29aeac;"></div>
+    <div style="left:142px; top:181px; width:497px; height:14px; background:#29aeac;"></div>
+    <div style="left:142px; top:199px; width:496px; height:14px; background:#29aeac;"></div>
+    <div style="left:142px; top:217px; width:496px; height:14px; background:#2aaeb0;"></div>
+    <div style="left:142px; top:235px; width:495px; height:14px; background:#2aaeb0;"></div>
+    <div style="left:142px; top:253px; width:492px; height:14px; background:#2aaeb0;"></div>
+    <div style="left:142px; top:271px; width:491px; height:14px; background:#2aaeb0;"></div>
+    <div style="left:142px; top:289px; width:490px; height:14px; background:#2aaeb0;"></div>
+    <div style="left:142px; top:307px; width:477px; height:14px; background:#2aaead;"></div>
+    <div style="left:142px; top:325px; width:469px; height:14px; background:#2aaead;"></div>
+    <div style="left:142px; top:343px; width:466px; height:14px; background:#2baeb0;"></div>
+    <div style="left:142px; top:361px; width:463px; height:14px; background:#2baeb0;"></div>
+    <div style="left:142px; top:379px; width:463px; height:14px; background:#2baeb0;"></div>
+    <div style="left:142px; top:397px; width:463px; height:14px; background:#2baeb0;"></div>
+    <div style="left:142px; top:415px; width:460px; height:14px; background:#2baead;"></div>
+    <div style="left:142px; top:433px; width:458px; height:14px; background:#2aa3a3;"></div>
+    <div style="left:142px; top:451px; width:456px; height:14px; background:#2aa3a3;"></div>
+    <div style="left:142px; top:469px; width:455px; height:14px; background:#2aa3a3;"></div>
+    <div style="left:142px; top:487px; width:440px; height:14px; background:#28a6a5;"></div>
+    <div style="left:142px; top:505px; width:435px; height:14px; background:#28a6a5;"></div>
+    <div style="left:142px; top:523px; width:426px; height:14px; background:#28a6a5;"></div>
+    <div style="left:142px; top:541px; width:421px; height:14px; background:#28a6a5;"></div>
+    <div style="left:142px; top:559px; width:418px; height:14px; background:#28a6a5;"></div>
+    <div style="left:142px; top:577px; width:400px; height:14px; background:#28a6a5;"></div>
+    <div style="left:142px; top:595px; width:390px; height:14px; background:#28a6a5;"></div>
+
+    <!-- likely values -->
+    <div class="pctL" style="left:149px; top:0px; width:40px;">72%</div>
+    <div class="pctL" style="left:149px; top:18px; width:40px;">87%</div>
+    <div class="pctL" style="left:149px; top:36px; width:40px;">86%</div>
+    <div class="pctL" style="left:149px; top:54px; width:40px;">79%</div>
+    <div class="pctL" style="left:149px; top:72px; width:40px;">78%</div>
+    <div class="pctL" style="left:149px; top:90px; width:40px;">77%</div>
+    <div class="pctL" style="left:149px; top:108px; width:40px;">77%</div>
+    <div class="pctL" style="left:149px; top:126px; width:40px;">77%</div>
+    <div class="pctL" style="left:149px; top:144px; width:40px;">75%</div>
+    <div class="pctL" style="left:149px; top:162px; width:40px;">75%</div>
+    <div class="pctL" style="left:149px; top:180px; width:40px;">75%</div>
+    <div class="pctL" style="left:149px; top:198px; width:40px;">74%</div>
+    <div class="pctL" style="left:149px; top:216px; width:40px;">74%</div>
+    <div class="pctL" style="left:149px; top:234px; width:40px;">74%</div>
+    <div class="pctL" style="left:149px; top:252px; width:40px;">74%</div>
+    <div class="pctL" style="left:149px; top:270px; width:40px;">73%</div>
+    <div class="pctL" style="left:149px; top:288px; width:40px;">73%</div>
+    <div class="pctL" style="left:149px; top:306px; width:40px;">72%</div>
+    <div class="pctL" style="left:149px; top:324px; width:40px;">71%</div>
+    <div class="pctL" style="left:149px; top:342px; width:40px;">71%</div>
+    <div class="pctL" style="left:149px; top:360px; width:40px;">70%</div>
+    <div class="pctL" style="left:149px; top:378px; width:40px;">70%</div>
+    <div class="pctL" style="left:149px; top:396px; width:40px;">70%</div>
+    <div class="pctL" style="left:149px; top:414px; width:40px;">69%</div>
+    <div class="pctL" style="left:149px; top:432px; width:40px;">69%</div>
+    <div class="pctL" style="left:149px; top:450px; width:40px;">68%</div>
+    <div class="pctL" style="left:149px; top:468px; width:40px;">68%</div>
+    <div class="pctL" style="left:149px; top:486px; width:40px;">66%</div>
+    <div class="pctL" style="left:149px; top:504px; width:40px;">65%</div>
+    <div class="pctL" style="left:149px; top:522px; width:40px;">64%</div>
+    <div class="pctL" style="left:149px; top:540px; width:40px;">63%</div>
+    <div class="pctL" style="left:149px; top:558px; width:40px;">63%</div>
+    <div class="pctL" style="left:149px; top:576px; width:40px;">60%</div>
+    <div class="pctL" style="left:149px; top:594px; width:40px;">59%</div>
+
+    <!-- unlikely bars -->
+    <div style="left:680px; top:1px; width:122px; height:14px; background:#ffffff; border:1px solid #4b4d94;"></div>
+    <div style="left:755px; top:19px; width:46px; height:14px; background:#1a236c;"></div>
+    <div style="left:733px; top:37px; width:68px; height:14px; background:#1a236c;"></div>
+    <div style="left:720px; top:55px; width:81px; height:14px; background:#1a236c;"></div>
+    <div style="left:710px; top:73px; width:91px; height:14px; background:#1a236c;"></div>
+    <div style="left:678px; top:91px; width:123px; height:14px; background:#1a236c;"></div>
+    <div style="left:710px; top:109px; width:91px; height:14px; background:#1a236c;"></div>
+    <div style="left:717px; top:127px; width:84px; height:14px; background:#1a236c;"></div>
+    <div style="left:690px; top:145px; width:111px; height:14px; background:#1a236c;"></div>
+    <div style="left:674px; top:163px; width:127px; height:14px; background:#1a236c;"></div>
+    <div style="left:705px; top:181px; width:96px; height:14px; background:#1a236c;"></div>
+    <div style="left:713px; top:199px; width:88px; height:14px; background:#1a236c;"></div>
+    <div style="left:676px; top:217px; width:125px; height:14px; background:#1a236c;"></div>
+    <div style="left:694px; top:235px; width:107px; height:14px; background:#1a236c;"></div>
+    <div style="left:688px; top:253px; width:113px; height:14px; background:#1a236c;"></div>
+    <div style="left:688px; top:271px; width:113px; height:14px; background:#1a236c;"></div>
+    <div style="left:692px; top:289px; width:109px; height:14px; background:#1a236c;"></div>
+    <div style="left:680px; top:307px; width:121px; height:14px; background:#1a236c;"></div>
+    <div style="left:691px; top:325px; width:110px; height:14px; background:#1a236c;"></div>
+    <div style="left:653px; top:343px; width:148px; height:14px; background:#1a236c;"></div>
+    <div style="left:665px; top:361px; width:136px; height:14px; background:#1a236c;"></div>
+    <div style="left:677px; top:379px; width:124px; height:14px; background:#1a236c;"></div>
+    <div style="left:676px; top:397px; width:125px; height:14px; background:#1a236c;"></div>
+    <div style="left:682px; top:415px; width:119px; height:14px; background:#1a236c;"></div>
+    <div style="left:683px; top:433px; width:118px; height:14px; background:#1a236c;"></div>
+    <div style="left:669px; top:451px; width:132px; height:14px; background:#1a236c;"></div>
+    <div style="left:679px; top:469px; width:122px; height:14px; background:#1a236c;"></div>
+    <div style="left:666px; top:487px; width:135px; height:14px; background:#1a236c;"></div>
+    <div style="left:615px; top:505px; width:186px; height:14px; background:#1a236c;"></div>
+    <div style="left:635px; top:523px; width:166px; height:14px; background:#1a236c;"></div>
+    <div style="left:658px; top:541px; width:143px; height:14px; background:#1a236c;"></div>
+    <div style="left:658px; top:559px; width:143px; height:14px; background:#1a236c;"></div>
+    <div style="left:601px; top:577px; width:200px; height:14px; background:#1a236c;"></div>
+    <div style="left:597px; top:595px; width:204px; height:14px; background:#1a236c;"></div>
+
+    <!-- unlikely values -->
+    <div class="pctR" style="left:761px; top:0px; width:34px;">19%</div>
+    <div class="pctR" style="left:761px; top:18px; width:34px;">7%</div>
+    <div class="pctR" style="left:761px; top:36px; width:34px;">11%</div>
+    <div class="pctR" style="left:761px; top:54px; width:34px;">12%</div>
+    <div class="pctR" style="left:761px; top:72px; width:34px;">14%</div>
+    <div class="pctR" style="left:761px; top:90px; width:34px;">19%</div>
+    <div class="pctR" style="left:761px; top:108px; width:34px;">14%</div>
+    <div class="pctR" style="left:761px; top:126px; width:34px;">13%</div>
+    <div class="pctR" style="left:761px; top:144px; width:34px;">17%</div>
+    <div class="pctR" style="left:761px; top:162px; width:34px;">19%</div>
+    <div class="pctR" style="left:761px; top:180px; width:34px;">15%</div>
+    <div class="pctR" style="left:761px; top:198px; width:34px;">14%</div>
+    <div class="pctR" style="left:761px; top:216px; width:34px;">19%</div>
+    <div class="pctR" style="left:761px; top:234px; width:34px;">17%</div>
+    <div class="pctR" style="left:761px; top:252px; width:34px;">18%</div>
+    <div class="pctR" style="left:761px; top:270px; width:34px;">18%</div>
+    <div class="pctR" style="left:761px; top:288px; width:34px;">17%</div>
+    <div class="pctR" style="left:761px; top:306px; width:34px;">19%</div>
+    <div class="pctR" style="left:761px; top:324px; width:34px;">17%</div>
+    <div class="pctR" style="left:761px; top:342px; width:34px;">23%</div>
+    <div class="pctR" style="left:761px; top:360px; width:34px;">22%</div>
+    <div class="pctR" style="left:761px; top:378px; width:34px;">19%</div>
+    <div class="pctR" style="left:761px; top:396px; width:34px;">20%</div>
+    <div class="pctR" style="left:761px; top:414px; width:34px;">18%</div>
+    <div class="pctR" style="left:761px; top:432px; width:34px;">18%</div>
+    <div class="pctR" style="left:761px; top:450px; width:34px;">20%</div>
+    <div class="pctR" style="left:761px; top:468px; width:34px;">19%</div>
+    <div class="pctR" style="left:761px; top:486px; width:34px;">21%</div>
+    <div class="pctR" style="left:761px; top:504px; width:34px;">29%</div>
+    <div class="pctR" style="left:761px; top:522px; width:34px;">25%</div>
+    <div class="pctR" style="left:761px; top:540px; width:34px;">22%</div>
+    <div class="pctR" style="left:761px; top:558px; width:34px;">22%</div>
+    <div class="pctR" style="left:761px; top:576px; width:34px;">22%</div>
+    <div class="pctR" style="left:761px; top:594px; width:34px;">31%</div>
+
+    <!-- change column -->
+    <div class="changeCell" style="left:848px; top:1px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:19px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:37px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:55px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:73px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:91px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:109px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:127px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:145px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:163px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:181px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:199px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:217px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:235px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:253px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:271px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:289px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:307px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:325px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:343px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:361px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:379px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:397px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:415px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:433px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:451px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:469px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:487px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:505px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:523px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:541px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:559px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:577px; width:74px; height:17px;"></div>
+    <div class="changeCell" style="left:848px; top:595px; width:74px; height:17px;"></div>
+
+    <div class="chg" style="left:858px; top:0px; width:54px;">1%</div>
+    <div class="chg" style="left:858px; top:18px; width:54px;">10%</div>
+    <div class="chg" style="left:858px; top:36px; width:54px;">1%</div>
+    <div class="chg" style="left:858px; top:54px; width:54px;">1%</div>
+    <div class="chg" style="left:858px; top:72px; width:54px;">2%</div>
+    <div class="chg" style="left:858px; top:90px; width:

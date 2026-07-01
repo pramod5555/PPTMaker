@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #d6d7d9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #d6d7d9;
+    color: #222;
+  }
+
+  .title {
+    position: absolute;
+    left: 60px;
+    top: 132px;
+    width: 360px;
+    font-size: 56px;
+    line-height: 1.18;
+    font-weight: 300;
+    color: #7a18d6;
+    letter-spacing: -0.8px;
+  }
+
+  .body-copy {
+    position: absolute;
+    left: 60px;
+    top: 294px;
+    width: 402px;
+    font-size: 19px;
+    line-height: 1.48;
+    color: #222;
+    font-weight: 400;
+  }
+
+  .photo-top {
+    position: absolute;
+    left: 878px;
+    top: 0px;
+    width: 367px;
+    height: 295px;
+    background:
+      linear-gradient(180deg, rgba(110,110,115,0.95) 0%, rgba(166,168,165,0.8) 42%, rgba(205,196,181,0.78) 72%, rgba(195,185,171,0.8) 100%);
+    overflow: hidden;
+  }
+  .photo-top:before {
+    content: "";
+    position: absolute;
+    left: 248px;
+    top: -8px;
+    width: 77px;
+    height: 122px;
+    background: linear-gradient(180deg, rgba(175,175,178,0.8), rgba(123,123,129,0.9));
+    border-radius: 2px;
+    transform: skewY(-1deg);
+  }
+  .photo-top:after {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 163px;
+    width: 390px;
+    height: 18px;
+    background: linear-gradient(180deg, #b09a57 0%, #d9cd77 35%, #f2eaa2 50%, #bca85f 80%, #9a8951 100%);
+    box-shadow: 0 10px 18px rgba(80,60,30,0.18);
+    transform: rotate(4deg);
+  }
+
+  .photo-mid {
+    position: absolute;
+    left: 546px;
+    top: 295px;
+    width: 373px;
+    height: 318px;
+    background:
+      radial-gradient(circle at 52% 22%, rgba(240,212,190,0.9) 0 13%, rgba(220,189,168,0.68) 14%, transparent 28%),
+      radial-gradient(circle at 40% 34%, rgba(170,138,126,0.45) 0 16%, transparent 28%),
+      radial-gradient(circle at 31% 54%, rgba(191,202,209,0.95) 0 20%, transparent 35%),
+      radial-gradient(circle at 58% 62%, rgba(235,208,176,0.72) 0 10%, transparent 24%),
+      linear-gradient(180deg, rgba(195,173,135,0.85) 0%, rgba(242,237,231,0.78) 18%, rgba(231,230,226,0.95) 56%, rgba(208,214,216,0.9) 100%);
+    overflow: hidden;
+  }
+  .photo-mid:before {
+    content: "";
+    position: absolute;
+    left: -26px;
+    top: 28px;
+    width: 184px;
+    height: 210px;
+    background: radial-gradient(circle at 65% 30%, rgba(228,205,190,0.78), rgba(175,145,134,0.48) 42%, rgba(120,111,108,0.12) 70%, transparent 75%);
+    border-radius: 45% 45% 52% 40%;
+    filter: blur(2px);
+    transform: rotate(-18deg);
+  }
+  .photo-mid:after {
+    content: "";
+    position: absolute;
+    left: 154px;
+    top: 124px;
+    width: 215px;
+    height: 10px;
+    background: linear-gradient(180deg, #d1c46f 0%, #eee4a2 40%, #a49555 100%);
+    transform: rotate(2deg);
+    box-shadow: 0 2px 8px rgba(120,95,45,0.25);
+  }
+
+  .callout {
+    position: absolute;
+    left: 918px;
+    top: 296px;
+    width: 319px;
+    height: 317px;
+    background: #f5f1f3;
+  }
+  .callout-text {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    width: 260px;
+    font-size: 22px;
+    line-height: 1.44;
+    color: #9637ea;
+    font-weight: 300;
+  }
+
+  .photo-bottom {
+    position: absolute;
+    left: 878px;
+    top: 613px;
+    width: 367px;
+    height: 107px;
+    background:
+      linear-gradient(180deg, rgba(233,233,228,0.95) 0%, rgba(222,221,215,0.95) 100%);
+    overflow: hidden;
+  }
+  .photo-bottom:before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: -9px;
+    width: 82px;
+    height: 130px;
+    background: linear-gradient(180deg, #66656b, #3c3940);
+    transform: rotate(16deg);
+    opacity: 0.85;
+  }
+  .photo-bottom:after {
+    content: "";
+    position: absolute;
+    left: 58px;
+    top: 28px;
+    width: 132px;
+    height: 56px;
+    background:
+      linear-gradient(135deg, #d5bc8e 0%, #c9ab7a 48%, #e6d3ac 52%, #c29f69 100%);
+    border-radius: 14px 14px 18px 18px;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset;
+    transform: skewX(-20deg);
+  }
+
+  .scribble {
+    position: absolute;
+    left: 94px;
+    top: 24px;
+    width: 110px;
+    height: 42px;
+    opacity: 0.55;
+  }
+  .scribble span {
+    position: absolute;
+    display: block;
+    width: 6px;
+    height: 50px;
+    background: #2d2d2d;
+    border-radius: 4px;
+    opacity: 0.65;
+  }
+  .scribble .s1 { left: 0px; top: 2px; transform: rotate(5deg); }
+  .scribble .s2 { left: 14px; top: 1px; transform: rotate(-6deg); }
+  .scribble .s3 { left: 28px; top: 3px; transform: rotate(8deg); }
+  .scribble .s4 { left: 42px; top: 0px; transform: rotate(-5deg); }
+  .scribble .s5 { left: 56px; top: 2px; transform: rotate(6deg); }
+  .scribble .s6 { left: 70px; top: 1px; transform: rotate(-7deg); }
+  .scribble .s7 { left: 84px; top: 4px; transform: rotate(5deg); }
+
+  .right-nav {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 36px;
+    height: 720px;
+    background: #f1f1f1;
+  }
+  .right-nav .rot {
+    position: absolute;
+    left: 10px;
+    top: 36px;
+    transform-origin: top left;
+    transform: rotate(90deg);
+    white-space: nowrap;
+    font-size: 18px;
+    color: #666;
+    letter-spacing: 0.2px;
+  }
+  .right-nav .rot .active {
+    color: #9327ef;
+    font-weight: 600;
+  }
+
+  .footer-left {
+    position: absolute;
+    right: 106px;
+    bottom: 16px;
+    font-size: 14px;
+    color: #f2f2f2;
+    opacity: 0.9;
+  }
+  .footer-right {
+    position: absolute;
+    right: 30px;
+    bottom: 16px;
+    font-size: 14px;
+    color: #777;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title">Why this<br>matters now</div>
+
+    <div class="body-copy">
+      We believe that the personal recommendations people are absorbing from social media—those that feel more authentic, more relatable, and more actionable—are influencing decision-making in people’s lives more than ever. They are becoming hyper-aware of information and actions to be more proactive in their finances, their health, and the value of their hard-earned money. Becoming the brand they want means minimizing the mundane (interactions that get in the way) and maximizing the humane (experiences that are relatable).
+    </div>
+
+    <div class="photo-top"></div>
+    <div class="photo-mid"></div>
+
+    <div class="callout">
+      <div class="callout-text">
+        These so-called “life hacks” are being consumed widely and it’s impacting industries where the customer’s goals are deprioritized. When customers go looking for a shortcut, find a way for your brand to be the answer to their question.
+      </div>
+    </div>
+
+    <div class="photo-bottom">
+      <div class="scribble">
+        <span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span><span class="s6"></span><span class="s7"></span>
+      </div>
+    </div>
+
+    <div class="right-nav">
+      <div class="rot">
+        Cost of hesitations &nbsp;/&nbsp; The parent trap &nbsp;/&nbsp; <span class="active">Impatience economy</span> &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; Social rewilding
+      </div>
+    </div>
+
+    <div class="footer-left">Accenture Life Trends 2025</div>
+    <div class="footer-right">52</div>
+  </div>
+</body>
+</html>

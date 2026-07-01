@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#b9bcc2;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f3;
+  }
+  .slide > div, .slide > svg{ position:absolute; box-sizing:border-box; }
+
+  .hero{
+    left:0;
+    top:0;
+    width:1280px;
+    height:347px;
+    background:
+      radial-gradient(circle at 14% 61%, rgba(38,201,203,.92) 0%, rgba(24,152,170,.85) 18%, rgba(8,104,145,.45) 36%, rgba(0,0,0,0) 56%),
+      radial-gradient(circle at 11% 24%, rgba(115,186,165,.65) 0%, rgba(67,145,154,.28) 24%, rgba(0,0,0,0) 48%),
+      radial-gradient(circle at 37% 80%, rgba(95,210,214,.20) 0%, rgba(0,0,0,0) 28%),
+      linear-gradient(90deg, #12546c 0%, #00567b 28%, #004674 53%, #003868 75%, #00335e 100%);
+    z-index:1;
+  }
+  .water-overlay{
+    left:0;
+    top:0;
+    width:1280px;
+    height:347px;
+    opacity:.22;
+    background:
+      radial-gradient(circle at 6% 78%, rgba(255,255,255,.32) 0%, rgba(255,255,255,.08) 18%, rgba(255,255,255,0) 35%),
+      radial-gradient(circle at 14% 34%, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 22%),
+      radial-gradient(circle at 44% 80%, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 18%),
+      radial-gradient(circle at 70% 70%, rgba(255,255,255,.06) 0%, rgba(255,255,255,0) 20%);
+    filter:blur(2px);
+    z-index:2;
+  }
+
+  .top-left-band{
+    left:0;
+    top:0;
+    width:47px;
+    height:78px;
+    background:#cbccd1;
+    z-index:8;
+  }
+  .title{
+    left:56px;
+    top:50px;
+    color:#f3f3f5;
+    font-size:15px;
+    font-weight:400;
+    letter-spacing:.1px;
+    z-index:12;
+    white-space:nowrap;
+  }
+  .top-rule{
+    left:0;
+    top:78px;
+    width:1280px;
+    height:1px;
+    background:rgba(255,255,255,.72);
+    z-index:11;
+  }
+
+  .nav-circle{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#d6d2d8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:20;
+  }
+  .nav-left{ left:1122px; top:32px; }
+  .nav-right{ left:1165px; top:32px; }
+  .nav-circle:before{
+    content:"";
+    display:block;
+    width:0;height:0;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+  }
+  .nav-left:before{
+    border-right:10px solid #4d4f58;
+    margin-left:-2px;
+  }
+  .nav-right:before{
+    border-left:10px solid #4d4f58;
+    margin-left:2px;
+  }
+
+  .ship-shadow{
+    left:566px;
+    top:93px;
+    width:255px;
+    height:80px;
+    background:rgba(8,16,36,.40);
+    clip-path:polygon(4% 27%, 90% 2%, 100% 48%, 16% 100%);
+    filter:blur(2px);
+    transform:skewX(10deg);
+    z-index:3;
+    opacity:.72;
+  }
+
+  .content-panel{
+    left:0;
+    top:347px;
+    width:1280px;
+    height:373px;
+    background:#f3f3f4;
+    z-index:4;
+  }
+
+  .sidebar{
+    left:66px;
+    top:347px;
+    width:169px;
+    height:363px;
+    border-right:1px solid #d2d2d7;
+    background:#f3f3f4;
+    z-index:8;
+  }
+  .sidebar-head{
+    left:66px;
+    top:347px;
+    width:169px;
+    height:42px;
+    background:#c8c8ce;
+    z-index:9;
+  }
+  .sidebar-head-text{
+    left:77px;
+    top:361px;
+    color:#2f3036;
+    font-size:13px;
+    font-weight:700;
+    line-height:15px;
+    z-index:10;
+    white-space:nowrap;
+  }
+  .sidebar-sub{
+    left:78px;
+    top:402px;
+    color:#7a7c86;
+    font-size:13px;
+    font-weight:700;
+    line-height:15px;
+    z-index:10;
+  }
+
+  .divider1{
+    left:235px;
+    top:347px;
+    width:1px;
+    height:363px;
+    background:#d2d2d7;
+    z-index:8;
+  }
+  .divider2{
+    left:703px;
+    top:347px;
+    width:1px;
+    height:363px;
+    background:#d2d2d7;
+    z-index:8;
+  }
+
+  .col1-title, .col2-title{
+    color:#33353b;
+    font-size:13px;
+    font-weight:700;
+    line-height:16px;
+    z-index:10;
+  }
+  .col1-title{ left:253px; top:361px; width:280px; }
+  .col2-title{ left:725px; top:361px; width:340px; }
+
+  .col1-body, .col2-body{
+    color:#4d4f57;
+    font-size:12px;
+    font-weight:400;
+    line-height:1.42;
+    z-index:10;
+  }
+  .col1-body{ left:253px; top:384px; width:396px; }
+  .col2-body{ left:725px; top:384px; width:402px; }
+
+  .bullet-line{
+    position:relative;
+    padding-left:14px;
+    margin-top:7px;
+  }
+  .bullet-line:before{
+    content:"▪";
+    position:absolute;
+    left:0;
+    top:0;
+    color:#3f4148;
+    font-size:12px;
+    font-weight:700;
+    line-height:1.35;
+  }
+  .sub-bullet{
+    position:relative;
+    padding-left:18px;
+    margin-top:7px;
+    margin-left:14px;
+  }
+  .sub-bullet:before{
+    content:"▪";
+    position:absolute;
+    left:0;
+    top:0;
+    color:#3f4148;
+    font-size:11px;
+    font-weight:700;
+    line-height:1.35;
+  }
+
+  .footer-rule{
+    left:66px;
+    top:710px;
+    width:1108px;
+    height:1px;
+    background:#d2d2d7;
+    z-index:8;
+  }
+  .footer{
+    left:67px;
+    top:729px;
+    transform:translateY(-20px);
+    color:#8b8d96;
+    font-size:10px;
+    font-weight:600;
+    line-height:10px;
+    z-index:10;
+    letter-spacing:.1px;
+  }
+
+  .right-menu{
+    left:1191px;
+    top:120px;
+    width:89px;
+    z-index:30;
+  }
+  .menu-item{
+    position:absolute;
+    left:0;
+    width:89px;
+    height:36px;
+    background:#514b55;
+    color:#f3f3f3;
+    font-size:11px;
+    font-weight:400;
+    line-height:13px;
+    padding:7px 6px 0 7px;
+    border-left:2px solid #d6d400;
+  }
+  .menu-1{ top:0; }
+  .menu-2{ top:50px; }
+  .menu-3{ top:101px; }
+  .menu-4{ top:151px; }
+  .menu-5{ top:203px; }
+  .menu-6{ top:254px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="hero"></div>
+  <div class="water-overlay"></div>
+  <div class="top-left-band"></div>
+  <div class="title">Insights: Europe, Middle East, India and Africa</div>
+  <div class="top-rule"></div>
+
+  <div class="nav-circle nav-left"></div>
+  <div class="nav-circle nav-right"></div>
+
+  <div class="ship-shadow"></div>
+
+  <svg width="1280" height="347" style="left:0;top:0;z-index:15;overflow:visible">
+    <line x1="452" y1="176" x2="478" y2="268" stroke="rgba(214,224,230,.52)" stroke-width="1"/>
+    <line x1="758" y1="199" x2="873" y2="219" stroke="rgba(214,224,230,.44)" stroke-width="1"/>
+    <line x1="730" y1="208" x2="778" y2="262" stroke="rgba(214,224,230,.44)" stroke-width="1"/>
+
+    <g transform="translate(518,147) rotate(10)">
+      <rect x="-187" y="-23" width="374" height="46" rx="23" ry="23" fill="#d6d3cb" stroke="#9c968c" stroke-width="1"/>
+      <rect x="-174" y="-18" width="346" height="36" rx="13" ry="13" fill="#262a31"/>
+      <g>
+        <rect x="-159" y="-15" width="19" height="11" fill="#7ca6e5"/><rect x="-138" y="-15" width="18" height="11" fill="#4c74c3"/>
+        <rect x="-118" y="-15" width="18" height="11" fill="#d8b047"/><rect x="-98" y="-15" width="20" height="11" fill="#6188d8"/>
+        <rect x="-76" y="-15" width="21" height="11" fill="#6e9ce2"/><rect x="-53" y="-15" width="17" height="11" fill="#b77f3f"/>
+        <rect x="-34" y="-15" width="18" height="11" fill="#86ace9"/><rect x="-14" y="-15" width="20" height="11" fill="#6b92dc"/>
+        <rect x="8" y="-15" width="17" height="11" fill="#587fcf"/><rect x="27" y="-15" width="19" height="11" fill="#d9b648"/>
+        <rect x="48" y="-15" width="18" height="11" fill="#82aae8"/><rect x="68" y="-15" width="19" height="11" fill="#5f87d5"/>
+        <rect x="89" y="-15" width="19" height="11" fill="#4f77c5"/><rect x="110" y="-15" width="17" height="11" fill="#d3a66e"/>
+        <rect x="129" y="-15" width="17" height="11" fill="#6d95dc"/><rect x="148" y="-15" width="17" height="11" fill="#d89d67"/>
+      </g>
+      <g>
+        <rect x="-162" y="-2" width="18" height="11" fill="#d8b047"/><rect x="-142" y="-2" width="18" height="11" fill="#4f77c6"/>
+        <rect x="-122" y="-2" width="19" height="11" fill="#7da7e4"/><rect x="-101" y="-2" width="18" height="11" fill="#6188d8"/>
+        <rect x="-81" y="-2" width="18" height="11" fill="#d8b047"/><rect x="-61" y="-2" width="19" height="11" fill="#6fa0e4"/>
+        <rect x="-40" y="-2" width="18" height="11" fill="#82aae8"/><rect x="-20" y="-2" width="17" height="11" fill="#5078c7"/>
+        <rect x="-1" y="-2" width="18" height="11" fill="#d8b047"/><rect x="19" y="-2" width="18" height="11" fill="#6fa0e4"/>
+        <rect x="39" y="-2" width="18" height="11" fill="#84ace9"/><rect x="59" y="-2" width="18" height="11" fill="#c18a43"/>
+        <rect x="79" y="-2" width="18" height="11" fill="#7ea8e6"/><rect x="99" y="-2" width="18" height="11" fill="#4f77c6"/>
+        <rect x="119" y="-2" width="17" height="11" fill="#d8b047"/><rect x="138" y="-2" width="17" height="11" fill="#6ea0e4"/>
+      </g>
+      <g>
+        <rect x="-155" y="11" width="18" height="10" fill="#4f77c6"/><rect x="-135" y="11" width="18" height="10" fill="#7da7e4"/>
+        <rect x="-115" y="11" width="18" height="10" fill="#d8b047"/><rect x="-95" y="11" width="18" height="10" fill="#6188d8"/>
+        <rect x="-75" y="11" width="18" height="10" fill="#84ace9"/><rect x="-55" y="11" width="18" height="10" fill="#d8b047"/>
+        <rect x="-35" y="11" width="18" height="10" fill="#4f77c6"/><rect x="-15" y="11" width="18" height="10" fill="#7da7e4"/>
+        <rect x="5" y="11" width="18" height="10" fill="#b77f3f"/><rect x="25" y="11" width="18" height="10" fill="#6fa0e4"/>
+        <rect x="45" y="11" width="18" height="10" fill="#d8b047"/><rect x="65" y="11" width="18" height="10" fill="#4f77c6"/>
+        <rect x="85" y="11" width="18" height="10" fill="#84ace9"/><rect x="105" y="11" width="18" height="10" fill="#d8b047"/>
+        <rect x="125" y="11" width="18" height="10" fill="#6188d8"/>
+      </g>
+      <rect x="80" y="-8" width="28" height="24" fill="#d5d1c9"/>
+      <rect x="86" y="-16" width="15" height="10" fill="#c7c1b7"/>
+      <rect x="108" y="-6" width="9" height="18" fill="#6f6668"/>
+      <rect x="117" y="-11" width="5" height="23" fill="#a85448"/>
+    </g>
+
+    <g transform="translate(482,284) rotate(83)">
+      <ellipse cx="0" cy="0" rx="15" ry="8" fill="#2f4351" stroke="#ddb258" stroke-width="1"/>
+      <rect x="-4" y="-3" width="8" height="6" fill="#f1f1f1"/>
+      <path d="M 15 0 C 23 0, 28 3, 33 8" fill="none" stroke="rgba(255,255,255,.68)" stroke-width="2"/>
+      <path d="M 14 -2 C 23 -2, 28 0, 35 3" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.5"/>
+    </g>
+    <g transform="translate(880,224) rotate(-16)">
+      <ellipse cx="0" cy="0" rx="16" ry="8" fill="#38576a" stroke="#f0b44a" stroke-width="1"/>
+      <rect x="-4" y="-3" width="8" height="6" fill="#f0f0f0"/>
+      <path d="M -17 1 C -27 3, -35 7, -44 12" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2"/>
+      <path d="M -16 -2 C -28 0, -34 2, -43 6" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.4"/>
+    </g>
+    <g transform="translate(776,279) rotate(52)">
+      <ellipse cx="0" cy="0" rx="16" ry="8" fill="#2d3f50" stroke="#e0b04f" stroke-width="1"/>
+      <rect x="-4" y="-3" width="8" height="6" fill="#f0f0f0"/>
+      <path d="M 14 0 C 26 0, 35 4, 45 9" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
+      <path d="M 14 -2 C 25 -2, 33 0, 42 4" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.3"/>
+    </g>
+  </svg>
+
+  <div class="content-panel"></div>
+
+  <div class="sidebar"></div>
+  <div class="sidebar-head"></div>
+  <div class="sidebar-head-text">Safety and security</div>
+  <div class="sidebar-sub">continued</div>
+
+  <div class="divider1"></div>
+  <div class="divider2"></div>
+
+  <div class="col1-title">Business partner security</div>
+  <div class="col1-body">
+    <div>To maintain supply chain integrity, the applicant must ensure<br>that business partners meet security standards:</div>
+    <div class="bullet-line">A documented and verifiable partner-selection process must exist covering financial soundness, safety compliance and corrective capabilities.</div>
+    <div class="bullet-line">Copies of AEO certificates must be obtained from AEO-certified partners.</div>
+    <div class="bullet-line">For non-AEO partners, written confirmation of meeting AEO-equivalent criteria must be obtained via:</div>
+    <div class="bullet-line">Contractual commitments, self-assessment questionnaires, written compliance statements, senior-officer declarations or proof of compliance with equivalent foreign accredited security programs.</div>
+    <div class="bullet-line">Periodic, risk-based reviews of partners’ facilities and processes must be conducted to ensure ongoing compliance.</div>
+  </div>
+
+  <div class="col2-title">Security training and threat awareness</div>
+  <div class="col2-body">
+    <div>To maintain security standards, employees must be trained and<br>aware of security threats and procedures:</div>
+    <div class="bullet-line">A threat-awareness program must be established and maintained.</div>
+    <div class="bullet-line">Employees must understand how to respond to and report security issues.</div>
+    <div class="bullet-line">Targeted training must help employees recognize internal conspiracies, protect cargo integrity and enforce access controls.</div>
+    <div class="bullet-line">Training must cover:</div>
+    <div class="sub-bullet">Company security policies, internal security risks, cargo security practices, access-control procedures, identifying/reporting suspicious persons or cargo, conveyance and cargo security requirements for transport staff.</div>
+    <div class="sub-bullet">Training records must be maintained and made available for AEO Program and Customs verification.</div>
+  </div>
+
+  <div class="footer-rule"></div>
+  <div class="footer">31&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+
+  <div class="right-menu">
+    <div class="menu-item menu-1">Contents</div>
+    <div class="menu-item menu-2">Insights</div>
+    <div class="menu-item menu-3">New on<br>ey.com</div>
+    <div class="menu-item menu-4">Tax alerts</div>
+    <div class="menu-item menu-5">Additional<br>resources</div>
+    <div class="menu-item menu-6">Contacts</div>
+  </div>
+</div>
+</body>
+</html>

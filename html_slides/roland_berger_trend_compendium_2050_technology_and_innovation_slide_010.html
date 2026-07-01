@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#8f9297;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .sidebar{
+    left:0;
+    top:0;
+    width:181px;
+    height:720px;
+    background:#34373d;
+    z-index:5;
+  }
+  .sidebar-line{
+    left:179px;
+    top:0;
+    width:2px;
+    height:720px;
+    background:#7e68b8;
+    z-index:6;
+  }
+  .title1{
+    left:12px;
+    top:33px;
+    width:150px;
+    color:#f1f1f1;
+    font-size:24px;
+    line-height:1.1;
+    font-weight:700;
+    z-index:30;
+  }
+  .hex{
+    width:66px;
+    height:58px;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    z-index:20;
+  }
+  .hex1{ left:8px; top:141px; background:#7f69bb; }
+  .hex2{ left:8px; top:274px; background:#72757c; }
+  .hex3{ left:8px; top:408px; background:#7f8388; }
+  .hex-inner{
+    position:absolute;
+    left:4px;
+    top:4px;
+    width:58px;
+    height:50px;
+    background:rgba(255,255,255,0.18);
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+  }
+  .hex-art{
+    position:absolute;
+    left:8px;
+    top:8px;
+    width:50px;
+    height:42px;
+  }
+  .nav-num{
+    color:#856ec5;
+    font-size:27px;
+    font-weight:700;
+    z-index:30;
+  }
+  .nav-num.gray{ color:#7a7d84; }
+  .nav-label{
+    color:#856ec5;
+    font-size:14px;
+    line-height:1.12;
+    font-weight:700;
+    z-index:30;
+  }
+  .nav-label.gray{
+    color:#6c7077;
+    font-weight:500;
+  }
+  .page{
+    left:10px;
+    bottom:16px;
+    color:#ededed;
+    font-size:18px;
+    font-weight:400;
+    z-index:30;
+  }
+  .gearbox{
+    left:67px;
+    top:660px;
+    width:72px;
+    height:52px;
+    z-index:20;
+    opacity:0.58;
+  }
+  .main-title{
+    left:220px;
+    top:31px;
+    width:1040px;
+    color:#222326;
+    font-size:31px;
+    line-height:1.16;
+    font-weight:700;
+    letter-spacing:-0.2px;
+    z-index:30;
+  }
+  .subtitle{
+    left:221px;
+    top:138px;
+    width:650px;
+    color:#90959d;
+    font-size:27px;
+    line-height:1.2;
+    font-weight:400;
+    z-index:30;
+  }
+  .right-box{
+    left:954px;
+    top:140px;
+    width:326px;
+    height:580px;
+    background:#d9dadd;
+    z-index:15;
+  }
+  .bulletbox{
+    left:967px;
+    top:147px;
+    width:292px;
+    color:#2d2d2f;
+    font-size:17px;
+    line-height:1.12;
+    font-weight:400;
+    z-index:30;
+  }
+  .bulletbox p{
+    margin:0 0 10px 0;
+  }
+  .bulletbox b{ font-weight:700; }
+
+  .chart-label{
+    color:#2f2f31;
+    font-size:18px;
+    line-height:1.08;
+    font-weight:400;
+    z-index:35;
+  }
+  .chart-label.small{ font-size:17px; }
+  .source{
+    left:220px;
+    bottom:18px;
+    color:#3e4043;
+    font-size:12px;
+    line-height:1.1;
+    font-weight:400;
+    z-index:30;
+  }
+  .rb-logo{
+    right:14px;
+    bottom:11px;
+    width:54px;
+    height:24px;
+    z-index:40;
+  }
+  .center-total{
+    left:476px;
+    top:370px;
+    width:176px;
+    text-align:center;
+    color:#222326;
+    font-size:30px;
+    line-height:1.35;
+    font-weight:700;
+    z-index:40;
+  }
+  .faded-rd{
+    left:213px;
+    top:289px;
+    width:178px;
+    height:347px;
+    z-index:8;
+    opacity:0.19;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="sidebar-line"></div>
+
+  <div class="title1">Technology &amp;<br>Innovation</div>
+
+  <div class="hex hex1">
+    <div class="hex-inner"></div>
+    <div class="hex-art">
+      <svg width="50" height="62" viewBox="0 0 50 62">
+        <rect x="0" y="0" width="50" height="42" fill="#37a2db" opacity="0.24"/>
+        <path d="M2 31 L12 13 L22 19 L31 9 L46 16" fill="none" stroke="#d7f3ff" stroke-width="2"/>
+        <path d="M4 27 L16 25 L23 31 L38 21 L47 28" fill="none" stroke="#c6ebff" stroke-width="1.5"/>
+        <circle cx="12" cy="13" r="2" fill="#ffffff"/>
+        <circle cx="22" cy="19" r="2" fill="#ffffff"/>
+        <circle cx="31" cy="9" r="2" fill="#ffffff"/>
+        <circle cx="46" cy="16" r="2" fill="#ffffff"/>
+        <path d="M0 37 L50 6" stroke="#a9e6ff" stroke-width="1" opacity="0.7"/>
+        <path d="M7 0 L31 42" stroke="#a9e6ff" stroke-width="1" opacity="0.45"/>
+      </svg>
+    </div>
+  </div>
+  <div class="nav-num" style="left:93px; top:144px;">1</div>
+  <div class="nav-label" style="left:93px; top:176px; width:70px;">Value of<br>Innovation</div>
+
+  <div class="hex hex2">
+    <div class="hex-inner"></div>
+    <div class="hex-art">
+      <svg width="50" height="62" viewBox="0 0 50 62">
+        <rect x="0" y="0" width="50" height="42" fill="#cbcdcf" opacity="0.18"/>
+        <circle cx="15" cy="23" r="3" fill="#d8dadd"/>
+        <circle cx="25" cy="18" r="2.5" fill="#d8dadd"/>
+        <circle cx="35" cy="12" r="2.5" fill="#d8dadd"/>
+        <circle cx="35" cy="28" r="2.5" fill="#d8dadd"/>
+        <path d="M15 23 L25 18 L35 12 M25 18 L35 28" stroke="#eceeef" stroke-width="1.5"/>
+        <path d="M7 29 C13 10, 39 9, 44 23" fill="none" stroke="#bfc3c8" stroke-width="1"/>
+      </svg>
+    </div>
+  </div>
+  <div class="nav-num gray" style="left:93px; top:277px;">2</div>
+  <div class="nav-label gray" style="left:93px; top:309px; width:78px;">Frontier<br>Technologies</div>
+
+  <div class="hex hex3">
+    <div class="hex-inner"></div>
+    <div class="hex-art">
+      <svg width="50" height="62" viewBox="0 0 50 62">
+        <rect x="0" y="0" width="50" height="42" fill="#ffffff" opacity="0.12"/>
+        <path d="M8 25 C11 18,17 18,20 23 C22 27,25 27,29 22" fill="none" stroke="#f4f4f4" stroke-width="3" stroke-linecap="round"/>
+        <path d="M29 22 C32 18,36 18,40 23" fill="none" stroke="#f4f4f4" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="8" cy="25" r="2" fill="#f4f4f4"/>
+        <circle cx="40" cy="23" r="2" fill="#f4f4f4"/>
+      </svg>
+    </div>
+  </div>
+  <div class="nav-num gray" style="left:93px; top:410px;">3</div>
+  <div class="nav-label gray" style="left:93px; top:442px; width:90px;">Humans &amp;<br>Machines</div>
+
+  <div class="gearbox">
+    <svg width="72" height="72" viewBox="0 0 72 72">
+      <g fill="none" stroke="#9ea2a8" stroke-width="3">
+        <circle cx="22" cy="28" r="14"/>
+        <path d="M22 8 L22 0 M22 56 L22 48 M2 28 L10 28 M34 28 L42 28 M8 14 L13 19 M31 37 L36 42 M8 42 L13 37 M31 19 L36 14"/>
+        <circle cx="47" cy="22" r="10"/>
+        <path d="M47 6 L47 0 M47 44 L47 38 M31 22 L37 22 M57 22 L63 22 M36 11 L40 15 M54 29 L58 33 M36 33 L40 29 M54 15 L58 11"/>
+        <path d="M29 29 C34 29,35 25,39 24 C42 23,45 25,45 29 C45 33,41 34,39 36 C37 38,37 42,40 45" />
+        <path d="M41 46 L48 50 L49 38" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="main-title">Regionally, R&amp;D expenditure is highly unbalanced – Investment gaps<br>between the Global North and South highlight innovation underperformance</div>
+  <div class="subtitle">Share of global R&amp;D expenditure, by region, 2017 [%]</div>
+
+  <div class="faded-rd">
+    <svg width="178" height="367" viewBox="0 0 178 367">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#dddddd"/>
+          <stop offset="100%" stop-color="#c1c1c1"/>
+        </linearGradient>
+      </defs>
+      <rect x="22" y="14" width="92" height="90" fill="url(#g1)" opacity="0.55"/>
+      <rect x="63" y="112" width="92" height="90" fill="url(#g1)" opacity="0.50"/>
+      <rect x="18" y="209" width="92" height="90" fill="url(#g1)" opacity="0.46"/>
+      <text x="42" y="124" font-family="Georgia, 'Times New Roman', serif" font-size="128" fill="#b6b6b6" font-weight="700">R</text>
+      <text x="66" y="249" font-family="Georgia, 'Times New Roman', serif" font-size="126" fill="#b6b6b6" font-weight="700">&amp;</text>
+      <text x="13" y="345" font-family="Georgia, 'Times New Roman', serif" font-size="127" fill="#b6b6b6" font-weight="700">D</text>
+    </svg>
+  </div>
+
+  <svg width="1280" height="740" viewBox="0 0 1280 740" style="left:0;top:0;z-index:25;">
+    <g transform="translate(565,447)">
+      <path d="M 0.000,-216.000 A 216,216 0 0 1 213.511,-38.556 L 143.679,-25.955 A 145,145 0 0 0 0.000,-145.000 Z" fill="#7d68b5"/>
+      <path d="M 213.511,-38.556 A 216,216 0 0 1 162.350,142.183 L 109.015,95.503 A 145,145 0 0 0 143.679,-25.955 Z" fill="#a89ac9"/>
+      <path d="M 162.350,142.183 A 216,216 0 0 1 149.238,155.841 L 100.205,104.717 A 145,145 0 0 0 109.015,95.503 Z" fill="#d7d2e6"/>
+      <path d="M 149.238,155.841 A 216,216 0 0 1 137.122,166.588 L 92.051,111.915 A 145,145 0 0 0 100.205,104.717 Z" fill="#89a4c2"/>
+      <path d="M 137.122,166.588 A 216,216 0 0 1 126.566,174.733 L 84.967,117.346 A 145,145 0 0 0 92.051,111.915 Z" fill="#2475aa"/>
+      <path d="M 126.566,174.733 A 216,216 0 0 1 115.526,182.226 L 77.557,122.349 A 145,145 0 0 0 84.967,117.346 Z" fill="#6f97bf"/>
+      <path d="M 115.526,182.226 A 216,216 0 1 1 -0.000,-216.000 L -0.000,-145.000 A 145,145 0 1 0 77.557,122.349 Z" fill="#4e327f"/>
+
+      <circle cx="0" cy="0" r="145" fill="#f2f2f2"/>
+      <circle cx="0" cy="0" r="216" fill="none" stroke="#f2f2f2" stroke-width="1.2"/>
+      <line x1="-216" y1="0" x2="-145" y2="0" stroke="#f2f2f2" stroke-width="1.2"/>
+      <line x1="213.511" y1="-38.556" x2="143.679" y2="-25.955" stroke="#f2f2f2" stroke-width="1.2"/>
+      <line x1="162.350" y1="142.183" x2="109.015" y2="95.503" stroke="#f2f2f2" stroke-width="1.2"/>
+      <line x1="149.238" y1="155.841" x2="100.205" y2="104.717" stroke="#f2f2f2" stroke-width="1.2"/>
+      <line x1="137.122" y1="166.588" x2="92.051" y2="111.915" stroke="#f2f2f2" stroke-width="1.2"/>
+      <line x1="126.566" y1="174.733" x2="84.967" y2="117.346" stroke="#f2f2f2" stroke-width="1.2"/>
+      <line x1="115.526" y1="182.226" x2="77.557" y2="122.349" stroke="#f2f2f2" stroke-width="1.2"/>
+
+      <text x="-145" y="-144" fill="#ffffff" font-size="16" font-weight="400">27.4%</text>
+      <text x="161" y="-115" fill="#2f2f31" font-size="16" font-weight="400">21.3%</text>
+      <text x="176" y="25" fill="#2f2f31" font-size="16" font-weight="400">2.5%</text>
+      <text x="170" y="52" fill="#2f2f31" font-size="16" font-weight="400">2.4%</text>
+      <text x="119" y="76" fill="#ffffff" font-size="16" font-weight="400">1.1%</text>
+      <text x="158" y="86" fill="#ffffff" font-size="16" font-weight="400">2.0%</text>
+      <text x="144" y="112" fill="#ffffff" font-size="16" font-weight="400">1.1%</text>
+      <text x="-80" y="195" fill="#ffffff" font-size="16" font-weight="400">39.2%</text>
+    </g>
+  </svg>
+
+  <div class="center-total">Total:<br>USD 2.2<br>trillion</div>
+
+  <div class="chart-label" style="left:217px; top:252px; width:250px;">North &amp; Central America</div>
+  <div class="chart-label" style="left:738px; top:284px; width:110px;">Europe</div>
+  <div class="chart-label small" style="left:786px; top:457px; width:125px;">South Asia</div>
+  <div class="chart-label small" style="left:786px; top:495px; width:145px;">South America</div>
+  <div class="chart-label small" style="left:762px; top:521px; width:122px;">Central Asia</div>
+  <div class="chart-label small" style="left:753px; top:547px; width:80px;">Africa</div>
+  <div class="chart-label" style="left:752px; top:573px; width:190px;">Australia &amp; Oceania</div>
+  <div class="chart-label" style="left:320px; top:662px; width:290px;">East &amp; Southeast Asia</div>
+
+  <div class="right-box"></div>
+  <div class="bulletbox">
+    <p>&gt; <b>R&amp;D expenditure</b> differs between countries,<br>
+    &nbsp;&nbsp;&nbsp;but are <b>particularly striking when aggregated</b><br>
+    &nbsp;&nbsp;&nbsp;<b>by region</b>: Differences in <b>levels of income</b><br>
+    &nbsp;&nbsp;&nbsp;between the Global North and South<br>
+    &nbsp;&nbsp;&nbsp;determine the latter's <b>potential ability to</b><br>
+    &nbsp;&nbsp;&nbsp;<b>invest in R&amp;D</b></p>
+
+    <p>&gt; Poorer countries in the regions of the <b>Global</b><br>
+    &nbsp;&nbsp;&nbsp;<b>South</b> in Africa, South America and South Asia<br>
+    &nbsp;&nbsp;&nbsp;are trapped in an <b>innovation</b><br>
+    &nbsp;&nbsp;&nbsp;<b>underperformance cycle</b>: <b>The less money</b><br>
+    &nbsp;&nbsp;&nbsp;(available to be) <b>invested in R&amp;D, the lower</b><br>
+    &nbsp;&nbsp;&nbsp;<b>the abilities of a country or region to innovate</b><br>
+    &nbsp;&nbsp;&nbsp;– resulting in less innovative firms, lower<br>
+    &nbsp;&nbsp;&nbsp;profits and less prosperity that can be derived<br>
+    &nbsp;&nbsp;&nbsp;or shared from technological advances</p>
+
+    <p>&gt; This <b>vicious cycle of lack of R&amp;D funds</b> and<br>
+    &nbsp;&nbsp;&nbsp;subsequent innovation underperformance also<br>
+    &nbsp;&nbsp;&nbsp;defines aspects of the so-called <b>poverty trap</b>,<br>
+    &nbsp;&nbsp;&nbsp;describing a knock-on effect mechanism that<br>
+    &nbsp;&nbsp;&nbsp;– ultimately – makes it very difficult for such<br>
+    &nbsp;&nbsp;&nbsp;nations to escape poverty</p>
+
+    <p>&gt; In 2017, almost <b>USD 2.2 trillion were</b><br>
+    &nbsp;&nbsp;&nbsp;<b>invested globally in R&amp;D</b>, compared to USD<br>
+    &nbsp;&nbsp;&nbsp;722 billion in 2000. This threefold increase<br>
+    &nbsp;&nbsp;&nbsp;highlights the growing importance of inno-<br>
+    &nbsp;&nbsp;&nbsp;vation for economic stability and prosperity</p>
+  </div>
+
+  <div class="source">Sources: NSF; Roland Berger</div>
+  <div class="page">10</div>
+
+  <div class="rb-logo">
+    <svg width="54" height="44" viewBox="0 0 54 44">
+      <text x="0" y="8.5" font-family="Arial, Helvetica, sans-serif" font-size="5.2" fill="#5f6165">Roland</text>
+      <text x="0" y="14.8" font-family="Arial, Helvetica, sans-serif" font-size="5.2" fill="#5f6165">Berger</text>
+      <path d="M29 1 C41 1, 46 5, 46 12 C46 19, 41 23, 29 23 Z" fill="#9fa3a7"/>
+      <path d="M29 1 L33 1 C39 1, 42 3, 42 8 C42 12, 39 14, 33 14 L29 14 Z" fill="#c6c8cb"/>
+      <path d="M29 14 L33 14 C39 14, 42 16, 42 23 L29 23 Z" fill="#7f8388"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

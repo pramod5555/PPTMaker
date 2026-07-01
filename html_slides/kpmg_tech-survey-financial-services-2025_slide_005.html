@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Risk and regulation</title>
+<style>
+  body {
+    margin: 0;
+    background: #cfcfcf;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #ffffff;
+    margin: 0 auto;
+  }
+
+  .topbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 47px;
+    background: #d9d9d9;
+  }
+
+  .nav {
+    position: absolute;
+    top: 20px;
+    font-size: 12px;
+    color: #7e7e7e;
+    white-space: nowrap;
+  }
+  .nav.active {
+    color: #1946e8;
+    font-weight: 600;
+  }
+  .nav.n1 { left: 87px; }
+  .nav.n2 { left: 263px; }
+  .nav.n3 { left: 342px; }
+  .nav.n4 { left: 493px; }
+  .nav.n5 { left: 609px; }
+  .nav.n6 { left: 817px; }
+  .nav.n7 { left: 979px; }
+
+  .icon {
+    position: absolute;
+    top: 15px;
+    color: #8c8c8c;
+  }
+  .chev-left {
+    right: 132px;
+    width: 12px;
+    height: 12px;
+    border-left: 1.5px solid #8c8c8c;
+    border-bottom: 1.5px solid #8c8c8c;
+    transform: rotate(45deg);
+  }
+  .home {
+    right: 85px;
+    width: 20px;
+    height: 20px;
+  }
+  .home:before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 7px;
+    width: 14px;
+    height: 10px;
+    border: 1.5px solid #8c8c8c;
+    border-top: none;
+    box-sizing: border-box;
+  }
+  .home:after {
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 16px;
+    height: 16px;
+    border-top: 1.5px solid #8c8c8c;
+    border-left: 1.5px solid #8c8c8c;
+    transform: rotate(45deg);
+    transform-origin: top left;
+    background: transparent;
+  }
+  .home .door {
+    position: absolute;
+    left: 9px;
+    top: 12px;
+    width: 3px;
+    height: 6px;
+    background: #8c8c8c;
+  }
+  .chev-right {
+    right: 65px;
+    width: 12px;
+    height: 12px;
+    border-right: 1.5px solid #8c8c8c;
+    border-top: 1.5px solid #8c8c8c;
+    transform: rotate(45deg);
+  }
+
+  .left-panel {
+    position: absolute;
+    left: 0;
+    top: 47px;
+    width: 869px;
+    height: 673px;
+    background:
+      radial-gradient(circle at 70% 48%, rgba(91,183,255,0.28) 0 12%, rgba(91,183,255,0) 28%),
+      radial-gradient(circle at 58% 55%, rgba(255,0,153,0.22) 0 9%, rgba(255,0,153,0) 24%),
+      linear-gradient(90deg, rgba(4,23,92,0.94) 0%, rgba(8,39,122,0.90) 35%, rgba(27,52,120,0.68) 60%, rgba(18,33,76,0.50) 100%),
+      linear-gradient(180deg, #0b1d67 0%, #07134b 100%);
+  }
+  .left-panel:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 869px;
+    height: 673px;
+    background:
+      linear-gradient(90deg, rgba(0,255,255,0.08) 0 1px, transparent 1px 72px),
+      linear-gradient(rgba(0,255,255,0.05) 0 1px, transparent 1px 72px);
+    opacity: 0.22;
+  }
+
+  .codeblock {
+    position: absolute;
+    color: rgba(64,255,247,0.42);
+    font-family: "Courier New", monospace;
+    line-height: 1.08;
+    white-space: pre;
+    text-shadow: 0 0 10px rgba(64,255,247,0.2);
+  }
+  .cb1 {
+    left: 349px;
+    top: 45px;
+    font-size: 14px;
+    transform: rotate(-2deg);
+  }
+  .cb2 {
+    left: 367px;
+    top: 145px;
+    font-size: 12px;
+    transform: rotate(-1deg);
+  }
+  .cb3 {
+    left: 390px;
+    top: 268px;
+    font-size: 11px;
+  }
+
+  .panel-wire {
+    position: absolute;
+    border: 2px solid rgba(0,238,255,0.22);
+    border-radius: 6px;
+    box-shadow: 0 0 18px rgba(0,238,255,0.10);
+  }
+  .w1 { left: 45px; top: 32px; width: 175px; height: 128px; transform: skewY(-10deg); }
+  .w2 { left: 66px; top: 286px; width: 214px; height: 221px; border-radius: 18px; }
+  .w3 { left: 325px; top: 121px; width: 148px; height: 112px; transform: skewY(12deg); }
+
+  .title {
+    position: absolute;
+    left: 87px;
+    top: 149px;
+    width: 280px;
+    color: #ffffff;
+    font-size: 40px;
+    line-height: 1.04;
+    font-weight: 700;
+    letter-spacing: -1.2px;
+  }
+
+  .portrait {
+    position: absolute;
+    left: 449px;
+    top: 27px;
+    width: 425px;
+    height: 647px;
+  }
+  .head {
+    position: absolute;
+    left: 52px;
+    top: 0;
+    width: 305px;
+    height: 330px;
+    background: radial-gradient(circle at 55% 45%, #9f8778 0%, #846d62 38%, #5f4b48 68%, #44333a 100%);
+    border-radius: 45% 42% 44% 39% / 34% 36% 48% 52%;
+    transform: rotate(-7deg);
+    box-shadow: inset -35px -18px 55px rgba(0,0,0,0.28);
+  }
+  .hair {
+    position: absolute;
+    left: 86px;
+    top: -5px;
+    width: 244px;
+    height: 173px;
+    background: linear-gradient(180deg, #101321 0%, #0a0d18 100%);
+    border-radius: 50% 34% 34% 35% / 65% 38% 22% 24%;
+    transform: rotate(-8deg);
+  }
+  .ear {
+    position: absolute;
+    left: 303px;
+    top: 177px;
+    width: 32px;
+    height: 48px;
+    background: #7d655b;
+    border-radius: 50%;
+  }
+  .neck {
+    position: absolute;
+    left: 171px;
+    top: 278px;
+    width: 83px;
+    height: 99px;
+    background: linear-gradient(180deg, #866d63 0%, #6e5a54 100%);
+    border-radius: 30% 30% 25% 25%;
+    transform: rotate(-3deg);
+  }
+  .beard {
+    position: absolute;
+    left: 111px;
+    top: 173px;
+    width: 215px;
+    height: 166px;
+    background: radial-gradient(circle at 50% 35%, rgba(32,18,20,0.5), rgba(20,16,21,0.95) 70%);
+    border-radius: 40% 38% 48% 46% / 32% 32% 56% 60%;
+    opacity: 0.7;
+  }
+  .glasses-left, .glasses-right {
+    position: absolute;
+    top: 175px;
+    width: 84px;
+    height: 61px;
+    border: 4px solid #102247;
+    border-radius: 18px;
+    background: rgba(45,197,255,0.10);
+    box-shadow: inset 0 0 18px rgba(42,200,255,0.15);
+  }
+  .glasses-left { left: 96px; transform: rotate(8deg); }
+  .glasses-right { left: 177px; transform: rotate(8deg); }
+  .bridge {
+    position: absolute;
+    left: 176px;
+    top: 200px;
+    width: 22px;
+    height: 4px;
+    background: #102247;
+    transform: rotate(8deg);
+  }
+  .temple {
+    position: absolute;
+    left: 259px;
+    top: 187px;
+    width: 89px;
+    height: 3px;
+    background: #102247;
+    transform: rotate(14deg);
+    transform-origin: left center;
+  }
+  .nose {
+    position: absolute;
+    left: 193px;
+    top: 207px;
+    width: 34px;
+    height: 74px;
+    border-left: 2px solid rgba(79,56,50,0.45);
+    border-bottom: 2px solid rgba(79,56,50,0.35);
+    border-radius: 0 0 0 24px;
+    transform: rotate(8deg);
+  }
+  .mouth {
+    position: absolute;
+    left: 163px;
+    top: 304px;
+    width: 78px;
+    height: 22px;
+    border-bottom: 3px solid rgba(63,39,41,0.8);
+    border-radius: 0 0 70px 70px;
+    transform: rotate(4deg);
+  }
+  .jacket {
+    position: absolute;
+    left: 69px;
+    top: 358px;
+    width: 350px;
+    height: 286px;
+    background: linear-gradient(180deg, #42576f 0%, #324352 44%, #26333f 100%);
+    border-radius: 24% 25% 0 0 / 16% 16% 0 0;
+    clip-path: polygon(14% 0%, 80% 0%, 100% 20%, 100% 100%, 0% 100%, 0% 22%);
+  }
+  .shirt {
+    position: absolute;
+    left: 144px;
+    top: 415px;
+    width: 92px;
+    height: 120px;
+    background: linear-gradient(180deg, #dae2e8 0%, #b8c6cf 100%);
+    clip-path: polygon(26% 0, 74% 0, 94% 100%, 6% 100%);
+  }
+  .collar-left, .collar-right {
+    position: absolute;
+    top: 392px;
+    width: 58px;
+    height: 60px;
+    background: linear-gradient(180deg, #50657c 0%, #354657 100%);
+  }
+  .collar-left {
+    left: 108px;
+    clip-path: polygon(0 0, 100% 12%, 58% 100%, 24% 76%);
+  }
+  .collar-right {
+    left: 208px;
+    clip-path: polygon(0 12%, 100% 0, 78% 76%, 42% 100%);
+  }
+
+  .copyright {
+    position: absolute;
+    left: 87px;
+    bottom: 15px;
+    width: 740px;
+    color: rgba(255,255,255,0.72);
+    font-size: 9px;
+    line-height: 1.15;
+  }
+
+  .right-panel {
+    position: absolute;
+    left: 869px;
+    top: 47px;
+    width: 411px;
+    height: 673px;
+    background: #ffffff;
+  }
+
+  .headline {
+    position: absolute;
+    left: 903px;
+    top: 105px;
+    width: 310px;
+    color: #1f4ee6;
+    font-size: 18px;
+    line-height: 1.08;
+    font-weight: 500;
+  }
+
+  .bodytext {
+    position: absolute;
+    left: 903px;
+    top: 331px;
+    width: 323px;
+    color: #3e6ab7;
+    font-size: 11px;
+    line-height: 1.28;
+    font-weight: 400;
+  }
+
+  .source {
+    position: absolute;
+    left: 903px;
+    top: 659px;
+    width: 311px;
+    color: #5b7cc4;
+    font-size: 8px;
+    line-height: 1.2;
+  }
+
+  .pageno {
+    position: absolute;
+    right: 36px;
+    bottom: 16px;
+    color: #0c3a97;
+    font-size: 15px;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="topbar"></div>
+
+    <div class="nav n1">Executive summary</div>
+    <div class="nav n2">Key findings</div>
+    <div class="nav n3 active">Risk and regulation</div>
+    <div class="nav n4">Data and AI</div>
+    <div class="nav n5">Simplification and modernization</div>
+    <div class="nav n6">How KPMG can help</div>
+    <div class="nav n7">Methodology</div>
+
+    <div class="icon chev-left"></div>
+    <div class="icon home"><div class="door"></div></div>
+    <div class="icon chev-right"></div>
+
+    <div class="left-panel">
+      <div class="panel-wire w1"></div>
+      <div class="panel-wire w2"></div>
+      <div class="panel-wire w3"></div>
+
+      <div class="codeblock cb1">(+)
+DATA ELEMENTS
+TO CHECK
+ELEMENTS  TDS  02
+SYSTEM MODE
+VECTOR 04
+RECURSIVE SIGNAL</div>
+
+      <div class="codeblock cb2">FILE-CHECK
+KERNEL ID
+if [x != class_a]
+vector=true;
+else return;</div>
+
+      <div class="codeblock cb3">decode 12
+access 07
+node 03</div>
+
+      <div class="title">Risk and<br>regulation</div>
+
+      <div class="portrait">
+        <div class="hair"></div>
+        <div class="head"></div>
+        <div class="ear"></div>
+        <div class="neck"></div>
+        <div class="beard"></div>
+        <div class="glasses-left"></div>
+        <div class="glasses-right"></div>
+        <div class="bridge"></div>
+        <div class="temple"></div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+        <div class="jacket"></div>
+        <div class="shirt"></div>
+        <div class="collar-left"></div>
+        <div class="collar-right"></div>
+      </div>
+
+      <div class="copyright">© 2025 KPMG LLP, a Delaware limited liability partnership and a member firm of the KPMG global organization of independent member firms affiliated with KPMG International Limited, a private English company limited by guarantee. All rights reserved. USCS026447-2</div>
+    </div>
+
+    <div class="right-panel"></div>
+
+    <div class="headline">
+      In a mission to build consumer trust, organizations across financial services face strong headwinds. Geopolitical tensions are disrupting every sector, impacting supply chains and financial systems, limiting access to capital, pushing up the prices of goods and commodities, and, ultimately, impacting economic stability. Technological advancements and greater regulatory burdens are also creating new uncertainties, leading to a fragile reputational risk environment.
+    </div>
+
+    <div class="bodytext">
+      As fast as financial services companies are adapting, bad actors are weaponizing technologies with the aim of manipulating people, businesses, and governments, and eroding trust. As a result, financial services companies are less confident in investing in new technology than a year ago, with the KPMG 2024 Banking CEO Outlook<sup>1</sup> revealing that only 43 percent of respondents are confident that their organizations’ cybersecurity defenses can keep up with the challenges thrown up by advancements in AI. Technical debt that has built up through years of underinvestment in core systems is worsening the situation, with many financial services executives (58 percent) in the <em>KPMG Global Tech Report</em> research saying that flaws in their foundational enterprise IT systems disrupt business-as-usual on a weekly basis.
+    </div>
+
+    <div class="source"><sup>1</sup>Source: KPMG International, “KPMG 2024 Banking CEO Outlook” (November 18, 2024).</div>
+
+    <div class="pageno">5</div>
+  </div>
+</body>
+</html>

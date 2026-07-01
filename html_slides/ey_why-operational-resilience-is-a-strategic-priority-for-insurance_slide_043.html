@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated EY Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f5;
+    margin:0 auto;
+  }
+  #slide > *{ position:absolute; box-sizing:border-box; }
+
+  .page-num{
+    left:60px; top:51px; width:34px; height:30px;
+    font-size:17px; line-height:30px; color:#707480; font-weight:400;
+    text-align:left;
+    z-index:30;
+  }
+  .vert-line{
+    left:102px; top:0; width:1px; height:92px;
+    background:#b2b4ba; z-index:10;
+  }
+  .survey-title{
+    left:114px; top:60px; width:200px; height:28px;
+    font-size:8px; line-height:10px; color:#7f838a; font-weight:400;
+    text-transform:uppercase;
+    z-index:30;
+  }
+  .jump{
+    right:0; top:0; width:68px; height:46px;
+    background:#70717a;
+    border-bottom-left-radius:16px;
+    color:#fff;
+    font-size:8px; line-height:10px; font-weight:700;
+    text-transform:uppercase;
+    text-align:center;
+    padding-top:16px;
+    z-index:50;
+    letter-spacing:.02em;
+  }
+
+  .chapter{
+    left:12px; top:344px; width:16px; height:86px;
+    z-index:30;
+  }
+  .chapter .text{
+    position:absolute;
+    left:8px; top:56px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    font-size:11px; line-height:11px; color:#7c7f87; font-weight:400;
+    letter-spacing:0.08em; text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .chapter .yellow{
+    position:absolute;
+    left:0; top:68px; width:11px; height:11px;
+    background:#f3d600;
+  }
+
+  .left-copy{
+    left:100px; top:132px; width:297px; height:270px;
+    color:#565a62; z-index:30;
+  }
+  .left-copy p{
+    margin:0 0 14px 0;
+    font-size:12px; line-height:17px; font-weight:400;
+  }
+
+  .fig-title{
+    left:500px; top:133px; width:720px; height:18px;
+    font-size:12px; line-height:16px; color:#4a4d54; font-weight:700;
+    z-index:30;
+  }
+
+  .chart-left{
+    left:486px; top:168px; width:328px; height:272px;
+    z-index:30;
+  }
+  .chart-right{
+    left:869px; top:168px; width:328px; height:272px;
+    z-index:30;
+  }
+
+  .item{
+    width:100%; height:54px;
+  }
+
+  .label{
+    position:absolute;
+    font-size:11px; line-height:14px; color:#5b5f67; font-weight:400;
+  }
+
+  .chart-left .label{
+    left:0; top:4px; width:136px;
+    text-align:right;
+  }
+  .chart-right .label{
+    left:0; top:4px; width:184px;
+    text-align:right;
+  }
+
+  .bar-wrap{
+    position:absolute;
+    top:0; height:22px;
+    border:1px solid #a9acb2;
+    background:transparent;
+  }
+  .chart-left .bar-wrap{
+    left:147px; width:169px;
+  }
+  .chart-right .bar-wrap{
+    left:198px; width:169px;
+  }
+
+  .bar{
+    position:absolute; left:0; top:0; height:20px;
+    background:#119a97;
+  }
+
+  .pct{
+    position:absolute;
+    top:3px;
+    width:30px;
+    font-size:11px; line-height:14px; color:#595d65; font-weight:400;
+    text-align:right;
+  }
+  .chart-left .pct{ left:279px; }
+  .chart-right .pct{ left:330px; }
+
+  .sub{z-index:1;
+    position:absolute;
+    font-size:6px; line-height:8px; color:#70747b; font-weight:400;
+    white-space:nowrap;
+  }
+  .chart-left .sub{z-index:1;
+    left:148px; top:25px; width:176px;
+  }
+  .chart-right .sub{z-index:1;
+    left:199px; top:25px; width:176px;
+  }
+
+  .chart-left .i1{ left:0; top:0; position:absolute; }
+  .chart-left .i2{ left:0; top:54px; position:absolute; }
+  .chart-left .i3{ left:0; top:108px; position:absolute; }
+  .chart-left .i4{ left:0; top:161px; position:absolute; }
+  .chart-left .i5{ left:0; top:214px; position:absolute; }
+
+  .chart-right .i1{ left:0; top:0; position:absolute; }
+  .chart-right .i2{ left:0; top:54px; position:absolute; }
+  .chart-right .i3{ left:0; top:108px; position:absolute; }
+  .chart-right .i4{ left:0; top:161px; position:absolute; }
+  .chart-right .i5{ left:0; top:214px; position:absolute; }
+
+  .small-right-1 { top:4px; }
+  .small-right-2 { top:4px; }
+  .small-right-3 { top:-2px; }
+  .small-right-4 { top:-2px; }
+  .small-right-5 { top:4px; }
+
+  .digital-label{
+    top:-2px !important;
+    line-height:14px;
+  }
+</style>
+</head>
+<body>
+  <div id="slide">
+    <div class="page-num">43</div>
+    <div class="vert-line"></div>
+    <div class="survey-title">SECOND ANNUAL EY IFG GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+    <div class="jump">JUMP TO<br>CONTENTS</div>
+
+    <div class="chapter">
+      <div class="text">CHAPTER 10</div>
+      <div class="yellow"></div>
+    </div>
+
+    <div class="left-copy">
+      <p>CROs say that ML and AI are the skill sets most challenging to attract and retain (cited by 40% of respondents, including 57% of CROs in Americas, but only 26% in EMEIA), followed by AI-based model risk management (36%), actuarial skills (26%), and cybersecurity (23%), down from 35% last year.</p>
+      <p>That actuarial skills are more in demand than cybersecurity highlights that CROs recognize that such skills remain the heart of the insurance business. It may also reveal underlying concerns that not enough young talent is attracted to the insurance sector.</p>
+      <p>Communication, leadership and critical thinking are lower on the list (13%, down from 35% last year) despite being skills that CROs clearly value, our results show. Last year, data science and modeling (41%) and business/product knowledge (35%) were the hardest skills to attract and retain.</p>
+    </div>
+
+    <div class="fig-title">Figure 25: For which of the following skill sets does your organization face challenges attracting and retaining talent?</div>
+
+    <div class="chart-left">
+      <div class="item i1">
+        <div class="label">Use of ML/AI</div>
+        <div class="bar-wrap">
+          <div class="bar" style="width:66px;"></div>
+        </div>
+        <div class="pct">40%</div>
+        <div class="sub">26% EMEIA | 57% Americas | 50% Asia-Pacific</div>
+      </div>
+
+      <div class="item i2">
+        <div class="label">AI-based model risk management</div>
+        <div class="bar-wrap">
+          <div class="bar" style="width:60px;"></div>
+        </div>
+        <div class="pct">36%</div>
+        <div class="sub">30% EMEIA | 43% Americas | 42% Asia-Pacific</div>
+      </div>
+
+      <div class="item i3">
+        <div class="label">Actuarial</div>
+        <div class="bar-wrap">
+          <div class="bar" style="width:43px;"></div>
+        </div>
+        <div class="pct">26%</div>
+        <div class="sub">22% EMEIA | 36% Americas | 25% Asia-Pacific</div>
+      </div>
+
+      <div class="item i4">
+        <div class="label">Cybersecurity</div>
+        <div class="bar-wrap">
+          <div class="bar" style="width:38px;"></div>
+        </div>
+        <div class="pct">23%</div>
+        <div class="sub">33% EMEIA | 7% Americas | 17% Asia-Pacific</div>
+      </div>
+
+      <div class="item i5">
+        <div class="label digital-label">Digital fluency (e.g., ability to<br>understand and use information<br>and technology effectively)</div>
+        <div class="bar-wrap">
+          <div class="bar" style="width:31px;"></div>
+        </div>
+        <div class="pct">19%</div>
+        <div class="sub">26% EMEIA | 7% Americas | 17% Asia-Pacific</div>
+      </div>
+    </div>
+
+    <div class="chart-right">
+      <div class="item i1">
+        <div class="label small-right-1">Change and transformation</div>
+        <div class="bar-wrap">
+          <div class="bar" style="width:29px;"></div>
+        </div>
+        <div class="pct">17%</div>
+        <div class="sub">7% EMEIA | 36% Americas | 17% Asia-Pacific</div>
+      </div>
+
+      <div class="item i2">
+        <div class="label small-right-2">Data science and modeling</div>
+        <div class="bar-wrap">
+          <div class="bar" style="width:25px;"></div>
+        </div>
+        <div class="pct">15%</div>
+        <div class="sub">11% EMEIA | 29% Americas | 8% Asia-Pacific</div>
+      </div>
+
+      <div class="item i3">
+        <div class="label small-right-3">Communication, leadership and critical<br>thinking</div>
+        <div class="bar-wrap">
+          <div class="bar" style="width:22px;"></div>
+        </div>
+        <div class="pct">13%</div>
+        <div class="sub">11% EMEIA | 21% Americas | 8% Asia-Pacific</div>
+      </div>
+
+      <div class="item i4">
+        <div class="label small-right-4">Operational risk and resilience/business<br>continuity</div>
+        <div class="bar-wrap">
+          <div class="bar" style="width:19px;"></div>
+        </div>
+        <div class="pct">11%</div>
+        <div class="sub">11% EMEIA | 14% Americas | 8% Asia-Pacific</div>
+      </div>
+
+      <div class="item i5">
+        <div class="label small-right-5">Risk data aggregation and reporting</div>
+        <div class="bar-wrap">
+          <div class="bar" style="width:15px;"></div>
+        </div>
+        <div class="pct">9%</div>
+        <div class="sub">11% EMEIA | 7% Americas | 8% Asia-Pacific</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

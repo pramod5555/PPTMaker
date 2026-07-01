@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Bain Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+  }
+  #slide > *{ position:absolute; box-sizing:border-box; }
+
+  .title{
+    left:36px;
+    top:25px;
+    width:1130px;
+    font-size:30px;
+    line-height:1.25;
+    font-weight:400;
+    color:#111;
+  }
+  .red-band{
+    left:16px;
+    top:113px;
+    width:1022px;
+    height:13px;
+    background:#de0000;
+    clip-path:polygon(0 0,100% 0,99.4% 100%,0 100%);
+  }
+  .chart-title{
+    left:60px;
+    top:148px;
+    font-size:24px;
+    line-height:1.1;
+    color:#222;
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .axis-label{
+    left:73px;
+    top:184px;
+    font-size:18px;
+    color:#222;
+    font-weight:400;
+  }
+  .chart-area{
+    left:88px;
+    top:192px;
+    width:950px;
+    height:364px;
+  }
+  .flag-row{
+    left:128px;
+    top:612px;
+    width:925px;
+    height:35px;
+  }
+  .footnote{
+    left:35px;
+    top:672px;
+    width:900px;
+    font-size:14px;
+    line-height:1.08;
+    color:#222;
+    font-weight:400;
+  }
+  .bottom-rule{
+    left:16px;
+    top:716px;
+    width:1248px;
+    height:1px;
+    background:#9a9a9a;
+  }
+  .legal{
+    left:24px;
+    top:726px;
+    width:850px;
+    font-size:9px;
+    line-height:1;
+    color:#555;
+    transform:translateY(-12px);
+    white-space:nowrap;
+  }
+  .sha{
+    left:875px;
+    top:726px;
+    font-size:9px;
+    line-height:1;
+    color:#555;
+    transform:translateY(-12px);
+  }
+  .docref{
+    left:922px;
+    top:726px;
+    font-size:8px;
+    line-height:1;
+    color:#555;
+    transform:translateY(-12px);
+    white-space:nowrap;
+  }
+  .page{
+    left:1217px;
+    top:726px;
+    font-size:10px;
+    line-height:1;
+    color:#555;
+    transform:translateY(-12px);
+  }
+  .bain-mark{
+    left:1252px;
+    top:719px;
+    width:22px;
+    height:22px;
+    transform:translateY(-12px);
+  }
+  svg text{ font-family: Arial, Helvetica, sans-serif; }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">Mainland China ranked top 5 globally in 2010, while<br>Greater China (incl. HK &amp; Macau) already among top 3</div>
+  <div class="red-band"></div>
+  <div class="chart-title">Personal Luxury Goods - Ranking by Country (2010, B€)</div>
+  <div class="axis-label">€50B</div>
+
+  <div class="chart-area">
+    <svg width="950" height="384" viewBox="0 0 950 384" xmlns="http://www.w3.org/2000/svg">
+      <!-- axes -->
+      <line x1="46" y1="8" x2="46" y2="341" stroke="#222" stroke-width="2"/>
+      <line x1="46" y1="341" x2="941" y2="341" stroke="#222" stroke-width="2"/>
+
+      <!-- y tick labels -->
+      <g font-size="17" fill="#222" font-weight="400">
+        <text x="30" y="347">0</text>
+        <text x="21" y="280">10</text>
+        <text x="21" y="214">20</text>
+        <text x="21" y="147">30</text>
+        <text x="21" y="81">40</text>
+      </g>
+
+      <!-- bars -->
+      <g>
+        <rect x="61"  y="20"  width="48" height="321" fill="#a6a6a6"/>
+        <rect x="137" y="220" width="50" height="121" fill="#a6a6a6"/>
+        <rect x="214" y="223" width="50" height="118" fill="#de0000"/>
+        <rect x="291" y="224" width="49" height="117" fill="#a6a6a6"/>
+        <rect x="368" y="252" width="49" height="89"  fill="#a6a6a6"/>
+        <rect x="445" y="277" width="49" height="64"  fill="#de0000"/>
+        <rect x="522" y="281" width="50" height="60"  fill="#a6a6a6"/>
+        <rect x="600" y="286" width="48" height="55"  fill="#a6a6a6"/>
+        <rect x="676" y="299" width="49" height="42"  fill="#a6a6a6"/>
+        <rect x="753" y="306" width="48" height="35"  fill="#a6a6a6"/>
+        <rect x="830" y="309" width="48" height="32"  fill="#a6a6a6"/>
+        <rect x="907" y="310" width="49" height="31"  fill="#a6a6a6"/>
+      </g>
+
+      <!-- value labels -->
+      <g font-size="16" fill="#222" font-weight="400">
+        <text x="63"  y="12">48.1</text>
+        <text x="141" y="211">18.1</text>
+        <text x="218" y="214">17.7</text>
+        <text x="294" y="214">17.5</text>
+        <text x="371" y="244">13.3</text>
+        <text x="454" y="269">9.6</text>
+        <text x="531" y="275">9.0</text>
+        <text x="609" y="279">8.3</text>
+        <text x="686" y="294">6.3</text>
+        <text x="763" y="299">5.3</text>
+        <text x="839" y="303">4.8</text>
+        <text x="916" y="304">4.7</text>
+      </g>
+
+      <!-- callouts -->
+      <g font-size="16" fill="#222" font-style="italic" font-weight="400">
+        <text x="190" y="190">(RMB 159B)</text>
+        <text x="430" y="247">(RMB 87B)</text>
+      </g>
+
+      <!-- x labels -->
+      <g font-size="16" fill="#222" font-weight="400" text-anchor="middle">
+        <text x="85" y="360">USA</text>
+        <text x="162" y="360">Japan</text>
+
+        <text x="239" y="361">
+          <tspan x="239" dy="0">Greater</tspan>
+          <tspan x="239" dy="19">China</tspan>
+          <tspan x="239" dy="19">(including</tspan>
+          <tspan x="239" dy="19">HK &amp; Macau)*</tspan>
+        </text>
+
+        <text x="315" y="360">Italy</text>
+        <text x="392" y="360">France</text>
+
+        <text x="469" y="360">
+          <tspan x="469" dy="0">China</tspan>
+          <tspan x="469" dy="19">(Mainland)</tspan>
+        </text>
+
+        <text x="547" y="360">UK</text>
+        <text x="624" y="360">Germany</text>
+
+        <text x="700" y="360">
+          <tspan x="700" dy="0">South</tspan>
+          <tspan x="700" dy="19">Korea</tspan>
+        </text>
+
+        <text x="777" y="360">
+          <tspan x="777" dy="0">Middle</tspan>
+          <tspan x="777" dy="19">East</tspan>
+        </text>
+
+        <text x="854" y="360">
+          <tspan x="854" dy="0">Hong</tspan>
+          <tspan x="854" dy="19">Kong</tspan>
+        </text>
+
+        <text x="931" y="360">Russia</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="flag-row">
+    <svg width="925" height="55" viewBox="0 0 925 55" xmlns="http://www.w3.org/2000/svg">
+      <!-- USA -->
+      <g transform="translate(0,2)">
+        <rect x="0" y="0" width="48" height="22" fill="#fff" stroke-width="0.8"/>
+        <g fill="#c8272c">
+          <rect x="0" y="0" width="48" height="2.2"/>
+          <rect x="0" y="4.4" width="48" height="2.2"/>
+          <rect x="0" y="8.8" width="48" height="2.2"/>
+          <rect x="0" y="13.2" width="48" height="2.2"/>
+          <rect x="0" y="17.6" width="48" height="2.2"/>
+        </g>
+        <rect x="0" y="0" width="23" height="12" fill="#2d3d8e"/>
+        <g fill="#fff">
+          <circle cx="4" cy="3" r="0.7"/><circle cx="8" cy="3" r="0.7"/><circle cx="12" cy="3" r="0.7"/><circle cx="16" cy="3" r="0.7"/>
+          <circle cx="6" cy="6" r="0.7"/><circle cx="10" cy="6" r="0.7"/><circle cx="14" cy="6" r="0.7"/><circle cx="18" cy="6" r="0.7"/>
+          <circle cx="4" cy="9" r="0.7"/><circle cx="8" cy="9" r="0.7"/><circle cx="12" cy="9" r="0.7"/><circle cx="16" cy="9" r="0.7"/>
+        </g>
+      </g>
+
+      <!-- Japan -->
+      <g transform="translate(79,2)">
+        <rect x="0" y="0" width="48" height="22" fill="#f7f7f7" stroke-width="0.8"/>
+        <circle cx="24" cy="11" r="9" fill="#e60000"/>
+      </g>
+
+      <!-- Greater China -->
+      <g transform="translate(158,2)">
+        <rect x="0" y="0" width="48" height="22" fill="#de1b1b" stroke-width="0.8"/>
+        <polygon points="9,4 10.2,7 13.5,7 10.8,9 11.9,12 9,10.2 6.1,12 7.2,9 4.5,7 7.8,7" fill="#ffd200"/>
+        <circle cx="16" cy="5" r="1.05" fill="#ffd200"/>
+        <circle cx="18" cy="8" r="1.05" fill="#ffd200"/>
+        <circle cx="17" cy="11.3" r="1.05" fill="#ffd200"/>
+        <circle cx="14" cy="13.5" r="1.05" fill="#ffd200"/>
+      </g>
+
+      <!-- Italy -->
+      <g transform="translate(237,2)">
+        <rect x="0" y="0" width="48" height="22" fill="#fff" stroke-width="0.8"/>
+        <rect x="0" y="0" width="16" height="22" fill="#1f8f4e"/>
+        <rect x="32" y="0" width="16" height="22" fill="#d91f26"/>
+      </g>
+
+      <!-- France -->
+      <g transform="translate(316,2)">
+        <rect x="0" y="0" width="48" height="22" fill="#fff" stroke-width="0.8"/>
+        <rect x="0" y="0" width="16" height="22" fill="#1c268f"/>
+        <rect x="32" y="0" width="16" height="22" fill="#d91f26"/>
+      </g>
+
+      <!-- China mainland -->
+      <g transform="translate(396,2)">
+        <rect x="0" y="0" width="48" height="22" fill="#de1b1b" stroke-width="0.8"/>
+        <polygon points="9,4 10.2,7 13.5,7 10.8,9 11.9,12 9,10.2 6.1,12 7.2,9 4.5,7 7.8,7" fill="#ffd200"/>
+        <circle cx="16" cy="5" r="1.05" fill="#ffd200"/>
+        <circle cx="18" cy="8" r="1.05" fill="#ffd200"/>
+        <circle cx="17" cy="11.3" r="1.05" fill="#ffd200"/>
+        <circle cx="14" cy="13.5" r="1.05" fill="#ffd200"/>
+      </g>
+
+      <!-- UK -->
+      <g transform="translate(475,2)">
+        <rect x="0" y="0" width="48" height="22" fill="#173b8d" stroke-width="0.8"/>
+        <polygon points="0,0 6,0 48,18 48,22 42,22 0,4" fill="#fff"/>
+        <polygon points="42,0 48,0 48,4 6,22 0,22 0,18" fill="#fff"/>
+        <polygon points="0,0 3,0 48,19 48,22 45,22 0,3" fill="#d91f26"/>
+        <polygon points="45,0 48,0 48,3 3,22 0,22 0,19" fill="#d91f26"/>
+        <rect x="19" y="0" width="10" height="22" fill="#fff"/>
+        <rect x="0" y="7" width="48" height="8" fill="#fff"/>
+        <rect x="21" y="0" width="6" height="22" fill="#d91f26"/>
+        <rect x="0" y="9" width="48" height="4" fill="#d91f26"/>
+      </g>
+
+      <!-- Germany -->
+      <g transform="translate(554,2)">
+        <rect x="0" y="0" width="48" height="22" fill="#000" stroke-width="0.8"/>
+        <rect x="0" y="7.33" width="48" height="7.33" fill="#d11b1b"/>
+        <rect x="0" y="14.66" width="48" height="7.34" fill="#f1c400"/>
+      </g>
+
+      <!-- South Korea -->
+      <g transform="translate(634,2)">
+        <rect x="0" y="0" width="48" height="22" fill="#f7f7f7" stroke-width="0.8"/>
+        <circle cx="24" cy="11" r="7" fill="#d91f26"/>
+        <path d="M24 4 A7 7 0 0 0 24 18 A3.5 3.5 0 0 1 24 11 A3.5 3.5 0 0 0 24 4Z" fill="#005bbb"/>
+        <g stroke="#222" stroke-width="1.05">
+          <line x1="10" y1="5" x2="14" y2="9"/><line x1="12" y1="3" x2="16" y2="7"/><line x1="8" y1="7" x2="12" y2="11"/>
+          <line x1="34" y1="13" x2="38" y2="17"/><line x1="32" y1="15" x2="36" y2="19"/><line x1="36" y1="11" x2="40" y2="15"/>
+          <line x1="34" y1="5" x2="38" y2="9"/><line x1="32" y1="7" x2="36" y2="11"/>
+          <line x1="10" y1="13" x2="14" y2="17"/><line x1="12" y1="11" x2="16" y2="15"/>
+        </g>
+      </g>
+
+      <!-- UAE -->
+      <g transform="translate(713,2)">
+        <rect x="0" y="0" width="48" height="22" fill="#fff" stroke-width="0.8"/>
+        <rect x="0" y="0" width="10" height="22" fill="#d5332f"/>
+        <rect x="10" y="0" width="38" height="7.33" fill="#3b8b48"/>
+        <rect x="10" y="7.33" width="38" height="7.33" fill="#ffffff"/>
+        <rect x="10" y="14.66" width="38" height="7.34" fill="#111"/>
+      </g>
+
+      <!-- Hong Kong -->
+      <g transform="translate(792,2)">
+        <rect x="0" y="0" width="48" height="22" fill="#d91f26" stroke-width="0.8"/>
+        <g fill="#fff" transform="translate(24,11)">
+          <ellipse cx="0" cy="-5" rx="2.3" ry="4.8" transform="rotate(0)"/>
+          <ellipse cx="4.8" cy="-1.4" rx="2.3" ry="4.8" transform="rotate(72)"/>
+          <ellipse cx="3" cy="4" rx="2.3" ry="4.8" transform="rotate(144)"/>
+          <ellipse cx="-3" cy="4" rx="2.3" ry="4.8" transform="rotate(216)"/>
+          <ellipse cx="-4.8" cy="-1.4" rx="2.3" ry="4.8" transform="rotate(288)"/>
+        </g>
+      </g>
+
+      <!-- Russia -->
+      <g transform="translate(871,2)">
+        <rect x="0" y="0" width="48" height="22" fill="#fff" stroke-width="0.8"/>
+        <rect x="0" y="7.33" width="48" height="7.33" fill="#2e66c7"/>
+        <rect x="0" y="14.66" width="48" height="7.34" fill="#d5332f"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="footnote">*Indicates luxury spend in Mainland China, HK &amp; Macau<br>Note: 2010 Euro/RMB exchange rate =9.0<br>Source: Bain luxury goods worldwide study 2011; Bain Survey of Luxury Goods Consumers in Mainland China 2011 (n=1,959); Bain analysis</div>
+
+  <div class="bottom-rule"></div>
+  <div class="legal">This information is confidential and was prepared by Bain &amp; Company solely for the use of our client; it is not to be relied on by any 3rd party without Bain's prior written consent</div>
+  <div class="sha">SHA</div>
+  <div class="docref">2011 Bain China Luxury Market Study_Media release_vf</div>
+  <div class="page">3</div>
+
+  <div class="bain-mark">
+    <svg width="22" height="42" viewBox="0 0 22 42" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="11" cy="11" r="9" fill="none" stroke="#d91f26" stroke-width="2"/>
+      <line x1="11" y1="11" x2="11" y2="4" stroke="#d91f26" stroke-width="1.5"/>
+      <line x1="11" y1="11" x2="16" y2="11" stroke="#d91f26" stroke-width="1.5"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#b7b8be;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f4;
+  }
+  .slide > div, .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .top-bg{
+    left:0; top:0; width:1280px; height:79px;
+    background:#f2f2f3;
+    z-index:1;
+  }
+  .top-left-band{
+    left:0; top:0; width:47px; height:79px;
+    background:#b7b8c0;
+    z-index:5;
+  }
+  .top-line{
+    left:0; top:78px; width:1280px; height:1px;
+    background:#c5c6ce;
+    z-index:6;
+  }
+  .header-text{
+    left:56px; top:50px; width:220px; height:24px;
+    color:#7a7a86;
+    font-size:15px;
+    line-height:20px;
+    font-weight:400;
+    z-index:20;
+  }
+
+  .nav1,.nav2{
+    width:37px; height:37px;
+    border-radius:50%;
+    background:#c9c9d1;
+    z-index:20;
+  }
+  .nav1{ left:950px; top:32px; }
+  .nav2{ left:993px; top:32px; }
+  .nav1:before,.nav2:before{
+    content:"";
+    position:absolute;
+    top:11px;
+    width:0;height:0;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+  }
+  .nav1:before{
+    left:11px;
+    border-right:10px solid #3c3d4d;
+  }
+  .nav2:before{
+    left:15px;
+    border-left:10px solid #3c3d4d;
+  }
+
+  .content-panel{
+    left:0; top:79px; width:693px; height:641px;
+    background:#f6f6f7;
+    z-index:2;
+  }
+  .right-photo{
+    left:693px; top:79px; width:587px; height:641px;
+    background:
+      radial-gradient(circle at 82% 18%, rgba(255,255,255,0.12) 0 2%, transparent 12%),
+      linear-gradient(90deg, rgba(16,42,49,0.96) 0%, rgba(73,153,181,0.95) 15%, rgba(91,165,190,0.78) 31%, rgba(86,129,148,0.58) 58%, rgba(57,93,110,0.82) 100%);
+    z-index:1;
+  }
+  .photo-blur-bars{
+    left:693px; top:79px; width:587px; height:641px;
+    background:
+      repeating-linear-gradient(180deg,
+        rgba(255,255,255,0.045) 0px, rgba(255,255,255,0.045) 28px,
+        rgba(0,0,0,0) 28px, rgba(0,0,0,0) 63px);
+    opacity:0.48;
+    z-index:2;
+  }
+  .dark-left-photo-edge{
+    left:693px; top:79px; width:34px; height:641px;
+    background:linear-gradient(90deg, rgba(10,26,35,0.92), rgba(10,26,35,0));
+    z-index:3;
+  }
+
+  .title{
+    left:57px; top:117px; width:595px;
+    color:#737381;
+    font-size:35px;
+    line-height:39px;
+    font-weight:700;
+    letter-spacing:-0.3px;
+    z-index:30;
+  }
+
+  .summary{
+    left:56px; top:317px; width:614px;
+    color:#6f6f7c;
+    font-size:14px;
+    line-height:18px;
+    font-weight:700;
+    z-index:30;
+  }
+
+  .col1{
+    left:56px; top:393px; width:285px;
+    color:#5a5a66;
+    font-size:14px;
+    line-height:18px;
+    font-weight:400;
+    z-index:30;
+  }
+  .col2{
+    left:372px; top:393px; width:282px;
+    color:#5a5a66;
+    font-size:14px;
+    line-height:18px;
+    font-weight:400;
+    z-index:30;
+  }
+  .p{ margin:0 0 10px 0; }
+  .bullets{
+    margin:8px 0 0 0;
+    padding:0;
+    list-style:none;
+  }
+  .bullets li{
+    position:relative;
+    margin:0 0 8px 0;
+    padding-left:15px;
+  }
+  .bullets li:before{
+    content:"■";
+    position:absolute;
+    left:0; top:-1px;
+    font-size:7px;
+    line-height:18px;
+    color:#444450;
+  }
+
+  .footer{
+    left:57px; top:730px;
+    transform:translateY(-100%);
+    width:190px; height:14px;
+    color:#7c7c86;
+    font-size:10px;
+    line-height:14px;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .menu{
+    left:1009px; width:78px; height:36px;
+    background:linear-gradient(180deg, rgba(54,55,69,0.94), rgba(39,40,52,0.94));
+    box-shadow:0 8px 18px rgba(0,0,0,0.18);
+    z-index:50;
+  }
+  .menu:before{
+    content:"";
+    position:absolute;
+    left:0; top:0; width:1px; height:36px;
+    background:#d2de18;
+  }
+  .menu span{
+    position:absolute;
+    left:7px; top:8px; width:64px;
+    color:#ececf0;
+    font-size:11px;
+    line-height:13px;
+    font-weight:400;
+  }
+
+  .menu1{ top:120px; }
+  .menu2{ top:171px; }
+  .menu3{ top:222px; }
+  .menu4{ top:273px; }
+  .menu5{ top:324px; }
+  .menu6{ top:375px; }
+
+  .flag-wrap{
+    left:724px; top:96px; width:338px; height:624px;
+    z-index:25;
+  }
+  .pole{
+    position:absolute;
+    left:146px; top:17px; width:8px; height:598px;
+    background:linear-gradient(90deg,#8f8f92 0%, #eeeeef 46%, #9a9a9e 100%);
+    border-radius:4px;
+    box-shadow:0 0 1px rgba(0,0,0,0.15);
+  }
+  .pole-tip{
+    position:absolute;
+    left:139px; top:0; width:22px; height:40px;
+    background:linear-gradient(180deg,#d8d8da,#8d8d90);
+    clip-path:polygon(50% 0%, 66% 16%, 74% 44%, 86% 63%, 70% 73%, 67% 100%, 33% 100%, 30% 73%, 14% 63%, 26% 44%, 34% 16%);
+    filter:drop-shadow(0 2px 2px rgba(0,0,0,0.35));
+  }
+  .flag{
+    position:absolute;
+    left:20px; top:64px; width:282px; height:560px;
+    transform:rotate(-12deg);
+    transform-origin:52% 0%;
+    filter:drop-shadow(0 8px 12px rgba(0,0,0,0.28));
+  }
+  .flag svg{
+    position:absolute; left:0; top:0;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-bg"></div>
+  <div class="top-left-band"></div>
+  <div class="top-line"></div>
+  <div class="header-text">Insights: Americas</div>
+  <div class="nav1"></div>
+  <div class="nav2"></div>
+
+  <div class="content-panel"></div>
+  <div class="right-photo"></div>
+  <div class="photo-blur-bars"></div>
+  <div class="dark-left-photo-edge"></div>
+
+  <div class="title">Heightened scrutiny in Mexico:<br>New materiality requirements and<br>mandatory electronic customs<br>valuation reporting</div>
+
+  <div class="summary">Mexico's 2026 customs reforms signal a shift from traditional document-based compliance toward operational traceability in customs transactions. New materiality requirements and mandatory electronic customs valuation reporting significantly expand the documentation and data management responsibilities for companies operating in Mexico.</div>
+
+  <div class="col1">
+    <p class="p">For many years, customs compliance in Mexico has largely been treated as a documentation exercise: maintain the required records and produce them if authorities request them.</p>
+    <p class="p">Recent reforms to Mexico’s customs legal framework signal that this approach is no longer sufficient.</p>
+    <p class="p">Effective 1 January 2026, Mexico implemented one of the most significant updates to its customs regime in nearly a decade. While initially perceived as a routine legislative revision, the reform introduces a structural shift in how authorities expect companies to substantiate and report their customs operations.</p>
+    <p class="p">Under the updated framework, customs documentation is no longer limited to traditional trade records. Authorities now expect companies to demonstrate the operational substance behind each transaction, linking customs entries to the financial,</p>
+  </div>
+
+  <div class="col2">
+    <p class="p">contractual and operational elements that made the transaction possible.</p>
+    <p class="p">In practical terms, the customs declaration becomes the reference point against which multiple categories of operational and financial documentation must be traceable. In practice, this marks a shift toward full operational traceability, not just document retention as companies traditionally understood it.</p>
+    <p class="p">This article examines two developments that are expected to have the most immediate operational impact for multinational companies operating in Mexico:</p>
+    <ul class="bullets">
+      <li>New materiality and operational substantiation requirements for customs transactions.</li>
+      <li>Mandatory electronic reporting of customs valuation documentation effective 1 April 2026.</li>
+    </ul>
+  </div>
+
+  <div class="footer">20&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+
+  <div class="menu menu1"><span>Contents</span></div>
+  <div class="menu menu2"><span>Insights</span></div>
+  <div class="menu menu3"><span>New on<br>ey.com</span></div>
+  <div class="menu menu4"><span>Tax alerts</span></div>
+  <div class="menu menu5"><span>Additional<br>resources</span></div>
+  <div class="menu menu6"><span>Contacts</span></div>
+
+  <div class="flag-wrap">
+    <div class="pole"></div>
+    <div class="pole-tip"></div>
+    <div class="flag">
+      <svg width="282" height="560" viewBox="0 0 282 560" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="flagShape">
+            <path d="M32,26
+                     C73,7 126,8 189,28
+                     C227,41 251,68 261,113
+                     C274,175 277,235 275,304
+                     C274,371 264,435 252,499
+                     C220,520 180,532 127,529
+                     C86,526 50,511 33,490
+                     C31,430 28,370 25,307
+                     C22,245 22,188 24,127
+                     C25,86 27,48 32,26 Z"/>
+          </clipPath>
+          <filter id="weave">
+            <feTurbulence type="fractalNoise" baseFrequency="0.85 0.12" numOctaves="2" seed="8" result="noise"/>
+            <feColorMatrix in="noise" type="saturate" values="0"/>
+            <feComponentTransfer>
+              <feFuncA type="table" tableValues="0 0.17"/>
+            </feComponentTransfer>
+          </filter>
+          <linearGradient id="greenGrad" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#00652b"/>
+            <stop offset="100%" stop-color="#00843c"/>
+          </linearGradient>
+          <linearGradient id="whiteGrad" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#fcfcfc"/>
+            <stop offset="100%" stop-color="#dddddd"/>
+          </linearGradient>
+          <linearGradient id="redGrad" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#bf0010"/>
+            <stop offset="100%" stop-color="#d90b18"/>
+          </linearGradient>
+        </defs>
+
+        <g clip-path="url(#flagShape)">
+          <path d="M0,0 L282,0 L282,214 C214,189 131,190 0,217 Z" fill="url(#greenGrad)"/>
+          <path d="M0,217 C116,190 204,188 282,214 L282,386 C184,359 92,358 0,391 Z" fill="url(#whiteGrad)"/>
+          <path d="M0,391 C94,359 189,360 282,386 L282,560 L0,560 Z" fill="url(#redGrad)"/>
+
+          <g opacity="0.27">
+            <path d="M0,0 C75,18 142,30 282,94 L282,110 C168,64 72,49 0,37 Z" fill="#ffffff"/>
+            <path d="M0,243 C106,220 180,218 282,243 L282,258 C181,237 104,238 0,258 Z" fill="#ffffff"/>
+            <path d="M0,420 C101,390 182,391 282,421 L282,437 C177,407 95,406 0,434 Z" fill="#ffffff"/>
+          </g>
+
+          <g transform="translate(145,278) scale(0.92)">
+            <path d="M-2,-28 C7,-33 18,-28 20,-18 C22,-8 15,-3 11,2 C7,7 4,11 6,18 C8,25 18,30 30,28 C15,42 -5,44 -22,34 C-40,24 -46,5 -39,-11 C-32,-27 -16,-33 -2,-28 Z" fill="#8b4d12"/>
+            <path d="M-29,-11 C-24,-7 -20,-2 -16,5 C-11,13 -9,20 -8,28 C-19,24 -28,17 -34,8 C-39,0 -40,-7 -29,-11 Z" fill="#1f8f6f"/>
+            <path d="M-39,2 C-32,0 -26,3 -21,7 C-16,11 -11,17 -8,25 C-18,24 -27,21 -34,16 C-40,12 -44,7 -39,2 Z" fill="#d3a62f"/>
+            <path d="M-20,-23 C-17,-14 -18,-6 -20,1 C-22,8 -26,13 -31,16 C-31,7 -29,-2 -27,-10 C-25,-17 -23,-22 -20,-23 Z" fill="#2d72b8"/>
+            <path d="M-4,34 C8,38 20,38 33,31" stroke="#7d8c2d" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M-27,28 C-17,36 -4,40 7,41" stroke="#7d8c2d" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="-2" cy="-1" r="3" fill="#b4871f"/>
+          </g>
+
+          <g filter="url(#weave)">
+            <rect x="0" y="0" width="282" height="560" fill="#000"/>
+          </g>
+
+          <g opacity="0.11">
+            <path d="M0,0 L282,0" stroke="#000" stroke-width="560" stroke-dasharray="1 3"/>
+          </g>
+          <g opacity="0.11">
+            <path d="M0,0 L0,560" stroke="#000" stroke-width="282" stroke-dasharray="1 3"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+</body>
+</html>

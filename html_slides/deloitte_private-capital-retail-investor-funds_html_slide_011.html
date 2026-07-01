@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+    color:#111;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .title{
+    left:31px;
+    top:58px;
+    width:1180px;
+    font-size:28px;
+    line-height:1.15;
+    font-weight:700;
+    color:#111;
+  }
+  .rule-top{
+    left:30px;
+    top:102px;
+    width:1210px;
+    height:1px;
+    background:#6a6a6a;
+  }
+  .subtitle{
+    left:39px;
+    top:144px;
+    width:700px;
+    font-size:20px;
+    line-height:1.2;
+    font-weight:700;
+    color:#111;
+  }
+
+  .chart-wrap{
+    left:38px;
+    top:189px;
+    width:1193px;
+    height:390px;
+    background:#d9e2e9;
+    z-index:5;
+  }
+
+  .period1{
+    left:38px;
+    top:189px;
+    width:238px;
+    height:72px;
+    background:#c8d0d7;
+    z-index:20;
+  }
+  .period2{
+    left:276px;
+    top:189px;
+    width:318px;
+    height:72px;
+    background:#1573bf;
+    z-index:20;
+  }
+  .period3{
+    left:594px;
+    top:189px;
+    width:637px;
+    height:72px;
+    background:#0b4d90;
+    z-index:20;
+  }
+  .period1::after, .period2::after, .period3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:2px;
+    background:#2ba4ff;
+  }
+  .period1 .t1, .period2 .t1, .period3 .t1{
+    position:absolute;
+    left:0;
+    width:100%;
+    text-align:center;
+    font-size:15px;
+    line-height:1.15;
+    font-weight:700;
+  }
+  .period1 .t1{ top:18px; color:#111; }
+  .period2 .t1{ top:20px; color:#f3f8fd; }
+  .period3 .t1{ top:20px; color:#f3f8fd; }
+  .period1 .t2, .period2 .t2{
+    position:absolute;
+    left:0;
+    width:100%;
+    text-align:center;
+    font-size:14px;
+    line-height:1.12;
+    font-weight:400;
+  }
+  .period1 .t2{ top:39px; color:#111; }
+  .period2 .t2{ top:39px; color:#f3f8fd; }
+
+  .bg-left{
+    left:38px;
+    top:261px;
+    width:238px;
+    height:318px;
+    background:#d4d8db;
+    z-index:6;
+  }
+  .bg-mid{
+    left:276px;
+    top:261px;
+    width:318px;
+    height:318px;
+    background:#c1d2e1;
+    z-index:6;
+  }
+  .bg-right{
+    left:594px;
+    top:261px;
+    width:637px;
+    height:318px;
+    background:#d5e0e8;
+    z-index:6;
+  }
+
+  .primary-arrow-body{
+    left:38px;
+    top:293px;
+    width:930px;
+    height:24px;
+    background:#b6bec6;
+    z-index:14;
+  }
+  .primary-arrow-head{
+    left:968px;
+    top:279px;
+    width:0;
+    height:0;
+    border-top:26px solid transparent;
+    border-bottom:26px solid transparent;
+    border-left:25px solid #b6bec6;
+    z-index:14;
+  }
+  .primary-label{
+    left:439px;
+    top:297px;
+    width:250px;
+    text-align:center;
+    font-size:15px;
+    line-height:1.1;
+    font-weight:700;
+    color:#111;
+    z-index:15;
+  }
+
+  .secondary-arrow-body{
+    left:276px;
+    top:360px;
+    width:692px;
+    height:26px;
+    background:#0d94f4;
+    z-index:14;
+  }
+  .secondary-arrow-head{
+    left:968px;
+    top:347px;
+    width:0;
+    height:0;
+    border-top:25px solid transparent;
+    border-bottom:25px solid transparent;
+    border-left:24px solid #0d94f4;
+    z-index:14;
+  }
+  .secondary-label{
+    left:542px;
+    top:364px;
+    width:240px;
+    text-align:center;
+    font-size:14px;
+    line-height:1.1;
+    font-weight:700;
+    color:#fff;
+    z-index:15;
+  }
+
+  .axis{
+    left:38px;
+    top:496px;
+    width:1193px;
+    height:2px;
+    background:#2ba4ff;
+    z-index:16;
+  }
+
+  .years{
+    left:38px;
+    top:503px;
+    width:1193px;
+    height:22px;
+    z-index:17;
+  }
+  .year{
+    position:absolute;
+    top:0;
+    transform:translateX(-50%);
+    font-size:14px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+    white-space:nowrap;
+  }
+
+  .callout{
+    left:427px;
+    top:419px;
+    width:148px;
+    height:71px;
+    border:2px dashed #0aa06f;
+    background:rgba(255,255,255,0.18);
+    z-index:18;
+  }
+  .callout .l1{
+    position:absolute;
+    left:8px;
+    top:8px;
+    width:74px;
+    font-size:15px;
+    line-height:1.16;
+    font-weight:400;
+    color:#111;
+  }
+  .callout .r1{
+    position:absolute;
+    left:80px;
+    top:20px;
+    width:58px;
+    font-size:14px;
+    line-height:1.1;
+    font-weight:400;
+    color:#7a7a7a;
+  }
+  .callout .r2{
+    position:absolute;
+    left:80px;
+    top:40px;
+    width:58px;
+    font-size:14px;
+    line-height:1.1;
+    font-weight:400;
+    color:#0d94f4;
+  }
+
+  .legend-line{
+    left:780px;
+    top:549px;
+    width:26px;
+    height:0;
+    border-top:5px solid #0a9b6a;
+    z-index:17;
+  }
+  .legend-text{
+    left:814px;
+    top:544px;
+    width:190px;
+    font-size:16px;
+    line-height:1.1;
+    font-weight:700;
+    color:#111;
+    z-index:17;
+  }
+
+  .footnote{
+    left:39px;
+    top:653px;
+    width:1110px;
+    font-size:11px;
+    line-height:1.28;
+    font-weight:400;
+    color:#1a1a1a;
+    z-index:10;
+  }
+  .rule-bottom{
+    left:30px;
+    top:689px;
+    width:1210px;
+    height:1px;
+    background:#bbbbbb;
+    z-index:10;
+  }
+  .page{
+    left:31px;
+    top:731px;
+    width:20px;
+    font-size:21px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+    z-index:11;
+    transform:translateY(-1px);
+  }
+
+  .logo{
+    right:40px;
+    top:700px;
+    width:145px;
+    height:45px;
+    z-index:11;
+    color:#111;
+  }
+  .logo .jp{
+    position:absolute;
+    left:0;
+    top:0;
+    width:145px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:26px;
+    line-height:1;
+    font-weight:400;
+    text-align:left;
+  }
+  .logo .am{
+    position:absolute;
+    left:1px;
+    top:29px;
+    width:145px;
+    font-size:10px;
+    line-height:1;
+    font-weight:700;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    text-align:left;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">Secondaries mitigate the J-Curve of traditional private investments</div>
+  <div class="rule-top"></div>
+  <div class="subtitle">Illustrative cash flow profile by investment type</div>
+
+  <div class="chart-wrap"></div>
+
+  <div class="period1">
+    <div class="t1">Investment Period</div>
+    <div class="t2">(Primary investor entry)</div>
+  </div>
+  <div class="period2">
+    <div class="t1">Operational Enhancement</div>
+    <div class="t2">(Secondary investor entry)</div>
+  </div>
+  <div class="period3">
+    <div class="t1">Harvest Mode</div>
+  </div>
+
+  <div class="bg-left"></div>
+  <div class="bg-mid"></div>
+  <div class="bg-right"></div>
+
+  <div class="primary-arrow-body"></div>
+  <div class="primary-arrow-head"></div>
+  <div class="primary-label">Primary Investment</div>
+
+  <div class="secondary-arrow-body"></div>
+  <div class="secondary-arrow-head"></div>
+  <div class="secondary-label">Secondary Investment</div>
+
+  <div class="callout">
+    <div class="l1">Fund turns<br>cash flow<br>positive</div>
+    <div class="r1">~8 years</div>
+    <div class="r2">~4 years</div>
+  </div>
+
+  <svg width="1193" height="390" style="left:38px; top:189px; z-index:16;">
+    <polyline points="15,315 120,340 240,357 340,367 423,374 505,359 601,317 703,266 800,221 900,191 980,174 1020,164"
+      fill="none" stroke="#0a9b6a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <div class="axis"></div>
+
+  <div class="years">
+    <div class="year" style="left:39px;">Y1</div>
+    <div class="year" style="left:149px;">Y2</div>
+    <div class="year" style="left:248px;">Y3</div>
+    <div class="year" style="left:348px;">Y4</div>
+    <div class="year" style="left:445px;">Y5</div>
+    <div class="year" style="left:524px;">Y6</div>
+    <div class="year" style="left:604px;">Y7</div>
+    <div class="year" style="left:703px;">Y8</div>
+    <div class="year" style="left:802px;">Y9</div>
+    <div class="year" style="left:901px;">Y10</div>
+    <div class="year" style="left:1000px;">Y11</div>
+    <div class="year" style="left:1148px;">Y12</div>
+  </div>
+
+  <div class="legend-line"></div>
+  <div class="legend-text">Cumulative cash flows</div>
+
+  <div class="footnote">Graphics are illustrative. We believe the information provided here is reliable but should not be assumed to be accurate or complete. The views and strategies described may not be appropriate for all investors. There is no guarantee a PEG investment in a secondary will provide the above benefit.</div>
+
+  <div class="rule-bottom"></div>
+  <div class="page">11</div>
+
+  <div class="logo">
+    <div class="jp">J.P.Morgan</div>
+    <div class="am">ASSET MANAGEMENT</div>
+  </div>
+</div>
+</body>
+</html>

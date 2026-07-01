@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1024px;
+    height:768px;
+    overflow:hidden;
+    background:#f1f1f1;
+    color:#111;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+  }
+  .title{
+    left:19px;
+    top:28px;
+    width:960px;
+    font-size:42px;
+    line-height:1.08;
+    font-weight:400;
+    color:#111;
+    letter-spacing:0;
+  }
+  .red-rule{
+    left:0;
+    top:102px;
+    width:993px;
+    height:13px;
+    background:#d70000;
+    clip-path:polygon(0 0, 100% 0, 99.5% 100%, 0 100%);
+  }
+  .subtitle{
+    left:37px;
+    top:171px;
+    width:520px;
+    font-size:31px;
+    line-height:1.12;
+    font-weight:400;
+    color:#1b1b1b;
+  }
+  .legend{
+    left:700px;
+    top:168px;
+    width:220px;
+    font-size:18px;
+    line-height:1.1;
+    color:#222;
+  }
+  .legend-row{
+    position:absolute;
+    left:0;
+    width:220px;
+  }
+  .swatch{
+    position:absolute;
+    left:0;
+    top:4px;
+    width:14px;
+    height:14px;
+  }
+  .legend-text{
+    position:absolute;
+    left:18px;
+    top:0;
+    width:190px;
+    font-size:31px;
+    line-height:1.05;
+    font-weight:400;
+    color:#222;
+  }
+  .note{
+    left:19px;
+    top:702px;
+    width:610px;
+    font-size:12px;
+    line-height:1.08;
+    font-weight:400;
+    color:#222;
+  }
+  .bottom-line{
+    left:0;
+    top:732px;
+    width:1024px;
+    height:1px;
+    background:#8f8f8f;
+  }
+  .page{
+    left:962px;
+    top:742px;
+    width:20px;
+    font-size:24px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+    text-align:right;
+  }
+  .logo{
+    left:987px;
+    top:738px;
+    width:20px;
+    height:20px;
+  }
+  .tick{
+    font-size:15px;
+    fill:#222;
+    font-weight:400;
+  }
+  .xlabel{
+    font-size:14px;
+    fill:#111;
+    font-weight:400;
+  }
+  .xlabel-bold{
+    font-size:14px;
+    fill:#111;
+    font-weight:700;
+  }
+  .value{
+    font-size:15px;
+    fill:#1c1c1c;
+    font-weight:400;
+  }
+  .avgtext{
+    font-size:16px;
+    fill:#111;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">Cost of attendance at Syracuse is low relative to peers</div>
+  <div class="red-rule"></div>
+
+  <div class="subtitle">2013-2014 undergraduate gross tuition and fees</div>
+
+  <div class="legend">
+    <div class="legend-row" style="top:0px;height:24px;">
+      <div class="swatch" style="background:#333333;"></div>
+      <div class="legend-text" style="font-size:17px;">Board</div>
+    </div>
+    <div class="legend-row" style="top:28px;height:24px;">
+      <div class="swatch" style="background:#7f7f7f;"></div>
+      <div class="legend-text" style="font-size:17px;">Room</div>
+    </div>
+    <div class="legend-row" style="top:57px;height:42px;">
+      <div class="swatch" style="background:#aaaaaa;"></div>
+      <div class="legend-text" style="font-size:17px;line-height:1.05;">2013-2014<br/>Tuition and fees</div>
+    </div>
+  </div>
+
+  <svg style="left:77px; top:214px; width:840px; height:402px;" viewBox="0 0 840 402" xmlns="http://www.w3.org/2000/svg" aria-label="Stacked bar chart">
+    <!-- axes -->
+    <line x1="47" y1="0" x2="47" y2="384" stroke="#5a5a5a" stroke-width="1.2"/>
+    <line x1="47" y1="384" x2="834" y2="384" stroke="#5a5a5a" stroke-width="1.2"/>
+
+    <!-- y ticks -->
+    <line x1="43" y1="384" x2="47" y2="384" stroke="#5a5a5a" stroke-width="1"/>
+    <text x="40" y="389" text-anchor="end" class="tick">0</text>
+
+    <line x1="43" y1="288" x2="47" y2="288" stroke="#5a5a5a" stroke-width="1"/>
+    <text x="40" y="293" text-anchor="end" class="tick">20</text>
+
+    <line x1="43" y1="192" x2="47" y2="192" stroke="#5a5a5a" stroke-width="1"/>
+    <text x="40" y="197" text-anchor="end" class="tick">40</text>
+
+    <line x1="43" y1="96" x2="47" y2="96" stroke="#5a5a5a" stroke-width="1"/>
+    <text x="40" y="101" text-anchor="end" class="tick">60</text>
+
+    <line x1="43" y1="0" x2="47" y2="0" stroke="#5a5a5a" stroke-width="1"/>
+    <text x="40" y="5" text-anchor="end" class="tick">$80K</text>
+
+    <!-- average line -->
+    <line x1="47" y1="115.2" x2="834" y2="115.2" stroke="#111" stroke-width="1.4" stroke-dasharray="10 7"/>
+    <text x="838" y="112" class="avgtext">Average</text>
+    <text x="838" y="133" class="avgtext">~$56K</text>
+
+    <!-- bars -->
+    <!-- geometry: baseline 384, scale 4.8, bar w 49 -->
+
+    <g>
+      <rect x="62" y="225.6" width="49" height="158.4" fill="#aaaaaa"/>
+      <rect x="62" y="129.6" width="49" height="96" fill="#7f7f7f"/>
+      <rect x="62" y="96" width="49" height="33.6" fill="#333333"/>
+      <text x="86.5" y="88" text-anchor="middle" class="value">60.3</text>
+      <text x="97" y="430" transform="rotate(-45 97 430)" text-anchor="end" class="xlabel">GWU</text>
+    </g>
+
+    <g>
+      <rect x="140" y="216" width="49" height="168" fill="#aaaaaa"/>
+      <rect x="140" y="129.6" width="49" height="86.4" fill="#7f7f7f"/>
+      <rect x="140" y="105.6" width="49" height="24" fill="#333333"/>
+      <text x="164.5" y="97" text-anchor="middle" class="value">58.3</text>
+      <text x="175" y="430" transform="rotate(-45 175 430)" text-anchor="end" class="xlabel">G'town</text>
+    </g>
+
+    <g>
+      <rect x="218" y="225.6" width="49" height="158.4" fill="#aaaaaa"/>
+      <rect x="218" y="158.4" width="49" height="67.2" fill="#7f7f7f"/>
+      <rect x="218" y="106.08" width="49" height="52.32" fill="#333333"/>
+      <text x="242.5" y="100" text-anchor="middle" class="value">57.8</text>
+      <text x="253" y="430" transform="rotate(-45 253 430)" text-anchor="end" class="xlabel">Tulane</text>
+    </g>
+
+    <g>
+      <rect x="296" y="216" width="49" height="168" fill="#aaaaaa"/>
+      <rect x="296" y="154.56" width="49" height="61.44" fill="#7f7f7f"/>
+      <rect x="296" y="107.52" width="49" height="47.04" fill="#333333"/>
+      <text x="320.5" y="101" text-anchor="middle" class="value">57.6</text>
+      <text x="331" y="430" transform="rotate(-45 331 430)" text-anchor="end" class="xlabel">BU</text>
+    </g>
+
+    <g>
+      <rect x="374" y="215.52" width="49" height="168.48" fill="#aaaaaa"/>
+      <rect x="374" y="143.52" width="49" height="72" fill="#7f7f7f"/>
+      <rect x="374" y="110.88" width="49" height="32.64" fill="#333333"/>
+      <text x="398.5" y="105" text-anchor="middle" class="value">56.9</text>
+      <text x="409" y="430" transform="rotate(-45 409 430)" text-anchor="end" class="xlabel">SMU</text>
+    </g>
+
+    <g>
+      <rect x="452" y="216" width="49" height="168" fill="#aaaaaa"/>
+      <rect x="452" y="154.56" width="49" height="61.44" fill="#7f7f7f"/>
+      <rect x="452" y="114.24" width="49" height="40.32" fill="#333333"/>
+      <text x="476.5" y="108" text-anchor="middle" class="value">56.2</text>
+      <text x="487" y="421" transform="rotate(-45 487 421)" text-anchor="end" class="xlabel">Wake</text>
+      <text x="505" y="439" transform="rotate(-45 505 439)" text-anchor="end" class="xlabel">Forest</text>
+    </g>
+
+    <g>
+      <rect x="530" y="216" width="49" height="168" fill="#aaaaaa"/>
+      <rect x="530" y="148.8" width="49" height="67.2" fill="#7f7f7f"/>
+      <rect x="530" y="120.48" width="49" height="28.32" fill="#333333"/>
+      <text x="554.5" y="114" text-anchor="middle" class="value">54.9</text>
+      <text x="565" y="430" transform="rotate(-45 565 430)" text-anchor="end" class="xlabel">NE</text>
+    </g>
+
+    <g>
+      <rect x="608" y="216" width="49" height="168" fill="#aaaaaa"/>
+      <rect x="608" y="151.68" width="49" height="64.32" fill="#7f7f7f"/>
+      <rect x="608" y="122.88" width="49" height="28.8" fill="#333333"/>
+      <text x="632.5" y="116" text-anchor="middle" class="value">54.4</text>
+      <text x="643" y="430" transform="rotate(-45 643 430)" text-anchor="end" class="xlabel">Lehigh</text>
+    </g>
+
+    <g>
+      <rect x="686" y="220.8" width="49" height="163.2" fill="#aaaaaa"/>
+      <rect x="686" y="153.6" width="49" height="67.2" fill="#7f7f7f"/>
+      <rect x="686" y="123.36" width="49" height="30.24" fill="#333333"/>
+      <text x="710.5" y="116" text-anchor="middle" class="value">54.3</text>
+      <text x="721" y="430" transform="rotate(-45 721 430)" text-anchor="end" class="xlabel">American</text>
+    </g>
+
+    <g>
+      <rect x="764" y="220.8" width="49" height="163.2" fill="#aaaaaa"/>
+      <rect x="764" y="158.4" width="49" height="62.4" fill="#7f7f7f"/>
+      <rect x="764" y="126.24" width="49" height="32.16" fill="#333333"/>
+      <text x="788.5" y="120" text-anchor="middle" class="value">53.7</text>
+      <text x="799" y="435" transform="rotate(-45 799 435)" text-anchor="end" class="xlabel-bold">Syracuse</text>
+      <rect x="757" y="103" width="63" height="282" fill="none" stroke="#ff7f00" stroke-width="6" stroke-dasharray="4 3"/>
+    </g>
+  </svg>
+
+  <div class="bottom-line"></div>
+
+  <div class="note">Note: Tuition and fees from US News, room and board from IPEDS<br/>Source: IPEDS, US News and World Report</div>
+
+  <div class="page">14</div>
+
+  <svg class="logo" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-label="Bain logo mark">
+    <circle cx="10" cy="10" r="8" fill="none" stroke="#e53935" stroke-width="1.8"/>
+    <path d="M10 4 L12.2 9.3 L10 8.7 L7.8 9.3 Z" fill="#e53935"/>
+    <line x1="10" y1="10" x2="16.2" y2="10" stroke="#e53935" stroke-width="1.8" stroke-linecap="round"/>
+  </svg>
+</div>
+</body>
+</html>

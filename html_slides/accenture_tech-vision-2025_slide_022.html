@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #111;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f3f2f2;
+  }
+
+  .left-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 401px;
+    height: 720px;
+    background: #000;
+    color: #fff;
+  }
+
+  .topline {
+    position: absolute;
+    left: 64px;
+    top: 38px;
+    font-size: 16px;
+    line-height: 1;
+    color: #e7e2ec;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .topline .accent {
+    color: #9a7cf2;
+  }
+
+  .section-num {
+    position: absolute;
+    left: 64px;
+    top: 119px;
+    font-size: 27px;
+    font-weight: 700;
+    color: #b792ff;
+  }
+
+  .title {
+    position: absolute;
+    left: 64px;
+    top: 178px;
+    width: 285px;
+    font-size: 56px;
+    line-height: 0.97;
+    font-weight: 700;
+    color: #f5f5f5;
+    letter-spacing: -1px;
+  }
+
+  .subtitle {
+    position: absolute;
+    left: 64px;
+    top: 300px;
+    width: 286px;
+    font-size: 28px;
+    line-height: 1.03;
+    font-weight: 700;
+    color: #f5f5f5;
+  }
+
+  .body {
+    position: absolute;
+    left: 64px;
+    top: 421px;
+    width: 289px;
+    font-size: 12px;
+    line-height: 1.35;
+    font-weight: 400;
+    color: #d8d8d8;
+  }
+
+  .arrow {
+    position: absolute;
+    left: 59px;
+    top: 707px;
+    transform: translateY(-100%);
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 700;
+    color: #a320ff;
+  }
+
+  .art {
+    position: absolute;
+    left: 401px;
+    top: 0;
+    width: 879px;
+    height: 720px;
+    background:
+      radial-gradient(ellipse at 52% 18%, rgba(157,31,215,0.90) 0%, rgba(115,83,230,0.72) 18%, rgba(255,180,215,0.40) 28%, rgba(255,255,255,0.02) 38%),
+      radial-gradient(ellipse at 49% 33%, rgba(147,76,255,0.86) 0%, rgba(195,112,255,0.68) 14%, rgba(255,200,243,0.22) 28%, rgba(255,255,255,0) 38%),
+      linear-gradient(135deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0) 22%),
+      #f4f3f3;
+  }
+
+  .head {
+    position: absolute;
+    left: 180px;
+    top: 47px;
+    width: 380px;
+    height: 510px;
+    border-radius: 48% 46% 42% 40% / 30% 33% 53% 55%;
+    background:
+      radial-gradient(circle at 36% 18%, rgba(255,218,236,0.95) 0%, rgba(237,173,210,0.9) 12%, rgba(148,46,201,0.92) 35%, rgba(95,37,205,0.88) 57%, rgba(64,31,128,0.55) 73%, rgba(255,255,255,0) 82%),
+      radial-gradient(circle at 41% 61%, rgba(255,183,210,0.58) 0%, rgba(184,112,222,0.55) 24%, rgba(113,54,230,0.65) 45%, rgba(77,26,136,0.20) 66%, rgba(255,255,255,0) 74%),
+      linear-gradient(145deg, rgba(255,240,246,0.35) 0%, rgba(181,105,255,0.45) 35%, rgba(147,43,235,0.78) 65%, rgba(235,177,205,0.55) 100%);
+    filter: saturate(115%);
+    transform: rotate(8deg);
+    opacity: 0.95;
+  }
+
+  .visor {
+    position: absolute;
+    left: 195px;
+    top: 222px;
+    width: 305px;
+    height: 53px;
+    border-radius: 26px;
+    background:
+      linear-gradient(90deg,
+        rgba(255,255,255,0.95) 0%,
+        rgba(248,248,248,0.9) 12%,
+        rgba(223,216,229,0.82) 30%,
+        rgba(255,255,255,0.88) 52%,
+        rgba(231,230,236,0.80) 72%,
+        rgba(255,255,255,0.92) 100%);
+    box-shadow: 0 0 25px rgba(255,255,255,0.45);
+    transform: rotate(8deg);
+  }
+
+  .neck {
+    position: absolute;
+    left: 215px;
+    top: 469px;
+    width: 127px;
+    height: 122px;
+    background:
+      linear-gradient(180deg, rgba(211,12,205,0.95) 0%, rgba(141,40,213,0.92) 52%, rgba(102,25,185,0.72) 100%);
+    border-radius: 20px 20px 70px 50px;
+    transform: skewX(-6deg);
+    opacity: 0.95;
+  }
+
+  .collar {
+    position: absolute;
+    left: 208px;
+    top: 567px;
+    width: 182px;
+    height: 49px;
+    border-radius: 28px;
+    border: 5px solid rgba(231,222,233,0.75);
+    border-top-color: rgba(255,255,255,0.85);
+    border-right-color: rgba(189,162,214,0.75);
+    background: transparent;
+    transform: rotate(6deg);
+    opacity: 0.8;
+  }
+
+  .lip {
+    position: absolute;
+    left: 369px;
+    top: 435px;
+    width: 88px;
+    height: 34px;
+    border-radius: 0 0 40px 40px / 0 0 26px 26px;
+    background:
+      linear-gradient(180deg, rgba(35,20,31,0.95) 0%, rgba(74,43,62,0.95) 48%, rgba(24,15,21,0.98) 100%);
+    transform: rotate(11deg);
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.15);
+  }
+
+  .brush1, .brush2, .brush3, .brush4, .brush5, .brush6, .brush7 {
+    position: absolute;
+    background: linear-gradient(135deg, rgba(162,0,210,0.92), rgba(224,91,244,0.84));
+    opacity: 0.9;
+    filter: blur(0.3px);
+  }
+
+  .brush1 {
+    left: 548px;
+    top: 116px;
+    width: 173px;
+    height: 312px;
+    clip-path: polygon(0 8%, 74% 0, 100% 11%, 41% 100%, 7% 85%);
+    transform: rotate(8deg);
+  }
+  .brush2 {
+    left: 575px;
+    top: 173px;
+    width: 124px;
+    height: 308px;
+    clip-path: polygon(44% 0, 100% 6%, 51% 100%, 0 93%);
+    transform: rotate(14deg);
+    opacity: 0.84;
+  }
+  .brush3 {
+    left: 657px;
+    top: 248px;
+    width: 87px;
+    height: 146px;
+    clip-path: polygon(65% 0, 100% 18%, 35% 100%, 0 79%);
+    transform: rotate(17deg);
+  }
+  .brush4 {
+    left: 726px;
+    top: -26px;
+    width: 156px;
+    height: 352px;
+    clip-path: polygon(77% 0, 100% 8%, 63% 100%, 31% 90%, 0 76%);
+    background: linear-gradient(180deg, rgba(175,104,255,0.76), rgba(170,84,250,0.9));
+    transform: rotate(20deg);
+  }
+  .brush5 {
+    left: 433px;
+    top: 323px;
+    width: 694px;
+    height: 339px;
+    clip-path: polygon(0 28%, 12% 12%, 36% 2%, 63% 17%, 85% 37%, 100% 56%, 94% 73%, 72% 82%, 48% 100%, 24% 93%, 7% 75%);
+    background:
+      linear-gradient(25deg, rgba(148,51,247,0.92) 0%, rgba(191,116,255,0.82) 46%, rgba(255,223,214,0.62) 78%, rgba(191,128,255,0.78) 100%);
+    opacity: 0.78;
+  }
+  .brush6 {
+    left: 870px;
+    top: 264px;
+    width: 285px;
+    height: 424px;
+    clip-path: polygon(68% 0, 100% 18%, 87% 100%, 39% 78%, 0 26%);
+    background:
+      linear-gradient(180deg, rgba(219,174,255,0.66), rgba(177,98,255,0.76));
+    transform: rotate(10deg);
+    opacity: 0.72;
+  }
+  .brush7 {
+    left: 889px;
+    top: 61px;
+    width: 268px;
+    height: 336px;
+    clip-path: polygon(100% 0, 90% 32%, 70% 55%, 100% 100%, 39% 83%, 0 44%, 31% 11%);
+    background:
+      linear-gradient(180deg, rgba(181,114,255,0.76), rgba(143,82,236,0.74));
+    opacity: 0.62;
+  }
+
+  .sweep {
+    position: absolute;
+    left: -9px;
+    top: 520px;
+    width: 970px;
+    height: 239px;
+    border-radius: 50%;
+    background:
+      linear-gradient(20deg, rgba(112,38,205,0.95) 0%, rgba(157,69,255,0.88) 38%, rgba(197,139,255,0.60) 74%, rgba(255,255,255,0) 100%);
+    transform: rotate(7deg);
+    opacity: 0.92;
+  }
+
+  .veil1, .veil2, .veil3 {
+    position: absolute;
+    background: rgba(255,255,255,0.24);
+    transform: rotate(38deg);
+    border-radius: 999px;
+  }
+  .veil1 {
+    left: 488px;
+    top: -34px;
+    width: 2px;
+    height: 350px;
+    opacity: 0.5;
+  }
+  .veil2 {
+    left: 531px;
+    top: -57px;
+    width: 2px;
+    height: 406px;
+    opacity: 0.45;
+  }
+  .veil3 {
+    left: 571px;
+    top: -45px;
+    width: 2px;
+    height: 368px;
+    opacity: 0.4;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-panel">
+      <div class="topline"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+      <div class="section-num">02</div>
+      <div class="title">Your Face,<br>in the Future</div>
+      <div class="subtitle">Differentiating when<br>every interface looks<br>the same</div>
+      <div class="body">
+        What’s your AI’s personality? Enterprises are imbuing autonomy across customer interactions, but as they do, it is critical that fine-tuning for experience is not overlooked. Personal touch, unique voice, and individualization are key ways companies build loyalty and trust with customers—and right now it feels like that is everything AI lacks. Personified AI can breathe life into experiences and unlock customer relationships like we’ve never seen before. As enterprises start to build AI cognitive digital brains, they can codify their values and personas into it, powering agents with the full knowledge of the business and allowing leaders to dodge the risk of monotony and instead build the future face of their enterprise.
+      </div>
+      <div class="arrow">&gt;</div>
+    </div>
+
+    <div class="art">
+      <div class="brush4"></div>
+      <div class="head"></div>
+      <div class="visor"></div>
+      <div class="neck"></div>
+      <div class="collar"></div>
+      <div class="lip"></div>
+      <div class="brush1"></div>
+      <div class="brush2"></div>
+      <div class="brush3"></div>
+      <div class="brush5"></div>
+      <div class="brush6"></div>
+      <div class="brush7"></div>
+      <div class="sweep"></div>
+      <div class="veil1"></div>
+      <div class="veil2"></div>
+      <div class="veil3"></div>
+    </div>
+  </div>
+</body>
+</html>

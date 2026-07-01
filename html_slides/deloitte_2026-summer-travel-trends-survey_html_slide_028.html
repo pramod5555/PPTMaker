@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#efefef;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    background:#efefef;
+    overflow:hidden;
+  }
+  .title{
+    position:absolute;
+    left:45px;
+    top:45px;
+    width:390px;
+    font-size:42px;
+    line-height:1.02;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-0.5px;
+  }
+  .subtitle{
+    position:absolute;
+    left:42px;
+    top:364px;
+    width:365px;
+    font-size:26px;
+    line-height:1.05;
+    font-weight:400;
+    color:#222;
+    letter-spacing:-0.2px;
+  }
+  .panel{
+    position:absolute;
+    background:#e4e4e4;
+  }
+  .panel-top{
+    left:485px;
+    top:47px;
+    width:834px;
+    height:278px;
+  }
+  .panel-bottom{
+    left:485px;
+    top:342px;
+    width:834px;
+    height:375px;
+  }
+  .panel-title{
+    position:absolute;
+    font-size:17px;
+    line-height:1.15;
+    font-weight:700;
+    color:#111;
+  }
+  .top-title{
+    left:512px;
+    top:71px;
+    width:560px;
+    font-size:17px;
+  }
+  .bottom-title{
+    left:512px;
+    top:369px;
+    width:760px;
+    font-size:17px;
+  }
+  .notes{
+    position:absolute;
+    font-size:12px;
+    line-height:1.15;
+    color:#333;
+    font-weight:400;
+  }
+  .top-notes{
+    left:512px;
+    top:255px;
+    width:785px;
+  }
+  .bottom-notes{
+    left:512px;
+    top:648px;
+    width:790px;
+  }
+  .legend{
+    position:absolute;
+    left:512px;
+    top:399px;
+    display:flex;
+    align-items:center;
+    gap:34px;
+    font-size:16px;
+    color:#333;
+  }
+  .legend-item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .dot{
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    display:inline-block;
+  }
+  .blue{ background:#0a67a3; }
+  .purple{ background:#844795; }
+  .line-key{
+    width:28px;
+    height:0;
+    border-top:3px solid #111;
+    display:inline-block;
+    transform:translateY(-1px);
+  }
+  .footer-left{
+    position:absolute;
+    left:46px;
+    bottom:12px;
+    font-size:12px;
+    color:#444;
+  }
+  .footer-right{
+    position:absolute;
+    right:42px;
+    bottom:12px;
+    font-size:12px;
+    color:#444;
+    white-space:nowrap;
+  }
+  .page{
+    position:absolute;
+    right:14px;
+    bottom:12px;
+    font-size:12px;
+    color:#444;
+  }
+  svg{
+    position:absolute;
+  }
+  .small-label{
+    font-size:16px;
+    fill:#333;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .small-label-bold{
+    font-size:16px;
+    fill:#222;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:700;
+  }
+  .axis-label{
+    font-size:11px;
+    fill:#444;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .bar-value{
+    font-size:13px;
+    fill:#333;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .cat{
+    font-size:14px;
+    fill:#222;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">Gen Zs, the biggest users of short social video in trip planning, are using the platform a little differently this year</div>
+
+  <div class="subtitle">Broad inspiration still accounts for a large amount of travel video consumption, but more are using it for practical trip planning, searching full itineraries, and stay options</div>
+
+  <div class="panel panel-top"></div>
+  <div class="panel panel-bottom"></div>
+
+  <div class="panel-title top-title">Short social video app adoption in travel planning</div>
+
+  <svg width="834" height="278" style="left:485px; top:47px;">
+    <path d="M 349 188 A 55 55 0 0 1 395 175" fill="none" stroke="#cfcfcf" stroke-width="15"/>
+    <path d="M 349 154 A 87 87 0 0 1 425 175" fill="none" stroke="#cfcfcf" stroke-width="15"/>
+    <path d="M 349 120 A 118 118 0 0 1 456 184" fill="none" stroke="#cfcfcf" stroke-width="15"/>
+    <path d="M 349 78 A 118 118 0 0 1 470 183" fill="none" stroke="#76bf00" stroke-width="15"/>
+
+    <text x="304" y="82" class="small-label">2026</text>
+    <text x="304" y="114" class="small-label">2025</text>
+    <text x="304" y="146" class="small-label">2024</text>
+
+    <text x="484" y="100" class="small-label-bold">Overall: 23%</text>
+    <text x="484" y="121" class="small-label">Gen Z: 42%</text>
+    <text x="484" y="140" class="small-label">Millennials: 33%</text>
+  </svg>
+
+  <div class="notes top-notes">Notes. Question: “Which of the following do you use for travel inspiration and information?” (Please select all that apply);(n = 419 short social video content users.<br>Source: 2026 Deloitte Summer Travel Survey.</div>
+
+  <div class="panel-title bottom-title">Short social video content types used in discovery and trip planning</div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="dot blue"></span><span>Gen Z</span></div>
+    <div class="legend-item"><span class="dot purple"></span><span>Millennials</span></div>
+    <div class="legend-item"><span class="line-key"></span><span>2025</span></div>
+  </div>
+
+  <svg width="770" height="195" style="left:512px; top:438px;">
+    <text x="2" y="28" class="axis-label">70%</text>
+    <text x="2" y="48" class="axis-label">60%</text>
+    <text x="2" y="68" class="axis-label">50%</text>
+    <text x="2" y="88" class="axis-label">40%</text>
+    <text x="2" y="108" class="axis-label">30%</text>
+    <text x="2" y="128" class="axis-label">20%</text>
+    <text x="2" y="148" class="axis-label">10%</text>
+    <text x="8" y="163" class="axis-label">0%</text>
+
+    <rect x="60" y="45" width="27" height="115" fill="#0a67a3"/>
+    <rect x="92" y="63" width="27" height="97" fill="#844795"/>
+    <line x1="58" y1="33" x2="121" y2="33" stroke="#111" stroke-width="3"/>
+    <text x="59" y="39" class="bar-value">63%</text>
+    <text x="93" y="57" class="bar-value">53%</text>
+
+    <rect x="170" y="65" width="27" height="95" fill="#0a67a3"/>
+    <rect x="202" y="63" width="27" height="97" fill="#844795"/>
+    <line x1="168" y1="53" x2="231" y2="53" stroke="#111" stroke-width="3"/>
+    <text x="169" y="49" class="bar-value">52%</text>
+    <text x="202" y="47" class="bar-value">53%</text>
+
+    <rect x="280" y="82" width="27" height="78" fill="#0a67a3"/>
+    <rect x="312" y="76" width="27" height="84" fill="#844795"/>
+    <line x1="278" y1="57" x2="341" y2="57" stroke="#111" stroke-width="3"/>
+    <text x="278" y="71" class="bar-value">43%</text>
+    <text x="311" y="65" class="bar-value">47%</text>
+
+    <rect x="390" y="82" width="27" height="78" fill="#0a67a3"/>
+    <rect x="422" y="71" width="27" height="89" fill="#844795"/>
+    <line x1="388" y1="49" x2="451" y2="49" stroke="#111" stroke-width="3"/>
+    <text x="388" y="71" class="bar-value">43%</text>
+    <text x="421" y="60" class="bar-value">50%</text>
+
+    <rect x="500" y="78" width="27" height="82" fill="#0a67a3"/>
+    <rect x="532" y="74" width="27" height="86" fill="#844795"/>
+    <line x1="498" y1="54" x2="561" y2="54" stroke="#111" stroke-width="3"/>
+    <text x="498" y="67" class="bar-value">45%</text>
+    <text x="531" y="63" class="bar-value">48%</text>
+
+    <rect x="610" y="89" width="27" height="71" fill="#0a67a3"/>
+    <rect x="642" y="76" width="27" height="84" fill="#844795"/>
+    <line x1="607" y1="111" x2="640" y2="111" stroke="#111" stroke-width="3"/>
+    <line x1="640" y1="74" x2="669" y2="74" stroke="#111" stroke-width="3"/>
+    <text x="609" y="82" class="bar-value">39%</text>
+    <text x="640" y="66" class="bar-value">47%</text>
+
+    <rect x="720" y="115" width="27" height="45" fill="#0a67a3"/>
+    <rect x="752" y="89" width="27" height="71" fill="#844795"/>
+    <line x1="718" y1="112" x2="748" y2="112" stroke="#111" stroke-width="3"/>
+    <line x1="750" y1="112" x2="782" y2="112" stroke="#111" stroke-width="3"/>
+    <text x="718" y="103" class="bar-value">25%</text>
+    <text x="751" y="80" class="bar-value">39%</text>
+
+    <text x="45" y="180" class="cat">Activities and</text>
+    <text x="52" y="197" class="cat">attractions</text>
+
+    <text x="156" y="180" class="cat">Restaurants</text>
+
+    <text x="272" y="178" class="cat">Destination</text>
+    <text x="289" y="195" class="cat">videos</text>
+
+    <text x="402" y="178" class="cat">Trip or</text>
+    <text x="367" y="195" class="cat">destination types</text>
+
+    <text x="510" y="178" class="cat">Local</text>
+    <text x="500" y="195" class="cat">insights</text>
+
+    <text x="576" y="178" class="cat">Accommodation</text>
+    <text x="613" y="195" class="cat">options</text>
+
+    <text x="736" y="178" class="cat">Full</text>
+    <text x="718" y="195" class="cat">itinerary</text>
+  </svg>
+
+  <div class="notes bottom-notes">Note: Question: “How have you used short social video apps in travel discovery or planning?” (Please select all that apply) (n = 419 short social video<br>content users).<br>Source: 2026 Deloitte Summer Travel Survey.</div>
+
+  <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+  <div class="footer-right">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="page">28</div>
+</div>
+</body>
+</html>

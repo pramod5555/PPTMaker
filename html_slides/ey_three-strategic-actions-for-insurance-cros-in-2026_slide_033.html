@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Contacts Slide Replica</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #d9d9d9;
+    font-family: Arial, Helvetica, 'Segoe UI', sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #020714;
+    margin: 0 auto;
+  }
+  .slide > * { position: absolute; box-sizing: border-box; }
+
+  .bg {
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    background:
+      radial-gradient(circle at 82% 72%, rgba(134,41,26,0.52) 0px, rgba(134,41,26,0.20) 90px, rgba(0,0,0,0) 250px),
+      radial-gradient(circle at 66% 78%, rgba(30,100,180,0.22) 0px, rgba(30,100,180,0.08) 160px, rgba(0,0,0,0) 300px),
+      radial-gradient(circle at 46% 52%, rgba(22,64,140,0.18) 0px, rgba(22,64,140,0.06) 140px, rgba(0,0,0,0) 280px),
+      linear-gradient(90deg, #02040c 0%, #020613 35%, #030818 62%, #071226 82%, #08101e 100%);
+    z-index: 0;
+  }
+
+  .noise {
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    opacity: 0.09;
+    background-image:
+      radial-gradient(rgba(255,255,255,0.45) 0.5px, transparent 0.8px),
+      radial-gradient(rgba(255,255,255,0.25) 0.5px, transparent 0.8px);
+    background-size: 4px 4px, 7px 7px;
+    background-position: 0 0, 2px 3px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .tab {
+    left: 0px;
+    top: 0px;
+    width: 70px;
+    height: 24px;
+    background: #7b7d86;
+    border-radius: 0px 0px 12px 12px;
+    z-index: 20;
+  }
+  .tab-text {
+    left: 13px;
+    top: 6px;
+    width: 45px;
+    font-size: 9px;
+    line-height: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    text-transform: uppercase;
+    z-index: 30;
+  }
+
+  .title {
+    left: 46px;
+    top: 42px;
+    width: 360px;
+    font-size: 64px;
+    line-height: 64px;
+    font-weight: 700;
+    color: #f2f4f7;
+    z-index: 30;
+  }
+
+  .rainbow-line {
+    left: 47px;
+    top: 120px;
+    width: 1257px;
+    height: 3px;
+    background: linear-gradient(90deg, #ffe600 0%, #ffdb00 18%, #ff66d1 52%, #973cff 74%, #00e6ff 100%);
+    z-index: 15;
+  }
+
+  .left-nav {
+    left: -8px;
+    top: 299px;
+    width: 40px;
+    height: 120px;
+    z-index: 25;
+  }
+  .left-nav-line {
+    left: 14px;
+    top: 36px;
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.55);
+  }
+  .left-nav-text {
+    left: -8px;
+    top: 21px;
+    width: 56px;
+    font-size: 14px;
+    line-height: 14px;
+    color: rgba(255,255,255,0.75);
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .page-num {
+    left: 18px;
+    top: 701px;
+    width: 22px;
+    font-size: 12px;
+    line-height: 12px;
+    color: rgba(255,255,255,0.9);
+    z-index: 30;
+  }
+
+  .top-icon {
+    left: 1202px;
+    top: 28px;
+    width: 52px;
+    height: 52px;
+    z-index: 40;
+  }
+  .top-icon svg {
+    width: 52px;
+    height: 52px;
+    display: block;
+  }
+  .top-icon-label {
+    left: 1208px;
+    top: 38px;
+    width: 38px;
+    font-size: 8px;
+    line-height: 8px;
+    color: #ffffff;
+    text-align: center;
+    z-index: 45;
+    font-weight: 400;
+  }
+
+  .section-title {
+    font-size: 17px;
+    line-height: 20px;
+    color: #ffffff;
+    font-weight: 500;
+    z-index: 30;
+  }
+  .section-rule {
+    height: 1px;
+    background: rgba(255,255,255,0.45);
+    z-index: 22;
+  }
+
+  .col1-title { left: 45px; top: 190px; width: 258px; }
+  .col1-rule  { left: 45px; top: 216px; width: 262px; }
+
+  .col2-title { left: 370px; top: 190px; width: 212px; }
+  .col2-rule  { left: 370px; top: 216px; width: 280px; }
+
+  .divider {
+    left: 689px;
+    top: 189px;
+    width: 2px;
+    height: 504px;
+    z-index: 18;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.45) 0px,
+        rgba(255,255,255,0.45) 2px,
+        transparent 2px,
+        transparent 6px
+      );
+  }
+
+  .col3-title { left: 728px; top: 190px; width: 110px; }
+  .col3-rule  { left: 728px; top: 216px; width: 122px; }
+
+  .name {
+    font-size: 14px;
+    line-height: 16px;
+    color: #ffe600;
+    font-weight: 700;
+    z-index: 30;
+  }
+  .info {
+    font-size: 11px;
+    line-height: 15px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 400;
+    z-index: 30;
+  }
+  .email {
+    font-size: 10px;
+    line-height: 13px;
+    color: rgba(255,255,255,0.72);
+    font-weight: 400;
+    text-decoration: underline;
+    z-index: 30;
+  }
+
+  .contrib-box {
+    left: 728px;
+    top: 385px;
+    width: 123px;
+    height: 266px;
+    border: 1px solid #d4c800;
+    z-index: 25;
+    background: rgba(0,0,0,0.06);
+  }
+  .contrib-head {
+    left: 741px;
+    top: 414px;
+    width: 92px;
+    font-size: 11px;
+    line-height: 14px;
+    color: #ffffff;
+    font-weight: 700;
+    z-index: 30;
+  }
+  .contrib-list {
+    left: 741px;
+    top: 450px;
+    width: 86px;
+    font-size: 11px;
+    line-height: 22px;
+    color: rgba(255,255,255,0.78);
+    font-weight: 400;
+    z-index: 30;
+  }
+
+  .tree-wrap {
+    left: 775px;
+    top: 191px;
+    width: 500px;
+    height: 500px;
+    z-index: 12;
+  }
+  .tree-wrap svg {
+    width: 500px;
+    height: 500px;
+    display: block;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="bg"></div>
+    <div class="noise"></div>
+
+    <div class="tab"></div>
+    <div class="tab-text">Contacts</div>
+
+    <div class="title">Contacts</div>
+    <div class="rainbow-line"></div>
+
+    <div class="left-nav">
+      <div class="left-nav-line"></div>
+      <div class="left-nav-text">Contacts</div>
+    </div>
+
+    <div class="page-num">33</div>
+
+    <div class="top-icon">
+      <svg viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="26" cy="26" r="21" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.2" stroke-dasharray="46 10 10 10"/>
+        <circle cx="40.5" cy="10.5" r="4.2" fill="#ffe600"/>
+        <path d="M36 14 L39 11 L39 15 Z" fill="#ffe600"/>
+      </svg>
+    </div>
+    <div class="top-icon-label">Jump to<br>contents</div>
+
+    <div class="section-title col1-title">EY Global Risk Insurance Survey Leaders</div>
+    <div class="section-rule col1-rule"></div>
+
+    <div class="section-title col2-title">EY Super Region Leaders</div>
+    <div class="section-rule col2-rule"></div>
+
+    <div class="divider"></div>
+
+    <div class="section-title col3-title">IIF contacts</div>
+    <div class="section-rule col3-rule"></div>
+
+    <!-- Column 1 -->
+    <div class="name"  style="left:45px; top:230px; width:170px;">Jonathan Zhao</div>
+    <div class="info"  style="left:45px; top:249px; width:220px;">EY Global Insurance Leader (Hong Kong)</div>
+    <div class="email" style="left:45px; top:264px; width:170px;">jonathan.zhao@hk.ey.com</div>
+
+    <div class="name"  style="left:45px; top:291px; width:170px;">Tom Campanile</div>
+    <div class="info"  style="left:45px; top:310px; width:247px;">EY Global Financial Services Risk Consulting (US)</div>
+    <div class="email" style="left:45px; top:325px; width:165px;">thomas.campanile@ey.com</div>
+
+    <div class="name"  style="left:45px; top:347px; width:150px;">Stuart D. Doyle II</div>
+    <div class="info"  style="left:45px; top:366px; width:223px;">US Insurance Risk &amp; Regulation Leader (US)</div>
+    <div class="email" style="left:45px; top:381px; width:138px;">stuart.doyleii@ey.com</div>
+
+    <div class="name"  style="left:45px; top:406px; width:120px;">Tze Ping Chng</div>
+    <div class="info"  style="left:45px; top:425px; width:215px;">Asia-Pacific Consulting Insurance Sector Leader</div>
+    <div class="info"  style="left:45px; top:440px; width:95px;">(Hong Kong)</div>
+    <div class="email" style="left:45px; top:455px; width:150px;">tze-ping.chng@hk.ey.com</div>
+
+    <div class="name"  style="left:45px; top:482px; width:140px;">Eamon McGinnity</div>
+    <div class="info"  style="left:45px; top:501px; width:234px;">UK Insurance Risk &amp; Regulation Leader (UK)</div>
+    <div class="email" style="left:45px; top:516px; width:152px;">eamon.mcginnity@uk.ey.com</div>
+
+    <div class="name"  style="left:45px; top:541px; width:120px;">Pierre Santolini</div>
+    <div class="info"  style="left:45px; top:560px; width:245px;">Europe Insurance Risk &amp; Regulation Leader (France)</div>
+    <div class="email" style="left:45px; top:575px; width:128px;">pierre.santolini@fr.ey.com</div>
+
+    <!-- Column 2 left -->
+    <div class="name"  style="left:370px; top:230px; width:90px;">Jeff Gill</div>
+    <div class="info"  style="left:370px; top:249px; width:182px;">EY US Insurance Leader, US</div>
+    <div class="email" style="left:370px; top:264px; width:112px;">jeffrey.gill@ey.com</div>
+
+    <div class="name"  style="left:370px; top:287px; width:120px;">Janice Deganis</div>
+    <div class="info"  style="left:370px; top:306px; width:168px;">EY Canada Insurance Leader,</div>
+    <div class="info"  style="left:370px; top:321px; width:50px;">Canada</div>
+    <div class="email" style="left:370px; top:336px; width:141px;">janice.c.deganis@ca.ey.com</div>
+
+    <div class="name"  style="left:370px; top:362px; width:145px;">Anita Sun-Young Bong</div>
+    <div class="info"  style="left:370px; top:381px; width:160px;">EY Asia East Insurance</div>
+    <div class="info"  style="left:370px; top:396px; width:150px;">Leader, South Korea</div>
+    <div class="email" style="left:370px; top:411px; width:134px;">sun-young.bong@kr.ey.com</div>
+
+    <div class="name"  style="left:370px; top:439px; width:90px;">Rick Huang</div>
+    <div class="info"  style="left:370px; top:458px; width:160px;">EY Greater China Insurance</div>
+    <div class="info"  style="left:370px; top:473px; width:90px;">Leader, China</div>
+    <div class="email" style="left:370px; top:488px; width:120px;">rick.huang@cn.ey.com</div>
+
+    <div class="name"  style="left:370px; top:517px; width:110px;">Stacey Hooper</div>
+    <div class="info"  style="left:370px; top:536px; width:154px;">EY Oceania Insurance Leader</div>
+    <div class="info"  style="left:370px; top:551px; width:58px;">Australia</div>
+    <div class="email" style="left:370px; top:566px; width:138px;">stacey.hooper@au.ey.com</div>
+
+    <div class="name"  style="left:370px; top:593px; width:110px;">Philip Vermeulen</div>
+    <div class="info"  style="left:370px; top:612px; width:165px;">EY Europe West Insurance</div>
+    <div class="info"  style="left:370px; top:627px; width:130px;">Leader, Switzerland</div>
+    <div class="email" style="left:370px; top:642px; width:128px;">phil.vermeulen@ch.ey.com</div>
+
+    <!-- Column 2 right -->
+    <div class="name"  style="left:509px; top:230px; width:125px;">Lampros Gkogkos</div>
+    <div class="info"  style="left:509px; top:249px; width:160px;">EY Europe Central – CESA Insurance</div>
+    <div class="info"  style="left:509px; top:264px; width:85px;">Leader, Greece</div>
+    <div class="email" style="left:509px; top:279px; width:145px;">lampros.gkogkos@gr.ey.com</div>
+
+    <div class="name"  style="left:509px; top:305px; width:160px;">Gabriella Selvander Hedvall</div>
+    <div class="info"  style="left:509px; top:324px; width:168px;">EY Europe Central – Nordics Leader,</div>
+    <div class="info"  style="left:509px; top:339px; width:47px;">Sweden</div>
+    <div class="email" style="left:509px; top:354px; width:142px;">gabriella.selvanderhedvall@se.ey.com</div>
+
+    <div class="name"  style="left:509px; top:381px; width:105px;">Martine Neary</div>
+    <div class="info"  style="left:509px; top:400px; width:152px;">EY UKI Insurance Leader, UK</div>
+    <div class="email" style="left:509px; top:415px; width:95px;">mneary@uk.ey.com</div>
+
+    <div class="name"  style="left:509px; top:441px; width:70px;">Jaco Louw</div>
+    <div class="info"  style="left:509px; top:460px; width:184px;">EY Africa and India Insurance Leader,</div>
+    <div class="info"  style="left:509px; top:475px; width:75px;">South Africa</div>
+    <div class="email" style="left:509px; top:490px; width:112px;">jaco.louw@za.ey.com</div>
+
+    <div class="name"  style="left:509px; top:516px; width:138px;">Jonathan Matchett</div>
+    <div class="info"  style="left:509px; top:535px; width:185px;">EY MENA Insurance Leader, South</div>
+    <div class="info"  style="left:509px; top:550px; width:34px;">Africa</div>
+    <div class="email" style="left:509px; top:565px; width:155px;">jonathan.matchett@sa.ey.com</div>
+
+    <!-- Column 3 -->
+    <div class="name"  style="left:728px; top:230px; width:94px;">Philippe Brain</div>
+    <div class="info"  style="left:728px; top:249px; width:90px;">Head Insurance and NBFI</div>
+    <div class="info"  style="left:728px; top:264px; width:86px;">Regulatory Affairs</div>
+    <div class="email" style="left:728px; top:279px; width:88px;">pbrain@iif.com</div>
+
+    <div class="name"  style="left:728px; top:311px; width:80px;">Melanie Idler</div>
+    <div class="info"  style="left:728px; top:330px; width:90px;">Associate Policy Advisor</div>
+    <div class="email" style="left:728px; top:345px; width:70px;">midler@iif.com</div>
+
+    <div class="contrib-box"></div>
+    <div class="contrib-head">A special thank you to these contributors:</div>
+    <div class="contrib-list">
+      Raskia Karnik<br>
+      Patricia Davies<br>
+      Krista Vivian<br>
+      Cassidy Zimmerman<br>
+      Ella Abbott<br>
+      Edmond Nana Jimnang<br>
+      Benjamin Alter<br>
+      Chloe Ostroff<br>
+      Andre Kohler<br>
+      Kristin Bekkeseth<br>
+      Marcelo Lustosa
+    </div>
+
+    <!-- Decorative fiber-optic tree -->
+    <div class="tree-wrap">
+      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="glowBlue" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#62e2ff" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#62e2ff" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="glowPurple" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#b27cff" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#b27cff" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="glowPink" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ff8cc8" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#ff8cc8" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="glowYellow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff6c4" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#fff6c4" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="blur6"><feGaussianBlur stdDeviation="6"/></filter>
+          <filter id="blur2"><feGaussianBlur stdDeviation="2.2"/></filter>
+          <linearGradient id="floorGlow" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(51,89,164,0)"/>
+            <stop offset="25%" stop-color="#1d2b57"/>
+            <stop offset="50%" stop-color="#21376d"/>
+            <stop offset="75%" stop-color="#5d1f34"/>
+            <stop offset="100%" stop-color="rgba(83,20,20,0)"/>
+          </linearGradient>
+        </defs>
+
+        <ellipse cx="288" cy="468" rx="146" ry="18" fill="#121622" opacity="0.85"/>
+        <ellipse cx="305" cy="470" rx="132" ry="12" fill="url(#floorGlow)" opacity="0.7"/>
+
+        <!-- trunk glow -->
+        <path d="M286 468 C290 440, 294 410, 295 381 C296 349, 290 318, 280 286"
+              stroke="#e0c9b2" stroke-width="18" fill="none" opacity="0.14" filter="url(#blur6)"/>
+        <path d="M297 468 C301 435, 307 403, 312 371 C317 342, 319 315, 316 288"
+              stroke="#ff9966" stroke-width="12" fill="none" opacity="0.16" filter="url(#blur6)"/>
+
+        <!-- trunk -->
+        <path d="M279 468 C282 441, 286 413, 288 384 C289 353, 286 322, 279 291"
+              stroke="#4d2b1f" stroke-width="6" fill="none" opacity="0.95"/>
+        <path d="M286 468 C290 440, 294 410, 295 381 C296 349, 290 318, 280 286"
+              stroke="#6a402b" stroke-width="8" fill="none" opacity="0.95"/>
+        <path d="M294 468 C299 436, 305 406, 309 376 C313 345, 314 316, 309 288"
+              stroke="#7a4630" stroke-width="8" fill="none" opacity="0.95"/>
+        <path d="M303 468 C308 435, 316 402, 322 369 C328 340, 331 311, 329 284"
+              stroke="#8b4f33" stroke-width="7" fill="none" opacity="0.95"/>
+        <path d="M272 468 C272 436, 268 405, 260 372 C252 340, 244 311, 234 285"
+              stroke="#3b231b" stroke-width="5" fill="none" opacity="0.9"/>
+
+        <!-- fiber branches -->
+        <g opacity="0.42">
+          <path d="M292 281 C240 200, 178 155, 110 130" stroke="#33d5ff" stroke-width="1.8" fill="none"/>
+          <path d="M292 281 C248 196, 197 145, 132 118" stroke="#60e8ff" stroke-width="1.4" fill="none"/>
+          <path d="M292 281 C258 192, 220 138, 162 102" stroke="#8fdcff" stroke-width="1.2" fill="none"/>
+          <path d="M292 281 C264 188, 243 134, 190 92" stroke="#67c8ff" stroke-width="1.2" fill="none"/>
+          <path d="M292 281 C275 185, 271 128, 232 82" stroke="#9d8fff" stroke-width="1.2" fill="none"/>
+          <path d="M292 281 C288 185, 297 133, 278 76" stroke="#bf8cff" stroke-width="1.2" fill="none"/>
+          <path d="M292 281 C302 185, 322 138, 322 77" stroke="#cba7ff" stroke-width="1.2" fill="none"/>
+          <path d="M292 281 C313 190, 350 136, 368 86" stroke="#d8a3ff" stroke-width="1.2" fill="none"/>
+          <path d="M292 281 C323 195, 379 145, 408 102" stroke="#ff98d7" stroke-width="1.3" fill="none"/>
+          <path d="M292 281 C333 205, 412 164, 442 126" stroke="#ff7ec8" stroke-width="1.4" fill="none"/>
+          <path d="M292 281 C344 214, 432 182, 462 157" stroke="#ff9b85" stroke-width="1.8" fill="none"/>
+          <path d="M292 281 C236 218, 156 194, 95 170" stroke="#2fe5cf" stroke-width="1.3" fill="none"/>
+          <path d="M292 281 C227 226, 146 216, 86 215" stroke="#45d9ff" stroke-width="1.2" fill="none"/>
+          <path d="M292 281 C224 241, 154 244, 96 263" stroke="#29b5ff" stroke-width="1.1" fill="none"/>
+          <path d="M292 281 C230 259, 177 276, 125 312" stroke="#31c491" stroke-width="1.1" fill="none"/>
+          <path d="M292 281 C242 269, 203 296, 160 340" stroke="#1fcd8f" stroke-width="1.1" fill="none"/>
+          <path d="M292 281 C328 224, 390 214, 448 225" stroke="#ff8cc8" stroke-width="1.1" fill="none"/>
+          <path d="M292 281 C340 238, 407 239, 476 257" stroke="#ff6c6c" stroke-width="1.2" fill="none"/>
+        </g>
+
+        <g opacity="0.24">
+          <path d="M292 281 C236 198, 158 142, 92 119" stroke="#80e7ff" stroke-width="4" fill="none" filter="url(#blur2)"/>
+          <path d="M292 281 C260 188, 220 140, 155 96" stroke="#77bfff" stroke-width="3.6" fill="none" filter="url(#blur2)"/>
+          <path d="M292 281 C285 184, 289 131, 266 74" stroke="#b78dff" stroke-width="3.6" fill="none" filter="url(#blur2)"/>
+          <path d="M292 281 C321 190, 373 139, 410 96" stroke="#e1a2ff" stroke-width="3.6" fill="none" filter="url(#blur2)"/>
+          <path d="M292 281 C345 213, 423 176, 468 150" stroke="#ff8ea2" stroke-width="4" fill="none" filter="url(#blur2)"/>
+          <path d="M292 281 C228 225, 145 212, 83 212" stroke="#36d7ff" stroke-width="3.2" fill="none" filter="url(#blur2)"/>
+          <path d="M292 281 C233 257, 183 274, 131 308" stroke="#2dcf93" stroke-width="3.2" fill="none" filter="url(#blur2)"/>
+          <path d="M292 281 C341 236, 407 236, 476 255" stroke="#ff6868" stroke-width="3.2" fill="none" filter="url(#blur2)"/>
+        </g>
+
+        <!-- light points -->
+        <g>
+          <circle cx="96" cy="120" r="4.5" fill="#62e2ff" opacity="0.55"/>
+          <circle cx="118" cy="138" r="3.6" fill="#62e2ff" opacity="0.72"/>
+          <circle cx="140" cy="128" r="4.2" fill="#62e2ff" opacity="0.64"/>
+          <circle cx="170" cy="109" r="3.8" fill="#9bc8ff" opacity="0.66"/>
+          <circle cx="196" cy="95" r="4.2" fill="#7ac3ff" opacity="0.7"/>
+          <circle cx="228" cy="82" r="5.1" fill="#a396ff" opacity="0.7"/>
+          <circle cx="275" cy="75" r="3.8" fill="#c287ff" opacity="0.72"/>
+          <circle cx="322" cy="74" r="3.7" fill="#d8a3ff" opacity="0.64"/>
+          <circle cx="366" cy="88" r="4.5" fill="#d09cff" opacity="0.66"/>
+          <circle cx="406" cy="104" r="4.8" fill="#f0a6ff" opacity="0.62"/>
+          <circle cx="441" cy="126" r="5.2" fill="#ff91c8" opacity="0.74"/>
+          <circle cx="466" cy="157" r="4.8" fill="#ff8c86" opacity="0.78"/>
+          <circle cx="82" cy="170" r="4.5" fill="#3de0d0" opacity="0.64"/>
+          <circle cx="88" cy="214" r="5.6" fill="#3ec8ff" opacity="0.78"/>
+          <circle cx="95" cy="264" r="4.9" fill="#3ca9ff" opacity="0.72"/>
+          <circle cx="124" cy="309" r="5.4" fill="#2fd694" opacity="0.68"/>
+          <circle cx="160" cy="339" r="4.7" fill="#26c887" opacity="0.64"/>
+          <circle cx="448" cy="224" r="4.8" fill="#ff9cc8" opacity="0.62"/>
+          <circle cx="476" cy="256" r="5.4" fill="#ff6868" opacity="0.66"/>
+
+          <circle cx="122" cy="154" r="9" fill="url(#glowBlue)" opacity="0.55"/>
+          <circle cx="176" cy="118" r="11" fill="url(#glowBlue)" opacity="0.38"/>
+          <circle cx="235" cy="91" r="12" fill="url(#glowPurple)" opacity="0.34"/>
+          <circle cx="322" cy="86" r="12" fill="url(#glowPurple)" opacity="0.28"/>
+          <circle cx="392" cy="104" r="14" fill="url(#glowPink)" opacity="0.32"/>
+          <circle cx="451" cy="132" r="12" fill="url(#glowPink)" opacity="0.35"/>
+          <circle cx="98" cy="212" r="12" fill="url(#glowBlue)" opacity="0.34"/>
+          <circle cx="132" cy="312" r="16" fill="url(#glowBlue)" opacity="0.3"/>
+          <circle cx="160" cy="340" r="15" fill="url(#glowBlue)" opacity="0.25"/>
+          <circle cx="470" cy="256" r="16" fill="url(#glowPink)" opacity="0.25"/>
+        </g>
+
+        <!-- canopy sparkles -->
+        <g opacity="0.95">
+          <circle cx="160" cy="150" r="2" fill="#5ce8ff"/>
+          <circle cx="172" cy="145" r="1.8" fill="#79ebff"/>
+          <circle cx="184" cy="138" r="1.6" fill="#87d7ff"/>
+          <circle cx="196" cy="131" r="1.5" fill="#91c8ff"/>
+          <circle cx="208" cy="126" r="1.7" fill="#8cc2ff"/>
+          <circle cx="220" cy="120" r="1.8" fill="#9db6ff"/>
+          <circle cx="232" cy="114" r="1.5" fill="#b3adff"/>
+          <circle cx="244" cy="108" r="1.6" fill="#c6a1ff"/>
+          <circle cx="256" cy="104" r="1.7" fill="#cb9cff"/>
+          <circle cx="268" cy="101" r="1.5" fill="#d09cff"/>
+          <circle cx="280" cy="98" r="1.7" fill="#d998ff"/>
+          <

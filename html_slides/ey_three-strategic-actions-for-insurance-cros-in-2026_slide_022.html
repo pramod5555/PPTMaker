@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Chapter 4 Divider</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #070014;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      radial-gradient(980px 620px at 80% 12%, rgba(126,49,204,0.30), rgba(126,49,204,0) 65%),
+      radial-gradient(700px 380px at 72% 88%, rgba(47,76,255,0.18), rgba(47,76,255,0) 70%),
+      radial-gradient(520px 260px at 67% 28%, rgba(103,38,185,0.14), rgba(103,38,185,0) 72%),
+      linear-gradient(90deg, #010106 0%, #070016 38%, #180038 63%, #260048 100%);
+  }
+  .slide > div, .slide > svg {
+    position: absolute;
+  }
+
+  .left-dark {
+    left: 0;
+    top: 0;
+    width: 756px;
+    height: 720px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(2,0,8,0.76) 55%, rgba(6,0,18,0.24) 100%);
+    z-index: 5;
+  }
+
+  .split-dark {
+    left: 0;
+    top: 0;
+    width: 756px;
+    height: 720px;
+    background: rgba(0,0,0,0.10);
+    z-index: 6;
+  }
+
+  .big-four {
+    left: -63px;
+    top: 183px;
+    width: 488px;
+    height: 555px;
+    z-index: 12;
+  }
+
+  .chapter {
+    left: 212px;
+    top: 136px;
+    color: #f2f2f2;
+    font-size: 21px;
+    line-height: 24px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    z-index: 35;
+  }
+
+  .headline {
+    left: 428px;
+    top: 202px;
+    width: 370px;
+    color: #f1f1f1;
+    z-index: 35;
+  }
+  .headline .bold {
+    display: block;
+    font-size: 32px;
+    line-height: 38px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .headline .light {
+    display: block;
+    font-size: 28px;
+    line-height: 39px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+  }
+
+  .accent-line {
+    left: 427px;
+    top: 372px;
+    width: 255px;
+    height: 3px;
+    background: linear-gradient(90deg, #f2e300 0%, #f2e300 51%, #ff31f4 74%, #14d8ff 100%);
+    z-index: 36;
+  }
+
+  .body {
+    left: 424px;
+    top: 412px;
+    width: 318px;
+    color: rgba(245,245,245,0.92);
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    z-index: 35;
+  }
+
+  .page {
+    left: 50px;
+    bottom: 8px;
+    color: rgba(255,255,255,0.08);
+    font-size: 10px;
+    line-height: 10px;
+    font-weight: 400;
+    z-index: 40;
+  }
+
+  .jump {
+    left: 1226px;
+    top: 59px;
+    width: 46px;
+    height: 48px;
+    z-index: 55;
+  }
+  .jump-circle {
+    position: absolute;
+    left: 1px;
+    top: 2px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,0.75);
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+  .jump-tail {
+    position: absolute;
+    left: 24px;
+    top: 27px;
+    width: 10px;
+    height: 10px;
+    border-right: 1px solid rgba(255,255,255,0.75);
+    border-bottom: 1px solid rgba(255,255,255,0.75);
+    border-radius: 0 0 10px 0;
+    transform: rotate(8deg);
+  }
+  .jump-dot {
+    position: absolute;
+    left: 29px;
+    top: 0;
+    width: 8px;
+    height: 8px;
+    background: #f2e300;
+    border-radius: 50%;
+  }
+  .jump-text {
+    position: absolute;
+    left: 7px;
+    top: 10px;
+    width: 22px;
+    color: #ffffff;
+    font-size: 8px;
+    line-height: 8px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .fiber {
+    left: 357px;
+    top: 151px;
+    width: 975px;
+    height: 530px;
+    z-index: 18;
+    opacity: 0.99;
+  }
+
+  .base-glow {
+    left: 840px;
+    top: 620px;
+    width: 214px;
+    height: 72px;
+    background: radial-gradient(ellipse at center, rgba(103,233,255,0.92) 0%, rgba(69,142,255,0.48) 35%, rgba(20,20,60,0) 79%);
+    filter: blur(8px);
+    z-index: 14;
+  }
+
+  .floor-shadow {
+    left: 706px;
+    top: 644px;
+    width: 440px;
+    height: 52px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.44) 0%, rgba(0,0,0,0.20) 55%, rgba(0,0,0,0) 100%);
+    filter: blur(8px);
+    z-index: 8;
+  }
+
+  .right-vignette {
+    left: 756px;
+    top: 0;
+    width: 524px;
+    height: 720px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.06) 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="right-vignette"></div>
+  <div class="left-dark"></div>
+  <div class="split-dark"></div>
+
+  <svg class="big-four" viewBox="0 0 488 555" aria-hidden="true">
+    <path d="M304 1 L417 1 L417 374 L485 374 L485 471 L417 471 L417 591 L304 591 L304 471 L-5 471 L-5 346 L190 1 L304 1 Z M199 176 L38 374 L199 374 L199 176 Z"
+          fill="none" stroke="#f1f1f1" stroke-width="2.2" stroke-linejoin="miter" stroke-linecap="square"/>
+  </svg>
+
+  <div class="chapter">CHAPTER</div>
+
+  <div class="headline">
+    <span class="bold">Internal controls:</span>
+    <span class="light">modernizing for a</span>
+    <span class="light">tech-enabled risk</span>
+    <span class="light">environment</span>
+  </div>
+
+  <div class="accent-line"></div>
+
+  <div class="body">
+    Insurance organizations continue to<br>
+    prioritize internal controls as boards and<br>
+    regulators raise expectations for clear,<br>
+    defensible evidence of control effectiveness.
+  </div>
+
+  <div class="floor-shadow"></div>
+  <div class="base-glow"></div>
+
+  <svg class="fiber" viewBox="0 0 975 530" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="1.2"/>
+      </filter>
+      <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="2.4" result="b"/>
+        <feMerge>
+          <feMergeNode in="b"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <linearGradient id="cyanMagenta" x1="0" y1="1" x2="1" y2="0.2">
+        <stop offset="0%" stop-color="#5cecff"/>
+        <stop offset="22%" stop-color="#2c8fff"/>
+        <stop offset="55%" stop-color="#6636ff"/>
+        <stop offset="80%" stop-color="#d71fff"/>
+        <stop offset="100%" stop-color="#ffffff"/>
+      </linearGradient>
+      <linearGradient id="cyanWhite" x1="0.2" y1="1" x2="0.8" y2="0">
+        <stop offset="0%" stop-color="#68f0ff"/>
+        <stop offset="30%" stop-color="#4faeff"/>
+        <stop offset="66%" stop-color="#c72bff"/>
+        <stop offset="100%" stop-color="#ffffff"/>
+      </linearGradient>
+    </defs>
+
+    <g opacity="0.22" filter="url(#softGlow)">
+      <path d="M592 519 C560 491, 521 463, 475 440 C414 409, 349 387, 274 370 C197 353, 116 341, 24 333" stroke="#1ad8ff" stroke-width="1" fill="none"/>
+      <path d="M592 519 C552 484, 509 450, 455 422 C393 390, 320 365, 236 349 C160 335, 84 325, 6 316" stroke="#8f29ff" stroke-width="1" fill="none"/>
+      <path d="M592 519 C549 476, 505 431, 450 394 C383 349, 307 316, 217 300 C147 288, 77 281, 13 275" stroke="#f53bff" stroke-width="1" fill="none"/>
+      <path d="M592 519 C555 467, 518 413, 472 364 C417 305, 350 269, 268 250 C199 234, 131 230, 69 229" stroke="#36b7ff" stroke-width="1" fill="none"/>
+      <path d="M592 519 C572 460, 551 404, 525 351 C493 286, 448 245, 385 223 C325 202, 262 200, 194 206" stroke="#e327ff" stroke-width="1" fill="none"/>
+      <path d="M592 519 C588 452, 585 395, 586 338 C588 266, 599 211, 616 167" stroke="#66e8ff" stroke-width="1" fill="none"/>
+      <path d="M592 519 C604 453, 622 395, 649 342 C683 277, 725 228, 777 190" stroke="#ffffff" stroke-width="1" fill="none" opacity="0.65"/>
+      <path d="M592 519 C621 460, 656 410, 701 365 C758 309, 823 269, 900 236" stroke="#ff3cff" stroke-width="1" fill="none"/>
+      <path d="M592 519 C631 470, 677 428, 733 390 C802 344, 877 309, 966 278" stroke="#62edff" stroke-width="1" fill="none"/>
+    </g>
+
+    <g opacity="0.88">
+      <path d="M590 517 C551 468, 511 430, 458 398 C392 357, 316 331, 225 317 C151 306, 77 301, 9 297" stroke="url(#cyanWhite)" stroke-width="1.2" fill="none"/>
+      <path d="M590 517 C557 470, 519 425, 472 386 C411 334, 340 301, 253 286 C178 273, 107 271, 38 274" stroke="url(#cyanWhite)" stroke-width="1.2" fill="none"/>
+      <path d="M590 517 C561 463, 528 412, 487 368 C434 311, 372 275, 294 255 C223 237, 154 236, 83 240" stroke="url(#cyanWhite)" stroke-width="1.2" fill="none"/>
+      <path d="M590 517 C570 455, 548 400, 523 349 C489 280, 447 239, 392 218 C337 198, 278 197, 215 205" stroke="url(#cyanWhite)" stroke-width="1.2" fill="none"/>
+      <path d="M590 517 C584 451, 582 392, 584 338 C587 266, 595 213, 610 171" stroke="url(#cyanWhite)" stroke-width="1.2" fill="none"/>
+      <path d="M590 517 C597 454, 611 396, 633 341 C661 275, 695 224, 738 176" stroke="url(#cyanWhite)" stroke-width="1.2" fill="none"/>
+      <path d="M590 517 C610 458, 638 406, 674 359 C719 300, 773 251, 834 210" stroke="url(#cyanWhite)" stroke-width="1.2" fill="none"/>
+      <path d="M590 517 C624 464, 663 420, 711 381 C771 333, 838 293, 915 258" stroke="url(#cyanWhite)" stroke-width="1.2" fill="none"/>
+      <path d="M590 517 C641 474, 695 438, 757 408 C828 374, 901 348, 975 328" stroke="url(#cyanWhite)" stroke-width="1.2" fill="none"/>
+    </g>
+
+    <g opacity="0.92">
+      <path d="M592 518 C528 494, 469 462, 414 421 C349 372, 287 315, 245 239" stroke="#4bdfff" stroke-width="1" fill="none"/>
+      <path d="M592 518 C544 490, 494 451, 448 406 C394 353, 347 295, 316 209" stroke="#8f30ff" stroke-width="1" fill="none"/>
+      <path d="M592 518 C558 483, 525 443, 491 396 C451 341, 420 284, 401 188" stroke="#ffffff" stroke-width="0.9" fill="none" opacity="0.75"/>
+      <path d="M592 518 C576 477, 560 433, 547 387 C531 327, 523 272, 524 173" stroke="#5beaff" stroke-width="1" fill="none"/>
+      <path d="M592 518 C593 473, 598 430, 608 385 C620 326, 638 271, 663 172" stroke="#d722ff" stroke-width="1" fill="none"/>
+      <path d="M592 518 C611 475, 634 437, 665 399 C704 350, 749 305, 810 214" stroke="#ffffff" stroke-width="0.9" fill="none" opacity="0.75"/>
+      <path d="M592 518 C629 482, 670 451, 717 424 C777 389, 843 361, 924 306" stroke="#ff39ff" stroke-width="1" fill="none"/>
+      <path d="M592 518 C644 490, 697 469, 757 449 C829 426, 901 407, 975 390" stroke="#64ebff" stroke-width="1" fill="none"/>
+    </g>
+
+    <g opacity="0.95" filter="url(#softGlow)">
+      <circle cx="594" cy="517" r="2.1" fill="#d7ffff"/>
+      <circle cx="606" cy="520" r="2.1" fill="#d7ffff"/>
+      <circle cx="618" cy="520" r="2.1" fill="#d7ffff"/>
+      <circle cx="630" cy="521" r="2.1" fill="#d7ffff"/>
+      <circle cx="642" cy="520" r="2.1" fill="#d7ffff"/>
+      <circle cx="654" cy="519" r="2.1" fill="#d7ffff"/>
+      <circle cx="666" cy="518" r="2.1" fill="#d7ffff"/>
+      <circle cx="678" cy="517" r="2.1" fill="#d7ffff"/>
+    </g>
+
+    <g opacity="0.9">
+      <path d="M594 516 C566 445, 547 368, 542 283 C539 232, 540 189, 544 154" stroke="#4be9ff" stroke-width="1.4" fill="none"/>
+      <path d="M602 516 C590 450, 585 380, 587 308 C588 250, 593 205, 600 164" stroke="#56ccff" stroke-width="1.4" fill="none"/>
+      <path d="M612 516 C612 449, 617 387, 627 325 C637 265, 650 214, 667 172" stroke="#6b8dff" stroke-width="1.4" fill="none"/>
+      <path d="M624 516 C637 450, 655 390, 680 333 C705 278, 735 228, 771 184" stroke="#9a52ff" stroke-width="1.4" fill="none"/>
+      <path d="M638 516 C662 455, 692 400, 728 349 C767 294, 810 248, 861 202" stroke="#d336ff" stroke-width="1.4" fill="none"/>
+      <path d="M655 516 C688 461, 727 414, 773 372 C823 327, 878 290, 938 258" stroke="#ff57ff" stroke-width="1.4" fill="none"/>
+      <path d="M674 516 C716 469, 764 430, 819 396 C874 362, 929 337, 975 319" stroke="#ffffff" stroke-width="1.1" fill="none" opacity="0.82"/>
+    </g>
+
+    <g opacity="0.96" filter="url(#dotGlow)">
+      <circle cx="507" cy="224" r="1.2" fill="#ffffff"/>
+      <circle cx="514" cy="212" r="1.2" fill="#ffffff"/>
+      <circle cx="521" cy="205" r="1.3" fill="#ffffff"/>
+      <circle cx="529" cy="222" r="1.2" fill="#ffffff"/>
+      <circle cx="536" cy="198" r="1.2" fill="#ffffff"/>
+      <circle cx="544" cy="186" r="1.3" fill="#ffffff"/>
+      <circle cx="551" cy="201" r="1.2" fill="#ffffff"/>
+      <circle cx="559" cy="194" r="1.2" fill="#ffffff"/>
+      <circle cx="566" cy="182" r="1.2" fill="#ffffff"/>
+      <circle cx="574" cy="204" r="1.3" fill="#ffffff"/>
+      <circle cx="581" cy="194" r="1.2" fill="#ffffff"/>
+      <circle cx="589" cy="180" r="1.2" fill="#ffffff"/>
+      <circle cx="596" cy="192" r="1.2" fill="#ffffff"/>
+      <circle cx="604" cy="174" r="1.2" fill="#ffffff"/>
+      <circle cx="612" cy="188" r="1.2" fill="#ffffff"/>
+      <circle cx="619" cy="172" r="1.2" fill="#ffffff"/>
+      <circle cx="627" cy="183" r="1.2" fill="#ffffff"/>
+      <circle cx="635" cy="169" r="1.2" fill="#ffffff"/>
+      <circle cx="642" cy="181" r="1.2" fill="#ffffff"/>
+      <circle cx="650" cy="166" r="1.2" fill="#ffffff"/>
+      <circle cx="658" cy="177" r="1.2" fill="#ffffff"/>
+      <circle cx="665" cy="163" r="1.2" fill="#ffffff"/>
+      <circle cx="673" cy="174" r="1.2" fill="#ffffff"/>
+      <circle cx="681" cy="161" r="1.2" fill="#ffffff"/>
+      <circle cx="689" cy="171" r="1.2" fill="#ffffff"/>
+      <circle cx="698" cy="160" r="1.2" fill="#ffffff"/>
+      <circle cx="706" cy="170" r="1.2" fill="#ffffff"/>
+      <circle cx="715" cy="159" r="1.2" fill="#ffffff"/>
+      <circle cx="723" cy="169" r="1.2" fill="#ffffff"/>
+      <circle cx="732" cy="161" r="1.2" fill="#ffffff"/>
+      <circle cx="741" cy="171" r="1.2" fill="#ffffff"/>
+      <circle cx="750" cy="163" r="1.2" fill="#ffffff"/>
+      <circle cx="759" cy="175" r="1.2" fill="#ffffff"/>
+      <circle cx="768" cy="167" r="1.2" fill="#ffffff"/>
+      <circle cx="777" cy="180" r="1.2" fill="#ffffff"/>
+      <circle cx="786" cy="171" r="1.2" fill="#ffffff"/>
+      <circle cx="795" cy="185" r="1.2" fill="#ffffff"/>
+      <circle cx="804" cy="177" r="1.2" fill="#ffffff"/>
+      <circle cx="813" cy="189" r="1.2" fill="#ffffff"/>
+      <circle cx="822" cy="183" r="1.2" fill="#ffffff"/>
+      <circle cx="831" cy="194" r="1.2" fill="#ffffff"/>
+      <circle cx="840" cy="186" r="1.2" fill="#ffffff"/>
+      <circle cx="849" cy="200" r="1.2" fill="#ffffff"/>
+      <circle cx="858" cy="191" r="1.2" fill="#ffffff"/>
+      <circle cx="867" cy="204" r="1.2" fill="#ffffff"/>
+      <circle cx="876" cy="198" r="1.2" fill="#ffffff"/>
+      <circle cx="885" cy="211" r="1.2" fill="#ffffff"/>
+      <circle cx="894" cy="204" r="1.2" fill="#ffffff"/>
+      <circle cx="903" cy="217" r="1.2" fill="#ffffff"/>
+      <circle cx="912" cy="210" r="1.2" fill="#ffffff"/>
+      <circle cx="921" cy="221" r="1.2" fill="#ffffff"/>
+      <circle cx="930" cy="215" r="1.2" fill="#ffffff"/>
+      <circle cx="939" cy="227" r="1.2" fill="#ffffff"/>
+      <circle cx="948" cy="221" r="1.2" fill="#ffffff"/>
+      <circle cx="957" cy="232" r="1.2" fill="#ffffff"/>
+      <circle cx="966" cy="226" r="1.2" fill="#ffffff"/>
+      <circle cx="974" cy="236" r="1.2" fill="#ffffff"/>
+
+      <circle cx="530" cy="253" r="1.4" fill="#ffffff"/>
+      <circle cx="538" cy="263" r="1.3" fill="#ff58ff"/>
+      <circle cx="545" cy="246" r="1.3" fill="#6feeff"/>
+      <circle cx="553" cy="259" r="1.4" fill="#ffffff"/>
+      <circle cx="561" cy="239" r="1.3" fill="#d62dff"/>
+      <circle cx="569" cy="253" r="1.3" fill="#ffffff"/>
+      <circle cx="577" cy="236" r="1.3" fill="#64eaff"/>
+      <circle cx="585" cy="250" r="1.4" fill="#ff58ff"/>
+      <circle cx="593" cy="231" r="1.3" fill="#ffffff"/>
+      <circle cx="601" cy="244" r="1.3" fill="#6deaff"/>
+      <circle cx="609" cy="227" r="1.3" fill="#ffffff"/>
+      <circle cx="617" cy="241" r="1.4" fill="#d92bff"/>
+      <circle cx="625" cy="223" r="1.3" fill="#ffffff"/>
+      <circle cx="633" cy="236" r="1.3" fill="#63ebff"/>
+      <circle cx="641" cy="220" r="1.3" fill="#ff5dff"/>
+      <circle cx="649" cy="232" r="1.4" fill="#ffffff"/>
+      <circle cx="657" cy="216" r="1.3" fill="#63e9ff"/>
+      <circle cx="665" cy="229" r="1.3" fill="#ffffff"/>
+      <circle cx="673" cy="214" r="1.3" fill="#da2aff"/>
+      <circle cx="681" cy="226" r="1.4" fill="#ffffff"/>
+      <circle cx="689" cy="211" r="1.3" fill="#67ebff"/>
+      <circle cx="697" cy="223" r="1.3" fill="#ff5eff"/>
+      <circle cx="705" cy="208" r="1.3" fill="#ffffff"/>
+      <circle cx="713" cy="221" r="1.3" fill="#67ebff"/>
+      <circle cx="721" cy="207" r="1.3" fill="#ffffff"/>
+      <circle cx="729" cy="219" r="1.4" fill="#e435ff"/>
+      <circle cx="737" cy="206" r="1.3" fill="#ffffff"/>
+      <circle cx="745" cy="218" r="1.3" fill="#67ebff"/>
+      <circle cx="753" cy="206" r="1.3" fill="#ff5eff"/>
+      <circle cx="761" cy="218" r="1.4" fill="#ffffff"/>
+      <circle cx="769" cy="207" r="1.3" fill="#69ebff"/>
+      <circle cx="777" cy="219" r="1.3" fill="#ffffff"/>
+      <circle cx="785" cy="209" r="1.3" fill="#e935ff"/>
+      <circle cx="793" cy="221" r="1.4" fill="#ffffff"/>
+      <circle cx="801" cy="212" r="1.3" fill="#67ebff"/>
+      <circle cx="809" cy="224" r="1.3" fill="#ff63ff"/>
+      <circle cx="817" cy="216" r="1.3" fill="#ffffff"/>
+      <circle cx="825" cy="229" r="1.3" fill="#67ebff"/>
+      <circle cx="833" cy="221" r="1.3" fill="#ffffff"/>
+      <circle cx="841" cy="234" r="1.4" fill="#ef40ff"/>
+      <circle cx="849" cy="227" r="1.3" fill="#ffffff"/>
+      <circle cx="857" cy="240" r="1.3" fill="#6cecff"/>
+      <circle cx="865" cy="234" r="1.3" fill="#ff60ff"/>
+      <circle cx="873" cy="247" r="1.4" fill="#ffffff"/>
+      <circle cx="881" cy="241" r="1.3" fill="#70edff"/>
+      <circle cx="889" cy="253" r="1.3" fill="#ffffff"/>
+      <circle cx="897" cy="247" r="1.3" fill="#f445ff"/>
+      <circle cx="905" cy="259" r="1.4" fill="#ffffff"/>
+      <circle cx="913" cy="254" r="1.3" fill="#6beaff"/>
+      <circle cx="921" cy="265" r="1.3" fill="#ff62ff"/>
+      <circle cx="929" cy="260" r="1.3" fill="#ffffff"/>
+      <circle cx="937" cy="270" r="1.3" fill="#6cecff"/>
+      <circle cx="945" cy="266" r="1.3" fill="#ffffff"/>
+      <circle cx="953" cy="276" r="1.4" fill="#ff62ff"/>
+      <circle cx="961" cy="272" r="1.3" fill="#ffffff"/>
+      <circle cx="969" cy="281" r="1.3" fill="#6cecff"/>
+
+      <circle cx="478" cy="286" r="1.1" fill="#ffffff"/>
+      <circle cx="489" cy="294" r="1.2" fill="#67ebff"/>
+      <circle cx="500" cy="301" r="1.1" fill="#ffffff"/>
+      <circle cx="511" cy="309" r="1.2" fill="#ff60ff"/>
+      <circle cx="523" cy="316" r="1.1" fill="#ffffff"/>
+      <circle cx="535" cy="323" r="1.2" fill="#6cecff"/>
+      <circle cx="547" cy="329" r="1.1" fill="#ffffff"/>
+      <circle cx="560" cy="336" r="1.2" fill="#ef43ff"/>
+      <circle cx="573" cy="343" r="1.1" fill="#ffffff"/>
+      <circle cx="586" cy="349" r="1.2" fill="#66ebff"/>
+      <circle cx="600" cy="355" r="1.1" fill="#ffffff"/>
+      <circle cx="614" cy="360" r="1.2" fill="#ff5cff"/>
+      <circle cx="629" cy="365" r="1.1" fill="#ffffff"/>
+      <circle cx="644" cy="369" r="1.2" fill="#69ebff"/>
+      <circle cx="660" cy="373" r="1.1" fill="#ffffff"/>
+      <circle cx="676" cy="376" r="1.2" fill="#ff60ff"/>
+      <circle cx="693" cy="379" r="1.1" fill="#ffffff"/>
+      <circle cx="710" cy="381" r="1.2" fill="#67ebff"/>
+      <circle cx="728" cy="382" r="1.1" fill="#ffffff"/>
+      <circle cx="746" cy="383" r="1.2" fill="#f646ff"/>
+      <circle cx="765" cy="383" r="1.1" fill="#ffffff"/>
+      <circle cx="784" cy="382" r="1.2" fill="#69ebff"/>
+      <circle cx="803" cy="380" r="1.1" fill="#ffffff"/>
+      <circle cx="822" cy="377" r="1.2" fill="#ff60ff"/>
+      <circle cx="841" cy="373" r="1.1" fill="#ffffff"/>
+      <circle cx="860" cy="369" r="1.2" fill="#68ebff"/>
+      <circle cx="879" cy="363" r="1.1" fill="#ffffff"/>
+      <circle cx="898" cy="357" r="1.2" fill="#f548ff"/>
+      <circle cx="916" cy="351" r="1.1" fill="#ffffff"/>
+      <circle cx="934" cy="344" r="1.2" fill="#6cecff"/>
+      <circle cx="951" cy="337" r="1.1" fill="#ffffff"/>
+      <circle cx="968" cy="329" r="1.2" fill="#ff60ff"/>
+    </g>
+  </svg>
+
+  <div class="jump">
+    <div class="jump-circle"></div>
+    <div class="jump-tail"></div>
+    <div class="jump-dot"></div>
+    <div class="jump-text">Jump to<br>contents</div>
+  </div>
+
+  <div class="page">22</div>
+</div>
+</body>
+</html>

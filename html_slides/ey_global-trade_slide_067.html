@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Worldwide VAT, GST and Sales Tax Guide 2026</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9dc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f4;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .top-bg{
+    left:0; top:0; width:1280px; height:79px;
+    background:#f1f1f2;
+    z-index:1;
+  }
+  .top-accent{
+    left:0; top:0; width:47px; height:79px;
+    background:#c8c9d0;
+    z-index:2;
+  }
+  .top-line{
+    left:0; top:78px; width:1280px; height:1px;
+    background:#c1c4cc;
+    z-index:3;
+  }
+
+  .insights{
+    left:56px; top:50px; width:260px;
+    color:#7c7c88;
+    font-size:16px;
+    line-height:18px;
+    font-weight:400;
+    z-index:10;
+  }
+
+  .nav-btn{
+    width:36px; height:36px;
+    border-radius:50%;
+    background:#c7c7cf;
+    z-index:20;
+  }
+  .nav-left{ left:950px; top:33px; }
+  .nav-right{ left:994px; top:33px; }
+  .nav-left:before,
+  .nav-right:before{
+    content:"";
+    position:absolute;
+    top:10px;
+    width:0; height:0;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+  }
+  .nav-left:before{
+    left:12px;
+    border-right:10px solid #4f4f5d;
+  }
+  .nav-right:before{
+    left:14px;
+    border-left:10px solid #4f4f5d;
+  }
+
+  .left-panel{
+    left:0; top:79px; width:533px; height:641px;
+    background:#f5f5f6;
+    z-index:0;
+  }
+
+  .title{
+    left:58px; top:113px; width:410px;
+    color:#747482;
+    font-size:34px;
+    line-height:41px;
+    font-weight:700;
+    letter-spacing:0;
+    z-index:10;
+  }
+
+  .body{
+    color:#57575f;
+    font-size:15px;
+    line-height:20px;
+    font-weight:400;
+    z-index:10;
+  }
+  .p1{ left:56px; top:235px; width:462px; }
+  .p2{ left:56px; top:293px; width:462px; }
+  .p3{ left:56px; top:421px; width:462px; }
+  .p4{ left:56px; top:498px; width:462px; }
+
+  .linkline{
+    left:56px; top:555px; width:260px;
+    color:#5e5f67;
+    font-size:15px;
+    line-height:20px;
+    font-weight:400;
+    z-index:10;
+  }
+  .linkline .blue{ color:#0b67b1; font-weight:700; }
+  .linkline .sq{
+    display:inline-block;
+    width:8px; height:8px;
+    background:#c8c8ce;
+    margin-left:5px;
+    vertical-align:middle;
+  }
+
+  .footer{
+    left:57px; top:729px;
+    transform:translateY(-100%);
+    color:#7b7a84;
+    font-size:11px;
+    line-height:13px;
+    font-weight:400;
+    z-index:10;
+    white-space:nowrap;
+  }
+  .footer .bold{ font-weight:700; }
+  .footer .sep{ margin:0 4px; }
+
+  .right-hero{
+    left:533px; top:79px; width:747px; height:641px;
+    z-index:0;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 36% 55%, rgba(255,246,180,0.92) 0 4%, rgba(255,176,91,0.75) 5% 10%, rgba(255,120,35,0.36) 11% 16%, rgba(255,120,35,0) 18%),
+      linear-gradient(180deg, #003a70 0%, #005f9b 18%, #437096 34%, #f5b5aa 48%, #ffc175 57%, #ea7a29 66%, #102f59 83%, #021233 100%);
+  }
+  .hero-floor{
+    left:533px; top:421px; width:747px; height:299px;
+    z-index:1;
+    background:
+      linear-gradient(180deg, rgba(20,35,67,0.08) 0%, rgba(16,28,56,0.18) 18%, rgba(8,17,36,0.86) 100%);
+  }
+
+  .menu{
+    z-index:30;
+    color:#efeff2;
+    font-size:15px;
+    line-height:16px;
+    font-weight:400;
+    padding-left:7px;
+    display:flex;
+    align-items:center;
+  }
+  .m1{ left:1009px; top:120px; width:271px; height:35px; background:#32343c; border-left:2px solid #d2ca28; }
+  .m2{ left:1009px; top:170px; width:271px; height:35px; background:#3a3c44; border-left:2px solid #d2ca28; }
+  .m3{ left:1009px; top:220px; width:271px; height:36px; background:#373940; border-left:2px solid #d2ca28; }
+  .m4{ left:1009px; top:271px; width:271px; height:35px; background:#31333b; border-left:2px solid #d2ca28; }
+  .m5{ left:1009px; top:322px; width:271px; height:48px; background:#f09a78; border-left:2px solid #d2ca28; }
+  .m6{ left:1009px; top:371px; width:271px; height:35px; background:#7b7c88; border-left:2px solid #ffffff; }
+
+  .city{
+    left:533px; top:79px; width:747px; height:641px;
+    z-index:5;
+  }
+  .city svg{ display:block; }
+
+  .glow{
+    position:absolute;
+    background:rgba(255,130,0,0.72);
+    filter:blur(4px);
+    z-index:7;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="top-bg"></div>
+  <div class="top-accent"></div>
+  <div class="top-line"></div>
+
+  <div class="left-panel"></div>
+  <div class="right-hero"></div>
+  <div class="hero-floor"></div>
+
+  <div class="insights">Insights: New on ey.com</div>
+
+  <div class="nav-btn nav-left"></div>
+  <div class="nav-btn nav-right"></div>
+
+  <div class="title">Worldwide VAT, GST and<br>Sales Tax Guide 2026</div>
+
+  <div class="body p1">
+    Outlining value-added tax (VAT), goods and services tax (GST) and sales tax
+    systems in 153 jurisdictions, the 2026 edition of our annual reference book is
+    now available to download as a pdf. The content is current as of 1 January 2026.
+  </div>
+
+  <div class="body p2">
+    This Guide covers a wide range of topics related to taxes on consumption,
+    including information about the scope of the tax in each jurisdiction, who
+    is liable, rates, time of supply, recovery of input tax by taxable persons and
+    non-established businesses, invoicing, returns and payment and penalties.
+    Where applicable, chapters detail the VAT or GST provisions related to the
+    digital economy (including online platforms), e-invoicing and digital tax
+    administration measures.
+  </div>
+
+  <div class="body p3">
+    New chapters for 2026 include Cabo Verde, Cameroon and Ethiopia. Further
+    extended content includes a fully revised chapter for Bhutan (for the recent GST
+    implementation) and updates of the significant indirect tax reforms in Brazil
+    and China.
+  </div>
+
+  <div class="body p4">
+    At the back of the Guide, you will find lists of the names and codes for
+    the national currencies and the VAT, GST and Sales Tax rates for the
+    jurisdictions covered.
+  </div>
+
+  <div class="linkline">Click <span class="blue">here</span> to find out more.<span class="sq"></span></div>
+
+  <div class="footer">64 <span class="sep">|</span> <span class="bold">TradeWatch</span> Issue 1 2026</div>
+
+  <div class="city">
+    <svg width="747" height="641" viewBox="0 0 747 641" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="mir1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#123a5d"/>
+          <stop offset="32%" stop-color="#1db1d8"/>
+          <stop offset="72%" stop-color="#ffc56f"/>
+          <stop offset="100%" stop-color="#ea6200"/>
+        </linearGradient>
+        <linearGradient id="mir2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#10395c"/>
+          <stop offset="32%" stop-color="#27b1d9"/>
+          <stop offset="72%" stop-color="#ffca77"/>
+          <stop offset="100%" stop-color="#ef6500"/>
+        </linearGradient>
+        <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#fff6ab" stop-opacity="1"/>
+          <stop offset="35%" stop-color="#ffd07f" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#ff7b18" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- background skyline -->
+      <rect x="3" y="252" width="67" height="168" fill="#112745" opacity="0.95"/>
+      <rect x="12" y="258" width="3" height="162" fill="#2c5d86" opacity="0.55"/>
+      <rect x="81" y="273" width="24" height="147" fill="#1d2f50" opacity="0.72"/>
+      <rect x="313" y="287" width="50" height="133" fill="#37506f" opacity="0.68"/>
+      <rect x="340" y="298" width="20" height="122" fill="#425770" opacity="0.58"/>
+      <rect x="395" y="287" width="34" height="133" fill="#2e4465" opacity="0.72"/>
+      <rect x="429" y="299" width="11" height="121" fill="#51647e" opacity="0.54"/>
+      <rect x="611" y="307" width="24" height="113" fill="#4d5f78" opacity="0.58"/>
+      <rect x="644" y="289" width="30" height="131" fill="#233654" opacity="0.75"/>
+      <rect x="680" y="301" width="34" height="119" fill="#5d6880" opacity="0.62"/>
+
+      <!-- mirrored towers -->
+      <rect x="104" y="333" width="19" height="118" fill="url(#mir1)" opacity="0.96"/>
+      <rect x="138" y="348" width="12" height="103" fill="url(#mir1)" opacity="0.88"/>
+      <rect x="185" y="271" width="27" height="180" fill="url(#mir2)" opacity="0.96"/>
+      <rect x="229" y="312" width="16" height="139" fill="url(#mir1)" opacity="0.88"/>
+      <rect x="255" y="214" width="41" height="237" fill="url(#mir2)" opacity="0.99"/>
+      <rect x="303" y="313" width="10" height="138" fill="url(#mir1)" opacity="0.84"/>
+      <rect x="340" y="192" width="32" height="259" fill="url(#mir2)" opacity="0.99"/>
+      <rect x="383" y="341" width="12" height="110" fill="url(#mir1)" opacity="0.88"/>
+      <rect x="407" y="224" width="54" height="227" fill="url(#mir2)" opacity="0.98"/>
+      <rect x="492" y="370" width="8" height="81" fill="url(#mir1)" opacity="0.82"/>
+      <rect x="515" y="248" width="54" height="203" fill="url(#mir2)" opacity="0.98"/>
+      <rect x="593" y="324" width="14" height="127" fill="url(#mir1)" opacity="0.84"/>
+      <rect x="626" y="282" width="35" height="169" fill="url(#mir2)" opacity="0.96"/>
+
+      <!-- vertical highlights -->
+      <rect x="113" y="333" width="2" height="118" fill="#d7ffff" opacity="0.28"/>
+      <rect x="193" y="271" width="2" height="180" fill="#d7ffff" opacity="0.28"/>
+      <rect x="267" y="214" width="2" height="237" fill="#d7ffff" opacity="0.30"/>
+      <rect x="350" y="192" width="2" height="259" fill="#d7ffff" opacity="0.30"/>
+      <rect x="425" y="224" width="2" height="227" fill="#d7ffff" opacity="0.28"/>
+      <rect x="532" y="248" width="2" height="203" fill="#d7ffff" opacity="0.28"/>
+      <rect x="639" y="282" width="2" height="169" fill="#d7ffff" opacity="0.28"/>
+
+      <!-- reflections -->
+      <polygon points="104,451 123,451 120,490 106,490" fill="#ff7600" opacity="0.62"/>
+      <polygon points="138,451 150,451 148,478 140,478" fill="#ff7b00" opacity="0.46"/>
+      <polygon points="185,451 212,451 208,507 188,507" fill="#ff7c08" opacity="0.58"/>
+      <polygon points="229,451 245,451 243,494 232,494" fill="#ff7d08" opacity="0.44"/>
+      <polygon points="255,451 296,451 291,521 260,521" fill="#ff7a00" opacity="0.67"/>
+      <polygon points="303,451 313,451 311,495 304,495" fill="#ff7f0a" opacity="0.45"/>
+      <polygon points="340,451 372,451 367,537 344,537" fill="#ff7b00" opacity="0.65"/>
+      <polygon points="383,451 395,451 393,486 385,486" fill="#ff7d00" opacity="0.42"/>
+      <polygon points="407,451 461,451 456,514 413,514" fill="#ff7c00" opacity="0.61"/>
+      <polygon points="492,451 500,451 499,472 493,472" fill="#ff8200" opacity="0.42"/>
+      <polygon points="515,451 569,451 564,507 521,507" fill="#ff7900" opacity="0.64"/>
+      <polygon points="593,451 607,451 605,492 595,492" fill="#ff7e00" opacity="0.42"/>
+      <polygon points="626,451 661,451 657,496 630,496" fill="#ff7e00" opacity="0.55"/>
+
+      <!-- sun -->
+      <circle cx="271" cy="370" r="8" fill="#fff7b1" opacity="0.98"/>
+      <circle cx="271" cy="370" r="22" fill="url(#sunGlow)" opacity="0.95"/>
+
+      <!-- paving lines -->
+      <line x1="180" y1="474" x2="747" y2="474" stroke="#39486a" stroke-width="2" opacity="0.18"/>
+      <line x1="180" y1="509" x2="747" y2="509" stroke="#293552" stroke-width="2" opacity="0.18"/>
+      <line x1="180" y1="549" x2="747" y2="549" stroke="#1f2c46" stroke-width="2" opacity="0.18"/>
+
+      <line x1="0" y1="489" x2="325" y2="641" stroke="#28344f" stroke-width="2" opacity="0.36"/>
+      <line x1="41" y1="470" x2="363" y2="641" stroke="#27344f" stroke-width="2" opacity="0.31"/>
+      <line x1="125" y1="456" x2="417" y2="641" stroke="#273555" stroke-width="2" opacity="0.28"/>
+      <line x1="208" y1="451" x2="492" y2="641" stroke="#243252" stroke-width="2" opacity="0.27"/>
+      <line x1="291" y1="451" x2="573" y2="641" stroke="#243150" stroke-width="2" opacity="0.25"/>
+      <line x1="386" y1="453" x2="665" y2="641" stroke="#22304d" stroke-width="2" opacity="0.24"/>
+      <line x1="473" y1="458" x2="747" y2="626" stroke="#25314e" stroke-width="2" opacity="0.24"/>
+    </svg>
+  </div>
+
+  <div class="glow" style="left:797px; top:437px; width:40px; height:12px;"></div>
+  <div class="glow" style="left:923px; top:433px; width:96px; height:16px;"></div>
+  <div class="glow" style="left:968px; top:394px; width:56px; height:56px; border-radius:50%;"></div>
+  <div class="glow" style="left:1110px; top:436px; width:59px; height:15px;"></div>
+
+  <div class="menu m1">Contents</div>
+  <div class="menu m2">Insights</div>
+  <div class="menu m3">New on<br>ey.com</div>
+  <div class="menu m4">Tax alerts</div>
+  <div class="menu m5">Additional<br>resources</div>
+  <div class="menu m6">Contacts</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Nanotechnology slide replica</title>
+<style>
+  body{margin:0;background:#ffffff;font-family:Arial, Helvetica, "Segoe UI", sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  .slide > div, .slide > svg{position:absolute; box-sizing:border-box;}
+  .leftbar{
+    left:0; top:0; width:181px; height:720px;
+    background:#343840;
+  }
+  .purpleline{
+    left:179px; top:0; width:2px; height:720px;
+    background:#7b63c6;
+  }
+
+  .title1{
+    left:12px; top:32px; width:150px;
+    color:#f2f2f2; font-size:24px; line-height:1.02; font-weight:700;
+  }
+
+  .nav-item1{left:7px; top:141px; width:165px; height:78px;}
+  .nav-item2{left:7px; top:274px; width:165px; height:78px;}
+  .nav-item3{left:7px; top:406px; width:165px; height:78px;}
+
+  .hex{
+    position:absolute; left:0; top:0; width:79px; height:68px;
+    clip-path:polygon(24% 4%,76% 4%,100% 50%,76% 96%,24% 96%,0 50%);
+    background:linear-gradient(135deg,#d7d7d7,#9d9d9d);
+    border:3px solid #60636a;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,0.18);
+  }
+  .hex.purpleb{
+    border-color:#8a6bd1;
+    background:linear-gradient(135deg,#6a6079,#a38ce5);
+  }
+  .hex.light{
+    background:linear-gradient(135deg,#fafafa,#bdbdbd);
+    border-color:#70737a;
+  }
+  .hex svg{position:absolute; left:7px; top:8px;}
+
+  .navtext{position:absolute; left:86px; top:2px; width:74px;}
+  .nav-num{font-size:23px; line-height:1; font-weight:700; color:#8c9098;}
+  .nav-num.purple{color:#8a6bd1;}
+  .nav-lab{font-size:16px; line-height:1.02; font-weight:700; margin-top:4px;}
+  .nav-lab.dim{color:#666b73; font-weight:500;}
+  .nav-lab.purple{color:#8a6bd1; font-weight:700;}
+
+  .title-main{
+    left:220px; top:31px; width:1040px;
+    color:#212121; font-size:29px; line-height:1.14; font-weight:700;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    left:220px; top:138px; width:1000px;
+    color:#8f959d; font-size:22px; line-height:1.2; font-weight:400;
+  }
+
+  .past{
+    left:340px; top:191px;
+    color:#0c4f84; font-size:16px; line-height:1; font-weight:700;
+  }
+  .future{
+    left:907px; top:191px;
+    color:#7a63c6; font-size:16px; line-height:1; font-weight:700;
+  }
+  .year-left{
+    left:224px; top:217px; width:120px;
+    color:#0c4f84; font-size:39px; line-height:1; font-weight:700;
+    letter-spacing:-0.5px;
+  }
+  .arrowband{
+    left:340px; top:222px; width:615px; height:33px;
+    background:linear-gradient(90deg,#084e82 0%, #0b5b92 52%, #7a63c6 100%);
+    clip-path:polygon(0 0,93% 0,93% 0,100% 50%,93% 100%,0 100%);
+  }
+  .arrowtext{
+    left:442px; top:225px; width:430px;
+    color:#ffffff; font-size:17px; line-height:1.15; font-weight:700;
+    text-align:center;
+  }
+  .year-right{
+    left:956px; top:216px;
+    color:#7a63c6; font-size:39px; line-height:1; font-weight:700;
+    letter-spacing:-0.5px;
+  }
+
+  .tick{width:1px; background:#4f4f4f;}
+  .t1{left:350px; top:264px; height:26px;}
+  .t2{left:532px; top:264px; height:26px;}
+  .t3{left:716px; top:264px; height:26px;}
+  .t4{left:900px; top:264px; height:26px;}
+
+  .timelinebg{
+    left:350px; top:263px; width:609px; height:424px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.38), rgba(255,255,255,0.15)),
+      repeating-linear-gradient(90deg, rgba(188,188,188,0.18) 0px, rgba(188,188,188,0.18) 8px, rgba(255,255,255,0) 8px, rgba(255,255,255,0) 20px);
+    opacity:.72;
+  }
+  .bg-figure{
+    left:362px; top:279px; width:355px; height:402px;
+    opacity:.13;
+  }
+  .bg-figure .head{
+    position:absolute; left:67px; top:0; width:118px; height:118px; border-radius:59px;
+    background:radial-gradient(circle at 40% 35%, #f6f6f6 0%, #d4d4d4 56%, #bcbcbc 100%);
+  }
+  .bg-figure .torso{
+    position:absolute; left:28px; top:82px; width:218px; height:150px;
+    border-radius:92px 92px 54px 54px;
+    background:linear-gradient(180deg,#d9d9d9,#bebebe);
+  }
+  .bg-figure .arm1{
+    position:absolute; left:0; top:155px; width:128px; height:42px;
+    border-radius:22px; background:#c6c6c6; transform:rotate(-16deg);
+  }
+  .bg-figure .arm2{
+    position:absolute; left:170px; top:154px; width:132px; height:42px;
+    border-radius:22px; background:#c6c6c6; transform:rotate(18deg);
+  }
+  .bg-figure .body{
+    position:absolute; left:84px; top:188px; width:118px; height:184px;
+    border-radius:18px; background:#bfbfbf;
+  }
+
+  .vlabel{
+    left:222px; top:307px; width:30px; height:270px;
+    color:#777777; font-size:16px; line-height:1; font-weight:700;
+    writing-mode:vertical-rl; transform:rotate(180deg);
+  }
+
+  .coltitle{
+    font-size:23px; line-height:1.03; font-weight:700;
+    letter-spacing:-0.2px;
+  }
+  .blue{color:#0b4f84;}
+  .purple{color:#7b63c6;}
+  .colbody{
+    color:#2d2d2d; font-size:18px; line-height:1.07; font-weight:400;
+  }
+
+  .col1-title{left:272px; top:307px; width:175px;}
+  .col1-body{left:272px; top:360px; width:178px; height:348px;}
+
+  .col2-title{left:489px; top:307px; width:168px;}
+  .col2-body{left:489px; top:360px; width:170px; height:348px;}
+
+  .col3-title{left:692px; top:307px; width:150px;}
+  .col3-body{left:692px; top:360px; width:172px; height:348px;}
+
+  .col4-title{left:885px; top:307px; width:152px;}
+  .col4-body{left:885px; top:360px; width:148px; height:318px;}
+
+  .callout{
+    left:1071px; top:186px; width:293px; height:533px;
+    background:#d0d1d4;
+    padding:12px 14px;
+  }
+  .callout p{
+    margin:0;
+    color:#282828;
+    font-size:17px;
+    line-height:1.12;
+    font-weight:400;
+  }
+  .callout b{font-weight:700;}
+  .bullet{
+    position:absolute; left:12px; color:#282828; font-size:22px; line-height:1; font-weight:700;
+  }
+  .callout .p1{position:absolute; left:30px; top:13px; width:244px;}
+  .callout .p2{position:absolute; left:30px; top:259px; width:244px;}
+
+  .gearwrap{
+    left:68px; top:661px; width:82px; height:48px; opacity:.62;
+  }
+
+  .sourcebox{
+    left:220px; top:752px; width:680px;
+    color:#4e4e4e; font-size:11px; line-height:1.1; font-weight:400;
+    transform:translateY(-16px);
+  }
+
+  .footer-left{
+    left:9px; top:705px; width:25px;
+    color:#ffffff; font-size:16px; line-height:1; font-weight:400;
+  }
+
+  .logo{
+    left:1211px; top:695px; width:57px; height:22px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="leftbar"></div>
+  <div class="purpleline"></div>
+
+  <div class="title1">Technology &amp;<br>Innovation</div>
+
+  <div class="nav-item1">
+    <div class="hex">
+      <svg width="64" height="70" viewBox="0 0 64 70">
+        <rect x="3" y="20" width="58" height="20" fill="rgba(255,255,255,0.18)"/>
+        <line x1="5" y1="35" x2="59" y2="12" stroke="#efefef" stroke-width="1.2"/>
+        <line x1="10" y1="18" x2="50" y2="36" stroke="#efefef" stroke-width="1"/>
+        <line x1="18" y1="8" x2="44" y2="42" stroke="#efefef" stroke-width="1"/>
+        <rect x="11" y="9" width="6" height="6" fill="#efefef"/>
+        <rect x="22" y="16" width="6" height="6" fill="#efefef"/>
+        <rect x="34" y="11" width="6" height="6" fill="#efefef"/>
+        <rect x="44" y="23" width="6" height="6" fill="#efefef"/>
+        <rect x="27" y="28" width="6" height="6" fill="#efefef"/>
+      </svg>
+    </div>
+    <div class="navtext">
+      <div class="nav-num">1</div>
+      <div class="nav-lab dim">Value of<br>Innovation</div>
+    </div>
+  </div>
+
+  <div class="nav-item2">
+    <div class="hex purpleb">
+      <svg width="64" height="70" viewBox="0 0 64 70">
+        <circle cx="18" cy="25" r="12" fill="rgba(255,255,255,0.20)"/>
+        <circle cx="38" cy="17" r="10" fill="rgba(255,255,255,0.18)"/>
+        <circle cx="45" cy="31" r="14" fill="rgba(255,255,255,0.16)"/>
+        <circle cx="28" cy="30" r="2" fill="#ffffff"/>
+        <circle cx="18" cy="25" r="2" fill="#ffffff"/>
+        <circle cx="38" cy="17" r="2" fill="#ffffff"/>
+        <circle cx="45" cy="31" r="2" fill="#ffffff"/>
+        <line x1="18" y1="25" x2="38" y2="17" stroke="#ffffff" stroke-width="1"/>
+        <line x1="38" y1="17" x2="45" y2="31" stroke="#ffffff" stroke-width="1"/>
+        <line x1="18" y1="25" x2="45" y2="31" stroke="#ffffff" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="navtext">
+      <div class="nav-num purple">2</div>
+      <div class="nav-lab purple">Frontier<br>Technologies</div>
+    </div>
+  </div>
+
+  <div class="nav-item3">
+    <div class="hex light">
+      <svg width="64" height="70" viewBox="0 0 64 70">
+        <path d="M16 25 q6 -8 12 0 q6 8 12 0 q4 -5 8 -4" fill="none" stroke="#6f6f6f" stroke-width="4" stroke-linecap="round"/>
+        <path d="M16 25 q6 8 12 0 q6 -8 12 0 q4 5 8 4" fill="none" stroke="#8b8b8b" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="16" cy="25" r="4" fill="#d9d9d9"/>
+        <circle cx="48" cy="25" r="4" fill="#d9d9d9"/>
+      </svg>
+    </div>
+    <div class="navtext">
+      <div class="nav-num">3</div>
+      <div class="nav-lab dim">Humans &amp;<br>Machines</div>
+    </div>
+  </div>
+
+  <div class="title-main">Nanotechnology is uniquely placed to revolutionize material science and<br>innovation – By 2050, applications could affect every industry and purpose</div>
+  <div class="subtitle">Nanotechnology will evolve today's already commonplace uses to extraordinary future applications</div>
+
+  <div class="past">Past</div>
+  <div class="future">Future</div>
+  <div class="year-left">2000´s</div>
+  <div class="arrowband"></div>
+  <div class="arrowtext">Projected development of nanotechnologies</div>
+  <div class="year-right">2050+</div>
+
+  <div class="tick t1"></div>
+  <div class="tick t2"></div>
+  <div class="tick t3"></div>
+  <div class="tick t4"></div>
+
+  <div class="timelinebg"></div>
+  <div class="bg-figure">
+    <div class="head"></div>
+    <div class="torso"></div>
+    <div class="arm1"></div>
+    <div class="arm2"></div>
+    <div class="body"></div>
+  </div>
+
+  <div class="vlabel">Potential applications</div>
+
+  <div class="coltitle blue col1-title">Passive<br>nanostructures</div>
+  <div class="colbody col1-body">
+    This includes <b>nano-<br>materials, -structures or<br>-tubes</b><br><br>
+    <b>Graphene</b>, for example,<br>
+    is a form of carbon,<br>
+    <b>derived from graphite</b>,<br>
+    consisting of a single<br>
+    layer of atoms arranged<br>
+    in a two-dimensional<br>
+    honeycomb lattice<br>
+    nanostructure.<br>
+    Mechanically, it is 100x<br>
+    stronger and 6x lighter<br>
+    than steel, and displays<br>
+    many other unique<br>
+    optical and electronic<br>
+    properties
+  </div>
+
+  <div class="coltitle purple col2-title">Active<br>nanostructures</div>
+  <div class="colbody col2-body">
+    <b>Nanomaterials<br>performing</b> functions<br>
+    and tasks in materials<br>
+    or objects<br><br>
+    <b>Nanomedicine</b>, for<br>
+    example, has the<br>
+    potential to cure<br>
+    diseases such as<br>
+    cancer; <b>Nanorobots</b> are<br>
+    being developed to<br>
+    navigate in human<br>
+    blood vessels and<br>
+    destroy cancer cells, as<br>
+    artificial immune cells<br>
+    cannot be manipulated<br>
+    by cancer
+  </div>
+
+  <div class="coltitle purple col3-title">Nanosystems</div>
+  <div class="colbody col3-body">
+    <b>Self-assembly of nano-<br>factories</b> that works<br>
+    together with other<br>
+    nanoparticles and<br>
+    machines<br><br>
+    In 2018, an MIT<br>
+    engineer created a<br>
+    <b>nanomaterial</b> that can<br>
+    grow, strengthen and<br>
+    repair itself using CO&#8322;<br>
+    from the air. In the<br>
+    future, surfaces<br>
+    <b>properties</b> could be<br>
+    evolved to become <b>self-<br>healing</b> due to<br>
+    nanotechnology
+  </div>
+
+  <div class="coltitle purple col4-title">Molecular<br>nanosystems</div>
+  <div class="colbody col4-body">
+    <b>Full control of<br>nanosystems</b> able to<br>
+    create structures to<br>
+    complex, atomic<br>
+    specifications<br>
+    including<br>
+    applications for<br>
+    every industry and<br>
+    purpose<br><br>
+    <b>Molecular devices</b><br>
+    leading to<br>
+    understanding and<br>
+    control over the<br>
+    basic building blocks<br>
+    of everything
+  </div>
+
+  <div class="callout">
+    <div class="bullet" style="top:13px;">&gt;</div>
+    <p class="p1"><b>Nanotechnology</b> covers a wide range of different fields from <b>material science</b> to <b>robotics</b> and <b>nanobiotechnology</b>, but refers to areas of science and engineering where dimensions in <b>nanometer scale</b> are utilized in the design, production and application of materials for structures, devices, products and systems</p>
+    <div class="bullet" style="top:259px;">&gt;</div>
+    <p class="p2">Already <b>widely present in many consumer products and industrial applications today</b>, nanotechnology is expected to impact many more sectors in the future: For example, it could be used in the <b>health sector to monitor and treat diseases</b>; equally, it could be used in agriculture and food sectors to create more <b>sustainable, higher quality</b> products</p>
+  </div>
+
+  <div class="gearwrap">
+    <svg width="82" height="68" viewBox="0 0 82 68">
+      <g fill="none" stroke="#8e9198" stroke-width="3">
+        <circle cx="18" cy="28" r="12"/>
+        <path d="M18 8 L18 2 M6 12 L2 8 M2 25 L-4 25 M6 38 L2 42 M18 48 L18 54 M30 38 L34 42 M34 25 L40 25 M30 12 L34 8"/>
+      </g>
+      <g fill="#8e9198">
+        <circle cx="46" cy="19" r="10"/>
+        <circle cx="46" cy="19" r="4" fill="#343840"/>
+        <rect x="44" y="4" width="4" height="7"/>
+        <rect x="44" y="27" width="4" height="7"/>
+        <rect x="31" y="17" width="7" height="4"/>
+        <rect x="54" y="17" width="7" height="4"/>
+        <rect x="35" y="8" width="5" height="4" transform="rotate(-45 37.5 10)"/>
+        <rect x="52" y="25" width="5" height="4" transform="rotate(-45 54.5 27)"/>
+        <rect x="35" y="26" width="5" height="4" transform="rotate(45 37.5 28)"/>
+        <rect x="52" y="9" width="5" height="4" transform="rotate(45 54.5 11)"/>
+        <path d="M57 39 c-2 5 -9 6 -14 4 c-6 -3 -9 -9 -7 -16 c1 -5 5 -9 10 -11" fill="none" stroke="#8e9198" stroke-width="3"/>
+        <polygon points="52,16 58,13 56,20" fill="#8e9198"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="sourcebox">Sources: medium; Graphenea; Valuer; Mecs-press; European Comission; Roland Berger</div>
+  <div class="footer-left">47</div>
+
+  <div class="logo">
+    <svg width="57" height="42" viewBox="0 0 57 42">
+      <text x="0" y="10" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#555">Roland</text>
+      <text x="0" y="18" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#555">Berger</text>
+      <path d="M40 1 C48 1, 52 4, 52 11 C52 17, 48 20, 40 20 L36 20 L36 1 Z" fill="#8f939a"/>
+      <path d="M43 1 L46 1 C53 1, 56 4, 56 11 C56 17, 53 20, 46 20 L43 20 Z" fill="#c2c5ca"/>
+      <path d="M36 1 L40 1 L40 20 L36 20 Z" fill="#767b82"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

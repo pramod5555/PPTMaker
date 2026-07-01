@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Decontaminating the ecosystem</title>
+<style>
+  body {
+    margin: 0;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #e7e4db;
+    color: #3e3e3e;
+  }
+
+  .title {
+    position: absolute;
+    left: 60px;
+    top: 131px;
+    width: 300px;
+    font-size: 35px;
+    line-height: 1.12;
+    font-weight: 400;
+    color: #7b2be2;
+    letter-spacing: -0.4px;
+  }
+
+  .col-left {
+    position: absolute;
+    left: 60px;
+    top: 227px;
+    width: 334px;
+    font-size: 18px;
+    line-height: 1.36;
+    color: #404040;
+  }
+
+  .col-left p,
+  .col-mid p {
+    margin: 0 0 18px 0;
+  }
+
+  .col-mid {
+    position: absolute;
+    left: 481px;
+    top: 128px;
+    width: 351px;
+    font-size: 17px;
+    line-height: 1.42;
+    color: #404040;
+  }
+
+  .sup {
+    font-size: 10px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .photo-top {
+    position: absolute;
+    left: 935px;
+    top: 0px;
+    width: 281px;
+    height: 129px;
+    background:
+      radial-gradient(ellipse at 22% 28%, rgba(188,214,219,0.95) 0%, rgba(157,189,196,0.8) 22%, rgba(120,145,153,0.15) 42%, transparent 55%),
+      radial-gradient(ellipse at 48% 18%, rgba(193,203,207,0.95) 0%, rgba(146,161,168,0.75) 26%, rgba(120,130,138,0.12) 45%, transparent 58%),
+      radial-gradient(ellipse at 67% 57%, rgba(216,183,160,0.95) 0%, rgba(168,124,101,0.65) 18%, transparent 34%),
+      radial-gradient(ellipse at 79% 66%, rgba(206,167,140,0.95) 0%, rgba(160,115,93,0.6) 18%, transparent 35%),
+      radial-gradient(ellipse at 74% 78%, rgba(192,217,233,0.96) 0%, rgba(167,200,222,0.9) 24%, rgba(121,152,176,0.25) 46%, transparent 58%),
+      radial-gradient(ellipse at 33% 75%, rgba(218,213,196,0.85) 0%, rgba(170,167,151,0.4) 24%, transparent 40%),
+      linear-gradient(180deg, #6d7f86 0%, #8ea5ae 18%, #dfa03a 18%, #f0ae3d 36%, #d3dbd9 36%, #dbe3e0 100%);
+    overflow: hidden;
+  }
+
+  .quote {
+    position: absolute;
+    left: 943px;
+    top: 159px;
+    width: 321px;
+    color: #8b35e8;
+    font-size: 17px;
+    line-height: 1.54;
+    font-weight: 400;
+  }
+
+  .quote .author {
+    margin-top: 20px;
+    color: #151515;
+    font-size: 15px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .photo-bottom {
+    position: absolute;
+    left: 935px;
+    top: 422px;
+    width: 281px;
+    height: 278px;
+    background:
+      radial-gradient(circle at 24% 57%, rgba(255,88,20,0.95) 0%, rgba(239,72,13,0.95) 11%, rgba(232,97,6,0.55) 17%, transparent 19%),
+      radial-gradient(circle at 31% 63%, rgba(255,97,24,0.9) 0%, rgba(244,92,19,0.8) 10%, transparent 16%),
+      radial-gradient(circle at 63% 69%, rgba(255,102,25,0.88) 0%, rgba(242,82,22,0.72) 10%, transparent 17%),
+      radial-gradient(circle at 90% 68%, rgba(240,207,19,0.95) 0%, rgba(232,193,15,0.88) 10%, transparent 17%),
+      radial-gradient(ellipse at 58% 28%, rgba(225,183,109,0.95) 0%, rgba(214,167,92,0.78) 16%, transparent 28%),
+      radial-gradient(ellipse at 74% 24%, rgba(232,204,136,0.95) 0%, rgba(219,182,106,0.78) 16%, transparent 28%),
+      linear-gradient(180deg, #cf7b18 0%, #e29a2b 7%, #d6841e 9%, #b6782a 10%, #d3d1c6 14%, #d8dbd8 24%, #c6cbca 25%, #eff2ef 25%, #f1f1ec 100%);
+    overflow: hidden;
+  }
+
+  .photo-bottom:before {
+    content: "";
+    position: absolute;
+    left: 150px;
+    top: 0px;
+    width: 48px;
+    height: 210px;
+    background: linear-gradient(180deg, rgba(230,192,123,0.9), rgba(220,181,108,0.92));
+    border-radius: 24px;
+    filter: blur(1px);
+  }
+
+  .photo-bottom:after {
+    content: "";
+    position: absolute;
+    left: 194px;
+    top: 3px;
+    width: 50px;
+    height: 205px;
+    background: linear-gradient(180deg, rgba(234,205,140,0.88), rgba(221,185,116,0.92));
+    border-radius: 24px;
+    filter: blur(1px);
+  }
+
+  .shoe-left {
+    position: absolute;
+    left: 15px;
+    top: 126px;
+    width: 95px;
+    height: 54px;
+    border-radius: 40px 18px 24px 16px;
+    background: rgba(244,76,17,0.3);
+    transform: rotate(15deg);
+    filter: blur(1px);
+  }
+
+  .shoe-left:before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: -6px;
+    width: 53px;
+    height: 17px;
+    border: 4px solid rgba(242,76,15,0.82);
+    border-bottom: none;
+    border-radius: 30px 30px 0 0;
+    transform: rotate(-9deg);
+  }
+
+  .shoe-mid {
+    position: absolute;
+    left: 112px;
+    top: 185px;
+    width: 88px;
+    height: 54px;
+    border-radius: 20px 18px 28px 18px;
+    background: rgba(248,88,20,0.34);
+    filter: blur(1px);
+  }
+
+  .shoe-right {
+    position: absolute;
+    left: 240px;
+    top: 187px;
+    width: 72px;
+    height: 46px;
+    border-radius: 20px 18px 28px 18px;
+    background: rgba(239,212,24,0.42);
+    filter: blur(1px);
+  }
+
+  .vertical-tab {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 44px;
+    height: 153px;
+    background: #ede8df;
+  }
+
+  .vertical-tab span {
+    position: absolute;
+    left: 17px;
+    top: 36px;
+    color: #7b2be2;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    transform: rotate(90deg);
+    transform-origin: left top;
+  }
+
+  .vertical-nav {
+    position: absolute;
+    right: 7px;
+    top: 157px;
+    height: 476px;
+    color: #6f6f6f;
+    font-size: 11px;
+    line-height: 1;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.2px;
+  }
+
+  .footer {
+    position: absolute;
+    left: 1153px;
+    top: 731px;
+  }
+
+  .brand {
+    position: absolute;
+    right: 38px;
+    bottom: 16px;
+    font-size: 13px;
+    color: #7c7c7c;
+  }
+
+  .brand .year {
+    color: #7b2be2;
+  }
+
+  .page {
+    position: absolute;
+    right: 12px;
+    bottom: 16px;
+    font-size: 12px;
+    color: #6f6f6f;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title">Decontaminating<br>the ecosystem</div>
+
+    <div class="col-left">
+      <p>Design and marketing now face a huge challenge: How do they maintain a strong digital relationship with customers when the channels they use are becoming contaminated by slop? Communicating authenticity will mean revisiting or even redesigning channel strategies from scratch.</p>
+      <p>Brands must be honest about whether their channels have been polluted and whether customers have fallen out of love with, avoid or distrust them. This presents an opportunity for a more direct relationship with customers as they seek alternatives. Those that invest in becoming the trusted brand within a category could become its default choice.</p>
+    </div>
+
+    <div class="col-mid">
+      <p>We expect to see platforms investing in technologies to mitigate scams and harm, and to fumigate the slop that is destroying the customer experience. This move might be motivated by stronger policy enforcement and investment in trust and safety functions—which has recently fallen victim to efficiency drives within big tech.<span class="sup">26</span> It will be challenging for platforms due to the ease and low cost of AI-generated content, but prioritizing quality over quantity is necessary to maintain the internet as a valuable and authentic resource for everyone. Balancing profitability with authenticity is difficult but crucial.</p>
+    </div>
+
+    <div class="photo-top"></div>
+
+    <div class="quote">
+      “In the end, the customer is going to find out whether the product is real or fake. And if it’s fake, then you’ve lost the customer forever. The whole point of business is to build that trust with their consumers.”
+      <div class="author">Azure’de, 38, US</div>
+    </div>
+
+    <div class="photo-bottom">
+      <div class="shoe-left"></div>
+      <div class="shoe-mid"></div>
+      <div class="shoe-right"></div>
+    </div>
+
+    <div class="vertical-tab"><span>Cost of hesitations</span></div>
+    <div class="vertical-nav">The parent trap &nbsp;&nbsp;/&nbsp;&nbsp; Impatience economy &nbsp;&nbsp;/&nbsp;&nbsp; The dignity of work &nbsp;&nbsp;/&nbsp;&nbsp; Social rewilding</div>
+
+    <div class="brand">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="page">16</div>
+  </div>
+</body>
+</html>

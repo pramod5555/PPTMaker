@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Risk Management Organization and Operating Model</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dcdcdc;
+    margin:0 auto;
+  }
+  .frame{
+    position:absolute;
+    left:30px;
+    top:30px;
+    width:1303px;
+    height:706px;
+    overflow:hidden;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.66) 0%, rgba(0,0,0,0.34) 26%, rgba(0,0,0,0.10) 49%, rgba(0,0,0,0.30) 73%, rgba(0,0,0,0.58) 100%),
+      radial-gradient(circle at 60% 33%, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.22) 16%, rgba(255,255,255,0.02) 34%, rgba(0,0,0,0) 48%),
+      linear-gradient(180deg, #1a1815 0%, #292720 34%, #4c4438 70%, #312b25 100%);
+    z-index:0;
+  }
+
+  .left-window{
+    position:absolute;
+    left:31px;
+    top:31px;
+    width:337px;
+    height:694px;
+    background:
+      repeating-linear-gradient(90deg,
+        rgba(6,10,15,0.92) 0px, rgba(6,10,15,0.92) 21px,
+        rgba(96,105,113,0.34) 21px, rgba(96,105,113,0.34) 23px,
+        rgba(15,18,22,0.94) 23px, rgba(15,18,22,0.94) 59px,
+        rgba(91,97,103,0.30) 59px, rgba(91,97,103,0.30) 61px,
+        rgba(13,16,20,0.96) 61px, rgba(13,16,20,0.96) 93px),
+      linear-gradient(180deg, rgba(60,60,60,0.18), rgba(10,10,10,0.26));
+    z-index:1;
+  }
+  .left-window:before{
+    content:"";
+    position:absolute;
+    left:12px;
+    top:112px;
+    width:277px;
+    height:483px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.04) 60%, rgba(255,255,255,0.14)),
+      linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+    opacity:.55;
+  }
+  .left-window:after{
+    content:"";
+    position:absolute;
+    left:219px;
+    top:203px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,200,70,.98) 0%, rgba(255,200,70,.42) 28%, rgba(255,200,70,0) 66%);
+    box-shadow:0 0 23px rgba(255,190,70,.5);
+  }
+
+  .right-wall{
+    position:absolute;
+    left:1054px;
+    top:31px;
+    width:279px;
+    height:694px;
+    background:
+      linear-gradient(90deg, rgba(30,25,18,.58) 0%, rgba(112,98,70,.22) 42%, rgba(44,40,33,.62) 100%);
+    z-index:1;
+  }
+
+  .whiteboard{
+    position:absolute;
+    left:680px;
+    top:109px;
+    width:470px;
+    height:281px;
+    background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(244,244,244,.88));
+    box-shadow:0 0 3px rgba(0,0,0,.10);
+    z-index:2;
+    opacity:.9;
+  }
+  .wb-mark{
+    position:absolute;
+    color:rgba(70,70,70,.42);
+    font-size:14px;
+    font-weight:500;
+    line-height:1.1;
+    z-index:3;
+  }
+
+  .plant-stem{
+    position:absolute;
+    width:3px;
+    background:#4f5f27;
+    transform-origin:bottom center;
+    z-index:3;
+  }
+  .leaf{
+    position:absolute;
+    background:linear-gradient(135deg, #8daa25 0%, #5b751b 60%, #334715 100%);
+    border-radius:70% 10% 60% 10% / 70% 10% 60% 10%;
+    z-index:3;
+  }
+
+  .table{
+    position:absolute;
+    left:31px;
+    top:542px;
+    width:1302px;
+    height:194px;
+    background:
+      linear-gradient(180deg, rgba(90,56,21,0.14), rgba(80,42,13,0.06)),
+      linear-gradient(8deg, #5d3b18 0%, #7a5126 22%, #8f6432 38%, #74481d 60%, #8b5b29 78%, #6a3e17 100%);
+    z-index:4;
+  }
+  .table:before{
+    content:"";
+    position:absolute;
+    left:-2px;
+    top:-54px;
+    width:968px;
+    height:97px;
+    background:
+      linear-gradient(8deg, #5a3514 0%, #82572a 30%, #9a6c38 55%, #724519 80%, #5d3412 100%);
+    transform:skewX(-23deg);
+    transform-origin:left bottom;
+    opacity:.95;
+  }
+  .table:after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:1302px;
+    height:194px;
+    background:
+      repeating-linear-gradient(7deg,
+      rgba(58,33,10,.25) 0px, rgba(58,33,10,.25) 3px,
+      rgba(194,145,86,.1) 3px, rgba(194,145,86,.1) 48px,
+      rgba(70,44,21,.18) 48px, rgba(70,44,21,.18) 51px);
+    mix-blend-mode:multiply;
+    opacity:.45;
+  }
+
+  .shadow-head{
+    position:absolute;
+    border-radius:50%;
+    background:radial-gradient(circle at 40% 35%, rgba(245,245,245,.96), rgba(110,110,110,.76) 40%, rgba(20,20,20,.92) 74%, rgba(0,0,0,.98) 100%);
+    filter:blur(1px);
+    z-index:6;
+  }
+  .shadow-body{
+    position:absolute;
+    border-radius:44% 44% 30% 30%;
+    background:linear-gradient(180deg, rgba(15,15,15,.88), rgba(0,0,0,.96));
+    z-index:5;
+    filter:blur(0.5px);
+  }
+  .light-hair{
+    position:absolute;
+    border-radius:50%;
+    background:radial-gradient(circle at 48% 42%, rgba(240,240,240,.98), rgba(210,210,210,.96) 36%, rgba(120,120,120,.84) 68%, rgba(30,30,30,.88) 100%);
+    z-index:6;
+  }
+
+  .laptop{
+    position:absolute;
+    z-index:8;
+  }
+  .screen{
+    position:absolute;
+    background:linear-gradient(180deg, #222 0%, #0d0d0d 100%);
+    border-radius:2px;
+    box-shadow:0 1px 3px rgba(0,0,0,.3);
+  }
+  .base{
+    position:absolute;
+    background:linear-gradient(180deg, #999 0%, #6d6d6d 50%, #404040 100%);
+    clip-path:polygon(6% 0, 94% 0, 100% 100%, 0 100%);
+  }
+  .glass{
+    position:absolute;
+    border-radius:3px;
+    background:linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.18) 35%, rgba(255,255,255,.08) 100%);
+    box-shadow:0 2px 4px rgba(0,0,0,.18);
+    z-index:8;
+  }
+  .tablet{
+    position:absolute;
+    background:#3a3a3a;
+    border-radius:4px;
+    box-shadow:0 1px 2px rgba(0,0,0,.35);
+    z-index:8;
+  }
+  .notebook{
+    position:absolute;
+    background:linear-gradient(180deg, #d11a7b 0%, #bf0c72 60%, #9b085a 100%);
+    box-shadow:0 2px 5px rgba(0,0,0,.25);
+    z-index:8;
+  }
+
+  .person-left1-head{
+    position:absolute;
+    left:72px;
+    top:351px;
+    width:58px;
+    height:67px;
+    border-radius:50%;
+    background:radial-gradient(circle at 58% 38%, #3a2418 0%, #291912 48%, #1f1410 100%);
+    z-index:7;
+  }
+  .person-left1-hair{
+    position:absolute;
+    left:49px;
+    top:320px;
+    width:112px;
+    height:213px;
+    border-radius:54% 46% 52% 48% / 28% 30% 70% 72%;
+    background:linear-gradient(180deg, #1d1717 0%, #0f0d10 100%);
+    z-index:6;
+    opacity:.95;
+  }
+  .person-left1-body{
+    position:absolute;
+    left:74px;
+    top:391px;
+    width:150px;
+    height:208px;
+    border-radius:34% 34% 18% 18%;
+    background:linear-gradient(180deg, #7388a0 0%, #a9b6c7 63%, #d4dbe4 100%);
+    z-index:6;
+    opacity:.95;
+  }
+
+  .person-left2-head{
+    position:absolute;
+    left:335px;
+    top:328px;
+    width:55px;
+    height:67px;
+    border-radius:50%;
+    background:radial-gradient(circle at 58% 42%, #f0d6c5 0%, #d8b49f 56%, #c19279 100%);
+    z-index:8;
+  }
+  .person-left2-hair{
+    position:absolute;
+    left:318px;
+    top:302px;
+    width:88px;
+    height:95px;
+    border-radius:46% 54% 58% 42%;
+    background:linear-gradient(180deg, #2e292f 0%, #18151b 100%);
+    z-index:7;
+  }
+  .person-left2-body{
+    position:absolute;
+    left:319px;
+    top:369px;
+    width:165px;
+    height:184px;
+    border-radius:31% 31% 14% 14%;
+    background:linear-gradient(180deg, #7a005f 0%, #651254 50%, #2f2328 100%);
+    z-index:7;
+  }
+  .person-left2-shirt{
+    position:absolute;
+    left:351px;
+    top:372px;
+    width:44px;
+    height:61px;
+    background:#fafafa;
+    clip-path:polygon(18% 0, 82% 0, 66% 100%, 34% 100%);
+    z-index:8;
+  }
+
+  .presenter-head{
+    position:absolute;
+    left:797px;
+    top:232px;
+    width:56px;
+    height:66px;
+    border-radius:50%;
+    background:radial-gradient(circle at 56% 40%, #7f5a47 0%, #5f4133 58%, #3d2920 100%);
+    z-index:9;
+  }
+  .presenter-hair{
+    position:absolute;
+    left:812px;
+    top:224px;
+    width:37px;
+    height:23px;
+    border-radius:40% 40% 20% 20%;
+    background:#1b1b1b;
+    z-index:10;
+  }
+  .presenter-neck{
+    position:absolute;
+    left:818px;
+    top:292px;
+    width:18px;
+    height:21px;
+    background:#6d4a39;
+    z-index:8;
+  }
+  .presenter-torso{
+    position:absolute;
+    left:775px;
+    top:287px;
+    width:132px;
+    height:144px;
+    border-radius:34% 34% 20% 20%;
+    background:linear-gradient(180deg, #7f7c78 0%, #6a6764 54%, #595652 100%);
+    z-index:8;
+  }
+  .presenter-skirt{
+    position:absolute;
+    left:790px;
+    top:422px;
+    width:100px;
+    height:74px;
+    border-radius:18% 18% 8% 8%;
+    background:linear-gradient(180deg, #1e1e1f 0%, #0d0d0e 100%);
+    z-index:8;
+  }
+  .arm{
+    position:absolute;
+    background:#7f5a47;
+    border-radius:20px;
+    z-index:9;
+  }
+  .hand{
+    position:absolute;
+    z-index:10;
+  }
+  .finger{
+    position:absolute;
+    width:5px;
+    height:23px;
+    background:#7f5a47;
+    border-radius:4px;
+  }
+  .glasses{
+    position:absolute;
+    left:777px;
+    top:256px;
+    width:70px;
+    height:24px;
+    z-index:11;
+  }
+
+  .overlay-nine{
+    position:absolute;
+    left:-41px;
+    top:43px;
+    width:395px;
+    height:652px;
+    color:rgba(230,230,233,0.31);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:930px;
+    line-height:0.78;
+    font-weight:700;
+    z-index:12;
+    pointer-events:none;
+    transform:scaleX(0.93);
+  }
+
+  .chapter{
+    position:absolute;
+    left:568px;
+    top:43px;
+    width:210px;
+    font-size:18px;
+    line-height:24px;
+    color:#f0f0f0;
+    font-weight:700;
+    text-align:center;
+    z-index:40;
+  }
+  .headline{
+    position:absolute;
+    left:116px;
+    top:69px;
+    width:1100px;
+    font-size:69px;
+    line-height:0.97;
+    letter-spacing:-1.6px;
+    color:#ffe100;
+    font-weight:700;
+    text-align:center;
+    z-index:40;
+  }
+  .subhead{
+    position:absolute;
+    left:361px;
+    top:206px;
+    width:640px;
+    font-size:39px;
+    line-height:42px;
+    letter-spacing:-0.3px;
+    color:#ffe100;
+    font-weight:700;
+    text-align:left;
+    z-index:40;
+  }
+
+  .top-tab{
+    position:absolute;
+    left:1273px;
+    top:0px;
+    width:67px;
+    height:44px;
+    background:#75757b;
+    border-bottom-left-radius:13px;
+    border-bottom-right-radius:13px;
+    color:#f2f2f2;
+    font-size:9px;
+    line-height:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    text-align:center;
+    padding-top:17px;
+    box-sizing:border-box;
+    z-index:60;
+  }
+
+  .bottom-accent{
+    position:absolute;
+    left:31px;
+    top:726px;
+    width:1302px;
+    height:10px;
+    background:linear-gradient(90deg, #f7ea00 0%, #f7ea00 44%, #b31cff 71%, #49a6ff 100%);
+    z-index:50;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="frame"></div>
+    <div class="left-window"></div>
+    <div class="right-wall"></div>
+    <div class="whiteboard"></div>
+
+    <div class="wb-mark" style="left:748px; top:182px; width:63px; transform:rotate(-15deg);">○</div>
+    <div class="wb-mark" style="left:765px; top:193px; width:28px;">↗</div>
+    <div class="wb-mark" style="left:765px; top:226px; width:36px; transform:rotate(12deg);">∿</div>
+    <div class="wb-mark" style="left:918px; top:249px; width:130px; font-size:18px;">WEEKLY MEETING</div>
+    <div class="wb-mark" style="left:946px; top:274px; width:96px; font-size:11px;">SALES GOALS</div>
+    <div class="wb-mark" style="left:944px; top:291px; width:108px; font-size:11px;">MARKETING IDEAS?</div>
+
+    <div class="plant-stem" style="left:469px; top:250px; height:194px; transform:rotate(-6deg);"></div>
+    <div class="plant-stem" style="left:496px; top:243px; height:198px; transform:rotate(9deg);"></div>
+    <div class="plant-stem" style="left:523px; top:262px; height:174px; transform:rotate(-16deg);"></div>
+    <div class="plant-stem" style="left:545px; top:247px; height:194px; transform:rotate(14deg);"></div>
+    <div class="plant-stem" style="left:565px; top:277px; height:148px; transform:rotate(-9deg);"></div>
+    <div class="leaf" style="left:423px; top:243px; width:86px; height:43px; transform:rotate(-26deg);"></div>
+    <div class="leaf" style="left:469px; top:231px; width:100px; height:48px; transform:rotate(18deg);"></div>
+    <div class="leaf" style="left:520px; top:259px; width:80px; height:39px; transform:rotate(-16deg);"></div>
+    <div class="leaf" style="left:547px; top:252px; width:89px; height:43px; transform:rotate(20deg);"></div>
+    <div class="leaf" style="left:534px; top:313px; width:72px; height:34px; transform:rotate(29deg);"></div>
+    <div class="leaf" style="left:478px; top:315px; width:61px; height:29px; transform:rotate(-26deg);"></div>
+
+    <div class="person-left1-hair"></div>
+    <div class="person-left1-body"></div>
+    <div class="person-left1-head"></div>
+
+    <div class="person-left2-body"></div>
+    <div class="person-left2-shirt"></div>
+    <div class="person-left2-hair"></div>
+    <div class="person-left2-head"></div>
+
+    <div class="presenter-torso"></div>
+    <div class="presenter-skirt"></div>
+    <div class="presenter-neck"></div>
+    <div class="presenter-head"></div>
+    <div class="presenter-hair"></div>
+
+    <div class="arm" style="left:777px; top:351px; width:18px; height:62px; transform:rotate(9deg);"></div>
+    <div class="arm" style="left:858px; top:344px; width:17px; height:61px; transform:rotate(-15deg);"></div>
+
+    <div class="hand" style="left:772px; top:356px;">
+      <div class="finger" style="left:0px; top:10px; transform:rotate(-18deg);"></div>
+      <div class="finger" style="left:9px; top:2px; transform:rotate(-6deg);"></div>
+      <div class="finger" style="left:18px; top:0px; transform:rotate(6deg);"></div>
+      <div class="finger" style="left:28px; top:6px; transform:rotate(18deg);"></div>
+    </div>
+    <div class="hand" style="left:838px; top:360px;">
+      <div class="finger" style="left:0px; top:8px; transform:rotate(-22deg);"></div>
+      <div class="finger" style="left:10px; top:0px; transform:rotate(-6deg);"></div>
+      <div class="finger" style="left:20px; top:2px; transform:rotate(10deg);"></div>
+      <div class="finger" style="left:29px; top:9px; transform:rotate(24deg);"></div>
+    </div>
+
+    <svg class="glasses" viewBox="0 0 70 24" aria-hidden="true">
+      <circle cx="19" cy="12" r="10" fill="none" stroke="#1f2a38" stroke-width="2.5"></circle>
+      <circle cx="47" cy="12" r="10" fill="none" stroke="#1f2a38" stroke-width="2.5"></circle>
+      <line x1="29" y1="12" x2="37" y2="12" stroke="#1f2a38" stroke-width="2.5"></line>
+      <line x1="9" y1="9" x2="2" y2="6" stroke="#1f2a38" stroke-width="2"></line>
+      <line x1="57" y1="9" x2="68" y2="6" stroke="#1f2a38" stroke-width="2"></line>
+    </svg>
+
+    <div class="shadow-body" style="left:880px; top:423px; width:234px; height:223px; transform:rotate(19deg);"></div>
+    <div class="shadow-head" style="left:896px; top:397px; width:177px; height:177px;"></div>
+
+    <div class="shadow-body" style="left:1056px; top:371px; width:115px; height:258px; transform:rotate(-7deg);"></div>
+    <div class="light-hair" style="left:1002px; top:330px; width:137px; height:174px;"></div>
+
+    <div class="shadow-body" style="left:1115px; top:611px; width:164px; height:89px; transform:rotate(8deg);"></div>
+
+    <div class="table"></div>
+
+    <div class="laptop" style="left:318px; top:513px; width:124px; height:91px;">
+      <div class="screen" style="left:18px; top:0px; width:70px; height:63px; transform:skewY(16deg) rotate(-8deg);"></div>
+      <div class="base" style="left:0px; top:58px; width:97px; height:17px; transform:rotate(11deg);"></div>
+    </div>
+
+    <div class="laptop" style="left:867px; top:530px; width:141px; height:130px;">
+      <div class="screen" style="left:0px; top:0px; width:88px; height:72px; transform:skewY(18deg) rotate(-18deg);"></div>
+      <div class="base" style="left:19px; top:70px; width:109px; height:17px; transform:rotate(-2deg);"></div>
+    </div>
+
+    <div class="laptop" style="left:560px; top:648px; width:136px; height:89px;">
+      <div class="screen" style="left:0px; top:0px; width:88px; height:56px; transform:skewX(20deg) rotate(14deg); background:linear-gradient(180deg,#1d2340,#0b1632 45%, #0d0d18 100%);"></div>
+      <div class="base" style="left:16px; top:52px; width:104px; height:15px; transform:rotate(14deg);"></div>
+    </div>
+
+    <div class="laptop" style="left:775px; top:479px; width:80px; height:92px;">
+      <div class="screen" style="left:17px; top:0px; width:40px; height:59px;"></div>
+      <div class="base" style="left:4px; top:55px; width:66px; height:12px;"></div>
+    </div>
+
+    <div class="glass" style="left:568px; top:563px; width:21px; height:37px;"></div>
+    <div class="glass" style="left:781px; top:596px; width:21px; height:41px;"></div>
+    <div class="glass" style="left:378px; top:631px; width:23px; height:43px;"></div>
+    <div class="glass" style="left:287px; top:624px; width:16px; height:56px; opacity:.5;"></div>
+
+    <div class="tablet" style="left:690px; top:568px; width:62px; height:12px;"></div>
+    <div class="notebook" style="left:801px; top:651px; width:147px; height:14px;"></div>
+    <div class="tablet" style="left:445px; top:574px; width:23px; height:5px; background:#d9d9d9;"></div>
+
+    <div class="overlay-nine">9</div>
+
+    <div class="chapter">Chapter 9</div>
+    <div class="headline">RISK MANAGEMENT ORGANIZATION<br>AND OPERATING MODEL:</div>
+    <div class="subhead">demand-driven staffing increases</div>
+
+    <div class="top-tab">JUMP TO<br>CONTENTS</div>
+    <div class="bottom-accent"></div>
+  </div>
+</body>
+</html>

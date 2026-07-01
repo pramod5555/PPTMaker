@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Main sources</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+  }
+  .leftbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:179px;
+    height:720px;
+    background:#33373d;
+    border-right:2px solid #7a5ac6;
+    z-index:5;
+  }
+  .bg{
+    position:absolute;
+    left:181px;
+    top:0;
+    width:1099px;
+    height:720px;
+    background:
+      radial-gradient(circle at 80% 14%, rgba(255,255,255,0.36) 0, rgba(255,255,255,0.12) 110px, rgba(255,255,255,0) 240px),
+      radial-gradient(circle at 76% 72%, rgba(255,255,255,0.22) 0, rgba(255,255,255,0.06) 150px, rgba(255,255,255,0) 310px),
+      linear-gradient(180deg,#ededed 0%, #e9e9e9 100%);
+  }
+  .mist{
+    position:absolute;
+    left:181px;
+    top:0;
+    width:1099px;
+    height:720px;
+    background:
+      radial-gradient(circle at 68% 20%, rgba(255,255,255,.28), rgba(255,255,255,0) 210px),
+      radial-gradient(circle at 84% 48%, rgba(255,255,255,.20), rgba(255,255,255,0) 230px),
+      radial-gradient(circle at 60% 76%, rgba(210,210,210,.22), rgba(210,210,210,0) 260px);
+    opacity:.65;
+    z-index:1;
+  }
+  .networks{
+    position:absolute;
+    left:432px;
+    top:30px;
+    width:642px;
+    height:449px;
+    opacity:.42;
+    z-index:2;
+  }
+  .title{
+    position:absolute;
+    left:221px;
+    top:28px;
+    font-size:26px;
+    line-height:30px;
+    font-weight:700;
+    color:#222326;
+    z-index:10;
+  }
+  .sub{
+    position:absolute;
+    left:221px;
+    top:138px;
+    font-size:29px;
+    line-height:34px;
+    font-weight:300;
+    color:#8e949b;
+    z-index:10;
+    white-space:nowrap;
+  }
+  .list{
+    position:absolute;
+    left:223px;
+    top:183px;
+    width:905px;
+    font-size:17px;
+    line-height:18px;
+    color:#2e3134;
+    z-index:10;
+  }
+  .item{
+    position:absolute;
+    left:0;
+    width:905px;
+  }
+  .bullet{
+    position:absolute;
+    left:0;
+    top:0;
+    width:16px;
+    font-size:18px;
+    line-height:18px;
+    color:#2e3134;
+    font-weight:400;
+  }
+  .txt{
+    position:absolute;
+    left:15px;
+    top:0;
+    width:890px;
+    font-size:17px;
+    line-height:18px;
+    color:#2e3134;
+    font-weight:400;
+  }
+  .txt b{font-weight:700;}
+  .link{
+    color:#3c3e42;
+    text-decoration:underline;
+  }
+  .right-reading{
+    position:absolute;
+    left:1164px;
+    top:184px;
+    width:145px;
+    color:#54398d;
+    z-index:20;
+  }
+  .right-reading .h1{
+    font-size:18px;
+    line-height:22px;
+    font-weight:700;
+  }
+  .right-reading .h2{
+    margin-top:8px;
+    font-size:18px;
+    line-height:24px;
+    font-weight:400;
+  }
+  .right-reading .h3{
+    margin-top:8px;
+    font-size:18px;
+    line-height:24px;
+    font-style:italic;
+    font-weight:400;
+  }
+  .book{
+    position:absolute;
+    left:1163px;
+    top:318px;
+    width:173px;
+    height:229px;
+    box-shadow:0 2px 6px rgba(0,0,0,.16);
+    overflow:hidden;
+    z-index:20;
+    background:linear-gradient(180deg,#1ad6d4 0%, #20d1cc 35%, #ff8899 58%, #d51f55 100%);
+  }
+  .book .top1{
+    position:absolute;
+    top:9px;
+    left:16px;
+    width:140px;
+    text-align:center;
+    font-size:18px;
+    line-height:18px;
+    font-weight:700;
+    color:#111;
+    z-index:3;
+  }
+  .book .top2{
+    position:absolute;
+    top:31px;
+    left:14px;
+    width:145px;
+    text-align:center;
+    font-size:10px;
+    line-height:11px;
+    font-weight:400;
+    color:#111;
+    letter-spacing:.03em;
+    z-index:3;
+  }
+  .book .horizon{
+    position:absolute;
+    left:18px;
+    top:166px;
+    width:137px;
+    font-size:8px;
+    line-height:9px;
+    color:#fff;
+    text-align:center;
+    letter-spacing:.09em;
+    z-index:3;
+  }
+  .book .horizon2{
+    position:absolute;
+    left:18px;
+    top:182px;
+    width:137px;
+    font-size:18px;
+    line-height:18px;
+    color:#fff;
+    text-align:center;
+    font-weight:800;
+    letter-spacing:.06em;
+    z-index:3;
+  }
+  .left-head{
+    position:absolute;
+    left:12px;
+    top:33px;
+    width:154px;
+    font-size:23px;
+    line-height:25px;
+    color:#f1f1f1;
+    font-weight:700;
+    z-index:10;
+  }
+  .hex{
+    position:absolute;
+    width:66px;
+    height:58px;
+    clip-path:polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0 50%);
+    border:2px solid #8c71d3;
+    box-sizing:border-box;
+    overflow:hidden;
+    z-index:10;
+  }
+  .navnum{
+    position:absolute;
+    width:20px;
+    font-size:29px;
+    line-height:29px;
+    color:#8c71d3;
+    font-weight:700;
+    z-index:10;
+  }
+  .navtxt{
+    position:absolute;
+    width:72px;
+    font-size:15px;
+    line-height:18px;
+    color:#8c71d3;
+    font-weight:700;
+    z-index:10;
+  }
+  .gearicon{
+    position:absolute;
+    left:67px;
+    top:661px;
+    width:57px;
+    height:57px;
+    opacity:.72;
+    z-index:10;
+  }
+  .footer-left{
+    position:absolute;
+    left:8px;
+    bottom:8px;
+    font-size:18px;
+    line-height:18px;
+    color:#f2f2f2;
+    z-index:20;
+  }
+  .rbtext{
+    position:absolute;
+    left:1210px;
+    top:678px;
+    width:38px;
+    font-size:8px;
+    line-height:8px;
+    color:#666;
+    text-align:right;
+    z-index:20;
+  }
+  .rbmark{
+    position:absolute;
+    left:1248px;
+    top:677px;
+    width:22px;
+    height:19px;
+    z-index:20;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="leftbar"></div>
+  <div class="bg"></div>
+  <div class="mist"></div>
+
+  <svg class="networks" viewBox="0 0 642 449" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="rgba(255,255,255,.68)" stroke-width="2">
+      <path d="M67,66 C121,143 145,32 229,89 S364,60 435,127 S546,192 603,103"/>
+      <path d="M98,28 C166,91 214,13 293,47 S435,103 506,60 S585,29 625,90"/>
+      <path d="M52,123 C136,79 178,214 271,175 S431,70 530,171 S587,260 635,239"/>
+      <path d="M30,246 C146,170 155,331 272,255 S448,149 514,226 S573,374 616,299"/>
+      <path d="M110,354 C213,272 255,427 358,331 S507,207 593,269"/>
+      <path d="M196,16 C228,124 270,163 373,111 S511,61 582,130"/>
+      <path d="M205,33 C178,159 265,228 225,322 S246,410 331,431"/>
+      <path d="M367,28 C470,93 421,216 510,273 S550,372 618,403"/>
+      <path d="M313,12 C406,52 359,205 437,243 S548,281 577,381"/>
+      <path d="M64,79 C56,184 169,175 174,281 S146,388 211,431"/>
+      <path d="M8,204 C118,226 180,112 278,135 S455,171 530,114"/>
+      <path d="M21,307 C84,241 173,271 254,226 S370,191 455,243 S570,344 641,334"/>
+    </g>
+    <g fill="rgba(255,255,255,.75)">
+      <circle cx="67" cy="66" r="4"/><circle cx="229" cy="89" r="5"/><circle cx="435" cy="127" r="5"/>
+      <circle cx="603" cy="103" r="4"/><circle cx="293" cy="47" r="4"/><circle cx="506" cy="60" r="4"/>
+      <circle cx="530" cy="171" r="4"/><circle cx="272" cy="255" r="5"/><circle cx="616" cy="299" r="5"/>
+      <circle cx="358" cy="331" r="4"/><circle cx="582" cy="130" r="4"/><circle cx="174" cy="281" r="4"/>
+      <circle cx="530" cy="114" r="4"/><circle cx="641" cy="334" r="4"/><circle cx="331" cy="431" r="4"/>
+      <circle cx="211" cy="431" r="4"/><circle cx="577" cy="381" r="4"/><circle cx="625" cy="90" r="4"/>
+    </g>
+  </svg>
+
+  <div class="left-head">Technology &amp;<br>Innovation</div>
+
+  <div class="hex" style="left:8px; top:141px;">
+    <svg viewBox="0 0 66 58" width="66" height="58" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0b4a79"/>
+          <stop offset="100%" stop-color="#66d9f0"/>
+        </linearGradient>
+      </defs>
+      <rect width="66" height="58" fill="url(#g1)"/>
+      <g stroke="rgba(255,255,255,0.55)" stroke-width="1">
+        <line x1="8" y1="18" x2="56" y2="18"/><line x1="6" y1="28" x2="59" y2="28"/>
+        <line x1="12" y1="38" x2="50" y2="38"/><line x1="18" y1="8" x2="18" y2="48"/>
+        <line x1="30" y1="12" x2="30" y2="46"/><line x1="42" y1="10" x2="42" y2="45"/>
+      </g>
+      <g fill="rgba(255,255,255,0.86)">
+        <circle cx="14" cy="17" r="2"/><circle cx="30" cy="18" r="2"/><circle cx="47" cy="18" r="2"/>
+        <circle cx="18" cy="29" r="2"/><circle cx="30" cy="29" r="2"/><circle cx="42" cy="29" r="2"/>
+        <circle cx="24" cy="39" r="2"/><circle cx="37" cy="39" r="2"/>
+      </g>
+    </svg>
+  </div>
+  <div class="navnum" style="left:93px; top:144px;">1</div>
+  <div class="navtxt" style="left:93px; top:174px;">Value of<br>Innovation</div>
+
+  <div class="hex" style="left:8px; top:274px;">
+    <svg viewBox="0 0 66 58" width="66" height="58" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#1a4f94"/>
+          <stop offset="100%" stop-color="#56c7df"/>
+        </linearGradient>
+      </defs>
+      <rect width="66" height="58" fill="url(#g2)"/>
+      <g fill="rgba(255,255,255,0.86)">
+        <circle cx="18" cy="17" r="2"/><circle cx="25" cy="22" r="1.6"/><circle cx="34" cy="18" r="1.8"/>
+        <circle cx="44" cy="25" r="2"/><circle cx="30" cy="31" r="1.8"/><circle cx="22" cy="37" r="1.7"/>
+        <circle cx="40" cy="38" r="1.7"/><circle cx="50" cy="33" r="1.7"/>
+      </g>
+      <g stroke="rgba(255,255,255,0.5)" stroke-width="1">
+        <line x1="18" y1="17" x2="25" y2="22"/><line x1="25" y1="22" x2="34" y2="18"/>
+        <line x1="34" y1="18" x2="44" y2="25"/><line x1="25" y1="22" x2="30" y2="31"/>
+        <line x1="30" y1="31" x2="22" y2="37"/><line x1="30" y1="31" x2="40" y2="38"/>
+        <line x1="40" y1="38" x2="50" y2="33"/><line x1="44" y1="25" x2="50" y2="33"/>
+      </g>
+    </svg>
+  </div>
+  <div class="navnum" style="left:93px; top:277px;">2</div>
+  <div class="navtxt" style="left:93px; top:307px;">Frontier<br>Technologies</div>
+
+  <div class="hex" style="left:8px; top:407px; background:#f4efef;">
+    <svg viewBox="0 0 66 58" width="66" height="58" xmlns="http://www.w3.org/2000/svg">
+      <rect width="66" height="58" fill="#f6f1f1"/>
+      <path d="M18 34 C21 27, 27 26, 31 32 L35 37 L28 44 L20 38 Z" fill="#d7aa9b"/>
+      <path d="M44 24 C48 22, 53 24, 55 29 L48 36 L42 32 Z" fill="#d1a48f"/>
+      <path d="M30 33 L42 24 C44 23,46 23,48 24 L54 29 C55 30,55 32,54 33 L46 40 C44 42,41 42,39 40 L35 37 Z" fill="#fff" stroke="#b8b8b8" stroke-width="1"/>
+      <path d="M18 34 L24 29 C25 28,27 28,28 29 L35 36 L30 42 C28 44,26 44,24 42 L18 37 Z" fill="#fff" stroke="#b8b8b8" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="navnum" style="left:93px; top:410px;">3</div>
+  <div class="navtxt" style="left:93px; top:440px;">Humans &amp;<br>Machines</div>
+
+  <div class="title">Main sources</div>
+  <div class="sub">Megatrend "Technology &amp; Innovation"</div>
+
+  <div class="list">
+    <div class="item" style="top:0px;height:18px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>WIPO:</b> Global Innovation Index 2021. <span class="link">https://www.wipo.int/edocs/pubdocs/en/wipo_pub_gii_2021.pdf</span></div>
+    </div>
+
+    <div class="item" style="top:31px;height:34px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>OECD:</b> Productivity and economic growth.<br><span class="link">https://www.oecd-ilibrary.org/sites/f8c31e3c-en/index.html?itemId=/content/component/f8c31e3c-en</span></div>
+    </div>
+
+    <div class="item" style="top:72px;height:34px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>OECD:</b> Decoupling of Wages From Productivity: What Implications For Public Policies?<br><span class="link">https://www.oecd.org/economy/outlook/Decoupling-of-wages-from-productivity-november-2018-OECD-economic-outlook-chapter.pdf</span></div>
+    </div>
+
+    <div class="item" style="top:113px;height:18px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>OECD:</b> The Innovation Imperative. <span class="link">https://www.oecd.org/innovation/the-innovation-imperative-9789264239814-en.htm</span></div>
+    </div>
+
+    <div class="item" style="top:144px;height:18px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>Oxford Economics:</b> How Robots Change the World. <span class="link">https://www.oxfordeconomics.com/recent-releases/how-robots-change-the-world</span></div>
+    </div>
+
+    <div class="item" style="top:175px;height:18px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>UNCTAD:</b> Technology and Innovation Report 2021. <span class="link">https://unctad.org/page/technology-and-innovation-report-2021</span></div>
+    </div>
+
+    <div class="item" style="top:206px;height:34px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>Roland Berger:</b> Quantum Technology: The Next Big Disruption?<br><span class="link">https://www.rolandberger.com/en/Insights/Publications/Quantum-technology-The-next-big-disruption.html</span></div>
+    </div>
+
+    <div class="item" style="top:247px;height:34px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>Stanford University:</b> Gathering Strengths, Gathering Storms.<br><span class="link">https://ai100.stanford.edu/sites/g/files/sbiybj18871/files/media/file/AI100Report_MT_10.pdf</span></div>
+    </div>
+
+    <div class="item" style="top:288px;height:34px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>IATA:</b> Aircraft technology roadmap to 2050.<br><span class="link">https://www.iata.org/contentassets/8d19e716636a47c184e7221c77563c93/technology20roadmap20to20205020no20foreword.pdf</span></div>
+    </div>
+
+    <div class="item" style="top:329px;height:18px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>Wunderman Thompson:</b> Into the Metaverse. <span class="link">https://www.wundermanthompson.com/insight/new-trend-report-into-the-metaverse</span></div>
+    </div>
+
+    <div class="item" style="top:360px;height:18px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>World Economic Forum:</b> The Global Risks Report 2021. <span class="link">https://www3.weforum.org/docs/WEF_The_Global_Risks_Report_2021.pdf</span></div>
+    </div>
+
+    <div class="item" style="top:391px;height:18px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>World Economic Forum:</b> The Future of Jobs Report 2020. <span class="link">https://www3.weforum.org/docs/WEF_Future_of_Jobs_2020.pdf</span></div>
+    </div>
+
+    <div class="item" style="top:422px;height:18px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>Nature:</b> The role of artificial intelligence in achieving the Sustainable Development Goals. <span class="link">https://www.nature.com/articles/s41467-019-14108-y.pdf</span></div>
+    </div>
+
+    <div class="item" style="top:453px;height:18px;">
+      <div class="bullet">&gt;</div>
+      <div class="txt"><b>Nature:</b> The Moral Machine experiment. <span class="link">https://www.nature.com/articles/s41586-018-0637-6</span></div>
+    </div>
+  </div>
+
+  <div class="right-reading">
+    <div class="h1">Further reading</div>
+    <div class="h2">Think:Act Ideas For<br>Action</div>
+    <div class="h3">Revolution on the<br>Horizon</div>
+  </div>
+
+  <div class="book">
+    <div class="top1">Think:Act</div>
+    <div class="top2">IDEAS FOR ACTION</div>
+    <svg viewBox="0 0 173 229" width="173" height="229" xmlns="http://www.w3.org/2000/svg" style="position:absolute;left:0;top:0;z-index:1">
+      <defs>
+        <linearGradient id="gradb" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ff84a1"/>
+          <stop offset="100%" stop-color="#c6164f"/>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="128" width="173" height="8" fill="#ffd461"/>
+      <rect x="0" y="136" width="173" height="93" fill="url(#gradb)"/>
+      <g opacity=".95">
+        <circle cx="86.5" cy="93" r="25" fill="none" stroke="#5d4cc8" stroke-width="3"/>
+        <ellipse cx="86.5" cy="93" rx="53" ry="18" fill="none" stroke="#8d67d8" stroke-width="3"/>
+        <ellipse cx="86.5" cy="93" rx="18" ry="53" fill="none" stroke="#8d67d8" stroke-width="3"/>
+        <path d="M39 62 C67 78,110 108,136 120" fill="none" stroke="#39c8c8" stroke-width="3"/>
+        <path d="M42 119 C73 105,104 77,129 61" fill="none" stroke="#f4a03c" stroke-width="3"/>
+        <circle cx="86.5" cy="93" r="5" fill="#f39c30"/>
+        <circle cx="52" cy="74" r="4" fill="#ef8f8f"/>
+        <circle cx="118" cy="71" r="4" fill="#41d7d3"/>
+        <circle cx="120" cy="111" r="4" fill="#ef8f8f"/>
+        <circle cx="57" cy="113" r="4" fill="#41d7d3"/>
+      </g>
+      <g>
+        <polygon points="18,94 35,71 37,112" fill="#7c86ff" opacity=".85"/>
+        <polygon points="140,81 156,70 153,101" fill="#f8b235" opacity=".85"/>
+        <polygon points="23,136 39,123 44,148" fill="#f6d55c" opacity=".75"/>
+        <polygon points="135,132 151,118 155,149" fill="#7163de" opacity=".78"/>
+        <polygon points="58,132 70,120 78,145" fill="#42d5c8" opacity=".8"/>
+      </g>
+      <line x1="86" y1="149" x2="86" y2="189" stroke="#111" stroke-width="2"/>
+      <circle cx="86" cy="145" r="4" fill="#111"/>
+    </svg>
+    <div class="horizon">REVOLUTION ON THE</div>
+    <div class="horizon2">HORIZON</div>
+  </div>
+
+  <div class="gearicon">
+    <svg viewBox="0 0 54 54" width="57" height="57" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#7b8086" stroke-width="3" stroke-linecap="round">
+        <circle cx="18" cy="34" r="10"/>
+        <line x1="18" y1="13" x2="18" y2="19"/>
+        <line x1="18" y1="49" x2="18" y2="54"/>
+        <line x1="18" y1="34" x2="5" y2="34"/>
+        <line x1="31" y1="34" x2="36" y2="34"/>
+        <line x1="5" y1="21" x2="9" y2="25"/>
+        <line x1="27" y1="43" x2="31" y2="47"/>
+        <line x1="5" y1="47" x2="9" y2="43"/>
+        <line x1="27" y1="25" x2="31" y2="21"/>
+      </g>
+      <g fill="none" stroke="#7b8086" stroke-width="3">
+        <circle cx="40" cy="28" r="8"/>
+        <path d="M40 20 L42 16 L46 18 L46 23 L50 25 L50 31 L46 33 L46 38 L42 40 L40 36 L36 40 L32 38 L32 33 L28 31 L28 25 L32 23 L32 18 L36 16 Z"/>
+      </g>
+      <g fill="none" stroke="#7b8086" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M31 6 C23 6,17 12,17 20 C17 24,18 27,20 30 C22 33,24 36,24 40 L24 44 L34 44 L34 40 C34 36,36 33,38 30 C40 27,41 24,41 20"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="footer-left">79</div>
+
+  <div class="rbtext">Roland<br>Berger</div>
+  <div class="rbmark">
+    <svg viewBox="0 0 35 28" width="22" height="19" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13 0 L18 0 C27 0 33 5 33 13 C33 22 27 28 18 28 L13 28 Z" fill="#9ea1a5"/>
+      <path d="M0 0 L12 0 C18 0 22 3 22 8 C22 13 18 16 12 16 L0 16 Z" fill="#b7babd"/>
+      <path d="M0 16 L12 16 C18 16 22 19 22 24 C22 27 18 28 12 28 L0 28 Z" fill="#7d8288"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

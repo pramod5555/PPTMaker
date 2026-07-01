@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ddddde;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    margin:0 auto;
+    background:#f2f2f3;
+    color:#4b4e58;
+  }
+  .slide > *{position:absolute;box-sizing:border-box;}
+
+  .page-num{
+    left:61px; top:47px;
+    font-size:19px; line-height:24px;
+    color:#666a75; font-weight:400;
+    letter-spacing:0.01em;
+  }
+  .divider{
+    left:103px; top:0;
+    width:1px; height:94px;
+    background:#b9bcc3;
+  }
+  .survey-title{
+    left:116px; top:58px;
+    width:215px;
+    font-size:8px; line-height:10px;
+    color:#7f838c; font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+  }
+
+  .jump{
+    right:0; top:0;
+    width:59px; height:46px;
+    background:#6d7078;
+    color:#fff;
+    border-bottom-left-radius:15px;
+    text-align:center;
+    font-size:8px; line-height:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    padding-top:18px;
+    letter-spacing:0.03em;
+  }
+
+  .chapter{
+    left:13px; top:349px;
+    width:22px; height:96px;
+  }
+  .chapter .txt{
+    position:absolute;
+    left:0; top:0;
+    width:22px; height:78px;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    color:#7e828b;
+    font-size:11px; line-height:11px;
+    font-weight:500;
+    letter-spacing:0.04em;
+  }
+  .chapter .bar{
+    position:absolute;
+    left:0; top:89px;
+    width:12px; height:12px;
+    background:#e0cd00;
+  }
+
+  .left-copy{
+    left:100px; top:131px;
+    width:284px;
+    font-size:12px; line-height:16px;
+    color:#5f646d;
+    font-weight:400;
+  }
+  .left-copy p{margin:0 0 11px 0;}
+
+  .chart-title{
+    left:466px; top:131px;
+    width:700px;
+    font-size:12px; line-height:16px;
+    color:#3f434c;
+    font-weight:700;
+  }
+
+  .labels{
+    left:456px; top:165px;
+    width:405px; height:226px;
+    color:#555962;
+    font-size:11px; line-height:14px;
+    text-align:center;
+  }
+  .labels .lab{
+    position:absolute;
+    width:405px;
+  }
+  .lab1{top:0; height:30px;}
+  .lab2{top:47px; height:42px;}
+  .lab3{top:102px; height:42px;}
+  .lab4{top:156px; height:42px;}
+  .lab5{
+    top:220px; left:286px;
+    width:119px !important; height:16px;
+    text-align:right;
+  }
+
+  .bars{
+    left:862px; top:168px;
+    width:324px; height:250px;
+  }
+  .bar-row{
+    position:absolute;
+    left:0; width:324px; height:38px;
+  }
+  .bar-outline{
+    position:absolute;
+    left:0; top:0;
+    width:324px; height:25px;
+    border:1px solid #b2b6be;
+    background:transparent;
+  }
+  .fill{
+    position:absolute;
+    left:0; top:0;
+    height:25px;
+    background:#1ca03f;
+  }
+  .pct{
+    position:absolute;
+    top:5px; right:10px;
+    font-size:12px; line-height:14px;
+    color:#555962;
+    width:38px;
+    text-align:right;
+  }
+  .sub{z-index:1;
+    position:absolute;
+    left:0; top:28px;
+    font-size:7px; line-height:8px;
+    color:#676b73;
+    white-space:nowrap;
+  }
+
+  .hero{
+    left:30px; top:482px;
+    width:1250px; height:253px;
+    border-radius:14px;
+    overflow:hidden;
+    background:
+      linear-gradient(90deg, rgba(5,12,56,1) 0%, rgba(15,16,73,1) 17%, rgba(15,18,52,1) 49%, rgba(8,11,20,1) 100%);
+  }
+  .hero .bg1,
+  .hero .bg2,
+  .hero .bg3,
+  .hero .bg4,
+  .hero .bg5,
+  .hero .bg6,
+  .hero .bg7,
+  .hero .bg8,
+  .hero .bg9,
+  .hero .bg10,
+  .hero .bg11,
+  .hero .bg12,
+  .hero .bg13,
+  .hero .bg14,
+  .hero .bg15,
+  .hero .bg16{
+    position:absolute;border-radius:50%;
+    filter:blur(0.5px);
+  }
+  .bg1{left:18px;top:-18px;width:160px;height:120px;background:radial-gradient(circle, rgba(132,0,255,.35) 0, rgba(132,0,255,.16) 38%, rgba(132,0,255,0) 72%);}
+  .bg2{left:120px;top:8px;width:270px;height:150px;background:radial-gradient(circle, rgba(255,50,216,.55) 0, rgba(255,50,216,.25) 28%, rgba(255,50,216,0) 68%);}
+  .bg3{left:210px;top:118px;width:250px;height:150px;background:radial-gradient(circle, rgba(255,60,222,.72) 0, rgba(255,60,222,.28) 22%, rgba(255,60,222,0) 62%);}
+  .bg4{left:390px;top:12px;width:270px;height:150px;background:radial-gradient(circle, rgba(220,70,255,.36) 0, rgba(220,70,255,.14) 32%, rgba(220,70,255,0) 68%);}
+  .bg5{left:558px;top:25px;width:220px;height:120px;background:radial-gradient(circle, rgba(255,70,220,.30) 0, rgba(255,70,220,.10) 30%, rgba(255,70,220,0) 66%);}
+  .bg6{left:530px;top:102px;width:200px;height:120px;background:radial-gradient(circle, rgba(210,70,255,.28) 0, rgba(210,70,255,.08) 30%, rgba(210,70,255,0) 70%);}
+  .bg7{left:95px;top:152px;width:235px;height:85px;background:linear-gradient(90deg, rgba(36,160,255,.52), rgba(36,160,255,.08) 60%, rgba(0,0,0,0));border-radius:8px;}
+  .bg8{left:300px;top:142px;width:125px;height:5px;background:rgba(54,185,255,.8);border-radius:2px;}
+  .bg9{left:300px;top:151px;width:108px;height:2px;background:rgba(54,185,255,.45);border-radius:2px;}
+  .bg10{left:613px;top:144px;width:58px;height:4px;background:rgba(54,185,255,.78);border-radius:2px;}
+  .bg11{left:607px;top:153px;width:95px;height:2px;background:rgba(54,185,255,.42);border-radius:2px;}
+  .bg12{left:265px;top:0;width:5px;height:253px;background:rgba(7,8,14,.72);}
+  .bg13{left:538px;top:0;width:5px;height:253px;background:rgba(7,8,14,.72);}
+  .bg14{left:0;top:126px;width:760px;height:4px;background:rgba(8,10,15,.72);}
+  .bg15{left:0;top:130px;width:760px;height:2px;background:rgba(124,148,218,.35);}
+  .bg16{
+    left:0;top:0;width:1250px;height:253px;border-radius:0;
+    background:linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.02) 55%, rgba(0,0,0,.30) 100%);
+  }
+
+  .person-wrap{
+    left:770px; top:482px;
+    width:480px; height:253px;
+    z-index:8;
+  }
+  .person-wrap > div{position:absolute;box-sizing:border-box;}
+  .head{
+    left:47px; top:8px;
+    width:150px; height:170px;
+    background:linear-gradient(180deg,#505159 0%,#363840 70%,#2f3137 100%);
+    border-radius:78px 82px 58px 32px / 52px 78px 94px 68px;
+    transform:rotate(8deg);
+    box-shadow:inset -13px -10px 0 rgba(0,0,0,.18);
+  }
+  .hair{
+    left:52px; top:2px;
+    width:156px; height:74px;
+    background:linear-gradient(180deg,#7d7f87 0%, #5f626a 70%, rgba(95,98,106,0) 100%);
+    border-radius:80px 82px 30px 20px / 42px 40px 24px 18px;
+    transform:rotate(7deg);
+    opacity:.85;
+  }
+  .ear{
+    left:148px; top:84px;
+    width:18px; height:28px;
+    background:#8a6659;
+    border-radius:50%;
+  }
+  .neck{
+    left:127px; top:149px;
+    width:34px; height:45px;
+    background:#77584f;
+    border-radius:14px;
+    transform:rotate(12deg);
+  }
+  .beard{
+    left:95px; top:98px;
+    width:72px; height:84px;
+    background:linear-gradient(180deg,#2b1e1d 0%, #181012 100%);
+    border-radius:18px 26px 34px 24px / 18px 24px 54px 42px;
+    transform:rotate(6deg);
+  }
+  .glasses1{
+    left:18px; top:53px;
+    width:41px; height:28px;
+    border:3px solid #111722;
+    border-radius:6px;
+    background:rgba(24,25,34,.10);
+    transform:rotate(8deg);
+  }
+  .glasses2{
+    left:60px; top:56px;
+    width:47px; height:26px;
+    border:3px solid #111722;
+    border-radius:6px;
+    background:rgba(24,25,34,.08);
+    transform:rotate(8deg);
+  }
+  .bridge{
+    left:56px; top:67px;
+    width:12px; height:3px;
+    background:#111722;
+    transform:rotate(8deg);
+  }
+  .torso{
+    left:66px; top:132px;
+    width:255px; height:175px;
+    background:linear-gradient(180deg, rgba(82,46,96,.96) 0%, rgba(49,28,59,.98) 72%);
+    border-radius:62px 0 0 0 / 40px 0 0 0;
+    transform:skewX(-11deg);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
+  }
+  .shirt{
+    left:92px; top:160px;
+    width:184px; height:85px;
+    border-top:1px solid rgba(229,211,255,.42);
+    background:repeating-linear-gradient(90deg, rgba(210,195,250,.34) 0px, rgba(210,195,250,.34) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 6px);
+    transform:skewX(-11deg);
+    opacity:.6;
+  }
+
+  .ring-wrap{
+    left:1095px; top:503px;
+    width:168px; height:165px;
+    z-index:20;
+  }
+  .kpi{
+    left:1113px; top:557px;
+    width:138px;
+    color:#fff;
+    font-size:34px; line-height:38px;
+    font-weight:700;
+    text-align:center;
+    z-index:21;
+  }
+  .kpi-text{
+    left:1115px; top:669px;
+    width:145px;
+    color:#fff;
+    font-size:10px; line-height:13px;
+    font-weight:700;
+    z-index:21;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="page-num">22</div>
+  <div class="divider"></div>
+  <div class="survey-title">SECOND ANNUAL EY/EIU GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+  <div class="jump">JUMP TO<br>CONTENTS</div>
+
+  <div class="chapter">
+    <div class="txt">CHAPTER 4</div>
+    <div class="bar"></div>
+  </div>
+
+  <div class="left-copy">
+    <p>For 67% of respondents, operational resilience is addressed within organizational risk appetite indirectly (either through qualitative statements/analysis and supporting commentary within risk appetite reporting or via inclusion of related non-financial quantitative board risk appetite metrics). The good news is that only 5% of CROs say operational resilience is not addressed in the risk appetite.</p>
+    <p>In our discussions with CROs and other industry executives, we have seen growing interest in principle-based approaches to operational resilience. Firms are working to develop frameworks, including formal definitions and rankings of critical services based on customer impacts. They are also mapping processes to services and defining specific impact tolerances.</p>
+  </div>
+
+  <div class="chart-title">Figure 11: How is operational resilience addressed within the organizational risk appetite?</div>
+
+  <div class="labels">
+    <div class="lab lab1">Indirectly, through qualitative analysis and supporting commentary within risk appetite reporting</div>
+    <div class="lab lab2">Indirectly, via inclusion of related non-financial quantitative board risk appetite metrics (e.g., third party, information security, technology) and cascaded management metrics</div>
+    <div class="lab lab3">Directly, with inclusion of specific resilience-focused quantitative board risk appetite metrics and cascaded management metrics</div>
+    <div class="lab lab4">Directly, with explicit acknowledgment and/or mention in the qualitative risk appetite statement and inclusion of specific resilience-focused quantitative board risk appetite metrics and cascaded management metrics</div>
+    <div class="lab lab5">Not at all</div>
+  </div>
+
+  <div class="bars">
+    <div class="bar-row" style="top:0px;">
+      <div class="bar-outline"></div>
+      <div class="fill" style="width:109px;"></div>
+      <div class="pct">34%</div>
+      <div class="sub">31% EMEIA | 43% Americas | 23% Asia-Pacific</div>
+    </div>
+    <div class="bar-row" style="top:54px;">
+      <div class="bar-outline"></div>
+      <div class="fill" style="width:106px;"></div>
+      <div class="pct">33%</div>
+      <div class="sub">38% EMEIA | 25% Americas | 31% Asia-Pacific</div>
+    </div>
+    <div class="bar-row" style="top:108px;">
+      <div class="bar-outline"></div>
+      <div class="fill" style="width:52px;"></div>
+      <div class="pct">16%</div>
+      <div class="sub">12% EMEIA | 14% Americas | 31% Asia-Pacific</div>
+    </div>
+    <div class="bar-row" style="top:162px;">
+      <div class="bar-outline"></div>
+      <div class="fill" style="width:42px;"></div>
+      <div class="pct">13%</div>
+      <div class="sub">14% EMEIA | 11% Americas | 15% Asia-Pacific</div>
+    </div>
+    <div class="bar-row" style="top:216px;">
+      <div class="bar-outline"></div>
+      <div class="fill" style="width:16px;"></div>
+      <div class="pct">5%</div>
+      <div class="sub">5% EMEIA | 7% Americas | 0% Asia-Pacific</div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="bg1"></div>
+    <div class="bg2"></div>
+    <div class="bg3"></div>
+    <div class="bg4"></div>
+    <div class="bg5"></div>
+    <div class="bg6"></div>
+    <div class="bg7"></div>
+    <div class="bg8"></div>
+    <div class="bg9"></div>
+    <div class="bg10"></div>
+    <div class="bg11"></div>
+    <div class="bg12"></div>
+    <div class="bg13"></div>
+    <div class="bg14"></div>
+    <div class="bg15"></div>
+    <div class="bg16"></div>
+  </div>
+
+  <div class="person-wrap">
+    <div class="torso"></div>
+    <div class="shirt"></div>
+    <div class="neck"></div>
+    <div class="head"></div>
+    <div class="hair"></div>
+    <div class="ear"></div>
+    <div class="beard"></div>
+    <div class="glasses1"></div>
+    <div class="glasses2"></div>
+    <div class="bridge"></div>
+  </div>
+
+  <div class="ring-wrap">
+    <svg width="168" height="165" viewBox="0 0 168 165" xmlns="http://www.w3.org/2000/svg" style="position:absolute;left:0;top:0">
+      <defs>
+        <linearGradient id="g" x1="119" y1="18" x2="140" y2="110" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#7755ff"/>
+          <stop offset="55%" stop-color="#e83cff"/>
+          <stop offset="100%" stop-color="#ffe100"/>
+        </linearGradient>
+      </defs>
+      <circle cx="82" cy="77" r="57" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="2"/>
+      <circle cx="82" cy="77" r="57" fill="none" stroke="url(#g)" stroke-width="7"
+              stroke-dasharray="118 240" stroke-dashoffset="-4"
+              transform="rotate(-92 82 77)"/>
+    </svg>
+  </div>
+  <div class="kpi">33%</div>
+  <div class="kpi-text">of CROs say governance and oversight top the list of enhancements to operational resilience</div>
+</div>
+</body>
+</html>

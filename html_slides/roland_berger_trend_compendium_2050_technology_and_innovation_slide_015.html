@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger - Technology & Innovation</title>
+<style>
+  body{
+    margin:0;
+    background:#9d9fa2;
+    font-family: Arial, Helvetica, 'Segoe UI', sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#eeeeef;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+  }
+  .sidebar{
+    left:0px;
+    top:0px;
+    width:169px;
+    height:720px;
+    background:#34373d;
+    z-index:5;
+  }
+  .sidebar-edge{
+    left:168px;
+    top:0px;
+    width:2px;
+    height:720px;
+    background:#6d49a8;
+    z-index:6;
+  }
+  .side-title{
+    left:12px;
+    top:34px;
+    width:130px;
+    color:#f2f2f2;
+    font-size:23px;
+    line-height:1.06;
+    font-weight:700;
+    z-index:30;
+  }
+  .main-title{
+    left:221px;
+    top:34px;
+    width:895px;
+    color:#202124;
+    font-size:25px;
+    line-height:1.08;
+    font-weight:700;
+    z-index:30;
+  }
+  .subtitle{
+    left:220px;
+    top:142px;
+    width:760px;
+    color:#8b9098;
+    font-size:24px;
+    line-height:1.2;
+    font-weight:400;
+    z-index:30;
+  }
+  .rule{
+    left:169px;
+    top:205px;
+    width:1111px;
+    height:2px;
+    background:#6f5497;
+    z-index:15;
+  }
+  .content-bg{
+    left:169px;
+    top:207px;
+    width:1111px;
+    height:444px;
+    background:linear-gradient(180deg,#dedede 0%, #d8d8d8 20%, #d5d5d5 50%, #dcdcdc 100%);
+    z-index:0;
+  }
+  .content-fade{
+    left:169px;
+    top:603px;
+    width:1111px;
+    height:90px;
+    background:linear-gradient(180deg, rgba(238,238,239,0) 0%, rgba(238,238,239,0.92) 72%, rgba(238,238,239,1) 100%);
+    z-index:3;
+  }
+  .step-label{
+    color:#7f6fa9;
+    font-size:15px;
+    line-height:1.15;
+    font-weight:700;
+    z-index:30;
+  }
+  .step-label.muted{
+    color:#646a71;
+    font-weight:400;
+  }
+  .step-num{
+    color:#8d79b6;
+    font-size:28px;
+    line-height:1;
+    font-weight:700;
+    z-index:30;
+  }
+  .step-num.muted{
+    color:#899097;
+  }
+  .hex{
+    width:58px;
+    height:67px;
+    clip-path:polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
+    z-index:20;
+  }
+  .hex-border-purple{
+    background:#7d61b5;
+  }
+  .hex-inner{
+    left:4px;
+    top:4px;
+    width:50px;
+    height:59px;
+    clip-path:polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
+    background:linear-gradient(180deg,#1d89b7 0%, #66d2e5 35%, #16395a 100%);
+    opacity:0.95;
+  }
+  .hex-border-gray{
+    background:#80858b;
+  }
+  .hex-inner-gray{
+    left:4px;
+    top:4px;
+    width:50px;
+    height:59px;
+    clip-path:polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
+    background:linear-gradient(180deg,#666 0%, #a7a7a7 45%, #5d5d5d 100%);
+    opacity:0.9;
+  }
+  .hex-inner-white{
+    left:4px;
+    top:4px;
+    width:50px;
+    height:59px;
+    clip-path:polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
+    background:linear-gradient(180deg,#f8f8f8 0%, #dcdcdc 100%);
+  }
+  .callout{
+    color:#222;
+    font-size:24px;
+    line-height:1.12;
+    font-weight:400;
+    text-align:center;
+    z-index:30;
+  }
+  .callout b{
+    font-weight:700;
+  }
+  .sources{
+    left:220px;
+    top:751px;
+    width:650px;
+    color:#4d4f53;
+    font-size:11px;
+    line-height:1.2;
+    font-weight:400;
+    z-index:40;
+  }
+  .page{
+    left:10px;
+    top:709px;
+    width:20px;
+    color:#efefef;
+    font-size:19px;
+    line-height:1;
+    font-weight:400;
+    z-index:40;
+  }
+  .rb{
+    left:1194px;
+    top:690px;
+    width:78px;
+    height:26px;
+    z-index:50;
+  }
+  .lamp{
+    left:51px;
+    top:663px;
+    width:74px;
+    height:57px;
+    z-index:20;
+    opacity:0.45;
+  }
+  .world{
+    left:397px;
+    top:209px;
+    width:678px;
+    height:402px;
+    z-index:1;
+    opacity:0.33;
+  }
+  .country-col{
+    z-index:30;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+
+  <div class="sidebar"></div>
+  <div class="sidebar-edge"></div>
+
+  <div class="side-title">Technology &amp;<br>Innovation</div>
+
+  <div class="hex hex-border-purple" style="left:8px;top:141px;">
+    <div class="hex-inner"></div>
+  </div>
+  <svg style="left:15px;top:147px;width:45px;height:45px;z-index:31;" viewBox="0 0 45 45">
+    <rect x="2" y="25" width="41" height="2" fill="#ffffff" opacity="0.7"/>
+    <rect x="2" y="16" width="41" height="2" fill="#ffffff" opacity="0.45"/>
+    <rect x="2" y="34" width="41" height="2" fill="#ffffff" opacity="0.4"/>
+    <polyline points="4,30 12,24 18,28 26,17 35,21 41,12" fill="none" stroke="#dff7ff" stroke-width="2"/>
+    <circle cx="12" cy="24" r="2" fill="#fff"/>
+    <circle cx="18" cy="28" r="2" fill="#fff"/>
+    <circle cx="26" cy="17" r="2" fill="#fff"/>
+    <circle cx="35" cy="21" r="2" fill="#fff"/>
+  </svg>
+  <div class="step-num" style="left:93px;top:145px;">1</div>
+  <div class="step-label" style="left:93px;top:178px;width:60px;">Value of<br>Innovation</div>
+
+  <div class="hex hex-border-gray" style="left:8px;top:275px;">
+    <div class="hex-inner-gray"></div>
+  </div>
+  <svg style="left:18px;top:286px;width:40px;height:34px;z-index:31;" viewBox="0 0 40 34">
+    <circle cx="10" cy="18" r="2" fill="#ddd"/>
+    <circle cx="18" cy="14" r="1.5" fill="#cfcfcf"/>
+    <circle cx="23" cy="20" r="2" fill="#ececec"/>
+    <circle cx="30" cy="12" r="1.5" fill="#d5d5d5"/>
+    <circle cx="32" cy="24" r="2" fill="#bbb"/>
+    <line x1="10" y1="18" x2="18" y2="14" stroke="#e6e6e6" stroke-width="1"/>
+    <line x1="18" y1="14" x2="23" y2="20" stroke="#e6e6e6" stroke-width="1"/>
+    <line x1="23" y1="20" x2="30" y2="12" stroke="#e6e6e6" stroke-width="1"/>
+    <line x1="23" y1="20" x2="32" y2="24" stroke="#e6e6e6" stroke-width="1"/>
+    <line x1="10" y1="18" x2="23" y2="20" stroke="#cfcfcf" stroke-width="1"/>
+  </svg>
+  <div class="step-num muted" style="left:93px;top:279px;">2</div>
+  <div class="step-label muted" style="left:93px;top:312px;width:70px;">Frontier<br>Technologies</div>
+
+  <div class="hex hex-border-gray" style="left:8px;top:408px;">
+    <div class="hex-inner-white"></div>
+  </div>
+  <svg style="left:19px;top:421px;width:39px;height:28px;z-index:31;" viewBox="0 0 39 28">
+    <path d="M9 15 C12 10, 16 10, 19 14 C22 18, 25 18, 28 13" fill="none" stroke="#8d8d8d" stroke-width="2"/>
+    <path d="M11 13 C8 10, 6 10, 4 13 C2 16, 2 19, 5 21" fill="none" stroke="#8d8d8d" stroke-width="2"/>
+    <path d="M27 13 C30 10, 33 10, 35 13 C37 16, 37 19, 34 21" fill="none" stroke="#8d8d8d" stroke-width="2"/>
+    <rect x="16" y="12" width="7" height="4" rx="1" fill="#8d8d8d"/>
+  </svg>
+  <div class="step-num muted" style="left:93px;top:412px;">3</div>
+  <div class="step-label muted" style="left:93px;top:445px;width:82px;">Humans &amp;<br>Machines</div>
+
+  <svg class="world" viewBox="0 0 678 402">
+    <defs>
+      <filter id="blurGlow">
+        <feGaussianBlur stdDeviation="2.2"/>
+      </filter>
+    </defs>
+    <path d="M182 93 C226 58,300 35,365 55 C418 71,459 103,487 143 C522 194,519 261,479 306 C444 346,377 374,316 366 C248 357,192 327,159 277 C119 216,123 141,182 93Z" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.4"/>
+    <path d="M145 193 C177 149,240 134,281 141 C321 147,352 180,360 220 C369 264,350 304,312 326 C269 351,205 346,171 309 C132 267,114 235,145 193Z" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.22"/>
+    <path d="M303 93 C319 84,346 88,364 92 L394 110 L417 126 L438 143 L422 170 L381 171 L367 156 L343 145 L318 141 L303 127 Z" fill="#ffffff" opacity="0.11"/>
+    <path d="M277 160 L305 158 L322 176 L333 209 L313 236 L283 242 L261 217 L255 187 Z" fill="#ffffff" opacity="0.08"/>
+    <path d="M375 173 L401 168 L421 180 L440 206 L425 224 L397 221 L380 204 Z" fill="#ffffff" opacity="0.09"/>
+    <path d="M481 160 C548 143,615 174,652 240" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.28"/>
+    <path d="M136 269 C89 239,62 212,17 166" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.22"/>
+    <path d="M100 111 C143 89,171 59,198 11" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.15"/>
+    <path d="M494 108 C525 75,579 43,655 27" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.18"/>
+    <path d="M458 317 C511 337,575 350,666 339" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.13"/>
+    <path d="M337 70 C340 39,350 20,370 5" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.15"/>
+    <path d="M224 89 C204 66,195 45,189 13" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.15"/>
+    <path d="M536 178 C549 139,565 120,590 98" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.12"/>
+    <path d="M532 230 C576 238,614 250,660 286" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.12"/>
+    <circle cx="289" cy="50" r="6" fill="#ffffff" opacity="0.5" filter="url(#blurGlow)"/>
+    <circle cx="431" cy="58" r="5" fill="#ffffff" opacity="0.45" filter="url(#blurGlow)"/>
+    <circle cx="583" cy="113" r="6" fill="#ffffff" opacity="0.46" filter="url(#blurGlow)"/>
+    <circle cx="560" cy="252" r="6" fill="#ffffff" opacity="0.52" filter="url(#blurGlow)"/>
+    <circle cx="407" cy="336" r="5" fill="#ffffff" opacity="0.4" filter="url(#blurGlow)"/>
+    <circle cx="252" cy="321" r="6" fill="#ffffff" opacity="0.48" filter="url(#blurGlow)"/>
+    <circle cx="39" cy="340" r="5" fill="#ffffff" opacity="0.45" filter="url(#blurGlow)"/>
+    <circle cx="89" cy="48" r="6" fill="#ffffff" opacity="0.35" filter="url(#blurGlow)"/>
+    <circle cx="117" cy="157" r="5" fill="#ffffff" opacity="0.4" filter="url(#blurGlow)"/>
+    <circle cx="180" cy="254" r="5" fill="#ffffff" opacity="0.47" filter="url(#blurGlow)"/>
+    <circle cx="492" cy="190" r="4" fill="#ffffff" opacity="0.42" filter="url(#blurGlow)"/>
+    <circle cx="352" cy="214" r="4" fill="#ffffff" opacity="0.36" filter="url(#blurGlow)"/>
+    <circle cx="336" cy="376" r="4" fill="#ffffff" opacity="0.36" filter="url(#blurGlow)"/>
+    <circle cx="646" cy="241" r="5" fill="#ffffff" opacity="0.44" filter="url(#blurGlow)"/>
+  </svg>
+
+  <div class="country-col" style="left:219px;top:211px;width:186px;">
+    <svg style="left:76px;top:0px;width:75px;height:113px;" viewBox="0 0 75 113">
+      <g stroke="#5c368d" stroke-width="4" stroke-linecap="round">
+        <line x1="37.5" y1="0" x2="37.5" y2="12"/>
+        <line x1="20" y1="8" x2="55" y2="8"/>
+        <line x1="22" y1="18" x2="53" y2="18"/>
+        <line x1="180" y1="50" x2="8" y2="50"/>
+        <line x1="67" y1="50" x2="75" y2="50"/>
+        <line x1="7" y1="25" x2="11" y2="29"/>
+        <line x1="64" y1="25" x2="60" y2="29"/>
+        <line x1="7" y1="75" x2="11" y2="71"/>
+        <line x1="64" y1="75" x2="60" y2="71"/>
+        <line x1="37.5" y1="97" x2="37.5" y2="108"/>
+      </g>
+      <circle cx="37.5" cy="50" r="32" fill="none" stroke="#5c368d" stroke-width="4"/>
+      <circle cx="37.5" cy="50" r="24" fill="#ffffff" stroke="#5c368d" stroke-width="2"/>
+      <clipPath id="clipUS"><circle cx="37.5" cy="50" r="22"/></clipPath>
+      <g clip-path="url(#clipUS)">
+        <rect x="15.5" y="28" width="44" height="44" fill="#fff"/>
+        <rect x="15.5" y="28" width="44" height="4" fill="#b22234"/>
+        <rect x="15.5" y="36" width="44" height="4" fill="#b22234"/>
+        <rect x="15.5" y="44" width="44" height="4" fill="#b22234"/>
+        <rect x="15.5" y="52" width="44" height="4" fill="#b22234"/>
+        <rect x="15.5" y="60" width="44" height="4" fill="#b22234"/>
+        <rect x="15.5" y="28" width="20" height="16" fill="#3c3b6e"/>
+        <g fill="#ffffff">
+          <circle cx="19" cy="32" r="1"/><circle cx="23" cy="32" r="1"/><circle cx="27" cy="32" r="1"/><circle cx="31" cy="32" r="1"/>
+          <circle cx="21" cy="36" r="1"/><circle cx="25" cy="36" r="1"/><circle cx="29" cy="36" r="1"/>
+          <circle cx="19" cy="40" r="1"/><circle cx="23" cy="40" r="1"/><circle cx="27" cy="40" r="1"/><circle cx="31" cy="40" r="1"/>
+        </g>
+      </g>
+    </svg>
+    <div class="callout" style="left:0px;top:127px;width:186px;">
+      To build a national<br>
+      network of<br>
+      <b>500,000 charging<br>
+      stations by 2030</b><br>
+      in the US,<br>
+      President Biden's<br>
+      USD 1 trillion<br>
+      infrastructure<br>
+      investments plan<br>
+      includes a <b>USD<br>
+      174 billion<br>
+      investment in the<br>
+      EV market</b>
+    </div>
+  </div>
+
+  <div class="country-col" style="left:445px;top:211px;width:161px;">
+    <svg style="left:43px;top:0px;width:75px;height:113px;" viewBox="0 0 75 113">
+      <g stroke="#5c368d" stroke-width="4" stroke-linecap="round">
+        <line x1="37.5" y1="0" x2="37.5" y2="12"/>
+        <line x1="20" y1="8" x2="55" y2="8"/>
+        <line x1="22" y1="18" x2="53" y2="18"/>
+        <line x1="180" y1="50" x2="8" y2="50"/>
+        <line x1="67" y1="50" x2="75" y2="50"/>
+        <line x1="7" y1="25" x2="11" y2="29"/>
+        <line x1="64" y1="25" x2="60" y2="29"/>
+        <line x1="7" y1="75" x2="11" y2="71"/>
+        <line x1="64" y1="75" x2="60" y2="71"/>
+        <line x1="37.5" y1="97" x2="37.5" y2="108"/>
+      </g>
+      <circle cx="37.5" cy="50" r="32" fill="none" stroke="#5c368d" stroke-width="4"/>
+      <circle cx="37.5" cy="50" r="24" fill="#1140c2" stroke="#5c368d" stroke-width="2"/>
+      <g fill="#ffd438">
+        <circle cx="37.5" cy="33" r="1.5"/><circle cx="45.8" cy="35.5" r="1.5"/><circle cx="51.5" cy="42" r="1.5"/>
+        <circle cx="53" cy="50" r="1.5"/><circle cx="51.5" cy="58" r="1.5"/><circle cx="45.8" cy="64.5" r="1.5"/>
+        <circle cx="37.5" cy="67" r="1.5"/><circle cx="29.2" cy="64.5" r="1.5"/><circle cx="23.5" cy="58" r="1.5"/>
+        <circle cx="22" cy="50" r="1.5"/><circle cx="23.5" cy="42" r="1.5"/><circle cx="29.2" cy="35.5" r="1.5"/>
+      </g>
+    </svg>
+    <div class="callout" style="left:0px;top:127px;width:161px;">
+      <b>EU</b> is to invest<br>
+      <b>USD 10.9 billion</b><br>
+      (2021-2027) in<br>
+      digital<br>
+      transformation,<br>
+      including <b>AI,</b><br>
+      <b>supercomputing,</b><br>
+      <b>cyber-security</b><br>
+      and <b>digital skills</b>
+    </div>
+  </div>
+
+  <div class="country-col" style="left:664px;top:211px;width:163px;">
+    <svg style="left:44px;top:0px;width:75px;height:113px;" viewBox="0 0 75 113">
+      <g stroke="#5c368d" stroke-width="4" stroke-linecap="round">
+        <line x1="37.5" y1="0" x2="37.5" y2="12"/>
+        <line x1="20" y1="8" x2="55" y2="8"/>
+        <line x1="22" y1="18" x2="53" y2="18"/>
+        <line x1="180" y1="50" x2="8" y2="50"/>
+        <line x1="67" y1="50" x2="75" y2="50"/>
+        <line x1="7" y1="25" x2="11" y2="29"/>
+        <line x1="64" y1="25" x2="60" y2="29"/>
+        <line x1="7" y1="75" x2="11" y2="71"/>
+        <line x1="64" y1="75" x2="60" y2="71"/>
+        <line x1="37.5" y1="97" x2="37.5" y2="108"/>
+      </g>
+      <circle cx="37.5" cy="50" r="32" fill="none" stroke="#5c368d" stroke-width="4"/>
+      <circle cx="37.5" cy="50" r="24" fill="#ffffff" stroke="#5c368d" stroke-width="2"/>
+      <clipPath id="clipFR"><circle cx="37.5" cy="50" r="22"/></clipPath>
+      <g clip-path="url(#clipFR)">
+        <rect x="15.5" y="28" width="14.7" height="44" fill="#103f99"/>
+        <rect x="30.2" y="28" width="14.7" height="44" fill="#ffffff"/>
+        <rect x="44.9" y="28" width="14.7" height="44" fill="#d61f2c"/>
+      </g>
+    </svg>
+    <div class="callout" style="left:0px;top:127px;width:163px;">
+      <b>France</b> plans to<br>
+      invest more than<br>
+      <b>34 bn USD</b> in the<br>
+      <b>next 5 years</b> in<br>
+      nuclear reactors<br>
+      and semi-<br>
+      conductor plants
+    </div>
+  </div>
+
+  <div class="country-col" style="left:888px;top:211px;width:152px;">
+    <svg style="left:38px;top:0px;width:75px;height:113px;" viewBox="0 0 75 113">
+      <g stroke="#5c368d" stroke-width="4" stroke-linecap="round">
+        <line x1="37.5" y1="0" x2="37.5" y2="12"/>
+        <line x1="20" y1="8" x2="55" y2="8"/>
+        <line x1="22" y1="18" x2="53" y2="18"/>
+        <line x1="180" y1="50" x2="8" y2="50"/>
+        <line x1="67" y1="50" x2="75" y2="50"/>
+        <line x1="7" y1="25" x2="11" y2="29"/>
+        <line x1="64" y1="25" x2="60" y2="29"/>
+        <line x1="7" y1="75" x2="11" y2="71"/>
+        <line x1="64" y1="75" x2="60" y2="71"/>
+        <line x1="37.5" y1="97" x2="37.5" y2="108"/>
+      </g>
+      <circle cx="37.5" cy="50" r="32" fill="none" stroke="#5c368d" stroke-width="4"/>
+      <circle cx="37.5" cy="50" r="24" fill="#ffffff" stroke="#5c368d" stroke-width="2"/>
+      <clipPath id="clipDE"><circle cx="37.5" cy="50" r="22"/></clipPath>
+      <g clip-path="url(#clipDE)">
+        <rect x="15.5" y="28" width="44" height="14.7" fill="#000000"/>
+        <rect x="15.5" y="42.7" width="44" height="14.7" fill="#d01c1f"/>
+        <rect x="15.5" y="57.4" width="44" height="14.6" fill="#ffcf31"/>
+      </g>
+    </svg>
+    <div class="callout" style="left:0px;top:127px;width:152px;">
+      Part of a larger<br>
+      post-COVID<br>
+      stimulus<br>
+      package,<br>
+      <b>Germany</b><br>
+      is planning to<br>
+      invest <b>USD 2.4<br>
+      billion</b> in<br>
+      <b>quantum<br>
+      technology</b>
+    </div>
+  </div>
+
+  <div class="country-col" style="left:1121px;top:211px;width:127px;">
+    <svg style="left:26px;top:0px;width:75px;height:113px;" viewBox="0 0 75 113">
+      <g stroke="#5c368d" stroke-width="4" stroke-linecap="round">
+        <line x1="37.5" y1="0" x2="37.5" y2="12"/>
+        <line x1="20" y1="8" x2="55" y2="8"/>
+        <line x1="22" y1="18" x2="53" y2="18"/>
+        <line x1="180" y1="50" x2="8" y2="50"/>
+        <line x1="67" y1="50" x2="75" y2="50"/>
+        <line x1="7" y1="25" x2="11" y2="29"/>
+        <line x1="64" y1="25" x2="60" y2="29"/>
+        <line x1="7" y1="75" x2="11" y2="71"/>
+        <line x1="64" y1="75" x2="60" y2="71"/>
+        <line x1="37.5" y1="97" x2="37.5" y2="108"/>
+      </g>
+      <circle cx="37.5" cy="50" r="32" fill="none" stroke="#5c368d" stroke-width="4"/>
+      <circle cx="37.5" cy="50" r="24" fill="#e0261f" stroke="#5c368d" stroke-width="2"/>
+      <polygon points="24,37 25.2,40.5 29,40.5 26,42.7 27.2,46 24,43.8 20.8,46 22,42.7 19,40.5 22.8,40.5" fill="#ffd438"/>
+      <polygon points="31,30 31.5,31.5 33,31.5 31.8,32.4 32.3,33.8 31,32.9 29.7,33.8 30.2,32.4 29,31.5 30.5,31.5" fill="#ffd438"/>
+      <polygon points="35.5,34 36,35.5 37.5,35.5 36.3,36.4 36.8,37.8 35.5,36.9 34.2,37.8 34.7,36.4 33.5,35.5 35,35.5" fill="#ffd438"/>
+      <polygon points="36.5,40 37,41.5 38.5,41.5 37.3,42.4 37.8,43.8 36.5,42.9 35.2,43.8 35.7,42.4 34.5,41.5 36,41.5" fill="#ffd438"/>
+      <polygon points="32,44 32.5,45.5 34,45.5 32.8,46.4 33.3,47.8 32,46.9 30.7,47.8 31.2,46.4 30,45.5 31.5,45.5" fill="#ffd438"/>
+    </svg>
+    <div class="callout" style="left:0px;top:127px;width:127px;">
+      <b>China</b> has<br>
+      announced an<br>
+      investment of<br>
+      <b>USD 1.4 trillion</b><br>
+      by 2025 to<br>
+      develop <b>AI</b><br>
+      software and for<br>
+      the installation of<br>
+      <b>5G</b> networks
+    </div>
+  </div>
+
+  <div class="sources">Sources: Bloomberg; NY Times; CNN; European Commission; BMF; IDC; Roland Berger</div>
+  <div class="page">15</div>
+
+  <svg class="lamp" viewBox="0 0 74 57">
+    <g fill="none" stroke="#9fa3aa" stroke-width="3">
+      <path d="M24 42 C13 36,10 18,22 10 C31 4,45 6,50 16 C53 22,52 28,48 35"/>
+      <path d="M36 10 C30 19,31 28,37 36"/>
+      <path d="M30 41 L44 41"/>
+      <path d="M32 46 L42 46"/>
+      <path d="M27 51 L47 51"/>
+      <circle cx="55" cy="21" r="10"/>
+      <path d="M60 16 L50 26"/>
+      <path d="M50 16 L60 26"/>
+      <line x1="5" y1="22" x2="14" y2="25"/>
+      <line x1="11" y1="10" x2="18" y2="17"/>
+      <line x1="26" y1="3" x2="28" y2="12"/>
+      <line x1="67" y1="5" x2="63" y2="13"/>
+      <line x1="73" y1="20" x2="64" y2="20"/>
+      <line x1="68" y1="35" x2="61" y2="29"/>
+    </g>
+  </svg>
+
+  <svg class="rb" viewBox="0 0 78 26">
+    <text x="0" y="12" font-family="Arial, Helvetica, sans-serif" font-size="6" fill="#80848a">Roland</text>
+    <text x="0" y="24" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#4f5156">Berger</text>
+    <path d="M58 2 C67

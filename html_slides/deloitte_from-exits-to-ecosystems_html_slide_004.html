@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#31B676;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .title{
+    left:50px;
+    top:78px;
+    width:1180px;
+    color:#f3f1ec;
+    font-size:38px;
+    line-height:1.12;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    z-index:30;
+  }
+  .sub{
+    color:#f3f1ec;
+    font-size:31px;
+    line-height:1.05;
+    font-weight:300;
+    z-index:30;
+  }
+  .metric{
+    color:#f3f1ec;
+    font-size:66px;
+    line-height:0.92;
+    font-weight:700;
+    z-index:35;
+    letter-spacing:-0.03em;
+  }
+  .desc{
+    color:#f3f1ec;
+    font-size:18px;
+    line-height:1.13;
+    font-weight:300;
+    z-index:35;
+  }
+  .desc strong{ font-weight:700; }
+
+  .footer{
+    left:49px;
+    top:712px;
+    transform:translateY(-100%);
+    color:#dcefe3;
+    font-size:13px;
+    line-height:1;
+    font-weight:300;
+    z-index:40;
+    white-space:nowrap;
+  }
+  .footer .b{ font-weight:500; }
+
+  .home-wrap{
+    left:640px;
+    top:682px;
+    width:56px;
+    height:46px;
+    background:#103f5c;
+    z-index:50;
+  }
+  .home-wrap .house{
+    position:absolute;
+    left:20px;
+    top:21px;
+    width:16px;
+    height:15px;
+    border:1.5px solid #cfe0e8;
+    border-top:none;
+    box-sizing:border-box;
+  }
+  .home-wrap .roof1{
+    position:absolute;
+    left:22px;
+    top:12px;
+    width:11px;
+    height:11px;
+    border-left:1.5px solid #cfe0e8;
+    border-top:1.5px solid #cfe0e8;
+    transform:rotate(45deg);
+  }
+  .home-wrap .door{
+    position:absolute;
+    left:27px;
+    top:28px;
+    width:3px;
+    height:8px;
+    border:1.2px solid #cfe0e8;
+    border-top:none;
+    box-sizing:border-box;
+    background:transparent;
+  }
+
+  .ipsos{
+    right:48px;
+    bottom:38px;
+    width:55px;
+    height:50px;
+    z-index:50;
+  }
+  .ipsos .box{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(90deg,#2e50b7 0 47%, #1fa0a6 47% 100%);
+    clip-path:polygon(0 0, 100% 0, 93% 100%, 0 100%);
+    border:1px solid rgba(255,255,255,0.25);
+  }
+  .ipsos .face{
+    position:absolute;
+    left:18px;
+    top:3px;
+    width:18px;
+    height:32px;
+    background:#3b76c4;
+    border-radius:9px 9px 8px 8px/12px 12px 7px 7px;
+    opacity:.95;
+  }
+  .ipsos .profile{
+    position:absolute;
+    left:22px;
+    top:6px;
+    width:10px;
+    height:24px;
+    background:#1f9e63;
+    border-radius:8px 2px 8px 2px;
+    opacity:.95;
+  }
+  .ipsos .txt{
+    position:absolute;
+    left:7px;
+    bottom:6px;
+    color:#ffffff;
+    font-size:14px;
+    line-height:1;
+    font-weight:700;
+    letter-spacing:-0.02em;
+  }
+
+  .guide{
+    stroke:#ecebe7;
+    stroke-width:2px;
+    fill:none;
+    stroke-linejoin:miter;
+    stroke-linecap:square;
+  }
+  .ring-bg{
+    stroke:#ecebea;
+    stroke-width:26;
+    fill:none;
+  }
+  .ring-fg{
+    stroke:#78d4ac;
+    stroke-width:26;
+    fill:none;
+    stroke-linecap:butt;
+  }
+  .icon{
+    fill:none;
+    stroke:#f3f1ec;
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+
+  <div class="title">Some key numbers on how the Australian public is feeling</div>
+
+  <div class="sub" style="left:259px; top:138px;">2024 in retrospect</div>
+  <div class="sub" style="left:810px; top:138px;">Outlook for 2025</div>
+
+  <svg width="1280" height="720" style="left:0;top:0;z-index:20;">
+    <polyline class="guide" points="233,197 282,197 302,177 601,177"></polyline>
+    <polyline class="guide" points="772,195 818,195 838,175 1139,175"></polyline>
+    <polyline class="guide" points="220,474 268,474 288,454 601,454"></polyline>
+    <polyline class="guide" points="759,473 808,473 828,453 1139,453"></polyline>
+  </svg>
+
+  <svg width="230" height="230" style="left:117px; top:190px; z-index:25;">
+    <circle class="ring-bg" cx="116" cy="112" r="89"></circle>
+    <circle class="ring-fg" cx="116" cy="112" r="89" stroke-dasharray="202 357" stroke-dashoffset="0" transform="rotate(-90 116 112)"></circle>
+  </svg>
+
+  <svg width="120" height="120" style="left:174px; top:244px; z-index:35;">
+    <g class="icon">
+      <path d="M33 46
+               C28 46,25 50,25 54
+               C25 58,28 61,32 61
+               L26 61
+               C21 61,18 64,18 69
+               C18 74,22 77,27 77
+               L24 77
+               C19 77,16 80,16 85
+               C16 90,20 93,25 93
+               L34 93
+               C39 93,43 95,43 102
+               L43 109
+               C43 120,50 121,54 112
+               C58 104,59 94,64 88
+               C69 82,72 77,72 68
+               L72 51
+               C72 47,69 44,65 44
+               Z"></path>
+      <rect x="68" y="44" width="24" height="47" rx="3" ry="3"></rect>
+      <circle cx="76" cy="52" r="1.8" fill="#f3f1ec"></circle>
+    </g>
+  </svg>
+
+  <div class="metric" style="left:362px; top:225px;">63%</div>
+  <div class="desc" style="left:362px; top:286px; width:305px;">
+    say <strong>“2024 was a bad year<br>for my country”</strong>, down from<br>67% last year.
+  </div>
+
+  <svg width="230" height="230" style="left:654px; top:189px; z-index:25;">
+    <circle class="ring-bg" cx="116" cy="112" r="89"></circle>
+    <circle class="ring-fg" cx="116" cy="112" r="89" stroke-dasharray="231 328" stroke-dashoffset="0" transform="rotate(-90 116 112)"></circle>
+  </svg>
+
+  <svg width="130" height="130" style="left:704px; top:231px; z-index:35;">
+    <g class="icon">
+      <path d="M27 88
+               L27 72
+               C27 54,39 38,57 38
+               C73 38,87 51,87 67
+               C87 79,82 88,73 93
+               L73 105"></path>
+      <path d="M27 72 L18 72 L27 58"></path>
+      <path d="M42 89 L42 105"></path>
+      <polygon points="82,23 87,28 94,24 95,31 103,31 100,38 107,43 100,48 103,55 95,55 94,62 87,58 82,63 77,58 70,62 69,55 61,55 64,48 57,43 64,38 61,31 69,31 70,24 77,28"></polygon>
+      <circle cx="82" cy="43" r="16"></circle>
+      <circle cx="76" cy="40" r="2.2" fill="#f3f1ec"></circle>
+      <circle cx="88" cy="40" r="2.2" fill="#f3f1ec"></circle>
+      <path d="M75 48 C78 52,86 52,89 48"></path>
+    </g>
+  </svg>
+
+  <div class="metric" style="left:899px; top:223px;">71%</div>
+  <div class="desc" style="left:900px; top:285px; width:312px;">
+    say they are <strong>“optimistic<br>that next year will be a<br>better year than this year”</strong>,<br>up from 68% last year.
+  </div>
+
+  <svg width="230" height="230" style="left:103px; top:457px; z-index:25;">
+    <circle class="ring-bg" cx="116" cy="112" r="89"></circle>
+    <circle class="ring-fg" cx="116" cy="112" r="89" stroke-dasharray="163 396" stroke-dashoffset="0" transform="rotate(-90 116 112)"></circle>
+  </svg>
+
+  <svg width="138" height="138" style="left:160px; top:503px; z-index:35;">
+    <g class="icon">
+      <circle cx="29" cy="26" r="10"></circle>
+      <path d="M20 39 C20 30,38 30,38 39 L38 62 C38 66,35 69,31 69 L27 69 C23 69,20 66,20 62 Z"></path>
+      <path d="M24 69 L22 96"></path>
+      <path d="M34 69 L34 96"></path>
+
+      <circle cx="93" cy="26" r="10"></circle>
+      <path d="M84 39 C84 30,102 30,102 39 L102 62 C102 66,99 69,95 69 L91 69 C87 69,84 66,84 62 Z"></path>
+      <path d="M88 69 L86 96"></path>
+      <path d="M98 69 L98 96"></path>
+
+      <circle cx="61" cy="58" r="9"></circle>
+      <path d="M52 69 C52 61,70 61,70 69 L70 84 C70 87,67 90,64 90 L58 90 C55 90,52 87,52 84 Z"></path>
+      <path d="M57 90 L57 105"></path>
+      <path d="M65 90 L65 105"></path>
+
+      <circle cx="20" cy="59" r="8"></circle>
+      <path d="M12 69 C12 63,28 63,28 69 L28 83 C28 86,26 88,23 88 L17 88 C14 88,12 86,12 83 Z"></path>
+      <path d="M17 88 L16 103"></path>
+      <path d="M24 88 L24 103"></path>
+
+      <circle cx="95" cy="59" r="8"></circle>
+      <path d="M87 69 C87 63,103 63,103 69 L103 83 C103 86,101 88,98 88 L92 88 C89 88,87 86,87 83 Z"></path>
+      <path d="M92 88 L91 103"></path>
+      <path d="M99 88 L99 103"></path>
+
+      <path d="M38 55 C45 55,48 62,52 65"></path>
+      <path d="M70 65 C74 62,77 55,84 55"></path>
+      <path d="M28 77 C36 76,43 78,52 82"></path>
+      <path d="M70 82 C78 78,86 76,87 76"></path>
+    </g>
+  </svg>
+
+  <div class="metric" style="left:361px; top:500px;">52%</div>
+  <div class="desc" style="left:362px; top:560px; width:306px;">
+    say <strong>“2024 was a bad year<br>for me and my family”</strong>,<br>which is the same as 2023.
+  </div>
+
+  <svg width="230" height="230" style="left:641px; top:456px; z-index:25;">
+    <circle class="ring-bg" cx="116" cy="112" r="89"></circle>
+    <circle class="ring-fg" cx="116" cy="112" r="89" stroke-dasharray="147 412" stroke-dashoffset="0" transform="rotate(-90 116 112)"></circle>
+  </svg>
+
+  <svg width="140" height="125" style="left:703px; top:516px; z-index:35;">
+    <g class="icon">
+      <ellipse cx="33" cy="27" rx="21" ry="12"></ellipse>
+      <path d="M12 27 L12 43 C12 49,21 54,33 54 C45 54,54 49,54 43 L54 27"></path>
+      <path d="M12 43 L12 59 C12 65,21 70,33 70 C45 70,54 65,54 59 L54 43"></path>
+      <path d="M12 59 L12 75 C12 81,21 86,33 86 C45 86,54 81,54 75 L54 59"></path>
+      <path d="M12 75 L12 91 C12 97,21 102,33 102 C45 102,54 97,54 91 L54 75"></path>
+
+      <ellipse cx="83" cy="52" rx="21" ry="12"></ellipse>
+      <path d="M62 52 L62 66 C62 72,71 77,83 77 C95 77,104 72,104 66 L104 52"></path>
+      <path d="M62 66 L62 80 C62 86,71 91,83 91 C95 91,104 86,104 80 L104 66"></path>
+      <path d="M62 80 L62 94 C62 100,71 105,83 105 C95 105,104 100,104 94 L104 80"></path>
+    </g>
+  </svg>
+
+  <div class="metric" style="left:900px; top:495px;">47%</div>
+  <div class="desc" style="left:901px; top:546px; width:310px;">
+    say <strong>“The global economy will<br>be stronger next year than it<br>was this year”</strong>, down from<br>48% last year.
+  </div>
+
+  <div class="footer">© Ipsos Predictions 2025 <span class="b">Service Report</span></div>
+
+  <div class="home-wrap">
+    <div class="roof1"></div>
+    <div class="house"></div>
+    <div class="door"></div>
+  </div>
+
+  <div class="ipsos">
+    <div class="box"></div>
+    <div class="face"></div>
+    <div class="profile"></div>
+    <div class="txt">Ipsos</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #fdfdfd;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f7f7f7;
+    color: #222;
+  }
+
+  .title-small {
+    position: absolute;
+    left: 60px;
+    top: 112px;
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 300;
+    color: #7d1ee6;
+    letter-spacing: 0.2px;
+  }
+  .title-large {
+    position: absolute;
+    left: 124px;
+    top: 150px;
+    font-size: 58px;
+    line-height: 0.95;
+    font-weight: 300;
+    color: #7417d8;
+    letter-spacing: -1px;
+  }
+
+  .body-text {
+    position: absolute;
+    left: 60px;
+    top: 248px;
+    width: 420px;
+    font-size: 19px;
+    line-height: 1.42;
+    color: #222;
+    font-weight: 400;
+  }
+
+  .image-panel {
+    position: absolute;
+    left: 563px;
+    top: 0;
+    width: 382px;
+    height: 720px;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.1)),
+      linear-gradient(90deg,
+        rgba(5,18,77,0.75) 0 2px,
+        rgba(36,112,235,0.08) 2px 24px),
+      linear-gradient(180deg, #0a4cc2 0%, #4fa0ff 35%, #2b7ff0 65%, #67b4ff 100%);
+    overflow: hidden;
+  }
+  .image-panel:before {
+    content: "";
+    position: absolute;
+    left: 78px;
+    top: 120px;
+    width: 180px;
+    height: 560px;
+    background:
+      repeating-linear-gradient(180deg,
+        rgba(255,255,255,0.75) 0 10px,
+        rgba(180,210,255,0.5) 10px 28px,
+        rgba(130,170,240,0.35) 28px 44px);
+    filter: blur(1px);
+    opacity: 0.85;
+    transform: skewX(-2deg);
+  }
+  .image-panel:after {
+    content: "";
+    position: absolute;
+    left: 160px;
+    top: -20px;
+    width: 250px;
+    height: 620px;
+    background:
+      radial-gradient(circle at 25% 20%, rgba(10,20,70,0.95) 0 16%, transparent 17%),
+      radial-gradient(circle at 45% 10%, rgba(8,18,65,0.95) 0 11%, transparent 12%),
+      radial-gradient(circle at 62% 7%, rgba(8,18,65,0.95) 0 9%, transparent 10%),
+      radial-gradient(ellipse at 28% 18%, rgba(5,15,55,0.95) 0 35%, transparent 36%),
+      radial-gradient(ellipse at 32% 55%, rgba(8,18,55,0.9) 0 21%, transparent 22%),
+      radial-gradient(ellipse at 65% 65%, rgba(4,16,45,0.98) 0 40%, transparent 41%),
+      linear-gradient(90deg, transparent 0 72%, rgba(3,12,40,0.96) 72% 100%);
+    opacity: 0.95;
+  }
+  .img-divider1, .img-divider2 {
+    position: absolute;
+    left: 563px;
+    width: 382px;
+    height: 1px;
+    background: rgba(12,30,85,0.55);
+  }
+  .img-divider1 { top: 256px; }
+  .img-divider2 { top: 513px; }
+
+  .callout {
+    position: absolute;
+    left: 1054px;
+    top: 305px;
+    width: 190px;
+    color: #4a4a4a;
+  }
+  .callout-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .percent {
+    font-size: 26px;
+    line-height: 1;
+    font-weight: 300;
+    color: #8a1fff;
+  }
+  .icon-box {
+    position: relative;
+    width: 36px;
+    height: 26px;
+    border: 2px solid #a11fff;
+    box-sizing: border-box;
+  }
+  .icon-box:before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 22px;
+    height: 12px;
+    border: 2px solid #a11fff;
+    box-sizing: border-box;
+  }
+  .icon-box:after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 14px;
+    width: 16px;
+    height: 2px;
+    background: transparent;
+    border-left: 2px solid transparent;
+    transform: rotate(0deg);
+    box-shadow:
+      1px -4px 0 0 #a11fff,
+      6px -1px 0 0 #a11fff,
+      11px -6px 0 0 #a11fff,
+      16px -3px 0 0 #a11fff;
+  }
+  .callout-text {
+    font-size: 18px;
+    line-height: 1.22;
+    font-weight: 400;
+    color: #4a4a4a;
+  }
+  .callout sup {
+    font-size: 10px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .right-rail {
+    position: absolute;
+    right: 20px;
+    top: 38px;
+    height: 592px;
+    width: 22px;
+    color: #777;
+    font-size: 11px;
+    line-height: 1;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.2px;
+  }
+  .right-rail .active {
+    color: #9b19ff;
+    font-weight: 600;
+  }
+
+  .footer-left {
+    position: absolute;
+    right: 90px;
+    bottom: 23px;
+    font-size: 14px;
+    color: #7a7a7a;
+  }
+  .footer-left .year {
+    color: #9b19ff;
+    font-weight: 600;
+  }
+  .footer-page {
+    position: absolute;
+    right: 34px;
+    bottom: 23px;
+    font-size: 14px;
+    color: #7a7a7a;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title-small">What’s</div>
+    <div class="title-large">going on</div>
+
+    <div class="body-text">
+      The evidence in this trend shows that work is feeling increasingly transactional and draining for leaders and employees alike, and in many places, the once-lively workplace has become compromised. A successful value exchange between employer and employee depends on the energy each expends for the benefit of the other. The willingness or ability to invest in this exchange has weakened—and the impact has recently become apparent in the day-to-day working environment.
+    </div>
+
+    <div class="image-panel"></div>
+    <div class="img-divider1"></div>
+    <div class="img-divider2"></div>
+
+    <div class="callout">
+      <div class="callout-top">
+        <div class="percent">60%</div>
+        <div class="icon-box"></div>
+      </div>
+      <div class="callout-text">
+        of large employers are using tools to track their staff’s activity, despite autonomy being proven to boost job satisfaction, motivation and creativity<sup>93, 94</sup>
+      </div>
+    </div>
+
+    <div class="right-rail">
+      Cost of hesitations &nbsp; / &nbsp; The parent trap &nbsp; / &nbsp; Impatience economy &nbsp; / &nbsp; <span class="active">The dignity of work</span> &nbsp; / &nbsp; Social rewilding
+    </div>
+
+    <div class="footer-left">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="footer-page">56</div>
+  </div>
+</body>
+</html>

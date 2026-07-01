@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#9ea1a4;font-family:Arial, Helvetica, 'Segoe UI', sans-serif;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  #slide > div, #slide > svg{position:absolute; box-sizing:border-box;}
+  .sidebar{
+    left:0; top:0; width:148px; height:720px;
+    background:#4a4d52;
+  }
+  .title{
+    left:220px; top:28px; width:1030px;
+    font-size:27px; line-height:1.12; font-weight:700; color:#202020;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    left:220px; top:139px; width:930px;
+    font-size:27px; line-height:1.15; font-weight:400; color:#8e949d;
+  }
+  .people{
+    left:14px; top:35px; width:110px;
+    color:#f3f3f3; font-size:24px; line-height:1.03; font-weight:700;
+  }
+  .sideLabel{
+    color:#b8bf00; font-size:16px; line-height:1.05; font-weight:700;
+  }
+  .sideNumActive{
+    color:#b8bf00; font-size:29px; font-weight:700; line-height:1;
+  }
+  .sideNum{
+    color:#767b82; font-size:25px; font-weight:700; line-height:1;
+  }
+  .sideText{
+    color:#70757b; font-size:15px; font-weight:400; line-height:1.1;
+  }
+  .iconHex{width:74px;height:74px;}
+  .hexstroke{ fill:#f3f3f3; stroke:#b8bf00; stroke-width:4px; }
+  .hexstrokeGray{ fill:#f3f3f3; stroke:#b8bcc0; stroke-width:4px; }
+  .mapWrap{left:197px; top:191px; width:856px; height:440px;}
+  .country{
+    font-size:17px; line-height:1.02; color:#212121; font-weight:700;
+  }
+  .country .small{
+    display:block; font-size:13px; line-height:1.18; font-weight:400; color:#3a3a3a;
+  }
+  .country .change{
+    display:block; font-size:13px; line-height:1.18; font-weight:700; color:#202020;
+  }
+  .rightbox{
+    left:1115px; top:190px; width:165px; height:530px;
+    background:#d9d9db;
+  }
+  .righttext{
+    left:1128px; top:204px; width:138px;
+    font-size:16px; line-height:1.18; color:#2f2f2f; font-weight:400;
+  }
+  .righttext b{font-weight:700;}
+  .legend{
+    left:221px; top:665px; width:800px; height:22px;
+  }
+  .foot{
+    left:221px; top:734px; width:760px;
+    font-size:11px; color:#454545; line-height:1.18;
+  }
+  .page{
+    left:10px; top:748px; font-size:11px; color:#f0f0f0;
+  }
+  .bottomPeople{
+    left:53px; top:686px; width:81px; height:56px;
+  }
+  .rb{
+    left:1230px; top:729px; width:42px; height:23px;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+
+  <div class="people">People &amp;<br>Society</div>
+
+  <svg class="iconHex" style="left:8px;top:139px;" viewBox="0 0 74 74">
+    <polygon class="hexstroke" points="18,4 56,4 70,37 56,70 18,70 4,37"></polygon>
+    <defs>
+      <clipPath id="hexClip1"><polygon points="18,4 56,4 70,37 56,70 18,70 4,37"></polygon></clipPath>
+    </defs>
+    <g clip-path="url(#hexClip1)">
+      <rect x="0" y="0" width="74" height="74" fill="#ededed"></rect>
+      <g opacity="0.95">
+        <circle cx="20" cy="18" r="2.4" fill="#d36b6b"/><circle cx="25" cy="17" r="2.4" fill="#6888bb"/><circle cx="30" cy="18" r="2.4" fill="#b0bc3a"/><circle cx="35" cy="19" r="2.4" fill="#555"/><circle cx="40" cy="18" r="2.4" fill="#b77534"/><circle cx="45" cy="19" r="2.4" fill="#816db6"/><circle cx="50" cy="20" r="2.4" fill="#666"/>
+        <circle cx="18" cy="24" r="2.4" fill="#999"/><circle cx="23" cy="24" r="2.4" fill="#cf9c17"/><circle cx="28" cy="25" r="2.4" fill="#4f9c68"/><circle cx="33" cy="24" r="2.4" fill="#b55252"/><circle cx="38" cy="25" r="2.4" fill="#8a8a8a"/><circle cx="43" cy="24" r="2.4" fill="#708fc5"/><circle cx="48" cy="25" r="2.4" fill="#c0c0c0"/><circle cx="53" cy="26" r="2.4" fill="#c0bc45"/>
+        <circle cx="19" cy="31" r="2.4" fill="#c98686"/><circle cx="24" cy="31" r="2.4" fill="#666"/><circle cx="29" cy="31" r="2.4" fill="#7a9647"/><circle cx="34" cy="32" r="2.4" fill="#9f9f9f"/><circle cx="39" cy="31" r="2.4" fill="#7193af"/><circle cx="44" cy="32" r="2.4" fill="#d2852f"/><circle cx="49" cy="32" r="2.4" fill="#8364a6"/>
+        <circle cx="20" cy="38" r="2.4" fill="#4d9a63"/><circle cx="25" cy="38" r="2.4" fill="#ba5959"/><circle cx="30" cy="39" r="2.4" fill="#8e8e8e"/><circle cx="35" cy="39" r="2.4" fill="#5f79b2"/><circle cx="40" cy="38" r="2.4" fill="#beb23f"/><circle cx="45" cy="39" r="2.4" fill="#a3a3a3"/><circle cx="50" cy="39" r="2.4" fill="#555"/>
+        <circle cx="22" cy="45" r="2.4" fill="#8f8f8f"/><circle cx="27" cy="45" r="2.4" fill="#d27272"/><circle cx="32" cy="45" r="2.4" fill="#7c9d62"/><circle cx="37" cy="46" r="2.4" fill="#8a73bb"/><circle cx="42" cy="46" r="2.4" fill="#929292"/><circle cx="47" cy="46" r="2.4" fill="#6785bf"/>
+        <circle cx="24" cy="52" r="2.4" fill="#c0c0c0"/><circle cx="29" cy="52" r="2.4" fill="#bfb33d"/><circle cx="34" cy="52" r="2.4" fill="#cb8888"/><circle cx="39" cy="53" r="2.4" fill="#6c6c6c"/><circle cx="44" cy="53" r="2.4" fill="#7f9646"/>
+      </g>
+      <g opacity="0.28" stroke="#8b8b8b" stroke-width="0.9">
+        <line x1="9" y1="12" x2="63" y2="62"/><line x1="13" y1="60" x2="61" y2="13"/><line x1="8" y1="29" x2="63" y2="29"/><line x1="11" y1="46" x2="61" y2="46"/>
+      </g>
+    </g>
+  </svg>
+  <div class="sideNumActive" style="left:97px;top:143px;">1</div>
+  <div class="sideLabel" style="left:97px;top:177px;">Population</div>
+
+  <svg class="iconHex" style="left:8px;top:258px;" viewBox="0 0 74 74">
+    <polygon class="hexstrokeGray" points="18,4 56,4 70,37 56,70 18,70 4,37"></polygon>
+    <defs><clipPath id="hexClip2"><polygon points="18,4 56,4 70,37 56,70 18,70 4,37"></polygon></clipPath></defs>
+    <g clip-path="url(#hexClip2)">
+      <rect x="0" y="0" width="74" height="74" fill="#cfd1d3"></rect>
+      <rect x="12" y="18" width="50" height="30" rx="2" fill="#8b8e94"/>
+      <rect x="16" y="22" width="42" height="22" fill="#61656a"/>
+      <line x1="18" y1="24" x2="36" y2="38" stroke="#ececec" stroke-width="2"/>
+      <line x1="24" y1="22" x2="42" y2="36" stroke="#ececec" stroke-width="2"/>
+      <line x1="30" y1="22" x2="48" y2="36" stroke="#ececec" stroke-width="2"/>
+      <text x="24" y="34" font-size="8" fill="#efefef" font-family="Arial">Immigra-</text>
+      <text x="31" y="42" font-size="8" fill="#efefef" font-family="Arial">tion</text>
+    </g>
+  </svg>
+  <div class="sideNum" style="left:97px;top:262px;">2</div>
+  <div class="sideText" style="left:97px;top:295px;">Migration</div>
+
+  <svg class="iconHex" style="left:8px;top:379px;" viewBox="0 0 74 74">
+    <polygon class="hexstrokeGray" points="18,4 56,4 70,37 56,70 18,70 4,37"></polygon>
+    <defs><clipPath id="hexClip3"><polygon points="18,4 56,4 70,37 56,70 18,70 4,37"></polygon></clipPath></defs>
+    <g clip-path="url(#hexClip3)">
+      <rect x="0" y="0" width="74" height="74" fill="#d7d8da"></rect>
+      <rect x="16" y="16" width="13" height="42" fill="#7e8187"/>
+      <rect x="31" y="16" width="12" height="42" fill="#b6b8bc"/>
+      <rect x="45" y="16" width="13" height="42" fill="#7e8187"/>
+      <rect x="19" y="22" width="7" height="30" fill="#ededed"/>
+      <rect x="35" y="22" width="4" height="30" fill="#ededed"/>
+      <rect x="48" y="22" width="7" height="30" fill="#ededed"/>
+      <circle cx="37" cy="61" r="4.5" fill="#8d9095"/>
+    </g>
+  </svg>
+  <div class="sideNum" style="left:97px;top:382px;">3</div>
+  <div class="sideText" style="left:97px;top:415px;">Values</div>
+
+  <svg class="iconHex" style="left:8px;top:499px;" viewBox="0 0 74 74">
+    <polygon class="hexstrokeGray" points="18,4 56,4 70,37 56,70 18,70 4,37"></polygon>
+    <defs><clipPath id="hexClip4"><polygon points="18,4 56,4 70,37 56,70 18,70 4,37"></polygon></clipPath></defs>
+    <g clip-path="url(#hexClip4)">
+      <rect x="0" y="0" width="74" height="74" fill="#d6d7d9"></rect>
+      <rect x="13" y="19" width="48" height="30" rx="2" fill="#f1f1f1" stroke="#bbbbbb"/>
+      <line x1="20" y1="25" x2="32" y2="37" stroke="#7f8288" stroke-width="2"/>
+      <line x1="20" y1="37" x2="32" y2="25" stroke="#7f8288" stroke-width="2"/>
+      <circle cx="47" cy="31" r="8" fill="none" stroke="#7f8288" stroke-width="2"/>
+      <line x1="52" y1="36" x2="58" y2="42" stroke="#7f8288" stroke-width="2"/>
+      <rect x="19" y="52" width="32" height="5" fill="#b9b9b9"/>
+    </g>
+  </svg>
+  <div class="sideNum" style="left:97px;top:502px;">4</div>
+  <div class="sideText" style="left:97px;top:535px;">Education</div>
+
+  <svg class="bottomPeople" viewBox="0 0 81 56">
+    <g fill="#777b80">
+      <circle cx="21" cy="16" r="11"/><circle cx="39" cy="12" r="11"/><circle cx="56" cy="16" r="11"/>
+      <circle cx="12" cy="30" r="10"/><circle cx="29" cy="29" r="10"/><circle cx="46" cy="29" r="10"/><circle cx="63" cy="30" r="10"/>
+      <path d="M3 45c0-7 6-12 14-12s14 5 14 12v8H3z"/><path d="M20 44c0-7 6-12 14-12s14 5 14 12v9H20z"/><path d="M37 45c0-7 6-12 14-12s14 5 14 12v8H37z"/><path d="M26 50c0-8 8-13 18-13s18 5 18 13v6H26z"/>
+    </g>
+  </svg>
+
+  <div class="title">30% of total worldwide population growth between now and 2050 is<br>expected to take place in three countries: India, Nigeria and Pakistan</div>
+  <div class="subtitle">Key countries in terms of absolute population growth/decline between 2020 and 2050 [m]</div>
+
+  <div class="rightbox"></div>
+  <div class="righttext">
+    &gt; Although global population<br>
+    growth will continue to<br>
+    2050, a closer look reveals<br>
+    <b>strongly diverging<br>population growth rates</b><br>
+    between countries<br><br>
+    &gt; <b>Nigeria</b> is expected to<br>
+    almost double its<br>
+    population by 2050 (<b>+195<br>
+    million</b>), <b>Pakistan</b> will<br>
+    increase by over half<br>
+    (<b>+117 million</b>), and <b>India</b><br>
+    grows by almost 20% or<br>
+    <b>259 million</b> people. These<br>
+    countries still have high<br>
+    fertility rates<br><br>
+    &gt; Other countries, such as<br>
+    <b>China, Japan, Germany or<br>
+    Russia</b>, face a <b>decrease in<br>
+    population</b>. The main<br>
+    reasons are a low fertility<br>
+    rate and a large cohort of<br>
+    older people
+  </div>
+
+  <svg class="mapWrap" viewBox="0 0 856 440">
+    <g>
+      <path d="M0 103 L30 94 L76 95 L123 92 L160 77 L208 76 L250 75 L298 67 L344 69 L395 60 L360 79 L313 97 L260 100 L204 103 L149 105 L90 108 L42 110 Z" fill="#d0d2d5"/>
+      <path d="M59 123 L98 121 L132 130 L158 152 L158 187 L166 211 L154 238 L136 246 L95 229 L74 207 L57 176 L55 148 Z" fill="#9da2ab"/>
+      <path d="M151 257 L197 262 L232 280 L243 313 L236 354 L248 390 L232 398 L208 379 L183 366 L169 339 L159 297 Z" fill="#d3d5d8"/>
+      <path d="M356 111 L373 105 L388 109 L404 121 L418 116 L429 122 L441 119 L453 130 L452 144 L465 149 L455 170 L461 185 L452 202 L456 216 L451 228 L438 233 L421 244 L398 242 L381 235 L367 225 L357 208 L345 190 L340 168 L342 143 Z" fill="#d5d7db"/>
+      <path d="M523 51 L565 40 L629 40 L692 54 L733 67 L764 88 L778 110 L758 117 L723 114 L688 113 L662 123 L624 121 L587 129 L542 123 L505 107 L491 86 L500 63 Z" fill="#d6d66f"/>
+      <path d="M571 135 L596 130 L615 143 L612 162 L590 170 L573 154 Z" fill="#b1b800"/>
+      <path d="M607 154 L632 150 L652 164 L648 188 L620 192 L603 176 Z" fill="#b1b800"/>
+      <path d="M477 193 L494 188 L508 197 L505 213 L489 220 L474 212 L469 202 Z" fill="#b1b800"/>
+      <path d="M665 116 L703 122 L738 138 L770 164 L782 203 L778 240 L765 282 L742 297 L717 278 L702 243 L688 219 L669 198 L661 164 Z" fill="#d5d7db"/>
+      <path d="M754 287 L785 303 L813 327 L823 351 L812 382 L787 382 L765 358 L750 328 Z" fill="#d5d7db"/>
+      <g stroke="#f4f4f4" stroke-width="1.2" fill="none" opacity="0.85">
+        <path d="M350 118 L334 145 L338 173 L353 193 L357 218"/>
+        <path d="M372 106 L377 131 L392 155 L395 179 L405 203"/>
+        <path d="M403 120 L388 138 L376 165 L365 180"/>
+        <path d="M432 122 L456 132 L474 127 L493 133"/>
+        <path d="M492 85 L513 103 L540 111 L562 106 L586 114"/>
+        <path d="M595 55 L598 78 L624 92 L651 90"/>
+        <path d="M667 65 L658 91 L681 109 L704 112"/>
+        <path d="M199 76 L214 87 L233 93 L252 92"/>
+        <path d="M148 105 L164 127 L169 150 L170 173"/>
+        <path d="M184 267 L203 281 L215 300 L220 321"/>
+        <path d="M214 301 L200 328 L188 355"/>
+        <path d="M342 164 L325 180 L316 205 L317 226"/>
+        <path d="M368 226 L390 222 L412 236"/>
+        <path d="M625 123 L618 145 L629 166 L646 177"/>
+      </g>
+    </g>
+
+    <g stroke="#4a4644" stroke-width="2" fill="none">
+      <path d="M75 149 L75 122 L39 122"/>
+      <path d="M71 149 L39 149 L39 211"/>
+      <path d="M198 305 L96 305 L96 340"/>
+      <path d="M405 104 L405 86 L371 86"/>
+      <path d="M433 119 L380 119"/>
+      <path d="M413 119 L413 137"/>
+      <path d="M442 133 L365 133 L365 152"/>
+      <path d="M468 206 L468 245 L420 245"/>
+      <path d="M570 142 L570 202 L547 202"/>
+      <path d="M607 160 L607 332"/>
+      <path d="M642 175 L642 332"/>
+      <path d="M733 96 L803 96 L803 126"/>
+      <path d="M797 177 L778 177 L778 211"/>
+      <path d="M732 197 L741 197 L741 214"/>
+    </g>
+
+    <g fill="#1f1f1f">
+      <circle cx="75" cy="149" r="7"/>
+      <circle cx="198" cy="305" r="7"/>
+      <circle cx="405" cy="103" r="7"/>
+      <circle cx="435" cy="117" r="7"/>
+      <circle cx="415" cy="130" r="7"/>
+      <circle cx="390" cy="245" r="7"/>
+      <circle cx="483" cy="245" r="7"/>
+      <circle cx="570" cy="184" r="7"/>
+      <circle cx="607" cy="203" r="7"/>
+      <circle cx="733" cy="88" r="7"/>
+      <circle cx="797" cy="169" r="7"/>
+    </g>
+  </svg>
+
+  <div class="country" style="left:222px;top:390px;width:120px;">
+    USA
+    <span class="small">2020: 331.0</span>
+    <span class="small">2050: 379.4</span>
+    <span class="change">+48.4 (+15%)</span>
+  </div>
+
+  <div class="country" style="left:237px;top:510px;width:125px;">
+    Brazil
+    <span class="small">2020: 212.6</span>
+    <span class="small">2050: 229.0</span>
+    <span class="change">+16.4 (+8%)</span>
+  </div>
+
+  <div class="country" style="left:481px;top:222px;width:120px;">
+    Germany
+    <span class="small">2020: 83.8</span>
+    <span class="small">2050: 80.1</span>
+    <span class="change">-3.7 (-4%)</span>
+  </div>
+
+  <div class="country" style="left:596px;top:194px;width:95px;">
+    UK
+    <span class="small">2020: 67.9</span>
+    <span class="small">2050: 74.1</span>
+    <span class="change">+6.2 (+9%)</span>
+  </div>
+
+  <div class="country" style="left:528px;top:321px;width:92px;">
+    France
+    <span class="small">2020: 65.3</span>
+    <span class="small">2050: 67.6</span>
+    <span class="change">+2.3 (+4%)</span>
+  </div>
+
+  <div class="country" style="left:516px;top:448px;width:122px;">
+    Nigeria
+    <span class="small">2020: 206.1</span>
+    <span class="small">2050: 401.3</span>
+    <span class="change">+195.2 (+95%)</span>
+  </div>
+
+  <div class="country" style="left:730px;top:423px;width:125px;">
+    Pakistan
+    <span class="small">2020: 220.9</span>
+    <span class="small">2050: 338.0</span>
+    <span class="change">+117.1 (+53%)</span>
+  </div>
+
+  <div class="country" style="left:825px;top:514px;width:128px;">
+    India
+    <span class="small">2020: 1,380.0</span>
+    <span class="small">2050: 1,639.2</span>
+    <span class="change">+259.2 (+19%)</span>
+  </div>
+
+  <div class="country" style="left:920px;top:444px;width:130px;">
+    China
+    <span class="small">2020: 1,439.3</span>
+    <span class="small">2050: 1,402.4</span>
+    <span class="change">-36.9 (-3%)</span>
+  </div>
+
+  <div class="country" style="left:1023px;top:266px;width:105px;">
+    Russia
+    <span class="small">2020: 145.9</span>
+    <span class="small">2050: 135.8</span>
+    <span class="change">-10.1 (-7%)</span>
+  </div>
+
+  <div class="country" style="left:1008px;top:386px;width:110px;">
+    Japan
+    <span class="small">2020: 126.5</span>
+    <span class="small">2050: 105.8</span>
+    <span class="change">-20.7 (-16%)</span>
+  </div>
+
+  <div class="legend">
+    <svg width="800" height="42" viewBox="0 0 800 42">
+      <rect x="0" y="4" width="24" height="18" fill="#b1b800"></rect>
+      <text x="33" y="18" font-size="12" fill="#4a4a4a" font-family="Arial">Top 3 countries with a growing population by 2050¹)</text>
+      <rect x="333" y="4" width="24" height="18" fill="#d6d66f"></rect>
+      <text x="366" y="18" font-size="12" fill="#4a4a4a" font-family="Arial">Top 3 countries with a shrinking population by 2050¹)</text>
+      <rect x="671" y="4" width="24" height="18" fill="#9da2ab"></rect>
+      <text x="706" y="18" font-size="12" fill="#4a4a4a" font-family="Arial">Other key countries¹)</text>
+    </svg>
+  </div>
+
+  <div class="foot">1) Top 3 by absolute numbers; estimates are based on the UN medium-variant projection<br>Source: UN; Roland Berger</div>
+
+  <div class="page">8</div>
+
+  <svg class="rb" viewBox="0 0 42 23">
+    <text x="0" y="12" font-size="9" fill="#727272" font-family="Arial">Roland</text>
+    <text x="0" y="21" font-size="9" fill="#727272" font-family="Arial">Berger</text>
+    <path d="M30 0 C37 0 42 5 42 11.5 C42 18 37 23 30 23 L23 23 L23 0 Z" fill="#a8aaad"/>
+    <path d="M23 0 L27 0 C33 0 37 4 37 9 C37 12 35 14 30 15 C35 15 38.5 18 38.5 23 L23 23 Z" fill="#d2d4d6"/>
+  </svg>
+</div>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f4;
+  }
+  #slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .top-bg{
+    left:0;
+    top:0;
+    width:1280px;
+    height:79px;
+    background:#f1f1f2;
+  }
+  .top-accent{
+    left:0;
+    top:0;
+    width:47px;
+    height:79px;
+    background:#c5c6cf;
+  }
+  .top-line{
+    left:0;
+    top:78px;
+    width:1280px;
+    height:2px;
+    background:#c8c8d1;
+  }
+  .breadcrumb{
+    left:57px;
+    top:49px;
+    font-size:19px;
+    line-height:22px;
+    color:#777784;
+    font-weight:400;
+    letter-spacing:-0.1px;
+    width:470px;
+  }
+  .nav1,.nav2{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#c9c9d1;
+    top:33px;
+  }
+  .nav1{ left:950px; }
+  .nav2{ left:995px; }
+  .nav1:before,.nav2:before{
+    content:"";
+    position:absolute;
+    top:10px;
+    width:0;height:0;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+  }
+  .nav1:before{
+    left:11px;
+    border-right:10px solid #444553;
+  }
+  .nav2:before{
+    left:14px;
+    border-left:10px solid #444553;
+  }
+  .title{
+    left:57px;
+    top:116px;
+    width:625px;
+    font-size:35px;
+    line-height:1.18;
+    font-weight:700;
+    color:#747482;
+    letter-spacing:-0.4px;
+  }
+  .col-left{
+    left:57px;
+    top:265px;
+    width:300px;
+    font-size:14px;
+    line-height:1.34;
+    color:#4f5058;
+    letter-spacing:-0.05px;
+  }
+  .col-mid{
+    left:372px;
+    top:265px;
+    width:293px;
+    font-size:14px;
+    line-height:1.34;
+    color:#4f5058;
+    letter-spacing:-0.05px;
+  }
+  .col-right{
+    left:692px;
+    top:118px;
+    width:300px;
+    font-size:14px;
+    line-height:1.35;
+    color:#4f5058;
+    letter-spacing:-0.05px;
+  }
+  .sidebar-btn{
+    left:1040px;
+    width:80px;
+    height:38px;
+    background:#2b2b3a;
+    color:#ededf0;
+    font-size:11px;
+    line-height:1.1;
+    padding:8px 8px 0 10px;
+    border-left:2px solid #d5cf36;
+  }
+  .sb1{ top:120px; }
+  .sb2{ top:171px; }
+  .sb3{ top:221px; height:50px; }
+  .sb4{ top:273px; }
+  .sb5{ top:324px; height:50px; color:#d9d9df; }
+  .sb6{ top:377px; color:#d9d9df; }
+
+  .flag{
+    left:0;
+    top:372px;
+    width:678px;
+    height:348px;
+    overflow:hidden;
+    background:
+      linear-gradient(90deg, rgba(7,29,16,1) 0%, rgba(5,49,24,1) 20%, rgba(7,91,44,1) 45%, rgba(16,143,72,0.95) 66%, rgba(154,191,236,0.85) 88%, rgba(190,215,245,0.95) 100%);
+  }
+  .flag:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(ellipse at 10% 50%, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.22) 30%, rgba(0,0,0,0) 58%),
+      radial-gradient(ellipse at 40% 0%, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.07) 22%, rgba(255,255,255,0) 48%);
+    pointer-events:none;
+  }
+  .flag .wave1{
+    position:absolute;
+    left:-40px;
+    top:-45px;
+    width:330px;
+    height:430px;
+    background:linear-gradient(90deg, rgba(0,0,0,0.58), rgba(0,0,0,0.18) 42%, rgba(255,255,255,0.03) 70%, rgba(0,0,0,0.2));
+    border-radius:52% 48% 52% 48%/45% 58% 42% 55%;
+    transform:rotate(-18deg);
+    filter:blur(1px);
+  }
+  .flag .wave2{
+    position:absolute;
+    left:140px;
+    top:-10px;
+    width:260px;
+    height:350px;
+    background:linear-gradient(90deg, rgba(0,0,0,0.48), rgba(0,0,0,0.08) 35%, rgba(255,255,255,0.14) 60%, rgba(0,0,0,0.22));
+    border-radius:39% 61% 48% 52%/45% 40% 60% 55%;
+    transform:rotate(11deg);
+  }
+  .flag .wave3{
+    position:absolute;
+    left:300px;
+    top:24px;
+    width:145px;
+    height:230px;
+    background:linear-gradient(90deg, rgba(0,0,0,0.34), rgba(255,255,255,0.16) 48%, rgba(0,0,0,0.28));
+    border-radius:43% 57% 58% 42%/44% 56% 44% 56%;
+    transform:rotate(-10deg);
+  }
+  .flag .arabic{
+    position:absolute;
+    left:55px;
+    top:30px;
+    width:395px;
+    color:#edf0f5;
+    font-family:"Times New Roman", Georgia, serif;
+    font-size:78px;
+    line-height:0.9;
+    transform:rotate(-8deg);
+    opacity:0.95;
+    letter-spacing:-2px;
+    text-shadow:0 0 1px rgba(255,255,255,0.35);
+  }
+  .flag .sword{
+    position:absolute;
+    left:160px;
+    top:245px;
+    width:175px;
+    height:6px;
+    background:#eef2f6;
+    border-radius:4px;
+    transform:rotate(7deg);
+    opacity:0.95;
+  }
+  .flag .sword:after{
+    content:"";
+    position:absolute;
+    right:-12px;
+    top:-1px;
+    width:16px;
+    height:8px;
+    background:#eef2f6;
+    border-radius:0 6px 6px 0;
+  }
+
+  .grey-box{
+    left:692px;
+    top:438px;
+    width:304px;
+    height:281px;
+    background:#c9c9cf;
+  }
+  .grey-text{
+    left:701px;
+    top:444px;
+    width:283px;
+    font-size:13px;
+    line-height:1.3;
+    color:#4b4c55;
+    letter-spacing:-0.05px;
+  }
+  .bullet{
+    position:absolute;
+    left:0;
+    width:275px;
+    font-size:13px;
+    line-height:1.3;
+    color:#4b4c55;
+  }
+  .bullet .sq{
+    position:absolute;
+    left:0;
+    top:5px;
+    width:5px;
+    height:5px;
+    background:#4b4c55;
+  }
+  .bullet .txt{
+    position:absolute;
+    left:15px;
+    top:0;
+    width:255px;
+  }
+  .footer{
+    left:57px;
+    top:731px;
+    transform:translateY(-100%);
+    font-size:11px;
+    line-height:1;
+    color:#ffffff;
+    letter-spacing:0;
+    font-weight:400;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="top-bg"></div>
+  <div class="top-accent"></div>
+  <div class="top-line"></div>
+
+  <div class="breadcrumb">Insights: Europe, Middle East, India and Africa</div>
+  <div class="nav1"></div>
+  <div class="nav2"></div>
+
+  <div class="title">Saudi Arabia introduces voluntary disclosure controls with full waiver of customs violations</div>
+
+  <div class="col-left">
+    Saudi Arabia has entered a new phase in its customs modernization journey with the introduction of comprehensive Voluntary Disclosure (VD) controls enabling importers and exporters to proactively correct customs declaration errors and potentially
+  </div>
+
+  <div class="col-mid">
+    receive a full waiver of associated customs violations, provided specific conditions are met. Introduced by the Zakat, Tax and Customs Authority (ZATCA) and published in the <i>Official Gazette</i> on 30 January 2026, the VD framework came into
+  </div>
+
+  <div class="col-right">
+    effect 30 days after its publication and represents a defining shift in Saudi Arabia's customs regulatory landscape – one that emphasizes compliance, transparency and trade facilitation and aligns with the Gulf Cooperation Council (GCC) Unified Customs Law principles.<br><br>
+    The initiative advances several pillars of Saudi Arabia's broader economic agenda under Vision 2030, including strengthening trade governance, improving border efficiency and aligning national practices with global customs standards. As Saudi Arabia continues its ascent as a regional logistics and trade hub, the need for predictable, modern and facilitative regulatory frameworks becomes increasingly essential. The VD controls directly support this objective by empowering businesses to address errors before they escalate into disputes or enforcement actions.
+  </div>
+
+  <div class="sidebar-btn sb1">Contents</div>
+  <div class="sidebar-btn sb2">Insights</div>
+  <div class="sidebar-btn sb3">New on<br>ey.com</div>
+  <div class="sidebar-btn sb4">Tax alerts</div>
+  <div class="sidebar-btn sb5">Additional<br>resources</div>
+  <div class="sidebar-btn sb6">Contacts</div>
+
+  <div class="flag">
+    <div class="wave1"></div>
+    <div class="wave2"></div>
+    <div class="wave3"></div>
+    <div class="arabic">الله<br>الوطن</div>
+    <div class="sword"></div>
+  </div>
+
+  <div class="grey-box"></div>
+  <div class="grey-text">
+    The VD framework derives its authority from the GCC Unified Customs Law, particularly Article 141, which outlines administrative customs violations associated with incorrect or incomplete information in customs declarations. The VD framework applies to customs declaration related violations or any other related declarations that fall under Article 141, including inaccuracies in the following:
+    <div class="bullet" style="top:160px;">
+      <div class="sq"></div><div class="txt">Commodity classification</div>
+    </div>
+    <div class="bullet" style="top:184px;">
+      <div class="sq"></div><div class="txt">Customs valuation</div>
+    </div>
+    <div class="bullet" style="top:208px;">
+      <div class="sq"></div><div class="txt">Country of origin</div>
+    </div>
+    <div class="bullet" style="top:232px;">
+      <div class="sq"></div><div class="txt">Data elements provided in import/export declarations</div>
+    </div>
+  </div>
+
+  <div class="footer">46&nbsp; |&nbsp; TradeWatch Issue 1 2026</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1365, initial-scale=1.0" />
+<title>Chapter 8 - Current State of Controls</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1365px;
+    height: 768px;
+    background: #dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1365px;
+    height: 768px;
+    overflow: hidden;
+    background: #dcdcdc;
+  }
+  .frame {
+    position: absolute;
+    left: 31px;
+    top: 31px;
+    width: 1303px;
+    height: 705px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.08) 18%, rgba(0,0,0,.12) 60%, rgba(0,0,0,.36) 100%),
+      radial-gradient(circle at 5% 8%, rgba(255,255,255,.42) 0 14px, rgba(255,255,255,0) 30px),
+      radial-gradient(circle at 9% 18%, rgba(255,255,255,.34) 0 15px, rgba(255,255,255,0) 33px),
+      radial-gradient(circle at 13% 4%, rgba(255,255,255,.24) 0 12px, rgba(255,255,255,0) 28px),
+      radial-gradient(circle at 18% 11%, rgba(255,255,255,.28) 0 16px, rgba(255,255,255,0) 34px),
+      radial-gradient(circle at 22% 19%, rgba(255,255,255,.36) 0 18px, rgba(255,255,255,0) 37px),
+      radial-gradient(circle at 29% 8%, rgba(255,255,255,.27) 0 14px, rgba(255,255,255,0) 31px),
+      radial-gradient(circle at 35% 15%, rgba(255,255,255,.35) 0 17px, rgba(255,255,255,0) 36px),
+      radial-gradient(circle at 42% 5%, rgba(255,255,255,.25) 0 13px, rgba(255,255,255,0) 30px),
+      radial-gradient(circle at 48% 17%, rgba(255,255,255,.32) 0 18px, rgba(255,255,255,0) 38px),
+      radial-gradient(circle at 56% 6%, rgba(255,255,255,.26) 0 13px, rgba(255,255,255,0) 31px),
+      radial-gradient(circle at 64% 16%, rgba(255,255,255,.34) 0 18px, rgba(255,255,255,0) 38px),
+      radial-gradient(circle at 72% 7%, rgba(255,255,255,.24) 0 14px, rgba(255,255,255,0) 31px),
+      radial-gradient(circle at 80% 16%, rgba(255,255,255,.32) 0 18px, rgba(255,255,255,0) 38px),
+      radial-gradient(circle at 89% 6%, rgba(255,255,255,.24) 0 14px, rgba(255,255,255,0) 31px),
+      radial-gradient(circle at 96% 17%, rgba(255,255,255,.32) 0 18px, rgba(255,255,255,0) 38px),
+      repeating-radial-gradient(circle at 50% 126%,
+        rgba(255,255,255,.82) 0 17px,
+        rgba(255,255,255,0) 18px 47px),
+      conic-gradient(from 206deg at 50% 126%,
+        #061017 0deg,
+        #11231c 28deg,
+        #1d402d 50deg,
+        #0a2439 88deg,
+        #08356d 132deg,
+        #0f50af 172deg,
+        #11a4ea 220deg,
+        #7a56d3 270deg,
+        #9a2cbf 305deg,
+        #27143f 334deg,
+        #071017 360deg);
+    background-blend-mode: multiply, screen, screen, screen, screen, screen, screen, screen, screen, screen, screen, screen, screen, screen, screen, screen, screen, normal;
+  }
+  .big-eight {
+    position: absolute;
+    left: -18px;
+    top: 42px;
+    font-size: 910px;
+    line-height: 0.86;
+    font-weight: 700;
+    color: rgba(233,233,233,.28);
+    z-index: 8;
+    pointer-events: none;
+    letter-spacing: -28px;
+  }
+  .woman {
+    position: absolute;
+    left: 424px;
+    top: 145px;
+    width: 480px;
+    height: 562px;
+    z-index: 18;
+    pointer-events: none;
+  }
+  .hair-back {
+    position: absolute;
+    left: 122px;
+    top: 16px;
+    width: 226px;
+    height: 288px;
+    background: linear-gradient(180deg, #6a4a55 0%, #9f7b81 33%, #c7a59f 67%, #7c5961 100%);
+    border-radius: 120px 120px 110px 110px / 140px 140px 150px 150px;
+    filter: blur(1px);
+  }
+  .hair-left {
+    position: absolute;
+    left: 99px;
+    top: 47px;
+    width: 116px;
+    height: 292px;
+    background: linear-gradient(180deg, #8d6670 0%, #d7b7ab 38%, #cfb1a6 67%, #7f6667 100%);
+    border-radius: 70px 48px 60px 52px / 60px 60px 165px 165px;
+    transform: rotate(5deg);
+  }
+  .hair-right {
+    position: absolute;
+    left: 247px;
+    top: 44px;
+    width: 101px;
+    height: 297px;
+    background: linear-gradient(180deg, #8e6771 0%, #d2b2aa 40%, #c7a6a0 70%, #7d5962 100%);
+    border-radius: 45px 62px 52px 56px / 55px 58px 165px 165px;
+    transform: rotate(-8deg);
+  }
+  .neck {
+    position: absolute;
+    left: 209px;
+    top: 235px;
+    width: 57px;
+    height: 67px;
+    background: linear-gradient(180deg, #d3a1a5 0%, #d9a9ad 100%);
+    border-radius: 18px;
+    z-index: 3;
+  }
+  .face {
+    position: absolute;
+    left: 153px;
+    top: 55px;
+    width: 160px;
+    height: 214px;
+    background: linear-gradient(180deg, #d7a7af 0%, #d29ca6 42%, #c58b95 100%);
+    border-radius: 82px 82px 76px 76px / 96px 96px 116px 116px;
+    z-index: 5;
+    box-shadow: inset -10px 0 30px rgba(196,44,151,.18), inset 0 -10px 22px rgba(103,32,73,.18);
+  }
+  .ear-left, .ear-right {
+    position: absolute;
+    top: 136px;
+    width: 14px;
+    height: 24px;
+    background: #ca98a0;
+    border-radius: 8px;
+    z-index: 4;
+  }
+  .ear-left { left: 148px; }
+  .ear-right { left: 301px; }
+  .glasses-left, .glasses-right {
+    position: absolute;
+    top: 96px;
+    width: 63px;
+    height: 48px;
+    border: 4px solid #b95cd9;
+    border-radius: 26px 26px 22px 22px;
+    box-sizing: border-box;
+    overflow: hidden;
+    z-index: 7;
+    background:
+      repeating-linear-gradient(82deg,
+        rgba(60,255,230,.26) 0 2px,
+        rgba(30,70,120,.12) 2px 5px),
+      linear-gradient(180deg, rgba(84,255,220,.7), rgba(35,98,165,.34));
+  }
+  .glasses-left { left: 134px; transform: rotate(-10deg); }
+  .glasses-right { left: 205px; transform: rotate(9deg); }
+  .bridge {
+    position: absolute;
+    left: 194px;
+    top: 115px;
+    width: 16px;
+    height: 5px;
+    background: #a34fc9;
+    border-radius: 3px;
+    z-index: 7;
+  }
+  .nose {
+    position: absolute;
+    left: 226px;
+    top: 146px;
+    width: 10px;
+    height: 30px;
+    background: linear-gradient(180deg, rgba(174,94,120,.16), rgba(151,80,107,.36));
+    border-radius: 6px;
+    z-index: 6;
+  }
+  .mouth {
+    position: absolute;
+    left: 212px;
+    top: 187px;
+    width: 31px;
+    height: 8px;
+    border-bottom: 3px solid #7d3458;
+    border-radius: 0 0 16px 16px;
+    z-index: 6;
+  }
+  .shoulder-top {
+    position: absolute;
+    left: 106px;
+    top: 270px;
+    width: 273px;
+    height: 37px;
+    background: linear-gradient(180deg, #fbfbff, #efe8f3);
+    border-radius: 18px;
+    z-index: 4;
+  }
+  .shirt {
+    position: absolute;
+    left: 95px;
+    top: 281px;
+    width: 287px;
+    height: 281px;
+    background: linear-gradient(180deg, #fcfbff 0%, #f1e8f7 54%, #eadcf2 100%);
+    clip-path: polygon(13% 0%, 87% 0%, 100% 21%, 96% 100%, 4% 100%, 0% 21%);
+    z-index: 3;
+    box-shadow: inset -34px 0 50px rgba(217,41,193,.19), inset 35px 45px 62px rgba(74,149,255,.12);
+  }
+  .arm-left {
+    position: absolute;
+    left: 72px;
+    top: 304px;
+    width: 55px;
+    height: 229px;
+    background: linear-gradient(180deg, #d39ea2 0%, #b9767e 100%);
+    clip-path: polygon(35% 0%, 100% 5%, 72% 100%, 0% 100%);
+    z-index: 2;
+  }
+  .arm-right {
+    position: absolute;
+    left: 350px;
+    top: 306px;
+    width: 45px;
+    height: 226px;
+    background: linear-gradient(180deg, #ca959e 0%, #ab6873 100%);
+    clip-path: polygon(0 3%, 67% 0, 100% 100%, 21% 100%);
+    z-index: 2;
+  }
+  .color-wash {
+    position: absolute;
+    left: 110px;
+    top: 205px;
+    width: 256px;
+    height: 333px;
+    background:
+      radial-gradient(circle at 78% 24%, rgba(235,61,231,.56), rgba(235,61,231,0) 37%),
+      radial-gradient(circle at 31% 82%, rgba(79,132,255,.22), rgba(79,132,255,0) 45%);
+    z-index: 6;
+  }
+  .chapter {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+    z-index: 40;
+    text-shadow: 0 1px 3px rgba(0,0,0,.4);
+  }
+  .title {
+    position: absolute;
+    left: 49px;
+    top: 33px;
+    width: 1210px;
+    color: #ffe100;
+    font-size: 86px;
+    line-height: 0.98;
+    font-weight: 800;
+    letter-spacing: -2.6px;
+    text-transform: uppercase;
+    z-index: 40;
+    text-shadow: 0 2px 3px rgba(0,0,0,.15);
+    white-space: nowrap;
+  }
+  .subtitle {
+    position: absolute;
+    left: 266px;
+    top: 118px;
+    width: 840px;
+    color: #ffe100;
+    font-size: 33px;
+    line-height: 1.1;
+    font-weight: 700;
+    z-index: 40;
+    text-shadow: 0 2px 3px rgba(0,0,0,.16);
+    white-space: nowrap;
+  }
+  .jump {
+    position: absolute;
+    right: -8px;
+    top: -1px;
+    width: 67px;
+    height: 46px;
+    background: #8b8790;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: #fff;
+    font-size: 9px;
+    line-height: 10px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 18px;
+    box-sizing: border-box;
+    z-index: 60;
+  }
+  .left-chevron {
+    position: absolute;
+    left: 0;
+    top: 334px;
+    width: 24px;
+    height: 28px;
+    z-index: 45;
+  }
+  .left-chevron::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 18px solid rgba(34,49,21,.95);
+    filter: drop-shadow(0 0 1px rgba(0,0,0,.3));
+  }
+  .bottom-strip {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 1303px;
+    height: 10px;
+    background: linear-gradient(90deg,
+      #f3dd00 0%,
+      #f4df00 18%,
+      #f3d219 33%,
+      #f0b44b 43%,
+      #e65fcc 57%,
+      #8f3fd8 74%,
+      #2d73de 89%,
+      #16d2e6 100%);
+    z-index: 55;
+  }
+  .vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0) 52%, rgba(0,0,0,.22) 100%);
+    z-index: 9;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="frame">
+      <div class="big-eight">8</div>
+
+      <div class="woman">
+        <div class="hair-back"></div>
+        <div class="hair-left"></div>
+        <div class="hair-right"></div>
+        <div class="neck"></div>
+        <div class="face"></div>
+        <div class="ear-left"></div>
+        <div class="ear-right"></div>
+        <div class="glasses-left"></div>
+        <div class="glasses-right"></div>
+        <div class="bridge"></div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+        <div class="shoulder-top"></div>
+        <div class="arm-left"></div>
+        <div class="arm-right"></div>
+        <div class="shirt"></div>
+        <div class="color-wash"></div>
+      </div>
+
+      <div class="chapter">Chapter 8</div>
+      <div class="title">CURRENT STATE OF CONTROLS:</div>
+      <div class="subtitle">maturing capabilities from a solid foundation</div>
+      <div class="jump">JUMP TO<br>CONTENTS</div>
+      <div class="left-chevron"></div>
+      <div class="bottom-strip"></div>
+      <div class="vignette"></div>
+    </div>
+  </div>
+</body>
+</html>

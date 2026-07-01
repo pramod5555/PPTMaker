@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Multipurpose Robot Bodies</title>
+<style>
+  body{
+    margin:0;
+    background:#7e7d7e;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:linear-gradient(to right, #f2f2f2 0 55.5%, #000 55.5% 100%);
+  }
+  .top-left{
+    position:absolute;
+    left:64px;
+    top:38px;
+    font-size:14px;
+    color:#4e5a5d;
+    font-weight:500;
+    letter-spacing:-0.1px;
+  }
+  .top-left .purple{ color:#8c1fff; }
+  .top-right{
+    position:absolute;
+    right:39px;
+    top:38px;
+    font-size:14px;
+    color:#cfcfcf;
+    white-space:nowrap;
+  }
+  .top-right .num{
+    margin-left:20px;
+    color:#ffffff;
+  }
+
+  .title{
+    position:absolute;
+    left:64px;
+    top:118px;
+    width:420px;
+    font-size:24px;
+    line-height:1.15;
+    color:#111;
+    font-weight:700;
+  }
+
+  .col{
+    position:absolute;
+    color:#333;
+  }
+  .col h2{
+    margin:0 0 12px 0;
+    font-size:19px;
+    line-height:1.2;
+    font-weight:500;
+    color:#2d2d2d;
+  }
+  .col p{
+    margin:0;
+    font-size:15px;
+    line-height:1.34;
+    color:#3a3a3a;
+  }
+  .col sup{
+    font-size:8px;
+    vertical-align:super;
+  }
+
+  .left-top{ left:64px; top:174px; width:266px; }
+  .left-bottom{ left:64px; top:430px; width:275px; }
+  .mid-top{ left:379px; top:174px; width:271px; }
+
+  .chev{
+    position:absolute;
+    left:58px;
+    bottom:26px;
+    color:#a020ff;
+    font-size:34px;
+    font-weight:700;
+    line-height:1;
+  }
+
+  .chart-wrap{
+    position:absolute;
+    left:752px;
+    top:206px;
+    width:510px;
+    height:470px;
+    color:#fff;
+  }
+  .chart-title{
+    font-size:14px;
+    line-height:1.25;
+    color:#b78ae9;
+    font-weight:700;
+    margin-bottom:2px;
+  }
+  .chart-sub{
+    width:500px;
+    font-size:14px;
+    line-height:1.25;
+    color:#d8d8d8;
+    margin-bottom:16px;
+  }
+  .chart-head{
+    font-size:14px;
+    line-height:1.25;
+    color:#ffffff;
+    font-weight:700;
+    margin-bottom:22px;
+  }
+
+  .legend{
+    position:absolute;
+    left:45px;
+    top:124px;
+    font-size:12px;
+    color:#d9d9d9;
+  }
+  .legend-item{
+    position:absolute;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    white-space:nowrap;
+  }
+  .legend .fund{ left:0; top:0; }
+  .legend .deals{ left:185px; top:0; }
+  .box{
+    width:18px;
+    height:12px;
+    background:#6e00a6;
+    border:1px solid #6e00a6;
+  }
+  .line{
+    width:22px;
+    height:0;
+    border-top:2px solid #e8e8e8;
+  }
+
+  .plot{
+    position:absolute;
+    left:0;
+    top:155px;
+    width:510px;
+    height:250px;
+  }
+  .x-axis{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:488px;
+    border-top:1px solid #8a8a8a;
+  }
+
+  .tick-label{
+    position:absolute;
+    bottom:-26px;
+    font-size:12px;
+    color:#f2f2f2;
+    font-weight:700;
+    transform:translateX(-50%);
+  }
+
+  .bar{
+    position:absolute;
+    bottom:1px;
+    width:77px;
+    background:linear-gradient(to top, #8c1fff 0%, #5f0093 100%);
+    box-shadow:0 0 0 1px rgba(255,255,255,0.04) inset;
+  }
+  .bar small{
+    position:absolute;
+    top:14px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:12px;
+    color:#ffffff;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .bar.bar1{ left:9px; height:6px; width:80px; }
+  .bar.bar2{ left:114px; height:34px; width:80px; }
+  .bar.bar3{ left:214px; height:89px; width:77px; }
+  .bar.bar4{ left:313px; height:69px; width:77px; }
+  .bar.bar5{ left:411px; height:226px; width:77px; }
+
+  .line-svg{
+    position:absolute;
+    left:0;
+    top:0;
+    width:510px;
+    height:250px;
+    overflow:visible;
+  }
+  .deal-num{
+    position:absolute;
+    font-size:12px;
+    color:#ffffff;
+    font-weight:700;
+  }
+
+  .right-axis{
+    position:absolute;
+    left:480px;
+    top:154px;
+    width:40px;
+    height:250px;
+    font-size:11px;
+    color:#d8d8d8;
+  }
+  .right-axis div{
+    position:absolute;
+    left:0;
+    transform:translateY(50%);
+    white-space:nowrap;
+  }
+
+  .foot{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:500px;
+    font-size:10px;
+    line-height:1.2;
+    color:#c6c6c6;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left"><span class="purple">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+    <div class="top-right">When LLMs get their Bodies <span class="num">42</span></div>
+
+    <div class="title">Multipurpose Robot Bodies</div>
+
+    <div class="col left-top">
+      <h2>What is it?</h2>
+      <p>In the past, many robots were built for a single function; their software and physical design were both determined by the task they were created to do. But recently, more multipurpose form factors have entered the market. The hardware components inside these bodies are more purpose-built for robotics than ever, and the bodies they’re composed into are increasingly general-purpose, meaning they can take on multiple types of tasks. Humanoids are a prime example, but robotic arms, dogs, even some drones are also getting more versatile capabilities.</p>
+    </div>
+
+    <div class="col left-bottom">
+      <h2>How does it connect to the trend?</h2>
+      <p>A generalist AI robotics model is critically limited without a generalist robot to run it on. Humanoids are appealing because of their versatility. They will fit quickly and easily into a human-centric world, accessing physical spaces and participating in workflows initially designed for people. Videos of humans doing various tasks can also become training data for humanoids.</p>
+    </div>
+
+    <div class="col mid-top">
+      <h2>Who is doing it today?</h2>
+      <p>Many companies—traditional robotics manufacturers and startups alike—are working on multipurpose robot bodies. Automotive companies are showing especially strong interest. Some, like Tesla, Hyundai (owner of Boston Dynamics), and Toyota, are developing their own robots.<sup>101,102,103</sup> And they’re starting to push past development into deployment—a BMW plant is using an OpenAI-powered self-correcting humanoid.<sup>104</sup> And Magna, a car manufacturer, will be piloting a humanoid robot from Sanctuary AI in one of its facilities.<sup>105</sup></p>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Investment in humanoid robotics takes a big step</div>
+      <div class="chart-sub">Despite a challenging investment market, funding and deals related to humanoid robotics had a major increase in 2024. The versatility of their form makes them very applicable for a wide variety of use cases.</div>
+      <div class="chart-head">Total funding (USD) and number of deals relating to humanoid startups, 2020 – 2024*</div>
+
+      <div class="legend">
+        <div class="legend-item fund"><span class="box"></span><span>Total Funding (USD)</span></div>
+        <div class="legend-item deals"><span class="line"></span><span>Number of Deals</span></div>
+      </div>
+
+      <div class="plot">
+        <div class="x-axis"></div>
+
+        <div class="bar bar1"><small>$0.03B</small></div>
+        <div class="bar bar2"><small>$0.18B</small></div>
+        <div class="bar bar3"><small>$0.47B</small></div>
+        <div class="bar bar4"><small>$0.36B</small></div>
+        <div class="bar bar5"><small>$1.19B</small></div>
+
+        <div class="tick-label" style="left:49px;">2020</div>
+        <div class="tick-label" style="left:154px;">2021</div>
+        <div class="tick-label" style="left:252px;">2022</div>
+        <div class="tick-label" style="left:351px;">2023</div>
+        <div class="tick-label" style="left:449px;">2024*</div>
+
+        <svg class="line-svg" viewBox="0 0 510 250" aria-hidden="true">
+          <polyline points="50,197 150,206 250,148 350,67 450,17"
+            fill="none" stroke="#ececec" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></polyline>
+          <line x1="50" y1="197" x2="49" y2="187" stroke="#ececec" stroke-width="2" />
+          <line x1="150" y1="206" x2="149" y2="196" stroke="#ececec" stroke-width="2" />
+          <line x1="250" y1="148" x2="240" y2="144" stroke="#ececec" stroke-width="2" />
+          <line x1="350" y1="67" x2="360" y2="61" stroke="#ececec" stroke-width="2" />
+          <line x1="450" y1="17" x2="458" y2="12" stroke="#ececec" stroke-width="2" />
+        </svg>
+
+        <div class="deal-num" style="left:27px; top:137px;">10</div>
+        <div class="deal-num" style="left:136px; top:145px;">8</div>
+        <div class="deal-num" style="left:198px; top:88px;">19</div>
+        <div class="deal-num" style="left:362px; top:40px;">35</div>
+        <div class="deal-num" style="left:462px; top:7px;">44</div>
+      </div>
+
+      <div class="right-axis">
+        <div style="bottom:0px;">$.B</div>
+        <div style="bottom:35px;">$.2B</div>
+        <div style="bottom:73px;">$.4B</div>
+        <div style="bottom:112px;">$.6B</div>
+        <div style="bottom:150px;">$.8B</div>
+        <div style="bottom:185px;">$1.B</div>
+        <div style="bottom:221px;">$1.2B</div>
+        <div style="bottom:250px;">$1.4B</div>
+      </div>
+
+      <div class="foot">Note: *2024 contains partial data through Oct 2024<br>
+        Source: Accenture Research analysis on deals from CB Insights. Analysis includes deals with undisclosed funding amounts and excludes the investment type “corporate majority”; Jan 2020 - Oct 2024
+      </div>
+    </div>
+
+    <div class="chev">&gt;</div>
+  </div>
+</body>
+</html>

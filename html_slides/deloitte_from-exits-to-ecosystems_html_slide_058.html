@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Expectations for the Environment in 2025</title>
+<style>
+  html, body{
+    margin:0;
+    width:100%;
+    height:100%;
+    background:#111;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#102f43;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  /* right-side photo approximation */
+  .bg-photo{
+    left:476px;
+    top:0;
+    width:804px;
+    height:720px;
+    background:
+      radial-gradient(circle at 52% 12%, rgba(255,247,221,0.48) 0, rgba(255,247,221,0.16) 78px, rgba(255,247,221,0) 160px),
+      radial-gradient(circle at 42% 26%, rgba(255,241,214,0.28) 0, rgba(255,241,214,0.10) 96px, rgba(255,241,214,0) 200px),
+      linear-gradient(90deg, rgba(8,18,19,0.52) 0%, rgba(10,20,18,0.18) 22%, rgba(9,17,14,0.08) 40%, rgba(8,16,12,0.02) 58%, rgba(0,0,0,0) 100%),
+      linear-gradient(180deg, #24382b 0%, #1d3127 38%, #101b16 100%);
+    z-index:0;
+  }
+
+  .building1{
+    left:642px;
+    top:205px;
+    width:126px;
+    height:300px;
+    background:#ede8dc;
+    filter:blur(1px);
+    opacity:.95;
+    z-index:1;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.10);
+  }
+  .building2{
+    left:737px;
+    top:220px;
+    width:72px;
+    height:176px;
+    background:#c9cdbf;
+    filter:blur(1px);
+    z-index:1;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.10);
+  }
+  .building3{
+    left:582px;
+    top:455px;
+    width:146px;
+    height:265px;
+    background:#b89e82;
+    filter:blur(1.2px);
+    opacity:.86;
+    z-index:1;
+  }
+  .building4{
+    left:660px;
+    top:453px;
+    width:96px;
+    height:79px;
+    background:#efeadf;
+    filter:blur(.8px);
+    z-index:1;
+  }
+  .building5{
+    left:718px;
+    top:453px;
+    width:74px;
+    height:93px;
+    background:#d8d5cb;
+    filter:blur(.8px);
+    z-index:1;
+  }
+  .window{
+    position:absolute;
+    background:rgba(30,41,41,0.66);
+  }
+
+  .tree-mid{
+    left:778px;
+    top:17px;
+    width:310px;
+    height:420px;
+    z-index:2;
+    background:
+      radial-gradient(circle at 55% 13%, rgba(64,88,56,.92) 0, rgba(41,66,39,.90) 58px, rgba(19,35,22,.55) 118px, rgba(0,0,0,0) 160px),
+      radial-gradient(circle at 34% 38%, rgba(57,81,50,.95) 0, rgba(37,59,35,.90) 72px, rgba(0,0,0,0) 152px),
+      radial-gradient(circle at 72% 49%, rgba(48,73,42,.95) 0, rgba(29,51,30,.90) 86px, rgba(0,0,0,0) 170px),
+      radial-gradient(circle at 54% 72%, rgba(46,72,40,.90) 0, rgba(26,47,28,.85) 82px, rgba(0,0,0,0) 160px);
+    filter:blur(.4px);
+  }
+  .tree-right{
+    left:1006px;
+    top:-24px;
+    width:316px;
+    height:640px;
+    z-index:3;
+    background:
+      radial-gradient(circle at 22% 9%, rgba(42,71,36,.98) 0, rgba(31,56,29,.95) 50px, rgba(0,0,0,0) 110px),
+      radial-gradient(circle at 55% 18%, rgba(45,73,39,.98) 0, rgba(31,56,29,.95) 68px, rgba(0,0,0,0) 132px),
+      radial-gradient(circle at 79% 15%, rgba(38,63,31,.98) 0, rgba(23,44,24,.94) 66px, rgba(0,0,0,0) 130px),
+      radial-gradient(circle at 24% 40%, rgba(44,72,40,.98) 0, rgba(29,52,28,.94) 84px, rgba(0,0,0,0) 156px),
+      radial-gradient(circle at 68% 44%, rgba(36,64,34,.98) 0, rgba(22,41,23,.94) 92px, rgba(0,0,0,0) 166px),
+      radial-gradient(circle at 44% 67%, rgba(40,68,36,.98) 0, rgba(24,45,24,.94) 88px, rgba(0,0,0,0) 162px),
+      radial-gradient(circle at 82% 76%, rgba(35,59,32,.98) 0, rgba(18,35,20,.92) 102px, rgba(0,0,0,0) 180px);
+    filter:blur(.2px);
+  }
+  .shadow-wash{
+    left:476px;
+    top:0;
+    width:370px;
+    height:720px;
+    z-index:4;
+    background:linear-gradient(90deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.08) 55%, rgba(0,0,0,0) 100%);
+  }
+
+  /* foreground photo details */
+  .bench-rail1{
+    left:313px;
+    top:660px;
+    width:548px;
+    height:4px;
+    background:#085a58;
+    z-index:18;
+  }
+  .bench-rail2{
+    left:320px;
+    top:684px;
+    width:300px;
+    height:4px;
+    background:#0b5e59;
+    transform:rotate(10deg);
+    transform-origin:left center;
+    z-index:18;
+  }
+  .bench-leg-left{
+    left:350px;
+    top:663px;
+    width:4px;
+    height:58px;
+    background:#0a5d58;
+    z-index:18;
+  }
+  .bench-leg-mid{
+    left:543px;
+    top:612px;
+    width:4px;
+    height:108px;
+    background:#0a5d58;
+    z-index:18;
+  }
+  .bench-back{
+    left:544px;
+    top:611px;
+    width:22px;
+    height:126px;
+    border-radius:4px;
+    background:linear-gradient(180deg,#118c69 0%, #1da878 46%, #0f7456 100%);
+    transform:rotate(3deg);
+    z-index:19;
+  }
+  .seat{
+    left:538px;
+    top:694px;
+    width:264px;
+    height:18px;
+    background:linear-gradient(180deg,#cfd7af 0%, #bcc899 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.2), inset 0 -1px 0 rgba(0,0,0,.2);
+    z-index:19;
+  }
+  .seat-edge{
+    left:540px;
+    top:711px;
+    width:264px;
+    height:6px;
+    background:#7b8860;
+    z-index:19;
+  }
+  .seat-support1{
+    left:609px;
+    top:710px;
+    width:4px;
+    height:42px;
+    background:#33493d;
+    transform:rotate(28deg);
+    transform-origin:top center;
+    z-index:18;
+  }
+  .seat-support2{
+    left:760px;
+    top:710px;
+    width:4px;
+    height:43px;
+    background:#33493d;
+    transform:rotate(-16deg);
+    transform-origin:top center;
+    z-index:18;
+  }
+
+  .person-leg-left{
+    left:858px;
+    top:608px;
+    width:76px;
+    height:150px;
+    background:linear-gradient(180deg,#eee0c7 0%, #eadabd 100%);
+    border-radius:34px 30px 14px 18px;
+    transform:rotate(3deg);
+    z-index:24;
+  }
+  .person-leg-right{
+    left:958px;
+    top:602px;
+    width:79px;
+    height:158px;
+    background:linear-gradient(180deg,#ead9be 0%, #e1cfb1 100%);
+    border-radius:35px 32px 14px 18px;
+    transform:rotate(4deg);
+    z-index:24;
+  }
+  .person-torso{
+    left:914px;
+    top:414px;
+    width:126px;
+    height:173px;
+    background:linear-gradient(180deg,#6f4a34 0%, #5c3d2c 100%);
+    border-radius:36px 34px 28px 27px;
+    transform:rotate(5deg);
+    z-index:27;
+  }
+  .person-neck{
+    left:962px;
+    top:401px;
+    width:18px;
+    height:34px;
+    background:linear-gradient(180deg,#dbac86 0%, #c58f69 100%);
+    border-radius:10px;
+    transform:rotate(8deg);
+    z-index:26;
+  }
+  .person-strap-left{
+    left:921px;
+    top:418px;
+    width:11px;
+    height:160px;
+    background:#221f20;
+    border-radius:6px;
+    z-index:28;
+  }
+  .person-strap-right{
+    left:1019px;
+    top:416px;
+    width:11px;
+    height:157px;
+    background:#382d2a;
+    border-radius:6px;
+    transform:rotate(8deg);
+    z-index:28;
+  }
+  .person-arm-left{
+    left:864px;
+    top:423px;
+    width:58px;
+    height:147px;
+    background:linear-gradient(180deg,#c99d77 0%, #b88361 100%);
+    border-radius:28px;
+    transform:rotate(65deg);
+    transform-origin:70% 10%;
+    z-index:28;
+  }
+  .person-forearm-face{
+    left:851px;
+    top:344px;
+    width:46px;
+    height:110px;
+    background:linear-gradient(180deg,#d6a37d 0%, #ba8561 100%);
+    border-radius:24px;
+    transform:rotate(-28deg);
+    transform-origin:50% 10%;
+    z-index:29;
+  }
+  .person-wristband{
+    left:872px;
+    top:378px;
+    width:30px;
+    height:11px;
+    background:#482d1e;
+    border-radius:6px;
+    transform:rotate(-25deg);
+    z-index:30;
+  }
+  .person-arm-right{
+    left:1002px;
+    top:514px;
+    width:42px;
+    height:126px;
+    background:linear-gradient(180deg,#d2a47d 0%, #be8b66 100%);
+    border-radius:22px;
+    transform:rotate(8deg);
+    z-index:28;
+  }
+  .person-head{
+    left:931px;
+    top:301px;
+    width:88px;
+    height:113px;
+    background:linear-gradient(180deg,#e2b690 0%, #c98f6a 100%);
+    border-radius:48% 45% 44% 43% / 42% 44% 52% 53%;
+    transform:rotate(8deg);
+    z-index:31;
+  }
+  .person-hair{
+    left:937px;
+    top:289px;
+    width:107px;
+    height:86px;
+    background:radial-gradient(circle at 40% 45%, #643d29 0%, #3c261e 68%, #241611 100%);
+    border-radius:52% 50% 45% 42% / 54% 58% 38% 36%;
+    transform:rotate(8deg);
+    z-index:32;
+  }
+  .person-hand-face{
+    left:903px;
+    top:307px;
+    width:42px;
+    height:70px;
+    background:linear-gradient(180deg,#e3b58f 0%, #cd936d 100%);
+    border-radius:24px;
+    transform:rotate(26deg);
+    z-index:33;
+  }
+  .bag{
+    left:867px;
+    top:575px;
+    width:169px;
+    height:57px;
+    background:linear-gradient(180deg,#d97d37 0%, #b55e22 100%);
+    border-radius:28px 27px 23px 25px;
+    transform:rotate(4deg);
+    box-shadow: inset 0 -4px 0 rgba(0,0,0,.12);
+    z-index:34;
+  }
+  .bag-flap{
+    left:884px;
+    top:565px;
+    width:94px;
+    height:37px;
+    background:linear-gradient(180deg,#cb702f 0%, #b25f28 100%);
+    border-radius:20px 20px 13px 13px;
+    transform:rotate(8deg);
+    z-index:35;
+  }
+  .bag-pocket{
+    left:955px;
+    top:584px;
+    width:43px;
+    height:24px;
+    border:2px solid rgba(95,47,15,.55);
+    border-radius:8px;
+    transform:rotate(6deg);
+    z-index:36;
+  }
+  .bag-strap{
+    left:931px;
+    top:554px;
+    width:89px;
+    height:53px;
+    border:5px solid #8a4c1f;
+    border-color:#8a4c1f transparent transparent transparent;
+    border-radius:50%;
+    transform:rotate(3deg);
+    z-index:36;
+  }
+  .hand-knee{
+    left:979px;
+    top:593px;
+    width:33px;
+    height:51px;
+    background:linear-gradient(180deg,#ddb28c 0%, #c89370 100%);
+    border-radius:17px;
+    transform:rotate(7deg);
+    z-index:37;
+  }
+
+  .bottle{
+    left:795px;
+    top:594px;
+    width:26px;
+    height:106px;
+    z-index:26;
+  }
+
+  /* overlay geometric panels */
+  .left-navy{
+    left:0;
+    top:0;
+    width:926px;
+    height:720px;
+    background:linear-gradient(90deg,#0e4659 0%, #001d56 100%);
+    clip-path:polygon(0 0, 100% 0, 47.6% 100%, 0 100%);
+    z-index:40;
+  }
+  .purple-corner{
+    right:0;
+    bottom:0;
+    width:145px;
+    height:279px;
+    background:#4f2b74;
+    clip-path:polygon(100% 0, 100% 100%, 0 100%);
+    z-index:41;
+  }
+  .teal-ribbon{
+    right:60px;
+    bottom:0;
+    width:205px;
+    height:147px;
+    background:#27afb2;
+    clip-path:polygon(32% 0, 100% 0, 68% 100%, 0 100%);
+    z-index:42;
+  }
+
+  .title{
+    left:47px;
+    top:153px;
+    width:500px;
+    color:#f4f4f4;
+    font-size:64px;
+    line-height:1.16;
+    font-weight:800;
+    letter-spacing:-0.045em;
+    z-index:50;
+  }
+  .footer{
+    left:49px;
+    bottom:18px;
+    color:rgba(255,255,255,.86);
+    font-size:14px;
+    line-height:1;
+    font-weight:400;
+    letter-spacing:-0.01em;
+    z-index:50;
+  }
+</style>
+</head>
+<body>
+  <div id="slide">
+    <div class="bg-photo"></div>
+
+    <div class="building1">
+      <div class="window" style="left:10px;top:18px;width:13px;height:21px;"></div>
+      <div class="window" style="left:34px;top:18px;width:13px;height:21px;"></div>
+      <div class="window" style="left:58px;top:18px;width:13px;height:21px;"></div>
+      <div class="window" style="left:82px;top:18px;width:13px;height:21px;"></div>
+
+      <div class="window" style="left:10px;top:52px;width:13px;height:21px;"></div>
+      <div class="window" style="left:34px;top:52px;width:13px;height:21px;"></div>
+      <div class="window" style="left:58px;top:52px;width:13px;height:21px;"></div>
+      <div class="window" style="left:82px;top:52px;width:13px;height:21px;"></div>
+
+      <div class="window" style="left:10px;top:86px;width:13px;height:21px;"></div>
+      <div class="window" style="left:34px;top:86px;width:13px;height:21px;"></div>
+      <div class="window" style="left:58px;top:86px;width:13px;height:21px;"></div>
+      <div class="window" style="left:82px;top:86px;width:13px;height:21px;"></div>
+
+      <div class="window" style="left:10px;top:120px;width:13px;height:21px;"></div>
+      <div class="window" style="left:34px;top:120px;width:13px;height:21px;"></div>
+      <div class="window" style="left:58px;top:120px;width:13px;height:21px;"></div>
+      <div class="window" style="left:82px;top:120px;width:13px;height:21px;"></div>
+    </div>
+
+    <div class="building2">
+      <div class="window" style="left:10px;top:14px;width:11px;height:24px;"></div>
+      <div class="window" style="left:30px;top:14px;width:11px;height:24px;"></div>
+      <div class="window" style="left:50px;top:14px;width:11px;height:24px;"></div>
+      <div class="window" style="left:10px;top:48px;width:11px;height:24px;"></div>
+      <div class="window" style="left:30px;top:48px;width:11px;height:24px;"></div>
+      <div class="window" style="left:50px;top:48px;width:11px;height:24px;"></div>
+      <div class="window" style="left:10px;top:82px;width:11px;height:24px;"></div>
+      <div class="window" style="left:30px;top:82px;width:11px;height:24px;"></div>
+      <div class="window" style="left:50px;top:82px;width:11px;height:24px;"></div>
+    </div>
+
+    <div class="building3"></div>
+    <div class="building4"></div>
+    <div class="building5"></div>
+    <div class="tree-mid"></div>
+    <div class="tree-right"></div>
+    <div class="shadow-wash"></div>
+
+    <div class="bench-rail1"></div>
+    <div class="bench-rail2"></div>
+    <div class="bench-leg-left"></div>
+    <div class="bench-leg-mid"></div>
+    <div class="bench-back"></div>
+    <div class="seat"></div>
+    <div class="seat-edge"></div>
+    <div class="seat-support1"></div>
+    <div class="seat-support2"></div>
+
+    <div class="person-leg-left"></div>
+    <div class="person-leg-right"></div>
+    <div class="person-neck"></div>
+    <div class="person-torso"></div>
+    <div class="person-strap-left"></div>
+    <div class="person-strap-right"></div>
+    <div class="person-arm-left"></div>
+    <div class="person-forearm-face"></div>
+    <div class="person-wristband"></div>
+    <div class="person-arm-right"></div>
+    <div class="person-hair"></div>
+    <div class="person-head"></div>
+    <div class="person-hand-face"></div>
+    <div class="bag"></div>
+    <div class="bag-flap"></div>
+    <div class="bag-pocket"></div>
+    <div class="bag-strap"></div>
+    <div class="hand-knee"></div>
+
+    <svg class="bottle" viewBox="0 0 35 167" aria-hidden="true">
+      <defs>
+        <linearGradient id="bgrad" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="rgba(245,245,245,0.85)"/>
+          <stop offset="45%" stop-color="rgba(205,220,230,0.55)"/>
+          <stop offset="100%" stop-color="rgba(180,195,205,0.45)"/>
+        </linearGradient>
+      </defs>
+      <rect x="12" y="0" width="11" height="9" rx="2" fill="#b53b1f"/>
+      <rect x="10" y="8" width="15" height="18" rx="4" fill="url(#bgrad)" stroke="rgba(160,170,175,0.5)" stroke-width="1"/>
+      <rect x="8" y="23" width="19" height="122" rx="9" fill="url(#bgrad)" stroke="rgba(150,160,170,0.55)" stroke-width="1"/>
+      <rect x="9" y="76" width="17" height="9" fill="rgba(160,185,200,0.35)"/>
+      <ellipse cx="17.5" cy="146" rx="9.5" ry="4" fill="rgba(180,190,200,0.35)"/>
+    </svg>
+
+    <div class="left-navy"></div>
+    <div class="purple-corner"></div>
+    <div class="teal-ribbon"></div>
+
+    <div class="title">Expectations for<br>the Environment<br>in 2025</div>
+    <div class="footer">© Ipsos&nbsp;&nbsp;Predictions 2025 Report</div>
+  </div>
+</body>
+</html>

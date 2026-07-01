@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#ffffff;font-family:Arial, Helvetica, 'Segoe UI', sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f1f1f2;
+  }
+  .left-panel{
+    position:absolute; left:0; top:0; width:179px; height:720px;
+    background:#34373e;
+  }
+  .divider{
+    position:absolute; left:179px; top:0; width:2px; height:720px;
+    background:#7a5ab2;
+  }
+  .title-left{
+    position:absolute; left:12px; top:33px; width:150px;
+    color:#f0f0f0; font-size:24px; line-height:1.08; font-weight:700;
+  }
+
+  .step{
+    position:absolute; left:6px; width:166px; height:94px;
+    color:#6b7078;
+  }
+  .hex{
+    position:absolute; left:0; top:0; width:62px; height:54px;
+    clip-path:polygon(25% 3%,75% 3%,97% 50%,75% 97%,25% 97%,3% 50%);
+    background:#5f636a;
+    border:3px solid #9ea2a8;
+    box-sizing:border-box;
+    overflow:hidden;
+  }
+  .hex svg{position:absolute; inset:0; width:100%; height:100%;}
+  .step .num{
+    position:absolute; left:86px; top:2px;
+    width:22px; color:#70757d; font-size:30px; line-height:1; font-weight:700;
+  }
+  .step .txt{
+    position:absolute; left:86px; top:28px; width:78px;
+    color:#666b73; font-size:13px; line-height:1.15; font-weight:400;
+  }
+  .step.active .hex{
+    background:#e4d4f4;
+    border-color:#8c64c9;
+    box-shadow:0 0 0 2px rgba(140,100,201,.22);
+  }
+  .step.active .num,.step.active .txt{
+    color:#7f58b6; font-weight:700;
+  }
+
+  .bottom-icon{
+    position:absolute; left:70px; top:633px; width:67px; height:56px;
+    opacity:.9;
+  }
+  .page{
+    position:absolute; left:10px; bottom:12px;
+    color:#f2f2f2; font-size:20px; line-height:1; font-weight:400;
+  }
+
+  .main-title{
+    position:absolute; left:220px; top:32px; width:1040px;
+    color:#1f1f21; font-size:26px; line-height:1.06; font-weight:700;
+    letter-spacing:.1px;
+  }
+  .subhead{
+    position:absolute; left:220px; top:138px; width:640px;
+    color:#9499a2; font-size:27px; line-height:1.12; font-weight:400;
+  }
+  .center-top{
+    position:absolute; left:317px; top:184px; width:620px;
+    text-align:center; color:#222; font-size:18px; line-height:1.08; font-weight:700;
+  }
+
+  .arrow-wrap{
+    position:absolute; left:221px; top:243px; width:730px; height:118px;
+  }
+  .arrow-top{
+    position:absolute; left:181px; top:0; width:364px; height:51px;
+    background:#5b4388;
+  }
+  .arrow-body{
+    position:absolute; left:0; top:50px; width:730px; height:67px;
+    background:linear-gradient(to bottom,#8e77ba 0%,#bbaed6 100%);
+    clip-path:polygon(0 0,100% 0,63.8% 0,50% 100%,36.2% 0);
+  }
+  .arrow-text{
+    position:absolute; left:196px; top:8px; width:336px;
+    text-align:center; color:#fff; font-size:17px; line-height:1.35; font-weight:700;
+  }
+
+  .quote-big{
+    position:absolute; left:212px; top:357px;
+    color:#c9c0de; font-size:90px; line-height:.8; font-weight:700;
+  }
+  .opinions{
+    position:absolute; left:329px; top:369px; width:590px;
+    color:#222; font-size:33px; line-height:1.05; font-weight:700;
+  }
+
+  .col{
+    position:absolute; color:#2a2a2a;
+  }
+  .col1{left:220px; top:419px; width:318px;}
+  .col2{left:585px; top:419px; width:320px;}
+  .col3{left:246px; top:593px; width:650px;}
+
+  .name{
+    color:#6c59a6; font-size:17px; line-height:1.08; font-weight:700;
+  }
+  .body{
+    margin-top:5px; color:#2c2c2c; font-size:16px; line-height:1.07; font-weight:400;
+  }
+  .hl{font-weight:700;}
+  .name.light{color:#baa9da;}
+
+  .quote-right{
+    position:absolute; left:880px; top:642px;
+    color:#c9c0de; font-size:92px; line-height:.8; font-weight:700;
+  }
+
+  .right-box{
+    position:absolute; left:959px; top:140px; width:321px; height:580px;
+    background:#d7d7da;
+  }
+  .rb-text{
+    position:absolute; left:970px; top:151px; width:295px;
+    color:#2b2b2b; font-size:16px; line-height:1.07; font-weight:400;
+  }
+  .rb-text p{margin:0 0 11px 0;}
+  .rb-text .b{font-weight:700;}
+
+  .foot{
+    position:absolute; left:220px; bottom:10px; width:700px;
+    color:#4b4b4b; font-size:11px; line-height:1.1; font-weight:400;
+  }
+
+  .rb-logo{
+    position:absolute; right:13px; bottom:8px; width:66px; height:26px;
+  }
+  .rb-logo .t1{
+    position:absolute; left:0; top:2px; width:34px;
+    color:#5e5e5e; font-size:10px; line-height:.95; text-align:right;
+  }
+  .rb-logo .bmark{
+    position:absolute; right:0; top:0; width:17px; height:26px;
+    background:#8f9399; border-radius:0 9px 9px 0;
+  }
+  .rb-logo .bmark:before{
+    content:""; position:absolute; left:-11px; top:0; width:15px; height:26px;
+    background:#c6c8cc; border-radius:0 10px 10px 0;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-panel"></div>
+  <div class="divider"></div>
+
+  <div class="title-left">Technology &amp;<br>Innovation</div>
+
+  <div class="step" style="top:142px;">
+    <div class="hex">
+      <svg viewBox="0 0 62 54">
+        <defs>
+          <clipPath id="clip1"><polygon points="15,2 47,2 60,27 47,52 15,52 2,27"/></clipPath>
+        </defs>
+        <g clip-path="url(#clip1)">
+          <rect width="62" height="54" fill="#6b6f76"/>
+          <g opacity=".9">
+            <rect x="12" y="10" width="35" height="22" fill="none" stroke="#f1f1f1" stroke-width="1"/>
+            <line x1="12" y1="15" x2="47" y2="15" stroke="#f1f1f1" stroke-width="1"/>
+            <line x1="12" y1="20" x2="47" y2="20" stroke="#f1f1f1" stroke-width="1"/>
+            <line x1="12" y1="25" x2="47" y2="25" stroke="#f1f1f1" stroke-width="1"/>
+            <line x1="17" y1="10" x2="17" y2="32" stroke="#f1f1f1" stroke-width="1"/>
+            <line x1="25" y1="10" x2="25" y2="32" stroke="#f1f1f1" stroke-width="1"/>
+            <line x1="33" y1="10" x2="33" y2="32" stroke="#f1f1f1" stroke-width="1"/>
+            <line x1="41" y1="10" x2="41" y2="32" stroke="#f1f1f1" stroke-width="1"/>
+            <polyline points="13,30 21,20 28,24 35,15 46,20" fill="none" stroke="#ffffff" stroke-width="2"/>
+          </g>
+          <g opacity=".18" stroke="#fff" stroke-width="1">
+            <line x1="5" y1="40" x2="58" y2="8"/>
+            <line x1="0" y1="34" x2="50" y2="4"/>
+            <line x1="8" y1="48" x2="60" y2="18"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="num">1</div>
+    <div class="txt">Value of<br>Innovation</div>
+  </div>
+
+  <div class="step" style="top:275px;">
+    <div class="hex">
+      <svg viewBox="0 0 62 54">
+        <defs>
+          <clipPath id="clip2"><polygon points="15,2 47,2 60,27 47,52 15,52 2,27"/></clipPath>
+        </defs>
+        <g clip-path="url(#clip2)">
+          <rect width="62" height="54" fill="#6b6f76"/>
+          <g opacity=".18" fill="#fff">
+            <circle cx="14" cy="17" r="1.5"/><circle cx="19" cy="11" r="1.2"/><circle cx="25" cy="15" r="1.3"/>
+            <circle cx="28" cy="22" r="1.4"/><circle cx="37" cy="17" r="1.5"/><circle cx="44" cy="22" r="1.2"/>
+            <circle cx="20" cy="30" r="1.3"/><circle cx="31" cy="31" r="1.3"/><circle cx="40" cy="31" r="1.1"/>
+            <circle cx="47" cy="14" r="1.1"/>
+          </g>
+          <g fill="#ffffff" opacity=".9">
+            <circle cx="21" cy="20" r="4"/>
+            <circle cx="34" cy="14" r="3"/>
+            <circle cx="39" cy="28" r="5"/>
+            <circle cx="15" cy="30" r="2.5"/>
+          </g>
+          <g stroke="#ffffff" stroke-width="1.1" opacity=".95">
+            <line x1="21" y1="20" x2="34" y2="14"/>
+            <line x1="21" y1="20" x2="39" y2="28"/>
+            <line x1="21" y1="20" x2="15" y2="30"/>
+            <line x1="34" y1="14" x2="39" y2="28"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="num">2</div>
+    <div class="txt">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="step active" style="top:407px;">
+    <div class="hex">
+      <svg viewBox="0 0 62 54">
+        <defs>
+          <clipPath id="clip3"><polygon points="15,2 47,2 60,27 47,52 15,52 2,27"/></clipPath>
+        </defs>
+        <g clip-path="url(#clip3)">
+          <rect width="62" height="54" fill="#eadbf8"/>
+          <rect y="36" width="62" height="18" fill="#f5dfd6"/>
+          <g>
+            <path d="M10 31 C15 24,20 22,26 26" fill="none" stroke="#7f58b6" stroke-width="2.2"/>
+            <path d="M36 26 C42 22,47 24,52 31" fill="none" stroke="#7f58b6" stroke-width="2.2"/>
+            <circle cx="18" cy="28" r="6.5" fill="#f2c8b3"/>
+            <circle cx="44" cy="28" r="6.5" fill="#f2c8b3"/>
+            <rect x="23" y="25.5" width="16" height="5" fill="#ffffff"/>
+            <rect x="26" y="22" width="2" height="12" fill="#ffffff"/>
+            <rect x="33" y="22" width="2" height="12" fill="#ffffff"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="num">3</div>
+    <div class="txt">Humans &amp;<br>Machines</div>
+  </div>
+
+  <div class="bottom-icon">
+    <svg width="67" height="56" viewBox="0 0 67 56">
+      <g stroke="#72767e" stroke-width="2" fill="none" stroke-linecap="round">
+        <circle cx="17" cy="32" r="11"/>
+        <line x1="17" y1="14" x2="17" y2="6"/>
+        <line x1="6" y1="20" x2="1" y2="16"/>
+        <line x1="28" y1="20" x2="33" y2="16"/>
+        <line x1="4" y1="32" x2="0" y2="32"/>
+        <line x1="30" y1="32" x2="34" y2="32"/>
+        <line x1="8" y1="43" x2="4" y2="47"/>
+        <line x1="26" y1="43" x2="30" y2="47"/>
+      </g>
+      <g transform="translate(28,7)">
+        <circle cx="20" cy="18" r="10" fill="none" stroke="#72767e" stroke-width="2"/>
+        <circle cx="20" cy="18" r="4" fill="#72767e"/>
+        <g stroke="#72767e" stroke-width="2" stroke-linecap="round">
+          <line x1="20" y1="2" x2="20" y2="7"/>
+          <line x1="20" y1="29" x2="20" y2="34"/>
+          <line x1="4" y1="18" x2="9" y2="18"/>
+          <line x1="31" y1="18" x2="36" y2="18"/>
+          <line x1="9" y1="7" x2="13" y2="11"/>
+          <line x1="27" y1="25" x2="31" y2="29"/>
+          <line x1="27" y1="11" x2="31" y2="7"/>
+          <line x1="9" y1="29" x2="13" y2="25"/>
+        </g>
+      </g>
+      <path d="M21 42 C22 47,25 51,30 53" fill="none" stroke="#72767e" stroke-width="2"/>
+      <path d="M21 42 C21 37,25 34,29 32 C34 29,36 26,36 21 C36 16,32 11,26 11 C21 11,16 15,16 20" fill="none" stroke="#72767e" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="page">75</div>
+
+  <div class="main-title">Superintelligent AI, autonomous of human control, poses an existential risk<br>to humanity – Or may prompt a technological wave of innovations</div>
+  <div class="subhead">Expert opinions on existential risk from superintelligent AI</div>
+
+  <div class="center-top">Studies envisage (probability of 50 %) the occurrence of AI at<br>similar levels to human intelligence by 2040-2050</div>
+
+  <div class="arrow-wrap">
+    <div class="arrow-top"></div>
+    <div class="arrow-body"></div>
+    <div class="arrow-text">Superintelligent AI<br>poses an existential threat to humanity<br>– or helps fulfil its potential</div>
+  </div>
+
+  <div class="quote-big">“</div>
+  <div class="opinions">Opinions of leading scientists differ</div>
+
+  <div class="col col1">
+    <div class="name">Vincent Müller &amp; Michael Cannon –<br>Eindhoven University of Technology</div>
+    <div class="body">"Is there a notion of <span class="hl">intelligence</span> that is ‘general enough’ to assure existential risk from superintelligence, but 'instrumental enough' to <span class="hl">exclude ethical reflection</span> on goals by superintelligent systems? <span class="hl">We do not think so.</span> But if there is no such notion of intelligence with which we can 'have it both ways', then there is <span class="hl">no sound argument for the existential risk from superintelligent AI.</span>"</div>
+  </div>
+
+  <div class="col col2">
+    <div class="name">Nick Bostrom &amp; Eliezer Yudkowsky –<br>Cambridge University</div>
+    <div class="body">"<span class="hl">Superintelligence is one of several 'existential risks'.</span> […] a risk 'where an adverse outcome would either annihilate Earth-originating intelligent life or permanently and drastically curtail its potential'. <span class="hl">Conversely, a positive outcome for superintelligence could preserve Earth</span> – originating intelligent life and help fulfil its potential. It is important to emphasize that smarter minds pose great potential benefits as well as risks."</div>
+  </div>
+
+  <div class="col col3">
+    <div class="name light">David J. Chalmers – New York University</div>
+    <div class="body">"If the systems are created in <span class="hl">embodied form</span>, inhabiting and acting on the same physical environment as us, then the risks are especially significant. Here, there are at least <span class="hl">two worries</span>. First, <span class="hl">humans and AI may be competing for common physical resources</span>: space, energy, and so on. Second, embodied <span class="hl">AI systems</span> will have the <span class="hl">capacity to act physically upon us</span>, potentially doing us harm."</div>
+  </div>
+
+  <div class="quote-right">”</div>
+
+  <div class="right-box"></div>
+  <div class="rb-text">
+    <p>&gt; AI has undergone profound progress in terms of functionality, tasks and accuracy. However, it is <span class="b">not yet on a par with human intelligence</span>, but this is estimated to occur within <span class="b">two to three decades from now</span></p>
+    <p>&gt; If and when AI surpasses general human intelligence – a moment describes as <span class="b">"technological singularity"</span> – a superintelligent AI could innovate by itself, <span class="b">resulting in a technological wave of innovations</span> of unknown magnitude and consequence – an innovation explosion</p>
+    <p>&gt; This evolutionary step carries benefits but also <span class="b">fears of an existential risk to humanity</span>, as per definition, intelligence in the field of AI research is concerned with creating optimal algorithms in order to achieve an arbitrary goal – thus <span class="b">lacking anthropomorphic (moral) traits</span></p>
+    <p>&gt; Issues of <span class="b">AI control</span> have shifted the scientific debate to consider superintelligent AI along a spectrum of characteristics, ranging from <span class="b">general superintelligence</span>, which is inclusive of a moral mind and self-awareness, to goal-driven <span class="b">instrumentalized superintelligence</span>, lacking ethical reflection and awareness of self</p>
+  </div>
+
+  <div class="foot">Sources: Ratio; Cambridge University Press; Journal of Consciousness Studies; Elsevier; Roland Berger</div>
+
+  <div class="rb-logo">
+    <div class="t1">Roland<br>Berger</div>
+    <div class="bmark"></div>
+  </div>
+</div>
+</body>
+</html>

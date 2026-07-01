@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9dc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dedee1;
+  }
+  .slide > *{ position:absolute; box-sizing:border-box; }
+
+  .chapter-pill{
+    left:30px; top:14px; width:70px; height:18px;
+    background:#7a7b84;
+    border-radius:9px;
+    color:#fff;
+    font-size:9px;
+    line-height:18px;
+    text-align:center;
+    font-weight:700;
+    letter-spacing:0.06em;
+  }
+
+  .left-panel{
+    left:30px; top:31px; width:372px; height:704px;
+    background:#2b2c3b;
+    z-index:1;
+  }
+
+  .left-title{
+    left:76px; top:73px; width:255px;
+    color:#f5f5f7;
+    font-size:29px;
+    line-height:1.18;
+    font-weight:700;
+    z-index:2;
+  }
+
+  .left-accent{
+    left:76px; top:190px; width:279px; height:4px;
+    background:linear-gradient(90deg,#dfd300 0%, #dfd300 36%, #ee4cff 77%, #19d7ff 100%);
+    z-index:2;
+  }
+
+  .left-body{
+    left:76px; top:230px; width:252px;
+    color:#e1e1e6;
+    font-size:13px;
+    line-height:1.38;
+    font-weight:400;
+    z-index:2;
+  }
+
+  .quote-box{
+    left:76px; top:520px; width:255px; height:170px;
+    z-index:2;
+  }
+  .qline{position:absolute;background:#c7c7cf;}
+  .quote-line-tl-h{ left:0; top:0; width:32px; height:1px; }
+  .quote-line-tl-v{ left:0; top:0; width:1px; height:170px; }
+  .quote-line-tr-h{ right:0; top:0; width:32px; height:1px; }
+  .quote-line-tr-v{ right:0; top:0; width:1px; height:170px; }
+  .quote-line-bl-h{ left:0; bottom:0; width:32px; height:1px; }
+  .quote-line-br-h{ right:0; bottom:0; width:32px; height:1px; }
+
+  .quote-mark{
+    left:30px; top:18px; width:20px; height:20px;
+    color:#eed600;
+    font-size:41px;
+    line-height:20px;
+    font-weight:700;
+  }
+  .quote-title{
+    left:35px; top:41px; width:150px;
+    color:#f0f0f4;
+    font-size:14px;
+    line-height:1.2;
+    font-weight:400;
+  }
+  .quote-text{
+    left:35px; top:61px; width:185px;
+    color:#f0f0f4;
+    font-size:13px;
+    line-height:1.42;
+    font-weight:400;
+  }
+
+  .page-num{
+    left:50px; top:708px; width:30px;
+    color:#f5f5f7;
+    font-size:11px;
+    line-height:1;
+    font-weight:400;
+    z-index:2;
+  }
+
+  .chapter-vertical{
+    left:8px; top:329px; width:16px; height:126px;
+    z-index:2;
+  }
+  .chapter-vertical .text{
+    position:absolute;
+    left:-36px; top:40px; width:88px; height:14px;
+    transform:rotate(-90deg);
+    transform-origin:center center;
+    color:#2d2e35;
+    font-size:12px;
+    line-height:14px;
+    font-weight:700;
+    letter-spacing:0.12em;
+  }
+  .chapter-vertical .tick{
+    position:absolute;
+    left:6px; top:77px; width:1px; height:36px;
+    background:#2d2e35;
+  }
+
+  .main-title{
+    left:445px; top:72px; width:455px;
+    color:#2e2f39;
+    font-size:28px;
+    line-height:1.2;
+    font-weight:700;
+    z-index:2;
+  }
+  .main-accent{
+    left:451px; top:190px; width:402px; height:4px;
+    background:linear-gradient(90deg,#dfd300 0%, #dfd300 50%, #ee4cff 82%, #19d7ff 100%);
+    z-index:2;
+  }
+
+  .main-body-1{
+    left:444px; top:231px; width:388px;
+    color:#61636a;
+    font-size:13px;
+    line-height:1.38;
+    font-weight:400;
+    z-index:2;
+  }
+  .main-sep{
+    left:444px; top:349px; width:352px; height:1px;
+    background:#c8c8cc;
+    z-index:2;
+  }
+  .main-body-2{
+    left:444px; top:357px; width:388px;
+    color:#4f5158;
+    font-size:13px;
+    line-height:1.38;
+    font-weight:400;
+    z-index:2;
+  }
+
+  .figure-title{
+    left:920px; top:188px; width:335px;
+    color:#3a3b41;
+    font-size:13px;
+    line-height:1.35;
+    font-weight:400;
+    z-index:2;
+  }
+  .figure-title b{ font-weight:700; }
+
+  .jump{
+    left:1230px; top:58px; width:40px; height:40px;
+    z-index:3;
+  }
+  .jump svg{ width:40px; height:40px; display:block; }
+  .jump-text{
+    position:absolute;
+    left:7px; top:9px; width:26px;
+    font-size:8px; line-height:1.1; text-align:center;
+    color:#2f3136; font-weight:400;
+  }
+
+  .chart{
+    left:920px; top:242px; width:330px; height:430px;
+    z-index:2;
+  }
+  .row-label{
+    color:#575962;
+    font-size:10px;
+    line-height:1.2;
+    font-weight:400;
+    text-align:right;
+  }
+  .bar-track{
+    background:#ececef;
+    border:1px solid #a8a9af;
+    height:26px;
+  }
+  .bar-fill{
+    background:#5b2ca6;
+    height:24px;
+  }
+  .pct-top{
+    color:#7b7d83;
+    font-size:8px;
+    line-height:1;
+    font-weight:400;
+    text-align:center;
+  }
+  .pct-right{
+    color:#575962;
+    font-size:20px;
+    line-height:26px;
+    font-weight:400;
+    text-align:right;
+  }
+  .subtext{
+    color:#666871;
+    font-size:7px;
+    line-height:1.1;
+    font-weight:400;
+  }
+
+  .legend{
+    left:1178px; top:688px; width:130px; height:18px;
+    z-index:2;
+  }
+  .legend-box{
+    position:absolute;
+    left:0; top:1px; width:12px; height:12px;
+    background:#bebec4;
+  }
+  .legend-text{
+    position:absolute;
+    left:18px; top:0; width:110px;
+    color:#6a6b72;
+    font-size:7px;
+    line-height:1.2;
+    font-weight:400;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="chapter-pill">CHAPTER 1</div>
+
+  <div class="left-panel"></div>
+
+  <div class="left-title">What is shifting<br>most – third-party<br>dependency risk</div>
+  <div class="left-accent"></div>
+
+  <div class="left-body">
+    The most notable shift in the CRO agenda<br>
+    over time is the rise of third-party risk as a<br>
+    persistent top-tier concern. This highlights<br>
+    growing recognition of dependency risk<br>
+    across extended value chains – particularly<br>
+    as operational resilience requirements,<br>
+    outsourcing oversight and vendor concentration<br>
+    concerns increase. Regional patterns suggest<br>
+    EMEIA and APAC place heightened focus on<br>
+    outsourcing, operational resilience and vendor<br>
+    concentration, while in the Americas, third-party<br>
+    risk is increasingly viewed through a technology<br>
+    and cyber lens tied to data access, control<br>
+    automation and vendor governance.
+  </div>
+
+  <div class="quote-box">
+    <div class="qline quote-line-tl-h"></div>
+    <div class="qline quote-line-tl-v"></div>
+    <div class="qline quote-line-tr-h"></div>
+    <div class="qline quote-line-tr-v"></div>
+    <div class="qline quote-line-bl-h"></div>
+    <div class="qline quote-line-br-h"></div>
+    <div class="quote-mark">“</div>
+    <div class="quote-title">What CROs say:</div>
+    <div class="quote-text">
+      The CRO’s evolving role as a<br>
+      strategic adviser depends on<br>
+      balancing true independence with<br>
+      deeper engagement across the<br>
+      business and senior leadership.
+    </div>
+  </div>
+
+  <div class="page-num">10</div>
+
+  <div class="chapter-vertical">
+    <div class="text">CHAPTER 1</div>
+    <div class="tick"></div>
+  </div>
+
+  <div class="main-title">Geopolitical risk – cyber<br>hostilities lead, followed by fiscal<br>and trade policy channels</div>
+  <div class="main-accent"></div>
+
+  <div class="main-body-1">
+    Geopolitical and macroeconomic concerns remain prominent, with<br>
+    cybersecurity threats and digital hostilities far outpacing other factors<br>
+    (78% overall). The next tier of concerns centers on fiscal policy changes<br>
+    (56%) and trade policy and tariffs (42%), with notable regional variation<br>
+    across political instability, monetary policy and physical security<br>
+    tensions.
+  </div>
+
+  <div class="main-sep"></div>
+
+  <div class="main-body-2">
+    The current macroeconomic and geopolitical environment is putting<br>
+    significant pressure on the insurance industry by amplifying both<br>
+    financial and operational risks. Slower and uneven global growth,<br>
+    persistent inflation and tariff-driven disruptions are increasing<br>
+    market volatility, raising capital costs and adding uncertainty to claims<br>
+    patterns – especially in trade-exposed and globally connected lines.<br>
+    At the same time, geopolitical fragmentation, including sanctions,<br>
+    protectionist policies and diverging regulations, is complicating cross-<br>
+    border underwriting, raising compliance costs and reducing the<br>
+    diversification benefits insurers traditionally rely on. These forces,<br>
+    combined with escalating state-driven cyber activity, are reshaping risk<br>
+    profiles across underwriting, investments and operational resilience,<br>
+    aligning closely with why CROs view fiscal policy shifts, trade tensions<br>
+    and cyber hostilities as the most significant cross-border risks.
+  </div>
+
+  <div class="figure-title"><b>Figure 3:</b> What are the top impacts from potential geopolitical risks that your organization anticipates will pose the greatest risk in the next 12 months?</div>
+
+  <div class="jump">
+    <svg viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="20" cy="20" r="19" fill="none" stroke="#5f6065" stroke-width="1.2" stroke-dasharray="6 4"/>
+      <circle cx="30" cy="10" r="3.5" fill="#d7da25"/>
+    </svg>
+    <div class="jump-text">Jump to<br>contents</div>
+  </div>
+
+  <div class="chart">
+    <div class="row-label" style="left:0px; top:22px; width:164px; height:24px;">Cybersecurity threats and digital<br>hostilities</div>
+    <div class="pct-top" style="left:259px; top:7px; width:42px;">68%</div>
+    <div class="bar-track" style="left:173px; top:22px; width:198px;"></div>
+    <div class="bar-fill" style="left:174px; top:23px; width:152px;"></div>
+    <div class="pct-right" style="left:343px; top:22px; width:36px; height:26px;">78%</div>
+    <div class="subtext" style="left:171px; top:54px; width:170px;">80% Asia-Pacific | 80% EMEIA | 77% Americas</div>
+
+    <div class="row-label" style="left:0px; top:83px; width:164px; height:34px;">Changes in fiscal policy (e.g., level<br>of national debt, monetary policy<br>and currency devaluation)</div>
+    <div class="pct-top" style="left:259px; top:72px; width:42px;">53%</div>
+    <div class="bar-track" style="left:173px; top:90px; width:198px;"></div>
+    <div class="bar-fill" style="left:174px; top:91px; width:111px;"></div>
+    <div class="pct-right" style="left:343px; top:90px; width:36px; height:26px;">56%</div>
+    <div class="subtext" style="left:171px; top:122px; width:172px;">40% Asia-Pacific | 50% EMEIA | 63% Americas</div>
+
+    <div class="row-label" style="left:0px; top:145px; width:164px; height:34px;">Shifts in trade policy and tariffs:<br>(e.g., economic sanctions<br>or restrictions)</div>
+    <div class="pct-top" style="left:265px; top:136px; width:42px;">74%</div>
+    <div class="bar-track" style="left:173px; top:151px; width:198px;"></div>
+    <div class="bar-fill" style="left:174px; top:152px; width:86px;"></div>
+    <div class="pct-right" style="left:343px; top:151px; width:36px; height:26px;">42%</div>
+    <div class="subtext" style="left:171px; top:183px; width:172px;">40% Asia-Pacific | 43% EMEIA | 42% Americas</div>
+
+    <div class="row-label" style="left:0px; top:209px; width:164px; height:24px;">Political or government instability<br>(e.g., regime changes)</div>
+    <div class="pct-top" style="left:259px; top:198px; width:42px;">36%</div>
+    <div class="bar-track" style="left:173px; top:212px; width:198px;"></div>
+    <div class="bar-fill" style="left:174px; top:213px; width:72px;"></div>
+    <div class="pct-right" style="left:343px; top:212px; width:36px; height:26px;">35%</div>
+    <div class="subtext" style="left:171px; top:244px; width:172px;">10% Asia-Pacific | 45% EMEIA | 31% Americas</div>
+
+    <div class="row-label" style="left:0px; top:271px; width:164px; height:24px;">Monetary policy changes</div>
+    <div class="pct-top" style="left:196px; top:261px; width:42px;">21%</div>
+    <div class="bar-track" style="left:173px; top:274px; width:198px;"></div>
+    <div class="bar-fill" style="left:174px; top:275px; width:48px;"></div>
+    <div class="pct-right" style="left:343px; top:274px; width:36px; height:26px;">22%</div>
+    <div class="subtext" style="left:171px; top:306px; width:170px;">0% Asia-Pacific | 14% EMEIA | 33% Americas</div>
+
+    <div class="row-label" style="left:0px; top:323px; width:164px; height:24px;">Physical security-related tensions<br>or regional conflicts</div>
+    <div class="pct-top" style="left:197px; top:313px; width:42px;">22%</div>
+    <div class="bar-track" style="left:173px; top:336px; width:198px;"></div>
+    <div class="bar-fill" style="left:174px; top:337px; width:43px;"></div>
+    <div class="pct-right" style="left:343px; top:336px; width:36px; height:26px;">21%</div>
+    <div class="subtext" style="left:171px; top:368px; width:172px;">50% Asia-Pacific | 23% EMEIA | 13% Americas</div>
+
+    <div class="row-label" style="left:0px; top:385px; width:164px; height:24px;">Cross-border regulatory<br>divergence</div>
+    <div class="pct-top" style="left:189px; top:375px; width:42px;">16%</div>
+    <div class="bar-track" style="left:173px; top:398px; width:198px;"></div>
+    <div class="bar-fill" style="left:174px; top:399px; width:28px;"></div>
+    <div class="pct-right" style="left:343px; top:398px; width:36px; height:26px;">13%</div>
+    <div class="subtext" style="left:171px; top:430px; width:165px;">20% Asia-Pacific | 18% EMEIA | 8% Americas</div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-box"></div>
+    <div class="legend-text">15th annual EY/IIF global bank<br>risk management survey</div>
+  </div>
+</div>
+</body>
+</html>

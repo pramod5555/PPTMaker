@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{margin:0;background:#dcdcdc;font-family:Arial, Helvetica, sans-serif;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  #slide > div, #slide > svg { position:absolute; box-sizing:border-box; }
+
+  .sidebar{
+    left:0; top:0; width:149px; height:720px;
+    background:#4a4e55;
+  }
+  .leftbrand{
+    left:14px; top:35px; width:110px;
+    color:#f2f2f2; font-size:23px; line-height:1.03; font-weight:700;
+  }
+
+  .menuItem{ width:128px; height:82px; left:8px; }
+  .hex{
+    position:absolute; left:0; top:0; width:72px; height:70px;
+    clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%);
+    border:4px solid #b8bf12;
+    background:#d8d8d8;
+    overflow:hidden;
+  }
+  .hex.gray{ border-color:#cdd0d3; }
+  .hexfill{
+    position:absolute; left:5px; top:5px; width:58px; height:56px;
+    clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%);
+    overflow:hidden;
+  }
+  .hexfill.people{
+    background:
+      radial-gradient(circle at 20% 22%, #7d8794 0 1px, transparent 1.5px),
+      radial-gradient(circle at 28% 18%, #c67258 0 1px, transparent 1.5px),
+      radial-gradient(circle at 38% 26%, #556270 0 1px, transparent 1.5px),
+      radial-gradient(circle at 48% 20%, #9c6b59 0 1px, transparent 1.5px),
+      radial-gradient(circle at 60% 28%, #7f7f7f 0 1px, transparent 1.5px),
+      radial-gradient(circle at 70% 18%, #5f6471 0 1px, transparent 1.5px),
+      radial-gradient(circle at 18% 40%, #7f7f7f 0 1px, transparent 1.5px),
+      radial-gradient(circle at 29% 43%, #4f5e70 0 1px, transparent 1.5px),
+      radial-gradient(circle at 41% 40%, #9f7d52 0 1px, transparent 1.5px),
+      radial-gradient(circle at 54% 42%, #8c4f49 0 1px, transparent 1.5px),
+      radial-gradient(circle at 67% 41%, #6d6d6d 0 1px, transparent 1.5px),
+      radial-gradient(circle at 77% 38%, #4a5669 0 1px, transparent 1.5px),
+      radial-gradient(circle at 20% 58%, #7d8794 0 1px, transparent 1.5px),
+      radial-gradient(circle at 34% 58%, #9c6b59 0 1px, transparent 1.5px),
+      radial-gradient(circle at 49% 58%, #556270 0 1px, transparent 1.5px),
+      radial-gradient(circle at 61% 58%, #7a7a7a 0 1px, transparent 1.5px),
+      radial-gradient(circle at 74% 58%, #6e5d4b 0 1px, transparent 1.5px),
+      radial-gradient(circle at 28% 73%, #7a7a7a 0 1px, transparent 1.5px),
+      radial-gradient(circle at 44% 73%, #556270 0 1px, transparent 1.5px),
+      radial-gradient(circle at 61% 74%, #9a745f 0 1px, transparent 1.5px),
+      linear-gradient(135deg,#d7d7d7,#9f9f9f);
+    filter:contrast(1.05) saturate(.8);
+  }
+  .hexfill.migration{
+    background:
+      linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.15)),
+      linear-gradient(135deg,#bdbdbd,#737373);
+  }
+  .hexfill.migration:before{
+    content:"Immigration";
+    position:absolute; left:7px; top:20px;
+    color:rgba(255,255,255,.8); font-size:8px; font-weight:700; transform:rotate(-4deg);
+  }
+  .hexfill.values{
+    background:
+      radial-gradient(circle at 50% 48%, rgba(255,255,255,.45) 0 15px, transparent 16px),
+      linear-gradient(180deg,#dadada,#8f8f8f);
+  }
+  .hexfill.values:before, .hexfill.values:after{
+    content:"";
+    position:absolute; top:8px; width:16px; height:40px; background:rgba(255,255,255,.55);
+  }
+  .hexfill.values:before{ left:12px; }
+  .hexfill.values:after{ right:12px; }
+  .hexfill.education{
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.15),rgba(0,0,0,.12)),
+      linear-gradient(135deg,#d7d7d7,#8b8b8b);
+  }
+  .hexfill.education:before{
+    content:"";
+    position:absolute; left:11px; top:14px; width:36px; height:22px;
+    border:3px solid rgba(255,255,255,.75); border-top-width:6px; border-radius:2px;
+    transform:skewX(-12deg);
+  }
+
+  .menuNum{
+    position:absolute; left:88px; top:2px;
+    font-size:41px; line-height:1; font-weight:700;
+    color:#b4bf00;
+  }
+  .menuNum.gray{ color:#7a8089; }
+  .menuLabel{
+    position:absolute; left:90px; top:37px; width:45px;
+    font-size:14px; line-height:1.05; font-weight:400;
+    color:#b4bf00;
+  }
+  .menuLabel.gray{ color:#707780; }
+
+  .footerNum{
+    left:9px; bottom:8px;
+    color:#ffffff; font-size:16px; line-height:1; font-weight:400;
+  }
+
+  .peopleIcon{
+    left:61px; top:651px; width:76px; height:56px;
+  }
+
+  .title-main{
+    left:220px; top:32px; width:1040px;
+    color:#202020; font-size:28px; line-height:1.06; font-weight:700;
+    letter-spacing:.1px;
+  }
+  .subtitle{
+    left:220px; top:138px; width:820px;
+    color:#8d939c; font-size:23px; line-height:1.15; font-weight:400;
+  }
+
+  .baby{
+    left:231px; top:205px; width:362px; height:376px;
+    opacity:.11; filter:grayscale(1);
+  }
+
+  .chartArea{
+    left:220px; top:205px; width:595px; height:413px;
+  }
+
+  .legend{
+    left:222px; top:651px; width:610px; height:24px;
+    font-size:12px; color:#3f3f3f;
+  }
+
+  .source{
+    left:220px; top:689px; color:#4a4a4a;
+    font-size:11px; line-height:1.1; font-weight:400;
+  }
+
+  .callout{
+    left:857px; top:190px; width:423px; height:529px;
+    background:#d4d5d8;
+    padding:11px 12px 10px 12px;
+  }
+  .callout p{
+    margin:0 0 8px 0;
+    font-size:15px; line-height:1.12; color:#2f2f2f; font-weight:400;
+  }
+  .callout b{ font-weight:700; }
+
+  .logo{
+    left:1227px; top:696px; width:46px; height:22px;
+    color:#6f6f6f; font-size:10px; line-height:.9; text-align:right;
+  }
+  .logo .bmark{
+    position:absolute; right:0; top:-1px; width:18px; height:22px;
+    background:linear-gradient(180deg,#b5b5b5,#898989);
+    border-radius:0 10px 10px 0;
+  }
+  .logo .bmark:before{
+    content:"";
+    position:absolute; left:-9px; top:0; width:12px; height:13px;
+    background:linear-gradient(180deg,#cecece,#9c9c9c);
+    border-radius:0 9px 9px 0;
+  }
+
+  .axisLabel{ font-size:12px; fill:#2d2d2d; font-weight:400; }
+  .tick{ stroke:#555; stroke-width:1.2; }
+  .line-china{ stroke:#202020; stroke-width:3; fill:none; }
+  .line-india{ stroke:#8a8f97; stroke-width:3; fill:none; }
+  .line-sk{ stroke:#aeb700; stroke-width:3; fill:none; }
+  .line-tunisia{ stroke:#004f8a; stroke-width:3; fill:none; }
+  .line-armenia{ stroke:#94abc6; stroke-width:3; fill:none; }
+  .line-albania{ stroke:#5e88b5; stroke-width:3; fill:none; }
+  .line-vietnam{ stroke:#d5d161; stroke-width:3; fill:none; }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+
+  <div class="leftbrand">People &amp;<br>Society</div>
+
+  <div class="menuItem" style="top:142px;">
+    <div class="hex"><div class="hexfill people"></div></div>
+    <div class="menuNum">1</div>
+    <div class="menuLabel">Population</div>
+  </div>
+
+  <div class="menuItem" style="top:261px;">
+    <div class="hex gray"><div class="hexfill migration"></div></div>
+    <div class="menuNum gray">2</div>
+    <div class="menuLabel gray">Migration</div>
+  </div>
+
+  <div class="menuItem" style="top:379px;">
+    <div class="hex gray"><div class="hexfill values"></div></div>
+    <div class="menuNum gray">3</div>
+    <div class="menuLabel gray">Values</div>
+  </div>
+
+  <div class="menuItem" style="top:498px;">
+    <div class="hex gray"><div class="hexfill education"></div></div>
+    <div class="menuNum gray">4</div>
+    <div class="menuLabel gray">Education</div>
+  </div>
+
+  <div class="footerNum">11</div>
+
+  <svg class="peopleIcon" viewBox="0 0 76 56" aria-hidden="true">
+    <g fill="#8a8d90">
+      <circle cx="18" cy="13" r="9"></circle>
+      <circle cx="35" cy="11" r="11"></circle>
+      <circle cx="52" cy="13" r="9"></circle>
+      <circle cx="10" cy="29" r="8"></circle>
+      <circle cx="26" cy="29" r="8"></circle>
+      <circle cx="43" cy="29" r="8"></circle>
+      <circle cx="60" cy="29" r="8"></circle>
+      <path d="M0 43c0-6 8-10 15-10s15 4 15 10v10H0z"></path>
+      <path d="M14 43c0-6 8-10 15-10s15 4 15 10v10H14z"></path>
+      <path d="M31 43c0-6 8-10 15-10s15 4 15 10v10H31z"></path>
+      <path d="M46 43c0-6 8-10 15-10s15 4 15 10v10H46z"></path>
+      <path d="M19 20c0-7 6-12 16-12s16 5 16 12v15H19z"></path>
+    </g>
+  </svg>
+
+  <div class="title-main">Broadly symmetrical population pyramids only tell half the story – Some<br>larger countries face gender ratio imbalances for some time to come</div>
+  <div class="subtitle">Sex ratio at birth (SRB), selected countries showing SRB imbalance, 1970 to 2017</div>
+
+  <svg class="baby" viewBox="0 0 362 376" aria-hidden="true">
+    <defs>
+      <radialGradient id="bgfade" cx="48%" cy="38%" r="62%">
+        <stop offset="0%" stop-color="#8f8f8f" stop-opacity=".35"/>
+        <stop offset="100%" stop-color="#d7d7d7" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <ellipse cx="146" cy="130" rx="132" ry="122" fill="url(#bgfade)"></ellipse>
+    <path d="M57 173c5-66 45-128 120-142 52-10 108 14 140 63 34 53 28 119-10 170-31 42-81 68-133 61-69-8-122-73-117-152z" fill="#a1a1a1"></path>
+    <path d="M91 150c14-52 47-90 95-103 39-11 85 0 115 28" stroke="#b0b0b0" stroke-width="18" fill="none" stroke-linecap="round"></path>
+    <path d="M83 53c25-27 56-42 99-43 42-1 82 12 114 40" stroke="#b8b8b8" stroke-width="15" fill="none" stroke-linecap="round"></path>
+    <path d="M114 204c21-12 49-13 71-2" stroke="#898989" stroke-width="8" fill="none" stroke-linecap="round"></path>
+    <path d="M207 201c19-12 47-10 65 5" stroke="#898989" stroke-width="8" fill="none" stroke-linecap="round"></path>
+    <ellipse cx="145" cy="211" rx="21" ry="12" fill="#6d6d6d"></ellipse>
+    <ellipse cx="228" cy="215" rx="21" ry="12" fill="#6d6d6d"></ellipse>
+    <path d="M187 232c-3 13 2 26 12 33" stroke="#7d7d7d" stroke-width="5" fill="none" stroke-linecap="round"></path>
+    <path d="M130 283c34 34 88 37 129-4" stroke="#8e8e8e" stroke-width="14" fill="none" stroke-linecap="round"></path>
+    <path d="M38 354c42-38 86-54 129-50 61 5 108 34 146 72" stroke="#c2c2c2" stroke-width="26" fill="none" stroke-linecap="round"></path>
+  </svg>
+
+  <svg class="chartArea" viewBox="0 0 595 413" aria-hidden="true">
+    <line x1="46" y1="0" x2="46" y2="381" stroke="#5d5d5d" stroke-width="1.4"></line>
+    <line x1="46" y1="381" x2="583" y2="381" stroke="#5d5d5d" stroke-width="1.4"></line>
+
+    <line x1="41" y1="381" x2="46" y2="381" class="tick"></line>
+    <line x1="41" y1="335" x2="46" y2="335" class="tick"></line>
+    <line x1="41" y1="289" x2="46" y2="289" class="tick"></line>
+    <line x1="41" y1="243" x2="46" y2="243" class="tick"></line>
+    <line x1="41" y1="197" x2="46" y2="197" class="tick"></line>
+    <line x1="41" y1="151" x2="46" y2="151" class="tick"></line>
+    <line x1="41" y1="105" x2="46" y2="105" class="tick"></line>
+    <line x1="41" y1="59" x2="46" y2="59" class="tick"></line>
+    <line x1="41" y1="13" x2="46" y2="13" class="tick"></line>
+
+    <text x="1" y="387" class="axisLabel">100</text>
+    <text x="1" y="341" class="axisLabel">102</text>
+    <text x="1" y="295" class="axisLabel">104</text>
+    <text x="1" y="249" class="axisLabel">106</text>
+    <text x="1" y="203" class="axisLabel">108</text>
+    <text x="1" y="157" class="axisLabel">110</text>
+    <text x="1" y="111" class="axisLabel">112</text>
+    <text x="1" y="65" class="axisLabel">114</text>
+    <text x="1" y="19" class="axisLabel">116</text>
+    <text x="1" y="3" class="axisLabel">118</text>
+
+    <text x="37" y="405" class="axisLabel">1970</text>
+    <text x="137" y="405" class="axisLabel">1980</text>
+    <text x="242" y="405" class="axisLabel">1990</text>
+    <text x="336" y="405" class="axisLabel">2000</text>
+    <text x="441" y="405" class="axisLabel">2010</text>
+    <text x="558" y="405" class="axisLabel">2017</text>
+
+    <polyline class="line-china" points="56,252 77,251 98,249 119,246 140,241 161,233 182,223 203,207 224,187 245,164 266,140 287,115 308,89 329,58 350,28 371,12 392,4 413,2 434,5 455,13 476,28 497,48 518,72 539,100 570,138"/>
+    <polyline class="line-india" points="56,251 77,251 98,250 119,247 140,241 161,233 182,226 203,224 224,218 245,207 266,194 287,181 308,177 329,178 350,176 371,180 392,192 413,205 434,210 455,206 476,201 497,198 518,195 539,198 559,206 570,208"/>
+    <polyline class="line-sk" points="56,251 77,251 98,251 119,251 140,251 161,236 182,225 193,205 203,186 214,192 224,171 235,126 245,148 256,137 266,112 277,123 287,146 298,191 308,236 319,226 329,223 340,217 350,229 361,227 371,245 382,263 392,281 413,317 434,320 455,315 476,333 497,339 518,336 539,334 570,335"/>
+    <polyline class="line-tunisia" points="56,274 77,268 98,264 109,267 119,264 140,265 161,267 182,267 203,262 224,251 245,240 266,240 287,243 308,242 329,236 350,231 371,234 392,235 413,239 434,239 455,240 476,251 497,272 518,288 539,336 570,334"/>
+    <polyline class="line-armenia" points="56,251 77,250 98,247 119,244 140,239 161,188 182,185 203,190 224,191 245,191 266,196 287,141 308,71 329,15 340,10 350,20 371,31 392,41 413,58 434,68 455,80 476,92 497,106 518,118 539,129 570,141"/>
+    <polyline class="line-albania" points="56,251 77,250 98,247 119,244 140,239 161,231 182,226 203,226 224,231 245,231 266,216 287,217 308,214 329,206 350,156 371,120 392,110 413,121 434,147 455,178 476,214 497,244 518,263 539,276 570,291"/>
+    <polyline class="line-vietnam" points="56,251 77,251 98,251 119,251 140,251 161,251 182,251 203,251 224,249 245,249 266,250 287,251 308,252 329,250 350,246 371,236 392,239 413,212 434,176 455,160 476,154 497,152 518,152 539,154 570,160"/>
+  </svg>
+
+  <div class="legend">
+    <svg width="610" height="44" viewBox="0 0 610 44">
+      <line x1="1" y1="11" x2="17" y2="11" stroke="#202020" stroke-width="3" stroke-linecap="round"></line>
+      <text x="24" y="15" font-size="12" fill="#3c3c3c" font-family="Arial">China</text>
+
+      <line x1="70" y1="11" x2="86" y2="11" stroke="#8a8f97" stroke-width="3" stroke-linecap="round"></line>
+      <text x="93" y="15" font-size="12" fill="#3c3c3c" font-family="Arial">India</text>
+
+      <line x1="135" y1="11" x2="151" y2="11" stroke="#aeb700" stroke-width="3" stroke-linecap="round"></line>
+      <text x="158" y="15" font-size="12" fill="#3c3c3c" font-family="Arial">South Korea</text>
+
+      <line x1="245" y1="11" x2="261" y2="11" stroke="#004f8a" stroke-width="3" stroke-linecap="round"></line>
+      <text x="268" y="15" font-size="12" fill="#3c3c3c" font-family="Arial">Tunisia</text>
+
+      <line x1="332" y1="11" x2="348" y2="11" stroke="#94abc6" stroke-width="3" stroke-linecap="round"></line>
+      <text x="355" y="15" font-size="12" fill="#3c3c3c" font-family="Arial">Armenia</text>
+
+      <line x1="418" y1="11" x2="434" y2="11" stroke="#5e88b5" stroke-width="3" stroke-linecap="round"></line>
+      <text x="441" y="15" font-size="12" fill="#3c3c3c" font-family="Arial">Albania</text>
+
+      <line x1="505" y1="11" x2="521" y2="11" stroke="#d5d161" stroke-width="3" stroke-linecap="round"></line>
+      <text x="528" y="15" font-size="12" fill="#3c3c3c" font-family="Arial">Vietnam</text>
+    </svg>
+  </div>
+
+  <div class="source">Sources: Chao et al.; Hesketh and Xing; Roland Berger</div>
+
+  <div class="callout">
+    <p>&gt; The ratio between the number of males and females in a society is referred to as the <b>gender ratio</b>, which at first glance and globally speaking appears broadly balanced. On average, the so-called ‘expected’, i.e., natural or biological <b>sex ratio at birth (SRB) is around 105 males per 100 females</b>. This ratio has an impact on society, demography, and the economy for generations down the line</p>
+    <p>&gt; In some countries, the sex ratio at birth is too skewed to be explained by biological volatility; most recently, Chao et al. (2019) re-modelled SRB across the world with data from 1950-2017. As a result, the study identified <b>12 countries/areas</b> with strong statistical evidence of <b>SRB imbalances</b>: Albania, Armenia, Azerbaijan, China, Georgia, Hong Kong, India, Montenegro, South Korea, Taiwan, Tunisia, and Vietnam</p>
+    <p>&gt; These countries show a <b>son preference</b>. Major reasons why sons are preferred are their higher wage-earning capacity, that they continue the family line, and that they are generally recipients of inheritance</p>
+    <p>&gt; From 1970 to 2017, the <b>cumulative number of missing female births</b> (CMFB) for the 12 countries/areas above is <b>45 million</b>. The majority of CMFB between 1970 and 2017 are concentrated in <b>China, with 23.1 million, and in India, with 20.7 million</b></p>
+    <p>&gt; Most of these countries showed a <b>significant increase of the SRB imbalance</b> in the 1980s/90s. The introduction and wider availability of ultrasound to determine the sex of the fetus might be one reason for this. In China, the one-child-policy strongly influenced the SRB</p>
+    <p>&gt; Trend reversal: <b>Countermeasures to fight SRB imbalances</b>, such as the strict enforcement of existing legislation, the ensuring of equal rights for women, and public awareness campaigns (and in China the relaxation of the one-child-policy) <b>led to a decrease of the uneven SRB in recent decades</b></p>
+  </div>
+
+  <div class="logo">
+    Roland<br>Berger
+    <div class="bmark"></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body{
+    margin:0;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .right-bg{
+    left:596px;
+    top:0;
+    width:684px;
+    height:720px;
+    background:#efefef;
+    z-index:0;
+  }
+
+  .left-panel{
+    left:0;
+    top:0;
+    width:596px;
+    height:720px;
+    overflow:hidden;
+    z-index:1;
+    background:
+      radial-gradient(circle at 77.5% 59.8%, rgba(255,84,145,0.96) 0 8px, rgba(255,170,220,0.85) 9px, rgba(255,255,255,0.9) 12px, rgba(255,255,255,0.35) 22px, rgba(255,255,255,0) 44px),
+      linear-gradient(165deg, rgba(255,255,255,0) 0 67.2%, rgba(188,216,255,0.04) 67.3%, rgba(194,219,255,0.72) 69.5%, rgba(221,236,255,0.88) 74.2%, rgba(255,255,255,0) 80.2%),
+      linear-gradient(191deg, rgba(255,255,255,0) 0 53.2%, rgba(155,192,255,0.78) 56.6%, rgba(98,136,222,0.44) 63.6%, rgba(255,255,255,0) 72.6%),
+      linear-gradient(84deg, rgba(255,255,255,0) 0 73%, rgba(255,40,98,0.36) 82%, rgba(255,255,255,0) 95%),
+      linear-gradient(180deg, #0f1326 0%, #17182f 35%, #251a2d 63%, #3d2226 80%, #1f1716 100%);
+  }
+
+  .stars{
+    left:0;
+    top:0;
+    width:596px;
+    height:520px;
+    z-index:2;
+    opacity:.72;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,.95) 0 .55px, transparent .9px),
+      radial-gradient(circle, rgba(255,255,255,.78) 0 .45px, transparent .8px),
+      radial-gradient(circle, rgba(183,202,255,.85) 0 .45px, transparent .8px);
+    background-size: 28px 28px, 41px 41px, 63px 63px;
+    background-position: 0 0, 10px 17px, 6px 11px;
+  }
+
+  .vertical-glow{
+    left:462px;
+    top:0;
+    width:12px;
+    height:525px;
+    z-index:3;
+    background:linear-gradient(180deg, rgba(220,230,255,0) 0%, rgba(220,230,255,.14) 20%, rgba(230,238,255,.72) 61%, rgba(255,255,255,.04) 100%);
+    filter:blur(1px);
+  }
+
+  .ground{
+    left:0;
+    top:500px;
+    width:596px;
+    height:220px;
+    z-index:4;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(26,19,17,.12) 10%, rgba(17,11,10,.78) 100%),
+      radial-gradient(ellipse at 46% 58%, rgba(111,86,61,.42) 0%, rgba(111,86,61,0) 45%),
+      linear-gradient(180deg, #4a392f 0%, #241b18 63%, #0f0b0a 100%);
+  }
+
+  .grass1{
+    left:0;
+    top:594px;
+    width:596px;
+    height:126px;
+    z-index:5;
+    background:
+      radial-gradient(ellipse at 8% 70%, rgba(93,67,39,.9) 0%, rgba(93,67,39,0) 18%),
+      radial-gradient(ellipse at 20% 78%, rgba(108,82,50,.78) 0%, rgba(108,82,50,0) 15%),
+      radial-gradient(ellipse at 41% 71%, rgba(96,72,44,.84) 0%, rgba(96,72,44,0) 17%),
+      radial-gradient(ellipse at 58% 72%, rgba(97,73,45,.8) 0%, rgba(97,73,45,0) 17%),
+      radial-gradient(ellipse at 78% 69%, rgba(110,84,53,.82) 0%, rgba(110,84,53,0) 17%),
+      radial-gradient(ellipse at 92% 74%, rgba(90,68,40,.72) 0%, rgba(90,68,40,0) 14%);
+  }
+
+  .fence-left{
+    left:0;
+    top:596px;
+    width:96px;
+    height:124px;
+    z-index:6;
+    background:
+      linear-gradient(90deg, transparent 0 11px, rgba(34,23,12,.92) 11px 17px, transparent 17px 33px, rgba(34,23,12,.92) 33px 39px, transparent 39px 61px, rgba(34,23,12,.92) 61px 67px, transparent 67px),
+      linear-gradient(180deg, transparent 0 44px, rgba(58,41,23,.92) 44px 50px, transparent 50px 89px, rgba(58,41,23,.92) 89px 95px, transparent 95px);
+  }
+
+  .lighthouse-group{
+    left:387px;
+    top:509px;
+    width:158px;
+    height:98px;
+    z-index:7;
+  }
+  .house1{
+    position:absolute;
+    left:0;
+    top:33px;
+    width:47px;
+    height:26px;
+    background:#3a211d;
+    clip-path:polygon(0 100%,100% 100%,100% 38%,50% 0,0 38%);
+  }
+  .house1:before{
+    content:"";
+    position:absolute;
+    left:13px;
+    top:9px;
+    width:10px;
+    height:17px;
+    background:#241311;
+  }
+  .tower{
+    position:absolute;
+    left:65px;
+    top:1px;
+    width:33px;
+    height:77px;
+    background:linear-gradient(180deg,#ab2031 0 12px,#f4f1eb 12px 26px,#a22131 26px 39px,#f5f2ec 39px 57px,#a32232 57px 77px);
+    clip-path:polygon(34% 0,66% 0,100% 100%,0 100%);
+    box-shadow:0 0 3px rgba(255,255,255,.25);
+  }
+  .lightcap{
+    position:absolute;
+    left:74px;
+    top:-5px;
+    width:15px;
+    height:9px;
+    background:#e4ddd3;
+    clip-path:polygon(16% 100%,84% 100%,100% 42%,0 42%);
+  }
+  .house2{
+    position:absolute;
+    left:111px;
+    top:42px;
+    width:44px;
+    height:22px;
+    background:#5a3825;
+    clip-path:polygon(0 100%,100% 100%,100% 38%,50% 0,0 38%);
+    box-shadow:0 0 10px rgba(255,193,95,.32);
+  }
+  .window-glow{
+    position:absolute;
+    left:121px;
+    top:52px;
+    width:16px;
+    height:10px;
+    background:#ffca68;
+    box-shadow:0 0 12px rgba(255,208,112,.95);
+  }
+
+  .accent-line{
+    left:81px;
+    top:64px;
+    width:2px;
+    height:649px;
+    z-index:9;
+    background:linear-gradient(180deg,#f4eb00 0%, #f4eb00 80%, #00b9ff 100%);
+  }
+
+  .title{
+    left:109px;
+    top:58px;
+    width:290px;
+    z-index:10;
+    color:#f2f2f2;
+    font-size:27px;
+    line-height:1.12;
+    font-weight:300;
+    letter-spacing:-0.01em;
+  }
+
+  .bottom-left-text{
+    left:109px;
+    top:647px;
+    width:180px;
+    z-index:10;
+    color:#f4f0ea;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:17px;
+    line-height:1.08;
+    font-weight:400;
+  }
+
+  .page-number{
+    left:383px;
+    top:600px;
+    width:175px;
+    height:108px;
+    z-index:10;
+    color:#fff;
+    font-size:157px;
+    line-height:.86;
+    font-weight:300;
+    letter-spacing:-0.045em;
+  }
+
+  .footer-left{
+    left:32px;
+    top:709px;
+    width:320px;
+    z-index:12;
+    color:#fff;
+    font-size:7px;
+    line-height:1;
+    font-weight:400;
+    opacity:.95;
+    white-space:nowrap;
+  }
+
+  .col{
+    z-index:20;
+    color:#3c444f;
+    font-size:12px;
+    line-height:1.38;
+    font-weight:400;
+  }
+  .col p{
+    margin:0 0 10px 0;
+  }
+  .col1{
+    left:734px;
+    top:61px;
+    width:183px;
+  }
+  .col2{
+    left:952px;
+    top:61px;
+    width:184px;
+  }
+
+  .quote-bar{
+    left:735px;
+    top:583px;
+    width:2px;
+    height:118px;
+    z-index:30;
+    background:#243548;
+  }
+
+  .quote{
+    left:754px;
+    top:578px;
+    width:425px;
+    z-index:30;
+    color:#172536;
+    font-size:22px;
+    line-height:1.12;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+
+  .footer-right{
+    left:1090px;
+    top:709px;
+    width:162px;
+    z-index:40;
+    color:#27384a;
+    font-size:8px;
+    line-height:1;
+    font-weight:600;
+    text-align:left;
+    white-space:nowrap;
+  }
+  .footer-right .page{
+    position:absolute;
+    left:118px;
+    top:0;
+    width:26px;
+    font-weight:400;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="right-bg"></div>
+
+    <div class="left-panel"></div>
+    <div class="stars"></div>
+    <div class="vertical-glow"></div>
+    <div class="ground"></div>
+    <div class="grass1"></div>
+    <div class="fence-left"></div>
+
+    <div class="lighthouse-group">
+      <div class="house1"></div>
+      <div class="tower"></div>
+      <div class="lightcap"></div>
+      <div class="house2"></div>
+      <div class="window-glow"></div>
+    </div>
+
+    <div class="accent-line"></div>
+
+    <div class="title">Governance-forward:<br>clarifying and<br>coordinating</div>
+
+    <div class="bottom-left-text">Define accountability,<br>oversight, escalation,<br>and assurance to move<br>safely at speed.</div>
+
+    <div class="page-number">03</div>
+
+    <div class="footer-left">1.1&nbsp;&nbsp;|&nbsp;&nbsp;How can reimagining risk prepare you for an unpredictable world?</div>
+
+    <div class="col col1">
+      <p>While triggers define when decisions must occur, governance determines who acts and who escalates. Traditional frameworks such as enterprise risk management (ERM), integrated risk management (IRM) and the three lines remain essential, but they must operate at the speed set by triggers, not the calendar. Governance becomes the accountability layer that keeps decision-making fast, coherent and auditable without slowing execution.</p>
+      <p>In many organizations, governance still reflects periodic risk cycles. Trigger-based operating models require something different. They require clarity of authority, clear escalation paths tied to severity, and assurance that activates in real time rather than quarterly. The challenge is not to replace existing governance structures, but to realign them so that roles, oversight and assurance flow from the trigger architecture.</p>
+      <p>This reframes the evolution of the three lines. The original design focused on separation of duties to avoid conflicts. In a NAVI operating climate, the goal is synchronized accountability across the first and second lines, with independent assurance from the third line preserved where required. The emphasis shifts from static boundaries to coordinated decision flow once thresholds are crossed.</p>
+      <p>The way leading organizations are already adapting illustrates this shift.</p>
+      <p>While regulated industries such as financial services tend to use bright lines to separate the third line, many companies in other sectors have been actively moving toward closer alignment across the three lines. One company benefitting</p>
+    </div>
+
+    <div class="col col2">
+      <p>from closer alignment is Marathon Petroleum Company, as highlighted by Kelly Niese, Vice President, Treasury, and Kelly Wright, Vice President, Audit, during a joint interview. “Our formal alignment between ERM and internal audit started several years ago, motivated by the need to have a similar view of risk and a common risk language,” says Niese. “This alignment has helped create a dynamic risk assessment environment where we can adjust our audit plans based on enterprise-level risks,” added Wright.</p>
+      <p>The direction of travel is clear. “I see the three lines becoming more synchronized and integrated over time,” says Satish Budraraksh Mai, Vice President of Global Model Risk Management at Scotiabank. “As we invest heavily in the first line to ensure business managers truly understand and own risks, we are building a solid risk foundation in the first line. The second line can then become more of a challenge function – taking on some of the third line’s traditional role – to ensure appropriate focus on emerging risks, self-identified gaps and testing. Meanwhile, the third line would focus on driving continuous monitoring instead of conducting traditional, periodic audits.”</p>
+      <p>David Hildebrand, Chief Audit Executive at ServiceNow, also sees walls between the lines blurring. “Five years from now, I don’t think we will need a distinct second line as it has existed in the past,” says Hildebrand. “We could see the first and third lines working together more closely, while the second line takes on more of an advisory role into the third line, or even disappears altogether. Ultimately, we need risk management that can drive business outcomes.”</p>
+    </div>
+
+    <div class="quote-bar"></div>
+    <div class="quote">Traditional frameworks such as ERM,<br>IRM, and the three lines remain<br>essential, but they must operate<br>at the speed set by triggers,<br>not the calendar</div>
+
+    <div class="footer-right">Global Risk Transformation Series <span class="page">|&nbsp;&nbsp;12</span></div>
+  </div>
+</body>
+</html>

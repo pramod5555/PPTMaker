@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Deloitte Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#efefef;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .title{
+    left:46px;
+    top:44px;
+    width:1210px;
+    font-size:40px;
+    line-height:1.08;
+    font-weight:800;
+    color:#000;
+    letter-spacing:0;
+    z-index:30;
+  }
+  .panel{
+    left:46px;
+    top:145px;
+    width:1230px;
+    height:571px;
+    background:#e7e7e7;
+    z-index:10;
+  }
+  .section-title-left{
+    left:77px;
+    top:170px;
+    width:720px;
+    font-size:18px;
+    line-height:1.2;
+    font-weight:700;
+    color:#111;
+    z-index:35;
+  }
+  .legend{
+    left:77px;
+    top:198px;
+    width:260px;
+    height:24px;
+    z-index:35;
+    font-size:15px;
+    color:#222;
+  }
+  .legend-item{
+    position:absolute;
+    top:0;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    height:24px;
+    white-space:nowrap;
+  }
+  .dot{
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    display:inline-block;
+  }
+  .section-title-right{
+    left:954px;
+    top:168px;
+    width:325px;
+    font-size:18px;
+    line-height:1.16;
+    font-weight:700;
+    color:#111;
+    z-index:35;
+  }
+  .annotation{
+    left:420px;
+    top:239px;
+    width:355px;
+    font-size:17px;
+    line-height:1.12;
+    font-weight:400;
+    color:#222;
+    z-index:35;
+  }
+  .table{
+    left:954px;
+    top:253px;
+    width:352px;
+    height:220px;
+    z-index:35;
+    color:#222;
+  }
+  .table .head1{
+    position:absolute;
+    left:150px;
+    top:0;
+    width:86px;
+    font-size:17px;
+    line-height:1.05;
+    font-weight:700;
+    text-align:center;
+  }
+  .table .head2{
+    position:absolute;
+    left:244px;
+    top:0;
+    width:102px;
+    font-size:17px;
+    line-height:1.05;
+    font-weight:700;
+    text-align:center;
+  }
+  .rule{
+    position:absolute;
+    left:0;
+    width:352px;
+    height:1px;
+    background:#8c8c8c;
+  }
+  .rowlabel{
+    position:absolute;
+    left:9px;
+    width:152px;
+    font-size:14px;
+    line-height:1.18;
+    font-weight:400;
+    color:#2b2b2b;
+  }
+  .cell{
+    position:absolute;
+    font-size:14px;
+    line-height:1.2;
+    font-weight:400;
+    color:#2b2b2b;
+    text-align:center;
+  }
+  .italic{ font-style:italic; }
+  .footnote{
+    left:78px;
+    top:651px;
+    width:1165px;
+    font-size:10px;
+    line-height:1.28;
+    font-weight:400;
+    color:#333;
+    z-index:35;
+  }
+  .footer-left{
+    left:48px;
+    top:727px;
+    transform:translateY(-100%);
+    width:260px;
+    font-size:12px;
+    line-height:1;
+    color:#444;
+    z-index:35;
+  }
+  .footer-center{
+    left:930px;
+    top:727px;
+    transform:translateY(-100%);
+    width:320px;
+    font-size:12px;
+    line-height:1;
+    color:#444;
+    z-index:35;
+    text-align:right;
+  }
+  .footer-page{
+    right:22px;
+    top:727px;
+    transform:translateY(-100%);
+    width:20px;
+    font-size:12px;
+    line-height:1;
+    color:#444;
+    z-index:35;
+    text-align:right;
+  }
+  .axis-label{
+    font-size:14px;
+    font-weight:700;
+    fill:#181818;
+  }
+  .bar-value{
+    font-size:13px;
+    font-weight:400;
+    fill:#2b2b2b;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title">Laptop lugging gets a second wind as 34% of travelers plan to<br>work on their longest summer trip, up 11 points from 2025</div>
+
+  <div class="panel"></div>
+
+  <div class="section-title-left">Travelers planning to work during longest summer trip, 2024 to 2026</div>
+
+  <div class="legend">
+    <div class="legend-item" style="left:0px;">
+      <span class="dot" style="background:#a8a8a8;"></span><span>2024</span>
+    </div>
+    <div class="legend-item" style="left:81px;">
+      <span class="dot" style="background:#000000;"></span><span>2025</span>
+    </div>
+    <div class="legend-item" style="left:162px;">
+      <span class="dot" style="background:#7ab800;"></span><span>2026</span>
+    </div>
+  </div>
+
+  <div class="annotation">Millennials lead the surge with 57%<br>planning to work during their longest<br>trip of the season</div>
+
+  <div class="section-title-right">Remote working enables more and<br>longer travel</div>
+
+  <svg width="820" height="430" viewBox="0 0 820 430" style="left:69px; top:223px; z-index:34;">
+    <line x1="180" y1="337" x2="794" y2="337" stroke="#c8c8c8" stroke-width="1"/>
+
+    <!-- Overall -->
+    <rect x="20" y="237" width="18" height="100" fill="#a8a8a8"/>
+    <rect x="42" y="228" width="18" height="109" fill="#000000"/>
+    <rect x="64" y="176" width="18" height="161" fill="#7ab800"/>
+    <text x="29" y="218" class="bar-value" text-anchor="middle">23%</text>
+    <text x="51" y="210" class="bar-value" text-anchor="middle">25%</text>
+    <text x="73" y="166" class="bar-value" text-anchor="middle">34%</text>
+
+    <!-- Gen Z -->
+    <rect x="120" y="228" width="18" height="109" fill="#a8a8a8"/>
+    <rect x="142" y="220" width="18" height="117" fill="#000000"/>
+    <rect x="164" y="158" width="18" height="179" fill="#7ab800"/>
+    <text x="151" y="209" class="bar-value" text-anchor="middle">25%</text>
+    <text x="173" y="146" class="bar-value" text-anchor="middle">38%</text>
+
+    <!-- Millennials -->
+    <rect x="220" y="179" width="18" height="158" fill="#a8a8a8"/>
+    <rect x="242" y="177" width="18" height="160" fill="#000000"/>
+    <rect x="264" y="69" width="18" height="268" fill="#7ab800"/>
+    <text x="229" y="165" class="bar-value" text-anchor="middle">34%</text>
+    <text x="251" y="165" class="bar-value" text-anchor="middle">34%</text>
+    <text x="273" y="58" class="bar-value" text-anchor="middle">57%</text>
+
+    <!-- Gen X -->
+    <rect x="318" y="219" width="18" height="118" fill="#a8a8a8"/>
+    <rect x="340" y="231" width="18" height="106" fill="#000000"/>
+    <rect x="362" y="171" width="18" height="166" fill="#7ab800"/>
+    <text x="329" y="208" class="bar-value" text-anchor="middle">22%</text>
+    <text x="349" y="210" class="bar-value" text-anchor="middle">22%</text>
+    <text x="371" y="161" class="bar-value" text-anchor="middle">35%</text>
+
+    <!-- Boomers -->
+    <rect x="418" y="299" width="18" height="38" fill="#a8a8a8"/>
+    <rect x="440" y="272" width="18" height="65" fill="#000000"/>
+    <rect x="462" y="315" width="18" height="22" fill="#7ab800"/>
+    <text x="427" y="270" class="bar-value" text-anchor="middle">12%</text>
+    <text x="449" y="280" class="bar-value" text-anchor="middle">7%</text>
+    <text x="471" y="301" class="bar-value" text-anchor="middle">7%</text>
+
+    <!-- Under $100K -->
+    <rect x="516" y="251" width="18" height="86" fill="#a8a8a8"/>
+    <rect x="538" y="223" width="18" height="114" fill="#000000"/>
+    <rect x="560" y="195" width="18" height="142" fill="#7ab800"/>
+    <text x="529" y="240" class="bar-value" text-anchor="middle">21%</text>
+    <text x="547" y="209" class="bar-value" text-anchor="middle">21%</text>
+    <text x="569" y="184" class="bar-value" text-anchor="middle">27%</text>
+
+    <!-- $100K to $199K -->
+    <rect x="616" y="223" width="18" height="114" fill="#a8a8a8"/>
+    <rect x="638" y="183" width="18" height="154" fill="#000000"/>
+    <rect x="660" y="147" width="18" height="190" fill="#7ab800"/>
+    <text x="629" y="211" class="bar-value" text-anchor="middle">29%</text>
+    <text x="647" y="172" class="bar-value" text-anchor="middle">33%</text>
+    <text x="669" y="137" class="bar-value" text-anchor="middle">40%</text>
+
+    <!-- Over $200K -->
+    <rect x="716" y="208" width="18" height="129" fill="#a8a8a8"/>
+    <rect x="738" y="198" width="18" height="139" fill="#000000"/>
+    <rect x="760" y="147" width="18" height="190" fill="#7ab800"/>
+    <text x="729" y="196" class="bar-value" text-anchor="middle">29%</text>
+    <text x="747" y="188" class="bar-value" text-anchor="middle">29%</text>
+    <text x="769" y="137" class="bar-value" text-anchor="middle">40%</text>
+
+    <!-- Labels -->
+    <text x="51" y="367" class="axis-label" text-anchor="middle">Overall</text>
+    <text x="151" y="367" class="axis-label" text-anchor="middle">Gen Z</text>
+    <text x="251" y="367" class="axis-label" text-anchor="middle">Millennials</text>
+    <text x="349" y="367" class="axis-label" text-anchor="middle">Gen X</text>
+    <text x="449" y="367" class="axis-label" text-anchor="middle">Boomers</text>
+    <text x="547" y="367" class="axis-label" text-anchor="middle">Under</text>
+    <text x="547" y="390" class="axis-label" text-anchor="middle">$100K</text>
+    <text x="647" y="367" class="axis-label" text-anchor="middle">$100K to</text>
+    <text x="647" y="390" class="axis-label" text-anchor="middle">$199K</text>
+    <text x="747" y="367" class="axis-label" text-anchor="middle">Over $200K</text>
+  </svg>
+
+  <div class="table">
+    <div class="head1">Laptop<br>luggers</div>
+    <div class="head2">Disconnectors</div>
+
+    <div class="rule" style="top:41px;"></div>
+    <div class="rule" style="top:86px;"></div>
+    <div class="rule" style="top:147px;"></div>
+
+    <div class="rowlabel" style="top:45px;">Average 2026<br>summer trips</div>
+    <div class="cell" style="left:150px; top:58px; width:76px;">3.6 trips</div>
+    <div class="cell" style="left:254px; top:58px; width:62px;">3.0 trips</div>
+
+    <div class="rowlabel" style="top:92px;">Remote working<br>extends <span class="italic">summer</span><br><span class="italic">seasonal travel</span></div>
+    <div class="cell" style="left:158px; top:114px; width:60px;">6 days</div>
+    <div class="cell" style="left:262px; top:114px; width:42px;">3 days</div>
+
+    <div class="rowlabel" style="top:153px;">Remote working<br>extends <span class="italic">summer</span><br><span class="italic">marquee trip</span></div>
+    <div class="cell" style="left:158px; top:181px; width:60px;">3 days</div>
+    <div class="cell" style="left:281px; top:181px; width:22px;">--</div>
+  </div>
+
+  <div class="footnote">Notes: Questions: (1) “Do you plan to work during this trip?”; (2) “How many leisure trips will you be taking this summer season?”; (3) “How many days are you adding to the season and this trip because of the ability to work<br>remotely?”; (4) “How has remote work affected your travel habits?” (Select all that apply); n = 620 laptop luggers; n = 631 disconnectors.<br>Source: 2026 Deloitte Summer Travel Survey.</div>
+
+  <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+  <div class="footer-center">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="footer-page">42</div>
+</div>
+</body>
+</html>

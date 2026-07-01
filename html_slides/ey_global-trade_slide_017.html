@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefee;
+    color:#4f5058;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .top-accent{
+    left:0; top:0; width:56px; height:79px;
+    background:#c7c7cf;
+  }
+  .top-line{
+    left:0; top:78px; width:1280px; height:1px;
+    background:#c6c7cf;
+  }
+  .header-text{
+    left:66px; top:52px;
+    font-size:19px; line-height:20px; font-weight:400;
+    color:#7d7d89;
+    letter-spacing:-0.1px;
+  }
+
+  .nav-left, .nav-right{
+    width:35px; height:35px; border-radius:50%;
+    background:#b7b8c2;
+    top:33px;
+  }
+  .nav-left{ left:1122px; }
+  .nav-right{ left:1176px; }
+  .nav-left:before, .nav-right:before{
+    content:"";
+    position:absolute;
+    top:10px;
+    width:0; height:0;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+  }
+  .nav-left:before{
+    left:11px;
+    border-right:10px solid #474854;
+  }
+  .nav-right:before{
+    left:14px;
+    border-left:10px solid #474854;
+  }
+
+  .left-title{
+    left:67px; top:116px; width:525px;
+    font-size:18px; line-height:23px; font-weight:700;
+    color:#333541;
+    letter-spacing:-0.15px;
+  }
+  .left-intro{
+    left:67px; top:145px; width:555px;
+    font-size:15px; line-height:24px; font-weight:400;
+    color:#55565f;
+  }
+
+  .section-title{
+    font-size:17px; line-height:22px; font-weight:700;
+    color:#333541;
+    letter-spacing:-0.1px;
+  }
+  .kh-title{ left:67px; top:252px; }
+  .next-title{ left:67px; top:510px; }
+  .cta-title{ left:628px; top:116px; font-size:18px; line-height:23px; font-weight:700; color:#333541; }
+
+  .next-intro{
+    left:67px; top:537px; width:530px;
+    font-size:15px; line-height:24px; font-weight:400;
+    color:#55565f;
+  }
+
+  .cta-intro{
+    left:628px; top:145px; width:563px;
+    font-size:15px; line-height:24px; font-weight:400;
+    color:#55565f;
+  }
+
+  .bullet{
+    font-size:15px; line-height:22px; font-weight:400;
+    color:#55565f;
+  }
+  .bullet .sq{
+    position:absolute; left:0; top:7px; width:6px; height:6px;
+    background:#2f3139;
+  }
+  .bullet .txt{
+    position:absolute; left:14px; top:0;
+  }
+  b{
+    font-weight:700;
+    color:#333541;
+  }
+
+  .small-square{
+    width:8px; height:8px; background:#d9d9df;
+  }
+
+  .contact-box{
+    left:628px; top:580px; width:652px; height:78px;
+    border:1px solid #d1d1d1;
+    background:#efefee;
+  }
+  .contact-yellow{
+    left:628px; top:580px; width:652px; height:34px;
+    background:#f4dc00;
+  }
+  .contact-head{
+    left:643px; top:589px;
+    font-size:15px; line-height:18px; font-weight:700;
+    color:#2f3139;
+  }
+  .contact-body{
+    left:643px; top:626px;
+    font-size:15px; line-height:18px; font-weight:400;
+    color:#5b5c65;
+  }
+  .contact-body .name{ font-weight:700; color:#2f3139; }
+  .contact-body .email{ color:#1b5eb7; font-weight:700; }
+
+  .side-nav{
+    left:1191px; width:89px; height:36px;
+    background:#2f3040;
+    color:#e6e6eb;
+    font-size:12px; line-height:13px; font-weight:400;
+    padding-left:8px; padding-top:8px;
+    border-left:2px solid #f4dc00;
+  }
+  .side-nav.gray{
+    background:#7b7c89;
+    color:#ececf0;
+  }
+
+  .footer-left{
+    left:66px; top:708px;
+    transform:translateY(-100%);
+    font-size:10px; line-height:12px; font-weight:400;
+    color:#6f7078;
+  }
+
+  .back-circle{
+    left:984px; top:679px; width:33px; height:33px;
+    border-radius:50%;
+    background:#b7b8c2;
+  }
+  .back-circle:before{
+    content:"";
+    position:absolute;
+    left:10px; top:8px;
+    width:0; height:0;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+    border-right:10px solid #474854;
+  }
+  .back-text{
+    left:1028px; top:696px;
+    font-size:12px; line-height:12px; font-weight:700;
+    color:#585962;
+  }
+  .back-line{
+    left:1110px; top:709px; width:96px; height:1px;
+    background:#c7c7cf;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-accent"></div>
+    <div class="top-line"></div>
+    <div class="header-text">Insights: Global</div>
+
+    <div class="nav-left"></div>
+    <div class="nav-right"></div>
+
+    <div class="left-title">Mercosur-European Union negotiation: technical overview</div>
+
+    <div class="left-intro">
+      The Mercosur-EU agreement is a trade and cooperation treaty that integrates
+      two of the world's largest economic blocs, involving approximately 718 million
+      people and a combined GDP of US$22 trillion. After more than two decades of
+      negotiations, its conclusion represents a strategic advance in a context shaped
+      by the post-pandemic environment, climate crisis, rising protectionism and
+      geopolitical tensions.
+    </div>
+
+    <div class="section-title kh-title">Key highlights</div>
+
+    <div class="bullet" style="left:67px; top:283px; width:520px; height:48px;">
+      <div class="sq"></div>
+      <div class="txt" style="width:500px;">Tariff liberalization: gradual elimination of tariffs on up to 91% of European goods and 95% of Mercosur goods, with timelines ranging from four to 15 years (automotive sector: up to 30 years).</div>
+    </div>
+
+    <div class="bullet" style="left:67px; top:334px; width:520px; height:48px;">
+      <div class="sq"></div>
+      <div class="txt" style="width:500px;">Trade facilitation: modern rules of origin, self-certification, reduction of non-tariff barriers and mutual recognition of Authorized Economic Operators (AEOs).</div>
+    </div>
+
+    <div class="bullet" style="left:67px; top:386px; width:505px; height:48px;">
+      <div class="sq"></div>
+      <div class="txt" style="width:485px;">Sustainability: environmental and social commitments, with integration of production chains aimed at decarbonization.</div>
+    </div>
+
+    <div class="bullet" style="left:67px; top:432px; width:518px; height:48px;">
+      <div class="sq"></div>
+      <div class="txt" style="width:498px;">Sectoral safeguards: differentiated schedules for the automotive sector and mechanisms addressing critical minerals.</div>
+    </div>
+
+    <div class="bullet" style="left:67px; top:476px; width:520px; height:48px;">
+      <div class="sq"></div>
+      <div class="txt" style="width:500px;">Cooperation and investment: a European package to support implementation and promote industrial modernization in Mercosur.</div>
+    </div>
+
+    <div class="section-title next-title">Next steps</div>
+
+    <div class="next-intro">
+      Following provisional approval by the Council of the European Union, the
+      agreement enters a decisive phase toward its effective entry into force:
+    </div>
+
+    <div class="bullet" style="left:67px; top:575px; width:505px; height:40px;">
+      <div class="sq"></div>
+      <div class="txt" style="width:485px;"><b>EU:</b> review by the European Parliament and, potentially, ratification by national parliaments.</div>
+    </div>
+
+    <div class="bullet" style="left:67px; top:612px; width:520px; height:40px;">
+      <div class="sq"></div>
+      <div class="txt" style="width:500px;"><b>Mercosur:</b> approval by the Congresses of Brazil, Argentina, Paraguay and Uruguay.</div>
+    </div>
+
+    <div class="bullet" style="left:67px; top:649px; width:525px; height:45px;">
+      <div class="sq"></div>
+      <div class="txt" style="width:505px;"><b>Provisional application:</b> the blocs may anticipate economic effects – particularly tariff reductions – prior to full ratification.</div>
+    </div>
+
+    <div class="bullet" style="left:67px; top:685px; width:480px; height:25px;">
+      <div class="sq"></div>
+      <div class="txt" style="width:460px;"><b>Full entry into force:</b> only after all internal approvals in both blocs.</div>
+    </div>
+
+    <div class="cta-title">Call to action</div>
+
+    <div class="cta-intro">
+      With approval by the Council of the European Union and signature of the parties,
+      companies operating between the two blocs should anticipate the agreement's
+      entry into force to accelerate benefits and reduce risks. This goes beyond a
+      simple assessment of tariff reductions. Companies should:
+    </div>
+
+    <div class="bullet" style="left:628px; top:220px; width:550px; height:72px;">
+      <div class="sq"></div>
+      <div class="txt" style="width:530px;">Map their global value chains: identify operations, footprint, industrial processes, distribution strategies and suppliers to assess compliance with rules of origin, which will be essential to effectively benefit from tariff reductions.</div>
+    </div>
+
+    <div class="bullet" style="left:628px; top:302px; width:550px; height:72px;">
+      <div class="sq"></div>
+      <div class="txt" style="width:530px;">Build appropriate processes: incorporate origin management as an intrinsic activity within business processes to ensure reliability and robustness once the agreement enters into force.</div>
+    </div>
+
+    <div class="bullet" style="left:628px; top:385px; width:550px; height:72px;">
+      <div class="sq"></div>
+      <div class="txt" style="width:530px;">Assess opportunities related to operating models: evaluate global structures and potential reorganizations in advance, considering functions and risks to ensure compliance with transfer pricing rules and full utilization of the agreement's benefits.</div>
+    </div>
+
+    <div class="small-square" style="left:836px; top:412px;"></div>
+
+    <div class="contact-box"></div>
+    <div class="contact-yellow"></div>
+    <div class="contact-head">For additional information, please contact:</div>
+    <div class="contact-body">
+      <span class="name">Ian Craig</span> &nbsp;|&nbsp; + 55 213 263 73625 &nbsp;|&nbsp; <span class="email">ian.craig@br.ey.com</span>
+    </div>
+
+    <div class="side-nav" style="top:120px;">Contents</div>
+    <div class="side-nav" style="top:170px;">Insights</div>
+    <div class="side-nav" style="top:220px; padding-top:5px; line-height:14px;">New on<br>ey.com</div>
+    <div class="side-nav" style="top:270px;">Tax alerts</div>
+    <div class="side-nav gray" style="top:320px; padding-top:4px; line-height:14px;">Additional<br>resources</div>
+    <div class="side-nav gray" style="top:370px;">Contacts</div>
+
+    <div class="footer-left">14&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+
+    <div class="back-circle"></div>
+    <div class="back-text">Back to Welcome</div>
+    <div class="back-line"></div>
+  </div>
+</body>
+</html>

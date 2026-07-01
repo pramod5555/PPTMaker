@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Staffing outlook – stabilization with selective growth</title>
+<style>
+  body{
+    margin:0;
+    background:#d7d7d8;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#efeff1;
+  }
+  .left-panel{
+    position:absolute;
+    left:0;
+    top:0;
+    width:488px;
+    height:720px;
+    background:#efeff1;
+  }
+  .right-panel{
+    position:absolute;
+    left:488px;
+    top:31px;
+    width:816px;
+    height:706px;
+    background:#000;
+    overflow:hidden;
+  }
+
+  .chapter-pill{
+    position:absolute;
+    left:31px;
+    top:13px;
+    width:70px;
+    height:19px;
+    background:#767783;
+    border-radius:12px 12px 0 0;
+    color:#fff;
+    font-size:8px;
+    font-weight:700;
+    letter-spacing:.12em;
+    line-height:19px;
+    text-align:center;
+  }
+
+  .left-title{
+    position:absolute;
+    left:78px;
+    top:72px;
+    width:385px;
+    color:#2f313d;
+    font-size:29px;
+    font-weight:700;
+    line-height:1.15;
+  }
+  .accent-line-left{
+    position:absolute;
+    left:77px;
+    top:158px;
+    width:383px;
+    height:3px;
+    background:linear-gradient(90deg,#f0df00 0 46%, #ec3af2 70%, #2ed7ff 100%);
+  }
+
+  .left-body{
+    position:absolute;
+    left:77px;
+    top:197px;
+    width:347px;
+    color:#5d5f68;
+    font-size:13px;
+    line-height:1.45;
+  }
+
+  .figure-title{
+    position:absolute;
+    left:78px;
+    top:294px;
+    width:365px;
+    color:#333742;
+    font-size:12px;
+    font-weight:700;
+    line-height:1.35;
+  }
+
+  .bar-label{
+    position:absolute;
+    color:#5d5f68;
+    font-size:10px;
+    line-height:1.2;
+    text-align:right;
+  }
+  .bar-box{
+    position:absolute;
+    width:200px;
+    height:26px;
+    border:1px solid #a7a9b1;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .bar-fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:24px;
+    background:#6c0d5f;
+  }
+  .bar-percent{
+    position:absolute;
+    right:8px;
+    top:6px;
+    color:#585a63;
+    font-size:10px;
+    line-height:1;
+  }
+  .bar-sub{
+    position:absolute;
+    color:#6d6f78;
+    font-size:6px;
+    line-height:1.1;
+  }
+
+  .vert-caption{
+    position:absolute;
+    left:11px;
+    top:392px;
+    color:#3b3e47;
+    font-size:12px;
+    letter-spacing:.1em;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    text-transform:uppercase;
+  }
+  .vert-line{
+    position:absolute;
+    left:14px;
+    top:406px;
+    width:1px;
+    height:37px;
+    background:#4b4d56;
+  }
+  .page-num{
+    position:absolute;
+    left:49px;
+    bottom:14px;
+    color:#3b3e47;
+    font-size:11px;
+  }
+
+  .right-title{
+    position:absolute;
+    left:593px;
+    top:74px;
+    width:560px;
+    color:#fff;
+    font-size:30px;
+    font-weight:700;
+    line-height:1.12;
+  }
+  .accent-line-right{
+    position:absolute;
+    left:593px;
+    top:191px;
+    width:435px;
+    height:4px;
+    background:linear-gradient(90deg,#f0df00 0 50%, #ec3af2 80%, #2ed7ff 100%);
+  }
+
+  .right-body{
+    position:absolute;
+    left:593px;
+    top:235px;
+    width:448px;
+    color:#d0d0d3;
+    font-size:12px;
+    line-height:1.5;
+  }
+
+  .bullet{
+    position:absolute;
+    color:#f0df00;
+    font-size:16px;
+    line-height:1;
+    font-weight:700;
+  }
+  .bullet-text{
+    position:absolute;
+    color:#d0d0d3;
+    font-size:12px;
+    line-height:1.45;
+  }
+
+  .kpi70{
+    position:absolute;
+    left:1093px;
+    top:292px;
+    color:#f2df00;
+    font-size:112px;
+    font-weight:300;
+    line-height:.88;
+    letter-spacing:-.03em;
+  }
+  .kpi-text{
+    position:absolute;
+    left:1101px;
+    top:398px;
+    width:150px;
+    color:#f3f3f3;
+    font-size:18px;
+    line-height:1.35;
+  }
+  .kpi-text b{font-weight:700;}
+
+  .jump-circle{
+    position:absolute;
+    left:1234px;
+    top:59px;
+    width:39px;
+    height:39px;
+    border:1px solid #7a7a7a;
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+  .jump-dot{
+    position:absolute;
+    left:1263px;
+    top:61px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#f0df00;
+  }
+  .jump-text{
+    position:absolute;
+    left:1239px;
+    top:70px;
+    width:30px;
+    color:#fff;
+    font-size:8px;
+    line-height:1.05;
+    text-align:center;
+  }
+
+  .glow-base{
+    position:absolute;
+    left:488px;
+    top:531px;
+    width:816px;
+    height:206px;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(61,0,23,.18) 58%, rgba(108,24,0,.34) 100%);
+    pointer-events:none;
+  }
+
+  .flare{
+    position:absolute;
+    filter:blur(11px);
+    opacity:.95;
+    pointer-events:none;
+  }
+  .f1{
+    left:1000px;
+    top:503px;
+    width:292px;
+    height:194px;
+    background:linear-gradient(45deg, rgba(255,130,0,0) 0%, rgba(255,132,0,.62) 52%, rgba(255,213,0,.88) 100%);
+    clip-path:polygon(0 68%, 44% 20%, 100% 100%, 60% 100%);
+    transform:rotate(8deg);
+  }
+  .f2{
+    left:1087px;
+    top:522px;
+    width:180px;
+    height:167px;
+    background:linear-gradient(45deg, rgba(255,210,0,0) 0%, rgba(255,184,0,.65) 45%, rgba(236,220,0,.95) 100%);
+    clip-path:polygon(0 78%, 53% 10%, 100% 100%, 68% 100%);
+    transform:rotate(8deg);
+  }
+  .f3{
+    left:1124px;
+    top:478px;
+    width:191px;
+    height:224px;
+    background:linear-gradient(45deg, rgba(255,0,140,0) 0%, rgba(255,0,120,.5) 50%, rgba(182,0,255,.42) 100%);
+    clip-path:polygon(0 73%, 39% 8%, 100% 100%, 57% 100%);
+    transform:rotate(13deg);
+  }
+  .f4{
+    left:918px;
+    top:510px;
+    width:210px;
+    height:110px;
+    background:linear-gradient(45deg, rgba(255,124,0,0) 0%, rgba(255,124,0,.45) 55%, rgba(255,155,0,.7) 100%);
+    clip-path:polygon(0 75%, 55% 18%, 100% 100%, 68% 100%);
+    transform:rotate(12deg);
+  }
+  .f5{
+    left:485px;
+    top:566px;
+    width:309px;
+    height:82px;
+    background:linear-gradient(90deg, rgba(129,0,70,.42) 0%, rgba(73,0,68,.22) 52%, rgba(0,0,0,0) 100%);
+    clip-path:polygon(0 58%, 100% 20%, 100% 92%, 0 100%);
+    filter:blur(15px);
+  }
+  .f6{
+    left:755px;
+    top:616px;
+    width:387px;
+    height:92px;
+    background:linear-gradient(0deg, rgba(133,20,0,.42) 0%, rgba(0,0,0,0) 100%);
+    clip-path:polygon(0 100%, 100% 64%, 100% 100%, 0 100%);
+    filter:blur(16px);
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-panel"></div>
+  <div class="right-panel"></div>
+
+  <div class="chapter-pill">CHAPTER 5</div>
+
+  <div class="left-title">Staffing outlook – stabilization<br>with selective growth</div>
+  <div class="accent-line-left"></div>
+
+  <div class="left-body">
+    Compared with prior years, respondents anticipate less hiring in<br>
+    the second-line risk function. Close to half (42%) expect no change<br>
+    in full-time equivalents (FTEs) (up from 27% last year), while fewer<br>
+    anticipate growth compared to last year (37% vs. 65%).
+  </div>
+
+  <div class="figure-title">
+    Figure 15: Expected change in the number of FTEs in risk<br>
+    management (second line) over the next three years
+  </div>
+
+  <div class="bar-label" style="left:82px; top:360px; width:98px;">Increase 16%–25%</div>
+  <div class="bar-box" style="left:191px; top:353px;">
+    <div class="bar-fill" style="width:17px;"></div>
+    <div class="bar-percent">8%</div>
+  </div>
+  <div class="bar-sub" style="left:191px; top:384px;">30% Asia-Pacific | 7% EMEIA | 4% Americas</div>
+
+  <div class="bar-label" style="left:89px; top:419px; width:91px;">Increase 1%–15%</div>
+  <div class="bar-box" style="left:191px; top:414px;">
+    <div class="bar-fill" style="width:58px;"></div>
+    <div class="bar-percent">29%</div>
+  </div>
+  <div class="bar-sub" style="left:191px; top:445px;">20% Asia-Pacific | 30% EMEIA | 31% Americas</div>
+
+  <div class="bar-label" style="left:126px; top:481px; width:54px;">No impact</div>
+  <div class="bar-box" style="left:191px; top:475px;">
+    <div class="bar-fill" style="width:84px;"></div>
+    <div class="bar-percent">42%</div>
+  </div>
+  <div class="bar-sub" style="left:191px; top:506px;">20% Asia-Pacific | 43% EMEIA | 44% Americas</div>
+
+  <div class="bar-label" style="left:87px; top:541px; width:93px;">Decrease 1%–15%</div>
+  <div class="bar-box" style="left:191px; top:536px;">
+    <div class="bar-fill" style="width:38px;"></div>
+    <div class="bar-percent">19%</div>
+  </div>
+  <div class="bar-sub" style="left:191px; top:567px;">30% Asia-Pacific | 18% EMEIA | 17% Americas</div>
+
+  <div class="bar-label" style="left:80px; top:602px; width:100px;">Decrease 16%–25%</div>
+  <div class="bar-box" style="left:191px; top:597px;">
+    <div class="bar-fill" style="width:6px;"></div>
+    <div class="bar-percent">3%</div>
+  </div>
+  <div class="bar-sub" style="left:191px; top:628px;">0% Asia-Pacific | 2% EMEIA | 4% Americas</div>
+
+  <div class="vert-caption">CHAPTER 5</div>
+  <div class="vert-line"></div>
+  <div class="page-num">27</div>
+
+  <div class="right-title">Drivers behind staffing changes –<br>automation plus regulation, growth<br>and strategic initiatives</div>
+  <div class="accent-line-right"></div>
+
+  <div class="right-body">
+    Expected workforce changes reflect multiple drivers. While technology<br>
+    advancements and automation are the most frequently cited factor<br>
+    (62%), regulatory requirements (39%) and business expansion (34%)<br>
+    also materially shape staffing plans, with additional influence from cost<br>
+    measures and strategic initiatives such as new ventures and M&amp;A. AI<br>
+    and digital transformation continue to play a significant role in shaping<br>
+    risk management teams, but it is only one part of a complex landscape.<br>
+    Survey data reveals regional nuances in expectations for changes to FTEs<br>
+    across the second-line risk function:
+  </div>
+
+  <div class="bullet" style="left:592px; top:404px;">▪</div>
+  <div class="bullet-text" style="left:607px; top:403px; width:430px;">
+    60% of APAC CROs and 45% of EMEIA CROs cite increased regulatory<br>
+    requirements as a primary factor, highlighting the complexities of the<br>
+    regional compliance landscape.
+  </div>
+
+  <div class="bullet" style="left:592px; top:463px;">▪</div>
+  <div class="bullet-text" style="left:607px; top:462px; width:433px;">
+    70% of APAC CROs reference an expansion of business operations<br>
+    (compared to 30% and 31% among EMEIA and Americas CROs,<br>
+    respectively), reflecting the region’s rapid growth.
+  </div>
+
+  <div class="bullet" style="left:592px; top:525px;">▪</div>
+  <div class="bullet-text" style="left:607px; top:524px; width:437px;">
+    25% of CROs in the Americas cite a focus on strategic initiatives, such<br>
+    as new ventures and M&amp;A activity, playing a role in reshaping their<br>
+    team size and structure.
+  </div>
+
+  <div class="kpi70">70%</div>
+  <div class="kpi-text">
+    of <b>APAC</b> CROs<br>
+    reference an<br>
+    <b>expansion of</b><br>
+    <b>business operations.</b>
+  </div>
+
+  <div class="jump-circle"></div>
+  <div class="jump-dot"></div>
+  <div class="jump-text">Jump to<br>contents</div>
+
+  <div class="glow-base"></div>
+  <div class="flare f1"></div>
+  <div class="flare f2"></div>
+  <div class="flare f3"></div>
+  <div class="flare f4"></div>
+  <div class="flare f5"></div>
+  <div class="flare f6"></div>
+</div>
+</body>
+</html>

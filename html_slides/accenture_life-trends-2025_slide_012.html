@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dcd8db;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e2dee1;
+    margin:0 auto;
+  }
+
+  .top-blur{
+    position:absolute;
+    left:435px;
+    top:0;
+    width:784px;
+    height:262px;
+    background:
+      radial-gradient(circle at 12% 120%, rgba(108,63,108,0.55) 0, rgba(108,63,108,0.25) 10%, transparent 22%),
+      radial-gradient(circle at 28% 105%, rgba(161,92,150,0.55) 0, rgba(161,92,150,0.2) 10%, transparent 20%),
+      radial-gradient(circle at 48% 104%, rgba(130,111,92,0.45) 0, rgba(130,111,92,0.15) 10%, transparent 22%),
+      radial-gradient(circle at 66% 106%, rgba(162,143,109,0.45) 0, rgba(162,143,109,0.15) 11%, transparent 23%),
+      radial-gradient(circle at 82% 100%, rgba(146,126,109,0.28) 0, transparent 18%),
+      radial-gradient(circle at 98% 70%, rgba(140,160,123,0.22) 0, transparent 18%),
+      linear-gradient(90deg, rgba(218,215,210,0.92), rgba(236,233,232,0.92) 35%, rgba(229,226,228,0.92) 100%);
+    filter: blur(2px);
+  }
+
+  .left-image{
+    position:absolute;
+    left:62px;
+    top:262px;
+    width:373px;
+    height:376px;
+    background:
+      radial-gradient(circle at 74% 6%, rgba(255,248,210,0.85) 0, rgba(255,240,180,0.55) 6%, transparent 12%),
+      radial-gradient(circle at 20% 20%, rgba(255,188,112,0.65) 0, transparent 18%),
+      radial-gradient(circle at 18% 78%, rgba(84,47,132,0.9) 0, rgba(84,47,132,0.4) 18%, transparent 42%),
+      radial-gradient(circle at 78% 88%, rgba(110,50,83,0.9) 0, rgba(110,50,83,0.35) 16%, transparent 35%),
+      linear-gradient(135deg, rgba(83,65,119,0.9) 0%, rgba(141,98,89,0.85) 35%, rgba(79,48,61,0.95) 100%);
+    overflow:hidden;
+  }
+  .left-image::before{
+    content:"";
+    position:absolute;
+    left:72px;
+    top:26px;
+    width:210px;
+    height:206px;
+    border-radius:50%;
+    border:8px solid rgba(226,190,132,0.38);
+    box-shadow:
+      0 0 18px rgba(255,213,142,0.25),
+      inset 0 0 20px rgba(255,225,180,0.18);
+    transform:rotate(-18deg);
+    filter: blur(1px);
+  }
+  .left-image::after{
+    content:"";
+    position:absolute;
+    left:122px;
+    top:46px;
+    width:126px;
+    height:317px;
+    border-radius:70px;
+    background:
+      linear-gradient(180deg, rgba(255,233,192,0.58), rgba(201,127,104,0.55) 28%, rgba(105,63,73,0.55) 75%, rgba(75,46,64,0.32));
+    filter: blur(6px);
+    transform:rotate(-12deg);
+  }
+
+  .bottom-image{
+    position:absolute;
+    left:435px;
+    top:639px;
+    width:865px;
+    height:81px;
+    background:
+      radial-gradient(circle at 10% 10%, rgba(112,58,74,0.8) 0, transparent 20%),
+      radial-gradient(circle at 46% 38%, rgba(121,63,160,0.78) 0, transparent 10%),
+      radial-gradient(circle at 58% 68%, rgba(77,92,53,0.78) 0, transparent 18%),
+      radial-gradient(circle at 76% 22%, rgba(208,180,107,0.65) 0, transparent 10%),
+      radial-gradient(circle at 95% 18%, rgba(236,190,208,0.75) 0, transparent 8%),
+      linear-gradient(90deg, rgba(103,63,80,0.8), rgba(74,75,109,0.85) 32%, rgba(93,101,64,0.86) 64%, rgba(147,131,84,0.84));
+    filter: blur(1px);
+  }
+
+  .content{
+    position:absolute;
+    left:435px;
+    top:262px;
+    width:865px;
+    height:376px;
+    background:#f5f3f3;
+    box-sizing:border-box;
+    border-right:1px solid rgba(168,150,150,0.7);
+  }
+
+  .title{
+    position:absolute;
+    left:50px;
+    top:46px;
+    font-size:21px;
+    line-height:1.2;
+    color:#9e43ea;
+    font-weight:400;
+  }
+
+  .col{
+    position:absolute;
+    top:94px;
+    color:#252525;
+    font-size:18px;
+    line-height:1.55;
+    font-weight:400;
+  }
+  .col.left{
+    left:50px;
+    width:338px;
+  }
+  .col.right{
+    left:470px;
+    width:320px;
+  }
+
+  .sup{
+    font-size:11px;
+    vertical-align:super;
+    line-height:0;
+  }
+
+  .side-nav{
+    position:absolute;
+    right:0;
+    top:22px;
+    width:44px;
+    height:616px;
+    color:#6a6a6a;
+    font-size:12px;
+    line-height:1;
+  }
+  .side-nav .highlight{
+    position:absolute;
+    top:0;
+    right:8px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    color:#8d25ff;
+    font-weight:600;
+    background:rgba(255,255,255,0.28);
+    border-radius:10px;
+    padding:10px 7px;
+  }
+  .side-nav .rest{
+    position:absolute;
+    top:140px;
+    right:11px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    color:#6f6f6f;
+    letter-spacing:0.2px;
+  }
+
+  .footer-left{
+    position:absolute;
+    right:62px;
+    bottom:18px;
+    font-size:13px;
+    color:#ffffff;
+    opacity:0.9;
+  }
+  .footer-page{
+    position:absolute;
+    right:26px;
+    bottom:20px;
+    font-size:12px;
+    color:#7a7a7a;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-blur"></div>
+    <div class="left-image"></div>
+    <div class="content">
+      <div class="title">Is this picture real?</div>
+
+      <div class="col left">
+        A Getty Images report revealed that people feel less favorably about brands that use AI-generated visuals.<span class="sup">17</span>
+        The survey of over 7,500 people from 25 countries found that 90% of consumers want to know if an image is AI-generated,
+        and 87% value image authenticity. Crucially, 76% say they find it increasingly difficult to tell the difference between
+        real and AI-generated images, fueling skepticism.
+      </div>
+
+      <div class="col right">
+        Language is evolving to lend expression to the uncomfortable feeling of spotting generative AI content that feels inhuman.
+        “Slop” is the new “spam”—a broad term that has gained traction to describe shoddy or unwanted AI-generated content in art,
+        books, social media and search results.<span class="sup">18</span><br><br>
+        The issue of trust throughout the online experience is multi-faceted and stems from a spectrum of motivations from
+        well-intended and genuine to malicious and harmful.
+      </div>
+    </div>
+
+    <div class="bottom-image"></div>
+
+    <div class="side-nav">
+      <div class="highlight">Cost of hesitations</div>
+      <div class="rest">/ The parent trap &nbsp;&nbsp;/&nbsp;&nbsp; Impatience economy &nbsp;&nbsp;/&nbsp;&nbsp; The dignity of work &nbsp;&nbsp;/&nbsp;&nbsp; Social rewiring</div>
+    </div>
+
+    <div class="footer-left">Accenture Life Trends 2025</div>
+    <div class="footer-page">12</div>
+  </div>
+</body>
+</html>

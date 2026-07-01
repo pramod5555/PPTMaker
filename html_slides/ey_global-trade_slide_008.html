@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d8d8d8;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#f3f3f4;
+    color:#595962;
+  }
+  #slide > *{ position:absolute; box-sizing:border-box; }
+
+  .topband{
+    left:0;
+    top:0;
+    width:1280px;
+    height:79px;
+    background:#f1f1f2;
+  }
+  .topband::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:55px;
+    height:79px;
+    background:#bbbcc5;
+  }
+  .topline{
+    left:0;
+    top:78px;
+    width:1280px;
+    height:1px;
+    background:#c7c7cd;
+  }
+  .title{
+    left:56px;
+    top:50px;
+    font-size:16px;
+    line-height:20px;
+    font-weight:400;
+    color:#767680;
+    letter-spacing:0.1px;
+  }
+
+  .nav{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#b8b8c0;
+    color:#3e3e48;
+    text-align:center;
+    line-height:36px;
+    font-size:22px;
+    font-weight:700;
+  }
+  .nav1{ left:1122px; top:33px; }
+  .nav2{ left:1168px; top:33px; }
+
+  .leftcol{
+    left:56px;
+    top:118px;
+    width:520px;
+    z-index:2;
+  }
+  .rightcol{
+    left:628px;
+    top:118px;
+    width:504px;
+    z-index:2;
+  }
+
+  .section{
+    position:relative;
+    width:100%;
+    margin:0 0 12px 0;
+  }
+
+  .h{
+    font-size:18px;
+    line-height:22px;
+    font-weight:700;
+    color:#34343d;
+    margin:0 0 5px 0;
+  }
+  .p{
+    font-size:14px;
+    line-height:1.34;
+    font-weight:400;
+    color:#5a5a63;
+    margin:0 0 7px 0;
+  }
+
+  .bullets{
+    margin:0 0 8px 0;
+    padding:0;
+    list-style:none;
+  }
+  .bullets li{
+    position:relative;
+    padding-left:14px;
+    margin:0 0 8px 0;
+    font-size:14px;
+    line-height:1.34;
+    color:#5a5a63;
+  }
+  .bullets li::before{
+    content:"■";
+    position:absolute;
+    left:0;
+    top:0;
+    color:#3a3a42;
+    font-size:7px;
+    line-height:18px;
+  }
+
+  .sidebar{
+    left:1189px;
+    top:120px;
+    width:91px;
+  }
+  .sidebtn{
+    position:relative;
+    width:91px;
+    min-height:35px;
+    margin:0 0 15px 0;
+    background:#343445;
+    color:#ffffff;
+    border-left:2px solid #f0dc00;
+    padding:7px 8px 8px 7px;
+    font-size:11px;
+    line-height:12px;
+    font-weight:400;
+  }
+  .sidebtn.light{
+    background:#7d7d89;
+  }
+
+  .contactbox{
+    left:629px;
+    top:531px;
+    width:651px;
+    height:179px;
+    border:1px solid #d5d5da;
+    background:transparent;
+  }
+  .contacthead{
+    left:629px;
+    top:531px;
+    width:651px;
+    height:35px;
+    background:#f3dc00;
+    padding:9px 12px 0 12px;
+    font-size:14px;
+    line-height:17px;
+    font-weight:700;
+    color:#34343d;
+  }
+  .contactcontent{
+    left:642px;
+    top:578px;
+    width:620px;
+    font-size:14px;
+    line-height:1.75;
+    color:#5a5a63;
+  }
+  .contactcontent .name{
+    font-weight:700;
+    color:#34343d;
+  }
+  .sep{
+    color:#9d9da4;
+    padding:0 8px;
+  }
+  .email{
+    color:#1768c7;
+    text-decoration:none;
+  }
+
+  .footnote{
+    left:56px;
+    top:705px;
+    transform:translateY(-100%);
+    font-size:11px;
+    line-height:13px;
+    color:#7a7a83;
+  }
+  .footnote b{
+    font-weight:700;
+  }
+
+  .smallsq{
+    display:inline-block;
+    width:6px;
+    height:6px;
+    background:#b7b7bf;
+    margin-left:5px;
+    vertical-align:middle;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="topband"></div>
+  <div class="topline"></div>
+  <div class="title">Insights: Global</div>
+
+  <div class="nav nav1">◀</div>
+  <div class="nav nav2">▶</div>
+
+  <div class="leftcol">
+    <div class="section">
+      <div class="h">Regulatory cooperation and trade facilitation</div>
+      <div class="p">To support efficient cross border commerce, the agreement enhances regulatory transparency and cooperation:</div>
+      <ul class="bullets">
+        <li>Conformity assessments for certain sectors will be recognized when carried out in the EU, simplifying compliance for EU exporters to Australia.</li>
+        <li>Both sides commit to high standards in competition policy, subsidy transparency and the enforcement of intellectual property rights.</li>
+        <li>Alignment with the World Trade Organization (WTO) Trade Facilitation Agreement aims to reduce red tape, expedite customs procedures and strengthen supply chain resilience.</li>
+      </ul>
+      <div class="p">These measures reflect a broader strategy of embedding regulatory cooperation into modern trade agreements to reduce non tariff barriers.</div>
+    </div>
+
+    <div class="section">
+      <div class="h">Strategic and geopolitical implications</div>
+      <div class="p">The deal extends far beyond tariff schedules. It represents a structural recalibration of EU-Australia trade relations:</div>
+      <ul class="bullets">
+        <li>For Australia, the EU offers a market of roughly 450 million consumers and a pathway to reduce overreliance on its traditional trading partners.</li>
+        <li>For the EU, the agreement strengthens economic engagement in the Indo Pacific, a region critical for supply chain diversification and green technology sourcing.</li>
+        <li>The agreement complements broader partnerships, including a separate security and defense partnership supporting deeper alignment in a volatile geopolitical environment.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="h">Implementation timeline</div>
+      <div class="p">On the EU side, the negotiated draft texts will be published shortly. The texts will go through the necessary internal procedures before the Commission put forward its proposal to the European Council for the signing and conclusion of the agreement. Australia will undertake domestic processes required for signing, such as approval from the Federal Executive Council.</div>
+    </div>
+  </div>
+
+  <div class="rightcol">
+    <div class="section" style="margin-bottom:8px;">
+      <div class="p">Once adopted by the European Council, the EU and Australia can sign the agreement. Signing is expected to occur in late 2026 or early 2027. Following signing, the agreement requires the European Parliament's consent and the Council's decision on conclusion for it to enter into force. For Australia, parliamentary processes involve scrutiny by Parliament through the Joint Standing Committee on Treaties (JSCOT) and consideration of any domestic legislation.</div>
+      <div class="p">Once both the EU and Australia have ratified the Agreement, it can enter into force.</div>
+    </div>
+
+    <div class="section">
+      <div class="h">Conclusion</div>
+      <div class="p">The EU-Australia FTA represents one of the most commercially significant agreements concluded by either party in recent years. For businesses, the deal offers tariff relief, expanded market access and new certainty across goods, services and investment. For policymakers, it strengthens ties between two advanced economies committed to open, rules-based trade at a time of global fragmentation.</div>
+      <div class="p">Businesses should watch closely as the agreement proceeds to ratification, ensuring that supply chain approaches, market entry plans and compliance frameworks are aligned with the opportunities emerging from this pivotal trans Pacific partnership.<span class="smallsq"></span></div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebtn">Contents</div>
+    <div class="sidebtn">Insights</div>
+    <div class="sidebtn">New on<br>ey.com</div>
+    <div class="sidebtn">Tax alerts</div>
+    <div class="sidebtn light">Additional<br>resources</div>
+    <div class="sidebtn light" style="margin-bottom:0;">Contacts</div>
+  </div>
+
+  <div class="contactbox"></div>
+  <div class="contacthead">For additional information, please contact:</div>
+  <div class="contactcontent">
+    <div><span class="name">Jeroen Scholten</span><span class="sep">|</span>+ 31 88 407 1009<span class="sep">|</span><a class="email" href="#">jeroen.scholten@nl.ey.com</a></div>
+    <div><span class="name">Luke Branson</span><span class="sep">|</span>+ 61 39 288 8369<span class="sep">|</span><a class="email" href="#">luke.branson@au.ey.com</a></div>
+    <div><span class="name">Martijn Schippers</span><span class="sep">|</span>+ 31 88 407 9160<span class="sep">|</span><a class="email" href="#">martijn.schippers@nl.ey.com</a></div>
+    <div><span class="name">Sarah Cunliffe</span><span class="sep">|</span>+ 61 29 248 4174<span class="sep">|</span><a class="email" href="#">sarah.cunliffe@au.ey.com</a></div>
+    <div><span class="name">Kylie Norman</span><span class="sep">|</span>+ 61 29 248 4765<span class="sep">|</span><a class="email" href="#">kylie.norman@au.ey.com</a></div>
+  </div>
+
+  <div class="footnote">5&nbsp;&nbsp;|&nbsp;&nbsp;<b>TradeWatch Issue 1 2026</b></div>
+</div>
+</body>
+</html>

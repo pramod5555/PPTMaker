@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9dc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d9d9dc;
+  }
+  .slide > div, .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .chapter-pill{
+    left:31px;
+    top:14px;
+    width:71px;
+    height:18px;
+    background:#7f8189;
+    border-radius:11px 11px 0 0;
+    color:#fff;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    line-height:18px;
+    text-align:center;
+  }
+  .left-title{
+    left:78px;
+    top:72px;
+    width:265px;
+    color:#2f313d;
+    font-size:31px;
+    font-weight:700;
+    line-height:1.08;
+  }
+  .accent-line{
+    left:77px;
+    top:260px;
+    width:247px;
+    height:3px;
+    background:linear-gradient(90deg,#f0d100 0 48%, #ff48ea 48% 81%, #29d7ef 81% 100%);
+  }
+  .left-body{
+    left:77px;
+    top:300px;
+    width:255px;
+    color:#55565f;
+    font-size:14px;
+    line-height:1.32;
+  }
+  .top-banner{
+    left:403px;
+    top:31px;
+    width:931px;
+    height:199px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 82% 25%, rgba(53,208,246,.92) 0 4px, transparent 6px),
+      radial-gradient(circle at 79% 24%, rgba(53,208,246,.78) 0 3px, transparent 5px),
+      radial-gradient(circle at 76% 22%, rgba(53,208,246,.7) 0 3px, transparent 5px),
+      radial-gradient(circle at 73% 20%, rgba(53,208,246,.55) 0 5px, transparent 7px),
+      radial-gradient(circle at 85% 31%, rgba(53,208,246,.85) 0 4px, transparent 6px),
+      radial-gradient(circle at 81% 33%, rgba(53,208,246,.72) 0 4px, transparent 6px),
+      radial-gradient(circle at 78% 35%, rgba(53,208,246,.7) 0 4px, transparent 6px),
+      radial-gradient(circle at 75% 38%, rgba(53,208,246,.75) 0 4px, transparent 6px),
+      radial-gradient(circle at 87% 40%, rgba(53,208,246,.86) 0 4px, transparent 6px),
+      radial-gradient(circle at 83% 44%, rgba(53,208,246,.8) 0 5px, transparent 7px),
+      radial-gradient(circle at 79% 48%, rgba(53,208,246,.78) 0 4px, transparent 6px),
+      radial-gradient(circle at 75% 52%, rgba(53,208,246,.74) 0 4px, transparent 6px),
+      radial-gradient(circle at 71% 13%, rgba(53,208,246,.5) 0 6px, transparent 9px),
+      radial-gradient(circle at 61% 18%, rgba(53,208,246,.32) 0 6px, transparent 9px),
+      radial-gradient(circle at 41% 36%, rgba(255,225,255,.75) 0 6px, transparent 8px),
+      radial-gradient(circle at 47% 41%, rgba(255,255,255,.68) 0 6px, transparent 8px),
+      radial-gradient(circle at 53% 52%, rgba(255,255,255,.55) 0 5px, transparent 7px),
+      radial-gradient(circle at 32% 41%, rgba(255,195,240,.55) 0 4px, transparent 6px),
+      linear-gradient(90deg, rgba(2,6,16,.22) 0%, rgba(1,4,12,.04) 42%, rgba(1,3,8,.48) 100%),
+      #020713;
+  }
+  .top-banner:before{
+    content:"";
+    position:absolute;
+    left:-34px;
+    top:-28px;
+    width:860px;
+    height:320px;
+    background:
+      repeating-radial-gradient(ellipse at 18% 110%,
+        rgba(255,164,0,.72) 0 1px,
+        rgba(255,164,0,0) 2px 7px,
+        rgba(211,86,204,.58) 8px 9px,
+        rgba(211,86,204,0) 10px 15px,
+        rgba(66,167,255,.38) 16px 17px,
+        rgba(66,167,255,0) 18px 22px);
+    transform:rotate(-8deg);
+    opacity:.96;
+  }
+  .top-banner:after{
+    content:"";
+    position:absolute;
+    left:-18px;
+    top:6px;
+    width:880px;
+    height:280px;
+    background:
+      repeating-radial-gradient(ellipse at 23% 112%,
+        rgba(255,122,0,.82) 0 1px,
+        rgba(255,122,0,0) 2px 6px,
+        rgba(217,109,255,.62) 7px 8px,
+        rgba(217,109,255,0) 9px 13px,
+        rgba(114,218,255,.43) 14px 15px,
+        rgba(114,218,255,0) 16px 20px);
+    transform:rotate(-8deg);
+    opacity:.95;
+    filter:blur(.2px);
+  }
+  .jump{
+    left:1264px;
+    top:58px;
+    width:38px;
+    height:38px;
+    border:1px solid rgba(255,255,255,.55);
+    border-radius:50%;
+    color:#fff;
+    font-size:9px;
+    line-height:1.05;
+    text-align:center;
+    padding-top:8px;
+  }
+  .jump-dot{
+    left:1298px;
+    top:62px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#edd100;
+  }
+  .figure-title{
+    left:419px;
+    top:286px;
+    width:373px;
+    color:#3f4149;
+    font-size:12px;
+    line-height:1.34;
+  }
+  .figure-title b{font-weight:700;}
+  .chart-wrap{
+    left:425px;
+    top:356px;
+    width:385px;
+    height:338px;
+  }
+  .chart-label{
+    position:absolute;
+    width:155px;
+    color:#565760;
+    font-size:12px;
+    line-height:1.15;
+    text-align:right;
+  }
+  .bar-bg{
+    position:absolute;
+    left:171px;
+    width:201px;
+    height:28px;
+    background:#e8e8ea;
+    border:1px solid #b8b8bf;
+  }
+  .bar-fill{
+    position:absolute;
+    left:171px;
+    height:28px;
+    background:#7c0b58;
+  }
+  .bar-top{
+    position:absolute;
+    color:#6a6b72;
+    font-size:8px;
+    font-weight:700;
+    line-height:1;
+  }
+  .bar-pct{
+    position:absolute;
+    width:42px;
+    text-align:right;
+    color:#565860;
+    font-size:20px;
+    line-height:1;
+  }
+  .bar-note{
+    position:absolute;
+    left:171px;
+    color:#666770;
+    font-size:7px;
+    font-weight:700;
+    line-height:1.1;
+    white-space:nowrap;
+  }
+  .survey-square{
+    position:absolute;
+    left:255px;
+    top:316px;
+    width:12px;
+    height:12px;
+    background:#bebfc5;
+  }
+  .survey-note{
+    position:absolute;
+    left:272px;
+    top:314px;
+    width:105px;
+    color:#73747b;
+    font-size:7px;
+    line-height:1.15;
+  }
+  .right-copy{
+    left:860px;
+    top:287px;
+    width:363px;
+    color:#52535b;
+    font-size:14px;
+    line-height:1.28;
+  }
+  .quote-box{
+    left:860px;
+    top:502px;
+    width:270px;
+    height:179px;
+  }
+  .quote-mark{
+    left:891px;
+    top:519px;
+    color:#f0d100;
+    font-size:40px;
+    font-weight:700;
+    line-height:1;
+  }
+  .quote-title{
+    left:894px;
+    top:541px;
+    width:130px;
+    color:#3f4149;
+    font-size:14px;
+    line-height:1.2;
+  }
+  .quote-body{
+    left:894px;
+    top:564px;
+    width:210px;
+    color:#3f4149;
+    font-size:14px;
+    line-height:1.28;
+  }
+  .vert-chapter{
+    left:7px;
+    top:328px;
+    color:#2f313d;
+    font-size:13px;
+    line-height:1;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+  }
+  .vert-line{
+    left:14px;
+    top:407px;
+    width:1px;
+    height:37px;
+    background:#55565d;
+  }
+  .page{
+    left:49px;
+    top:708px;
+    color:#3b3d45;
+    font-size:12px;
+    line-height:1;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="chapter-pill">CHAPTER 5</div>
+
+  <div class="left-title">Roles evolving<br>most – upskilling,<br>automation of<br>routine work and<br>new hybrid roles</div>
+
+  <div class="accent-line"></div>
+
+  <div class="left-body">
+    As AI absorbs a greater share of routine<br>
+    and analytical tasks, CROs expect the<br>
+    greatest changes in upskilling, redesigning<br>
+    routine work, and creating new hybrid<br>
+    roles that combine domain risk expertise<br>
+    with AI and data capabilities.
+  </div>
+
+  <div class="top-banner"></div>
+  <div class="jump">Jump to<br>contents</div>
+  <div class="jump-dot"></div>
+
+  <div class="figure-title"><b>Figure 18:</b> Over the next three years, which skills and roles within your risk management team do you expect to evolve most significantly in response to AI?</div>
+
+  <div class="chart-wrap">
+    <div class="chart-label" style="left:0; top:16px;">Routine risk management tasks</div>
+    <div class="bar-bg" style="top:8px;"></div>
+    <div class="bar-fill" style="top:8px; width:154px;"></div>
+    <div class="bar-top" style="left:283px; top:-1px;">64%</div>
+    <div class="bar-pct" style="left:331px; top:16px;">78%</div>
+    <div class="bar-note" style="top:41px;">30% top ranked | 100% Asia-Pacific | 75% EMEIA | 77% Americas</div>
+
+    <div class="chart-label" style="left:0; top:79px;">AI/data science upskilling</div>
+    <div class="bar-bg" style="top:71px;"></div>
+    <div class="bar-fill" style="top:71px; width:126px;"></div>
+    <div class="bar-top" style="left:321px; top:62px;">79%</div>
+    <div class="bar-pct" style="left:331px; top:79px;">63%</div>
+    <div class="bar-note" style="top:104px;">41% top ranked | 60% Asia-Pacific | 61% EMEIA | 65% Americas</div>
+
+    <div class="chart-label" style="left:0; top:140px;">Hybrid AI-risk specialist roles</div>
+    <div class="bar-bg" style="top:132px;"></div>
+    <div class="bar-fill" style="top:132px; width:98px;"></div>
+    <div class="bar-top" style="left:245px; top:123px;">55%</div>
+    <div class="bar-pct" style="left:331px; top:140px;">50%</div>
+    <div class="bar-note" style="top:165px;">9% top ranked | 60% Asia-Pacific | 43% EMEIA | 54% Americas</div>
+
+    <div class="chart-label" style="left:0; top:197px;">Ethical and model governance<br>roles</div>
+    <div class="bar-bg" style="top:194px;"></div>
+    <div class="bar-fill" style="top:194px; width:58px;"></div>
+    <div class="bar-top" style="left:212px; top:185px;">28%</div>
+    <div class="bar-pct" style="left:331px; top:201px;">30%</div>
+    <div class="bar-note" style="top:227px;">9% top ranked | 50% Asia-Pacific | 27% EMEIA | 29% Americas</div>
+
+    <div class="chart-label" style="left:0; top:259px;">AI vendor and service provider<br>reliance</div>
+    <div class="bar-bg" style="top:256px;"></div>
+    <div class="bar-fill" style="top:256px; width:60px;"></div>
+    <div class="bar-top" style="left:213px; top:247px;">29%</div>
+    <div class="bar-pct" style="left:331px; top:263px;">26%</div>
+    <div class="bar-note" style="top:289px;">10% top ranked | 20% Asia-Pacific | 18% EMEIA | 35% Americas</div>
+
+    <div class="survey-square"></div>
+    <div class="survey-note">15th annual EY/IIF global bank<br>risk management survey</div>
+  </div>
+
+  <div class="right-copy">
+    For risk leaders, workforce strategy can no<br>
+    longer be separated from technology strategy.<br>
+    As automation and AI absorb a greater share of<br>
+    routine and analytical work, CROs must deliberately<br>
+    redesign roles, upskill teams and rebalance capacity<br>
+    toward judgment, insight and business partnership.<br>
+    The ability to translate productivity gains into<br>
+    stronger resilience and enterprise value will<br>
+    increasingly define second-line effectiveness.
+  </div>
+
+  <div class="quote-box">
+    <svg viewBox="0 0 270 179" width="270" height="179" xmlns="http://www.w3.org/2000/svg">
+      <line x1="1" y1="1" x2="33" y2="1" stroke="#8f9097" stroke-width="1"/>
+      <line x1="1" y1="1" x2="1" y2="179" stroke="#8f9097" stroke-width="1"/>
+      <line x1="1" y1="179" x2="33" y2="179" stroke="#8f9097" stroke-width="1"/>
+      <line x1="269" y1="1" x2="237" y2="1" stroke="#8f9097" stroke-width="1"/>
+      <line x1="269" y1="1" x2="269" y2="179" stroke="#8f9097" stroke-width="1"/>
+      <line x1="269" y1="179" x2="237" y2="179" stroke="#8f9097" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="quote-mark">“</div>
+  <div class="quote-title">What CROs say:</div>
+  <div class="quote-body">
+    In the future, essential skills for risk<br>
+    professionals will include AI literacy,<br>
+    data governance and the ability to<br>
+    communicate complex challenges<br>
+    clearly to diverse stakeholders.
+  </div>
+
+  <div class="vert-chapter">CHAPTER 5</div>
+  <div class="vert-line"></div>
+  <div class="page">30</div>
+</div>
+</body>
+</html>

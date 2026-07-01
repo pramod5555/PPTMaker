@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Deloitte Loyalty Program Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#efefef;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+    color:#111;
+  }
+  .slide > *{position:absolute; box-sizing:border-box;}
+
+  .title{
+    left:48px;
+    top:44px;
+    width:1180px;
+    font-size:41px;
+    line-height:43px;
+    font-weight:800;
+    color:#000;
+    letter-spacing:-0.6px;
+  }
+
+  .stat-num{
+    font-size:37px;
+    line-height:37px;
+    font-weight:800;
+    color:#000;
+    letter-spacing:-0.5px;
+  }
+  .stat-text{
+    font-size:17px;
+    line-height:19px;
+    color:#222;
+    font-weight:400;
+  }
+  .stat-text b{font-weight:800;}
+  .stat1{left:115px; top:145px; width:280px;}
+  .stat2{left:490px; top:145px; width:350px;}
+  .stat3{left:917px; top:145px; width:320px;}
+
+  .panel{
+    left:21px;
+    top:233px;
+    width:1258px;
+    height:483px;
+    background:#e7e7e7;
+  }
+
+  .section-head{
+    font-size:18px;
+    line-height:22px;
+    font-weight:800;
+    color:#111;
+  }
+  .section-sub{
+    font-size:15px;
+    line-height:18px;
+    font-style:italic;
+    color:#222;
+    font-weight:400;
+  }
+
+  .left-head{left:78px; top:255px; width:350px;}
+  .left-sub{left:77px; top:283px; width:340px;}
+
+  .bars-area{
+    left:83px;
+    top:321px;
+    width:470px;
+    height:250px;
+  }
+  .bar-label{
+    position:absolute;
+    left:0;
+    width:175px;
+    text-align:right;
+    font-size:17px;
+    line-height:19px;
+    font-weight:700;
+    color:#111;
+  }
+  .bar{
+    position:absolute;
+    left:193px;
+    height:21px;
+    background:#000;
+  }
+  .bar.hotel{background:#0a6fa8;}
+  .bar.airline{background:#12a8ab;}
+  .bar-value{
+    position:absolute;
+    font-size:17px;
+    line-height:19px;
+    font-weight:700;
+    color:#111;
+  }
+
+  .left-note{
+    left:76px;
+    top:603px;
+    width:414px;
+    font-size:11px;
+    line-height:13px;
+    color:#222;
+    font-weight:400;
+  }
+
+  .mid-box1-title{
+    left:559px;
+    top:248px;
+    width:360px;
+    font-size:18px;
+    line-height:21px;
+    font-weight:400;
+    color:#111;
+  }
+  .blue-chip{
+    display:inline-block;
+    background:#0a6fa8;
+    color:#fff;
+    font-weight:800;
+    padding:1px 4px 1px 4px;
+    line-height:1;
+  }
+  .mid-box1-sub{
+    left:559px;
+    top:288px;
+    width:340px;
+    font-size:14px;
+    line-height:17px;
+    font-style:italic;
+    color:#222;
+  }
+
+  .table1{
+    left:559px;
+    top:313px;
+    width:356px;
+    height:150px;
+  }
+  .table2{
+    left:559px;
+    top:542px;
+    width:356px;
+    height:150px;
+  }
+  .tline-top{
+    position:absolute;
+    left:0;
+    top:0;
+    width:356px;
+    height:1px;
+    background:#6d6d6d;
+  }
+  .trow{
+    position:absolute;
+    left:0;
+    width:356px;
+    height:29px;
+    border-top:1px solid #cfcfcf;
+  }
+  .trow.first{border-top:none;}
+  .tlabel{
+    position:absolute;
+    left:0;
+    top:4px;
+    width:288px;
+    font-size:16px;
+    line-height:18px;
+    color:#222;
+    font-weight:400;
+  }
+  .tvalue{
+    position:absolute;
+    right:18px;
+    top:4px;
+    width:40px;
+    text-align:right;
+    font-size:16px;
+    line-height:18px;
+    color:#222;
+    font-weight:400;
+  }
+
+  .mid-divider{
+    left:559px;
+    top:461px;
+    width:731px;
+    height:1px;
+    background:#3a3a3a;
+  }
+
+  .mid-box2-title{
+    left:559px;
+    top:480px;
+    width:365px;
+    font-size:18px;
+    line-height:21px;
+    font-weight:400;
+    color:#111;
+  }
+  .teal-chip{
+    display:inline-block;
+    background:#12a8ab;
+    color:#fff;
+    font-weight:800;
+    padding:1px 4px 1px 4px;
+    line-height:1;
+  }
+  .mid-box2-sub{
+    left:559px;
+    top:519px;
+    width:340px;
+    font-size:14px;
+    line-height:17px;
+    font-style:italic;
+    color:#222;
+  }
+
+  .right-head{
+    left:928px;
+    top:251px;
+    width:335px;
+    font-size:20px;
+    line-height:25px;
+    font-weight:800;
+    color:#111;
+  }
+  .right-top{
+    left:932px;
+    top:324px;
+    width:322px;
+    font-size:16px;
+    line-height:20px;
+    color:#222;
+    font-style:italic;
+    font-weight:400;
+  }
+  .right-bot{
+    left:932px;
+    top:550px;
+    width:325px;
+    font-size:16px;
+    line-height:20px;
+    color:#222;
+    font-style:italic;
+    font-weight:400;
+  }
+  .right-top b,
+  .right-bot b{
+    font-weight:800;
+  }
+
+  .footer-left{
+    left:47px;
+    top:726px;
+    transform:translateY(-100%);
+    width:220px;
+    font-size:12px;
+    line-height:12px;
+    color:#444;
+  }
+  .footer-right{
+    left:983px;
+    top:726px;
+    transform:translateY(-100%);
+    width:265px;
+    font-size:12px;
+    line-height:12px;
+    color:#444;
+    text-align:left;
+  }
+  .page{
+    left:1263px;
+    top:726px;
+    transform:translateY(-100%);
+    width:18px;
+    font-size:12px;
+    line-height:12px;
+    color:#444;
+    text-align:right;
+  }
+
+  svg{overflow:visible;}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">About 8 in 10 travelers are members of at least one travel<br>provider loyalty program</div>
+
+  <div class="stat1">
+    <div class="stat-num">78%</div>
+    <div class="stat-text" style="margin-top:2px;">of travelers are members of <b>at least one<br>travel provider loyalty program</b></div>
+  </div>
+
+  <div class="stat2">
+    <div class="stat-num">32%</div>
+    <div class="stat-text" style="margin-top:2px;">of travelers hold <b>loyalty memberships across<br>three or more product or platform categories</b></div>
+  </div>
+
+  <div class="stat3">
+    <div class="stat-num">22%</div>
+    <div class="stat-text" style="margin-top:2px;">of travelers (and 32% of Gen Z travelers) hold<br><b>no loyalty memberships</b></div>
+  </div>
+
+  <div class="panel"></div>
+
+  <div class="section-head left-head">Share enrolled in loyalty programs</div>
+  <div class="section-sub left-sub">(at least one program per category)</div>
+
+  <div class="bars-area">
+    <div class="bar-label" style="top:10px;">Hotel</div>
+    <div class="bar hotel" style="top:8px; width:135px;"></div>
+    <div class="bar-value" style="left:336px; top:10px;">55%</div>
+
+    <div class="bar-label" style="top:51px;">Airline</div>
+    <div class="bar airline" style="top:49px; width:125px;"></div>
+    <div class="bar-value" style="left:326px; top:51px;">51%</div>
+
+    <div class="bar-label" style="top:92px;">Car rental</div>
+    <div class="bar" style="top:90px; width:61px;"></div>
+    <div class="bar-value" style="left:262px; top:92px;">25%</div>
+
+    <div class="bar-label" style="top:133px;">Online travel agency</div>
+    <div class="bar" style="top:131px; width:52px;"></div>
+    <div class="bar-value" style="left:253px; top:133px;">21%</div>
+
+    <div class="bar-label" style="top:174px;">Cruise</div>
+    <div class="bar" style="top:172px; width:41px;"></div>
+    <div class="bar-value" style="left:242px; top:174px;">17%</div>
+
+    <div class="bar-label" style="top:215px;">Gaming</div>
+    <div class="bar" style="top:213px; width:34px;"></div>
+    <div class="bar-value" style="left:235px; top:215px;">14%</div>
+
+    <svg width="470" height="250" style="position:absolute; left:0; top:0;">
+      <line x1="385" y1="28" x2="458" y2="28" stroke="#222" stroke-width="1.3" stroke-dasharray="5 4"></line>
+      <polygon points="466,28 456,22 456,34" fill="#111"></polygon>
+
+      <line x1="319" y1="83" x2="319" y2="170" stroke="#222" stroke-width="1.3" stroke-dasharray="5 4"></line>
+      <line x1="319" y1="170" x2="458" y2="170" stroke="#222" stroke-width="1.3" stroke-dasharray="5 4"></line>
+      <polygon points="466,170 456,164 456,176" fill="#111"></polygon>
+    </svg>
+  </div>
+
+  <div class="left-note">
+    Notes: Questions: (1) “Do you belong to any travel loyalty programs?” (Select all that<br>
+    apply) (n = 1,808); (2) “In which parts of your air travel experience do you feel your<br>
+    loyalty status provides meaningful value?” (n = 926 air loyalty members); (3) “In which<br>
+    parts of your hotel travel experience do you feel your loyalty status provides meaningful value?” (n = 997 hotel loyalty members).<br>
+    Source: 2026 Deloitte Summer Travel Survey.
+  </div>
+
+  <div class="mid-box1-title">
+    Areas where <span class="blue-chip">hotel loyalty members</span><br>
+    report value derived from programs
+  </div>
+  <div class="mid-box1-sub">(percentage including in top five)</div>
+
+  <div class="table1">
+    <div class="tline-top"></div>
+    <div class="trow first" style="top:1px;">
+      <div class="tlabel">Pricing</div><div class="tvalue">50%</div>
+    </div>
+    <div class="trow" style="top:29px;">
+      <div class="tlabel">Points redemption for stays</div><div class="tvalue">50%</div>
+    </div>
+    <div class="trow" style="top:57px;">
+      <div class="tlabel">Upgraded room experience</div><div class="tvalue">44%</div>
+    </div>
+    <div class="trow" style="top:85px;">
+      <div class="tlabel">Flexibility (early check-in, late checkout)</div><div class="tvalue">41%</div>
+    </div>
+    <div class="trow" style="top:113px;">
+      <div class="tlabel">Priority check-in</div><div class="tvalue">38%</div>
+    </div>
+  </div>
+
+  <div class="mid-divider"></div>
+
+  <div class="mid-box2-title">
+    Areas where <span class="teal-chip">airline loyalty members</span><br>
+    report value derived from programs
+  </div>
+  <div class="mid-box2-sub">(percentage including in top five)</div>
+
+  <div class="table2">
+    <div class="tline-top"></div>
+    <div class="trow first" style="top:1px;">
+      <div class="tlabel">Points redemption for flights</div><div class="tvalue">57%</div>
+    </div>
+    <div class="trow" style="top:29px;">
+      <div class="tlabel">Priority check-in and boarding</div><div class="tvalue">48%</div>
+    </div>
+    <div class="trow" style="top:57px;">
+      <div class="tlabel">Seat selection</div><div class="tvalue">40%</div>
+    </div>
+    <div class="trow" style="top:85px;">
+      <div class="tlabel">Pricing</div><div class="tvalue">37%</div>
+    </div>
+    <div class="trow" style="top:113px;">
+      <div class="tlabel">Onboard experience</div><div class="tvalue">34%</div>
+    </div>
+  </div>
+
+  <div class="right-head">Generational perspectives on the<br>value of loyalty programs</div>
+
+  <div class="right-top">
+    <b>Gen Z:</b> Enhanced on-property experience<br>
+    <b>Millennials:</b> Functional ease through check-in,<br>
+    check-out flexibility, and faster issue resolution<br>
+    <b>Gen X:</b> Points redemption and rates<br>
+    <b>Boomers:</b> Points redemption and rates
+  </div>
+
+  <div class="right-bot">
+    <b>Gen Z:</b> Better pricing/deals and smoother<br>
+    airport experience<br>
+    <b>Millennials:</b> Smoother airport experience and<br>
+    in-flight comfort<br>
+    <b>Gen X:</b> Points redemption<br>
+    <b>Boomers:</b> Points redemption
+  </div>
+
+  <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+  <div class="footer-right">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="page">41</div>
+</div>
+</body>
+</html>

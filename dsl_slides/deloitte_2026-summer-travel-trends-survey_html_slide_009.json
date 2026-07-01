@@ -1,0 +1,92 @@
+{
+  "description": "Create a two-column content slide on summer travel by income, with a vertical bar chart of travel incidence on the left and a horizontal stacked bar chart showing share of the traveling public by income on the right.",
+  "spec": {
+    "slide_type": "content",
+    "header": {
+      "kicker": "",
+      "headline": "Although travel incidence is down across income levels, the decline is sharpest at the low end, driving up the upper-middle-income level’s share of summer travelers",
+      "sub": ""
+    },
+    "layout": "two-column",
+    "content": {
+      "left": {
+        "type": "bar-chart",
+        "orientation": "vertical",
+        "title": "Travel incidence, by income",
+        "series": [
+          {
+            "name": "2025",
+            "values": [
+              46,
+              73,
+              80
+            ]
+          },
+          {
+            "name": "2026",
+            "values": [
+              38,
+              69,
+              76
+            ]
+          }
+        ],
+        "labels": [
+          "Under $100K",
+          "$100K to $199K",
+          "Over $200K"
+        ],
+        "stacked": false,
+        "fmt": "percent",
+        "show_values": true
+      },
+      "right": {
+        "type": "bar-chart",
+        "orientation": "horizontal",
+        "title": "Share of traveling public, by income",
+        "series": [
+          {
+            "name": "Under $100K",
+            "values": [
+              66,
+              60,
+              51,
+              47
+            ]
+          },
+          {
+            "name": "$100K to $199K",
+            "values": [
+              25,
+              32,
+              35,
+              39
+            ]
+          },
+          {
+            "name": "Over $200K",
+            "values": [
+              9,
+              8,
+              14,
+              14
+            ]
+          }
+        ],
+        "labels": [
+          "2023",
+          "2024",
+          "2025",
+          "2026"
+        ],
+        "stacked": true,
+        "fmt": "percent",
+        "show_values": true
+      }
+    },
+    "footer": {
+      "source": "2026 Deloitte Summer Travel Survey",
+      "page": 9
+    }
+  }
+}

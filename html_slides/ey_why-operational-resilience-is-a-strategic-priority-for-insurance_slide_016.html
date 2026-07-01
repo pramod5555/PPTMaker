@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1366, initial-scale=1.0" />
+<title>Chapter 3 - Risk and the Business</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .page {
+    position: relative;
+    width: 1366px;
+    height: 768px;
+    overflow: hidden;
+    background: #dcdcdc;
+  }
+  .slide {
+    position: absolute;
+    left: 31px;
+    top: 31px;
+    width: 1304px;
+    height: 706px;
+    overflow: hidden;
+    background: #12080f;
+  }
+  .slide > div,
+  .slide > svg {
+    position: absolute;
+  }
+
+  .bg-photo {
+    inset: 0;
+    background:
+      linear-gradient(0deg, rgba(18,7,14,0.50), rgba(18,7,14,0.50)),
+      radial-gradient(circle at 50% 48%, rgba(255,110,240,0.42) 0 120px, rgba(230,64,213,0.22) 180px, rgba(0,0,0,0) 350px),
+      radial-gradient(circle at 64% 49%, rgba(223,235,255,0.55) 0 90px, rgba(255,255,255,0.18) 150px, rgba(0,0,0,0) 280px),
+      radial-gradient(circle at 37% 77%, rgba(207,121,61,0.18) 0 140px, rgba(0,0,0,0) 260px),
+      radial-gradient(circle at 85% 76%, rgba(249,210,193,0.16) 0 120px, rgba(0,0,0,0) 250px),
+      linear-gradient(90deg, rgba(40,20,18,0.85) 0%, rgba(91,55,47,0.42) 25%, rgba(188,161,156,0.13) 49%, rgba(73,34,45,0.26) 70%, rgba(7,7,16,0.88) 100%);
+    z-index: 0;
+  }
+  .room {
+    inset: 0;
+    background:
+      radial-gradient(circle at 8% 19%, rgba(247,229,184,0.16) 0 54px, rgba(0,0,0,0) 90px),
+      radial-gradient(circle at 15% 32%, rgba(182,118,34,0.18) 0 44px, rgba(0,0,0,0) 88px),
+      radial-gradient(circle at 36% 15%, rgba(255,244,216,0.10) 0 14px, rgba(0,0,0,0) 28px),
+      radial-gradient(circle at 59% 16%, rgba(255,255,255,0.12) 0 13px, rgba(0,0,0,0) 25px),
+      linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0) 20%),
+      linear-gradient(90deg, rgba(0,0,0,0.18), rgba(0,0,0,0) 15%, rgba(255,255,255,0.05) 52%, rgba(0,0,0,0.26) 100%);
+    z-index: 1;
+    mix-blend-mode: screen;
+    opacity: .7;
+  }
+  .left-dark {
+    left: 0;
+    top: 0;
+    width: 170px;
+    height: 706px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.42), rgba(0,0,0,0));
+    z-index: 2;
+  }
+  .right-dark {
+    right: 0;
+    top: 0;
+    width: 112px;
+    height: 706px;
+    background: linear-gradient(270deg, rgba(0,0,0,0.65), rgba(0,0,0,0));
+    z-index: 2;
+  }
+  .screen-edge {
+    right: 6px;
+    top: -4px;
+    width: 54px;
+    height: 714px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.72), rgba(0,0,0,0.96));
+    transform: skew(-6deg);
+    z-index: 4;
+    opacity: .85;
+  }
+  .screen-edge-2 {
+    right: 34px;
+    top: 144px;
+    width: 18px;
+    height: 446px;
+    background: rgba(0,0,0,0.36);
+    transform: skew(-4deg);
+    z-index: 4;
+  }
+
+  .table {
+    left: 260px;
+    bottom: 0;
+    width: 710px;
+    height: 168px;
+    background:
+      linear-gradient(180deg, rgba(120,53,28,0.02), rgba(120,53,28,0.06)),
+      repeating-linear-gradient(90deg,
+        rgba(122,62,42,0.78) 0 7px,
+        rgba(146,83,58,0.88) 7px 15px,
+        rgba(117,58,40,0.82) 15px 23px);
+    z-index: 1;
+    opacity: .65;
+  }
+
+  .person-head {
+    left: 582px;
+    top: 244px;
+    width: 88px;
+    height: 98px;
+    border-radius: 50% 50% 48% 52% / 46% 46% 54% 54%;
+    background: radial-gradient(circle at 45% 38%, rgba(183,116,112,0.68), rgba(88,48,58,0.92));
+    z-index: 8;
+    opacity: .55;
+    transform: rotate(-10deg);
+  }
+  .hair {
+    left: 494px;
+    top: 188px;
+    width: 228px;
+    height: 222px;
+    border-radius: 47% 53% 44% 56% / 36% 41% 59% 64%;
+    background:
+      radial-gradient(circle at 46% 46%, rgba(55,18,33,0.98) 0%, rgba(33,10,20,0.96) 68%, rgba(0,0,0,0) 75%);
+    z-index: 7;
+    opacity: .8;
+  }
+  .hair-curl1, .hair-curl2, .hair-curl3 {
+    background: radial-gradient(circle at 50% 50%, rgba(43,13,24,0.95) 0%, rgba(0,0,0,0) 70%);
+    z-index: 7;
+    opacity: .75;
+    border-radius: 50%;
+  }
+  .hair-curl1 { left: 474px; top: 231px; width: 84px; height: 84px; }
+  .hair-curl2 { left: 678px; top: 245px; width: 74px; height: 74px; }
+  .hair-curl3 { left: 655px; top: 193px; width: 62px; height: 62px; }
+
+  .face-highlight {
+    left: 602px;
+    top: 288px;
+    width: 54px;
+    height: 38px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(241,186,170,0.28), rgba(0,0,0,0) 70%);
+    z-index: 9;
+    transform: rotate(-8deg);
+  }
+
+  .arm-left {
+    left: 650px;
+    top: 392px;
+    width: 315px;
+    height: 82px;
+    background: linear-gradient(90deg, rgba(250,202,228,0.70), rgba(214,113,214,0.60));
+    border-radius: 52px;
+    transform: rotate(-31deg);
+    z-index: 8;
+    opacity: .72;
+  }
+  .arm-right {
+    left: 788px;
+    top: 323px;
+    width: 288px;
+    height: 86px;
+    background: linear-gradient(90deg, rgba(247,194,222,0.62), rgba(198,102,193,0.54));
+    border-radius: 54px;
+    transform: rotate(73deg);
+    z-index: 8;
+    opacity: .64;
+  }
+  .forearm-left {
+    left: 834px;
+    top: 277px;
+    width: 174px;
+    height: 64px;
+    background: linear-gradient(90deg, rgba(241,195,220,0.56), rgba(206,112,208,0.46));
+    border-radius: 44px;
+    transform: rotate(18deg);
+    z-index: 8;
+    opacity: .5;
+  }
+  .torso {
+    left: 500px;
+    top: 438px;
+    width: 282px;
+    height: 292px;
+    background: linear-gradient(180deg, rgba(255,230,235,0.68), rgba(246,196,246,0.38));
+    clip-path: polygon(23% 0%, 79% 0%, 92% 100%, 12% 100%);
+    z-index: 6;
+    opacity: .72;
+  }
+  .shirt-center {
+    left: 614px;
+    top: 474px;
+    width: 64px;
+    height: 246px;
+    background:
+      linear-gradient(90deg,
+        rgba(72,30,48,0.50) 0 10px,
+        rgba(181,130,95,0.30) 10px 14px,
+        rgba(78,30,53,0.55) 14px 24px,
+        rgba(215,189,157,0.25) 24px 29px,
+        rgba(81,35,56,0.54) 29px 39px,
+        rgba(195,170,138,0.24) 39px 43px,
+        rgba(72,31,49,0.50) 43px 53px,
+        rgba(0,0,0,0) 53px 64px);
+    z-index: 7;
+    opacity: .8;
+  }
+
+  .pink-wash {
+    left: 314px;
+    top: 132px;
+    width: 930px;
+    height: 134px;
+    background: radial-gradient(ellipse at 73% 52%, rgba(255,214,255,0.54) 0%, rgba(241,100,255,0.24) 32%, rgba(255,0,170,0.08) 50%, rgba(0,0,0,0) 75%);
+    filter: blur(3px);
+    z-index: 10;
+  }
+  .light-streak {
+    left: 760px;
+    top: 161px;
+    width: 480px;
+    height: 14px;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,214,251,0.55) 32%, rgba(243,173,255,0.35) 60%, rgba(255,255,255,0));
+    filter: blur(2px);
+    z-index: 11;
+    opacity: .9;
+  }
+
+  .question {
+    left: -38px;
+    top: 0px;
+    width: 470px;
+    height: 706px;
+    color: rgba(255,255,255,0.26);
+    font-size: 790px;
+    line-height: 706px;
+    font-weight: 700;
+    letter-spacing: -28px;
+    z-index: 5;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .chapter {
+    left: 595px;
+    top: 14px;
+    width: 170px;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+    text-align: center;
+    z-index: 40;
+  }
+  .title {
+    left: 47px;
+    top: 34px;
+    width: 1220px;
+    color: #ffe600;
+    font-size: 106px;
+    line-height: 0.94;
+    font-weight: 800;
+    letter-spacing: -3px;
+    z-index: 40;
+    white-space: nowrap;
+  }
+  .subtitle {
+    left: 270px;
+    top: 130px;
+    width: 820px;
+    color: #ffe600;
+    font-size: 27px;
+    line-height: 1.05;
+    font-weight: 700;
+    z-index: 40;
+    white-space: nowrap;
+  }
+
+  .eyof {
+    left: 225px;
+    top: 78px;
+    width: 610px;
+    color: rgba(169,31,151,0.52);
+    font-size: 45px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    z-index: 12;
+  }
+
+  .content-btn {
+    right: -7px;
+    top: -4px;
+    width: 69px;
+    height: 47px;
+    background: #8a8d95;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    z-index: 60;
+  }
+  .content-btn-text {
+    right: 6px;
+    top: 17px;
+    width: 42px;
+    color: #ffffff;
+    font-size: 8px;
+    line-height: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.04em;
+    z-index: 61;
+  }
+
+  .chart-label, .month {
+    z-index: 36;
+    font-weight: 700;
+  }
+  .chart-label {
+    color: rgba(129,0,114,0.9);
+    font-size: 15px;
+    line-height: 15px;
+  }
+  .month {
+    color: rgba(228,44,204,0.88);
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .linechart {
+    left: 70px;
+    top: 151px;
+    width: 1035px;
+    height: 532px;
+    z-index: 18;
+  }
+
+  .bottom-gradient-line {
+    left: 0;
+    bottom: 0;
+    width: 1304px;
+    height: 10px;
+    background: linear-gradient(90deg, #f2e000 0%, #f0db24 36%, #f2b33f 59%, #f08bd4 82%, #ea4bf3 100%);
+    z-index: 50;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="slide">
+      <div class="bg-photo"></div>
+      <div class="room"></div>
+      <div class="table"></div>
+      <div class="left-dark"></div>
+      <div class="right-dark"></div>
+      <div class="screen-edge"></div>
+      <div class="screen-edge-2"></div>
+
+      <div class="question">3</div>
+      <div class="eyof">EY OF A WOMAN MANAGING</div>
+
+      <div class="hair"></div>
+      <div class="hair-curl1"></div>
+      <div class="hair-curl2"></div>
+      <div class="hair-curl3"></div>
+      <div class="person-head"></div>
+      <div class="face-highlight"></div>
+      <div class="torso"></div>
+      <div class="shirt-center"></div>
+      <div class="arm-left"></div>
+      <div class="arm-right"></div>
+      <div class="forearm-left"></div>
+
+      <div class="pink-wash"></div>
+      <div class="light-streak"></div>
+
+      <svg class="linechart" viewBox="0 0 1035 532" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="glow" x="-10%" y="-10%" width="120%" height="120%">
+            <feGaussianBlur stdDeviation="0.9" result="b"/>
+            <feMerge>
+              <feMergeNode in="b"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <line x1="58" y1="48" x2="1030" y2="48" stroke="rgba(192,39,167,0.50)" stroke-width="1"/>
+        <line x1="58" y1="149" x2="1030" y2="149" stroke="rgba(192,39,167,0.50)" stroke-width="1"/>
+        <line x1="58" y1="250" x2="1030" y2="250" stroke="rgba(192,39,167,0.50)" stroke-width="1"/>
+        <line x1="58" y1="351" x2="1030" y2="351" stroke="rgba(192,39,167,0.50)" stroke-width="1"/>
+
+        <path d="M58 343
+                 C108 286, 151 286, 198 341
+                 C238 387, 277 403, 324 315
+                 C367 234, 401 92, 453 118
+                 C506 145, 555 286, 600 297
+                 C651 308, 699 276, 748 314
+                 C802 355, 843 454, 911 406
+                 C956 374, 995 378, 1030 365"
+              fill="none" stroke="rgba(216,37,190,0.90)" stroke-width="1.35" filter="url(#glow)"/>
+
+        <path d="M58 208
+                 C96 210, 145 215, 184 208
+                 C230 199, 273 193, 318 193
+                 C366 193, 414 182, 456 101
+                 C489 38, 557 65, 604 138
+                 C655 217, 699 193, 741 172
+                 C787 151, 834 100, 883 133
+                 C934 167, 978 171, 1030 171"
+              fill="none" stroke="rgba(238,84,206,0.82)" stroke-width="1.15"/>
+
+        <path d="M58 406
+                 C106 329, 165 322, 219 403
+                 C267 475, 315 434, 365 319
+                 C407 226, 470 232, 518 257
+                 C558 279, 598 373, 646 379
+                 C697 385, 746 291, 795 257
+                 C843 225, 892 252, 936 294
+                 C970 327, 1003 349, 1030 347"
+              fill="none" stroke="rgba(225,25,181,0.82)" stroke-width="1.25"/>
+      </svg>
+
+      <div class="chart-label" style="left:77px; top:150px;">750k</div>
+      <div class="chart-label" style="left:75px; top:250px;">600k</div>
+      <div class="chart-label" style="left:76px; top:349px;">450k</div>
+      <div class="chart-label" style="left:77px; top:449px;">300k</div>
+      <div class="chart-label" style="left:76px; top:548px;">150k</div>
+      <div class="chart-label" style="left:42px; top:648px;">0k</div>
+
+      <div class="month" style="left:191px; top:676px;">January</div>
+      <div class="month" style="left:370px; top:668px;">February</div>
+      <div class="month" style="left:552px; top:668px;">March</div>
+      <div class="month" style="left:721px; top:654px;">April</div>
+      <div class="month" style="left:874px; top:646px;">May</div>
+      <div class="month" style="left:1022px; top:640px;">June</div>
+
+      <div class="chapter">Chapter 3</div>
+      <div class="title">RISK AND THE BUSINESS:</div>
+      <div class="subtitle">CRO involvement in major change initiatives</div>
+
+      <div class="content-btn"></div>
+      <div class="content-btn-text">JUMP TO<br>CONTENTS</div>
+
+      <div class="bottom-gradient-line"></div>
+    </div>
+  </div>
+</body>
+</html>

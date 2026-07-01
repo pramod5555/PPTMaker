@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Affordability - Business considerations</title>
+<style>
+  body{
+    margin:0;
+    background:#efecf1;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efecf1;
+    color:#111;
+  }
+
+  /* Top tabs */
+  .tabs{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:24px;
+    background:#efecf1;
+    border-bottom:1px solid #d8d4da;
+    font-size:11px;
+    color:#8b888d;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:24px;
+    line-height:24px;
+    text-align:center;
+    box-sizing:border-box;
+  }
+  .tab.active-left{
+    left:0;
+    width:105px;
+    background:#5b1785;
+    color:#fff;
+  }
+  .tab.t2{left:105px;width:124px;}
+  .tab.t3{left:229px;width:110px;}
+  .tab.t4{left:339px;width:115px;}
+  .tab.t5{
+    left:454px;width:117px;
+    color:#4d286f;
+    border-bottom:2px solid #8e42cc;
+  }
+  .tab.t6{left:571px;width:118px;}
+  .tab.t7{left:689px;width:118px;}
+  .tab.t8{left:807px;width:111px;}
+  .tab.t9{left:918px;width:128px;}
+  .tab.t10{left:1046px;width:121px;}
+  .tab.t11{left:1167px;width:113px;}
+
+  /* Title area */
+  .title{
+    position:absolute;
+    left:44px;
+    top:58px;
+    width:1185px;
+    font-size:23px;
+    line-height:1.06;
+    font-weight:700;
+    color:#000;
+  }
+  .subtitle{
+    position:absolute;
+    left:44px;
+    top:120px;
+    font-size:28px;
+    line-height:1;
+    font-weight:700;
+    color:#8f19f3;
+  }
+
+  /* Central graphic */
+  .center-ring{
+    position:absolute;
+    left:368px;
+    top:214px;
+    width:494px;
+    height:284px;
+    border:4px solid #a3a3a3;
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+  .center-photo{
+    position:absolute;
+    left:434px;
+    top:251px;
+    width:366px;
+    height:207px;
+    border:4px solid #000;
+    border-radius:50%;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 52% 55%, rgba(240,228,214,0.95) 0 7%, rgba(230,215,200,0.7) 7% 12%, transparent 12%),
+      radial-gradient(circle at 61% 47%, rgba(70,85,130,0.95) 0 4%, transparent 4%),
+      radial-gradient(circle at 71% 34%, rgba(190,75,46,0.9) 0 5%, transparent 5%),
+      radial-gradient(circle at 37% 30%, rgba(38,138,152,0.9) 0 5%, transparent 5%),
+      radial-gradient(circle at 26% 22%, rgba(34,119,61,0.9) 0 6%, transparent 6%),
+      radial-gradient(circle at 80% 20%, rgba(241,200,144,0.9) 0 4%, transparent 4%),
+      linear-gradient(90deg,
+        rgba(45,56,49,0.92) 0 10%,
+        rgba(77,90,71,0.86) 10% 18%,
+        rgba(188,118,83,0.84) 18% 24%,
+        rgba(66,62,64,0.86) 24% 31%,
+        rgba(112,102,95,0.84) 31% 38%,
+        rgba(58,60,54,0.88) 38% 46%,
+        rgba(126,96,89,0.82) 46% 55%,
+        rgba(176,168,159,0.78) 55% 64%,
+        rgba(92,81,68,0.84) 64% 72%,
+        rgba(132,96,72,0.84) 72% 80%,
+        rgba(74,69,65,0.88) 80% 88%,
+        rgba(104,88,74,0.9) 88% 100%),
+      linear-gradient(180deg,
+        rgba(39,47,38,0.9) 0 15%,
+        rgba(88,75,65,0.6) 15% 42%,
+        rgba(188,177,168,0.35) 42% 65%,
+        rgba(218,203,190,0.45) 65% 100%);
+    filter: blur(1.2px) saturate(0.95);
+  }
+  .center-photo:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:
+      linear-gradient(90deg, transparent 0 14%, rgba(20,20,20,0.45) 14% 15%, transparent 15% 23%, rgba(30,30,30,0.4) 23% 24%, transparent 24% 37%, rgba(22,22,22,0.42) 37% 38%, transparent 38% 54%, rgba(18,18,18,0.36) 54% 55%, transparent 55% 73%, rgba(20,20,20,0.34) 73% 74%, transparent 74%),
+      linear-gradient(180deg, transparent 0 18%, rgba(255,255,255,0.08) 18% 22%, transparent 22% 100%);
+    opacity:.7;
+  }
+
+  /* Icon circles */
+  .icon-circle{
+    position:absolute;
+    width:96px;
+    height:96px;
+    border-radius:50%;
+    background:#f5f3f6;
+    border:4px solid #8115d5;
+    box-sizing:border-box;
+    box-shadow:0 3px 4px rgba(0,0,0,0.25);
+  }
+  .ic1{left:370px;top:231px;}
+  .ic2{left:820px;top:231px;}
+  .ic3{left:472px;top:457px;}
+  .ic4{left:754px;top:457px;}
+
+  .icon{position:absolute; inset:0;}
+  .purple{color:#9218f3; border-color:#9218f3;}
+
+  /* price tag icon */
+  .tag-shape{
+    position:absolute;
+    left:20px; top:26px;
+    width:34px; height:24px;
+    border:3px solid #9218f3;
+    border-right:none;
+    transform:rotate(-45deg);
+    box-sizing:border-box;
+  }
+  .tag-shape:before{
+    content:"";
+    position:absolute;
+    right:-9px; top:-3px;
+    width:0;height:0;
+    border-top:15px solid transparent;
+    border-bottom:15px solid transparent;
+    border-left:15px solid #9218f3;
+  }
+  .tag-shape:after{
+    content:"";
+    position:absolute;
+    right:2px; top:7px;
+    width:5px; height:5px;
+    border:2px solid #9218f3;
+    border-radius:50%;
+    background:#f5f3f6;
+  }
+  .dollar{
+    position:absolute;
+    left:54px; top:42px;
+    font-size:23px;
+    font-weight:400;
+    color:#9218f3;
+  }
+
+  /* document x icon */
+  .doc{
+    position:absolute;
+    left:29px; top:19px;
+    width:32px; height:43px;
+    border:3px solid #9218f3;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .doc:before{
+    content:"";
+    position:absolute;
+    right:-3px; top:-3px;
+    width:12px; height:12px;
+    background:#f5f3f6;
+    border-left:3px solid #9218f3;
+    border-bottom:3px solid #9218f3;
+    transform:skew(0deg,0deg);
+  }
+  .doc:after{
+    content:"";
+    position:absolute;
+    left:6px; top:10px;
+    width:16px; height:3px;
+    background:#9218f3;
+    box-shadow:0 8px 0 #9218f3, 0 16px 0 #9218f3;
+  }
+  .ban{
+    position:absolute;
+    left:54px; top:43px;
+    width:24px; height:24px;
+    border:3px solid #9218f3;
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+  .ban:before, .ban:after{
+    content:"";
+    position:absolute;
+    left:4px; top:9px;
+    width:12px; height:3px;
+    background:#9218f3;
+  }
+  .ban:before{transform:rotate(45deg);}
+  .ban:after{transform:rotate(-45deg);}
+
+  /* pie icon */
+  .pie{
+    position:absolute;
+    left:27px; top:25px;
+    width:40px; height:40px;
+    border:3px solid #9218f3;
+    border-radius:50%;
+    box-sizing:border-box;
+    overflow:hidden;
+  }
+  .pie:before{
+    content:"";
+    position:absolute;
+    left:18px; top:-2px;
+    width:3px; height:21px;
+    background:#9218f3;
+  }
+  .pie:after{
+    content:"";
+    position:absolute;
+    left:18px; top:18px;
+    width:18px; height:3px;
+    background:#9218f3;
+  }
+  .slice{
+    position:absolute;
+    left:49px; top:25px;
+    width:0; height:0;
+    border-left:0 solid transparent;
+    border-right:18px solid transparent;
+    border-bottom:18px solid #f5f3f6;
+    border-top:18px solid transparent;
+    transform:rotate(90deg);
+  }
+  .slice-outline{
+    position:absolute;
+    left:49px; top:25px;
+    width:18px; height:18px;
+    border-top:3px solid #9218f3;
+    border-right:3px solid #9218f3;
+    box-sizing:border-box;
+  }
+
+  /* diamond icon */
+  .diamond{
+    position:absolute;
+    left:21px; top:30px;
+    width:50px; height:33px;
+  }
+  .diamond .topline,
+  .diamond .bottomline,
+  .diamond .v1,
+  .diamond .v2,
+  .diamond .v3,
+  .diamond .v4,
+  .diamond .v5{
+    position:absolute;
+    background:#9218f3;
+  }
+  .diamond .topline{
+    left:8px; top:0;
+    width:34px; height:3px;
+  }
+  .diamond .bottomline{
+    left:22px; top:27px;
+    width:6px; height:3px;
+  }
+  .diamond .v1{left:0; top:14px; width:15px; height:3px; transform:rotate(60deg);}
+  .diamond .v2{left:12px; top:14px; width:15px; height:3px; transform:rotate(60deg);}
+  .diamond .v3{left:24px; top:14px; width:15px; height:3px; transform:rotate(60deg);}
+  .diamond .v4{left:9px; top:14px; width:15px; height:3px; transform:rotate(-60deg);}
+  .diamond .v5{left:21px; top:14px; width:15px; height:3px; transform:rotate(-60deg);}
+  .diamond:before{
+    content:"";
+    position:absolute;
+    left:0; top:0;
+    width:50px; height:33px;
+    border:3px solid #9218f3;
+    clip-path:polygon(17% 0,83% 0,100% 35%,50% 100%,0 35%);
+    box-sizing:border-box;
+  }
+
+  /* Text blocks */
+  .block-title{
+    position:absolute;
+    font-size:21px;
+    line-height:1.12;
+    font-weight:700;
+    color:#6d16cc;
+  }
+  .block-text{
+    position:absolute;
+    font-size:14px;
+    line-height:1.22;
+    color:#222;
+  }
+  .block-text b{
+    font-weight:700;
+  }
+
+  .lt-title{left:68px; top:235px; width:280px;}
+  .lt-text{left:58px; top:258px; width:302px;}
+
+  .lb-title{left:117px; top:451px; width:337px; text-align:center;}
+  .lb-text{left:58px; top:495px; width:344px;}
+
+  .rt-title{left:979px; top:231px; width:257px;}
+  .rt-text{left:973px; top:258px; width:256px;}
+
+  .rb-title{left:886px; top:474px; width:310px;}
+  .rb-text{left:898px; top:522px; width:309px;}
+
+  ul{
+    margin:0;
+    padding-left:19px;
+  }
+  li{ margin-bottom:8px; }
+
+  /* Footer */
+  .footer-left{
+    position:absolute;
+    left:42px;
+    bottom:14px;
+    font-size:13px;
+    color:#8a8a8a;
+  }
+  .footer-left .mark{
+    display:inline-block;
+    width:18px;
+    height:18px;
+    position:relative;
+    top:4px;
+    margin-right:7px;
+  }
+  .footer-left .mark:before,
+  .footer-left .mark:after{
+    content:"";
+    position:absolute;
+    background:#9a18f2;
+    transform-origin:left center;
+  }
+  .footer-left .mark:before{
+    left:0; top:8px; width:16px; height:5px; transform:rotate(22deg);
+  }
+  .footer-left .mark:after{
+    left:0; top:8px; width:16px; height:5px; transform:rotate(-22deg);
+  }
+
+  .footer-center{
+    position:absolute;
+    right:88px;
+    bottom:14px;
+    font-size:11px;
+    color:#6f6f6f;
+  }
+  .footer-page{
+    position:absolute;
+    right:19px;
+    bottom:14px;
+    font-size:16px;
+    color:#6f6f6f;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="tabs">
+    <div class="tab active-left">Top 10 trends</div>
+    <div class="tab t2">Multi-speed growth</div>
+    <div class="tab t3">Tariff impacts</div>
+    <div class="tab t4">Financial fragility</div>
+    <div class="tab t5">Affordability</div>
+    <div class="tab t6">AI productivity</div>
+    <div class="tab t7">China exports</div>
+    <div class="tab t8">Europe struggle</div>
+    <div class="tab t9">AI arms race</div>
+    <div class="tab t10">Power crunch</div>
+    <div class="tab t11">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">
+    Businesses need to develop dual strategies to defend their relevance and margins across<br>
+    resilient high-income consumers and stretched lower-income households
+  </div>
+  <div class="subtitle">4. Business considerations</div>
+
+  <div class="center-ring"></div>
+  <div class="center-photo"></div>
+
+  <div class="icon-circle ic1">
+    <div class="icon">
+      <div class="tag-shape"></div>
+      <div class="dollar">$</div>
+    </div>
+  </div>
+
+  <div class="icon-circle ic2">
+    <div class="icon">
+      <div class="doc"></div>
+      <div class="ban"></div>
+    </div>
+  </div>
+
+  <div class="icon-circle ic3">
+    <div class="icon">
+      <div class="pie"></div>
+      <div class="slice"></div>
+      <div class="slice-outline"></div>
+    </div>
+  </div>
+
+  <div class="icon-circle ic4">
+    <div class="icon">
+      <div class="diamond">
+        <div class="topline"></div>
+        <div class="bottomline"></div>
+        <div class="v1"></div>
+        <div class="v2"></div>
+        <div class="v3"></div>
+        <div class="v4"></div>
+        <div class="v5"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block-title lt-title">Rethink pricing architecture</div>
+  <div class="block-text lt-text">
+    <ul>
+      <li><b>Lower-income segments:</b> uniform<br>
+        pricing risks losing volume - companies<br>
+        need value tiers, bundled offerings and<br>
+        reduced pack sizes</li>
+      <li><b>High-income segments:</b> premium<br>
+        pricing and differentiated SKUs can<br>
+        protect margins for consumers willing to<br>
+        pay for quality and convenience</li>
+    </ul>
+  </div>
+
+  <div class="block-title lb-title">Expect margin pressure in volume<br>segments</div>
+  <div class="block-text lb-text">
+    <ul>
+      <li><b>Lower-income segments:</b> More consumers are<br>
+        “trading down” to private label and value SKUs -<br>
+        firms must rationalise portfolios and streamline<br>
+        their cost structure to protect margins in the mid-<br>
+        market</li>
+      <li><b>High-income segments:</b> volume pressure is offset<br>
+        by high-income growth; firms should focus on M&amp;A<br>
+        and innovation investment for premium and<br>
+        lifestyle segments</li>
+    </ul>
+  </div>
+
+  <div class="block-title rt-title">Prepare for higher credit risk</div>
+  <div class="block-text rt-text">
+    <ul>
+      <li><b>Lower-income segments:</b> stretched<br>
+        households carry higher debt burdens<br>
+        and churn risk - tighter credit<br>
+        underwriting, early-warning signals<br>
+        (e.g., spending pattern changes), and<br>
+        flexible repayment terms will be key</li>
+      <li><b>High-income segments:</b> low default<br>
+        risk and strong lifetime value justify<br>
+        investment in loyalty and retention<br>
+        initiatives</li>
+    </ul>
+  </div>
+
+  <div class="block-title rb-title">Invest in premium and affluent<br>segments</div>
+  <div class="block-text rb-text">
+    <ul>
+      <li><b>Lower-income segments:</b> less investment is<br>
+        required – firms should focus on cost efficiency<br>
+        and operations to compete on price</li>
+      <li><b>High-income segments:</b> Invest in premium<br>
+        offerings, loyalty programs and experience-led<br>
+        propositions to capture share of profitable<br>
+        growth for elevated consumer spending</li>
+    </ul>
+  </div>
+
+  <div class="footer-left"><span class="mark"></span>Source(s): Accenture Strategy analysis</div>
+  <div class="footer-center">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="footer-page">27</div>
+</div>
+</body>
+</html>

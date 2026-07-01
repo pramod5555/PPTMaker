@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#efefef;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+    color:#111;
+  }
+  .title{
+    position:absolute;
+    left:46px;
+    top:43px;
+    width:1190px;
+    font-size:40px;
+    line-height:1.05;
+    font-weight:800;
+    letter-spacing:-0.01em;
+    color:#000;
+    z-index:30;
+  }
+  .panel{
+    position:absolute;
+    left:46px;
+    top:146px;
+    width:1274px;
+    height:569px;
+    background:#e7e7e7;
+    z-index:10;
+  }
+  .subtitle{
+    position:absolute;
+    left:78px;
+    top:170px;
+    width:700px;
+    font-size:18px;
+    line-height:1.2;
+    font-weight:700;
+    color:#111;
+    z-index:30;
+  }
+
+  .left-label1,
+  .left-label2,
+  .avg-label,
+  .right-header-text{
+    font-size:18px;
+    line-height:1.18;
+    font-weight:400;
+    color:#111;
+    z-index:30;
+    position:absolute;
+  }
+
+  .left-label1{
+    left:79px;
+    top:291px;
+    width:135px;
+  }
+  .left-label2{
+    left:79px;
+    top:350px;
+    width:140px;
+  }
+
+  .chart-svg{
+    position:absolute;
+    left:186px;
+    top:253px;
+    width:510px;
+    height:236px;
+    z-index:25;
+  }
+
+  .pct{
+    position:absolute;
+    font-size:16px;
+    line-height:1;
+    font-weight:400;
+    color:#333;
+    z-index:35;
+  }
+
+  .green-box{
+    position:absolute;
+    width:53px;
+    height:34px;
+    background:#8cc414;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    line-height:1;
+    font-weight:800;
+    color:#000;
+    z-index:40;
+  }
+
+  .year{
+    position:absolute;
+    width:48px;
+    text-align:center;
+    font-size:16px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+    z-index:35;
+  }
+
+  .avg-label{
+    left:79px;
+    top:528px;
+    width:125px;
+  }
+
+  .trip-box{
+    position:absolute;
+    width:48px;
+    height:26px;
+    border:2px solid #222;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    line-height:1;
+    font-weight:700;
+    color:#111;
+    z-index:35;
+  }
+
+  .right-header-num{
+    position:absolute;
+    left:855px;
+    top:169px;
+    width:40px;
+    font-size:20px;
+    line-height:1;
+    font-weight:800;
+    color:#000;
+    z-index:35;
+  }
+  .right-header-text{
+    left:855px;
+    top:198px;
+    width:215px;
+  }
+  .right-header-vs{
+    position:absolute;
+    left:855px;
+    top:246px;
+    width:120px;
+    font-size:14px;
+    line-height:1;
+    font-style:italic;
+    font-weight:400;
+    color:#333;
+    z-index:35;
+  }
+
+  .pie-svg{
+    position:absolute;
+    left:864px;
+    top:212px;
+    width:454px;
+    height:422px;
+    z-index:25;
+  }
+
+  .pie-text-right-big,
+  .pie-text-left-big{
+    position:absolute;
+    font-size:22px;
+    line-height:1;
+    font-weight:800;
+    color:#fff;
+    z-index:40;
+  }
+  .pie-text-right-big{
+    left:1131px;
+    top:349px;
+    width:70px;
+  }
+  .pie-text-right{
+    position:absolute;
+    left:1131px;
+    top:377px;
+    width:124px;
+    font-size:17px;
+    line-height:1.18;
+    font-weight:400;
+    color:#fff;
+    z-index:40;
+  }
+  .pie-text-right-vs{
+    position:absolute;
+    left:1131px;
+    top:430px;
+    width:120px;
+    font-size:16px;
+    line-height:1;
+    font-style:italic;
+    font-weight:400;
+    color:#fff;
+    z-index:40;
+  }
+
+  .pie-text-left-big{
+    left:940px;
+    top:394px;
+    width:70px;
+  }
+  .pie-text-left{
+    position:absolute;
+    left:940px;
+    top:420px;
+    width:190px;
+    font-size:17px;
+    line-height:1.22;
+    font-weight:400;
+    color:#fff;
+    z-index:40;
+  }
+  .pie-text-left-vs{
+    position:absolute;
+    left:940px;
+    top:485px;
+    width:122px;
+    font-size:16px;
+    line-height:1;
+    font-style:italic;
+    font-weight:400;
+    color:#fff;
+    z-index:40;
+  }
+
+  .footnotes{
+    position:absolute;
+    left:79px;
+    top:648px;
+    width:1140px;
+    font-size:11px;
+    line-height:1.2;
+    font-weight:400;
+    color:#333;
+    z-index:35;
+  }
+  .footer-left{
+    position:absolute;
+    left:46px;
+    top:727px;
+    width:190px;
+    font-size:12px;
+    line-height:1;
+    font-weight:400;
+    color:#444;
+    z-index:35;
+  }
+  .footer-center{
+    position:absolute;
+    left:984px;
+    top:727px;
+    width:300px;
+    font-size:12px;
+    line-height:1;
+    font-weight:400;
+    color:#444;
+    z-index:35;
+    text-align:left;
+  }
+  .footer-page{
+    position:absolute;
+    right:20px;
+    top:727px;
+    width:10px;
+    font-size:12px;
+    line-height:1;
+    font-weight:400;
+    color:#444;
+    text-align:right;
+    z-index:35;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">Planned travel incidence drops several percentage points,<br>reaching its lowest point in several years</div>
+
+  <div class="panel"></div>
+
+  <div class="subtitle">Share of Americans planning summer vacations,* 2022 to 2026</div>
+
+  <div class="left-label1">Traveling during<br>the summer</div>
+  <div class="left-label2">Staying in paid<br>lodging</div>
+
+  <svg class="chart-svg" viewBox="0 0 510 236" aria-hidden="true">
+    <line x1="25" y1="10" x2="25" y2="235" stroke="#cfcfcf" stroke-width="1"/>
+    <line x1="134" y1="10" x2="134" y2="235" stroke="#cfcfcf" stroke-width="1"/>
+    <line x1="242" y1="10" x2="242" y2="235" stroke="#cfcfcf" stroke-width="1"/>
+    <line x1="350" y1="10" x2="350" y2="235" stroke="#cfcfcf" stroke-width="1"/>
+    <line x1="460" y1="10" x2="460" y2="235" stroke="#cfcfcf" stroke-width="1"/>
+    <line x1="2" y1="235" x2="512" y2="235" stroke="#666" stroke-width="1.2"/>
+
+    <polyline points="25,66 134,58 242,72 350,75 460,95" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="25,106 134,94 242,100 350,86 460,116" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <circle cx="25" cy="66" r="4.2" fill="#000"/>
+    <circle cx="134" cy="58" r="4.2" fill="#000"/>
+    <circle cx="242" cy="72" r="4.2" fill="#000"/>
+    <circle cx="350" cy="75" r="4.2" fill="#000"/>
+    <circle cx="460" cy="95" r="4.2" fill="#000"/>
+
+    <circle cx="25" cy="106" r="4.2" fill="#000"/>
+    <circle cx="134" cy="94" r="4.2" fill="#000"/>
+    <circle cx="242" cy="100" r="4.2" fill="#000"/>
+    <circle cx="350" cy="86" r="4.2" fill="#000"/>
+    <circle cx="460" cy="116" r="4.2" fill="#000"/>
+  </svg>
+
+  <div class="pct" style="left:218px; top:292px;">60%</div>
+  <div class="pct" style="left:325px; top:288px;">63%</div>
+  <div class="pct" style="left:432px; top:304px;">58%</div>
+  <div class="pct" style="left:539px; top:305px;">57%</div>
+
+  <div class="pct" style="left:220px; top:361px;">46%</div>
+  <div class="pct" style="left:325px; top:352px;">50%</div>
+  <div class="pct" style="left:432px; top:361px;">48%</div>
+  <div class="pct" style="left:541px; top:345px;">53%</div>
+
+  <div class="green-box" style="left:642px; top:306px;">50%</div>
+  <div class="green-box" style="left:642px; top:364px;">45%</div>
+
+  <div class="year" style="left:214px; top:507px;">2022</div>
+  <div class="year" style="left:322px; top:507px;">2023</div>
+  <div class="year" style="left:430px; top:507px;">2024</div>
+  <div class="year" style="left:538px; top:507px;">2025</div>
+  <div class="year" style="left:647px; top:507px;">2026</div>
+
+  <div class="avg-label">Average number<br>of summer trips</div>
+
+  <div class="trip-box" style="left:214px; top:534px;">2.3</div>
+  <div class="trip-box" style="left:321px; top:534px;">3.1</div>
+  <div class="trip-box" style="left:428px; top:534px;">2.3</div>
+  <div class="trip-box" style="left:536px; top:534px;">3.1</div>
+  <div class="trip-box" style="left:644px; top:534px;">3.1</div>
+
+  <div class="right-header-num">5%</div>
+  <div class="right-header-text">traveling to stay with<br>friends or family only</div>
+  <div class="right-header-vs">vs. 4% in 2025</div>
+
+  <svg class="pie-svg" viewBox="0 0 454 422" aria-hidden="true">
+    <line x1="168" y1="0" x2="194" y2="34" stroke="#666" stroke-width="1.2"/>
+    <g transform="translate(231,218)">
+      <path d="M 0 0 L 0 -190 A 190 190 0 0 1 0 190 Z" fill="#000"/>
+      <path d="M 0 0 L -58.7 -180.7 A 190 190 0 0 0 0 -190 L 0 190 A 190 190 0 0 1 -190 0 A 190 190 0 0 1 -58.7 -180.7 Z" fill="#777777"/>
+      <path d="M 0 0 L 0 -190 A 190 190 0 0 0 -58.7 -180.7 Z" fill="#a7a7a7"/>
+      <line x1="0" y1="-190" x2="0" y2="190" stroke="#e8e8e8" stroke-width="2"/>
+      <line x1="0" y1="-190" x2="-58.7" y2="-180.7" stroke="#e8e8e8" stroke-width="2"/>
+    </g>
+  </svg>
+
+  <div class="pie-text-right-big">50%</div>
+  <div class="pie-text-right">not traveling<br><span style="font-style:italic;">vs. 43% in 2025</span></div>
+
+  <div class="pie-text-left-big">45%</div>
+  <div class="pie-text-left">taking a vacation<br>(leisure trip with<br>paid lodging)<br><span style="font-style:italic;">vs. 53% in 2025</span></div>
+
+  <div class="footnotes">Notes: Questions: (1) “What activities are you planning to partake in during summer 2026 (between Memorial Day and the end of September)?” (n = 4,003); (2) “How many trips have you booked or are you planning to take in<br>summer 2026?” (n = 1,948); *Vacation is defined as a leisure trip involving a stay in paid lodging, distinguished from travel that involves a stay with friends or family only.<br>Source: 2026 Deloitte Summer Travel Survey.</div>
+
+  <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+  <div class="footer-center">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="footer-page">7</div>
+</div>
+</body>
+</html>

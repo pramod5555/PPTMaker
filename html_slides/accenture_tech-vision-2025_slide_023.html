@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Technology Vision 2025 | AI: A Declaration of Autonomy</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #030304;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #030304;
+    color: #d8d8d8;
+  }
+
+  .top-left {
+    position: absolute;
+    left: 31px;
+    top: 37px;
+    font-size: 16px;
+    color: #cfc2e6;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .top-left .accent { color: #9c78d8; }
+
+  .top-right {
+    position: absolute;
+    right: 38px;
+    top: 37px;
+    font-size: 16px;
+    color: #d7d7d7;
+    white-space: nowrap;
+  }
+  .top-right .page {
+    display: inline-block;
+    margin-left: 18px;
+  }
+
+  .line-top {
+    position: absolute;
+    left: 32px;
+    top: 101px;
+    width: 1238px;
+    height: 1px;
+    background: #9689ac;
+  }
+
+  .dash-box-top,
+  .dash-box-mid {
+    position: absolute;
+    left: 32px;
+    width: 1238px;
+    border: 1px dotted #32004F;
+    box-sizing: border-box;
+  }
+  .dash-box-top {
+    top: 101px;
+    height: 178px;
+    border-top: none;
+  }
+  .dash-box-mid {
+    top: 309px;
+    height: 183px;
+  }
+
+  .event {
+    position: absolute;
+  }
+  .tick {
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 17px;
+    background: #9b90b0;
+  }
+  .tick.purple {
+    background: #a100ff;
+  }
+
+  .year {
+    position: absolute;
+    top: 6px;
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 400;
+    color: #c6bdd8;
+    white-space: nowrap;
+  }
+  .year.purple {
+    color: #b400ff;
+  }
+
+  .desc {
+    position: absolute;
+    top: 48px;
+    font-size: 13px;
+    line-height: 1.25;
+    color: #d7d7d7;
+  }
+  sup {
+    font-size: 8px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  /* Top timeline events */
+  .e1877 { left: 33px; top: 101px; width: 149px; height: 155px; }
+  .e1877 .tick { left: 0; }
+  .e1877 .year { left: 10px; }
+  .e1877 .desc { left: 10px; width: 132px; }
+
+  .e1963 { left: 211px; top: 101px; width: 174px; height: 155px; }
+  .e1963 .tick { left: 0; }
+  .e1963 .year { left: 10px; }
+  .e1963 .desc { left: 14px; width: 150px; }
+
+  .e1971 { left: 393px; top: 101px; width: 170px; height: 155px; }
+  .e1971 .tick { left: 0; }
+  .e1971 .year { left: 10px; }
+  .e1971 .desc { left: 10px; width: 146px; }
+
+  .e2000 { left: 573px; top: 101px; width: 166px; height: 155px; }
+  .e2000 .tick { left: 0; }
+  .e2000 .year { left: 10px; }
+  .e2000 .desc { left: 10px; width: 145px; }
+
+  .e2005 { left: 755px; top: 101px; width: 154px; height: 155px; }
+  .e2005 .tick { left: 0; }
+  .e2005 .year { left: 10px; }
+  .e2005 .desc { left: 10px; width: 132px; }
+
+  .e2014 { left: 935px; top: 101px; width: 153px; height: 155px; }
+  .e2014 .tick { left: 0; }
+  .e2014 .year { left: 10px; }
+  .e2014 .desc { left: 10px; width: 134px; }
+
+  .e2016 { left: 1108px; top: 101px; width: 149px; height: 155px; }
+  .e2016 .tick { left: 0; }
+  .e2016 .year { left: 10px; }
+  .e2016 .desc { left: 10px; width: 132px; }
+
+  /* Mid timeline top purple line */
+  .mid-line {
+    position: absolute;
+    left: 32px;
+    top: 309px;
+    width: 1238px;
+    height: 1px;
+    background: #a100ff;
+  }
+
+  /* Mid events */
+  .m2024a { left: 33px; top: 309px; width: 171px; height: 162px; }
+  .m2024a .tick { left: 0; }
+  .m2024a .year { left: 10px; }
+  .m2024a .desc { left: 10px; width: 145px; }
+
+  .m2024b { left: 212px; top: 309px; width: 170px; height: 162px; }
+  .m2024b .tick { left: 0; }
+  .m2024b .year { left: 10px; }
+  .m2024b .desc { left: 13px; width: 150px; }
+
+  .mfuture { left: 390px; top: 309px; width: 167px; height: 162px; }
+  .mfuture .tick { left: 0; }
+  .mfuture .year { left: 13px; }
+
+  .m2025 { left: 569px; top: 309px; width: 164px; height: 162px; }
+  .m2025 .tick { left: 0; }
+  .m2025 .year { left: 12px; }
+  .m2025 .desc { left: 11px; width: 141px; }
+
+  .m2026 { left: 750px; top: 309px; width: 163px; height: 170px; }
+  .m2026 .tick { left: 0; }
+  .m2026 .year { left: 10px; }
+  .m2026 .desc { left: 10px; width: 146px; }
+
+  .m2027 { left: 923px; top: 309px; width: 159px; height: 181px; }
+  .m2027 .tick { left: 0; }
+  .m2027 .year { left: 10px; }
+  .m2027 .desc { left: 10px; width: 143px; }
+
+  .m2028 { left: 1099px; top: 309px; width: 154px; height: 160px; }
+  .m2028 .tick { left: 0; }
+  .m2028 .year { left: 10px; }
+  .m2028 .desc { left: 10px; width: 128px; }
+
+  /* Bottom arrow section */
+  .bottom-arrow {
+    position: absolute;
+    left: 32px;
+    top: 517px;
+    width: 297px;
+    height: 14px;
+  }
+  .bottom-arrow .shaft {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 289px;
+    height: 1px;
+    background: #a100ff;
+  }
+  .bottom-arrow .head1,
+  .bottom-arrow .head2 {
+    position: absolute;
+    right: 0;
+    width: 9px;
+    height: 1px;
+    background: #a100ff;
+    transform-origin: right center;
+  }
+  .bottom-arrow .head1 {
+    top: 3px;
+    transform: rotate(45deg);
+  }
+  .bottom-arrow .head2 {
+    top: 9px;
+    transform: rotate(-45deg);
+  }
+
+  .bottom-year {
+    position: absolute;
+    left: 43px;
+    top: 528px;
+    font-size: 16px;
+    color: #b400ff;
+    white-space: nowrap;
+  }
+  .bottom-text {
+    position: absolute;
+    left: 43px;
+    top: 563px;
+    width: 250px;
+    font-size: 13px;
+    line-height: 1.25;
+    color: #d7d7d7;
+  }
+
+  .corner-mark {
+    position: absolute;
+    left: 26px;
+    bottom: -7px;
+    font-size: 54px;
+    line-height: 1;
+    color: #b400ff;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+    <div class="top-right">Your Face, in the Future <span class="page">23</span></div>
+
+    <div class="line-top"></div>
+    <div class="dash-box-top"></div>
+
+    <div class="event e1877">
+      <div class="tick"></div>
+      <div class="year">1877</div>
+      <div class="desc">Quaker Mills’ Quaker man is one of the first corporate mascots<sup>48</sup></div>
+    </div>
+
+    <div class="event e1963">
+      <div class="tick"></div>
+      <div class="year">1963</div>
+      <div class="desc">Ronald McDonald makes his first TV appearance and becomes an icon<sup>49</sup></div>
+    </div>
+
+    <div class="event e1971">
+      <div class="tick"></div>
+      <div class="year">1971</div>
+      <div class="desc">As part of a DARPA project, Carnegie Mellon University creates Harpy, foundational to modern Interactive Voice Response (IVR) systems<sup>50</sup></div>
+    </div>
+
+    <div class="event e2000">
+      <div class="tick"></div>
+      <div class="year">2000</div>
+      <div class="desc">Salesforce.com launches its website, allowing online access to its CRM systems<sup>51</sup></div>
+    </div>
+
+    <div class="event e2005">
+      <div class="tick"></div>
+      <div class="year">2005</div>
+      <div class="desc">IKEA unveils one of the first customer-facing chatbots<sup>52</sup></div>
+    </div>
+
+    <div class="event e2014">
+      <div class="tick"></div>
+      <div class="year">2014</div>
+      <div class="desc">Amazon releases Alexa, an AI assistant with a persona<sup>53</sup></div>
+    </div>
+
+    <div class="event e2016">
+      <div class="tick"></div>
+      <div class="year">2016</div>
+      <div class="desc">Lil Miquela debuts on Instagram, the first AI influencer to go viral<sup>54</sup></div>
+    </div>
+
+    <div class="mid-line"></div>
+    <div class="dash-box-mid"></div>
+
+    <div class="event m2024a">
+      <div class="tick purple"></div>
+      <div class="year purple">2024</div>
+      <div class="desc">Instagram tests Creator.ai for influencers to connect with fans via chatbots that mimic their personalities<sup>56</sup></div>
+    </div>
+
+    <div class="event m2024b">
+      <div class="tick purple"></div>
+      <div class="year purple">2024</div>
+      <div class="desc">OpenAI releases GPT-4o with Advanced Voice mode’s human-like speech<sup>56</sup></div>
+    </div>
+
+    <div class="event mfuture">
+      <div class="tick purple"></div>
+      <div class="year purple">Future</div>
+    </div>
+
+    <div class="event m2025">
+      <div class="tick purple"></div>
+      <div class="year purple">2025</div>
+      <div class="desc">Real-time generative AI voice models become common in customer service</div>
+    </div>
+
+    <div class="event m2026">
+      <div class="tick purple"></div>
+      <div class="year purple">2026</div>
+      <div class="desc">A celebrity influencer signs a landmark contract letting a company use their personality not only in advertisements but product lines, customer service, and digital experiences</div>
+    </div>
+
+    <div class="event m2027">
+      <div class="tick purple"></div>
+      <div class="year purple">2027</div>
+      <div class="desc">A major airline introduces an AI agent that will autonomously generate personalized trip pricing and travel recommendations based on customer loyalty programs, company offers, and affiliated partnerships</div>
+    </div>
+
+    <div class="event m2028">
+      <div class="tick purple"></div>
+      <div class="year purple">2028</div>
+      <div class="desc">Companies routinely use customer conversations with AI agents as a data source to build customer profiles</div>
+    </div>
+
+    <div class="bottom-arrow">
+      <div class="shaft"></div>
+      <div class="head1"></div>
+      <div class="head2"></div>
+    </div>
+
+    <div class="bottom-year">2030</div>
+    <div class="bottom-text">With the rise of agents, machine customers drive more than 20% of many businesses’ revenue, transforming sales strategies</div>
+
+    <div class="corner-mark">&gt;</div>
+  </div>
+</body>
+</html>

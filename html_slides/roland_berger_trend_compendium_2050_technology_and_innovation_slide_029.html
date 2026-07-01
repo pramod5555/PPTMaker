@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{margin:0;background:#d9d9d9;font-family:Arial, Helvetica, 'Segoe UI', sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+  }
+  .slide > div, .slide > svg { position:absolute; box-sizing:border-box; }
+  .sidebar{
+    left:0; top:0; width:181px; height:720px;
+    background:#33373f;
+    z-index:5;
+  }
+  .purple-line{
+    left:180px; top:0; width:2px; height:720px;
+    background:#7a5bc2;
+    z-index:6;
+  }
+  .side-title{
+    left:12px; top:34px; width:152px;
+    color:#ffffff; font-size:22px; line-height:1.08; font-weight:700;
+    z-index:30;
+  }
+  .hex{
+    position:absolute;
+    width:78px;height:68px;
+    z-index:20;
+  }
+  .sicon-label-num{
+    color:#737884; font-size:28px; font-weight:700; line-height:1;
+    z-index:30;
+  }
+  .sicon-label{
+    color:#737884; font-size:14px; line-height:1.15; font-weight:400;
+    z-index:30;
+  }
+  .s2 .sicon-label-num, .s2 .sicon-label{ color:#8b70d1; font-weight:700; }
+  .page{
+    left:9px; bottom:10px;
+    color:#ffffff; font-size:18px; font-weight:400;
+    z-index:30;
+  }
+
+  .headline{
+    left:220px; top:31px; width:1030px;
+    color:#222; font-size:26px; line-height:1.12; font-weight:700;
+    z-index:30;
+  }
+  .sub-left{
+    left:220px; top:138px; width:620px;
+    color:#8c919a; font-size:27px; line-height:1.08; font-weight:400;
+    z-index:30;
+  }
+  .sub-right{
+    left:975px; top:138px; width:285px;
+    color:#8c919a; font-size:27px; line-height:1.08; font-weight:400;
+    z-index:30;
+  }
+
+  .bg-fade{
+    left:188px; top:170px; width:920px; height:470px;
+    background:radial-gradient(circle at 37% 31%, rgba(255,255,255,.84) 0%, rgba(255,255,255,.58) 28%, rgba(225,225,225,.22) 56%, rgba(242,242,242,0) 78%);
+    z-index:1;
+  }
+
+  .grey-band{
+    left:276px; top:360px; width:580px; height:286px;
+    background:#9ea3aa;
+    z-index:10;
+    clip-path:polygon(0 0, 100% 2%, 100% 72%, 84% 100%, 24% 100%, 6% 74%);
+    opacity:.96;
+  }
+
+  .circle-main{
+    left:390px; top:184px; width:360px; height:330px;
+    border-radius:50%;
+    background:radial-gradient(circle at 48% 42%, #fafafa 0%, #f6f6f6 55%, #d9dade 79%, rgba(216,218,222,0) 100%);
+    z-index:15;
+    filter:drop-shadow(0 3px 10px rgba(0,0,0,.06));
+  }
+
+  .bubble{
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    color:#ffffff;
+    z-index:30;
+    box-shadow:0 2px 6px rgba(0,0,0,.10);
+  }
+  .btxt{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:6px;}
+
+  .center-label{
+    left:528px; top:315px; width:176px;
+    color:#4b317d; font-size:18px; line-height:1.08; font-weight:700;
+    text-align:center;
+    z-index:35;
+  }
+
+  .diag-left{
+    left:221px; top:392px; width:150px;
+    color:#84a1c8; font-size:17px; line-height:1.04; font-weight:700;
+    transform:rotate(74deg);
+    z-index:35;
+    text-align:center;
+  }
+  .diag-bottom1{
+    left:384px; top:642px; width:120px;
+    color:#044f86; font-size:19px; line-height:1.0; font-weight:700;
+    transform:rotate(18deg);
+    z-index:35;
+    text-align:center;
+  }
+  .diag-bottom2{
+    left:600px; top:651px; width:220px;
+    color:#7a5bc2; font-size:18px; line-height:1.0; font-weight:700;
+    transform:rotate(-13deg);
+    z-index:35;
+    text-align:center;
+  }
+  .diag-right{
+    left:836px; top:425px; width:130px;
+    color:#9f90d1; font-size:17px; line-height:1.05; font-weight:700;
+    transform:rotate(-69deg);
+    z-index:35;
+    text-align:center;
+  }
+
+  .chart-wrap{
+    left:983px; top:224px; width:248px; height:470px;
+    z-index:30;
+  }
+  .chart-title824{
+    left:1079px; top:219px; width:71px; height:29px;
+    border:2px solid #6c558e; border-radius:17px;
+    color:#5a4383; font-size:16px; font-weight:700; line-height:25px;
+    text-align:center; background:#f4f4f4;
+    z-index:50;
+  }
+  .foot{
+    left:220px; top:735px;
+    color:#444; font-size:11px; line-height:1; font-weight:400;
+    z-index:30;
+  }
+  .logo{
+    right:12px; bottom:10px; width:55px; height:30px;
+    z-index:50; color:#7f858c;
+  }
+  .logo .brand{
+    left:0; top:2px; width:26px; position:absolute;
+    font-size:6px; color:#7f858c; line-height:0.9;
+    text-align:right;
+  }
+  .logo .rb1{
+    left:32px; top:0; width:11px; height:28px; position:absolute; background:#a9adb2; border-radius:0 10px 10px 0;
+  }
+  .logo .rb2{
+    left:42px; top:8px; width:14px; height:20px; position:absolute; background:#7f858c; border-radius:0 10px 10px 0;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="sidebar"></div>
+  <div class="purple-line"></div>
+
+  <div class="side-title">Technology &amp;<br>Innovation</div>
+
+  <div class="s1">
+    <svg class="hex" style="left:6px; top:142px;" viewBox="0 0 78 68">
+      <polygon points="19,2 59,2 76,34 59,66 19,66 2,34" fill="none" stroke="#7f848c" stroke-width="4"/>
+      <polygon points="21,7 57,7 71,34 57,61 21,61 7,34" fill="#bfc2c7"/>
+      <image href="" x="0" y="0" width="0" height="0"/>
+      <g opacity=".9">
+        <rect x="8" y="28" width="62" height="12" fill="rgba(255,255,255,.15)"/>
+        <line x1="13" y1="30" x2="63" y2="16" stroke="#fff" stroke-width="1.4"/>
+        <line x1="13" y1="36" x2="63" y2="22" stroke="#fff" stroke-width="1"/>
+        <line x1="17" y1="14" x2="27" y2="36" stroke="#fff" stroke-width="1.2"/>
+        <line x1="28" y1="12" x2="38" y2="36" stroke="#fff" stroke-width="1.2"/>
+        <line x1="39" y1="11" x2="49" y2="36" stroke="#fff" stroke-width="1.2"/>
+        <line x1="50" y1="12" x2="59" y2="36" stroke="#fff" stroke-width="1.2"/>
+      </g>
+    </svg>
+    <div class="sicon-label-num" style="left:93px; top:145px;">1</div>
+    <div class="sicon-label" style="left:93px; top:173px;">Value of<br>Innovation</div>
+  </div>
+
+  <div class="s2">
+    <svg class="hex" style="left:6px; top:276px;" viewBox="0 0 78 68">
+      <polygon points="19,2 59,2 76,34 59,66 19,66 2,34" fill="none" stroke="#8b70d1" stroke-width="4"/>
+      <polygon points="21,7 57,7 71,34 57,61 21,61 7,34" fill="#8a74cb"/>
+      <g opacity=".95">
+        <circle cx="24" cy="34" r="3" fill="#fff"/>
+        <circle cx="35" cy="24" r="2.2" fill="#fff"/>
+        <circle cx="49" cy="31" r="2.6" fill="#fff"/>
+        <circle cx="26" cy="45" r="2.1" fill="#fff"/>
+        <circle cx="57" cy="40" r="2.1" fill="#fff"/>
+        <line x1="24" y1="34" x2="35" y2="24" stroke="#fff" stroke-width="1.2"/>
+        <line x1="35" y1="24" x2="49" y2="31" stroke="#fff" stroke-width="1.2"/>
+        <line x1="24" y1="34" x2="26" y2="45" stroke="#fff" stroke-width="1.2"/>
+        <line x1="26" y1="45" x2="49" y2="31" stroke="#fff" stroke-width="1.2"/>
+        <line x1="49" y1="31" x2="57" y2="40" stroke="#fff" stroke-width="1.2"/>
+      </g>
+    </svg>
+    <div class="sicon-label-num" style="left:93px; top:278px;">2</div>
+    <div class="sicon-label" style="left:93px; top:307px;">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="s3">
+    <svg class="hex" style="left:6px; top:409px;" viewBox="0 0 78 68">
+      <polygon points="19,2 59,2 76,34 59,66 19,66 2,34" fill="none" stroke="#7f848c" stroke-width="4"/>
+      <polygon points="21,7 57,7 71,34 57,61 21,61 7,34" fill="#c7c9cd"/>
+      <g opacity=".95">
+        <circle cx="28" cy="33" r="7" fill="#fff"/>
+        <circle cx="49" cy="33" r="7" fill="#fff"/>
+        <path d="M33 39 C37 44,40 44,44 39" stroke="#8d8f93" stroke-width="2.3" fill="none"/>
+        <path d="M21 49 C29 43,34 42,39 43" stroke="#fff" stroke-width="3" fill="none"/>
+        <path d="M39 43 C44 42,49 43,57 49" stroke="#fff" stroke-width="3" fill="none"/>
+      </g>
+    </svg>
+    <div class="sicon-label-num" style="left:93px; top:411px;">3</div>
+    <div class="sicon-label" style="left:93px; top:440px;">Humans &amp;<br>Machines</div>
+  </div>
+
+  <svg style="left:66px; top:661px; width:68px; height:62px; z-index:20; opacity:.6;" viewBox="0 0 68 62">
+    <g fill="none" stroke="#7d8289" stroke-width="3">
+      <circle cx="21" cy="42" r="11"/>
+      <circle cx="46" cy="33" r="9"/>
+      <path d="M21 16 v8M7 20 l6 5M2 34 h8M7 48 l6-5M21 60 v-8M35 48 l-6-5M40 34 h-8M35 20 l-6 5"/>
+      <path d="M45 18 l3-5M56 22 l5-2M58 33 h6M55 43 l5 3M45 48 l2 5"/>
+      <path d="M30 56 C33 51,35 49,39 46"/>
+    </g>
+  </svg>
+
+  <div class="page">29</div>
+
+  <div class="headline">Selected technologies will see a tenfold increase in market size –<br>An analysis of relevant innovations up to 2050 is called for</div>
+  <div class="sub-left">Selected frontier technologies and their categorization<sup style="font-size:14px;">1)</sup></div>
+  <div class="sub-right">Global market size of selected<br>technologies<sup style="font-size:14px;">2)</sup> [USD bn]</div>
+
+  <div class="bg-fade"></div>
+
+  <svg style="left:760px; top:174px; width:292px; height:465px; z-index:3; opacity:.2;" viewBox="0 0 292 465">
+    <polygon points="165,12 190,73 160,73 160,183 210,183 118,301 26,183 78,183 78,73 48,73 73,12" fill="#ffffff"/>
+    <rect x="88" y="298" width="18" height="148" fill="#d9d9d9" opacity=".55"/>
+    <rect x="116" y="322" width="18" height="124" fill="#d9d9d9" opacity=".5"/>
+    <rect x="144" y="340" width="18" height="106" fill="#d9d9d9" opacity=".46"/>
+    <rect x="172" y="308" width="18" height="138" fill="#d9d9d9" opacity=".42"/>
+    <rect x="200" y="354" width="18" height="92" fill="#d9d9d9" opacity=".40"/>
+    <rect x="228" y="330" width="18" height="116" fill="#d9d9d9" opacity=".36"/>
+  </svg>
+
+  <svg style="left:245px; top:587px; width:180px; height:90px; z-index:3; opacity:.18;" viewBox="0 0 180 90">
+    <polygon points="25,0 48,32 34,32 34,62 66,62 10,90 -46,62 -14,62 -14,32 -28,32 -5,0" fill="#ffffff"/>
+  </svg>
+
+  <div class="grey-band"></div>
+  <div class="circle-main"></div>
+
+  <div class="bubble" style="left:459px; top:208px; width:101px; height:101px; background:#4f2f81;">
+    <div class="btxt" style="font-size:14px; line-height:1.15;">Block-<br>chain</div>
+  </div>
+  <div class="bubble" style="left:571px; top:208px; width:101px; height:101px; background:#543284;">
+    <div class="btxt" style="font-size:14px; line-height:1.05;">New<br>communi-<br>cation tech</div>
+  </div>
+  <div class="bubble" style="left:654px; top:297px; width:101px; height:101px; background:#4f2f81;">
+    <div class="btxt" style="font-size:15px; line-height:1.1;">IoT</div>
+  </div>
+  <div class="bubble" style="left:570px; top:394px; width:101px; height:101px; background:#4d2a80;">
+    <div class="btxt" style="font-size:14px; line-height:1.1;">Big data</div>
+  </div>
+  <div class="bubble" style="left:458px; top:394px; width:101px; height:101px; background:#4f2d82;">
+    <div class="btxt" style="font-size:15px; line-height:1.1;">AI</div>
+  </div>
+  <div class="bubble" style="left:401px; top:299px; width:101px; height:101px; background:#543385;">
+    <div class="btxt" style="font-size:14px; line-height:1.1;">Quantum<br>computing</div>
+  </div>
+
+  <div class="center-label">Innovative<br>digital<br>technologies</div>
+
+  <div class="bubble" style="left:262px; top:358px; width:98px; height:95px; background:#9fb7d8;">
+    <div class="btxt" style="font-size:14px; line-height:1.1;">Green<br>tech</div>
+  </div>
+  <div class="bubble" style="left:316px; top:453px; width:88px; height:95px; background:#3f84bd;">
+    <div class="btxt" style="font-size:14px; line-height:1.1;">Trans-<br>portation<br>tech</div>
+  </div>
+  <div class="bubble" style="left:374px; top:523px; width:96px; height:94px; background:#024f87;">
+    <div class="btxt" style="font-size:14px; line-height:1.1;">Smart<br>robotics</div>
+  </div>
+  <div class="bubble" style="left:468px; top:558px; width:96px; height:96px; background:#034f87;">
+    <div class="btxt" style="font-size:14px; line-height:1.1;">New<br>space</div>
+  </div>
+  <div class="bubble" style="left:560px; top:558px; width:98px; height:98px; background:linear-gradient(90deg,#054a79,#5b58b2);">
+    <div class="btxt" style="font-size:14px; line-height:1.1;">Nano<br>technology</div>
+  </div>
+  <div class="bubble" style="left:657px; top:520px; width:95px; height:95px; background:#7b66bb;">
+    <div class="btxt" style="font-size:14px; line-height:1.1;">Biotech &amp;<br>gene<br>editing</div>
+  </div>
+
+  <div class="bubble" style="left:735px; top:453px; width:91px; height:95px; background:#b6a3da;">
+    <div class="btxt" style="font-size:14px; line-height:1.1;">Extended<br>reality</div>
+  </div>
+  <div class="bubble" style="left:782px; top:362px; width:97px; height:95px; background:#b09ed4;">
+    <div class="btxt" style="font-size:14px; line-height:1.1;">Meta-<br>verse</div>
+  </div>
+
+  <div class="diag-left">Sustainability driven<br>innovations</div>
+  <div class="diag-bottom1">New<br>machinery</div>
+  <div class="diag-bottom2">Innovative health-<br>related technologies</div>
+  <div class="diag-right">Innovative digital<br>experience</div>
+
+  <svg class="chart-wrap" viewBox="0 0 248 470">
+    <line x1="64" y1="18" x2="64" y2="388" stroke="#8f9399" stroke-width="1.2"/>
+    <line x1="196" y1="18" x2="196" y2="388" stroke="#8f9399" stroke-width="1.2"/>
+    <line x1="64" y1="18" x2="196" y2="18" stroke="#8f9399" stroke-width="1.2"/>
+    <line x1="196" y1="18" x2="196" y2="36" stroke="#8f9399" stroke-width="1.2"/>
+    <polygon points="192,35 200,35 196,44" fill="#8f9399"/>
+    <line x1="64" y1="458" x2="244" y2="458" stroke="#5c5e63" stroke-width="1.5"/>
+
+    <rect x="28" y="398" width="74" height="13" fill="#ffffff"/>
+    <rect x="28" y="411" width="74" height="7" fill="#261e34"/>
+    <rect x="28" y="418" width="74" height="12" fill="#7a62b6"/>
+    <rect x="28" y="430" width="74" height="20" fill="#1b4f7f"/>
+    <rect x="28" y="450" width="74" height="8" fill="#cfc7dc"/>
+
+    <text x="64" y="390" font-size="18" fill="#303038" font-weight="700" text-anchor="middle">349</text>
+    <text x="39" y="439" font-size="13" fill="#ffffff" font-weight="700">69</text>
+    <text x="84" y="429" font-size="13" fill="#d7cfff" font-weight="700" text-anchor="middle">54</text>
+    <text x="51" y="451" font-size="14" fill="#303038">130</text>
+
+    <rect x="160" y="54" width="74" height="15" fill="#d9e9f8"/>
+    <rect x="160" y="69" width="74" height="17" fill="#2f7cb3"/>
+    <rect x="160" y="86" width="74" height="29" fill="#0f3d62"/>
+    <rect x="160" y="115" width="74" height="43" fill="#17161c"/>
+    <rect x="160" y="158" width="74" height="40" fill="#4a276d"/>
+    <rect x="160" y="198" width="74" height="52" fill="#4f2f80"/>
+    <rect x="160" y="250" width="74" height="57" fill="#806ab7"/>
+    <rect x="160" y="307" width="74" height="84" fill="#b5a5d5"/>
+    <rect x="160" y="391" width="74" height="67" fill="#cfc7dc"/>
+
+    <text x="197" y="47" font-size="17" fill="#303038" font-weight="700" text-anchor="middle">3,226</text>
+
+    <text x="170" y="83" font-size="13" fill="#ffffff" font-weight="700">61</text>
+    <text x="210" y="71" font-size="13" fill="#2e5d8e" font-weight="700" text-anchor="middle">44</text>
+    <text x="197" y="110" font-size="15" fill="#ffffff" font-weight="700" text-anchor="middle">141</text>
+    <text x="197" y="143" font-size="15" fill="#303038" font-weight="700" text-anchor="middle">157</text>
+    <text x="197" y="194" font-size="15" fill="#ffffff" font-weight="700" text-anchor="middle">191</text>
+    <text x="197" y="239" font-size="15" fill="#ffffff" font-weight="700" text-anchor="middle">277</text>
+    <text x="197" y="293" font-size="15" fill="#ffffff" font-weight="700" text-anchor="middle">344</text>
+    <text x="197" y="369" font-size="15" fill="#303038" font-weight="700" text-anchor="middle">499</text>
+
+    <line x1="234" y1="61" x2="240" y2="64" stroke="#7a7a7a" stroke-width="1"/>
+    <line x1="234" y1="77" x2="240" y2="84" stroke="#7a7a7a" stroke-width="1"/>
+    <line x1="234" y1="106" x2="240" y2="116" stroke="#7a7a7a" stroke-width="1"/>
+    <line x1="234" y1="137" x2="240" y2="147" stroke="#7a7a7a" stroke-width="1"/>
+    <line x1="234" y1="181" x2="240" y2="196" stroke="#7a7a7a" stroke-width="1"/>
+    <line x1="234" y1="218" x2="240" y2="231" stroke="#7a7a7a" stroke-width="1"/>
+    <line x1="234" y1="307" x2="240" y2="312" stroke="#7a7a7a" stroke-width="1"/>
+    <line x1="234" y1="389" x2="240" y2="377" stroke="#7a7a7a" stroke-width="1"/>
+
+    <text x="243" y="66" font-size="11" fill="#3b3b3b">Gene editing</text>
+    <text x="243" y="85" font-size="11" fill="#3b3b3b">3D printing</text>
+    <text x="243" y="112" font-size="11" fill="#3b3b3b">Blockchain</text>
+    <text x="243" y="146" font-size="11" fill="#3b3b3b">Drones</text>
+    <text x="243" y="193" font-size="11" fill="#3b3b3b">Big data</text>
+    <text x="243" y="227" font-size="11" fill="#3b3b3b">AI</text>
+    <text x="243" y="241" font-size="11" fill="#3b3b3b">5G</text>
+    <text x="243" y="293" font-size="11" fill="#3b3b3b">Solar PV</text>
+    <text x="243" y="370" font-size="11" fill="#3b3b3b">Robotics</text>
+
+    <line x1="156" y1="397" x2="236" y2="376" stroke="#5e566a" stroke-width="1.5"/>
+    <line x1="156" y1="403" x2="236" y2="382" stroke="#5e566a" stroke-width="1.5"/>
+    <text x="198" y="416" font-size="14" fill="#3b3b3b" font-weight="700" text-anchor="middle">1,500</text>
+    <text x="243" y="417" font-size="11" fill="#3b3b3b">IoT</text>
+
+    <text x="64" y="481" font-size="16" fill="#3b3b3b" text-anchor="middle">2018</text>
+    <text x="199" y="481" font-size="16" fill="#3b3b3b" text-anchor="middle">2025</text>
+  </svg>
+
+  <div class="chart-title824">824%</div>
+
+  <div class="foot">1) Selected frontier technologies discussed on the following slides&nbsp;&nbsp;2)Selected frontier technologies according to UN</div>
+
+  <div class="logo">
+    <div class="brand">Roland<br>Berger</div>
+    <div class="rb1"></div>
+    <div class="rb2"></div>
+  </div>
+</div>
+</body>
+</html>

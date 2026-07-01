@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#efeff0;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efeff0;
+    color:#3b3b45;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .top-left-band{
+    left:0; top:0; width:47px; height:79px;
+    background:#bfc0c8;
+  }
+  .top-rule{
+    left:0; top:78px; width:1280px; height:2px;
+    background:#c9c9d0;
+  }
+  .header{
+    left:56px; top:50px; width:520px;
+    font-size:14px;
+    line-height:18px;
+    color:#7f7f8e;
+    font-weight:400;
+    letter-spacing:.1px;
+  }
+
+  .nav1,.nav2{
+    width:34px; height:34px;
+    border-radius:50%;
+    background:#c2c2ca;
+    top:34px;
+  }
+  .nav1{ left:951px; }
+  .nav2{ left:994px; }
+  .nav1:before,.nav2:before{
+    content:"";
+    position:absolute;
+    top:9px;
+    width:0; height:0;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+  }
+  .nav1:before{
+    left:11px;
+    border-right:10px solid #40404c;
+  }
+  .nav2:before{
+    left:13px;
+    border-left:10px solid #40404c;
+  }
+
+  .left-col{
+    left:56px; top:116px; width:442px; height:545px;
+  }
+  .right-col{
+    left:533px; top:117px; width:507px; height:541px;
+  }
+
+  .section-title{
+    font-size:16px;
+    line-height:20px;
+    font-weight:700;
+    color:#2f313c;
+    margin:0;
+  }
+  .body-text{
+    font-size:12px;
+    line-height:18px;
+    font-weight:400;
+    color:#55565f;
+    margin:0;
+  }
+  .bullet{
+    font-size:12px;
+    line-height:18px;
+    font-weight:400;
+    color:#55565f;
+    margin:0;
+  }
+  .bullet .b{
+    font-weight:700;
+    color:#30323d;
+  }
+  .sq{
+    display:inline-block;
+    width:5px; height:5px;
+    background:#55565f;
+    margin-right:9px;
+    vertical-align:middle;
+    margin-top:-2px;
+  }
+
+  .left-title1{ left:0; top:0; width:430px; }
+  .left-p1{ left:0; top:27px; width:428px; }
+  .left-b1{ left:0; top:61px; width:430px; }
+  .left-b2{ left:0; top:112px; width:430px; }
+  .left-b3{ left:0; top:182px; width:430px; }
+  .left-b4{ left:0; top:253px; width:430px; }
+  .left-p2{ left:0; top:322px; width:428px; }
+  .left-title2{ left:0; top:385px; width:430px; }
+  .left-p3{ left:0; top:418px; width:432px; }
+
+  .right-title{ left:0; top:0; width:150px; }
+  .right-p1{ left:0; top:26px; width:465px; }
+
+  .photo-frame{
+    left:0; top:171px; width:507px; height:371px;
+    border:1px solid #d4d4da;
+    background:#f6f6f7;
+  }
+  .photo{
+    left:0; top:171px; width:507px; height:268px;
+    overflow:hidden;
+    background:
+      linear-gradient(90deg, rgba(42,16,8,.88) 0 13%, rgba(93,41,19,.76) 13% 32%, rgba(211,110,71,.56) 32% 43%, rgba(239,154,113,.45) 43% 47%, rgba(205,212,218,.26) 47% 100%),
+      linear-gradient(118deg, rgba(51,18,7,.7) 0%, rgba(115,49,20,.48) 18%, rgba(220,122,84,.28) 35%, rgba(220,226,231,.08) 60%, rgba(218,223,228,.18) 100%);
+  }
+  .rack-left{
+    left:0; top:171px; width:194px; height:268px;
+    background:
+      linear-gradient(90deg, rgba(29,12,6,.92) 0%, rgba(63,26,12,.85) 28%, rgba(134,58,28,.72) 58%, rgba(208,112,74,.52) 78%, rgba(126,55,27,.62) 100%);
+    filter:blur(1.2px);
+  }
+  .orange-upright{
+    left:201px; top:171px; width:9px; height:268px;
+    background:#d86b3d;
+  }
+  .orange-upright2{
+    left:236px; top:171px; width:7px; height:268px;
+    background:#ef8b58;
+  }
+  .shelf-post{
+    left:263px; top:172px; width:16px; height:185px;
+    background:#f18a53;
+    transform:rotate(15deg);
+    transform-origin:top left;
+  }
+  .shelf-beam1,.shelf-beam2,.shelf-beam3,.shelf-beam4{
+    height:6px;
+    background:#748593;
+    transform:rotate(15deg);
+    transform-origin:left center;
+  }
+  .shelf-beam1{ left:276px; top:194px; width:106px; }
+  .shelf-beam2{ left:281px; top:221px; width:105px; }
+  .shelf-beam3{ left:286px; top:248px; width:103px; }
+  .shelf-beam4{ left:291px; top:275px; width:101px; }
+
+  .rack-items{
+    left:303px; top:187px; width:112px; height:115px;
+  }
+  .rack-items span{
+    position:absolute;
+    width:14px; height:9px;
+    background:#dbe2e8;
+    border-radius:5px;
+    box-shadow:17px 0 0 #bac4cc, 34px 0 0 #dbe2e8, 51px 0 0 #bac4cc, 68px 0 0 #dbe2e8, 85px 0 0 #bac4cc;
+  }
+  .r1{ left:0; top:0; }
+  .r2{ left:4px; top:27px; }
+  .r3{ left:8px; top:54px; }
+  .r4{ left:12px; top:81px; }
+
+  .worker-head{
+    left:420px; top:205px; width:27px; height:27px;
+    border-radius:50%;
+    background:#d3a07a;
+  }
+  .worker-hair{
+    left:418px; top:201px; width:29px; height:13px;
+    border-radius:15px 15px 7px 7px;
+    background:#1d1f25;
+  }
+  .worker-vest{
+    left:399px; top:228px; width:66px; height:94px;
+    background:#f5822a;
+    clip-path:polygon(15% 0%, 85% 0%, 100% 43%, 84% 100%, 18% 100%, 0% 46%);
+  }
+  .worker-shirt-left{
+    left:382px; top:231px; width:34px; height:58px;
+    background:#4b5964;
+    transform:rotate(25deg);
+    border-radius:10px;
+  }
+  .worker-shirt-right{
+    left:448px; top:236px; width:30px; height:56px;
+    background:#39454f;
+    transform:rotate(-13deg);
+    border-radius:10px;
+  }
+  .worker-arm{
+    left:439px; top:229px; width:45px; height:11px;
+    background:#d7a47f;
+    transform:rotate(18deg);
+    border-radius:6px;
+  }
+  .scanner{
+    left:457px; top:214px; width:18px; height:14px;
+    background:#20252c;
+    border-radius:3px;
+    transform:rotate(17deg);
+  }
+  .scanner:after{
+    content:"";
+    position:absolute;
+    left:12px; top:2px; width:7px; height:7px;
+    background:#4ed0ff;
+    border-radius:2px;
+  }
+  .clipboard{
+    left:410px; top:295px; width:35px; height:43px;
+    background:#ffffff;
+    border:2px solid #6b89b7;
+    transform:rotate(12deg);
+  }
+  .clipboard:before{
+    content:"";
+    position:absolute;
+    left:11px; top:-6px; width:11px; height:7px;
+    border-radius:3px 3px 0 0;
+    background:#6b89b7;
+  }
+  .leg1,.leg2{
+    background:#121822;
+    border-radius:8px;
+  }
+  .leg1{ left:413px; top:320px; width:16px; height:65px; transform:rotate(5deg); }
+  .leg2{ left:436px; top:319px; width:17px; height:67px; transform:rotate(-3deg); }
+
+  .contact-band{
+    left:0; top:439px; width:507px; height:34px;
+    background:#f2d900;
+  }
+  .contact-title{
+    left:12px; top:447px; width:360px;
+    font-size:14px;
+    line-height:18px;
+    font-weight:700;
+    color:#2f2f2f;
+  }
+  .contact-row1,.contact-row2{
+    font-size:12px;
+    line-height:18px;
+    color:#5b5c65;
+    white-space:nowrap;
+  }
+  .contact-row1{ left:12px; top:487px; width:482px; }
+  .contact-row2{ left:12px; top:513px; width:482px; }
+  .name{
+    font-weight:700;
+    color:#2f313c;
+  }
+  .sep{
+    color:#8a8a92;
+    padding:0 8px;
+  }
+  .link{
+    color:#1a73c8;
+    text-decoration:none;
+    font-weight:600;
+  }
+
+  .side-menu{
+    left:1041px; top:120px; width:239px; height:294px;
+  }
+  .menu-item{
+    left:0;
+    width:239px;
+    background:#2f2d3d;
+    color:#ececf0;
+    font-size:11px;
+    line-height:13px;
+    font-weight:400;
+    padding:9px 12px;
+    border-left:2px solid #f2d900;
+  }
+  .mi1{ top:0; height:36px; }
+  .mi2{ top:50px; height:36px; }
+  .mi3{ top:100px; height:48px; }
+  .mi4{ top:161px; height:36px; }
+  .mi5{ top:210px; height:48px; }
+  .mi6{
+    top:271px; height:36px;
+    background:#8b8b95;
+    color:#ffffff;
+  }
+
+  .footer-left{
+    left:56px; top:728px; width:220px;
+    font-size:10px;
+    line-height:14px;
+    color:#7a7b86;
+    font-weight:600;
+  }
+  .footer-back-icon{
+    left:834px; top:679px; width:32px; height:32px;
+    border-radius:50%;
+    background:#bdbdc7;
+  }
+  .footer-back-icon:before{
+    content:"";
+    position:absolute;
+    left:10px; top:8px;
+    width:0; height:0;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+    border-right:10px solid #40414e;
+  }
+  .footer-back{
+    left:871px; top:697px; width:125px;
+    font-size:12px;
+    line-height:14px;
+    color:#4c4d57;
+    font-weight:600;
+  }
+  .footer-line{
+    left:871px; top:710px; width:124px; height:1px;
+    background:#bebec7;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-left-band"></div>
+  <div class="top-rule"></div>
+  <div class="header">Insights: Europe, Middle East, India and Africa</div>
+
+  <div class="nav1"></div>
+  <div class="nav2"></div>
+
+  <div class="left-col">
+    <div class="section-title left-title1">Checks and balances in the MOOWR framework</div>
+    <div class="body-text left-p1">While MOOWR emphasizes flexibility, it incorporates robust safeguards to prevent misuse and ensure revenue protection.</div>
+
+    <div class="bullet left-b1"><span class="sq"></span><span class="b">Audits and oversight:</span> Customs conducts risk-based audits rather than constant supervision, focusing on high-risk entities. Licensees must submit monthly returns on stock, production and clearances.</div>
+
+    <div class="bullet left-b2"><span class="sq"></span><span class="b">Inventory and accounting:</span> Adopt FIFO (first-in-first-out) compatible systems for tracking goods, with mandatory reconciliation of inputs and outputs. Digital records must be preserved for five years.</div>
+
+    <div class="bullet left-b3"><span class="sq"></span><span class="b">Movement controls:</span> Goods movements use standard documents without escorts, but improper removals trigger penalties, including duty recovery with interest and fines under Sections 72-74 of the Customs Act.</div>
+
+    <div class="bullet left-b4"><span class="sq"></span><span class="b">Exit:</span> To exit the scheme, clear all goods for home consumption (paying duties) or export them, settling any dues. Noncompliance can lead to license revocation.</div>
+
+    <div class="body-text left-p2">These measures balance operational freedom with fiscal accountability, reducing revenue leakage while fostering trust-based compliance.</div>
+
+    <div class="section-title left-title2">Why companies should opt for MOOWR</div>
+    <div class="body-text left-p3">In a competitive global landscape, MOOWR provides a strategic edge for companies aiming to improve costs and scale operations. For export-oriented firms, it effectively nullifies duties on inputs used in exported products, enhancing price competitiveness. Domestic-focused businesses benefit from deferred duties, freeing up capital for growth initiatives like R&amp;D or expansion. The scheme is particularly advantageous for startups and SMEs, as it lacks high entry barriers and supports value addition in India, reducing reliance on fully imported goods. Amid supply chain disruptions, MOOWR enables resilient manufacturing hubs, attracting FDI and aligning with government incentives. Companies transitioning from SEZ or EOU can leverage MOOWR for greater flexibility without export mandates. Ultimately, it drives efficiency, profitability and compliance, making it a must-consider for any import-dependent manufacturer.</div>
+  </div>
+
+  <div class="right-col">
+    <div class="section-title right-title">Conclusion</div>
+    <div class="body-text right-p1">The MOOWR scheme has transformed India’s bonded manufacturing landscape since its 2019 revamp, offering duty deferment, flexibility and ease that propel the Make in India vision. By understanding its origins, benefits, requirements and safeguards, businesses can harness this tool to thrive in dynamic markets. As India positions itself as a manufacturing powerhouse, adopting MOOWR, after careful evaluation against other schemes, could be the key to unlocking sustainable growth and global competitiveness.<span style="font-size:10px; vertical-align:top; color:#9d9da6;">■</span></div>
+
+    <div class="photo-frame"></div>
+    <div class="photo"></div>
+    <div class="rack-left"></div>
+    <div class="orange-upright"></div>
+    <div class="orange-upright2"></div>
+    <div class="shelf-post"></div>
+    <div class="shelf-beam1"></div>
+    <div class="shelf-beam2"></div>
+    <div class="shelf-beam3"></div>
+    <div class="shelf-beam4"></div>
+    <div class="rack-items">
+      <span class="r1"></span>
+      <span class="r2"></span>
+      <span class="r3"></span>
+      <span class="r4"></span>
+    </div>
+    <div class="worker-head"></div>
+    <div class="worker-hair"></div>
+    <div class="worker-shirt-left"></div>
+    <div class="worker-shirt-right"></div>
+    <div class="worker-vest"></div>
+    <div class="worker-arm"></div>
+    <div class="scanner"></div>
+    <div class="clipboard"></div>
+    <div class="leg1"></div>
+    <div class="leg2"></div>
+
+    <div class="contact-band"></div>
+    <div class="contact-title">For additional information, please contact:</div>
+    <div class="contact-row1"><span class="name">Shreeni Pillai</span><span class="sep">|</span>+ 91 992 009 2360<span class="sep">|</span><a class="link" href="#">shreeni.pillai@in.ey.com</a></div>
+    <div class="contact-row2"><span class="name">Suresh Nair</span><span class="sep">|</span>+ 91 989 275 7475<span class="sep">|</span><a class="link" href="#">suresh.nair@in.ey.com</a></div>
+  </div>
+
+  <div class="side-menu">
+    <div class="menu-item mi1">Contents</div>
+    <div class="menu-item mi2">Insights</div>
+    <div class="menu-item mi3">New on<br>ey.com</div>
+    <div class="menu-item mi4">Tax alerts</div>
+    <div class="menu-item mi5">Additional<br>resources</div>
+    <div class="menu-item mi6">Contacts</div>
+  </div>
+
+  <div class="footer-left">35&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+  <div class="footer-back-icon"></div>
+  <div class="footer-back">Back to Welcome</div>
+  <div class="footer-line"></div>
+</div>
+</body>
+</html>

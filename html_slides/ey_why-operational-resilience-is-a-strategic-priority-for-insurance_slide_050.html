@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Appendix Methodology Slide Replica</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #d7d7da;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #ececee;
+  }
+  .slide > div {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  .left-panel {
+    left: 0;
+    top: 0;
+    width: 684px;
+    height: 720px;
+    background: #ececee;
+    z-index: 1;
+  }
+
+  .right-panel {
+    left: 684px;
+    top: 0;
+    width: 596px;
+    height: 720px;
+    background:
+      radial-gradient(circle at 7% 5%, rgba(255,67,190,0.8) 0 6px, rgba(255,67,190,0) 12px),
+      radial-gradient(circle at 10% 14%, rgba(255,75,196,0.85) 0 5px, rgba(255,75,196,0) 11px),
+      radial-gradient(circle at 16% 9%, rgba(255,87,205,0.8) 0 4px, rgba(255,87,205,0) 10px),
+      radial-gradient(circle at 22% 18%, rgba(255,55,175,0.82) 0 5px, rgba(255,55,175,0) 11px),
+      radial-gradient(circle at 27% 12%, rgba(255,74,190,0.85) 0 4px, rgba(255,74,190,0) 10px),
+      radial-gradient(circle at 31% 24%, rgba(255,70,180,0.78) 0 5px, rgba(255,70,180,0) 12px),
+      radial-gradient(circle at 36% 17%, rgba(255,75,190,0.82) 0 4px, rgba(255,75,190,0) 11px),
+      radial-gradient(circle at 42% 26%, rgba(255,77,192,0.74) 0 5px, rgba(255,77,192,0) 12px),
+      radial-gradient(circle at 15% 37%, rgba(255,73,188,0.9) 0 6px, rgba(255,73,188,0) 13px),
+      radial-gradient(circle at 21% 43%, rgba(255,78,194,0.85) 0 5px, rgba(255,78,194,0) 12px),
+      radial-gradient(circle at 28% 38%, rgba(255,76,190,0.82) 0 5px, rgba(255,76,190,0) 11px),
+      radial-gradient(circle at 34% 45%, rgba(255,72,182,0.76) 0 5px, rgba(255,72,182,0) 12px),
+      radial-gradient(circle at 41% 39%, rgba(255,78,190,0.76) 0 5px, rgba(255,78,190,0) 13px),
+      radial-gradient(circle at 22% 55%, rgba(255,72,188,0.82) 0 5px, rgba(255,72,188,0) 11px),
+      radial-gradient(circle at 30% 58%, rgba(255,80,198,0.76) 0 4px, rgba(255,80,198,0) 10px),
+      radial-gradient(circle at 10% 24%, rgba(31,166,255,0.22) 0 60px, rgba(31,166,255,0) 180px),
+      radial-gradient(circle at 24% 36%, rgba(255,82,188,0.18) 0 120px, rgba(255,82,188,0) 260px),
+      radial-gradient(circle at 45% 45%, rgba(104,183,255,0.18) 0 95px, rgba(104,183,255,0) 250px),
+      radial-gradient(circle at 73% 46%, rgba(123,196,255,0.22) 0 90px, rgba(123,196,255,0) 260px),
+      linear-gradient(90deg, #06132d 0%, #071933 17%, #031122 52%, #031020 100%);
+    z-index: 0;
+  }
+
+  .digital-wall {
+    left: 713px;
+    top: -4px;
+    width: 405px;
+    height: 724px;
+    z-index: 2;
+    opacity: 0.9;
+    background:
+      repeating-linear-gradient(90deg,
+        rgba(0, 178, 255, 0) 0 8px,
+        rgba(0, 178, 255, 0.16) 8px 9px,
+        rgba(0, 178, 255, 0) 9px 14px),
+      repeating-linear-gradient(180deg,
+        rgba(0, 112, 255, 0) 0 5px,
+        rgba(0, 112, 255, 0.10) 5px 6px,
+        rgba(0, 112, 255, 0) 6px 9px);
+    filter: blur(0.25px);
+    mix-blend-mode: screen;
+  }
+
+  .particle-cluster {
+    left: 706px;
+    top: -10px;
+    width: 395px;
+    height: 620px;
+    z-index: 3;
+    background:
+      radial-gradient(circle at 4% 3%, rgba(255,78,196,1) 0 4px, rgba(255,78,196,0) 8px),
+      radial-gradient(circle at 12% 8%, rgba(255,82,200,.95) 0 4px, rgba(255,82,200,0) 8px),
+      radial-gradient(circle at 8% 16%, rgba(255,77,189,.95) 0 5px, rgba(255,77,189,0) 10px),
+      radial-gradient(circle at 22% 12%, rgba(255,67,182,.9) 0 4px, rgba(255,67,182,0) 9px),
+      radial-gradient(circle at 28% 20%, rgba(255,75,193,.9) 0 4px, rgba(255,75,193,0) 9px),
+      radial-gradient(circle at 35% 16%, rgba(255,86,202,.9) 0 3px, rgba(255,86,202,0) 8px),
+      radial-gradient(circle at 40% 24%, rgba(255,68,183,.88) 0 4px, rgba(255,68,183,0) 9px),
+      radial-gradient(circle at 48% 18%, rgba(255,80,196,.85) 0 3px, rgba(255,80,196,0) 8px),
+      radial-gradient(circle at 55% 28%, rgba(255,70,186,.82) 0 4px, rgba(255,70,186,0) 9px),
+      radial-gradient(circle at 18% 32%, rgba(255,79,193,.9) 0 5px, rgba(255,79,193,0) 10px),
+      radial-gradient(circle at 24% 39%, rgba(255,82,198,.88) 0 4px, rgba(255,82,198,0) 9px),
+      radial-gradient(circle at 31% 36%, rgba(255,76,190,.9) 0 4px, rgba(255,76,190,0) 9px),
+      radial-gradient(circle at 38% 42%, rgba(255,74,188,.88) 0 5px, rgba(255,74,188,0) 11px),
+      radial-gradient(circle at 46% 38%, rgba(255,92,205,.82) 0 4px, rgba(255,92,205,0) 9px),
+      radial-gradient(circle at 54% 43%, rgba(255,75,188,.8) 0 4px, rgba(255,75,188,0) 10px),
+      radial-gradient(circle at 62% 37%, rgba(255,86,198,.72) 0 5px, rgba(255,86,198,0) 11px),
+      radial-gradient(circle at 15% 50%, rgba(255,72,188,.88) 0 4px, rgba(255,72,188,0) 9px),
+      radial-gradient(circle at 23% 56%, rgba(255,80,198,.85) 0 4px, rgba(255,80,198,0) 9px),
+      radial-gradient(circle at 33% 53%, rgba(255,70,184,.82) 0 4px, rgba(255,70,184,0) 9px),
+      radial-gradient(circle at 44% 58%, rgba(255,84,198,.78) 0 4px, rgba(255,84,198,0) 10px),
+      radial-gradient(circle at 54% 52%, rgba(255,78,190,.76) 0 5px, rgba(255,78,190,0) 11px),
+      radial-gradient(circle at 64% 58%, rgba(255,89,204,.68) 0 4px, rgba(255,89,204,0) 10px);
+    filter: blur(0.2px);
+  }
+
+  .pink-haze {
+    left: 742px;
+    top: 94px;
+    width: 355px;
+    height: 435px;
+    z-index: 4;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(255,84,184,0.45) 0%, rgba(255,84,184,0.18) 18%, rgba(255,84,184,0) 48%),
+      radial-gradient(circle at 42% 32%, rgba(255,84,184,0.34) 0%, rgba(255,84,184,0.12) 20%, rgba(255,84,184,0) 52%),
+      radial-gradient(circle at 58% 50%, rgba(255,84,184,0.28) 0%, rgba(255,84,184,0.09) 19%, rgba(255,84,184,0) 50%),
+      radial-gradient(circle at 74% 40%, rgba(134,187,255,0.18) 0%, rgba(134,187,255,0.06) 20%, rgba(134,187,255,0) 54%);
+    filter: blur(1px);
+  }
+
+  .right-fade {
+    left: 684px;
+    top: 0;
+    width: 596px;
+    height: 720px;
+    z-index: 5;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.16) 0%, rgba(0,0,0,0.04) 36%, rgba(0,0,0,0.22) 100%);
+    pointer-events: none;
+  }
+
+  .floor-light {
+    left: 949px;
+    top: 466px;
+    width: 295px;
+    height: 146px;
+    z-index: 4;
+    background:
+      linear-gradient(180deg, rgba(136,206,255,0.02) 0%, rgba(136,206,255,0.18) 100%),
+      linear-gradient(90deg, rgba(173,224,255,0) 0%, rgba(173,224,255,0.28) 42%, rgba(173,224,255,0) 100%);
+    clip-path: polygon(33% 0%, 83% 0%, 52% 100%, 2% 100%);
+    filter: blur(2px);
+  }
+
+  .figure {
+    left: 1181px;
+    top: 174px;
+    width: 92px;
+    height: 518px;
+    z-index: 6;
+    filter: blur(0.8px);
+  }
+  .figure .head {
+    position: absolute;
+    left: 30px;
+    top: 28px;
+    width: 31px;
+    height: 39px;
+    background: rgba(0,0,0,0.74);
+    border-radius: 50%;
+  }
+  .figure .torso {
+    position: absolute;
+    left: 18px;
+    top: 61px;
+    width: 47px;
+    height: 178px;
+    background: rgba(0,0,0,0.80);
+    border-radius: 24px 24px 18px 18px;
+  }
+  .figure .arm {
+    position: absolute;
+    left: 8px;
+    top: 91px;
+    width: 18px;
+    height: 136px;
+    background: rgba(0,0,0,0.72);
+    border-radius: 14px;
+    transform: rotate(10deg);
+  }
+  .figure .leg1 {
+    position: absolute;
+    left: 24px;
+    top: 225px;
+    width: 19px;
+    height: 196px;
+    background: rgba(0,0,0,0.86);
+    border-radius: 14px;
+    transform: rotate(2deg);
+  }
+  .figure .leg2 {
+    position: absolute;
+    left: 45px;
+    top: 224px;
+    width: 21px;
+    height: 210px;
+    background: rgba(0,0,0,0.86);
+    border-radius: 14px;
+    transform: rotate(-3deg);
+  }
+  .figure .foot1 {
+    position: absolute;
+    left: 10px;
+    top: 408px;
+    width: 42px;
+    height: 19px;
+    background: rgba(0,0,0,0.88);
+    border-radius: 16px;
+    transform: rotate(8deg);
+  }
+  .figure .foot2 {
+    position: absolute;
+    left: 39px;
+    top: 424px;
+    width: 39px;
+    height: 16px;
+    background: rgba(0,0,0,0.88);
+    border-radius: 16px;
+    transform: rotate(-3deg);
+  }
+
+  .top-divider {
+    left: 103px;
+    top: 0;
+    width: 1px;
+    height: 94px;
+    background: #babcc3;
+    z-index: 20;
+  }
+
+  .page-number {
+    left: 61px;
+    top: 50px;
+    font-size: 18px;
+    line-height: 1;
+    color: #6f7482;
+    font-weight: 400;
+    letter-spacing: 0;
+    z-index: 21;
+  }
+
+  .survey-label {
+    left: 116px;
+    top: 59px;
+    width: 220px;
+    font-size: 8px;
+    line-height: 1.25;
+    color: #888b93;
+    font-weight: 500;
+    text-transform: uppercase;
+    z-index: 21;
+  }
+
+  .title {
+    left: 104px;
+    top: 132px;
+    width: 540px;
+    font-size: 35px;
+    line-height: 0.98;
+    color: #1b1c29;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    z-index: 21;
+  }
+
+  .accent-line {
+    left: 102px;
+    top: 265px;
+    width: 538px;
+    height: 3px;
+    background: linear-gradient(90deg, #e3d100 0%, #e3d100 48%, #bb3ef0 74%, #3b83ee 100%);
+    z-index: 21;
+  }
+
+  .body-text {
+    left: 101px;
+    top: 304px;
+    width: 300px;
+    font-size: 11px;
+    line-height: 1.32;
+    color: #62656c;
+    font-weight: 400;
+    z-index: 21;
+  }
+
+  .jump-pill {
+    right: 0;
+    top: 0;
+    width: 70px;
+    height: 46px;
+    background: rgba(173,174,181,0.95);
+    border-radius: 0 0 14px 14px;
+    z-index: 30;
+  }
+
+  .jump-text {
+    right: 9px;
+    top: 18px;
+    width: 52px;
+    font-size: 8px;
+    line-height: 1.05;
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-align: center;
+    z-index: 31;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-panel"></div>
+    <div class="right-panel"></div>
+    <div class="digital-wall"></div>
+    <div class="particle-cluster"></div>
+    <div class="pink-haze"></div>
+    <div class="floor-light"></div>
+    <div class="right-fade"></div>
+
+    <div class="figure">
+      <div class="head"></div>
+      <div class="torso"></div>
+      <div class="arm"></div>
+      <div class="leg1"></div>
+      <div class="leg2"></div>
+      <div class="foot1"></div>
+      <div class="foot2"></div>
+    </div>
+
+    <div class="top-divider"></div>
+    <div class="page-number">50</div>
+    <div class="survey-label">SECOND ANNUAL EY/IIF GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+    <div class="title">Appendix: methodology<br>and supplemental data</div>
+    <div class="accent-line"></div>
+
+    <div class="body-text">
+      The global EY organization, in collaboration with the IIF,<br>
+      surveyed CROs and other senior risk executives from<br>
+      86 IIF member firms and other insurance companies in<br>
+      EMEIA, the Americas and Asia-Pacific between October<br>
+      2024 and January 2025. Participants were interviewed,<br>
+      completed an online survey or both. The research included<br>
+      a cross-section of the insurance sector in terms of asset<br>
+      size, geographic reach and line of business (e.g., P&amp;C, life,<br>
+      health, reinsurance and specialty).
+    </div>
+
+    <div class="jump-pill"></div>
+    <div class="jump-text">JUMP TO<br>CONTENTS</div>
+  </div>
+</body>
+</html>

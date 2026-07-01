@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html,body{margin:0;padding:0;background:#ffffff;font-family:Arial, Helvetica, sans-serif;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+  }
+  #slide > div, #slide > table{position:absolute; box-sizing:border-box;}
+
+  .right-bg{
+    left:594px; top:0; width:686px; height:720px; background:#f3f3f3;
+  }
+
+  .photo-panel{
+    left:0; top:0; width:594px; height:720px; overflow:hidden;
+    background:
+      radial-gradient(ellipse at 12% 10%, rgba(206,138,93,.75) 0%, rgba(206,138,93,.32) 23%, rgba(0,0,0,0) 48%),
+      radial-gradient(ellipse at 18% 33%, rgba(178,131,97,.34) 0%, rgba(178,131,97,.14) 24%, rgba(0,0,0,0) 48%),
+      radial-gradient(ellipse at 25% 58%, rgba(87,255,179,.38) 0%, rgba(87,255,179,.15) 18%, rgba(0,0,0,0) 42%),
+      radial-gradient(ellipse at 73% 18%, rgba(72,255,212,.30) 0%, rgba(72,255,212,.12) 20%, rgba(0,0,0,0) 45%),
+      linear-gradient(180deg, #275f5d 0%, #236761 19%, #2e8f82 43%, #324f58 68%, #12161f 100%);
+  }
+
+  .stars{
+    left:0; top:0; width:594px; height:720px; opacity:.9;
+    background-image:
+      radial-gradient(circle at 210px 6px, rgba(255,255,255,.55) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 248px 32px, rgba(255,255,255,.45) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 292px 18px, rgba(255,255,255,.55) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 350px 48px, rgba(255,255,255,.45) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 390px 6px, rgba(255,255,255,.65) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 436px 26px, rgba(255,255,255,.52) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 482px 12px, rgba(255,255,255,.55) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 538px 40px, rgba(255,255,255,.60) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 520px 154px, rgba(255,255,255,.42) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 432px 248px, rgba(255,255,255,.36) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 375px 304px, rgba(255,255,255,.35) 0 1px, transparent 1.5px);
+  }
+
+  .aurora1{
+    left:-10px; top:232px; width:360px; height:175px;
+    background:radial-gradient(ellipse at 35% 50%, rgba(68,255,176,.70) 0%, rgba(68,255,176,.20) 45%, rgba(68,255,176,0) 78%);
+    filter:blur(12px);
+    transform:rotate(-7deg);
+  }
+  .aurora2{
+    left:247px; top:-8px; width:180px; height:505px;
+    background:linear-gradient(180deg, rgba(195,255,238,0) 0%, rgba(190,255,234,.28) 18%, rgba(145,255,214,.14) 48%, rgba(145,255,214,0) 100%);
+    clip-path:polygon(36% 0%, 53% 0%, 78% 100%, 60% 100%);
+    opacity:.95;
+    transform:rotate(-2deg);
+  }
+  .aurora3{
+    left:294px; top:-20px; width:158px; height:490px;
+    background:linear-gradient(180deg, rgba(210,255,243,0) 0%, rgba(210,255,243,.20) 22%, rgba(162,255,223,.12) 52%, rgba(162,255,223,0) 100%);
+    clip-path:polygon(38% 0%, 53% 0%, 75% 100%, 58% 100%);
+    transform:rotate(4deg);
+  }
+  .aurora4{
+    left:332px; top:40px; width:120px; height:420px;
+    background:linear-gradient(180deg, rgba(170,255,228,0) 0%, rgba(170,255,228,.14) 22%, rgba(170,255,228,.05) 100%);
+    clip-path:polygon(39% 0%, 50% 0%, 69% 100%, 57% 100%);
+    transform:rotate(2deg);
+  }
+
+  .mountain-left{
+    left:-5px; top:346px; width:178px; height:162px;
+    background:linear-gradient(180deg, #324039 0%, #22272b 48%, #111318 100%);
+    clip-path:polygon(0 100%,0 48%,12% 31%,23% 10%,34% 2%,48% 21%,63% 28%,73% 18%,84% 34%,100% 56%,100% 100%);
+    opacity:.95;
+  }
+  .mountain-right{
+    left:422px; top:431px; width:145px; height:92px;
+    background:linear-gradient(180deg, #59606c 0%, #2d313a 60%, #151821 100%);
+    clip-path:polygon(0 100%,0 66%,24% 44%,49% 20%,74% 45%,100% 71%,100% 100%);
+    opacity:.8;
+  }
+
+  .rock-base{
+    left:196px; top:329px; width:363px; height:382px;
+    background:linear-gradient(135deg, #745740 0%, #bf8e63 24%, #7d6148 45%, #2b2526 77%, #0f1116 100%);
+    clip-path:polygon(27% 10%, 39% 22%, 60% 14%, 69% 26%, 84% 22%, 100% 41%, 88% 52%, 80% 71%, 66% 83%, 59% 100%, 39% 92%, 23% 72%, 12% 53%, 0% 36%, 12% 26%);
+    filter:saturate(.94) brightness(.95);
+  }
+  .rock-face1{
+    left:240px; top:406px; width:176px; height:258px;
+    background:linear-gradient(145deg, rgba(246,210,169,.82) 0%, rgba(176,132,95,.92) 39%, rgba(43,39,41,1) 100%);
+    clip-path:polygon(10% 8%, 49% 0%, 67% 14%, 97% 58%, 73% 82%, 43% 100%, 20% 84%, 0% 38%);
+  }
+  .rock-face2{
+    left:321px; top:382px; width:182px; height:220px;
+    background:linear-gradient(130deg, rgba(235,186,136,.86) 0%, rgba(136,101,74,.94) 44%, rgba(35,31,34,1) 100%);
+    clip-path:polygon(10% 0%, 84% 10%, 100% 35%, 86% 57%, 68% 100%, 29% 84%, 0% 39%);
+  }
+  .rock-shadow{
+    left:158px; top:542px; width:430px; height:178px;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.34) 42%, rgba(0,0,0,.80) 100%);
+    clip-path:polygon(0 42%, 31% 15%, 67% 0, 100% 16%, 100% 100%, 0 100%);
+  }
+
+  .person-leg1{
+    left:289px; top:340px; width:57px; height:13px; background:#132238; border-radius:8px; transform:rotate(49deg);
+  }
+  .person-leg2{
+    left:309px; top:360px; width:56px; height:13px; background:#0d1930; border-radius:8px; transform:rotate(110deg);
+  }
+  .person-body{
+    left:307px; top:316px; width:23px; height:44px; background:linear-gradient(180deg,#6d0e14 0%,#b31b24 56%,#490b11 100%); border-radius:8px 8px 6px 6px; transform:rotate(13deg);
+  }
+  .person-arm{
+    left:298px; top:332px; width:25px; height:10px; background:#7b1217; border-radius:6px; transform:rotate(145deg);
+  }
+  .person-head{
+    left:312px; top:304px; width:14px; height:16px; background:linear-gradient(180deg,#cb8d67 0%, #8b5a3d 100%); border-radius:50% 48% 44% 46%;
+  }
+  .person-hair{
+    left:309px; top:300px; width:16px; height:10px; background:#1f1714; border-radius:55% 45% 40% 40%;
+  }
+
+  .yellow-line{
+    left:80px; top:65px; width:2px; height:617px; background:#e8df12;
+  }
+  .purple-line{
+    left:80px; top:682px; width:2px; height:33px; background:#7b1d7a;
+  }
+
+  .title{
+    left:109px; top:58px; width:380px;
+    color:#f4f1eb;
+    font-size:30px;
+    line-height:1.18;
+    font-weight:300;
+    letter-spacing:.1px;
+  }
+
+  .anchor{
+    left:109px; top:650px; width:210px;
+    color:#f4f1eb;
+    font-size:17px;
+    line-height:1.14;
+    font-family:Georgia, "Times New Roman", serif;
+    font-weight:400;
+  }
+
+  .big-num{
+    left:380px; top:565px; width:165px;
+    color:#f5f5f5;
+    font-size:154px;
+    line-height:.95;
+    font-weight:300;
+    letter-spacing:-0.045em;
+  }
+
+  .top-p1, .top-p2, .bottom-p1, .bottom-p2{
+    color:#444b52;
+    font-size:11px;
+    line-height:1.47;
+    font-weight:400;
+  }
+  .top-p1{left:733px; top:61px; width:210px;}
+  .top-p2{left:980px; top:61px; width:210px;}
+  .bottom-p1{left:734px; top:549px; width:207px;}
+  .bottom-p2{left:980px; top:549px; width:206px;}
+
+  .section-title{
+    left:626px; top:290px; width:570px;
+    color:#a8afb6;
+    font-size:23px;
+    line-height:1.2;
+    font-weight:300;
+  }
+
+  .table-wrap{
+    left:626px; top:344px; width:530px; height:178px;
+  }
+  .table-top-line{
+    left:0; top:25px; width:530px; height:2px; background:#8c8c8c;
+  }
+  .colhead1,.colhead2{
+    top:-1px; color:#1d2430; font-size:17px; line-height:1.2; font-weight:700;
+  }
+  .colhead1{left:108px; width:160px;}
+  .colhead2{left:318px; width:160px;}
+
+  table.compare{
+    left:0; top:27px; width:530px; border-collapse:collapse;
+    font-size:11px; color:#4a525a;
+  }
+  table.compare td{
+    border-bottom:1px solid #d5d8dc;
+    padding:10px 0 10px 0;
+    vertical-align:top;
+    line-height:1.28;
+  }
+  table.compare td:first-child{
+    width:108px;
+    color:#1f2630;
+    font-weight:700;
+    padding-right:12px;
+  }
+  table.compare td:nth-child(2){
+    width:210px;
+    padding-right:14px;
+  }
+  table.compare td:nth-child(3){
+    width:212px;
+  }
+
+  .footer-left{
+    left:31px; top:712px; color:#ffffff; font-size:6px; line-height:1; font-weight:600; width:320px;
+  }
+  .footer-right{
+    right:31px; top:712px; color:#1e2430; font-size:7px; line-height:1; font-weight:700; text-align:right; width:230px;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="right-bg"></div>
+
+  <div class="photo-panel"></div>
+  <div class="stars"></div>
+  <div class="aurora1"></div>
+  <div class="aurora2"></div>
+  <div class="aurora3"></div>
+  <div class="aurora4"></div>
+  <div class="mountain-left"></div>
+  <div class="mountain-right"></div>
+  <div class="rock-base"></div>
+  <div class="rock-face1"></div>
+  <div class="rock-face2"></div>
+  <div class="rock-shadow"></div>
+
+  <div class="person-leg1"></div>
+  <div class="person-leg2"></div>
+  <div class="person-body"></div>
+  <div class="person-arm"></div>
+  <div class="person-head"></div>
+  <div class="person-hair"></div>
+
+  <div class="yellow-line"></div>
+  <div class="purple-line"></div>
+
+  <div class="title">Strategy-first:<br>relevance starts upstream</div>
+  <div class="anchor">Anchor risk<br>management decisions<br>in your organization&rsquo;s<br>envisioned future state</div>
+  <div class="big-num">01</div>
+
+  <div class="top-p1">Much of risk management is based on backward-looking &ndash; or, at best, contemporaneous &ndash; data, but strategy is about building the future. In an environment of accelerated disruption, as companies pivot to new markets, business models and sources of value, risks that appeared immaterial based on historical financial impact can undermine strategic objectives. More than ever, it&rsquo;s critical for the risk function to be not just strategy-aligned, but strategy-first.</div>
+
+  <div class="top-p2">Strategy-first framing makes the company&rsquo;s strategic vision &ndash; its future commercial offerings, business model and market position &ndash; the starting point for everything from risk appetite to risk prioritization and action. Rather than relying on past performance or historical loss experience, it articulates embedded assumptions about customers, channels, regulation, technology, supply chains and partners &ndash; and asks how those assumptions could break as conditions change.</div>
+
+  <div class="section-title">How a strategy-first lens changes risk focus</div>
+
+  <div class="table-wrap">
+    <div class="table-top-line"></div>
+    <div class="colhead1">Strategy-first</div>
+    <div class="colhead2">Traditionalists</div>
+    <table class="compare">
+      <tr>
+        <td>Starting point</td>
+        <td>Strategic projections</td>
+        <td>Historical financials</td>
+      </tr>
+      <tr>
+        <td>Unit of analysis</td>
+        <td>Strategic assumptions</td>
+        <td>Risk events</td>
+      </tr>
+      <tr>
+        <td>Materiality lens</td>
+        <td>Impact on ability to achieve strategic objectives</td>
+        <td>Impact on most recent 12-month EBITDA</td>
+      </tr>
+      <tr>
+        <td>Risk appetite</td>
+        <td>Defined by strategic alternatives and enabling strategic growth</td>
+        <td>Constrained by defensive limits and documented tolerances</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="bottom-p1">An automotive company might identify oil prices or dealer carryover (unsold) inventory as key risks based on its current business model. A strategy-first risk function would instead look at the company&rsquo;s projected future state in a sector disrupted by electric vehicles and mobility-as-a-service (MaaS) business models. In this context, MaaS utilization rates, access to rare earth and other critical minerals, and dependency on charging infrastructure ecosystems may be far more material to the company&rsquo;s forward-looking financial performance and strategic viability &ndash; despite having limited historical data to draw on.</div>
+
+  <div class="bottom-p2">Electrolux, a Swedish home appliance manufacturer, has proactively built resilience into risk management and strategic investment planning based on how future climate scenarios may develop. &ldquo;We have always assessed how near-term weather-related risks impact our production sites, warehouses and suppliers, but now we are considering multiple climate risks 20-30 years in the future and how we should shape our strategy plans around them,&rdquo; says Ulrich Adamheit, Head of Group Risk Management at Electrolux.</div>
+
+  <div class="footer-left">5&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;How can reimagining risk prepare you for an unpredictable world?</div>
+  <div class="footer-right">Global Risk Transformation Series&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;6</div>
+</div>
+</body>
+</html>

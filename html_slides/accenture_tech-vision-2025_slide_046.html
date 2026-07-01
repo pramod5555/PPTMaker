@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #111;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #030303;
+    color: #f2f2f2;
+  }
+
+  .top-left {
+    position: absolute;
+    left: 60px;
+    top: 36px;
+    font-size: 12px;
+    color: #c7c7c7;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .top-right {
+    position: absolute;
+    right: 48px;
+    top: 36px;
+    font-size: 12px;
+    color: #c7c7c7;
+    white-space: nowrap;
+  }
+
+  .page-num {
+    position: absolute;
+    right: 18px;
+    top: 36px;
+    font-size: 18px;
+    color: #e8e8e8;
+  }
+
+  .title {
+    position: absolute;
+    left: 60px;
+    top: 190px;
+    font-size: 21px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #b79af2;
+  }
+
+  .col {
+    position: absolute;
+    top: 273px;
+    width: 272px;
+    font-size: 14px;
+    line-height: 1.42;
+    color: #e9e9e9;
+    font-weight: 400;
+  }
+
+  .col1 { left: 60px; }
+  .col2 { left: 375px; }
+
+  .image-panel {
+    position: absolute;
+    left: 815px;
+    top: 126px;
+    width: 367px;
+    height: 526px;
+    background: #f6f6f6;
+    overflow: hidden;
+  }
+
+  .glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(14px);
+    opacity: 0.95;
+    mix-blend-mode: normal;
+  }
+
+  .mist {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(22px);
+    opacity: 0.7;
+  }
+
+  .robot {
+    position: absolute;
+    transform-origin: top center;
+  }
+
+  .head {
+    position: absolute;
+    border-radius: 45% 48% 42% 50%;
+    background: linear-gradient(135deg, #7a12ff 0%, #ff00c8 40%, #6cf3ff 58%, #5d0b8d 100%);
+    box-shadow: inset -6px -8px 14px rgba(255,255,255,0.14);
+  }
+
+  .visor {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #0f1a2a, #23e1ff 35%, #18092f 70%, #000 100%);
+    opacity: 0.95;
+  }
+
+  .neck {
+    position: absolute;
+    background: linear-gradient(180deg, #2a1535, #0a0a0a);
+    border-radius: 4px;
+  }
+
+  .torso {
+    position: absolute;
+    border-radius: 26px 26px 18px 18px;
+    background: linear-gradient(180deg, rgba(140,47,255,0.95) 0%, rgba(255,0,197,0.92) 38%, rgba(111,210,255,0.72) 58%, rgba(174,93,250,0.92) 100%);
+    clip-path: polygon(16% 0%, 82% 2%, 100% 20%, 87% 100%, 18% 100%, 0% 24%);
+  }
+
+  .shoulder {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7d19ff, #ff00bc 55%, #6ff6ff);
+    opacity: 0.95;
+  }
+
+  .arm {
+    position: absolute;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(188,13,170,0.95), rgba(171,111,250,0.95) 55%, rgba(98,14,212,0.95));
+  }
+
+  .leg {
+    position: absolute;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(194,124,255,0.9), rgba(144,24,255,0.95) 70%, rgba(255,0,63,0.95) 100%);
+  }
+
+  .shoe {
+    position: absolute;
+    border-radius: 18px 18px 10px 10px;
+    background: linear-gradient(90deg, #ff001d, #ff643e 55%, #8f14ff);
+  }
+
+  .slash {
+    position: absolute;
+    background: rgba(255,255,255,0.8);
+    height: 2px;
+    border-radius: 2px;
+    transform-origin: left center;
+    opacity: 0.9;
+  }
+
+  .arrow {
+    position: absolute;
+    left: 59px;
+    bottom: 20px;
+    font-size: 28px;
+    line-height: 1;
+    color: #b000ff;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-left">Technology Vision 2025&nbsp;&nbsp;|&nbsp;&nbsp;AI: A Declaration of Autonomy</div>
+    <div class="top-right">When LLMs get their Bodies</div>
+    <div class="page-num">46</div>
+
+    <div class="title">A Portrait of the Future</div>
+
+    <div class="col col1">
+      Sometimes, Andy thinks the robots are like children. He teaches them basic skills and trains them for their futures, and then they leave and mostly don’t need him, except when they come home for maintenance or call for help.<br><br>
+      Andy just took a new job as a robotic fleet deployment specialist at AllTrades, a major robotics-as-a-service vendor. His last job was managing contracts for an industrial equipment dealer. Never in a million years did he think he would go from seeing heavy machinery as anything but exactly that. But here he is. He and his team work with their flagship humanoid, Jack. And thanks to Jack’s versatility and the domain-specific fine tuning they provide for each project, they have fleets working in retail and doing security at a football stadium. Later this year, two Jacks are slated to be sent to the moon to help set up and operate an unmanned lunar lab for low gravity experiments.<br><br>
+      An alert interrupts Andy’s musings. It looks like today is one of those days when the robots need his help. A big retail client has reported an issue with their Jack robots stocking items on a new type of display
+    </div>
+
+    <div class="col col2">
+      shelving that’s about to be rolled out nationwide. Andy quickly pulls up one of the robot’s digital twins and watches it repeatedly attempt and fail to complete the task. There is indeed a problem.<br><br>
+      First, Andy runs a series of tests to check for hardware failures or software bugs. Then he checks the robot’s plan of action and queries the system in natural language over why it stopped the action early. He thinks he knows what’s happening. The new shelves are made of a highly reflective material, and the robot is seeing something in them that’s tricking its vision software.<br><br>
+      Using VR teleoperation, Andy assumes control of the Jack and uses it to place various items on the shelves. He records the visual data, then uploads it to AllTrades’ Jack simulator. Within minutes, the system has generated countless new variations of the data, and hundreds of virtual Jacks are practicing placing items on reflective shelves. After a few hours, a fine-tuned model is deployed and validated on the physical Jack. Success! Best of all, this new model will be pushed out to all of the client’s Jacks, before those new shelves hit more of their stores.
+    </div>
+
+    <div class="image-panel">
+      <div class="mist" style="left:-34px; top:278px; width:192px; height:264px; background:radial-gradient(circle at 55% 40%, rgba(255,66,192,0.85), rgba(188,13,170,0.45) 45%, rgba(135,63,255,0.3) 72%, transparent 100%);"></div>
+      <div class="mist" style="left:116px; top:330px; width:170px; height:180px; background:radial-gradient(circle at 50% 50%, rgba(245,144,255,0.55), rgba(140,40,255,0.35) 58%, transparent 100%);"></div>
+
+      <div class="robot" style="left:6px; top:8px; width:136px; height:476px; transform: rotate(-5deg);">
+        <div class="head" style="left:13px; top:0px; width:71px; height:62px;"></div>
+        <div class="visor" style="left:9px; top:18px; width:25px; height:26px;"></div>
+        <div class="neck" style="left:33px; top:57px; width:12px; height:18px;"></div>
+        <div class="shoulder" style="left:2px; top:63px; width:42px; height:28px;"></div>
+        <div class="torso" style="left:0px; top:66px; width:111px; height:276px;"></div>
+        <div class="arm" style="left:0px; top:132px; width:25px; height:230px; transform: rotate(8deg);"></div>
+        <div class="arm" style="left:82px; top:132px; width:22px; height:202px; transform: rotate(-8deg);"></div>
+        <div class="leg" style="left:36px; top:318px; width:29px; height:134px; transform: rotate(7deg);"></div>
+        <div class="leg" style="left:69px; top:316px; width:26px; height:142px; transform: rotate(-2deg);"></div>
+        <div class="shoe" style="left:27px; top:445px; width:44px; height:18px; transform: rotate(12deg);"></div>
+        <div class="shoe" style="left:64px; top:451px; width:39px; height:16px; transform: rotate(8deg);"></div>
+        <div class="slash" style="left:58px; top:168px; width:26px; transform: rotate(40deg);"></div>
+      </div>
+
+      <div class="robot" style="left:122px; top:42px; width:114px; height:417px; transform: rotate(-3deg);">
+        <div class="head" style="left:20px; top:0px; width:58px; height:51px;"></div>
+        <div class="visor" style="left:12px; top:18px; width:20px; height:22px;"></div>
+        <div class="neck" style="left:38px; top:47px; width:9px; height:14px;"></div>
+        <div class="shoulder" style="left:5px; top:54px; width:36px; height:23px;"></div>
+        <div class="torso" style="left:6px; top:57px; width:91px; height:237px;"></div>
+        <div class="arm" style="left:6px; top:118px; width:19px; height:177px; transform: rotate(7deg);"></div>
+        <div class="arm" style="left:72px; top:120px; width:18px; height:171px; transform: rotate(-11deg);"></div>
+        <div class="leg" style="left:29px; top:277px; width:22px; height:117px; transform: rotate(8deg);"></div>
+        <div class="leg" style="left:54px; top:277px; width:21px; height:122px; transform: rotate(-5deg);"></div>
+        <div class="shoe" style="left:24px; top:388px; width:35px; height:14px; transform: rotate(11deg);"></div>
+        <div class="shoe" style="left:49px; top:392px; width:34px; height:13px; transform: rotate(6deg);"></div>
+        <div class="slash" style="left:40px; top:124px; width:24px; transform: rotate(42deg);"></div>
+      </div>
+
+      <div class="robot" style="left:218px; top:82px; width:90px; height:360px; transform: rotate(-3deg);">
+        <div class="head" style="left:18px; top:0px; width:47px; height:39px;"></div>
+        <div class="visor" style="left:11px; top:15px; width:16px; height:18px;"></div>
+        <div class="neck" style="left:31px; top:37px; width:8px; height:12px;"></div>
+        <div class="shoulder" style="left:7px; top:46px; width:29px; height:18px;"></div>
+        <div class="torso" style="left:7px; top:49px; width:71px; height:198px;"></div>
+        <div class="arm" style="left:7px; top:99px; width:15px; height:144px; transform: rotate(7deg);"></div>
+        <div class="arm" style="left:56px; top:102px; width:14px; height:137px; transform: rotate(-9deg);"></div>
+        <div class="leg" style="left:24px; top:230px; width:18px; height:105px; transform: rotate(7deg);"></div>
+        <div class="leg" style="left:45px; top:230px; width:16px; height:109px; transform: rotate(-3deg);"></div>
+        <div class="shoe" style="left:17px; top:331px; width:29px; height:11px; transform: rotate(10deg);"></div>
+        <div class="shoe" style="left:40px; top:336px; width:26px; height:10px; transform: rotate(6deg);"></div>
+        <div class="slash" style="left:29px; top:116px; width:17px; transform: rotate(40deg);"></div>
+      </div>
+
+      <div class="robot" style="left:285px; top:107px; width:71px; height:317px; transform: rotate(-2deg);">
+        <div class="head" style="left:14px; top:0px; width:41px; height:33px;"></div>
+        <div class="visor" style="left:10px; top:13px; width:13px; height:15px;"></div>
+        <div class="neck" style="left:26px; top:31px; width:7px; height:10px;"></div>
+        <div class="shoulder" style="left:5px; top:39px; width:24px; height:16px;"></div>
+        <div class="torso" style="left:6px; top:42px; width:58px; height:170px;"></div>
+        <div class="arm" style="left:6px; top:88px; width:12px; height:120px; transform: rotate(8deg);"></div>
+        <div class="arm" style="left:46px; top:88px; width:11px; height:117px; transform: rotate(-8deg);"></div>
+        <div class="leg" style="left:20px; top:197px; width:14px; height:93px; transform: rotate(7deg);"></div>
+        <div class="leg" style="left:37px; top:197px; width:14px; height:97px; transform: rotate(-3deg);"></div>
+        <div class="shoe" style="left:13px; top:289px; width:24px; height:10px; transform: rotate(10deg);"></div>
+        <div class="shoe" style="left:31px; top:294px; width:22px; height:9px; transform: rotate(7deg);"></div>
+      </div>
+
+      <div class="glow" style="left:10px; top:177px; width:142px; height:110px; background:radial-gradient(circle, rgba(255,0,191,0.95) 0%, rgba(255,0,191,0.4) 45%, rgba(255,0,191,0) 75%);"></div>
+      <div class="glow" style="left:120px; top:240px; width:106px; height:106px; background:radial-gradient(circle, rgba(255,20,80,0.82) 0%, rgba(255,20,80,0.25) 48%, rgba(255,20,80,0) 76%);"></div>
+      <div class="glow" style="left:203px; top:285px; width:92px; height:92px; background:radial-gradient(circle, rgba(180,0,255,0.8) 0%, rgba(180,0,255,0.22) 45%, rgba(180,0,255,0) 75%);"></div>
+    </div>
+
+    <div class="arrow">&gt;</div>
+  </div>
+</body>
+</html>

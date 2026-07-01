@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#cfcfcf;font-family:Arial,Helvetica,'Segoe UI',sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  .slide > *{position:absolute; box-sizing:border-box;}
+  .leftbar{
+    left:0; top:0; width:181px; height:720px;
+    background:#353941;
+    border-right:2px solid #7458c1;
+    z-index:5;
+  }
+  .title{
+    left:12px; top:32px; width:156px;
+    color:#f1f1f1; font-size:25px; line-height:31px; font-weight:700;
+    z-index:20;
+  }
+  .nav-item{z-index:25;}
+  .hex{
+    width:78px;height:67px;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    border:4px solid #8b8d92;background:rgba(255,255,255,0.04);
+    position:absolute;
+    overflow:hidden;
+  }
+  .hex.purple{border-color:#8f70de; box-shadow:0 0 10px rgba(143,112,222,.35);}
+  .n-num{
+    color:#7e8289; font-size:22px; font-weight:700; line-height:22px;
+    position:absolute;
+  }
+  .n-num.purple{color:#8f70de;}
+  .n-lbl{
+    color:#656971; font-size:14px; line-height:16px; position:absolute;
+  }
+  .n-lbl.purple{color:#7b63c7; font-weight:600;}
+  .bottom-icon{left:68px; top:661px; width:58px; height:58px; z-index:20; transform:translateY(-58px);}
+  .page{left:10px; top:708px; color:#fff; font-size:16px; line-height:12px; z-index:30; transform:translateY(-12px);}
+  .headline{
+    left:220px; top:30px; width:1035px;
+    color:#202020; font-size:26px; line-height:38px; font-weight:800;
+    z-index:20;
+  }
+  .timeline-line{
+    left:220px; top:185px; width:1115px; height:1px; background:#a995c9; z-index:10;
+  }
+  .arrow-head{
+    left:1332px; top:177px; width:0; height:0; z-index:11;
+    border-top:9px solid transparent;
+    border-bottom:9px solid transparent;
+    border-left:18px solid #553381;
+  }
+
+  .card{
+    top:169px; height:550px;
+    background:rgba(255,255,255,0.08);
+    border:1.5px solid;
+    border-radius:16px;
+    z-index:15;
+  }
+  .card1{left:233px;width:260px;border-color:#9988be;}
+  .card2{left:501px;width:245px;border-color:#9988be;}
+  .card3{left:754px;width:266px;border-color:#aab8cb;}
+  .card4{left:1030px;width:291px;border-color:#6fa3cb;}
+
+  .year{
+    width:90px;height:88px;border-radius:50%;
+    color:#fff; font-size:19px; line-height:24px; font-weight:400;
+    text-align:center; z-index:30;
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+  }
+  .y1{left:310px;top:142px;background:#52327f;}
+  .y2{left:577px;top:143px;background:#8468b7;}
+  .y3{left:852px;top:143px;background:#9db4d0; width:90px; height:90px;}
+  .y4{left:1146px;top:147px;background:#00538d; width:90px; height:90px;}
+
+  .section-title{
+    font-size:24px; line-height:28px; font-weight:700; color:#4e317d; z-index:25;
+  }
+  .st1{left:247px;top:245px;width:180px;}
+  .st2{left:516px;top:245px;width:190px;}
+  .st3{left:767px;top:245px;width:190px;}
+  .st4{left:1042px;top:245px;width:185px;}
+
+  .body{
+    font-size:17px; line-height:1.15; font-weight:400; color:#333; z-index:25;
+  }
+  .b1{left:247px;top:304px;width:216px;}
+  .b2{left:516px;top:304px;width:202px;}
+  .b3{left:767px;top:304px;width:226px;}
+  .b4{left:1042px;top:304px;width:247px;}
+
+  .quote{
+    font-size:17px; line-height:1.16; font-style:italic; color:#0c5b95; z-index:25;
+  }
+  .quote .mark{
+    display:block; font-size:74px; line-height:54px; font-weight:700; color:#00538d; margin-bottom:2px;
+  }
+  .q1{left:247px;top:528px;width:220px;}
+  .q2{left:516px;top:463px;width:200px;}
+  .q3{left:767px;top:402px;width:225px;}
+  .q4{left:1042px;top:418px;width:240px;}
+
+  .author{
+    font-size:17px; line-height:20px; color:#0d4f84; font-weight:400; z-index:25;
+  }
+  .a1{left:247px;top:639px;}
+  .a2{left:516px;top:617px;}
+  .a3{left:767px;top:632px;}
+  .a4{left:1042px;top:685px;}
+
+  .sources{
+    left:220px; bottom:18px; color:#444; font-size:11px; line-height:11px; z-index:30;
+  }
+  .logo{right:12px; bottom:10px; width:58px; height:28px; z-index:30;}
+
+  .faint{opacity:.12; z-index:16;}
+  .icon-purple,.icon-blue{z-index:26;}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="leftbar"></div>
+
+  <div class="title">Technology &amp;<br>Innovation</div>
+
+  <div class="nav-item" style="left:8px;top:143px;width:155px;height:74px;">
+    <div class="hex" style="left:0;top:0;">
+      <svg width="78" height="67" viewBox="0 0 78 67">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ffffff" stop-opacity=".45"/>
+            <stop offset="1" stop-color="#ffffff" stop-opacity=".08"/>
+          </linearGradient>
+        </defs>
+        <rect width="78" height="67" fill="url(#g1)" opacity=".25"/>
+        <path d="M14 39 L28 29 L42 35 L58 24" stroke="#fff" stroke-width="2" fill="none" opacity=".9"/>
+        <path d="M11 46 L23 20 L33 30 L49 16 L60 32" stroke="#fff" stroke-width="1.5" fill="none" opacity=".75"/>
+        <rect x="17" y="16" width="44" height="28" fill="none" stroke="#fff" stroke-width="1.2" opacity=".45"/>
+        <circle cx="24" cy="27" r="2.2" fill="#fff"/>
+        <circle cx="38" cy="32" r="2.2" fill="#fff"/>
+        <circle cx="55" cy="24" r="2.2" fill="#fff"/>
+      </svg>
+    </div>
+    <div class="n-num" style="left:85px;top:2px;">1</div>
+    <div class="n-lbl" style="left:85px;top:27px;width:60px;">Value of<br>Innovation</div>
+  </div>
+
+  <div class="nav-item" style="left:8px;top:275px;width:160px;height:74px;">
+    <div class="hex purple" style="left:0;top:0;">
+      <svg width="78" height="67" viewBox="0 0 78 67">
+        <rect width="78" height="67" fill="rgba(255,255,255,.08)"/>
+        <circle cx="39" cy="34" r="17" fill="rgba(255,255,255,.12)" stroke="#fff" stroke-width="1"/>
+        <path d="M22 38 C31 16,48 14,57 31" stroke="#fff" stroke-width="1.4" fill="none"/>
+        <path d="M20 25 C32 47,48 49,59 28" stroke="#fff" stroke-width="1.4" fill="none"/>
+        <path d="M39 18 v31" stroke="#fff" stroke-width="1" opacity=".7"/>
+      </svg>
+    </div>
+    <div class="n-num purple" style="left:85px;top:2px;">2</div>
+    <div class="n-lbl purple" style="left:85px;top:27px;width:76px;">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="nav-item" style="left:8px;top:408px;width:160px;height:74px;">
+    <div class="hex" style="left:0;top:0;">
+      <svg width="78" height="67" viewBox="0 0 78 67">
+        <rect width="78" height="67" fill="rgba(255,255,255,.08)"/>
+        <circle cx="28" cy="34" r="10" fill="rgba(255,255,255,.28)"/>
+        <circle cx="49" cy="34" r="10" fill="rgba(255,255,255,.28)"/>
+        <path d="M34 34 h10" stroke="#fff" stroke-width="3"/>
+        <path d="M18 46 q10-8 20 0" stroke="#fff" stroke-width="1.2" fill="none" opacity=".65"/>
+        <path d="M39 46 q10-8 20 0" stroke="#fff" stroke-width="1.2" fill="none" opacity=".65"/>
+      </svg>
+    </div>
+    <div class="n-num" style="left:85px;top:2px;">3</div>
+    <div class="n-lbl" style="left:85px;top:27px;width:76px;">Humans &amp;<br>Machines</div>
+  </div>
+
+  <div class="bottom-icon">
+    <svg width="58" height="58" viewBox="0 0 58 58">
+      <g fill="none" stroke="#72767d" stroke-width="3">
+        <circle cx="37" cy="21" r="8"></circle>
+        <path d="M31 28 C24 29,20 34,19 40"></path>
+        <path d="M15 14 l-8 -5"></path>
+        <path d="M11 23 H2"></path>
+        <path d="M13 32 l-8 5"></path>
+        <path d="M43 8 V0"></path>
+        <path d="M50 13 l7 -5"></path>
+        <path d="M53 21 h8"></path>
+        <path d="M50 29 l7 5"></path>
+        <path d="M43 35 v8"></path>
+      </g>
+      <path d="M24 11 c-8 0-14 6-14 14 c0 7 4 12 10 14 v7 l6-4 l6 4 v-7 c6-2 10-7 10-14 c0-8-6-14-14-14 z" fill="none" stroke="#72767d" stroke-width="3"/>
+      <path d="M24 18 c-4 2-5 7-2 10 c2 2 2 5-1 8" fill="none" stroke="#72767d" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="page">38</div>
+
+  <div class="headline">Increasing amounts of data allow continuous optimization of artificial<br>intelligence – Possible future applications could transform lives</div>
+
+  <div class="timeline-line"></div>
+  <div class="arrow-head"></div>
+
+  <div class="card card1"></div>
+  <div class="card card2"></div>
+  <div class="card card3"></div>
+  <div class="card card4"></div>
+
+  <div class="year y1">2030</div>
+  <div class="year y2">2035</div>
+  <div class="year y3">2030<br>2040</div>
+  <div class="year y4">By<br>2050</div>
+
+  <div class="section-title st1">Healthcare</div>
+  <div class="section-title st2">Trust, ethics &amp;<br>governance</div>
+  <div class="section-title st3">Sustainable<br>business</div>
+  <div class="section-title st4">Service<br>innovation</div>
+
+  <div class="body b1">AI will be used to address and prevent health problems through tools such as ad-<br>vanced AI prediction<br>applications, virtual nursing<br>assistants and smart wearable<br>devices that detect health<br>issues when they occur<br>reducing unnecessary<br>hospitalizations</div>
+
+  <div class="body b2">Organizations will be required<br>to provide transparent<br>reports on how they govern<br>and assure their ethical use<br>of AI and data; they will be<br>held responsible for<br>breaches of trust</div>
+
+  <div class="body b3">AI will make it possible for<br>businesses to run a carbon-<br>neutral enterprise from 2030 to<br>2040</div>
+
+  <div class="body b4">AI technology will read emotions to<br>personalize each customer experi-<br>ence, and everyday interactions will<br>be a mix of humans, AI-enabled<br>machines and hybrids</div>
+
+  <div class="icon-purple" style="left:431px;top:245px;width:49px;height:49px;">
+    <svg width="49" height="49" viewBox="0 0 49 49">
+      <circle cx="24.5" cy="24.5" r="24" fill="#52327f"/>
+      <path d="M24.5 12 v25" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M29 15 c-2-3-8-3-10 0 c-3 4 1 7 5 9 c4 2 8 5 5 9 c-2 4-8 4-10 0" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="icon-purple" style="left:688px;top:243px;width:48px;height:48px;">
+    <svg width="48" height="48" viewBox="0 0 48 48">
+      <g fill="none" stroke="#8468b7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 18 h10 l-4 13 h-10 z"></path>
+        <path d="M30 18 h10 l-4 13 h-10 z"></path>
+        <path d="M14 18 l8 -8"></path>
+        <path d="M34 18 l-14 -7"></path>
+        <path d="M21 10 v26"></path>
+        <path d="M13 34 h16"></path>
+      </g>
+      <circle cx="21" cy="10" r="3" fill="#8468b7"></circle>
+      <circle cx="35" cy="12" r="3" fill="#8468b7"></circle>
+    </svg>
+  </div>
+
+  <div class="icon-blue" style="left:931px;top:247px;width:75px;height:45px;">
+    <svg width="75" height="45" viewBox="0 0 75 45">
+      <path d="M38 27 C24 12,15 17,7 11 C2 29,14 41,30 41 C31 35,34 31,38 27 Z" fill="#9db4d0"/>
+      <path d="M42 27 C56 11,65 15,73 13 C72 30,60 44,43 41 C42 34,40 30,42 27 Z" fill="#9db4d0"/>
+      <path d="M38 27 C38 33,35 39,31 44" stroke="#9db4d0" stroke-width="2" fill="none"/>
+    </svg>
+  </div>
+
+  <div class="icon-blue" style="left:1245px;top:245px;width:51px;height:48px;">
+    <svg width="51" height="48" viewBox="0 0 51 48">
+      <g fill="#00538d" stroke="#00538d" stroke-linejoin="round">
+        <rect x="3" y="35" width="45" height="4" stroke="none"/>
+        <rect x="8" y="31" width="35" height="2" stroke="none"/>
+        <circle cx="12" cy="27" r="3.5" stroke="none"/>
+        <rect x="9" y="28" width="6" height="5" stroke="none"/>
+        <circle cx="25" cy="27" r="3.5" stroke="none"/>
+        <rect x="22" y="28" width="6" height="5" stroke="none"/>
+        <circle cx="39" cy="9" r="7" fill="none" stroke-width="2"/>
+        <path d="M39 16 v15" fill="none" stroke-width="3"/>
+        <path d="M32 31 v-9 l7-4 l7 4 v9 z" stroke="none"/>
+        <path d="M39 6 v4" fill="none" stroke-width="2"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="quote q1"><span class="mark">”</span>By 2030, we’ll see a<br>substantial uptake of these<br>tools by individuals as well as<br>the public and private sectors.</div>
+
+  <div class="quote q2"><span class="mark">”</span>Most people are more<br>willing to use AI when there<br>are mechanisms in place to<br>assure AI is being developed<br>and used in a trustworthy<br>manner.</div>
+
+  <div class="quote q3"><span class="mark">”</span>AI will provide tremendous<br>opportunities from 2030<br>onwards to work towards a<br>more circular and efficient<br>economy. You will see a lot of<br>smart systems optimized for<br>product demand, producing<br>outputs in a way that is less<br>wasteful, both financially and<br>environmentally.</div>
+
+  <div class="quote q4"><span class="mark">”</span>In the future, increased usage<br>of AI technology will provide<br>insights into people’s emotions –<br>sensors will be able to pick up<br>facial expressions and through AI<br>can sync with other data sources<br>from a customer to alert an<br>organization as to how the<br>individual customer is feeling, so<br>they personalize offerings in real-<br>time and make experiences<br>engaging and seamless.</div>
+
+  <div class="author a1">Prof. Nicole Hartley</div>
+  <div class="author a2">Prof. Nicole Hartley</div>
+  <div class="author a3">Dr. Belinda Wade</div>
+  <div class="author a4">Prof. Janet McColl-Kennedy</div>
+
+  <svg class="faint" style="left:697px;top:361px;width:312px;height:265px;" viewBox="0 0 312 265">
+    <g fill="none" stroke="#ffffff" stroke-width="3">
+      <path d="M54 74 l42 -24 l42 24 l0 48 l-42 24 l-42 -24 z"></path>
+      <path d="M141 68 l41 -23 l41 23 l0 46 l-41 23 l-41 -23 z"></path>
+      <path d="M225 74 l42 -24 l42 24 l0 48 l-42 24 l-42 -24 z"></path>
+      <path d="M98 144 l41 -23 l41 23 l0 46 l-41 23 l-41 -23 z"></path>
+      <path d="M182 144 l41 -23 l41 23 l0 46 l-41 23 l-41 -23 z"></path>
+      <circle cx="161" cy="169" r="12"></circle>
+      <path d="M155 169 h12 M161 163 v12"></path>
+      <path d="M120 166 h15 v18 h-15 z"></path>
+      <path d="M124 172 h7"></path>
+      <path d="M237 164 h16 v19 h-16 z"></path>
+      <path d="M240 169 h10 M240 174 h10 M240 179 h8"></path>
+      <circle cx="96" cy="219" r="18"></circle>
+      <path d="M85 220 h22 M96 209 v22"></path>
+      <path d="M29 204 c0-15 12-27 27-27"></path>
+      <path d="M39 196 l-10 8 l12 5"></path>
+    </g>
+  </svg>
+
+  <div class="sources">Sources: University of Queensland; Roland Berger</div>
+
+  <div class="logo">
+    <svg width="58" height="28" viewBox="0 0 58 28">
+      <text x="0" y="10" font-family="Arial, Helvetica, sans-serif" font-size="5" fill="#7b7b7b">Roland</text>
+      <text x="0" y="18" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#7b7b7b">B</text>
+      <path d="M44 3 h4 c6 0 10 5 10 11 c0 6-4 11-10 11 h-4 z" fill="#8a8d91"></path>
+      <path d="M44 3 h3 v22 h-3 z" fill="#a5a8ac"></path>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

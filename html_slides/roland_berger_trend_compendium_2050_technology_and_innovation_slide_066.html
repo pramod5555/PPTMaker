@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#b9b9bb;font-family:Arial, Helvetica, sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f2f2f2;
+  }
+  .slide > div, .slide > svg{position:absolute;box-sizing:border-box;}
+  .sidebar{
+    left:0;top:0;width:180px;height:720px;background:#363b42;z-index:5;
+  }
+  .purple-line{
+    left:179px;top:0;width:2px;height:720px;background:#6b52b6;z-index:6;
+  }
+  .tech-title{
+    left:12px;top:33px;width:150px;color:#f1f1f1;font-size:26px;line-height:1.06;font-weight:700;z-index:30;
+  }
+  .title{
+    left:220px;top:30px;width:1045px;color:#222;font-size:31px;line-height:1.14;font-weight:700;z-index:30;
+  }
+  .colhead-left{
+    left:220px;top:138px;width:320px;color:#4f3c82;font-size:26px;line-height:1.1;font-weight:400;z-index:30;
+  }
+  .colhead-right{
+    left:622px;top:138px;width:500px;color:#1d74ac;font-size:26px;line-height:1.1;font-weight:400;z-index:30;
+  }
+
+  .side-icon{width:76px;height:76px;z-index:31;}
+  .i1{left:7px;top:139px;}
+  .i2{left:7px;top:271px;}
+  .i3{left:7px;top:404px;}
+
+  .numblk{color:#757c86;font-weight:700;font-size:30px;line-height:1;}
+  .side-label{color:#666d77;font-size:16px;line-height:1.05;font-weight:400;}
+  .step1{left:93px;top:145px;width:80px;z-index:30;}
+  .step2{left:93px;top:277px;width:80px;z-index:30;}
+  .step3{left:93px;top:408px;width:92px;z-index:30;}
+  .step3 .numblk,.step3 .side-label{color:#7d59c7;}
+  .step3 .side-label{font-weight:700;}
+
+  .bio-card{
+    left:220px;width:387px;height:79px;background:rgba(215,215,219,0.92);
+    border-radius:8px;z-index:21;
+  }
+  .card1{top:185px;}
+  .card2{top:278px;}
+  .card3{top:370px;}
+  .card4{top:462px;}
+  .card5{top:554px;}
+  .card6{top:646px;}
+
+  .card-title{
+    left:10px;top:7px;width:300px;color:#4f3c82;font-size:17px;line-height:1.08;font-weight:700;z-index:31;
+  }
+  .card-body{
+    left:10px;top:34px;width:292px;color:#3c3c3c;font-size:15px;line-height:1.18;font-weight:400;z-index:31;
+  }
+
+  .concern{
+    left:622px;width:612px;color:#333;font-size:16px;line-height:1.06;font-weight:400;z-index:31;
+  }
+  .c1{top:192px;}
+  .c2{top:288px;}
+  .c3{top:385px;}
+  .c4{top:466px;}
+  .c5{top:561px;}
+  .c6{top:647px;}
+
+  .faded-illustration{
+    left:360px;top:214px;width:900px;height:455px;opacity:.18;z-index:10;
+  }
+
+  .gearbox{
+    left:70px;top:661px;width:84px;height:45px;z-index:30;opacity:.42;
+  }
+
+  .footer{
+    left:220px;top:686px;width:640px;color:#444;font-size:11px;line-height:1.1;font-weight:400;z-index:30;
+  }
+  .page{
+    left:10px;top:705px;color:#fff;font-size:18px;line-height:1;font-weight:400;z-index:30;
+  }
+  .rb{
+    left:1214px;top:687px;width:53px;height:24px;z-index:50;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="sidebar"></div>
+  <div class="purple-line"></div>
+
+  <div class="tech-title">Technology &amp;<br>Innovation</div>
+
+  <svg class="side-icon i1" viewBox="0 0 76 76">
+    <polygon points="18,6 58,6 71,38 58,70 18,70 5,38" fill="rgba(255,255,255,0.10)" stroke="#8f949b" stroke-width="3"/>
+    <polygon points="22,13 54,13 63,38 54,63 22,63 13,38" fill="rgba(255,255,255,0.07)"/>
+    <rect x="21" y="28" width="34" height="18" fill="rgba(255,255,255,0.30)"/>
+    <line x1="23" y1="31" x2="50" y2="44" stroke="#e2e2e2" stroke-width="1.1"/>
+    <line x1="24" y1="44" x2="50" y2="27" stroke="#e2e2e2" stroke-width="1.1"/>
+    <circle cx="27" cy="34" r="3" fill="#efefef"/>
+    <circle cx="41" cy="40" r="2.5" fill="#efefef"/>
+    <circle cx="49" cy="33" r="2.5" fill="#efefef"/>
+    <circle cx="35" cy="46" r="2.3" fill="#efefef"/>
+  </svg>
+
+  <svg class="side-icon i2" viewBox="0 0 76 76">
+    <polygon points="18,6 58,6 71,38 58,70 18,70 5,38" fill="rgba(255,255,255,0.08)" stroke="#8f949b" stroke-width="3"/>
+    <polygon points="22,13 54,13 63,38 54,63 22,63 13,38" fill="rgba(255,255,255,0.04)"/>
+    <circle cx="28" cy="33" r="11" fill="rgba(255,255,255,0.16)"/>
+    <circle cx="40" cy="29" r="8" fill="rgba(255,255,255,0.13)"/>
+    <circle cx="46" cy="41" r="10" fill="rgba(255,255,255,0.14)"/>
+    <line x1="20" y1="41" x2="51" y2="28" stroke="#d4d7db" stroke-width="1"/>
+    <line x1="28" y1="23" x2="46" y2="45" stroke="#d4d7db" stroke-width="1"/>
+    <line x1="25" y1="31" x2="54" y2="39" stroke="#d4d7db" stroke-width="1"/>
+    <circle cx="24" cy="42" r="1.8" fill="#ededed"/>
+    <circle cx="34" cy="26" r="1.8" fill="#ededed"/>
+    <circle cx="49" cy="28" r="1.8" fill="#ededed"/>
+    <circle cx="45" cy="46" r="1.8" fill="#ededed"/>
+  </svg>
+
+  <svg class="side-icon i3" viewBox="0 0 76 76">
+    <polygon points="18,6 58,6 71,38 58,70 18,70 5,38" fill="#f2f2f2" stroke="#8c69d4" stroke-width="4"/>
+    <polygon points="22,13 54,13 63,38 54,63 22,63 13,38" fill="#f8efe8"/>
+    <circle cx="29" cy="35" r="5" fill="#f2c4ac"/>
+    <circle cx="47" cy="35" r="5" fill="#f2c4ac"/>
+    <path d="M22 40 C27 29, 34 30, 37 35 C40 39, 44 40, 50 32" stroke="#b98e77" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M26 43 C31 39, 36 38, 41 42" stroke="#dadada" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M36 41 C41 37, 46 36, 51 40" stroke="#c7d6e6" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <div class="step1">
+    <div class="numblk">1</div>
+    <div class="side-label" style="margin-top:4px;">Value of<br>Innovation</div>
+  </div>
+  <div class="step2">
+    <div class="numblk">2</div>
+    <div class="side-label" style="margin-top:4px;">Frontier<br>Technologies</div>
+  </div>
+  <div class="step3">
+    <div class="numblk">3</div>
+    <div class="side-label" style="margin-top:4px;">Humans &amp;<br>Machines</div>
+  </div>
+
+  <div class="title">Curing diseases vs. human enhancement – New biotechnologies bring novel<br>and hitherto unresolved ethical and social concerns</div>
+  <div class="colhead-left">Biotechnologies</div>
+  <div class="colhead-right">Ethical &amp; social concerns</div>
+
+  <svg class="faded-illustration" viewBox="0 0 900 455">
+    <defs>
+      <linearGradient id="g1" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#bbbbbf" stop-opacity="0.25"/>
+        <stop offset="1" stop-color="#c8c8cc" stop-opacity="0.52"/>
+      </linearGradient>
+    </defs>
+    <path d="M185 355 C290 280, 440 235, 616 172 C714 137, 805 96, 884 58" fill="none" stroke="url(#g1)" stroke-width="4"/>
+    <path d="M120 386 C255 337, 444 289, 694 188" fill="none" stroke="#bcbcc0" stroke-width="2.3"/>
+    <path d="M505 139 C560 171, 611 201, 650 229 C686 255, 708 281, 715 321" fill="none" stroke="#c3c3c7" stroke-width="2"/>
+    <path d="M265 433 C292 367, 347 337, 427 333 C498 330, 564 313, 626 278 C684 246, 744 205, 800 164" fill="none" stroke="#c3c3c7" stroke-width="2"/>
+    <ellipse cx="350" cy="317" rx="34" ry="54" fill="none" stroke="#cacace" stroke-width="2"/>
+    <path d="M318 334 C308 315, 302 299, 301 284 C299 258, 311 245, 334 235" fill="none" stroke="#cacace" stroke-width="2"/>
+    <path d="M381 334 C390 301, 390 276, 382 246 C419 245, 447 257, 458 278 C470 300, 466 333, 442 359" fill="none" stroke="#cacace" stroke-width="2"/>
+    <path d="M455 275 C502 272, 547 281, 584 299 C620 314, 647 336, 661 363" fill="none" stroke="#cacace" stroke-width="2"/>
+    <circle cx="692" cy="358" r="14" fill="none" stroke="#cacace" stroke-width="2"/>
+    <path d="M691 372 L691 420" stroke="#cacace" stroke-width="2"/>
+    <path d="M666 318 C695 307, 723 307, 749 318 C760 342, 758 364, 742 380 C717 387, 694 385, 671 373 C662 354, 661 336, 666 318 Z" fill="none" stroke="#cacace" stroke-width="2"/>
+    <path d="M659 216 C713 216, 758 241, 791 284 L797 389" fill="none" stroke="#cacace" stroke-width="2"/>
+  </svg>
+
+  <div class="bio-card card1">
+    <div class="card-title">Life span extension</div>
+    <div class="card-body">Extending life span too far beyond<br>current averages</div>
+    <svg style="position:absolute;left:319px;top:12px;width:56px;height:56px;z-index:32;" viewBox="0 0 56 56">
+      <path d="M34 6 C41 4, 50 8, 51 18 C51 24, 49 27, 45 30 C49 31, 52 36, 52 41 L36 41 C30 41, 24 36, 24 29 C24 17, 24 10, 34 6 Z" fill="#4f3c82"/>
+      <circle cx="19" cy="29" r="16" fill="#4f3c82"/>
+      <circle cx="19" cy="29" r="14" fill="none" stroke="#f1f1f1" stroke-width="1.6"/>
+      <line x1="19" y1="29" x2="19" y2="19" stroke="#f1f1f1" stroke-width="2"/>
+      <line x1="19" y1="29" x2="11" y2="29" stroke="#f1f1f1" stroke-width="2"/>
+      <rect x="47" y="18" width="4" height="2" fill="#4f3c82"/>
+    </svg>
+  </div>
+
+  <div class="bio-card card2">
+    <div class="card-title">Cyberware</div>
+    <div class="card-body">For example, exoskeletons, advanced<br>prostheses</div>
+    <svg style="position:absolute;left:323px;top:7px;width:48px;height:65px;z-index:32;" viewBox="0 0 48 65">
+      <circle cx="24" cy="9" r="6" fill="#4f3c82"/>
+      <rect x="20" y="15" width="8" height="18" rx="3" fill="#4f3c82"/>
+      <line x1="24" y1="21" x2="13" y2="30" stroke="#4f3c82" stroke-width="4" stroke-linecap="round"/>
+      <line x1="24" y1="21" x2="36" y2="28" stroke="#4f3c82" stroke-width="4" stroke-linecap="round"/>
+      <line x1="23" y1="33" x2="17" y2="49" stroke="#4f3c82" stroke-width="4" stroke-linecap="round"/>
+      <line x1="25" y1="33" x2="33" y2="51" stroke="#4f3c82" stroke-width="4" stroke-linecap="round"/>
+      <rect x="7" y="27" width="10" height="5" rx="1" fill="none" stroke="#4f3c82" stroke-width="2"/>
+      <rect x="32" y="24" width="12" height="5" rx="1" fill="none" stroke="#4f3c82" stroke-width="2"/>
+      <rect x="3" y="49" width="16" height="5" rx="2" fill="none" stroke="#4f3c82" stroke-width="2"/>
+      <rect x="20" y="48" width="14" height="5" rx="2" fill="none" stroke="#4f3c82" stroke-width="2"/>
+      <circle cx="18" cy="30" r="2" fill="#4f3c82"/>
+      <circle cx="32" cy="28" r="2" fill="#4f3c82"/>
+      <circle cx="17" cy="49" r="2" fill="#4f3c82"/>
+    </svg>
+  </div>
+
+  <div class="bio-card card3">
+    <div class="card-title">Gene therapy</div>
+    <div class="card-body">Gene manipulation to cure diseases e.g.<br>cancer (see subtrend 2)</div>
+    <svg style="position:absolute;left:325px;top:10px;width:44px;height:58px;z-index:32;" viewBox="0 0 44 58">
+      <path d="M8 6 C17 14, 27 14, 36 6" fill="none" stroke="#4f3c82" stroke-width="6" stroke-linecap="round"/>
+      <path d="M8 52 C17 44, 27 44, 36 52" fill="none" stroke="#4f3c82" stroke-width="6" stroke-linecap="round"/>
+      <path d="M10 9 C17 14, 25 20, 34 27" fill="none" stroke="#4f3c82" stroke-width="4"/>
+      <path d="M10 49 C17 44, 25 38, 34 31" fill="none" stroke="#4f3c82" stroke-width="4"/>
+      <line x1="13" y1="17" x2="28" y2="17" stroke="#4f3c82" stroke-width="3"/>
+      <line x1="16" y1="28" x2="31" y2="28" stroke="#4f3c82" stroke-width="3"/>
+      <line x1="13" y1="39" x2="28" y2="39" stroke="#4f3c82" stroke-width="3"/>
+    </svg>
+  </div>
+
+  <div class="bio-card card4">
+    <div class="card-title">Human genetic engineering</div>
+    <div class="card-body">Embryonic gene manipulation e.g. to cure<br>hereditary disorders (see subtrend 2)</div>
+    <svg style="position:absolute;left:320px;top:9px;width:54px;height:60px;z-index:32;" viewBox="0 0 54 60">
+      <path d="M18 9 C9 11, 4 18, 4 28 C4 42, 14 52, 28 52 C41 52, 48 42, 48 31 C48 21, 42 12, 33 9 C30 19, 22 25, 18 9 Z" fill="#4f3c82"/>
+      <circle cx="18" cy="25" r="5" fill="#f3f3f3"/>
+      <circle cx="18" cy="25" r="2.4" fill="#4f3c82"/>
+      <circle cx="29" cy="33" r="5" fill="#f3f3f3"/>
+      <circle cx="29" cy="33" r="2.4" fill="#4f3c82"/>
+      <path d="M33 9 L50 0 L53 4 L38 17" stroke="#4f3c82" stroke-width="3" fill="none"/>
+      <line x1="43" y1="2" x2="49" y2="8" stroke="#4f3c82" stroke-width="2"/>
+      <path d="M28 46 C33 44, 36 41, 36 36" fill="none" stroke="#f3f3f3" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="bio-card card5">
+    <div class="card-title">Nanomedicine</div>
+    <div class="card-body">Medicine that includes complex<br>nanotechnological particles (see subtrend 2)</div>
+    <svg style="position:absolute;left:322px;top:10px;width:52px;height:58px;z-index:32;" viewBox="0 0 52 58">
+      <path d="M13 16 C16 7, 25 5, 30 11 C35 17, 35 25, 27 30 C17 34, 9 27, 13 16 Z" fill="#4f3c82"/>
+      <path d="M28 18 L41 4" stroke="#4f3c82" stroke-width="5" stroke-linecap="round"/>
+      <rect x="38" y="1" width="10" height="7" rx="2" transform="rotate(45 43 4.5)" fill="#4f3c82"/>
+      <path d="M32 33 C30 42, 34 49, 41 49 C47 49, 50 44, 50 39 C50 34, 47 31, 42 31 C38 31, 34 33, 32 33 Z" fill="#4f3c82"/>
+      <circle cx="41" cy="39" r="2.3" fill="#f3f3f3"/>
+      <circle cx="18" cy="22" r="2" fill="#f3f3f3"/>
+    </svg>
+  </div>
+
+  <div class="bio-card card6">
+    <div class="card-title">Bioprinting &amp; xenotransplantation</div>
+    <div class="card-body">Laboratory and animal-based organs<br>(see subtrend 2)</div>
+    <svg style="position:absolute;left:322px;top:7px;width:56px;height:65px;z-index:32;" viewBox="0 0 56 65">
+      <path d="M27 12 C25 5, 19 3, 15 7 C11 11, 11 18, 14 22 C8 20, 4 24, 4 30 C4 42, 13 52, 28 60 C43 52, 52 42, 52 30 C52 24, 48 20, 42 22 C45 18, 45 10, 40 7 C36 4, 30 6, 29 12 Z" fill="#4f3c82"/>
+      <path d="M28 12 L28 46" stroke="#f3f3f3" stroke-width="1.5" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <div class="concern c1">Life-extension is considered unnatural and can put a burden on the society, the environment<br>and the economy (limited resources have to be used for more people, financial cost increase).<br>Furthermore, access to life extension procedures would be unequal</div>
+
+  <div class="concern c2">Using cyberware to ensure therapeutical success is not primarily of ethical concern. However, in<br>certain use cases, such as in military applications or manufacturing, with the effect of<br>dehumanizing people or by providing an unfair advantage, it is highly questionable</div>
+
+  <div class="concern c3">Gene therapy is mostly considered as accepted with little to no ethical and social concern as it<br>represent a key technology to cure diseases such as cancer</div>
+
+  <div class="concern c4">Human genetic engineering, which implies embryonic editing removes levels of autonomy in the<br>decision-making process of as yet unborn individuals. Furthermore, edited genes are carried by<br>future generations; concerns are highly dependent on national ethical and legal frameworks</div>
+
+  <div class="concern c5">Here, any distinction between human enhancement and therapy becomes highly blurred. Hybrid<br>humans – nanotechnology combined with humans – can be regarded as highly unethical due to<br>unfair advantages; the impact on the preservation of human identity is a contentious issue</div>
+
+  <div class="concern c6">The main concern here arises from the cells used for bioprinting – human embryonic stem<br>cells. A different source are xenogeneic (cross-species) cells, which however, like patients with<br>xenotransplantation, might create issues of personal identity</div>
+
+  <svg class="gearbox" viewBox="0 0 86 44">
+    <g fill="none" stroke="#c8c8c8" stroke-width="2.4">
+      <circle cx="18" cy="27" r="8"/>
+      <path d="M18 14 L18 7 M18 47 L18 40 M5 27 L-2 27 M38 27 L31 27 M8.8 17.8 L3.8 12.8 M27.2 36.2 L32.2 41.2 M8.8 36.2 L3.8 41.2 M27.2 17.8 L32.2 12.8"/>
+      <circle cx="52" cy="20" r="11"/>
+      <path d="M52 4 L52 0 M52 40 L52 36 M36 20 L32 20 M72 20 L76 20 M41 9 L38 6 M63 31 L66 34 M41 31 L38 34 M63 9 L66 6"/>
+      <path d="M49 20 C49 15, 53 13, 57 14" stroke-linecap="round"/>
+    </g>
+    <path d="M56 40 L56 28 C56 23, 60 19, 65 19 C70 19, 74 23, 74 28 L74 40 Z" fill="none" stroke="#c8c8c8" stroke-width="2.4"/>
+  </svg>
+
+  <div class="footer">Sources: Rejuvenation Research; Yale University; Frontiers in Oncology; Springer; Roland Berger</div>
+  <div class="page">66</div>
+
+  <svg class="rb" viewBox="0 0 53 24">
+    <text x="0" y="12" font-family="Arial, Helvetica, sans-serif" font-size="7" fill="#4d4d4d">Roland</text>
+    <text x="0" y="19" font-family="Arial, Helvetica, sans-serif" font-size="7" fill="#4d4d4d">Berger</text>
+    <path d="M40 2 C46 2, 49 5, 49 9 C49 13, 46 16, 41 16 L37 16 L37 2 Z" fill="#b6babf"/>
+    <path d="M37 2 L37 22 L41 22 C47 22, 50 18, 50 13 C50 8, 47 4, 40 4" fill="#7b8189"/>
+  </svg>
+</div>
+</body>
+</html>

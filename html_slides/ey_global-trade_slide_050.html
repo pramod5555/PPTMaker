@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#c9c6c6;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .top-white{
+    left:0; top:0; width:1280px; height:78px;
+    background:#efefef;
+    z-index:2;
+  }
+  .top-accent{
+    left:0; top:0; width:47px; height:78px;
+    background:#bab8bf;
+    z-index:3;
+  }
+  .top-rule{
+    left:0; top:77px; width:1280px; height:2px;
+    background:#cfd2d7;
+    z-index:4;
+  }
+  .title{
+    left:56px; top:50px; width:560px;
+    color:#797988;
+    font-size:19px;
+    line-height:22px;
+    font-weight:400;
+    z-index:10;
+  }
+  .circle-btn{
+    width:35px; height:35px;
+    border-radius:50%;
+    background:#c4c2ca;
+    color:#3f3f4c;
+    font-size:22px;
+    line-height:35px;
+    text-align:center;
+    font-weight:700;
+    z-index:12;
+  }
+  .left-btn{ left:951px; top:33px; }
+  .right-btn{ left:994px; top:33px; }
+
+  .content-bg{
+    left:0; top:79px; width:1280px; height:641px;
+    background:#f3f3f3;
+    z-index:1;
+  }
+
+  .col1{
+    left:56px; top:118px; width:286px;
+    color:#4c4c56;
+    z-index:20;
+  }
+  .col2{
+    left:359px; top:118px; width:296px;
+    color:#4c4c56;
+    z-index:20;
+  }
+  .col3{
+    left:690px; top:118px; width:302px;
+    color:#4c4c56;
+    z-index:20;
+  }
+  .sidebar{
+    left:1009px; top:120px; width:271px; height:286px;
+    z-index:30;
+  }
+
+  .h1{
+    font-size:18px;
+    line-height:22px;
+    font-weight:700;
+    color:#2e2e39;
+    width:280px;
+  }
+  .subhead{
+    font-size:18px;
+    line-height:22px;
+    font-weight:700;
+    color:#2e2e39;
+    width:294px;
+  }
+  .body{
+    font-size:15px;
+    line-height:1.34;
+    font-weight:400;
+    color:#4d4d57;
+  }
+
+  .bullet-list,.mini-bullet-list{
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+  .bullet-list li,.mini-bullet-list li{
+    position:relative;
+    padding-left:15px;
+    color:#4d4d57;
+    font-size:15px;
+    line-height:1.34;
+  }
+  .bullet-list li{ margin-bottom:8px; }
+  .mini-bullet-list li{ margin-bottom:10px; }
+  .bullet-list li:before,.mini-bullet-list li:before{
+    content:"■";
+    position:absolute;
+    left:0;
+    top:1px;
+    font-size:8px;
+    line-height:18px;
+    color:#3a3a43;
+  }
+
+  .sidebar-item{
+    position:absolute;
+    left:0;
+    width:271px;
+    background:#2f2e3a;
+    color:#f1f1f1;
+    font-size:20px;
+    line-height:1.05;
+    font-weight:400;
+    padding:8px 0 8px 37px;
+    border-left:2px solid #d6d316;
+  }
+  .si1{ top:0; height:36px; }
+  .si2{ top:50px; height:36px; }
+  .si3{ top:100px; height:54px; }
+  .si4{ top:169px; height:35px; }
+  .si5{ top:219px; height:35px; background:#8f8c95; color:#ffffff; }
+  .si6{ top:268px; height:35px; background:#8f8c95; color:#ffffff; }
+
+  .photo{
+    left:373px; top:373px; width:907px; height:347px;
+    z-index:10;
+    overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(10,20,28,0.12), rgba(10,20,28,0.28)),
+      linear-gradient(135deg,#163247 0%,#0c2232 42%,#172838 100%);
+  }
+
+  .foot{
+    left:56px; top:703px;
+    font-size:11px;
+    line-height:12px;
+    color:#6f6f79;
+    z-index:40;
+  }
+
+  .stack > div{ position:absolute; }
+  .c1p1{ left:0; top:0; width:282px; }
+  .c1p2{ left:0; top:46px; width:285px; }
+  .c1p3{ left:0; top:172px; width:285px; }
+  .c1p4{ left:0; top:286px; width:285px; }
+  .c1p5{ left:0; top:317px; width:286px; }
+
+  .c2p1{ left:0; top:0; width:292px; }
+  .c2p2{ left:0; top:83px; width:295px; }
+  .c2p3{ left:0; top:128px; width:296px; }
+
+  .c3p1{ left:0; top:0; width:300px; }
+  .c3p2{ left:0; top:133px; width:300px; }
+
+  .container-yard{
+    position:absolute;
+    left:0; top:0; width:907px; height:347px;
+  }
+  .lane{
+    position:absolute;
+    background:#172634;
+  }
+  .container{
+    position:absolute;
+    box-sizing:border-box;
+    border:1px solid rgba(20,20,20,0.38);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+  }
+  .vert{ width:28px; }
+  .hori{ height:24px; }
+  .teal{ background:linear-gradient(180deg,#69b1ab,#296d73); }
+  .blue{ background:linear-gradient(180deg,#528eb1,#26506a); }
+  .red{ background:linear-gradient(180deg,#c27461,#6f3226); }
+  .orange{ background:linear-gradient(180deg,#c68e78,#8d4d39); }
+  .green{ background:linear-gradient(180deg,#728d75,#3f5844); }
+  .beige{ background:linear-gradient(180deg,#d0c2ad,#9a8d78); }
+  .light{ background:linear-gradient(180deg,#d6dfdc,#9cb0af); }
+  .shadow{ box-shadow:0 10px 12px rgba(0,0,0,0.18); }
+  .stripe:after{
+    content:"";
+    position:absolute;
+    left:4px; top:0; bottom:0; width:2px;
+    background:rgba(255,255,255,0.18);
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="content-bg"></div>
+  <div class="top-white"></div>
+  <div class="top-accent"></div>
+  <div class="top-rule"></div>
+  <div class="title">Insights: Europe, Middle East, India and Africa</div>
+  <div class="circle-btn left-btn">◀</div>
+  <div class="circle-btn right-btn">▶</div>
+
+  <div class="col1 stack">
+    <div class="c1p1 h1">A transformational shift in Saudi Arabia’s customs compliance landscape</div>
+    <div class="c1p2 body">Historically, customs systems around the world have relied heavily on enforcement-driven models, often identifying errors through audits, investigations or post-clearance reviews. While effective, these traditional models can create inefficiencies, backlogs and complicated interactions between authorities and traders.</div>
+    <div class="c1p3 body">The ZATCA’s introduction of a formal VD mechanism signals a deliberate move away from reactive compliance models. Instead, the ZATCA seeks to cultivate a culture where businesses are encouraged, and even incentivized, to voluntarily report issues in good faith.</div>
+    <div class="c1p4 body">This shift supports three strategic objectives:</div>
+    <div class="c1p5">
+      <ul class="bullet-list">
+        <li>Enhancing transparency: Businesses gain clarity around how errors can be resolved, reducing uncertainty and the risk of prolonged disputes. The VD controls clearly outline eligibility, documentation requirements, decision timelines and the implications of submission.</li>
+        <li>Strengthening trust between authorities and the private sector: A system that rewards voluntary compliance fosters stronger cooperation and supports the broader sustainability of the customs ecosystem.</li>
+        <li>Aligning with international best practices: As global customs administrations adopt more risk-based and trader-centric models, voluntary disclosure regimes have become standard practice in mature economies. Saudi Arabia’s introduction</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col2 stack">
+    <div class="c2p1 body">of these VD mechanism reflects developments that can also be observed in other jurisdictions where risk-based and trader-centric customs supervision models are being introduced.</div>
+    <div class="c2p2 subhead">Regulatory foundation built on the GCC Unified Customs Law</div>
+    <div class="c2p3 body">The VD framework derives its authority from the GCC Unified Customs Law, particularly Article 141, which outlines administrative customs violations associated with incorrect or incomplete information in customs declarations. The VD framework applies to customs declaration related violations or any other related declarations that fall under Article 141, including inaccuracies in the following:</div>
+  </div>
+
+  <div class="col3 stack">
+    <div class="c3p1">
+      <ul class="mini-bullet-list">
+        <li>Incorrect determination of country of origin</li>
+        <li>Misclassification of goods under the Harmonized System (HS) code</li>
+        <li>Inaccurate customs valuation</li>
+        <li>Missing, incomplete or incorrect data elements in import or export declarations</li>
+      </ul>
+    </div>
+    <div class="c3p2 body">These categories represent some of the most common and impactful customs compliance risks faced by businesses. Errors in any of these areas can lead to financial exposure, shipment delays and downstream regulatory monitoring. The opportunity to self-correct them while obtaining a full waiver of violations offers significant relief to businesses.</div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-item si1">Contents</div>
+    <div class="sidebar-item si2">Insights</div>
+    <div class="sidebar-item si3">New on<br>ey.com</div>
+    <div class="sidebar-item si4">Tax alerts</div>
+    <div class="sidebar-item si5">Additional resources</div>
+    <div class="sidebar-item si6">Contacts</div>
+  </div>
+
+  <div class="photo">
+    <div class="container-yard">
+      <div class="lane" style="left:0; top:0; width:907px; height:347px;"></div>
+      <div class="lane" style="left:0; top:89px; width:907px; height:10px; background:#293646;"></div>
+      <div class="lane" style="left:0; top:170px; width:907px; height:9px; background:#243241;"></div>
+      <div class="lane" style="left:0; top:247px; width:907px; height:11px; background:#202f3e;"></div>
+
+      <div class="container vert teal stripe" style="left:12px; top:14px; height:112px;"></div>
+      <div class="container vert beige stripe" style="left:41px; top:22px; height:98px;"></div>
+      <div class="container vert red stripe" style="left:71px; top:7px; height:131px;"></div>
+      <div class="container vert orange stripe" style="left:102px; top:27px; height:95px;"></div>
+      <div class="container vert light stripe" style="left:133px; top:16px; height:112px;"></div>
+      <div class="container vert red stripe" style="left:163px; top:30px; height:87px;"></div>
+      <div class="container vert green stripe" style="left:193px; top:6px; height:121px;"></div>
+      <div class="container vert blue stripe" style="left:223px; top:20px; height:104px;"></div>
+      <div class="container vert teal stripe" style="left:253px; top:2px; height:126px;"></div>
+      <div class="container vert orange stripe" style="left:283px; top:15px; height:109px;"></div>
+      <div class="container vert beige stripe" style="left:313px; top:29px; height:90px;"></div>
+      <div class="container vert teal stripe" style="left:343px; top:4px; height:124px;"></div>
+
+      <div class="container hori red shadow stripe" style="left:-4px; top:80px; width:185px;"></div>
+      <div class="container hori orange shadow stripe" style="left:190px; top:80px; width:160px;"></div>
+      <div class="container hori green shadow stripe" style="left:354px; top:82px; width:170px;"></div>
+
+      <div class="container vert light stripe" style="left:4px; top:131px; height:86px;"></div>
+      <div class="container vert red stripe" style="left:34px; top:135px; height:82px;"></div>
+      <div class="container vert light stripe" style="left:64px; top:127px; height:94px;"></div>
+      <div class="container vert orange stripe" style="left:94px; top:139px; height:79px;"></div>
+      <div class="container vert green stripe" style="left:124px; top:127px; height:93px;"></div>
+      <div class="container vert teal stripe" style="left:154px; top:133px; height:84px;"></div>
+      <div class="container vert blue stripe" style="left:184px; top:124px; height:99px;"></div>
+      <div class="container vert orange stripe" style="left:214px; top:138px; height:82px;"></div>
+
+      <div class="container hori orange shadow stripe" style="left:555px; top:141px; width:146px;"></div>
+      <div class="container hori blue shadow stripe" style="left:727px; top:95px; width:163px;"></div>
+
+      <div class="container hori orange shadow stripe" style="left:600px; top:205px; width:117px;"></div>
+      <div class="container hori red shadow stripe" style="left:427px; top:238px; width:158px;"></div>
+      <div class="container hori teal shadow stripe" style="left:319px; top:257px; width:156px;"></div>
+      <div class="container hori red shadow stripe" style="left:18px; top:296px; width:255px;"></div>
+      <div class="container hori orange shadow stripe" style="left:280px; top:296px; width:238px;"></div>
+      <div class="container hori green shadow stripe" style="left:519px; top:268px; width:228px;"></div>
+      <div class="container hori red shadow stripe" style="left:747px; top:289px; width:160px;"></div>
+      <div class="container hori teal shadow stripe" style="left:648px; top:262px; width:116px;"></div>
+
+      <div class="container hori red shadow stripe" style="left:774px; top:174px; width:117px;"></div>
+    </div>
+
+    <svg width="907" height="347" viewBox="0 0 907 347" style="position:absolute;left:0;top:0;z-index:25;">
+      <g opacity="0.38" stroke="#f4c6a9" stroke-width="3">
+        <line x1="0" y1="112" x2="260" y2="0"/>
+        <line x1="0" y1="219" x2="455" y2="20"/>
+        <line x1="135" y1="347" x2="660" y2="110"/>
+        <line x1="425" y1="347" x2="907" y2="130"/>
+      </g>
+      <g opacity="0.18" stroke="#ffe0bf" stroke-width="6">
+        <line x1="0" y1="114" x2="262" y2="2"/>
+        <line x1="1" y1="222" x2="458" y2="23"/>
+        <line x1="138" y1="347" x2="663" y2="113"/>
+        <line x1="429" y1="347" x2="907" y2="133"/>
+      </g>
+      <g opacity="0.5" fill="#f5b08a">
+        <circle cx="95" cy="132" r="3"/>
+        <circle cx="157" cy="127" r="3"/>
+        <circle cx="335" cy="140" r="3"/>
+        <circle cx="479" cy="258" r="3"/>
+        <circle cx="601" cy="202" r="3"/>
+      </g>
+      <g opacity="0.18" fill="#ffffff">
+        <rect x="775" y="245" width="62" height="28" rx="2"/>
+      </g>
+      <text x="787" y="266" fill="#99d6ff" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" opacity="0.85">CMA CGM</text>
+    </svg>
+  </div>
+
+  <div class="foot">47 | TradeWatch Issue 1 2026</div>
+</div>
+</body>
+</html>

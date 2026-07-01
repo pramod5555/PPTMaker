@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1365, initial-scale=1.0" />
+<title>Research methodology and participants</title>
+<style>
+  body{
+    margin:0;
+    background:#d8d8d8;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1365px;
+    height:768px;
+    overflow:hidden;
+    background:#d8d8d8;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .page{
+    left:31px;
+    top:31px;
+    width:1304px;
+    height:706px;
+    background:#f5f5f5;
+    border:1px solid #d4d4d4;
+    z-index:1;
+  }
+
+  .left-panel{
+    left:31px;
+    top:31px;
+    width:815px;
+    height:706px;
+    background:#f5f5f5;
+    z-index:2;
+  }
+
+  .right-photo{
+    left:846px;
+    top:31px;
+    width:489px;
+    height:706px;
+    background:
+      linear-gradient(180deg, rgba(35,27,21,.12) 0%, rgba(27,22,24,.18) 30%, rgba(9,14,24,.40) 70%, rgba(6,11,20,.70) 100%),
+      linear-gradient(180deg, #736a61 0%, #7a6a5b 16%, #8c6a3d 42%, #453322 58%, #152031 78%, #0a111b 100%);
+    z-index:5;
+  }
+
+  .glass-left{
+    left:847px;
+    top:153px;
+    width:229px;
+    height:430px;
+    background:
+      linear-gradient(180deg, rgba(255,188,95,.10), rgba(23,26,37,.18));
+    border-left:2px solid rgba(52,33,24,.48);
+    border-top:2px solid rgba(52,33,24,.48);
+    border-right:1px solid rgba(52,33,24,.32);
+    border-bottom:1px solid rgba(52,33,24,.22);
+    z-index:12;
+  }
+
+  .glass-right{
+    left:1075px;
+    top:121px;
+    width:260px;
+    height:462px;
+    background:
+      linear-gradient(180deg, rgba(11,17,28,.16), rgba(8,11,21,.36));
+    border-left:2px solid rgba(18,16,20,.70);
+    border-top:2px solid rgba(18,16,20,.70);
+    border-right:1px solid rgba(18,16,20,.45);
+    border-bottom:1px solid rgba(18,16,20,.30);
+    z-index:12;
+  }
+
+  .roof-left{
+    left:847px;
+    top:116px;
+    width:250px;
+    height:122px;
+    background:rgba(26,21,26,.72);
+    clip-path:polygon(0 42%, 216px 0, 250px 8%, 34px 50%);
+    z-index:13;
+  }
+
+  .roof-right{
+    left:1060px;
+    top:87px;
+    width:275px;
+    height:117px;
+    background:rgba(15,18,28,.90);
+    clip-path:polygon(0 28%, 74% 0, 100% 9%, 28% 38%);
+    z-index:14;
+  }
+
+  .divider{
+    left:1061px;
+    top:115px;
+    width:4px;
+    height:468px;
+    background:rgba(14,14,18,.82);
+    z-index:15;
+  }
+
+  .door-frame{
+    left:846px;
+    top:270px;
+    width:5px;
+    height:309px;
+    background:rgba(68,44,24,.88);
+    z-index:16;
+  }
+
+  .door-handle-v{
+    left:873px;
+    top:270px;
+    width:5px;
+    height:66px;
+    background:rgba(76,50,27,.92);
+    z-index:16;
+  }
+  .door-handle-h{
+    left:847px;
+    top:287px;
+    width:28px;
+    height:5px;
+    background:rgba(76,50,27,.92);
+    z-index:16;
+  }
+
+  .interior-panel{
+    left:1088px;
+    top:179px;
+    width:214px;
+    height:360px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 68% 10%, rgba(0,183,255,.85) 0 2px, transparent 2.8px),
+      radial-gradient(circle at 74% 16%, rgba(0,183,255,.7) 0 1.8px, transparent 2.5px),
+      radial-gradient(circle at 25% 35%, rgba(235,23,126,.55) 0 2px, transparent 3px),
+      radial-gradient(circle at 36% 51%, rgba(0,150,255,.52) 0 1.6px, transparent 2.4px),
+      radial-gradient(circle at 77% 63%, rgba(0,150,255,.50) 0 1.6px, transparent 2.4px),
+      linear-gradient(180deg, rgba(10,8,18,.96) 0%, rgba(18,10,28,.97) 45%, rgba(6,9,19,.96) 100%);
+    z-index:18;
+  }
+
+  .wave-svg{
+    left:1088px;
+    top:179px;
+    width:214px;
+    height:360px;
+    z-index:19;
+  }
+
+  .ceiling-lights{
+    left:1028px;
+    top:169px;
+    width:190px;
+    height:70px;
+    z-index:17;
+  }
+  .ceiling-lights span{
+    position:absolute;
+    height:4px;
+    background:rgba(255,214,121,.68);
+    border-radius:2px;
+    box-shadow:0 0 4px rgba(255,214,121,.18);
+  }
+  .ceiling-lights .l1{ left:22px; top:26px; width:21px; transform:rotate(-8deg); }
+  .ceiling-lights .l2{ left:68px; top:18px; width:20px; transform:rotate(-8deg); }
+  .ceiling-lights .l3{ left:122px; top:8px; width:22px; transform:rotate(-8deg); }
+
+  .floor{
+    left:846px;
+    top:541px;
+    width:489px;
+    height:196px;
+    background:
+      linear-gradient(180deg, rgba(6,10,16,0) 0%, rgba(6,10,16,.18) 16%, rgba(6,10,16,.58) 100%),
+      repeating-linear-gradient(90deg, rgba(109,98,89,.16) 0 1px, transparent 1px 52px),
+      repeating-linear-gradient(180deg, rgba(109,98,89,.13) 0 1px, transparent 1px 49px),
+      linear-gradient(180deg, #342f2f 0%, #151a22 100%);
+    z-index:10;
+  }
+
+  .desk{
+    left:1172px;
+    top:355px;
+    width:82px;
+    height:184px;
+    background:linear-gradient(180deg, rgba(120,88,58,.28), rgba(21,18,20,.62));
+    z-index:16;
+  }
+
+  .seat1,.seat2,.person1,.person2,.monitor1,.monitor2,.tabletop,.leg1,.leg2{
+    z-index:17;
+  }
+  .seat1{
+    left:894px; top:464px; width:30px; height:43px;
+    background:rgba(29,24,24,.72);
+    border-radius:10px;
+  }
+  .seat2{
+    left:973px; top:455px; width:33px; height:47px;
+    background:rgba(28,22,23,.72);
+    border-radius:10px;
+  }
+  .person1{
+    left:897px; top:392px; width:25px; height:77px;
+  }
+  .person2{
+    left:961px; top:384px; width:28px; height:89px;
+  }
+  .person1:before,.person2:before{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    background:rgba(37,28,20,.92);
+  }
+  .person1:after,.person2:after{
+    content:"";
+    position:absolute;
+    border-radius:12px 12px 6px 6px;
+    background:rgba(25,20,21,.92);
+  }
+  .person1:before{ left:4px; top:0; width:16px; height:16px; }
+  .person1:after{ left:0; top:14px; width:25px; height:63px; }
+  .person2:before{ left:6px; top:0; width:17px; height:17px; }
+  .person2:after{ left:0; top:15px; width:28px; height:74px; }
+
+  .monitor1{ left:934px; top:421px; width:17px; height:13px; background:rgba(40,37,42,.90); }
+  .monitor2{ left:1008px; top:416px; width:18px; height:14px; background:rgba(40,37,42,.90); }
+  .tabletop{ left:922px; top:438px; width:106px; height:6px; background:rgba(66,45,24,.72); }
+  .leg1{ left:942px; top:444px; width:2px; height:59px; background:rgba(54,38,23,.55); }
+  .leg2{ left:1004px; top:444px; width:2px; height:62px; background:rgba(54,38,23,.55); }
+
+  .title-bold{
+    left:79px;
+    top:80px;
+    font-size:64px;
+    line-height:0.96;
+    font-weight:700;
+    color:#161828;
+    z-index:30;
+    letter-spacing:-0.02em;
+  }
+
+  .title-light{
+    left:79px;
+    top:147px;
+    width:540px;
+    font-size:64px;
+    line-height:0.98;
+    font-weight:400;
+    color:#161828;
+    z-index:30;
+    letter-spacing:-0.02em;
+  }
+
+  .accent-line{
+    left:77px;
+    top:285px;
+    width:769px;
+    height:3px;
+    background:linear-gradient(90deg, #f1e400 0%, #f1e400 38%, #d55af5 68%, #53a9ff 100%);
+    z-index:30;
+  }
+
+  .body-left{
+    left:77px;
+    top:349px;
+    width:259px;
+    color:#595b61;
+    font-size:15px;
+    line-height:1.42;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .dropcap{
+    float:left;
+    font-size:61px;
+    line-height:46px;
+    padding-right:10px;
+    padding-top:2px;
+    font-weight:400;
+    color:#2e313b;
+  }
+
+  .body-right{
+    left:358px;
+    top:349px;
+    width:334px;
+    color:#595b61;
+    font-size:15px;
+    line-height:1.42;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .side-label{
+    left:8px;
+    top:530px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    color:#2f3238;
+    font-size:13px;
+    line-height:1;
+    font-weight:400;
+    letter-spacing:0.015em;
+    text-transform:uppercase;
+    z-index:35;
+    white-space:nowrap;
+  }
+
+  .side-tick{
+    left:14px;
+    top:492px;
+    width:1px;
+    height:36px;
+    background:#74767b;
+    z-index:35;
+  }
+
+  .page-num{
+    left:50px;
+    top:709px;
+    font-size:11px;
+    color:#404248;
+    z-index:35;
+  }
+
+  .jump{
+    left:1264px;
+    top:60px;
+    width:39px;
+    height:39px;
+    border:1.2px solid rgba(255,255,255,.78);
+    border-radius:50%;
+    color:#ffffff;
+    font-size:9px;
+    line-height:1.05;
+    text-align:center;
+    padding-top:9px;
+    z-index:50;
+  }
+
+  .jump-dot{
+    left:1293px;
+    top:61px;
+    width:9px;
+    height:9px;
+    background:#f0e000;
+    border-radius:50%;
+    z-index:51;
+  }
+
+  .kpi101{
+    left:1088px;
+    top:280px;
+    width:202px;
+    text-align:center;
+    color:#f7ea00;
+    font-size:128px;
+    line-height:0.86;
+    font-weight:700;
+    letter-spacing:-0.03em;
+    z-index:40;
+  }
+
+  .banks-across{
+    left:1170px;
+    top:384px;
+    width:122px;
+    text-align:left;
+    font-size:18px;
+    line-height:1.04;
+    font-weight:700;
+    color:#ffffff;
+    z-index:41;
+  }
+
+  .kpi31{
+    left:1157px;
+    top:418px;
+    width:131px;
+    text-align:center;
+    color:#f7ea00;
+    font-size:128px;
+    line-height:0.86;
+    font-weight:700;
+    letter-spacing:-0.03em;
+    z-index:40;
+  }
+
+  .countries{
+    left:1198px;
+    top:528px;
+    width:94px;
+    text-align:left;
+    font-size:18px;
+    line-height:1.04;
+    font-weight:700;
+    color:#ffffff;
+    z-index:41;
+  }
+
+  .participated{
+    left:1180px;
+    top:555px;
+    width:118px;
+    text-align:left;
+    font-size:18px;
+    line-height:1.04;
+    font-weight:400;
+    color:#ffffff;
+    z-index:41;
+  }
+</style>
+</head>
+<body>
+  <div id="slide">
+    <div class="page"></div>
+    <div class="left-panel"></div>
+
+    <div class="right-photo"></div>
+    <div class="roof-left"></div>
+    <div class="roof-right"></div>
+    <div class="glass-left"></div>
+    <div class="glass-right"></div>
+    <div class="divider"></div>
+    <div class="door-frame"></div>
+    <div class="door-handle-v"></div>
+    <div class="door-handle-h"></div>
+    <div class="interior-panel"></div>
+
+    <div class="ceiling-lights">
+      <span class="l1"></span>
+      <span class="l2"></span>
+      <span class="l3"></span>
+    </div>
+
+    <svg class="wave-svg" viewBox="0 0 214 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <filter id="glow"><feGaussianBlur stdDeviation="1.6"/></filter>
+      </defs>
+      <path d="M118 15 C135 40, 149 48, 168 70 C186 90, 192 113, 214 132" fill="none" stroke="#12c8ff" stroke-width="2.4" opacity="0.9" filter="url(#glow)"/>
+      <path d="M102 8 C120 34, 137 57, 157 77 C178 98, 191 119, 205 151" fill="none" stroke="#1485ff" stroke-width="1.5" opacity="0.85"/>
+      <path d="M114 0 C123 23, 135 30, 149 47 C170 72, 171 92, 186 109" fill="none" stroke="#00b6ff" stroke-width="1.4" opacity="0.8"/>
+      <path d="M153 116 C123 125, 104 130, 84 141 C62 153, 39 162, 13 175" fill="none" stroke="#ff3eb0" stroke-width="2" opacity="0.75" filter="url(#glow)"/>
+      <path d="M0 170 C23 158, 42 152, 69 150 C92 149, 112 154, 141 166" fill="none" stroke="#3e7bff" stroke-width="1.6" opacity="0.8"/>
+      <path d="M124 124 C105 141, 92 153, 78 176 C61 202, 42 219, 18 231" fill="none" stroke="#0ad6ff" stroke-width="1.7" opacity="0.7"/>
+      <path d="M152 178 C175 202, 187 221, 197 245 C206 268, 214 287, 214 326" fill="none" stroke="#157eff" stroke-width="2" opacity="0.75"/>
+      <path d="M135 185 C151 214, 164 227, 182 244 C194 255, 202 267, 214 289" fill="none" stroke="#00d2ff" stroke-width="1.2" opacity="0.75"/>
+      <path d="M148 272 C130 255, 117 246, 102 229 C87 212, 76 198, 60 178" fill="none" stroke="#0d72ff" stroke-width="1.5" opacity="0.8"/>
+      <path d="M111 296 C127 273, 145 260, 163 244 C179 229, 192 214, 205 195" fill="none" stroke="#00d0ff" stroke-width="1.5" opacity="0.75"/>
+      <g opacity="0.55" fill="#0fb7ff">
+        <circle cx="143" cy="42" r="1.1"/><circle cx="149" cy="56" r="1.1"/><circle cx="160" cy="75" r="1.1"/>
+        <circle cx="169" cy="88" r="1.1"/><circle cx="176" cy="101" r="1.1"/><circle cx="89" cy="150" r="1.1"/>
+        <circle cx="73" cy="159" r="1.1"/><circle cx="47" cy="167" r="1.1"/><circle cx="34" cy="225" r="1.1"/>
+        <circle cx="59" cy="195" r="1.1"/><circle cx="174" cy="236" r="1.1"/><circle cx="186" cy="255" r="1.1"/>
+        <circle cx="198" cy="275" r="1.1"/><circle cx="135" cy="256" r="1.1"/><circle cx="114" cy="238" r="1.1"/>
+      </g>
+    </svg>
+
+    <div class="floor"></div>
+    <div class="desk"></div>
+    <div class="seat1"></div>
+    <div class="seat2"></div>
+    <div class="person1"></div>
+    <div class="person2"></div>
+    <div class="monitor1"></div>
+    <div class="monitor2"></div>
+    <div class="tabletop"></div>
+    <div class="leg1"></div>
+    <div class="leg2"></div>
+
+    <div class="title-bold">Research</div>
+    <div class="title-light">methodology and<br>participants</div>
+    <div class="accent-line"></div>
+
+    <div class="body-left">
+      <span class="dropcap">E</span>Y researchers, in conjunction with the IIF, surveyed IIF member firms and other banks in each region globally (including a small number of material subsidiaries that are top-five banks in their home countries) from September 2025 through November 2025.
+      <br><br>
+      Participating banks’ CROs or other senior risk executives were interviewed, completed
+    </div>
+
+    <div class="body-right">
+      a survey, or both. In total, 101 banks across 31 countries participated. Participating banks were fairly diverse in terms of asset size, geographic reach and type of bank. Regionally, those banks were headquartered in Asia-Pacific (20%), Europe (20%), Latin America (20%), Middle East and Africa (10%) and North America (30%). Of those, 12% are G-SIBs.
+    </div>
+
+    <div class="side-label">RESEARCH METHODOLOGY AND PARTICIPANTS</div>
+    <div class="side-tick"></div>
+    <div class="page-num">33</div>
+
+    <div class="jump">Jump to<br>contents</div>
+    <div class="jump-dot"></div>
+
+    <div class="kpi101">101</div>
+    <div class="banks-across">banks across</div>
+    <div class="kpi31">31</div>
+    <div class="countries">countries</div>
+    <div class="participated">participated</div>
+  </div>
+</body>
+</html>

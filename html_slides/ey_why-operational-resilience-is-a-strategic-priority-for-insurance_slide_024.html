@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Chapter 5 Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e9e9eb;
+    color:#303140;
+  }
+  .slide > div,
+  .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .left-divider{
+    left:95px;
+    top:0;
+    width:1px;
+    height:720px;
+    background:#b6b6bb;
+    z-index:5;
+  }
+
+  .photo-card{
+    left:24px;
+    top:32px;
+    width:464px;
+    height:704px;
+    border-radius:14px;
+    overflow:hidden;
+    z-index:10;
+    background:
+      radial-gradient(circle at 16% 79%, rgba(62,215,255,.75) 0 1.1%, rgba(62,215,255,0) 2.3%),
+      radial-gradient(circle at 21% 75%, rgba(62,215,255,.72) 0 1.1%, rgba(62,215,255,0) 2.4%),
+      radial-gradient(circle at 26% 73%, rgba(62,215,255,.7) 0 1.15%, rgba(62,215,255,0) 2.5%),
+      radial-gradient(circle at 32% 71%, rgba(62,215,255,.72) 0 1.15%, rgba(62,215,255,0) 2.5%),
+      radial-gradient(circle at 38% 69%, rgba(62,215,255,.68) 0 1.15%, rgba(62,215,255,0) 2.5%),
+      radial-gradient(circle at 46% 67%, rgba(208,90,235,.75) 0 1.1%, rgba(208,90,235,0) 2.5%),
+      radial-gradient(circle at 56% 65%, rgba(208,90,235,.75) 0 1.1%, rgba(208,90,235,0) 2.5%),
+      radial-gradient(circle at 67% 63%, rgba(62,215,255,.7) 0 1.1%, rgba(62,215,255,0) 2.5%),
+      radial-gradient(circle at 79% 61%, rgba(62,215,255,.7) 0 1.1%, rgba(62,215,255,0) 2.5%),
+      radial-gradient(circle at 90% 59%, rgba(62,215,255,.68) 0 1.1%, rgba(62,215,255,0) 2.5%),
+      repeating-radial-gradient(circle at 20% 60%, rgba(38,128,255,.9) 0 1.5px, rgba(38,128,255,0) 4px 13px),
+      repeating-radial-gradient(circle at 42% 56%, rgba(57,176,255,.82) 0 1.5px, rgba(57,176,255,0) 4px 12px),
+      repeating-radial-gradient(circle at 69% 51%, rgba(164,69,226,.8) 0 1.5px, rgba(164,69,226,0) 4px 12px),
+      linear-gradient(176deg, #020305 0%, #04070d 22%, #07122a 46%, #22084a 63%, #091632 82%, #030406 100%);
+    box-shadow: inset 0 -60px 120px rgba(0,0,0,.55);
+  }
+  .photo-glow{
+    inset:0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.52) 0%, rgba(0,0,0,.18) 16%, rgba(0,0,0,0) 34%, rgba(0,0,0,0) 58%, rgba(0,0,0,.08) 74%, rgba(0,0,0,.38) 100%);
+    z-index:1;
+    pointer-events:none;
+  }
+  .phone-edge-top{
+    left:-34px;
+    top:196px;
+    width:560px;
+    height:20px;
+    border-radius:20px;
+    background:linear-gradient(90deg, rgba(64,114,255,.2) 0%, rgba(53,105,255,.76) 38%, rgba(70,64,255,.7) 72%, rgba(64,114,255,.18) 100%);
+    transform:rotate(-8deg);
+    filter:blur(1px);
+    z-index:3;
+  }
+  .phone-edge-bottom{
+    left:22px;
+    top:606px;
+    width:445px;
+    height:18px;
+    border-radius:18px;
+    background:linear-gradient(90deg, rgba(137,220,255,.18) 0%, rgba(90,170,255,.72) 32%, rgba(111,100,255,.72) 68%, rgba(137,220,255,.18) 100%);
+    transform:rotate(-11deg);
+    filter:blur(1.8px);
+    z-index:3;
+  }
+  .bars-overlay{
+    left:58px;
+    top:235px;
+    width:405px;
+    height:275px;
+    z-index:4;
+    opacity:.96;
+  }
+
+  .top-label-24{
+    left:55px;
+    top:50px;
+    width:38px;
+    font-size:18px;
+    line-height:20px;
+    font-weight:300;
+    color:#707287;
+    z-index:20;
+    letter-spacing:.01em;
+  }
+  .top-survey-line{
+    left:95px;
+    top:47px;
+    width:1px;
+    height:40px;
+    background:#7f8188;
+    z-index:20;
+  }
+  .top-survey{
+    left:106px;
+    top:58px;
+    width:188px;
+    font-size:8px;
+    line-height:10px;
+    font-weight:400;
+    color:#7c7f87;
+    text-transform:uppercase;
+    z-index:20;
+    letter-spacing:.02em;
+  }
+
+  .chapter-side{
+    left:12px;
+    top:344px;
+    width:24px;
+    height:86px;
+    z-index:30;
+  }
+  .chapter-side .vtext{
+    position:absolute;
+    left:0;
+    top:73px;
+    font-size:11px;
+    line-height:11px;
+    font-weight:400;
+    color:#76777d;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    white-space:nowrap;
+  }
+  .chapter-side .square{
+    position:absolute;
+    left:0;
+    top:60px;
+    width:12px;
+    height:12px;
+    background:#e8d000;
+  }
+
+  .jump-pill{
+    right:0;
+    top:0;
+    width:68px;
+    height:47px;
+    background:#7b7b82;
+    border-bottom-left-radius:14px;
+    border-bottom-right-radius:14px;
+    z-index:40;
+  }
+  .jump-pill-text{
+    right:10px;
+    top:16px;
+    width:48px;
+    font-size:8px;
+    line-height:9px;
+    font-weight:700;
+    color:#fff;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    text-align:center;
+    z-index:41;
+  }
+
+  .title{
+    left:520px;
+    top:131px;
+    font-size:51px;
+    line-height:56px;
+    font-weight:700;
+    color:#2d2e3d;
+    z-index:20;
+  }
+
+  .accent-line{
+    left:520px;
+    top:214px;
+    width:772px;
+    height:3px;
+    background:linear-gradient(90deg, #e8ca00 0%, #dbbf27 18%, #c85acb 56%, #9b49f0 72%, #378df0 100%);
+    z-index:20;
+  }
+
+  .body-left{
+    left:520px;
+    top:249px;
+    width:365px;
+    font-size:12px;
+    line-height:18px;
+    font-weight:400;
+    color:#5c5f67;
+    z-index:20;
+  }
+  .body-right{
+    left:904px;
+    top:249px;
+    width:343px;
+    font-size:12px;
+    line-height:18px;
+    font-weight:400;
+    color:#5c5f67;
+    z-index:20;
+  }
+
+  .figure-title{
+    left:528px;
+    top:365px;
+    width:712px;
+    font-size:13px;
+    line-height:18px;
+    color:#3c3f47;
+    z-index:20;
+  }
+  .figure-title .fig-num{
+    font-weight:700;
+  }
+  .figure-title .fig-copy{
+    font-weight:400;
+  }
+
+  .chart{
+    left:525px;
+    top:418px;
+    width:737px;
+    height:150px;
+    z-index:20;
+  }
+  .row-label{
+    font-size:12px;
+    line-height:15px;
+    font-weight:400;
+    color:#565962;
+    text-align:right;
+  }
+  .bar-box{
+    border:1px solid #a8a9b1;
+    height:24px;
+    background:transparent;
+  }
+  .bar-fill{
+    height:22px;
+    margin-top:0;
+    background:#b34797;
+  }
+  .pct{
+    font-size:12px;
+    line-height:24px;
+    font-weight:400;
+    color:#565962;
+    text-align:right;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-divider"></div>
+
+  <div class="photo-card">
+    <div class="photo-glow"></div>
+    <div class="phone-edge-top"></div>
+    <div class="phone-edge-bottom"></div>
+
+    <svg class="bars-overlay" viewBox="0 0 405 275" aria-hidden="true">
+      <defs>
+        <linearGradient id="barGrad1" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.40"/>
+          <stop offset="100%" stop-color="#eef0d4" stop-opacity="0.95"/>
+        </linearGradient>
+        <linearGradient id="barGrad2" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="#ff63d3" stop-opacity="0.28"/>
+          <stop offset="100%" stop-color="#efb9e9" stop-opacity="0.96"/>
+        </linearGradient>
+      </defs>
+      <g opacity="0.9">
+        <rect x="8" y="146" width="6" height="74" rx="3" fill="url(#barGrad1)"/>
+        <rect x="18" y="129" width="6" height="91" rx="3" fill="url(#barGrad2)"/>
+        <rect x="28" y="157" width="6" height="63" rx="3" fill="url(#barGrad1)"/>
+        <rect x="38" y="111" width="6" height="109" rx="3" fill="url(#barGrad1)"/>
+        <rect x="48" y="92" width="6" height="128" rx="3" fill="url(#barGrad1)"/>
+        <rect x="58" y="140" width="6" height="80" rx="3" fill="url(#barGrad2)"/>
+        <rect x="68" y="124" width="6" height="96" rx="3" fill="url(#barGrad1)"/>
+        <rect x="78" y="165" width="6" height="55" rx="3" fill="url(#barGrad1)"/>
+        <rect x="88" y="113" width="6" height="107" rx="3" fill="url(#barGrad2)"/>
+        <rect x="98" y="88" width="6" height="132" rx="3" fill="url(#barGrad1)"/>
+        <rect x="108" y="96" width="6" height="124" rx="3" fill="url(#barGrad1)"/>
+        <rect x="118" y="107" width="6" height="113" rx="3" fill="url(#barGrad2)"/>
+        <rect x="128" y="74" width="6" height="146" rx="3" fill="url(#barGrad1)"/>
+        <rect x="138" y="90" width="6" height="130" rx="3" fill="url(#barGrad1)"/>
+        <rect x="148" y="84" width="6" height="136" rx="3" fill="url(#barGrad1)"/>
+        <rect x="158" y="100" width="6" height="120" rx="3" fill="url(#barGrad2)"/>
+        <rect x="168" y="68" width="6" height="152" rx="3" fill="url(#barGrad1)"/>
+        <rect x="178" y="62" width="6" height="158" rx="3" fill="url(#barGrad1)"/>
+        <rect x="188" y="79" width="6" height="141" rx="3" fill="url(#barGrad2)"/>
+        <rect x="198" y="102" width="6" height="118" rx="3" fill="url(#barGrad1)"/>
+        <rect x="208" y="74" width="6" height="146" rx="3" fill="url(#barGrad1)"/>
+        <rect x="218" y="94" width="6" height="126" rx="3" fill="url(#barGrad1)"/>
+        <rect x="228" y="118" width="6" height="102" rx="3" fill="url(#barGrad2)"/>
+        <rect x="238" y="134" width="6" height="86" rx="3" fill="url(#barGrad1)"/>
+        <rect x="248" y="84" width="6" height="136" rx="3" fill="url(#barGrad2)"/>
+        <rect x="258" y="56" width="6" height="164" rx="3" fill="url(#barGrad1)"/>
+        <rect x="268" y="50" width="6" height="170" rx="3" fill="url(#barGrad1)"/>
+        <rect x="278" y="71" width="6" height="149" rx="3" fill="url(#barGrad2)"/>
+        <rect x="288" y="106" width="6" height="114" rx="3" fill="url(#barGrad1)"/>
+        <rect x="298" y="130" width="6" height="90" rx="3" fill="url(#barGrad2)"/>
+        <rect x="308" y="118" width="6" height="102" rx="3" fill="url(#barGrad1)"/>
+        <rect x="318" y="97" width="6" height="123" rx="3" fill="url(#barGrad1)"/>
+        <rect x="328" y="88" width="6" height="132" rx="3" fill="url(#barGrad2)"/>
+        <rect x="338" y="108" width="6" height="112" rx="3" fill="url(#barGrad1)"/>
+        <rect x="348" y="126" width="6" height="94" rx="3" fill="url(#barGrad1)"/>
+        <rect x="358" y="74" width="6" height="146" rx="3" fill="url(#barGrad2)"/>
+        <rect x="368" y="64" width="6" height="156" rx="3" fill="url(#barGrad1)"/>
+        <rect x="378" y="86" width="6" height="134" rx="3" fill="url(#barGrad1)"/>
+        <rect x="388" y="124" width="6" height="96" rx="3" fill="url(#barGrad2)"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="top-label-24">24</div>
+  <div class="top-survey-line"></div>
+  <div class="top-survey">SECOND ANNUAL EY/EIU GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+  <div class="chapter-side">
+    <div class="vtext">CHAPTER 5</div>
+    <div class="square"></div>
+  </div>
+
+  <div class="jump-pill"></div>
+  <div class="jump-pill-text">JUMP TO<br>CONTENTS</div>
+
+  <div class="title">Chapter 5</div>
+  <div class="accent-line"></div>
+
+  <div class="body-left">
+    Similar to how technology has transformed the business of insurance, it’s transforming the practice of risk management. The results show results show that risk management teams are advancing their use of automation and advanced analytics (including AI) in their own operations but still have
+  </div>
+
+  <div class="body-right">
+    a significant way to go. Less than a quarter (23%) have deployed the technology for at least one use case, while nearly twice as many (44%) are in “exploration mode” and a third (33%) have not implemented automation.
+  </div>
+
+  <div class="figure-title">
+    <span class="fig-num">Figure 12:</span>
+    <span class="fig-copy"> To what extent has your institution’s risk management function implemented risk management capabilities enabled by automation or advanced analytics (including AI/GenAI and ML)?</span>
+  </div>
+
+  <div class="chart">
+    <div style="position:absolute; left:0; top:0; width:413px; height:33px;" class="row-label">
+      My organization has implemented one or more automation or advanced analytics<br>
+      use cases to enable risk management activities or enable the risk function
+    </div>
+    <div style="position:absolute; left:440px; top:1px; width:324px;" class="bar-box">
+      <div class="bar-fill" style="width:74px;"></div>
+    </div>
+    <div style="position:absolute; left:730px; top:1px; width:50px;" class="pct">23%</div>
+
+    <div style="position:absolute; left:0; top:53px; width:413px; height:33px;" class="row-label">
+      Automation/advanced analytics use cases have been identified<br>
+      and are being explored
+    </div>
+    <div style="position:absolute; left:440px; top:54px; width:324px;" class="bar-box">
+      <div class="bar-fill" style="width:142px;"></div>
+    </div>
+    <div style="position:absolute; left:730px; top:54px; width:50px;" class="pct">44%</div>
+
+    <div style="position:absolute; left:0; top:108px; width:413px; height:33px;" class="row-label">
+      My organization has not implemented automation or advanced analytics<br>
+      for risk management
+    </div>
+    <div style="position:absolute; left:440px; top:109px; width:324px;" class="bar-box">
+      <div class="bar-fill" style="width:107px;"></div>
+    </div>
+    <div style="position:absolute; left:730px; top:109px; width:50px;" class="pct">33%</div>
+  </div>
+</div>
+</body>
+</html>

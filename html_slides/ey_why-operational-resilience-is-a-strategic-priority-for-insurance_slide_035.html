@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#c6c8ce;
+    font-family: Arial, Helvetica, 'Segoe UI', sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d7d7d9;
+  }
+  .slide > div,
+  .slide > svg{
+    position:absolute;
+  }
+
+  .page-num{
+    left:61px;
+    top:49px;
+    width:31px;
+    height:31px;
+    font-size:19px;
+    line-height:31px;
+    color:#6b6f7d;
+    font-weight:300;
+    text-align:center;
+    z-index:40;
+  }
+  .top-divider{
+    left:103px;
+    top:0px;
+    width:1px;
+    height:91px;
+    background:#a9acb3;
+    z-index:20;
+  }
+  .header-text{
+    left:114px;
+    top:58px;
+    width:190px;
+    font-size:9px;
+    line-height:11px;
+    color:#7a7d83;
+    font-weight:400;
+    text-transform:uppercase;
+    z-index:40;
+  }
+  .chapter{
+    left:8px;
+    top:346px;
+    width:20px;
+    height:106px;
+    z-index:40;
+  }
+  .chapter-label{
+    left:-18px;
+    top:32px;
+    width:56px;
+    font-size:11px;
+    line-height:11px;
+    color:#6f737b;
+    transform:rotate(-90deg);
+    transform-origin:center;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-align:center;
+    font-weight:400;
+  }
+  .chapter-accent{
+    left:12px;
+    top:63px;
+    width:12px;
+    height:12px;
+    background:#e8cf00;
+  }
+
+  .content{
+    left:285px;
+    top:212px;
+    width:584px;
+    height:410px;
+    z-index:30;
+  }
+  .title{
+    left:0px;
+    top:0px;
+    width:550px;
+    font-size:14px;
+    line-height:17px;
+    color:#4a4d54;
+    font-weight:400;
+  }
+  .title b{
+    font-weight:700;
+    color:#32343a;
+  }
+
+  .col-head{
+    width:138px;
+    font-size:14px;
+    line-height:14px;
+    color:#4e5258;
+    text-align:center;
+    font-weight:400;
+  }
+  .head-line{
+    width:138px;
+    height:1px;
+    background:#93979f;
+  }
+
+  .row-label{
+    width:158px;
+    font-size:11px;
+    line-height:13px;
+    color:#4d5056;
+    text-align:right;
+    font-weight:400;
+  }
+
+  .stack{
+    height:24px;
+    width:138px;
+    background:#efefef;
+    border:1px solid rgba(0,0,0,0.08);
+    box-sizing:border-box;
+    overflow:hidden;
+  }
+  .seg1,.seg2,.seg3{
+    top:0;
+    height:24px;
+    color:#24554a;
+    font-size:11px;
+    line-height:24px;
+    text-align:center;
+    font-weight:400;
+    box-sizing:border-box;
+  }
+  .seg1{ background:#86d8a0; color:#2c5b51; }
+  .seg2{ background:#34c365; color:#2d5551; }
+  .seg3{ background:#178d36; color:#dce8dd; }
+
+  .legend-item{
+    font-size:11px;
+    line-height:13px;
+    color:#5b5e65;
+    font-weight:400;
+  }
+  .legend-box{
+    width:14px;
+    height:14px;
+  }
+  .note{
+    left:190px;
+    top:404px;
+    width:210px;
+    font-size:9px;
+    line-height:11px;
+    color:#5d6167;
+    font-weight:400;
+  }
+
+  .right-strip{
+    left:928px;
+    top:0px;
+    width:352px;
+    height:720px;
+    background:#ececef;
+    z-index:5;
+  }
+  .right-inner{
+    left:962px;
+    top:0px;
+    width:301px;
+    height:720px;
+    z-index:10;
+  }
+
+  .jump{
+    left:1210px;
+    top:0px;
+    width:58px;
+    height:47px;
+    background:#7f8187;
+    border-radius:0 0 12px 12px;
+    color:#ffffff;
+    font-size:9px;
+    line-height:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    text-align:center;
+    padding-top:18px;
+    box-sizing:border-box;
+    z-index:60;
+    letter-spacing:0.02em;
+  }
+
+  .photo{
+    overflow:hidden;
+    border-radius:14px;
+    background:#14204a;
+  }
+  .photo svg{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="right-strip"></div>
+
+  <div class="page-num">35</div>
+  <div class="top-divider"></div>
+  <div class="header-text">SECOND ANNUAL EY/IFCI GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+  <div class="chapter">
+    <div class="chapter-label">CHAPTER 8</div>
+    <div class="chapter-accent"></div>
+  </div>
+
+  <div class="content">
+    <div class="title"><b>Graph 2:</b> How mature are the following components of the internal control framework in terms of second-line development and implementation?</div>
+
+    <div class="col-head" style="left:0px; top:56px;">Overall</div>
+    <div class="head-line" style="left:0px; top:72px;"></div>
+
+    <div class="col-head" style="left:150px; top:56px;">EMEIA</div>
+    <div class="head-line" style="left:150px; top:72px;"></div>
+
+    <div class="col-head" style="left:298px; top:56px;">Americas</div>
+    <div class="head-line" style="left:298px; top:72px;"></div>
+
+    <div class="col-head" style="left:446px; top:56px;">Asia-Pacific</div>
+    <div class="head-line" style="left:446px; top:72px;"></div>
+
+    <div class="row-label" style="left:-11px; top:94px;">Governance and oversight</div>
+    <div class="row-label" style="left:-11px; top:126px;">Risk assessment (inherent and<br>residual risk)</div>
+    <div class="row-label" style="left:-11px; top:172px;">Risk and control identification<br>(including key control ID/tagging)</div>
+    <div class="row-label" style="left:-11px; top:219px;">Control design and<br>implementation</div>
+    <div class="row-label" style="left:-11px; top:265px;">Second-line control<br>maturity overall</div>
+    <div class="row-label" style="left:-11px; top:311px;">Control inventory and<br>documentation</div>
+    <div class="row-label" style="left:-11px; top:358px;">Control performance indicators<br>(incl. metrics and reporting)</div>
+    <div class="row-label" style="left:-11px; top:406px;">Testing and monitoring</div>
+
+    <!-- Overall -->
+    <div class="stack" style="left:0px; top:88px;">
+      <div class="seg1" style="left:0px; width:3px;">2%</div>
+      <div class="seg2" style="left:3px; width:55px;">40%</div>
+      <div class="seg3" style="left:58px; width:80px;">57%</div>
+    </div>
+    <div class="stack" style="left:0px; top:120px;">
+      <div class="seg1" style="left:0px; width:1px;">1%</div>
+      <div class="seg2" style="left:1px; width:69px;">50%</div>
+      <div class="seg3" style="left:70px; width:68px;">49%</div>
+    </div>
+    <div class="stack" style="left:0px; top:152px;">
+      <div class="seg1" style="left:0px; width:10px;">7%</div>
+      <div class="seg2" style="left:10px; width:66px;">48%</div>
+      <div class="seg3" style="left:76px; width:62px;">45%</div>
+    </div>
+    <div class="stack" style="left:0px; top:184px;">
+      <div class="seg1" style="left:0px; width:8px;">6%</div>
+      <div class="seg2" style="left:8px; width:81px;">59%</div>
+      <div class="seg3" style="left:89px; width:49px;">35%</div>
+    </div>
+    <div class="stack" style="left:0px; top:216px;">
+      <div class="seg1" style="left:0px; width:6px;">4%</div>
+      <div class="seg2" style="left:6px; width:92px;">67%</div>
+      <div class="seg3" style="left:98px; width:40px;">29%</div>
+    </div>
+    <div class="stack" style="left:0px; top:248px;">
+      <div class="seg1" style="left:0px; width:14px;">10%</div>
+      <div class="seg2" style="left:14px; width:90px;">65%</div>
+      <div class="seg3" style="left:104px; width:34px;">26%</div>
+    </div>
+    <div class="stack" style="left:0px; top:280px;">
+      <div class="seg1" style="left:0px; width:17px;">12%</div>
+      <div class="seg2" style="left:17px; width:87px;">63%</div>
+      <div class="seg3" style="left:104px; width:34px;">24%</div>
+    </div>
+    <div class="stack" style="left:0px; top:312px;">
+      <div class="seg1" style="left:0px; width:17px;">12%</div>
+      <div class="seg2" style="left:17px; width:90px;">65%</div>
+      <div class="seg3" style="left:107px; width:31px;">23%</div>
+    </div>
+
+    <!-- EMEIA -->
+    <div class="stack" style="left:150px; top:88px;">
+      <div class="seg1" style="left:0px; width:3px;">2%</div>
+      <div class="seg2" style="left:3px; width:50px;">36%</div>
+      <div class="seg3" style="left:53px; width:85px;">62%</div>
+    </div>
+    <div class="stack" style="left:150px; top:120px;">
+      <div class="seg2" style="left:0px; width:62px;">45%</div>
+      <div class="seg3" style="left:62px; width:76px;">55%</div>
+    </div>
+    <div class="stack" style="left:150px; top:152px;">
+      <div class="seg1" style="left:0px; width:10px;">7%</div>
+      <div class="seg2" style="left:10px; width:66px;">48%</div>
+      <div class="seg3" style="left:76px; width:62px;">45%</div>
+    </div>
+    <div class="stack" style="left:150px; top:184px;">
+      <div class="seg1" style="left:0px; width:3px;">2%</div>
+      <div class="seg2" style="left:3px; width:81px;">59%</div>
+      <div class="seg3" style="left:84px; width:54px;">39%</div>
+    </div>
+    <div class="stack" style="left:150px; top:216px;">
+      <div class="seg1" style="left:0px; width:3px;">2%</div>
+      <div class="seg2" style="left:3px; width:88px;">64%</div>
+      <div class="seg3" style="left:91px; width:47px;">33%</div>
+    </div>
+    <div class="stack" style="left:150px; top:248px;">
+      <div class="seg1" style="left:0px; width:14px;">10%</div>
+      <div class="seg2" style="left:14px; width:98px;">71%</div>
+      <div class="seg3" style="left:112px; width:26px;">19%</div>
+    </div>
+    <div class="stack" style="left:150px; top:280px;">
+      <div class="seg1" style="left:0px; width:19px;">14%</div>
+      <div class="seg2" style="left:19px; width:83px;">60%</div>
+      <div class="seg3" style="left:102px; width:36px;">26%</div>
+    </div>
+    <div class="stack" style="left:150px; top:312px;">
+      <div class="seg1" style="left:0px; width:14px;">10%</div>
+      <div class="seg2" style="left:14px; width:86px;">62%</div>
+      <div class="seg3" style="left:100px; width:38px;">29%</div>
+    </div>
+
+    <!-- Americas -->
+    <div class="stack" style="left:298px; top:88px;">
+      <div class="seg1" style="left:0px; width:6px;">4%</div>
+      <div class="seg2" style="left:6px; width:61px;">44%</div>
+      <div class="seg3" style="left:67px; width:71px;">52%</div>
+    </div>
+    <div class="stack" style="left:298px; top:120px;">
+      <div class="seg1" style="left:0px; width:6px;">4%</div>
+      <div class="seg2" style="left:6px; width:87px;">63%</div>
+      <div class="seg3" style="left:93px; width:45px;">33%</div>
+    </div>
+    <div class="stack" style="left:298px; top:152px;">
+      <div class="seg1" style="left:0px; width:15px;">11%</div>
+      <div class="seg2" style="left:15px; width:51px;">48%</div>
+      <div class="seg3" style="left:66px; width:57px;">41%</div>
+    </div>
+    <div class="stack" style="left:298px; top:184px;">
+      <div class="seg1" style="left:0px; width:21px;">15%</div>
+      <div class="seg2" style="left:21px; width:81px;">59%</div>
+      <div class="seg3" style="left:102px; width:36px;">26%</div>
+    </div>
+    <div class="stack" style="left:298px; top:216px;">
+      <div class="seg1" style="left:0px; width:10px;">7%</div>
+      <div class="seg2" style="left:10px; width:108px;">78%</div>
+      <div class="seg3" style="left:118px; width:20px;">15%</div>
+    </div>
+    <div class="stack" style="left:298px; top:248px;">
+      <div class="seg1" style="left:0px; width:21px;">15%</div>
+      <div class="seg2" style="left:21px; width:81px;">59%</div>
+      <div class="seg3" style="left:102px; width:36px;">26%</div>
+    </div>
+    <div class="stack" style="left:298px; top:280px;">
+      <div class="seg1" style="left:0px; width:21px;">15%</div>
+      <div class="seg2" style="left:21px; width:81px;">59%</div>
+      <div class="seg3" style="left:102px; width:36px;">26%</div>
+    </div>
+    <div class="stack" style="left:298px; top:312px;">
+      <div class="seg1" style="left:0px; width:26px;">19%</div>
+      <div class="seg2" style="left:26px; width:92px;">67%</div>
+      <div class="seg3" style="left:118px; width:20px;">15%</div>
+    </div>
+
+    <!-- Asia Pacific -->
+    <div class="stack" style="left:446px; top:88px;">
+      <div class="seg2" style="left:0px; width:63px;">46%</div>
+      <div class="seg3" style="left:63px; width:75px;">54%</div>
+    </div>
+    <div class="stack" style="left:446px; top:120px;">
+      <div class="seg2" style="left:0px; width:52px;">38%</div>
+      <div class="seg3" style="left:52px; width:86px;">62%</div>
+    </div>
+    <div class="stack" style="left:446px; top:152px;">
+      <div class="seg2" style="left:0px; width:63px;">46%</div>
+      <div class="seg3" style="left:63px; width:75px;">54%</div>
+    </div>
+    <div class="stack" style="left:446px; top:184px;">
+      <div class="seg2" style="left:0px; width:85px;">62%</div>
+      <div class="seg3" style="left:85px; width:53px;">38%</div>
+    </div>
+    <div class="stack" style="left:446px; top:216px;">
+      <div class="seg2" style="left:0px; width:74px;">54%</div>
+      <div class="seg3" style="left:74px; width:64px;">46%</div>
+    </div>
+    <div class="stack" style="left:446px; top:248px;">
+      <div class="seg2" style="left:0px; width:74px;">54%</div>
+      <div class="seg3" style="left:74px; width:64px;">46%</div>
+    </div>
+    <div class="stack" style="left:446px; top:280px;">
+      <div class="seg2" style="left:0px; width:117px;">85%</div>
+      <div class="seg3" style="left:117px; width:21px;">15%</div>
+    </div>
+    <div class="stack" style="left:446px; top:312px;">
+      <div class="seg1" style="left:0px; width:11px;">8%</div>
+      <div class="seg2" style="left:11px; width:95px;">69%</div>
+      <div class="seg3" style="left:106px; width:32px;">23%</div>
+    </div>
+
+    <div class="legend-box" style="left:0px; top:368px; background:#86d8a0;"></div>
+    <div class="legend-item" style="left:23px; top:368px; width:120px;">1. Immature</div>
+
+    <div class="legend-box" style="left:174px; top:368px; background:#34c365;"></div>
+    <div class="legend-item" style="left:198px; top:368px; width:160px;">2. Established/maturing</div>
+
+    <div class="legend-box" style="left:416px; top:368px; background:#178d36;"></div>
+    <div class="legend-item" style="left:440px; top:368px; width:80px;">3. Mature</div>
+
+    <div class="note">Note: Numbers may not add to 100% due to rounding.</div>
+  </div>
+
+  <div class="right-inner">
+    <div class="photo" style="left:0px; top:-5px; width:301px; height:185px; z-index:12;">
+      <svg width="301" height="205" viewBox="0 0 301 205" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#2a1f59"/>
+            <stop offset="40%" stop-color="#15295e"/>
+            <stop offset="100%" stop-color="#071226"/>
+          </linearGradient>
+          <filter id="blur1"><feGaussianBlur stdDeviation="6"/></filter>
+        </defs>
+        <rect width="301" height="185" fill="url(#g1)"/>
+        <g filter="url(#blur1)" opacity="0.9">
+          <circle cx="12" cy="115" r="11" fill="#d55b8f"/>
+          <circle cx="28" cy="90" r="8" fill="#ff8b9e"/>
+          <circle cx="67" cy="70" r="9" fill="#5c67ff"/>
+          <circle cx="98" cy="45" r="10" fill="#2748ff"/>
+          <circle cx="120" cy="24" r="9" fill="#7c4fff"/>
+          <circle cx="180" cy="50" r="7" fill="#7866ff"/>
+          <circle cx="205" cy="68" r="8" fill="#4f67ff"/>
+          <circle cx="227" cy="94" r="8" fill="#5f7bff"/>
+          <circle cx="251" cy="111" r="9" fill="#2f63ff"/>
+          <circle cx="287" cy="145" r="7" fill="#63d1ff"/>
+          <circle cx="114" cy="150" r="7" fill="#b06bd4"/>
+          <circle cx="160" cy="110" r="7" fill="#cc6cab"/>
+          <circle cx="152" cy="135" r="9" fill="#7688ff"/>
+          <circle cx="94" cy="98" r="8" fill="#ae78c6"/>
+          <circle cx="212" cy="130" r="6" fill="#7bc8ff"/>
+        </g>
+        <g opacity="0.85">
+          <line x1="0" y1="140" x2="145" y2="0" stroke="#4bc7ff" stroke-width="2"/>
+          <line x1="35" y1="185" x2="180" y2="18" stroke="#6ee7ff" stroke-width="2"/>
+          <line x1="120" y1="185" x2="245" y2="26" stroke="#7b8cff" stroke-width="2"/>
+          <line x1="185" y1="185" x2="301" y2="60" stroke="#1cb9ff" stroke-width="2"/>
+          <line x1="210" y1="185" x2="301" y2="95" stroke="#b5c7ff" stroke-width="2"/>
+          <line x1="38" y1="0" x2="170" y2="185" stroke="#6d5cff" stroke-width="2"/>
+          <line x1="73" y1="0" x2="200" y2="185" stroke="#4451d7" stroke-width="2"/>
+        </g>
+        <g fill="#7ad4ff" opacity="0.8">
+          <circle cx="18" cy="150" r="2.4"/><circle cx="27" cy="143" r="1.9"/><circle cx="36" cy="135" r="2.1"/>
+          <circle cx="48" cy="125" r="2.7"/><circle cx="59" cy="114" r="2.0"/><circle cx="68" cy="105" r="1.8"/>
+          <circle cx="80" cy="95" r="2.6"/><circle cx="90" cy="86" r="1.9"/><circle cx="103" cy="74" r="2.2"/>
+          <circle cx="114" cy="63" r="2.5"/><circle cx="126" cy="51" r="2.2"/><circle cx="137" cy="39" r="2.0"/>
+          <circle cx="149" cy="27" r="2.6"/><circle cx="164" cy="14" r="2.1"/>
+
+          <circle cx="42" cy="171" r="2.1"/><circle cx="54" cy="158" r="2.0"/><circle cx="66" cy="144" r="2.3"/>
+          <circle cx="79" cy="129" r="2.6"/><circle cx="92" cy="116" r="2.1"/><circle cx="107" cy="99" r="2.6"/>
+          <circle cx="119" cy="85" r="2.2"/><circle cx="131" cy="72" r="2.0"/><circle cx="145" cy="55" r="2.6"/>
+          <circle cx="160" cy="41" r="2.1"/><circle cx="171" cy="27" r="1.9"/>
+
+          <circle cx="129" cy="174" r="2.2"/><circle cx="140" cy="160" r="1.9"/><circle cx="151" cy="148" r="2.4"/>
+          <circle cx="163" cy="133" r="2.1"/><circle cx="175" cy="118" r="2.6"/><circle cx="188" cy="102" r="2.0"/>
+          <circle cx="200" cy="88" r="2.5"/><circle cx="212" cy="72" r="2.1"/><circle cx="224" cy="58" r="2.6"/>
+          <circle cx="238" cy="41" r="2.1"/><circle cx="249" cy="28" r="2.0"/>
+
+          <circle cx="204" cy="177" r="2.4"/><circle cx="215" cy="164" r="2.1"/><circle cx="228" cy="151" r="2.5"/>
+          <circle cx="240" cy="138" r="2.0"/><circle cx="252" cy="124" r="2.7"/><circle cx="265" cy="108" r="2.0"/>
+          <circle cx="276" cy="96" r="2.3"/><circle cx="289" cy="81" r="2.0"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="photo" style="left:0px; top:192px; width:153px; height:177px; z-index:12;">
+      <svg width="153" height="197" viewBox="0 0 153 197" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#6070e2"/>
+            <stop offset="50%" stop-color="#798bff"/>
+            <stop offset="100%" stop-color="#c0c6ff"/>
+          </linearGradient>
+          <filter id="blur2"><feGaussianBlur stdDeviation="7"/></filter>
+        </defs>
+        <rect width="153" height="177" fill="url(#g2)"/>
+        <rect x="0" y="0" width="153" height="177" fill="#4156d0" opacity="0.28"/>
+        <polygon points="17,116 65,31 124,116 76,150" fill="none" stroke="#cbd6ff" stroke-width="2" opacity="0.55"/>
+        <g filter="url(#blur2)" opacity="0.7">
+          <circle cx="17" cy="28" r="16" fill="#d5dfff"/>
+          <circle cx="63" cy="15" r="11" fill="#c6d1ff"/>
+          <circle cx="135" cy="19" r="18" fill="#ffffff"/>
+          <circle cx="126" cy="150" r="26" fill="#d4deff"/>
+          <circle cx="100" cy="91" r="18" fill="#778bf3"/>
+        </g>
+        <path d="M98 116 C112 118, 122 128, 131 141 C138 151, 145 155, 153 160 L153 177 L103 177 C94 163, 90 141, 98 116 Z" fill="#0d1632" opacity="0.82"/>
+        <path d="M90 112 C95 122, 100 130, 104 141 C106 149, 109 159, 115 177 L81 177 C79 167, 78 158, 75 149 C72 136, 77 122, 90 112 Z" fill="#2a3869" opacity="0.78"/>
+      </svg>
+    </div>
+
+    <div class="photo" style="left:165px; top:192px; width:136px; height:309px; z-index:12;">
+      <svg width="136" height="329" viewBox="0 0 136 329" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0a1336"/>
+            <stop offset="40%" stop-color="#2c3cb1"/>
+            <stop offset="100%" stop-color="#a8b4ff"/>
+          </linearGradient>
+          <filter id="blur3"><feGaussianBlur stdDeviation="6"/></filter>
+        </defs>
+        <rect width="136" height="309" fill="url(#g3)"/>
+        <g filter="url(#blur3)" opacity="0.5">
+          <circle cx="23" cy="24" r="20" fill="#a4b4ff"/>
+          <circle cx="80" cy="36" r="18" fill="#d4dbff"/>
+          <circle cx="114" cy="261" r="22" fill="#dee4ff"/>
+        </g>
+        <ellipse cx="74" cy="84" rx="44" ry="38" fill="#0f1020" opacity="0.95"/>
+        <ellipse cx="84" cy="81" rx="32" ry="26" fill="#273870" opacity="0.72"/>
+        <path d="M45 69 C52 55, 70 46, 91 48 C104 50, 117 58, 120 71 C114 73, 108 75, 103 79 C92 75, 72 76, 54 79 C49 76, 46 73, 45 69 Z" fill="#06101f" opacity="0.92"/>
+        <rect x="49" y="77" width="24" height="10" rx="3" fill="#101521"/>
+        <rect x="74" y="77" width="24" height="10" rx="3" fill="#101521"/>
+        <rect x="68" y="79" width="6" height="3" fill="#5d6477"/>
+        <path d="M30 153 C44 122, 72 113, 96 117 C114 121, 128 134, 136 147 L136 309 L80 309 C75 273, 67 246, 59 214 C53 190, 42 172, 30 153 Z" fill="#f2f5ff" opacity="0.82"/>
+        <path d="M43 149 C58 170, 73 195, 84 218 C91 232, 98 246, 105 263" stroke="#996f34" stroke-width="16" stroke-linecap="round" opacity="0.8"/>
+        <circle cx="103" cy="226" r="21" fill="#101523" opacity="0.95"/>
+        <circle cx="103" cy="226" r="12" fill="#262e4b"/>
+      </svg>
+    </div>
+
+    <div class="photo" style="left:0px; top:382px; width:153px; height:119px; z-index:12;">
+      <svg width="153" height="139" viewBox="0 0 153 139" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#3759d4"/>
+            <stop offset="55%" stop-color="#6a7bf3"/>
+            <stop offset="100%" stop-color="#bfc9ff"/>
+          </linearGradient>
+          <filter id="blur4"><feGaussianBlur stdDeviation="6"/></filter>
+        </defs>
+        <rect width="153" height="119" fill="url(#g4)"/>
+        <rect width="153" height="119" fill="#3e53c4" opacity="0.28"/>
+        <g stroke="#50f0d7" stroke-width="1" opacity="0.65">
+          <line x1="11" y1="92" x2="27" y2="70"/>
+          <line x1="27" y1="70" x2="49" y2="83"/>
+          <line x1="49" y1="83" x2="66" y2="58"/>
+          <line x1="66" y1="58" x2="93" y2="64"/>
+          <line x1="93" y1="64" x2="112" y2="44"/>
+          <line x1="112" y1="44" x2="137" y2="56"/>
+          <line x1="27" y1="70" x2="66" y2="58"/>
+          <line x1="49" y1="83" x2="93" y2="64"/>
+          <line x1="66" y1="58" x2="112" y2="44

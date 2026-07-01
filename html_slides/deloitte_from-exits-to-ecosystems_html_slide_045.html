@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ececec;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+    color:#5b5b5b;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .qmark{
+    left:45px; top:44px;
+    font-size:38px; line-height:34px;
+    font-weight:700; color:#000;
+  }
+
+  .prompt{
+    left:53px; top:154px;
+    width:286px;
+    font-size:18px;
+    line-height:25px;
+    font-weight:400;
+    color:#5f5f5f;
+  }
+
+  .headline{
+    left:52px; top:260px;
+    width:250px;
+    font-size:31px;
+    line-height:35px;
+    font-weight:700;
+    color:#595959;
+  }
+
+  .footnote{
+    left:53px; top:610px;
+    width:292px;
+    font-size:11px;
+    line-height:16px;
+    font-style:italic;
+    color:#8a8a8a;
+  }
+
+  .copyright{
+    left:50px; top:730px;
+    transform:translateY(-100%);
+    font-size:11px;
+    line-height:11px;
+    color:#505050;
+  }
+
+  .market-title{
+    left:376px; top:23px;
+    font-size:18px;
+    line-height:18px;
+    color:#6a6a6a;
+    font-weight:400;
+  }
+
+  .market-rule{
+    left:370px; top:52px;
+    width:825px; height:1px;
+    background:#80909a;
+  }
+
+  .legend-square1{
+    left:554px; top:24px;
+    width:16px; height:16px;
+    background:#2cb3b3;
+  }
+  .legend1{
+    left:577px; top:22px;
+    font-size:16px;
+    line-height:18px;
+    color:#6a6a6a;
+  }
+
+  .legend-square2{
+    left:1114px; top:23px;
+    width:16px; height:16px;
+    background:#1a246d;
+  }
+  .legend2{
+    left:1137px; top:22px;
+    font-size:16px;
+    line-height:18px;
+    color:#6a6a6a;
+  }
+
+  .change-title{
+    left:1225px; top:17px;
+    width:80px;
+    font-size:14px;
+    line-height:16px;
+    color:#3f3f3f;
+    text-align:center;
+    font-weight:400;
+  }
+  .change-rule{
+    left:1207px; top:52px;
+    width:122px; height:1px;
+    background:#80909a;
+  }
+
+  .chart{
+    left:378px; top:84px;
+    width:925px; height:584px;
+  }
+
+  .country{
+    position:absolute;
+    left:0;
+    width:130px;
+    text-align:right;
+    font-size:11px;
+    line-height:16px;
+    color:#777;
+    font-weight:400;
+  }
+
+  .rowbar-left{
+    position:absolute;
+    left:143px;
+    height:16px;
+    background:#2cb3b3;
+  }
+
+  .rowbar-left.outline{
+    background:transparent;
+    border:1px solid #43bfd0;
+  }
+
+  .rowbar-right{
+    position:absolute;
+    left:442px;
+    height:16px;
+    background:#1a246d;
+  }
+
+  .pct-left, .pct-right{
+    position:absolute;
+    font-size:11px;
+    line-height:16px;
+    font-weight:700;
+    color:#fff;
+  }
+  .pct-left{
+    left:151px;
+    width:44px;
+    text-align:left;
+  }
+  .pct-right{
+    width:44px;
+    text-align:right;
+  }
+
+  .change-cell{
+    position:absolute;
+    left:853px;
+    width:74px;
+    height:16px;
+    background:#dfdfe1;
+    color:#555;
+    font-size:11px;
+    line-height:16px;
+    text-align:center;
+  }
+
+  .highlight{
+    position:absolute;
+    left:133px;
+    width:895px;
+    height:20px;
+    border:2px solid #28ad67;
+    background:transparent;
+    z-index:5;
+  }
+
+  .page{
+    left:676px; top:730px;
+    transform:translateY(-100%);
+    font-size:11px;
+    line-height:11px;
+    color:#3c3c3c;
+    text-align:center;
+  }
+
+  .logo{
+    left:1231px; top:692px;
+    width:86px; height:49px;
+  }
+  .logo .shield{
+    position:absolute;
+    right:0; top:0;
+    width:54px; height:49px;
+    background:#2457a6;
+    clip-path:polygon(0 0, 100% 0, 92% 100%, 0 100%);
+  }
+  .logo .teal{
+    position:absolute;
+    right:0; top:0;
+    width:28px; height:49px;
+    background:#25b1aa;
+    clip-path:polygon(25% 0, 100% 0, 100% 100%, 0 100%, 18% 56%);
+  }
+  .logo .blob1{
+    position:absolute;
+    right:17px; top:6px;
+    width:11px; height:11px;
+    border-radius:50%;
+    background:#3e72bf;
+    opacity:.75;
+  }
+  .logo .blob2{
+    position:absolute;
+    right:19px; top:17px;
+    width:18px; height:18px;
+    border-radius:50%;
+    background:#2f7ac4;
+    opacity:.75;
+  }
+  .logo .text{
+    position:absolute;
+    right:10px; bottom:7px;
+    color:#fff;
+    font-size:16px;
+    line-height:16px;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qmark">Q.</div>
+
+  <div class="prompt">For each of the following, please<br>tell me how likely or unlikely you<br>think they are to happen...?</div>
+
+  <div class="headline">I will use social media<br>less</div>
+
+  <div class="footnote">Base: 23,721 adults aged 18 years and older in India, 18-74 in Canada, Republic of Ireland, Malaysia, the Philippines, South Africa, Turkey, and the United States, 20-74 in Thailand, 21-74 in Indonesia and Singapore, and 16-74 in all other countries.<br>Friday, October 25 – Friday November 8, 2024</div>
+
+  <div class="copyright">© Ipsos Predictions 2025 Report</div>
+
+  <div class="market-title">Market</div>
+  <div class="market-rule"></div>
+
+  <div class="legend-square1"></div>
+  <div class="legend1">Likely</div>
+
+  <div class="legend-square2"></div>
+  <div class="legend2">Unlikely</div>
+
+  <div class="change-title">Change likely<br><strong style="font-weight:700;">vs 2023</strong></div>
+  <div class="change-rule"></div>
+
+  <div class="chart">
+    <div class="country" style="top:0px;">Global Country Average</div>
+    <div class="rowbar-left outline" style="top:0px;width:242px;"></div>
+    <div class="pct-left" style="top:0px;">37%</div>
+    <div class="rowbar-right" style="top:0px;width:360px;"></div>
+    <div class="pct-right" style="top:0px;left:754px;">55%</div>
+    <div class="change-cell" style="top:0px;">-4%</div>
+
+    <div class="country" style="top:17px;">India</div>
+    <div class="rowbar-left" style="top:17px;width:357px;"></div>
+    <div class="pct-left" style="top:17px;">54%</div>
+    <div class="rowbar-right" style="top:17px;width:236px;"></div>
+    <div class="pct-right" style="top:17px;left:754px;">36%</div>
+    <div class="change-cell" style="top:17px;">-3%</div>
+
+    <div class="country" style="top:34px;">Philippines</div>
+    <div class="rowbar-left" style="top:34px;width:334px;"></div>
+    <div class="pct-left" style="top:34px;">51%</div>
+    <div class="rowbar-right" style="top:34px;width:308px;"></div>
+    <div class="pct-right" style="top:34px;left:754px;">47%</div>
+    <div class="change-cell" style="top:34px;">-5%</div>
+
+    <div class="country" style="top:51px;">Malaysia</div>
+    <div class="rowbar-left" style="top:51px;width:300px;"></div>
+    <div class="pct-left" style="top:51px;">45%</div>
+    <div class="rowbar-right" style="top:51px;width:328px;"></div>
+    <div class="pct-right" style="top:51px;left:754px;">50%</div>
+    <div class="change-cell" style="top:51px;">-4%</div>
+
+    <div class="country" style="top:68px;">United States</div>
+    <div class="rowbar-left" style="top:68px;width:296px;"></div>
+    <div class="pct-left" style="top:68px;">45%</div>
+    <div class="rowbar-right" style="top:68px;width:302px;"></div>
+    <div class="pct-right" style="top:68px;left:754px;">46%</div>
+    <div class="change-cell" style="top:68px;">0%</div>
+
+    <div class="country" style="top:85px;">Australia</div>
+    <div class="rowbar-left" style="top:85px;width:292px;"></div>
+    <div class="pct-left" style="top:85px;">44%</div>
+    <div class="rowbar-right" style="top:85px;width:308px;"></div>
+    <div class="pct-right" style="top:85px;left:754px;">47%</div>
+    <div class="change-cell" style="top:85px;">-1%</div>
+    <div class="highlight" style="top:84px;"></div>
+
+    <div class="country" style="top:102px;">France</div>
+    <div class="rowbar-left" style="top:102px;width:291px;"></div>
+    <div class="pct-left" style="top:102px;">44%</div>
+    <div class="rowbar-right" style="top:102px;width:295px;"></div>
+    <div class="pct-right" style="top:102px;left:754px;">45%</div>
+    <div class="change-cell" style="top:102px;">-3%</div>
+
+    <div class="country" style="top:119px;">Ireland</div>
+    <div class="rowbar-left" style="top:119px;width:284px;"></div>
+    <div class="pct-left" style="top:119px;">42%</div>
+    <div class="rowbar-right" style="top:119px;width:334px;"></div>
+    <div class="pct-right" style="top:119px;left:754px;">51%</div>
+    <div class="change-cell" style="top:119px;">N/A</div>
+
+    <div class="country" style="top:136px;">Indonesia</div>
+    <div class="rowbar-left" style="top:136px;width:278px;"></div>
+    <div class="pct-left" style="top:136px;">42%</div>
+    <div class="rowbar-right" style="top:136px;width:373px;"></div>
+    <div class="pct-right" style="top:136px;left:754px;">57%</div>
+    <div class="change-cell" style="top:136px;">2%</div>
+
+    <div class="country" style="top:153px;">Sweden</div>
+    <div class="rowbar-left" style="top:153px;width:278px;"></div>
+    <div class="pct-left" style="top:153px;">41%</div>
+    <div class="rowbar-right" style="top:153px;width:327px;"></div>
+    <div class="pct-right" style="top:153px;left:754px;">50%</div>
+    <div class="change-cell" style="top:153px;">1%</div>
+
+    <div class="country" style="top:170px;">Italy</div>
+    <div class="rowbar-left" style="top:170px;width:276px;"></div>
+    <div class="pct-left" style="top:170px;">41%</div>
+    <div class="rowbar-right" style="top:170px;width:302px;"></div>
+    <div class="pct-right" style="top:170px;left:754px;">46%</div>
+    <div class="change-cell" style="top:170px;">-3%</div>
+
+    <div class="country" style="top:187px;">Great Britain</div>
+    <div class="rowbar-left" style="top:187px;width:276px;"></div>
+    <div class="pct-left" style="top:187px;">41%</div>
+    <div class="rowbar-right" style="top:187px;width:308px;"></div>
+    <div class="pct-right" style="top:187px;left:754px;">47%</div>
+    <div class="change-cell" style="top:187px;">-7%</div>
+
+    <div class="country" style="top:204px;">Netherlands</div>
+    <div class="rowbar-left" style="top:204px;width:276px;"></div>
+    <div class="pct-left" style="top:204px;">41%</div>
+    <div class="rowbar-right" style="top:204px;width:341px;"></div>
+    <div class="pct-right" style="top:204px;left:754px;">52%</div>
+    <div class="change-cell" style="top:204px;">1%</div>
+
+    <div class="country" style="top:221px;">Türkiye</div>
+    <div class="rowbar-left" style="top:221px;width:265px;"></div>
+    <div class="pct-left" style="top:221px;">39%</div>
+    <div class="rowbar-right" style="top:221px;width:367px;"></div>
+    <div class="pct-right" style="top:221px;left:754px;">56%</div>
+    <div class="change-cell" style="top:221px;">-5%</div>
+
+    <div class="country" style="top:238px;">Spain</div>
+    <div class="rowbar-left" style="top:238px;width:254px;"></div>
+    <div class="pct-left" style="top:238px;">38%</div>
+    <div class="rowbar-right" style="top:238px;width:315px;"></div>
+    <div class="pct-right" style="top:238px;left:754px;">48%</div>
+    <div class="change-cell" style="top:238px;">-3%</div>
+
+    <div class="country" style="top:255px;">Canada</div>
+    <div class="rowbar-left" style="top:255px;width:253px;"></div>
+    <div class="pct-left" style="top:255px;">38%</div>
+    <div class="rowbar-right" style="top:255px;width:334px;"></div>
+    <div class="pct-right" style="top:255px;left:754px;">51%</div>
+    <div class="change-cell" style="top:255px;">-10%</div>
+
+    <div class="country" style="top:272px;">Germany</div>
+    <div class="rowbar-left" style="top:272px;width:245px;"></div>
+    <div class="pct-left" style="top:272px;">37%</div>
+    <div class="rowbar-right" style="top:272px;width:328px;"></div>
+    <div class="pct-right" style="top:272px;left:754px;">50%</div>
+    <div class="change-cell" style="top:272px;">-7%</div>
+
+    <div class="country" style="top:289px;">South Africa</div>
+    <div class="rowbar-left" style="top:289px;width:241px;"></div>
+    <div class="pct-left" style="top:289px;">37%</div>
+    <div class="rowbar-right" style="top:289px;width:387px;"></div>
+    <div class="pct-right" style="top:289px;left:754px;">59%</div>
+    <div class="change-cell" style="top:289px;">-3%</div>
+
+    <div class="country" style="top:306px;">Belgium</div>
+    <div class="rowbar-left" style="top:306px;width:236px;"></div>
+    <div class="pct-left" style="top:306px;">36%</div>
+    <div class="rowbar-right" style="top:306px;width:367px;"></div>
+    <div class="pct-right" style="top:306px;left:754px;">56%</div>
+    <div class="change-cell" style="top:306px;">-5%</div>
+
+    <div class="country" style="top:323px;">Switzerland</div>
+    <div class="rowbar-left" style="top:323px;width:236px;"></div>
+    <div class="pct-left" style="top:323px;">36%</div>
+    <div class="rowbar-right" style="top:323px;width:367px;"></div>
+    <div class="pct-right" style="top:323px;left:754px;">56%</div>
+    <div class="change-cell" style="top:323px;">-8%</div>
+
+    <div class="country" style="top:340px;">Thailand</div>
+    <div class="rowbar-left" style="top:340px;width:236px;"></div>
+    <div class="pct-left" style="top:340px;">36%</div>
+    <div class="rowbar-right" style="top:340px;width:406px;"></div>
+    <div class="pct-right" style="top:340px;left:754px;">62%</div>
+    <div class="change-cell" style="top:340px;">-4%</div>
+
+    <div class="country" style="top:357px;">South Korea</div>
+    <div class="rowbar-left" style="top:357px;width:235px;"></div>
+    <div class="pct-left" style="top:357px;">36%</div>
+    <div class="rowbar-right" style="top:357px;width:367px;"></div>
+    <div class="pct-right" style="top:357px;left:754px;">56%</div>
+    <div class="change-cell" style="top:357px;">-3%</div>
+
+    <div class="country" style="top:374px;">Poland</div>
+    <div class="rowbar-left" style="top:374px;width:229px;"></div>
+    <div class="pct-left" style="top:374px;">35%</div>
+    <div class="rowbar-right" style="top:374px;width:353px;"></div>
+    <div class="pct-right" style="top:374px;left:754px;">54%</div>
+    <div class="change-cell" style="top:374px;">1%</div>
+
+    <div class="country" style="top:391px;">Brazil</div>
+    <div class="rowbar-left" style="top:391px;width:225px;"></div>
+    <div class="pct-left" style="top:391px;">34%</div>
+    <div class="rowbar-right" style="top:391px;width:367px;"></div>
+    <div class="pct-right" style="top:391px;left:754px;">56%</div>
+    <div class="change-cell" style="top:391px;">0%</div>
+
+    <div class="country" style="top:408px;">Romania</div>
+    <div class="rowbar-left" style="top:408px;width:224px;"></div>
+    <div class="pct-left" style="top:408px;">34%</div>
+    <div class="rowbar-right" style="top:408px;width:387px;"></div>
+    <div class="pct-right" style="top:408px;left:754px;">59%</div>
+    <div class="change-cell" style="top:408px;">-2%</div>
+
+    <div class="country" style="top:425px;">Colombia</div>
+    <div class="rowbar-left" style="top:425px;width:217px;"></div>
+    <div class="pct-left" style="top:425px;">33%</div>
+    <div class="rowbar-right" style="top:425px;width:373px;"></div>
+    <div class="pct-right" style="top:425px;left:754px;">57%</div>
+    <div class="change-cell" style="top:425px;">-6%</div>
+
+    <div class="country" style="top:442px;">Singapore</div>
+    <div class="rowbar-left" style="top:442px;width:217px;"></div>
+    <div class="pct-left" style="top:442px;">33%</div>
+    <div class="rowbar-right" style="top:442px;width:406px;"></div>
+    <div class="pct-right" style="top:442px;left:754px;">62%</div>
+    <div class="change-cell" style="top:442px;">-10%</div>
+
+    <div class="country" style="top:459px;">Hungary</div>
+    <div class="rowbar-left" style="top:459px;width:205px;"></div>
+    <div class="pct-left" style="top:459px;">32%</div>
+    <div class="rowbar-right" style="top:459px;width:373px;"></div>
+    <div class="pct-right" style="top:459px;left:754px;">57%</div>
+    <div class="change-cell" style="top:459px;">-4%</div>
+
+    <div class="country" style="top:476px;">Peru</div>
+    <div class="rowbar-left" style="top:476px;width:193px;"></div>
+    <div class="pct-left" style="top:476px;">31%</div>
+    <div class="rowbar-right" style="top:476px;width:387px;"></div>
+    <div class="pct-right" style="top:476px;left:754px;">59%</div>
+    <div class="change-cell" style="top:476px;">-4%</div>
+
+    <div class="country" style="top:493px;">Mexico</div>
+    <div class="rowbar-left" style="top:493px;width:182px;"></div>
+    <div class="pct-left" style="top:493px;">29%</div>
+    <div class="rowbar-right" style="top:493px;width:426px;"></div>
+    <div class="pct-right" style="top:493px;left:754px;">65%</div>
+    <div class="change-cell" style="top:493px;">-6%</div>
+
+    <div class="country" style="top:510px;">Chile</div>
+    <div class="rowbar-left" style="top:510px;width:169px;"></div>
+    <div class="pct-left" style="top:510px;">27%</div>
+    <div class="rowbar-right" style="top:510px;width:419px;"></div>
+    <div class="pct-right" style="top:510px;left:754px;">64%</div>
+    <div class="change-cell" style="top:510px;">-4%</div>
+
+    <div class="country" style="top:527px;">Argentina</div>
+    <div class="rowbar-left" style="top:527px;width:159px;"></div>
+    <div class="pct-left" style="top:527px;">25%</div>
+    <div class="rowbar-right" style="top:527px;width:399px;"></div>
+    <div class="pct-right" style="top:527px;left:754px;">61%</div>
+    <div class="change-cell" style="top:527px;">-6%</div>
+
+    <div class="country" style="top:544px;">China</div>
+    <div class="rowbar-left" style="top:544px;width:143px;"></div>
+    <div class="pct-left" style="top:544px;">22%</div>
+    <div class="rowbar-right" style="top:544px;width:498px;"></div>
+    <div class="pct-right" style="top:544px;left:754px;">76%</div>
+    <div class="change-cell" style="top:544px;">-18%</div>
+
+    <div class="country" style="top:561px;">Japan</div>
+    <div class="rowbar-left" style="top:561px;width:120px;"></div>
+    <div class="pct-left" style="top:561px;">18%</div>
+    <div class="rowbar-right" style="top:561px;width:419px;"></div>
+    <div class="pct-right" style="top:561px;left:754px;">64%</div>
+    <div class="change-cell" style="top:561px;">-7%</div>
+  </div>
+
+  <div class="page">45</div>
+
+  <div class="logo">
+    <div class="shield"></div>
+    <div class="teal"></div>
+    <div class="blob1"></div>
+    <div class="blob2"></div>
+    <div class="text">Ipsos</div>
+  </div>
+</div>
+</body>
+</html>

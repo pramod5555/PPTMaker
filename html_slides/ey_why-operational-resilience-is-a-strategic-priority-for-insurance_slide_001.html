@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>EY Slide Replica</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #050811;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 58% 32%, rgba(148,165,255,0.28) 0, rgba(148,165,255,0.10) 120px, rgba(148,165,255,0) 280px),
+      radial-gradient(circle at 51% 92%, rgba(225,94,255,0.18) 0, rgba(225,94,255,0) 260px),
+      linear-gradient(90deg, rgba(3,7,15,1) 0%, rgba(8,16,39,0.98) 14%, rgba(25,40,92,0.74) 50%, rgba(19,34,86,0.70) 64%, rgba(6,10,24,0.96) 84%, rgba(2,5,12,1) 100%),
+      linear-gradient(180deg, #04070f 0%, #0c1230 34%, #141d48 58%, #0b1023 100%);
+  }
+  .slide > * { position: absolute; box-sizing: border-box; }
+
+  .bg-grid {
+    left: 40px;
+    top: 0;
+    width: 1210px;
+    height: 720px;
+    z-index: 1;
+    opacity: .9;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0) 0 11px, rgba(185,205,255,0.045) 11px 14px),
+      repeating-linear-gradient(180deg, rgba(255,255,255,0) 0 11px, rgba(185,205,255,0.04) 11px 14px);
+    filter: blur(.25px);
+  }
+
+  .columns {
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 2;
+    overflow: hidden;
+  }
+  .col {
+    position: absolute;
+    width: 14px;
+    border-radius: 8px;
+    filter: blur(.3px);
+    opacity: .95;
+  }
+  .col:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    border-radius: inherit;
+    box-shadow: 0 0 16px currentColor;
+    opacity: .65;
+  }
+
+  .bokeh {
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 3;
+    overflow: hidden;
+  }
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .floor {
+    left: 0;
+    bottom: 0;
+    width: 1280px;
+    height: 170px;
+    z-index: 4;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.00) 18%),
+      linear-gradient(90deg, rgba(255,0,175,0.00) 0%, rgba(255,0,175,0.18) 22%, rgba(145,215,255,0.15) 45%, rgba(255,255,255,0.16) 52%, rgba(196,114,255,0.18) 67%, rgba(255,60,140,0.14) 100%);
+    clip-path: polygon(0 22%, 100% 10%, 100% 100%, 0 100%);
+    opacity: .75;
+  }
+  .floor-grid {
+    left: 0;
+    bottom: 0;
+    width: 1280px;
+    height: 185px;
+    z-index: 5;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.00) 0 17px, rgba(185,205,255,0.08) 17px 20px),
+      repeating-linear-gradient(180deg, rgba(255,255,255,0.00) 0 22px, rgba(185,205,255,0.07) 22px 25px);
+    clip-path: polygon(0 28%, 100% 12%, 100% 100%, 0 100%);
+    opacity: .55;
+  }
+
+  .vignette {
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 6;
+    background:
+      radial-gradient(circle at 50% 55%, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.12) 72%, rgba(0,0,0,0.48) 100%),
+      linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.34) 13%, rgba(0,0,0,0.10) 34%, rgba(0,0,0,0.08) 56%, rgba(0,0,0,0.16) 76%, rgba(0,0,0,0.68) 100%);
+  }
+
+  .frame-svg {
+    left: 50px;
+    top: 132px;
+    width: 648px;
+    height: 418px;
+    z-index: 20;
+    overflow: visible;
+  }
+  .frame-left {
+    left: 52px;
+    top: 245px;
+    width: 10px;
+    height: 279px;
+    background: #ffe500;
+    z-index: 20;
+  }
+  .frame-bottom {
+    left: 88px;
+    top: 533px;
+    width: 570px;
+    height: 11px;
+    background: #ffe500;
+    z-index: 20;
+  }
+  .frame-dots {
+    left: 51px;
+    top: 533px;
+    width: 58px;
+    height: 14px;
+    z-index: 21;
+  }
+  .frame-dots span,
+  .small-dots span {
+    position: absolute;
+    top: 0;
+    width: 11px;
+    height: 14px;
+    background: #ffe500;
+  }
+  .frame-dots span:nth-child(1),
+  .small-dots span:nth-child(1) { left: 0; }
+  .frame-dots span:nth-child(2),
+  .small-dots span:nth-child(2) { left: 22px; }
+  .frame-dots span:nth-child(3),
+  .small-dots span:nth-child(3) { left: 44px; }
+
+  .title {
+    left: 98px;
+    top: 286px;
+    width: 500px;
+    z-index: 30;
+    color: #fff;
+    font-size: 33px;
+    line-height: 1.17;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-shadow: 0 2px 6px rgba(0,0,0,.34);
+  }
+  .body {
+    left: 98px;
+    top: 423px;
+    width: 560px;
+    z-index: 30;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.35;
+    font-weight: 400;
+    text-shadow: 0 1px 4px rgba(0,0,0,.28);
+  }
+  .subtitle {
+    left: 98px;
+    top: 484px;
+    width: 610px;
+    z-index: 30;
+    color: #fff;
+    font-size: 17px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-shadow: 0 1px 4px rgba(0,0,0,.28);
+  }
+
+  .small-dots {
+    left: 51px;
+    top: 663px;
+    width: 58px;
+    height: 14px;
+    z-index: 30;
+  }
+  .footer-text {
+    left: 51px;
+    top: 681px;
+    width: 440px;
+    z-index: 30;
+    color: #fff;
+    font-size: 17px;
+    line-height: 1.18;
+    font-weight: 400;
+    text-shadow: 0 1px 4px rgba(0,0,0,.3);
+  }
+
+  .person {
+    left: 614px;
+    top: 164px;
+    width: 362px;
+    height: 548px;
+    z-index: 25;
+  }
+  .person .head {
+    position: absolute;
+    left: 104px;
+    top: 0;
+    width: 150px;
+    height: 171px;
+    background: radial-gradient(circle at 45% 35%, rgba(16,22,39,.9) 0%, rgba(8,12,22,.98) 72%, rgba(2,4,9,1) 100%);
+    border-radius: 50% 50% 46% 46% / 49% 49% 51% 51%;
+    box-shadow: inset -10px -10px 24px rgba(0,0,0,.55);
+  }
+  .person .headset-band {
+    position: absolute;
+    left: 95px;
+    top: 18px;
+    width: 172px;
+    height: 126px;
+    border: 4px solid rgba(23,30,47,.96);
+    border-bottom: none;
+    border-radius: 92px 92px 0 0;
+  }
+  .person .ear.left,
+  .person .ear.right {
+    position: absolute;
+    top: 73px;
+    width: 20px;
+    height: 65px;
+    background: linear-gradient(180deg, #0a0e1b 0%, #1a2234 100%);
+    border-radius: 12px;
+    box-shadow: 0 0 7px rgba(0,0,0,.6);
+  }
+  .person .ear.left { left: 94px; }
+  .person .ear.right { left: 246px; }
+  .person .mic {
+    position: absolute;
+    left: 82px;
+    top: 127px;
+    width: 64px;
+    height: 38px;
+    border-left: 2px solid rgba(33,38,50,.95);
+    border-bottom: 2px solid rgba(33,38,50,.95);
+    border-bottom-left-radius: 40px;
+    transform: rotate(-25deg);
+  }
+  .person .torso {
+    position: absolute;
+    left: 42px;
+    top: 144px;
+    width: 272px;
+    height: 384px;
+    background: linear-gradient(180deg, rgba(18,20,29,.98) 0%, rgba(7,8,13,.99) 100%);
+    clip-path: polygon(22% 0%, 78% 0%, 90% 15%, 100% 63%, 92% 100%, 8% 100%, 0% 64%, 10% 15%);
+    box-shadow: inset 0 0 42px rgba(255,255,255,.03);
+  }
+  .person .collar-left,
+  .person .collar-right {
+    position: absolute;
+    top: 171px;
+    width: 74px;
+    height: 98px;
+    background: linear-gradient(180deg, rgba(33,35,43,.62) 0%, rgba(8,10,16,.08) 100%);
+  }
+  .person .collar-left {
+    left: 114px;
+    clip-path: polygon(0 0, 100% 0, 70% 100%, 33% 100%);
+  }
+  .person .collar-right {
+    left: 171px;
+    clip-path: polygon(0 0, 100% 0, 68% 100%, 30% 100%);
+  }
+  .person .seam {
+    position: absolute;
+    left: 178px;
+    top: 171px;
+    width: 2px;
+    height: 337px;
+    background: linear-gradient(180deg, rgba(64,66,74,.3) 0%, rgba(24,24,30,.14) 100%);
+  }
+  .person .arm-left,
+  .person .arm-right {
+    position: absolute;
+    top: 214px;
+    width: 56px;
+    height: 266px;
+    background: linear-gradient(180deg, rgba(12,13,19,.98) 0%, rgba(5,6,10,.99) 100%);
+    border-radius: 30px;
+  }
+  .person .arm-left { left: 22px; transform: rotate(6deg); }
+  .person .arm-right { left: 283px; transform: rotate(-6deg); }
+
+  .ey-logo {
+    left: 968px;
+    top: 36px;
+    width: 180px;
+    height: 190px;
+    z-index: 50;
+    color: #fff;
+  }
+  .ey-logo .slash {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    width: 93px;
+    height: 20px;
+    background: #ffe500;
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  }
+  .ey-logo .ey {
+    position: absolute;
+    left: 28px;
+    top: 43px;
+    font-size: 69px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+  }
+  .ey-logo .tag {
+    position: absolute;
+    left: 3px;
+    top: 138px;
+    width: 170px;
+    font-size: 17px;
+    line-height: 1.04;
+    font-weight: 700;
+  }
+
+  .iif {
+    left: 1111px;
+    top: 117px;
+    width: 154px;
+    height: 82px;
+    z-index: 50;
+    color: #fff;
+  }
+  .iif .globe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 61px;
+    height: 61px;
+    border: 2px solid #e5a800;
+    border-radius: 50%;
+  }
+  .iif .globe:before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 0;
+    width: 35px;
+    height: 57px;
+    border-left: 1px solid #e5a800;
+    border-right: 1px solid #e5a800;
+    border-radius: 50%;
+  }
+  .iif .globe:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 57px;
+    height: 29px;
+    border-top: 1px solid #e5a800;
+    border-bottom: 1px solid #e5a800;
+    border-radius: 50%;
+  }
+  .iif .iif-box {
+    position: absolute;
+    left: 10px;
+    top: 13px;
+    width: 40px;
+    height: 33px;
+    background: rgba(14,20,45,.92);
+    border: 1px solid rgba(229,168,0,.55);
+  }
+  .iif .iif-box span {
+    position: absolute;
+    left: 4px;
+    top: 0;
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  .iif .text {
+    position: absolute;
+    left: 71px;
+    top: 9px;
+    width: 86px;
+    font-size: 8px;
+    line-height: 1.14;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bg-grid"></div>
+
+  <div class="columns">
+    <div class="col" style="left:82px;top:52px;height:110px;background:linear-gradient(180deg, rgba(255,215,0,0) 0%, rgba(255,215,0,.18) 20%, rgba(255,215,0,.48) 54%, rgba(255,215,0,0) 100%);color:rgba(255,215,0,.45)"></div>
+    <div class="col" style="left:432px;top:90px;height:95px;background:linear-gradient(180deg, rgba(255,90,70,0) 0%, rgba(255,90,70,.20) 25%, rgba(255,90,70,.54) 55%, rgba(255,90,70,0) 100%);color:rgba(255,90,70,.5)"></div>
+    <div class="col" style="left:580px;top:45px;height:120px;background:linear-gradient(180deg, rgba(185,110,255,0) 0%, rgba(185,110,255,.18) 25%, rgba(185,110,255,.52) 58%, rgba(185,110,255,0) 100%);color:rgba(185,110,255,.48)"></div>
+    <div class="col" style="left:932px;top:78px;height:64px;background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(190,205,255,.16) 25%, rgba(190,205,255,.48) 58%, rgba(255,255,255,0) 100%);color:rgba(190,205,255,.42)"></div>
+    <div class="col" style="left:1006px;top:54px;height:130px;background:linear-gradient(180deg, rgba(224,205,80,0) 0%, rgba(224,205,80,.22) 20%, rgba(224,205,80,.56) 56%, rgba(224,205,80,0) 100%);color:rgba(224,205,80,.48)"></div>
+    <div class="col" style="left:693px;top:178px;height:210px;background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(230,238,255,.16) 16%, rgba(230,238,255,.58) 50%, rgba(230,238,255,0) 100%);color:rgba(230,238,255,.42)"></div>
+    <div class="col" style="left:745px;top:160px;height:240px;background:linear-gradient(180deg, rgba(130,200,255,0) 0%, rgba(130,200,255,.18) 16%, rgba(130,200,255,.58) 54%, rgba(130,200,255,0) 100%);color:rgba(130,200,255,.46)"></div>
+    <div class="col" style="left:820px;top:178px;height:170px;background:linear-gradient(180deg, rgba(170,255,210,0) 0%, rgba(170,255,210,.16) 18%, rgba(170,255,210,.52) 54%, rgba(170,255,210,0) 100%);color:rgba(170,255,210,.42)"></div>
+    <div class="col" style="left:918px;top:200px;height:190px;background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,245,225,.18) 18%, rgba(255,245,225,.58) 56%, rgba(255,255,255,0) 100%);color:rgba(255,245,225,.44)"></div>
+    <div class="col" style="left:1150px;top:300px;height:170px;background:linear-gradient(180deg, rgba(255,30,120,0) 0%, rgba(255,30,120,.18) 18%, rgba(255,30,120,.54) 56%, rgba(255,30,120,0) 100%);color:rgba(255,30,120,.44)"></div>
+    <div class="col" style="left:1077px;top:325px;height:70px;background:linear-gradient(180deg, rgba(255,80,130,0) 0%, rgba(255,80,130,.16) 20%, rgba(255,80,130,.48) 55%, rgba(255,80,130,0) 100%);color:rgba(255,80,130,.42)"></div>
+    <div class="col" style="left:1002px;top:494px;height:90px;background:linear-gradient(180deg, rgba(255,75,145,0) 0%, rgba(255,75,145,.16) 22%, rgba(255,75,145,.44) 58%, rgba(255,75,145,0) 100%);color:rgba(255,75,145,.40)"></div>
+    <div class="col" style="left:626px;top:274px;height:240px;background:linear-gradient(180deg, rgba(255,120,70,0) 0%, rgba(255,120,70,.18) 20%, rgba(255,120,70,.54) 56%, rgba(255,120,70,0) 100%);color:rgba(255,120,70,.44)"></div>
+    <div class="col" style="left:520px;top:410px;height:170px;background:linear-gradient(180deg, rgba(105,240,255,0) 0%, rgba(105,240,255,.16) 20%, rgba(105,240,255,.46) 56%, rgba(105,240,255,0) 100%);color:rgba(105,240,255,.38)"></div>
+    <div class="col" style="left:466px;top:395px;height:220px;background:linear-gradient(180deg, rgba(255,45,215,0) 0%, rgba(255,45,215,.18) 20%, rgba(255,45,215,.52) 56%, rgba(255,45,215,0) 100%);color:rgba(255,45,215,.42)"></div>
+    <div class="col" style="left:322px;top:380px;height:160px;background:linear-gradient(180deg, rgba(185,245,120,0) 0%, rgba(185,245,120,.14) 20%, rgba(185,245,120,.38) 56%, rgba(185,245,120,0) 100%);color:rgba(185,245,120,.30)"></div>
+  </div>
+
+  <div class="bokeh">
+    <span class="dot" style="left:126px;top:18px;width:12px;height:12px;background:rgba(175,176,215,0.14);box-shadow:0 0 10px rgba(175,176,215,0.18)"></span>
+    <span class="dot" style="left:274px;top:20px;width:11px;height:11px;background:rgba(0,211,255,0.36);box-shadow:0 0 10px rgba(0,211,255,0.24)"></span>
+    <span class="dot" style="left:615px;top:58px;width:15px;height:15px;background:rgba(165,118,255,0.55);box-shadow:0 0 14px rgba(165,118,255,0.35)"></span>
+    <span class="dot" style="left:760px;top:22px;width:10px;height:10px;background:rgba(0,129,255,0.5);box-shadow:0 0 11px rgba(0,129,255,0.3)"></span>
+    <span class="dot" style="left:1007px;top:18px;width:8px;height:8px;background:rgba(0,230,115,0.55);box-shadow:0 0 10px rgba(0,230,115,0.32)"></span>
+    <span class="dot" style="left:1078px;top:12px;width:17px;height:17px;background:rgba(185,0,255,0.64);box-shadow:0 0 15px rgba(185,0,255,0.42)"></span>
+    <span class="dot" style="left:1164px;top:28px;width:10px;height:10px;background:rgba(126,255,214,0.55);box-shadow:0 0 11px rgba(126,255,214,0.32)"></span>
+    <span class="dot" style="left:1232px;top:44px;width:13px;height:13px;background:rgba(110,255,137,0.6);box-shadow:0 0 12px rgba(110,255,137,0.36)"></span>
+    <span class="dot" style="left:897px;top:36px;width:15px;height:15px;background:rgba(210,162,255,0.55);box-shadow:0 0 12px rgba(210,162,255,0.32)"></span>
+    <span class="dot" style="left:746px;top:90px;width:11px;height:11px;background:rgba(250,250,196,0.72);box-shadow:0 0 10px rgba(250,250,196,0.4)"></span>
+    <span class="dot" style="left:1139px;top:92px;width:15px;height:15px;background:rgba(83,123,255,0.48);box-shadow:0 0 13px rgba(83,123,255,0.28)"></span>
+    <span class="dot" style="left:929px;top:124px;width:9px;height:9px;background:rgba(187,220,86,0.42);box-shadow:0 0 8px rgba(187,220,86,0.24)"></span>
+    <span class="dot" style="left:1020px;top:111px;width:7px;height:7px;background:rgba(245,233,123,0.58);box-shadow:0 0 8px rgba(245,233,123,0.28)"></span>
+    <span class="dot" style="left:117px;top:118px;width:7px;height:7px;background:rgba(255,192,40,0.32);box-shadow:0 0 8px rgba(255,192,40,0.16)"></span>
+    <span class="dot" style="left:527px;top:139px;width:6px;height:6px;background:rgba(182,177,255,0.52);box-shadow:0 0 8px rgba(182,177,255,0.26)"></span>
+    <span class="dot" style="left:594px;top:138px;width:9px;height:9px;background:rgba(136,255,255,0.72);box-shadow:0 0 10px rgba(136,255,255,0.32)"></span>
+    <span class="dot" style="left:768px;top:132px;width:8px;height:8px;background:rgba(255,255,255,0.68);box-shadow:0 0 10px rgba(255,255,255,0.30)"></span>
+    <span class="dot" style="left:833px;top:110px;width:13px;height:13px;background:rgba(104,255,239,0.56);box-shadow:0 0 11px rgba(104,255,239,0.34)"></span>
+    <span class="dot" style="left:428px;top:170px;width:10px;height:10px;background:rgba(255,78,61,0.5);box-shadow:0 0 10px rgba(255,78,61,0.28)"></span>
+    <span class="dot" style="left:725px;top:185px;width:14px;height:14px;background:rgba(203,192,255,0.64);box-shadow:0 0 12px rgba(203,192,255,0.34)"></span>
+    <span class="dot" style="left:732px;top:216px;width:8px;height:8px;background:rgba(187,235,255,0.56);box-shadow:0 0 8px rgba(187,235,255,0.26)"></span>
+    <span class="dot" style="left:605px;top:200px;width:11px;height:11px;background:rgba(192,156,255,0.66);box-shadow:0 0 11px rgba(192,156,255,0.32)"></span>
+    <span class="dot" style="left:553px;top:185px;width:8px;height:8px;background:rgba(255,48,215,0.52);box-shadow:0 0 8px rgba(255,48,215,0.22)"></span>
+    <span class="dot" style="left:182px;top:302px;width:11px;height:11px;background:rgba(190,190,255,0.22);box-shadow:0 0 10px rgba(190,190,255,0.1)"></span>
+    <span class="dot" style="left:203px;top:358px;width:8px;height:8px;background:rgba(255,255,255,0.28);box-shadow:0 0 7px rgba(255,255,255,0.14)"></span>
+    <span class="dot" style="left:274px;top:425px;width:13px;height:13px;background:rgba(245,250,157,0.4);box-shadow:0 0 10px rgba(245,250,157,0.2)"></span>
+    <span class="dot" style="left:306px;top:438px;width:12px;height:12px;background:rgba(90,214,255,0.46);box-shadow:0 0 10px rgba(90,214,255,0.24)"></span>
+    <span class="dot" style="left:380px;top:405px;width:7px;height:7px;background:rgba(255,255,255,0.4);box-shadow:0 0 8px rgba(255,255,255,0.16)"></span>
+    <span class="dot" style="left:612px;top:293px;width:12px;height:12px;background:rgba(255,160,80,0.76);box-shadow:0 0 13px rgba(255,160,80,0.36)"></span>
+    <span class="dot" style="left:610px;top:363px;width:12px;height:12px;background:rgba(255,120,72,0.66);box-shadow:0 0 11px rgba(255,120,72,0.3)"></span>
+    <span class="dot" style="left:616px;top:476px;width:14px;height:14px;background:rgba(255,120,120,0.66);box-shadow:0 0 13px rgba(255,120,120,0.28)"></span>
+    <span class="dot" style="left:874px;top:330px;width:14px;height:14px;background:rgba(255,255,255,0.46);box-shadow:0 0 12px rgba(255,255,255,0.2)"></span>
+    <span class="dot" style="left:877px;top:227px;width:15px;height:15px;background:rgba(255,255,226,0.66);box-shadow:0 0 13px rgba(255,255,226,0.32)"></span>
+    <span class="dot" style="left:826px;top:250px;width:8px;height:8px;background:rgba(179,255,201,0.52);box-shadow:0 0 9px rgba(179,255,201,0.26)"></span>
+    <span class="dot" style="left:792px;top:392px;width:8px;height:8px;background:rgba(181,255,207,0.42);box-shadow:0 0 8px rgba(181,255,207,0.18)"></span>
+    <span class="dot" style="left:972px;top:321px;width:10px;height:10px;background:rgba(255,100,160,0.52);box-shadow:0 0 10px rgba(255,100,160,0.28)"></span>
+    <span class="dot" style="left:1017px;top:455px;width:14px;height:14px;background:rgba(255,130,206,0.58);box-shadow:0 0 13px rgba(255,130,206,0.32)"></span>
+    <span class="dot" style="left:1047px;top:331px;width:15px;height:15px;background:rgba(255,92,146,0.6);box-shadow:0 0 14px rgba(255,92,146,0.34)"></span>
+    <span class="dot" style="left:1103px;top:522px;width:11px;height:11px;background:rgba(255,62,109,0.38);box-shadow:0 0 11px rgba(255,62,109,0.2)"></span>
+    <span class="dot" style="left:938px;top:575px;width:26px;height:26px;background:rgba(248,220,255,0.18);box-shadow:0 0 40px rgba(248,220,255,0.16)"></span>
+    <span class="dot" style="left:519px;top:614px;width:34px;height:34px;background:rgba(255,255,255,0.16);box-shadow:0 0 48px rgba(255,255,255,0.12)"></span>
+    <span class="dot" style="left:688px;top:575px;width:40px;height:40px;background:rgba(176,182,255,0.11);box-shadow:0 0 52px rgba(176,182,255,0.12)"></span>
+    <span class="dot" style="left:835px;top:635px;width:44px;height:44px;background:rgba(151,140,255,0.09);box-shadow:0 0 58px rgba(151,140,255,0.12)"></span>
+  </div>
+
+  <div class="floor"></div>
+  <div class="floor-grid"></div>
+
+  <svg class="frame-svg" viewBox="0 0 648 418" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="frameTopGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#ffe500"/>
+        <stop offset="44%" stop-color="#ff31de"/>
+        <stop offset="100%" stop-color="#3cecff"/>
+      </linearGradient>
+      <linearGradient id="frameRightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#3cecff"/>
+        <stop offset="72%" stop-color="#ff31de"/>
+        <stop offset="100%" stop-color="#ff31de"/>
+      </linearGradient>
+    </defs>
+    <polyline points="6,114 638,8" fill="none" stroke="url(#frameTopGrad)" stroke-width="10" stroke-linecap="square"/>
+    <polyline points="638,8 638,410" fill="none" stroke="url(#frameRightGrad)" stroke-width="10" stroke-linecap="square"/>
+  </svg>
+  <div class="frame-left"></div>
+  <div class="frame-bottom"></div>
+  <div class="frame-dots"><span></span><span></span><span></span></div>
+
+  <div class="title">Risk management’s<br>strategic opportunity in<br>a time of turbulence</div>
+  <div class="body">How CROs are protecting the organization from critical risks and<br>increasing their value contribution to the business.</div>
+  <div class="subtitle">Second annual EY/IIF global insurance risk management survey</div>
+
+  <div class="person">
+    <div class="head"></div>
+    <div class="headset-band"></div>
+    <div class="ear left"></div>
+    <div class="ear right"></div>
+    <div class="mic"></div>
+    <div class="torso"></div>
+    <div class="collar-left"></div>
+    <div class="collar-right"></div>
+    <div class="seam"></div>
+    <div class="arm-left"></div>
+    <div class="arm-right"></div>
+  </div>
+
+  <div class="ey-logo">
+    <div class="slash"></div>
+    <div class="ey">EY</div>
+    <div class="tag">Shape the future<br>with confidence</div>
+  </div>
+
+  <div class="iif">
+    <div class="globe"></div>
+    <div class="iif-box"><span>IIF</span></div>
+    <div class="text">Institute of<br>International<br>Finance</div>
+  </div>
+
+  <div class="small-dots"><span></span><span></span><span></span></div>
+  <div class="footer-text">The better the question. The better the answer.<br>The better the world works.</div>
+
+  <div class="vignette"></div>
+</div>
+</body>
+</html>

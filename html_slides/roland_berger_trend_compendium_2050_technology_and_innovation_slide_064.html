@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{margin:0;background:#a0a0a0;font-family:Arial,Helvetica,'Segoe UI',sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+  }
+  .slide > div, .slide > svg { position:absolute; box-sizing:border-box; }
+
+  .sidebar{
+    left:0; top:0; width:181px; height:720px;
+    background:#343840;
+  }
+  .sidebar-accent{
+    left:179px; top:0; width:2px; height:720px;
+    background:#6b4ea0;
+  }
+  .side-title{
+    left:12px; top:33px; width:150px;
+    color:#f2f2f2; font-size:25px; line-height:1.05; font-weight:700;
+  }
+
+  .hex{
+    width:72px; height:62px;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    border:3px solid rgba(255,255,255,0.3);
+    background:#7e838b;
+    overflow:hidden;
+  }
+  .hex::before{
+    content:""; position:absolute; inset:5px;
+    clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+    background:linear-gradient(135deg, rgba(255,255,255,.75), rgba(255,255,255,.12));
+  }
+  .step1-hex{ left:6px; top:143px; }
+  .step2-hex{ left:6px; top:275px; }
+  .step3-hex{ left:6px; top:408px; background:#c9b8ea; border-color:#7f62b2; }
+  .step3-hex::before{ background:linear-gradient(135deg, rgba(255,255,255,.9), rgba(255,255,255,.2)); }
+
+  .side-num{
+    color:#80848b; font-size:28px; font-weight:700; line-height:1;
+  }
+  .num1{ left:92px; top:146px; }
+  .num2{ left:92px; top:279px; }
+  .num3{ left:92px; top:411px; color:#7f62b2; }
+
+  .side-label{
+    width:78px; font-size:15px; line-height:1.08; color:#676d75;
+  }
+  .lab1{ left:93px; top:178px; }
+  .lab2{ left:93px; top:311px; }
+  .lab3{ left:93px; top:443px; color:#7f62b2; font-weight:700; }
+
+  .heximg{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:24px; color:#fff; opacity:.95;
+  }
+  .heximg.small{ font-size:20px; }
+
+  .bottom-icon{
+    left:70px; top:663px; width:74px; height:44px;
+  }
+
+  .page{
+    left:9px; top:706px; color:#fff; font-size:20px; line-height:1;
+  }
+
+  .title{
+    left:220px; top:30px; width:1040px;
+    color:#222; font-size:29px; line-height:1.06; font-weight:800;
+  }
+  .subtitle{
+    left:220px; top:138px; width:790px;
+    color:#8f949c; font-size:28px; line-height:1.15; font-weight:300;
+  }
+
+  .left-card{
+    left:220px; top:237px; width:307px; height:304px;
+    border-radius:14px 14px 0 0;
+    overflow:hidden;
+    background:linear-gradient(180deg, rgba(93,64,150,.96) 0%, rgba(92,66,149,.9) 55%, rgba(97,69,154,.86) 100%);
+  }
+  .left-card:before{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 18px 20px, rgba(255,255,255,.13) 0 3px, transparent 4px),
+      radial-gradient(circle at 60px 56px, rgba(255,255,255,.15) 0 2px, transparent 3px),
+      radial-gradient(circle at 143px 29px, rgba(255,255,255,.10) 0 3px, transparent 4px),
+      radial-gradient(circle at 226px 68px, rgba(255,255,255,.12) 0 2px, transparent 3px),
+      radial-gradient(circle at 270px 145px, rgba(255,255,255,.10) 0 3px, transparent 4px),
+      radial-gradient(circle at 205px 246px, rgba(255,255,255,.14) 0 3px, transparent 4px),
+      radial-gradient(circle at 82px 220px, rgba(255,255,255,.10) 0 4px, transparent 5px),
+      linear-gradient(135deg, transparent 0%, rgba(255,255,255,.05) 100%);
+  }
+  .card-net{ left:220px; top:237px; width:307px; height:304px; }
+  .card-text{
+    left:251px; top:283px; width:205px;
+    color:#fff; font-size:24px; line-height:1.18; font-weight:400;
+  }
+  .card-text b{font-weight:800;}
+  .vertical-meta{
+    left:486px; top:265px; width:35px; height:245px;
+    color:rgba(223,217,236,.72); font-size:23px; line-height:1; font-weight:300;
+    writing-mode:vertical-rl; transform:rotate(180deg); letter-spacing:.08em;
+  }
+  .card-bottom{
+    left:220px; top:541px; width:307px; height:74px;
+    background:rgba(255,255,255,.7);
+    overflow:hidden;
+  }
+  .card-bottom:before{
+    content:""; position:absolute; left:127px; top:-16px; width:120px; height:120px;
+    border-radius:50%;
+    background:radial-gradient(circle at 50% 50%, rgba(255,255,255,.65) 0 37px, rgba(255,255,255,.18) 38px 58px, transparent 59px);
+  }
+  .card-bottom:after{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 10px 18px, rgba(255,255,255,.8) 0 4px, transparent 5px),
+      radial-gradient(circle at 181px 49px, rgba(255,255,255,.78) 0 5px, transparent 6px),
+      radial-gradient(circle at 229px 61px, rgba(255,255,255,.72) 0 3px, transparent 4px);
+  }
+  .card-bottom-net{ left:220px; top:541px; width:307px; height:74px; }
+
+  .divider{
+    left:525px; top:185px; width:2px; height:409px; background:#8a72b3;
+  }
+  .divider-dot{
+    left:520px; top:590px; width:10px; height:10px;
+    border-radius:50%; background:#4d357a;
+  }
+
+  .icons-area{ left:554px; top:198px; width:705px; height:390px; }
+  .pixel{ fill:#d9d0e8; }
+  .icon-stroke{ stroke:#543681; stroke-width:2.2; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+  .icon-fill{ fill:#543681; stroke:#543681; stroke-width:1.5; }
+  .item-title{
+    position:absolute; left:108px; width:230px;
+    color:#222; font-size:26px; line-height:1; font-weight:800;
+  }
+  .item-body{
+    position:absolute; left:108px; width:620px;
+    color:#2e2e2e; font-size:18px; line-height:1.08; font-weight:400;
+  }
+  .sup{ font-size:11px; vertical-align:super; }
+
+  .line-rule{
+    left:220px; top:615px; width:1116px; height:2px; background:#7f62b2;
+  }
+  .quote-mark{
+    left:218px; top:621px;
+    color:#7f62b2; font-size:96px; line-height:.8; font-weight:700;
+  }
+  .quote{
+    left:293px; top:641px; width:815px;
+    color:#7f62b2; font-size:24px; line-height:1.08; font-weight:700; font-style:italic;
+  }
+  .author{
+    left:1109px; top:679px; width:190px;
+    color:#7f62b2; font-size:20px; line-height:1; text-align:right; font-weight:400;
+  }
+  .footnote{
+    left:220px; top:736px; width:980px;
+    color:#444; font-size:7px; line-height:1.2;
+  }
+
+  .rb-logo{
+    left:1238px; top:703px; width:34px; height:14px;
+  }
+  .rb-logo .txt{
+    position:absolute; left:-2px; top:-1px; width:19px;
+    color:#666; font-size:8px; line-height:.95; text-align:right;
+  }
+  .rb-logo .shape{
+    position:absolute; right:0; top:0; width:12px; height:14px;
+    background:#8d8d8d; border-radius:0 7px 7px 0;
+  }
+  .rb-logo .shape:before{
+    content:""; position:absolute; left:-7px; top:3px; width:10px; height:11px;
+    background:#b3b3b3; border-radius:7px 0 0 7px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="sidebar"></div>
+  <div class="sidebar-accent"></div>
+  <div class="side-title">Technology &amp;<br>Innovation</div>
+
+  <div class="hex step1-hex"><div class="heximg small">🌐</div></div>
+  <div class="hex step2-hex"><div class="heximg small">✦</div></div>
+  <div class="hex step3-hex"><div class="heximg">🤝</div></div>
+
+  <div class="side-num num1">1</div>
+  <div class="side-label lab1">Value of<br>Innovation</div>
+  <div class="side-num num2">2</div>
+  <div class="side-label lab2">Frontier<br>Technologies</div>
+  <div class="side-num num3">3</div>
+  <div class="side-label lab3">Humans &amp;<br>Machines</div>
+
+  <svg class="bottom-icon" viewBox="0 0 74 44" aria-hidden="true">
+    <g fill="none" stroke="#7f848c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="18" cy="28" r="12"></circle>
+      <path d="M18 11v-6M18 51"></path>
+      <path d="M6 16l-4-3M30 16l4-3M5 29H1M31 29h4M8 39l-4 3"></path>
+      <path d="M26 39l4 3"></path>
+      <path d="M18 22c4 0 7 3 7 7s-3 7-7 7"></path>
+      <path d="M18 22c-4 0-7 3-7 7s3 7 7 7"></path>
+      <path d="M49 8c7 0 12 5 12 12 0 4-2 8-5 10v5h-14v-5c-3-2-5-6-5-10 0-7 5-12 12-12z"></path>
+      <path d="M44 36h10"></path>
+      <path d="M48 15c-2 2-3 4-3 7"></path>
+      <path d="M46 20l4 5 5-10"></path>
+    </g>
+  </svg>
+
+  <div class="page">64</div>
+
+  <div class="title">From Facebook to the metaverse – Are social media just the launch pad for a profoundly dynamic change of global society?</div>
+  <div class="subtitle">The next big thing: The metaverse creates a virtualized society</div>
+
+  <div class="left-card"></div>
+  <svg class="card-net" viewBox="0 0 307 304" preserveAspectRatio="none" aria-hidden="true">
+    <g stroke="rgba(255,255,255,0.10)" stroke-width="1" fill="rgba(255,255,255,0.10)">
+      <line x1="18" y1="80" x2="86" y2="42"/><line x1="86" y1="42" x2="152" y2="58"/><line x1="152" y1="58" x2="224" y2="34"/>
+      <line x1="42" y1="160" x2="112" y2="120"/><line x1="112" y1="120" x2="188" y2="138"/><line x1="188" y1="138" x2="252" y2="94"/>
+      <line x1="44" y1="230" x2="106" y2="210"/><line x1="106" y1="210" x2="176" y2="236"/><line x1="176" y1="236" x2="254" y2="196"/>
+      <line x1="62" y1="288" x2="126" y2="258"/><line x1="126" y1="258" x2="206" y2="276"/><line x1="206" y1="276" x2="282" y2="250"/>
+      <circle cx="18" cy="80" r="2"/><circle cx="86" cy="42" r="2"/><circle cx="152" cy="58" r="2"/><circle cx="224" cy="34" r="2"/>
+      <circle cx="42" cy="160" r="2"/><circle cx="112" cy="120" r="2"/><circle cx="188" cy="138" r="2"/><circle cx="252" cy="94" r="2"/>
+      <circle cx="44" cy="230" r="2"/><circle cx="106" cy="210" r="2"/><circle cx="176" cy="236" r="2"/><circle cx="254" cy="196" r="2"/>
+      <circle cx="62" cy="288" r="2"/><circle cx="126" cy="258" r="2"/><circle cx="206" cy="276" r="2"/><circle cx="282" cy="250" r="2"/>
+      <circle cx="204" cy="276" r="68" fill="rgba(255,255,255,.06)" stroke="none"/>
+    </g>
+  </svg>
+  <div class="card-text">The <b>metaverse</b><br>enables our current<br><b>daily life</b> to<br>completely move <b>to a</b><br><b>digital and virtual</b><br><b>world</b>, ultimately<br>having a <b>profound</b><br><b>impact on society</b></div>
+  <div class="vertical-meta">Metaverse</div>
+  <div class="card-bottom"></div>
+  <svg class="card-bottom-net" viewBox="0 0 307 74" preserveAspectRatio="none" aria-hidden="true">
+    <g stroke="rgba(255,255,255,0.28)" stroke-width="1" fill="rgba(255,255,255,0.28)">
+      <line x1="8" y1="48" x2="56" y2="26"/><line x1="56" y1="26" x2="112" y2="41"/><line x1="112" y1="41" x2="164" y2="19"/>
+      <line x1="164" y1="19" x2="218" y2="37"/><line x1="218" y1="37" x2="288" y2="18"/>
+      <circle cx="8" cy="48" r="1.5"/><circle cx="56" cy="26" r="1.5"/><circle cx="112" cy="41" r="1.5"/><circle cx="164" cy="19" r="1.5"/><circle cx="218" cy="37" r="1.5"/><circle cx="288" cy="18" r="1.5"/>
+    </g>
+  </svg>
+
+  <div class="divider"></div>
+  <div class="divider-dot"></div>
+
+  <div class="icons-area">
+    <svg width="705" height="390" viewBox="0 0 705 390" aria-hidden="true">
+      <!-- row 1 -->
+      <g transform="translate(0,0)">
+        <rect class="pixel" x="13" y="22" width="8" height="8"/><rect class="pixel" x="31" y="12" width="8" height="8"/>
+        <rect class="pixel" x="37" y="31" width="8" height="8"/><rect class="pixel" x="19" y="47" width="8" height="8"/>
+        <rect class="pixel" x="48" y="50" width="8" height="8"/><rect class="pixel" x="56" y="18" width="8" height="8"/>
+        <rect class="pixel" x="3" y="61" width="8" height="8"/><rect class="pixel" x="31" y="67" width="8" height="8"/>
+        <circle class="icon-stroke" cx="58" cy="38" r="18"/>
+        <path class="icon-stroke" d="M40 38h36M58 20v36M46 27c8 5 16 5 24 0M46 49c8-5 16-5 24 0"/>
+        <rect class="icon-fill" x="54" y="58" width="8" height="8" rx="1"/>
+        <path class="icon-stroke" d="M40 70h36"/>
+        <path class="icon-stroke" d="M43 70l-9 12M58 70v14M73 70l9 12"/>
+        <circle class="icon-fill" cx="34" cy="84" r="4"/>
+        <circle class="icon-fill" cx="58" cy="84" r="4"/>
+        <circle class="icon-fill" cx="82" cy="84" r="4"/>
+      </g>
+
+      <!-- row 2 -->
+      <g transform="translate(0,103)">
+        <rect class="pixel" x="13" y="22" width="8" height="8"/><rect class="pixel" x="31" y="12" width="8" height="8"/>
+        <rect class="pixel" x="37" y="31" width="8" height="8"/><rect class="pixel" x="19" y="47" width="8" height="8"/>
+        <rect class="pixel" x="48" y="50" width="8" height="8"/><rect class="pixel" x="56" y="18" width="8" height="8"/>
+        <rect class="pixel" x="3" y="61" width="8" height="8"/><rect class="pixel" x="31" y="67" width="8" height="8"/>
+        <circle class="icon-stroke" cx="54" cy="44" r="18"/>
+        <circle class="icon-stroke" cx="54" cy="44" r="5"/>
+        <circle class="icon-stroke" cx="33" cy="44" r="5"/>
+        <circle class="icon-stroke" cx="75" cy="44" r="5"/>
+        <circle class="icon-stroke" cx="54" cy="23" r="5"/>
+        <circle class="icon-stroke" cx="54" cy="65" r="5"/>
+        <path class="icon-stroke" d="M38 44h11M59 44h11M54 28v11M54 49v11"/>
+        <path class="icon-stroke" d="M37 29l12 11M71 29L59 40M37 59l12-11M71 59L59 48"/>
+      </g>
+
+      <!-- row 3 -->
+      <g transform="translate(0,201)">
+        <rect class="pixel" x="13" y="22" width="8" height="8"/><rect class="pixel" x="31" y="12" width="8" height="8"/>
+        <rect class="pixel" x="37" y="31" width="8" height="8"/><rect class="pixel" x="19" y="47" width="8" height="8"/>
+        <rect class="pixel" x="48" y="50" width="8" height="8"/><rect class="pixel" x="56" y="18" width="8" height="8"/>
+        <rect class="pixel" x="3" y="61" width="8" height="8"/><rect class="pixel" x="31" y="67" width="8" height="8"/>
+        <path class="icon-stroke" d="M40 26h23c13 0 23 10 23 23s-10 23-23 23H40z"/>
+        <path class="icon-stroke" d="M51 21c8 1 13 6 16 12M51 77c8-1 13-6 16-12"/>
+        <path class="icon-stroke" d="M49 31h13c9 0 16 7 16 16s-7 16-16 16H49z"/>
+        <rect class="icon-stroke" x="30" y="37" width="8" height="22"/>
+        <path class="icon-stroke" d="M27 33v30"/>
+        <path class="icon-stroke" d="M59 71l8 9H42l7-9"/>
+      </g>
+
+      <!-- row 4 -->
+      <g transform="translate(0,299)">
+        <rect class="pixel" x="13" y="8" width="8" height="8"/><rect class="pixel" x="31" y="18" width="8" height="8"/>
+        <rect class="pixel" x="37" y="36" width="8" height="8"/><rect class="pixel" x="19" y="52" width="8" height="8"/>
+        <rect class="pixel" x="48" y="56" width="8" height="8"/><rect class="pixel" x="56" y="24" width="8" height="8"/>
+        <rect class="pixel" x="3" y="38" width="8" height="8"/><rect class="pixel" x="31" y="70" width="8" height="8"/>
+        <rect class="icon-stroke" x="26" y="20" width="48" height="36"/>
+        <path class="icon-stroke" d="M26 20l48 36M74 20L26 56M50 20v36M26 38h48"/>
+        <path class="icon-stroke" d="M32 24h36M32 52h36M30 28v24M70 28v24"/>
+        <circle class="icon-stroke" cx="50" cy="38" r="5"/>
+      </g>
+    </svg>
+
+    <div class="item-title" style="top:7px;">Meta world</div>
+    <div class="item-body" style="top:32px;">The new meta world will be persistent, synchronous and live. Individuals will not be able to pause it like in a game. It continues indefinitely, like a parallel world</div>
+
+    <div class="item-title" style="top:110px;">Meta space</div>
+    <div class="item-body" style="top:135px;">New space will be created which users can acquire. Users can meet in coffee shops, go to concerts or buy clothes in shopping stores in the metaverse – All for their personal avatar</div>
+
+    <div class="item-title" style="top:211px;">Meta reality</div>
+    <div class="item-body" style="top:236px;">Everybody can be a part of the metaverse and participate in a specific event, place or activity together, at the same time, with individual agency</div>
+
+    <div class="item-title" style="top:305px;">Meta economy</div>
+    <div class="item-body" style="top:330px;">Individuals and businesses will be able to create, own, invest, sell, and be rewarded with a wide variety of cryptocurrencies – For instance, buying land to build a house in the metaverse, or creating new business models<span class="sup">1)</span></div>
+  </div>
+
+  <div class="line-rule"></div>
+  <div class="quote-mark">“</div>
+  <div class="quote">You can think about the metaverse as an embodied Internet, where instead of just viewing content – you are in it.”</div>
+  <div class="author">Mark Zuckerberg</div>
+  <div class="footnote">1) According to a 2021 study by Wunderman Thompson Intelligence (Into the Metaverse), metaverse users from the US, China and UK are willing to pay up to USD 76,000 for houses</div>
+
+  <div class="rb-logo">
+    <div class="txt">Roland<br>Berger</div>
+    <div class="shape"></div>
+  </div>
+</div>
+</body>
+</html>

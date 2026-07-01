@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #5b7198;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      linear-gradient(90deg, #2a72df 0px, #3b8af5 28px, #4d97ff 48px, #d9d9d9 65px, #d9d9d9 530px, rgba(0,0,0,0) 531px),
+      radial-gradient(circle at 60% 8%, rgba(80,160,255,0.9) 0 5%, rgba(15,45,180,0.9) 9%, rgba(5,18,87,0.95) 18%, rgba(2,10,50,1) 28%, transparent 40%),
+      radial-gradient(circle at 46% 20%, rgba(23,100,255,0.75) 0 6%, transparent 10%),
+      radial-gradient(circle at 73% 22%, rgba(63,138,255,0.85) 0 5%, transparent 11%),
+      radial-gradient(circle at 80% 44%, rgba(84,159,255,0.8) 0 3%, transparent 9%),
+      radial-gradient(circle at 82% 82%, rgba(255,255,255,0.92) 0 2.1%, rgba(212,224,255,0.85) 2.5%, transparent 5.5%),
+      radial-gradient(circle at 44% 61%, rgba(255,255,255,0.75) 0 1.5%, transparent 4.5%),
+      radial-gradient(circle at 47% 71%, rgba(255,255,255,0.55) 0 1.4%, transparent 4.8%),
+      linear-gradient(90deg, rgba(0,0,0,0) 0 77%, rgba(0,0,0,0.28) 84%, rgba(0,0,0,0.44) 100%),
+      linear-gradient(180deg, #225fd2 0%, #021954 10%, #011346 32%, #00133f 100%);
+  }
+
+  .left-panel {
+    position: absolute;
+    left: 65px;
+    top: 0;
+    width: 465px;
+    height: 720px;
+    background: #d9d9d9;
+  }
+
+  .text-block {
+    position: absolute;
+    left: 116px;
+    top: 97px;
+    width: 330px;
+    color: #2a2a2a;
+    font-size: 17px;
+    line-height: 1.38;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .text-block p {
+    margin: 0 0 18px 0;
+  }
+
+  .footer-left {
+    position: absolute;
+    right: 78px;
+    bottom: 18px;
+    color: rgba(255,255,255,0.88);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .footer-page {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    color: rgba(255,255,255,0.9);
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  .blur-shape-1, .blur-shape-2, .blur-shape-3, .blur-shape-4, .blur-shape-5 {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(24px);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .blur-shape-1 {
+    left: 576px;
+    top: 12px;
+    width: 150px;
+    height: 210px;
+    background: linear-gradient(180deg, rgba(108,191,255,0.9), rgba(29,69,255,0.75));
+  }
+
+  .blur-shape-2 {
+    left: 896px;
+    top: 71px;
+    width: 88px;
+    height: 198px;
+    background: linear-gradient(180deg, rgba(104,185,255,0.95), rgba(64,130,255,0.5));
+  }
+
+  .blur-shape-3 {
+    left: 977px;
+    top: 257px;
+    width: 74px;
+    height: 106px;
+    background: linear-gradient(180deg, rgba(121,193,255,0.9), rgba(41,92,255,0.5));
+    transform: rotate(-28deg);
+    border-radius: 26px;
+  }
+
+  .blur-shape-4 {
+    left: 1189px;
+    top: 0;
+    width: 78px;
+    height: 719px;
+    background: linear-gradient(180deg, rgba(2,20,64,0.2), rgba(16,35,91,0.45), rgba(4,19,65,0.35));
+    filter: blur(10px);
+    opacity: 0.65;
+  }
+
+  .blur-shape-5 {
+    left: 1162px;
+    top: 317px;
+    width: 20px;
+    height: 86px;
+    background: rgba(230,225,255,0.5);
+    filter: blur(9px);
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-panel"></div>
+
+    <div class="blur-shape-1"></div>
+    <div class="blur-shape-2"></div>
+    <div class="blur-shape-3"></div>
+    <div class="blur-shape-4"></div>
+    <div class="blur-shape-5"></div>
+
+    <div class="text-block">
+      <p>The dignity of work is a critical pillar of a healthy workplace, but it’s increasingly being shaken by business pressures, technological advances and evolving human dynamics. In this challenging setup, the importance and value of people’s contribution is at risk of being taken for granted, but the way leaders treat people will be the difference between employees embracing or hesitating over shifts caused by technologies like generative AI.</p>
+      <p>If employees aren’t motivated—with agency—how can they be expected to deliver first-rate products, services and experiences to customers?</p>
+    </div>
+
+    <div class="footer-left">Accenture Life Trends 2025</div>
+    <div class="footer-page">55</div>
+  </div>
+</body>
+</html>

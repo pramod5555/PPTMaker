@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Deloitte Travel Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#efefef;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+    color:#000;
+  }
+  .left-title{
+    position:absolute;
+    left:46px;
+    top:46px;
+    width:365px;
+    font-size:41px;
+    line-height:1.055;
+    font-weight:700;
+    letter-spacing:-0.6px;
+  }
+
+  .chart-panel{
+    position:absolute;
+    left:485px;
+    top:46px;
+    width:837px;
+    height:670px;
+    background:#e9e9e9;
+  }
+
+  .panel-title{
+    position:absolute;
+    left:515px;
+    top:74px;
+    font-size:19px;
+    line-height:1.15;
+    font-weight:700;
+    color:#111;
+  }
+  .panel-subtitle{
+    position:absolute;
+    left:515px;
+    top:98px;
+    font-size:17px;
+    line-height:1.15;
+    font-style:italic;
+    color:#222;
+  }
+
+  .legend{
+    position:absolute;
+    left:514px;
+    top:126px;
+    height:22px;
+  }
+  .legend-item{
+    position:absolute;
+    top:0;
+    font-size:13px;
+    line-height:18px;
+    color:#222;
+    white-space:nowrap;
+  }
+  .dot{
+    position:absolute;
+    left:0;
+    top:1px;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+  }
+
+  .chart-area{
+    position:absolute;
+    left:515px;
+    top:177px;
+    width:780px;
+    height:356px;
+  }
+  .group{
+    position:absolute;
+    bottom:0;
+    height:356px;
+  }
+  .bar{
+    position:absolute;
+    bottom:0;
+    width:17px;
+  }
+
+  .percent{
+    position:absolute;
+    font-size:14px;
+    line-height:1;
+    color:#222;
+    font-weight:400;
+  }
+
+  .callout{
+    position:absolute;
+    left:684px;
+    top:263px;
+    width:285px;
+    font-size:14px;
+    line-height:1.15;
+    color:#222;
+  }
+  .callout em{
+    color:#00a3e0;
+    font-style:italic;
+    text-decoration:underline;
+    font-weight:700;
+  }
+  .callout-line{
+    position:absolute;
+    left:689px;
+    top:334px;
+    width:0;
+    height:72px;
+    border-left:1px dashed #7a7a7a;
+  }
+  .callout-cap{
+    position:absolute;
+    left:689px;
+    top:405px;
+    width:14px;
+    height:0;
+    border-top:1px dashed #7a7a7a;
+  }
+
+  .label{
+    position:absolute;
+    top:556px;
+    font-size:18px;
+    line-height:1.06;
+    font-weight:400;
+    color:#222;
+    text-align:center;
+  }
+
+  .baseline{
+    position:absolute;
+    top:603px;
+    height:1px;
+    background:#555;
+  }
+  .baseline.left{ left:516px; width:418px; }
+  .baseline.right{ left:964px; width:321px; }
+
+  .base-dot{
+    position:absolute;
+    top:599px;
+    width:9px;
+    height:9px;
+    background:#000;
+    border-radius:50%;
+  }
+
+  .section-label{
+    position:absolute;
+    top:616px;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+    color:#000;
+  }
+
+  .note{
+    position:absolute;
+    left:515px;
+    top:648px;
+    width:740px;
+    font-size:11px;
+    line-height:1.2;
+    color:#333;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:46px;
+    bottom:12px;
+    font-size:11px;
+    line-height:1;
+    color:#444;
+  }
+  .footer-center{
+    position:absolute;
+    right:43px;
+    bottom:12px;
+    font-size:11px;
+    line-height:1;
+    color:#444;
+    text-align:right;
+  }
+  .footer-page{
+    position:absolute;
+    right:5px;
+    bottom:12px;
+    width:20px;
+    font-size:11px;
+    line-height:1;
+    color:#444;
+    text-align:right;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-title">
+    Travelers' uptake<br>
+    of hotels, rentals,<br>
+    flights, and cruises<br>
+    holds steady,<br>
+    thanks to a larger<br>
+    share of high-<br>
+    income travelers,<br>
+    along with overall<br>
+    willingness to<br>
+    spend on travel
+  </div>
+
+  <div class="chart-panel"></div>
+
+  <div class="panel-title">Travel segment usage, full summer</div>
+  <div class="panel-subtitle">Percentage of US travelers using each segment across summer trips</div>
+
+  <div class="legend">
+    <div class="legend-item" style="left:0px;">
+      <div class="dot" style="background:#d6d6d6;"></div>
+      <div style="position:absolute;left:19px;top:0;">2022</div>
+    </div>
+    <div class="legend-item" style="left:76px;">
+      <div class="dot" style="background:#bfbfbf;"></div>
+      <div style="position:absolute;left:19px;top:0;">2023</div>
+    </div>
+    <div class="legend-item" style="left:152px;">
+      <div class="dot" style="background:#9a9a9a;"></div>
+      <div style="position:absolute;left:19px;top:0;">2024</div>
+    </div>
+    <div class="legend-item" style="left:228px;">
+      <div class="dot" style="background:#000;"></div>
+      <div style="position:absolute;left:19px;top:0;">2025</div>
+    </div>
+    <div class="legend-item" style="left:304px;">
+      <div class="dot" style="background:#84bd00;"></div>
+      <div style="position:absolute;left:19px;top:0;">2026</div>
+    </div>
+  </div>
+
+  <div class="chart-area">
+    <div class="group" style="left:0px;width:100px;">
+      <div class="bar" style="left:2px;height:281px;background:#d6d6d6;"></div>
+      <div class="bar" style="left:20px;height:332px;background:#bfbfbf;"></div>
+      <div class="bar" style="left:38px;height:307px;background:#9a9a9a;"></div>
+      <div class="bar" style="left:56px;height:336px;background:#000;"></div>
+      <div class="bar" style="left:74px;height:341px;background:#84bd00;"></div>
+    </div>
+
+    <div class="group" style="left:115px;width:100px;">
+      <div class="bar" style="left:2px;height:68px;background:#d6d6d6;"></div>
+      <div class="bar" style="left:20px;height:81px;background:#bfbfbf;"></div>
+      <div class="bar" style="left:38px;height:94px;background:#9a9a9a;"></div>
+      <div class="bar" style="left:56px;height:106px;background:#000;"></div>
+      <div class="bar" style="left:74px;height:123px;background:#84bd00;"></div>
+    </div>
+
+    <div class="group" style="left:230px;width:100px;">
+      <div class="bar" style="left:2px;height:155px;background:#d6d6d6;"></div>
+      <div class="bar" style="left:20px;height:160px;background:#bfbfbf;"></div>
+      <div class="bar" style="left:38px;height:158px;background:#9a9a9a;"></div>
+      <div class="bar" style="left:56px;height:164px;background:#000;"></div>
+      <div class="bar" style="left:74px;height:155px;background:#84bd00;"></div>
+    </div>
+
+    <div class="group" style="left:345px;width:100px;">
+      <div class="bar" style="left:2px;height:29px;background:#d6d6d6;"></div>
+      <div class="bar" style="left:20px;height:39px;background:#bfbfbf;"></div>
+      <div class="bar" style="left:38px;height:31px;background:#9a9a9a;"></div>
+      <div class="bar" style="left:56px;height:46px;background:#000;"></div>
+      <div class="bar" style="left:74px;height:47px;background:#84bd00;"></div>
+    </div>
+
+    <div class="group" style="left:460px;width:100px;">
+      <div class="bar" style="left:2px;height:156px;background:#d6d6d6;"></div>
+      <div class="bar" style="left:20px;height:169px;background:#bfbfbf;"></div>
+      <div class="bar" style="left:38px;height:218px;background:#9a9a9a;"></div>
+      <div class="bar" style="left:56px;height:243px;background:#000;"></div>
+      <div class="bar" style="left:74px;height:260px;background:#84bd00;"></div>
+    </div>
+
+    <div class="group" style="left:575px;width:100px;">
+      <div class="bar" style="left:2px;height:59px;background:#d6d6d6;"></div>
+      <div class="bar" style="left:20px;height:85px;background:#bfbfbf;"></div>
+      <div class="bar" style="left:38px;height:93px;background:#9a9a9a;"></div>
+      <div class="bar" style="left:56px;height:113px;background:#000;"></div>
+      <div class="bar" style="left:74px;height:134px;background:#84bd00;"></div>
+    </div>
+
+    <div class="group" style="left:690px;width:100px;">
+      <div class="bar" style="left:2px;height:240px;background:#d6d6d6;"></div>
+      <div class="bar" style="left:20px;height:237px;background:#bfbfbf;"></div>
+      <div class="bar" style="left:38px;height:278px;background:#9a9a9a;"></div>
+      <div class="bar" style="left:56px;height:299px;background:#000;"></div>
+      <div class="bar" style="left:74px;height:278px;background:#84bd00;"></div>
+    </div>
+  </div>
+
+  <div class="percent" style="left:589px;top:177px;">81%</div>
+  <div class="percent" style="left:697px;top:388px;">29%</div>
+  <div class="percent" style="left:811px;top:354px;">37%</div>
+  <div class="percent" style="left:926px;top:465px;">11%</div>
+  <div class="percent" style="left:1040px;top:256px;">61%</div>
+  <div class="percent" style="left:1154px;top:377px;">32%</div>
+  <div class="percent" style="left:1271px;top:218px;">66%</div>
+
+  <div class="callout">
+    Millennials (especially those with<br>
+    higher income) are major drivers of<br>
+    growing demand for private rentals.<br>
+    See <em>slide 36</em> for more.
+  </div>
+  <div class="callout-line"></div>
+  <div class="callout-cap"></div>
+
+  <div class="label" style="left:520px;width:88px;">Hotel</div>
+  <div class="label" style="left:628px;width:102px;">Private<br>rental</div>
+  <div class="label" style="left:739px;width:122px;">Stay with<br>friends or family</div>
+  <div class="label" style="left:876px;width:76px;">Cruise</div>
+  <div class="label" style="left:977px;width:112px;">Domestic<br>flight</div>
+  <div class="label" style="left:1092px;width:112px;">International<br>flight</div>
+  <div class="label" style="left:1220px;width:64px;">Road<br>trip</div>
+
+  <div class="baseline left"></div>
+  <div class="baseline right"></div>
+
+  <div class="base-dot" style="left:512px;"></div>
+  <div class="base-dot" style="left:930px;"></div>
+  <div class="base-dot" style="left:959px;"></div>
+  <div class="base-dot" style="left:1280px;"></div>
+
+  <div class="section-label" style="left:693px;">Lodging</div>
+  <div class="section-label" style="left:1055px;">Transportation</div>
+
+  <div class="note">
+    Note: Question: “Across your travels this summer, which accommodation/transportation options are you likely to use?” (Select all that apply)<br>
+    (n = 1,948).<br>
+    Source: 2026 Deloitte Summer Travel Survey.
+  </div>
+
+  <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+  <div class="footer-center">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="footer-page">18</div>
+</div>
+</body>
+</html>

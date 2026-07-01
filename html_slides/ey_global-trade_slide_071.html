@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Europe, Middle East, India and Africa</title>
+<style>
+  body{
+    margin:0;
+    background:#232430;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#2b2c39;
+    color:#f3f3f5;
+  }
+  #slide > *{ position:absolute; box-sizing:border-box; }
+
+  .left-tab{
+    left:47px; top:0; width:49px; height:77px;
+    background:#b9bac2;
+    z-index:12;
+  }
+  .top-rule{
+    left:0; top:77px; width:1280px; height:2px;
+    background:#a8a8b2;
+    z-index:20;
+    opacity:.9;
+  }
+  .tab-label{
+    left:57px; top:51px;
+    font-size:31px; line-height:1;
+    transform:scale(.49);
+    transform-origin:left top;
+    color:#ececef;
+    z-index:25;
+    white-space:nowrap;
+  }
+
+  .region-tab{
+    top:43px; height:31px;
+    color:#fff;
+    font-size:13px;
+    line-height:31px;
+    padding-left:8px;
+    z-index:26;
+  }
+  .tab-americas{ left:216px; width:143px; background:#f57d00; }
+  .tab-apac{ left:362px; width:143px; background:#12a43a; }
+  .tab-emeia{
+    left:507px; width:145px; height:31px;
+    background:#e8e8eb; color:#a9aab2;
+    font-size:11px; line-height:13px; font-weight:600;
+    padding:5px 6px 0 8px;
+  }
+
+  .nav-circle{
+    top:33px; width:35px; height:35px; border-radius:50%;
+    background:#d8d8dd; color:#5c5c62;
+    z-index:30;
+  }
+  .nav-left{ left:950px; }
+  .nav-right{ left:993px; }
+  .nav-circle:before{
+    content:"";
+    position:absolute; top:10px; left:12px;
+    width:0; height:0;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+  }
+  .nav-left:before{
+    border-right:10px solid #595960;
+    border-left:none;
+    left:11px;
+  }
+  .nav-right:before{
+    border-left:10px solid #595960;
+    border-right:none;
+    left:14px;
+  }
+
+  .world{
+    left:-13px; top:19px; width:1002px; height:505px; z-index:4;
+    opacity:1;
+  }
+
+  .title{
+    left:57px; top:113px;
+    font-size:27px; line-height:31px; font-weight:700;
+    color:#f4f4f6;
+    z-index:40;
+    white-space:nowrap;
+  }
+
+  .col-sep{
+    top:173px; width:1px; height:538px;
+    background:#666875;
+    z-index:18;
+    opacity:.85;
+  }
+  .sep1{ left:367px; }
+  .sep2{ left:685px; }
+
+  .column{
+    top:168px;
+    color:#f1f1f3;
+    z-index:40;
+  }
+  .col1{ left:56px; width:278px; }
+  .col2{ left:375px; width:278px; }
+  .col3{ left:689px; width:288px; }
+
+  .country{
+    font-size:14px; line-height:16px; font-weight:700;
+    color:#ffffff;
+    margin:0;
+    white-space:nowrap;
+  }
+  .item{
+    position:absolute;
+    padding-left:13px;
+    font-size:12px;
+    line-height:14px;
+    font-weight:400;
+    color:#f0f0f2;
+  }
+  .item:before{
+    content:"▪";
+    position:absolute;
+    left:0; top:0;
+    font-size:11px; line-height:14px;
+    color:#ffffff;
+  }
+  .date{
+    display:block;
+    margin-top:1px;
+    font-style:italic;
+    color:#dbdbe0;
+  }
+
+  .side-item{
+    left:1044px;
+    font-size:12px;
+    line-height:14px;
+    color:#e8e8eb;
+    z-index:47;
+  }
+  .side-line{
+    left:1008px;
+    width:2px;
+    background:#d4db2a;
+    z-index:46;
+  }
+  .side-box{
+    left:1008px;
+    width:124px;
+    height:34px;
+    background:#707178;
+    z-index:45;
+  }
+
+  .footer{
+    left:56px; top:729px;
+    font-size:10px; line-height:12px;
+    color:#d0d0d4;
+    z-index:40;
+    transform:translateY(-11px);
+    white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="left-tab"></div>
+  <div class="top-rule"></div>
+  <div class="tab-label">Tax alerts</div>
+
+  <div class="region-tab tab-americas">Americas</div>
+  <div class="region-tab tab-apac">Asia-Pacific</div>
+  <div class="region-tab tab-emeia">Europe, Middle East,<br>India and Africa</div>
+
+  <div class="nav-circle nav-left"></div>
+  <div class="nav-circle nav-right"></div>
+
+  <svg class="world" viewBox="0 0 1002 505" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="0" y="0" width="1002" height="505" fill="none"/>
+    <g fill="#0b6fbe" stroke="#23232b" stroke-width="1">
+      <path d="M431 102 L449 86 L481 82 L510 89 L538 97 L556 111 L574 122 L591 139 L614 151 L640 153 L668 150 L692 160 L716 164 L745 175 L771 174 L798 183 L828 195 L853 210 L875 212 L880 230 L871 244 L853 250 L840 264 L830 282 L803 283 L780 277 L752 269 L726 266 L699 258 L685 243 L665 239 L645 236 L625 223 L605 210 L582 203 L563 193 L543 176 L527 161 L504 157 L485 145 L463 139 L444 129 Z"/>
+      <path d="M454 178 L471 171 L491 177 L503 189 L513 205 L524 224 L538 240 L551 261 L555 280 L548 295 L530 296 L518 284 L505 271 L492 254 L479 238 L469 221 L461 202 Z"/>
+      <path d="M523 224 L541 225 L557 237 L571 251 L582 271 L591 296 L604 319 L619 340 L629 364 L625 387 L611 402 L593 401 L579 388 L571 369 L561 346 L549 326 L538 303 L530 280 Z"/>
+      <path d="M577 209 L595 205 L616 210 L636 221 L653 239 L668 258 L678 281 L683 308 L682 337 L675 365 L660 384 L641 391 L626 388 L632 364 L623 340 L609 318 L596 295 L585 271 L576 248 Z"/>
+      <path d="M595 177 L621 170 L646 168 L668 176 L684 188 L702 195 L724 205 L745 217 L765 234 L777 253 L781 278 L771 292 L751 297 L728 296 L709 282 L694 260 L676 243 L659 226 L641 213 L619 205 L600 196 Z"/>
+      <path d="M678 168 L703 157 L731 154 L761 159 L790 166 L817 173 L844 186 L868 198 L895 209 L922 208 L948 200 L974 202 L995 214 L1002 226 L1002 238 L986 248 L964 248 L940 243 L919 233 L894 228 L872 212 L847 200 L822 195 L795 185 L768 177 L740 174 L712 174 Z"/>
+      <path d="M782 277 L800 273 L822 277 L840 287 L857 300 L864 319 L858 337 L841 344 L823 339 L805 325 L790 308 L780 291 Z"/>
+      <path d="M824 352 L840 349 L856 354 L869 365 L876 381 L871 397 L858 406 L841 403 L829 392 L823 375 Z"/>
+      <path d="M374 143 L392 135 L413 133 L432 140 L438 154 L425 161 L405 162 L387 156 Z"/>
+      <path d="M900 210 L922 206 L950 208 L978 213 L1000 220 L1002 223 L1002 255 L979 268 L953 264 L932 254 L913 239 Z"/>
+      <path d="M971 320 L991 324 L1002 334 L1002 371 L996 385 L979 388 L964 378 L958 361 L960 341 Z"/>
+      <path d="M449 79 L469 69 L496 64 L524 64 L548 71 L570 80 L592 81 L617 74 L642 68 L675 65 L703 67 L731 76 L761 82 L790 79 L818 74 L845 73 L871 76 L897 79 L924 86 L953 91 L977 95 L996 105 L983 116 L951 117 L919 116 L892 122 L862 122 L834 116 L805 114 L773 114 L740 113 L708 108 L678 106 L646 106 L615 108 L582 110 L549 110 L520 106 L493 100 L474 90 Z"/>
+      <path d="M425 86 L414 75 L426 67 L443 67 L454 74 L447 84 Z"/>
+      <path d="M732 14 L758 8 L786 9 L811 16 L796 27 L767 26 L742 24 Z"/>
+      <path d="M886 13 L907 9 L931 10 L953 15 L938 23 L912 23 L891 21 Z"/>
+      <path d="M679 441 L692 448 L699 461 L696 476 L685 485 L671 483 L663 472 L666 456 Z"/>
+    </g>
+    <g fill="#000000" opacity="0.62" stroke="#000000" stroke-width="0.8">
+      <path d="M0 49 L35 38 L64 23 L100 14 L148 10 L185 13 L222 28 L258 39 L282 58 L309 68 L342 82 L351 98 L337 108 L303 110 L267 107 L239 96 L216 83 L187 78 L156 72 L121 75 L87 81 L51 87 L18 90 L0 88 Z"/>
+      <path d="M0 112 L25 100 L54 92 L86 92 L108 107 L124 123 L121 141 L103 151 L79 155 L52 150 L24 139 L0 126 Z"/>
+      <path d="M952 135 L973 129 L996 132 L1002 147 L1002 185 L990 192 L969 187 L958 172 L949 154 Z"/>
+      <path d="M948 303 L969 308 L988 321 L1000 340 L1002 357 L1002 474 L990 491 L969 494 L950 482 L940 456 L934 427 L931 391 L934 354 Z"/>
+      <path d="M849 414 L866 411 L885 418 L899 432 L908 452 L910 477 L903 499 L886 505 L863 505 L844 496 L834 478 L831 455 L834 433 Z"/>
+      <path d="M36 358 L56 348 L79 345 L103 356 L118 375 L121 400 L112 421 L92 432 L68 428 L50 412 L39 387 Z"/>
+    </g>
+  </svg>
+
+  <div class="title">Europe, Middle East, India and Africa</div>
+
+  <div class="col-sep sep1"></div>
+  <div class="col-sep sep2"></div>
+
+  <div class="column col1">
+    <div style="left:0; top:0; width:278px; height:60px; position:absolute;">
+      <div class="country" style="position:absolute; left:0; top:0;">Belgium</div>
+      <div class="item" style="left:0; top:24px; width:271px;">
+        Latest edition of EY Belgium’s customs and excise update Q4 November 2025
+        <span class="date">04 November 2025</span>
+      </div>
+    </div>
+
+    <div style="left:0; top:87px; width:278px; height:96px; position:absolute;">
+      <div class="country" style="position:absolute; left:0; top:0;">Ghana</div>
+      <div class="item" style="left:0; top:24px; width:267px;">
+        Ghana Court of Appeal decides on procedures for claiming VAT and corporate tax refunds
+        <span class="date">17 March 2026</span>
+      </div>
+      <div class="item" style="left:0; top:54px; width:260px;">
+        Ghana’s Parliament enacts several indirect tax-related laws, effective 1 January 2026
+        <span class="date">12 January 2026</span>
+      </div>
+    </div>
+
+    <div style="left:0; top:211px; width:278px; height:60px; position:absolute;">
+      <div class="country" style="position:absolute; left:0; top:0;">Gibraltar</div>
+      <div class="item" style="left:0; top:24px; width:252px;">
+        Gibraltar announces details of Transaction Tax on goods and changes to duty
+        <span class="date">13 February 2026</span>
+      </div>
+    </div>
+
+    <div style="left:0; top:298px; width:278px; height:172px; position:absolute;">
+      <div class="country" style="position:absolute; left:0; top:0;">India</div>
+      <div class="item" style="left:0; top:24px; width:270px;">
+        Reserve Bank of India (RBI) issues the Foreign Exchange Management (Export and Import of Goods and Services) Regulations, 2026 (EXIM Guidelines)
+        <span class="date">24 March 2026</span>
+      </div>
+      <div class="item" style="left:0; top:84px; width:263px;">
+        Reciprocal tariffs announced by US government in April 2025, struck down by US Supreme Court
+        <span class="date">24 February 2026</span>
+      </div>
+      <div class="item" style="left:0; top:128px; width:244px;">
+        RBI issues Export and Import Regulations, 2026
+        <span class="date">21 January 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="column col2">
+    <div style="left:0; top:0; width:278px; height:112px; position:absolute;">
+      <div class="country" style="position:absolute; left:0; top:0;">Italy</div>
+      <div class="item" style="left:0; top:24px; width:274px;">
+        Italy makes indirect tax changes through 2026 Italian Budget Law and publishes consolidated VAT code
+        <span class="date">09 January 2026</span>
+      </div>
+      <div class="item" style="left:0; top:68px; width:247px;">
+        Italy VAT audit focus on year-end transfer pricing adjustments
+        <span class="date">15 December 2025</span>
+      </div>
+    </div>
+
+    <div style="left:0; top:123px; width:278px; height:62px; position:absolute;">
+      <div class="country" style="position:absolute; left:0; top:0;">Liechtenstein</div>
+      <div class="item" style="left:0; top:24px; width:262px;">
+        USTR issues notice implementing new trade framework between the United States, Switzerland and Liechtenstein
+        <span class="date">18 December 2025</span>
+      </div>
+    </div>
+
+    <div style="left:0; top:209px; width:278px; height:144px; position:absolute;">
+      <div class="country" style="position:absolute; left:0; top:0;">Netherlands</div>
+      <div class="item" style="left:0; top:24px; width:252px;">
+        Netherlands announces change to non-EU VAT refund scheme as of 1 April 2026
+        <span class="date">24 March 2026</span>
+      </div>
+      <div class="item" style="left:0; top:68px; width:267px;">
+        Dutch Parliament receives government-solicited, EY-prepared report on VAT in the Digital Age (ViDA) e-invoicing and digital reporting
+        <span class="date">12 March 2026</span>
+      </div>
+      <div class="item" style="left:0; top:126px; width:180px;">
+        Sustainability and green taxes
+        <span class="date">19 January 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="column col3">
+    <div style="left:0; top:0; width:288px; height:126px; position:absolute;">
+      <div class="country" style="position:absolute; left:0; top:0;">Türkiye</div>
+      <div class="item" style="left:0; top:24px; width:274px;">
+        Türkiye introduces new tax certification requirements for nondeductible VAT on certain import transactions
+        <span class="date">12 February 2026</span>
+      </div>
+      <div class="item" style="left:0; top:68px; width:257px;">
+        Türkiye moves simplified entries for B2C e-commerce imports
+        <span class="date">09 January 2026</span>
+      </div>
+      <div class="item" style="left:0; top:98px; width:281px;">
+        Türkiye revises Digital Service Tax rate for 2026 and 2027
+        <span class="date">06 January 2026</span>
+      </div>
+    </div>
+
+    <div style="left:0; top:153px; width:288px; height:84px; position:absolute;">
+      <div class="country" style="position:absolute; left:0; top:0;">Saudi Arabia</div>
+      <div class="item" style="left:0; top:24px; width:247px;">
+        Saudi Arabia amends its integrated customs tariff schedule
+        <span class="date">10 December 2025</span>
+      </div>
+      <div class="item" style="left:0; top:54px; width:250px;">
+        Saudi Arabia to implement new excise tax method for sweetened beverages
+        <span class="date">03 December 2025</span>
+      </div>
+    </div>
+
+    <div style="left:0; top:257px; width:288px; height:46px; position:absolute;">
+      <div class="country" style="position:absolute; left:0; top:0;">UAE</div>
+      <div class="item" style="left:0; top:24px; width:244px;">
+        UAE Ministry of Finance releases e-invoicing guidelines
+        <span class="date">25 February 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-line" style="top:122px; height:31px;"></div>
+  <div class="side-line" style="top:171px; height:31px;"></div>
+  <div class="side-line" style="top:221px; height:86px;"></div>
+
+  <div class="side-item" style="top:123px;">Contents</div>
+  <div class="side-item" style="top:173px;">Insights</div>
+  <div class="side-item" style="top:221px;">New on<br>ey.com</div>
+  <div class="side-item" style="top:272px;">Tax alerts</div>
+
+  <div class="side-box" style="top:323px;"></div>
+  <div class="side-item" style="top:329px;">Additional<br>resources</div>
+
+  <div class="side-box" style="top:369px;"></div>
+  <div class="side-item" style="top:377px;">Contacts</div>
+
+  <div class="footer">68 | TradeWatch Issue 1 2026</div>
+</div>
+</body>
+</html>

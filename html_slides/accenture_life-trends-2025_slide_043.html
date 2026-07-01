@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Financial alternatives</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #dcdcdc;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #ebe6e2;
+    color: #222;
+  }
+
+  .title {
+    position: absolute;
+    left: 60px;
+    top: 132px;
+    width: 320px;
+    font-size: 23px;
+    line-height: 1.15;
+    font-weight: 400;
+    color: #7f2ee6;
+    letter-spacing: -0.2px;
+  }
+
+  .col-left {
+    position: absolute;
+    left: 60px;
+    top: 185px;
+    width: 328px;
+    font-size: 18px;
+    line-height: 1.42;
+    color: #262626;
+    font-weight: 400;
+  }
+  .col-left p,
+  .col-mid p {
+    margin: 0 0 16px 0;
+  }
+
+  .col-mid {
+    position: absolute;
+    left: 481px;
+    top: 126px;
+    width: 329px;
+    font-size: 18px;
+    line-height: 1.42;
+    color: #262626;
+    font-weight: 400;
+  }
+
+  .quote {
+    position: absolute;
+    left: 940px;
+    top: 160px;
+    width: 312px;
+    font-size: 20px;
+    line-height: 1.58;
+    color: #8d35ef;
+    font-weight: 400;
+  }
+
+  .author {
+    position: absolute;
+    left: 944px;
+    top: 333px;
+    font-size: 17px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #1f1f1f;
+  }
+
+  .img-top {
+    position: absolute;
+    left: 937px;
+    top: 0px;
+    width: 364px;
+    height: 129px;
+    background:
+      linear-gradient(105deg, rgba(255,234,70,0.95) 0%, rgba(243,215,70,0.75) 18%, rgba(248,247,230,0.88) 36%, rgba(242,159,40,0.75) 56%, rgba(250,248,232,0.92) 72%, rgba(110,102,124,0.7) 100%),
+      radial-gradient(circle at 58% 78%, rgba(123,190,60,0.9) 0 6%, rgba(255,255,255,0) 7%),
+      radial-gradient(circle at 36% 30%, rgba(255,255,255,0.55) 0 14%, rgba(255,255,255,0) 15%),
+      radial-gradient(circle at 77% 20%, rgba(255,255,255,0.45) 0 10%, rgba(255,255,255,0) 11%);
+    filter: blur(2px) saturate(1.2);
+  }
+
+  .img-bottom {
+    position: absolute;
+    left: 937px;
+    top: 389px;
+    width: 364px;
+    height: 331px;
+    background:
+      radial-gradient(circle at 74% 8%, rgba(245,223,49,0.95) 0 12%, rgba(255,220,70,0.6) 13%, rgba(255,255,255,0) 20%),
+      linear-gradient(48deg, rgba(8,40,45,0.96) 0 34%, rgba(27,62,72,0.9) 38%, rgba(255,255,255,0) 46%),
+      linear-gradient(112deg, rgba(83,93,109,0.92) 0%, rgba(211,214,222,0.86) 38%, rgba(238,237,241,0.92) 58%, rgba(255,206,70,0.82) 85%, rgba(147,186,92,0.7) 100%);
+    overflow: hidden;
+  }
+  .img-bottom:before {
+    content: "";
+    position: absolute;
+    left: 176px;
+    top: -2px;
+    width: 122px;
+    height: 245px;
+    background: linear-gradient(180deg, rgba(247,137,26,0.95), rgba(238,149,46,0.9));
+    transform: rotate(8deg);
+    box-shadow: 0 0 0 3px rgba(241,166,87,0.5) inset;
+  }
+  .img-bottom:after {
+    content: "BAR\A\A R";
+    white-space: pre;
+    position: absolute;
+    left: 225px;
+    top: 20px;
+    width: 96px;
+    height: 210px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 1.25;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 2px rgba(0,0,0,0.3);
+  }
+
+  .right-rail {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 44px;
+    height: 720px;
+    background: #ebe6e2;
+  }
+
+  .rail-text {
+    position: absolute;
+    right: 9px;
+    top: 37px;
+    height: 650px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 17px;
+    line-height: 1;
+    color: #6a6a6a;
+    letter-spacing: 0.2px;
+  }
+  .rail-text .active {
+    color: #8d35ef;
+    font-weight: 600;
+  }
+
+  .footer-left {
+    position: absolute;
+    right: 90px;
+    bottom: 17px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.9);
+    z-index: 3;
+  }
+
+  .page {
+    position: absolute;
+    right: 20px;
+    bottom: 13px;
+    font-size: 14px;
+    color: #6d6d6d;
+  }
+
+  sup {
+    font-size: 60%;
+    vertical-align: super;
+    line-height: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title">Financial alternatives</div>
+
+    <div class="col-left">
+      <p>People’s security is deeply tied up in their access to the money needed to fund the essentials of life. Easy access to technology is empowering a new, never-ending financial hustle, breeding more options to earn, spend and invest than ever before.</p>
+      <p>More than half of Gen Z and Millennial Americans have a side hustle, earning an average of $1,253 per month in extra income. When asked what inspired their side hustle, 40% cited inflation and 38% said it was the economic fallout from the pandemic.<sup>75</sup> Our survey found that in the past 12 months, 28.1% of people had started a side hustle to boost their income.<sup>76</sup></p>
+    </div>
+
+    <div class="col-mid">
+      <p>For many, seeking additional income has been necessary just to stay in the black, but recently, more highly paid professionals are taking on second jobs, too. Some want financial freedom, others consider their main job’s salary trajectory too slow, and in some cases, it’s down to uncertainty in the availability of future jobs. People seeking financial security through side hustles rather than relying on a single employer are predominantly Gen Z and Millennials. Social media is awash with people sharing their own tips on making it work. Even news sites are offering this kind of content.<sup>77</sup></p>
+    </div>
+
+    <div class="img-top"></div>
+
+    <div class="quote">“I use social media for things like upskilling around things like financial independence, which I’m quite into and also financial advice.”</div>
+    <div class="author">Amrita, 34, UK</div>
+
+    <div class="img-bottom"></div>
+    <div class="footer-left">Accenture Life Trends 2025</div>
+
+    <div class="right-rail">
+      <div class="rail-text">Cost of hesitations &nbsp; / &nbsp; The parent trap &nbsp; / &nbsp; <span class="active">Impatience economy</span> &nbsp; / &nbsp; The dignity of work &nbsp; / &nbsp; Social rewilding</div>
+    </div>
+
+    <div class="page">43</div>
+  </div>
+</body>
+</html>

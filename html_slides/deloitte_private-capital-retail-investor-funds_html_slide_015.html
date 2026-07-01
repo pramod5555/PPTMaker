@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>JPMF provides access to top tier General Partners</title>
+<style>
+  body{
+    margin:0;
+    background:#f3f3f3;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+    color:#111;
+  }
+  #slide > *{ position:absolute; box-sizing:border-box; }
+  .title{
+    left:38px;
+    top:56px;
+    width:780px;
+    font-size:29px;
+    line-height:34px;
+    font-weight:700;
+    color:#0b0b0b;
+  }
+  .rule-top{
+    left:38px;
+    top:128px;
+    width:1200px;
+    height:1px;
+    background:#6e6e6e;
+  }
+  .accent{
+    left:48px;
+    top:185px;
+    width:48px;
+    height:5px;
+    background:#0a9a72;
+  }
+  .section{
+    left:48px;
+    top:197px;
+    width:320px;
+    font-size:20px;
+    line-height:24px;
+    font-weight:700;
+    color:#111;
+    text-transform:uppercase;
+  }
+  .logo-panel{
+    left:36px;
+    top:241px;
+    width:1178px;
+    height:374px;
+    background:#efeee8;
+  }
+
+  .logo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    white-space:nowrap;
+    text-align:center;
+  }
+
+  .footnote{
+    left:38px;
+    top:661px;
+    width:1172px;
+    font-size:12px;
+    line-height:14px;
+    font-weight:400;
+    color:#1d1d1d;
+  }
+  .rule-bottom{
+    left:38px;
+    top:695px;
+    width:1200px;
+    height:1px;
+    background:#b7b7b7;
+  }
+  .page{
+    left:39px;
+    top:712px;
+    width:20px;
+    font-size:12px;
+    line-height:12px;
+    font-weight:700;
+    color:#111;
+  }
+  .jpm{
+    left:1124px;
+    top:706px;
+    width:120px;
+    text-align:left;
+    color:#202020;
+  }
+  .jpm .big{
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:25px;
+    line-height:24px;
+    font-weight:400;
+    letter-spacing:-0.03em;
+  }
+  .jpm .small{
+    margin-top:6px;
+    font-size:11px;
+    line-height:12px;
+    font-weight:700;
+    letter-spacing:0.04em;
+  }
+
+  .gtcr{
+    left:48px; top:273px; width:178px; height:58px;
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:64px; line-height:56px; font-weight:400; color:#006c49;
+    letter-spacing:-0.045em;
+    justify-content:flex-start;
+  }
+
+  .pollen{
+    left:309px; top:271px; width:178px; height:62px; justify-content:flex-start;
+    color:#1a1a1a; font-weight:700;
+  }
+  .pollen .hex{
+    position:absolute; left:0; top:6px; width:56px; height:56px;
+    background:#1d1d1d;
+    clip-path:polygon(25% 0%, 75% 0%, 100% 20%, 100% 80%, 75% 100%, 25% 100%, 0% 80%, 0% 20%);
+  }
+  .pollen .cut{
+    position:absolute; left:36px; top:10px; width:18px; height:38px;
+    background:#efeee8; transform:skewY(31deg);
+  }
+  .pollen .txt{
+    position:absolute; left:72px; top:16px; width:106px; font-size:19px; line-height:18px; letter-spacing:0.05em;
+    text-align:left;
+  }
+
+  .bansk{
+    left:551px; top:279px; width:168px; height:48px; justify-content:flex-start;
+    font-size:49px; line-height:42px; font-weight:700; color:#184a8d;
+    letter-spacing:-0.06em;
+  }
+
+  .thoma{
+    left:752px; top:281px; width:220px; height:38px; justify-content:flex-start;
+    font-size:22px; line-height:22px; font-weight:700; color:#1e2d41;
+  }
+  .thoma .mark{
+    position:absolute; left:0; top:1px; width:33px; height:29px;
+  }
+  .thoma .mark:before{
+    content:""; position:absolute; left:0; top:0; width:13px; height:29px; background:#184a8d;
+  }
+  .thoma .mark:after{
+    content:""; position:absolute; left:16px; top:0; width:14px; height:29px; background:#27b36a;
+  }
+  .thoma .txt{ position:absolute; left:43px; top:3px; width:175px; text-align:left; }
+
+  .bpoc{
+    left:1005px; top:285px; width:184px; height:43px;
+  }
+  .bpoc .pill{
+    position:absolute; left:0; top:0; width:184px; height:43px; background:#7e51cf; border-radius:6px;
+  }
+  .bpoc .dots{
+    position:absolute; left:10px; top:11px; width:24px; height:20px;
+    display:grid; grid-template-columns:repeat(2,6px); grid-auto-rows:6px; gap:3px;
+  }
+  .bpoc .dots span{ width:6px; height:6px; border-radius:50%; background:#cbb5ef; display:block; }
+  .bpoc .txt{
+    position:absolute; left:48px; top:-1px; width:130px; font-family:Georgia, "Times New Roman", serif;
+    font-size:29px; line-height:43px; color:#fff; letter-spacing:-0.04em;
+  }
+
+  .shore{
+    left:40px; top:379px; width:210px; height:59px; justify-content:flex-start;
+  }
+  .shore .diamond1{
+    position:absolute; left:3px; top:13px; width:35px; height:35px; background:#d5d5d5; transform:rotate(45deg); border-radius:3px;
+  }
+  .shore .diamond2{
+    position:absolute; left:24px; top:13px; width:35px; height:35px; background:#3c5a97; transform:rotate(45deg); border-radius:3px;
+  }
+  .shore .txt1{
+    position:absolute; left:74px; top:4px; width:136px; font-size:24px; line-height:24px; color:#2b4e8d; font-weight:700; letter-spacing:0.10em;
+    text-align:left;
+  }
+  .shore .txt2{
+    position:absolute; left:74px; top:34px; width:126px; font-size:11px; line-height:11px; color:#afafaf; font-weight:600; text-align:left;
+  }
+
+  .vector{
+    left:296px; top:372px; width:170px; height:66px;
+  }
+  .vector .vline{
+    position:absolute; left:77px; top:0; width:2px; height:44px; background:#8fb2d4; transform:rotate(32deg); transform-origin:top left;
+  }
+  .vector .l1{
+    position:absolute; left:64px; top:6px; width:1px; height:37px; background:#8fb2d4;
+  }
+  .vector .l2{
+    position:absolute; left:82px; top:24px; width:1px; height:20px; background:#8fb2d4;
+  }
+  .vector .base{
+    position:absolute; left:50px; top:43px; width:39px; height:1px; background:#8fb2d4;
+  }
+  .vector .name{
+    position:absolute; left:0; top:48px; width:170px; font-size:18px; line-height:18px; color:#1c5ca8; font-weight:700;
+  }
+
+  .apse{
+    left:528px; top:386px; width:255px; height:42px; justify-content:flex-start;
+  }
+  .apse .icon{
+    position:absolute; left:0; top:-2px; width:34px; height:42px;
+  }
+  .apse .icon:before{
+    content:""; position:absolute; left:7px; top:1px; width:0; height:0;
+    border-left:11px solid transparent; border-right:11px solid transparent; border-bottom:26px solid #2792f0;
+  }
+  .apse .icon:after{
+    content:""; position:absolute; left:11px; top:18px; width:0; height:0;
+    border-left:7px solid transparent; border-right:7px solid transparent; border-bottom:14px solid #efeee8;
+  }
+  .apse .txt{
+    position:absolute; left:46px; top:7px; width:208px; font-size:19px; line-height:19px; color:#2e7ed1; font-family:Georgia, "Times New Roman", serif;
+    letter-spacing:0.18em; font-weight:400;
+  }
+
+  .altas{
+    left:854px; top:380px; width:80px; height:82px;
+  }
+  .altas .box{
+    position:absolute; left:0; top:0; width:80px; height:82px; background:#061a67;
+  }
+  .altas .txt{
+    position:absolute; left:0; top:38px; width:80px; text-align:center; font-size:11px; line-height:11px; color:#dfdfdf; letter-spacing:0.24em;
+  }
+
+  .sun{
+    left:978px; top:381px; width:190px; height:66px; justify-content:flex-start;
+  }
+  .sun .sunicon{
+    position:absolute; left:74px; top:0; width:32px; height:18px;
+  }
+  .sun .sunicon span{
+    position:absolute; left:0; width:30px; height:3px; background:#2b466c; border-radius:10px;
+  }
+  .sun .sunicon span:nth-child(1){ top:0; width:18px; left:6px; }
+  .sun .sunicon span:nth-child(2){ top:5px; width:22px; left:4px; }
+  .sun .sunicon span:nth-child(3){ top:10px; width:30px; left:0; }
+  .sun .name1{
+    position:absolute; left:0; top:24px; width:190px; font-family:Georgia, "Times New Roman", serif;
+    font-size:17px; line-height:17px; color:#2b3f63; letter-spacing:0.08em;
+  }
+  .sun .name2{
+    position:absolute; left:0; top:47px; width:190px; font-size:8px; line-height:8px; color:#2b3f63; letter-spacing:0.24em; font-weight:700;
+  }
+
+  .palladium{
+    left:40px; top:500px; width:205px; height:46px; justify-content:flex-start;
+  }
+  .palladium .box{
+    position:absolute; left:0; top:0; width:48px; height:46px; background:#0d4b7f;
+  }
+  .palladium .box span{
+    position:absolute; left:12px; top:-3px; font-family:Georgia, "Times New Roman", serif; font-size:57px; line-height:46px; color:#fff;
+  }
+  .palladium .t1{
+    position:absolute; left:60px; top:2px; width:140px; text-align:left; font-size:24px; line-height:24px; color:#666; font-weight:400;
+  }
+  .palladium .t2{
+    position:absolute; left:61px; top:29px; width:140px; text-align:left; font-size:10px; line-height:10px; color:#7b7b7b; letter-spacing:0.06em; font-weight:700;
+  }
+
+  .lonestar{
+    left:284px; top:507px; width:255px; height:34px; justify-content:flex-start;
+    color:#111;
+  }
+  .lonestar .star{
+    position:absolute; left:0; top:2px; width:24px; height:24px; border:1px solid #111; border-radius:50%;
+  }
+  .lonestar .star:before, .lonestar .star:after{
+    content:""; position:absolute; left:11px; top:2px; width:1px; height:18px; background:#111;
+  }
+  .lonestar .star:after{ transform:rotate(90deg); transform-origin:center; }
+  .lonestar .s1,.lonestar .s2{
+    position:absolute; left:11px; top:4px; width:1px; height:18px; background:#111;
+  }
+  .lonestar .s1{ transform:rotate(45deg); transform-origin:center; }
+  .lonestar .s2{ transform:rotate(-45deg); transform-origin:center; }
+  .lonestar .txt{
+    position:absolute; left:34px; top:5px; width:220px; text-align:left; font-family:Georgia, "Times New Roman", serif;
+    font-size:19px; line-height:19px; font-weight:700; color:#111;
+  }
+
+  .estancia{
+    left:583px; top:499px; width:208px; height:52px;
+  }
+  .estancia .big{
+    position:absolute; left:0; top:8px; width:208px; font-size:18px; line-height:18px; color:#1762a3;
+    letter-spacing:0.16em; font-weight:400;
+  }
+  .estancia .swirl{
+    position:absolute; left:42px; top:-8px; width:36px; height:36px; color:#bfb6aa; font-family:Georgia, "Times New Roman", serif;
+    font-size:58px; line-height:36px; font-style:italic;
+  }
+  .estancia .small{
+    position:absolute; left:68px; top:35px; width:120px; font-size:8px; line-height:8px; color:#1762a3; letter-spacing:0.18em; font-weight:700;
+  }
+
+  .quadc{
+    left:812px; top:503px; width:176px; height:42px; justify-content:flex-start;
+  }
+  .quadc .sq{
+    position:absolute; left:0; top:0; width:42px; height:42px; background:#4a8f47; border-radius:2px;
+  }
+  .quadc .sq:before{
+    content:""; position:absolute; left:10px; top:10px; width:22px; height:22px;
+    border:2px solid #dfead8; border-radius:8px;
+  }
+  .quadc .txt{
+    position:absolute; left:52px; top:4px; width:120px; font-family:Georgia, "Times New Roman", serif;
+    font-size:25px; line-height:25px; color:#7b776f; letter-spacing:0.05em;
+  }
+
+  .eqt{
+    left:1054px; top:507px; width:122px; height:31px; justify-content:flex-start;
+    font-size:40px; line-height:31px; font-weight:700; color:#ff6c22; letter-spacing:0.10em;
+  }
+
+  .frazier{
+    left:44px; top:612px; width:210px; height:48px;
+  }
+  .frazier .top{
+    position:absolute; left:0; top:0; width:210px; font-size:28px; line-height:28px; color:#344d6a; letter-spacing:0.08em; font-weight:400;
+  }
+  .frazier .top .a{
+    color:#f3be2c;
+  }
+  .frazier .bottom{
+    position:absolute; left:3px; top:31px; width:205px; font-size:11px; line-height:11px; color:#57708e; letter-spacing:0.08em; font-weight:700;
+  }
+
+  .uplift{
+    left:311px; top:607px; width:126px; height:43px;
+    font-size:31px; line-height:39px; color:#1566b9; font-weight:400; letter-spacing:-0.03em;
+  }
+  .uplift .arc1,.uplift .arc2{
+    position:absolute; border-top:3px solid #9cc5ea; border-radius:50%;
+  }
+  .uplift .arc1{ left:51px; top:0; width:23px; height:9px; }
+  .uplift .arc2{ left:67px; top:-4px; width:24px; height:13px; }
+  .uplift .txt{ position:absolute; left:0; top:8px; width:126px; }
+
+  .ccmp{
+    left:510px; top:611px; width:230px; height:38px; justify-content:flex-start;
+    color:#01518f;
+  }
+  .ccmp .t1{
+    position:absolute; left:0; top:0; width:92px; font-size:28px; line-height:28px; font-weight:700;
+  }
+  .ccmp .sep{
+    position:absolute; left:100px; top:-2px; width:2px; height:40px; background:#0072b3;
+  }
+  .ccmp .t2{
+    position:absolute; left:110px; top:1px; width:120px; font-size:15px; line-height:16px; font-weight:700; text-align:left;
+  }
+
+  .brynwood{
+    left:827px; top:600px; width:172px; height:60px;
+    color:#1a5ca8;
+  }
+  .brynwood .bp{
+    position:absolute; left:0; top:0; width:50px; font-family:Georgia, "Times New Roman", serif;
+    font-size:71px; line-height:60px; font-weight:700;
+  }
+  .brynwood .txt{
+    position:absolute; left:29px; top:4px; width:142px; font-family:Georgia, "Times New Roman", serif;
+    font-size:24px; line-height:19px; font-weight:700; text-align:left;
+  }
+
+  .qip{
+    left:1068px; top:601px; width:111px; height:66px;
+  }
+  .qip .box{
+    position:absolute; left:0; top:0; width:111px; height:66px; background:#083b80;
+  }
+  .qip .q{
+    position:absolute; left:8px; top:1px; width:50px; font-family:Georgia, "Times New Roman", serif;
+    font-size:67px; line-height:56px; color:#fff;
+  }
+  .qip .iip{
+    position:absolute; left:41px; top:14px; width:42px; font-family:Georgia, "Times New Roman", serif;
+    font-size:26px; line-height:20px; color:#fff; font-weight:700;
+  }
+  .qip .cap{
+    position:absolute; left:51px; top:46px; width:46px; font-size:8px; line-height:8px; color:#fff; letter-spacing:0.12em; font-weight:700;
+  }
+</style>
+</head>
+<body>
+  <div id="slide">
+    <div class="title">JPMF provides access to top tier General Partners</div>
+    <div class="rule-top"></div>
+    <div class="accent"></div>
+    <div class="section">GENERAL PARTNERS</div>
+
+    <div class="logo-panel"></div>
+
+    <div class="logo gtcr">GTCR</div>
+
+    <div class="logo pollen">
+      <div class="hex"></div>
+      <div class="cut"></div>
+      <div class="txt">POLLEN<br>STREET</div>
+    </div>
+
+    <div class="logo bansk">Bansk</div>
+
+    <div class="logo thoma">
+      <div class="mark"></div>
+      <div class="txt">THOMABRAVO</div>
+    </div>
+
+    <div class="logo bpoc">
+      <div class="pill"></div>
+      <div class="dots"><span></span><span></span><span></span><span></span></div>
+      <div class="txt">BPOC</div>
+    </div>
+
+    <div class="logo shore">
+      <div class="diamond1"></div>
+      <div class="diamond2"></div>
+      <div class="txt1">SHORE</div>
+      <div class="txt2">Capital Partners</div>
+    </div>
+
+    <div class="logo vector">
+      <div class="vline"></div>
+      <div class="l1"></div>
+      <div class="l2"></div>
+      <div class="base"></div>
+      <div class="name">VECTOR CAPITAL</div>
+    </div>
+
+    <div class="logo apse">
+      <div class="icon"></div>
+      <div class="txt">APSE CAPITAL</div>
+    </div>
+
+    <div class="logo altas">
+      <div class="box"></div>
+      <div class="txt">ALTAS</div>
+    </div>
+
+    <div class="logo sun">
+      <div class="sunicon">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="name1">SUN EUROPEAN</div>
+      <div class="name2">PARTNERS.LLP</div>
+    </div>
+
+    <div class="logo palladium">
+      <div class="box"><span>P</span></div>
+      <div class="t1">Palladium</div>
+      <div class="t2">EQUITY PARTNERS</div>
+    </div>
+
+    <div class="logo lonestar">
+      <div class="star"></div>
+      <div class="s1"></div>
+      <div class="s2"></div>
+      <div class="txt">Lone Star Funds</div>
+    </div>
+
+    <div class="logo estancia">
+      <div class="big">ESTANCIA</div>
+      <div class="swirl">S</div>
+      <div class="small">CAPITAL PARTNERS</div>
+    </div>
+
+    <div class="logo quadc">
+      <div class="sq"></div>
+      <div class="txt">QUAD-C</div>
+    </div>
+
+    <div class="logo eqt">EQT</div>
+
+    <div class="logo frazier">
+      <div class="top">FR<span class="a">A</span>ZIER</div>
+      <div class="bottom">HEALTHCARE PARTNERS</div>
+    </div>
+
+    <div class="logo uplift">
+      <div class="arc1"></div>
+      <div class="arc2"></div>
+      <div class="txt">uplift</div>
+    </div>
+
+    <div class="logo ccmp">
+      <div class="t1">CCMP</div>
+      <div class="sep"></div>
+      <div class="t2">GROWTH<br>ADVISORS</div>
+    </div>
+
+    <div class="logo brynwood">
+      <div class="bp">bp</div>
+      <div class="txt">brynwood<br>partners</div>
+    </div>
+
+    <div class="logo qip">
+      <div class="box"></div>
+      <div class="q">Q</div>
+      <div class="iip">IIP</div>
+      <div class="cap">CAPITAL</div>
+    </div>
+
+    <div class="footnote">
+      These examples are included solely to illustrate strategies which have been utilized by PEG. Examples were chosen for non-performance-based reasons and represent the largest General Partner exposures in the portfolio as of 4/30/2026, excluding names acting as allocators. The portfolio will include a much larger number of investments than the example set forth. There can be no guarantee or assurance that the portfolio will be able to make similar investments on similar terms in the future. The use of the above company logos is in no way an endorsement of JPMM investment management services. The inclusion of such companies should not be interpreted as a recommendation to buy or sell.
+    </div>
+    <div class="rule-bottom"></div>
+    <div class="page">15</div>
+
+    <div class="jpm">
+      <div class="big">J.P.Morgan</div>
+      <div class="small">ASSET MANAGEMENT</div>
+    </div>
+  </div>
+</body>
+</html>

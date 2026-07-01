@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1365, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1365px;
+    height: 768px;
+    overflow: hidden;
+    background: #dcdcdc;
+    margin: 0 auto;
+  }
+
+  .frame {
+    position: absolute;
+    left: 31px;
+    top: 31px;
+    width: 1303px;
+    height: 706px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 56% 37%, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.14) 16%, rgba(0,0,0,0) 36%),
+      radial-gradient(ellipse at 14% 48%, rgba(255,255,255,0.11) 0%, rgba(0,0,0,0) 23%),
+      radial-gradient(ellipse at 84% 47%, rgba(255,255,255,0.12) 0%, rgba(0,0,0,0) 22%),
+      linear-gradient(180deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.38) 18%, rgba(0,0,0,0.08) 42%, rgba(0,0,0,0.46) 74%, rgba(0,0,0,0.86) 100%),
+      linear-gradient(90deg, #0b0e12 0%, #31162d 20%, #703367 38%, #e7eceb 61%, #9d8ea5 73%, #162025 100%);
+  }
+
+  .ceiling {
+    position: absolute;
+    left: 429px;
+    top: 31px;
+    width: 650px;
+    height: 176px;
+    background: linear-gradient(180deg, rgba(102,111,106,0.23) 0%, rgba(203,214,211,0.18) 42%, rgba(0,0,0,0) 100%);
+    clip-path: polygon(11% 0%, 89% 0%, 100% 100%, 0% 100%);
+    z-index: 3;
+  }
+  .ceiling-beam {
+    position: absolute;
+    left: 518px;
+    top: 31px;
+    width: 72px;
+    height: 194px;
+    background: linear-gradient(180deg, rgba(24,29,33,0.84) 0%, rgba(71,79,80,0.72) 45%, rgba(18,19,21,0.18) 100%);
+    clip-path: polygon(18% 0%, 82% 0%, 100% 100%, 0% 100%);
+    z-index: 4;
+  }
+  .beam-right {
+    position: absolute;
+    right: 215px;
+    top: 31px;
+    width: 74px;
+    height: 160px;
+    background: linear-gradient(180deg, rgba(18,22,25,0.85) 0%, rgba(60,67,71,0.48) 44%, rgba(0,0,0,0) 100%);
+    clip-path: polygon(18% 0%, 82% 0%, 100% 100%, 0% 100%);
+    z-index: 3;
+    opacity: .7;
+  }
+
+  .screen {
+    position: absolute;
+    left: 625px;
+    top: 148px;
+    width: 448px;
+    height: 321px;
+    background: linear-gradient(180deg, rgba(250,250,249,0.97) 0%, rgba(242,245,245,0.94) 100%);
+    box-shadow: 0 0 26px rgba(255,255,255,0.32);
+    z-index: 5;
+  }
+  .screen-topbar {
+    position: absolute;
+    left: 609px;
+    top: 147px;
+    width: 575px;
+    height: 11px;
+    background: #1c1f22;
+    z-index: 6;
+  }
+  .screen-text1 {
+    position: absolute;
+    left: 705px;
+    top: 264px;
+    color: rgba(107,124,129,0.62);
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    z-index: 7;
+  }
+  .screen-text2 {
+    position: absolute;
+    left: 705px;
+    top: 281px;
+    color: rgba(107,124,129,0.56);
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    z-index: 7;
+  }
+  .screen-dots {
+    position: absolute;
+    left: 955px;
+    top: 238px;
+    width: 130px;
+    height: 120px;
+    z-index: 7;
+    opacity: .75;
+  }
+  .screen-dots svg { width: 100%; height: 100%; }
+
+  .small-figure {
+    position: absolute;
+    left: 905px;
+    top: 333px;
+    width: 88px;
+    height: 185px;
+    z-index: 10;
+    opacity: .95;
+  }
+  .small-figure svg { width: 100%; height: 100%; }
+
+  .presenter {
+    position: absolute;
+    left: 535px;
+    top: 252px;
+    width: 146px;
+    height: 474px;
+    z-index: 18;
+  }
+  .presenter svg { width: 100%; height: 100%; }
+
+  .audience-left {
+    position: absolute;
+    left: 0;
+    top: 116px;
+    width: 490px;
+    height: 621px;
+    z-index: 16;
+  }
+  .audience-left svg { width: 100%; height: 100%; }
+
+  .audience-center {
+    position: absolute;
+    left: 680px;
+    top: 331px;
+    width: 318px;
+    height: 406px;
+    z-index: 17;
+  }
+  .audience-center svg { width: 100%; height: 100%; }
+
+  .audience-right {
+    position: absolute;
+    left: 1038px;
+    top: 148px;
+    width: 296px;
+    height: 589px;
+    z-index: 16;
+  }
+  .audience-right svg { width: 100%; height: 100%; }
+
+  .vignette-left {
+    position: absolute;
+    left: 31px;
+    top: 31px;
+    width: 295px;
+    height: 706px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.93) 0%, rgba(0,0,0,0.74) 38%, rgba(0,0,0,0.18) 100%);
+    z-index: 19;
+  }
+  .vignette-right {
+    position: absolute;
+    left: 1094px;
+    top: 31px;
+    width: 240px;
+    height: 706px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.58) 38%, rgba(0,0,0,0.93) 100%);
+    z-index: 19;
+  }
+  .vignette-top {
+    position: absolute;
+    left: 31px;
+    top: 31px;
+    width: 1303px;
+    height: 118px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.84) 0%, rgba(0,0,0,0.44) 58%, rgba(0,0,0,0) 100%);
+    z-index: 19;
+  }
+  .vignette-bottom {
+    position: absolute;
+    left: 31px;
+    top: 477px;
+    width: 1303px;
+    height: 260px;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.22) 32%, rgba(0,0,0,0.84) 100%);
+    z-index: 19;
+  }
+
+  .title {
+    position: absolute;
+    left: 202px;
+    top: 78px;
+    width: 980px;
+    color: #ffe600;
+    font-size: 127px;
+    line-height: 0.92;
+    font-weight: 800;
+    letter-spacing: -3px;
+    z-index: 40;
+  }
+  .subtitle {
+    position: absolute;
+    left: 292px;
+    top: 186px;
+    width: 820px;
+    color: #ffe600;
+    font-size: 37px;
+    line-height: 1.06;
+    font-weight: 700;
+    text-align: center;
+    z-index: 40;
+  }
+
+  .bottom-stripe {
+    position: absolute;
+    left: 31px;
+    top: 726px;
+    width: 1303px;
+    height: 11px;
+    background: linear-gradient(90deg, #ffe300 0%, #ffe300 49%, #ff7f3d 56%, #ff43ea 73%, #00ece8 100%);
+    z-index: 50;
+  }
+
+  .jump {
+    position: absolute;
+    right: 24px;
+    top: 0;
+    width: 68px;
+    height: 46px;
+    background: #7c7d82;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    color: #fff;
+    font-size: 9px;
+    line-height: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 17px;
+    box-sizing: border-box;
+    letter-spacing: 0.03em;
+    z-index: 60;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="frame"></div>
+
+  <div class="ceiling"></div>
+  <div class="ceiling-beam"></div>
+  <div class="beam-right"></div>
+
+  <div class="screen"></div>
+  <div class="screen-topbar"></div>
+  <div class="screen-text1">A Journey of Innovation</div>
+  <div class="screen-text2">and Excellence</div>
+
+  <div class="screen-dots">
+    <svg viewBox="0 0 130 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="rgba(135,164,192,0.28)">
+        <circle cx="10" cy="10" r="4"/><circle cx="28" cy="10" r="4"/><circle cx="46" cy="10" r="4"/><circle cx="64" cy="10" r="4"/><circle cx="82" cy="10" r="4"/><circle cx="100" cy="10" r="4"/><circle cx="118" cy="10" r="4"/>
+        <circle cx="10" cy="28" r="4"/><circle cx="28" cy="28" r="4"/><circle cx="46" cy="28" r="4"/><circle cx="64" cy="28" r="4"/><circle cx="82" cy="28" r="4"/><circle cx="100" cy="28" r="4"/><circle cx="118" cy="28" r="4"/>
+        <circle cx="10" cy="46" r="4"/><circle cx="28" cy="46" r="4"/><circle cx="46" cy="46" r="4"/><circle cx="64" cy="46" r="4"/><circle cx="82" cy="46" r="4"/><circle cx="100" cy="46" r="4"/><circle cx="118" cy="46" r="4"/>
+        <circle cx="10" cy="64" r="4"/><circle cx="28" cy="64" r="4"/><circle cx="46" cy="64" r="4"/><circle cx="64" cy="64" r="4"/><circle cx="82" cy="64" r="4"/><circle cx="100" cy="64" r="4"/><circle cx="118" cy="64" r="4"/>
+        <circle cx="10" cy="82" r="4"/><circle cx="28" cy="82" r="4"/><circle cx="46" cy="82" r="4"/><circle cx="64" cy="82" r="4"/><circle cx="82" cy="82" r="4"/><circle cx="100" cy="82" r="4"/><circle cx="118" cy="82" r="4"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="small-figure">
+    <svg viewBox="0 0 90 188" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="48" cy="18" rx="15" ry="15" fill="rgba(221,236,230,0.95)"/>
+      <path d="M33 36 C40 30, 54 30, 60 40 L64 76 C64 94,58 109,57 123 L58 178 L45 178 L42 126 L39 178 L27 178 L28 121 C28 108,23 94,24 77 Z" fill="rgba(227,235,231,0.92)"/>
+    </svg>
+  </div>
+
+  <div class="presenter">
+    <svg viewBox="0 0 145 474" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="skin" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#d9b59d"/>
+          <stop offset="100%" stop-color="#a77f68"/>
+        </linearGradient>
+        <linearGradient id="suit" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stop-color="#0068a7"/>
+          <stop offset="100%" stop-color="#072b53"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="76" cy="27" rx="25" ry="27" fill="url(#skin)"/>
+      <path d="M58 22 C64 9, 88 7, 96 25 C89 18, 81 17, 74 18 C68 18,63 20,58 22 Z" fill="#4a3027"/>
+      <rect x="68" y="49" width="16" height="29" rx="5" fill="url(#skin)"/>
+      <path d="M47 72 C59 56, 95 56, 109 74 L118 194 C120 217,118 239,114 265 L105 271 L98 210 L92 127 L86 246 L90 471 L70 471 L67 239 L61 129 L54 213 L40 272 L30 266 C34 233,34 219,36 191 Z" fill="url(#suit)"/>
+      <path d="M67 71 L86 71 L90 146 L75 160 L61 146 Z" fill="#eef2f4"/>
+      <path d="M77 79 L84 82 L80 151 L73 151 L70 82 Z" fill="#6f7982"/>
+      <path d="M54 116 L30 154 L37 163 L62 136 Z" fill="url(#skin)"/>
+      <path d="M95 118 L113 142 L108 153 L88 139 Z" fill="url(#skin)"/>
+      <path d="M44 151 C55 141, 70 137, 80 137 C89 137, 102 142, 110 151 L107 159 C95 153, 88 151, 80 151 C71 151, 60 154, 47 161 Z" fill="rgba(195,168,149,0.95)"/>
+      <path d="M61 246 L83 246 L84 292 L60 292 Z" fill="#111"/>
+      <path d="M57 470 L74 470 L75 474 L55 474 Z" fill="#111"/>
+      <path d="M84 470 L101 470 L102 474 L82 474 Z" fill="#111"/>
+    </svg>
+  </div>
+
+  <div class="audience-left">
+    <svg viewBox="0 0 490 621" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="blur1" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stop-color="rgba(96,100,101,0.86)"/>
+          <stop offset="100%" stop-color="rgba(14,18,22,0.99)"/>
+        </linearGradient>
+        <linearGradient id="blur2" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stop-color="rgba(42,46,53,0.95)"/>
+          <stop offset="100%" stop-color="rgba(0,0,0,0.99)"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="110" cy="95" rx="45" ry="112" fill="url(#blur1)"/>
+      <path d="M60 182 C71 138, 161 136, 184 198 L199 621 L0 621 L0 258 C17 230,36 205,60 182 Z" fill="url(#blur2)"/>
+      <ellipse cx="325" cy="224" rx="54" ry="45" fill="rgba(25,24,26,0.97)"/>
+      <path d="M252 298 C272 246, 356 240, 394 307 L442 621 L204 621 L208 350 C225 330,236 312,252 298 Z" fill="rgba(34,36,43,0.97)"/>
+      <ellipse cx="162" cy="534" rx="118" ry="80" fill="rgba(78,110,118,0.87)"/>
+      <path d="M78 570 C114 520, 240 520, 286 621 L45 621 Z" fill="rgba(17,22,28,0.96)"/>
+    </svg>
+  </div>
+
+  <div class="audience-center">
+    <svg viewBox="0 0 318 406" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="171" cy="60" rx="69" ry="64" fill="rgba(58,41,62,0.98)"/>
+      <path d="M110 100 C139 78, 207 78, 234 106 C257 128, 266 177, 273 240 L285 406 L94 406 L80 198 C77 154, 84 121, 110 100 Z" fill="rgba(36,13,29,0.96)"/>
+      <path d="M46 162 C74 148, 111 150, 130 172 C141 185, 149 217, 153 259 L162 406 L20 406 L17 285 C17 231, 23 181, 46 162 Z" fill="rgba(214,196,186,0.90)"/>
+    </svg>
+  </div>
+
+  <div class="audience-right">
+    <svg viewBox="0 0 296 589" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="184" cy="132" rx="66" ry="92" fill="rgba(22,27,31,0.98)"/>
+      <path d="M125 211 C154 190, 221 194, 245 223 C262 244, 270 285, 270 347 L270 589 L78 589 L84 295 C91 251, 100 226, 125 211 Z" fill="rgba(18,22,26,0.98)"/>
+      <ellipse cx="122" cy="574" rx="98" ry="40" fill="rgba(129,148,142,0.42)"/>
+    </svg>
+  </div>
+
+  <div class="vignette-left"></div>
+  <div class="vignette-right"></div>
+  <div class="vignette-top"></div>
+  <div class="vignette-bottom"></div>
+
+  <div class="title">LOOKING AHEAD:</div>
+  <div class="subtitle">finding the balance between immediate-term<br>pressures and strategic perspectives</div>
+
+  <div class="bottom-stripe"></div>
+  <div class="jump">JUMP TO<br>CONTENTS</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Research snapshot</title>
+<style>
+  body {
+    margin: 0;
+    background: #d9d9d9;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    margin: 0 auto;
+    background: #ecebea;
+  }
+
+  .top-photo {
+    position: absolute;
+    left: 434px;
+    top: 0;
+    width: 846px;
+    height: 720px;
+    background:
+      radial-gradient(circle at 92% 5%, rgba(248,248,226,0.95) 0 8%, rgba(240,240,220,0.55) 12%, rgba(255,255,255,0) 24%),
+      radial-gradient(circle at 74% 39%, rgba(255,231,71,0.95) 0 6%, rgba(255,188,0,0.85) 10%, rgba(255,255,255,0) 21%),
+      radial-gradient(circle at 52% 20%, rgba(255,216,168,0.9) 0 3%, rgba(255,255,255,0) 10%),
+      radial-gradient(circle at 42% 10%, rgba(20,20,20,0.95) 0 12%, rgba(0,0,0,0) 20%),
+      radial-gradient(circle at 80% 14%, rgba(188,122,0,0.95) 0 16%, rgba(145,83,0,0.8) 21%, rgba(0,0,0,0) 33%),
+      radial-gradient(circle at 88% 44%, rgba(20,20,22,0.95) 0 12%, rgba(0,0,0,0) 23%),
+      radial-gradient(circle at 30% 25%, rgba(27,9,7,0.98) 0 18%, rgba(91,17,7,0.92) 26%, rgba(0,0,0,0) 40%),
+      linear-gradient(12deg, rgba(245,244,242,0.95) 48%, rgba(226,221,214,0.72) 68%, rgba(255,255,255,0) 82%),
+      linear-gradient(180deg, #ca2d75 0%, #8f102a 14%, #7a2800 35%, #a24900 52%, #e2dfdd 72%, #d6d3d2 100%);
+    filter: saturate(1.05);
+  }
+
+  .top-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(78deg, rgba(255,255,255,0) 0 52%, rgba(255,255,255,0.20) 53% 58%, rgba(255,255,255,0) 59%),
+      linear-gradient(60deg, rgba(255,255,255,0) 0 70%, rgba(255,255,255,0.25) 71% 75%, rgba(255,255,255,0) 76%),
+      linear-gradient(20deg, rgba(255,255,255,0) 0 83%, rgba(255,255,255,0.14) 84% 88%, rgba(255,255,255,0) 89%);
+    mix-blend-mode: screen;
+    opacity: 0.75;
+  }
+
+  .sticky {
+    position: absolute;
+    transform: rotate(-9deg);
+    opacity: 0.85;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+  .s1 { left: 630px; top: 256px; width: 58px; height: 38px; background: rgba(214,132,44,0.80); }
+  .s2 { left: 731px; top: 259px; width: 78px; height: 43px; background: rgba(204,153,18,0.82); transform: rotate(-6deg); }
+  .s3 { left: 857px; top: 252px; width: 51px; height: 47px; background: rgba(234,242,239,0.72); transform: rotate(7deg); }
+  .s4 { left: 1085px; top: 219px; width: 61px; height: 49px; background: rgba(238,125,28,0.88); transform: rotate(-4deg); }
+  .s5 { left: 1040px; top: 127px; width: 67px; height: 53px; background: rgba(210,228,219,0.70); transform: rotate(-20deg); }
+  .s6 { left: 1015px; top: 548px; width: 51px; height: 46px; background: rgba(246,207,0,0.92); transform: rotate(-32deg); }
+  .s7 { left: 1125px; top: 576px; width: 55px; height: 48px; background: rgba(240,150,100,0.86); transform: rotate(-17deg); }
+
+  .title {
+    position: absolute;
+    left: 62px;
+    top: 135px;
+    color: #7820e4;
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+  }
+
+  .left-photo {
+    position: absolute;
+    left: 62px;
+    top: 304px;
+    width: 403px;
+    height: 372px;
+    background:
+      radial-gradient(circle at 10% 35%, rgba(225,237,228,0.55) 0 10%, rgba(255,255,255,0) 18%),
+      linear-gradient(180deg, rgba(25,10,10,0.78), rgba(42,10,2,0.28) 30%, rgba(81,32,6,0.12) 48%, rgba(0,0,0,0) 100%),
+      linear-gradient(10deg, #0c0b12 0%, #1a171f 8%, #6a2702 22%, #893600 36%, #83410b 52%, #9f6f4d 100%);
+    overflow: hidden;
+  }
+
+  .left-photo::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    width: 210px;
+    height: 170px;
+    background:
+      radial-gradient(circle at 28% 40%, rgba(220,220,220,0.55) 0 16%, rgba(255,255,255,0) 34%),
+      radial-gradient(circle at 62% 30%, rgba(90,52,31,0.55) 0 12%, rgba(255,255,255,0) 25%);
+    filter: blur(3px);
+    opacity: 0.9;
+  }
+
+  .left-photo::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 42px;
+    height: 14px;
+    background: rgba(70,25,0,0.55);
+    box-shadow:
+      0 -79px 0 rgba(115,48,0,0.42),
+      0 -160px 0 rgba(112,48,0,0.35);
+  }
+
+  .note {
+    position: absolute;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    opacity: 0.85;
+  }
+  .n1 { left: 91px; top: 454px; width: 46px; height: 56px; background: #b9d2b8; transform: rotate(-15deg); }
+  .n2 { left: 122px; top: 494px; width: 73px; height: 77px; background: #d6ddb4; transform: rotate(-38deg); }
+  .n3 { left: 224px; top: 421px; width: 69px; height: 69px; background: #ebedf0; transform: rotate(-2deg); }
+  .n4 { left: 240px; top: 507px; width: 72px; height: 76px; background: #57d1b4; transform: rotate(-12deg); }
+  .n5 { left: 342px; top: 513px; width: 61px; height: 61px; background: #e7d8ef; transform: rotate(-4deg); }
+  .n6 { left: 184px; top: 590px; width: 66px; height: 56px; background: #c9c98c; transform: rotate(-12deg); }
+  .n7 { left: 250px; top: 624px; width: 75px; height: 63px; background: #d7c99d; transform: rotate(-8deg); }
+  .n8 { left: 354px; top: 611px; width: 65px; height: 71px; background: #ececee; transform: rotate(-7deg); }
+  .n9 { left: 355px; top: 564px; width: 51px; height: 36px; background: #dce5ef; transform: rotate(-6deg); }
+
+  .clover {
+    position: absolute;
+    left: 251px;
+    top: 425px;
+    width: 20px;
+    height: 20px;
+  }
+  .clover span {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    background: #39a26c;
+    border-radius: 50%;
+  }
+  .clover .a { left: 0; top: 5px; }
+  .clover .b { left: 5px; top: 0; }
+  .clover .c { left: 10px; top: 5px; }
+  .clover .d { left: 5px; top: 10px; }
+  .clover::after {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 13px;
+    width: 2px;
+    height: 9px;
+    background: #2e8b57;
+    transform: rotate(25deg);
+    transform-origin: top center;
+  }
+
+  .text-box {
+    position: absolute;
+    left: 434px;
+    top: 305px;
+    width: 476px;
+    height: 370px;
+    background: #eeeeee;
+    padding: 42px 42px 36px 50px;
+    box-sizing: border-box;
+  }
+
+  .text-box p {
+    margin: 0;
+    color: #222;
+    font-size: 17px;
+    line-height: 1.42;
+    font-weight: 400;
+  }
+
+  .footer-left {
+    position: absolute;
+    left: 62px;
+    top: 690px;
+    color: #333;
+    font-size: 11px;
+  }
+
+  .footer-right {
+    position: absolute;
+    right: 82px;
+    top: 730px;
+    transform: translateY(-100%);
+    color: #777;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .footer-right .yr {
+    color: #8f3df2;
+  }
+
+  .page {
+    position: absolute;
+    right: 32px;
+    top: 730px;
+    transform: translateY(-100%);
+    color: #777;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-photo"></div>
+
+    <div class="sticky s1"></div>
+    <div class="sticky s2"></div>
+    <div class="sticky s3"></div>
+    <div class="sticky s4"></div>
+    <div class="sticky s5"></div>
+    <div class="sticky s6"></div>
+    <div class="sticky s7"></div>
+
+    <div class="title">Research snapshot</div>
+
+    <div class="left-photo"></div>
+    <div class="note n1"></div>
+    <div class="note n2"></div>
+    <div class="note n3"></div>
+    <div class="note n4"></div>
+    <div class="note n5"></div>
+    <div class="note n6"></div>
+    <div class="note n7"></div>
+    <div class="note n8"></div>
+    <div class="note n9"></div>
+
+    <div class="clover">
+      <span class="a"></span>
+      <span class="b"></span>
+      <span class="c"></span>
+      <span class="d"></span>
+    </div>
+
+    <div class="text-box">
+      <p>
+        Each year, Accenture Song’s global network of designers, creatives, technologists, sociologists,
+        and anthropologists across 50+ design studios and creative agencies watch out for signals in their
+        countries. We synthesize their thoughts, discuss them with futurists and academics and shape them
+        into trends. External, in-depth interviews with people in eight countries tell us whether and how
+        the trends are manifesting, in their own words. We combine these insights with an extensive online
+        survey of 24,295 people across 22 markets to shape these final trends.
+      </p>
+    </div>
+
+    <div class="footer-left">For more information, please see page 89.</div>
+    <div class="footer-right">Accenture Life Trends <span class="yr">2025</span></div>
+    <div class="page">3</div>
+  </div>
+</body>
+</html>

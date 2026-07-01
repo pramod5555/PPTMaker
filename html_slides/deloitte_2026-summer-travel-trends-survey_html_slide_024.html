@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Deloitte Slide Replica</title>
+<style>
+  body{margin:0;background:#efefef;font-family:Arial, Helvetica, 'Segoe UI', sans-serif;}
+  .slide{position:relative;width:1280px;height:720px;overflow:hidden;background:#efefef;}
+  .panel{position:absolute;left:46px;top:145px;width:1175px;height:570px;background:#e7e7e7;}
+  .title{
+    position:absolute;left:47px;top:44px;width:1160px;
+    font-size:39px;line-height:1.02;font-weight:800;color:#000;
+    letter-spacing:-0.4px;
+  }
+  .left-head,.right-head{
+    font-size:17px;line-height:21px;font-weight:700;color:#111;
+  }
+  .left-head{position:absolute;left:73px;top:168px;}
+  .left-sub{position:absolute;left:73px;top:198px;font-size:16px;line-height:19px;font-style:italic;color:#222;}
+  .right-head{position:absolute;left:541px;top:168px;}
+
+  .legend{position:absolute;left:540px;top:199px;height:24px;}
+  .legend-item{position:absolute;top:0;font-size:15px;line-height:20px;color:#222;white-space:nowrap;}
+  .dot{display:inline-block;width:16px;height:16px;border-radius:50%;vertical-align:middle;margin-right:6px;}
+  .li1{left:0}.li2{left:160px}.li3{left:335px}
+  .li1 .dot{background:#c7c7c7;}
+  .li2 .dot{background:#aaaaaa;}
+  .li3 .dot{background:#000;}
+
+  .table{position:absolute;left:76px;top:246px;width:378px;height:302px;color:#303030;}
+  .th-year{position:absolute;top:6px;font-size:17px;font-weight:700;color:#111;}
+  .y2025{left:214px;}
+  .y2026{left:309px;}
+  .table-line-top{position:absolute;left:0;top:35px;width:378px;height:1.5px;background:#6f6f6f;}
+  .rowline{position:absolute;left:0;width:378px;height:1px;background:#b8b8b8;}
+  .cell-label,.cell-v1,.cell-v2,.arrow{
+    position:absolute;font-size:15px;line-height:20px;font-weight:400;color:#333;
+  }
+  .cell-label{left:11px;width:182px;}
+  .cell-v1{left:219px;width:42px;text-align:center;}
+  .arrow{left:272px;width:18px;text-align:center;font-size:22px;line-height:18px;font-weight:700;}
+  .cell-v2{left:312px;width:42px;text-align:center;}
+  .green{color:#7ea93c;}
+  .red{color:#c51414;}
+
+  .chart-wrap{position:absolute;left:541px;top:247px;width:718px;height:343px;}
+  .xlabels{position:absolute;left:590px;top:599px;width:680px;height:56px;}
+  .xlabel{position:absolute;top:0;font-size:15px;line-height:16px;font-weight:700;color:#1b1b1b;text-align:center;}
+
+  .callout{
+    position:absolute;left:1030px;top:265px;width:248px;
+    background:#ededed;padding:8px 10px 8px 10px;box-sizing:border-box;
+  }
+  .callout p{margin:0;font-size:14px;line-height:1.12;color:#2a2a2a;}
+  .mask-line{position:absolute;left:1278px;top:293px;width:20px;height:94px;background:#efefef;}
+
+  .note{
+    position:absolute;left:77px;top:659px;width:920px;
+    font-size:12px;line-height:14px;color:#333;
+  }
+  .foot-left,.foot-right,.page{
+    position:absolute;font-size:12px;line-height:12px;color:#444;
+  }
+  .foot-left{left:46px;top:727px;width:230px;}
+  .foot-right{left:984px;top:727px;width:260px;}
+  .page{left:1258px;top:727px;width:16px;text-align:right;}
+  svg text{font-family:Arial, Helvetica, 'Segoe UI', sans-serif;}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="panel"></div>
+
+  <div class="title">Reliability rises as a driver of airline choice, while price<br>declines in importance—but still leads</div>
+
+  <div class="left-head">Leading airline selection factors</div>
+  <div class="left-sub">Top 3</div>
+
+  <div class="right-head">Leading airline selection factors, by income</div>
+  <div class="legend">
+    <div class="legend-item li1"><span class="dot"></span>Under $100K</div>
+    <div class="legend-item li2"><span class="dot"></span>$100K to $199K</div>
+    <div class="legend-item li3"><span class="dot"></span>Over $200K</div>
+  </div>
+
+  <div class="table">
+    <div class="th-year y2025">2025</div>
+    <div class="th-year y2026">2026</div>
+    <div class="table-line-top"></div>
+
+    <div class="cell-label" style="top:45px;">Price</div>
+    <div class="cell-v1" style="top:45px;">65%</div>
+    <div class="arrow red" style="top:41px;">↓</div>
+    <div class="cell-v2" style="top:45px;">60%</div>
+    <div class="rowline" style="top:67px;"></div>
+
+    <div class="cell-label" style="top:77px;">Direct flights</div>
+    <div class="cell-v1" style="top:77px;">58%</div>
+    <div class="cell-v2" style="top:77px;">55%</div>
+    <div class="rowline" style="top:99px;"></div>
+
+    <div class="cell-label" style="top:109px;">Reliability</div>
+    <div class="cell-v1" style="top:109px;">44%</div>
+    <div class="arrow green" style="top:105px;">↑</div>
+    <div class="cell-v2" style="top:109px;">51%</div>
+    <div class="rowline" style="top:131px;"></div>
+
+    <div class="cell-label" style="top:141px;">Loyalty memberships</div>
+    <div class="cell-v1" style="top:141px;">45%</div>
+    <div class="cell-v2" style="top:141px;">42%</div>
+    <div class="rowline" style="top:163px;"></div>
+
+    <div class="cell-label" style="top:173px;">Customer service</div>
+    <div class="cell-v1" style="top:173px;">23%</div>
+    <div class="cell-v2" style="top:173px;">24%</div>
+    <div class="rowline" style="top:195px;"></div>
+
+    <div class="cell-label" style="top:205px;">Onboard comfort</div>
+    <div class="cell-v1" style="top:205px;">24%</div>
+    <div class="cell-v2" style="top:205px;">23%</div>
+    <div class="rowline" style="top:227px;"></div>
+
+    <div class="cell-label" style="top:237px;">Wi‑Fi or entertainment</div>
+    <div class="cell-v1" style="top:237px;">16%</div>
+    <div class="arrow green" style="top:233px;">↑</div>
+    <div class="cell-v2" style="top:237px;">22%</div>
+    <div class="rowline" style="top:259px;"></div>
+
+    <div class="cell-label" style="top:269px;">Baggage policy</div>
+    <div class="cell-v1" style="top:269px;">21%</div>
+    <div class="arrow red" style="top:265px;">↓</div>
+    <div class="cell-v2" style="top:269px;">17%</div>
+    <div class="rowline" style="top:291px;"></div>
+  </div>
+
+  <div class="chart-wrap">
+    <svg width="718" height="343" viewBox="0 0 718 343" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="clip">
+          <rect x="48" y="0" width="668" height="327"></rect>
+        </clipPath>
+      </defs>
+
+      <g stroke="#cfcfcf" stroke-width="1">
+        <line x1="48" y1="0" x2="716" y2="0"/>
+        <line x1="48" y1="46.7" x2="716" y2="46.7"/>
+        <line x1="48" y1="93.4" x2="716" y2="93.4"/>
+        <line x1="48" y1="140.1" x2="716" y2="140.1"/>
+        <line x1="48" y1="186.9" x2="716" y2="186.9"/>
+        <line x1="48" y1="233.6" x2="716" y2="233.6"/>
+        <line x1="48" y1="280.3" x2="716" y2="280.3"/>
+        <line x1="48" y1="327" x2="716" y2="327"/>
+      </g>
+
+      <g fill="#333" font-size="14" font-weight="400">
+        <text x="0" y="4">70%</text>
+        <text x="0" y="50.7">60%</text>
+        <text x="0" y="97.4">50%</text>
+        <text x="0" y="144.1">40%</text>
+        <text x="0" y="190.9">30%</text>
+        <text x="0" y="237.6">20%</text>
+        <text x="0" y="284.3">10%</text>
+        <text x="12" y="331">0%</text>
+      </g>
+
+      <g stroke="#cfcfcf" stroke-width="1">
+        <line x1="48" y1="327" x2="48" y2="333"/>
+        <line x1="137" y1="327" x2="137" y2="333"/>
+        <line x1="226" y1="327" x2="226" y2="333"/>
+        <line x1="315" y1="327" x2="315" y2="333"/>
+        <line x1="404" y1="327" x2="404" y2="333"/>
+        <line x1="493" y1="327" x2="493" y2="333"/>
+        <line x1="582" y1="327" x2="582" y2="333"/>
+        <line x1="671" y1="327" x2="671" y2="333"/>
+      </g>
+
+      <g clip-path="url(#clip)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="92,20 181,85 270,89 359,168 448,220 537,202 626,207 671,248"
+                  stroke="#c2c2c2" stroke-width="3"/>
+        <polyline points="92,79 181,84 270,84 359,135 448,210 537,221 626,216 671,252"
+                  stroke="#aaaaaa" stroke-width="3"/>
+        <polyline points="92,84 181,98 270,112 359,78 448,233 537,211 626,225 671,248"
+                  stroke="#111111" stroke-width="3"/>
+        <circle cx="359" cy="78" r="4.2" fill="#111111"/>
+      </g>
+
+      <line x1="363" y1="78" x2="487" y2="78" stroke="#111111" stroke-width="1.2"/>
+    </svg>
+  </div>
+
+  <div class="xlabels">
+    <div class="xlabel" style="left:8px;width:64px;">Price</div>
+    <div class="xlabel" style="left:75px;width:82px;">Direct<br>flights</div>
+    <div class="xlabel" style="left:170px;width:76px;">Reliability</div>
+    <div class="xlabel" style="left:251px;width:92px;">Loyalty<br>membership</div>
+    <div class="xlabel" style="left:337px;width:92px;">Customer<br>service</div>
+    <div class="xlabel" style="left:438px;width:92px;">Onboard<br>comfort</div>
+    <div class="xlabel" style="left:528px;width:92px;">Wi‑Fi or<br>entertainment</div>
+    <div class="xlabel" style="left:632px;width:58px;">Baggage<br>policy</div>
+  </div>
+
+  <div class="callout">
+    <p>Loyalty memberships are<br>significantly more important to<br>airline selection for travelers with<br>household income over $200K,<br>but their importance has<br>dropped compared to 2025</p>
+  </div>
+  <div class="mask-line"></div>
+
+  <div class="note">Note: Question: “Which of the following factors are most important to your airline selection for this trip?” (Please rank your top 3 considerations) (n = 1,023).<br>Source: 2026 Deloitte Summer Travel Survey.</div>
+
+  <div class="foot-left">2026 Deloitte Summer Travel Survey</div>
+  <div class="foot-right">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="page">24</div>
+</div>
+</body>
+</html>

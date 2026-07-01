@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+    color:#111;
+  }
+  .slide *{
+    box-sizing:border-box;
+  }
+  .abs{ position:absolute; }
+
+  .top-kicker{
+    left:83px;
+    top:27px;
+    font-size:18px;
+    line-height:22px;
+    color:#8a9097;
+    font-weight:600;
+    white-space:nowrap;
+  }
+
+  .headline{
+    left:82px;
+    top:79px;
+    width:980px;
+    font-size:36px;
+    line-height:43px;
+    font-weight:400;
+    letter-spacing:-0.02em;
+    color:#111;
+  }
+
+  .subtitle{
+    left:82px;
+    top:186px;
+    font-size:27px;
+    line-height:32px;
+    color:#8f959c;
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .subtitle sup{
+    font-size:60%;
+    vertical-align:super;
+  }
+
+  .logo{
+    position:absolute;
+    right:35px;
+    top:19px;
+    width:155px;
+    height:60px;
+  }
+
+  .chart-area{
+    position:absolute;
+    left:82px;
+    top:253px;
+    width:490px;
+    height:345px;
+  }
+  .axis{
+    position:absolute;
+    left:0;
+    bottom:18px;
+    width:425px;
+    height:1px;
+    background:#7b7b7b;
+  }
+  .bar2016{
+    position:absolute;
+    left:44px;
+    bottom:19px;
+    width:125px;
+    height:15px;
+    background:#979ba1;
+  }
+  .bar2022{
+    position:absolute;
+    left:255px;
+    bottom:19px;
+    width:124px;
+    height:256px;
+    background:#1f73a4;
+  }
+  .val2016{
+    position:absolute;
+    left:96px;
+    bottom:35px;
+    width:28px;
+    text-align:center;
+    font-size:17px;
+    line-height:20px;
+    font-weight:700;
+    color:#111;
+  }
+  .val2022{
+    position:absolute;
+    left:301px;
+    bottom:279px;
+    width:40px;
+    text-align:center;
+    font-size:18px;
+    line-height:22px;
+    font-weight:700;
+    color:#111;
+  }
+  .year2016{
+    position:absolute;
+    left:82px;
+    bottom:-28px;
+    width:72px;
+    text-align:center;
+    font-size:26px;
+    line-height:31px;
+    font-weight:700;
+    color:#000;
+  }
+  .year2022{
+    position:absolute;
+    left:297px;
+    bottom:-28px;
+    width:78px;
+    text-align:center;
+    font-size:26px;
+    line-height:31px;
+    font-weight:700;
+    color:#000;
+  }
+  .chart-svg{
+    position:absolute;
+    left:0;
+    top:0;
+    width:425px;
+    height:285px;
+    overflow:visible;
+  }
+  .pill{
+    position:absolute;
+    left:171px;
+    top:-1px;
+    width:80px;
+    height:31px;
+    border:2px solid #9da2a8;
+    border-radius:16px;
+    background:#f3f3f3;
+    text-align:center;
+    font-size:16px;
+    line-height:27px;
+    color:#222;
+    font-weight:400;
+  }
+
+  .bullets{
+    position:absolute;
+    left:674px;
+    top:254px;
+    width:505px;
+    color:#111;
+  }
+  .bullet{
+    position:absolute;
+    left:0;
+    width:500px;
+  }
+  .bullet .arrow{
+    position:absolute;
+    left:0;
+    top:0;
+    width:18px;
+    font-size:18px;
+    line-height:26px;
+    color:#111;
+    font-weight:400;
+  }
+  .bullet .text{
+    position:absolute;
+    left:18px;
+    top:0;
+    width:470px;
+    font-size:22px;
+    line-height:25px;
+    color:#111;
+    font-weight:400;
+  }
+  .bullet b{ font-weight:700; }
+
+  .footnote{
+    position:absolute;
+    left:82px;
+    top:639px;
+    width:1105px;
+    font-size:12px;
+    line-height:14px;
+    color:#222;
+    font-weight:400;
+  }
+
+  .source{
+    position:absolute;
+    left:82px;
+    top:703px;
+    font-size:12px;
+    line-height:14px;
+    color:#222;
+    font-weight:400;
+    white-space:nowrap;
+  }
+
+  .page-sep{
+    position:absolute;
+    left:1194px;
+    top:703px;
+    width:1px;
+    height:14px;
+    background:#9a9a9a;
+  }
+  .page-no{
+    position:absolute;
+    left:1210px;
+    top:699px;
+    font-size:12px;
+    line-height:16px;
+    color:#9a9a9a;
+    font-weight:400;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-kicker abs">3. Digital Transformation – The digital economy is here</div>
+
+  <div class="headline abs">Predictions show a huge market growth potential for AI with corporate investment increasing threefold in the near term</div>
+
+  <div class="subtitle abs">AI hardware market<sup>1)</sup> worldwide 2016 vs. 2022 [bn]</div>
+
+  <div class="logo">
+    <svg width="155" height="60" viewBox="0 0 155 60" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="rbg" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#7f8589"/>
+          <stop offset="42%" stop-color="#d6d8d9"/>
+          <stop offset="100%" stop-color="#62676b"/>
+        </linearGradient>
+      </defs>
+      <text x="96" y="18" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#555" text-anchor="end">Roland</text>
+      <text x="96" y="43" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#333" text-anchor="end">Berger</text>
+      <path d="M112 5 L127 5 C140 5 149 14 149 27 C149 35 145 41 137 44 C146 47 153 54 153 66 C153 80 142 89 127 89 L112 89 Z"
+            transform="translate(0,-1) scale(0.78,0.58)"
+            fill="url(#rbg)"/>
+    </svg>
+  </div>
+
+  <div class="chart-area">
+    <svg class="chart-svg" viewBox="0 0 425 285" xmlns="http://www.w3.org/2000/svg">
+      <path d="M106 266 L106 18 L318 18" fill="none" stroke="#9ea3a8" stroke-width="1.5"/>
+      <path d="M318 18 L318 35" fill="none" stroke="#9ea3a8" stroke-width="1.5"/>
+      <path d="M312 30 L318 42 L324 30 Z" fill="#9ea3a8"/>
+    </svg>
+    <div class="pill">+62.9 p.a.</div>
+    <div class="bar2016"></div>
+    <div class="bar2022"></div>
+    <div class="axis"></div>
+    <div class="val2016">0.9</div>
+    <div class="val2022">16.1</div>
+    <div class="year2016">2016</div>
+    <div class="year2022">2022</div>
+  </div>
+
+  <div class="bullets">
+    <div class="bullet" style="top:0px;height:82px;">
+      <div class="arrow">&gt;</div>
+      <div class="text">The <b>AI hardware market</b> is expected to be worth USD 16.1 billion by 2022, growing at a <b>CAGR of 62.9%</b> from 2016 to 2022 according to MarketsandMarkets</div>
+    </div>
+    <div class="bullet" style="top:90px;height:82px;">
+      <div class="arrow">&gt;</div>
+      <div class="text">Forrester predicts that across all businesses <b>investment in AI will be three times greater in 2017</b> compared with 2016</div>
+    </div>
+    <div class="bullet" style="top:164px;height:110px;">
+      <div class="arrow">&gt;</div>
+      <div class="text">The <b>field of AI is shifting</b> toward building <b>intelligent systems that can collaborate effectively</b> with people, including creative ways to develop interactive and scalable ways for people to teach robots</div>
+    </div>
+    <div class="bullet" style="top:263px;height:112px;">
+      <div class="arrow">&gt;</div>
+      <div class="text">Gartner predicts that <b>by 2020, 100 million consumers will shop in augmented reality</b> to enhance the shopping process, resulting in dramatically higher levels of customer engagement</div>
+    </div>
+  </div>
+
+  <div class="footnote">1) Artificial intelligence is a consolidation of state-of-the-art technologies which are used to develop products which work similar to human intelligence. It considers revenues generated from the hardware devices which go into making of following AI technologies such as Deep Learning (DL), Robotics, Digital Personal Assistant, Querying Method, Natural Language Processing (NLP), Context Aware Processing. Third party software/platform and service providers in the AI ecosystem are not included</div>
+
+  <div class="source">Source: MarketsandMarkets, Stanford University, Gartner</div>
+  <div class="page-sep"></div>
+  <div class="page-no">34</div>
+</div>
+</body>
+</html>

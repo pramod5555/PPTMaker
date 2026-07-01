@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d7d7d7;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  .slide > div, .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .left-bg{
+    left:0; top:0; width:628px; height:720px;
+    background:#efefef;
+    z-index:1;
+  }
+
+  .right-scene{
+    left:628px; top:0; width:652px; height:720px;
+    background:
+      radial-gradient(circle at 33% 25%, rgba(255,222,198,.20) 0 6%, rgba(255,201,166,.10) 12%, rgba(255,190,150,0) 24%),
+      radial-gradient(circle at 18% 42%, rgba(244,187,156,.85) 0 9%, rgba(244,187,156,.30) 18%, rgba(244,187,156,0) 33%),
+      radial-gradient(circle at 77% 11%, rgba(255,255,255,.20) 0 4%, rgba(255,255,255,.08) 10%, rgba(255,255,255,0) 22%),
+      radial-gradient(circle at 45% 74%, rgba(255,255,255,.18) 0 5%, rgba(255,255,255,.06) 11%, rgba(255,255,255,0) 22%),
+      linear-gradient(180deg, #3e6484 0%, #4a7092 18%, #5e7f9f 37%, #87a0b3 58%, #8b8b92 76%, #5d4d48 100%);
+    z-index:0;
+  }
+
+  .clouds{
+    left:628px; top:0; width:652px; height:585px;
+    z-index:1;
+    pointer-events:none;
+    background:
+      radial-gradient(ellipse at 42% 13%, rgba(255,255,255,.24) 0 7%, rgba(255,255,255,.10) 13%, rgba(255,255,255,0) 26%),
+      radial-gradient(ellipse at 51% 10%, rgba(255,255,255,.18) 0 6%, rgba(255,255,255,.08) 13%, rgba(255,255,255,0) 24%),
+      radial-gradient(ellipse at 67% 8%, rgba(255,255,255,.16) 0 5%, rgba(255,255,255,.06) 11%, rgba(255,255,255,0) 23%),
+      radial-gradient(ellipse at 38% 26%, rgba(255,255,255,.15) 0 7%, rgba(255,255,255,.06) 15%, rgba(255,255,255,0) 30%),
+      radial-gradient(ellipse at 24% 67%, rgba(255,255,255,.16) 0 6%, rgba(255,255,255,.07) 12%, rgba(255,255,255,0) 25%);
+    opacity:.9;
+  }
+
+  .water{
+    left:628px; top:594px; width:652px; height:126px;
+    background:linear-gradient(180deg, rgba(106,109,118,0.72) 0%, rgba(83,76,79,0.96) 100%);
+    z-index:2;
+  }
+
+  .horizon-buildings{
+    left:643px; top:533px; width:185px; height:82px;
+    z-index:6;
+  }
+
+  .ship-body{
+    left:826px; top:150px; width:390px; height:530px;
+    background:linear-gradient(90deg, #ff6f00 0%, #f03a00 25%, #bb0400 63%, #680000 100%);
+    clip-path:polygon(18% 12%, 47% 10%, 70% 11%, 80% 16%, 87% 26%, 91% 38%, 94% 52%, 96% 66%, 97% 80%, 97% 100%, 33% 100%, 27% 94%, 25% 85%, 25% 72%, 24% 58%, 21% 46%, 16% 35%, 13% 24%);
+    z-index:12;
+    box-shadow: inset -22px 0 34px rgba(0,0,0,0.35);
+  }
+
+  .ship-shadow{
+    left:988px; top:214px; width:126px; height:472px;
+    background:linear-gradient(90deg, rgba(64,0,0,0) 0%, rgba(66,0,0,.10) 18%, rgba(44,0,0,.24) 54%, rgba(18,0,0,.42) 100%);
+    clip-path:polygon(0 0, 69% 0, 100% 14%, 100% 100%, 12% 100%, 0 88%);
+    z-index:13;
+  }
+
+  .ship-port{
+    left:1082px; top:356px; width:132px; height:132px;
+    border-radius:50%;
+    background:radial-gradient(circle at 42% 42%, #ffad2a 0%, #ff6f00 33%, #6b1a00 35%, #2b120c 67%, #140a08 100%);
+    z-index:15;
+  }
+
+  .ship-port-inner{
+    left:1124px; top:398px; width:38px; height:38px;
+    border-radius:50%;
+    background:#180c0b;
+    z-index:16;
+  }
+
+  .ship-lip{
+    left:831px; top:160px; width:289px; height:186px;
+    border-top-left-radius:138px 86px;
+    border-top-right-radius:56px 34px;
+    border-bottom-left-radius:92px 55px;
+    border-bottom-right-radius:20px 20px;
+    border:2px solid rgba(84,14,0,0.22);
+    border-bottom:none;
+    z-index:14;
+    transform:rotate(-4deg);
+  }
+
+  .deck-rail{
+    left:834px; top:157px; width:272px; height:106px;
+    z-index:22;
+  }
+  .deck-rail svg{display:block;}
+
+  .mast{
+    left:1172px; top:147px; width:14px; height:112px;
+    background:linear-gradient(180deg,#ecd8bf 0%, #ddb992 44%, #7b5941 100%);
+    border-radius:7px;
+    z-index:24;
+  }
+  .mast-cap{
+    left:1156px; top:166px; width:47px; height:47px;
+    border-radius:50%;
+    border:2px solid #d9b287;
+    z-index:24;
+  }
+  .mast-ring{
+    left:1161px; top:192px; width:37px; height:18px;
+    border-top:2px solid #d9b287;
+    z-index:24;
+  }
+
+  .person-head{
+    left:1169px; top:149px; width:12px; height:12px;
+    background:#754321;
+    border-radius:50%;
+    z-index:25;
+  }
+  .person-body{
+    left:1166px; top:159px; width:16px; height:24px;
+    background:linear-gradient(180deg,#d1922c 0%, #8b4e18 100%);
+    border-radius:7px 7px 4px 4px;
+    z-index:25;
+    transform:rotate(-6deg);
+  }
+  .person-leg1{
+    left:1169px; top:181px; width:3px; height:16px;
+    background:#26170d;
+    z-index:25;
+    transform:rotate(10deg);
+  }
+  .person-leg2{
+    left:1176px; top:181px; width:3px; height:16px;
+    background:#26170d;
+    z-index:25;
+    transform:rotate(-8deg);
+  }
+
+  .rope1{
+    left:910px; top:488px; width:492px; height:26px;
+    background:
+      repeating-linear-gradient(90deg,
+        #6d4315 0 5px,
+        #b57a33 5px 12px,
+        #d59a4f 12px 18px,
+        #8a5721 18px 24px);
+    border-radius:18px;
+    z-index:40;
+    transform:rotate(-40deg);
+    box-shadow:0 0 8px rgba(0,0,0,0.25);
+    filter:saturate(1.05);
+  }
+  .rope2{
+    left:1197px; top:366px; width:312px; height:16px;
+    background:
+      repeating-linear-gradient(90deg,
+        #6c4214 0 4px,
+        #b57731 4px 10px,
+        #d2954a 10px 15px,
+        #87541f 15px 20px);
+    border-radius:12px;
+    z-index:40;
+    transform:rotate(84deg);
+    box-shadow:0 0 6px rgba(0,0,0,0.22);
+  }
+
+  .yellow-block{
+    left:0; top:0; width:47px; height:79px;
+    background:#f0d400;
+    z-index:30;
+  }
+  .top-line{
+    left:0; top:77px; width:1280px; height:2px;
+    background:#d7c400;
+    z-index:35;
+  }
+  .section-label{
+    left:56px; top:50px; width:250px; height:24px;
+    font-size:17px;
+    line-height:24px;
+    color:#4b4b56;
+    font-weight:400;
+    z-index:40;
+  }
+
+  .title{
+    left:58px; top:112px; width:480px;
+    font-size:34px;
+    line-height:1.18;
+    color:#727281;
+    font-weight:700;
+    letter-spacing:-0.3px;
+    z-index:40;
+  }
+
+  .intro, .bg-p1, .bg-p2{
+    font-size:15px;
+    line-height:1.33;
+    color:#565760;
+    font-weight:400;
+    z-index:40;
+  }
+  .intro{
+    left:56px; top:309px; width:470px;
+  }
+  .bg-head{
+    left:56px; top:474px; width:220px; height:26px;
+    font-size:17px;
+    line-height:26px;
+    color:#2f3037;
+    font-weight:700;
+    z-index:40;
+  }
+  .bg-p1{
+    left:56px; top:501px; width:470px;
+  }
+  .bg-p2{
+    left:56px; top:604px; width:470px;
+  }
+  .foot{
+    left:58px; top:688px; width:200px; height:14px;
+    font-size:10px;
+    line-height:14px;
+    color:#7a7a80;
+    font-weight:600;
+    z-index:40;
+  }
+
+  .nav-circle{
+    width:36px; height:36px;
+    border-radius:50%;
+    background:rgba(233,226,230,0.95);
+    z-index:60;
+  }
+  .nav-left{ left:1120px; top:33px; }
+  .nav-right{ left:1164px; top:33px; }
+  .nav-left:before,
+  .nav-right:before{
+    content:"";
+    position:absolute;
+    top:9px;
+    width:0; height:0;
+  }
+  .nav-left:before{
+    left:12px;
+    border-top:9px solid transparent;
+    border-bottom:9px solid transparent;
+    border-right:11px solid #585a6c;
+  }
+  .nav-right:before{
+    left:14px;
+    border-top:9px solid transparent;
+    border-bottom:9px solid transparent;
+    border-left:11px solid #585a6c;
+  }
+
+  .menu-item{
+    left:1191px;
+    width:89px;
+    min-height:36px;
+    background:rgba(58,55,62,0.9);
+    color:#e8e8ec;
+    font-size:13px;
+    line-height:15px;
+    padding:10px 8px 8px 8px;
+    z-index:55;
+  }
+  .menu-item::before{
+    content:"";
+    position:absolute;
+    left:0; top:0;
+    width:2px; height:100%;
+    background:#d0c200;
+  }
+  .menu-1{ top:121px; }
+  .menu-2{ top:170px; }
+  .menu-2::after{
+    content:"";
+    position:absolute;
+    right:0; top:0;
+    width:89px; height:15px;
+    background:#0c78b5;
+    opacity:.95;
+  }
+  .menu-3{ top:219px; }
+  .menu-4{ top:269px; }
+  .menu-5{ top:319px; min-height:50px; }
+  .menu-6{ top:372px; }
+
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-bg"></div>
+  <div class="right-scene"></div>
+  <div class="clouds"></div>
+  <div class="water"></div>
+
+  <svg class="horizon-buildings" viewBox="0 0 185 82" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="54" width="185" height="28" fill="rgba(67,41,23,0.65)"/>
+    <rect x="3" y="44" width="3" height="10" fill="#4d2b17"/>
+    <rect x="7" y="39" width="4" height="15" fill="#6e471d"/>
+    <rect x="11" y="46" width="7" height="8" fill="#4c2a16"/>
+    <rect x="21" y="37" width="16" height="17" fill="#55331c"/>
+    <rect x="39" y="41" width="5" height="13" fill="#4b2c17"/>
+    <rect x="48" y="32" width="22" height="22" fill="#422714"/>
+    <rect x="71" y="36" width="6" height="18" fill="#4b2c17"/>
+    <rect x="80" y="42" width="10" height="12" fill="#4b2c17"/>
+    <rect x="96" y="30" width="24" height="24" fill="#55331c"/>
+    <rect x="123" y="38" width="8" height="16" fill="#4b2c17"/>
+    <rect x="134" y="26" width="3" height="28" fill="#6e471d"/>
+    <rect x="141" y="35" width="14" height="19" fill="#4b2c17"/>
+    <rect x="157" y="41" width="11" height="13" fill="#4b2c17"/>
+    <rect x="170" y="45" width="9" height="9" fill="#4b2c17"/>
+    <line x1="6" y1="40" x2="6" y2="28" stroke="#6e471d" stroke-width="1.5"/>
+    <line x1="60" y1="32" x2="60" y2="21" stroke="#6e471d" stroke-width="1.5"/>
+    <line x1="136" y1="27" x2="136" y2="17" stroke="#6e471d" stroke-width="1.5"/>
+  </svg>
+
+  <div class="ship-body"></div>
+  <div class="ship-shadow"></div>
+  <div class="ship-port"></div>
+  <div class="ship-port-inner"></div>
+  <div class="ship-lip"></div>
+
+  <div class="deck-rail">
+    <svg viewBox="0 0 272 106" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 74 C24 24, 160 8, 238 20" fill="none" stroke="#ddb58d" stroke-width="3"/>
+      <path d="M238 20 L266 54" fill="none" stroke="#ddb58d" stroke-width="3"/>
+      <path d="M12 74 L12 29" fill="none" stroke="#ddb58d" stroke-width="3"/>
+      <path d="M47 61 L47 18" fill="none" stroke="#ddb58d" stroke-width="3"/>
+      <path d="M82 53 L82 13" fill="none" stroke="#ddb58d" stroke-width="3"/>
+      <path d="M122 49 L122 14" fill="none" stroke="#ddb58d" stroke-width="3"/>
+      <path d="M162 49 L162 20" fill="none" stroke="#ddb58d" stroke-width="3"/>
+      <path d="M198 54 L198 28" fill="none" stroke="#ddb58d" stroke-width="3"/>
+      <path d="M232 61 L232 38" fill="none" stroke="#ddb58d" stroke-width="3"/>
+      <path d="M12 51 C28 18, 160 3, 238 11" fill="none" stroke="#ddb58d" stroke-width="2"/>
+      <path d="M12 74 L242 72" fill="none" stroke="#ddb58d" stroke-width="2"/>
+      <path d="M47 61 L242 58" fill="none" stroke="#ddb58d" stroke-width="2"/>
+      <path d="M82 53 L232 50" fill="none" stroke="#ddb58d" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="mast"></div>
+  <div class="mast-cap"></div>
+  <div class="mast-ring"></div>
+  <div class="person-head"></div>
+  <div class="person-body"></div>
+  <div class="person-leg1"></div>
+  <div class="person-leg2"></div>
+
+  <div class="rope1"></div>
+  <div class="rope2"></div>
+
+  <div class="yellow-block"></div>
+  <div class="top-line"></div>
+  <div class="section-label">Insights: Americas</div>
+
+  <div class="title">AEO program in Brazil:<br>New certification levels<br>may bring competitive<br>advantage</div>
+
+  <div class="intro">
+    The Brazilian Federal Revenue Service is working on new normative instructions to enhance the Authorized Economic Operator (AEO) Program, which brings opportunities for companies engaged in foreign trade to strengthen their competitive position in Brazil. The proposals introduce new AEO certification levels and benefits for import tax deferral, aligning the program with recent tax reform legislation. Although the measures are still subject to further regulation, they emphasize a policy toward a compliance-based model that rewards risk governance and cooperation and position AEO certification as a potentially strategic mechanism for cash flow management.
+  </div>
+
+  <div class="bg-head">Background</div>
+
+  <div class="bg-p1">
+    The Brazilian AEO Program has consolidated its position as one of the core pillars of Brazil’s customs policy, and it aims to facilitate international trade and strengthen supply chain security. Aligned with international standards, the program was designed to develop a relationship of transparency and cooperation between the Brazilian Federal Revenue Service (RFB) and private-sector operators that demonstrate a high level of compliance and governance.
+  </div>
+
+  <div class="bg-p2">
+    AEO certification is granted to companies that meet program requirements related to customs, tax and fiscal compliance, risk management, internal controls and supply chain security. These requirements are set out in Brazilian legislation which instructs the certification process and also the monitoring of certified operators, reinforcing the dynamic and continuous nature of the program.
+  </div>
+
+  <div class="foot">18&nbsp;&nbsp;|&nbsp;&nbsp;TradeWatch Issue 1 2026</div>
+
+  <div class="nav-circle nav-left"></div>
+  <div class="nav-circle nav-right"></div>
+
+  <div class="menu-item menu-1">Contents</div>
+  <div class="menu-item menu-2">Insights</div>
+  <div class="menu-item menu-3">New on<br>ey.com</div>
+  <div class="menu-item menu-4">Tax alerts</div>
+  <div class="menu-item menu-5">Additional<br>resources</div>
+  <div class="menu-item menu-6">Contacts</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Key takeaways slide replica</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #d8d8da;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #dddddf;
+  }
+  .slide > * {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  /* Left photo area */
+  .photo {
+    left: 0;
+    top: 0;
+    width: 685px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(232,235,241,0.9) 0 95px, rgba(223,226,233,0.78) 95px 210px, rgba(233,232,234,0.52) 210px 520px, rgba(229,220,213,0.58) 520px 720px);
+  }
+  .photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(112,118,148,0.14) 72px, rgba(112,118,148,0) 104px),
+      linear-gradient(90deg, rgba(255,255,255,0.16) 0 430px, rgba(255,255,255,0.02) 520px, rgba(28,80,118,0) 685px);
+  }
+
+  .ceiling-shadow {
+    left: 0;
+    top: 72px;
+    width: 685px;
+    height: 28px;
+    background: linear-gradient(180deg, rgba(140,145,170,0.32), rgba(140,145,170,0));
+    filter: blur(3px);
+  }
+
+  .wall-right {
+    left: 572px;
+    top: 31px;
+    width: 113px;
+    height: 409px;
+    background: linear-gradient(90deg, #2f6285 0%, #3e769d 38%, #90a9bf 100%);
+    clip-path: polygon(0 13%, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .window-strips1 { left: 0; top: 277px; width: 571px; height: 11px; background: rgba(149,155,164,0.6); }
+  .window-strips2 { left: 0; top: 296px; width: 571px; height: 5px; background: rgba(237,239,241,0.95); }
+  .window-strips3 { left: 0; top: 314px; width: 571px; height: 12px; background: rgba(229,229,231,0.95); }
+  .window-strips4 { left: 0; top: 336px; width: 571px; height: 10px; background: rgba(229,229,231,0.95); }
+  .window-strips5 { left: 0; top: 357px; width: 571px; height: 10px; background: rgba(229,229,231,0.95); }
+  .window-rail {
+    left: 0;
+    top: 374px;
+    width: 624px;
+    height: 5px;
+    background: #2f5664;
+  }
+  .window-post {
+    left: 258px;
+    top: 276px;
+    width: 5px;
+    height: 133px;
+    background: rgba(170,174,180,0.9);
+  }
+
+  .floor {
+    left: 0;
+    top: 558px;
+    width: 685px;
+    height: 162px;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        #d8b99d 0 25px,
+        #cfae90 25px 27px
+      );
+    opacity: 0.94;
+  }
+  .floor-shadow {
+    left: 235px;
+    top: 544px;
+    width: 320px;
+    height: 52px;
+    background: radial-gradient(ellipse at center, rgba(97,90,95,0.2) 0%, rgba(97,90,95,0.08) 48%, rgba(97,90,95,0) 100%);
+    filter: blur(4px);
+  }
+
+  /* Header on photo */
+  .header-line {
+    left: 103px;
+    top: 0;
+    width: 1px;
+    height: 92px;
+    background: #8a8a91;
+  }
+  .page-num {
+    left: 62px;
+    top: 51px;
+    color: #666973;
+    font-size: 17px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+  .survey-title {
+    left: 116px;
+    top: 58px;
+    width: 210px;
+    color: #6f7078;
+    font-size: 8px;
+    line-height: 10px;
+    font-weight: 400;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+  }
+
+  /* Right panel */
+  .content-bg {
+    left: 685px;
+    top: 0;
+    width: 595px;
+    height: 720px;
+    background: #dddddf;
+  }
+
+  .jump {
+    left: 1219px;
+    top: 0;
+    width: 61px;
+    height: 46px;
+    background: #6e6f78;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: #fff;
+    font-size: 8px;
+    line-height: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 18px;
+    letter-spacing: 0.04em;
+  }
+
+  .title {
+    left: 740px;
+    top: 130px;
+    width: 410px;
+    color: #2d2f3d;
+    font-size: 36px;
+    line-height: 42px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .accent-line {
+    left: 740px;
+    top: 214px;
+    width: 545px;
+    height: 4px;
+    background: linear-gradient(90deg, #e6cb00 0 278px, #d0b46a 278px 287px, #b03be6 350px, #458dea 545px);
+  }
+
+  .main-point {
+    left: 740px;
+    top: 247px;
+    width: 235px;
+    color: #2f303a;
+    font-size: 18px;
+    line-height: 1.12;
+    font-weight: 700;
+  }
+
+  .body {
+    left: 740px;
+    top: 409px;
+    width: 247px;
+    color: #5b5c64;
+    font-size: 11px;
+    line-height: 1.35;
+    font-weight: 400;
+  }
+
+  .table-title {
+    left: 987px;
+    top: 255px;
+    width: 280px;
+    color: #383944;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 700;
+  }
+
+  .table-note {
+    left: 987px;
+    top: 288px;
+    width: 180px;
+    color: #454650;
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 400;
+  }
+  .table-note .link {
+    color: #1c63b7;
+    text-decoration: underline;
+  }
+
+  table.tbl {
+    left: 987px;
+    top: 275px;
+    width: 291px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 10px;
+    color: #3d3e48;
+  }
+  .tbl col:nth-child(1) { width: 186px; }
+  .tbl col:nth-child(2) { width: 52px; }
+  .tbl col:nth-child(3) { width: 53px; }
+
+  .tbl thead tr:first-child th {
+    border-top: 3px solid #8e8f97;
+  }
+
+  .tbl th,
+  .tbl td {
+    padding: 7px 0;
+    border-bottom: 1px solid #babac0;
+    vertical-align: middle;
+    font-weight: 400;
+  }
+
+  .tbl th {
+    color: #4b4c55;
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 700;
+    text-align: right;
+  }
+  .tbl th:first-child,
+  .tbl td:first-child {
+    text-align: left;
+    padding-right: 10px;
+  }
+  .tbl td:nth-child(2),
+  .tbl td:nth-child(3) {
+    text-align: right;
+  }
+
+  /* Left illustration approximating photo */
+  .chair-front {
+    left: -2px;
+    top: 446px;
+    width: 154px;
+    height: 58px;
+    background: radial-gradient(ellipse at center, #2c2e34 0%, #111214 84%);
+    border-radius: 50%;
+    z-index: 12;
+  }
+  .chair-front-back {
+    left: 18px;
+    top: 458px;
+    width: 18px;
+    height: 108px;
+    background: #17181b;
+    border-radius: 10px;
+    z-index: 11;
+  }
+  .chair-front-leg1, .chair-front-leg2, .chair-front-leg3, .chair-front-leg4 {
+    width: 4px;
+    background: linear-gradient(180deg, #d9dbde, #7a7d80);
+    z-index: 11;
+  }
+  .chair-front-leg1 { left: 22px; top: 500px; height: 165px; }
+  .chair-front-leg2 { left: 133px; top: 500px; height: 215px; }
+  .chair-front-leg3 { left: 81px; top: 500px; height: 182px; }
+  .chair-front-leg4 { left: 112px; top: 500px; height: 134px; }
+
+  .laptop-screen {
+    left: 59px;
+    top: 366px;
+    width: 41px;
+    height: 63px;
+    background: linear-gradient(180deg, #bcc4cc, #edf0f4);
+    border: 2px solid #d4dbe1;
+    transform: skewY(8deg);
+    z-index: 9;
+  }
+  .laptop-base {
+    left: 52px;
+    top: 430px;
+    width: 75px;
+    height: 10px;
+    background: linear-gradient(180deg, #dbdfe3, #8d9197);
+    border-radius: 1px;
+    transform: skewX(-14deg);
+    z-index: 9;
+  }
+
+  .table-top {
+    left: 61px;
+    top: 468px;
+    width: 364px;
+    height: 4px;
+    background: #29a8cb;
+    z-index: 8;
+  }
+  .table-top::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -5px;
+    width: 364px;
+    height: 5px;
+    background: rgba(234,246,252,0.95);
+  }
+
+  .table-legA, .table-legB, .table-legC, .table-legD {
+    width: 4px;
+    background: linear-gradient(180deg, #d0d3d6, #77797b);
+    z-index: 7;
+  }
+  .table-legA { left: 102px; top: 472px; height: 196px; }
+  .table-legB { left: 253px; top: 472px; height: 161px; }
+  .table-legC { left: 288px; top: 472px; height: 199px; }
+  .table-legD { left: 136px; top: 472px; height: 244px; }
+
+  .cross1, .cross2, .cross3 {
+    height: 2px;
+    background: #8a8b8f;
+    z-index: 7;
+  }
+  .cross1 { left: 90px; top: 640px; width: 69px; transform: rotate(44deg); }
+  .cross2 { left: 118px; top: 653px; width: 48px; transform: rotate(-53deg); }
+  .cross3 { left: 246px; top: 637px; width: 44px; transform: rotate(55deg); }
+
+  .footA, .footB, .footC, .footD {
+    width: 8px;
+    height: 8px;
+    border: 1px solid #6e6e73;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    z-index: 8;
+  }
+  .footA { left: 98px; top: 664px; }
+  .footB { left: 249px; top: 631px; }
+  .footC { left: 284px; top: 668px; }
+  .footD { left: 132px; top: 711px; }
+
+  .paper1 {
+    left: 244px;
+    top: 448px;
+    width: 47px;
+    height: 27px;
+    background: rgba(255,255,255,0.86);
+    border: 1px solid rgba(190,190,190,0.5);
+    transform: rotate(-5deg);
+    z-index: 9;
+  }
+  .paper2 {
+    left: 259px;
+    top: 448px;
+    width: 42px;
+    height: 23px;
+    background: rgba(251,251,251,0.92);
+    border: 1px solid rgba(190,190,190,0.5);
+    transform: rotate(11deg);
+    z-index: 9;
+  }
+  .pen {
+    left: 248px;
+    top: 460px;
+    width: 38px;
+    height: 2px;
+    background: #4b629d;
+    transform: rotate(9deg);
+    z-index: 10;
+  }
+
+  .woman-head {
+    left: 86px;
+    top: 178px;
+    width: 41px;
+    height: 41px;
+    background: #ddb2a2;
+    border-radius: 50%;
+    z-index: 10;
+  }
+  .woman-hair-bun {
+    left: 98px;
+    top: 168px;
+    width: 20px;
+    height: 20px;
+    background: #7c5338;
+    border-radius: 50%;
+    z-index: 11;
+  }
+  .woman-hair {
+    left: 80px;
+    top: 176px;
+    width: 56px;
+    height: 39px;
+    background: #8d6341;
+    border-radius: 25px 28px 24px 24px;
+    clip-path: polygon(12% 26%, 38% 0%, 86% 8%, 100% 44%, 63% 74%, 25% 74%, 0% 48%);
+    z-index: 11;
+  }
+  .woman-neck {
+    left: 101px;
+    top: 214px;
+    width: 11px;
+    height: 15px;
+    background: #d8ac9b;
+    z-index: 10;
+  }
+  .woman-body {
+    left: 58px;
+    top: 217px;
+    width: 107px;
+    height: 220px;
+    background: #1f2a31;
+    border-radius: 32px 28px 24px 34px;
+    clip-path: polygon(28% 0%, 78% 10%, 100% 18%, 96% 82%, 65% 100%, 10% 100%, 0% 30%);
+    z-index: 9;
+  }
+  .woman-arm {
+    left: 109px;
+    top: 320px;
+    width: 12px;
+    height: 141px;
+    background: #d5a594;
+    transform: rotate(12deg);
+    z-index: 10;
+  }
+  .woman-leg1 {
+    left: 81px;
+    top: 437px;
+    width: 25px;
+    height: 194px;
+    background: linear-gradient(180deg, #22242a 0%, #3f4249 100%);
+    z-index: 8;
+  }
+  .woman-leg2 {
+    left: 34px;
+    top: 439px;
+    width: 28px;
+    height: 210px;
+    background: linear-gradient(180deg, #24262c 0%, #42464d 100%);
+    transform: rotate(-4deg);
+    z-index: 8;
+  }
+  .woman-shoe1, .woman-shoe2 {
+    height: 10px;
+    background: #161616;
+    border-radius: 12px;
+    z-index: 9;
+  }
+  .woman-shoe1 { left: 26px; top: 642px; width: 30px; }
+  .woman-shoe2 { left: 76px; top: 625px; width: 29px; }
+
+  .man-head {
+    left: 319px;
+    top: 155px;
+    width: 51px;
+    height: 51px;
+    background: #c79482;
+    border-radius: 50%;
+    z-index: 12;
+  }
+  .man-hair {
+    left: 311px;
+    top: 144px;
+    width: 66px;
+    height: 38px;
+    background: #3a3430;
+    border-radius: 38px 40px 20px 22px;
+    clip-path: polygon(10% 70%, 18% 20%, 50% 0%, 84% 16%, 100% 48%, 90% 80%, 62% 66%, 28% 86%);
+    z-index: 13;
+  }
+  .man-neck {
+    left: 337px;
+    top: 204px;
+    width: 11px;
+    height: 15px;
+    background: #ba8d7d;
+    z-index: 11;
+  }
+  .man-torso {
+    left: 305px;
+    top: 205px;
+    width: 103px;
+    height: 194px;
+    background: linear-gradient(180deg, #9969aa 0%, #8b5ba0 100%);
+    border-radius: 21px;
+    clip-path: polygon(24% 0%, 82% 6%, 100% 26%, 91% 100%, 15% 100%, 0% 28%);
+    z-index: 10;
+  }
+  .man-arm1 {
+    left: 316px;
+    top: 292px;
+    width: 18px;
+    height: 147px;
+    background: linear-gradient(180deg, #9a6cad 0%, #8f609f 100%);
+    transform: rotate(13deg);
+    border-radius: 12px;
+    z-index: 11;
+  }
+  .man-hand {
+    left: 324px;
+    top: 433px;
+    width: 16px;
+    height: 21px;
+    background: #c39280;
+    border-radius: 8px;
+    z-index: 12;
+  }
+  .man-leg1 {
+    left: 350px;
+    top: 396px;
+    width: 34px;
+    height: 198px;
+    background: linear-gradient(180deg, #9da0a7 0%, #767a81 100%);
+    transform: rotate(4deg);
+    z-index: 9;
+  }
+  .man-leg2 {
+    left: 388px;
+    top: 391px;
+    width: 28px;
+    height: 206px;
+    background: linear-gradient(180deg, #9599a1 0%, #767a81 100%);
+    transform: rotate(-2deg);
+    z-index: 9;
+  }
+  .man-shoe1, .man-shoe2 {
+    height: 12px;
+    background: #151617;
+    border-radius: 13px;
+    z-index: 10;
+  }
+  .man-shoe1 { left: 323px; top: 621px; width: 31px; }
+  .man-shoe2 { left: 369px; top: 619px; width: 31px; }
+
+  .chair-back {
+    left: 525px;
+    top: 397px;
+    width: 115px;
+    height: 171px;
+    border-radius: 6px;
+    background:
+      repeating-linear-gradient(180deg, #eef2f7 0 4px, #95acc1 4px 7px);
+    clip-path: polygon(20% 0, 100% 0, 100% 74%, 13% 100%, 0 93%, 0 10%);
+    z-index: 6;
+    opacity: 0.95;
+  }
+  .chair-seat {
+    left: 459px;
+    top: 544px;
+    width: 138px;
+    height: 17px;
+    background: #6f8ca5;
+    border-radius: 20px / 10px;
+    z-index: 6;
+    opacity: 0.9;
+  }
+
+  .chair-leg1, .chair-leg2, .chair-leg3, .chair-leg4 {
+    width: 3px;
+    background: #7f7c76;
+    z-index: 6;
+  }
+  .chair-leg1 { left: 531px; top: 560px; height: 108px; }
+  .chair-leg2 { left: 529px; top: 622px; height: 70px; transform: rotate(58deg); transform-origin: top center; }
+  .chair-leg3 { left: 533px; top: 622px; height: 70px; transform: rotate(-61deg); transform-origin: top center; }
+  .chair-leg4 { left: 531px; top: 620px; height: 52px; transform: rotate(180deg); }
+
+  .wheel1, .wheel2, .wheel3 {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #6f685f;
+    border-radius: 50%;
+    background: transparent;
+    z-index: 7;
+  }
+  .wheel1 { left: 492px; top: 673px; }
+  .wheel2 { left: 542px; top: 667px; }
+  .wheel3 { left: 580px; top: 667px; }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="content-bg"></div>
+
+    <div class="photo"></div>
+    <div class="floor"></div>
+    <div class="floor-shadow"></div>
+    <div class="ceiling-shadow"></div>
+    <div class="wall-right"></div>
+    <div class="window-strips1"></div>
+    <div class="window-strips2"></div>
+    <div class="window-strips3"></div>
+    <div class="window-strips4"></div>
+    <div class="window-strips5"></div>
+    <div class="window-post"></div>
+    <div class="window-rail"></div>
+
+    <div class="header-line"></div>
+    <div class="page-num">4</div>
+    <div class="survey-title">SECOND ANNUAL EY/EIU GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+    <div class="jump">JUMP TO<br>CONTENTS</div>
+
+    <div class="chair-front"></div>
+    <div class="chair-front-back"></div>
+    <div class="chair-front-leg1"></div>
+    <div class="chair-front-leg2"></div>
+    <div class="chair-front-leg3"></div>
+    <div class="chair-front-leg4"></div>
+
+    <div class="laptop-screen"></div>
+    <div class="laptop-base"></div>
+
+    <div class="table-top"></div>
+    <div class="table-legA"></div>
+    <div class="table-legB"></div>
+    <div class="table-legC"></div>
+    <div class="table-legD"></div>
+    <div class="cross1"></div>
+    <div class="cross2"></div>
+    <div class="cross3"></div>
+    <div class="footA"></div>
+    <div class="footB"></div>
+    <div class="footC"></div>
+    <div class="footD"></div>
+    <div class="paper1"></div>
+    <div class="paper2"></div>
+    <div class="pen"></div>
+
+    <div class="woman-head"></div>
+    <div class="woman-hair-bun"></div>
+    <div class="woman-hair"></div>
+    <div class="woman-neck"></div>
+    <div class="woman-body"></div>
+    <div class="woman-arm"></div>
+    <div class="woman-leg1"></div>
+    <div class="woman-leg2"></div>
+    <div class="woman-shoe1"></div>
+    <div class="woman-shoe2"></div>
+
+    <div class="man-head"></div>
+    <div class="man-hair"></div>
+    <div class="man-neck"></div>
+    <div class="man-torso"></div>
+    <div class="man-arm1"></div>
+    <div class="man-hand"></div>
+    <div class="man-leg1"></div>
+    <div class="man-leg2"></div>
+    <div class="man-shoe1"></div>
+    <div class="man-shoe2"></div>
+
+    <div class="chair-back"></div>
+    <div class="chair-seat"></div>
+    <div class="chair-leg1"></div>
+    <div class="chair-leg2"></div>
+    <div class="chair-leg3"></div>
+    <div class="chair-leg4"></div>
+    <div class="wheel1"></div>
+    <div class="wheel2"></div>
+    <div class="wheel3"></div>
+
+    <div class="title">Key takeaways</div>
+    <div class="accent-line"></div>
+
+    <div class="main-point">
+      1. CROs are expected to<br>
+      work with their C-suite<br>
+      peers to prepare the<br>
+      organization for the<br>
+      impacts of macro forces<br>
+      outside of their direct<br>
+      control.
+    </div>
+
+    <div class="body">
+      Along with a big leap in cyber risk, our<br>
+      results see considerably higher concerns<br>
+      around third-party, regulatory, strategic<br>
+      and geopolitical risk. That’s no surprise<br>
+      given world developments of the last<br>
+      year, current expectations for ongoing<br>
+      volatility and the increasing complexity<br>
+      of operations at many insurers. CROs<br>
+      expect that the risks associated with cyber<br>
+      threats, geopolitics, machine learning (ML)<br>
+      and artificial intelligence (AI), the climate<br>
+      and the environment will remain priorities<br>
+      during the next three years. Macroeconomic<br>
+      uncertainty and turbulence add further<br>
+      complexity to CROs’ agendas.
+    </div>
+
+    <div class="table-title">Top CRO priorities for the next 12 months</div>
+    <div class="table-note">(See full list on <span class="link">page 9.</span>)</div>
+
+    <table class="tbl" aria-label="Top CRO priorities for the next 12 months">
+      <colgroup>
+        <col><col><col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th></th>
+          <th>2025</th>
+          <th>2024</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cybersecurity</td>
+          <td>66%</td>
+          <td>53%</td>
+        </tr>
+        <tr>
+          <td>Third-party risk</td>
+          <td>32%</td>
+          <td>22%</td>
+        </tr>
+        <tr>
+          <td>Regulatory/compliance risk</td>
+          <td>29%</td>
+          <td>22%</td>
+        </tr>
+        <tr>
+          <td>Strategic risk</td>
+          <td>24%</td>
+          <td>18%</td>
+        </tr>
+        <tr>
+          <td>Interest rate risk</td>
+          <td>22%</td>
+          <td>24%</td>
+        </tr>
+        <tr>
+          <td>Geopolitical risk</td>
+          <td>21%</td>
+          <td>19%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

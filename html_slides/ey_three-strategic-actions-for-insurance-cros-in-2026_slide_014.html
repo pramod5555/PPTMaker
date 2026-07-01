@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Chapter 2 Divider</title>
+<style>
+  html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    background:#02020f;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    margin:0 auto;
+    background:
+      radial-gradient(420px 230px at 63% 98%, rgba(190,110,255,0.50) 0%, rgba(135,82,225,0.28) 32%, rgba(61,41,118,0.10) 52%, rgba(0,0,0,0) 72%),
+      radial-gradient(300px 180px at 88% 94%, rgba(177,124,255,0.30) 0%, rgba(93,67,179,0.14) 42%, rgba(0,0,0,0) 72%),
+      linear-gradient(90deg, #00000a 0 757px, #12124a 757px 100%);
+    color:#fff;
+  }
+  .slide > *{position:absolute; box-sizing:border-box;}
+
+  .left-texture{
+    left:0; top:0; width:757px; height:720px;
+    background:
+      radial-gradient(circle at 18% 8%, rgba(18,26,74,0.10) 0%, rgba(18,26,74,0) 36%),
+      radial-gradient(circle at 62% 16%, rgba(20,36,92,0.08) 0%, rgba(20,36,92,0) 42%),
+      radial-gradient(circle at 40% 72%, rgba(24,30,90,0.07) 0%, rgba(24,30,90,0) 48%);
+    opacity:.8;
+    z-index:1;
+  }
+
+  .right-divider{
+    left:757px; top:0; width:1px; height:720px;
+    background:rgba(64,56,135,0.35);
+    z-index:20;
+  }
+
+  .chapter{
+    left:128px; top:136px;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+    letter-spacing:0.01em;
+    color:#f2f2f5;
+    z-index:40;
+  }
+
+  .num-outline{
+    left:-98px; top:176px; width:495px; height:560px;
+    z-index:18;
+  }
+
+  .title{
+    left:429px; top:202px; width:320px;
+    color:#f6f6f8;
+    z-index:45;
+  }
+  .title .strong{
+    font-size:33px;
+    line-height:1.14;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  .title .light{
+    margin-top:2px;
+    font-size:32px;
+    line-height:1.18;
+    font-weight:300;
+    color:#f1f1f4;
+    letter-spacing:-0.01em;
+  }
+
+  .accent-line{
+    left:429px; top:414px; width:254px; height:3px;
+    background:linear-gradient(90deg,#e4d400 0%, #16dcff 53%, #cf60ff 100%);
+    z-index:45;
+  }
+
+  .body{
+    left:429px; top:449px; width:304px;
+    font-size:13px;
+    line-height:1.38;
+    font-weight:400;
+    color:#f2f2f6;
+    z-index:45;
+  }
+
+  .jump{
+    right:18px; top:16px; width:52px; height:52px;
+    z-index:70;
+  }
+  .jump svg{display:block; width:100%; height:100%;}
+
+  .floor-glow{
+    left:724px; top:495px; width:556px; height:225px;
+    background:
+      radial-gradient(ellipse at 45% 88%, rgba(196,123,255,0.58) 0%, rgba(142,96,239,0.35) 28%, rgba(88,66,182,0.14) 54%, rgba(0,0,0,0) 76%),
+      radial-gradient(ellipse at 82% 92%, rgba(167,141,255,0.25) 0%, rgba(110,91,214,0.10) 42%, rgba(0,0,0,0) 76%);
+    z-index:6;
+  }
+
+  .fiber-svg{
+    left:335px; top:0; width:945px; height:720px;
+    z-index:15;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-texture"></div>
+  <div class="floor-glow"></div>
+  <div class="right-divider"></div>
+
+  <svg class="num-outline" viewBox="0 0 495 560" aria-hidden="true">
+    <path d="M143 2
+             C 45 6, -44 34, -106 73
+             C -167 112, -213 161, -246 228
+             L -173 318
+             C -127 268, -77 225, -21 190
+             C 43 151, 108 107, 169 104
+             C 231 101, 284 116, 323 154
+             C 361 191, 380 245, 372 306
+             C 363 373, 328 427, 267 476
+             C 214 518, 153 557, 99 598
+             C 47 638, 14 681, 4 725
+             L 300 725"
+          transform="translate(0,-51)"
+          fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M4 498
+             L 397 498
+             L 397 573"
+          fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <div class="chapter">CHAPTER</div>
+
+  <div class="title">
+    <div class="strong">Technology<br>and risk<br>transformation:</div>
+    <div class="light">from foundations<br>to AI at scale</div>
+  </div>
+
+  <div class="accent-line"></div>
+
+  <div class="body">
+    Risk management technology priorities<br>
+    over the next three to five years are<br>
+    increasingly defined by a heightened<br>
+    conviction and quickening pace of<br>
+    execution. Over the past three years,<br>
+    CROs’ technology roadmaps have remained<br>
+    focused on a consistent set of investments:<br>
+    enterprise governance, risk and compliance<br>
+    (GRC) platforms, automated controls<br>
+    testing and AI-enabled risk solutions.
+  </div>
+
+  <div class="jump" aria-hidden="true">
+    <svg viewBox="0 0 52 52">
+      <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.2"/>
+      <circle cx="37.5" cy="15.5" r="5.2" fill="#f0de12"/>
+      <text x="26" y="24" font-size="8" fill="#fff" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">Jump to</text>
+      <text x="26" y="33" font-size="8" fill="#fff" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">contents</text>
+    </svg>
+  </div>
+
+  <svg class="fiber-svg" viewBox="0 0 945 720" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="g1" x1="0" y1="1" x2=".18" y2="0">
+        <stop offset="0%" stop-color="#ff29e0"/>
+        <stop offset="20%" stop-color="#b000ff"/>
+        <stop offset="56%" stop-color="#14bbff"/>
+        <stop offset="100%" stop-color="#8efbff"/>
+      </linearGradient>
+      <linearGradient id="g2" x1="0" y1="1" x2=".10" y2="0">
+        <stop offset="0%" stop-color="#ff3be8"/>
+        <stop offset="22%" stop-color="#d218ff"/>
+        <stop offset="58%" stop-color="#00b9ff"/>
+        <stop offset="100%" stop-color="#b4ffff"/>
+      </linearGradient>
+    </defs>
+
+    <ellipse cx="535" cy="673" rx="184" ry="63" fill="rgba(186,132,255,0.26)"/>
+    <ellipse cx="743" cy="673" rx="164" ry="58" fill="rgba(181,142,255,0.18)"/>
+
+    <g opacity=".88" fill="none" stroke-linecap="round">
+      <path d="M530 722 Q 454 405 70 118" stroke="url(#g1)" stroke-width="1.3"/>
+      <path d="M530 722 Q 468 372 102 110" stroke="url(#g2)" stroke-width="1.05"/>
+      <path d="M530 722 Q 486 356 135 147" stroke="#00d5ff" stroke-width="0.95" opacity=".8"/>
+      <path d="M530 722 Q 494 382 170 104" stroke="#00b8ff" stroke-width="0.92" opacity=".56"/>
+      <path d="M530 722 Q 507 346 214 166" stroke="#74fbff" stroke-width="0.96" opacity=".78"/>
+      <path d="M530 722 Q 520 332 257 100" stroke="#00bbff" stroke-width="0.92" opacity=".7"/>
+      <path d="M530 722 Q 535 362 305 184" stroke="#42eaff" stroke-width="1.02" opacity=".75"/>
+      <path d="M530 722 Q 545 327 355 101" stroke="#00c8ff" stroke-width="1.05" opacity=".88"/>
+      <path d="M530 722 Q 556 359 405 136" stroke="#6ffcff" stroke-width="0.94" opacity=".66"/>
+      <path d="M530 722 Q 566 338 452 103" stroke="#10beff" stroke-width="1.02" opacity=".86"/>
+      <path d="M530 722 Q 580 360 495 170" stroke="#7efeff" stroke-width="0.9" opacity=".72"/>
+      <path d="M530 722 Q 594 370 537 105" stroke="#00cfff" stroke-width="1.0" opacity=".78"/>
+      <path d="M530 722 Q 610 398 576 148" stroke="#39ddff" stroke-width="0.9" opacity=".58"/>
+      <path d="M530 722 Q 623 368 612 118" stroke="#b7ffff" stroke-width="0.9" opacity=".62"/>
+      <path d="M530 722 Q 642 384 653 176" stroke="#11cbff" stroke-width="1.02" opacity=".74"/>
+      <path d="M530 722 Q 661 340 694 104" stroke="#80ffff" stroke-width="1.04" opacity=".78"/>
+      <path d="M530 722 Q 683 378 735 120" stroke="#10c8ff" stroke-width="0.96" opacity=".7"/>
+      <path d="M530 722 Q 700 400 772 164" stroke="#9bffff" stroke-width="0.88" opacity=".58"/>
+      <path d="M530 722 Q 724 385 814 107" stroke="#00c3ff" stroke-width="1.02" opacity=".8"/>
+      <path d="M530 722 Q 742 400 853 140" stroke="#8cffff" stroke-width="0.9" opacity=".68"/>
+      <path d="M530 722 Q 760 434 900 184" stroke="#1dd5ff" stroke-width="0.82" opacity=".54"/>
+      <path d="M530 722 Q 785 448 944 212" stroke="#00bfff" stroke-width="0.84" opacity=".46"/>
+    </g>
+
+    <g opacity=".86" fill="none" stroke-linecap="round">
+      <path d="M530 722 Q 497 390 286 208" stroke="#10cbff" stroke-width=".68"/>
+      <path d="M530 722 Q 501 392 301 174" stroke="#00d6ff" stroke-width=".68"/>
+      <path d="M530 722 Q 509 384 316 162" stroke="#58efff" stroke-width=".68"/>
+      <path d="M530 722 Q 516 375 330 148" stroke="#11c6ff" stroke-width=".68"/>
+      <path d="M530 722 Q 522 365 346 156" stroke="#b4ffff" stroke-width=".68"/>
+      <path d="M530 722 Q 529 355 362 162" stroke="#08beff" stroke-width=".68"/>
+      <path d="M530 722 Q 537 350 378 148" stroke="#00cdff" stroke-width=".68"/>
+      <path d="M530 722 Q 545 355 392 168" stroke="#8cffff" stroke-width=".68"/>
+      <path d="M530 722 Q 549 360 407 152" stroke="#11ccff" stroke-width=".68"/>
+      <path d="M530 722 Q 555 348 422 158" stroke="#4de8ff" stroke-width=".68"/>
+      <path d="M530 722 Q 562 344 438 146" stroke="#00bdff" stroke-width=".68"/>
+      <path d="M530 722 Q 570 344 454 158" stroke="#a5ffff" stroke-width=".68"/>
+      <path d="M530 722 Q 579 338 470 165" stroke="#00c4ff" stroke-width=".68"/>
+      <path d="M530 722 Q 588 347 486 152" stroke="#62f4ff" stroke-width=".68"/>
+      <path d="M530 722 Q 596 357 502 164" stroke="#00bcff" stroke-width=".68"/>
+      <path d="M530 722 Q 605 366 518 152" stroke="#3fe2ff" stroke-width=".68"/>
+      <path d="M530 722 Q 616 378 534 166" stroke="#aeffff" stroke-width=".68"/>
+      <path d="M530 722 Q 624 374 548 160" stroke="#0bc7ff" stroke-width=".68"/>
+      <path d="M530 722 Q 634 386 562 175" stroke="#29d8ff" stroke-width=".68"/>
+      <path d="M530 722 Q 646 398 577 166" stroke="#77fcff" stroke-width=".68"/>
+      <path d="M530 722 Q 659 409 592 182" stroke="#00baff" stroke-width=".68"/>
+      <path d="M530 722 Q 670 418 606 170" stroke="#50eaff" stroke-width=".68"/>
+      <path d="M530 722 Q 681 428 620 186" stroke="#b4ffff" stroke-width=".68"/>
+    </g>
+
+    <g opacity=".94" fill="none" stroke-linecap="round">
+      <path d="M530 722 Q 554 286 585 74" stroke="#18d3ff" stroke-width="1.12"/>
+      <path d="M530 722 Q 566 270 594 98" stroke="#00c7ff" stroke-width="0.96"/>
+      <path d="M530 722 Q 576 262 608 82" stroke="#a9ffff" stroke-width="1"/>
+      <path d="M530 722 Q 588 246 623 68" stroke="#06c1ff" stroke-width="1.08"/>
+      <path d="M530 722 Q 600 218 642 16" stroke="#92ffff" stroke-width="1.02"/>
+      <path d="M530 722 Q 613 206 658 48" stroke="#0fc8ff" stroke-width="1.04"/>
+      <path d="M530 722 Q 627 208 672 58" stroke="#b0ffff" stroke-width="0.96"/>
+      <path d="M530 722 Q 643 196 681 38" stroke="#00bdff" stroke-width="0.96"/>
+      <path d="M530 722 Q 658 182 698 16" stroke="#96ffff" stroke-width="1.14"/>
+      <path d="M530 722 Q 670 200 713 78" stroke="#00bfff" stroke-width="0.96"/>
+      <path d="M530 722 Q 685 200 727 60" stroke="#b3ffff" stroke-width="0.96"/>
+      <path d="M530 722 Q 702 214 745 93" stroke="#16d0ff" stroke-width="0.96"/>
+      <path d="M530 722 Q 718 220 761 98" stroke="#c2ffff" stroke-width="0.96"/>
+      <path d="M530 722 Q 736 226 778 104" stroke="#00c3ff" stroke-width="0.96"/>
+      <path d="M530 722 Q 754 228 796 116" stroke="#a8ffff" stroke-width="0.96"/>
+      <path d="M530 722 Q 771 240 814 128" stroke="#00bbff" stroke-width="0.96"/>
+      <path d="M530 722 Q 786 258 833 144" stroke="#b5ffff" stroke-width="0.98"/>
+      <path d="M530 722 Q 803 274 852 158" stroke="#0ac4ff" stroke-width="0.96"/>
+      <path d="M530 722 Q 820 298 874 172" stroke="#85ffff" stroke-width="0.94"/>
+      <path d="M530 722 Q 842 320 896 186" stroke="#00bcff" stroke-width="0.92"/>
+      <path d="M530 722 Q 860 346 918 204" stroke="#c4ffff" stroke-width="0.9"/>
+      <path d="M530 722 Q 882 374 944 228" stroke="#17ceff" stroke-width="0.88"/>
+    </g>
+
+    <g opacity=".76" fill="none" stroke-linecap="round">
+      <path d="M756 722 Q 698 246 706 54" stroke="#0ec5ff" stroke-width=".68"/>
+      <path d="M756 722 Q 710 250 718 16" stroke="#93ffff" stroke-width=".68"/>
+      <path d="M756 722 Q 723 256 732 46" stroke="#00bbff" stroke-width=".68"/>
+      <path d="M756 722 Q 738 272 748 70" stroke="#beffff" stroke-width=".68"/>
+      <path d="M756 722 Q 752 292 764 94" stroke="#05c1ff" stroke-width=".68"/>
+      <path d="M756 722 Q 768 302 780 118" stroke="#8efcff" stroke-width=".68"/>
+      <path d="M756 722 Q 784 308 796 142" stroke="#00bdff" stroke-width=".68"/>
+      <path d="M756 722 Q 800 290 812 114" stroke="#c1ffff" stroke-width=".68"/>
+      <path d="M756 722 Q 816 266 828 82" stroke="#11c9ff" stroke-width=".68"/>
+      <path d="M756 722 Q 832 278 844 106" stroke="#92fcff" stroke-width=".68"/>
+      <path d="M756 722 Q 850 302 862 134" stroke="#00c2ff" stroke-width=".68"/>
+      <path d="M756 722 Q 870 328 880 162" stroke="#c9ffff" stroke-width=".68"/>
+      <path d="M756 722 Q 890 348 900 186" stroke="#09c6ff" stroke-width=".68"/>
+      <path d="M756 722 Q 912 370 920 210" stroke="#9dfdff" stroke-width=".68"/>
+    </g>
+
+    <g opacity=".84" fill="none" stroke-linecap="round">
+      <path d="M756 722 Q 696 460 592 505" stroke="rgba(255,255,255,.46)" stroke-width=".95"/>
+      <path d="M756 722 Q 720 446 608 490" stroke="#ff8cff" stroke-width=".88" opacity=".5"/>
+      <path d="M756 722 Q 740 430 636 478" stroke="#f5d3ff" stroke-width=".96" opacity=".56"/>
+      <path d="M756 722 Q 760 416 670 494" stroke="#c99dff" stroke-width=".9" opacity=".44"/>
+      <path d="M756 722 Q 778 420 708 500" stroke="#ffffff" stroke-width=".94" opacity=".40"/>
+      <path d="M756 722 Q 784 422 732 509" stroke="#ffe8ff" stroke-width=".86" opacity=".46"/>
+      <path d="M756 722 Q 792 422 754 516" stroke="#ffffff" stroke-width=".82" opacity=".38"/>
+      <path d="M756 722 Q 798 404 782 511" stroke="#79fbff" stroke-width="1.08" opacity=".72"/>
+      <path d="M756 722 Q 806 380 812 358" stroke="#00c7ff" stroke-width="1.06"/>
+      <path d="M756 722 Q 818 360 842 270" stroke="#acffff" stroke-width="1.06"/>
+      <path d="M756 722 Q 832 346 872 176" stroke="#00c8ff" stroke-width=".98"/>
+      <path d="M756 722 Q 844 330 900 118" stroke="#8fffff" stroke-width="1.02"/>
+      <path d="M756 722 Q 858 348 926 160" stroke="#08bfff" stroke-width=".94"/>
+      <path d="M756 722 Q 870 366 944 178" stroke="#97ffff" stroke-width=".88"/>
+    </g>
+
+    <g opacity=".44" fill="none" stroke-linecap="round">
+      <path d="M530 722 Q 538 330 584 132" stroke="#ffffff" stroke-width=".56"/>
+      <path d="M530 722 Q 551 310 606 118" stroke="#d0ffff" stroke-width=".56"/>
+      <path d="M530 722 Q 564 298 626 110" stroke="#ffffff" stroke-width=".56"/>
+      <path d="M530 722 Q 584 280 650 94" stroke="#ddffff" stroke-width=".56"/>
+      <path d="M530 722 Q 606 267 676 88" stroke="#ffffff" stroke-width=".56"/>
+      <path d="M530 722 Q 636 260 709 95" stroke="#ffffff" stroke-width=".56"/>
+      <path d="M530 722 Q 682 270 754 122" stroke="#dbffff" stroke-width=".56"/>
+      <path d="M530 722 Q 724 300 798 160" stroke="#ffffff" stroke-width=".56"/>
+      <path d="M530 722 Q 778 336 844 202" stroke="#d8ffff" stroke-width=".56"/>
+      <path d="M756 722 Q 770 322 802 170" stroke="#ffffff" stroke-width=".56"/>
+      <path d="M756 722 Q 792 292 830 124" stroke="#deffff" stroke-width=".56"/>
+      <path d="M756 722 Q 826 276 868 106" stroke="#ffffff" stroke-width=".56"/>
+      <path d="M756 722 Q 868 306 912 154" stroke="#d7ffff" stroke-width=".56"/>
+    </g>
+
+    <g opacity=".95" fill="none" stroke-linecap="round">
+      <path d="M530 722 Q 530 677 514 646" stroke="#ff34e6" stroke-width="2"/>
+      <path d="M530 722 Q 540 668 565 636" stroke="#ff1fe0" stroke-width="1.8"/>
+      <path d="M530 722 Q 518 670 481 628" stroke="#ee00ff" stroke-width="1.7"/>
+      <path d="M530 722 Q 552 666 596 623" stroke="#ff74f0" stroke-width="1.4"/>
+      <path d="M756 722 Q 754 678 740 646" stroke="#ff24e3" stroke-width="1.9"/>
+      <path d="M756 722 Q 766 670 788 640" stroke="#ff58eb" stroke-width="1.7"/>
+      <path d="M756 722 Q 744 668 713 631" stroke="#d900ff" stroke-width="1.45"/>
+      <path d="M756 722 Q 774 668 809 629" stroke="#ff86f3" stroke-width="1.25"/>
+    </g>
+
+    <ellipse cx="530" cy="708" rx="6" ry="22" fill="rgba(255,255,255,.88)"/>
+    <ellipse cx="756" cy="709" rx="5" ry="21" fill="rgba(255,255,255,.88)"/>
+    <ellipse cx="530" cy="696" rx="44" ry="13" fill="rgba(255,0,212,.30)"/>
+    <ellipse cx="756" cy="697" rx="36" ry="11" fill="rgba(255,0,212,.28)"/>
+  </svg>
+</div>
+</body>
+</html>

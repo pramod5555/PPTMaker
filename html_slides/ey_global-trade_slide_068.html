@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Tax alerts</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1280px;
+    height: 720px;
+    background: #2f303d;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #2f303d;
+  }
+  .slide > * { position: absolute; box-sizing: border-box; }
+
+  .map {
+    left: -12px;
+    top: -10px;
+    width: 1310px;
+    height: 735px;
+    z-index: 1;
+    opacity: 0.56;
+  }
+
+  .title {
+    left: 57px;
+    top: 61px;
+    color: #f5f5f5;
+    font-size: 96px;
+    line-height: 0.95;
+    font-weight: 700;
+    letter-spacing: -2.8px;
+    z-index: 20;
+    white-space: nowrap;
+  }
+
+  .region {
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.18;
+    font-weight: 400;
+    padding-left: 14px;
+    padding-top: 11px;
+    z-index: 25;
+  }
+  .americas {
+    left: 56px;
+    top: 221px;
+    width: 152px;
+    height: 78px;
+    background: #ff7500;
+  }
+  .asiapac {
+    left: 225px;
+    top: 221px;
+    width: 151px;
+    height: 78px;
+    background: #05c04b;
+  }
+  .emeia {
+    left: 394px;
+    top: 221px;
+    width: 151px;
+    height: 78px;
+    background: #168fe3;
+    padding-top: 9px;
+    line-height: 1.2;
+  }
+
+  .nav-arrows {
+    right: 52px;
+    top: 33px;
+    width: 86px;
+    height: 36px;
+    z-index: 40;
+  }
+  .arrow-circle {
+    position: absolute;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #d7d8df;
+  }
+  .arrow-circle:before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+  }
+  .arrow-left { left: 0; }
+  .arrow-left:before {
+    left: 12px;
+    border-right: 10px solid #6a6b75;
+  }
+  .arrow-right { right: 0; }
+  .arrow-right:before {
+    left: 14px;
+    border-left: 10px solid #6a6b75;
+  }
+
+  .sidebar {
+    left: 1191px;
+    top: 121px;
+    width: 89px;
+    height: 286px;
+    z-index: 35;
+  }
+  .sidebar-item {
+    position: absolute;
+    left: 0;
+    width: 89px;
+    color: #e8e8ec;
+    font-size: 12px;
+    line-height: 1.15;
+    font-weight: 400;
+  }
+  .sidebar-item .accent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    background: #d8df20;
+  }
+  .sidebar-item .label {
+    position: absolute;
+    left: 12px;
+    top: 4px;
+    width: 73px;
+  }
+
+  .contents { top: 0; height: 35px; }
+  .contents .accent { height: 35px; }
+  .contents .label { top: 4px; }
+
+  .insights { top: 51px; height: 35px; }
+  .insights .accent { height: 35px; }
+  .insights .label { top: 4px; }
+
+  .new { top: 103px; height: 39px; }
+  .new .accent { height: 35px; top: 1px; }
+  .new .label { top: 1px; }
+
+  .taxalerts {
+    top: 153px;
+    width: 89px;
+    height: 34px;
+    background: #d8d9e0;
+    color: #ffffff;
+  }
+  .taxalerts .label {
+    top: 9px;
+    left: 12px;
+    width: 65px;
+  }
+
+  .additional { top: 202px; height: 52px; }
+  .additional .accent { height: 52px; }
+  .additional .label { top: 3px; }
+
+  .contacts { top: 271px; height: 35px; }
+  .contacts .accent { height: 35px; }
+  .contacts .label { top: 4px; }
+
+  .footer {
+    left: 56px;
+    bottom: 24px;
+    color: #b4b5bc;
+    font-size: 11px;
+    line-height: 1;
+    font-weight: 600;
+    z-index: 30;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <svg class="map" viewBox="0 0 1754 1241" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="0" y="0" width="1754" height="1241" fill="#2f303d"/>
+    <g fill="none" stroke="#06070a" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round" opacity="0.97">
+      <path d="M31,151 L76,141 L122,128 L166,98 L223,91 L286,46 L355,34 L438,36 L504,47 L566,34 L646,40 L724,35 L811,39 L900,45 L976,39 L1054,46 L1124,57 L1194,51 L1260,45 L1328,51 L1397,39 L1458,46 L1518,55 L1578,44 L1645,57"/>
+      <path d="M92,141 L146,145 L192,160 L234,187 L271,212 L290,237 L309,257 L325,294 L330,335 L322,373 L307,399 L293,439 L280,475 L275,526 L280,573 L294,626 L315,694 L343,766 L362,825 L381,882 L402,907"/>
+      <path d="M322,373 L368,388 L413,402 L448,429 L472,465 L483,504 L480,551 L465,601 L448,652 L438,714 L444,759 L459,799 L483,832 L510,856 L536,874"/>
+      <path d="M474,219 L521,196 L570,183 L620,183 L664,191 L703,207 L733,233 L750,267 L750,304 L736,330 L711,351 L675,365 L639,365 L602,356 L569,340 L542,317 L522,286 L510,248 L504,220"/>
+      <path d="M629,365 L642,401 L655,434 L676,466 L701,494 L730,507 L766,510 L798,499 L826,478 L849,450 L865,421 L882,404 L908,394 L942,392 L971,401 L996,421 L1014,444 L1026,474 L1029,511 L1019,550 L998,587 L972,613 L942,631 L915,655 L904,692 L906,734 L920,771 L947,803 L978,827 L1006,846"/>
+      <path d="M854,340 L890,327 L927,320 L968,320 L1013,333 L1047,352 L1077,383 L1093,419 L1098,462 L1090,504 L1071,542 L1048,570 L1023,592"/>
+      <path d="M1071,317 L1110,304 L1152,298 L1194,301 L1234,315 L1266,337 L1294,363 L1314,399 L1322,440 L1318,476 L1305,506 L1282,532 L1249,554 L1208,563 L1164,558 L1128,543"/>
+      <path d="M1318,381 L1360,367 L1406,362 L1450,369 L1488,389 L1521,420 L1548,457 L1563,495 L1567,533 L1556,574 L1535,606 L1507,632 L1473,649 L1430,660 L1389,653"/>
+      <path d="M1455,336 L1490,314 L1536,300 L1589,299 L1640,312 L1681,338 L1712,370"/>
+      <path d="M1572,578 L1604,614 L1630,650 L1653,686 L1675,727 L1685,762 L1680,792 L1656,816 L1625,831 L1592,835 L1558,827 L1535,808"/>
+      <path d="M1133,633 L1144,664 L1150,700 L1141,743 L1124,779 L1098,808 L1069,824 L1036,826 L1008,813 L991,789"/>
+      <path d="M757,731 L786,748 L805,778 L813,812 L807,844 L789,868 L761,882 L727,884 L693,870 L672,845 L663,815"/>
+      <path d="M427,893 L451,928 L471,961 L490,995 L507,1037 L521,1080"/>
+      <path d="M1511,809 L1539,837 L1564,872 L1584,907 L1602,940 L1612,972 L1610,1005 L1597,1031 L1567,1053"/>
+      <path d="M72,161 L102,138 L134,107 L169,79"/>
+      <path d="M486,55 L526,45 L571,37 L620,34 L675,35"/>
+      <path d="M799,48 L836,57 L863,81 L883,108 L896,139 L895,171 L882,198 L856,219 L825,230 L792,228 L763,214 L741,189 L726,158 L722,126 L733,95 L757,67"/>
+      <path d="M897,105 L927,81 L963,65 L1001,58 L1038,65 L1068,84 L1091,110 L1108,140 L1114,174 L1108,206 L1092,236 L1068,258 L1034,273 L996,277 L959,268 L931,249 L909,223 L896,191"/>
+      <path d="M1128,141 L1173,129 L1217,126 L1258,136 L1289,156 L1312,184 L1321,219 L1317,252 L1299,279 L1272,298"/>
+      <path d="M1341,89 L1375,79 L1412,79 L1445,88 L1475,105 L1497,130"/>
+      <path d="M105,196 L134,187 L164,189 L188,205 L199,227 L195,255 L179,278 L152,288"/>
+      <path d="M241,181 L271,174 L301,180 L324,200 L336,226 L335,256 L322,282 L299,301"/>
+      <path d="M1638,84 L1665,74 L1695,72 L1719,79"/>
+      <path d="M1548,871 L1517,885 L1489,909 L1478,940 L1485,972 L1503,996"/>
+      <path d="M596,1072 L621,1103 L648,1127 L680,1141 L708,1138 L726,1119"/>
+      <path d="M1056,1105 L1082,1119 L1115,1123 L1140,1111"/>
+      <path d="M168,839 L186,878 L205,915 L227,946"/>
+      <path d="M68,944 L88,961 L111,969 L137,968"/>
+      <path d="M414,66 L437,55 L463,48"/>
+      <path d="M705,39 L731,31 L760,30"/>
+      <path d="M1226,44 L1253,37 L1282,36"/>
+      <path d="M1502,42 L1528,37 L1558,38"/>
+      <path d="M73,232 L60,260 L52,288"/>
+      <path d="M1177,524 L1190,550 L1209,571 L1233,584"/>
+      <path d="M1418,456 L1445,478 L1468,511"/>
+      <path d="M561,144 L592,136 L624,138 L649,149"/>
+      <path d="M998,840 L1024,858 L1048,884"/>
+      <path d="M882,638 L853,663 L832,696"/>
+      <path d="M728,478 L699,492 L675,513"/>
+      <path d="M284,1017 L303,1047 L329,1068"/>
+      <path d="M1368,987 L1390,1011 L1417,1028"/>
+      <path d="M121,491 L113,527 L113,561 L120,598"/>
+      <path d="M177,713 L188,749 L208,786"/>
+      <path d="M950,906 L973,933 L1001,957"/>
+      <path d="M1105,884 L1134,905 L1162,916"/>
+      <path d="M1454,713 L1433,737 L1410,751"/>
+      <path d="M1303,672 L1272,684 L1244,708"/>
+      <path d="M1608,302 L1632,325 L1654,351"/>
+      <path d="M154,106 L132,127 L107,147"/>
+      <path d="M235,45 L266,35 L301,34"/>
+      <path d="M1703,87 L1728,100 L1743,117"/>
+      <path d="M1708,466 L1727,488 L1740,515"/>
+      <path d="M1648,884 L1674,903 L1694,929"/>
+      <path d="M1592,1123 L1624,1138 L1657,1142"/>
+      <path d="M55,1114 L76,1135 L103,1148"/>
+      <path d="M470,1152 L494,1164 L523,1172"/>
+      <path d="M820,1153 L848,1163 L880,1167"/>
+      <path d="M1249,1148 L1278,1160 L1313,1163"/>
+      <path d="M610,803 L592,833 L588,865 L596,893"/>
+      <path d="M1070,625 L1101,639 L1137,640"/>
+      <path d="M394,293 L425,287 L454,291"/>
+      <path d="M872,496 L896,476 L923,468"/>
+      <path d="M1179,339 L1208,352 L1231,376"/>
+      <path d="M1332,548 L1360,564 L1392,570"/>
+      <path d="M1470,236 L1501,246 L1529,268"/>
+      <path d="M239,592 L258,626 L280,653"/>
+      <path d="M356,738 L383,758 L404,784"/>
+      <path d="M1520,1058 L1548,1081 L1578,1097"/>
+      <path d="M127,66 L150,55 L177,52"/>
+      <path d="M904,46 L926,37 L952,34"/>
+    </g>
+    <g fill="#111218" opacity="0.55">
+      <circle cx="97" cy="919" r="2.2"/>
+      <circle cx="183" cy="1007" r="1.9"/>
+      <circle cx="238" cy="1109" r="2.1"/>
+      <circle cx="347" cy="1003" r="1.7"/>
+      <circle cx="468" cy="1095" r="1.9"/>
+      <circle cx="563" cy="1157" r="1.8"/>
+      <circle cx="1115" cy="1098" r="1.8"/>
+      <circle cx="1219" cy="1057" r="1.8"/>
+      <circle cx="1333" cy="1121" r="1.9"/>
+      <circle cx="1524" cy="956" r="1.8"/>
+      <circle cx="1601" cy="716" r="1.9"/>
+      <circle cx="1670" cy="638" r="1.7"/>
+      <circle cx="1566" cy="387" r="1.8"/>
+      <circle cx="1472" cy="282" r="1.7"/>
+      <circle cx="1288" cy="229" r="1.8"/>
+      <circle cx="1157" cy="137" r="1.6"/>
+      <circle cx="821" cy="71" r="1.7"/>
+      <circle cx="590" cy="62" r="1.6"/>
+      <circle cx="387" cy="54" r="1.8"/>
+      <circle cx="104" cy="85" r="1.7"/>
+      <circle cx="73" cy="279" r="1.6"/>
+      <circle cx="1222" cy="351" r="1.6"/>
+      <circle cx="1409" cy="595" r="1.8"/>
+      <circle cx="981" cy="879" r="1.8"/>
+      <circle cx="704" cy="849" r="1.9"/>
+    </g>
+  </svg>
+
+  <div class="title">Tax alerts</div>
+
+  <div class="region americas">Americas</div>
+  <div class="region asiapac">Asia-Pacific</div>
+  <div class="region emeia">Europe,<br>Middle East,<br>India and Africa</div>
+
+  <div class="nav-arrows">
+    <div class="arrow-circle arrow-left"></div>
+    <div class="arrow-circle arrow-right"></div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-item contents">
+      <div class="accent"></div>
+      <div class="label">Contents</div>
+    </div>
+    <div class="sidebar-item insights">
+      <div class="accent"></div>
+      <div class="label">Insights</div>
+    </div>
+    <div class="sidebar-item new">
+      <div class="accent"></div>
+      <div class="label">New on<br>ey.com</div>
+    </div>
+    <div class="sidebar-item taxalerts">
+      <div class="label">Tax alerts</div>
+    </div>
+    <div class="sidebar-item additional">
+      <div class="accent"></div>
+      <div class="label">Additional<br>resources</div>
+    </div>
+    <div class="sidebar-item contacts">
+      <div class="accent"></div>
+      <div class="label">Contacts</div>
+    </div>
+  </div>
+
+  <div class="footer">65 | TradeWatch Issue 1 2026</div>
+</div>
+</body>
+</html>

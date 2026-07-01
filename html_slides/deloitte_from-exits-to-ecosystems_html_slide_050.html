@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>World Security Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+    color:#5b5b5b;
+  }
+  .slide > *{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .qmark{
+    left:46px;
+    top:46px;
+    font-size:40px;
+    line-height:40px;
+    font-weight:700;
+    color:#000;
+    letter-spacing:-0.3px;
+  }
+  .title{
+    left:55px;
+    top:104px;
+    width:300px;
+    font-size:35px;
+    line-height:40px;
+    font-weight:700;
+    color:#565656;
+  }
+  .prompt{
+    left:56px;
+    top:173px;
+    width:290px;
+    font-size:28px;
+    line-height:1.12;
+    font-weight:400;
+    color:#5d5d5d;
+    letter-spacing:0.1px;
+  }
+
+  .ga{
+    left:393px;
+    top:22px;
+    font-size:18px;
+    line-height:22px;
+    color:#6a6a6a;
+    font-weight:400;
+  }
+  .line-left{
+    left:388px;
+    top:52px;
+    width:313px;
+    height:1px;
+    background:#8296a6;
+  }
+
+  .legend-likely{
+    left:721px;
+    top:23px;
+    width:18px;
+    height:18px;
+    background:#4c2a73;
+  }
+  .legend-likely-text{
+    left:747px;
+    top:23px;
+    font-size:16px;
+    line-height:18px;
+    color:#686868;
+  }
+  .legend-unlikely{
+    left:1113px;
+    top:22px;
+    width:17px;
+    height:18px;
+    background:#2dafb0;
+  }
+  .legend-unlikely-text{
+    left:1137px;
+    top:23px;
+    font-size:16px;
+    line-height:18px;
+    color:#686868;
+  }
+  .legend-2023{
+    left:1220px;
+    top:23px;
+    width:110px;
+    font-size:16px;
+    line-height:18px;
+    color:#686868;
+    text-align:left;
+  }
+  .line-right{
+    left:716px;
+    top:52px;
+    width:616px;
+    height:1px;
+    background:#8296a6;
+  }
+
+  .labels{
+    left:391px;
+    top:92px;
+    width:319px;
+    color:#676767;
+    font-size:16px;
+    line-height:1.18;
+    font-weight:400;
+    text-align:right;
+  }
+  .label{
+    position:absolute;
+    width:319px;
+  }
+
+  .bars{
+    left:722px;
+    top:92px;
+    width:474px;
+    height:570px;
+  }
+  .row{
+    position:absolute;
+    left:0;
+    width:474px;
+    height:58px;
+  }
+  .likely{
+    position:absolute;
+    left:0;
+    top:0;
+    height:58px;
+    background:#4c2a73;
+  }
+  .unlikely{
+    position:absolute;
+    top:0;
+    height:58px;
+    background:#2dafb0;
+  }
+  .bartext{
+    position:absolute;
+    top:15px;
+    font-size:17px;
+    line-height:22px;
+    font-weight:700;
+    color:#fff;
+  }
+
+  .yrcol{
+    left:1222px;
+    top:92px;
+    width:86px;
+    font-size:18px;
+    line-height:24px;
+    color:#5f5f5f;
+  }
+  .yr{
+    position:absolute;
+    width:86px;
+    height:58px;
+  }
+  .yrnum{
+    position:absolute;
+    left:31px;
+    top:28px;
+    font-size:17px;
+    line-height:24px;
+    color:#5f5f5f;
+    font-weight:400;
+  }
+  .na{
+    position:absolute;
+    left:31px;
+    top:11px;
+    font-size:17px;
+    line-height:24px;
+    color:#5f5f5f;
+    font-weight:400;
+  }
+  .delta{
+    position:absolute;
+    left:20px;
+    top:-7px;
+    height:22px;
+    font-size:14px;
+    line-height:18px;
+    color:#6f6f6f;
+    white-space:nowrap;
+  }
+  .tri-down{
+    position:absolute;
+    left:0;
+    top:2px;
+    width:0;
+    height:0;
+    border-left:11px solid transparent;
+    border-right:11px solid transparent;
+    border-top:18px solid #ff5a63;
+  }
+  .tri-right{
+    position:absolute;
+    left:0;
+    top:2px;
+    width:0;
+    height:0;
+    border-top:11px solid transparent;
+    border-bottom:11px solid transparent;
+    border-left:17px solid #bdbdbd;
+  }
+  .deltatext{
+    position:absolute;
+    left:25px;
+    top:0;
+  }
+
+  .base{
+    left:53px;
+    top:610px;
+    width:318px;
+    font-size:11px;
+    line-height:1.45;
+    font-style:italic;
+    color:#8a8a8a;
+  }
+  .footer{
+    left:49px;
+    top:728px;
+    transform:translateY(-15px);
+    font-size:10px;
+    line-height:10px;
+    color:#4a4a4a;
+    font-weight:400;
+  }
+
+  .pnum{
+    left:675px;
+    top:727px;
+    transform:translateY(-18px);
+    font-size:18px;
+    line-height:18px;
+    color:#4b4b4b;
+  }
+
+  .logo{
+    right:18px;
+    bottom:14px;
+    width:56px;
+    height:50px;
+  }
+  .logo svg{
+    width:100%;
+    height:100%;
+    display:block;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qmark">Q.</div>
+  <div class="title">World Security</div>
+  <div class="prompt">For each of the following,<br>please tell me how likely<br>or unlikely you think they<br>are to happen...?</div>
+
+  <div class="ga">Global averages</div>
+  <div class="line-left"></div>
+
+  <div class="legend-likely"></div>
+  <div class="legend-likely-text">Likely</div>
+  <div class="legend-unlikely"></div>
+  <div class="legend-unlikely-text">Unlikely</div>
+  <div class="legend-2023">% Likely 2023</div>
+  <div class="line-right"></div>
+
+  <div class="labels">
+    <div class="label" style="top:12px;">Nuclear weapons will be used in a conflict<br>somewhere in the world</div>
+    <div class="label" style="top:115px;">There will be a new global pandemic caused by<br>a new virus</div>
+    <div class="label" style="top:206px;">A rogue artificial intelligence program that<br>can't be shut down will cause significant havoc<br>in [COUNTRY]</div>
+    <div class="label" style="top:329px;">The war in Ukraine will end in 2025</div>
+    <div class="label" style="top:431px;">The conflicts in the Middle East will end in 2025</div>
+    <div class="label" style="top:534px;">An asteroid will hit the Earth</div>
+  </div>
+
+  <div class="bars">
+    <div class="row" style="top:0px;">
+      <div class="likely" style="width:232px;"></div>
+      <div class="unlikely" style="left:304px;width:170px;"></div>
+      <div class="bartext" style="left:11px;">49%</div>
+      <div class="bartext" style="right:11px;">36%</div>
+    </div>
+    <div class="row" style="top:102px;">
+      <div class="likely" style="width:223px;"></div>
+      <div class="unlikely" style="left:304px;width:170px;"></div>
+      <div class="bartext" style="left:11px;">47%</div>
+      <div class="bartext" style="right:11px;">36%</div>
+    </div>
+    <div class="row" style="top:204px;">
+      <div class="likely" style="width:166px;"></div>
+      <div class="unlikely" style="left:246px;width:228px;"></div>
+      <div class="bartext" style="left:11px;">35%</div>
+      <div class="bartext" style="right:11px;">48%</div>
+    </div>
+    <div class="row" style="top:306px;">
+      <div class="likely" style="width:129px;"></div>
+      <div class="unlikely" style="left:218px;width:256px;"></div>
+      <div class="bartext" style="left:11px;">27%</div>
+      <div class="bartext" style="right:11px;">54%</div>
+    </div>
+    <div class="row" style="top:408px;">
+      <div class="likely" style="width:105px;"></div>
+      <div class="unlikely" style="left:181px;width:293px;"></div>
+      <div class="bartext" style="left:11px;">22%</div>
+      <div class="bartext" style="right:11px;">62%</div>
+    </div>
+    <div class="row" style="top:510px;">
+      <div class="likely" style="width:100px;"></div>
+      <div class="unlikely" style="left:198px;width:276px;"></div>
+      <div class="bartext" style="left:11px;">21%</div>
+      <div class="bartext" style="right:11px;">58%</div>
+    </div>
+  </div>
+
+  <div class="yrcol">
+    <div class="yr" style="top:0px;">
+      <div class="na">N/A</div>
+    </div>
+    <div class="yr" style="top:102px;">
+      <div class="delta">
+        <div class="tri-down"></div>
+        <div class="deltatext">−1 pp</div>
+      </div>
+      <div class="yrnum">48%</div>
+    </div>
+    <div class="yr" style="top:204px;">
+      <div class="delta" style="left:2px;">
+        <div class="tri-right"></div>
+        <div class="deltatext" style="left:22px;">No change</div>
+      </div>
+      <div class="yrnum">35%</div>
+    </div>
+    <div class="yr" style="top:306px;">
+      <div class="delta">
+        <div class="tri-down"></div>
+        <div class="deltatext">−4 pp</div>
+      </div>
+      <div class="yrnum">31%</div>
+    </div>
+    <div class="yr" style="top:408px;">
+      <div class="na">N/A</div>
+    </div>
+    <div class="yr" style="top:510px;">
+      <div class="delta">
+        <div class="tri-down"></div>
+        <div class="deltatext">−1 pp</div>
+      </div>
+      <div class="yrnum">22%</div>
+    </div>
+  </div>
+
+  <div class="base">Base: 23,721 adults aged 18 years and older in India, 18-74 in<br>Canada, Republic of Ireland, Malaysia, the Philippines, South<br>Africa, Turkey, and the United States, 20-74 in Thailand, 21-74<br>in Indonesia and Singapore, and 16-74 in all other countries.<br>Friday, October 25 – Friday November 8, 2024</div>
+
+  <div class="footer">© Ipsos Predictions 2025 Report</div>
+  <div class="pnum">50</div>
+
+  <div class="logo">
+    <svg viewBox="0 0 56 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0 0 L54 0 Q56 24 47 50 L0 50 Z" fill="#26429B"/>
+      <path d="M31 3 C37 3 40 8 40 14 C40 18 38 21 34 23 C39 25 43 29 43 35 C43 43 37 47 28 47 L21 47 L21 3 Z" fill="#1FAFA9"/>
+      <circle cx="30" cy="12" r="7" fill="#4963C6" opacity="0.95"/>
+      <text x="6" y="42" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Ipsos</text>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

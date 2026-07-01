@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>China near-term economic outlook and key scenarios</title>
+<style>
+  body{
+    margin:0;
+    background:#e7e3ea;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e7e3ea;
+    color:#111;
+  }
+  .topbar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:26px;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:26px;
+    font-size:14px;
+    line-height:26px;
+    font-weight:700;
+    text-align:center;
+  }
+  .tab1{
+    left:0;
+    width:114px;
+    background:#7d16c8;
+    color:#fff;
+  }
+  .tab2{
+    left:114px;
+    width:94px;
+    color:#8e8e8e;
+  }
+  .tab3{
+    left:208px;
+    width:138px;
+    color:#7d16c8;
+    border-bottom:3px solid #7d16c8;
+    box-sizing:border-box;
+  }
+
+  .title{
+    position:absolute;
+    left:43px;
+    top:58px;
+    width:1190px;
+    font-size:26px;
+    line-height:28px;
+    font-weight:800;
+    color:#000;
+    letter-spacing:-0.3px;
+  }
+  .subtitle{
+    position:absolute;
+    left:43px;
+    top:120px;
+    font-size:28px;
+    line-height:30px;
+    font-weight:800;
+    color:#8f18f2;
+  }
+  .flag{
+    display:inline-block;
+    width:31px;
+    height:31px;
+    margin-left:8px;
+    border-radius:50%;
+    background:#f3391c;
+    color:#ffd200;
+    text-align:center;
+    line-height:31px;
+    font-size:18px;
+    vertical-align:middle;
+  }
+
+  .table{
+    position:absolute;
+    left:39px;
+    top:187px;
+    width:764px;
+    height:529px;
+  }
+  .left-head{
+    position:absolute;
+    left:0;
+    top:0;
+    width:126px;
+    height:52px;
+    background:#e7e3ea;
+    border-bottom:2px solid #666;
+    box-sizing:border-box;
+    font-weight:800;
+    font-size:17px;
+    line-height:18px;
+    text-align:center;
+    padding-top:9px;
+  }
+  .col-head{
+    position:absolute;
+    top:0;
+    height:52px;
+    background:#000;
+    color:#fff;
+    font-weight:800;
+    font-size:17px;
+    line-height:18px;
+    padding:8px 10px 0 12px;
+    box-sizing:border-box;
+    border-bottom:2px solid #666;
+  }
+  .c1{ left:126px; width:224px; }
+  .c2{ left:350px; width:232px; }
+  .c3{ left:582px; width:181px; }
+
+  .rowlabel{
+    position:absolute;
+    left:0;
+    background:#dedede;
+    width:126px;
+    box-sizing:border-box;
+    font-weight:800;
+    font-size:17px;
+    line-height:19px;
+    text-align:center;
+    padding:6px 8px;
+    border-top:2px solid #c5c5c5;
+  }
+  .r1{ top:52px; height:184px; border-top:none; }
+  .r2{ top:236px; height:186px; }
+  .r3{ top:422px; height:111px; }
+
+  .cell{
+    position:absolute;
+    box-sizing:border-box;
+    padding:4px 10px 0 10px;
+    font-size:16px;
+    line-height:19px;
+    color:#262626;
+    border-top:2px solid #c5c5c5;
+  }
+  .row1{ top:52px; height:184px; border-top:none; }
+  .row2{ top:236px; height:186px; }
+  .row3{ top:422px; height:111px; }
+
+  .cell ul{
+    margin:0;
+    padding-left:18px;
+  }
+  .cell li{
+    margin:0 0 8px 0;
+  }
+
+  .dashed{
+    border-left:2px dashed #e1261c;
+    border-right:2px dashed #e1261c;
+  }
+  .dashed.top{
+    border-top:2px dashed #e1261c;
+  }
+  .dashed.bottom{
+    border-bottom:2px dashed #e1261c;
+  }
+
+  .mostlikely{
+    position:absolute;
+    left:363px;
+    top:529px;
+    font-size:16px;
+    font-weight:800;
+    color:#111;
+  }
+
+  .watch{
+    position:absolute;
+    left:823px;
+    top:187px;
+    width:425px;
+    height:528px;
+    background:#ececec;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+    box-sizing:border-box;
+    padding:14px 18px 14px 18px;
+  }
+  .watch-header{
+    position:relative;
+    height:31px;
+    font-size:18px;
+    font-weight:800;
+    color:#111;
+    border-bottom:2px solid #4d4d4d;
+    margin-bottom:8px;
+  }
+  .eye{
+    position:absolute;
+    left:0;
+    top:0;
+    width:46px;
+    height:24px;
+  }
+  .eye:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:3px;
+    width:42px;
+    height:18px;
+    border:3px solid #7d16c8;
+    border-radius:50%/70%;
+    box-sizing:border-box;
+  }
+  .eye:after{
+    content:"";
+    position:absolute;
+    left:16px;
+    top:7px;
+    width:10px;
+    height:10px;
+    background:#7d16c8;
+    border-radius:50%;
+  }
+  .watch-title{
+    position:absolute;
+    left:58px;
+    top:2px;
+  }
+  .watch ul{
+    margin:10px 0 0 0;
+    padding-left:20px;
+    font-size:16px;
+    line-height:19px;
+    color:#222;
+  }
+  .watch li{
+    margin:0 0 12px 0;
+  }
+  .watch b{
+    font-weight:800;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:41px;
+    top:727px;
+    transform:translateY(-100%);
+    font-size:11px;
+    color:#7a7a7a;
+  }
+  .footer-mark{
+    position:absolute;
+    left:41px;
+    top:706px;
+    width:26px;
+    height:10px;
+  }
+  .footer-mark:before,
+  .footer-mark:after{
+    content:"";
+    position:absolute;
+    top:0;
+    width:0;
+    height:0;
+    border-top:5px solid transparent;
+    border-bottom:5px solid transparent;
+  }
+  .footer-mark:before{
+    left:0;
+    border-left:0;
+    border-right:12px solid #a11cf0;
+  }
+  .footer-mark:after{
+    left:10px;
+    border-left:0;
+    border-right:12px solid #a11cf0;
+  }
+  .footer-center{
+    position:absolute;
+    right:92px;
+    bottom:11px;
+    font-size:11px;
+    color:#666;
+  }
+  .footer-page{
+    position:absolute;
+    right:20px;
+    bottom:10px;
+    font-size:14px;
+    color:#555;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topbar">
+    <div class="tab tab1">2026 outlook</div>
+    <div class="tab tab2">Global</div>
+    <div class="tab tab3">Regional</div>
+  </div>
+
+  <div class="title">
+    China is expected to sustain growth near its 5% policy target by doubling down on exports,<br>
+    but risks are tilted to downside due to industrial overcapacity and lingering property woes
+  </div>
+
+  <div class="subtitle">
+    China near-term economic outlook and key scenarios <span class="flag">✶</span>
+  </div>
+
+  <div class="table">
+    <div class="left-head">Economic<br>scenario</div>
+    <div class="col-head c1">Prolonged balance-sheet<br>slowdown</div>
+    <div class="col-head c2">Export-led resilience</div>
+    <div class="col-head c3">Early-stage consumption /<br>innovation uplift</div>
+
+    <div class="rowlabel r1">Description</div>
+    <div class="rowlabel r2">Key scenario<br>drivers and<br>assumptions</div>
+    <div class="rowlabel r3">Corporate<br>implications</div>
+
+    <div class="cell row1" style="left:126px;width:224px;">
+      <ul>
+        <li>Growth dips below 4% as property correction persists, consumer confidence stays weak, and policy support has limited traction</li>
+        <li>Deflationary pressures linger and demand remains uneven</li>
+      </ul>
+    </div>
+
+    <div class="cell row1 dashed top" style="left:350px;width:232px;">
+      <ul>
+        <li>Growth holds at around 4.5% on the back of continued export momentum in EVs/energy/high tech</li>
+        <li>Export market share gains offset tariff headwinds and weak domestic demand</li>
+      </ul>
+    </div>
+
+    <div class="cell row1" style="left:582px;width:181px;">
+      <ul>
+        <li>Growth of &gt;5% as productivity boost from AI/automation and revival of consumer demand complement ongoing export strength</li>
+      </ul>
+    </div>
+
+    <div class="cell row2" style="left:126px;width:224px;">
+      <ul>
+        <li>Slow property and LGFV cleanup</li>
+        <li>Household savings stay high and consumption recovery stalls</li>
+        <li>Softening global demand and more trade barriers vis-a-vis China</li>
+      </ul>
+    </div>
+
+    <div class="cell row2 dashed" style="left:350px;width:232px;">
+      <ul>
+        <li>Greater policy support and scaling of capacity in high-tech and advanced manufacturing</li>
+        <li>Tariff headwinds partly absorbed through price cuts, supply chain shifts, and EM market expansion</li>
+      </ul>
+    </div>
+
+    <div class="cell row2" style="left:582px;width:181px;">
+      <ul>
+        <li>Property market stabilization and targeted household support lift near-term consumer demand</li>
+        <li>Faster innovation in AI, automation, green tech boosts activity</li>
+      </ul>
+    </div>
+
+    <div class="cell row3" style="left:126px;width:224px;">
+      <ul>
+        <li>Weak demand and margin pressure from overcapacity</li>
+        <li>Rising corporate default</li>
+      </ul>
+    </div>
+
+    <div class="cell row3 dashed bottom" style="left:350px;width:232px;">
+      <ul>
+        <li>Widening gap in domestic vs. foreign demand</li>
+        <li>Tougher global pricing</li>
+      </ul>
+    </div>
+
+    <div class="cell row3" style="left:582px;width:181px;">
+      <ul>
+        <li>Uplift in consumer-facing sectors</li>
+        <li>Productivity gains support improved pricing power</li>
+      </ul>
+    </div>
+
+    <div class="mostlikely">Most likely</div>
+  </div>
+
+  <div class="watch">
+    <div class="watch-header">
+      <div class="eye"></div>
+      <div class="watch-title">What to watch for</div>
+    </div>
+    <ul>
+      <li><b>Export momentum vs. global pushback:</b> Degree of continued strength in export categories (e.g., EVs, batteries, solar modules, advanced machinery) and any new tariff/anti-dumping actions from US/EU</li>
+      <li><b>Property sector stabilization signals:</b> Improved inventory absorption, completions, funding for unfinished projects, and restructuring progress for large developers and LGFVs</li>
+      <li><b>Scale and effectiveness of policy stimulus:</b> Responsiveness of domestic demand to fiscal support (consumption incentives, social-housing programs, tax tweaks) and PBoC credit guidance</li>
+      <li><b>Industrial overcapacity and deflation:</b> Price and capacity developments in key sectors will signal whether supply continues to outpace global absorption and the effectiveness of anti-involution policies</li>
+      <li><b>Balance of global vs. China-led supply chain shifts:</b> How quickly/extensively foreign firms accelerate reshoring and “China-plus-one” strategies vs. Chinese manufacturers expanding offshore assembly and EM localization to sustain export momentum</li>
+    </ul>
+  </div>
+
+  <div class="footer-mark"></div>
+  <div class="footer-left">Source(s): Accenture Strategy analysis</div>
+  <div class="footer-center">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="footer-page">14</div>
+</div>
+</body>
+</html>

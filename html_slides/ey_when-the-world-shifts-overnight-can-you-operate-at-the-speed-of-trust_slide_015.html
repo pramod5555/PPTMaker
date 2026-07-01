@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Questions leaders should ask</title>
+<style>
+  body{
+    margin:0;
+    background:#11161f;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#00173a;
+  }
+
+  /* Left image area */
+  .left-photo{
+    position:absolute;
+    left:0;
+    top:0;
+    width:594px;
+    height:720px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 70% 51%, rgba(215,238,255,0.98) 0 4px, rgba(185,224,255,0.95) 8px, rgba(160,210,255,0.35) 20px, rgba(255,255,255,0) 44px),
+      radial-gradient(circle at 15% 90%, rgba(229,206,182,0.35) 0, rgba(229,206,182,0.10) 120px, rgba(0,0,0,0) 220px),
+      linear-gradient(180deg, #0a101d 0%, #171e2c 38%, #6a6158 82%, #26160e 100%);
+  }
+  .left-photo:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,.95) 0.7px, rgba(255,255,255,0) 1.45px),
+      radial-gradient(circle, rgba(182,207,255,.85) 0.7px, rgba(255,255,255,0) 1.35px),
+      radial-gradient(circle, rgba(255,255,255,.55) 0.55px, rgba(255,255,255,0) 1.15px);
+    background-size: 46px 46px, 67px 67px, 88px 88px;
+    background-position: 0 0, 12px 28px, 33px 19px;
+    opacity:.95;
+  }
+  .left-photo:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(97deg, rgba(23,10,7,.92) 0%, rgba(23,10,7,.45) 16%, rgba(255,255,255,0) 25%),
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 73%, rgba(0,0,0,.24) 100%);
+  }
+
+  .rock-top-left{
+    position:absolute;
+    left:-58px;
+    top:6px;
+    width:366px;
+    height:455px;
+    background:linear-gradient(135deg, #241008 0%, #562610 20%, #7a401c 42%, #35150b 69%, #160806 100%);
+    clip-path: polygon(0 0, 40% 0, 57% 8%, 69% 18%, 76% 29%, 81% 43%, 87% 57%, 92% 70%, 95% 84%, 81% 89%, 66% 85%, 52% 74%, 44% 62%, 34% 52%, 23% 38%, 11% 20%, 0 8%);
+    opacity:.98;
+  }
+
+  .arch{
+    position:absolute;
+    left:0;
+    top:327px;
+    width:626px;
+    height:222px;
+    background:linear-gradient(180deg, #d38a48 0%, #a04d1f 34%, #884018 58%, #592610 100%);
+    clip-path: polygon(0 62%, 7% 51%, 14% 39%, 23% 28%, 32% 19%, 43% 11%, 56% 11%, 65% 16%, 74% 26%, 81% 34%, 88% 47%, 95% 62%, 100% 77%, 88% 79%, 76% 78%, 65% 76%, 54% 73%, 43% 69%, 33% 65%, 24% 61%, 14% 59%, 6% 59%);
+    box-shadow: inset 0 -16px 22px rgba(0,0,0,.22);
+  }
+
+  .arch-highlight{
+    position:absolute;
+    left:88px;
+    top:347px;
+    width:214px;
+    height:98px;
+    background:radial-gradient(circle at 33% 40%, rgba(255,234,171,.98) 0%, rgba(244,194,114,.92) 37%, rgba(255,255,255,0) 73%);
+    opacity:.96;
+    clip-path: polygon(0 65%, 19% 43%, 41% 26%, 61% 19%, 81% 24%, 100% 42%, 87% 57%, 62% 59%, 37% 63%, 17% 69%);
+  }
+
+  .rock-right{
+    position:absolute;
+    left:363px;
+    top:397px;
+    width:260px;
+    height:293px;
+    background:linear-gradient(180deg, #9b5225 0%, #7a3a19 34%, #572410 70%, #2d1209 100%);
+    clip-path: polygon(17% 0, 54% 8%, 72% 19%, 90% 37%, 100% 61%, 95% 100%, 0 100%, 3% 56%, 7% 30%);
+  }
+
+  .ground{
+    position:absolute;
+    left:0;
+    top:642px;
+    width:594px;
+    height:78px;
+    background:linear-gradient(180deg, #2d140c 0%, #150807 100%);
+    clip-path: polygon(0 72%, 10% 68%, 19% 63%, 30% 61%, 39% 59%, 50% 55%, 61% 54%, 71% 56%, 83% 61%, 92% 66%, 100% 69%, 100% 100%, 0 100%);
+    opacity:.96;
+  }
+
+  .climber{
+    position:absolute;
+    left:441px;
+    top:363px;
+    width:74px;
+    height:126px;
+    z-index:5;
+  }
+  .climber .head{
+    position:absolute;
+    left:34px;
+    top:18px;
+    width:10px;
+    height:10px;
+    background:#111116;
+    border-radius:50%;
+  }
+  .climber .body{
+    position:absolute;
+    left:27px;
+    top:30px;
+    width:20px;
+    height:39px;
+    background:#561c28;
+    transform:rotate(18deg);
+    border-radius:4px;
+  }
+  .climber .pack{
+    position:absolute;
+    left:18px;
+    top:33px;
+    width:13px;
+    height:17px;
+    background:#9f2739;
+    border-radius:3px;
+    transform:rotate(14deg);
+  }
+  .climber .arm1,
+  .climber .arm2,
+  .climber .leg1,
+  .climber .leg2{
+    position:absolute;
+    background:#17171c;
+    border-radius:2px;
+  }
+  .climber .arm1{
+    left:16px;
+    top:34px;
+    width:24px;
+    height:3px;
+    transform:rotate(-25deg);
+    transform-origin:right center;
+  }
+  .climber .arm2{
+    left:39px;
+    top:34px;
+    width:25px;
+    height:3px;
+    transform:rotate(26deg);
+    transform-origin:left center;
+  }
+  .climber .leg1{
+    left:27px;
+    top:66px;
+    width:28px;
+    height:4px;
+    transform:rotate(58deg);
+    transform-origin:left center;
+  }
+  .climber .leg2{
+    left:21px;
+    top:70px;
+    width:31px;
+    height:4px;
+    transform:rotate(108deg);
+    transform-origin:left center;
+  }
+
+  .main-title{
+    position:absolute;
+    left:84px;
+    top:213px;
+    width:360px;
+    color:#f1f2f4;
+    font-size:58px;
+    line-height:1.07;
+    font-weight:300;
+    letter-spacing:-0.015em;
+    z-index:10;
+  }
+
+  /* Right panel */
+  .right-panel{
+    position:absolute;
+    left:594px;
+    top:0;
+    width:686px;
+    height:720px;
+    background:#00173a;
+  }
+
+  .item{
+    position:absolute;
+    color:#f3f4f7;
+    z-index:20;
+  }
+  .circle{
+    position:absolute;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    border:1px solid;
+    color:#fff;
+    font-size:15px;
+    line-height:28px;
+    text-align:center;
+    font-weight:500;
+    box-sizing:border-box;
+  }
+  .title{
+    position:absolute;
+    color:#f2f4f7;
+    font-size:17px;
+    line-height:1.03;
+    font-weight:700;
+    width:222px;
+    letter-spacing:-0.01em;
+  }
+  .bullets{
+    position:absolute;
+    color:#d6dde8;
+    font-size:11.7px;
+    line-height:1.43;
+    font-weight:400;
+    width:236px;
+  }
+  .bullets div{
+    position:relative;
+    padding-left:12px;
+    margin-bottom:8px;
+  }
+  .bullets div:before{
+    content:"▪";
+    position:absolute;
+    left:0;
+    top:0;
+    color:#fff;
+    font-size:10px;
+    line-height:1.43;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:33px;
+    bottom:16px;
+    color:#ffffff;
+    font-size:7px;
+    line-height:1;
+    font-weight:700;
+    z-index:30;
+    white-space:nowrap;
+  }
+  .footer-right{
+    position:absolute;
+    right:32px;
+    bottom:16px;
+    color:#ffffff;
+    font-size:7px;
+    line-height:1;
+    font-weight:700;
+    z-index:30;
+    white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-photo"></div>
+  <div class="rock-top-left"></div>
+  <div class="arch"></div>
+  <div class="arch-highlight"></div>
+  <div class="rock-right"></div>
+  <div class="ground"></div>
+
+  <div class="climber">
+    <div class="head"></div>
+    <div class="body"></div>
+    <div class="pack"></div>
+    <div class="arm1"></div>
+    <div class="arm2"></div>
+    <div class="leg1"></div>
+    <div class="leg2"></div>
+  </div>
+
+  <div class="main-title">Questions leaders<br>should ask</div>
+
+  <div class="right-panel"></div>
+
+  <div class="item" style="left:627px; top:63px; width:286px; height:140px;">
+    <div class="circle" style="left:0; top:0; border-color:#ef4d5b;">1</div>
+    <div class="title" style="left:41px; top:0;">Chief Executive Officer<br>(CEO)</div>
+    <div class="bullets" style="left:41px; top:42px;">
+      <div>How confident am I that our organization could respond in real time to the next major shock?</div>
+      <div>Do we have protocols in place to maintain stakeholder trust amid a significant crisis?</div>
+    </div>
+  </div>
+
+  <div class="item" style="left:880px; top:65px; width:304px; height:122px;">
+    <div class="circle" style="left:0; top:0; border-color:#b848c8;">2</div>
+    <div class="title" style="left:41px; top:0; width:235px;">Chief Risk Officer (CRO)</div>
+    <div class="bullets" style="left:41px; top:28px; width:223px;">
+      <div>For each material risk, do we have clear signals, thresholds, owners and preauthorized actions?</div>
+      <div>How should we rethink our approach to governance?</div>
+    </div>
+  </div>
+
+  <div class="item" style="left:627px; top:223px; width:294px; height:129px;">
+    <div class="circle" style="left:0; top:0; border-color:#6c5fff;">3</div>
+    <div class="title" style="left:41px; top:0;">Chief Operating Officer<br>(COO)</div>
+    <div class="bullets" style="left:41px; top:42px;">
+      <div>Which operational risks escalate in hours or days – and which of those are still reviewed quarterly?</div>
+      <div>After every crisis or near miss, do we systematically refine signals, reset thresholds and update protocols?</div>
+    </div>
+  </div>
+
+  <div class="item" style="left:880px; top:223px; width:304px; height:126px;">
+    <div class="circle" style="left:0; top:0; border-color:#00a6ff;">4</div>
+    <div class="title" style="left:41px; top:0; width:228px;">Chief Financial Officer<br>(CFO)</div>
+    <div class="bullets" style="left:41px; top:42px; width:230px;">
+      <div>Are our materiality thresholds tied to trailing EBITDA, or to our ability to achieve strategic objectives – and how does that change capital allocation and risk appetite?</div>
+      <div>Do we have trigger-based financial responses defined before a crisis strikes?</div>
+    </div>
+  </div>
+
+  <div class="item" style="left:627px; top:384px; width:296px; height:126px;">
+    <div class="circle" style="left:0; top:0; border-color:#20d6d2;">5</div>
+    <div class="title" style="left:41px; top:0;">Chief Information Officer<br>(CIO)</div>
+    <div class="bullets" style="left:41px; top:42px;">
+      <div>Does our current use of technology in risk management support real time visibility, or reinforce periodic oversight?</div>
+      <div>What enterprise data must exist so our highest-risk signals are measurable, owned and refreshed at the right cadence – and where are we blind?</div>
+    </div>
+  </div>
+
+  <div class="item" style="left:880px; top:384px; width:304px; height:133px;">
+    <div class="circle" style="left:0; top:0; border-color:#36c76d;">6</div>
+    <div class="title" style="left:41px; top:0; width:230px;">Chief Human Resources<br>Officer (CHRO)</div>
+    <div class="bullets" style="left:41px; top:42px; width:231px;">
+      <div>Is our workplace culture designed for speed with accountability – or safety through delay?</div>
+      <div>Which roles need stronger risk fluency, and which need curious and contrarian mindsets – and how will we hire or develop for that?</div>
+    </div>
+  </div>
+
+  <div class="item" style="left:627px; top:548px; width:295px; height:124px;">
+    <div class="circle" style="left:0; top:0; border-color:#12c18d;">7</div>
+    <div class="title" style="left:41px; top:0; width:214px;">General counsel</div>
+    <div class="bullets" style="left:41px; top:28px; width:238px;">
+      <div>Which legal risks can escalate in days – and do we have protocols to respond in real time?</div>
+      <div>Do we understand how moving at speed could raise new legal risks or liabilities – and how to mitigate such vulnerabilities?</div>
+    </div>
+  </div>
+
+  <div class="footer-left">23&nbsp;&nbsp;|&nbsp;&nbsp;How can reimagining risk prepare you for an unpredictable world?</div>
+  <div class="footer-right">Global Risk Transformation Series&nbsp;&nbsp;|&nbsp;&nbsp;24</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Executive Summary Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: linear-gradient(90deg, #9e0fd3 0%, #5f088f 10%, #3a066f 28%, #2f055d 51.5%, #eeeeee 51.5%, #eeeeee 100%);
+  }
+  .left-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 652px;
+    height: 720px;
+    background:
+      radial-gradient(circle at 5% 5%, rgba(179,0,255,0.85) 0, rgba(179,0,255,0.35) 10%, rgba(179,0,255,0) 24%),
+      radial-gradient(circle at 14% 34%, rgba(190,0,255,0.65) 0, rgba(190,0,255,0.18) 12%, rgba(190,0,255,0) 28%),
+      radial-gradient(circle at 24% 82%, rgba(219,108,173,0.55) 0, rgba(219,108,173,0.12) 16%, rgba(219,108,173,0) 32%),
+      linear-gradient(90deg, #9e0fd3 0%, #5f088f 18%, #3b066f 52%, #2e055c 100%);
+  }
+  .right-panel {
+    position: absolute;
+    left: 652px;
+    top: 0;
+    width: 628px;
+    height: 720px;
+    background: #efefef;
+  }
+
+  .about-title {
+    position: absolute;
+    left: 58px;
+    top: 67px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.15;
+  }
+  .about-text {
+    position: absolute;
+    left: 58px;
+    top: 94px;
+    width: 544px;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.2;
+  }
+  .about-text b {
+    font-weight: 800;
+  }
+
+  .section-title {
+    position: absolute;
+    left: 60px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.1;
+  }
+
+  .thumb {
+    position: absolute;
+    width: 151px;
+    height: 86px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset;
+    background: #ddd;
+  }
+  .thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.2));
+  }
+  .thumb .label {
+    position: absolute;
+    left: 8px;
+    top: 10px;
+    z-index: 2;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 8px;
+    line-height: 1.05;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    width: 92px;
+  }
+  .thumb .sub {
+    position: absolute;
+    left: 8px;
+    top: 36px;
+    z-index: 2;
+    color: rgba(255,255,255,0.92);
+    font-size: 6px;
+    line-height: 1.15;
+    width: 104px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+  }
+  .thumb .brand {
+    position: absolute;
+    left: 6px;
+    bottom: 4px;
+    z-index: 2;
+    color: #ffffff;
+    font-size: 4.5px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    opacity: 0.95;
+  }
+  .thumb .mf {
+    position: absolute;
+    right: 6px;
+    bottom: 4px;
+    z-index: 2;
+    color: #ff3b98;
+    font-size: 4.5px;
+    font-weight: 700;
+  }
+  .thumb .chev {
+    position: absolute;
+    left: 5px;
+    top: 4px;
+    z-index: 2;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .thumb1 {
+    left: 62px;
+    top: 323px;
+    background:
+      linear-gradient(120deg, rgba(255,170,55,0.22), rgba(255,255,255,0) 48%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.08) 0 2px, rgba(0,0,0,0) 2px 14px),
+      linear-gradient(180deg, #7f7f84 0%, #44566a 42%, #283443 100%);
+  }
+  .thumb1::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    height: 20px;
+    background:
+      repeating-linear-gradient(90deg, #4f4f54 0 10px, #666 10px 12px),
+      linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.4));
+    opacity: 0.9;
+  }
+
+  .thumb2 {
+    left: 248px;
+    top: 323px;
+    background:
+      radial-gradient(circle at 55% 45%, rgba(255,255,255,0.2) 0 10%, rgba(255,255,255,0) 18%),
+      radial-gradient(circle at 70% 30%, rgba(255,255,255,0.18) 0 8%, rgba(255,255,255,0) 16%),
+      linear-gradient(135deg, #0f3051 0%, #254a67 25%, #5d8ea6 42%, #173348 56%, #0b1e31 100%);
+  }
+  .thumb2::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 62% 44%, rgba(255,255,255,0.7) 0 2%, rgba(255,255,255,0) 7%),
+      radial-gradient(ellipse at 64% 48%, rgba(255,255,255,0.42) 0 2%, rgba(255,255,255,0) 7%),
+      radial-gradient(ellipse at 58% 55%, rgba(255,255,255,0.2) 0 8%, rgba(255,255,255,0) 20%);
+    mix-blend-mode: screen;
+  }
+
+  .thumb3 {
+    left: 62px;
+    top: 433px;
+    background:
+      radial-gradient(circle at 35% 58%, rgba(255,255,255,0.75) 0 7%, rgba(255,255,255,0) 18%),
+      radial-gradient(circle at 60% 34%, rgba(255,255,255,0.38) 0 5%, rgba(255,255,255,0) 16%),
+      radial-gradient(circle at 28% 47%, rgba(193,221,255,0.7) 0 8%, rgba(193,221,255,0) 17%),
+      linear-gradient(135deg, #6c1c88 0%, #3b1d6d 38%, #1b1038 100%);
+  }
+  .thumb3::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 8px;
+    width: 84px;
+    height: 68px;
+    background:
+      radial-gradient(circle at 30% 52%, rgba(255,255,255,0.95) 0 28%, rgba(255,255,255,0) 30%),
+      radial-gradient(circle at 70% 52%, rgba(255,255,255,0.95) 0 28%, rgba(255,255,255,0) 30%);
+    opacity: 0.72;
+    filter: blur(1px);
+  }
+
+  .thumb4 {
+    left: 248px;
+    top: 433px;
+    background:
+      linear-gradient(135deg, rgba(255,166,0,0.18), rgba(255,255,255,0) 34%),
+      linear-gradient(120deg, #2d4161 0%, #4c6078 18%, #7f4e44 42%, #374058 62%, #253042 100%);
+  }
+  .thumb4::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(120deg, rgba(255,180,80,0.22) 0 2px, rgba(0,0,0,0) 2px 10px),
+      repeating-linear-gradient(120deg, rgba(255,255,255,0.08) 0 1px, rgba(0,0,0,0) 1px 16px);
+    opacity: 0.75;
+  }
+
+  .brief-title {
+    position: absolute;
+    left: 60px;
+    top: 546px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 1.1;
+  }
+  .brief-list {
+    position: absolute;
+    left: 61px;
+    top: 567px;
+    width: 440px;
+    color: #ffffff;
+    font-size: 17px;
+    line-height: 1.45;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+  .brief-list div {
+    white-space: nowrap;
+  }
+
+  .info-text {
+    position: absolute;
+    left: 61px;
+    top: 705px;
+    width: 400px;
+    color: #ffffff;
+    font-size: 17px;
+    line-height: 1.2;
+  }
+  .info-text .link {
+    text-decoration: underline;
+  }
+
+  .contents-title {
+    position: absolute;
+    left: 771px;
+    top: 56px;
+    color: #7806c8;
+    font-weight: 800;
+    font-size: 38px;
+    line-height: 1.1;
+  }
+
+  .item {
+    position: absolute;
+    left: 771px;
+    color: #111111;
+  }
+  .item .num {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #7806c8;
+    font-weight: 800;
+    font-size: 37px;
+    line-height: 1;
+    width: 60px;
+  }
+  .item .txt {
+    position: absolute;
+    left: 72px;
+    top: -1px;
+    color: #161616;
+    font-weight: 400;
+    font-size: 31px;
+    line-height: 1.18;
+    width: 360px;
+  }
+
+  .item1 { top: 149px; width: 470px; height: 44px; }
+  .item2 { top: 230px; width: 470px; height: 44px; }
+  .item3 { top: 310px; width: 470px; height: 90px; }
+
+/* fix: correct background color */
+.slide { background: #C696D3 !important; background-color: #C696D3 !important; }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-panel"></div>
+    <div class="right-panel"></div>
+
+    <div class="about-title">About this document</div>
+    <div class="about-text">
+      The monthly brief is intended to inform executive teams,<br>
+      boards and investors on the state of the economy. It has been<br>
+      prepared based on data as of <b>December 10, 2025.</b><br><br>
+      Each brief includes a summary of global business-relevant<br>
+      macroeconomic developments, and a set of indicators that<br>
+      track the overall health of the economy, business activity and<br>
+      consumers.
+    </div>
+
+    <div class="section-title" style="top: 288px;">Read our latest point of views:</div>
+
+    <div class="thumb thumb1">
+      <div class="chev">&gt;</div>
+      <div class="label">October<br>Macro Brief</div>
+      <div class="sub">Navigating two-speed economies</div>
+      <div class="brand">accenturestrategy</div>
+      <div class="mf">Macro Foresight</div>
+    </div>
+
+    <div class="thumb thumb2">
+      <div class="label" style="top:10px;width:96px;">Steering through<br>activist investor demands</div>
+      <div class="brand">accenture</div>
+    </div>
+
+    <div class="thumb thumb3">
+      <div class="label" style="top:39px;width:92px;">Resilience Redefined</div>
+    </div>
+
+    <div class="thumb thumb4">
+      <div class="chev">&gt;</div>
+      <div class="label">September<br>Macro Brief</div>
+      <div class="sub">Special edition: Tariff update</div>
+      <div class="brand">accenturestrategy</div>
+      <div class="mf">Macro Foresight</div>
+    </div>
+
+    <div class="brief-title">See our recent monthly macro briefs:</div>
+    <div class="brief-list">
+      <div>October: Navigating two-speed economies</div>
+      <div>September: Tariff update</div>
+      <div>July: Fiscal power plays</div>
+      <div>June: Immigration at a crossroads</div>
+      <div>May: Consumer spending in flux</div>
+    </div>
+
+    <div class="info-text">
+      For more information about Macro Foresight, visit<br>
+      <span class="link">www.accenture.com/macroforesight</span>.
+    </div>
+
+    <div class="contents-title">Contents</div>
+
+    <div class="item item1">
+      <div class="num">05</div>
+      <div class="txt">Executive summary</div>
+    </div>
+
+    <div class="item item2">
+      <div class="num">08</div>
+      <div class="txt">2026 economic outlook</div>
+    </div>
+
+    <div class="item item3">
+      <div class="num">17</div>
+      <div class="txt">Top 10 macro trends for<br>companies</div>
+    </div>
+  </div>
+</body>
+</html>

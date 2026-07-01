@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#efefef;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+    color:#111;
+  }
+  .title{
+    position:absolute;
+    left:46px;
+    top:44px;
+    width:1210px;
+    font-size:39px;
+    line-height:1.04;
+    font-weight:800;
+    letter-spacing:-0.4px;
+    color:#000;
+  }
+  .panel{
+    position:absolute;
+    left:46px;
+    top:146px;
+    width:1275px;
+    height:570px;
+    background:#e7e7e7;
+  }
+  .panel-title{
+    position:absolute;
+    left:76px;
+    top:169px;
+    font-size:22px;
+    line-height:1.1;
+    font-weight:800;
+    color:#000;
+  }
+  .legend{
+    position:absolute;
+    top:204px;
+    font-size:16px;
+    line-height:20px;
+    color:#222;
+    white-space:nowrap;
+  }
+  .dot{
+    position:absolute;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    top:206px;
+  }
+  .chart-area{
+    position:absolute;
+    left:83px;
+    top:261px;
+    width:535px;
+    height:303px;
+  }
+  .year{
+    position:absolute;
+    font-size:17px;
+    line-height:22px;
+    font-weight:700;
+    color:#111;
+  }
+  .label{
+    position:absolute;
+    font-size:15px;
+    line-height:19px;
+    color:#333;
+    white-space:nowrap;
+  }
+  .label.bold{
+    font-weight:800;
+    color:#111;
+  }
+  .pct{
+    font-style:italic;
+  }
+  .callout-dot{
+    position:absolute;
+    left:691px;
+    top:348px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#111;
+  }
+  .callout-line{
+    position:absolute;
+    left:700px;
+    top:352px;
+    width:68px;
+    height:2px;
+    background:#444;
+  }
+  .callout-text{
+    position:absolute;
+    left:777px;
+    top:343px;
+    width:430px;
+    font-size:16px;
+    line-height:1.15;
+    color:#222;
+  }
+  .callout-text b{
+    font-weight:800;
+  }
+  .table-wrap{
+    position:absolute;
+    left:770px;
+    top:407px;
+    width:474px;
+    height:135px;
+  }
+  table{
+    border-collapse:collapse;
+    width:474px;
+    table-layout:fixed;
+    font-size:15px;
+    line-height:19px;
+    color:#333;
+  }
+  th, td{
+    border-right:1px solid #bebebe;
+    padding:3px 10px;
+    vertical-align:middle;
+    text-align:left;
+  }
+  th:last-child, td:last-child{
+    border-right:none;
+  }
+  thead th{
+    font-weight:700;
+    color:#111;
+    border-bottom:2px solid #9f9f9f;
+    padding-bottom:5px;
+  }
+  tbody tr{
+    border-bottom:1px solid #c9c9c9;
+  }
+  tbody tr:last-child{
+    border-bottom:none;
+  }
+  .hl{
+    background:#84c400;
+    color:#111;
+  }
+  .note{
+    position:absolute;
+    left:76px;
+    top:660px;
+    width:930px;
+    font-size:11px;
+    line-height:14px;
+    color:#333;
+  }
+  .footer-left{
+    position:absolute;
+    left:46px;
+    top:726px;
+    transform:translateY(-100%);
+    font-size:12px;
+    line-height:14px;
+    color:#444;
+  }
+  .footer-center{
+    position:absolute;
+    right:82px;
+    top:726px;
+    transform:translateY(-100%);
+    font-size:12px;
+    line-height:14px;
+    color:#444;
+    text-align:right;
+  }
+  .footer-page{
+    position:absolute;
+    right:24px;
+    top:726px;
+    transform:translateY(-100%);
+    font-size:12px;
+    line-height:14px;
+    color:#444;
+    text-align:right;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">Marquee trip budgets are up across the board, with the $100K<br>to $199K income group making the biggest climb</div>
+
+  <div class="panel"></div>
+
+  <div class="panel-title">Marquee trip budgets, by income</div>
+
+  <div class="dot" style="left:77px;background:#7fbf00;"></div>
+  <div class="legend" style="left:96px;">Overall</div>
+
+  <div class="dot" style="left:175px;background:#c7c7c7;"></div>
+  <div class="legend" style="left:194px;">Under $100K</div>
+
+  <div class="dot" style="left:322px;background:#000;"></div>
+  <div class="legend" style="left:341px;">$100K to $199K</div>
+
+  <div class="dot" style="left:490px;background:#a8a8a8;"></div>
+  <div class="legend" style="left:509px;">Over $200K</div>
+
+  <div class="chart-area">
+    <svg width="535" height="303" viewBox="0 0 535 303" xmlns="http://www.w3.org/2000/svg">
+      <line x1="2" y1="0" x2="2" y2="303" stroke="#d1d1d1" stroke-width="1"/>
+      <line x1="529" y1="0" x2="529" y2="303" stroke="#d1d1d1" stroke-width="1"/>
+
+      <line x1="2" y1="91" x2="529" y2="62" stroke="#9f9f9f" stroke-width="3"/>
+      <line x1="2" y1="148" x2="529" y2="112" stroke="#000000" stroke-width="3"/>
+      <line x1="2" y1="163" x2="529" y2="138" stroke="#76bf00" stroke-width="3"/>
+      <line x1="2" y1="191" x2="529" y2="190" stroke="#b8b8b8" stroke-width="3"/>
+    </svg>
+  </div>
+
+  <div class="label" style="left:89px;top:322px;">$5,222</div>
+  <div class="label" style="left:88px;top:377px;">$3,780</div>
+  <div class="label bold" style="left:89px;top:428px;">$3,471</div>
+  <div class="label" style="left:91px;top:458px;">$2,723</div>
+
+  <div class="label" style="left:583px;top:292px;">$5,963&nbsp;&nbsp;&nbsp;<span class="pct">+14%</span></div>
+  <div class="label" style="left:585px;top:341px;">$4,695&nbsp;&nbsp;&nbsp;<span class="pct">+24%</span></div>
+  <div class="label bold" style="left:583px;top:401px;">$4,069&nbsp;&nbsp;&nbsp;<span class="pct" style="font-weight:400;">+17%</span></div>
+  <div class="label" style="left:586px;top:450px;">$2,889&nbsp;&nbsp;&nbsp;<span class="pct">+6%</span></div>
+
+  <div class="year" style="left:74px;top:577px;">2025</div>
+  <div class="year" style="left:590px;top:577px;">2026</div>
+
+  <div class="callout-dot"></div>
+  <div class="callout-line"></div>
+  <div class="callout-text">
+    Travelers with household income over $100,000 are <b>over 1.5 times as<br>likely to significantly increase marquee trip budgets</b> over last year
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:150px;">Budgets vs. 2025</th>
+          <th style="width:81px;">Under<br>$100K</th>
+          <th style="width:81px;">$100K to<br>$199K</th>
+          <th style="width:81px;">Over<br>$200K</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Significantly more</td>
+          <td>17%</td>
+          <td class="hl">30%</td>
+          <td class="hl">26%</td>
+        </tr>
+        <tr>
+          <td>About the same</td>
+          <td>69%</td>
+          <td>63%</td>
+          <td>63%</td>
+        </tr>
+        <tr>
+          <td>Significantly less</td>
+          <td>14%</td>
+          <td>8%</td>
+          <td>11%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">Note: Question: “How much is the estimated budget for your longest summer trip?” (Please include only your transportation and lodging costs in this estimate) (n = 1,808).<br>Source: 2026 Deloitte Summer Travel Survey.</div>
+
+  <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+  <div class="footer-center">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="footer-page">13</div>
+</div>
+</body>
+</html>

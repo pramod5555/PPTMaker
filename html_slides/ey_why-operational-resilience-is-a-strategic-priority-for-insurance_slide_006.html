@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#cfcfd2;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#d9d9db;
+  }
+
+  .page{
+    position:absolute;
+    left:31px;
+    top:48px;
+    color:#6d7078;
+    font-size:20px;
+    line-height:1;
+    font-weight:400;
+    z-index:5;
+  }
+  .header-rule{
+    position:absolute;
+    left:103px;
+    top:0;
+    width:1px;
+    height:94px;
+    background:#a5a7ad;
+    z-index:2;
+  }
+  .header-text{
+    position:absolute;
+    left:116px;
+    top:58px;
+    color:#7a7c83;
+    font-size:9px;
+    line-height:1.25;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    z-index:5;
+  }
+
+  .vline{
+    position:absolute;
+    left:499px;
+    top:31px;
+    width:1px;
+    height:707px;
+    background:repeating-linear-gradient(
+      to bottom,
+      #b7b9be 0 2px,
+      transparent 2px 4px
+    );
+    opacity:.95;
+    z-index:2;
+  }
+
+  .left-rail{
+    position:absolute;
+    left:0;
+    top:336px;
+    width:28px;
+    height:160px;
+    z-index:5;
+  }
+  .left-rail .label{
+    position:absolute;
+    left:13px;
+    top:100px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    color:#7b7d84;
+    font-size:11px;
+    line-height:1;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .left-rail .dot{
+    position:absolute;
+    left:13px;
+    top:86px;
+    width:12px;
+    height:12px;
+    background:#f3d400;
+  }
+
+  .title{
+    position:absolute;
+    color:#32343d;
+    font-size:18px;
+    line-height:1.22;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  .body{
+    position:absolute;
+    color:#55575e;
+    font-size:11px;
+    line-height:1.42;
+    font-weight:400;
+  }
+
+  .quote-card{
+    position:absolute;
+    background:#171827;
+    border-radius:14px;
+    z-index:3;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  .quote-stripes{
+    position:absolute;
+    left:23px;
+    top:29px;
+    height:2px;
+    z-index:4;
+  }
+  .quote-header{
+    position:absolute;
+    left:24px;
+    top:44px;
+    color:#ffffff;
+    font-size:12px;
+    line-height:1;
+    font-weight:700;
+    z-index:4;
+  }
+  .quote-mark{
+    position:absolute;
+    left:22px;
+    top:60px;
+    color:#f3d400;
+    font-size:34px;
+    line-height:1;
+    font-weight:700;
+    z-index:4;
+  }
+  .quote-text{
+    position:absolute;
+    left:24px;
+    top:89px;
+    color:#f2f2f4;
+    font-size:11px;
+    line-height:1.3;
+    font-family: Georgia, "Times New Roman", serif;
+    z-index:4;
+  }
+
+  .photo{
+    position:absolute;
+    overflow:hidden;
+    border-radius:16px;
+    z-index:1;
+    background:#111522;
+  }
+  .jump{
+    position:absolute;
+    right:0;
+    top:0;
+    width:67px;
+    height:46px;
+    background:#7d7d86;
+    border-bottom-left-radius:14px;
+    color:#fff;
+    font-size:9px;
+    line-height:1.15;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    text-align:center;
+    padding-top:13px;
+    box-sizing:border-box;
+    z-index:10;
+  }
+  svg{display:block}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="header-rule"></div>
+  <div class="page">6</div>
+  <div class="header-text">SECOND ANNUAL EY/IIF GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+  <div class="vline"></div>
+
+  <div class="left-rail">
+    <div class="dot"></div>
+    <div class="label">KEY TAKEAWAYS</div>
+  </div>
+
+  <div class="title" style="left:102px; top:129px; width:350px;">
+    4. With growing recognition that talent is the<br>
+    “secret sauce” of effective risk management,<br>
+    more CROs are focused on soft skills, including<br>
+    communication, business skills, leadership and<br>
+    adaptability.
+  </div>
+
+  <div class="body" style="left:102px; top:243px; width:344px;">
+    CROs recognize the need for new talent. Significantly more respondents
+    say they plan to add staff this year than said so last year. They believe
+    that workers with cyber (36%), business and product knowledge (27%),
+    change and transformation (25%) and operational resilience (25%) skills
+    and experience would boost risk management effectiveness in the first line
+    over the next five years. In the second line, communication, interpersonal,
+    leadership and critical thinking skills (28%) trail only cyber (40%) as the most
+    important skills to strengthen risk management effectiveness in that same
+    period, along with operational resilience (26%) and AI-based risk model
+    management (25%).
+  </div>
+
+  <div class="body" style="left:102px; top:406px; width:342px;">
+    CROs would also like to advance the business knowledge of their teams. While
+    technical expertise and traditional risk management skills remain important,
+    CROs value having well-rounded professionals who see the big picture even
+    as they grasp the details of their specific domains.
+  </div>
+
+  <div class="title" style="left:546px; top:129px; width:370px;">
+    5. The innovation imperative in risk<br>
+    management starts with sophisticated<br>
+    scenario planning, advanced analytics, richer<br>
+    data and increased automation.
+  </div>
+
+  <div class="body" style="left:546px; top:225px; width:356px;">
+    For financial and non-financial risks (including geopolitical and climate),
+    CROs see scenario planning as essential to gaining forward-looking insights
+    and getting ahead of emerging risks. In our market engagements, we've
+    seen CROs experimenting with a range of techniques, including structured
+    modeling, tabletop exercises and crisis simulations. A large majority of
+    CROs say that automation is underway or planned for key risk management
+    capabilities, including to strengthen key controls. The implication is that
+    ongoing innovation is necessary not just for increased efficiency but also to
+    generate the insights that will enable risk management to assume a more
+    strategic role.
+  </div>
+
+  <div class="quote-card" style="left:101px; top:485px; width:356px; height:233px;">
+    <svg class="quote-stripes" width="316" height="42" viewBox="0 0 316 42" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="170" height="2" fill="#f3d400"/>
+      <rect x="170" y="0" width="82" height="2" fill="#8b2cff"/>
+      <rect x="252" y="0" width="64" height="2" fill="#45a5ff"/>
+    </svg>
+    <div class="quote-header">Survey respondents</div>
+    <div class="quote-mark">“</div>
+    <div class="quote-text" style="width:315px;">
+      We are looking for people who can be curious and<br>
+      inquisitive, ask questions and try to think forward.<br><br>
+      What’s important is critical thinking and relationship<br>
+      skills; to hear about things you wouldn’t find in data and<br>
+      making good connections in concert with digital insights.
+    </div>
+  </div>
+
+  <div class="quote-card" style="left:546px; top:485px; width:384px; height:233px;">
+    <svg class="quote-stripes" width="340" height="42" viewBox="0 0 340 42" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="163" height="2" fill="#f3d400"/>
+      <rect x="163" y="0" width="105" height="2" fill="#8b2cff"/>
+      <rect x="268" y="0" width="72" height="2" fill="#45a5ff"/>
+    </svg>
+    <div class="quote-header">Survey respondents</div>
+    <div class="quote-mark">“</div>
+    <div class="quote-text" style="width:338px;">
+      We can add the most value when we’re brought in early and can<br>
+      spot issues with transformation plans. That’s how we try to be a<br>
+      true thought partner.<br><br>
+      We have to be flexible and think in a way that balances strategy,<br>
+      transformation and innovation with due diligence. We can’t release<br>
+      the obligation to assess risk, but how do we do that in a way that<br>
+      enables the business to move forward, versus getting in the way?
+    </div>
+  </div>
+
+  <div class="photo" style="left:961px; top:0; width:302px; height:179px;">
+    <svg width="302" height="219" viewBox="0 0 302 219" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#061022"/>
+          <stop offset="100%" stop-color="#0a0c16"/>
+        </linearGradient>
+        <filter id="b1"><feGaussianBlur stdDeviation="3.1"/></filter>
+      </defs>
+      <rect width="302" height="179" fill="url(#g1)"/>
+      <g opacity=".12" stroke="#96b7d3" stroke-width="1">
+        <line x1="18" y1="120" x2="18" y2="179"/><line x1="48" y1="120" x2="48" y2="179"/>
+        <line x1="78" y1="120" x2="78" y2="179"/><line x1="108" y1="120" x2="108" y2="179"/>
+        <line x1="138" y1="120" x2="138" y2="179"/><line x1="168" y1="120" x2="168" y2="179"/>
+        <line x1="198" y1="120" x2="198" y2="179"/><line x1="228" y1="120" x2="228" y2="179"/>
+        <line x1="258" y1="120" x2="258" y2="179"/><line x1="288" y1="120" x2="288" y2="179"/>
+        <line x1="18" y1="26" x2="302" y2="26"/><line x1="18" y1="58" x2="302" y2="58"/>
+        <line x1="18" y1="90" x2="302" y2="90"/><line x1="18" y1="122" x2="302" y2="122"/>
+        <line x1="18" y1="154" x2="302" y2="154"/>
+      </g>
+      <g filter="url(#b1)" opacity=".88">
+        <rect x="10" y="10" width="7" height="155" fill="#081427"/>
+        <rect x="34" y="18" width="9" height="145" fill="#102042"/>
+        <rect x="62" y="12" width="8" height="150" fill="#0d1735"/>
+        <rect x="90" y="24" width="10" height="138" fill="#121d3f"/>
+        <rect x="118" y="14" width="9" height="152" fill="#0f1a39"/>
+        <rect x="147" y="16" width="8" height="148" fill="#111e40"/>
+        <rect x="176" y="8" width="9" height="158" fill="#0e1733"/>
+        <rect x="204" y="18" width="11" height="146" fill="#101b38"/>
+        <rect x="233" y="12" width="8" height="152" fill="#0c1731"/>
+        <rect x="262" y="20" width="10" height="142" fill="#111e3d"/>
+
+        <circle cx="16" cy="16" r="4" fill="#3db8ff"/><circle cx="42" cy="28" r="4" fill="#4a72ff"/>
+        <circle cx="73" cy="20" r="5" fill="#1646ff"/><circle cx="103" cy="31" r="4" fill="#6c79ff"/>
+        <circle cx="133" cy="15" r="4" fill="#18d5c3"/><circle cx="160" cy="22" r="4" fill="#273bff"/>
+        <circle cx="197" cy="16" r="4" fill="#153cff"/><circle cx="239" cy="26" r="5" fill="#ff4f4f"/>
+        <circle cx="272" cy="18" r="4" fill="#254cff"/><circle cx="292" cy="29" r="4" fill="#39b9ff"/>
+
+        <circle cx="20" cy="57" r="5" fill="#1ee7ff"/><circle cx="47" cy="66" r="4" fill="#5a8eff"/>
+        <circle cx="80" cy="54" r="5" fill="#4450ff"/><circle cx="109" cy="63" r="4" fill="#8290ff"/>
+        <circle cx="142" cy="58" r="5" fill="#18d5c3"/><circle cx="171" cy="69" r="4" fill="#356cff"/>
+        <circle cx="202" cy="55" r="4" fill="#6f49ff"/><circle cx="233" cy="67" r="5" fill="#4ebdff"/>
+        <circle cx="265" cy="56" r="4" fill="#7f88ff"/><circle cx="286" cy="66" r="4" fill="#214dff"/>
+
+        <circle cx="17" cy="96" r="4" fill="#2d63ff"/><circle cx="55" cy="85" r="5" fill="#3dc2ff"/>
+        <circle cx="83" cy="96" r="4" fill="#16dbbf"/><circle cx="116" cy="88" r="5" fill="#8290ff"/>
+        <circle cx="149" cy="96" r="4" fill="#223cff"/><circle cx="176" cy="86" r="4" fill="#46b1ff"/>
+        <circle cx="205" cy="98" r="5" fill="#f14ef4"/><circle cx="233" cy="87" r="4" fill="#6e49ff"/>
+        <circle cx="260" cy="98" r="5" fill="#26d9ff"/><circle cx="289" cy="86" r="4" fill="#295fff"/>
+
+        <circle cx="17" cy="129" r="5" fill="#30c5ff"/><circle cx="43" cy="120" r="4" fill="#7b49ff"/>
+        <circle cx="67" cy="132" r="5" fill="#4fe1bf"/><circle cx="94" cy="123" r="4" fill="#46b2ff"/>
+        <circle cx="123" cy="134" r="5" fill="#2166ff"/><circle cx="148" cy="122" r="4" fill="#8cb4ff"/>
+        <circle cx="171" cy="133" r="5" fill="#f24de6"/><circle cx="198" cy="121" r="4" fill="#384fff"/>
+        <circle cx="226" cy="135" r="5" fill="#27d6ff"/><circle cx="252" cy="123" r="4" fill="#34beff"/>
+        <circle cx="283" cy="133" r="5" fill="#7648ff"/>
+
+        <circle cx="20" cy="162" r="4" fill="#244eff"/><circle cx="48" cy="151" r="5" fill="#2fd7ff"/>
+        <circle cx="72" cy="163" r="4" fill="#59b7ff"/><circle cx="102" cy="152" r="5" fill="#45a6ff"/>
+        <circle cx="129" cy="163" r="4" fill="#7b86ff"/><circle cx="154" cy="150" r="5" fill="#27d6ff"/>
+        <circle cx="179" cy="163" r="4" fill="#22dac0"/><circle cx="205" cy="149" r="5" fill="#f24de6"/>
+        <circle cx="232" cy="163" r="4" fill="#3d4fff"/><circle cx="259" cy="151" r="5" fill="#45a6ff"/>
+        <circle cx="287" cy="162" r="4" fill="#1e69ff"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="jump">JUMP TO<br>CONTENTS</div>
+
+  <div class="photo" style="left:961px; top:192px; width:302px; height:310px;">
+    <svg width="302" height="350" viewBox="0 0 302 350" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="room" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#d7d0c9"/>
+          <stop offset="100%" stop-color="#998e87"/>
+        </linearGradient>
+      </defs>
+      <rect width="302" height="310" fill="url(#room)"/>
+      <rect x="0" y="0" width="302" height="120" fill="#d7d3ce"/>
+      <rect x="15" y="13" width="81" height="160" fill="#d1d6d8"/>
+      <rect x="18" y="18" width="31" height="150" fill="#b8c5cf"/>
+      <rect x="54" y="18" width="38" height="150" fill="#edf1f3"/>
+
+      <rect x="160" y="0" width="142" height="109" fill="#5341a0"/>
+      <rect x="174" y="18" width="114" height="66" rx="3" fill="#7363cf"/>
+      <polyline points="180,68 194,43 208,57 219,31 232,58 244,23 259,45 271,38 286,49" fill="none" stroke="#c9c1ff" stroke-width="3"/>
+      <line x1="180" y1="74" x2="287" y2="74" stroke="#8d80e1" stroke-width="2"/>
+      <line x1="185" y1="93" x2="252" y2="93" stroke="#c0b9f2" stroke-width="2"/>
+      <line x1="185" y1="99" x2="241" y2="99" stroke="#c0b9f2" stroke-width="2"/>
+
+      <rect x="19" y="188" width="264" height="102" rx="10" fill="#ece8e4"/>
+      <rect x="31" y="198" width="163" height="88" rx="7" fill="#ffffff" opacity=".3"/>
+
+      <circle cx="82" cy="121" r="35" fill="#684a34"/>
+      <circle cx="90" cy="128" r="22" fill="#7c5d47"/>
+      <rect x="47" y="151" width="84" height="96" rx="31" fill="#2c577b"/>
+
+      <circle cx="181" cy="125" r="26" fill="#6f5241"/>
+      <circle cx="178" cy="131" r="17" fill="#7d5d48"/>
+      <rect x="154" y="145" width="61" height="81" rx="26" fill="#d09f42"/>
+
+      <rect x="111" y="179" width="83" height="47" rx="6" fill="#31343b"/>
+      <rect x="117" y="185" width="71" height="34" rx="3" fill="#4a4f5d"/>
+
+      <polygon points="0,262 27,277 22,310 0,310" fill="#7e4b37"/>
+      <rect x="106" y="223" width="111" height="65" rx="5" fill="#2c3143" transform="rotate(18 161 255)"/>
+      <rect x="112" y="229" width="99" height="52" rx="3" fill="#6b5ecb" transform="rotate(18 161 255)"/>
+      <circle cx="141" cy="252" r="4" fill="#4de2ff"/>
+      <circle cx="156" cy="246" r="4" fill="#f6cd4b"/>
+      <circle cx="171" cy="256" r="4" fill="#74dc8a"/>
+      <polyline points="133,268 149,258 162,265 181,247 195,253" fill="none" stroke="#d9d4ff" stroke-width="2"/>
+
+      <rect x="7" y="255" width="53" height="42" rx="3" fill="#ececeb" transform="rotate(-14 33 276)"/>
+      <circle cx="29" cy="277" r="8" fill="#61b6f5"/>
+      <circle cx="40" cy="273" r="6" fill="#f5d04b"/>
+      <circle cx="35" cy="285" r="7" fill="#ef6d6d"/>
+    </svg>
+  </div>
+
+  <div class="photo" style="left:961px; top:514px; width:302px; height:254px;">
+    <svg width="302" height="294" viewBox="0 0 302 294" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#12152b"/>
+          <stop offset="100%" stop-color="#0b0d17"/>
+        </linearGradient>
+        <filter id="b2"><feGaussianBlur stdDeviation="4.2"/></filter>
+      </defs>
+      <rect width="302" height="254" fill="url(#g2)"/>
+      <g opacity=".13" stroke="#96b7d3" stroke-width="1">
+        <line x1="18" y1="120" x2="18" y2="254"/><line x1="48" y1="120" x2="48" y2="254"/>
+        <line x1="78" y1="120" x2="78" y2="254"/><line x1="108" y1="120" x2="108" y2="254"/>
+        <line x1="138" y1="120" x2="138" y2="254"/><line x1="168" y1="120" x2="168" y2="254"/>
+        <line x1="198" y1="120" x2="198" y2="254"/><line x1="228" y1="120" x2="228" y2="254"/>
+        <line x1="258" y1="120" x2="258" y2="254"/><line x1="288" y1="120" x2="288" y2="254"/>
+        <line x1="18" y1="34" x2="302" y2="34"/><line x1="18" y1="84" x2="302" y2="84"/>
+        <line x1="18" y1="134" x2="302" y2="134"/><line x1="18" y1="184" x2="302" y2="184"/>
+        <line x1="18" y1="234" x2="302" y2="234"/>
+      </g>
+      <g filter="url(#b2)" opacity=".78">
+        <rect x="9" y="38" width="18" height="179" fill="#2436ff" opacity=".34"/>
+        <rect x="30" y="22" width="16" height="200" fill="#43d0ff" opacity=".27"/>
+        <rect x="52" y="54" width="18" height="160" fill="#ff58b0" opacity=".22"/>
+        <rect x="74" y="32" width="16" height="186" fill="#54deca" opacity=".24"/>
+        <rect x="96" y="64" width="20" height="142" fill="#4c7cff" opacity=".25"/>
+        <rect x="122" y="26" width="16" height="188" fill="#7b2dff" opacity=".21"/>
+        <rect x="145" y="49" width="18" height="171" fill="#3ac5ff" opacity=".26"/>
+        <rect x="170" y="36" width="16" height="186" fill="#ff4d4d" opacity=".18"/>
+        <rect x="193" y="60" width="18" height="152" fill="#7c42ff" opacity=".24"/>
+        <rect x="219" y="27" width="20" height="192" fill="#19d0c1" opacity=".22"/>
+        <rect x="246" y="44" width="16" height="170" fill="#48aaff" opacity=".25"/>
+        <rect x="269" y="29" width="18" height="182" fill="#7178ff" opacity=".24"/>
+      </g>
+      <g filter="url(#b2)" opacity=".82">
+        <circle cx="18" cy="42" r="6" fill="#1de0ff"/>
+        <circle cx="44" cy="36" r="7" fill="#5f8cff"/>
+        <circle cx="70" cy="50" r="8" fill="#4ae2c5"/>
+        <circle cx="91" cy="32" r="7" fill="#2bd2ff"/>
+        <circle cx="116" cy="57" r="8" fill="#f25cff"/>
+        <circle cx="139" cy="44" r="8" fill="#59a4ff"/>
+        <circle cx="165" cy="56" r="7" fill="#7d42ff"/>
+        <circle cx="188" cy="37" r="8" fill="#ff5353"/>
+        <circle cx="214" cy="53" r="7" fill="#53e1ff"/>
+        <circle cx="239" cy="35" r="8" fill="#52d7c5"/>
+        <circle cx="265" cy="49" r="7" fill="#4a6dff"/>
+        <circle cx="287" cy="33" r="7" fill="#6cf"/>
+
+        <circle cx="14" cy="110" r="8" fill="#6cf"/>
+        <circle cx="39" cy="125" r="7" fill="#4a6dff"/>
+        <circle cx="61" cy="112" r="8" fill="#2bd2ff"/>
+        <circle cx="86" cy="129" r="7" fill="#7d42ff"/>
+        <circle cx="111" cy="114" r="8" fill="#52d7c5"/>
+        <circle cx="137" cy="130" r="7" fill="#f25cff"/>
+        <circle cx="160" cy="117" r="8" fill="#59a4ff"/>
+        <circle cx="188" cy="126" r="7" fill="#ff5353"/>
+        <circle cx="214" cy="113" r="8" fill="#4ae2c5"/>
+        <circle cx="238" cy="128" r="7" fill="#53e1ff"/>
+        <circle cx="266" cy="117" r="8" fill="#7f8cff"/>
+        <circle cx="289" cy="130" r="7" fill="#2bd2ff"/>
+
+        <circle cx="20" cy="202" r="7" fill="#f25cff"/>
+        <circle cx="44" cy="188" r="8" fill="#53e1ff"/>
+        <circle cx="67" cy="205" r="7" fill="#4ae2c5"/>
+        <circle cx="94" cy="191" r="8" fill="#4a6dff"/>
+        <circle cx="119" cy="208" r="7" fill="#6cf"/>
+        <circle cx="141" cy="193" r="8" fill="#7d42ff"/>
+        <circle cx="168" cy="207" r="7" fill="#2bd2ff"/>
+        <circle cx="191" cy="194" r="8" fill="#ff5353"/>
+        <circle cx="218" cy="205" r="7" fill="#52d7c5"/>
+        <circle cx="243" cy="192" r="8" fill="#59a4ff"/>
+        <circle cx="267" cy="206" r="7" fill="#f25cff"/>
+        <circle cx="289" cy="191" r="8" fill="#53e1ff"/>
+      </g>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

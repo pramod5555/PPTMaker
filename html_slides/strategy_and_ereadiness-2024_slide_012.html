@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Consumer survey – Cluster profiles</title>
+<style>
+  body{
+    margin:0;
+    background:#f4f1f2;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f4f1f2;
+    color:#111;
+  }
+
+  .title{
+    position:absolute;
+    left:47px;
+    top:33px;
+    width:1115px;
+    font-size:41px;
+    line-height:1.03;
+    font-weight:400;
+    letter-spacing:-0.3px;
+  }
+
+  .subtitle{
+    position:absolute;
+    left:47px;
+    top:142px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:27px;
+    line-height:1;
+    color:#b12020;
+    font-weight:700;
+  }
+  .subtitle .light{
+    font-weight:400;
+  }
+
+  .respondents{
+    position:absolute;
+    left:47px;
+    top:179px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:15px;
+    color:#111;
+    display:flex;
+    align-items:center;
+    gap:9px;
+  }
+  .hashbox{
+    width:20px;
+    height:20px;
+    background:#b12020;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:14px;
+    line-height:1;
+  }
+  .italic{
+    font-style:italic;
+  }
+
+  .group-title{
+    position:absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:700;
+    color:#111;
+    text-align:center;
+  }
+  .group-line{
+    position:absolute;
+    height:2px;
+    background:#222;
+  }
+
+  .left-label{
+    position:absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:15px;
+    color:#111;
+    text-align:right;
+    width:95px;
+  }
+
+  .axis{
+    position:absolute;
+    height:2px;
+    background:#888;
+  }
+  .tick{
+    position:absolute;
+    width:1px;
+    height:7px;
+    background:#333;
+  }
+
+  .bar{
+    position:absolute;
+    width:38px;
+    height:353px;
+  }
+  .seg-ev{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    background:#b71f21;
+    border-top:2px solid rgba(255,255,255,0.45);
+  }
+  .seg-pro{
+    position:absolute;
+    left:0;
+    background:#d65269;
+    width:100%;
+    border-top:2px solid rgba(255,255,255,0.45);
+  }
+  .seg-sk{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    background:#525252;
+    border-top:2px solid rgba(255,255,255,0.45);
+  }
+
+  .pct{
+    position:absolute;
+    width:100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:14px;
+    color:#fff;
+    text-align:center;
+    line-height:1;
+    transform:translateY(-50%);
+    pointer-events:none;
+  }
+
+  .bar-label{
+    position:absolute;
+    width:56px;
+    margin-left:-9px;
+    text-align:center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:14px;
+    color:#111;
+    line-height:1.1;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:47px;
+    bottom:22px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:12px;
+    line-height:1.35;
+    color:#222;
+  }
+  .footer-center{
+    position:absolute;
+    left:445px;
+    bottom:18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:12px;
+    color:#222;
+  }
+  .footer-right{
+    position:absolute;
+    right:47px;
+    bottom:22px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:12px;
+    line-height:1.35;
+    color:#222;
+    text-align:right;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="title">
+    Japan and the USA have a higher percentage of skeptics, whereas Northern Europe and China have a higher percentage of EV owners
+  </div>
+
+  <div class="subtitle">Consumer survey – <span class="light">Cluster profiles</span></div>
+
+  <div class="respondents">
+    <div class="hashbox">#</div>
+    <div><span class="italic">16,778 respondents</span></div>
+  </div>
+
+  <!-- Group headers -->
+  <div class="group-title" style="left:223px; top:225px; width:105px;">APAC</div>
+  <div class="group-line" style="left:159px; top:249px; width:270px;"></div>
+
+  <div class="group-title" style="left:535px; top:225px; width:50px;">NA</div>
+  <div class="group-line" style="left:506px; top:249px; width:106px;"></div>
+
+  <div class="group-title" style="left:708px; top:225px; width:79px;">LATAM</div>
+  <div class="group-line" style="left:680px; top:249px; width:106px;"></div>
+
+  <div class="group-title" style="left:980px; top:225px; width:86px;">EMEA</div>
+  <div class="group-line" style="left:859px; top:249px; width:327px;"></div>
+
+  <!-- Left labels -->
+  <div class="left-label" style="left:18px; top:341px;">Sceptics</div>
+  <div class="left-label" style="left:7px; top:513px;">Prospects</div>
+  <div class="left-label" style="left:13px; top:602px;">EV Owners</div>
+
+  <!-- Baselines -->
+  <div class="axis" style="left:148px; top:622px; width:291px;"></div>
+  <div class="axis" style="left:495px; top:622px; width:123px;"></div>
+  <div class="axis" style="left:674px; top:622px; width:118px;"></div>
+  <div class="axis" style="left:841px; top:622px; width:359px;"></div>
+  <div class="axis" style="left:1257px; top:622px; width:59px;"></div>
+
+  <!-- APAC bars -->
+  <div class="bar" style="left:157px; top:270px;">
+    <div class="seg-sk" style="height:162px;"></div>
+    <div class="seg-pro" style="bottom:21px; height:176px;"></div>
+    <div class="seg-ev" style="height:21px;"></div>
+    <div class="pct" style="top:81px;">46%</div>
+    <div class="pct" style="top:253px;">50%</div>
+    <div class="pct" style="top:342px;">3%</div>
+  </div>
+  <div class="tick" style="left:176px; top:622px;"></div>
+  <div class="bar-label" style="left:148px; top:636px;">Australia</div>
+
+  <div class="bar" style="left:215px; top:270px;">
+    <div class="seg-sk" style="height:25px;"></div>
+    <div class="seg-pro" style="bottom:44px; height:258px;"></div>
+    <div class="seg-ev" style="height:44px;"></div>
+    <div class="pct" style="top:13px;">7%</div>
+    <div class="pct" style="top:155px;">73%</div>
+    <div class="pct" style="top:331px;">20%</div>
+  </div>
+  <div class="tick" style="left:234px; top:622px;"></div>
+  <div class="bar-label" style="left:205px; top:636px;">China</div>
+
+  <div class="bar" style="left:273px; top:270px;">
+    <div class="seg-sk" style="height:39px;"></div>
+    <div class="seg-pro" style="bottom:14px; height:299px;"></div>
+    <div class="seg-ev" style="height:14px;"></div>
+    <div class="pct" style="top:20px;">11%</div>
+    <div class="pct" style="top:190px;">85%</div>
+    <div class="pct" style="top:343px;">4%</div>
+  </div>
+  <div class="tick" style="left:292px; top:622px;"></div>
+  <div class="bar-label" style="left:263px; top:636px;">India</div>
+
+  <div class="bar" style="left:332px; top:270px;">
+    <div class="seg-sk" style="height:53px;"></div>
+    <div class="seg-pro" style="bottom:25px; height:275px;"></div>
+    <div class="seg-ev" style="height:25px;"></div>
+    <div class="pct" style="top:27px;">15%</div>
+    <div class="pct" style="top:191px;">78%</div>
+    <div class="pct" style="top:339px;">7%</div>
+  </div>
+  <div class="tick" style="left:351px; top:622px;"></div>
+  <div class="bar-label" style="left:322px; top:636px;">Indonesia</div>
+
+  <div class="bar" style="left:390px; top:270px;">
+    <div class="seg-sk" style="height:261px;"></div>
+    <div class="seg-pro" style="bottom:18px; height:74px;"></div>
+    <div class="seg-ev" style="height:18px;"></div>
+    <div class="pct" style="top:131px;">74%</div>
+    <div class="pct" style="top:297px;">21%</div>
+    <div class="pct" style="top:343px;">5%</div>
+  </div>
+  <div class="tick" style="left:409px; top:622px;"></div>
+  <div class="bar-label" style="left:380px; top:636px;">Japan</div>
+
+  <!-- NA bars -->
+  <div class="bar" style="left:508px; top:270px;">
+    <div class="seg-sk" style="height:184px;"></div>
+    <div class="seg-pro" style="bottom:14px; height:154px;"></div>
+    <div class="seg-ev" style="height:14px;"></div>
+    <div class="pct" style="top:92px;">52%</div>
+    <div class="pct" style="top:238px;">44%</div>
+    <div class="pct" style="top:343px;">4%</div>
+  </div>
+  <div class="tick" style="left:527px; top:622px;"></div>
+  <div class="bar-label" style="left:498px; top:636px;">USA</div>
+
+  <div class="bar" style="left:566px; top:270px;">
+    <div class="seg-sk" style="height:131px;"></div>
+    <div class="seg-pro" style="bottom:21px; height:201px;"></div>
+    <div class="seg-ev" style="height:21px;"></div>
+    <div class="pct" style="top:66px;">37%</div>
+    <div class="pct" style="top:234px;">57%</div>
+    <div class="pct" style="top:342px;">6%</div>
+  </div>
+  <div class="tick" style="left:585px; top:622px;"></div>
+  <div class="bar-label" style="left:556px; top:636px;">Canada</div>
+
+  <!-- LATAM bars -->
+  <div class="bar" style="left:683px; top:270px;">
+    <div class="seg-sk" style="height:64px;"></div>
+    <div class="seg-pro" style="bottom:7px; height:282px;"></div>
+    <div class="seg-ev" style="height:7px;"></div>
+    <div class="pct" style="top:32px;">18%</div>
+    <div class="pct" style="top:207px;">80%</div>
+    <div class="pct" style="top:346px;">2%</div>
+  </div>
+  <div class="tick" style="left:702px; top:622px;"></div>
+  <div class="bar-label" style="left:673px; top:636px;">Mexico</div>
+
+  <div class="bar" style="left:742px; top:270px;">
+    <div class="seg-sk" style="height:71px;"></div>
+    <div class="seg-pro" style="bottom:18px; height:264px;"></div>
+    <div class="seg-ev" style="height:18px;"></div>
+    <div class="pct" style="top:36px;">20%</div>
+    <div class="pct" style="top:209px;">75%</div>
+    <div class="pct" style="top:343px;">5%</div>
+  </div>
+  <div class="tick" style="left:761px; top:622px;"></div>
+  <div class="bar-label" style="left:732px; top:636px;">Brazil</div>
+
+  <!-- EMEA bars -->
+  <div class="bar" style="left:857px; top:270px;">
+    <div class="seg-sk" style="height:116px;"></div>
+    <div class="seg-pro" style="bottom:56px; height:180px;"></div>
+    <div class="seg-ev" style="height:56px;"></div>
+    <div class="pct" style="top:58px;">33%</div>
+    <div class="pct" style="top:217px;">51%</div>
+    <div class="pct" style="top:325px;">16%</div>
+  </div>
+  <div class="tick" style="left:876px; top:622px;"></div>
+  <div class="bar-label" style="left:847px; top:636px;">Northern<br>Europe</div>
+
+  <div class="bar" style="left:917px; top:270px;">
+    <div class="seg-sk" style="height:120px;"></div>
+    <div class="seg-pro" style="bottom:28px; height:205px;"></div>
+    <div class="seg-ev" style="height:28px;"></div>
+    <div class="pct" style="top:60px;">34%</div>
+    <div class="pct" style="top:223px;">58%</div>
+    <div class="pct" style="top:339px;">8%</div>
+  </div>
+  <div class="tick" style="left:936px; top:622px;"></div>
+  <div class="bar-label" style="left:907px; top:636px;">Central<br>Europe</div>
+
+  <div class="bar" style="left:976px; top:270px;">
+    <div class="seg-sk" style="height:166px;"></div>
+    <div class="seg-pro" style="bottom:7px; height:180px;"></div>
+    <div class="seg-ev" style="height:7px;"></div>
+    <div class="pct" style="top:83px;">47%</div>
+    <div class="pct" style="top:217px;">51%</div>
+    <div class="pct" style="top:346px;">2%</div>
+  </div>
+  <div class="tick" style="left:995px; top:622px;"></div>
+  <div class="bar-label" style="left:966px; top:636px;">Eastern<br>Europe</div>
+
+  <div class="bar" style="left:1034px; top:270px;">
+    <div class="seg-sk" style="height:109px;"></div>
+    <div class="seg-pro" style="bottom:14px; height:230px;"></div>
+    <div class="seg-ev" style="height:14px;"></div>
+    <div class="pct" style="top:55px;">31%</div>
+    <div class="pct" style="top:224px;">65%</div>
+    <div class="pct" style="top:343px;">4%</div>
+  </div>
+  <div class="tick" style="left:1053px; top:622px;"></div>
+  <div class="bar-label" style="left:1024px; top:636px;">Southern<br>Europe</div>
+
+  <div class="bar" style="left:1093px; top:270px;">
+    <div class="seg-sk" style="height:60px;"></div>
+    <div class="seg-pro" style="bottom:14px; height:279px;"></div>
+    <div class="seg-ev" style="height:14px;"></div>
+    <div class="pct" style="top:30px;">17%</div>
+    <div class="pct" style="top:220px;">79%</div>
+    <div class="pct" style="top:343px;">4%</div>
+  </div>
+  <div class="tick" style="left:1112px; top:622px;"></div>
+  <div class="bar-label" style="left:1083px; top:636px;">Middle<br>East</div>
+
+  <div class="bar" style="left:1151px; top:270px;">
+    <div class="seg-sk" style="height:88px;"></div>
+    <div class="seg-pro" style="bottom:4px; height:261px;"></div>
+    <div class="seg-ev" style="height:4px;"></div>
+    <div class="pct" style="top:44px;">25%</div>
+    <div class="pct" style="top:218px;">74%</div>
+    <div class="pct" style="top:349px;">1%</div>
+  </div>
+  <div class="tick" style="left:1170px; top:622px;"></div>
+  <div class="bar-label" style="left:1141px; top:636px;">Africa</div>
+
+  <!-- Global -->
+  <div class="bar" style="left:1267px; top:270px;">
+    <div class="seg-sk" style="height:109px;"></div>
+    <div class="seg-pro" style="bottom:21px; height:223px;"></div>
+    <div class="seg-ev" style="height:21px;"></div>
+    <div class="pct" style="top:55px;">31%</div>
+    <div class="pct" style="top:219px;">63%</div>
+    <div class="pct" style="top:342px;">6%</div>
+  </div>
+  <div class="tick" style="left:1286px; top:622px;"></div>
+  <div class="bar-label" style="left:1257px; top:636px;">Global</div>
+
+  <!-- Footer -->
+  <div class="footer-left">
+    eReadiness Report 2024<br>
+    Strategy&
+  </div>
+
+  <div class="footer-center">Source: Strategy& analysis on feedback from consumer survey</div>
+
+  <div class="footer-right">
+    September 2024<br>
+    12
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#000;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  .left-bg{
+    position:absolute;
+    left:0;
+    top:0;
+    width:594px;
+    height:720px;
+    background:#a6afb6;
+  }
+  .right-bg{
+    position:absolute;
+    left:594px;
+    top:0;
+    width:686px;
+    height:720px;
+    background:#f5f5f5;
+  }
+
+  .contents-title{
+    position:absolute;
+    left:33px;
+    top:58px;
+    font-size:40px;
+    line-height:1;
+    font-weight:400;
+    color:#132239;
+    letter-spacing:0.1px;
+  }
+
+  .rule{
+    position:absolute;
+    left:33px;
+    width:314px;
+    height:1px;
+    background:#c3c9ce;
+    opacity:.9;
+  }
+  .r0{top:174px;}
+  .r1{top:264px;}
+  .r2{top:354px;}
+  .r3{top:444px;}
+  .r4{top:534px;}
+  .r5{top:624px;}
+
+  .item-intro,.summary,.txt1,.txt2,.txt3,.txt4{
+    color:#132239;
+    font-weight:700;
+  }
+
+  .item-intro{
+    position:absolute;
+    left:141px;
+    top:210px;
+    font-size:18px;
+    line-height:1.15;
+  }
+  .summary{
+    position:absolute;
+    left:141px;
+    top:659px;
+    font-size:18px;
+    line-height:1.15;
+  }
+
+  .smallpage{
+    position:absolute;
+    left:313px;
+    width:18px;
+    font-size:11px;
+    line-height:1;
+    font-weight:400;
+    color:#6d7680;
+    text-align:left;
+  }
+  .pg0{top:222px;}
+  .pg1{top:302px;}
+  .pg2{top:392px;}
+  .pg3{top:482px;}
+  .pg4{top:572px;}
+  .pg5{top:662px;}
+
+  .num{
+    position:absolute;
+    left:33px;
+    font-size:47px;
+    line-height:1;
+    font-weight:400;
+    color:#ffffff;
+    letter-spacing:0.4px;
+  }
+  .n1{top:294px;}
+  .n2{top:384px;}
+  .n3{top:474px;}
+  .n4{top:564px;}
+
+  .txt1,.txt2,.txt3,.txt4{
+    position:absolute;
+    left:141px;
+    font-size:17px;
+    line-height:1.08;
+  }
+  .txt1{top:286px; width:158px;}
+  .txt2{top:376px; width:168px;}
+  .txt3{top:466px; width:176px;}
+  .txt4{top:556px; width:140px;}
+
+  .photo-col{
+    position:absolute;
+    left:356px;
+    top:175px;
+    width:205px;
+    height:536px;
+  }
+  .ph{
+    position:absolute;
+    left:0;
+    width:205px;
+    overflow:hidden;
+    box-sizing:border-box;
+    border:1px solid rgba(255,255,255,0.18);
+  }
+  .ph1{top:0;height:89px;background:linear-gradient(180deg,#203e6b 0%,#3e6aab 52%,#efb06b 88%,#1f1d23 100%);}
+  .ph2{top:89px;height:89px;background:linear-gradient(180deg,#5c5f45 0%,#2b7d72 26%,#7fd0b7 48%,#102843 100%);}
+  .ph3{top:178px;height:89px;background:radial-gradient(circle at 57% 43%, #f8ddb0 0%, #cbb594 13%, #6c8098 24%, #33495d 41%, #93a9bb 60%, #5e7082 78%, #2d3847 100%);}
+  .ph4{top:267px;height:89px;background:linear-gradient(180deg,#2d2940 0%,#5b4e73 35%,#8f436d 61%,#25222f 100%);}
+  .ph5{top:356px;height:89px;background:radial-gradient(circle at 79% 35%, #8cb9dc 0%, #5f80a9 18%, #1b2131 41%, #09090d 72%, #172034 100%);}
+  .ph6{top:445px;height:91px;background:linear-gradient(180deg,#17172b 0%,#3b275b 30%,#73498a 49%,#ac669d 61%,#342d49 83%,#5a4330 100%);}
+  .ph svg{position:absolute;left:0;top:0;width:205px;height:100%;}
+
+  .method-title{
+    position:absolute;
+    left:735px;
+    top:59px;
+    font-size:17px;
+    line-height:1.15;
+    font-weight:700;
+    color:#132239;
+  }
+
+  .series-title{
+    position:absolute;
+    left:735px;
+    top:171px;
+    width:320px;
+    font-size:27px;
+    line-height:1.12;
+    font-weight:300;
+    color:#a7b0b7;
+  }
+
+  .kpi-line{
+    position:absolute;
+    left:627px;
+    top:254px;
+    width:75px;
+    height:2px;
+    background:#e0c218;
+  }
+  .kpi1{
+    position:absolute;
+    left:627px;
+    top:270px;
+    font-size:31px;
+    line-height:1;
+    font-weight:700;
+    color:#f1c40f;
+  }
+  .kpi1lab{
+    position:absolute;
+    left:627px;
+    top:301px;
+    width:70px;
+    font-size:12px;
+    line-height:1.15;
+    font-weight:700;
+    color:#223041;
+  }
+  .kpi2{
+    position:absolute;
+    left:627px;
+    top:331px;
+    font-size:26px;
+    line-height:1;
+    font-weight:700;
+    color:#9ea7af;
+  }
+  .kpi2lab{
+    position:absolute;
+    left:627px;
+    top:357px;
+    width:90px;
+    font-size:12px;
+    line-height:1.15;
+    font-weight:700;
+    color:#223041;
+  }
+  .kpi3{
+    position:absolute;
+    left:627px;
+    top:417px;
+    font-size:26px;
+    line-height:1;
+    font-weight:700;
+    color:#a7afb7;
+  }
+  .kpi3lab{
+    position:absolute;
+    left:627px;
+    top:442px;
+    width:108px;
+    font-size:12px;
+    line-height:1.15;
+    font-weight:700;
+    color:#223041;
+  }
+  .kpi4{
+    position:absolute;
+    left:627px;
+    top:504px;
+    font-size:26px;
+    line-height:1;
+    font-weight:700;
+    color:#b4bcc3;
+  }
+  .kpi4lab{
+    position:absolute;
+    left:627px;
+    top:529px;
+    width:100px;
+    font-size:12px;
+    line-height:1.15;
+    font-weight:700;
+    color:#223041;
+  }
+
+  .body-col1{
+    position:absolute;
+    left:735px;
+    top:251px;
+    width:196px;
+    font-size:11px;
+    line-height:1.42;
+    font-weight:400;
+    color:#4d5662;
+  }
+  .body-col1 p{margin:0 0 11px 0;}
+
+  .body-col2{
+    position:absolute;
+    left:949px;
+    top:251px;
+    width:246px;
+    font-size:11px;
+    line-height:1.42;
+    font-weight:400;
+    color:#4d5662;
+  }
+  .body-col2 .subhead{
+    font-size:11px;
+    line-height:1.35;
+    font-weight:700;
+    color:#223041;
+    margin:0 0 11px 0;
+  }
+  .body-col2 p{margin:0 0 10px 0;}
+  .bullet{
+    position:relative;
+    margin:0 0 9px 0;
+    padding-left:14px;
+  }
+  .bullet:before{
+    content:"▪";
+    position:absolute;
+    left:0;
+    top:0;
+    font-size:10px;
+    line-height:1.42;
+    color:#223041;
+  }
+
+  .bottomline-left{
+    position:absolute;
+    left:32px;
+    top:710px;
+    font-size:6px;
+    line-height:1;
+    font-weight:700;
+    color:#132239;
+    white-space:nowrap;
+  }
+  .bottomline-left .roman{
+    font-weight:400;
+    margin-right:10px;
+  }
+
+  .bottomline-right{
+    position:absolute;
+    right:33px;
+    top:710px;
+    font-size:6px;
+    line-height:1;
+    font-weight:700;
+    color:#132239;
+    white-space:nowrap;
+    text-align:right;
+  }
+  .bottomline-right .sep{
+    font-weight:400;
+    margin:0 9px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-bg"></div>
+  <div class="right-bg"></div>
+
+  <div class="contents-title">Contents</div>
+
+  <div class="rule r0"></div>
+  <div class="rule r1"></div>
+  <div class="rule r2"></div>
+  <div class="rule r3"></div>
+  <div class="rule r4"></div>
+  <div class="rule r5"></div>
+
+  <div class="item-intro">Introduction</div>
+  <div class="smallpage pg0">01</div>
+
+  <div class="num n1">01</div>
+  <div class="txt1">Strategy-first:<br>relevance starts<br>upstream</div>
+  <div class="smallpage pg1">05</div>
+
+  <div class="num n2">02</div>
+  <div class="txt2">Trigger-based:<br>matching today's<br>velocity</div>
+  <div class="smallpage pg2">07</div>
+
+  <div class="num n3">03</div>
+  <div class="txt3">Governance-<br>forward: clarifying<br>and coordinating</div>
+  <div class="smallpage pg3">11</div>
+
+  <div class="num n4">04</div>
+  <div class="txt4">Find your<br>entry point</div>
+  <div class="smallpage pg4">15</div>
+
+  <div class="summary">Summary</div>
+  <div class="smallpage pg5">25</div>
+
+  <div class="photo-col">
+    <div class="ph ph1">
+      <svg viewBox="0 0 205 89" preserveAspectRatio="none">
+        <circle cx="20" cy="14" r="1.1" fill="#fff" opacity="0.8"/>
+        <circle cx="45" cy="21" r="1.0" fill="#fff" opacity="0.7"/>
+        <circle cx="70" cy="17" r="1.2" fill="#fff" opacity="0.8"/>
+        <circle cx="112" cy="24" r="1.0" fill="#fff" opacity="0.7"/>
+        <circle cx="134" cy="12" r="0.9" fill="#fff" opacity="0.6"/>
+        <circle cx="158" cy="18" r="1.1" fill="#fff" opacity="0.8"/>
+        <path d="M98 58 L108 58 L105 49 L101 49 Z" fill="#1b1d24"/>
+        <ellipse cx="103" cy="48" rx="12" ry="7" fill="#2f333b"/>
+        <rect x="102" y="34" width="3" height="17" fill="#262931"/>
+        <path d="M103 34 C101 30,99 27,99 22 C103 26,106 29,107 35 Z" fill="#8a8391" opacity="0.55"/>
+        <rect x="0" y="72" width="205" height="17" fill="#181b22"/>
+      </svg>
+    </div>
+
+    <div class="ph ph2">
+      <svg viewBox="0 0 205 89" preserveAspectRatio="none">
+        <path d="M0 67 C35 46,58 54,83 34 C104 16,133 25,164 11 L205 1 L205 89 L0 89 Z" fill="#18263b" opacity="0.88"/>
+        <path d="M0 57 C29 49,56 38,83 42 C106 45,139 27,171 18 L205 9 L205 89 L0 89 Z" fill="#263b50" opacity="0.9"/>
+        <path d="M91 56 L98 44 L105 56 Z" fill="#1a140e"/>
+        <rect x="97" y="56" width="6" height="10" fill="#1a140e"/>
+      </svg>
+    </div>
+
+    <div class="ph ph3">
+      <svg viewBox="0 0 205 89" preserveAspectRatio="none">
+        <path d="M0 56 C28 48,51 36,85 40 C113 44,143 25,171 17 C186 13,197 12,205 10 L205 89 L0 89 Z" fill="#8da3b3" opacity="0.55"/>
+        <path d="M0 50 C20 42,55 47,88 30 C124 11,161 14,205 2 L205 89 L0 89 Z" fill="#70889d" opacity="0.48"/>
+      </svg>
+    </div>
+
+    <div class="ph ph4">
+      <svg viewBox="0 0 205 89" preserveAspectRatio="none">
+        <circle cx="157" cy="43" r="20" fill="#f14f63" opacity="0.95"/>
+        <polygon points="160,22 166,45 154,45" fill="#ffffff" opacity="0.88"/>
+        <path d="M155 45 L205 21 L205 57 Z" fill="#aed8ff" opacity="0.9"/>
+        <circle cx="103" cy="14" r="1.1" fill="#fff" opacity="0.8"/>
+        <circle cx="111" cy="11" r="0.9" fill="#fff" opacity="0.8"/>
+        <circle cx="117" cy="16" r="1.0" fill="#fff" opacity="0.7"/>
+        <rect x="0" y="71" width="205" height="18" fill="#2b1f1d" opacity="0.68"/>
+      </svg>
+    </div>
+
+    <div class="ph ph5">
+      <svg viewBox="0 0 205 89" preserveAspectRatio="none">
+        <ellipse cx="166" cy="36" rx="33" ry="28" fill="#a8c7e4"/>
+        <ellipse cx="171" cy="40" rx="28" ry="24" fill="#d3e4f0"/>
+        <path d="M0 89 L0 71 C18 53,34 35,61 13 C76 2,85 1,100 1 C76 26,62 49,59 89 Z" fill="#06070c" opacity="0.95"/>
+        <ellipse cx="59" cy="46" rx="26" ry="34" fill="#090a10"/>
+        <path d="M39 60 C47 47,60 41,72 37 C68 28,56 21,43 20 C31 28,28 45,39 60 Z" fill="#1f2132" opacity="0.7"/>
+      </svg>
+    </div>
+
+    <div class="ph ph6">
+      <svg viewBox="0 0 205 91" preserveAspectRatio="none">
+        <circle cx="41" cy="14" r="1.0" fill="#fff" opacity="0.8"/>
+        <circle cx="62" cy="10" r="1.2" fill="#fff" opacity="0.8"/>
+        <circle cx="82" cy="18" r="1.0" fill="#fff" opacity="0.7"/>
+        <circle cx="99" cy="11" r="1.1" fill="#fff" opacity="0.8"/>
+        <circle cx="119" cy="17" r="0.9" fill="#fff" opacity="0.7"/>
+        <path d="M0 91 L0 74 C24 69,39 68,64 67 C84 66,103 67,118 68 C140 69,164 67,205 60 L205 91 Z" fill="#403033"/>
+        <rect x="92" y="54" width="6" height="17" fill="#f2ead0"/>
+        <ellipse cx="95" cy="54" rx="9" ry="8" fill="#efe2b5"/>
+        <rect x="170" y="52" width="7" height="15" fill="#8a6a4d"/>
+        <rect x="153" y="57" width="8" height="13" fill="#7b5c44"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="method-title">Research methodology</div>
+  <div class="series-title">About the EY Risk<br>Transformation series</div>
+
+  <div class="kpi-line"></div>
+  <div class="kpi1">50+</div>
+  <div class="kpi1lab">interviews</div>
+
+  <div class="kpi2">28</div>
+  <div class="kpi2lab">senior risk<br>management<br>executives</div>
+
+  <div class="kpi3">15+</div>
+  <div class="kpi3lab">leaders from<br>the EY Risk<br>Consulting practice</div>
+
+  <div class="kpi4">1,200</div>
+  <div class="kpi4lab">survey respondents</div>
+
+  <div class="body-col1">
+    <p>This article is part of the EY Risk Transformation series. This series explores the symbiosis of risk and strategy by identifying and learning from the behaviors and mindsets of Risk Strategist firms, a group of companies that approach risk management in more strategic ways than “Risk Traditionalists.” These organizations are better prepared for the TAVI risk environment, allowing them to achieve better risk and business outcomes.</p>
+    <p>Quantitative research for this article includes a survey of 1,200 risk professionals conducted by the global EY organization in April and May 2025. Respondents span 21 sectors and 12 countries and represent organizations with over US$1 billion in annual revenue. To participate in the survey, risk professionals were required to have responsibility for risk management at their organization with a role in their organization’s C-suite, head of business unit, board member, or part of audit, risk, compliance, or nominating and governance committees.</p>
+    <p>Qualitative research for this article included a dozen interviews with risk professionals, building on more than 50 interviews conducted for the previous article in this series. Some of these interviews form the basis for guest perspectives by Risk Strategists that are featured in this article.</p>
+  </div>
+
+  <div class="body-col2">
+    <div class="subhead">Defining Risk Strategists and<br>Risk Traditionalists</div>
+    <p>To help us identify companies that closely link risk with strategy and the business, we captured the extent to which organizations:</p>
+    <div class="bullet">Align the risk management function with overall business strategy.</div>
+    <div class="bullet">Make business decisions based on a risk-informed strategy.</div>
+    <div class="bullet">Incentivize risk management professionals using business metrics.</div>
+    <div class="bullet">View risk management as an enabler of business growth.</div>
+    <p>After running latent class segmentation to understand how the responses to these questions were grouped, we created an index to reflect these relationships. Each question was asked on a five-point scale, and we scored each response based on level of agreement or the extent the statement describes their organization. Aggregating these scores and normalizing the scale from 0 to 100 formed the basis of the index. Through statistical testing, we identified Risk Strategists as the top 32% of index scores and Risk Traditionalists as the bottom 25%.</p>
+  </div>
+
+  <div class="bottomline-left"><span class="roman">iv</span> |&nbsp;&nbsp;When the world shifts overnight how can you operate at the speed of trust</div>
+  <div class="bottomline-right">Global Risk Transformation Series <span class="sep">|</span> v</div>
+</div>
+</body>
+</html>

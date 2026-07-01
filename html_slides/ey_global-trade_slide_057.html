@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Insights: Asia-Pacific</title>
+<style>
+  body{
+    margin:0;
+    background:#dddddf;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e3e3e3;
+  }
+  #slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .top-left-block{
+    left:0;
+    top:0;
+    width:47px;
+    height:79px;
+    background:#bfc0c8;
+  }
+  .title{
+    left:56px;
+    top:50px;
+    color:#7b7d88;
+    font-size:33px;
+    line-height:1;
+    font-weight:300;
+    letter-spacing:-0.2px;
+  }
+  .top-rule{
+    left:0;
+    top:78px;
+    width:1280px;
+    height:1px;
+    background:#c6c7cc;
+  }
+
+  .hero{
+    left:374px;
+    top:0;
+    width:906px;
+    height:395px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 89% 22%, rgba(255,255,255,.88) 0, rgba(255,255,255,.50) 38px, rgba(255,255,255,.10) 135px, rgba(255,255,255,0) 220px),
+      linear-gradient(180deg,#0a89d5 0%, #1295de 12%, #77b5dd 37%, #b9cbe0 47%, #d3b077 52%, #bb8f40 55%, #8d6a34 58%, #5f492f 64%, #43352b 100%);
+  }
+  .hero:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:200px;
+    width:906px;
+    height:195px;
+    background:
+      linear-gradient(90deg,#7d8c18 0%, #d19a1a 35%, #685415 58%, #6f5321 74%, #b57a3a 100%);
+    clip-path:polygon(0 6%, 19% 6%, 34% 10%, 43% 11%, 50% 8%, 56% 10%, 65% 13%, 76% 14%, 100% 12%, 100% 100%, 0 100%);
+    opacity:.95;
+  }
+  .hero:after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:208px;
+    width:906px;
+    height:187px;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.06) 100%);
+    clip-path:polygon(0 20%, 22% 16%, 41% 13%, 50% 11%, 57% 13%, 68% 16%, 100% 17%, 100% 100%, 0 100%);
+  }
+
+  .road{
+    left:601px;
+    top:192px;
+    width:679px;
+    height:203px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.18)),
+      linear-gradient(90deg,#7a6544 0%, #4b413b 18%, #2f2928 36%, #473a37 57%, #2e2828 82%, #201d21 100%);
+    clip-path:polygon(12% 0, 36% 0, 49% 4%, 61% 9%, 74% 16%, 100% 25%, 100% 100%, 0 100%, 0 14%);
+    z-index:3;
+  }
+  .road-shoulder{
+    left:499px;
+    top:188px;
+    width:339px;
+    height:207px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.12)),
+      linear-gradient(90deg,#4a412d 0%, #5e4c38 20%, #6f573f 35%, #8a6d53 49%, #68564a 70%, #372f2d 100%);
+    clip-path:polygon(44% 2%, 71% 0, 100% 0, 94% 100%, 0 100%, 0 26%);
+    z-index:2;
+  }
+  .road-line{
+    left:970px;
+    top:282px;
+    width:225px;
+    height:4px;
+    background:linear-gradient(90deg, rgba(255,204,77,0), rgba(255,196,58,.95) 26%, rgba(255,196,58,.95) 74%, rgba(255,204,77,0));
+    transform:rotate(-7deg);
+    z-index:5;
+  }
+  .grass-left{
+    left:374px;
+    top:216px;
+    width:347px;
+    height:179px;
+    background:
+      repeating-linear-gradient(82deg, rgba(124,147,33,.95) 0 2px, rgba(94,103,22,.95) 2px 4px, rgba(0,0,0,0) 4px 8px),
+      linear-gradient(180deg, rgba(150,160,37,.7) 0%, rgba(63,73,16,.92) 100%);
+    clip-path:polygon(0 18%, 45% 13%, 68% 17%, 92% 13%, 100% 20%, 92% 100%, 0 100%);
+    z-index:4;
+  }
+  .grass-mid{
+    left:694px;
+    top:198px;
+    width:132px;
+    height:197px;
+    background:
+      repeating-linear-gradient(88deg, rgba(71,108,11,.95) 0 2px, rgba(111,132,26,.95) 2px 4px, rgba(0,0,0,0) 4px 7px),
+      linear-gradient(180deg, rgba(88,126,17,.3), rgba(46,79,8,.9));
+    clip-path:polygon(42% 0, 58% 0, 79% 100%, 15% 100%);
+    z-index:4;
+  }
+
+  .truck-box{
+    left:675px;
+    top:111px;
+    width:84px;
+    height:82px;
+    background:linear-gradient(180deg,#6e6f72 0%, #cececf 42%, #bababa 82%, #8e8f93 100%);
+    border:2px solid #55565a;
+    box-shadow:inset -10px 0 14px rgba(0,0,0,.22);
+    transform:skewY(2deg);
+    z-index:8;
+  }
+  .truck-box:before{
+    content:"";
+    position:absolute;
+    left:6px;
+    top:4px;
+    width:68px;
+    height:70px;
+    border:1px solid rgba(60,60,60,.35);
+  }
+  .truck-base{
+    left:708px;
+    top:192px;
+    width:54px;
+    height:10px;
+    background:#815f4d;
+    z-index:9;
+  }
+  .truck-under{
+    left:694px;
+    top:178px;
+    width:35px;
+    height:16px;
+    background:linear-gradient(180deg,#d38b11 0%, #b86d00 100%);
+    border:1px solid #815100;
+    z-index:9;
+  }
+  .truck-plate{
+    left:710px;
+    top:180px;
+    width:34px;
+    height:8px;
+    background:#dbb11d;
+    border:1px solid #7d6200;
+    z-index:10;
+  }
+  .truck-tail1,.truck-tail2{
+    width:5px;
+    height:7px;
+    background:#cf320e;
+    z-index:10;
+  }
+  .truck-tail1{left:677px;top:178px;}
+  .truck-tail2{left:684px;top:178px;}
+  .wheel{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#26272b;
+    border:1px solid #6c6d71;
+    z-index:10;
+  }
+  .w1{left:708px;top:196px;}
+  .w2{left:720px;top:196px;}
+  .w3{left:733px;top:196px;}
+  .w4{left:750px;top:196px;}
+  .w5{left:758px;top:196px;}
+
+  .cloud{
+    background:rgba(255,255,255,.92);
+    border-radius:50%;
+    filter:blur(.2px);
+    z-index:6;
+  }
+  .c1{left:430px;top:38px;width:17px;height:12px;}
+  .c2{left:438px;top:42px;width:18px;height:11px;}
+  .c3{left:445px;top:48px;width:11px;height:8px;}
+  .c4{left:1250px;top:92px;width:19px;height:12px;}
+  .c5{left:1260px;top:97px;width:14px;height:9px;}
+
+  .nav-circle{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:rgba(214,215,221,.86);
+    z-index:50;
+  }
+  .nav1{left:950px;top:33px;}
+  .nav2{left:994px;top:33px;}
+  .nav-arrow{
+    position:absolute;
+    inset:0;
+    color:#3f4352;
+    font-size:21px;
+    line-height:36px;
+    text-align:center;
+    font-weight:700;
+  }
+
+  .side-menu{
+    left:1009px;
+    width:271px;
+    height:35px;
+    background:#4b4d5b;
+    color:#ffffff;
+    font-size:21px;
+    line-height:1.05;
+    padding:8px 0 0 36px;
+    z-index:60;
+    font-weight:400;
+  }
+  .side1{top:120px;}
+  .side2{top:170px;}
+  .side3{top:220px;height:39px;padding-top:6px;}
+  .side4{top:271px;}
+  .side5{top:321px;height:39px;padding-top:5px;}
+  .side6{top:371px;}
+  .menu-highlight{
+    left:1009px;
+    top:157px;
+    width:271px;
+    height:13px;
+    background:#ffffff;
+    z-index:59;
+  }
+
+  .left-col{
+    left:56px;
+    top:119px;
+    width:285px;
+    color:#4e5058;
+    font-size:15px;
+    line-height:1.15;
+    z-index:30;
+  }
+  .left-col p{margin:0 0 9px 0;}
+  .left-col .head{
+    margin-top:9px;
+    margin-bottom:6px;
+    font-size:18px;
+    line-height:1.03;
+    font-weight:700;
+    color:#33353d;
+  }
+  sup{
+    font-size:9px;
+    vertical-align:super;
+  }
+
+  .center-col{
+    left:374px;
+    top:420px;
+    width:277px;
+    color:#4e5058;
+    font-size:15px;
+    line-height:1.15;
+    z-index:30;
+  }
+  .center-col p{margin:0 0 9px 0;}
+  .center-col .head{
+    margin-top:10px;
+    margin-bottom:8px;
+    font-size:18px;
+    line-height:1.03;
+    font-weight:700;
+    color:#33353d;
+  }
+
+  .right-col{
+    left:692px;
+    top:420px;
+    width:337px;
+    color:#4e5058;
+    font-size:15px;
+    line-height:1.15;
+    z-index:30;
+  }
+  .right-col p{margin:0 0 11px 0;}
+
+  .foot-rule{
+    left:692px;
+    top:598px;
+    width:304px;
+    height:1px;
+    background:#c4c6cb;
+  }
+  .footnotes{
+    left:692px;
+    top:604px;
+    width:324px;
+    color:#6a6d75;
+    font-size:8px;
+    line-height:1.32;
+    z-index:30;
+  }
+  .footnotes p{margin:0 0 4px 0;}
+  .footnotes em{
+    font-style:italic;
+    color:#6a6d75;
+  }
+  .footnotes .link{
+    color:#1e77c7;
+    font-style:italic;
+    font-weight:600;
+  }
+
+  .footer-left{
+    left:56px;
+    top:708px;
+    color:#74767d;
+    font-size:10px;
+    line-height:1;
+    z-index:40;
+  }
+  .footer-left .bold{font-weight:700;}
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="top-left-block"></div>
+  <div class="title">Insights: Asia-Pacific</div>
+  <div class="top-rule"></div>
+
+  <div class="hero"></div>
+  <div class="road-shoulder"></div>
+  <div class="road"></div>
+  <div class="road-line"></div>
+  <div class="grass-left"></div>
+  <div class="grass-mid"></div>
+
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+  <div class="cloud c4"></div>
+  <div class="cloud c5"></div>
+
+  <div class="truck-box"></div>
+  <div class="truck-under"></div>
+  <div class="truck-base"></div>
+  <div class="truck-plate"></div>
+  <div class="truck-tail1"></div>
+  <div class="truck-tail2"></div>
+  <div class="wheel w1"></div>
+  <div class="wheel w2"></div>
+  <div class="wheel w3"></div>
+  <div class="wheel w4"></div>
+  <div class="wheel w5"></div>
+
+  <div class="nav-circle nav1"><div class="nav-arrow">◀</div></div>
+  <div class="nav-circle nav2"><div class="nav-arrow">▶</div></div>
+
+  <div class="side-menu side1">Contents</div>
+  <div class="menu-highlight"></div>
+  <div class="side-menu side2">Insights</div>
+  <div class="side-menu side3">New on<br>ey.com</div>
+  <div class="side-menu side4">Tax alerts</div>
+  <div class="side-menu side5">Additional<br>resources</div>
+  <div class="side-menu side6">Contacts</div>
+
+  <div class="left-col">
+    <p>other Asian economies, including hot rolled coil, reinforcing bar, hollow structural sections and wire rods.<sup>4</sup></p>
+    <p>Safeguard measures, by contrast, have been used more sparingly. In fact, the last investigation completed by the Productivity Commission was in 2013 and resulted in no imposition of any safeguard measures.<sup>5</sup> This reflects the relative high evidentiary threshold required to demonstrate serious injury from import surges and reflect the Productivity Commission's focus on macroeconomics rather than local industry protection.</p>
+    <p class="head">Australia's trade remedy landscape is changing</p>
+    <p>On 28 August 2025, the Australian Government announced a package of trade and productivity reforms that included the decision to transfer responsibility for safeguard investigations from the Productivity Commission to the Anti Dumping Commission.<sup>6</sup></p>
+    <p>The announcement was included in a broader reform effort to streamline trade regulation, reduce costs for business and cut “nuisance tariffs”. It also coincides with a one-off A$5 million increase in funding for the Anti-Dumping Commission from 1 July 2025.<sup>7</sup> Importantly, this institutional shift has deeper implications for how safeguard measures may be approached in the future.</p>
+    <p>While the Productivity Commission has traditionally assessed safeguards through a whole of economy lens – weighing consumer impacts, downstream costs and productivity effects – the Anti Dumping Commission’s mandate is more squarely focused on injury to domestic industry. This does not mean outcomes are predetermined, but it does</p>
+  </div>
+
+  <div class="center-col">
+    <p>suggest a recalibration of priorities by the Australian Government.</p>
+    <p>The Government has not yet confirmed when the transition will formally take effect nor how existing legislative frameworks may be amended to support the change. Until further detail is released, safeguard investigations will continue to operate under existing rules, albeit with a clearly signaled change in future institutional ownership.</p>
+    <p class="head">An efficient, and more protectionist, direction for future trade remedies</p>
+    <p>The philosophical distinction between the Anti-Dumping Commission and the Productivity Commission is central to understanding the potential impact of this reform. As an authority under the</p>
+  </div>
+
+  <div class="right-col">
+    <p>Treasury portfolio, the Productivity Commission has long been Australia's institutional champion of trade liberalization, competition and structural adjustment. Safeguards under its stewardship were assessed cautiously, with a strong emphasis on whether protection was justified in the broader national interest.</p>
+    <p>The Anti Dumping Commission, by contrast, is part of the Department of Industry, Science and</p>
+  </div>
+
+  <div class="foot-rule"></div>
+  <div class="footnotes">
+    <p>4&nbsp;&nbsp;“Current measures in the dumping commodity register (DCR)”, <em>Australian Government Department of Industry, Science and Resources</em> website, accessed March 17, 2026. <span class="link">Find it here</span></p>
+    <p>5&nbsp;&nbsp;“Safeguard action investigations”, <em>Australian government Productivity Commission</em> website, accessed March 17, 2026. <span class="link">Find it here</span></p>
+    <p>6&nbsp;&nbsp;“Another 500 nuisance tariffs slashed to cut costs and boost productivity” <em>Minister for Trade and Tourism Special Minister of State</em> website, August 28, 2025. <span class="link">Find it here</span></p>
+    <p>7&nbsp;&nbsp;“Strengthening anti-dumping”, <em>Parliamentary Budget Office</em> website, accessed March 17, 2026. <span class="link">Find it here</span></p>
+  </div>
+
+  <div class="footer-left">54&nbsp;&nbsp;|&nbsp;&nbsp;<span class="bold">TradeWatch Issue 1 2026</span></div>
+</div>
+</body>
+</html>

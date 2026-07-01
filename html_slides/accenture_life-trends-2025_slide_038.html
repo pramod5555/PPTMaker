@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Trend 3: impatience economy</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #a0597a;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 12% 18%, rgba(255,255,255,0.60) 0%, rgba(255,255,255,0.18) 18%, rgba(255,255,255,0.00) 36%),
+      radial-gradient(ellipse at 22% 42%, rgba(255,180,215,0.38) 0%, rgba(255,132,205,0.18) 18%, rgba(255,132,205,0.00) 34%),
+      radial-gradient(ellipse at 50% 12%, rgba(255,255,255,0.42) 0%, rgba(247,220,255,0.22) 14%, rgba(255,255,255,0.00) 34%),
+      radial-gradient(ellipse at 70% 22%, rgba(233,94,255,0.34) 0%, rgba(233,94,255,0.12) 18%, rgba(233,94,255,0.00) 40%),
+      radial-gradient(ellipse at 81% 11%, rgba(205,0,126,0.45) 0%, rgba(205,0,126,0.18) 16%, rgba(205,0,126,0.00) 32%),
+      radial-gradient(ellipse at 86% 61%, rgba(205,0,82,0.52) 0%, rgba(205,0,82,0.22) 20%, rgba(205,0,82,0.00) 42%),
+      radial-gradient(ellipse at 61% 92%, rgba(173,0,255,0.34) 0%, rgba(173,0,255,0.14) 16%, rgba(173,0,255,0.00) 32%),
+      linear-gradient(90deg, #b48b96 0%, #dab8d4 18%, #e9d4e9 35%, #d9a1dc 54%, #cb42cf 72%, #d50a74 88%, #d9b9c8 100%);
+  }
+
+  .slide::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    background:
+      linear-gradient(90deg,
+        rgba(255,255,255,0.22) 0px,
+        rgba(255,255,255,0.10) 22px,
+        rgba(255,255,255,0.00) 48px,
+        rgba(255,255,255,0.00) 1280px),
+      linear-gradient(92deg,
+        rgba(255,255,255,0.00) 0%,
+        rgba(255,255,255,0.11) 27%,
+        rgba(255,255,255,0.00) 44%,
+        rgba(255,255,255,0.10) 76%,
+        rgba(255,255,255,0.00) 100%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  .left-figure {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 430px;
+    height: 720px;
+  }
+
+  .hair-back {
+    position: absolute;
+    left: 0px;
+    top: 45px;
+    width: 168px;
+    height: 420px;
+    border-radius: 90px 70px 60px 20px;
+    background: linear-gradient(180deg, rgba(98,64,84,0.95) 0%, rgba(198,85,159,0.92) 52%, rgba(255,190,225,0.85) 100%);
+    filter: blur(1px);
+  }
+
+  .face {
+    position: absolute;
+    left: 28px;
+    top: 234px;
+    width: 88px;
+    height: 154px;
+    border-radius: 45px;
+    background: linear-gradient(180deg, #f5d7d5 0%, #f2c7c2 100%);
+    box-shadow: inset 0 0 18px rgba(255,255,255,0.25);
+  }
+
+  .neck {
+    position: absolute;
+    left: 69px;
+    top: 365px;
+    width: 31px;
+    height: 35px;
+    border-radius: 12px;
+    background: #efc2be;
+  }
+
+  .body {
+    position: absolute;
+    left: 78px;
+    top: 297px;
+    width: 188px;
+    height: 423px;
+    background: linear-gradient(180deg, rgba(10,0,30,0.96) 0%, rgba(10,0,20,0.98) 100%);
+    border-radius: 18px 50px 0 0;
+    filter: blur(0.4px);
+  }
+
+  .arm-left {
+    position: absolute;
+    left: 6px;
+    top: 260px;
+    width: 58px;
+    height: 460px;
+    border-radius: 40px;
+    background: linear-gradient(180deg, #f6d8d6 0%, #f0c7c3 100%);
+    transform: rotate(4deg);
+    box-shadow: inset -8px 0 20px rgba(255,255,255,0.12);
+  }
+
+  .arm-right {
+    position: absolute;
+    left: 241px;
+    top: 111px;
+    width: 96px;
+    height: 224px;
+    border-radius: 55px;
+    background: linear-gradient(180deg, #f7d8d8 0%, #f2c9c6 100%);
+    transform: rotate(7deg);
+    filter: blur(0.3px);
+  }
+
+  .sleeve {
+    position: absolute;
+    left: 262px;
+    top: 248px;
+    width: 124px;
+    height: 66px;
+    border-radius: 0 0 50px 50px;
+    background: rgba(255,255,255,0.92);
+    transform: rotate(-2deg);
+  }
+
+  .hand-right {
+    position: absolute;
+    left: 253px;
+    top: 168px;
+    width: 96px;
+    height: 86px;
+    border-radius: 44px;
+    background: linear-gradient(180deg, #f4d0cc 0%, #eebfbb 100%);
+  }
+
+  .finger1, .finger2, .finger3 {
+    position: absolute;
+    background: linear-gradient(180deg, #f1cbc7 0%, #e8b8b4 100%);
+    border-radius: 20px;
+  }
+
+  .finger1 { left: 305px; top: 126px; width: 18px; height: 72px; transform: rotate(-3deg); }
+  .finger2 { left: 283px; top: 131px; width: 19px; height: 67px; transform: rotate(10deg); }
+  .finger3 { left: 329px; top: 156px; width: 18px; height: 49px; transform: rotate(18deg); }
+
+  .bang1, .bang2, .bang3, .bang4, .bang5 {
+    position: absolute;
+    top: 72px;
+    width: 16px;
+    height: 168px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(110,73,92,0.92) 0%, rgba(239,205,224,0.78) 100%);
+    filter: blur(0.6px);
+  }
+  .bang1 { left: 22px; transform: rotate(2deg); }
+  .bang2 { left: 44px; height: 178px; transform: rotate(-1deg); }
+  .bang3 { left: 68px; height: 170px; transform: rotate(1deg); }
+  .bang4 { left: 95px; height: 162px; transform: rotate(-2deg); }
+  .bang5 { left: 118px; height: 154px; transform: rotate(2deg); }
+
+  .scissor-bar {
+    position: absolute;
+    left: 79px;
+    top: 221px;
+    width: 161px;
+    height: 8px;
+    background: linear-gradient(90deg, #3f2f35 0%, #65545d 55%, #31262b 100%);
+    border-radius: 5px;
+    transform: rotate(1deg);
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+  }
+
+  .scissor-handle {
+    position: absolute;
+    left: 235px;
+    top: 213px;
+    width: 20px;
+    height: 20px;
+    border: 5px solid #30242a;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background: transparent;
+  }
+
+  .foreground-blur {
+    position: absolute;
+    left: 292px;
+    top: 112px;
+    width: 274px;
+    height: 608px;
+    background: linear-gradient(180deg, rgba(255,240,250,0.92) 0%, rgba(252,214,247,0.82) 35%, rgba(225,95,214,0.72) 76%, rgba(240,180,224,0.45) 100%);
+    border-radius: 120px;
+    filter: blur(28px);
+    opacity: 0.86;
+    transform: rotate(3deg);
+  }
+
+  .purple-streak {
+    position: absolute;
+    left: 654px;
+    top: -42px;
+    width: 183px;
+    height: 804px;
+    background: linear-gradient(180deg, rgba(243,183,255,0.18) 0%, rgba(213,77,255,0.45) 25%, rgba(224,73,255,0.16) 52%, rgba(176,0,255,0.32) 100%);
+    border-radius: 80px;
+    filter: blur(18px);
+    transform: rotate(7deg);
+  }
+
+  .magenta-core {
+    position: absolute;
+    left: 906px;
+    top: -71px;
+    width: 227px;
+    height: 871px;
+    background: linear-gradient(180deg, rgba(187,0,113,0.30) 0%, rgba(238,52,185,0.54) 26%, rgba(240,103,196,0.22) 55%, rgba(200,0,80,0.56) 100%);
+    border-radius: 100px;
+    filter: blur(16px);
+    transform: rotate(-2deg);
+  }
+
+  .text-small {
+    position: absolute;
+    left: 684px;
+    top: 430px;
+    color: rgba(255,255,255,0.82);
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+  }
+
+  .text-main {
+    position: absolute;
+    left: 682px;
+    top: 469px;
+    color: rgba(255,255,255,0.90);
+    font-size: 87px;
+    line-height: 0.95;
+    font-weight: 200;
+    letter-spacing: -3px;
+  }
+
+  .text-sub {
+    position: absolute;
+    left: 555px;
+    top: 571px;
+    color: rgba(255,255,255,0.88);
+    font-size: 67px;
+    line-height: 1;
+    font-weight: 200;
+    letter-spacing: -2px;
+  }
+
+  .page {
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    color: rgba(255,255,255,0.78);
+    font-size: 14px;
+    font-weight: 300;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-figure">
+      <div class="hair-back"></div>
+      <div class="body"></div>
+      <div class="arm-left"></div>
+      <div class="arm-right"></div>
+      <div class="sleeve"></div>
+      <div class="face"></div>
+      <div class="neck"></div>
+      <div class="hand-right"></div>
+      <div class="finger1"></div>
+      <div class="finger2"></div>
+      <div class="finger3"></div>
+      <div class="bang1"></div>
+      <div class="bang2"></div>
+      <div class="bang3"></div>
+      <div class="bang4"></div>
+      <div class="bang5"></div>
+      <div class="scissor-bar"></div>
+      <div class="scissor-handle"></div>
+    </div>
+
+    <div class="foreground-blur"></div>
+    <div class="purple-streak"></div>
+    <div class="magenta-core"></div>
+
+    <div class="text-small">Trend 3:</div>
+    <div class="text-main">impatience</div>
+    <div class="text-sub">economy</div>
+
+    <div class="page">38</div>
+  </div>
+</body>
+</html>

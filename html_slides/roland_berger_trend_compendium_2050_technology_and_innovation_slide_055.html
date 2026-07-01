@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#111;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ededee;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .sidebar{
+    left:0;
+    top:0;
+    width:181px;
+    height:720px;
+    background:#363b43;
+    z-index:5;
+  }
+  .sidebar-accent{
+    left:179px;
+    top:0;
+    width:2px;
+    height:720px;
+    background:#6b4ca4;
+    z-index:6;
+  }
+  .title-side{
+    left:12px;
+    top:34px;
+    width:150px;
+    color:#f1f1f1;
+    font-size:25px;
+    line-height:1.08;
+    font-weight:700;
+    letter-spacing:-0.2px;
+    z-index:20;
+  }
+
+  .hex{
+    width:61px;
+    height:61px;
+    clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0% 50%);
+    border:4px solid #8f949a;
+    background:rgba(255,255,255,0.06);
+    z-index:20;
+  }
+  .hex-inner{
+    position:absolute;
+    left:6px;
+    top:6px;
+    width:45px;
+    height:45px;
+    clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0% 50%);
+  }
+  .hex-photo-1{
+    background:
+      linear-gradient(0deg, rgba(0,0,0,.2), rgba(0,0,0,.2)),
+      radial-gradient(circle at 22% 38%, rgba(255,255,255,.95) 0 6%, transparent 7%),
+      radial-gradient(circle at 45% 44%, rgba(240,240,240,.9) 0 7%, transparent 8%),
+      radial-gradient(circle at 62% 36%, rgba(220,220,220,.9) 0 7%, transparent 8%),
+      linear-gradient(135deg,#737982,#d4d4d6 60%,#5d6169 100%);
+  }
+  .hex-photo-2{
+    background:
+      linear-gradient(0deg, rgba(0,0,0,.22), rgba(0,0,0,.22)),
+      radial-gradient(circle at 25% 55%, #d9dde1 0 4%, transparent 5%),
+      radial-gradient(circle at 42% 34%, #f1f1f1 0 5%, transparent 6%),
+      radial-gradient(circle at 63% 54%, #d8d8d8 0 4%, transparent 5%),
+      radial-gradient(circle at 74% 28%, #f4f4f4 0 4%, transparent 5%),
+      linear-gradient(135deg,#6b7078,#c1c6cb 60%,#4f555e 100%);
+  }
+  .hex-photo-3{
+    background:
+      linear-gradient(0deg, rgba(0,0,0,.10), rgba(0,0,0,.10)),
+      radial-gradient(circle at 38% 50%, #e9cdbd 0 8%, transparent 9%),
+      radial-gradient(circle at 60% 50%, #efcab5 0 8%, transparent 9%),
+      linear-gradient(135deg,#d9c4bb 0 34%, #f0f0f0 35% 66%, #c9aaa3 67% 100%);
+  }
+
+  .side-num{
+    color:#868b93;
+    font-size:30px;
+    font-weight:700;
+    line-height:1;
+    z-index:30;
+  }
+  .side-label{
+    color:#666b73;
+    font-size:16px;
+    line-height:1.1;
+    font-weight:400;
+    width:82px;
+    z-index:30;
+  }
+  .side-num.active{ color:#7c5eb4; }
+  .side-label.active{ color:#7c5eb4; font-weight:700; }
+
+  .main-title{
+    left:220px;
+    top:30px;
+    width:1045px;
+    color:#222;
+    font-size:29px;
+    line-height:1.05;
+    font-weight:700;
+    letter-spacing:-0.2px;
+    z-index:30;
+  }
+  .sub-title{
+    left:220px;
+    top:137px;
+    width:600px;
+    color:#8f959e;
+    font-size:27px;
+    line-height:1.15;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .chart-bg-glow{
+    left:221px;
+    top:181px;
+    width:660px;
+    height:440px;
+    z-index:9;
+    background:
+      radial-gradient(ellipse at 18% 77%, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.22) 28%, rgba(255,255,255,0.00) 55%),
+      linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
+  }
+  .chart-area{
+    left:220px;
+    top:182px;
+    width:660px;
+    height:450px;
+    z-index:15;
+  }
+
+  .legend{
+    left:220px;
+    top:700px;
+    width:360px;
+    height:18px;
+    z-index:35;
+  }
+  .source{
+    left:220px;
+    top:752px;
+    width:250px;
+    color:#505050;
+    font-size:11px;
+    line-height:1.2;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .note-box{
+    left:920px;
+    top:140px;
+    width:360px;
+    height:580px;
+    background:#d4d5d8;
+    z-index:20;
+  }
+  .note-content{
+    left:932px;
+    top:150px;
+    width:322px;
+    color:#2b2b2b;
+    font-size:16px;
+    line-height:1.08;
+    font-weight:400;
+    z-index:30;
+  }
+  .bullet{
+    margin-bottom:12px;
+  }
+  .bullet b{
+    font-weight:700;
+  }
+
+  .footer-page{
+    left:10px;
+    top:713px;
+    width:20px;
+    color:#f2f2f2;
+    font-size:20px;
+    line-height:1;
+    font-weight:400;
+    z-index:40;
+  }
+
+  .gear-wrap{
+    left:66px;
+    top:662px;
+    width:66px;
+    height:46px;
+    z-index:20;
+    opacity:0.7;
+  }
+  .lightbulb{
+    left:89px;
+    top:672px;
+    width:35px;
+    height:42px;
+    z-index:22;
+    opacity:0.7;
+  }
+
+  .rb-logo{
+    left:1228px;
+    top:696px;
+    width:47px;
+    height:20px;
+    z-index:40;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="sidebar-accent"></div>
+
+  <div class="title-side">Technology &amp;<br>Innovation</div>
+
+  <div class="hex" style="left:8px; top:141px;">
+    <div class="hex-inner hex-photo-1"></div>
+  </div>
+  <div class="side-num" style="left:92px; top:145px;">1</div>
+  <div class="side-label" style="left:94px; top:175px;">Value of<br>Innovation</div>
+
+  <div class="hex" style="left:8px; top:274px;">
+    <div class="hex-inner hex-photo-2"></div>
+  </div>
+  <div class="side-num" style="left:92px; top:278px;">2</div>
+  <div class="side-label" style="left:94px; top:308px;">Frontier<br>Technologies</div>
+
+  <div class="hex" style="left:8px; top:406px; border-color:#8a6fd0; box-shadow:0 0 0 2px rgba(135,111,208,.12) inset;">
+    <div class="hex-inner hex-photo-3"></div>
+  </div>
+  <div class="side-num active" style="left:92px; top:410px;">3</div>
+  <div class="side-label active" style="left:94px; top:440px;">Humans &amp;<br>Machines</div>
+
+  <div class="main-title">However, unequal technological advances and diffusion have led to a digital divide – within countries and between world regions</div>
+  <div class="sub-title">Prevalence of computer skills in world regions [%]</div>
+
+  <div class="chart-bg-glow"></div>
+
+  <svg class="chart-area" viewBox="0 0 660 450" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="bar1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#6e5aa0"/>
+        <stop offset="100%" stop-color="#8372b2"/>
+      </linearGradient>
+      <linearGradient id="bar2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#41286d"/>
+        <stop offset="100%" stop-color="#4a3278"/>
+      </linearGradient>
+      <linearGradient id="bar3" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#6d5a9d"/>
+        <stop offset="100%" stop-color="#8070ad"/>
+      </linearGradient>
+      <linearGradient id="bar4" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#3d2468"/>
+        <stop offset="100%" stop-color="#4a3177"/>
+      </linearGradient>
+      <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="1.2"/>
+      </filter>
+    </defs>
+
+    <g opacity="0.24">
+      <path d="M63,235 C150,176 236,127 312,66 C368,22 418,25 446,40 C431,95 427,154 433,214 C439,281 447,333 462,374 C386,394 310,384 220,348 C150,320 102,285 63,235 Z" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+      <path d="M0,284 C102,272 192,271 278,292 C353,310 421,352 494,448" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+      <path d="M24,319 C98,274 168,253 241,244 C319,234 390,253 438,287" fill="none" stroke="#ffffff" stroke-width="1"/>
+      <path d="M80,211 L154,175 L205,131 L254,103 L306,60 L357,44 L401,35 L445,30" fill="none" stroke="#ffffff" stroke-width="0.7"/>
+      <path d="M65,246 L116,225 L172,196 L230,177 L275,160 L319,149 L355,137 L404,115" fill="none" stroke="#ffffff" stroke-width="0.7"/>
+      <path d="M111,313 L169,289 L231,269 L278,269 L321,280 L373,306 L413,336" fill="none" stroke="#ffffff" stroke-width="0.7"/>
+      <path d="M48,254 L84,295 L119,333 L156,368" fill="none" stroke="#ffffff" stroke-width="0.7"/>
+      <path d="M110,190 L138,232 L170,271 L207,312 L251,348" fill="none" stroke="#ffffff" stroke-width="0.7"/>
+      <path d="M205,130 L217,191 L232,244 L258,294 L285,344" fill="none" stroke="#ffffff" stroke-width="0.7"/>
+      <path d="M309,61 L304,116 L307,174 L314,234 L330,291 L356,342" fill="none" stroke="#ffffff" stroke-width="0.7"/>
+      <path d="M401,36 L390,96 L386,147 L391,205 L405,261 L432,315" fill="none" stroke="#ffffff" stroke-width="0.7"/>
+
+      <g fill="#ffffff">
+        <circle cx="84" cy="295" r="1.4"/><circle cx="116" cy="225" r="1.4"/><circle cx="154" cy="175" r="1.4"/>
+        <circle cx="205" cy="131" r="1.4"/><circle cx="254" cy="103" r="1.4"/><circle cx="306" cy="60" r="1.4"/>
+        <circle cx="357" cy="44" r="1.4"/><circle cx="401" cy="35" r="1.4"/><circle cx="138" cy="232" r="1.4"/>
+        <circle cx="170" cy="271" r="1.4"/><circle cx="207" cy="312" r="1.4"/><circle cx="251" cy="348" r="1.4"/>
+        <circle cx="217" cy="191" r="1.4"/><circle cx="232" cy="244" r="1.4"/><circle cx="258" cy="294" r="1.4"/>
+        <circle cx="285" cy="344" r="1.4"/><circle cx="304" cy="116" r="1.4"/><circle cx="307" cy="174" r="1.4"/>
+        <circle cx="314" cy="234" r="1.4"/><circle cx="330" cy="291" r="1.4"/><circle cx="356" cy="342" r="1.4"/>
+        <circle cx="390" cy="96" r="1.4"/><circle cx="386" cy="147" r="1.4"/><circle cx="391" cy="205" r="1.4"/>
+        <circle cx="405" cy="261" r="1.4"/><circle cx="432" cy="315" r="1.4"/><circle cx="321" cy="280" r="1.4"/>
+        <circle cx="373" cy="306" r="1.4"/><circle cx="413" cy="336" r="1.4"/>
+      </g>
+
+      <path d="M7,352 C63,301 118,284 177,280 C240,276 299,289 358,315 C405,336 453,372 510,447" fill="none" stroke="#c4b4ff" stroke-width="2.3" filter="url(#soft)" opacity="0.6"/>
+      <path d="M0,392 C92,325 170,297 255,295 C340,293 420,328 496,404" fill="none" stroke="#ffffff" stroke-width="2.2" opacity="0.2" filter="url(#soft)"/>
+    </g>
+
+    <line x1="180" y1="448" x2="660" y2="448" stroke="#666" stroke-width="1.2"/>
+
+    <rect x="47" y="28" width="118" height="420" fill="url(#bar1)"/>
+    <rect x="165" y="176" width="118" height="272" fill="url(#bar2)"/>
+    <rect x="377" y="145" width="118" height="303" fill="url(#bar3)"/>
+    <rect x="495" y="66" width="118" height="382" fill="url(#bar4)"/>
+
+    <text x="106" y="20" text-anchor="middle" font-size="18" font-weight="400" fill="#2b2b2b">54%</text>
+    <text x="224" y="168" text-anchor="middle" font-size="18" font-weight="400" fill="#2b2b2b">35%</text>
+    <text x="436" y="137" text-anchor="middle" font-size="18" font-weight="400" fill="#2b2b2b">39%</text>
+    <text x="554" y="58" text-anchor="middle" font-size="18" font-weight="400" fill="#2b2b2b">49%</text>
+
+    <text x="165" y="476" text-anchor="middle" font-size="17" font-weight="400" fill="#2b2b2b">
+      Population with <tspan font-weight="700" font-size="20">no</tspan>
+    </text>
+    <text x="165" y="502" text-anchor="middle" font-size="17" font-weight="400" fill="#2b2b2b">computer skill</text>
+
+    <text x="495" y="470" text-anchor="middle" font-size="17" font-weight="400" fill="#2b2b2b">Population with</text>
+    <text x="495" y="500" text-anchor="middle" font-size="17" font-weight="400" fill="#2b2b2b">
+      <tspan font-weight="700" font-size="21">standard</tspan> computer skill
+    </text>
+  </svg>
+
+  <div class="legend">
+    <div style="position:absolute; left:0; top:0; width:20px; height:16px; background:#7d68aa;"></div>
+    <div style="position:absolute; left:26px; top:0; width:130px; color:#3b3b3b; font-size:11px; line-height:1.2; font-weight:400;">Developing countries</div>
+    <div style="position:absolute; left:160px; top:0; width:20px; height:16px; background:#4d347b;"></div>
+    <div style="position:absolute; left:186px; top:0; width:135px; color:#3b3b3b; font-size:11px; line-height:1.2; font-weight:400;">Developed countries</div>
+  </div>
+
+  <div class="note-box"></div>
+  <div class="note-content">
+    <div class="bullet">&gt; Technological advances also affect <b>social structures</b>, potentially carrying negative effects. From the contrasting picture of the distribution of computer skills across developed and developing countries, it is evident that <b>society is divided within a country</b>, but also <b>within regions</b> due to fast, relatively exclusive innovations and technological progress</div>
+    <div class="bullet">&gt; To level up, one consideration is to <b>rethink products under different price points</b>. Consumers that cannot afford high-end technology should be offered <b>lower priced versions that focus on inclusivity and standard</b> i.e. <b>essential functionality</b> (so-called <b>frugal</b> products) instead of high-end, high-specification product characteristics</div>
+    <div class="bullet">&gt; Additionally, <b>access to new technologies</b> can be made more equitable when their use is made <b>simpler</b>. <b>More intuitive handling allows easier adoption</b> for a wider, more inclusive customer base, for example for the older, often less tech savvy generation</div>
+    <div class="bullet">&gt; Where <b>technological advances and innovations have profound implications for society</b>, governments as well as companies ought to consider the needs of different social demographics</div>
+  </div>
+
+  <div class="gear-wrap">
+    <svg width="66" height="46" viewBox="0 0 66 46" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#8d9097" stroke-width="3">
+        <circle cx="18" cy="25" r="11"/>
+        <path d="M18 7 L18 1 M18 43 L18 37 M1 25 L7 25 M29 25 L35 25 M6 13 L11 17 M25 33 L30 37 M6 37 L11 33 M25 17 L30 13"/>
+        <circle cx="44" cy="13" r="8"/>
+        <path d="M44 1 L44 -1 M44 27 L44 25 M31 13 L36 13 M52 13 L57 13 M35 4 L39 8 M49 18 L53 22 M35 22 L39 18 M49 8 L53 4"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="lightbulb">
+    <svg width="35" height="42" viewBox="0 0 35 42" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#8d9097" stroke-width="3">
+        <path d="M17.5 3 C10 3 4 9 4 17 C4 22 7 25 10 28 C12.5 30.5 12.8 33.5 12.8 35 L22.2 35 C22.2 33.5 22.4 30.5 25 28 C28 25 31 22 31 17 C31 9 25 3 17.5 3 Z"/>
+        <path d="M13 39 L22 39 M14 42 L21 42"/>
+        <path d="M18 10 C15.7 12 14.8 15 15.8 17 C16.8 19 16.5 20.8 14.8 22.8"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="footer-page">55</div>
+
+  <div class="rb-logo">
+    <svg width="47" height="20" viewBox="0 0 47 20" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="8.5" font-family="Arial, Helvetica, sans-serif" font-size="6.4" font-weight="400" fill="#444">Roland</text>
+      <text x="0" y="15.6" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="700" fill="#444">Berger</text>
+      <path d="M35 1 C41.6 1 45.2 4.7 45.2 10 C45.2 15.3 41.6 19 35 19 L35 1 Z" fill="#9da1a7"/>
+      <path d="M35 1 C39.6 1 41.9 3.8 41.9 8.1 C41.9 12.3 39.7 15.1 35 15.1 L35 1 Z" fill="#c7c9cc"/>
+      <rect x="33.7" y="0.7" width="1.6" height="18.4" fill="#7f8288"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

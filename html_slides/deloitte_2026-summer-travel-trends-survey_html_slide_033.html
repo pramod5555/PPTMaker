@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Generational trends</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e6e6e6;
+  }
+  #slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .left-panel{
+    left:0;
+    top:0;
+    width:484px;
+    height:720px;
+    background:#e7e7e7;
+    z-index:1;
+  }
+
+  .title{
+    left:47px;
+    top:177px;
+    width:290px;
+    color:#000;
+    font-size:42px;
+    line-height:1.08;
+    font-weight:700;
+    letter-spacing:-0.4px;
+    z-index:50;
+  }
+
+  .right-sky{
+    left:484px;
+    top:0;
+    width:796px;
+    height:720px;
+    background:
+      linear-gradient(180deg, rgba(86,151,204,1) 0%, rgba(113,173,224,1) 36%, rgba(170,198,224,0.96) 52%, rgba(239,221,208,0.78) 70%, rgba(250,245,241,0.85) 100%);
+    z-index:2;
+  }
+
+  .clouds{
+    left:484px;
+    top:0;
+    width:796px;
+    height:720px;
+    background:
+      radial-gradient(circle at 93% 7%, rgba(255,255,255,0.85) 0 36px, rgba(255,255,255,0.35) 37px 78px, transparent 79px),
+      radial-gradient(circle at 98% 12%, rgba(255,255,255,0.75) 0 24px, rgba(255,255,255,0.18) 25px 58px, transparent 59px),
+      radial-gradient(circle at 90% 19%, rgba(255,255,255,0.5) 0 15px, transparent 16px),
+      radial-gradient(circle at 97% 42%, rgba(255,255,255,0.62) 0 8px, transparent 9px),
+      radial-gradient(circle at 95% 56%, rgba(255,255,255,0.56) 0 12px, transparent 13px);
+    z-index:3;
+  }
+
+  .circle{
+    left:568px;
+    top:2px;
+    width:720px;
+    height:720px;
+    border-radius:50%;
+    overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(248,244,242,1) 0%, rgba(248,243,241,0.98) 38%, rgba(249,233,215,0.86) 72%, rgba(227,206,186,0.55) 100%);
+    z-index:10;
+  }
+
+  .horizon{
+    left:603px;
+    top:392px;
+    width:605px;
+    height:28px;
+    background:linear-gradient(180deg, rgba(214,194,181,0.38), rgba(164,153,146,0.18));
+    z-index:16;
+    filter:blur(0.3px);
+  }
+
+  .city{
+    left:600px;
+    top:404px;
+    width:632px;
+    height:314px;
+    background:
+      radial-gradient(circle at 10% 24%, rgba(235,231,225,0.24) 0 1px, transparent 1.6px),
+      radial-gradient(circle at 18% 35%, rgba(225,222,216,0.18) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 33% 22%, rgba(235,231,225,0.22) 0 1px, transparent 1.6px),
+      radial-gradient(circle at 49% 18%, rgba(235,231,225,0.2) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 63% 28%, rgba(235,231,225,0.18) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 79% 20%, rgba(235,231,225,0.2) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 89% 31%, rgba(235,231,225,0.16) 0 1px, transparent 1.5px),
+      linear-gradient(180deg, rgba(128,126,131,0.2) 0%, rgba(89,89,95,0.38) 18%, rgba(66,67,72,0.9) 100%);
+    clip-path:polygon(0% 14%, 5% 12%, 11% 11%, 16% 10%, 20% 12%, 24% 11%, 28% 12%, 32% 10%, 36% 12%, 40% 10%, 45% 13%, 50% 10%, 54% 11%, 58% 9%, 64% 12%, 69% 10%, 75% 12%, 81% 9%, 88% 12%, 94% 10%, 100% 12%, 100% 100%, 0% 100%);
+    z-index:17;
+  }
+
+  .sun-glow{
+    left:1014px;
+    top:89px;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,249,233,0.95) 27%, rgba(255,217,141,0.75) 50%, rgba(255,205,120,0.2) 72%, rgba(255,205,120,0) 100%);
+    z-index:35;
+    filter:blur(1px);
+  }
+
+  .flare{
+    left:950px;
+    top:87px;
+    width:220px;
+    height:120px;
+    background:
+      linear-gradient(90deg, transparent 0%, rgba(255,211,138,0.15) 28%, rgba(255,224,171,0.45) 48%, rgba(255,243,214,0.65) 55%, rgba(255,208,132,0.28) 72%, transparent 100%);
+    transform:rotate(-11deg);
+    z-index:34;
+    mix-blend-mode:screen;
+  }
+
+  .building-top-right{
+    left:1114px;
+    top:-34px;
+    width:184px;
+    height:282px;
+    overflow:hidden;
+    background:linear-gradient(180deg, #be7d74 0%, #b6746d 100%);
+    clip-path:polygon(22% 0, 100% 0, 100% 100%, 55% 100%);
+    transform:skewY(-13deg);
+    z-index:25;
+  }
+  .building-top-right:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(90deg,
+        rgba(248,206,171,0.92) 0 3px,
+        transparent 3px 13px),
+      repeating-linear-gradient(180deg,
+        transparent 0 16px,
+        rgba(248,206,171,0.42) 16px 18px);
+    opacity:0.95;
+  }
+
+  .building-left{
+    left:480px;
+    top:392px;
+    width:132px;
+    height:328px;
+    background:linear-gradient(180deg, #9f694f 0%, #e1ab7a 22%, #cd9168 55%, #8f5e45 100%);
+    clip-path:polygon(7% 0, 57% 0, 77% 6%, 100% 100%, 17% 100%, 0 11%);
+    transform:rotate(6deg);
+    z-index:26;
+    overflow:hidden;
+  }
+  .building-left:before{
+    content:"";
+    position:absolute;
+    left:28px;
+    top:24px;
+    width:86px;
+    height:250px;
+    background:
+      repeating-linear-gradient(90deg, rgba(113,70,43,0.95) 0 2px, transparent 2px 16px),
+      repeating-linear-gradient(180deg, transparent 0 32px, rgba(113,70,43,0.75) 32px 35px);
+  }
+  .building-left:after{
+    content:"";
+    position:absolute;
+    left:42px;
+    top:38px;
+    width:58px;
+    height:205px;
+    background:radial-gradient(circle at 50% 9px, #3b7382 0 4px, #79aebb 5px, transparent 8px);
+    background-size:20px 33px;
+  }
+
+  .building-blue{
+    left:596px;
+    top:494px;
+    width:102px;
+    height:226px;
+    background:linear-gradient(180deg, #f0f1f5 0%, #d7d9df 100%);
+    clip-path:polygon(18% 0, 78% 0, 100% 100%, 0 100%);
+    transform:skewX(-8deg);
+    z-index:22;
+    overflow:hidden;
+  }
+  .building-blue:before{
+    content:"";
+    position:absolute;
+    left:13px;
+    top:0;
+    width:76px;
+    height:226px;
+    background:repeating-linear-gradient(90deg, #55a6e1 0 4px, #f7f7f9 4px 11px);
+  }
+
+  .building-white{
+    left:689px;
+    top:548px;
+    width:118px;
+    height:172px;
+    background:linear-gradient(180deg, #efe8e4 0%, #ddd2ce 100%);
+    clip-path:polygon(14% 0, 100% 0, 100% 100%, 0 100%);
+    z-index:21;
+    overflow:hidden;
+  }
+  .building-white:before{
+    content:"";
+    position:absolute;
+    left:21px;
+    top:34px;
+    width:72px;
+    height:108px;
+    background:
+      repeating-linear-gradient(90deg, #8ca5bb 0 2px, transparent 2px 16px),
+      repeating-linear-gradient(180deg, transparent 0 18px, #8ca5bb 18px 20px);
+    opacity:0.75;
+  }
+
+  .building-dark{
+    left:1136px;
+    top:588px;
+    width:115px;
+    height:132px;
+    background:linear-gradient(180deg, #523143 0%, #2c2232 100%);
+    clip-path:polygon(24% 0, 100% 0, 73% 100%, 0 100%);
+    z-index:23;
+    overflow:hidden;
+  }
+  .building-dark:before{
+    content:"";
+    position:absolute;
+    left:25px;
+    top:0;
+    width:67px;
+    height:132px;
+    background:repeating-linear-gradient(90deg, rgba(35,30,50,1) 0 3px, transparent 3px 8px);
+  }
+
+  .building-right{
+    left:1231px;
+    top:527px;
+    width:76px;
+    height:193px;
+    background:linear-gradient(180deg, #b78f74 0%, #9a735d 100%);
+    clip-path:polygon(13% 0, 100% 0, 100% 100%, 0 100%);
+    transform:skewX(-10deg);
+    z-index:24;
+    overflow:hidden;
+  }
+  .building-right:before{
+    content:"";
+    position:absolute;
+    left:14px;
+    top:31px;
+    width:46px;
+    height:128px;
+    background:
+      repeating-linear-gradient(90deg, rgba(104,73,52,0.9) 0 2px, transparent 2px 13px),
+      repeating-linear-gradient(180deg, transparent 0 22px, rgba(104,73,52,0.65) 22px 24px);
+  }
+
+  .person{
+    left:793px;
+    top:90px;
+    width:456px;
+    height:630px;
+    z-index:31;
+  }
+  .person div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .torso{
+    left:38px;
+    top:203px;
+    width:370px;
+    height:430px;
+    background:linear-gradient(180deg, #d79230 0%, #d68726 44%, #b86b1f 100%);
+    clip-path:polygon(15% 2%, 51% 0, 92% 12%, 100% 56%, 88% 100%, 19% 100%, 5% 63%, 0 20%);
+    border-radius:22% 17% 11% 16% / 10% 12% 18% 11%;
+  }
+  .neck{
+    left:174px;
+    top:151px;
+    width:58px;
+    height:82px;
+    background:linear-gradient(180deg, #c0855f 0%, #b67853 100%);
+    border-radius:28px;
+    transform:rotate(-4deg);
+  }
+  .head{
+    left:151px;
+    top:72px;
+    width:123px;
+    height:149px;
+    background:linear-gradient(180deg, #ca936d 0%, #b87a56 100%);
+    border-radius:46% 44% 42% 40% / 44% 44% 49% 48%;
+    transform:rotate(-4deg);
+  }
+  .ear{
+    left:253px;
+    top:130px;
+    width:21px;
+    height:32px;
+    background:#b97c57;
+    border-radius:50%;
+  }
+  .cap-top{
+    left:132px;
+    top:58px;
+    width:164px;
+    height:82px;
+    background:linear-gradient(180deg, #9a785d 0%, #86674f 100%);
+    border-radius:58% 50% 46% 42% / 66% 60% 34% 36%;
+    transform:rotate(5deg);
+  }
+  .cap-brim{
+    left:91px;
+    top:94px;
+    width:94px;
+    height:19px;
+    background:linear-gradient(180deg, #8e6d55 0%, #7d604b 100%);
+    border-radius:16px;
+    transform:rotate(-14deg);
+  }
+  .cap-back{
+    left:267px;
+    top:118px;
+    width:46px;
+    height:11px;
+    background:#886953;
+    border-radius:8px;
+    transform:rotate(16deg);
+  }
+  .arm-left{
+    left:58px;
+    top:359px;
+    width:58px;
+    height:259px;
+    background:linear-gradient(180deg, #b77b55 0%, #a46747 100%);
+    border-radius:30px;
+    transform:rotate(3deg);
+  }
+  .arm-right{
+    left:352px;
+    top:364px;
+    width:72px;
+    height:228px;
+    background:linear-gradient(180deg, #bd8059 0%, #a96b48 100%);
+    border-radius:36px;
+    transform:rotate(26deg);
+  }
+  .shoulder-shadow{
+    left:265px;
+    top:226px;
+    width:108px;
+    height:310px;
+    background:linear-gradient(180deg, rgba(120,65,24,0.10) 0%, rgba(92,49,18,0.26) 100%);
+    clip-path:polygon(0 0, 100% 15%, 85% 100%, 18% 100%);
+    opacity:.45;
+  }
+  .shirt-crease{
+    left:197px;
+    top:251px;
+    width:84px;
+    height:294px;
+    background:linear-gradient(180deg, rgba(123,70,20,0.14) 0%, rgba(123,70,20,0.04) 100%);
+    border-radius:50%;
+    transform:rotate(-4deg);
+    opacity:.34;
+  }
+
+  .footer-left{
+    left:47px;
+    bottom:18px;
+    color:#444;
+    font-size:14px;
+    line-height:1;
+    font-weight:400;
+    z-index:60;
+  }
+  .footer-center{
+    right:85px;
+    bottom:18px;
+    color:#444;
+    font-size:14px;
+    line-height:1;
+    font-weight:400;
+    z-index:60;
+    white-space:nowrap;
+  }
+  .footer-page{
+    right:22px;
+    bottom:18px;
+    color:#444;
+    font-size:14px;
+    line-height:1;
+    font-weight:400;
+    z-index:60;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="left-panel"></div>
+  <div class="right-sky"></div>
+  <div class="clouds"></div>
+  <div class="circle"></div>
+
+  <div class="building-top-right"></div>
+  <div class="building-left"></div>
+  <div class="building-blue"></div>
+  <div class="building-white"></div>
+  <div class="building-dark"></div>
+  <div class="building-right"></div>
+
+  <div class="horizon"></div>
+  <div class="city"></div>
+
+  <div class="person">
+    <div class="torso"></div>
+    <div class="neck"></div>
+    <div class="head"></div>
+    <div class="ear"></div>
+    <div class="cap-top"></div>
+    <div class="cap-brim"></div>
+    <div class="cap-back"></div>
+    <div class="arm-left"></div>
+    <div class="arm-right"></div>
+    <div class="shoulder-shadow"></div>
+    <div class="shirt-crease"></div>
+  </div>
+
+  <div class="flare"></div>
+  <div class="sun-glow"></div>
+
+  <div class="title">Generational<br>trends</div>
+
+  <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+  <div class="footer-center">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+  <div class="footer-page">33</div>
+</div>
+</body>
+</html>

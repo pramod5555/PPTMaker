@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>The chain of humanization</title>
+<style>
+  body{
+    margin:0;
+    background:#c5cace;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#eef0f1;
+  }
+
+  .title{
+    position:absolute;
+    left:64px;
+    top:132px;
+    width:260px;
+    color:#7d2be0;
+    font-size:24px;
+    line-height:1.18;
+    font-weight:400;
+    letter-spacing:-0.2px;
+  }
+
+  .col-left, .col-mid{
+    position:absolute;
+    color:#222;
+    font-size:18px;
+    line-height:1.45;
+    font-weight:400;
+  }
+
+  .col-left{
+    left:64px;
+    top:225px;
+    width:333px;
+  }
+
+  .col-mid{
+    left:484px;
+    top:125px;
+    width:357px;
+  }
+
+  p{
+    margin:0 0 20px 0;
+  }
+
+  .quote{
+    position:absolute;
+    left:940px;
+    top:159px;
+    width:302px;
+    color:#8a38df;
+    font-size:20px;
+    line-height:1.6;
+    font-weight:400;
+  }
+
+  .author{
+    position:absolute;
+    left:944px;
+    top:302px;
+    color:#111;
+    font-size:16px;
+    line-height:1.2;
+    font-weight:700;
+  }
+
+  .top-photo{
+    position:absolute;
+    left:936px;
+    top:0px;
+    width:363px;
+    height:129px;
+    background:
+      radial-gradient(circle at 11% 24%, rgba(255,231,168,0.95) 0 10%, rgba(255,231,168,0.5) 10% 16%, transparent 17%),
+      radial-gradient(circle at 24% 26%, rgba(255,219,137,0.95) 0 7%, rgba(255,219,137,0.45) 7% 13%, transparent 14%),
+      linear-gradient(90deg, rgba(132,170,177,0.9) 0%, rgba(184,209,209,0.72) 28%, rgba(83,102,113,0.74) 50%, rgba(52,66,75,0.9) 78%, rgba(66,79,87,0.96) 100%);
+    filter: blur(0.2px);
+  }
+  .top-photo:before{
+    content:"";
+    position:absolute;
+    right:-10px;
+    top:-18px;
+    width:230px;
+    height:170px;
+    border-radius:42% 42% 10% 10%;
+    background:linear-gradient(180deg, rgba(76,90,99,0.95), rgba(52,64,71,0.92));
+    transform:rotate(4deg);
+    opacity:0.92;
+  }
+  .top-photo:after{
+    content:"";
+    position:absolute;
+    right:80px;
+    top:-8px;
+    width:12px;
+    height:46px;
+    border-radius:8px;
+    background:rgba(34,45,52,0.95);
+    box-shadow:18px -4px 0 0 rgba(30,40,46,0.95);
+    transform:rotate(-10deg);
+  }
+
+  .bottom-photo{
+    position:absolute;
+    left:936px;
+    top:359px;
+    width:363px;
+    height:361px;
+    background:
+      linear-gradient(180deg, rgba(211,225,220,0.85) 0%, rgba(181,213,212,0.68) 12%, rgba(110,180,164,0.5) 34%, rgba(38,136,44,0.86) 54%, rgba(149,188,196,0.75) 70%, rgba(66,89,110,0.92) 100%);
+    overflow:hidden;
+  }
+  .bottom-photo:before{
+    content:"";
+    position:absolute;
+    left:-8px;
+    top:-24px;
+    width:165px;
+    height:220px;
+    background:linear-gradient(180deg, rgba(158,98,67,0.98), rgba(120,72,52,0.98));
+    border-radius:70px 42px 80px 20px;
+    transform:rotate(22deg);
+    filter: blur(0.4px);
+  }
+  .bottom-photo:after{
+    content:"";
+    position:absolute;
+    right:-12px;
+    bottom:-10px;
+    width:198px;
+    height:250px;
+    background:linear-gradient(180deg, rgba(48,34,31,0.98), rgba(30,21,24,0.98));
+    border-radius:110px 18px 0 0;
+    transform:rotate(7deg);
+  }
+  .arm-top{
+    position:absolute;
+    left:144px;
+    top:-16px;
+    width:210px;
+    height:92px;
+    background:linear-gradient(180deg, rgba(206,161,131,0.95), rgba(167,112,89,0.98));
+    border-radius:40px;
+    transform:rotate(13deg);
+    filter: blur(0.3px);
+  }
+  .hand{
+    position:absolute;
+    right:62px;
+    top:109px;
+    width:138px;
+    height:84px;
+    background:linear-gradient(180deg, rgba(108,60,45,0.98), rgba(78,40,33,0.98));
+    border-radius:54px 42px 40px 54px;
+    transform:rotate(19deg);
+  }
+  .phone{
+    position:absolute;
+    right:112px;
+    top:172px;
+    width:61px;
+    height:7px;
+    background:#f1f1f1;
+    border-radius:3px;
+    transform:rotate(-42deg);
+    box-shadow:0 0 0 1px rgba(190,190,190,0.35);
+  }
+  .table-edge{
+    position:absolute;
+    left:0;
+    bottom:18px;
+    width:188px;
+    height:18px;
+    background:linear-gradient(180deg, rgba(223,230,230,0.95), rgba(168,179,184,0.95));
+    transform:skewX(-12deg);
+  }
+  .table-mark{
+    position:absolute;
+    left:148px;
+    bottom:15px;
+    width:22px;
+    height:7px;
+    background:#2e2b2c;
+    border-radius:2px;
+  }
+
+  .footer-left{
+    position:absolute;
+    right:70px;
+    bottom:14px;
+    color:#ffffff;
+    font-size:13px;
+    line-height:1;
+    font-weight:400;
+    opacity:0.9;
+  }
+
+  .footer-right{
+    position:absolute;
+    right:24px;
+    bottom:14px;
+    color:#666;
+    font-size:13px;
+    line-height:1;
+    font-weight:400;
+  }
+
+  .vertical{
+    position:absolute;
+    top:34px;
+    right:10px;
+    width:28px;
+    height:650px;
+    color:#666;
+    font-size:13px;
+    line-height:1;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    letter-spacing:0.2px;
+  }
+  .vertical .active{
+    color:#8a38df;
+    font-weight:700;
+  }
+
+  sup{
+    font-size:10px;
+    vertical-align:super;
+    line-height:0;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title">The chain of<br>humanization</div>
+
+    <div class="col-left">
+      <p>How can leaders steer their teams when so much is beyond their control? It starts by fostering cohesion and a sense of purpose among leaders. Companies must recharge leaders so that they, in turn, can recharge those that they lead. When leaders are united and driven by a clear mission, they can inspire and support their people through instability, creating a resilient and motivated workforce ready to tackle any challenge.</p>
+      <p>Centered on person-to-person connection, humanized leadership is key to restoring energy. By focusing on empathy and interaction, leaders can build trust and engagement—which is something digital productivity technologies can’t replicate. This approach revitalizes teams, making them stronger and more driven. When tough decisions must be made, explaining the reasons clearly and with empathy around the impact on people will define morale going forward.</p>
+    </div>
+
+    <div class="col-mid">
+      <p>Employees should be walking ambassadors for an organization, inspired to do their best work for their employer, clients and customers, but if they feel unappreciated and short-changed, why would they bother? People need to know that their achievements for the business are noticed and appreciated. Even when budgets do not stretch to financial reward, a sincere show of gratitude costs nothing and means a great deal, but the importance of such gestures is being forgotten. Thriving work environments have leaders and team members who voice their appreciation, and good employers will ensure they know this is happening.</p>
+      <p>Support (or lack of it) directly correlates with well-being, including job satisfaction, emotional exhaustion and stress-related health issues.<sup>110</sup> Bringing energy back into the workplace means actively making people feel supported by the organization—and this should become a metric for every level of leadership. Surface-level efforts will be recognized as such, and may be perceived as “well-being washing,” which would backfire.<sup>111</sup></p>
+    </div>
+
+    <div class="top-photo"></div>
+
+    <div class="quote">“I want it to be fundamentally enjoyable and to be honest, I do not really have any connection with my employer.”</div>
+    <div class="author">Shogo, K., 25, Japan</div>
+
+    <div class="bottom-photo">
+      <div class="arm-top"></div>
+      <div class="hand"></div>
+      <div class="phone"></div>
+      <div class="table-edge"></div>
+      <div class="table-mark"></div>
+    </div>
+
+    <div class="vertical">Cost of hesitations &nbsp;/&nbsp; The parent trap &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; <span class="active">The dignity of work</span> &nbsp;/&nbsp; Social rewiring</div>
+
+    <div class="footer-left">Accenture Life Trends 2025</div>
+    <div class="footer-right">62</div>
+  </div>
+</body>
+</html>

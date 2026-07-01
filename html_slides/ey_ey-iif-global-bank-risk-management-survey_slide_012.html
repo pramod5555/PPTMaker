@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d7d7d8;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0 auto;
+    overflow:hidden;
+    background:#d8d8da;
+  }
+
+  .title{
+    position:absolute;
+    left:47px;
+    top:74px;
+    font-size:13px;
+    line-height:16px;
+    color:#33353b;
+    font-weight:400;
+    letter-spacing:0;
+    z-index:20;
+    white-space:nowrap;
+  }
+  .title b{font-weight:700;}
+
+  .logo{
+    position:absolute;
+    right:26px;
+    top:28px;
+    width:52px;
+    height:52px;
+    z-index:30;
+  }
+  .logo .ring1,
+  .logo .ring2{
+    position:absolute;
+    border:1px solid #6f7076;
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+  .logo .ring1{
+    left:1px;
+    top:1px;
+    width:39px;
+    height:39px;
+    border-right-color:transparent;
+    border-bottom-color:transparent;
+    transform:rotate(20deg);
+  }
+  .logo .ring2{
+    left:8px;
+    top:11px;
+    width:30px;
+    height:30px;
+    border-left-color:transparent;
+    border-top-color:transparent;
+    transform:rotate(18deg);
+  }
+  .logo .dot{
+    position:absolute;
+    left:32px;
+    top:0px;
+    width:8px;
+    height:8px;
+    background:#e8d319;
+    border-radius:50%;
+  }
+  .logo .text{
+    position:absolute;
+    left:3px;
+    top:11px;
+    width:40px;
+    text-align:center;
+    font-size:9px;
+    line-height:9px;
+    color:#33353b;
+    font-weight:400;
+  }
+
+  .chapter{
+    position:absolute;
+    left:0;
+    top:305px;
+    width:28px;
+    height:150px;
+    z-index:20;
+  }
+  .chapter .txt{
+    position:absolute;
+    left:8px;
+    top:61px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    font-size:12px;
+    line-height:12px;
+    color:#2f3136;
+    letter-spacing:0.14em;
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .chapter .line{
+    position:absolute;
+    left:14px;
+    top:98px;
+    width:1px;
+    height:38px;
+    background:#4d4e53;
+  }
+
+  .label{
+    position:absolute;
+    width:184px;
+    font-size:11px;
+    line-height:13px;
+    color:#5c5b62;
+    text-align:right;
+    font-weight:400;
+    z-index:20;
+  }
+  .barbox{
+    position:absolute;
+    width:168px;
+    height:24px;
+    border:1px solid #a7a7ad;
+    box-sizing:border-box;
+    background:transparent;
+    z-index:15;
+  }
+  .fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:22px;
+    background:#8a0f6f;
+  }
+  .pct{
+    position:absolute;
+    right:7px;
+    top:4px;
+    font-size:12px;
+    line-height:12px;
+    color:#55565d;
+    font-weight:400;
+    z-index:16;
+  }
+
+  .bottom{
+    position:absolute;
+    left:0;
+    top:412px;
+    width:1280px;
+    height:308px;
+    background:
+      linear-gradient(90deg, #02020a 0px, #040410 90px, #140922 210px, #17091f 520px, #13081d 1280px);
+    z-index:1;
+  }
+
+  .screen{
+    position:absolute;
+    top:412px;
+    height:282px;
+    overflow:hidden;
+    z-index:4;
+    box-shadow: inset 0 0 10px rgba(255,255,255,.06), 0 0 18px rgba(0,0,0,.7);
+  }
+
+  .s1{left:81px;width:274px;
+    background:
+      radial-gradient(circle at 78% 34%, rgba(90,180,255,.40), transparent 25%),
+      radial-gradient(circle at 48% 77%, rgba(255,125,98,.18), transparent 34%),
+      linear-gradient(135deg,#18062f 0%,#4f287d 35%,#4454c8 63%,#14102d 100%);
+  }
+  .s2{left:392px;width:177px;
+    background:
+      radial-gradient(circle at 42% 48%, rgba(183,231,100,.95), transparent 22%),
+      radial-gradient(circle at 74% 22%, rgba(253,114,120,.62), transparent 32%),
+      radial-gradient(circle at 18% 85%, rgba(255,216,120,.52), transparent 28%),
+      linear-gradient(140deg,#2a0912 0%,#a54356 26%,#f06a7d 58%,#ccb05d 100%);
+  }
+  .s3{left:598px;width:134px;
+    background:
+      radial-gradient(circle at 58% 28%, rgba(206,255,247,.45), transparent 20%),
+      radial-gradient(circle at 34% 68%, rgba(71,133,255,.50), transparent 33%),
+      linear-gradient(145deg,#0a8e9e 0%,#08cfd0 42%,#3b79df 78%,#08336f 100%);
+  }
+  .s4{left:748px;width:88px;
+    background:
+      radial-gradient(circle at 44% 20%, rgba(119,203,255,.46), transparent 20%),
+      radial-gradient(circle at 63% 60%, rgba(255,92,185,.28), transparent 28%),
+      linear-gradient(145deg,#164858 0%,#1b8bbf 40%,#48657d 72%,#42634b 100%);
+  }
+  .s5{left:849px;width:71px;
+    background:
+      radial-gradient(circle at 56% 28%, rgba(255,191,234,.35), transparent 20%),
+      radial-gradient(circle at 58% 80%, rgba(255,112,191,.28), transparent 24%),
+      linear-gradient(145deg,#a44993 0%,#dc66b2 42%,#ff8ccc 72%,#9544a1 100%);
+  }
+  .s6{left:931px;width:57px;
+    background:
+      radial-gradient(circle at 58% 22%, rgba(255,255,255,.20), transparent 16%),
+      linear-gradient(145deg,#7a56ca 0%,#cb91ef 40%,#ecc2d8 70%,#926ad0 100%);
+  }
+  .s7{left:992px;width:53px;
+    background:
+      radial-gradient(circle at 55% 42%, rgba(255,205,176,.38), transparent 22%),
+      linear-gradient(145deg,#837030 0%,#caa555 42%,#f0d89a 72%,#9c7e59 100%);
+  }
+  .s8{left:1049px;width:45px;
+    background:
+      linear-gradient(90deg, rgba(16,12,28,.78) 0 20%, transparent 20% 100%),
+      linear-gradient(145deg,#2a1a58 0%,#8b2b70 28%,#8fc243 58%,#261655 100%);
+  }
+  .s9{left:1104px;width:51px;
+    background:
+      linear-gradient(90deg, rgba(14,14,18,.82) 0 18%, transparent 18% 100%),
+      linear-gradient(145deg,#1a234e 0%,#2db8e8 43%,#493ab1 74%,#171227 100%);
+  }
+  .s10{left:1162px;width:43px;
+    background:
+      radial-gradient(circle at 46% 44%, rgba(218,255,110,.36), transparent 16%),
+      linear-gradient(145deg,#39256d 0%,#317ac0 34%,#79c13f 66%,#1f112d 100%);
+  }
+  .s11{left:1215px;width:39px;
+    background:
+      radial-gradient(circle at 42% 36%, rgba(255,170,70,.34), transparent 22%),
+      linear-gradient(145deg,#7a144e 0%,#c65b3d 54%,#80812d 100%);
+  }
+
+  .divider{
+    position:absolute;
+    top:412px;
+    height:282px;
+    width:4px;
+    background:rgba(15,7,20,.95);
+    z-index:5;
+    box-shadow:0 0 7px rgba(0,0,0,.8);
+  }
+
+  .rightGlow{
+    position:absolute;
+    right:-6px;
+    top:523px;
+    width:51px;
+    height:59px;
+    background:radial-gradient(circle at 10% 50%, rgba(244,0,255,.8) 0%, rgba(123,44,255,.45) 38%, rgba(0,0,0,0) 72%);
+    z-index:6;
+    pointer-events:none;
+  }
+
+  .floorGlow{
+    position:absolute;
+    left:0;
+    top:646px;
+    width:1280px;
+    height:74px;
+    background:
+      linear-gradient(180deg, rgba(20,18,26,0) 0%, rgba(34,31,43,.34) 30%, rgba(56,51,65,.86) 100%),
+      radial-gradient(ellipse at 52% 0%, rgba(0,188,255,.35), transparent 22%),
+      radial-gradient(ellipse at 73% 0%, rgba(255,0,153,.18), transparent 18%);
+    z-index:3;
+  }
+
+  .reflection{
+    position:absolute;
+    left:318px;
+    top:662px;
+    width:840px;
+    height:58px;
+    background:
+      linear-gradient(90deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,175,255,.22) 20%,
+        rgba(255,0,140,.16) 58%,
+        rgba(255,180,90,.10) 78%,
+        rgba(0,0,0,0) 100%);
+    filter:blur(8px);
+    z-index:2;
+    pointer-events:none;
+  }
+
+  .callout{
+    position:absolute;
+    left:113px;
+    top:469px;
+    width:255px;
+    color:#f2f0f6;
+    font-size:18px;
+    line-height:1.5;
+    font-weight:300;
+    z-index:10;
+  }
+  .callout b{font-weight:700;}
+
+  .pageno{
+    position:absolute;
+    left:18px;
+    bottom:13px;
+    color:#ffffff;
+    font-size:11px;
+    line-height:11px;
+    font-weight:400;
+    z-index:10;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="logo">
+    <div class="ring1"></div>
+    <div class="ring2"></div>
+    <div class="dot"></div>
+    <div class="text">Jump to<br>contents</div>
+  </div>
+
+  <div class="title"><b>Figure 3:</b> External forces and emerging risks shaping and influencing CROs’ strategic agenda.</div>
+
+  <div class="chapter">
+    <div class="txt">CHAPTER 1</div>
+    <div class="line"></div>
+  </div>
+
+  <div class="label" style="left:51px; top:129px;">Economic conditions (e.g.,<br>inflation, recession)</div>
+  <div class="barbox" style="left:234px; top:131px;">
+    <div class="fill" style="width:138px;"></div>
+    <div class="pct">83%</div>
+  </div>
+
+  <div class="label" style="left:42px; top:183px;">Technological advancements (e.g.,<br>rapid growth and responsible<br>use of AI)</div>
+  <div class="barbox" style="left:234px; top:192px;">
+    <div class="fill" style="width:132px;"></div>
+    <div class="pct">79%</div>
+  </div>
+
+  <div class="label" style="left:54px; top:247px;">Geopolitical instability (e.g., trade<br>tensions, political conflicts)</div>
+  <div class="barbox" style="left:234px; top:251px;">
+    <div class="fill" style="width:119px;"></div>
+    <div class="pct">71%</div>
+  </div>
+
+  <div class="label" style="left:450px; top:122px;">Talent and culture<br>(e.g., talent gaps associated<br>with emerging technologies)</div>
+  <div class="barbox" style="left:641px; top:131px;">
+    <div class="fill" style="width:89px;"></div>
+    <div class="pct">54%</div>
+  </div>
+
+  <div class="label" style="left:437px; top:177px;">Disintermediation (e.g.,<br>the rise of FinTech, nonbank<br>financial institutions, peer-to-peer<br>lending, blockchain)</div>
+  <div class="barbox" style="left:641px; top:192px;">
+    <div class="fill" style="width:81px;"></div>
+    <div class="pct">49%</div>
+  </div>
+
+  <div class="label" style="left:444px; top:255px;">Quantum computing giving rise<br>to a more complex cybersecurity<br>and data privacy environment</div>
+  <div class="barbox" style="left:641px; top:251px;">
+    <div class="fill" style="width:61px;"></div>
+    <div class="pct">37%</div>
+  </div>
+
+  <div class="label" style="left:837px; top:123px;">Regulatory fragmentation and localization<br>(e.g., variability in the requirements<br>of rules across different jurisdictions)</div>
+  <div class="barbox" style="left:1082px; top:131px;">
+    <div class="fill" style="width:52px;"></div>
+    <div class="pct">31%</div>
+  </div>
+
+  <div class="label" style="left:863px; top:177px;">Regulatory implementation<br>discrepancies (e.g., jurisdictions<br>applying similar or uniform rules in<br>different ways)</div>
+  <div class="barbox" style="left:1082px; top:192px;">
+    <div class="fill" style="width:42px;"></div>
+    <div class="pct">25%</div>
+  </div>
+
+  <div class="label" style="left:871px; top:253px;">Severity and/or increasing frequency<br>of large-scale climate events</div>
+  <div class="barbox" style="left:1082px; top:251px;">
+    <div class="fill" style="width:30px;"></div>
+    <div class="pct">18%</div>
+  </div>
+
+  <div class="bottom"></div>
+
+  <div class="screen s1"></div>
+  <div class="divider" style="left:354px;"></div>
+  <div class="screen s2"></div>
+  <div class="divider" style="left:568px;"></div>
+  <div class="screen s3"></div>
+  <div class="divider" style="left:732px;"></div>
+  <div class="screen s4"></div>
+  <div class="divider" style="left:836px;"></div>
+  <div class="screen s5"></div>
+  <div class="divider" style="left:920px;"></div>
+  <div class="screen s6"></div>
+  <div class="divider" style="left:988px;"></div>
+  <div class="screen s7"></div>
+  <div class="divider" style="left:1045px;"></div>
+  <div class="screen s8"></div>
+  <div class="divider" style="left:1094px;"></div>
+  <div class="screen s9"></div>
+  <div class="divider" style="left:1155px;"></div>
+  <div class="screen s10"></div>
+  <div class="divider" style="left:1205px;"></div>
+  <div class="screen s11"></div>
+
+  <div class="reflection"></div>
+  <div class="floorGlow"></div>
+  <div class="rightGlow"></div>
+
+  <div class="callout">
+    Forward-looking CROs<br>
+    are already <b>exploring</b><br>
+    <b>how external forces</b><br>
+    <b>will impact the</b><br>
+    <b>banking business</b> in<br>
+    the years ahead.
+  </div>
+
+  <div class="pageno">12</div>
+</div>
+</body>
+</html>

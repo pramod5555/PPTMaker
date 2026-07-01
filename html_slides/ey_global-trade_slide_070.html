@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Asia-Pacific Tax alerts</title>
+<style>
+  html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #2d2e3d;
+    color: #fff;
+  }
+  #slide > div, #slide > svg {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  .world-map {
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+  }
+
+  .continent-outline {
+    fill: none;
+    stroke: rgba(0,0,0,0.88);
+    stroke-width: 1.15;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  .asia-fill {
+    fill: #00a53a;
+    stroke: rgba(0,0,0,0.45);
+    stroke-width: 0.9;
+    stroke-linejoin: round;
+  }
+  .asia-dot {
+    fill: #00a53a;
+  }
+
+  .left-tab-bg {
+    left: 0;
+    top: 0;
+    width: 55px;
+    height: 78px;
+    background: #bdbdc4;
+    z-index: 20;
+  }
+
+  .top-label {
+    left: 57px;
+    top: 51px;
+    font-size: 34px;
+    line-height: 1;
+    transform: scale(0.5);
+    transform-origin: top left;
+    color: #ececf0;
+    z-index: 25;
+    white-space: nowrap;
+  }
+
+  .tab {
+    top: 43px;
+    height: 31px;
+    font-size: 23px;
+    line-height: 1.05;
+    transform: scale(0.5);
+    transform-origin: top left;
+    padding: 9px 0 0 14px;
+    z-index: 26;
+    white-space: nowrap;
+  }
+  .tab.orange {
+    left: 216px;
+    width: 286px;
+    background: #f57c00;
+    color: #fff;
+  }
+  .tab.gray {
+    left: 362px;
+    width: 278px;
+    background: #e8e8ea;
+    color: #9fa0a8;
+  }
+  .tab.blue {
+    left: 509px;
+    width: 280px;
+    background: #1e9ae8;
+    color: #fff;
+    white-space: normal;
+    line-height: 1.02;
+  }
+
+  .top-line {
+    left: 0;
+    top: 77px;
+    width: 1280px;
+    height: 2px;
+    background: rgba(255,255,255,0.65);
+    z-index: 18;
+  }
+
+  .nav-circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #d9d9df;
+    top: 33px;
+    z-index: 26;
+  }
+  .nav-left { left: 1128px; }
+  .nav-right { left: 1183px; }
+
+  .nav-arrow-left, .nav-arrow-right {
+    top: 42px;
+    width: 0;
+    height: 0;
+    z-index: 27;
+  }
+  .nav-arrow-left {
+    left: 1140px;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-right: 11px solid #575964;
+  }
+  .nav-arrow-right {
+    left: 1198px;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-left: 11px solid #575964;
+  }
+
+  .title {
+    left: 57px;
+    top: 114px;
+    font-size: 58px;
+    line-height: 1;
+    font-weight: 700;
+    transform: scale(0.5);
+    transform-origin: top left;
+    z-index: 30;
+    white-space: nowrap;
+  }
+
+  .content {
+    left: 56px;
+    top: 168px;
+    width: 300px;
+    z-index: 30;
+    color: #fff;
+  }
+  .country {
+    position: absolute;
+    left: 0;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 700;
+    margin: 0;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .bullet {
+    position: absolute;
+    left: 0;
+    width: 292px;
+    font-size: 11px;
+    line-height: 14px;
+    color: #f3f3f6;
+  }
+  .bullet .sq {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 5px;
+    height: 5px;
+    background: #f2f2f5;
+  }
+  .bullet .txt {
+    display: block;
+    padding-left: 12px;
+    width: 280px;
+  }
+  .date {
+    position: absolute;
+    left: 12px;
+    font-size: 11px;
+    line-height: 14px;
+    font-style: italic;
+    color: #cfd0d7;
+    white-space: nowrap;
+  }
+
+  .divider {
+    left: 367px;
+    top: 176px;
+    width: 1px;
+    height: 536px;
+    background: rgba(255,255,255,0.23);
+    z-index: 15;
+  }
+
+  .side-nav {
+    left: 1191px;
+    top: 120px;
+    width: 89px;
+    height: 306px;
+    z-index: 35;
+  }
+  .side-item {
+    position: absolute;
+    left: 0;
+    width: 89px;
+    color: #efeff2;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+  }
+  .side-item .marker {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 2px;
+    height: 33px;
+    background: #d5d61b;
+  }
+  .side-item .label {
+    position: absolute;
+    left: 6px;
+    top: 0;
+    width: 78px;
+  }
+  .side-item.active {
+    height: 42px;
+    background: rgba(255,255,255,0.18);
+  }
+  .side-item.active .marker {
+    top: 7px;
+    height: 27px;
+  }
+  .side-item.active .label {
+    top: 12px;
+  }
+
+  .footer-text {
+    left: 56px;
+    top: 686px;
+    font-size: 11px;
+    line-height: 13px;
+    color: #a9abb3;
+    z-index: 30;
+    white-space: nowrap;
+  }
+  .footer-text .strong {
+    font-weight: 700;
+    color: #b0b2ba;
+  }
+  .footer-text .light {
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <svg class="world-map" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="0" y="0" width="1280" height="720" fill="#2d2e3d"/>
+
+    <!-- world outlines -->
+    <g opacity="0.98">
+      <!-- North America -->
+      <path class="continent-outline" d="M5,90
+        L20,84 L37,79 L54,76 L73,76 L89,72 L104,66 L120,57 L136,48 L156,37 L180,29 L208,24 L242,21 L278,21
+        L317,19 L355,18 L390,20 L424,24 L455,30 L484,37 L500,46 L493,53 L470,58 L442,58 L413,55 L382,58
+        L356,63 L333,69 L308,76 L282,83 L258,91 L233,99 L211,109 L191,119 L173,130 L157,141 L144,153 L132,165
+        L118,178 L103,191 L87,200 L72,210 L57,221 L43,235 L32,252 L19,270 L9,288 L1,301" />
+      <!-- Greenland -->
+      <path class="continent-outline" d="M210,38 L239,28 L270,22 L307,21 L340,24 L375,29 L404,35 L423,42 L435,49 L425,54 L398,56 L365,55 L333,53 L297,49 L262,46 L232,42 Z"/>
+      <!-- South America -->
+      <path class="continent-outline" d="M286,177
+        L300,188 L311,201 L321,215 L331,233 L339,251 L348,271 L356,291 L360,313 L362,334 L362,356 L360,378
+        L355,401 L349,424 L341,447 L332,468 L320,489 L308,509 L297,526 L288,540 L278,552 L268,560 L259,554
+        L253,542 L248,525 L244,506 L241,484 L239,462 L239,439 L240,417 L243,394 L247,370 L251,349 L256,328
+        L261,307 L266,286 L271,266 L275,245 L279,224 L282,203 Z"/>
+      <!-- Europe / Africa / Middle East -->
+      <path class="continent-outline" d="M447,84
+        L470,78 L493,74 L520,73 L544,75 L569,81 L594,88 L619,95 L644,99 L668,98 L693,92 L720,85 L747,83
+        L771,87 L793,97 L814,109 L836,121 L857,133 L878,145 L894,160 L906,175 L914,191 L917,205 L912,219
+        L901,229 L888,236 L871,241 L853,249 L837,257 L822,265 L808,271 L792,270 L775,264 L758,255 L742,251
+        L723,253 L708,261 L695,274 L684,287 L671,297 L654,301 L636,297 L621,289 L606,279 L590,269 L573,260
+        L555,251 L539,238 L524,222 L510,204 L498,186 L489,170 L479,154 L467,140 L455,125 L448,108 Z"/>
+      <path class="continent-outline" d="M520,258
+        L533,269 L545,283 L554,298 L561,317 L565,338 L566,359 L564,381 L559,402 L552,423 L543,444 L532,463
+        L518,479 L502,493 L487,503 L472,510 L459,510 L449,501 L439,486 L431,467 L424,446 L420,423 L418,399
+        L419,377 L422,355 L428,332 L435,311 L445,291 L457,276 L470,265 L487,259 Z"/>
+      <!-- Asia highlighted -->
+      <path class="asia-fill" d="M828,128
+        L850,123 L874,123 L897,129 L920,139 L943,146 L967,151 L992,156 L1013,164 L1028,175 L1043,187 L1055,201
+        L1062,216 L1062,232 L1057,247 L1047,260 L1032,270 L1013,277 L994,283 L975,290 L960,300 L948,314
+        L938,328 L928,342 L914,354 L899,365 L882,374 L863,382 L844,387 L824,388 L806,382 L792,370 L780,356
+        L767,344 L751,333 L736,321 L722,307 L711,291 L704,274 L700,258 L700,243 L705,227 L715,213 L728,200
+        L743,188 L759,175 L775,161 L791,146 L808,134 Z"/>
+      <path class="asia-fill" d="M786,323
+        L801,327 L814,335 L824,346 L830,359 L830,376 L823,391 L811,402 L797,407 L783,403 L773,392 L767,377
+        L766,361 L770,346 L777,334 Z"/>
+      <path class="asia-fill" d="M811,385
+        L826,392 L841,402 L853,417 L861,434 L866,451 L869,468 L874,482 L885,495 L900,507 L915,518 L932,528
+        L952,537 L971,546 L990,559 L1005,575 L1016,592 L1022,608 L1022,623 L1016,636 L1005,646 L990,651
+        L974,647 L961,638 L951,625 L943,611 L935,598 L924,586 L910,575 L894,564 L878,552 L864,539 L853,523
+        L845,504 L838,486 L832,468 L826,450 L820,433 L815,416 Z"/>
+      <path class="asia-fill" d="M1020,179
+        L1032,177 L1044,182 L1056,192 L1065,205 L1070,220 L1070,235 L1065,248 L1055,258 L1041,264 L1028,261
+        L1018,250 L1012,235 L1011,219 L1014,198 Z"/>
+      <path class="asia-fill" d="M1000,547
+        L1013,552 L1028,560 L1041,570 L1055,582 L1068,594 L1080,607 L1089,620 L1092,634 L1088,648 L1077,659
+        L1063,666 L1047,671 L1033,670 L1023,660 L1016,646 L1011,632 L1007,616 L1002,600 L998,585 L996,570 Z"/>
+      <path class="asia-fill" d="M1107,651
+        L1118,658 L1129,666 L1138,676 L1139,688 L1130,698 L1118,696 L1108,686 L1103,672 Z"/>
+      <!-- Australia -->
+      <path class="asia-fill" d="M1032,431
+        L1050,435 L1068,444 L1084,456 L1099,470 L1112,486 L1123,505 L1130,524 L1131,544 L1127,563 L1117,580
+        L1103,594 L1087,606 L1068,616 L1048,621 L1029,620 L1015,612 L1004,598 L997,581 L995,563 L996,544
+        L1000,526 L1007,509 L1016,491 L1026,474 Z"/>
+      <!-- New Zealand -->
+      <path class="asia-fill" d="M1145,585 L1158,598 L1165,612 L1159,623 L1146,620 L1138,609 Z"/>
+      <path class="asia-fill" d="M1160,623 L1168,632 L1172,643 L1165,650 L1155,645 L1151,634 Z"/>
+
+      <!-- scattered pacific islands -->
+      <circle class="asia-dot" cx="1141" cy="91" r="1"/>
+      <circle class="asia-dot" cx="1149" cy="100" r="1"/>
+      <circle class="asia-dot" cx="1156" cy="110" r="1"/>
+      <circle class="asia-dot" cx="1172" cy="125" r="1"/>
+      <circle class="asia-dot" cx="1185" cy="142" r="1"/>
+      <circle class="asia-dot" cx="1188" cy="160" r="1"/>
+      <circle class="asia-dot" cx="1184" cy="177" r="1"/>
+      <circle class="asia-dot" cx="1174" cy="197" r="1"/>
+      <circle class="asia-dot" cx="1169" cy="217" r="1"/>
+      <circle class="asia-dot" cx="1178" cy="240" r="1"/>
+      <circle class="asia-dot" cx="1186" cy="261" r="1"/>
+      <circle class="asia-dot" cx="1196" cy="281" r="1"/>
+      <circle class="asia-dot" cx="1205" cy="303" r="1"/>
+      <circle class="asia-dot" cx="1213" cy="324" r="1"/>
+      <circle class="asia-dot" cx="1224" cy="345" r="1"/>
+      <circle class="asia-dot" cx="1234" cy="366" r="1"/>
+      <circle class="asia-dot" cx="1245" cy="384" r="1"/>
+      <circle class="asia-dot" cx="1256" cy="405" r="1"/>
+      <circle class="asia-dot" cx="1263" cy="427" r="1"/>
+
+      <!-- minor outlines for texture -->
+      <path class="continent-outline" d="M119,54 L145,49 L173,51 L198,56 L219,63 L232,72"/>
+      <path class="continent-outline" d="M274,29 L306,23 L341,23 L373,26 L400,31 L424,37 L445,46"/>
+      <path class="continent-outline" d="M570,29 L592,24 L617,21 L641,21 L665,25 L689,31 L708,39"/>
+      <path class="continent-outline" d="M203,519 L214,533 L228,542 L240,552 L246,565"/>
+      <path class="continent-outline" d="M920,607 L932,616 L944,624 L954,633 L960,643"/>
+    </g>
+  </svg>
+
+  <div class="left-tab-bg"></div>
+  <div class="top-label">Tax alerts</div>
+
+  <div class="tab orange">Americas</div>
+  <div class="tab gray">Asia-Pacific</div>
+  <div class="tab blue">Europe, Middle East,<br>India and Africa</div>
+
+  <div class="nav-circle nav-left"></div>
+  <div class="nav-circle nav-right"></div>
+  <div class="nav-arrow-left"></div>
+  <div class="nav-arrow-right"></div>
+
+  <div class="top-line"></div>
+
+  <div class="title">Asia-Pacific</div>
+
+  <div class="content">
+    <p class="country" style="top:0px;">China</p>
+    <div class="bullet" style="top:24px;">
+      <span class="sq"></span>
+      <span class="txt">US President announces new trade and economic deal with China and commitments to Republic of Korea</span>
+    </div>
+    <div class="date" style="top:55px;">04 November 2025</div>
+
+    <p class="country" style="top:80px;">New Zealand</p>
+    <div class="bullet" style="top:104px;">
+      <span class="sq"></span>
+      <span class="txt">India-New Zealand FTA signed in April 2026, enabling zero-duty access for Indian exports to New Zealand</span>
+    </div>
+    <div class="date" style="top:135px;">28 April 2026</div>
+
+    <p class="country" style="top:160px;">Vietnam</p>
+    <div class="bullet" style="top:184px;">
+      <span class="sq"></span>
+      <span class="txt">Customs &amp; Global Trade Alert | January 2026 | Key changes to customs procedures effective from 1 February 2026</span>
+    </div>
+    <div class="date" style="top:229px;">13 January 2026</div>
+
+    <div class="bullet" style="top:259px;">
+      <span class="sq"></span>
+      <span class="txt">Customs &amp; Global Trade Alert | January 2026 | New import requirements for used technology lines, equipment, machinery and tools in high-tech sector</span>
+    </div>
+    <div class="date" style="top:320px;">05 January 2026</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="side-nav">
+    <div class="side-item" style="top:0px; height:35px;">
+      <div class="marker"></div>
+      <div class="label">Contents</div>
+    </div>
+    <div class="side-item" style="top:51px; height:35px;">
+      <div class="marker"></div>
+      <div class="label">Insights</div>
+    </div>
+    <div class="side-item" style="top:102px; height:35px;">
+      <div class="marker"></div>
+      <div class="label">New on<br>ey.com</div>
+    </div>
+    <div class="side-item" style="top:153px; height:35px;">
+      <div class="marker"></div>
+      <div class="label">Tax alerts</div>
+    </div>
+    <div class="side-item" style="top:204px; height:35px;">
+      <div class="marker"></div>
+      <div class="label">Additional<br>resources</div>
+    </div>
+    <div class="side-item active" style="top:255px; width:89px;">
+      <div class="marker"></div>
+      <div class="label">Contacts</div>
+    </div>
+  </div>
+
+  <div class="footer-text"><span class="light">67 | </span><span class="strong">TradeWatch</span> <span class="light">Issue 1 2026</span></div>
+</div>
+</body>
+</html>

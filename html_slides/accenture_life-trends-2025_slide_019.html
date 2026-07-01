@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Responsibly seeking consent</title>
+<style>
+  body{
+    margin:0;
+    background:#cccbcc;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#cccbcc;
+    color:#222;
+  }
+
+  .left-top-img{
+    position:absolute;
+    left:59px;
+    top:0px;
+    width:343px;
+    height:121px;
+    background:
+      radial-gradient(circle at 43% 55%, rgba(120,72,34,.95) 0 16%, rgba(84,47,25,.95) 17% 27%, rgba(188,132,74,.95) 28% 38%, rgba(255,230,180,.95) 39% 48%, transparent 49%),
+      radial-gradient(circle at 58% 42%, rgba(255,247,226,.9) 0 5%, rgba(210,210,210,.4) 6% 11%, transparent 12%),
+      radial-gradient(circle at 73% 18%, rgba(235,235,235,.9) 0 4%, transparent 5%),
+      radial-gradient(circle at 56% 15%, rgba(230,230,230,.85) 0 4%, transparent 5%),
+      radial-gradient(circle at 41% 18%, rgba(240,240,240,.8) 0 4%, transparent 5%),
+      radial-gradient(circle at 25% 58%, rgba(255,236,200,.95) 0 22%, rgba(147,90,46,.9) 23% 36%, transparent 37%),
+      linear-gradient(90deg, #5d270d 0%, #4b1d09 32%, #8d5b25 55%, #a96d2d 77%, #b57731 100%);
+    overflow:hidden;
+  }
+  .left-top-img:after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:20px;
+    width:343px;
+    height:20px;
+    border-top:8px solid rgba(255,255,255,.75);
+    border-radius:50% / 100%;
+    transform:scaleX(1.2);
+    opacity:.9;
+  }
+
+  .title{
+    position:absolute;
+    left:60px;
+    top:161px;
+    width:280px;
+    font-size:26px;
+    line-height:1.18;
+    color:#7b1ee6;
+    font-weight:300;
+    letter-spacing:-0.5px;
+  }
+
+  .left-photo{
+    position:absolute;
+    left:59px;
+    top:274px;
+    width:343px;
+    height:426px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 31% 14%, rgba(255,214,170,.9) 0 10%, rgba(212,125,63,.85) 11% 18%, transparent 19%),
+      radial-gradient(circle at 44% 13%, rgba(255,222,180,.9) 0 8%, rgba(210,138,84,.85) 9% 14%, transparent 15%),
+      linear-gradient(90deg, rgba(7,94,90,.95) 0 34%, rgba(12,109,106,.92) 35% 48%, rgba(196,7,42,.88) 49% 76%, rgba(126,40,29,.72) 77% 100%),
+      linear-gradient(180deg, rgba(255,211,157,.95) 0 14%, rgba(165,92,42,.72) 15% 24%, rgba(28,73,72,.2) 25% 100%);
+    filter:saturate(1.05);
+  }
+  .left-photo:before{
+    content:"";
+    position:absolute;
+    left:77px;
+    top:53px;
+    width:120px;
+    height:300px;
+    border-radius:24px;
+    background:linear-gradient(180deg, #d6d7da 0%, #c8c9cb 55%, #e6e6e8 100%);
+    box-shadow: inset 0 0 0 1px rgba(100,100,100,.25);
+  }
+  .left-photo:after{
+    content:"";
+    position:absolute;
+    left:101px;
+    top:48px;
+    width:74px;
+    height:70px;
+    border-radius:14px;
+    background:linear-gradient(180deg, #6d7077 0%, #8b8d92 100%);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.15);
+  }
+  .phone-lens1,.phone-lens2,.phone-lens3,.phone-stand,.phone-ring,.desk-blur{
+    position:absolute;
+  }
+  .phone-lens1,.phone-lens2,.phone-lens3{
+    width:14px;height:14px;border-radius:50%;
+    background:#25262a;
+    box-shadow:0 0 0 3px rgba(180,181,184,.9);
+  }
+  .phone-lens1{ left:111px; top:61px; }
+  .phone-lens2{ left:136px; top:61px; }
+  .phone-lens3{ left:111px; top:86px; }
+  .phone-stand{
+    left:137px; top:118px;
+    width:8px; height:307px;
+    background:linear-gradient(180deg, #141414 0%, #363636 40%, #0d0d0d 100%);
+    box-shadow:0 0 8px rgba(0,0,0,.25);
+  }
+  .phone-ring{
+    left:123px; top:188px;
+    width:40px; height:40px;
+    border:6px solid rgba(235,235,236,.9);
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+  .desk-blur{
+    left:-4px; bottom:-18px;
+    width:360px; height:62px;
+    background:linear-gradient(180deg, rgba(245,245,245,.95) 0%, rgba(210,210,214,.75) 40%, rgba(38,5,12,.95) 100%);
+    filter:blur(2px);
+  }
+  .photo-bottom-shape{
+    position:absolute;
+    left:28px; bottom:79px;
+    width:74px; height:17px;
+    border-radius:17px;
+    background:rgba(245,245,245,.82);
+    filter:blur(1px);
+  }
+  .phone-base{
+    position:absolute;
+    left:102px; top:251px;
+    width:72px; height:18px;
+    border-radius:0 0 18px 18px;
+    border:5px solid rgba(230,231,233,.82);
+    border-top:none;
+    box-sizing:border-box;
+  }
+
+  .col-left{
+    position:absolute;
+    left:456px;
+    top:84px;
+    width:345px;
+    font-size:17px;
+    line-height:1.43;
+    color:#222;
+  }
+  .col-right{
+    position:absolute;
+    left:876px;
+    top:84px;
+    width:344px;
+    font-size:17px;
+    line-height:1.43;
+    color:#222;
+  }
+  .col-left p,.col-right p{
+    margin:0 0 14px 0;
+  }
+
+  .sup{
+    font-size:11px;
+    vertical-align:super;
+    line-height:0;
+  }
+
+  .side-rail{
+    position:absolute;
+    right:0;
+    top:0;
+    width:67px;
+    height:720px;
+  }
+  .purple-tab{
+    position:absolute;
+    right:10px;
+    top:24px;
+    width:18px;
+    height:126px;
+    background:linear-gradient(180deg, #f1eef8 0%, #e8e0f7 100%);
+    border-radius:0 0 12px 12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+  }
+  .purple-tab span{
+    position:absolute;
+    left:50%;
+    top:11px;
+    transform:translateX(-50%);
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-size:13px;
+    color:#7b1ee6;
+    font-weight:700;
+    letter-spacing:.2px;
+  }
+  .side-text{
+    position:absolute;
+    right:20px;
+    top:160px;
+    height:440px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-size:12px;
+    color:#7a7a7a;
+    letter-spacing:.2px;
+  }
+
+  .footer{
+    position:absolute;
+    right:29px;
+    bottom:18px;
+    font-size:14px;
+    color:#7e7e7e;
+  }
+  .footer .year{
+    color:#8b2be2;
+  }
+  .footer .page{
+    margin-left:28px;
+    color:#7e7e7e;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-top-img"></div>
+
+    <div class="title">Responsibly seeking<br>consent</div>
+
+    <div class="left-photo">
+      <div class="phone-lens1"></div>
+      <div class="phone-lens2"></div>
+      <div class="phone-lens3"></div>
+      <div class="phone-stand"></div>
+      <div class="phone-ring"></div>
+      <div class="phone-base"></div>
+      <div class="photo-bottom-shape"></div>
+      <div class="desk-blur"></div>
+    </div>
+
+    <div class="col-left">
+      <p>When it comes to training AI models using people’s content, platforms will need to be explicit about their intent—and doing this via terms and conditions will not be enough. People must be afforded a fair opportunity to evaluate whether to allow the use of their personal data.</p>
+
+      <p>Creators, artists, media and individual people are already grappling with issues like consent, copyright and privacy. We expect to see legislation, regulation and protection increasing rapidly and unevenly in relation to AI use cases. At the time of writing, over 400 pieces of AI-related legislation exist—most notably the COPIED act, which seeks to grant consent and transparency.<span class="sup">28</span></p>
+
+      <p>Creators rely on platforms to distribute and monetize their content, but generative AI disrupts this process by summarizing that content, using it to train data and reducing visitor numbers. Their relationship is thereby undermined, as their work is exploited without proper compensation and their livelihood is impacted. Public opinion on slop is already being swayed by creatives with large audiences who feel AI threatens their work or their livelihood.<span class="sup">29</span></p>
+    </div>
+
+    <div class="col-right">
+      <p>Software solutions are already emerging. The Cara app was created to give artists who oppose unethical AI a safe space to share images and network with peers.<span class="sup">30</span> Developed by the University of Chicago, Glaze adds a so-called “cloak” to an image to thwart scraping attempts, and Nightshade distorts the image for the generative AI scraper.<span class="sup">31</span> Kudurru puts control in artists’ hands by enabling them to block the scaping IP address and/or to return an image of their own choosing.<span class="sup">32</span></p>
+
+      <p>Brands would be well advised to take a careful look at their communication channels and drive trust in and through them. This presents an opportunity for a more direct relationship with customers as they seek alternatives. Those that invest in becoming the trusted brand within a category could become its new, hesitation-free choice.</p>
+    </div>
+
+    <div class="side-rail">
+      <div class="purple-tab"><span>Cost of hesitations</span></div>
+      <div class="side-text">/ The parent trap &nbsp;&nbsp; / &nbsp;&nbsp; Impatience economy &nbsp;&nbsp; / &nbsp;&nbsp; The dignity of work &nbsp;&nbsp; / &nbsp;&nbsp; Social rewilding</div>
+    </div>
+
+    <div class="footer">Accenture Life Trends <span class="year">2025</span><span class="page">19</span></div>
+  </div>
+</body>
+</html>

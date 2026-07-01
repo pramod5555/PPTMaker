@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>EY Slide Replica</title>
+<style>
+  body{margin:0;background:#cfcfd2;font-family:Arial,Helvetica,'Segoe UI',sans-serif;}
+  .slide{position:relative;overflow:hidden;width:1280px;height:720px;background:#d8d8d8;}
+  .slide > *{position:absolute;box-sizing:border-box;}
+
+  .left-bg{left:0;top:0;width:684px;height:720px;background:#ececec;z-index:1;}
+
+  .right-photo{
+    left:684px;top:0;width:596px;height:720px;z-index:2;overflow:hidden;
+    background:
+      radial-gradient(circle at 91% 15%, rgba(102,11,74,.86) 0, rgba(102,11,74,.56) 13%, rgba(102,11,74,.12) 28%, transparent 44%),
+      radial-gradient(circle at 95% 72%, rgba(233,222,229,.55) 0, rgba(233,222,229,.18) 15%, transparent 34%),
+      radial-gradient(circle at 16% 96%, rgba(232,201,236,.55) 0, rgba(232,201,236,.16) 17%, transparent 36%),
+      linear-gradient(180deg,#262435 0%, #3e2c4d 38%, #6c4f71 74%, #8d6785 100%);
+  }
+  .window1,.window2,.window3,.window4{background:rgba(22,19,29,.88);z-index:10;}
+  .window1{left:716px;top:25px;width:113px;height:119px;}
+  .window2{left:830px;top:25px;width:111px;height:119px;}
+  .window3{left:716px;top:145px;width:113px;height:145px;}
+  .window4{left:830px;top:145px;width:111px;height:145px;}
+  .mullion-v{left:799px;top:0;width:17px;height:291px;background:#0f0a17;z-index:11;}
+  .mullion-h{left:684px;top:143px;width:257px;height:14px;background:#0f0a17;z-index:11;}
+  .purple-glow{
+    left:689px;top:26px;width:250px;height:125px;z-index:9;
+    background:linear-gradient(120deg, rgba(170,131,255,.62), rgba(165,130,255,.22) 46%, rgba(255,255,255,0) 75%);
+    filter:blur(1px);
+  }
+  .blur-lights{
+    left:736px;top:245px;width:134px;height:54px;z-index:8;
+    background:
+      radial-gradient(circle at 10% 78%, rgba(255,204,110,.9) 0, rgba(255,204,110,.2) 8%, transparent 18%),
+      radial-gradient(circle at 20% 74%, rgba(255,220,140,.9) 0, rgba(255,220,140,.2) 8%, transparent 18%),
+      radial-gradient(circle at 31% 73%, rgba(235,146,106,.9) 0, rgba(235,146,106,.18) 8%, transparent 18%),
+      radial-gradient(circle at 46% 68%, rgba(255,211,116,.9) 0, rgba(255,211,116,.18) 8%, transparent 18%);
+  }
+
+  .desk{
+    left:691px;top:492px;width:354px;height:228px;z-index:12;opacity:.97;
+    background:linear-gradient(165deg,#98587d 0%,#c37aa0 24%,#7d546c 48%,#523147 100%);
+    clip-path:polygon(0 14%, 100% 0, 100% 100%, 17% 100%, 0 66%);
+  }
+  .desk-edge{
+    left:688px;top:484px;width:370px;height:42px;z-index:13;
+    background:linear-gradient(90deg,#81596d 0,#b57b9f 50%,#8b5f83 100%);
+    clip-path:polygon(0 56%,100% 0,100% 36%,0 100%);
+  }
+
+  .coworker1{
+    left:770px;top:205px;width:73px;height:215px;z-index:16;opacity:.96;
+    background:
+      radial-gradient(circle at 52% 14%, rgba(65,36,33,.95) 0, rgba(65,36,33,.95) 12%, transparent 13%),
+      radial-gradient(circle at 50% 32%, rgba(232,222,215,.9) 0, rgba(232,222,215,.9) 13%, transparent 14%),
+      linear-gradient(180deg, transparent 0 23%, rgba(44,34,58,.95) 23%, rgba(44,34,58,.95) 100%);
+    clip-path:polygon(26% 4%, 56% 3%, 70% 15%, 75% 31%, 84% 52%, 85% 100%, 27% 100%, 24% 67%, 15% 49%, 13% 28%);
+  }
+  .coworker2{
+    left:831px;top:189px;width:124px;height:258px;z-index:16;opacity:.98;
+    background:
+      radial-gradient(circle at 43% 12%, rgba(88,52,43,.95) 0, rgba(88,52,43,.95) 10%, transparent 11%),
+      radial-gradient(circle at 43% 24%, rgba(210,188,166,.92) 0, rgba(210,188,166,.92) 9%, transparent 10%),
+      linear-gradient(180deg, transparent 0 15%, rgba(194,231,240,.92) 15%, rgba(168,208,227,.88) 60%, rgba(145,177,208,.86) 100%);
+    clip-path:polygon(32% 2%, 56% 1%, 68% 10%, 72% 31%, 88% 63%, 98% 96%, 54% 100%, 19% 93%, 18% 59%, 16% 24%);
+  }
+  .laptop1{left:724px;top:349px;width:80px;height:13px;background:#201b28;border-radius:2px;z-index:17;}
+  .laptop2{left:808px;top:381px;width:57px;height:11px;background:#18131c;border-radius:2px;z-index:17;}
+
+  .woman-hair{
+    left:929px;top:129px;width:175px;height:157px;background:#2f032f;border-radius:49% 51% 48% 52%/52% 47% 53% 48%;
+    z-index:18;box-shadow:0 0 30px rgba(41,0,40,.45);
+  }
+  .woman-face{left:993px;top:205px;width:74px;height:87px;background:#b1646f;border-radius:43% 43% 45% 45%/40% 40% 56% 56%;z-index:19;}
+  .woman-neck{left:1016px;top:272px;width:28px;height:35px;background:#aa626d;border-radius:8px;z-index:19;}
+  .woman-sweater{
+    left:925px;top:257px;width:178px;height:218px;z-index:17;
+    background:repeating-linear-gradient(90deg,#e9dced 0,#e9dced 2px,#dfd1e3 2px,#dfd1e3 5px);
+    border-radius:48px 48px 22px 22px;
+  }
+  .woman-collar{
+    left:978px;top:238px;width:74px;height:46px;z-index:20;
+    border-radius:16px 16px 8px 8px;
+    background:repeating-linear-gradient(90deg,#efe7f0 0,#efe7f0 2px,#e0d5e1 2px,#e0d5e1 5px);
+  }
+  .woman-arm-left{left:904px;top:328px;width:90px;height:40px;background:#e5d8e7;border-radius:20px;transform:rotate(24deg);z-index:20;}
+  .woman-arm-right{left:1023px;top:317px;width:75px;height:35px;background:#e5d8e7;border-radius:20px;transform:rotate(-10deg);z-index:20;}
+  .woman-hand-left{left:927px;top:341px;width:35px;height:24px;background:#a26068;border-radius:14px;z-index:21;}
+  .woman-hand-right{left:1046px;top:329px;width:31px;height:23px;background:#a26068;border-radius:14px;z-index:21;}
+  .glass{
+    left:958px;top:334px;width:54px;height:30px;border:2px solid rgba(164,54,78,.68);border-top:4px solid rgba(164,54,78,.72);
+    background:rgba(168,76,99,.38);border-radius:0 0 10px 10px;z-index:22;
+  }
+  .woman-leg1{
+    left:946px;top:446px;width:94px;height:210px;
+    background:linear-gradient(180deg,#9b8ac7,#7c68ab 74%,#8f7cba);
+    border-radius:34px 20px 22px 24px;transform:rotate(11deg);z-index:16;
+  }
+  .woman-leg2{
+    left:1022px;top:448px;width:86px;height:176px;
+    background:linear-gradient(180deg,#9d8bcc,#7567a8 78%,#7969aa);
+    border-radius:24px;transform:rotate(20deg);z-index:16;
+  }
+  .seat{left:945px;top:523px;width:122px;height:25px;background:#8e1321;border-radius:4px;z-index:15;}
+
+  .foreground-blur{
+    left:1064px;top:0;width:216px;height:720px;
+    background:
+      radial-gradient(circle at 56% 15%, rgba(111,37,84,.62), rgba(111,37,84,.12) 34%, transparent 58%),
+      linear-gradient(180deg, rgba(224,201,217,.18), rgba(236,224,235,.1));
+    filter:blur(2px);z-index:14;
+  }
+  .person-right{
+    left:1092px;top:0;width:188px;height:720px;z-index:15;opacity:.94;
+    background:
+      radial-gradient(circle at 40% 15%, rgba(65,32,39,.95) 0, rgba(65,32,39,.95) 8%, transparent 25%),
+      radial-gradient(circle at 42% 16%, rgba(141,58,102,.6) 0, rgba(141,58,102,.25) 11%, transparent 24%),
+      radial-gradient(circle at 34% 48%, rgba(233,216,215,.78) 0, rgba(233,216,215,.56) 12%, transparent 21%),
+      radial-gradient(circle at 18% 70%, rgba(226,212,226,.76) 0, rgba(226,212,226,.38) 16%, transparent 30%);
+  }
+
+  .page-num{
+    left:61px;top:50px;width:36px;height:34px;color:#6d7380;
+    font-size:20px;font-weight:300;line-height:34px;z-index:30;
+  }
+  .header-rule{left:103px;top:0;width:1px;height:92px;background:#b9b9b9;z-index:30;}
+  .header-text{
+    left:115px;top:58px;width:180px;height:28px;color:#7a7a7a;
+    font-size:8.6px;line-height:11px;text-transform:uppercase;z-index:30;
+  }
+
+  .intro{
+    left:79px;top:132px;width:150px;height:185px;color:#5e6168;
+    font-size:12px;line-height:1.45;font-weight:400;z-index:30;
+  }
+
+  .vertical-label{
+    left:12px;top:341px;width:18px;height:125px;color:#7a7d84;
+    font-size:12px;line-height:12px;writing-mode:vertical-rl;transform:rotate(180deg);
+    letter-spacing:.08em;z-index:30;
+  }
+  .yellow-box{left:13px;top:414px;width:11px;height:11px;background:#f3d300;z-index:31;}
+
+  .chart-title{
+    left:287px;top:132px;width:350px;height:52px;color:#44474f;
+    font-size:15px;line-height:1.3;font-weight:700;z-index:30;
+  }
+  .chart-area{left:279px;top:187px;width:352px;height:500px;z-index:30;}
+  .label{color:#4b4d54;font-size:11.5px;line-height:1.25;font-weight:400;text-align:right;}
+  .pct{color:#55575d;font-size:12px;line-height:1;font-weight:400;text-align:right;}
+  .sub{z-index:1;color:#6e7075;font-size:6px;line-height:1.1;font-weight:400;}
+  .barbox{border:1px solid #a9afb7;background:#efefef;height:21px;}
+  .barfill{height:21px;background:#1b9a9a;}
+
+  .callout{
+    left:1039px;top:395px;width:281px;height:309px;background:#171828;border-radius:13px;
+    z-index:50;box-shadow:0 6px 18px rgba(0,0,0,.22);
+  }
+  .callout-line1{left:1070px;top:423px;width:110px;height:3px;background:#f2d400;z-index:51;}
+  .callout-line2{left:1180px;top:423px;width:110px;height:3px;background:#7c43ff;z-index:51;}
+  .callout-line3{left:1290px;top:423px;width:6px;height:3px;background:#2f9bff;z-index:51;}
+  .callout-title{
+    left:1070px;top:440px;width:170px;height:18px;color:#fff;
+    font-size:13px;font-weight:700;line-height:18px;z-index:52;
+  }
+  .quote-mark{
+    left:1070px;top:468px;width:18px;height:18px;color:#f2d400;
+    font-size:36px;font-family:Georgia,'Times New Roman',serif;line-height:18px;z-index:52;
+  }
+  .quote1,.quote2{
+    color:#fff;font-size:13px;line-height:1.28;font-family:Georgia,'Times New Roman',serif;z-index:52;
+  }
+  .quote1{left:1070px;top:485px;width:222px;height:98px;}
+  .quote2{left:1070px;top:541px;width:224px;height:122px;}
+
+  .jump{
+    left:1238px;top:0;width:60px;height:44px;background:#85878c;border-radius:0 0 15px 15px;
+    color:#fff;font-size:9px;font-weight:700;line-height:11px;text-align:center;padding-top:16px;z-index:60;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-bg"></div>
+  <div class="right-photo"></div>
+
+  <div class="window1"></div>
+  <div class="window2"></div>
+  <div class="window3"></div>
+  <div class="window4"></div>
+  <div class="mullion-v"></div>
+  <div class="mullion-h"></div>
+  <div class="purple-glow"></div>
+  <div class="blur-lights"></div>
+  <div class="desk"></div>
+  <div class="desk-edge"></div>
+  <div class="foreground-blur"></div>
+  <div class="person-right"></div>
+
+  <div class="coworker1"></div>
+  <div class="coworker2"></div>
+  <div class="laptop1"></div>
+  <div class="laptop2"></div>
+
+  <div class="woman-hair"></div>
+  <div class="woman-face"></div>
+  <div class="woman-neck"></div>
+  <div class="woman-sweater"></div>
+  <div class="woman-collar"></div>
+  <div class="woman-arm-left"></div>
+  <div class="woman-arm-right"></div>
+  <div class="woman-hand-left"></div>
+  <div class="woman-hand-right"></div>
+  <div class="glass"></div>
+  <div class="woman-leg1"></div>
+  <div class="woman-leg2"></div>
+  <div class="seat"></div>
+
+  <div class="page-num">42</div>
+  <div class="header-rule"></div>
+  <div class="header-text">SECOND ANNUAL EY/IIF GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+  <div class="intro">
+    On the second line, CROs<br>
+    see cybersecurity (40%),<br>
+    communication, leadership<br>
+    and critical thinking (28%),<br>
+    operational risk and resilience<br>
+    (26%) and AI-based model risk<br>
+    management (25%) as the top<br>
+    four skill sets.
+  </div>
+
+  <div class="vertical-label">CHAPTER 10</div>
+  <div class="yellow-box"></div>
+
+  <div class="chart-title">Figure 24: What are the most important skill sets required in<br>the second line of risk management over the next five years?</div>
+
+  <div class="chart-area">
+    <div style="position:absolute;left:0;top:0;width:170px;height:30px;" class="label">Cybersecurity</div>
+    <div style="position:absolute;left:180px;top:0;width:169px;" class="barbox"><div class="barfill" style="width:68px;"></div></div>
+    <div style="position:absolute;left:322px;top:5px;width:28px;" class="pct">40%</div>
+    <div style="position:absolute;left:182px;top:24px;width:145px;" class="sub">43% EMEIA | 28% Americas | 54% Asia-Pacific</div>
+
+    <div style="position:absolute;left:0;top:54px;width:170px;height:30px;" class="label">Communication, leadership and<br>critical thinking</div>
+    <div style="position:absolute;left:180px;top:54px;width:169px;" class="barbox"><div class="barfill" style="width:47px;"></div></div>
+    <div style="position:absolute;left:322px;top:59px;width:28px;" class="pct">28%</div>
+    <div style="position:absolute;left:182px;top:78px;width:145px;" class="sub">26% EMEIA | 40% Americas | 8% Asia-Pacific</div>
+
+    <div style="position:absolute;left:0;top:108px;width:170px;height:30px;" class="label">Operational risk and resilience/<br>business continuity</div>
+    <div style="position:absolute;left:180px;top:108px;width:169px;" class="barbox"><div class="barfill" style="width:44px;"></div></div>
+    <div style="position:absolute;left:322px;top:113px;width:28px;" class="pct">26%</div>
+    <div style="position:absolute;left:182px;top:132px;width:145px;" class="sub">21% EMEIA | 32% Americas | 31% Asia-Pacific</div>
+
+    <div style="position:absolute;left:0;top:162px;width:170px;height:30px;" class="label">AI-based model risk management</div>
+    <div style="position:absolute;left:180px;top:162px;width:169px;" class="barbox"><div class="barfill" style="width:42px;"></div></div>
+    <div style="position:absolute;left:322px;top:167px;width:28px;" class="pct">25%</div>
+    <div style="position:absolute;left:182px;top:186px;width:145px;" class="sub">21% EMEIA | 24% Americas | 38% Asia-Pacific</div>
+
+    <div style="position:absolute;left:0;top:216px;width:170px;height:30px;" class="label">Actuarial</div>
+    <div style="position:absolute;left:180px;top:216px;width:169px;" class="barbox"><div class="barfill" style="width:30px;"></div></div>
+    <div style="position:absolute;left:322px;top:221px;width:28px;" class="pct">18%</div>
+    <div style="position:absolute;left:182px;top:240px;width:145px;" class="sub">19% EMEIA | 20% Americas | 8% Asia-Pacific</div>
+
+    <div style="position:absolute;left:0;top:270px;width:170px;height:30px;" class="label">Regulatory change</div>
+    <div style="position:absolute;left:180px;top:270px;width:169px;" class="barbox"><div class="barfill" style="width:30px;"></div></div>
+    <div style="position:absolute;left:322px;top:275px;width:28px;" class="pct">18%</div>
+    <div style="position:absolute;left:182px;top:294px;width:145px;" class="sub">24% EMEIA | 4% Americas | 23% Asia-Pacific</div>
+
+    <div style="position:absolute;left:0;top:324px;width:170px;height:30px;" class="label">Business/product knowledge</div>
+    <div style="position:absolute;left:180px;top:324px;width:169px;" class="barbox"><div class="barfill" style="width:27px;"></div></div>
+    <div style="position:absolute;left:322px;top:329px;width:28px;" class="pct">16%</div>
+    <div style="position:absolute;left:182px;top:348px;width:145px;" class="sub">17% EMEIA | 16% Americas | 15% Asia-Pacific</div>
+
+    <div style="position:absolute;left:0;top:378px;width:170px;height:30px;" class="label">Change and transformation</div>
+    <div style="position:absolute;left:180px;top:378px;width:169px;" class="barbox"><div class="barfill" style="width:25px;"></div></div>
+    <div style="position:absolute;left:322px;top:383px;width:28px;" class="pct">15%</div>
+    <div style="position:absolute;left:182px;top:402px;width:145px;" class="sub">21% EMEIA | 12% Americas | 0% Asia-Pacific</div>
+
+    <div style="position:absolute;left:0;top:432px;width:170px;height:30px;" class="label">Quantitative analytics (i.e., model<br>development)</div>
+    <div style="position:absolute;left:180px;top:432px;width:169px;" class="barbox"><div class="barfill" style="width:25px;"></div></div>
+    <div style="position:absolute;left:322px;top:437px;width:28px;" class="pct">15%</div>
+    <div style="position:absolute;left:182px;top:456px;width:145px;" class="sub">12% EMEIA | 24% Americas | 8% Asia-Pacific</div>
+
+    <div style="position:absolute;left:0;top:486px;width:170px;height:30px;" class="label">Risk data aggregation and reporting</div>
+    <div style="position:absolute;left:180px;top:486px;width:169px;" class="barbox"><div class="barfill" style="width:24px;"></div></div>
+    <div style="position:absolute;left:322px;top:491px;width:28px;" class="pct">14%</div>
+    <div style="position:absolute;left:182px;top:510px;width:145px;" class="sub">14% EMEIA | 12% Americas | 15% Asia-Pacific</div>
+  </div>
+
+  <div class="callout"></div>
+  <div class="callout-line1"></div>
+  <div class="callout-line2"></div>
+  <div class="callout-line3"></div>
+  <div class="callout-title">CROs on key skill sets</div>
+  <div class="quote-mark">“</div>
+  <div class="quote1">We are looking for an ‘investigative<br>journalist’ type of skill set. We want<br>curious people who think innovatively.</div>
+  <div class="quote2">Communication is critical. I need<br>professionals who understand the<br>complexity of the models and are able<br>to simplify and clearly communicate<br>these concepts. This skill set is one of the<br>hardest to hire because a lot of quants<br>and actuaries are very detailed and not as<br>focused on good communication.</div>
+
+  <div class="jump">JUMP TO<br>CONTENTS</div>
+</div>
+</body>
+</html>

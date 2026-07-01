@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Contacts Slide Replica</title>
+<style>
+  body{margin:0;background:#969192;font-family:Arial, Helvetica, 'Segoe UI', sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+  }
+  .hero{
+    position:absolute;
+    left:0px; top:0px;
+    width:1280px; height:192px;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(255,165,90,.35) 0 1px, transparent 2px),
+      radial-gradient(circle at 21% 30%, rgba(255,180,100,.5) 0 1px, transparent 2px),
+      radial-gradient(circle at 34% 15%, rgba(255,165,90,.45) 0 1px, transparent 2px),
+      radial-gradient(circle at 46% 20%, rgba(255,165,90,.35) 0 1px, transparent 2px),
+      radial-gradient(circle at 58% 28%, rgba(255,165,90,.55) 0 1px, transparent 2px),
+      radial-gradient(circle at 67% 35%, rgba(255,165,90,.35) 0 1px, transparent 2px),
+      radial-gradient(circle at 79% 21%, rgba(255,165,90,.5) 0 1px, transparent 2px),
+      radial-gradient(circle at 88% 32%, rgba(255,165,90,.35) 0 1px, transparent 2px),
+      radial-gradient(circle at 95% 18%, rgba(255,165,90,.5) 0 1px, transparent 2px),
+      linear-gradient(180deg, rgba(12,7,15,1) 0%, rgba(22,10,12,1) 100%);
+    z-index:0;
+  }
+  .roads{
+    position:absolute; left:0px; top:0px; width:1280px; height:192px; z-index:1;
+  }
+  .title{
+    position:absolute;
+    left:59px; top:48px;
+    width:450px; height:72px;
+    color:#ffffff;
+    font-size:64px;
+    font-weight:700;
+    line-height:64px;
+    letter-spacing:-1px;
+    z-index:30;
+  }
+  .content-bg{
+    position:absolute;
+    left:0px; top:192px;
+    width:1280px; height:528px;
+    background:#efefef;
+    z-index:0;
+  }
+  .section-head{
+    position:absolute;
+    color:#6f7075;
+    font-size:15px;
+    font-weight:700;
+    line-height:17px;
+    z-index:30;
+  }
+  .person{
+    position:absolute;
+    width:109px;
+    z-index:30;
+  }
+  .photo{
+    position:absolute;
+    left:0px; top:0px;
+    width:109px; height:92px;
+    overflow:hidden;
+    background:#c7c7c7;
+  }
+  .name{
+    position:absolute;
+    left:0px; top:98px;
+    width:109px;
+    color:#2e3138;
+    font-size:12px;
+    font-weight:400;
+    line-height:14px;
+  }
+  .role{
+    position:absolute;
+    left:0px; top:114px;
+    width:109px;
+    color:#6a6c71;
+    font-size:11px;
+    font-weight:400;
+    line-height:13px;
+  }
+  .mail-line{
+    position:absolute;
+    left:0px; top:188px;
+    width:90px; height:1px;
+    background:#bdbec3;
+  }
+  .mail-circle{
+    position:absolute;
+    left:70px; top:171px;
+    width:33px; height:33px;
+    border-radius:17px;
+    background:#c8c9d0;
+  }
+  .mail-icon{
+    position:absolute;
+    left:79px; top:178px;
+    width:16px; height:12px;
+    border:1px solid #666973;
+    border-radius:2px;
+    box-sizing:border-box;
+  }
+  .mail-icon:before{
+    content:"";
+    position:absolute;
+    left:1px; top:1px;
+    width:12px; height:7px;
+    border-left:1px solid #666973;
+    border-bottom:1px solid #666973;
+    transform:skewY(-34deg) rotate(-45deg);
+    transform-origin:left top;
+  }
+  .mail-icon:after{
+    content:"";
+    position:absolute;
+    right:1px; top:1px;
+    width:12px; height:7px;
+    border-right:1px solid #666973;
+    border-bottom:1px solid #666973;
+    transform:skewY(34deg) rotate(45deg);
+    transform-origin:right top;
+  }
+
+  .right-nav{
+    position:absolute;
+    left:1193px; top:112px;
+    width:87px; z-index:50;
+  }
+  .nav-item{
+    position:absolute;
+    left:0px;
+    width:87px;
+    background:#2e2f3b;
+    color:#d8d8dd;
+    font-size:14px;
+    line-height:16px;
+    font-weight:400;
+    padding-left:5px;
+    box-sizing:border-box;
+    border-left:2px solid #d6d326;
+  }
+  .nav-item.dim{ background:#b9b7bd; color:#ececef; border-left:none; }
+  .circle-btn{
+    position:absolute;
+    width:39px; height:39px;
+    border-radius:20px;
+    background:#d6d7df;
+    z-index:50;
+  }
+  .circle-btn span{
+    position:absolute;
+    left:12px; top:6px;
+    color:#2c2f39;
+    font-size:31px;
+    line-height:31px;
+    font-weight:700;
+  }
+  .footer-left{
+    position:absolute;
+    left:57px; top:683px;
+    width:140px;
+    color:#6e7075;
+    font-size:11px;
+    line-height:11px;
+    font-weight:400;
+    z-index:40;
+  }
+  .footer-left b{font-weight:700;}
+  .footer-right{
+    position:absolute;
+    left:967px; top:683px;
+    width:171px;
+    color:#43464e;
+    font-size:11px;
+    line-height:11px;
+    font-weight:700;
+    z-index:40;
+  }
+  .footer-rule{
+    position:absolute;
+    left:967px; top:696px;
+    width:171px; height:1px;
+    background:#8e9198;
+    z-index:40;
+  }
+  .footer-next{
+    position:absolute;
+    left:1126px; top:669px;
+    width:39px; height:39px;
+    border-radius:20px;
+    background:#b3b4bc;
+    z-index:45;
+  }
+  .footer-next span{
+    position:absolute;
+    left:14px; top:5px;
+    color:#2d313a;
+    font-size:30px;
+    line-height:30px;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="hero"></div>
+  <svg class="roads" viewBox="0 0 1280 192" xmlns="http://www.w3.org/2000/svg">
+    <g stroke-linecap="round" fill="none">
+      <path d="M20 10 C120 40, 170 85, 250 110 S420 160, 520 182" stroke="#f2a04a" stroke-width="1.4" opacity="0.55"/>
+      <path d="M52 0 C130 35, 150 62, 210 100 S345 152, 450 190" stroke="#e89039" stroke-width="1.1" opacity="0.55"/>
+      <path d="M130 8 C175 55, 210 77, 260 88 S370 100, 420 138 S535 168, 650 190" stroke="#f2a04a" stroke-width="1.3" opacity="0.55"/>
+      <path d="M225 0 C270 50, 300 76, 350 108 S470 165, 575 190" stroke="#f5b066" stroke-width="1.0" opacity="0.5"/>
+      <path d="M320 0 C390 34, 450 48, 560 70 S760 112, 920 145 S1120 170, 1280 180" stroke="#ee983f" stroke-width="1.6" opacity="0.55"/>
+      <path d="M280 18 C380 45, 450 56, 565 76 S780 118, 1005 150" stroke="#ffbf72" stroke-width="0.9" opacity="0.45"/>
+      <path d="M385 0 C405 28, 455 48, 525 74 S720 130, 810 188" stroke="#f7a64b" stroke-width="1.2" opacity="0.55"/>
+      <path d="M470 0 C520 55, 595 84, 700 90 S880 82, 1010 55 S1170 20, 1280 10" stroke="#ef9137" stroke-width="1.4" opacity="0.5"/>
+      <path d="M610 0 C680 48, 720 65, 780 80 S900 112, 1020 160" stroke="#f6b15f" stroke-width="1.1" opacity="0.55"/>
+      <path d="M765 0 C810 25, 860 60, 915 92 S1010 145, 1070 190" stroke="#e98a32" stroke-width="1.2" opacity="0.55"/>
+      <path d="M920 0 C930 42, 960 82, 1010 104 S1105 142, 1180 180" stroke="#f3a045" stroke-width="1.3" opacity="0.55"/>
+      <path d="M1040 0 C1098 42, 1145 88, 1210 118 S1260 138, 1280 150" stroke="#f4a24d" stroke-width="1.1" opacity="0.55"/>
+      <path d="M0 80 C95 70, 170 88, 250 126 S420 185, 560 192" stroke="#f0a24d" stroke-width="1.0" opacity="0.45"/>
+      <path d="M0 125 C110 105, 205 115, 340 136 S520 170, 690 180 S980 165, 1280 125" stroke="#e68b34" stroke-width="1.4" opacity="0.42"/>
+      <path d="M90 192 C180 132, 280 82, 390 30" stroke="#ffcb80" stroke-width="0.8" opacity="0.38"/>
+      <path d="M290 192 C360 122, 450 77, 590 40" stroke="#f6b05f" stroke-width="1.0" opacity="0.38"/>
+      <path d="M485 192 C570 148, 650 110, 785 65" stroke="#f6b15f" stroke-width="1.0" opacity="0.38"/>
+      <path d="M700 192 C840 138, 960 90, 1115 22" stroke="#f0a14a" stroke-width="1.0" opacity="0.38"/>
+      <path d="M920 192 C1015 130, 1125 84, 1230 45" stroke="#ee953d" stroke-width="1.0" opacity="0.38"/>
+      <g stroke="#f4aa55" stroke-width="0.7" opacity="0.55">
+        <path d="M60 25 l28 18 l-8 26 l18 14"/>
+        <path d="M145 32 l35 17 l-10 22 l26 18 l-12 20"/>
+        <path d="M210 44 l24 16 l18 9 l-6 18"/>
+        <path d="M310 26 l18 14 l14 8 l16 10 l-8 15"/>
+        <path d="M375 44 l20 12 l22 15 l-12 18 l25 16"/>
+        <path d="M438 25 l18 12 l8 20 l30 13 l-6 15"/>
+        <path d="M540 38 l16 12 l18 10 l15 13 l-12 17"/>
+        <path d="M628 28 l21 14 l16 16 l20 10"/>
+        <path d="M740 35 l25 12 l18 11 l-7 17 l17 14"/>
+        <path d="M862 40 l24 14 l15 10 l19 16"/>
+        <path d="M960 22 l18 16 l28 13 l-10 20 l22 15"/>
+        <path d="M1065 35 l24 12 l18 11 l18 16"/>
+        <path d="M1145 44 l18 12 l17 10 l16 14"/>
+      </g>
+      <g fill="#8fe8ff" opacity="0.85">
+        <circle cx="437" cy="73" r="2.3"/><circle cx="482" cy="44" r="2.0"/><circle cx="740" cy="86" r="2.2"/>
+        <circle cx="895" cy="102" r="2.6"/><circle cx="1048" cy="58" r="2.1"/><circle cx="1115" cy="105" r="2.2"/>
+        <circle cx="1198" cy="43" r="2.0"/><circle cx="101" cy="102" r="2.0"/><circle cx="310" cy="96" r="2.1"/>
+      </g>
+    </g>
+  </svg>
+
+  <div class="title">Contacts</div>
+
+  <div class="content-bg"></div>
+
+  <div class="circle-btn" style="left:1140px; top:33px;"><span>‹</span></div>
+  <div class="circle-btn" style="left:1191px; top:33px;"><span>›</span></div>
+
+  <div class="right-nav">
+    <div class="nav-item" style="top:0px; height:36px; padding-top:8px;">Contents</div>
+    <div class="nav-item" style="top:52px; height:46px; padding-top:12px;">Insights</div>
+    <div class="nav-item" style="top:103px; height:36px; padding-top:8px;">New on<br>ey.com</div>
+    <div class="nav-item" style="top:154px; height:36px; padding-top:8px;">Tax alerts</div>
+    <div class="nav-item" style="top:206px; height:36px; padding-top:8px;">Additional<br>resources</div>
+    <div class="nav-item dim" style="top:257px; height:36px; padding-top:8px;">Contacts</div>
+  </div>
+
+  <div class="section-head" style="left:56px; top:221px; width:80px;">Global</div>
+  <div class="section-head" style="left:165px; top:221px; width:170px;">Trade knowledge team</div>
+
+  <!-- Top row -->
+  <div class="person" style="left:66px; top:243px; height:204px;">
+    <svg class="photo" viewBox="0 0 109 92" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#efe9f7"/><stop offset="1" stop-color="#8aa2df"/>
+        </linearGradient>
+      </defs>
+      <rect width="109" height="92" fill="url(#bg1)"/>
+      <rect x="0" y="65" width="109" height="27" fill="#b7c0d8"/>
+      <ellipse cx="55" cy="41" rx="28" ry="31" fill="#e8c7b5"/>
+      <rect x="35" y="63" width="40" height="24" rx="8" fill="#3e5a96"/>
+      <path d="M26 36 C28 18, 41 8, 55 8 C73 8, 83 20, 83 39 C77 27, 65 20, 50 22 C39 23, 31 28, 26 36 Z" fill="#d6d1d5"/>
+      <circle cx="41" cy="43" r="2" fill="#7f5d54"/><circle cx="67" cy="43" r="2" fill="#7f5d54"/>
+      <path d="M45 54 C50 58, 59 58, 64 54" stroke="#a36b62" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="name">Jeroen Scholten</div>
+    <div class="role">EY Global Trade<br>Practice Leader</div>
+    <div class="mail-line"></div><div class="mail-circle"></div><div class="mail-icon"></div>
+  </div>
+
+  <div class="person" style="left:193px; top:243px; height:204px;">
+    <svg class="photo" viewBox="0 0 109 92" xmlns="http://www.w3.org/2000/svg">
+      <rect width="109" height="92" fill="#cbd0d8"/>
+      <rect x="0" y="62" width="109" height="30" fill="#dadde5"/>
+      <ellipse cx="55" cy="39" rx="27" ry="30" fill="#e4bea3"/>
+      <rect x="33" y="63" width="44" height="24" rx="8" fill="#1f2c3d"/>
+      <path d="M29 36 C31 15, 42 6, 55 6 C69 6, 81 18, 82 35 C72 24, 60 18, 45 18 C37 18, 31 23, 29 36 Z" fill="#937a69"/>
+      <rect x="35" y="32" width="18" height="12" rx="2" fill="none" stroke="#5b6570" stroke-width="2"/>
+      <rect x="56" y="32" width="18" height="12" rx="2" fill="none" stroke="#5b6570" stroke-width="2"/>
+      <line x1="53" y1="38" x2="56" y2="38" stroke="#5b6570" stroke-width="2"/>
+      <circle cx="43" cy="38" r="1.5" fill="#4f392f"/><circle cx="65" cy="38" r="1.5" fill="#4f392f"/>
+      <path d="M47 51 C52 54, 59 54, 63 51" stroke="#996b5f" stroke-width="1.2" fill="none"/>
+    </svg>
+    <div class="name">Richard Albert</div>
+    <div class="role">Ernst &amp; Young<br>GmbH, Germany<br>Global Trade<br>Partner</div>
+    <div class="mail-line"></div><div class="mail-circle"></div><div class="mail-icon"></div>
+  </div>
+
+  <div class="person" style="left:321px; top:243px; height:204px;">
+    <svg class="photo" viewBox="0 0 109 92" xmlns="http://www.w3.org/2000/svg">
+      <rect width="109" height="92" fill="#8a6b2d"/>
+      <rect x="0" y="64" width="109" height="28" fill="#d4b072"/>
+      <ellipse cx="56" cy="40" rx="27" ry="31" fill="#f0cfbe"/>
+      <rect x="34" y="64" width="43" height="23" rx="8" fill="#3f4f77"/>
+      <path d="M28 34 C31 16, 44 7, 57 7 C72 7, 84 18, 84 37 C76 25, 67 20, 56 20 C44 20, 34 25, 28 34 Z" fill="#4e3b1f"/>
+      <path d="M31 33 C34 17, 42 10, 51 9 C42 18, 38 28, 40 40 Z" fill="#6f532c"/>
+      <circle cx="45" cy="43" r="2" fill="#5d4037"/><circle cx="64" cy="43" r="2" fill="#5d4037"/>
+      <path d="M47 54 C52 58, 61 58, 66 54" stroke="#a06f62" stroke-width="1.2" fill="none"/>
+    </svg>
+    <div class="name">Lynlee Brown</div>
+    <div class="role">Ernst &amp; Young, LLP<br>Global Trade<br>Partner</div>
+    <div class="mail-line"></div><div class="mail-circle"></div><div class="mail-icon"></div>
+  </div>
+
+  <div class="person" style="left:448px; top:243px; height:204px;">
+    <svg class="photo" viewBox="0 0 109 92" xmlns="http://www.w3.org/2000/svg">
+      <rect width="109" height="92" fill="#b5b1aa"/>
+      <rect x="0" y="62" width="109" height="30" fill="#797d85"/>
+      <ellipse cx="54" cy="40" rx="26" ry="30" fill="#e4bea8"/>
+      <rect x="33" y="64" width="42" height="23" rx="8" fill="#2e323c"/>
+      <path d="M27 35 C28 18, 38 9, 54 9 C70 9, 80 18, 81 35 C74 21, 63 17, 54 17 C43 17, 33 22, 27 35 Z" fill="#5e422f"/>
+      <rect x="36" y="33" width="14" height="10" rx="2" fill="none" stroke="#444950" stroke-width="2"/>
+      <rect x="59" y="33" width="14" height="10" rx="2" fill="none" stroke="#444950" stroke-width="2"/>
+      <line x1="50" y1="38" x2="59" y2="38" stroke="#444950" stroke-width="2"/>
+      <circle cx="43" cy="39" r="1.4" fill="#3b2f2a"/><circle cx="66" cy="39" r="1.4" fill="#3b2f2a"/>
+      <path d="M47 53 C51 56, 58 56, 62 53" stroke="#9c6b61" stroke-width="1.2" fill="none"/>
+    </svg>
+    <div class="name">Ian Craig</div>
+    <div class="role">Ernst &amp; Young<br>Assessoria<br>Empresarial Ltda,<br>Brazil Global Trade<br>Partner</div>
+    <div class="mail-line"></div><div class="mail-circle"></div><div class="mail-icon"></div>
+  </div>
+
+  <div class="person" style="left:576px; top:243px; height:204px;">
+    <svg class="photo" viewBox="0 0 109 92" xmlns="http://www.w3.org/2000/svg">
+      <rect width="109" height="92" fill="#d9d9d9"/>
+      <rect x="0" y="62" width="109" height="30" fill="#7e8891"/>
+      <ellipse cx="54" cy="39" rx="26" ry="29" fill="#e3b79c"/>
+      <rect x="31" y="63" width="46" height="24" rx="8" fill="#243b5d"/>
+      <path d="M27 35 C29 18, 40 9, 55 9 C70 9, 82 20, 81 36 C76 27, 67 20, 55 20 C44 20, 33 25, 27 35 Z" fill="#1f1f24"/>
+      <circle cx="44" cy="40" r="1.8" fill="#4d342c"/><circle cx="63" cy="40" r="1.8" fill="#4d342c"/>
+      <path d="M46 53 C51 56, 58 56, 62 53" stroke="#a16d60" stroke-width="1.1" fill="none"/>
+    </svg>
+    <div class="name">Sergio Fontenelle</div>
+    <div class="role">Ernst &amp; Young, LLP<br>Global Trade<br>Leader</div>
+    <div class="mail-line"></div><div class="mail-circle"></div><div class="mail-icon"></div>
+  </div>
+
+  <div class="person" style="left:703px; top:243px; height:204px;">
+    <svg class="photo" viewBox="0 0 109 92" xmlns="http://www.w3.org/2000/svg">
+      <rect width="109" height="92" fill="#dcd5cb"/>
+      <rect x="0" y="63" width="109" height="29" fill="#d8dbe1"/>
+      <ellipse cx="56" cy="40" rx="25" ry="30" fill="#f1d0bf"/>
+      <rect x="34" y="64" width="43" height="23" rx="8" fill="#8090ab"/>
+      <path d="M31 35 C33 17, 44 10, 57 10 C71 10, 80 21, 80 36 C73 26, 66 22, 56 22 C45 22, 37 26, 31 35 Z" fill="#6a4328"/>
+      <circle cx="46" cy="40" r="1.7" fill="#4f352d"/><circle cx="64" cy="40" r="1.7" fill="#4f352d"/>
+      <path d="M48 53 C52 57, 60 57, 64 53" stroke="#a97266" stroke-width="1.1" fill="none"/>
+      <circle cx="40" cy="20" r="2.4" fill="#f0ece8"/><circle cx="47" cy="15" r="2.1" fill="#f0ece8"/>
+      <circle cx="71" cy="22" r="2.4" fill="#f0ece8"/>
+    </svg>
+    <div class="name">Shenshen Lin</div>
+    <div class="role">Ernst &amp; Young LLP<br>UK, Global Trade<br>Partner</div>
+    <div class="mail-line"></div><div class="mail-circle"></div><div class="mail-icon"></div>
+  </div>
+
+  <div class="person" style="left:830px; top:243px; height:204px;">
+    <svg class="photo" viewBox="0 0 109 92" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="bg7" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#e8c9b6"/><stop offset="1" stop-color="#d8733f"/>
+        </linearGradient>
+      </defs>
+      <rect width="109" height="92" fill="url(#bg7)"/>
+      <rect x="0" y="62" width="109" height="30" fill="#eef0f4"/>
+      <ellipse cx="55" cy="39" rx="27" ry="30" fill="#efc5b7"/>
+      <rect x="32" y="63" width="46" height="24" rx="8" fill="#293754"/>
+      <path d="M30 34 C31 18, 42 9, 56 9 C69 9, 81 18, 82 34 C76 22, 66 16, 55 16 C44 16, 35 22, 30 34 Z" fill="#3b1d14"/>
+      <circle cx="45" cy="40" r="1.7" fill="#553b35"/><circle cx="65" cy="40" r="1.7" fill="#553b35"/>
+      <path d="M47 54 C52 58, 60 58, 65 54" stroke="#a16c63" stroke-width="1.2" fill="none"/>
+    </svg>
+    <div class="name">Rocio Mejia</div>
+    <div class="role">Mancera, S.C.,<br>Mexico<br>Global Trade<br>Leader</div>
+    <div class="mail-line"></div><div class="mail-circle"></div><div class="mail-icon"></div>
+  </div>
+
+  <!-- Bottom row -->
+  <div class="person" style="left:193px; top:469px; height:204px;">
+    <svg class="photo" viewBox="0 0 109 92" xmlns="http://www.w3.org/2000/svg">
+      <rect width="109" height="92" fill="#d4a76a"/>
+      <rect x="0" y="62" width="109" height="30" fill="#bebec2"/>
+      <ellipse cx="55" cy="40" rx="26" ry="29" fill="#b98567"/>
+      <rect x="34" y="64" width="43" height="23" rx="8" fill="#62778d"/>
+      <path d="M29 34 C31 17, 42 10, 56 10 C70 10, 80 19, 81 35 C74 25, 66 20, 56 20 C46 20, 36 24, 29 34 Z" fill="#2f3137"/>
+      <rect x="38" y="34" width="7" height="15" fill="#2f3137"/><rect x="64" y="34" width="7" height="15" fill="#2f3137"/>
+      <rect x="44" y="39" width="19" height="4" fill="#2f3137"/>
+      <circle cx="46" cy="42" r="1.5" fill="#3f2c28"/><circle cx="63" cy="42" r="1.5" fill="#3f2c28"/>
+    </svg>
+    <div class="name">Suresh Nair</div>
+    <div class="role">Ernst &amp; Young, LLP<br>Global Trade<br>Partner</div>
+    <div class="mail-line"></div><div class="mail-circle"></div><div class="mail-icon"></div>
+  </div>
+
+  <div class="person" style="left:321px; top:469px; height:204px;">
+    <svg class="photo" viewBox="0 0 109 92" xmlns="http://www.w3.org/2000/svg">
+      <rect width="109" height="92" fill="#b8b5ad"/>
+      <rect x="0" y="63" width="109" height="29" fill="#d8dade"/>
+      <ellipse cx="55" cy="40" rx="25" ry="29" fill="#e3beaa"/>
+      <rect x="34" y="64" width="42" height="23" rx="8" fill="#7b8799"/>
+      <path d="M31 34 C33 20, 44 11, 56 11 C67 11, 79 18, 79 35 C73 26, 66 21, 55 21 C45 21, 37 24, 31 34 Z" fill="#181818"/>
+      <circle cx="46" cy="41" r="1.7" fill="#4a3228"/><circle cx="63" cy="41" r="1.7" fill="#4a3228"/>
+      <path d="M48 53 C52 56, 59 56, 63 53" stroke="#9f6f62" stroke-width="1.1" fill="none"/>
+    </svg>
+    <div class="name">Yoichi Ohira</div>
+    <div class="role">Ernst &amp; Young<br>Tax Co Japan,<br>Indirect Tax<br>Leader</div>
+    <div class="mail-line"></div><div class="mail-circle"></div><div class="mail-icon"></div>
+  </div>
+
+  <div class="person" style="left:448px; top:469px; height:204px;">
+    <svg class="photo" viewBox="0 0 109 92" xmlns="http://www.w3.org/2000/svg">
+      <rect width="109" height="92" fill="#704f28"/>
+      <rect x="0" y="63" width="109" height="29" fill="#3e434a"/>
+      <ellipse cx="55" cy="39" rx="26" ry="29" fill="#e3beaa"/>
+      <rect x="34" y="64" width="43" height="23" rx="8" fill="#48617f"/>
+      <path d="M30 33 C31 18, 42 10, 55 10 C69 10, 80 20, 80 35 C75 25, 67 18, 55 18 C44 18, 36 24, 30 33 Z" fill="#5a331b"/>
+      <rect x="39" y="32" width="13" height="10" rx="2" fill="none" stroke="#56616b" stroke-width="2"/>
+      <rect x="58" y="32" width="13" height="10" rx="2" fill="none" stroke="#56616b" stroke-width="2"/>
+      <line x1="52" y1="37" x2="58" y2="37" stroke="#56616b" stroke-width="2"/>
+      <circle cx="45" cy="38" r="1.5" fill="#4a3228"/><circle cx="64" cy="38" r="1.5" fill="#4a3228"/>
+    </svg>
+    <div class="name">Waine Peron</div>
+    <div class="role">EY Latin America,<br>Global Trade<br>Leader</div>
+    <div class="mail-line"></div><div class="mail-circle"></div><div class="mail-icon"></div>
+  </div>
+
+  <div class="person" style="left:576px; top:469px; height:204px;">
+    <svg

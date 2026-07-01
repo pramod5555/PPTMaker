@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#a8a59e;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+  }
+  #slide > div, #slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .top-bg{
+    left:0; top:0; width:1280px; height:79px;
+    background:#f1f1f2;
+    z-index:1;
+  }
+  .top-left-bar{
+    left:0; top:0; width:56px; height:79px;
+    background:#b7b8c2;
+    z-index:2;
+  }
+  .top-line{
+    left:0; top:78px; width:1280px; height:1px;
+    background:#c8c8cf;
+    z-index:3;
+  }
+  .title{
+    left:67px; top:50px; height:24px;
+    font-size:18px;
+    line-height:22px;
+    color:#7b7b88;
+    font-weight:400;
+    z-index:5;
+    letter-spacing:0;
+  }
+  .nav-circle{
+    width:42px; height:42px;
+    border-radius:50%;
+    background:#c8c8d0;
+    color:#3e3f4e;
+    text-align:center;
+    line-height:42px;
+    font-size:22px;
+    font-weight:700;
+    z-index:6;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .content-panel{
+    left:0; top:79px; width:1280px; height:435px;
+    background:#f3f3f3;
+    z-index:1;
+  }
+  .panel-top-rule{
+    left:66px; top:120px; width:1112px; height:1px;
+    background:#d4d4d7;
+    z-index:4;
+  }
+
+  .tab-left{
+    left:66px; top:120px; width:170px; height:43px;
+    background:#babac0;
+    z-index:5;
+  }
+  .tab-mid{
+    left:236px; top:120px; width:471px; height:43px;
+    background:transparent;
+    z-index:1;
+  }
+  .tab-right{
+    left:707px; top:120px; width:471px; height:43px;
+    background:transparent;
+    z-index:1;
+  }
+  .divider1{
+    left:236px; top:120px; width:1px; height:394px;
+    background:#d3d3d6;
+    z-index:4;
+  }
+  .divider2{
+    left:707px; top:120px; width:1px; height:394px;
+    background:#d3d3d6;
+    z-index:4;
+  }
+
+  .tab-text{
+    font-size:14px;
+    line-height:16px;
+    color:#30323a;
+    font-weight:700;
+    z-index:10;
+  }
+  .small-label{
+    font-size:14px;
+    line-height:16px;
+    color:#6d7280;
+    font-weight:700;
+    z-index:10;
+  }
+  .section-title{
+    font-size:14px;
+    line-height:16px;
+    color:#32343b;
+    font-weight:700;
+    z-index:10;
+  }
+  .body-text{
+    font-size:14px;
+    line-height:20px;
+    color:#4a4d56;
+    font-weight:400;
+    z-index:10;
+  }
+  .bullets{
+    font-size:14px;
+    line-height:20px;
+    color:#4a4d56;
+    font-weight:400;
+    z-index:10;
+  }
+  .bullets ul{
+    margin:0;
+    padding-left:14px;
+    list-style-type:square;
+  }
+  .bullets li{
+    margin:0 0 8px 0;
+    padding-left:0;
+  }
+  .bullets li::marker{
+    font-size:11px;
+    color:#33353c;
+  }
+
+  .rhs-nav{
+    width:91px;
+    background:#2b2b3d;
+    color:#ffffff;
+    font-size:12px;
+    line-height:13px;
+    font-weight:400;
+    padding-left:8px;
+    padding-top:7px;
+    border-left:2px solid #d8d200;
+    z-index:20;
+  }
+  .rhs-nav.contact{
+    background:#6f7180;
+  }
+
+  .photo{
+    left:0; top:514px; width:1280px; height:206px;
+    background:#cfd7da;
+    overflow:hidden;
+    z-index:0;
+  }
+  .caption{
+    left:68px; top:692px;
+    font-size:10px;
+    line-height:12px;
+    color:#ffffff;
+    font-weight:700;
+    z-index:30;
+    letter-spacing:0;
+  }
+  .caption .light{ font-weight:400; }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="top-bg"></div>
+  <div class="top-left-bar"></div>
+  <div class="top-line"></div>
+  <div class="title">Insights: Europe, Middle East, India and Africa</div>
+
+  <div class="nav-circle" style="left:1128px; top:34px;">◀</div>
+  <div class="nav-circle" style="left:1182px; top:34px;">▶</div>
+
+  <div class="content-panel"></div>
+  <div class="panel-top-rule"></div>
+  <div class="tab-left"></div>
+  <div class="divider1"></div>
+  <div class="divider2"></div>
+
+  <div class="tab-text" style="left:76px; top:135px;">Safety and security</div>
+  <div class="small-label" style="left:76px; top:178px;">continued</div>
+
+  <div class="section-title" style="left:254px; top:135px;">Conveyance security</div>
+  <div class="body-text" style="left:254px; top:156px; width:355px;">
+    To ensure secure transportation of cargo, the applicant must<br>
+    maintain measures that protect conveyance integrity:
+  </div>
+
+  <div class="bullets" style="left:254px; top:197px; width:364px;">
+    <ul>
+      <li>Conveyances used in the supply chain must be capable of being effectively secured.</li>
+      <li>Operators must be trained to maintain cargo and conveyance security.</li>
+      <li>Operators must report actual or suspicious incidents, with proper records maintained for Customs and the AEO team.</li>
+      <li>Potential concealment areas on conveyances must be regularly inspected.</li>
+      <li>Transporters must maintain logs or monitoring records to ensure conveyance integrity during transit.</li>
+      <li>Predefined transport routes must be identified and monitored; random route checks should be conducted.</li>
+      <li>Drivers must report route delays (weather, traffic, diversions) to dispatch.</li>
+      <li>Management must periodically and randomly verify that transport logs and monitoring procedures are being followed.</li>
+    </ul>
+  </div>
+
+  <div class="section-title" style="left:726px; top:135px;">Personnel security</div>
+  <div class="body-text" style="left:726px; top:156px; width:365px;">
+    To prevent internal threats, the applicant must conduct<br>
+    appropriate staff screening:
+  </div>
+
+  <div class="bullets" style="left:726px; top:197px; width:371px;">
+    <ul>
+      <li>Reasonable checks must be performed during recruitment to ensure candidates have no past security-related or Customs-related convictions.</li>
+      <li>Employees in sensitive roles must undergo periodic background verifications.</li>
+      <li>Employees must carry identification that uniquely links them to the organization.</li>
+      <li>Processes must exist to identify and record unauthorized persons, including visitor ID and sign-in procedures.</li>
+      <li>Identification and system access must be removed promptly when employment ends.</li>
+    </ul>
+  </div>
+
+  <div class="rhs-nav" style="left:1193px; top:120px; height:36px;">Contents</div>
+  <div class="rhs-nav" style="left:1193px; top:170px; height:36px;">Insights</div>
+  <div class="rhs-nav" style="left:1193px; top:220px; height:49px;">New on<br>ey.com</div>
+  <div class="rhs-nav" style="left:1193px; top:284px; height:36px;">Tax alerts</div>
+  <div class="rhs-nav" style="left:1193px; top:334px; height:49px;">Additional<br>resources</div>
+  <div class="rhs-nav contact" style="left:1193px; top:398px; height:36px;">Contacts</div>
+
+  <div class="photo">
+    <svg width="1280" height="206" style="left:0; top:0; position:absolute;">
+      <defs>
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#d5dddf"/>
+          <stop offset="100%" stop-color="#dce2e3"/>
+        </linearGradient>
+        <linearGradient id="fieldGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#d0c78a"/>
+          <stop offset="100%" stop-color="#9e9158"/>
+        </linearGradient>
+      </defs>
+
+      <rect x="0" y="0" width="1280" height="95" fill="url(#skyGrad)"/>
+      <ellipse cx="188" cy="18" rx="210" ry="24" fill="rgba(255,255,255,0.30)"/>
+      <ellipse cx="619" cy="21" rx="180" ry="21" fill="rgba(255,255,255,0.28)"/>
+      <ellipse cx="925" cy="17" rx="210" ry="24" fill="rgba(255,255,255,0.22)"/>
+
+      <rect x="0" y="95" width="1280" height="111" fill="url(#fieldGrad)"/>
+      <polygon points="0,112 730,112 1215,122 1280,122 1280,206 0,206" fill="#b7ab68"/>
+      <polygon points="0,161 408,157 780,149 1280,147 1280,206 0,206" fill="#8a7d45"/>
+
+      <polygon points="-20,205 42,126 672,126 795,205" fill="#8a7b6e"/>
+      <polygon points="60,205 70,169 650,127 707,127 551,205" fill="rgba(255,255,255,0.12)"/>
+
+      <rect x="0" y="129" width="957" height="4" fill="#282828"/>
+      <rect x="0" y="132" width="957" height="2" fill="#4e4e4e"/>
+
+      <rect x="0" y="102" width="60" height="31" fill="#dbdbdb"/>
+      <rect x="12" y="94" width="39" height="39" fill="#cecece"/>
+
+      <rect x="67" y="79" width="328" height="56" rx="2" fill="#141414"/>
+      <rect x="79" y="74" width="92" height="10" rx="1" fill="#232323"/>
+      <rect x="128" y="69" width="28" height="9" rx="1" fill="#121212"/>
+      <rect x="181" y="71" width="38" height="8" rx="1" fill="#1a1a1a"/>
+      <rect x="212" y="74" width="76" height="10" rx="1" fill="#202020"/>
+      <rect x="335" y="79" width="20" height="56" fill="#d2572f"/>
+      <rect x="67" y="128" width="288" height="3" fill="#c29c38"/>
+      <rect x="68" y="96" width="31" height="31" fill="#d15730"/>
+      <polygon points="99,95 137,95 153,116 126,116 99,116" fill="#d95a31"/>
+      <polygon points="128,95 166,95 184,116 154,116" fill="#f5f2ef"/>
+
+      <circle cx="93" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="121" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="169" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="201" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="254" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="305" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="357" cy="134" r="2.8" fill="#121212"/>
+
+      <rect x="391" y="114" width="18" height="5" fill="#4a4a4a"/>
+      <line x1="398" y1="85" x2="398" y2="134" stroke="#2a2a2a" stroke-width="2"/>
+      <line x1="405" y1="85" x2="405" y2="134" stroke="#2a2a2a" stroke-width="2"/>
+
+      <rect x="438" y="71" width="465" height="65" rx="2" fill="#111111"/>
+      <rect x="469" y="66" width="104" height="10" rx="1" fill="#222222"/>
+      <rect x="534" y="61" width="32" height="10" rx="1" fill="#151515"/>
+      <rect x="591" y="64" width="48" height="7" rx="1" fill="#1b1b1b"/>
+      <rect x="440" y="128" width="441" height="3" fill="#c29c38"/>
+
+      <polygon points="730,72 782,72 851,98 851,127 762,127 730,106" fill="#cc5831"/>
+      <polygon points="730,72 761,72 805,98 760,127 730,127" fill="#f0efec"/>
+      <rect x="849" y="71" width="42" height="56" fill="#d05b33"/>
+      <rect x="785" y="61" width="57" height="23" fill="#2c485b"/>
+      <rect x="791" y="66" width="14" height="12" fill="#c8d7df"/>
+      <rect x="808" y="66" width="14" height="12" fill="#c8d7df"/>
+      <rect x="825" y="66" width="11" height="12" fill="#c8d7df"/>
+
+      <circle cx="469" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="515" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="561" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="607" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="653" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="699" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="744" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="788" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="833" cy="134" r="2.8" fill="#121212"/>
+      <circle cx="874" cy="134" r="2.8" fill="#121212"/>
+
+      <rect x="892" y="98" width="6" height="28" fill="#d45e36"/>
+      <rect x="897" y="106" width="7" height="20" fill="#f0f0f0"/>
+      <circle cx="905" cy="110" r="3" fill="#efe7c7"/>
+      <line x1="902" y1="117" x2="917" y2="117" stroke="#d15931" stroke-width="3"/>
+      <line x1="903" y1="120" x2="916" y2="120" stroke="#d15931" stroke-width="2"/>
+
+      <line x1="1112" y1="79" x2="1137" y2="104" stroke="#a45047" stroke-width="4"/>
+      <line x1="1137" y1="79" x2="1112" y2="104" stroke="#a45047" stroke-width="4"/>
+      <line x1="1124" y1="105" x2="1124" y2="134" stroke="#3e6f9e" stroke-width="3"/>
+      <rect x="1121" y="134" width="6" height="14" fill="#3e6f9e"/>
+      <circle cx="1124" cy="121" r="10" fill="#b33d2f"/>
+      <line x1="1116" y1="121" x2="1132" y2="121" stroke="#ffffff" stroke-width="3"/>
+
+      <rect x="1180" y="96" width="21" height="14" fill="#ddae34"/>
+      <rect x="1188" y="110" width="4" height="29" fill="#646464"/>
+      <text x="1185" y="106" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#594500">R</text>
+
+      <g stroke-linecap="round">
+        <line x1="95" y1="199" x2="98" y2="187" stroke="#b8af73" stroke-width="1"/>
+        <line x1="129" y1="199" x2="132" y2="185" stroke="#c4bc80" stroke-width="1"/>
+        <line x1="279" y1="201" x2="283" y2="188" stroke="#b8ae71" stroke-width="1"/>
+        <line x1="454" y1="203" x2="458" y2="189" stroke="#bdb479" stroke-width="1"/>
+        <line x1="742" y1="203" x2="745" y2="190" stroke="#c1ba80" stroke-width="1"/>
+        <line x1="1007" y1="198" x2="1011" y2="184" stroke="#bdb478" stroke-width="1"/>
+        <line x1="1083" y1="199" x2="1086" y2="185" stroke="#cabf83" stroke-width="1"/>
+        <line x1="1142" y1="196" x2="1145" y2="182" stroke="#c7be83" stroke-width="1"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="caption">30&nbsp;&nbsp;|&nbsp;&nbsp;<span class="light">TradeWatch Issue 1 2026</span></div>
+</div>
+</body>
+</html>

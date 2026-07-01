@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f3f3f3;
+  }
+
+  /* Left text panel */
+  .left-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 714px;
+    height: 720px;
+    background: #f3f3f3;
+  }
+
+  .header {
+    position: absolute;
+    left: 61px;
+    top: 39px;
+    font-size: 14px;
+    color: #5b6670;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .header .accent {
+    color: #8B0ADF;
+  }
+
+  .col1 {
+    position: absolute;
+    left: 60px;
+    top: 68px;
+    width: 265px;
+    color: #3d3d3d;
+    font-size: 14px;
+    line-height: 1.35;
+    font-weight: 400;
+  }
+
+  .col2top {
+    position: absolute;
+    left: 378px;
+    top: 68px;
+    width: 257px;
+    color: #3d3d3d;
+    font-size: 14px;
+    line-height: 1.35;
+    font-weight: 400;
+  }
+
+  .quote {
+    position: absolute;
+    left: 379px;
+    top: 158px;
+    width: 286px;
+    color: #1d1d1d;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 21px;
+    line-height: 1.25;
+    font-weight: 700;
+  }
+
+  .footer-mark {
+    position: absolute;
+    left: 58px;
+    bottom: 18px;
+    color: #a10ef3;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* Right visual panel */
+  .right-panel {
+    position: absolute;
+    left: 714px;
+    top: 0;
+    width: 566px;
+    height: 720px;
+    background:
+      radial-gradient(ellipse 360px 620px at 25% 10%, rgba(186, 38, 255, 0.95) 0%, rgba(155, 20, 221, 0.78) 28%, rgba(109, 10, 169, 0.48) 48%, rgba(77, 12, 123, 0.18) 62%, rgba(68, 16, 112, 0) 72%),
+      radial-gradient(ellipse 220px 360px at 8% 60%, rgba(185, 36, 255, 0.82) 0%, rgba(139, 10, 223, 0.45) 38%, rgba(139, 10, 223, 0) 70%),
+      linear-gradient(180deg, #51118a 0%, #441070 100%);
+  }
+  .right-panel:before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: -12px;
+    width: 430px;
+    height: 750px;
+    background:
+      radial-gradient(ellipse 180px 480px at 48% 15%, rgba(234, 137, 255, 0.38) 0%, rgba(196, 73, 255, 0.24) 35%, rgba(132, 27, 202, 0.12) 60%, rgba(132, 27, 202, 0) 74%);
+    transform: rotate(-18deg);
+    filter: blur(2px);
+    opacity: 0.9;
+  }
+  .right-panel:after {
+    content: "";
+    position: absolute;
+    left: 80px;
+    top: 0;
+    width: 260px;
+    height: 720px;
+    background:
+      radial-gradient(ellipse 140px 560px at 25% 10%, rgba(246, 167, 255, 0.20) 0%, rgba(186, 58, 255, 0.16) 32%, rgba(120, 18, 188, 0.10) 50%, rgba(120, 18, 188, 0) 68%);
+    transform: rotate(-12deg);
+    opacity: 0.8;
+  }
+
+  .visual-noise {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 20%, rgba(255,255,255,0.08) 0 1px, transparent 2px),
+      radial-gradient(circle at 33% 41%, rgba(255,255,255,0.05) 0 1px, transparent 2px),
+      radial-gradient(circle at 62% 64%, rgba(255,255,255,0.04) 0 1px, transparent 2px),
+      radial-gradient(circle at 80% 80%, rgba(255,255,255,0.03) 0 1px, transparent 2px);
+    background-size: 7px 7px, 9px 9px, 11px 11px, 13px 13px;
+    mix-blend-mode: screen;
+    opacity: 0.32;
+    pointer-events: none;
+  }
+
+  /* Abstract robotic hand approximation */
+  .hand {
+    position: absolute;
+    left: 70px;
+    top: 485px;
+    width: 365px;
+    height: 230px;
+    transform: rotate(-9deg);
+  }
+  .finger {
+    position: absolute;
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(72,18,117,0.95) 0%, rgba(177,25,255,0.92) 48%, rgba(117,18,189,0.9) 100%);
+    box-shadow: inset -7px -7px 0 rgba(63, 0, 100, 0.35), 0 0 18px rgba(183, 28, 255, 0.25);
+  }
+  .finger.f1 { left: 128px; top: 2px; width: 19px; height: 118px; transform: rotate(-24deg); }
+  .finger.f2 { left: 153px; top: 0; width: 21px; height: 126px; transform: rotate(-24deg); }
+  .finger.f3 { left: 180px; top: 7px; width: 19px; height: 114px; transform: rotate(-23deg); }
+  .finger.f4 { left: 206px; top: 21px; width: 17px; height: 96px; transform: rotate(-22deg); }
+
+  .palm {
+    position: absolute;
+    left: 92px;
+    top: 95px;
+    width: 235px;
+    height: 76px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(184,31,255,0.95) 0%, rgba(144,19,221,0.97) 55%, rgba(95,13,154,0.98) 100%);
+    box-shadow: inset -8px -8px 0 rgba(73, 0, 116, 0.45);
+    transform: skewX(-18deg);
+  }
+
+  .palm-edge {
+    position: absolute;
+    left: 110px;
+    top: 138px;
+    width: 195px;
+    height: 33px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(60,10,94,0.95) 0%, rgba(151,25,231,0.85) 100%);
+    transform: skewX(-20deg);
+  }
+
+  .thumb {
+    position: absolute;
+    left: 245px;
+    top: 134px;
+    width: 98px;
+    height: 21px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(177,29,251,0.98) 0%, rgba(100,14,160,0.98) 100%);
+    transform: rotate(37deg);
+    box-shadow: inset -5px -4px 0 rgba(71, 0, 111, 0.38);
+  }
+
+  .wrist {
+    position: absolute;
+    left: 252px;
+    top: 171px;
+    width: 139px;
+    height: 84px;
+    border-radius: 45px 45px 0 0;
+    border-top: 5px solid rgba(128, 18, 204, 0.9);
+    border-left: 5px solid rgba(128, 18, 204, 0.25);
+    border-right: 5px solid rgba(128, 18, 204, 0.25);
+    border-bottom: none;
+    transform: rotate(20deg);
+    opacity: 0.9;
+  }
+
+  .top-right-label {
+    position: absolute;
+    right: 46px;
+    top: 37px;
+    color: rgba(255,255,255,0.9);
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .page {
+    position: absolute;
+    right: 9px;
+    top: 37px;
+    color: rgba(255,255,255,0.95);
+    font-size: 15px;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-panel">
+      <div class="header"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+
+      <div class="col1">
+        Imagine this: when a customer interacts with a business, they’re guided by a familiar face. A chatbot that acts like a beloved mascot or an influencer’s persona the company has licensed. This agent shows up on the company’s channels or can be invited into a conversation on other generative AI-based platforms. Over time, it supports and gets to know the customer—as an individual beyond purchase history or demographics. And it builds a trusted relationship, not just with its personality, but by taking relevant actions. It wields the power of the digital world, accessing data on products and deals from across the organization, and tapping into a suite of technologies like data analytics and digital twins, to meet the customer on their terms. And it’s doing all this autonomously and at scale—running thousands of conversations at once. This is a level of personalization, once only available to individuals in extremely limited numbers, that AI models trained on your company’s persona can bring to every single interaction you have—with customers, partners, employees, and even other agents.
+        <br><br>
+        Companies today are starting to address dimensions of this challenge. For instance, Walmart’s new mobile shopping assistant will summarize product descriptions, compare products, and provide customer reviews.<sup>66</sup> NVIDIA released a Retrieval Augmented Generation (RAG) framework to be used with chatbots, allowing interfaces real-time access to information across a company.<sup>67</sup> And platform startup Native AI uses generative AI and digital twins to let companies chat with digital twins of their customers to conduct market research.<sup>68</sup> &nbsp;But even with the technology available today, few companies are truly capturing the full scope of work that will be needed to instill the enterprise’s personality into a host of AI
+      </div>
+
+      <div class="col2top">
+        models. It will require training from employees, management, and even customers to accurately capture the values and presence the company wants to project. Ultimately, it’s likely entire teams in organizations will be dedicated to this effort alone.
+      </div>
+
+      <div class="quote">
+        It's time to bring generative AI to customer-facing roles with the gravity it requires. Done poorly, businesses could see the magic of their brands eclipsed. Done right, it’s the beginning of a new era of customer relationships and trust.
+      </div>
+
+      <div class="footer-mark">&gt;</div>
+    </div>
+
+    <div class="right-panel">
+      <div class="visual-noise"></div>
+      <div class="hand">
+        <div class="finger f1"></div>
+        <div class="finger f2"></div>
+        <div class="finger f3"></div>
+        <div class="finger f4"></div>
+        <div class="palm"></div>
+        <div class="palm-edge"></div>
+        <div class="thumb"></div>
+        <div class="wrist"></div>
+      </div>
+      <div class="top-right-label">Your Face, in the Future</div>
+      <div class="page">26</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Expectations for the Economy in 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #222;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f1efeb;
+  }
+  .slide > div {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  /* right-side photo approximation */
+  .photo-base {
+    left: 520px;
+    top: 0;
+    width: 760px;
+    height: 720px;
+    background:
+      radial-gradient(ellipse at 80% 18%, rgba(244,225,176,0.98) 0 130px, rgba(224,191,120,0.92) 180px, rgba(168,120,62,0.45) 260px, rgba(0,0,0,0) 340px),
+      radial-gradient(ellipse at 70% 12%, rgba(76,35,18,0.55) 0 110px, rgba(76,35,18,0.12) 170px, rgba(0,0,0,0) 240px),
+      radial-gradient(ellipse at 91% 47%, rgba(38,40,46,0.95) 0 160px, rgba(32,33,39,0.85) 230px, rgba(0,0,0,0) 320px),
+      radial-gradient(ellipse at 73% 54%, rgba(227,196,119,0.95) 0 135px, rgba(212,171,93,0.88) 200px, rgba(133,93,48,0.25) 300px, rgba(0,0,0,0) 390px),
+      linear-gradient(90deg, #d3d5d8 0%, #eceae6 25%, #ece9e4 100%);
+    z-index: 0;
+  }
+  .window-left {
+    left: 668px;
+    top: 185px;
+    width: 170px;
+    height: 280px;
+    background: linear-gradient(180deg, rgba(154,161,173,0.7), rgba(104,113,129,0.28));
+    filter: blur(5px);
+    z-index: 1;
+  }
+  .sofa {
+    left: 1066px;
+    top: 195px;
+    width: 214px;
+    height: 325px;
+    background: linear-gradient(180deg, #3e4147 0%, #212329 100%);
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 20px;
+    filter: blur(1px);
+    z-index: 1;
+  }
+  .torso {
+    left: 845px;
+    top: -8px;
+    width: 340px;
+    height: 470px;
+    background: linear-gradient(180deg, #e6cf95 0%, #d8b869 34%, #d6b05b 70%, #c99645 100%);
+    border-radius: 120px 110px 90px 90px;
+    transform: rotate(4deg);
+    filter: blur(1.4px);
+    z-index: 2;
+  }
+  .neck {
+    left: 916px;
+    top: -8px;
+    width: 82px;
+    height: 118px;
+    background: linear-gradient(180deg, #5e341f 0%, #8b5735 100%);
+    border-radius: 0 0 44px 44px;
+    filter: blur(1px);
+    z-index: 3;
+  }
+  .necklace {
+    left: 949px;
+    top: 119px;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(231,222,203,0.9);
+    border-radius: 50%;
+    z-index: 4;
+    box-shadow: 0 0 2px rgba(255,255,255,0.2);
+  }
+  .necklace::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: -22px;
+    width: 2px;
+    height: 22px;
+    background: rgba(231,222,203,0.85);
+  }
+  .arm-left {
+    left: 730px;
+    top: 361px;
+    width: 170px;
+    height: 55px;
+    background: linear-gradient(180deg, #9c6440 0%, #7f4b2c 100%);
+    border-radius: 28px;
+    transform: rotate(12deg);
+    filter: blur(1px);
+    z-index: 4;
+  }
+  .paper-held {
+    left: 598px;
+    top: 397px;
+    width: 140px;
+    height: 48px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(233,237,240,0.9));
+    clip-path: polygon(0 15%, 88% 0, 100% 63%, 15% 100%);
+    transform: rotate(13deg);
+    filter: blur(0.5px);
+    z-index: 5;
+  }
+  .paper-held::before,
+  .paper-top::before,
+  .paper-main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(12deg, transparent 0 16%, rgba(132,185,228,0.55) 16% 21%, transparent 21% 34%, rgba(132,185,228,0.45) 34% 38%, transparent 38% 100%);
+    opacity: 0.8;
+  }
+  .leg-left {
+    left: 710px;
+    top: 428px;
+    width: 270px;
+    height: 205px;
+    background: linear-gradient(180deg, #596d99 0%, #44557f 100%);
+    border-radius: 54px;
+    filter: blur(1px);
+    z-index: 2;
+  }
+  .leg-right {
+    left: 1040px;
+    top: 405px;
+    width: 175px;
+    height: 250px;
+    background: linear-gradient(180deg, #51658f 0%, #3f5076 100%);
+    border-radius: 52px;
+    filter: blur(1px);
+    z-index: 2;
+  }
+  .forearm-right {
+    left: 922px;
+    top: 410px;
+    width: 210px;
+    height: 52px;
+    background: linear-gradient(180deg, #99613d 0%, #76482b 100%);
+    border-radius: 28px;
+    transform: rotate(-18deg);
+    filter: blur(1px);
+    z-index: 4;
+  }
+  .hand {
+    left: 820px;
+    top: 451px;
+    width: 196px;
+    height: 88px;
+    background: linear-gradient(180deg, #8f5c39 0%, #744628 100%);
+    border-radius: 60px 56px 44px 44px;
+    transform: rotate(-16deg);
+    filter: blur(0.8px);
+    z-index: 5;
+  }
+  .finger {
+    left: 869px;
+    top: 496px;
+    width: 100px;
+    height: 22px;
+    background: linear-gradient(180deg, #9e6a43 0%, #7b4b2d 100%);
+    border-radius: 12px;
+    transform: rotate(110deg);
+    z-index: 6;
+  }
+
+  .table {
+    left: 505px;
+    top: 536px;
+    width: 775px;
+    height: 184px;
+    background: linear-gradient(180deg, #f7f5f2 0%, #f0ede8 100%);
+    z-index: 1;
+  }
+  .paper-main {
+    left: 362px;
+    top: 501px;
+    width: 330px;
+    height: 111px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(232,235,238,0.92));
+    clip-path: polygon(7% 0, 100% 10%, 93% 100%, 0 86%);
+    transform: rotate(-10deg);
+    filter: blur(0.8px);
+    z-index: 2;
+  }
+  .paper-bottom {
+    left: 304px;
+    top: 604px;
+    width: 310px;
+    height: 88px;
+    background: linear-gradient(180deg, rgba(246,247,248,0.86), rgba(224,228,232,0.82));
+    clip-path: polygon(0 24%, 88% 0, 100% 68%, 11% 100%);
+    transform: rotate(8deg);
+    filter: blur(2px);
+    z-index: 2;
+  }
+  .paper-top {
+    left: 555px;
+    top: 408px;
+    width: 132px;
+    height: 52px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(234,240,247,0.9));
+    clip-path: polygon(0 18%, 77% 0, 100% 68%, 24% 100%);
+    transform: rotate(14deg);
+    filter: blur(0.4px);
+    z-index: 3;
+  }
+
+  .calculator {
+    left: 629px;
+    top: 584px;
+    width: 185px;
+    height: 53px;
+    background: linear-gradient(180deg, #ffffff 0%, #e6e6e8 100%);
+    border-radius: 8px;
+    transform: rotate(12deg);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+    z-index: 5;
+  }
+  .calc-screen {
+    left: 708px;
+    top: 596px;
+    width: 63px;
+    height: 17px;
+    background: linear-gradient(180deg, #847f79 0%, #66615b 100%);
+    border-radius: 2px;
+    transform: rotate(12deg);
+    z-index: 6;
+  }
+  .calc-key {
+    width: 8px;
+    height: 5px;
+    background: rgba(238,238,238,0.96);
+    border-radius: 2px;
+    transform: rotate(12deg);
+    z-index: 6;
+  }
+
+  /* blue overlay */
+  .overlay {
+    left: 0;
+    top: 0;
+    width: 922px;
+    height: 720px;
+    background: linear-gradient(90deg, #0a4258 0%, #002453 100%);
+    clip-path: polygon(0 0, 100% 0, 50% 100%, 0 100%);
+    z-index: 10;
+  }
+
+  .purple {
+    right: 0;
+    bottom: 0;
+    width: 120px;
+    height: 280px;
+    background: #4b2875;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    z-index: 11;
+  }
+  .teal {
+    right: 58px;
+    bottom: 0;
+    width: 252px;
+    height: 147px;
+    background: #2aafb3;
+    clip-path: polygon(55% 0, 100% 0, 45% 100%, 0 100%);
+    z-index: 12;
+  }
+
+  .title {
+    left: 46px;
+    top: 151px;
+    width: 485px;
+    color: #f4f4f4;
+    font-family: "Baloo 2", Arial, sans-serif;
+    font-size: 68px;
+    line-height: 0.9;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    z-index: 20;
+  }
+
+  .footer-left {
+    left: 49px;
+    bottom: 18px;
+    color: rgba(255,255,255,0.92);
+    font-size: 14px;
+    line-height: 1;
+    z-index: 20;
+  }
+  .footer-center {
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    margin: auto;
+    width: 30px;
+    text-align: center;
+    color: rgba(0,0,0,0.82);
+    font-size: 21px;
+    line-height: 1;
+    z-index: 20;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="photo-base"></div>
+    <div class="window-left"></div>
+    <div class="sofa"></div>
+    <div class="torso"></div>
+    <div class="neck"></div>
+    <div class="necklace"></div>
+    <div class="arm-left"></div>
+    <div class="paper-held"></div>
+    <div class="leg-left"></div>
+    <div class="leg-right"></div>
+    <div class="forearm-right"></div>
+    <div class="hand"></div>
+    <div class="finger"></div>
+    <div class="table"></div>
+    <div class="paper-main"></div>
+    <div class="paper-bottom"></div>
+    <div class="paper-top"></div>
+    <div class="calculator"></div>
+    <div class="calc-screen"></div>
+
+    <div class="calc-key" style="left:665px; top:600px;"></div>
+    <div class="calc-key" style="left:677px; top:602px;"></div>
+    <div class="calc-key" style="left:689px; top:604px;"></div>
+    <div class="calc-key" style="left:665px; top:611px;"></div>
+    <div class="calc-key" style="left:677px; top:613px;"></div>
+    <div class="calc-key" style="left:689px; top:615px;"></div>
+    <div class="calc-key" style="left:701px; top:617px;"></div>
+    <div class="calc-key" style="left:713px; top:619px;"></div>
+    <div class="calc-key" style="left:725px; top:621px;"></div>
+    <div class="calc-key" style="left:666px; top:623px;"></div>
+    <div class="calc-key" style="left:678px; top:625px;"></div>
+    <div class="calc-key" style="left:690px; top:627px;"></div>
+    <div class="calc-key" style="left:702px; top:629px;"></div>
+    <div class="calc-key" style="left:714px; top:631px;"></div>
+    <div class="calc-key" style="left:726px; top:633px;"></div>
+
+    <div class="overlay"></div>
+    <div class="purple"></div>
+    <div class="teal"></div>
+
+    <div class="title">Expectations for<br>the Economy<br>in 2025</div>
+    <div class="footer-left">© Ipsos Predictions 2025 Report</div>
+    <div class="footer-center">24</div>
+  </div>
+</body>
+</html>

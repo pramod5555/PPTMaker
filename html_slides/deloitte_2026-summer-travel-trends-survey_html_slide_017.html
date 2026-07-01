@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Travel products slide</title>
+<style>
+  html, body {
+    margin: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f2f2f2;
+  }
+  #slide > * {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  .left-panel {
+    left: 0;
+    top: 0;
+    width: 486px;
+    height: 720px;
+    background: #f2f2f2;
+    z-index: 1;
+  }
+
+  .water-bg {
+    left: 486px;
+    top: 0;
+    width: 794px;
+    height: 720px;
+    z-index: 0;
+    background:
+      radial-gradient(1200px 240px at 62% 106%, rgba(0,0,0,0.86), rgba(0,0,0,0.22) 42%, rgba(0,0,0,0) 66%),
+      radial-gradient(950px 180px at 48% 100%, rgba(0,0,0,0.46), rgba(0,0,0,0.08) 46%, rgba(0,0,0,0) 69%),
+      linear-gradient(180deg, #89acc5 0%, #7198bc 14%, #5f86ad 28%, #3d6994 43%, #214d79 58%, #123a63 72%, #082746 85%, #021323 100%);
+  }
+  .water-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(2deg,
+        rgba(255,255,255,0.38) 0px,
+        rgba(255,255,255,0.38) 2px,
+        rgba(255,255,255,0.03) 4px,
+        rgba(255,255,255,0.03) 12px),
+      repeating-linear-gradient(-2deg,
+        rgba(255,255,255,0.17) 0px,
+        rgba(255,255,255,0.17) 1px,
+        rgba(255,255,255,0) 7px,
+        rgba(255,255,255,0) 15px),
+      repeating-linear-gradient(180deg,
+        rgba(255,255,255,0) 0px,
+        rgba(255,255,255,0) 14px,
+        rgba(255,255,255,0.19) 15px,
+        rgba(255,255,255,0.09) 17px,
+        rgba(255,255,255,0) 21px,
+        rgba(255,255,255,0) 34px);
+    opacity: 0.72;
+    mix-blend-mode: screen;
+  }
+
+  .photo-circle {
+    left: 560px;
+    top: 2px;
+    width: 735px;
+    height: 715px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 20;
+    background:
+      linear-gradient(90deg,
+        rgba(0,0,0,0.86) 0%,
+        rgba(0,0,0,0.74) 16%,
+        rgba(67,49,39,0.40) 31%,
+        rgba(255,255,255,0.06) 47%,
+        rgba(248,248,246,0.64) 64%,
+        rgba(245,244,241,0.96) 80%,
+        rgba(248,247,244,1) 100%);
+  }
+
+  .photo-circle .window {
+    position: absolute;
+    left: 316px;
+    top: 18px;
+    width: 198px;
+    height: 458px;
+    background: linear-gradient(90deg, rgba(225,227,231,0.55) 0%, rgba(249,249,249,0.95) 52%, rgba(231,231,231,0.72) 100%);
+    opacity: 0.8;
+  }
+  .photo-circle .window-line {
+    position: absolute;
+    left: 411px;
+    top: 0;
+    width: 3px;
+    height: 400px;
+    background: rgba(213,213,213,0.95);
+    transform: rotate(2deg);
+  }
+  .photo-circle .cord {
+    position: absolute;
+    left: 398px;
+    top: 48px;
+    width: 2px;
+    height: 76px;
+    background: #b8bfc5;
+    transform: rotate(5deg);
+  }
+  .photo-circle .cord-ball {
+    position: absolute;
+    left: 392px;
+    top: 118px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #b6bdc3;
+  }
+  .photo-circle .curtain {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 205px;
+    height: 715px;
+    background: linear-gradient(90deg, rgba(224,217,206,0.30) 0%, rgba(244,242,239,0.95) 38%, rgba(255,255,255,0.98) 100%);
+    clip-path: polygon(24% 0%, 100% 0%, 100% 100%, 8% 100%, 18% 63%, 17% 31%);
+  }
+
+  .photo-circle .woman-hair {
+    position: absolute;
+    left: 44px;
+    top: 52px;
+    width: 320px;
+    height: 470px;
+    border-radius: 52% 40% 48% 44% / 42% 36% 54% 52%;
+    background: radial-gradient(circle at 62% 40%, rgba(78,52,36,0.55) 0%, rgba(34,22,16,0.84) 27%, rgba(8,6,8,0.98) 62%, rgba(0,0,0,1) 100%);
+    box-shadow:
+      34px 95px 0 8px rgba(0,0,0,0.96),
+      18px 210px 0 12px rgba(0,0,0,0.97);
+  }
+  .photo-circle .woman-face {
+    position: absolute;
+    left: 258px;
+    top: 205px;
+    width: 110px;
+    height: 136px;
+    border-radius: 48% 44% 44% 46%;
+    background: linear-gradient(180deg, #f0c29b 0%, #d8966e 100%);
+    transform: rotate(8deg);
+  }
+  .photo-circle .woman-neck {
+    position: absolute;
+    left: 304px;
+    top: 315px;
+    width: 38px;
+    height: 50px;
+    border-radius: 16px;
+    background: #cf8f69;
+    transform: rotate(12deg);
+  }
+  .photo-circle .woman-glasses-l {
+    position: absolute;
+    left: 263px;
+    top: 191px;
+    width: 37px;
+    height: 27px;
+    border: 3px solid #515a67;
+    border-radius: 7px;
+    background: rgba(255,255,255,0.18);
+    transform: rotate(8deg);
+  }
+  .photo-circle .woman-glasses-r {
+    position: absolute;
+    left: 297px;
+    top: 197px;
+    width: 36px;
+    height: 26px;
+    border: 3px solid #515a67;
+    border-radius: 7px;
+    background: rgba(255,255,255,0.1);
+    transform: rotate(8deg);
+  }
+  .photo-circle .woman-glasses-bridge {
+    position: absolute;
+    left: 296px;
+    top: 206px;
+    width: 10px;
+    height: 3px;
+    background: #515a67;
+    transform: rotate(8deg);
+  }
+  .photo-circle .woman-smile {
+    position: absolute;
+    left: 302px;
+    top: 272px;
+    width: 41px;
+    height: 16px;
+    border-bottom: 3px solid #b95a49;
+    border-radius: 0 0 22px 22px;
+    transform: rotate(12deg);
+  }
+  .photo-circle .woman-robe {
+    position: absolute;
+    left: -10px;
+    top: 344px;
+    width: 470px;
+    height: 392px;
+    border-radius: 41% 21% 14% 0% / 21% 29% 0% 0%;
+    background: linear-gradient(180deg, #e8ebea 0%, #dfe2df 54%, #f5f5f3 100%);
+    transform: rotate(10deg);
+    box-shadow:
+      inset -20px -30px 60px rgba(0,0,0,0.08),
+      inset 15px 20px 50px rgba(255,255,255,0.7);
+  }
+  .photo-circle .woman-arm {
+    position: absolute;
+    left: 294px;
+    top: 330px;
+    width: 165px;
+    height: 304px;
+    border-radius: 40px;
+    background: linear-gradient(180deg, #f5f5f2 0%, #e9ebe8 55%, #f8f8f6 100%);
+    transform: rotate(20deg);
+    box-shadow: inset -12px -18px 26px rgba(0,0,0,0.07);
+  }
+  .photo-circle .woman-hand {
+    position: absolute;
+    left: 382px;
+    top: 317px;
+    width: 84px;
+    height: 71px;
+    border-radius: 40% 45% 42% 49%;
+    background: linear-gradient(180deg, #d39267 0%, #ba7548 100%);
+    transform: rotate(12deg);
+  }
+  .photo-circle .nails {
+    position: absolute;
+    left: 398px;
+    top: 320px;
+    width: 18px;
+    height: 9px;
+    border-radius: 10px;
+    background: #e55c67;
+    box-shadow: 14px 3px 0 #d14c58;
+    transform: rotate(18deg);
+  }
+  .photo-circle .mug1 {
+    position: absolute;
+    left: 447px;
+    top: 322px;
+    width: 99px;
+    height: 106px;
+    border-radius: 10px 10px 20px 20px;
+    background: linear-gradient(180deg, #f6f4ef 0%, #ded9cf 100%);
+    box-shadow: inset -7px -12px 18px rgba(0,0,0,0.07);
+  }
+  .photo-circle .mug1::before {
+    content: "";
+    position: absolute;
+    left: -3px;
+    top: -8px;
+    width: 104px;
+    height: 16px;
+    border-radius: 9px;
+    background: #faf8f5;
+    box-shadow: inset 0 -2px 3px rgba(0,0,0,0.06);
+  }
+  .photo-circle .mug1::after {
+    content: "";
+    position: absolute;
+    right: -20px;
+    top: 27px;
+    width: 31px;
+    height: 40px;
+    border: 7px solid #ece8e0;
+    border-left: none;
+    border-radius: 0 20px 20px 0;
+    background: transparent;
+  }
+
+  .photo-circle .man-head {
+    position: absolute;
+    left: 433px;
+    top: 95px;
+    width: 151px;
+    height: 155px;
+    border-radius: 47% 47% 45% 45%;
+    background: radial-gradient(circle at 55% 20%, #5a3f2f 0%, #6f4d38 24%, #bc8e66 25%, #cf9b71 66%, #b37d59 100%);
+  }
+  .photo-circle .man-beard {
+    position: absolute;
+    left: 451px;
+    top: 163px;
+    width: 129px;
+    height: 95px;
+    border-radius: 40% 40% 48% 48%;
+    background: rgba(97,59,37,0.72);
+  }
+  .photo-circle .man-robe {
+    position: absolute;
+    left: 384px;
+    top: 271px;
+    width: 293px;
+    height: 300px;
+    border-radius: 28% 30% 26% 28%;
+    background: linear-gradient(180deg, #f5f5f3 0%, #e3e5e2 72%, #f8f8f7 100%);
+    transform: rotate(6deg);
+    box-shadow: inset -14px -20px 24px rgba(0,0,0,0.06);
+  }
+  .photo-circle .man-arm {
+    position: absolute;
+    left: 530px;
+    top: 398px;
+    width: 177px;
+    height: 117px;
+    border-radius: 34px;
+    background: linear-gradient(180deg, #f6f6f4 0%, #ededea 100%);
+    transform: rotate(22deg);
+  }
+  .photo-circle .man-hand {
+    position: absolute;
+    left: 606px;
+    top: 401px;
+    width: 61px;
+    height: 53px;
+    border-radius: 45%;
+    background: linear-gradient(180deg, #cd9068 0%, #b17048 100%);
+    transform: rotate(-4deg);
+  }
+  .photo-circle .mug2 {
+    position: absolute;
+    left: 651px;
+    top: 374px;
+    width: 64px;
+    height: 76px;
+    border-radius: 7px 7px 16px 16px;
+    background: linear-gradient(180deg, #f6f4ef 0%, #ddd7ce 100%);
+  }
+  .photo-circle .mug2::before {
+    content: "";
+    position: absolute;
+    left: -2px;
+    top: -7px;
+    width: 68px;
+    height: 12px;
+    border-radius: 8px;
+    background: #fbfaf8;
+  }
+  .photo-circle .mug2::after {
+    content: "";
+    position: absolute;
+    right: -15px;
+    top: 18px;
+    width: 23px;
+    height: 31px;
+    border: 6px solid #ece8e0;
+    border-left: none;
+    border-radius: 0 16px 16px 0;
+    background: transparent;
+  }
+
+  .title {
+    left: 47px;
+    top: 176px;
+    width: 340px;
+    font-size: 38px;
+    line-height: 1.05;
+    font-weight: 700;
+    color: #000;
+    z-index: 30;
+    letter-spacing: 0;
+  }
+  .subtitle {
+    left: 47px;
+    top: 236px;
+    width: 320px;
+    font-size: 29px;
+    line-height: 1.08;
+    font-weight: 400;
+    color: #111;
+    z-index: 30;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-page {
+    z-index: 40;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 400;
+    color: #4a4a4a;
+    white-space: nowrap;
+  }
+  .footer-left {
+    left: 47px;
+    bottom: 16px;
+  }
+  .footer-center {
+    right: 48px;
+    bottom: 16px;
+    text-align: right;
+  }
+  .footer-page {
+    right: 23px;
+    bottom: 16px;
+    width: 16px;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+  <div id="slide">
+    <div class="left-panel"></div>
+    <div class="water-bg"></div>
+
+    <div class="photo-circle">
+      <div class="window"></div>
+      <div class="window-line"></div>
+      <div class="cord"></div>
+      <div class="cord-ball"></div>
+      <div class="curtain"></div>
+
+      <div class="woman-hair"></div>
+      <div class="woman-face"></div>
+      <div class="woman-neck"></div>
+      <div class="woman-glasses-l"></div>
+      <div class="woman-glasses-r"></div>
+      <div class="woman-glasses-bridge"></div>
+      <div class="woman-smile"></div>
+      <div class="woman-robe"></div>
+      <div class="woman-arm"></div>
+      <div class="woman-hand"></div>
+      <div class="nails"></div>
+      <div class="mug1"></div>
+
+      <div class="man-head"></div>
+      <div class="man-beard"></div>
+      <div class="man-robe"></div>
+      <div class="man-arm"></div>
+      <div class="man-hand"></div>
+      <div class="mug2"></div>
+    </div>
+
+    <div class="title">Travel products</div>
+    <div class="subtitle">Transportation, lodging,<br>and activities</div>
+
+    <div class="footer-left">2026 Deloitte Summer Travel Survey</div>
+    <div class="footer-center">Copyright © 2026 Deloitte Development LLC. All rights reserved.</div>
+    <div class="footer-page">17</div>
+  </div>
+</body>
+</html>

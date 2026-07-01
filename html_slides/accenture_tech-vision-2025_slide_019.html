@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f2f2f2;
+  }
+
+  .left-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 715px;
+    height: 720px;
+    background: #f3f3f3;
+  }
+
+  .right-panel {
+    position: absolute;
+    left: 715px;
+    top: 0;
+    width: 565px;
+    height: 720px;
+    background:
+      radial-gradient(1200px 800px at 82% 48%, rgba(180,54,255,0.28) 0%, rgba(180,54,255,0.10) 30%, rgba(77,15,119,0.0) 60%),
+      radial-gradient(520px 420px at 85% 18%, rgba(160,45,255,0.45) 0%, rgba(160,45,255,0.18) 32%, rgba(160,45,255,0) 70%),
+      linear-gradient(135deg, #4d167f 0%, #4c157c 45%, #3a0f63 100%);
+  }
+  .right-panel:before {
+    content: "";
+    position: absolute;
+    left: 120px;
+    top: -40px;
+    width: 410px;
+    height: 760px;
+    background:
+      linear-gradient(150deg,
+        rgba(196,78,255,0.00) 0%,
+        rgba(196,78,255,0.15) 18%,
+        rgba(196,78,255,0.60) 33%,
+        rgba(126,16,200,0.92) 48%,
+        rgba(88,10,144,0.95) 70%,
+        rgba(57,5,95,0.0) 100%);
+    clip-path: polygon(88% 0%, 100% 4%, 92% 20%, 80% 40%, 66% 54%, 56% 67%, 37% 84%, 9% 100%, 0% 94%, 34% 72%, 43% 58%, 53% 47%, 66% 31%, 76% 18%);
+    opacity: 0.9;
+    filter: blur(0.3px);
+  }
+  .right-panel:after {
+    content: "";
+    position: absolute;
+    left: 90px;
+    top: 258px;
+    width: 430px;
+    height: 360px;
+    background:
+      linear-gradient(142deg,
+        rgba(198,73,255,0.0) 0%,
+        rgba(198,73,255,0.45) 20%,
+        rgba(151,27,224,0.85) 40%,
+        rgba(103,18,166,0.95) 58%,
+        rgba(73,10,125,0.0) 100%);
+    clip-path: polygon(18% 32%, 30% 22%, 55% 8%, 91% 0%, 100% 7%, 66% 40%, 40% 63%, 18% 92%, 0% 100%, 8% 78%, 22% 57%);
+    opacity: 0.85;
+  }
+
+  .streak {
+    position: absolute;
+    background: linear-gradient(90deg, rgba(142,28,220,0), rgba(167,42,255,0.85), rgba(88,14,144,0.2));
+    height: 5px;
+    border-radius: 3px;
+    transform-origin: left center;
+    opacity: 0.7;
+  }
+  .s1 { left: 810px; top: 615px; width: 360px; transform: rotate(-38deg); }
+  .s2 { left: 786px; top: 636px; width: 310px; transform: rotate(-38deg); opacity: 0.55; }
+  .s3 { left: 868px; top: 565px; width: 250px; transform: rotate(-38deg); opacity: 0.45; }
+  .s4 { left: 1135px; top: 52px; width: 120px; transform: rotate(-48deg); opacity: 0.30; }
+  .s5 { left: 1180px; top: 4px; width: 105px; transform: rotate(-47deg); opacity: 0.24; }
+
+  .header-left {
+    position: absolute;
+    left: 64px;
+    top: 37px;
+    font-size: 14px;
+    line-height: 1.2;
+    color: #4c4c4c;
+    white-space: nowrap;
+  }
+  .header-left .accent {
+    color: #8e2bda;
+  }
+
+  .header-right {
+    position: absolute;
+    right: 43px;
+    top: 37px;
+    font-size: 13px;
+    color: #f2e9fb;
+    white-space: nowrap;
+  }
+  .header-right .page {
+    margin-left: 14px;
+  }
+
+  .col {
+    position: absolute;
+    top: 71px;
+    color: #303030;
+    font-size: 15px;
+    line-height: 1.32;
+  }
+  .col1 {
+    left: 64px;
+    width: 283px;
+  }
+  .col2 {
+    left: 380px;
+    width: 278px;
+  }
+  .col p {
+    margin: 0 0 18px 0;
+  }
+
+  .arrow {
+    position: absolute;
+    left: 59px;
+    bottom: 16px;
+    color: #a01cff;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-panel"></div>
+    <div class="right-panel"></div>
+    <div class="streak s1"></div>
+    <div class="streak s2"></div>
+    <div class="streak s3"></div>
+    <div class="streak s4"></div>
+    <div class="streak s5"></div>
+
+    <div class="header-left"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+    <div class="header-right">The Binary Big Bang <span class="page">19</span></div>
+
+    <div class="col col1">
+      <p>Just look at the consumer app space: The last generation of consumer applications was largely designed for mass appeal—meaning that they were broadly distributed, and how users could interact with them was rigidly defined. But the abundance, abstraction, and autonomy of tomorrow’s technology systems is turning all this on its head. Enterprises can start imagining new ways to interact with customers, like generative user interfaces, where agentic systems take personalization beyond an algorithmic newsfeed or list of recommendations to a full interface designed just for an individual. You could imagine an e-commerce app where today all users see the same UI with different items listed, but tomorrow could be shopping in completely personalized ways, some seeing in-depth reviews, others discovering products through videos, or even an e-commerce store with no products at all—just an agentic interface that will work with the user to customize their own items.</p>
+
+      <p>Even if this feels far out, enterprises need to be thinking about how these changes to technology will shape touchpoints they have with customers and partners. Earlier in this trend we talked about Adobe Firefly, Adobe’s family of creative generative AI models. The company uses the models to power their own platforms, but they’re introducing Firefly to others as well. Slack, for instance, is integrating Firefly alongside other agents from companies like Salesforce, Asana, and Writer so users can access agents without breaking their workflow.<sup>46,47</sup> For some enterprises, it could make sense to shift to building functionalities for other platforms, meaning potentially new business models.</p>
+
+      <p>The Binary Big Bang is still just beginning, and we don’t know the exact end state of all that</p>
+    </div>
+
+    <div class="col col2">
+      <p>will change—but the disruption is upon us and enterprises need to start building tomorrow’s strategy. Because the truth is, most companies aren’t set up for this yet. Leaders will need to transform both their technology and organization to keep pace with the opportunity being generated by AI. They need to rapidly invest in building a composable digital core so agentic systems can bridge data silos and build cross-organizational solutions, and they need to break down employee silos. Most of all they need to prepare for a world where it’s not just people, but machines, using their technology and connecting with the business.</p>
+
+      <p>Soon enough, the abundance, abstraction, and autonomy of tomorrow’s technology will start to rapidly expand digital ecosystems, and the companies ready to leap on this will quickly outpace the ones left catching up.</p>
+    </div>
+
+    <div class="arrow">&gt;</div>
+  </div>
+</body>
+</html>

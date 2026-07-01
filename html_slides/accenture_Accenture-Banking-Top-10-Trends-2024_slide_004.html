@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Top 10 Banking Trends</title>
+<style>
+  html, body {
+    margin: 0;
+    background: #e6e6e6;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    margin: 0;
+    background:
+      radial-gradient(ellipse at 53% 6%, rgba(190,245,255,0.95) 0%, rgba(201,246,255,0.78) 9%, rgba(216,200,255,0.45) 17%, rgba(189,79,255,0.18) 28%, rgba(0,0,0,0) 42%),
+      radial-gradient(ellipse at 80% 16%, rgba(235,166,255,0.45) 0%, rgba(210,120,255,0.28) 18%, rgba(0,0,0,0) 34%),
+      radial-gradient(ellipse at 17% 16%, rgba(187,235,255,0.55) 0%, rgba(220,220,255,0.26) 14%, rgba(0,0,0,0) 28%),
+      linear-gradient(180deg, #c309ff 0%, #b50cff 16%, #aa08f5 33%, #a204f0 56%, #a000f0 78%, #b110ff 100%);
+    box-sizing: border-box;
+    border: 28px solid #e6e6e6;
+  }
+
+  .swirl {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(2px);
+    opacity: 0.9;
+    mix-blend-mode: screen;
+  }
+  .s1 {
+    left: 164px; top: -70px; width: 220px; height: 320px;
+    background: radial-gradient(circle at 45% 40%, rgba(255,154,255,0.65) 0%, rgba(219,199,255,0.55) 22%, rgba(255,255,255,0.15) 38%, rgba(255,255,255,0) 60%);
+    transform: rotate(28deg);
+  }
+  .s2 {
+    left: 215px; top: 22px; width: 90px; height: 380px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.62), rgba(235,215,255,0.35) 45%, rgba(255,255,255,0.08) 100%);
+    border-radius: 50% 50% 48% 52% / 22% 22% 78% 78%;
+    transform: rotate(-38deg);
+  }
+  .s3 {
+    left: 332px; top: 112px; width: 220px; height: 250px;
+    background: radial-gradient(ellipse at 40% 40%, rgba(255,255,255,0.42) 0%, rgba(240,225,255,0.26) 36%, rgba(255,255,255,0) 70%);
+    transform: rotate(24deg);
+  }
+  .s4 {
+    left: 432px; top: -12px; width: 520px; height: 440px;
+    background: radial-gradient(ellipse at 50% 25%, rgba(226,251,255,0.95) 0%, rgba(224,246,255,0.88) 15%, rgba(227,204,255,0.55) 34%, rgba(215,117,255,0.22) 56%, rgba(255,255,255,0) 75%);
+    transform: rotate(7deg);
+  }
+  .s5 {
+    left: 675px; top: -24px; width: 580px; height: 350px;
+    background: radial-gradient(ellipse at 58% 35%, rgba(255,125,255,0.4) 0%, rgba(210,80,255,0.25) 24%, rgba(255,255,255,0) 55%);
+    transform: rotate(-6deg);
+  }
+  .s6 {
+    left: 956px; top: 18px; width: 120px; height: 205px;
+    background: radial-gradient(ellipse at 50% 45%, rgba(230,250,255,0.28) 0%, rgba(255,255,255,0.1) 54%, rgba(255,255,255,0) 75%);
+    border: 8px solid rgba(255,255,255,0.18);
+    box-sizing: border-box;
+    transform: rotate(6deg);
+  }
+  .s7 {
+    left: 1065px; top: -10px; width: 180px; height: 325px;
+    background: radial-gradient(ellipse at 56% 28%, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.12) 42%, rgba(255,255,255,0) 72%);
+    transform: rotate(-10deg);
+  }
+  .mist {
+    position: absolute;
+    left: 0;
+    top: 326px;
+    width: 1280px;
+    height: 210px;
+    background:
+      linear-gradient(180deg, rgba(187,98,255,0) 0%, rgba(184,68,255,0.16) 24%, rgba(192,78,255,0.34) 48%, rgba(191,87,253,0.76) 82%, rgba(191,87,253,1) 100%);
+  }
+
+  .tiny-head {
+    position: absolute;
+    left: 55px;
+    top: 45px;
+    color: #ffffff;
+    font-size: 21px;
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .title {
+    position: absolute;
+    left: 98px;
+    top: 210px;
+    color: #ffffff;
+    font-size: 59px;
+    line-height: 1.06;
+    font-weight: 300;
+    letter-spacing: -1px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .grid {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .item {
+    position: absolute;
+    width: 220px;
+    color: #ffffff;
+  }
+
+  .num {
+    color: #00ffcf;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+
+  .txt {
+    color: #ffffff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    line-height: 1.1;
+    font-weight: 400;
+  }
+
+  .footer {
+    position: absolute;
+    right: 28px;
+    bottom: 23px;
+    color: rgba(255,255,255,0.92);
+    font-size: 17px;
+    line-height: 1;
+    font-family: Arial, Helvetica, sans-serif;
+    white-space: nowrap;
+  }
+  .footer .strong {
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .footer .sep {
+    color: rgba(255,255,255,0.7);
+    padding: 0 8px;
+  }
+  .footer .muted {
+    color: rgba(255,255,255,0.72);
+  }
+  .footer .page {
+    display: inline-block;
+    margin-left: 20px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="swirl s1"></div>
+    <div class="swirl s2"></div>
+    <div class="swirl s3"></div>
+    <div class="swirl s4"></div>
+    <div class="swirl s5"></div>
+    <div class="swirl s6"></div>
+    <div class="swirl s7"></div>
+    <div class="mist"></div>
+
+    <div class="tiny-head">Introduction</div>
+    <div class="title">Our Top 10 Banking Trends.</div>
+
+    <div class="grid">
+      <div class="item" style="left: 134px; top: 311px;">
+        <div class="num">01</div>
+        <div class="txt">The rise of<br>gen AI</div>
+      </div>
+
+      <div class="item" style="left: 374px; top: 311px;">
+        <div class="num">02</div>
+        <div class="txt">Capturing<br>the digital<br>dividend</div>
+      </div>
+
+      <div class="item" style="left: 612px; top: 311px;">
+        <div class="num">03</div>
+        <div class="txt">All the risk<br>we cannot see</div>
+      </div>
+
+      <div class="item" style="left: 852px; top: 311px;">
+        <div class="num">04</div>
+        <div class="txt">A whole<br>new way of<br>working</div>
+      </div>
+
+      <div class="item" style="left: 1090px; top: 311px;">
+        <div class="num">05</div>
+        <div class="txt">The power<br>of pricing</div>
+      </div>
+
+      <div class="item" style="left: 134px; top: 477px;">
+        <div class="num">06</div>
+        <div class="txt">Time<br>to think<br>cloud first</div>
+      </div>
+
+      <div class="item" style="left: 374px; top: 477px;">
+        <div class="num">07</div>
+        <div class="txt">Regulation<br>recalibrated</div>
+      </div>
+
+      <div class="item" style="left: 612px; top: 477px; width: 260px;">
+        <div class="num">08</div>
+        <div class="txt">From<br>technology to<br>engineering</div>
+      </div>
+
+      <div class="item" style="left: 852px; top: 477px;">
+        <div class="num">09</div>
+        <div class="txt">The key<br>to the core</div>
+      </div>
+
+      <div class="item" style="left: 1090px; top: 477px;">
+        <div class="num">10</div>
+        <div class="txt">Beyond<br>Six Sigma</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span class="strong">Banking on AI</span><span class="sep">|</span><span class="muted">Banking Top 10 Trends for 2024</span>
+      <span class="page">4</span>
+    </div>
+  </div>
+</body>
+</html>

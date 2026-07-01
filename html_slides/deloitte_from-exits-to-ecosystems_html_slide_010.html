@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #c6d7e7 0%, #dbe5ee 16%, #eceeef 34%, #f0ddd3 58%, #b7c6d1 75%, #748897 100%);
+  }
+  #slide > div {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  .sky {
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background:
+      linear-gradient(180deg, rgba(175, 201, 223, 0.18) 0%, rgba(255,255,255,0.04) 24%, rgba(243, 217, 203, 0.18) 62%, rgba(127, 149, 164, 0.10) 100%);
+    z-index: 0;
+  }
+
+  .water {
+    left: 0;
+    top: 435px;
+    width: 1280px;
+    height: 285px;
+    background:
+      repeating-linear-gradient(
+        4deg,
+        rgba(255,255,255,0.11) 0px,
+        rgba(255,255,255,0.11) 1px,
+        rgba(83,104,118,0.08) 3px,
+        rgba(83,104,118,0.08) 8px
+      ),
+      repeating-linear-gradient(
+        178deg,
+        rgba(72,94,112,0.18) 0px,
+        rgba(72,94,112,0.18) 2px,
+        rgba(210,220,226,0.06) 4px,
+        rgba(92,112,128,0.12) 7px
+      ),
+      linear-gradient(180deg, #d6d7d5 0%, #bcc5c8 12%, #98a8b1 28%, #667b89 55%, #22384b 100%);
+    z-index: 1;
+  }
+
+  .horizon {
+    left: 0;
+    top: 433px;
+    width: 1280px;
+    height: 3px;
+    background: #345167;
+    z-index: 3;
+  }
+
+  .left-dark {
+    left: 0;
+    top: 0;
+    width: 915px;
+    height: 720px;
+    background: linear-gradient(120deg, #0c4158 0%, #052b4e 55%, #00193b 100%);
+    clip-path: polygon(0 0, 76.6% 0, 41.4% 100%, 0 100%);
+    z-index: 10;
+  }
+
+  .purple-right {
+    right: 0;
+    bottom: 0;
+    width: 168px;
+    height: 283px;
+    background: #4b266f;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    z-index: 14;
+  }
+
+  .teal-band {
+    right: 59px;
+    bottom: 0;
+    width: 246px;
+    height: 147px;
+    background: #2db2b6;
+    clip-path: polygon(45% 0, 100% 0, 55% 100%, 0 100%);
+    z-index: 16;
+  }
+
+  .dock {
+    left: 932px;
+    top: 557px;
+    width: 244px;
+    height: 163px;
+    z-index: 18;
+  }
+  .dock .top {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 238px;
+    height: 32px;
+    background: linear-gradient(180deg, #8f7660 0%, #7d6652 100%);
+  }
+  .dock .front {
+    position: absolute;
+    left: 0;
+    top: 32px;
+    width: 29px;
+    height: 131px;
+    background: linear-gradient(180deg, #96785e 0%, #6b5241 100%);
+  }
+  .dock .side {
+    position: absolute;
+    right: 0;
+    top: 32px;
+    width: 18px;
+    height: 131px;
+    background: linear-gradient(180deg, #745c48 0%, #513a2d 100%);
+  }
+  .dock .inner {
+    position: absolute;
+    left: 29px;
+    top: 32px;
+    width: 191px;
+    height: 110px;
+    background: linear-gradient(180deg, rgba(54,79,96,0.54) 0%, rgba(34,52,67,0.74) 100%);
+  }
+
+  .person {
+    left: 944px;
+    top: 333px;
+    width: 160px;
+    height: 339px;
+    z-index: 22;
+  }
+  .hair {
+    position: absolute;
+    left: 57px;
+    top: 0;
+    width: 44px;
+    height: 58px;
+    background: #583525;
+    border-radius: 22px 22px 18px 18px;
+    transform: rotate(10deg);
+  }
+  .head {
+    position: absolute;
+    left: 49px;
+    top: 12px;
+    width: 39px;
+    height: 50px;
+    background: linear-gradient(180deg, #d8a078 0%, #a85f3c 100%);
+    border-radius: 55% 45% 50% 50% / 45% 45% 55% 55%;
+    transform: rotate(-8deg);
+  }
+  .ponytail {
+    position: absolute;
+    left: 85px;
+    top: 15px;
+    width: 27px;
+    height: 65px;
+    background: #4d2e22;
+    border-radius: 14px;
+    transform: rotate(18deg);
+  }
+  .neck {
+    position: absolute;
+    left: 67px;
+    top: 54px;
+    width: 12px;
+    height: 18px;
+    background: #c17852;
+    border-radius: 6px;
+  }
+  .body {
+    position: absolute;
+    left: 28px;
+    top: 47px;
+    width: 111px;
+    height: 197px;
+    background: linear-gradient(180deg, #9e999b 0%, #cbc5c7 38%, #a59fa1 100%);
+    border-radius: 40% 34% 18% 20% / 16% 16% 10% 10%;
+    transform: rotate(-4deg);
+    box-shadow: inset 0 0 0 1px rgba(120,120,120,0.22);
+  }
+  .arm {
+    position: absolute;
+    left: 42px;
+    top: 101px;
+    width: 25px;
+    height: 122px;
+    background: linear-gradient(180deg, #b8b0b2 0%, #958d91 100%);
+    border-radius: 13px;
+    transform: rotate(6deg);
+  }
+  .lap {
+    position: absolute;
+    left: 75px;
+    top: 208px;
+    width: 47px;
+    height: 55px;
+    background: #d9d3d1;
+    border-radius: 12px;
+  }
+  .leg1 {
+    position: absolute;
+    left: 76px;
+    top: 244px;
+    width: 14px;
+    height: 62px;
+    background: linear-gradient(180deg, #5f6169 0%, #8a8b93 100%);
+    transform: rotate(-6deg);
+  }
+  .leg2 {
+    position: absolute;
+    left: 98px;
+    top: 241px;
+    width: 14px;
+    height: 64px;
+    background: linear-gradient(180deg, #565860 0%, #7d7f87 100%);
+    transform: rotate(4deg);
+  }
+  .foot {
+    position: absolute;
+    left: 86px;
+    top: 297px;
+    width: 18px;
+    height: 31px;
+    background: linear-gradient(180deg, #cf9468 0%, #8c5033 100%);
+    border-radius: 45% 45% 52% 52%;
+    transform: rotate(8deg);
+  }
+
+  .title {
+    left: 47px;
+    top: 155px;
+    width: 390px;
+    color: #f4f4f2;
+    font-size: 67px;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    z-index: 30;
+  }
+
+  .footer {
+    left: 49px;
+    bottom: 15px;
+    color: rgba(255,255,255,0.88);
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 400;
+    z-index: 40;
+  }
+
+  .page {
+    left: 636px;
+    bottom: 12px;
+    width: 16px;
+    text-align: center;
+    color: rgba(0,0,0,0.72);
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 400;
+    z-index: 40;
+  }
+</style>
+</head>
+<body>
+  <div id="slide">
+    <div class="sky"></div>
+    <div class="water"></div>
+    <div class="horizon"></div>
+    <div class="left-dark"></div>
+    <div class="purple-right"></div>
+    <div class="teal-band"></div>
+
+    <div class="dock">
+      <div class="top"></div>
+      <div class="inner"></div>
+      <div class="front"></div>
+      <div class="side"></div>
+    </div>
+
+    <div class="person">
+      <div class="hair"></div>
+      <div class="head"></div>
+      <div class="ponytail"></div>
+      <div class="neck"></div>
+      <div class="body"></div>
+      <div class="arm"></div>
+      <div class="lap"></div>
+      <div class="leg1"></div>
+      <div class="leg2"></div>
+      <div class="foot"></div>
+    </div>
+
+    <div class="title">How was 2024<br>for you?</div>
+    <div class="footer">© Ipsos Predictions 2025 Report</div>
+    <div class="page">10</div>
+  </div>
+</body>
+</html>

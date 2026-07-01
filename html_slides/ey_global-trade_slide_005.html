@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#d8d8d8;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f4;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .top-left-band{
+    left:0;
+    top:0;
+    width:46px;
+    height:79px;
+    background:#b8b8c2;
+    z-index:5;
+  }
+  .title{
+    left:57px;
+    top:50px;
+    font-size:18px;
+    line-height:20px;
+    font-weight:400;
+    color:#7d7b85;
+    z-index:20;
+  }
+  .top-rule{
+    left:0;
+    top:78px;
+    width:1280px;
+    height:2px;
+    background:#c7c7d0;
+    z-index:6;
+  }
+
+  .left-col{
+    left:56px;
+    top:116px;
+    width:286px;
+    color:#53545c;
+    font-size:14px;
+    line-height:1.2;
+    font-weight:400;
+    z-index:25;
+  }
+  .left-col p{ margin:0 0 11px 0; }
+  .blue{
+    color:#1d74c9;
+    font-weight:700;
+    text-decoration:underline;
+  }
+
+  .center-box{
+    left:374px;
+    top:121px;
+    width:305px;
+    height:399px;
+    border:2px solid #ead63b;
+    background:transparent;
+    z-index:24;
+  }
+  .center-content{
+    left:386px;
+    top:129px;
+    width:268px;
+    color:#4f5058;
+    font-size:15px;
+    line-height:1.18;
+    font-weight:400;
+    z-index:25;
+  }
+  .center-head{
+    font-size:17px;
+    line-height:1.18;
+    font-weight:700;
+    color:#3d3f48;
+    width:250px;
+    margin-bottom:9px;
+  }
+  .center-content p{ margin:0 0 11px 0; }
+  .italic{ font-style:italic; }
+  .boldblue{
+    color:#1d74c9;
+    font-weight:700;
+    text-decoration:underline;
+  }
+
+  .photo{
+    left:693px;
+    top:0;
+    width:587px;
+    height:720px;
+    z-index:8;
+    background:
+      linear-gradient(180deg,#f2c7b7 0 8%, #ffffff 26%, #ffffff 36%, #d8c0b5 36.2%, #c6a28d 48%, #a07d67 63%, #775548 80%, #553a31 100%);
+  }
+  .train-blur{
+    left:693px;
+    top:0;
+    width:153px;
+    height:362px;
+    z-index:11;
+    background:
+      radial-gradient(circle at 64px 38px, rgba(255,210,180,.8) 0 16px, transparent 17px),
+      linear-gradient(180deg,#f8a07f 0%, #ea6f49 21%, #b33b25 53%, #571912 100%);
+    clip-path:polygon(0 0, 100% 0, 94% 100%, 24% 100%);
+    filter:blur(2px);
+  }
+  .train-stripe-a{
+    left:797px;
+    top:0;
+    width:8px;
+    height:298px;
+    background:#ffd54f;
+    z-index:12;
+    filter:blur(.5px);
+  }
+  .train-stripe-b{
+    left:812px;
+    top:0;
+    width:4px;
+    height:244px;
+    background:#fff2a6;
+    z-index:12;
+    filter:blur(.5px);
+  }
+  .train-detail{
+    z-index:12;
+    filter:blur(1.5px);
+  }
+
+  .horizon-white{
+    left:825px;
+    top:72px;
+    width:455px;
+    height:210px;
+    background:linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(255,255,255,1) 70%, rgba(246,241,239,.9) 100%);
+    z-index:9;
+  }
+
+  .ballast{
+    left:780px;
+    top:318px;
+    width:500px;
+    height:402px;
+    z-index:9;
+    background:
+      radial-gradient(circle at 8px 8px,#b79279 0 2px, transparent 3px),
+      radial-gradient(circle at 22px 13px,#8e6d59 0 2px, transparent 3px),
+      radial-gradient(circle at 37px 7px,#ceb09c 0 2px, transparent 3px),
+      radial-gradient(circle at 49px 18px,#6e5346 0 2px, transparent 3px),
+      linear-gradient(180deg, rgba(231,212,198,.4), rgba(101,71,58,.28));
+    background-size:58px 26px,58px 26px,58px 26px,58px 26px,100% 100%;
+    opacity:.85;
+  }
+
+  .rail-left{
+    left:894px;
+    top:281px;
+    width:18px;
+    height:520px;
+    background:linear-gradient(180deg,#d49c75 0%, #9b6a50 58%, #3a231c 100%);
+    border-radius:10px;
+    transform:rotate(10deg);
+    z-index:16;
+    box-shadow:0 0 6px rgba(255,225,208,.45);
+  }
+  .rail-right{
+    left:1160px;
+    top:382px;
+    width:19px;
+    height:385px;
+    background:linear-gradient(180deg,#c78f68 0%, #865a44 58%, #231310 100%);
+    border-radius:10px;
+    transform:rotate(24deg);
+    z-index:16;
+    box-shadow:0 0 6px rgba(255,225,208,.28);
+  }
+
+  .tie{
+    z-index:15;
+    background:linear-gradient(180deg,#5b4034 0%, #24140f 100%);
+    border-radius:2px;
+    opacity:.9;
+  }
+
+  .wagon{
+    left:1047px;
+    top:206px;
+    width:96px;
+    height:139px;
+    z-index:18;
+  }
+  .wagon-body{
+    position:absolute;
+    left:0;
+    top:23px;
+    width:96px;
+    height:82px;
+    background:linear-gradient(180deg,#b1584e 0%, #7a2a29 100%);
+    border-radius:11px 11px 4px 4px;
+    border:2px solid rgba(72,32,30,.45);
+  }
+  .wagon-top{
+    position:absolute;
+    left:23px;
+    top:7px;
+    width:50px;
+    height:23px;
+    background:#745158;
+    border-radius:7px 7px 4px 4px;
+    border:2px solid rgba(40,25,30,.35);
+  }
+  .wagon-top:before{
+    content:"";
+    position:absolute;
+    left:5px;
+    top:-7px;
+    width:38px;
+    height:8px;
+    background:#84565d;
+    border-radius:5px 5px 0 0;
+  }
+  .wagon-coupler{
+    position:absolute;
+    left:44px;
+    top:102px;
+    width:8px;
+    height:27px;
+    background:#47302b;
+    border-radius:2px;
+  }
+  .wheel1,.wheel2{
+    position:absolute;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#41211d;
+    bottom:6px;
+  }
+  .wheel1{ left:20px; }
+  .wheel2{ right:20px; }
+
+  .tree{
+    z-index:13;
+  }
+  .tree .trunk{
+    position:absolute;
+    bottom:0;
+    width:2px;
+    background:#716c72;
+  }
+  .tree .branch{
+    position:absolute;
+    height:1px;
+    background:#7a757b;
+    transform-origin:left center;
+  }
+
+  .navcircle{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#bdbdc6;
+    color:#4d4c58;
+    font-size:18px;
+    line-height:35px;
+    text-align:center;
+    z-index:40;
+    font-weight:700;
+  }
+
+  .menu{
+    z-index:42;
+  }
+  .menu-item{
+    position:absolute;
+    width:71px;
+    height:35px;
+    background:#32303f;
+    color:#f1f1f4;
+    font-size:12px;
+    line-height:35px;
+    padding-left:7px;
+    font-weight:400;
+  }
+  .menu-item.active:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:2px;
+    height:35px;
+    background:#d7db43;
+  }
+  .menu-item.contacts{
+    background:#7a7482;
+    color:#f3f3f5;
+  }
+
+  .footer{
+    left:56px;
+    top:685px;
+    color:#7d7b86;
+    font-size:11px;
+    line-height:14px;
+    z-index:30;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-left-band"></div>
+  <div class="title">Welcome</div>
+  <div class="top-rule"></div>
+
+  <div class="left-col">
+    <p>While controls are increasing in some areas, many jurisdictions continue to invest in facilitation – and business are evaluating how to use these levers responsibly. In this issue, we consider India's <span class="blue">Manufacturing and Other Operations in Warehouse Regulations (MOOWR)</span> framework and the <span class="blue">Authorized Economic Operator (AEO)</span> program, including how these mechanisms can support cash-flow efficiency, predictability and smoother movement of goods when supported by robust controls.</p>
+    <p>Trade agreements remain a key feature of the 2026 landscape, with potential implications for tariff planning, origin strategy and supply chain design. We examine the <span class="blue">EU-India Free Trade Agreement</span> and its potential role in anchoring trade relationships in a more volatile environment.</p>
+    <p>We also provide perspectives on other major developments, including the <span class="blue">EU-Mercosur</span> agreement and proposed changes impacting the EU Customs Union and e-commerce, where policy direction and implementation timelines will influence operating models for many businesses.</p>
+    <p>With sanctions, embargo regimes and trade remedies evolving, many organizations are strengthening screening and monitoring capabilities. This issue includes an overview of how businesses are designing and implementing <span class="blue">automated sanctions screening</span> solutions and the key functional components that support scalable, auditable compliance across master data and transactions.</p>
+  </div>
+
+  <div class="center-box"></div>
+  <div class="center-content">
+    <div class="center-head">Keeping up to date with developments in trade</div>
+    <p>We hope you enjoy this edition of <span class="italic">TradeWatch</span>. We aim to reflect the key trends affecting international businesses and provide news and insights you can use to inform your trade strategy and improve your trade operations.</p>
+    <p>You can also keep up to date with developments in global trade by subscribing to EY Tax Alerts and to future editions of our <span class="italic">TradeWatch</span> and <span class="italic">TradeFlash</span> publications by visiting <span class="boldblue">ey.com/globaltrade</span>. You can subscribe to future webcasts and access replays of past webcasts via the EY webcasts page on ey.com.</p>
+    <p>If you would like more information on any of the topics covered in this issue or how they may impact your business, please reach out to the authors listed with the articles or any of the EY Global Trade professionals listed in the contacts section of the magazine. We also welcome your feedback and suggestions for future editions. &#9632;</p>
+  </div>
+
+  <div class="photo"></div>
+  <div class="horizon-white"></div>
+  <div class="train-blur"></div>
+  <div class="train-stripe-a"></div>
+  <div class="train-stripe-b"></div>
+  <div class="train-detail" style="left:734px; top:51px; width:69px; height:22px; background:#74211b;"></div>
+  <div class="train-detail" style="left:742px; top:97px; width:83px; height:19px; background:#ff8d3d;"></div>
+  <div class="train-detail" style="left:760px; top:146px; width:50px; height:15px; background:#ffc35e;"></div>
+  <div class="train-detail" style="left:749px; top:200px; width:61px; height:12px; background:#a4201a;"></div>
+  <div class="ballast"></div>
+
+  <div class="rail-left"></div>
+  <div class="rail-right"></div>
+
+  <div class="tie" style="left:764px; top:400px; width:98px; height:11px; transform:rotate(-6deg);"></div>
+  <div class="tie" style="left:769px; top:427px; width:102px; height:11px; transform:rotate(-5deg);"></div>
+  <div class="tie" style="left:776px; top:455px; width:110px; height:12px; transform:rotate(-4deg);"></div>
+  <div class="tie" style="left:786px; top:485px; width:122px; height:12px; transform:rotate(-3deg);"></div>
+  <div class="tie" style="left:796px; top:519px; width:134px; height:13px; transform:rotate(-2deg);"></div>
+  <div class="tie" style="left:809px; top:556px; width:148px; height:14px; transform:rotate(-1deg);"></div>
+  <div class="tie" style="left:823px; top:596px; width:162px; height:15px; transform:rotate(0deg);"></div>
+  <div class="tie" style="left:840px; top:639px; width:180px; height:16px; transform:rotate(1deg);"></div>
+
+  <div class="wagon">
+    <div class="wagon-top"></div>
+    <div class="wagon-body"></div>
+    <div class="wagon-coupler"></div>
+    <div class="wheel1"></div>
+    <div class="wheel2"></div>
+  </div>
+
+  <div class="tree" style="left:1116px; top:151px; width:42px; height:114px;">
+    <div class="trunk" style="left:21px; height:58px;"></div>
+    <div class="branch" style="left:21px; bottom:53px; width:18px; transform:rotate(-48deg);"></div>
+    <div class="branch" style="left:21px; bottom:49px; width:22px; transform:rotate(-24deg);"></div>
+    <div class="branch" style="left:21px; bottom:45px; width:20px; transform:rotate(18deg);"></div>
+    <div class="branch" style="left:21px; bottom:41px; width:17px; transform:rotate(43deg);"></div>
+    <div class="branch" style="left:12px; bottom:38px; width:13px; transform:rotate(-135deg);"></div>
+    <div class="branch" style="left:11px; bottom:32px; width:15px; transform:rotate(-158deg);"></div>
+  </div>
+
+  <div class="tree" style="left:1181px; top:158px; width:49px; height:136px;">
+    <div class="trunk" style="left:24px; height:69px;"></div>
+    <div class="branch" style="left:24px; bottom:62px; width:22px; transform:rotate(-55deg);"></div>
+    <div class="branch" style="left:24px; bottom:57px; width:29px; transform:rotate(-25deg);"></div>
+    <div class="branch" style="left:24px; bottom:53px; width:26px; transform:rotate(15deg);"></div>
+    <div class="branch" style="left:24px; bottom:49px; width:21px; transform:rotate(47deg);"></div>
+    <div class="branch" style="left:17px; bottom:44px; width:16px; transform:rotate(-145deg);"></div>
+    <div class="branch" style="left:15px; bottom:37px; width:18px; transform:rotate(-165deg);"></div>
+  </div>
+
+  <div class="tree" style="left:1263px; top:70px; width:17px; height:160px;">
+    <div class="trunk" style="left:8px; height:83px;"></div>
+    <div class="branch" style="left:8px; bottom:77px; width:10px; transform:rotate(-65deg);"></div>
+    <div class="branch" style="left:8px; bottom:70px; width:13px; transform:rotate(-35deg);"></div>
+    <div class="branch" style="left:8px; bottom:64px; width:12px; transform:rotate(25deg);"></div>
+    <div class="branch" style="left:8px; bottom:57px; width:10px; transform:rotate(57deg);"></div>
+  </div>
+
+  <div class="navcircle" style="left:1122px; top:33px;">◀</div>
+  <div class="navcircle" style="left:1166px; top:33px;">▶</div>
+
+  <div class="menu" style="left:1191px; top:120px; width:71px; height:281px;">
+    <div class="menu-item active" style="left:0; top:0;">Contents</div>
+    <div class="menu-item active" style="left:0; top:50px;">Insights</div>
+    <div class="menu-item active" style="left:0; top:100px; line-height:14px; padding-top:6px;">New on<br>ey.com</div>
+    <div class="menu-item active" style="left:0; top:150px;">Tax alerts</div>
+    <div class="menu-item active" style="left:0; top:200px; line-height:14px; padding-top:6px;">Additional<br>resources</div>
+    <div class="menu-item contacts" style="left:0; top:250px;">Contacts</div>
+  </div>
+
+  <div class="footer">2 &nbsp;|&nbsp; <strong style="font-weight:700;">TradeWatch</strong> Issue 1 2026</div>
+</div>
+</body>
+</html>

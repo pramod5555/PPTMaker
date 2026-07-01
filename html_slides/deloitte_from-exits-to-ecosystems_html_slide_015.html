@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Expectations for 2025</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #0a2236;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #0a2236;
+  }
+  #slide > div {
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  .photo-bg {
+    left: 539px;
+    top: 0;
+    width: 741px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(244,223,191,0.55) 0%, rgba(255,255,255,0.10) 19%, rgba(58,43,37,0.06) 62%, rgba(28,23,26,0.16) 100%),
+      radial-gradient(circle at 88% 12%, rgba(245,193,129,0.58) 0%, rgba(245,193,129,0.22) 22%, rgba(245,193,129,0) 48%),
+      linear-gradient(135deg, #e8e0d5 0%, #c7beb5 20%, #9b928d 37%, #736f71 53%, #4f525a 68%, #3e434d 80%, #343943 100%);
+  }
+
+  .building-1 {
+    left: 858px;
+    top: -8px;
+    width: 228px;
+    height: 356px;
+    background: linear-gradient(180deg, rgba(248,244,239,0.92), rgba(203,198,193,0.76));
+    clip-path: polygon(9% 0%, 100% 0%, 92% 100%, 0% 100%);
+    opacity: 0.9;
+    filter: blur(1px);
+  }
+  .building-2 {
+    left: 1016px;
+    top: -12px;
+    width: 264px;
+    height: 250px;
+    background: linear-gradient(180deg, rgba(241,235,227,0.95), rgba(206,189,173,0.68));
+    clip-path: polygon(12% 0%, 100% 0%, 100% 82%, 0% 100%);
+    opacity: 0.98;
+    filter: blur(0.8px);
+  }
+  .facade-line {
+    background: rgba(255,255,255,0.32);
+    filter: blur(0.2px);
+  }
+
+  .street {
+    left: 567px;
+    top: 425px;
+    width: 594px;
+    height: 295px;
+    background: linear-gradient(180deg, rgba(176,165,156,0.20) 0%, rgba(205,196,188,0.44) 28%, rgba(188,180,174,0.70) 56%, rgba(160,153,150,0.95) 100%);
+    clip-path: polygon(19% 0%, 100% 0%, 100% 100%, 0% 100%, 8% 56%);
+    filter: blur(1px);
+  }
+
+  .left-overlay {
+    left: 0;
+    top: 0;
+    width: 954px;
+    height: 720px;
+    background: linear-gradient(135deg, #0d4658 0%, #04294d 56%, #001b41 100%);
+    clip-path: polygon(0 0, 100% 0, 39.5% 100%, 0 100%);
+    z-index: 20;
+  }
+
+  .purple-wedge {
+    right: -70px;
+    bottom: -78px;
+    width: 355px;
+    height: 255px;
+    background: #512978;
+    transform: rotate(-45deg);
+    z-index: 24;
+  }
+
+  .teal-band {
+    left: 1000px;
+    top: 609px;
+    width: 192px;
+    height: 56px;
+    background: #28b1b4;
+    transform: skewX(-45deg);
+    z-index: 25;
+  }
+
+  .title {
+    left: 48px;
+    top: 154px;
+    width: 390px;
+    color: #f3f3f3;
+    font-size: 67px;
+    line-height: 1.02;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    z-index: 40;
+  }
+
+  .footer {
+    left: 50px;
+    bottom: 18px;
+    color: rgba(255,255,255,0.92);
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 400;
+    z-index: 41;
+    white-space: nowrap;
+  }
+
+  .woman-body {
+    left: 622px;
+    top: 211px;
+    width: 228px;
+    height: 454px;
+    background: linear-gradient(180deg, #8b0018 0%, #b3071f 18%, #c6132b 40%, #9d0b1d 66%, #69000f 100%);
+    clip-path: polygon(34% 5%, 52% 0%, 72% 7%, 82% 19%, 91% 42%, 95% 67%, 91% 86%, 77% 100%, 36% 98%, 22% 90%, 18% 67%, 12% 38%, 19% 17%);
+    border-radius: 36px;
+    transform: rotate(-7deg);
+    z-index: 14;
+  }
+  .woman-hair {
+    left: 646px;
+    top: 197px;
+    width: 129px;
+    height: 112px;
+    background: radial-gradient(circle at 52% 38%, rgba(43,19,21,1) 0%, rgba(19,10,14,1) 68%, rgba(0,0,0,1) 100%);
+    clip-path: polygon(7% 45%, 24% 10%, 58% 0%, 82% 16%, 100% 38%, 86% 58%, 95% 85%, 72% 73%, 50% 97%, 28% 79%, 0 67%);
+    transform: rotate(14deg);
+    z-index: 16;
+  }
+  .hair-strand-1 {
+    left: 736px;
+    top: 221px;
+    width: 36px;
+    height: 18px;
+    border-top: 3px solid rgba(83,42,32,0.95);
+    border-radius: 50%;
+    transform: rotate(28deg);
+    z-index: 17;
+  }
+  .hair-strand-2 {
+    left: 751px;
+    top: 244px;
+    width: 32px;
+    height: 16px;
+    border-top: 3px solid rgba(83,42,32,0.95);
+    border-radius: 50%;
+    transform: rotate(-18deg);
+    z-index: 17;
+  }
+  .woman-jeans {
+    left: 635px;
+    top: 607px;
+    width: 169px;
+    height: 122px;
+    background: linear-gradient(180deg, #19314e 0%, #0e2238 60%, #0a1d31 100%);
+    clip-path: polygon(11% 0%, 89% 0%, 100% 22%, 96% 100%, 0% 100%, 3% 17%);
+    z-index: 15;
+  }
+  .pocket-left, .pocket-right {
+    width: 46px;
+    height: 40px;
+    border: 2px solid rgba(111,136,168,0.45);
+    border-top: none;
+    z-index: 16;
+  }
+  .pocket-left {
+    left: 657px;
+    top: 662px;
+    transform: skewX(8deg);
+  }
+  .pocket-right {
+    left: 731px;
+    top: 662px;
+    transform: skewX(-8deg);
+  }
+  .arm {
+    left: 781px;
+    top: 472px;
+    width: 47px;
+    height: 128px;
+    background: linear-gradient(180deg, #b70a22 0%, #7d0013 100%);
+    border-radius: 24px;
+    transform: rotate(-17deg);
+    z-index: 14;
+  }
+  .hand {
+    left: 797px;
+    top: 582px;
+    width: 38px;
+    height: 24px;
+    background: #cb9a78;
+    border-radius: 15px;
+    transform: rotate(7deg);
+    z-index: 18;
+  }
+  .skate-pink {
+    left: 780px;
+    top: 636px;
+    width: 54px;
+    height: 71px;
+    background: linear-gradient(180deg, #ff3f6f 0%, #ff134d 100%);
+    border-radius: 18px 18px 12px 12px;
+    transform: rotate(15deg);
+    z-index: 18;
+  }
+  .skate-hole {
+    left: 805px;
+    top: 652px;
+    width: 18px;
+    height: 24px;
+    border: 3px solid rgba(255,175,190,0.9);
+    border-radius: 50%;
+    transform: rotate(-18deg);
+    z-index: 19;
+  }
+  .skate-truck {
+    left: 821px;
+    top: 689px;
+    width: 39px;
+    height: 14px;
+    background: linear-gradient(180deg, #adb6bf 0%, #66717d 100%);
+    transform: rotate(20deg);
+    z-index: 17;
+  }
+  .wheel-1, .wheel-2 {
+    width: 21px;
+    height: 21px;
+    background: linear-gradient(180deg, #b78f39 0%, #8a6420 100%);
+    border-radius: 50%;
+    z-index: 17;
+  }
+  .wheel-1 { left: 823px; top: 703px; }
+  .wheel-2 { left: 857px; top: 692px; }
+
+  .man-head {
+    left: 1090px;
+    top: 76px;
+    width: 96px;
+    height: 112px;
+    background: linear-gradient(180deg, #d9a47f 0%, #bb835e 100%);
+    border-radius: 45px 45px 40px 40px;
+    transform: rotate(-10deg);
+    z-index: 18;
+  }
+  .man-hair {
+    left: 1081px;
+    top: 42px;
+    width: 111px;
+    height: 78px;
+    background: linear-gradient(180deg, #2f241d 0%, #201712 100%);
+    clip-path: polygon(10% 68%, 12% 26%, 28% 8%, 55% 0%, 82% 14%, 100% 42%, 86% 72%, 66% 52%, 42% 45%, 21% 58%);
+    border-radius: 35px;
+    transform: rotate(-2deg);
+    z-index: 19;
+  }
+  .ear {
+    left: 1158px;
+    top: 126px;
+    width: 12px;
+    height: 18px;
+    background: #ba8361;
+    border-radius: 50%;
+    z-index: 17;
+  }
+  .smile {
+    left: 1117px;
+    top: 157px;
+    width: 36px;
+    height: 18px;
+    border-bottom: 3px solid rgba(98,50,40,0.85);
+    border-radius: 0 0 32px 32px;
+    transform: rotate(7deg);
+    z-index: 20;
+  }
+  .eye {
+    width: 9px;
+    height: 2px;
+    background: rgba(66,40,34,0.9);
+    border-radius: 3px;
+    z-index: 20;
+  }
+  .eye.left { left: 1118px; top: 120px; transform: rotate(-12deg); }
+  .eye.right { left: 1139px; top: 116px; transform: rotate(4deg); }
+
+  .man-torso {
+    left: 949px;
+    top: 186px;
+    width: 282px;
+    height: 475px;
+    background: linear-gradient(180deg, #27324a 0%, #182336 55%, #131d2d 100%);
+    clip-path: polygon(36% 0%, 63% 6%, 88% 20%, 100% 53%, 94% 100%, 35% 98%, 12% 84%, 2% 47%, 9% 18%);
+    border-radius: 26px;
+    transform: rotate(8deg);
+    z-index: 14;
+  }
+  .man-arm-front {
+    left: 886px;
+    top: 435px;
+    width: 173px;
+    height: 60px;
+    background: linear-gradient(180deg, #1d2940 0%, #152034 100%);
+    border-radius: 32px;
+    transform: rotate(10deg);
+    z-index: 16;
+  }
+  .man-hand-front {
+    left: 953px;
+    top: 481px;
+    width: 31px;
+    height: 24px;
+    background: #c89170;
+    border-radius: 15px;
+    transform: rotate(10deg);
+    z-index: 18;
+  }
+  .man-hand-back {
+    left: 907px;
+    top: 472px;
+    width: 29px;
+    height: 21px;
+    background: #ca9676;
+    border-radius: 14px;
+    transform: rotate(-18deg);
+    z-index: 17;
+  }
+
+  .foreground-shade {
+    left: 540px;
+    top: 0;
+    width: 740px;
+    height: 720px;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(28,14,20,0.04) 52%, rgba(0,0,0,0.12) 100%);
+    z-index: 12;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+  <div id="slide">
+    <div class="photo-bg"></div>
+
+    <div class="building-1"></div>
+    <div class="building-2"></div>
+
+    <div class="facade-line" style="left:900px; top:36px; width:4px; height:183px; z-index:13;"></div>
+    <div class="facade-line" style="left:932px; top:59px; width:3px; height:200px; z-index:13;"></div>
+    <div class="facade-line" style="left:962px; top:45px; width:4px; height:168px; z-index:13;"></div>
+    <div class="facade-line" style="left:998px; top:19px; width:5px; height:164px; z-index:13;"></div>
+    <div class="facade-line" style="left:1037px; top:20px; width:3px; height:146px; z-index:13;"></div>
+    <div class="facade-line" style="left:1073px; top:52px; width:4px; height:162px; z-index:13;"></div>
+    <div class="facade-line" style="left:1118px; top:9px; width:4px; height:176px; z-index:13;"></div>
+
+    <div class="facade-line" style="left:883px; top:94px; width:164px; height:4px; z-index:13;"></div>
+    <div class="facade-line" style="left:884px; top:147px; width:177px; height:4px; z-index:13;"></div>
+    <div class="facade-line" style="left:883px; top:206px; width:186px; height:4px; z-index:13;"></div>
+    <div class="facade-line" style="left:1038px; top:79px; width:168px; height:4px; z-index:13;"></div>
+    <div class="facade-line" style="left:1027px; top:127px; width:172px; height:4px; z-index:13;"></div>
+
+    <div class="street"></div>
+
+    <div class="woman-body"></div>
+    <div class="woman-hair"></div>
+    <div class="hair-strand-1"></div>
+    <div class="hair-strand-2"></div>
+    <div class="woman-jeans"></div>
+    <div class="pocket-left"></div>
+    <div class="pocket-right"></div>
+    <div class="arm"></div>
+    <div class="hand"></div>
+    <div class="skate-pink"></div>
+    <div class="skate-hole"></div>
+    <div class="skate-truck"></div>
+    <div class="wheel-1"></div>
+    <div class="wheel-2"></div>
+
+    <div class="man-torso"></div>
+    <div class="man-arm-front"></div>
+    <div class="man-hand-front"></div>
+    <div class="man-hand-back"></div>
+    <div class="man-head"></div>
+    <div class="man-hair"></div>
+    <div class="ear"></div>
+    <div class="smile"></div>
+    <div class="eye left"></div>
+    <div class="eye right"></div>
+
+    <div class="foreground-shade"></div>
+    <div class="left-overlay"></div>
+    <div class="purple-wedge"></div>
+    <div class="teal-band"></div>
+
+    <div class="title">Expectations<br>for 2025</div>
+    <div class="footer">© Ipsos&nbsp;&nbsp;Predictions 2025 Report</div>
+  </div>
+</body>
+</html>

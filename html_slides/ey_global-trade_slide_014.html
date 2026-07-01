@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Insights: Global</title>
+<style>
+  body{
+    margin:0;
+    background:#efefef;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#efefef;
+    color:#4f4f58;
+  }
+  .left-top-block{
+    position:absolute;
+    left:0;
+    top:0;
+    width:47px;
+    height:79px;
+    background:#bdbdc5;
+  }
+  .top-line{
+    position:absolute;
+    left:0;
+    top:78px;
+    width:1280px;
+    height:2px;
+    background:#c7c8cf;
+  }
+  .title{
+    position:absolute;
+    left:56px;
+    top:50px;
+    font-size:31px;
+    line-height:1;
+    font-weight:400;
+    color:#7a7a84;
+    letter-spacing:-0.2px;
+  }
+
+  .nav-btn{
+    position:absolute;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#b8b8c1;
+  }
+  .nav-btn .arrow{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#3c3b44;
+    font-size:22px;
+    line-height:1;
+    font-weight:700;
+  }
+  .nav-left{ left:1111px; top:33px; }
+  .nav-right{ left:1155px; top:33px; }
+
+  .col{
+    position:absolute;
+    top:118px;
+    font-size:14px;
+    line-height:1.34;
+    color:#4f4f58;
+  }
+  .col1{ left:56px; width:292px; }
+  .col2{ left:376px; width:293px; }
+  .col3{ left:694px; width:292px; }
+
+  .p,.h,.bullet{
+    position:absolute;
+    width:100%;
+    box-sizing:border-box;
+  }
+  .p{
+    font-size:14px;
+    line-height:1.34;
+    font-weight:400;
+    color:#4f4f58;
+  }
+  .h{
+    font-size:16px;
+    line-height:1.2;
+    font-weight:700;
+    color:#353540;
+  }
+  .bullet{
+    padding-left:15px;
+    font-size:14px;
+    line-height:1.34;
+    color:#4f4f58;
+  }
+  .bullet:before{
+    content:"■";
+    position:absolute;
+    left:0;
+    top:2px;
+    font-size:8px;
+    line-height:1;
+    color:#353540;
+  }
+  .bullet b{
+    font-weight:700;
+    color:#353540;
+  }
+
+  .side-nav{
+    position:absolute;
+    left:1009px;
+    top:120px;
+    width:271px;
+  }
+  .side-item{
+    position:absolute;
+    left:0;
+    width:271px;
+    height:36px;
+    background:#2d2c3a;
+    color:#d9d9df;
+    border-left:2px solid #d5d21a;
+    box-sizing:border-box;
+    padding:7px 10px;
+    font-size:12px;
+    line-height:14px;
+    font-weight:400;
+  }
+  .side-item.light{
+    background:#6f6e7d;
+    color:#ececf0;
+  }
+
+  .contact-box{
+    position:absolute;
+    left:692px;
+    top:566px;
+    width:588px;
+    height:95px;
+    background:#efefef;
+    border:1px solid #d0d0d0;
+    box-sizing:border-box;
+  }
+  .contact-head{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:34px;
+    background:#f3dd00;
+    color:#373737;
+    font-size:14px;
+    line-height:34px;
+    font-weight:700;
+    padding-left:11px;
+    box-sizing:border-box;
+  }
+  .contact-name{
+    position:absolute;
+    left:11px;
+    top:47px;
+    font-size:14px;
+    line-height:16px;
+    font-weight:700;
+    color:#3f3f46;
+  }
+  .contact-phone{
+    position:absolute;
+    left:11px;
+    top:65px;
+    font-size:14px;
+    line-height:16px;
+    color:#4f4f58;
+  }
+  .contact-sep{
+    position:absolute;
+    left:124px;
+    top:60px;
+    width:1px;
+    height:21px;
+    background:#b8b8bf;
+  }
+  .contact-email{
+    position:absolute;
+    left:136px;
+    top:65px;
+    font-size:14px;
+    line-height:16px;
+    font-weight:700;
+    color:#1c67b3;
+    text-decoration:none;
+  }
+
+  .tiny-square{
+    position:absolute;
+    left:814px;
+    top:547px;
+    width:9px;
+    height:9px;
+    background:#bdbdc4;
+  }
+
+  .back{
+    position:absolute;
+    left:834px;
+    top:679px;
+    width:340px;
+    height:32px;
+  }
+  .back-circle{
+    position:absolute;
+    left:0;
+    top:0;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:#b8b8c1;
+  }
+  .back-circle span{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#3c3b44;
+    font-size:21px;
+    font-weight:700;
+  }
+  .back-text{
+    position:absolute;
+    left:38px;
+    top:15px;
+    font-size:12px;
+    line-height:14px;
+    font-weight:700;
+    color:#4f4f58;
+  }
+  .back-line{
+    position:absolute;
+    left:163px;
+    top:30px;
+    width:160px;
+    height:1px;
+    background:#c7c8cf;
+  }
+
+  .footer{
+    position:absolute;
+    left:56px;
+    top:730px;
+    transform:translateY(-100%);
+    font-size:10px;
+    line-height:12px;
+    color:#7a7a82;
+  }
+  .footer b{ font-weight:700; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-top-block"></div>
+  <div class="top-line"></div>
+  <div class="title">Insights: Global</div>
+
+  <div class="nav-btn nav-left"><div class="arrow">◀</div></div>
+  <div class="nav-btn nav-right"><div class="arrow">▶</div></div>
+
+  <div class="col col1">
+    <div class="p" style="top:0px;">
+      By integrating robust analytics, reporting and audit trail capabilities, organizations can strengthen their compliance framework, support regulatory requirements and continuously improve their screening and monitoring processes.
+    </div>
+
+    <div class="h" style="top:97px;">Process integration and standardization</div>
+
+    <div class="p" style="top:124px;">
+      Process integration and standardization are essential for harmonizing business operations across a global enterprise. By setting up a unified global template, organizations can implement consistent screening processes that ensure alignment around a common set of standards and procedures. This approach enhances efficiency, helps regulatory compliance and streamlines transaction monitoring throughout the organization.
+    </div>
+
+    <div class="p" style="top:267px;">
+      At the same time, it is critical to address unique regional or country-specific requirements. Localized templates enable the adaptation of the global standard to meet particular conditions or regulations, such as those related to certain geographic areas or issues like forced labor. Through this balance of standardization and localization, businesses can maintain control, improve risk management and ensure that compliance measures are both effective and relevant across all operational regions.
+    </div>
+
+    <div class="h" style="top:484px;">Systems integration to minimize<br>screening gaps</div>
+
+    <div class="p" style="top:528px;">
+      To effectively reduce risk and strengthen compliance, it is essential to analyze your business systems and process landscape to find all critical systems and workflows that should be integrated into
+    </div>
+  </div>
+
+  <div class="col col2">
+    <div class="p" style="top:0px;">
+      your automated screening platform. Core systems often include ERP (Enterprise Resource Planning) and CRM (Customer Relationship Management), master data management, pay-in/pay-out systems and supply chain or logistics solutions, among others. By connecting these systems, organizations can ensure that screening is consistently applied to all relevant business partner profiles, transactions and operational data.
+    </div>
+
+    <div class="p" style="top:156px;">
+      Smooth integration helps prevent gaps where unscreened data or transactions might otherwise bypass compliance controls. This unified approach supports a common set of standards and processes across the enterprise while also allowing for the adaptation of region- or country-specific requirements when necessary. Comprehensive systems integration enables organizations to keep a robust, detailed screening process that is both efficient and aligned with regulatory expectations, significantly reducing risk exposure and enhancing overall compliance.
+    </div>
+
+    <div class="h" style="top:378px;">Potential business outcomes</div>
+
+    <div class="p" style="top:410px;">
+      Automating sanctions screening offers other benefits beyond simply closing compliance gaps. While enhancing compliance by reducing unscreened transactions is a primary advantage, other positive outcomes can be realized:
+    </div>
+
+    <div class="bullet" style="top:497px;">
+      <b>Consistent yet adaptable screening processes:</b> Establishing global standardized screening practices, with the flexibility to tailor processes for regional and country-specific requirements, delivers broader compliance coverage. This approach helps organizations effectively
+    </div>
+  </div>
+
+  <div class="col col3">
+    <div class="p" style="top:0px;">
+      manage risks across all operational areas by ensuring both the consistency and relevance of screening protocols.
+    </div>
+
+    <div class="bullet" style="top:55px;">
+      <b>Enhanced intelligence and visibility:</b> By using integrated reporting, analytics and audit trail capabilities, organizations gain deeper insight into business activities. These tools provide greater transparency and allow for informed decision-making, strengthening oversight and supporting regulatory obligations.
+    </div>
+
+    <div class="bullet" style="top:177px;">
+      <b>Lower technology ownership costs:</b> Implementing a unified GTM software platform serves as the core for sanctions screening and can be scoped and scaled to support other trade and customs functions, such as import/export controls screening, trade document generation and electronic customs filing. This consolidation reduces the need for multiple GTM systems, streamlining operations and lowering overall technology expenses.
+    </div>
+
+    <div class="p" style="top:356px;">
+      In summary, designing and implementing effective automated sanctions screening not only improves compliance and risk management but also delivers operational efficiencies, cost savings and valuable business intelligence.
+    </div>
+  </div>
+
+  <div class="tiny-square"></div>
+
+  <div class="side-nav">
+    <div class="side-item" style="top:0px;">Contents</div>
+    <div class="side-item" style="top:50px;">Insights</div>
+    <div class="side-item" style="top:100px;">New on<br>ey.com</div>
+    <div class="side-item" style="top:150px;">Tax alerts</div>
+    <div class="side-item light" style="top:200px;">Additional<br>resources</div>
+    <div class="side-item light" style="top:250px;">Contacts</div>
+  </div>
+
+  <div class="contact-box">
+    <div class="contact-head">For additional information, please contact:</div>
+    <div class="contact-name">Prentice M. Wells</div>
+    <div class="contact-phone">+ 1 408 947 5438</div>
+    <div class="contact-sep"></div>
+    <a class="contact-email" href="#">prentice.wells@ey.com</a>
+  </div>
+
+  <div class="back">
+    <div class="back-circle"><span>◀</span></div>
+    <div class="back-text">Back to Welcome</div>
+    <div class="back-line"></div>
+  </div>
+
+  <div class="footer">11 &nbsp;|&nbsp; <b>TradeWatch</b> Issue 1 2026</div>
+</div>
+</body>
+</html>

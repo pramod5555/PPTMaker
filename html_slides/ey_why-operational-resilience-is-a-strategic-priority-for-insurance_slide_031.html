@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Chapter 7 Slide Replica</title>
+<style>
+  body{margin:0;background:#dddddf;font-family:Arial,Helvetica,'Segoe UI',sans-serif;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e1e1e3;
+    color:#2c2f3d;
+  }
+  .slide > div{position:absolute;box-sizing:border-box;}
+
+  .top-pill{
+    left:1220px; top:0;
+    width:67px; height:46px;
+    background:#6b6d76;
+    color:#fff;
+    border-radius:0 0 14px 14px;
+    font-size:9px;
+    line-height:1.1;
+    font-weight:700;
+    text-align:center;
+    padding-top:17px;
+    letter-spacing:.02em;
+  }
+
+  .num31{
+    left:60px; top:50px;
+    font-size:15px;
+    color:#6e727c;
+    font-weight:400;
+  }
+  .top-sep{
+    left:103px; top:0;
+    width:1px; height:92px;
+    background:#b9bcc3;
+  }
+  .top-caption{
+    left:115px; top:59px;
+    width:200px;
+    font-size:8px;
+    line-height:1.25;
+    color:#7b7d85;
+    text-transform:uppercase;
+  }
+
+  .left-vert-text{
+    left:12px; top:430px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    font-size:10px;
+    color:#73757e;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .left-yellow{
+    left:12px; top:409px;
+    width:12px; height:12px;
+    background:#f0d400;
+  }
+
+  .chapter{
+    left:102px; top:131px;
+    font-size:54px;
+    line-height:1;
+    font-weight:700;
+    color:#2b2d3d;
+  }
+
+  .grad-line{
+    left:102px; top:214px;
+    width:269px; height:3px;
+    background:linear-gradient(90deg,#f1cc00 0%,#f1cc00 51%,#be2ff3 74%,#2d8ef7 100%);
+  }
+
+  .body1,.body2{
+    width:291px;
+    font-size:12px;
+    line-height:1.38;
+    color:#5c6068;
+    font-weight:400;
+  }
+  .body1{left:102px; top:251px;}
+  .body2{left:102px; top:392px;}
+
+  .fig-title{
+    left:465px; top:96px;
+    width:712px;
+    font-size:13px;
+    line-height:1.45;
+    color:#3b3e47;
+    font-weight:600;
+  }
+
+  .bar-area{
+    left:498px; top:151px;
+    width:705px; height:255px;
+  }
+
+  .row-label{
+    position:absolute;
+    left:0;
+    width:395px;
+    text-align:center;
+    font-size:11px;
+    line-height:1.23;
+    color:#5a5e66;
+  }
+  .row-label b{
+    color:#3a3d46;
+    font-weight:700;
+  }
+
+  .bar-wrap{
+    position:absolute;
+    left:446px;
+    width:292px;
+    height:25px;
+    border:1px solid #adafb6;
+    background:transparent;
+  }
+  .bar-fill{
+    position:absolute;
+    left:0; top:0;
+    height:23px;
+    background:linear-gradient(90deg,#7b52c3 0%,#704ac2 55%,#603fb8 100%);
+  }
+  .bar-pct{
+    position:absolute;
+    right:9px; top:4px;
+    font-size:11px;
+    color:#565a63;
+  }
+  .bar-note{
+    position:absolute;
+    left:0; top:27px;
+    font-size:6px;
+    line-height:1.2;
+    color:#6c7078;
+    white-space:nowrap;
+  }
+
+  .callout{
+    left:883px; top:465px;
+    width:352px; height:270px;
+    background:linear-gradient(180deg,#17192b 0%,#131524 100%);
+    border-radius:13px;
+  }
+  .callout-line{
+    left:907px; top:493px;
+    width:303px; height:3px;
+    background:linear-gradient(90deg,#f2d200 0%,#f2d200 43%,#bc30f4 70%,#2f8ef7 100%);
+  }
+  .callout-title{
+    left:908px; top:511px;
+    font-size:14px;
+    line-height:1.2;
+    font-weight:700;
+    color:#ffffff;
+  }
+  .quote-mark{
+    left:908px; top:535px;
+    font-size:38px;
+    line-height:.8;
+    font-weight:700;
+    color:#f0d400;
+    font-family:Georgia,'Times New Roman',serif;
+  }
+  .callout-text{
+    left:908px; top:554px;
+    width:298px;
+    font-size:12px;
+    line-height:1.28;
+    color:#f0f0f2;
+    font-family:Georgia,'Times New Roman',serif;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-pill">JUMP TO<br>CONTENTS</div>
+
+  <div class="num31">31</div>
+  <div class="top-sep"></div>
+  <div class="top-caption">SECOND ANNUAL EY/IIF GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+  <div class="left-vert-text">CHAPTER 7</div>
+  <div class="left-yellow"></div>
+
+  <div class="chapter">Chapter 7</div>
+  <div class="grad-line"></div>
+
+  <div class="body1">
+    Regulatory risk is never too far from CROs' minds and our<br>
+    results clarify that enterprise resilience (29%) and 43% for<br>
+    EMEIA, capital and solvency requirements (23%), and cyber/<br>
+    data security regulations (19%) and 31% for Asia-Pacific<br>
+    are the top concerns regarding compliance. Again, the<br>
+    implementation of DORA has CROs thinking about compliance.<br>
+    Interestingly, AI regulation was cited by only 10% of<br>
+    respondents but was the top choice for CROs in the Americas<br>
+    (tied with capital and solvency requirements at 26%).
+  </div>
+
+  <div class="body2">
+    Despite the AI Act in Europe and a generally stringent<br>
+    regulatory environment in the region, CROs in that region<br>
+    rated AI regulatory risk fairly low. That’s likely due to many<br>
+    insurers having incorporated algorithmic bias concerns into<br>
+    their AI governance, model validation and underwriting<br>
+    practices. It’s also worth noting that full implementation of<br>
+    the AI Act will be a multiyear process.
+    <br><br>
+    Conduct risk is a regulatory focal point across Asia-Pacific.<br>
+    In Australia, for instance, recommendations from the Royal<br>
+    Commission into Misconduct in the Banking, Superannuation<br>
+    and Financial Services Industry, led to a number of reforms<br>
+    designed to improve consumer outcomes. In Vietnam,<br>
+    Indonesia and other markets, mis-selling issues caused<br>
+    regulators to step in with new guidelines and regulations<br>
+    to provide increased customer protection. In Hong Kong,<br>
+    regulators are ratcheting up their focus on the fair treatment<br>
+    of customers, as well as anti-money laundering and know-<br>
+    your-customer requirements.
+  </div>
+
+  <div class="fig-title">
+    Figure 17: Considering the spectrum of existing and forthcoming regulations that impact your organization, please rank the following regulatory focus areas based on your organization's level of concern for ensuring compliance.
+  </div>
+
+  <div class="bar-area">
+    <div class="row-label" style="top:2px;height:38px;">
+      <b>Enterprise resilience</b>: Addressing requirements from recent regulations<br>
+      (e.g., DORA, UK PRA, New York State Department of Financial Services<br>
+      (NYDFS)) to enhance our enterprise resilience capabilities
+    </div>
+    <div class="bar-wrap" style="top:4px;">
+      <div class="bar-fill" style="width:85px;"></div>
+      <div class="bar-pct">29%</div>
+      <div class="bar-note">43% EMEIA | 11% Americas | 23% Asia-Pacific</div>
+    </div>
+
+    <div class="row-label" style="top:57px;height:38px;">
+      <b>Capital and solvency requirements</b>: Aligning financial risk management practices<br>
+      to changing capital, collateral and solvency requirements
+    </div>
+    <div class="bar-wrap" style="top:59px;">
+      <div class="bar-fill" style="width:67px;"></div>
+      <div class="bar-pct">23%</div>
+      <div class="bar-note">18% EMEIA | 26% Americas | 31% Asia-Pacific</div>
+    </div>
+
+    <div class="row-label" style="top:111px;height:39px;">
+      <b>Cybersecurity and data protection</b>: Aligning with requirements from recent<br>
+      regulations (e.g., NYDFS cybersecurity requirements, EU Cyber Resilience Act)<br>
+      and other data protection/data privacy laws
+    </div>
+    <div class="bar-wrap" style="top:112px;">
+      <div class="bar-fill" style="width:56px;"></div>
+      <div class="bar-pct">19%</div>
+      <div class="bar-note">15% EMEIA | 19% Americas | 31% Asia-Pacific</div>
+    </div>
+
+    <div class="row-label" style="top:166px;height:31px;">
+      <b>AI regulation</b>: Preparing for recent AI/GenAI regulation updates (e.g., EU AI Act,<br>
+      NAIC's Model Bulletin: Use of Artificial Intelligence Systems by Insurers)
+    </div>
+    <div class="bar-wrap" style="top:167px;">
+      <div class="bar-fill" style="width:29px;"></div>
+      <div class="bar-pct">10%</div>
+      <div class="bar-note">3% EMEIA | 26% Americas | 0% Asia-Pacific</div>
+    </div>
+
+    <div class="row-label" style="top:220px;height:28px;">
+      <b>Consumer fairness and conduct</b>: Ensuring our practices align with regulations<br>
+      focused on consumer fairness and ethical conduct
+    </div>
+    <div class="bar-wrap" style="top:221px;">
+      <div class="bar-fill" style="width:23px;"></div>
+      <div class="bar-pct">8%</div>
+      <div class="bar-note">5% EMEIA | 7% Americas | 15% Asia-Pacific</div>
+    </div>
+  </div>
+
+  <div class="callout"></div>
+  <div class="callout-line"></div>
+  <div class="callout-title">CROs on regulatory risk</div>
+  <div class="quote-mark">“</div>
+  <div class="callout-text">
+    Risk management is considered essential for anticipating<br>
+    regulations, with ongoing contact with the business to<br>
+    serve in a consulting and supervisory role.
+    <br><br>
+    The biggest topic in internal discussion is regulation in<br>
+    Europe. We try to take a pragmatic approach to comply<br>
+    with the law but in a way that is practical and sensible, and<br>
+    which requires taking on a bit of regulatory risk.
+  </div>
+</div>
+</body>
+</html>

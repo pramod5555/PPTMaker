@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body {
+    margin: 0;
+    background: #dcdcdc;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #efeadb;
+    margin: 0 auto;
+    color: #2a2a2a;
+  }
+
+  .text {
+    position: absolute;
+    font-size: 18px;
+    line-height: 1.32;
+    font-weight: 400;
+    color: #2b2b2b;
+    letter-spacing: 0;
+  }
+  .sup {
+    font-size: 11px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .col1 {
+    left: 60px;
+    top: 124px;
+    width: 325px;
+  }
+  .col2 {
+    left: 455px;
+    top: 124px;
+    width: 351px;
+  }
+
+  .photo-top {
+    position: absolute;
+    left: 876px;
+    top: 0px;
+    width: 344px;
+    height: 413px;
+    background:
+      radial-gradient(circle at 32% 34%, rgba(170,147,45,0.45) 0 20%, rgba(170,147,45,0) 21%),
+      radial-gradient(circle at 57% 44%, rgba(146,76,40,0.38) 0 7%, rgba(146,76,40,0) 8%),
+      radial-gradient(circle at 63% 66%, rgba(86,49,37,0.55) 0 18%, rgba(86,49,37,0) 19%),
+      linear-gradient(8deg, rgba(74,37,17,0.78) 0%, rgba(121,81,53,0.46) 28%, rgba(198,187,152,0.22) 51%, rgba(231,226,193,0.28) 63%, rgba(213,191,48,0.62) 64%, rgba(228,212,86,0.42) 74%, rgba(236,226,190,0.28) 100%),
+      linear-gradient(90deg, rgba(255,255,255,0.18), rgba(0,0,0,0.06));
+    filter: blur(0.2px);
+  }
+  .photo-top:before {
+    content: "";
+    position: absolute;
+    left: -12px;
+    top: 8px;
+    width: 380px;
+    height: 46px;
+    background: linear-gradient(180deg, rgba(214,193,0,0.95), rgba(227,206,28,0.88));
+    transform: rotate(3deg);
+    filter: blur(4px);
+    opacity: 0.95;
+  }
+  .photo-top:after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 193px;
+    width: 355px;
+    height: 15px;
+    background: rgba(219,199,55,0.35);
+    filter: blur(8px);
+  }
+
+  .photo-bottom {
+    position: absolute;
+    left: 510px;
+    top: 413px;
+    width: 710px;
+    height: 265px;
+    background:
+      linear-gradient(180deg, rgba(197,181,173,0.85) 0%, rgba(216,205,198,0.75) 16%, rgba(182,157,149,0.4) 17%, rgba(222,210,200,0.55) 24%, rgba(50,18,8,0.96) 25%, rgba(15,5,3,0.98) 61%, rgba(237,226,194,0.96) 62%, rgba(246,238,205,0.96) 100%);
+  }
+  .photo-bottom:before {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 62px;
+    width: 128px;
+    height: 193px;
+    background: linear-gradient(180deg, #050202 0%, #23100b 100%);
+    transform: skew(-8deg);
+    box-shadow: 0 0 18px rgba(0,0,0,0.32);
+  }
+  .photo-bottom:after {
+    content: "";
+    position: absolute;
+    right: 28px;
+    bottom: 0px;
+    width: 230px;
+    height: 72px;
+    background:
+      radial-gradient(circle at 70% 38%, rgba(218,116,37,0.95) 0 19%, rgba(218,116,37,0) 20%),
+      radial-gradient(circle at 49% 46%, rgba(190,74,19,0.92) 0 15%, rgba(190,74,19,0) 16%),
+      radial-gradient(circle at 85% 22%, rgba(237,182,111,0.85) 0 8%, rgba(237,182,111,0) 9%),
+      linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,255,255,0.0));
+    filter: blur(2px);
+  }
+
+  .quote-box {
+    position: absolute;
+    left: 882px;
+    top: 415px;
+    width: 338px;
+    height: 263px;
+    background: #efeadb;
+  }
+  .quote {
+    position: absolute;
+    left: 30px;
+    top: 29px;
+    width: 270px;
+    font-size: 18px;
+    line-height: 1.45;
+    color: #8b38e6;
+    font-weight: 400;
+  }
+  .attrib {
+    position: absolute;
+    left: 37px;
+    top: 207px;
+    font-size: 15px;
+    color: #111;
+    font-weight: 700;
+  }
+
+  .right-rail {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 61px;
+    height: 720px;
+    background: #efeadb;
+    border-left: 1px solid rgba(0,0,0,0.08);
+  }
+  .rail-text {
+    position: absolute;
+    right: 18px;
+    top: 35px;
+    height: 650px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 15px;
+    line-height: 1;
+    color: #6b6b6b;
+    letter-spacing: 0.2px;
+  }
+  .rail-text .accent {
+    color: #8b38e6;
+    font-weight: 600;
+  }
+
+  .footer-left {
+    position: absolute;
+    right: 70px;
+    bottom: 14px;
+    font-size: 14px;
+    color: #808080;
+  }
+  .footer-left .year {
+    color: #8b38e6;
+    font-weight: 700;
+  }
+  .footer-page {
+    position: absolute;
+    right: 29px;
+    bottom: 14px;
+    font-size: 13px;
+    color: #777;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="text col1">
+      It’s unsurprising that the immediacy of modern life is fostering impatience—and new behaviors to match. According to our survey, 55% of people prefer quick solutions over traditional methods and many are willing to explore riskier routes to achieve their health and financial goals (68% in physical health; 67% mental health; 67% financial goals).<span class="sup">67</span><br><br>
+      Interestingly, one word in Hindi, Urdu and Punjabi sums up this sentiment: jugaad. It doesn’t directly translate to English, but it articulates the idea of improvising or creating a new solution to get a quick result when you lack the time, skills or opportunity to do it the established way.<span class="sup">68</span><br><br>
+      Where classic approaches like hard work and education aren’t cutting it, people are thinking laterally and using opportunities presented by social media and other digital platforms. Two-thirds of our survey respondents (63.2%) said they get inspiration from social media on how to do things smarter—for those aged 18–34, it’s closer to three-quarters (74.1%).<span class="sup">69</span>
+    </div>
+
+    <div class="text col2">
+      The power of the crowd is almost like a riptide. Someone finds a new solution to a problem, tests it, and if they find success, they share it and take others along with them on a new route to a desired result.<br><br>
+      Brands need to work out whether their value proposition is part of that tide, or whether it’s sweeping around them as people crowd-source their routes to health, wealth and happiness—fundamental to survival, security and well-being.
+    </div>
+
+    <div class="photo-top"></div>
+    <div class="photo-bottom"></div>
+
+    <div class="quote-box">
+      <div class="quote">“I look for shortcuts in every area that I can. Anything that I can do to speed my life, help make things go faster, better, more accurate.”</div>
+      <div class="attrib">Stan, 46, US</div>
+    </div>
+
+    <div class="right-rail">
+      <div class="rail-text">Cost of hesitations &nbsp;/&nbsp; The parent trap &nbsp;/&nbsp; <span class="accent">Impatience economy</span> &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; Social rewiring</div>
+    </div>
+
+    <div class="footer-left">Accenture Life Trends <span class="year">2025</span></div>
+    <div class="footer-page">41</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#ffffff;}
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f1f1f1;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+    color:#222;
+  }
+  .sidebar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:180px;
+    height:720px;
+    background:#363940;
+    z-index:5;
+  }
+  .sidebar-accent{
+    position:absolute;
+    left:179px;
+    top:0;
+    width:2px;
+    height:720px;
+    background:#7f63c3;
+    z-index:6;
+  }
+  .main{
+    position:absolute;
+    left:180px;
+    top:0;
+    width:1100px;
+    height:720px;
+    background:#f1f1f1;
+    z-index:1;
+  }
+  .sb-title{
+    position:absolute;
+    left:12px;
+    top:34px;
+    width:150px;
+    font-size:22px;
+    line-height:1.08;
+    font-weight:700;
+    color:#f1f1f1;
+    z-index:30;
+  }
+
+  .hex{
+    position:absolute;
+    width:74px;
+    height:70px;
+    z-index:20;
+  }
+  .hex svg{
+    width:74px;
+    height:70px;
+    display:block;
+  }
+
+  .step-num{
+    position:absolute;
+    width:24px;
+    font-size:28px;
+    line-height:1;
+    font-weight:700;
+    color:#8b69c9;
+    z-index:30;
+  }
+  .step-label{
+    position:absolute;
+    width:76px;
+    font-size:13px;
+    line-height:1.15;
+    font-weight:700;
+    color:#8b69c9;
+    z-index:30;
+  }
+
+  .gear-wrap{
+    position:absolute;
+    left:67px;
+    top:664px;
+    width:70px;
+    height:45px;
+    z-index:20;
+    opacity:.5;
+  }
+  .gear{
+    position:absolute;
+    width:31px;
+    height:31px;
+    border:4px solid #8b8f95;
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+  .gear:before, .gear:after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:39px;
+    height:4px;
+    background:#8b8f95;
+    transform-origin:center;
+    margin-left:-19.5px;
+    margin-top:-2px;
+  }
+  .gear:after{transform:rotate(90deg);}
+  .gear .d1,.gear .d2{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:39px;
+    height:4px;
+    background:#8b8f95;
+    margin-left:-19.5px;
+    margin-top:-2px;
+  }
+  .gear .d1{transform:rotate(45deg);}
+  .gear .d2{transform:rotate(-45deg);}
+  .bulb{
+    position:absolute;
+    left:18px;
+    top:7px;
+    width:29px;
+    height:29px;
+    border:4px solid #8b8f95;
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+  .bulb:before{
+    content:"";
+    position:absolute;
+    left:9px;
+    top:24px;
+    width:11px;
+    height:10px;
+    background:#8b8f95;
+    border-radius:2px;
+  }
+  .bulb:after{
+    content:"";
+    position:absolute;
+    left:11px;
+    top:31px;
+    width:7px;
+    height:8px;
+    background:#8b8f95;
+  }
+
+  .slide-no{
+    position:absolute;
+    left:9px;
+    bottom:10px;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+    color:#f1f1f1;
+    z-index:30;
+  }
+
+  .title{
+    position:absolute;
+    left:220px;
+    top:30px;
+    width:1020px;
+    font-size:31px;
+    line-height:1.12;
+    font-weight:700;
+    color:#222;
+    z-index:30;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    position:absolute;
+    left:220px;
+    top:138px;
+    width:980px;
+    font-size:24px;
+    line-height:1.18;
+    font-weight:400;
+    color:#8d939c;
+    z-index:30;
+  }
+
+  .timeline{
+    position:absolute;
+    left:229px;
+    top:194px;
+    width:2px;
+    height:421px;
+    background:#b0a3ca;
+    z-index:20;
+  }
+  .dot{
+    position:absolute;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:#543384;
+    z-index:25;
+  }
+
+  .bullet{
+    position:absolute;
+    width:995px;
+    font-size:18px;
+    line-height:1.15;
+    color:#2f2f2f;
+    z-index:30;
+  }
+  .bullet b{font-weight:700;}
+
+  .blocks{
+    position:absolute;
+    left:317px;
+    top:596px;
+    width:950px;
+    height:124px;
+    z-index:10;
+    opacity:.56;
+  }
+  .cube{
+    position:absolute;
+    bottom:0;
+    width:160px;
+    height:88px;
+    background:linear-gradient(180deg,#f8f8f8 0%, #ededed 100%);
+    border-radius:18px 18px 10px 10px;
+    box-shadow:0 3px 14px rgba(0,0,0,0.05);
+  }
+  .cube.tall{height:90px;}
+  .cube .letter{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    font-size:82px;
+    line-height:1;
+    font-weight:700;
+    color:rgba(183,183,183,.5);
+    letter-spacing:0.04em;
+  }
+
+  .fade-bottom{
+    position:absolute;
+    left:300px;
+    top:570px;
+    width:980px;
+    height:150px;
+    background:linear-gradient(180deg, rgba(241,241,241,0) 0%, rgba(241,241,241,0.45) 28%, rgba(241,241,241,0.84) 62%, rgba(241,241,241,1) 100%);
+    z-index:22;
+  }
+
+  .source{
+    position:absolute;
+    left:220px;
+    bottom:13px;
+    font-size:12px;
+    line-height:1;
+    font-weight:400;
+    color:#333;
+    z-index:40;
+  }
+
+  .rb-logo{
+    position:absolute;
+    right:10px;
+    bottom:8px;
+    width:66px;
+    height:28px;
+    z-index:50;
+  }
+  .rb-logo .name{
+    position:absolute;
+    left:0;
+    top:4px;
+    width:37px;
+    font-size:9px;
+    line-height:1.02;
+    text-align:right;
+    color:#555;
+    font-weight:700;
+  }
+  .rb-logo .r-main{
+    position:absolute;
+    right:0;
+    top:2px;
+    width:18px;
+    height:22px;
+    background:#6b6f73;
+    border-radius:0 11px 11px 0;
+  }
+  .rb-logo .r-main:before{
+    content:"";
+    position:absolute;
+    left:-11px;
+    top:0;
+    width:16px;
+    height:18px;
+    background:#9aa0a6;
+    border-radius:0 9px 9px 0;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="main"></div>
+  <div class="sidebar"></div>
+  <div class="sidebar-accent"></div>
+
+  <div class="sb-title">Technology &amp;<br>Innovation</div>
+
+  <div class="hex" style="left:8px; top:141px;">
+    <svg viewBox="0 0 74 70" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="18,2 56,2 72,35 56,68 18,68 2,35" fill="#8a67cc"/>
+      <clipPath id="clip1"><polygon points="18,2 56,2 72,35 56,68 18,68 2,35"/></clipPath>
+      <g clip-path="url(#clip1)">
+        <rect x="6" y="6" width="62" height="58" fill="url(#grad1)"/>
+        <defs>
+          <linearGradient id="grad1" x1="0" y1="58" x2="62" y2="0">
+            <stop offset="0%" stop-color="#2a7ea4"/>
+            <stop offset="100%" stop-color="#7bd0eb"/>
+          </linearGradient>
+        </defs>
+        <path d="M6 42 L22 23 L35 30 L53 16 L68 28" stroke="rgba(255,255,255,.45)" stroke-width="2" fill="none"/>
+        <path d="M10 51 L28 40 L43 46 L58 34" stroke="rgba(255,255,255,.28)" stroke-width="2" fill="none"/>
+        <circle cx="18" cy="22" r="2.6" fill="rgba(255,255,255,.9)"/>
+        <circle cx="34" cy="30" r="2.4" fill="rgba(255,255,255,.8)"/>
+        <circle cx="52" cy="18" r="2.4" fill="rgba(255,255,255,.86)"/>
+        <circle cx="24" cy="43" r="2.4" fill="rgba(255,255,255,.8)"/>
+        <circle cx="45" cy="47" r="2.2" fill="rgba(255,255,255,.8)"/>
+        <circle cx="57" cy="34" r="2.2" fill="rgba(255,255,255,.7)"/>
+      </g>
+      <polygon points="18,2 56,2 72,35 56,68 18,68 2,35" fill="none" stroke="#8a67cc" stroke-width="4"/>
+    </svg>
+  </div>
+  <div class="step-num" style="left:94px; top:144px;">1</div>
+  <div class="step-label" style="left:94px; top:174px;">Value of<br>Innovation</div>
+
+  <div class="hex" style="left:8px; top:275px;">
+    <svg viewBox="0 0 74 70" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="18,2 56,2 72,35 56,68 18,68 2,35" fill="#8a67cc"/>
+      <clipPath id="clip2"><polygon points="18,2 56,2 72,35 56,68 18,68 2,35"/></clipPath>
+      <g clip-path="url(#clip2)">
+        <rect x="6" y="6" width="62" height="58" fill="url(#grad2)"/>
+        <defs>
+          <linearGradient id="grad2" x1="0" y1="58" x2="62" y2="0">
+            <stop offset="0%" stop-color="#2b83ab"/>
+            <stop offset="100%" stop-color="#80cbe5"/>
+          </linearGradient>
+        </defs>
+        <circle cx="20" cy="24" r="2.4" fill="rgba(255,255,255,.82)"/>
+        <circle cx="36" cy="31" r="2.4" fill="rgba(255,255,255,.82)"/>
+        <circle cx="24" cy="43" r="2.4" fill="rgba(255,255,255,.82)"/>
+        <circle cx="50" cy="24" r="2.2" fill="rgba(255,255,255,.75)"/>
+        <circle cx="54" cy="41" r="2.2" fill="rgba(255,255,255,.75)"/>
+        <path d="M20 24 L36 31 L24 43 L54 41 L50 24 L36 31" stroke="rgba(255,255,255,.38)" stroke-width="2" fill="none"/>
+        <path d="M12 50 L28 20 L60 30" stroke="rgba(255,255,255,.16)" stroke-width="2" fill="none"/>
+      </g>
+      <polygon points="18,2 56,2 72,35 56,68 18,68 2,35" fill="none" stroke="#8a67cc" stroke-width="4"/>
+    </svg>
+  </div>
+  <div class="step-num" style="left:94px; top:277px;">2</div>
+  <div class="step-label" style="left:94px; top:307px;">Frontier<br>Technologies</div>
+
+  <div class="hex" style="left:8px; top:406px;">
+    <svg viewBox="0 0 74 70" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="18,2 56,2 72,35 56,68 18,68 2,35" fill="#8a67cc"/>
+      <clipPath id="clip3"><polygon points="18,2 56,2 72,35 56,68 18,68 2,35"/></clipPath>
+      <g clip-path="url(#clip3)">
+        <rect x="6" y="6" width="62" height="58" fill="url(#grad3)"/>
+        <defs>
+          <linearGradient id="grad3" x1="0" y1="58" x2="62" y2="0">
+            <stop offset="0%" stop-color="#d8d6de"/>
+            <stop offset="100%" stop-color="#ffffff"/>
+          </linearGradient>
+        </defs>
+        <rect x="15" y="25" width="14" height="10" rx="3" fill="#f2f2f2" transform="rotate(-18 22 30)"/>
+        <rect x="45" y="25" width="14" height="10" rx="3" fill="#f2f2f2" transform="rotate(18 52 30)"/>
+        <rect x="22" y="29" width="30" height="11" rx="5" fill="#dcb7a6" transform="rotate(8 37 34)"/>
+        <circle cx="26" cy="32" r="6.5" fill="#d4a38d"/>
+        <circle cx="46" cy="32" r="6.5" fill="#d4a38d"/>
+      </g>
+      <polygon points="18,2 56,2 72,35 56,68 18,68 2,35" fill="none" stroke="#8a67cc" stroke-width="4"/>
+    </svg>
+  </div>
+  <div class="step-num" style="left:94px; top:408px;">3</div>
+  <div class="step-label" style="left:94px; top:438px;">Humans &amp;<br>Machines</div>
+
+  <div class="gear-wrap">
+    <div class="gear" style="left:0; top:9px;"><div class="d1"></div><div class="d2"></div></div>
+    <div class="gear" style="left:28px; top:0; width:29px; height:29px;"><div class="d1"></div><div class="d2"></div></div>
+    <div class="bulb"></div>
+  </div>
+
+  <div class="slide-no">77</div>
+
+  <div class="title">Frontier technologies are tomorrow's everyday reality – Prepare<br>your company early on</div>
+  <div class="subtitle">Actions recommended for companies across all sectors to proactively steer their future</div>
+
+  <div class="timeline"></div>
+  <div class="dot" style="left:222px; top:197px;"></div>
+  <div class="dot" style="left:222px; top:361px;"></div>
+  <div class="dot" style="left:222px; top:479px;"></div>
+
+  <div class="bullet" style="left:251px; top:191px;">
+    <b>Awareness of technological trends</b> and foresightful analyses should be self-evident in a company's <b>strategic planning.</b> The goal is to identify impactful innovations early for best possible strategic response and integration. This extends to analyzing and <b>anticipating competitors' innovation strategies,</b> identifying potential new market entrants, especially IT/digital companies that could disrupt your market. To stay customer-focused and to <b>anticipate changing needs and behaviors,</b> identify technological innovations that your customers are aware of, are seeking out and/or want to use more of – and align your business accordingly
+  </div>
+
+  <div class="bullet" style="left:251px; top:355px;">
+    Be aware that new technologies can also imply <b>business model innovations</b> and prepare your company for them. Make sure to <b>create the right mindset,</b> capabilities and corporate identity so that you <b>become the disrupter</b> and not the disrupted. Identify which new technologies and technology-driven competencies will affect your business model to counteract any surprises
+  </div>
+
+  <div class="bullet" style="left:251px; top:473px;">
+    <b>Data-driven digitalization is fundamental</b> to all frontier technologies. Make sure that your company takes a broad approach on digitalization including <b>infrastructure, processes and systems</b> – and that data is valued. To be an early adopter, a strong digitalized infrastructure is crucial for further technologically successful, company-wide developments and growth. Depending on use case and company structure, the introduction of innovative new systems in your digitalization strategy may require enhancing existing systems but could also necessitate leap-frogging technologies
+  </div>
+
+  <div class="blocks">
+    <div class="cube tall" style="left:0px;"><div class="letter">C</div></div>
+    <div class="cube tall" style="left:164px;"><div class="letter">H</div></div>
+    <div class="cube tall" style="left:328px;"><div class="letter">A</div></div>
+    <div class="cube tall" style="left:492px;"><div class="letter">N</div></div>
+    <div class="cube" style="left:648px; width:118px;"><div class="letter" style="font-size:78px;">C</div></div>
+    <div class="cube" style="left:709px; width:118px; height:123px;">
+      <div class="letter" style="font-size:78px; top:27%;">G</div>
+      <div class="letter" style="font-size:78px; top:74%;">C</div>
+    </div>
+    <div class="cube" style="left:827px; width:118px;"><div class="letter" style="font-size:78px;">E</div></div>
+  </div>
+
+  <div class="fade-bottom"></div>
+
+  <div class="source">Sources: Roland Berger</div>
+
+  <div class="rb-logo">
+    <div class="name">Roland<br>Berger</div>
+    <div class="r-main"></div>
+  </div>
+</div>
+</body>
+</html>

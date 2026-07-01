@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Lagged transmission of tariff impacts</title>
+<style>
+  body{
+    margin:0;
+    background:#EDEAEF;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#EDEAEF;
+    color:#111;
+  }
+
+  .topnav{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:26px;
+    background:#efefef;
+    border-bottom:1px solid #d2d2d2;
+    font-size:10px;
+    color:#7a7a7a;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:26px;
+    line-height:26px;
+    padding:0 14px;
+  }
+  .tab.active-left{
+    left:0;
+    background:#5b1687;
+    color:#fff;
+  }
+  .tab.t2{left:105px;}
+  .tab.active-mid{
+    left:240px;
+    color:#5b1687;
+    border-bottom:2px solid #8c3fd1;
+  }
+  .tab.t4{left:370px;}
+  .tab.t5{left:500px;}
+  .tab.t6{left:628px;}
+  .tab.t7{left:744px;}
+  .tab.t8{left:875px;}
+  .tab.t9{left:1005px;}
+  .tab.t10{left:1135px;}
+
+  .title{
+    position:absolute;
+    left:44px;
+    top:58px;
+    width:1185px;
+    font-size:28px;
+    line-height:29px;
+    font-weight:800;
+    color:#000;
+  }
+  .subtitle{
+    position:absolute;
+    left:43px;
+    top:121px;
+    font-size:28px;
+    line-height:30px;
+    font-weight:800;
+    color:#9628ff;
+  }
+
+  .section-left, .section-right{
+    position:absolute;
+    top:172px;
+    font-size:18px;
+    font-weight:800;
+    color:#111;
+  }
+  .section-left{ left:43px; width:561px; }
+  .section-right{ left:682px; width:562px; }
+
+  .rule{
+    position:absolute;
+    height:2px;
+    background:#2b2b2b;
+  }
+  .rule.left{ left:41px; top:193px; width:604px; }
+  .rule.right{ left:682px; top:193px; width:608px; }
+
+  .subnote{
+    position:absolute;
+    top:201px;
+    font-size:13px;
+    color:#9b9b9b;
+  }
+  .subnote.left{ left:43px; width:580px; }
+  .subnote.right{ left:683px; width:572px; }
+
+  /* Left waterfall */
+  .waterfall{
+    position:absolute;
+    left:50px;
+    top:255px;
+    width:602px;
+    height:310px;
+  }
+  .axis-y{
+    position:absolute;
+    left:19px;
+    top:0;
+    width:1px;
+    height:308px;
+    background:#333;
+  }
+  .axis-x{
+    position:absolute;
+    left:19px;
+    bottom:0;
+    width:573px;
+    height:1px;
+    background:#333;
+  }
+  .ytick{
+    position:absolute;
+    left:0;
+    width:18px;
+    font-size:11px;
+    color:#333;
+    text-align:right;
+  }
+  .bar{
+    position:absolute;
+    width:45px;
+    background:#a976e4;
+    box-sizing:border-box;
+  }
+  .bar.dark{ background:#540081; }
+  .bar.neg{ background:#d9d9d9; }
+  .connector{
+    position:absolute;
+    height:1px;
+    border-top:1px dashed #9d9d9d;
+  }
+  .barlabel{
+    position:absolute;
+    width:45px;
+    text-align:center;
+    font-size:12px;
+    color:#222;
+  }
+  .barlabel.white{ color:#fff; }
+  .xlabel{
+    position:absolute;
+    width:84px;
+    font-size:13px;
+    line-height:16px;
+    color:#333;
+    text-align:center;
+  }
+
+  /* Right table + bars */
+  .rightpanel{
+    position:absolute;
+    left:685px;
+    top:229px;
+    width:550px;
+    height:462px;
+  }
+  .hdr{
+    position:absolute;
+    top:0;
+    font-size:14px;
+    font-weight:800;
+    color:#111;
+  }
+  .hdr.h1{ left:0; width:130px; }
+  .hdr.h2{ left:154px; width:110px; }
+  .hdr.h3{ left:289px; width:190px; }
+
+  .row{
+    position:absolute;
+    left:0;
+    width:548px;
+    height:26px;
+    border-bottom:1px solid #d6d6d6;
+    font-size:13px;
+    color:#222;
+  }
+  .industry{
+    position:absolute;
+    left:0;
+    top:4px;
+    width:150px;
+  }
+  .margin{
+    position:absolute;
+    left:203px;
+    top:4px;
+    width:40px;
+    text-align:center;
+  }
+  .barbox{
+    position:absolute;
+    left:291px;
+    top:3px;
+    width:182px;
+    height:20px;
+    border-left:2px solid #555;
+  }
+  .seg{
+    position:absolute;
+    top:2px;
+    height:18px;
+  }
+  .pct{
+    position:absolute;
+    left:486px;
+    top:3px;
+    width:46px;
+    font-size:13px;
+  }
+
+  .c1{ background:#6f2da8; }
+  .c2{ background:#ead8ef; }
+  .c3{ background:#20c7bc; }
+  .c4{ background:#0c2d83; }
+  .c5{ background:#f1b700; }
+  .c6{ background:#dedede; }
+  .c7{ background:#d7e8dd; }
+  .c8{ background:#9f36ff; }
+  .c9{ background:#0c73b8; }
+  .c10{ background:#c7e0ef; }
+  .c11{
+    background:
+      radial-gradient(#a64a18 24%, transparent 26%) 0 0/6px 6px,
+      #d76a1a;
+  }
+  .c12{
+    background:
+      radial-gradient(#9b9700 18%, transparent 20%) 0 0/6px 6px,
+      #f3ea00;
+  }
+  .c13{
+    background:
+      radial-gradient(#666 18%, transparent 20%) 0 0/6px 6px,
+      #c9c9c9;
+  }
+
+  .legend{
+    position:absolute;
+    left:1038px;
+    top:419px;
+    width:210px;
+    font-size:12px;
+    color:#333;
+  }
+  .legitem{
+    position:relative;
+    height:21px;
+  }
+  .sw{
+    position:absolute;
+    left:0;
+    top:1px;
+    width:18px;
+    height:14px;
+  }
+  .legtxt{
+    position:absolute;
+    left:24px;
+    top:0;
+    width:176px;
+    line-height:15px;
+  }
+
+  .brace{
+    position:absolute;
+    width:18px;
+    border-right:1px solid #b8b8b8;
+  }
+  .brace:before, .brace:after{
+    content:"";
+    position:absolute;
+    right:-1px;
+    width:9px;
+    border-top:1px solid #b8b8b8;
+  }
+  .brace:before{ top:0; }
+  .brace:after{ bottom:0; }
+  .brace-label{
+    position:absolute;
+    font-size:12px;
+    color:#333;
+    line-height:14px;
+  }
+
+  .footer{
+    position:absolute;
+    left:70px;
+    top:700px;
+    width:950px;
+    font-size:11px;
+    color:#8b8b8b;
+    line-height:16px;
+  }
+  .copyright{
+    position:absolute;
+    left:1014px;
+    top:731px;
+  }
+  .copyright{
+    position:absolute;
+    left:949px;
+    top:731px;
+  }
+  .copyline{
+    position:absolute;
+    left:950px;
+    top:731px;
+  }
+
+  .brand{
+    position:absolute;
+    left:40px;
+    top:723px;
+    width:24px;
+    height:12px;
+    transform:skewX(-18deg);
+    border-left:6px solid #8b00ff;
+    border-top:6px solid transparent;
+    border-bottom:6px solid transparent;
+  }
+  .copy{
+    position:absolute;
+    left:948px;
+    top:731px;
+    font-size:11px;
+    color:#666;
+  }
+  .pageno{
+    position:absolute;
+    right:20px;
+    top:731px;
+    font-size:11px;
+    color:#666;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topnav">
+    <div class="tab active-left">Top 10 trends</div>
+    <div class="tab t2">Multi-speed growth</div>
+    <div class="tab active-mid">Tariff impacts</div>
+    <div class="tab t4">Financial fragility</div>
+    <div class="tab t5">Affordability</div>
+    <div class="tab t6">AI productivity</div>
+    <div class="tab t7">China exports</div>
+    <div class="tab t8">Europe struggle</div>
+    <div class="tab t9">AI arms race</div>
+    <div class="tab t10">Power crunch</div>
+  </div>
+
+  <div class="title">As companies’ pre-tariff inventory buffers dwindle, the full brunt of the 15 p.p. increase in the effective US tariff rate (with additional sectoral tariffs still to come) will begin to be felt</div>
+  <div class="subtitle">2. Lagged transmission of tariff impacts</div>
+
+  <div class="section-left">Potential increase in US consumer prices from tariffs¹</div>
+  <div class="rule left"></div>
+  <div class="subnote left">Percent change in PCE level (relative to no-tariff counterfactual) over a 1-year horizon</div>
+
+  <div class="section-right">Estimated tariff-driven margin erosion for key US industries</div>
+  <div class="rule right"></div>
+  <div class="subnote right">Potential percent reduction in margins (over next 12 months) due to tariff-related cost increases</div>
+
+  <div class="waterfall">
+    <div class="axis-y"></div>
+    <div class="axis-x"></div>
+
+    <div class="ytick" style="top:-7px;">2.2</div>
+    <div class="ytick" style="top:21px;">2.0</div>
+    <div class="ytick" style="top:49px;">1.8</div>
+    <div class="ytick" style="top:77px;">1.6</div>
+    <div class="ytick" style="top:105px;">1.4</div>
+    <div class="ytick" style="top:133px;">1.2</div>
+    <div class="ytick" style="top:161px;">1.0</div>
+    <div class="ytick" style="top:189px;">0.8</div>
+    <div class="ytick" style="top:217px;">0.6</div>
+    <div class="ytick" style="top:245px;">0.4</div>
+    <div class="ytick" style="top:273px;">0.2</div>
+    <div class="ytick" style="top:301px;">0.0</div>
+
+    <div class="bar" style="left:38px; bottom:1px; height:116px;"></div>
+    <div class="barlabel" style="left:38px; top:240px;">0.83</div>
+
+    <div class="connector" style="left:83px; top:191px; width:36px;"></div>
+    <div class="bar" style="left:119px; bottom:115px; height:111px;"></div>
+    <div class="barlabel" style="left:119px; top:127px;">0.80</div>
+
+    <div class="connector" style="left:164px; top:80px; width:36px;"></div>
+    <div class="bar" style="left:201px; bottom:226px; height:10px;"></div>
+    <div class="barlabel" style="left:201px; top:194px;">0.07</div>
+
+    <div class="connector" style="left:246px; top:70px; width:36px;"></div>
+    <div class="bar" style="left:283px; bottom:236px; height:32px;"></div>
+    <div class="barlabel" style="left:283px; top:163px;">0.23</div>
+
+    <div class="connector" style="left:328px; top:38px; width:36px;"></div>
+    <div class="bar" style="left:365px; bottom:268px; height:28px;"></div>
+    <div class="barlabel" style="left:365px; top:139px;">0.20</div>
+
+    <div class="connector" style="left:410px; top:10px; width:36px;"></div>
+    <div class="bar neg" style="left:447px; bottom:280px; height:14px;"></div>
+    <div class="barlabel" style="left:447px; top:8px;">-0.10</div>
+
+    <div class="connector" style="left:492px; top:24px; width:36px;"></div>
+    <div class="bar dark" style="left:528px; bottom:1px; height:283px;"></div>
+    <div class="barlabel white" style="left:528px; top:158px;">2.03</div>
+
+    <div class="xlabel" style="left:28px; top:313px;">Direct impact of higher consumer goods import prices (+)</div>
+    <div class="xlabel" style="left:109px; top:313px;">Higher producer input costs (+)</div>
+    <div class="xlabel" style="left:191px; top:313px;">Producers opportunistically raising prices (+)</div>
+    <div class="xlabel" style="left:273px; top:313px;">Substitution to lower-tariff but higher-cost countries</div>
+    <div class="xlabel" style="left:355px; top:313px;">USD depreciation (+)</div>
+    <div class="xlabel" style="left:436px; top:313px;">Drag on inflation from weaker demand (-)</div>
+    <div class="xlabel" style="left:518px; top:313px;">Total CPI increase</div>
+  </div>
+
+  <div class="rightpanel">
+    <div class="hdr h1">Industry</div>
+    <div class="hdr h2">Industry margin²</div>
+    <div class="hdr h3">Potential margin erosion³</div>
+
+    <div class="row" style="top:22px;">
+      <div class="industry">Automotive</div><div class="margin">6%</div>
+      <div class="barbox">
+        <div class="seg c2" style="left:0;width:18px;"></div>
+        <div class="seg c6" style="left:18px;width:13px;"></div>
+        <div class="seg c3" style="left:31px;width:5px;"></div>
+        <div class="seg c5" style="left:36px;width:3px;"></div>
+        <div class="seg c8" style="left:39px;width:78px;"></div>
+        <div class="seg c12" style="left:117px;width:6px;"></div>
+      </div>
+      <div class="pct">8.2%</div>
+    </div>
+
+    <div class="row" style="top:48px;">
+      <div class="industry">Aerospace &amp; Defense</div><div class="margin">10%</div>
+      <div class="barbox">
+        <div class="seg c2" style="left:0;width:24px;"></div>
+        <div class="seg c3" style="left:24px;width:5px;"></div>
+        <div class="seg c4" style="left:29px;width:5px;"></div>
+        <div class="seg c6" style="left:34px;width:31px;"></div>
+        <div class="seg c8" style="left:65px;width:39px;"></div>
+        <div class="seg c12" style="left:104px;width:8px;"></div>
+      </div>
+      <div class="pct">4.7%</div>
+    </div>
+
+    <div class="row" style="top:74px;">
+      <div class="industry">High Tech</div><div class="margin">14%</div>
+      <div class="barbox">
+        <div class="seg c2" style="left:0;width:11px;"></div>
+        <div class="seg c3" style="left:11px;width:4px;"></div>
+        <div class="seg c8" style="left:15px;width:20px;"></div>
+        <div class="seg c10" style="left:35px;width:4px;"></div>
+        <div class="seg c12" style="left:39px;width:41px;"></div>
+        <div class="seg c13" style="left:80px;width:3px;"></div>
+      </div>
+      <div class="pct">4.3%</div>
+    </div>
+
+    <div class="row" style="top:100px;">
+      <div class="industry">Chemicals</div><div class="margin">8%</div>
+      <div class="barbox">
+        <div class="seg c2" style="left:0;width:15px;"></div>
+        <div class="seg c3" style="left:15px;width:3px;"></div>
+        <div class="seg c8" style="left:18px;width:15px;"></div>
+        <div class="seg c6" style="left:33px;width:19px;"></div>
+        <div class="seg c13" style="left:52px;width:17px;"></div>
+      </div>
+      <div class="pct">3.7%</div>
+    </div>
+
+    <div class="row" style="top:126px;">
+      <div class="industry">Life Sciences</div><div class="margin">17%</div>
+      <div class="barbox">
+        <div class="seg c2" style="left:0;width:4px;"></div>
+        <div class="seg c3" style="left:4px;width:2px;"></div>
+        <div class="seg c8" style="left:6px;width:10px;"></div>
+        <div class="seg c12" style="left:16px;width:4px;"></div>
+        <div class="seg c13" style="left:20px;width:20px;"></div>
+      </div>
+      <div class="pct">3.4%</div>
+    </div>
+
+    <div class="row" style="top:152px;">
+      <div class="industry">Natural Resources</div><div class="margin">11%</div>
+      <div class="barbox">
+        <div class="seg c2" style="left:0;width:11px;"></div>
+        <div class="seg c4" style="left:11px;width:2px;"></div>
+        <div class="seg c3" style="left:13px;width:2px;"></div>
+        <div class="seg c6" style="left:15px;width:21px;"></div>
+        <div class="seg c8" style="left:36px;width:5px;"></div>
+        <div class="seg c12" style="left:41px;width:2px;"></div>
+      </div>
+      <div class="pct">2.8%</div>
+    </div>
+
+    <div class="row" style="top:178px;">
+      <div class="industry">CG&amp;S</div><div class="margin">14%</div>
+      <div class="barbox">
+        <div class="seg c2" style="left:0;width:14px;"></div>
+        <div class="seg c8" style="left:14px;width:4px;"></div>
+        <div class="seg c3" style="left:18px;width:3px;"></div>
+        <div class="seg c6" style="left:21px;width:15px;"></div>
+        <div class="seg c13" style="left:36px;width:6px;"></div>
+      </div>
+      <div class="pct">2.6%</div>
+    </div>
+
+    <div class="row" style="top:204px;">
+      <div class="industry">Energy</div><div class="margin">13%</div>
+      <div class="barbox">
+        <div class="seg c4" style="left:0;width:11px;"></div>
+        <div class="seg c6" style="left:11px;width:4px;"></div>
+        <div class="seg c11" style="left:15px;width:3px;"></div>
+        <div class="seg c2" style="left:18px;width:3px;"></div>
+        <div class="seg c8" style="left:21px;width:2px;"></div>
+      </div>
+      <div class="pct">1.9%</div>
+    </div>
+
+    <div class="row" style="top:230px;">
+      <div class="industry">Industrials</div><div class="margin">8%</div>
+      <div class="barbox">
+        <div class="seg c2" style="left:0;width:12px;"></div>
+        <div class="seg c8" style="left:12px;width:3px;"></div>
+        <div class="seg c6" style="left:15px;width:9px;"></div>
+        <div class="seg c11" style="left:24px;width:3px;"></div>
+      </div>
+      <div class="pct">1.7%</div>
+    </div>
+
+    <div class="row" style="top:256px;">
+      <div class="industry">Comms &amp; Media</div><div class="margin">15%</div>
+      <div class="barbox">
+        <div class="seg c2" style="left:0;width:9px;"></div>
+        <div class="seg c8" style="left:9px;width:3px;"></div>
+        <div class="seg c3" style="left:12px;width:2px;"></div>
+        <div class="seg c6" style="left:14px;width:6px;"></div>
+      </div>
+      <div class="pct">1.3%</div>
+    </div>
+
+    <div class="row" style="top:282px;">
+      <div class="industry">Retail</div><div class="margin">6%</div>
+      <div class="barbox">
+        <div class="seg c2" style="left:0;width:5px;"></div>
+        <div class="seg c8" style="left:5px;width:2px;"></div>
+        <div class="seg c11" style="left:7px;width:2px;"></div>
+        <div class="seg c6" style="left:9px;width:4px;"></div>
+      </div>
+      <div class="pct">0.9%</div>
+    </div>
+
+    <div class="row" style="top:308px;">
+      <div class="industry">Software &amp; Platforms</div><div class="margin">22%</div>
+      <div class="barbox">
+        <div class="seg c3" style="left:0;width:3px;"></div>
+        <div class="seg c5" style="left:3px;width:2px;"></div>
+        <div class="seg c8" style="left:5px;width:3px;"></div>
+        <div class="seg c6" style="left:8px;width:2px;"></div>
+      </div>
+      <div class="pct">0.7%</div>
+    </div>
+
+    <div class="row" style="top:334px;">
+      <div class="industry">Utilities</div><div class="margin">16%</div>
+      <div class="barbox">
+        <div class="seg c2" style="left:0;width:3px;"></div>
+        <div class="seg c8" style="left:3px;width:2px;"></div>
+        <div class="seg c10" style="left:5px;width:3px;"></div>
+        <div class="seg c6" style="left:8px;width:2px;"></div>
+      </div>
+      <div class="pct">0.7%</div>
+    </div>
+
+    <div class="row" style="top:360px;">
+      <div class="industry">Travel</div><div class="margin">11%</div>
+      <div class="barbox">
+        <div class="seg c2" style="left:0;width:3px;"></div>
+        <div class="seg c8" style="left:3px;width:2px;"></div>
+        <div class="seg c10" style="left:5px;width:2px;"></div>
+      </div>
+      <div class="pct">0.6%</div>
+    </div>
+
+    <div class="row" style="top:386px;">
+      <div class="industry">Capital Markets</div><div class="margin">15%</div>
+      <div class="barbox">
+        <div class="seg c3" style="left:0;width:2px;"></div>
+        <div class="seg c10" style="left:2px;width:2px;"></div>
+        <div class="seg c13" style="left:4px;width:1px;"></div>
+      </div>
+      <div class="pct">0.4%</div>
+    </div>
+
+    <div class="row" style="top:412px;">
+      <div class="industry">Banking</div><div class="margin">12%</div>
+      <div class="barbox">
+        <div class="seg c10" style="left:0;width:1px;"></div>
+        <div class="seg c13" style="left:1px;width:1px;"></div>
+      </div>
+      <div class="pct">0.1%</div>
+    </div>
+
+    <div class="row" style="top:438px; border-bottom:none;">
+      <div class="industry">Insurance</div><div class="margin">25%</div>
+      <div class="barbox">
+        <div class="seg c13" style="left:0;width:1px;"></div>
+      </div>
+      <div class="pct">0.1%</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legitem"><div class="sw c1"></div><div class="legtxt">China reciprocal</div></div>
+    <div class="legitem"><div class="sw c2"></div><div class="legtxt">Reciprocal (other countries)</div></div>
+    <div class="legitem"><div class="sw c3"></div><div class="legtxt">China "fentanyl" tariffs</div></div>
+    <div class="legitem"><div class="sw c4"></div><div class="legtxt">Canada "fentanyl" tariffs</div></div>
+    <div class="legitem"><div class="sw c5"></div><div class="legtxt">Mexico "fentanyl" tariffs</div></div>
+    <div class="legitem"><div class="sw c6"></div><div class="legtxt">Steel</div></div>
+    <div class="legitem"><div class="sw c7"></div><div class="legtxt">Aluminium</div></div>
+    <div class="legitem"><div class="sw c8"></div><div class="legtxt">Autos</div></div>
+    <div class="legitem"><div class="sw c9"></div><div class="legtxt">Copper</div></div>
+    <div class="legitem"><div class="sw c10"></div><div class="legtxt">Lumber</div></div>
+    <div class="legitem"><div class="sw c11"></div><div class="legtxt">Remaining CA/MX "fentanyl"</div></div>
+    <div class="legitem"><div class="sw c12"></div><div class="legtxt">Semiconductors</div></div>
+    <div class="legitem"><div class="sw c13"></div><div class="legtxt">Pharmaceuticals</div></div>
+  </div>
+
+  <div class="brace" style="left:1267px; top:418px; height:202px;"></div>
+  <div class="brace-label" style="left:1300px; top:508px;">Already<br>enacted</div>
+
+  <div class="brace" style="left:1267px; top:628px; height:62px;"></div>
+  <div class="brace-label" style="left:1300px; top:649px;">Pending</div>
+
+  <div class="brand"></div>
+  <div class="footer">Note(s): 1/ Based on a 15 p.p. increase in effective US tariff rate; 2/ EBIT margins (2024), based on ARI Financial Tower and Capital IQ data for 2,768 public companies; (3) Does not include potential margin impact from pricing responses and gain/loss in market share<br>Source(s): BEA, US Census Bureau, USITC, University of Michigan, Goldman Sachs Investment Research, Accenture Strategy analysis</div>
+  <div class="copy">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="pageno">21</div>
+</div>
+</body>
+</html>

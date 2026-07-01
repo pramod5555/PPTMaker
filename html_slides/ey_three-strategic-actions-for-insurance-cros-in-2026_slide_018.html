@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated EY Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f5;
+    color:#4b4f58;
+  }
+  .slide > div, .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+  .chapter-pill{
+    left:30px;
+    top:14px;
+    width:71px;
+    height:18px;
+    background:#7e8088;
+    border-radius:10px 10px 0 0;
+    color:#fff;
+    font-size:9px;
+    font-weight:700;
+    line-height:18px;
+    text-align:center;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+  }
+  .jump{
+    left:1210px;
+    top:59px;
+    width:40px;
+    height:40px;
+  }
+  .left-vert{
+    left:7px;
+    top:332px;
+    width:18px;
+    height:124px;
+  }
+  .left-vert .txt{
+    position:absolute;
+    left:-30px;
+    top:35px;
+    width:78px;
+    transform:rotate(-90deg);
+    transform-origin:center;
+    font-size:14px;
+    color:#373944;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    text-align:center;
+    font-weight:500;
+  }
+  .left-vert .line{
+    position:absolute;
+    left:7px;
+    top:78px;
+    width:1px;
+    height:36px;
+    background:#666972;
+  }
+
+  .body-copy{
+    left:78px;
+    top:126px;
+    width:275px;
+    font-size:15px;
+    line-height:1.45;
+    font-weight:400;
+    color:#4d5058;
+  }
+
+  .callout{
+    left:76px;
+    top:456px;
+    width:256px;
+    height:181px;
+    border:1px solid #a9adb6;
+    background:transparent;
+  }
+  .callout .corner{
+    position:absolute;
+    background:#8f939d;
+  }
+  .callout .h{ width:33px; height:1px; }
+  .callout .v{ width:1px; height:33px; }
+
+  .callout .qmark{
+    position:absolute;
+    left:31px;
+    top:18px;
+    color:#f3c500;
+    font-size:36px;
+    line-height:18px;
+    font-weight:700;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .callout .title{
+    position:absolute;
+    left:34px;
+    top:39px;
+    width:130px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:17px;
+    line-height:1.2;
+    color:#40424a;
+  }
+  .callout .text{
+    position:absolute;
+    left:34px;
+    top:64px;
+    width:180px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:14px;
+    line-height:1.4;
+    color:#40424a;
+  }
+
+  .fig-title{
+    left:435px;
+    top:125px;
+    width:800px;
+    font-size:15px;
+    line-height:1.35;
+    color:#3f434b;
+    font-weight:700;
+  }
+  .fig-title span{ font-weight:400; }
+
+  .chart-left{ left:444px; top:183px; width:380px; height:360px; }
+  .chart-right{ left:877px; top:183px; width:344px; height:360px; }
+
+  .row{
+    position:absolute;
+    left:0;
+    width:100%;
+    height:61px;
+  }
+  .label{
+    position:absolute;
+    top:14px;
+    font-size:12px;
+    line-height:1.23;
+    font-weight:400;
+    color:#555861;
+    text-align:right;
+  }
+  .barwrap{
+    position:absolute;
+    top:14px;
+    height:26px;
+    border:1px solid #adb2ba;
+    background:transparent;
+  }
+  .barfill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:24px;
+    background:#1478d3;
+  }
+  .pct{
+    position:absolute;
+    top:5px;
+    right:8px;
+    font-size:16px;
+    line-height:16px;
+    font-weight:400;
+    color:#5b5e66;
+  }
+  .smallpct{
+    position:absolute;
+    top:-14px;
+    font-size:7px;
+    line-height:8px;
+    color:#6a6d75;
+    white-space:nowrap;
+  }
+  .region{
+    position:absolute;
+    top:44px;
+    font-size:6px;
+    line-height:7px;
+    color:#6a6d75;
+    white-space:nowrap;
+  }
+
+  .legend{
+    left:1110px;
+    top:565px;
+    width:122px;
+    height:20px;
+    color:#6d7078;
+    font-size:7px;
+    line-height:1.15;
+  }
+  .legend .box{
+    position:absolute;
+    left:0;
+    top:0;
+    width:14px;
+    height:14px;
+    background:#b9b9be;
+  }
+  .legend .txt{
+    position:absolute;
+    left:18px;
+    top:-1px;
+    width:104px;
+  }
+
+  .page{
+    left:49px;
+    top:708px;
+    width:20px;
+    font-size:11px;
+    line-height:12px;
+    color:#3f434b;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="chapter-pill">CHAPTER 2</div>
+
+  <div class="jump">
+    <svg width="40" height="40" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="19" fill="none" stroke="#5f626a" stroke-width="1.2" stroke-dasharray="7 5"/>
+      <circle cx="31" cy="7" r="4" fill="#f0d100"/>
+      <text x="13" y="10" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#333">↗</text>
+      <text x="20" y="17" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8" fill="#333">Jump to</text>
+      <text x="20" y="26" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8" fill="#333">contents</text>
+    </svg>
+  </div>
+
+  <div class="left-vert">
+    <div class="txt">CHAPTER 2</div>
+    <div class="line"></div>
+  </div>
+
+  <div class="body-copy">
+    Barriers to scale are consistent globally. Skill<br>
+    gaps and data quality remain the most common<br>
+    constraints, while integration with legacy systems<br>
+    and budget limitations continue to slow adoption.<br>
+    These results suggest that risk technology<br>
+    transformation is entering a new phase. The<br>
+    focus is no longer solely on building foundational<br>
+    platforms or automating individual processes but on<br>
+    embedding AI as a core productivity layer supported<br>
+    by robust data, controls and governance. For CROs,<br>
+    the challenge is to ensure that this acceleration<br>
+    enhances insight, consistency and resilience –<br>
+    rather than introducing new fragmentation or<br>
+    unmanaged risk – as risk management capabilities<br>
+    scale into the next generation.
+  </div>
+
+  <div class="callout">
+    <div class="corner h" style="left:-1px; top:-1px;"></div>
+    <div class="corner v" style="left:-1px; top:-1px;"></div>
+    <div class="corner h" style="right:-1px; top:-1px;"></div>
+    <div class="corner v" style="right:-1px; top:-1px;"></div>
+    <div class="corner h" style="left:-1px; bottom:-1px;"></div>
+    <div class="corner v" style="left:-1px; bottom:-1px;"></div>
+    <div class="corner h" style="right:-1px; bottom:-1px;"></div>
+    <div class="corner v" style="right:-1px; bottom:-1px;"></div>
+    <div class="qmark">“</div>
+    <div class="title">What CROs say:</div>
+    <div class="text">
+      AI and automation offer<br>
+      tremendous potential, but legacy<br>
+      systems and insufficient first-line<br>
+      governance continue to limit their<br>
+      impact on risk management.
+    </div>
+  </div>
+
+  <div class="fig-title">Figure 9: <span>What are the top constraints your organization faces in adopting or accelerating digital transformation (e.g., use of automation, AI/GenAI and machine learning (ML)) to support risk management practices?</span></div>
+
+  <div class="chart-left">
+    <div class="row" style="top:0px;">
+      <div class="label" style="left:0;width:168px;">Skill gaps in AI and data analytics</div>
+      <div class="barwrap" style="left:180px;width:197px;">
+        <div class="barfill" style="width:88px;"></div>
+        <div class="pct">45%</div>
+        <div class="smallpct" style="left:94px;">54%</div>
+      </div>
+      <div class="region" style="left:180px;">50% Asia-Pacific | 43% EMEIA | 46% Americas</div>
+    </div>
+
+    <div class="row" style="top:59px;">
+      <div class="label" style="left:0;width:168px;">Budget constraints</div>
+      <div class="barwrap" style="left:180px;width:197px;">
+        <div class="barfill" style="width:81px;"></div>
+        <div class="pct">41%</div>
+        <div class="smallpct" style="left:59px;">35%</div>
+      </div>
+      <div class="region" style="left:180px;">50% Asia-Pacific | 36% EMEIA | 42% Americas</div>
+    </div>
+
+    <div class="row" style="top:118px;">
+      <div class="label" style="left:0;width:168px;">Data quality and availability</div>
+      <div class="barwrap" style="left:180px;width:197px;">
+        <div class="barfill" style="width:81px;"></div>
+        <div class="pct">41%</div>
+        <div class="smallpct" style="left:151px;">80%</div>
+      </div>
+      <div class="region" style="left:180px;">70% Asia-Pacific | 34% EMEIA | 40% Americas</div>
+    </div>
+
+    <div class="row" style="top:177px;">
+      <div class="label" style="left:0;width:168px;">Data silos (e.g., disparate systems<br>and databases)</div>
+      <div class="barwrap" style="left:180px;width:197px;">
+        <div class="barfill" style="width:77px;"></div>
+        <div class="pct">39%</div>
+        <div class="smallpct" style="left:92px;">51%</div>
+      </div>
+      <div class="region" style="left:180px;">30% Asia-Pacific | 32% EMEIA | 46% Americas</div>
+    </div>
+
+    <div class="row" style="top:236px;">
+      <div class="label" style="left:0;width:168px;">Legacy platforms with limited<br>automation</div>
+      <div class="barwrap" style="left:180px;width:197px;">
+        <div class="barfill" style="width:41px;"></div>
+        <div class="pct">21%</div>
+        <div class="smallpct" style="left:49px;">31%</div>
+      </div>
+      <div class="region" style="left:180px;">30% Asia-Pacific | 23% EMEIA | 21% Americas</div>
+    </div>
+
+    <div class="row" style="top:295px;">
+      <div class="label" style="left:0;width:168px;">Data privacy and security<br>(e.g., protecting customer data,<br>cyber threats)</div>
+      <div class="barwrap" style="left:180px;width:197px;">
+        <div class="barfill" style="width:39px;"></div>
+        <div class="pct">20%</div>
+        <div class="smallpct" style="left:116px;">67%</div>
+      </div>
+      <div class="region" style="left:180px;">10% Asia-Pacific | 20% EMEIA | 21% Americas</div>
+    </div>
+  </div>
+
+  <div class="chart-right">
+    <div class="row" style="top:0px;">
+      <div class="label" style="left:0;width:168px;">Change management<br>and employee resistance</div>
+      <div class="barwrap" style="left:179px;width:198px;">
+        <div class="barfill" style="width:38px;"></div>
+        <div class="pct">19%</div>
+        <div class="smallpct" style="left:49px;">31%</div>
+      </div>
+      <div class="region" style="left:179px;">10% Asia-Pacific | 25% EMEIA | 15% Americas</div>
+    </div>
+
+    <div class="row" style="top:59px;">
+      <div class="label" style="left:0;width:168px;">Integration with existing systems</div>
+      <div class="barwrap" style="left:179px;width:198px;">
+        <div class="barfill" style="width:36px;"></div>
+        <div class="pct">18%</div>
+        <div class="smallpct" style="left:57px;">37%</div>
+      </div>
+      <div class="region" style="left:179px;">20% Asia-Pacific | 11% EMEIA | 23% Americas</div>
+    </div>
+
+    <div class="row" style="top:118px;">
+      <div class="label" style="left:0;width:168px;">Regulatory compliance (e.g., data<br>governance and controls that<br>comply with specific regulations)</div>
+      <div class="barwrap" style="left:179px;width:198px;">
+        <div class="barfill" style="width:22px;"></div>
+        <div class="pct">11%</div>
+        <div class="smallpct" style="left:76px;">44%</div>
+      </div>
+      <div class="region" style="left:179px;">20% Asia-Pacific | 9% EMEIA | 12% Americas</div>
+    </div>
+
+    <div class="row" style="top:177px;">
+      <div class="label" style="left:0;width:168px;">Integrated data governance model<br>across the three lines of defense</div>
+      <div class="barwrap" style="left:179px;width:198px;">
+        <div class="barfill" style="width:14px;"></div>
+        <div class="pct">7%</div>
+        <div class="smallpct" style="left:49px;">32%</div>
+      </div>
+      <div class="region" style="left:179px;">10% Asia-Pacific | 5% EMEIA | 8% Americas</div>
+    </div>
+
+    <div class="row" style="top:236px;">
+      <div class="label" style="left:0;width:168px;">Insufficient visibility into<br>third-party or vendor preparedness</div>
+      <div class="barwrap" style="left:179px;width:198px;">
+        <div class="barfill" style="width:10px;"></div>
+        <div class="pct">5%</div>
+        <div class="smallpct" style="left:31px;">30%</div>
+      </div>
+      <div class="region" style="left:179px;">10% Asia-Pacific | 2% EMEIA | 6% Americas</div>
+    </div>
+
+    <div class="row" style="top:295px;">
+      <div class="label" style="left:0;width:168px;">N/A – no anticipated challenges</div>
+      <div class="barwrap" style="left:179px;width:198px;">
+        <div class="barfill" style="width:4px;"></div>
+        <div class="pct">2%</div>
+        <div class="smallpct" style="left:0px;">0%</div>
+      </div>
+      <div class="region" style="left:179px;">0% Asia-Pacific | 2% EMEIA | 2% Americas</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="box"></div>
+    <div class="txt">15th annual EY/IIF global bank<br>risk management survey</div>
+  </div>
+
+  <div class="page">18</div>
+</div>
+</body>
+</html>

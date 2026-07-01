@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ececec;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+    color:#666;
+  }
+  .slide > *{position:absolute; box-sizing:border-box;}
+
+  .qmark{
+    left:46px; top:43px;
+    font-size:38px; line-height:1;
+    font-weight:700; color:#000;
+  }
+
+  .left-copy{
+    left:53px; top:155px; width:290px;
+    font-size:18px; line-height:1.34;
+    color:#666;
+    font-weight:400;
+  }
+
+  .statement{
+    left:53px; top:259px; width:285px;
+    font-size:32px; line-height:1.08;
+    color:#555;
+    font-weight:700;
+  }
+
+  .base{
+    left:53px; top:609px; width:290px;
+    font-size:12px; line-height:1.36;
+    color:#8a8a8a;
+    font-style:italic;
+  }
+
+  .footer-left{
+    left:48px; bottom:17px;
+    font-size:12px; color:#4e4e4e;
+  }
+
+  .footer-page{
+    left:0; right:0; bottom:16px;
+    text-align:center;
+    font-size:22px; color:#4d4d4d;
+  }
+
+  .header-market{
+    left:376px; top:22px;
+    font-size:29px; line-height:1;
+    transform:scale(0.62,1);
+    transform-origin:left top;
+    color:#666;
+    white-space:nowrap;
+  }
+  .header-likely{
+    left:577px; top:22px;
+    font-size:29px; line-height:1;
+    transform:scale(0.62,1);
+    transform-origin:left top;
+    color:#666;
+    white-space:nowrap;
+  }
+  .header-unlikely{
+    left:1135px; top:22px;
+    font-size:29px; line-height:1;
+    transform:scale(0.62,1);
+    transform-origin:left top;
+    color:#666;
+    white-space:nowrap;
+  }
+  .header-change{
+    left:1223px; top:18px; width:92px;
+    font-size:16px; line-height:1.05;
+    color:#333; text-align:center;
+  }
+
+  .sq1{
+    left:553px; top:24px; width:16px; height:16px;
+    background:#27b1b0;
+  }
+  .sq2{
+    left:1113px; top:23px; width:16px; height:16px;
+    background:#18236f;
+  }
+
+  .rule-left{
+    left:370px; top:52px; width:168px; height:1px;
+    background:#7f8d99;
+  }
+  .rule-mid{
+    left:607px; top:52px; width:591px; height:1px;
+    background:#7f8d99;
+  }
+  .rule-right{
+    left:1207px; top:52px; width:122px; height:1px;
+    background:#7f8d99;
+  }
+
+  .labels{
+    left:378px; top:82px; width:130px;
+    font-size:14px; line-height:18px;
+    color:#7a7a7a;
+    text-align:right;
+  }
+
+  .chart{
+    left:520px; top:82px; width:660px; height:612px;
+  }
+  .row{
+    position:absolute; left:0; width:660px; height:18px;
+  }
+  .barL,.barR,.outlineL,.outlineR,.pctL,.pctR{position:absolute;}
+  .barL,.barR,.outlineL,.outlineR{top:1px; height:15px;}
+  .barL{background:#28b2b2;}
+  .barR{background:#18236f;}
+  .outlineL{
+    border:1.5px solid #4bc1c6;
+    background:transparent;
+  }
+  .outlineR{
+    border:1.5px solid #565b96;
+    background:transparent;
+  }
+  .pctL,.pctR{
+    top:0; height:18px; line-height:18px;
+    font-size:12px; font-weight:700; color:#fff;
+    white-space:nowrap;
+  }
+  .pctL{left:7px;}
+  .pctR{right:6px; text-align:right;}
+  .pctR.dark{color:#18236f;}
+
+  .change-col{
+    left:1231px; top:86px; width:73px;
+  }
+  .chg{
+    position:absolute; left:0; width:73px; height:19px;
+    background:#d9d9dc;
+    border-top:1px solid #ececee;
+    font-size:12px; line-height:19px;
+    text-align:center; color:#545454;
+  }
+
+  .highlight{
+    left:432px; top:498px; width:895px; height:20px;
+    border:2px solid #2fbf79;
+    background:transparent;
+    z-index:40;
+  }
+
+  .logo{
+    right:17px; bottom:11px;
+    width:48px; height:49px;
+    background:#1c3f95;
+    clip-path:polygon(0 0, 100% 0, 92% 100%, 0 100%);
+  }
+  .logo:before{
+    content:"";
+    position:absolute;
+    right:0; top:0;
+    width:24px; height:49px;
+    background:#18b69f;
+    clip-path:polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .logo .txt{
+    position:absolute;
+    left:7px; bottom:6px;
+    font-size:13px; line-height:1;
+    color:#fff; font-weight:700;
+  }
+  .logo .dot1{
+    position:absolute; left:21px; top:7px;
+    width:7px; height:7px; border-radius:50%;
+    background:#5862d6;
+  }
+  .logo .dot2{
+    position:absolute; left:17px; top:14px;
+    width:9px; height:9px; border-radius:50%;
+    background:#4656c8;
+  }
+  .logo .dot3{
+    position:absolute; left:23px; top:19px;
+    width:11px; height:11px; border-radius:50%;
+    background:#28b2b2;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="qmark">Q.</div>
+
+  <div class="left-copy">
+    For each of the following, please<br>
+    tell me how likely or unlikely you<br>
+    think they are to happen...?
+  </div>
+
+  <div class="statement">
+    An asteroid will hit the<br>
+    Earth
+  </div>
+
+  <div class="base">
+    Base: 23,721 adults aged 18 years and older in India, 18-74 in<br>
+    Canada, Republic of Ireland, Malaysia, the Philippines, South<br>
+    Africa, Turkey, and the United States, 20-74 in Thailand, 21-74<br>
+    in Indonesia and Singapore, and 16-74 in all other countries.<br>
+    Friday, October 25 – Friday November 8, 2024
+  </div>
+
+  <div class="footer-left">© Ipsos Predictions 2025 Report</div>
+  <div class="footer-page">57</div>
+
+  <div class="header-market">Market</div>
+  <div class="sq1"></div>
+  <div class="header-likely">Likely</div>
+  <div class="sq2"></div>
+  <div class="header-unlikely">Unlikely</div>
+  <div class="header-change">Change likely<br>vs 2023</div>
+
+  <div class="rule-left"></div>
+  <div class="rule-mid"></div>
+  <div class="rule-right"></div>
+
+  <div class="labels">
+    Global Country Average<br>
+    India<br>
+    Indonesia<br>
+    Malaysia<br>
+    Philippines<br>
+    Türkiye<br>
+    Thailand<br>
+    South Africa<br>
+    Chile<br>
+    Peru<br>
+    Mexico<br>
+    Singapore<br>
+    Brazil<br>
+    Switzerland<br>
+    Colombia<br>
+    United States<br>
+    Ireland<br>
+    Canada<br>
+    Spain<br>
+    China<br>
+    Romania<br>
+    Belgium<br>
+    South Korea<br>
+    Italy<br>
+    Australia<br>
+    France<br>
+    Germany<br>
+    Argentina<br>
+    Sweden<br>
+    Netherlands<br>
+    Poland<br>
+    Great Britain<br>
+    Hungary<br>
+    Japan
+  </div>
+
+  <div class="chart">
+    <div class="row" style="top:0px;">
+      <div class="outlineL" style="left:0; width:140px;"></div>
+      <div class="pctL" style="color:#28b2b2;">21%</div>
+      <div class="outlineR" style="left:279px; width:381px;"></div>
+      <div class="pctR dark">58%</div>
+    </div>
+
+    <div class="row" style="top:18px;">
+      <div class="barL" style="left:0; width:336px;"></div><div class="pctL">51%</div>
+      <div class="barR" style="left:432px; width:228px;"></div><div class="pctR">34%</div>
+    </div>
+    <div class="row" style="top:36px;">
+      <div class="barL" style="left:0; width:320px;"></div><div class="pctL">48%</div>
+      <div class="barR" style="left:410px; width:250px;"></div><div class="pctR">38%</div>
+    </div>
+    <div class="row" style="top:54px;">
+      <div class="barL" style="left:0; width:298px;"></div><div class="pctL">45%</div>
+      <div class="barR" style="left:429px; width:231px;"></div><div class="pctR">35%</div>
+    </div>
+    <div class="row" style="top:72px;">
+      <div class="barL" style="left:0; width:297px;"></div><div class="pctL">45%</div>
+      <div class="barR" style="left:410px; width:250px;"></div><div class="pctR">38%</div>
+    </div>
+    <div class="row" style="top:90px;">
+      <div class="barL" style="left:0; width:198px;"></div><div class="pctL">30%</div>
+      <div class="barR" style="left:336px; width:324px;"></div><div class="pctR">49%</div>
+    </div>
+    <div class="row" style="top:108px;">
+      <div class="barL" style="left:0; width:191px;"></div><div class="pctL">29%</div>
+      <div class="barR" style="left:303px; width:357px;"></div><div class="pctR">54%</div>
+    </div>
+    <div class="row" style="top:126px;">
+      <div class="barL" style="left:0; width:165px;"></div><div class="pctL">25%</div>
+      <div class="barR" style="left:310px; width:350px;"></div><div class="pctR">53%</div>
+    </div>
+    <div class="row" style="top:144px;">
+      <div class="barL" style="left:0; width:165px;"></div><div class="pctL">25%</div>
+      <div class="barR" style="left:343px; width:317px;"></div><div class="pctR">48%</div>
+    </div>
+    <div class="row" style="top:162px;">
+      <div class="barL" style="left:0; width:165px;"></div><div class="pctL">25%</div>
+      <div class="barR" style="left:376px; width:284px;"></div><div class="pctR">43%</div>
+    </div>
+    <div class="row" style="top:180px;">
+      <div class="barL" style="left:0; width:152px;"></div><div class="pctL">23%</div>
+      <div class="barR" style="left:323px; width:337px;"></div><div class="pctR">51%</div>
+    </div>
+    <div class="row" style="top:198px;">
+      <div class="barL" style="left:0; width:145px;"></div><div class="pctL">22%</div>
+      <div class="barR" style="left:303px; width:357px;"></div><div class="pctR">54%</div>
+    </div>
+    <div class="row" style="top:216px;">
+      <div class="barL" style="left:0; width:139px;"></div><div class="pctL">21%</div>
+      <div class="barR" style="left:317px; width:343px;"></div><div class="pctR">52%</div>
+    </div>
+    <div class="row" style="top:234px;">
+      <div class="barL" style="left:0; width:132px;"></div><div class="pctL">20%</div>
+      <div class="barR" style="left:257px; width:403px;"></div><div class="pctR">61%</div>
+    </div>
+    <div class="row" style="top:252px;">
+      <div class="barL" style="left:0; width:125px;"></div><div class="pctL">19%</div>
+      <div class="barR" style="left:343px; width:317px;"></div><div class="pctR">48%</div>
+    </div>
+    <div class="row" style="top:270px;">
+      <div class="barL" style="left:0; width:125px;"></div><div class="pctL">19%</div>
+      <div class="barR" style="left:257px; width:403px;"></div><div class="pctR">61%</div>
+    </div>
+    <div class="row" style="top:288px;">
+      <div class="barL" style="left:0; width:125px;"></div><div class="pctL">19%</div>
+      <div class="barR" style="left:237px; width:423px;"></div><div class="pctR">64%</div>
+    </div>
+    <div class="row" style="top:306px;">
+      <div class="barL" style="left:0; width:112px;"></div><div class="pctL">17%</div>
+      <div class="barR" style="left:251px; width:409px;"></div><div class="pctR">62%</div>
+    </div>
+    <div class="row" style="top:324px;">
+      <div class="barL" style="left:0; width:112px;"></div><div class="pctL">17%</div>
+      <div class="barR" style="left:271px; width:389px;"></div><div class="pctR">59%</div>
+    </div>
+    <div class="row" style="top:342px;">
+      <div class="barL" style="left:0; width:112px;"></div><div class="pctL">17%</div>
+      <div class="barR" style="left:172px; width:488px;"></div><div class="pctR">74%</div>
+    </div>
+    <div class="row" style="top:360px;">
+      <div class="barL" style="left:0; width:106px;"></div><div class="pctL">16%</div>
+      <div class="barR" style="left:231px; width:429px;"></div><div class="pctR">65%</div>
+    </div>
+    <div class="row" style="top:378px;">
+      <div class="barL" style="left:0; width:106px;"></div><div class="pctL">16%</div>
+      <div class="barR" style="left:211px; width:449px;"></div><div class="pctR">68%</div>
+    </div>
+    <div class="row" style="top:396px;">
+      <div class="barL" style="left:0; width:106px;"></div><div class="pctL">16%</div>
+      <div class="barR" style="left:205px; width:455px;"></div><div class="pctR">69%</div>
+    </div>
+    <div class="row" style="top:414px;">
+      <div class="barL" style="left:0; width:106px;"></div><div class="pctL">16%</div>
+      <div class="barR" style="left:224px; width:436px;"></div><div class="pctR">66%</div>
+    </div>
+    <div class="row" style="top:432px;">
+      <div class="barL" style="left:0; width:99px;"></div><div class="pctL">15%</div>
+      <div class="barR" style="left:231px; width:429px;"></div><div class="pctR">65%</div>
+    </div>
+    <div class="row" style="top:450px;">
+      <div class="barL" style="left:0; width:99px;"></div><div class="pctL">15%</div>
+      <div class="barR" style="left:244px; width:416px;"></div><div class="pctR">63%</div>
+    </div>
+    <div class="row" style="top:468px;">
+      <div class="barL" style="left:0; width:99px;"></div><div class="pctL">15%</div>
+      <div class="barR" style="left:231px; width:429px;"></div><div class="pctR">65%</div>
+    </div>
+    <div class="row" style="top:486px;">
+      <div class="barL" style="left:0; width:92px;"></div><div class="pctL">14%</div>
+      <div class="barR" style="left:303px; width:357px;"></div><div class="pctR">54%</div>
+    </div>
+    <div class="row" style="top:504px;">
+      <div class="barL" style="left:0; width:86px;"></div><div class="pctL">13%</div>
+      <div class="barR" style="left:178px; width:482px;"></div><div class="pctR">73%</div>
+    </div>
+    <div class="row" style="top:522px;">
+      <div class="barL" style="left:0; width:79px;"></div><div class="pctL">12%</div>
+      <div class="barR" style="left:185px; width:475px;"></div><div class="pctR">72%</div>
+    </div>
+    <div class="row" style="top:540px;">
+      <div class="barL" style="left:0; width:72px;"></div><div class="pctL">11%</div>
+      <div class="barR" style="left:191px; width:469px;"></div><div class="pctR">71%</div>
+    </div>
+    <div class="row" style="top:558px;">
+      <div class="barL" style="left:0; width:66px;"></div><div class="pctL">10%</div>
+      <div class="barR" style="left:198px; width:462px;"></div><div class="pctR">70%</div>
+    </div>
+    <div class="row" style="top:576px;">
+      <div class="barL" style="left:0; width:59px;"></div><div class="pctL">9%</div>
+      <div class="barR" style="left:237px; width:423px;"></div><div class="pctR">64%</div>
+    </div>
+    <div class="row" style="top:594px;">
+      <div class="barL" style="left:0; width:59px;"></div><div class="pctL">9%</div>
+      <div class="barR" style="left:231px; width:429px;"></div><div class="pctR">65%</div>
+    </div>
+  </div>
+
+  <div class="change-col">
+    <div class="chg" style="top:0px;">-1%</div>
+    <div class="chg" style="top:19px;">5%</div>
+    <div class="chg" style="top:38px;">5%</div>
+    <div class="chg" style="top:57px;">3%</div>
+    <div class="chg" style="top:76px;">5%</div>
+    <div class="chg" style="top:95px;">0%</div>
+    <div class="chg" style="top:114px;">-1%</div>
+    <div class="chg" style="top:133px;">3%</div>
+    <div class="chg" style="top:152px;">5%</div>
+    <div class="chg" style="top:171px;">8%</div>
+    <div class="chg" style="top:190px;">0%</div>
+    <div class="chg" style="top:209px;">-6%</div>
+    <div class="chg" style="top:228px;">-1%</div>
+    <div class="chg" style="top:247px;">1%</div>
+    <div class="chg" style="top:266px;">-1%</div>
+    <div class="chg" style="top:285px;">1%</div>
+    <div class="chg" style="top:304px;">N/A</div>
+    <div class="chg" style="top:323px;">0%</div>
+    <div class="chg" style="top:342px;">-1%</div>
+    <div class="chg" style="top:361px;">-19%</div>
+    <div class="chg" style="top:380px;">2%</div>
+    <div class="chg" style="top:399px;">-2%</div>
+    <div class="chg" style="top:418px;">-1%</div>
+    <div class="chg" style="top:437px;">0%</div>
+    <div class="chg" style="top:456px;">-5%</div>
+    <div class="chg" style="top:475px;">0%</div>
+    <div class="chg" style="top:494px;">2%</div>
+    <div class="chg" style="top:513px;">0%</div>
+    <div class="chg" style="top:532px;">-4%</div>
+    <div class="chg" style="top:551px;">0%</div>
+    <div class="chg" style="top:570px;">-5%</div>
+    <div class="chg" style="top:589px;">-5%</div>
+    <div class="chg" style="top:608px;">-5%</div>
+    <div class="chg" style="top:627px;">-1%</div>
+  </div>
+
+  <div class="highlight"></div>
+
+  <div class="logo">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+    <div class="dot3"></div>
+    <div class="txt">Ipsos</div>
+  </div>
+</div>
+</body>
+</html>

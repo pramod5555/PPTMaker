@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Insights from ey.com</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ececec;
+    color:#44444f;
+  }
+
+  .top-yellow{
+    position:absolute;
+    left:0;
+    top:0;
+    width:47px;
+    height:78px;
+    background:#f1d400;
+    z-index:3;
+  }
+  .top-strip{
+    position:absolute;
+    left:47px;
+    top:0;
+    width:1233px;
+    height:78px;
+    background:#efefef;
+    z-index:1;
+  }
+  .yellow-rule{
+    position:absolute;
+    left:0;
+    top:77px;
+    width:1280px;
+    height:2px;
+    background:#f1d400;
+    z-index:4;
+  }
+
+  .header-text{
+    position:absolute;
+    left:56px;
+    top:49px;
+    font-size:13px;
+    line-height:16px;
+    color:#4f4f58;
+    font-weight:400;
+    z-index:6;
+  }
+
+  .nav-circle{
+    position:absolute;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#bfbfc8;
+    z-index:10;
+  }
+  .nav-left{ left:951px; top:33px; }
+  .nav-right{ left:995px; top:33px; }
+
+  .nav-left:before,
+  .nav-right:before{
+    content:"";
+    position:absolute;
+    top:10px;
+    width:0;height:0;
+  }
+  .nav-left:before{
+    left:11px;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+    border-right:10px solid #40404c;
+  }
+  .nav-right:before{
+    left:14px;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+    border-left:10px solid #40404c;
+  }
+
+  .title{
+    position:absolute;
+    left:57px;
+    top:112px;
+    font-size:37px;
+    line-height:40px;
+    color:#6f6f7d;
+    font-weight:700;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    position:absolute;
+    left:57px;
+    top:164px;
+    font-size:14px;
+    line-height:18px;
+    color:#1f1f1f;
+    font-weight:700;
+  }
+  .note{
+    position:absolute;
+    left:522px;
+    top:166px;
+    font-size:11px;
+    line-height:14px;
+    color:#66666f;
+    font-style:italic;
+    white-space:nowrap;
+  }
+
+  .sidebar{
+    position:absolute;
+    left:1009px;
+    top:120px;
+    width:112px;
+    z-index:20;
+  }
+  .side-box{
+    width:112px;
+    min-height:35px;
+    margin-bottom:15px;
+    padding:9px 10px;
+    box-sizing:border-box;
+    font-size:12px;
+    line-height:14px;
+    font-weight:400;
+    color:#ffffff;
+    background:#6c6c79;
+  }
+  .side-box.dark{ background:#2c2b3a; }
+  .side-box.light{ background:#d3d3d7; color:#ffffff; }
+
+  .col-line{
+    position:absolute;
+    top:203px;
+    width:1px;
+    height:508px;
+    background:#d0d0d5;
+  }
+  .line1{ left:366px; }
+  .line2{ left:684px; }
+
+  .card{
+    position:absolute;
+    width:305px;
+    height:150px;
+  }
+  .thumb{
+    position:absolute;
+    left:0;
+    top:0;
+    width:305px;
+    height:108px;
+    overflow:hidden;
+    background:#ddd;
+  }
+  .caption{
+    position:absolute;
+    left:0;
+    top:121px;
+    width:305px;
+    font-size:12px;
+    line-height:16px;
+    color:#5f5f68;
+    font-weight:400;
+  }
+
+  .img1{
+    background:
+      radial-gradient(circle at 34% 53%, rgba(64,170,216,.12) 0 70px, transparent 71px),
+      radial-gradient(circle at 27% 42%, rgba(64,170,216,.14) 0 2px, transparent 3px),
+      radial-gradient(circle at 37% 37%, rgba(64,170,216,.14) 0 2px, transparent 3px),
+      radial-gradient(circle at 41% 48%, rgba(64,170,216,.14) 0 2px, transparent 3px),
+      linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.15)),
+      linear-gradient(90deg, #053356 0%, #0a5f85 52%, #0f6f96 100%);
+  }
+  .img1:before{
+    content:"";
+    position:absolute;
+    left:83px;
+    top:7px;
+    width:170px;
+    height:92px;
+    background:#53a8d4;
+    clip-path:polygon(0 18%, 19% 0, 100% 26%, 82% 100%, 9% 82%);
+    transform:rotate(22deg);
+  }
+  .img1:after{
+    content:"";
+    position:absolute;
+    left:114px;
+    top:13px;
+    width:162px;
+    height:86px;
+    background:
+      linear-gradient(90deg,
+        transparent 0 7%, #e7473e 7% 15%, transparent 15% 22%,
+        #f0a02d 22% 30%, transparent 30% 37%,
+        #2377ca 37% 47%, transparent 47% 54%,
+        #ef7c2f 54% 62%, transparent 62% 69%,
+        #4da85a 69% 77%, transparent 77% 84%,
+        #2b7fd0 84% 92%, transparent 92% 100%),
+      linear-gradient(0deg,
+        transparent 0 19%, rgba(255,255,255,.28) 19% 23%, transparent 23% 48%,
+        rgba(255,255,255,.28) 48% 52%, transparent 52% 77%,
+        rgba(255,255,255,.28) 77% 81%, transparent 81% 100%);
+    transform:rotate(22deg);
+  }
+
+  .img2{
+    background:
+      repeating-linear-gradient(90deg,
+        #f4e1cf 0 12px, #d5a16f 12px 14px, #f5e6d7 14px 26px, #b97b40 26px 28px),
+      linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.04));
+  }
+  .img2:before{
+    content:"";
+    position:absolute;
+    left:116px;
+    top:18px;
+    width:63px;
+    height:44px;
+    background:
+      linear-gradient(180deg,#244a95 0 48%, #ffffff 48% 73%, #d22c2f 73% 100%);
+    transform:rotate(34deg);
+    clip-path:polygon(0 0,100% 7%,92% 50%,100% 92%,0 100%);
+  }
+  .img2:after{
+    content:"";
+    position:absolute;
+    left:161px;
+    top:22px;
+    width:3px;
+    height:94px;
+    background:#2f2f36;
+    transform:rotate(37deg);
+    transform-origin:top left;
+  }
+
+  .img3{
+    background:linear-gradient(180deg,#2f0000 0%, #640606 54%, #3e0e0e 100%);
+  }
+  .img3:before{
+    content:"";
+    position:absolute;
+    left:42px;
+    top:50px;
+    width:64px;
+    height:22px;
+    background:#9a6038;
+    border-radius:20px;
+    transform:rotate(14deg);
+    box-shadow:
+      37px -5px 0 0 #af7345,
+      42px 4px 0 0 #62361e,
+      18px 11px 0 0 #62361e;
+  }
+  .img3:after{
+    content:"";
+    position:absolute;
+    left:185px;
+    top:40px;
+    width:94px;
+    height:51px;
+    background:linear-gradient(180deg,#d9dbe5 0%, #cfd4de 46%, #b15a40 47%, #b15a40 53%, #dce1ea 54%, #c9cfda 100%);
+    transform:skew(-20deg) rotate(7deg);
+    box-shadow:-18px 8px 0 0 rgba(234,205,179,.32);
+  }
+  .img3 .scale{
+    position:absolute;
+    left:197px;
+    top:12px;
+    width:70px;
+    height:28px;
+  }
+  .img3 .beam{
+    position:absolute;
+    left:0;
+    top:0;
+    width:70px;
+    height:2px;
+    background:#caa168;
+  }
+  .img3 .scale:before,
+  .img3 .scale:after{
+    content:"";
+    position:absolute;
+    top:0;
+    width:2px;
+    height:23px;
+    background:#caa168;
+  }
+  .img3 .scale:before{ left:9px; }
+  .img3 .scale:after{ left:54px; }
+  .img3 .pan1,.img3 .pan2{
+    position:absolute;
+    top:14px;
+    width:18px;
+    height:9px;
+    border:2px solid #caa168;
+    border-top:none;
+    border-radius:0 0 10px 10px;
+  }
+  .img3 .pan1{ left:0; }
+  .img3 .pan2{ left:45px; }
+
+  .img4{
+    background:
+      linear-gradient(90deg, transparent 0 6%, #c2182a 6% 8%, transparent 8% 31%, #1390cb 31% 33%, transparent 33% 92%, #c2182a 92% 94%, transparent 94% 100%),
+      repeating-linear-gradient(90deg, #28445d 0 8px, #1b3145 8px 16px, #73889a 16px 23px, #162737 23px 31px),
+      linear-gradient(180deg,#0a2031 0%, #204f6d 38%, #0d2536 100%);
+  }
+  .img4:before{
+    content:"";
+    position:absolute;
+    left:16px;
+    top:0;
+    width:9px;
+    height:108px;
+    background:#103a58;
+    transform:skew(18deg);
+    box-shadow:239px 0 0 0 #103a58;
+  }
+  .img4:after{
+    content:"";
+    position:absolute;
+    left:129px;
+    top:0;
+    width:39px;
+    height:108px;
+    background:linear-gradient(90deg, rgba(255,255,255,.5), rgba(255,255,255,.08));
+  }
+
+  .img5{
+    background:
+      radial-gradient(circle at 29% 33%, rgba(255,255,255,.18) 0 2px, transparent 3px),
+      linear-gradient(180deg, #1b8caf 0%, #0c7397 40%, #085978 100%);
+  }
+  .img5:before{
+    content:"";
+    position:absolute;
+    left:30px;
+    top:13px;
+    width:118px;
+    height:76px;
+    background:#53afd5;
+    clip-path:polygon(0 20%, 18% 0, 100% 28%, 82% 100%, 8% 82%);
+    transform:rotate(24deg);
+  }
+  .img5:after{
+    content:"";
+    position:absolute;
+    left:56px;
+    top:18px;
+    width:121px;
+    height:69px;
+    background:
+      linear-gradient(90deg,
+        transparent 0 8%, #d24a43 8% 16%, transparent 16% 23%,
+        #f09c39 23% 31%, transparent 31% 38%,
+        #246fc1 38% 49%, transparent 49% 55%,
+        #eb7b30 55% 64%, transparent 64% 71%,
+        #409e55 71% 79%, transparent 79% 86%,
+        #2a7dd1 86% 94%, transparent 94% 100%),
+      linear-gradient(0deg,
+        transparent 0 21%, rgba(255,255,255,.25) 21% 25%, transparent 25% 50%,
+        rgba(255,255,255,.25) 50% 54%, transparent 54% 79%, rgba(255,255,255,.25) 79% 83%, transparent 83% 100%);
+    transform:rotate(24deg);
+  }
+
+  .img6{
+    background:linear-gradient(180deg,#ffd800 0%, #ffab00 30%, #f57c00 56%, #4b4150 100%);
+  }
+  .img6:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:56px;
+    width:305px;
+    height:52px;
+    background:
+      radial-gradient(ellipse at 14% 65%, rgba(20,20,20,.75) 0 18%, transparent 19%),
+      radial-gradient(ellipse at 28% 75%, rgba(20,20,20,.78) 0 14%, transparent 15%),
+      radial-gradient(ellipse at 42% 72%, rgba(20,20,20,.76) 0 10%, transparent 11%),
+      radial-gradient(ellipse at 58% 70%, rgba(20,20,20,.76) 0 20%, transparent 21%),
+      radial-gradient(ellipse at 75% 75%, rgba(20,20,20,.8) 0 16%, transparent 17%),
+      radial-gradient(ellipse at 88% 72%, rgba(20,20,20,.72) 0 12%, transparent 13%),
+      linear-gradient(180deg, transparent 0 20%, rgba(60,42,48,.82) 20% 100%);
+  }
+  .img6:after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:42px;
+    width:305px;
+    height:45px;
+    background:
+      radial-gradient(circle at 12% 68%, rgba(255,220,140,.95) 0 2px, transparent 3px),
+      radial-gradient(circle at 20% 74%, rgba(255,220,140,.92) 0 2px, transparent 3px),
+      radial-gradient(circle at 32% 71%, rgba(255,220,140,.9) 0 2px, transparent 3px),
+      radial-gradient(circle at 46% 72%, rgba(255,220,140,.95) 0 2px, transparent 3px),
+      radial-gradient(circle at 61% 72%, rgba(255,220,140,.95) 0 2px, transparent 3px),
+      radial-gradient(circle at 74% 70%, rgba(255,220,140,.95) 0 2px, transparent 3px),
+      radial-gradient(circle at 86% 72%, rgba(255,220,140,.88) 0 2px, transparent 3px);
+  }
+
+  .footer{
+    position:absolute;
+    left:57px;
+    top:729px;
+    transform:translateY(-100%);
+    font-size:11px;
+    line-height:14px;
+    color:#7a7a84;
+    font-weight:400;
+  }
+  .footer b{ font-weight:700; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-strip"></div>
+  <div class="top-yellow"></div>
+  <div class="yellow-rule"></div>
+
+  <div class="header-text">Insights: New on ey.com</div>
+
+  <div class="nav-circle nav-left"></div>
+  <div class="nav-circle nav-right"></div>
+
+  <div class="title">Insights from ey.com</div>
+  <div class="subtitle">Articles and features on a range of trade issues published on ey.com</div>
+  <div class="note">For a better viewing experience, please ensure your browser setting is customized to ‘open in a new tab’.</div>
+
+  <div class="col-line line1"></div>
+  <div class="col-line line2"></div>
+
+  <div class="card" style="left:56px; top:204px;">
+    <div class="thumb img1"></div>
+    <div class="caption">How AI-led compliance can power India’s export boom</div>
+  </div>
+
+  <div class="card" style="left:373px; top:204px;">
+    <div class="thumb img2"></div>
+    <div class="caption">Tariff turbulence: 5 actions businesses should take now</div>
+  </div>
+
+  <div class="card" style="left:691px; top:204px;">
+    <div class="thumb img3">
+      <div class="scale">
+        <div class="beam"></div>
+        <div class="pan1"></div>
+        <div class="pan2"></div>
+      </div>
+    </div>
+    <div class="caption">What the Supreme Court ruling against IEEPA tariffs means in practice</div>
+  </div>
+
+  <div class="card" style="left:56px; top:377px;">
+    <div class="thumb img4"></div>
+    <div class="caption">How technology is reducing trade finance risk and compliance costs</div>
+  </div>
+
+  <div class="card" style="left:373px; top:377px;">
+    <div class="thumb img5"></div>
+    <div class="caption">The EU-US framework deal – a wake-up call for Switzerland?</div>
+  </div>
+
+  <div class="card" style="left:691px; top:377px;">
+    <div class="thumb img6"></div>
+    <div class="caption">India trade update October 2025: Regulatory reforms and FTA progress</div>
+  </div>
+
+  <div class="sidebar">
+    <div class="side-box dark">Contents</div>
+    <div class="side-box dark">Insights</div>
+    <div class="side-box light">New on<br>ey.com</div>
+    <div class="side-box dark">Tax alerts</div>
+    <div class="side-box">Additional<br>resources</div>
+    <div class="side-box">Contacts</div>
+  </div>
+
+  <div class="footer">60&nbsp;&nbsp;|&nbsp;&nbsp;<b>TradeWatch</b> Issue 1 2026</div>
+</div>
+</body>
+</html>

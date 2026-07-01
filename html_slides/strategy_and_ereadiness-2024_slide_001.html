@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>eReadiness 2024</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #342928;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 22% 18%, rgba(255,220,120,0.42) 0, rgba(255,220,120,0.12) 10%, rgba(0,0,0,0) 24%),
+      radial-gradient(circle at 36% 18%, rgba(255,195,70,0.32) 0, rgba(255,195,70,0.10) 10%, rgba(0,0,0,0) 24%),
+      radial-gradient(circle at 20% 48%, rgba(140,120,50,0.18) 0, rgba(0,0,0,0) 28%),
+      linear-gradient(90deg, rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.58) 42%, rgba(0,0,0,0.18) 58%, rgba(0,0,0,0.10) 100%),
+      linear-gradient(180deg, #51473c 0%, #5a4b2c 35%, #3b3116 62%, #20180f 100%);
+  }
+
+  /* Simulated forest blur */
+  .tree, .tree2, .tree3, .tree4, .tree5 {
+    position: absolute;
+    bottom: 0;
+    background: rgba(35,28,18,0.72);
+    filter: blur(1px);
+  }
+  .tree { left: 250px; top: 170px; width: 22px; height: 360px; }
+  .tree2 { left: 380px; top: 155px; width: 18px; height: 330px; }
+  .tree3 { left: 473px; top: 200px; width: 12px; height: 260px; }
+  .tree4 { left: 98px; top: 315px; width: 10px; height: 160px; }
+  .tree5 { left: 8px; top: 330px; width: 8px; height: 170px; }
+
+  .grass {
+    position: absolute;
+    left: -10px;
+    right: 500px;
+    bottom: -8px;
+    height: 180px;
+    background:
+      repeating-linear-gradient(95deg,
+        rgba(60,73,20,0.95) 0 2px,
+        rgba(93,105,28,0.95) 2px 4px,
+        rgba(36,46,10,0.95) 4px 6px,
+        rgba(0,0,0,0) 6px 10px);
+    opacity: 0.55;
+    filter: blur(1.2px);
+  }
+
+  /* Right-side EV/photo recreation */
+  .car-body {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 640px;
+    height: 720px;
+    background:
+      radial-gradient(circle at 30% 12%, rgba(255,245,220,0.92) 0 14%, rgba(255,223,155,0.40) 15%, rgba(0,0,0,0) 32%),
+      linear-gradient(110deg, rgba(255,255,255,0.95) 0 4%, rgba(210,215,223,0.85) 4.5%, rgba(36,36,40,0.95) 7%, rgba(255,255,255,0.88) 8.5%, rgba(40,40,44,0.98) 10%, rgba(18,19,22,0.98) 14%, rgba(6,7,10,1) 30%, rgba(30,20,14,0.90) 50%, rgba(8,8,10,1) 72%, rgba(0,0,0,0.98) 100%),
+      linear-gradient(180deg, rgba(20,24,30,0.0) 0%, rgba(10,12,16,0.18) 100%);
+    clip-path: polygon(28% 0%, 100% 0%, 100% 100%, 42% 100%, 30% 82%, 25% 54%, 26% 22%);
+  }
+
+  .window {
+    position: absolute;
+    top: -8px;
+    right: 98px;
+    width: 305px;
+    height: 246px;
+    border-radius: 0 0 120px 30px;
+    background:
+      linear-gradient(115deg, rgba(250,250,250,0.85) 0 8%, rgba(90,100,125,0.72) 9% 12%, rgba(240,240,245,0.88) 13% 15%, rgba(30,30,36,0.92) 16% 22%, rgba(228,228,232,0.85) 23% 25%, rgba(255,255,255,0.90) 26% 28%, rgba(50,50,58,0.95) 29% 31%, rgba(240,235,230,0.78) 32% 34%, rgba(160,150,138,0.35) 35%, rgba(20,20,24,0.78) 60%, rgba(10,10,12,0.92) 100%);
+    transform: skewX(-12deg);
+    opacity: 0.92;
+    box-shadow: inset 0 0 30px rgba(255,255,255,0.15);
+  }
+
+  .highlight {
+    position: absolute;
+    right: 155px;
+    top: 130px;
+    width: 140px;
+    height: 90px;
+    background: rgba(246,255,220,0.62);
+    transform: skewX(-14deg);
+    filter: blur(1px);
+    border-radius: 6px;
+  }
+
+  .charge-port {
+    position: absolute;
+    left: 688px;
+    top: 260px;
+    width: 116px;
+    height: 154px;
+    background: linear-gradient(145deg, rgba(18,18,22,0.92), rgba(44,44,52,0.96));
+    border-radius: 34px 18px 28px 28px;
+    transform: rotate(12deg);
+    box-shadow: inset 0 0 0 2px rgba(70,70,80,0.3);
+  }
+
+  .port-inner {
+    position: absolute;
+    left: 730px;
+    top: 300px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 45% 45%, rgba(80,80,90,0.8) 0, rgba(45,45,55,0.95) 45%, rgba(20,20,25,1) 75%, rgba(10,10,14,1) 100%);
+    box-shadow: inset 0 0 0 2px rgba(95,95,105,0.18);
+  }
+
+  .plug {
+    position: absolute;
+    left: 792px;
+    top: 370px;
+    width: 138px;
+    height: 56px;
+    background: linear-gradient(180deg, #324066 0%, #1d2234 100%);
+    border-radius: 18px;
+    transform: rotate(8deg);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+  }
+
+  .plug-neck {
+    position: absolute;
+    left: 760px;
+    top: 383px;
+    width: 48px;
+    height: 28px;
+    background: #2b2f3f;
+    border-radius: 10px;
+    transform: rotate(8deg);
+  }
+
+  .cable {
+    position: absolute;
+    left: 655px;
+    top: 388px;
+    width: 20px;
+    height: 360px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #d9ea5d 0%, #d4e14d 55%, #aeb431 100%);
+    transform: rotate(20deg);
+    box-shadow: inset -2px 0 0 rgba(255,255,255,0.22), inset 3px 0 0 rgba(110,120,20,0.25);
+  }
+
+  .tail-light {
+    position: absolute;
+    right: 10px;
+    bottom: 18px;
+    width: 245px;
+    height: 330px;
+    background:
+      radial-gradient(circle at 68% 58%, rgba(255,50,30,0.95) 0, rgba(220,0,0,0.8) 24%, rgba(120,0,10,0.0) 55%),
+      linear-gradient(135deg, rgba(60,0,0,0.0) 0 38%, rgba(165,0,12,0.85) 39% 58%, rgba(255,40,25,0.95) 59% 69%, rgba(110,0,10,0.9) 70% 100%);
+    clip-path: polygon(28% 16%, 100% 0%, 100% 86%, 78% 100%, 32% 58%, 0% 20%);
+    filter: saturate(1.2);
+  }
+
+  .tail-light2 {
+    position: absolute;
+    right: 18px;
+    bottom: 26px;
+    width: 116px;
+    height: 148px;
+    background:
+      linear-gradient(135deg, rgba(255,40,20,0.0) 0 30%, rgba(255,20,20,0.92) 31% 60%, rgba(80,0,0,0.95) 61% 100%);
+    clip-path: polygon(42% 0%, 100% 10%, 100% 100%, 20% 80%, 0% 28%);
+  }
+
+  /* Overlay circles/logo marks */
+  .white-circle {
+    position: absolute;
+    right: 58px;
+    top: -66px;
+    width: 468px;
+    height: 468px;
+    background: rgba(255,255,255,0.88);
+    border-radius: 50%;
+  }
+  .white-circle .drop {
+    position: absolute;
+    left: 170px;
+    top: 102px;
+    width: 128px;
+    height: 178px;
+    background: rgba(40,40,44,0.78);
+    border-radius: 60% 60% 68% 68% / 46% 46% 72% 72%;
+    transform: rotate(12deg);
+    clip-path: polygon(50% 0%, 84% 18%, 100% 46%, 90% 74%, 50% 100%, 18% 76%, 0% 46%, 16% 16%);
+  }
+
+  .dark-swirl {
+    position: absolute;
+    right: -34px;
+    top: 325px;
+    width: 710px;
+    height: 430px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.45);
+    clip-path: polygon(30% 0%, 55% 0%, 75% 10%, 100% 26%, 80% 40%, 64% 28%, 46% 28%, 34% 40%, 39% 60%, 53% 66%, 58% 78%, 48% 88%, 34% 82%, 22% 72%, 10% 56%, 6% 34%, 14% 16%);
+    transform: rotate(-6deg);
+  }
+
+  .dark-swirl2 {
+    position: absolute;
+    right: -24px;
+    bottom: -96px;
+    width: 362px;
+    height: 458px;
+    background: rgba(0,0,0,0.55);
+    clip-path: polygon(45% 0%, 100% 20%, 72% 50%, 100% 100%, 58% 84%, 20% 100%, 42% 62%, 0% 36%);
+  }
+
+  .logo {
+    position: absolute;
+    left: 48px;
+    top: 36px;
+    color: #f0f0f0;
+  }
+  .logo .brand {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .logo .sub {z-index:1;
+    margin-top: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .rule {
+    position: absolute;
+    left: 49px;
+    top: 168px;
+    width: 614px;
+    height: 11px;
+    background: #f3f3f3;
+  }
+
+  .title {
+    position: absolute;
+    left: 50px;
+    top: 186px;
+    color: #f4f4f2;
+    font-size: 68px;
+    line-height: 1.05;
+    font-weight: 400;
+    letter-spacing: -1px;
+  }
+
+  .edition {
+    position: absolute;
+    left: 0;
+    top: 278px;
+    width: 297px;
+    height: 64px;
+    background: rgba(255,255,255,0.94);
+    display: flex;
+    align-items: center;
+    padding-left: 49px;
+    box-sizing: border-box;
+    color: #3f3f3f;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 27px;
+  }
+  .edition sup {
+    font-size: 16px;
+    top: -0.5em;
+    position: relative;
+  }
+
+  .report {
+    position: absolute;
+    left: 49px;
+    top: 380px;
+    color: #ffffff;
+    font-size: 56px;
+    line-height: 1;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .subtitle {
+    position: absolute;
+    left: 49px;
+    top: 454px;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 31px;
+    line-height: 1.2;
+    font-weight: 400;
+  }
+
+  .date {
+    position: absolute;
+    left: 49px;
+    bottom: 39px;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="tree"></div>
+    <div class="tree2"></div>
+    <div class="tree3"></div>
+    <div class="tree4"></div>
+    <div class="tree5"></div>
+    <div class="grass"></div>
+
+    <div class="car-body"></div>
+    <div class="window"></div>
+    <div class="highlight"></div>
+    <div class="charge-port"></div>
+    <div class="port-inner"></div>
+    <div class="plug-neck"></div>
+    <div class="plug"></div>
+    <div class="cable"></div>
+    <div class="tail-light"></div>
+    <div class="tail-light2"></div>
+
+    <div class="white-circle">
+      <div class="drop"></div>
+    </div>
+    <div class="dark-swirl"></div>
+    <div class="dark-swirl2"></div>
+
+    <div class="logo">
+      <div class="brand">strategy&amp;</div>
+      <div class="sub">Part of the PwC network</div>
+    </div>
+
+    <div class="rule"></div>
+    <div class="title">eReadiness 2024</div>
+
+    <div class="edition">5<sup>th</sup> edition</div>
+
+    <div class="report">Survey Report</div>
+    <div class="subtitle">Customer needs and way forward</div>
+    <div class="date">September 2024</div>
+  </div>
+</body>
+</html>

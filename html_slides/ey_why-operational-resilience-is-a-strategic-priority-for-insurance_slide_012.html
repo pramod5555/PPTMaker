@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>EY Insurance Risk Management Survey Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#cfcfd1;
+    font-family:Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e3e3e4;
+  }
+  .slide > div{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .photo{
+    left:32px;
+    top:32px;
+    width:464px;
+    height:704px;
+    border-radius:16px;
+    overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(20,22,29,.18), rgba(25,29,40,.12)),
+      radial-gradient(circle at 78% 16%, rgba(236,111,204,.33) 0 9%, transparent 10%),
+      radial-gradient(circle at 88% 12%, rgba(239,243,244,.34) 0 6%, transparent 7%),
+      radial-gradient(circle at 82% 33%, rgba(232,102,217,.28) 0 4%, transparent 5%),
+      radial-gradient(circle at 18% 16%, rgba(50,33,42,.45) 0 20%, transparent 21%),
+      linear-gradient(90deg, #4e4943 0%, #6e6e69 18%, #88785f 35%, #a06797 58%, #74838b 78%, #4d5d68 100%);
+  }
+  .photo:before{
+    content:"";
+    position:absolute;
+    left:-16px;
+    top:47px;
+    width:360px;
+    height:617px;
+    border-radius:180px 170px 100px 96px / 185px 180px 145px 145px;
+    background:
+      radial-gradient(circle at 44% 11%, #19151a 0 14%, transparent 15%),
+      radial-gradient(circle at 43% 15%, #0d0c10 0 21%, transparent 22%),
+      radial-gradient(circle at 40% 24%, #9a6b4d 0 8%, transparent 9%),
+      radial-gradient(circle at 45% 29%, #c89973 0 14%, transparent 15%),
+      radial-gradient(circle at 33% 30%, #d6af8d 0 15%, transparent 16%),
+      radial-gradient(circle at 36% 45%, #6b203d 0 31%, transparent 32%),
+      radial-gradient(circle at 35% 70%, #6f2343 0 26%, transparent 27%),
+      linear-gradient(180deg, transparent 0 34%, #6f2344 35% 77%, #221c23 78% 100%);
+    filter:blur(.5px);
+    opacity:.98;
+  }
+  .photo:after{
+    content:"";
+    position:absolute;
+    left:252px;
+    top:456px;
+    width:246px;
+    height:247px;
+    background:linear-gradient(180deg,#1c2e3a 0%, #243744 100%);
+    clip-path:polygon(18% 0, 85% 0, 100% 100%, 0 100%);
+    opacity:.97;
+  }
+
+  .glass-left,.glass-right,.bridge,.nose,.arm{
+    position:absolute;
+  }
+  .glass-left,.glass-right{
+    border:2px solid rgba(22,29,40,.94);
+    border-radius:50%;
+    background:rgba(157,194,221,.18);
+  }
+  .glass-left{
+    left:66px;
+    top:161px;
+    width:44px;
+    height:31px;
+    transform:rotate(-7deg);
+  }
+  .glass-right{
+    left:99px;
+    top:163px;
+    width:41px;
+    height:29px;
+    transform:rotate(6deg);
+  }
+  .bridge{
+    left:106px;
+    top:175px;
+    width:12px;
+    height:3px;
+    background:#171a22;
+    border-radius:3px;
+  }
+  .nose{
+    left:86px;
+    top:182px;
+    width:30px;
+    height:42px;
+    border-left:2px solid rgba(111,78,58,.82);
+    border-bottom:2px solid rgba(111,78,58,.82);
+    border-radius:0 0 0 14px;
+    transform:rotate(4deg);
+  }
+  .arm{
+    left:75px;
+    top:177px;
+    width:74px;
+    height:4px;
+    background:#171b22;
+    transform:rotate(9deg);
+    border-radius:3px;
+    opacity:.82;
+  }
+
+  .chapter-line{
+    left:103px;
+    top:0;
+    width:1px;
+    height:352px;
+    background:#c6c6c9;
+    z-index:40;
+  }
+  .slide-no{
+    left:61px;
+    top:49px;
+    color:#d4d5d7;
+    font-size:37px;
+    font-weight:300;
+    line-height:1;
+    letter-spacing:.01em;
+    z-index:45;
+  }
+  .survey-title{
+    left:115px;
+    top:59px;
+    width:206px;
+    color:#dddcdc;
+    font-size:8px;
+    font-weight:400;
+    line-height:11px;
+    text-transform:uppercase;
+    z-index:45;
+  }
+  .chapter-vert{
+    left:17px;
+    top:399px;
+    color:#7a7a7e;
+    font-size:11px;
+    font-weight:500;
+    line-height:1;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    letter-spacing:.11em;
+    z-index:45;
+  }
+  .yellow-tag{
+    left:13px;
+    top:409px;
+    width:12px;
+    height:13px;
+    background:#e0d200;
+    z-index:45;
+  }
+
+  .content{
+    left:529px;
+    top:112px;
+    width:736px;
+    color:#4b4c52;
+    z-index:30;
+  }
+  .body-copy{
+    left:0;
+    top:0;
+    width:725px;
+    font-size:12px;
+    line-height:17px;
+    font-weight:400;
+    color:#4b4c51;
+  }
+  .figure-title{
+    left:0;
+    top:79px;
+    width:720px;
+    font-size:12px;
+    line-height:18px;
+    font-weight:700;
+    color:#3d3f45;
+  }
+
+  .chart{
+    left:0;
+    top:132px;
+    width:740px;
+    height:240px;
+  }
+  .label{
+    width:175px;
+    font-size:12px;
+    line-height:15px;
+    font-weight:400;
+    color:#53545a;
+    text-align:right;
+  }
+  .label.rightcol{ width:175px; }
+
+  .barbox{
+    width:168px;
+    height:22px;
+    border:1px solid #a5a7ad;
+    background:#efeff1;
+  }
+  .fill{
+    left:0;
+    top:0;
+    height:20px;
+    background:#8e0d72;
+  }
+  .pct{
+    right:6px;
+    top:2px;
+    font-size:21px;
+    line-height:18px;
+    font-weight:400;
+    color:#5b5d63;
+    transform:scale(.5);
+    transform-origin:top right;
+  }
+  .sub{z-index:1;
+    font-size:7px;
+    line-height:9px;
+    font-weight:400;
+    color:#71737a;
+    white-space:nowrap;
+  }
+
+  .callout{
+    left:377px;
+    top:488px;
+    width:274px;
+    height:220px;
+    background:#181b29;
+    border-radius:14px;
+    z-index:50;
+  }
+  .callout-line-yellow{
+    left:401px;
+    top:517px;
+    width:111px;
+    height:3px;
+    background:#e2d300;
+    z-index:55;
+  }
+  .callout-line-blue{
+    left:512px;
+    top:517px;
+    width:113px;
+    height:3px;
+    background:#1d83d6;
+    z-index:55;
+  }
+  .callout-head{
+    left:401px;
+    top:533px;
+    width:215px;
+    color:#f1f1f2;
+    font-size:12px;
+    font-weight:700;
+    line-height:16px;
+    z-index:55;
+  }
+  .quote-mark{
+    left:400px;
+    top:556px;
+    color:#e2d300;
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:35px;
+    line-height:26px;
+    font-weight:700;
+    z-index:55;
+  }
+  .quote{
+    left:401px;
+    top:578px;
+    width:214px;
+    color:#f3f3f4;
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:12px;
+    line-height:19px;
+    font-weight:400;
+    z-index:55;
+  }
+
+  .jump{
+    right:0;
+    top:0;
+    width:68px;
+    height:47px;
+    background:#7b7982;
+    border-radius:0 0 14px 14px;
+    color:#fff;
+    font-size:9px;
+    line-height:10px;
+    font-weight:700;
+    text-align:center;
+    padding-top:17px;
+    letter-spacing:.03em;
+    z-index:60;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="photo">
+    <div class="glass-left"></div>
+    <div class="glass-right"></div>
+    <div class="bridge"></div>
+    <div class="nose"></div>
+    <div class="arm"></div>
+  </div>
+
+  <div class="chapter-line"></div>
+  <div class="slide-no">12</div>
+  <div class="survey-title">SECOND ANNUAL EY/IFCI GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+  <div class="chapter-vert">CHAPTER 1</div>
+  <div class="yellow-tag"></div>
+
+  <div class="content">
+    <div class="body-copy">
+      So how are insurance CROs planning to address these issues specifically, as well as preparing the organization for a broadening and diversifying risk portfolio? Their key enhancements to financial and non-financial risk management capabilities show that many CROs remain focused on “foundational” risk management work and strengthening core aspects of risk management (e.g., risk appetite, monitoring, stress testing). Talent and upskilling are also top-three enhancements for financial and non-financial risk management practices.
+    </div>
+
+    <div class="figure-title">
+      Figure 4: What key enhancements are your company planning for financial risk management (e.g., credit, market, liquidity) over the next 12 months?
+    </div>
+
+    <div class="chart">
+      <div class="label" style="left:0px; top:3px;">Stress testing or scenario analysis</div>
+      <div class="barbox" style="left:182px; top:1px;">
+        <div class="fill" style="width:99px;"></div>
+        <div class="pct">59%</div>
+      </div>
+      <div class="sub" style="left:180px; top:26px;">51% EMEIA | 61% Americas | 85% Asia-Pacific</div>
+
+      <div class="label" style="left:0px; top:56px;">Risk appetite and limit framework</div>
+      <div class="barbox" style="left:182px; top:54px;">
+        <div class="fill" style="width:82px;"></div>
+        <div class="pct">49%</div>
+      </div>
+      <div class="sub" style="left:180px; top:79px;">51% EMEIA | 57% Americas | 31% Asia-Pacific</div>
+
+      <div class="label" style="left:0px; top:109px;">Talent and upskilling</div>
+      <div class="barbox" style="left:182px; top:107px;">
+        <div class="fill" style="width:57px;"></div>
+        <div class="pct">34%</div>
+      </div>
+      <div class="sub" style="left:180px; top:132px;">23% EMEIA | 46% Americas | 46% Asia-Pacific</div>
+
+      <div class="label" style="left:0px; top:159px;">Monitoring and analytics<br>capabilities</div>
+      <div class="barbox" style="left:182px; top:161px;">
+        <div class="fill" style="width:54px;"></div>
+        <div class="pct">32%</div>
+      </div>
+      <div class="sub" style="left:180px; top:186px;">19% EMEIA | 50% Americas | 31% Asia-Pacific</div>
+
+      <div class="label rightcol" style="left:451px; top:0px;">Risk data, aggregation and<br>reporting capabilities</div>
+      <div class="barbox" style="left:597px; top:1px;">
+        <div class="fill" style="width:52px;"></div>
+        <div class="pct">31%</div>
+      </div>
+      <div class="sub" style="left:595px; top:26px;">26% EMEIA | 36% Americas | 31% Asia-Pacific</div>
+
+      <div class="label rightcol" style="left:451px; top:56px;">Frameworks and policies</div>
+      <div class="barbox" style="left:597px; top:54px;">
+        <div class="fill" style="width:47px;"></div>
+        <div class="pct">28%</div>
+      </div>
+      <div class="sub" style="left:595px; top:79px;">14% EMEIA | 43% Americas | 46% Asia-Pacific</div>
+
+      <div class="label rightcol" style="left:451px; top:109px;">Controls/control framework</div>
+      <div class="barbox" style="left:597px; top:107px;">
+        <div class="fill" style="width:43px;"></div>
+        <div class="pct">26%</div>
+      </div>
+      <div class="sub" style="left:595px; top:132px;">30% EMEIA | 21% Americas | 23% Asia-Pacific</div>
+
+      <div class="label rightcol" style="left:451px; top:159px;">Risk technology - automation of<br>risk processes</div>
+      <div class="barbox" style="left:597px; top:161px;">
+        <div class="fill" style="width:35px;"></div>
+        <div class="pct">21%</div>
+      </div>
+      <div class="sub" style="left:595px; top:186px;">21% EMEIA | 21% Americas | 23% Asia-Pacific</div>
+    </div>
+  </div>
+
+  <div class="callout"></div>
+  <div class="callout-line-yellow"></div>
+  <div class="callout-line-blue"></div>
+  <div class="callout-head">CRO on their planned enhancements</div>
+  <div class="quote-mark">“</div>
+  <div class="quote">A critical unknown in our risk management strategy is the correlation of insurance risks and the need for indicators that effectively evaluate these risks, including the impact on balance sheets and conduct risks.</div>
+
+  <div class="jump">JUMP TO<br>CONTENTS</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>The New Learning Loop</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #dcdcdc;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #e8e8e8;
+  }
+
+  .left-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 377px;
+    height: 720px;
+    background: #000;
+    color: #fff;
+  }
+
+  .topline {
+    position: absolute;
+    left: 61px;
+    top: 36px;
+    font-size: 16px;
+    line-height: 1;
+    color: #e9e9e9;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .topline .accent {
+    color: #a985ff;
+  }
+
+  .section-no {
+    position: absolute;
+    left: 63px;
+    top: 121px;
+    font-size: 26px;
+    line-height: 1;
+    font-weight: 700;
+    color: #bb9cff;
+  }
+
+  .title {
+    position: absolute;
+    left: 63px;
+    top: 170px;
+    width: 255px;
+    font-size: 29px;
+    line-height: 1.08;
+    font-weight: 700;
+    color: #f3f3f3;
+    letter-spacing: -0.6px;
+  }
+
+  .subtitle {
+    position: absolute;
+    left: 63px;
+    top: 279px;
+    width: 275px;
+    font-size: 25px;
+    line-height: 1.12;
+    font-weight: 700;
+    color: #f0f0f0;
+    letter-spacing: -0.4px;
+  }
+
+  .body {
+    position: absolute;
+    left: 63px;
+    top: 403px;
+    width: 286px;
+    font-size: 15px;
+    line-height: 1.34;
+    color: #efefef;
+    font-weight: 400;
+  }
+
+  .chevron {
+    position: absolute;
+    left: 59px;
+    top: 706px;
+    transform: translateY(-100%);
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 700;
+    color: #b922f8;
+  }
+
+  .artboard {
+    position: absolute;
+    left: 377px;
+    top: 0;
+    width: 903px;
+    height: 720px;
+    background:
+      radial-gradient(circle at 57% 18%, rgba(120,180,120,0.75) 0 6%, rgba(123,146,220,0.35) 6% 9%, rgba(232,232,232,0) 9%),
+      radial-gradient(circle at 62% 20%, rgba(140,110,255,0.18) 0 8%, rgba(232,232,232,0) 8%),
+      linear-gradient(180deg, #e8e8e8 0%, #e9e7ea 52%, #ede8ef 100%);
+  }
+
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.9;
+    filter: blur(0.2px);
+  }
+
+  .ring.one {
+    left: -96px;
+    top: 95px;
+    width: 606px;
+    height: 178px;
+    border: 20px solid rgba(242, 147, 211, 0.74);
+    border-left-color: rgba(168, 18, 255, 0.84);
+    border-bottom-color: rgba(255, 235, 235, 0.4);
+    transform: rotate(-10deg);
+  }
+
+  .ring.two {
+    left: 388px;
+    top: 149px;
+    width: 592px;
+    height: 145px;
+    border: 17px solid rgba(243, 190, 221, 0.65);
+    border-right-color: rgba(255,255,255,0.35);
+    border-top-color: rgba(206, 121, 208, 0.65);
+    transform: rotate(13deg);
+  }
+
+  .head {
+    position: absolute;
+    border-radius: 49% 51% 48% 52% / 44% 44% 56% 56%;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 73% 32%, rgba(235,56,194,0.95) 0 18%, rgba(174,52,217,0.86) 19%, rgba(91,34,121,0.95) 52%, rgba(45,34,75,1) 80%),
+      radial-gradient(circle at 35% 42%, rgba(215,46,188,0.92) 0 14%, rgba(95,31,127,0.2) 20%, rgba(0,0,0,0) 28%),
+      linear-gradient(135deg, rgba(90,20,156,1) 0%, rgba(160,40,210,1) 38%, rgba(92,40,142,1) 74%, rgba(50,28,92,1) 100%);
+    box-shadow: inset -18px -26px 60px rgba(0,0,0,0.22);
+  }
+
+  .head.left {
+    left: 58px;
+    top: 83px;
+    width: 353px;
+    height: 418px;
+    transform: rotate(-2deg);
+  }
+
+  .head.right {
+    left: 598px;
+    top: 67px;
+    width: 330px;
+    height: 422px;
+    transform: rotate(7deg);
+  }
+
+  .head:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 82% 30%, rgba(239,70,193,0.9) 0 17%, rgba(0,0,0,0) 18%),
+      radial-gradient(circle at 34% 46%, rgba(212,34,177,0.82) 0 14%, rgba(0,0,0,0) 15%),
+      radial-gradient(circle at 52% 9%, rgba(255,255,255,0.25) 0 2%, rgba(0,0,0,0) 3%),
+      radial-gradient(circle at 45% 55%, rgba(27,14,59,0.7) 0 5%, rgba(0,0,0,0) 6%),
+      radial-gradient(circle at 55% 60%, rgba(27,14,59,0.6) 0 3%, rgba(0,0,0,0) 4%);
+    mix-blend-mode: screen;
+  }
+
+  .ear {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 45% 45%, rgba(217,77,199,0.9) 0 35%, rgba(66,25,92,0.95) 36% 100%);
+    box-shadow: inset 0 0 0 4px rgba(93,32,126,0.6);
+  }
+
+  .ear.left {
+    left: 287px;
+    top: 239px;
+    width: 34px;
+    height: 44px;
+    transform: rotate(-10deg);
+  }
+
+  .ear.right {
+    left: 722px;
+    top: 223px;
+    width: 37px;
+    height: 47px;
+    transform: rotate(9deg);
+  }
+
+  .nose-left {
+    position: absolute;
+    left: 55px;
+    top: 340px;
+    width: 40px;
+    height: 25px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, rgba(124,56,143,0.95), rgba(232,102,218,0.95));
+    transform: rotate(20deg);
+    filter: blur(0.2px);
+  }
+
+  .nose-right {
+    position: absolute;
+    left: 901px;
+    top: 333px;
+    width: 39px;
+    height: 23px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, rgba(221,77,182,0.95), rgba(65,27,88,0.95));
+    transform: rotate(-10deg);
+  }
+
+  .neck {
+    position: absolute;
+    border-radius: 44% 56% 35% 65% / 28% 38% 62% 72%;
+    background: linear-gradient(180deg, rgba(222,77,207,0.92), rgba(110,42,159,0.96));
+  }
+
+  .neck.left {
+    left: 210px;
+    top: 438px;
+    width: 180px;
+    height: 177px;
+    transform: rotate(14deg);
+  }
+
+  .neck.right {
+    left: 742px;
+    top: 451px;
+    width: 212px;
+    height: 175px;
+    transform: rotate(-12deg);
+  }
+
+  .shoulder-left {
+    position: absolute;
+    left: 95px;
+    top: 462px;
+    width: 381px;
+    height: 244px;
+    border-radius: 49% 51% 38% 62% / 35% 35% 65% 65%;
+    background:
+      radial-gradient(circle at 50% 75%, rgba(255,255,255,0.62) 0 18%, rgba(255,255,255,0) 38%),
+      radial-gradient(circle at 66% 28%, rgba(215,40,202,0.86) 0 22%, rgba(0,0,0,0) 42%),
+      linear-gradient(180deg, rgba(226,97,212,0.86) 0%, rgba(245,230,222,0.95) 72%, rgba(236,236,236,0.98) 100%);
+    transform: rotate(8deg);
+    filter: blur(0.2px);
+  }
+
+  .cloak {
+    position: absolute;
+    left: 508px;
+    top: 319px;
+    width: 431px;
+    height: 471px;
+    border-radius: 44px;
+    background:
+      radial-gradient(circle at 38% 22%, rgba(255,155,255,0.6) 0 10%, rgba(0,0,0,0) 34%),
+      linear-gradient(180deg, rgba(226,76,244,0.88) 0%, rgba(193,35,242,0.96) 48%, rgba(166,25,226,0.98) 78%, rgba(184,78,236,0.88) 100%);
+    transform: rotate(14deg);
+    box-shadow: inset 0 -20px 60px rgba(255,255,255,0.08);
+  }
+
+  .swirl {
+    position: absolute;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255,227,242,0.28), rgba(204,70,255,0.88), rgba(255,220,238,0.72));
+    opacity: 0.93;
+    filter: blur(0.2px);
+  }
+
+  .swirl.left {
+    left: -8px;
+    top: 285px;
+    width: 397px;
+    height: 31px;
+    transform: rotate(-22deg);
+  }
+
+  .swirl.right {
+    left: 661px;
+    top: 304px;
+    width: 274px;
+    height: 28px;
+    transform: rotate(33deg);
+  }
+
+  .mist {
+    position: absolute;
+    left: 175px;
+    top: 624px;
+    width: 274px;
+    height: 114px;
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.9) 0 22%, rgba(255,255,255,0.65) 38%, rgba(255,255,255,0) 78%);
+    filter: blur(6px);
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-panel">
+      <div class="topline"><span class="accent">Technology Vision 2025</span> &nbsp;|&nbsp; AI: A Declaration of Autonomy</div>
+      <div class="section-no">04</div>
+      <div class="title">The New<br>Learning Loop</div>
+      <div class="subtitle">How people and AI are defining a virtuous cycle of learning, leading, and creating</div>
+      <div class="body">
+        As enterprises see the growing capabilities of AI, they may be tempted to approach it similarly to automation technologies of the past. But the uniqueness of generative AI lies in the fact that it is a learning technology, becoming more capable and useful the closer it is to people. Conventional automation would yield one-time benefits, and risk creating a disenchanted workforce. But approached correctly, leaders can ignite a virtuous cycle between people and AI: where the more people use it, the more it will improve, and the more people will want to use it. The positive reinforcement between people and AI will be necessary groundwork for developing AI cognitive digital brains, and unlocking this cycle will be the engine that powers diffusion and helps the enterprise achieve its AI-driven aspirations.
+      </div>
+      <div class="chevron">&gt;</div>
+    </div>
+
+    <div class="artboard">
+      <div class="ring one"></div>
+      <div class="ring two"></div>
+
+      <div class="head left"></div>
+      <div class="ear left"></div>
+      <div class="nose-left"></div>
+      <div class="neck left"></div>
+      <div class="shoulder-left"></div>
+
+      <div class="head right"></div>
+      <div class="ear right"></div>
+      <div class="nose-right"></div>
+      <div class="neck right"></div>
+      <div class="cloak"></div>
+
+      <div class="swirl left"></div>
+      <div class="swirl right"></div>
+      <div class="mist"></div>
+    </div>
+  </div>
+</body>
+</html>

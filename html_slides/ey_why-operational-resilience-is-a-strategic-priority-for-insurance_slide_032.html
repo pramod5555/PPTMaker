@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dddddf;
+  }
+  .slide > div, .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .left-bar{
+    left:0;
+    top:0;
+    width:103px;
+    height:720px;
+    background:#dddddd;
+    border-right:2px solid #b8b8bc;
+    z-index:5;
+  }
+  .accent{
+    left:13px;
+    top:409px;
+    width:11px;
+    height:13px;
+    background:#e6d500;
+    z-index:50;
+  }
+  .chapter{
+    left:14px;
+    top:349px;
+    color:#7a7a80;
+    font-size:11px;
+    line-height:11px;
+    letter-spacing:0.08em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    text-transform:uppercase;
+    z-index:50;
+  }
+
+  .photo{
+    left:31px;
+    top:33px;
+    width:465px;
+    height:703px;
+    border-radius:15px;
+    overflow:hidden;
+    z-index:10;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.18)),
+      linear-gradient(90deg, #6f6256 0 6%, #d8d6d2 6% 7.5%, #72695f 7.5% 8.3%, transparent 8.3% 100%),
+      linear-gradient(180deg, #c9c7c3 0%, #e5e2dd 20%, #cfcdc8 53%, #d7d7d9 100%);
+  }
+  .window-line1{left:71px;top:0;width:3px;height:703px;background:rgba(76,76,76,.55);z-index:11;}
+  .window-line2{left:228px;top:0;width:3px;height:703px;background:rgba(76,76,76,.42);z-index:11;}
+  .window-h1{left:0;top:338px;width:465px;height:3px;background:rgba(110,110,110,.42);z-index:11;}
+  .window-h2{left:0;top:514px;width:465px;height:3px;background:rgba(110,110,110,.26);z-index:11;}
+
+  .building{
+    left:72px; top:40px; width:167px; height:408px;
+    background:
+      linear-gradient(90deg,
+      rgba(163,171,178,.26) 0 16%,
+      rgba(245,245,245,.72) 16% 31%,
+      rgba(177,184,191,.46) 31% 35%,
+      rgba(245,245,245,.72) 35% 51%,
+      rgba(177,184,191,.46) 51% 55%,
+      rgba(245,245,245,.72) 55% 71%,
+      rgba(177,184,191,.46) 71% 75%,
+      rgba(245,245,245,.72) 75% 91%,
+      rgba(177,184,191,.46) 91% 100%);
+    opacity:.9;
+    z-index:10;
+    transform:skewY(-1deg);
+  }
+  .building:before,
+  .building:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(180deg,
+      transparent 0 10%,
+      rgba(120,130,140,.18) 10% 14%,
+      transparent 14% 30%,
+      rgba(120,130,140,.18) 30% 34%,
+      transparent 34% 50%,
+      rgba(120,130,140,.18) 50% 54%,
+      transparent 54% 70%,
+      rgba(120,130,140,.18) 70% 74%,
+      transparent 74% 100%);
+  }
+
+  .screen{
+    left:330px;
+    top:78px;
+    width:168px;
+    height:314px;
+    background:linear-gradient(180deg, #1b1533 0%, #251d71 18%, #342ab0 54%, #21184c 100%);
+    transform:skewY(-7deg);
+    box-shadow:0 0 0 2px rgba(24,24,24,.35);
+    z-index:20;
+  }
+  .screen-text{
+    left:368px;
+    top:109px;
+    color:rgba(255,255,255,.72);
+    font-size:11px;
+    font-weight:600;
+    z-index:30;
+    transform:rotate(-7deg);
+    letter-spacing:.01em;
+  }
+
+  .presenter-hair{
+    left:257px; top:235px; width:71px; height:117px;
+    background:#241f1d;
+    border-radius:35px 35px 26px 30px;
+    z-index:29;
+    transform:rotate(2deg);
+  }
+  .presenter-head{
+    left:270px; top:242px; width:47px; height:58px;
+    background:#a57e68;
+    border-radius:50%;
+    z-index:30;
+  }
+  .presenter-body{
+    left:244px; top:300px; width:118px; height:166px;
+    background:linear-gradient(180deg,#ede4da 0%, #e3d8ce 54%, #d8ccc2 100%);
+    border-radius:18px 18px 12px 12px;
+    z-index:28;
+    transform:skewX(-4deg);
+  }
+  .presenter-pants{
+    left:282px; top:459px; width:76px; height:109px;
+    background:linear-gradient(180deg,#20222b 0%, #454650 100%);
+    z-index:27;
+    clip-path:polygon(12% 0, 100% 0, 86% 100%, 0 100%);
+  }
+  .presenter-arm1{
+    left:255px; top:415px; width:64px; height:18px;
+    background:#b88669; border-radius:12px; z-index:31; transform:rotate(14deg);
+  }
+  .presenter-arm2{
+    left:306px; top:421px; width:48px; height:15px;
+    background:#b88669; border-radius:12px; z-index:31; transform:rotate(-13deg);
+  }
+
+  .seated-hair{
+    left:11px; top:419px; width:60px; height:53px;
+    background:#413833; border-radius:50%;
+    z-index:29;
+  }
+  .seated-head{
+    left:21px; top:426px; width:43px; height:49px;
+    background:#9b7862; border-radius:50%;
+    z-index:30;
+  }
+  .seated-body{
+    left:-4px; top:468px; width:128px; height:143px;
+    background:#c79228;
+    border-radius:42px 18px 0 0;
+    transform:skewX(12deg);
+    z-index:28;
+  }
+
+  .front-arm{
+    left:-3px; top:560px; width:132px; height:160px;
+    background:linear-gradient(180deg,#22324a 0%, #45658c 100%);
+    clip-path:polygon(0 26%, 53% 0, 100% 60%, 61% 100%, 0 100%);
+    z-index:24;
+    opacity:.96;
+  }
+  .hand{
+    left:109px; top:635px; width:25px; height:46px;
+    background:#8d684f; border-radius:13px;
+    z-index:25;
+    transform:rotate(18deg);
+  }
+
+  .table{
+    left:-2px; top:587px; width:517px; height:149px;
+    background:linear-gradient(180deg, rgba(212,211,213,.98) 0%, rgba(233,233,234,.99) 100%);
+    clip-path:polygon(0 29%, 100% 17%, 100% 100%, 0 100%);
+    z-index:22;
+  }
+  .table-line1{left:103px;top:606px;width:2px;height:130px;background:#a0a0a0;opacity:.45;z-index:23;}
+  .table-line2{left:256px;top:598px;width:2px;height:138px;background:#a0a0a0;opacity:.35;z-index:23;}
+  .table-line3{left:409px;top:592px;width:2px;height:144px;background:#a0a0a0;opacity:.28;z-index:23;}
+  .table-h{left:0;top:646px;width:514px;height:2px;background:#9e9e9e;opacity:.34;z-index:23;}
+
+  .laptop{
+    left:278px; top:526px; width:86px; height:74px;
+    background:linear-gradient(180deg,#67707d 0%, #323846 100%);
+    clip-path:polygon(12% 0, 88% 0, 100% 100%, 0 100%);
+    z-index:30;
+  }
+  .bottle{
+    left:387px; top:507px; width:31px; height:170px;
+    background:linear-gradient(90deg, rgba(247,247,247,.72) 0%, rgba(192,202,208,.30) 40%, rgba(255,255,255,.62) 70%, rgba(120,130,136,.42) 100%);
+    border-radius:10px 10px 7px 7px;
+    box-shadow: inset 0 0 0 1px rgba(80,80,80,.34);
+    z-index:31;
+  }
+  .bottle-cap{
+    left:394px; top:496px; width:16px; height:17px;
+    background:#7a7b80; border-radius:3px 3px 0 0;
+    z-index:32;
+  }
+  .mug1,.mug2{
+    width:34px;height:45px;background:#1f232b;border-radius:4px 4px 9px 9px;z-index:31;
+  }
+  .mug1{left:209px;top:590px;}
+  .mug2{left:320px;top:607px;}
+  .mug1:after,.mug2:after{
+    content:"";position:absolute;right:-9px;top:12px;width:12px;height:15px;border:2px solid #1f232b;border-left:none;border-radius:0 8px 8px 0;
+  }
+  .notebook{
+    left:3px; top:633px; width:68px; height:20px;
+    background:#ddd7ca; transform:rotate(-10deg); z-index:31;
+  }
+  .phone{
+    left:116px; top:697px; width:28px; height:6px;
+    background:#1f1f1f; border-radius:2px; z-index:31;
+  }
+
+  .page-num{
+    left:60px;
+    top:50px;
+    color:#ffffff;
+    font-size:39px;
+    font-weight:300;
+    line-height:39px;
+    z-index:50;
+  }
+  .ey-title{
+    left:115px;
+    top:59px;
+    width:210px;
+    color:#f3f3f3;
+    font-size:8px;
+    line-height:10px;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    z-index:50;
+  }
+
+  .body-copy{
+    left:546px;
+    top:133px;
+    width:292px;
+    color:#5d5d63;
+    font-size:12px;
+    line-height:18px;
+    font-weight:400;
+    z-index:30;
+  }
+
+  .chart-title{
+    left:910px;
+    top:131px;
+    width:355px;
+    color:#3b3b42;
+    font-size:14px;
+    line-height:20px;
+    font-weight:700;
+    z-index:30;
+  }
+
+  .chart-area{
+    left:916px;
+    top:173px;
+    width:310px;
+    height:280px;
+    z-index:30;
+  }
+  .label{
+    position:absolute;
+    width:160px;
+    text-align:right;
+    color:#5b5b61;
+    font-size:11px;
+    line-height:13px;
+    font-weight:400;
+  }
+  .barbox{
+    position:absolute;
+    left:171px;
+    width:168px;
+    height:23px;
+    border:1px solid #a9aab0;
+    background:#dddddf;
+  }
+  .fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:21px;
+    background:#7047bf;
+  }
+  .percent{
+    position:absolute;
+    right:7px;
+    top:3px;
+    color:#5a5a60;
+    font-size:18px;
+    line-height:18px;
+    font-weight:400;
+  }
+  .sub{z-index:1;
+    position:absolute;
+    left:171px;
+    color:#6b6b71;
+    font-size:7px;
+    line-height:8px;
+    font-weight:400;
+    white-space:nowrap;
+  }
+
+  .jump{
+    left:1221px;
+    top:0;
+    width:68px;
+    height:46px;
+    background:#7b7b82;
+    border-radius:0 0 14px 14px;
+    z-index:60;
+    color:#ffffff;
+    font-size:9px;
+    line-height:10px;
+    font-weight:700;
+    text-align:center;
+    padding-top:17px;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-bar"></div>
+  <div class="accent"></div>
+  <div class="chapter">CHAPTER 7</div>
+
+  <div class="photo">
+    <div class="window-line1"></div>
+    <div class="window-line2"></div>
+    <div class="window-h1"></div>
+    <div class="window-h2"></div>
+    <div class="building"></div>
+    <div class="screen"></div>
+    <div class="screen-text">1d 11h 9m 31s</div>
+
+    <div class="presenter-hair"></div>
+    <div class="presenter-head"></div>
+    <div class="presenter-body"></div>
+    <div class="presenter-pants"></div>
+    <div class="presenter-arm1"></div>
+    <div class="presenter-arm2"></div>
+
+    <div class="seated-hair"></div>
+    <div class="seated-head"></div>
+    <div class="seated-body"></div>
+
+    <div class="front-arm"></div>
+    <div class="hand"></div>
+
+    <div class="table"></div>
+    <div class="table-line1"></div>
+    <div class="table-line2"></div>
+    <div class="table-line3"></div>
+    <div class="table-h"></div>
+
+    <div class="laptop"></div>
+    <div class="bottle"></div>
+    <div class="bottle-cap"></div>
+    <div class="mug1"></div>
+    <div class="mug2"></div>
+    <div class="notebook"></div>
+    <div class="phone"></div>
+
+    <svg width="168" height="314" style="left:330px;top:78px;position:absolute;z-index:25;overflow:visible;" viewBox="0 0 168 314" aria-hidden="true">
+      <polygon points="38,258 58,142 85,90 109,164 137,258 103,258 84,178 64,258" fill="rgba(171,144,255,0.22)"></polygon>
+      <polyline points="38,258 58,142 85,90 109,164 137,258" fill="none" stroke="rgba(169,150,255,0.55)" stroke-width="2"></polyline>
+      <g stroke="rgba(255,255,255,0.14)" stroke-width="1">
+        <line x1="24" y1="60" x2="24" y2="263"></line>
+        <line x1="24" y1="263" x2="143" y2="263"></line>
+      </g>
+      <g fill="rgba(255,255,255,0.34)" font-size="7" font-family="Arial, Helvetica, sans-serif">
+        <text x="18" y="263">0</text>
+        <text x="16" y="231">20</text>
+        <text x="16" y="199">40</text>
+        <text x="16" y="167">60</text>
+        <text x="16" y="135">80</text>
+        <text x="12" y="103">100</text>
+      </g>
+      <g fill="rgba(255,255,255,0.34)" font-size="7" font-family="Arial, Helvetica, sans-serif">
+        <text x="39" y="277">Jan</text>
+        <text x="62" y="277">Feb</text>
+        <text x="85" y="277">Mar</text>
+        <text x="108" y="277">Apr</text>
+        <text x="131" y="277">May</text>
+      </g>
+      <text x="151" y="18" fill="rgba(255,255,255,0.46)" font-size="8">+</text>
+    </svg>
+  </div>
+
+  <div class="page-num">32</div>
+  <div class="ey-title">SECOND ANNUAL EY/IIF GLOBAL<br>INSURANCE RISK MANAGEMENT SURVEY</div>
+
+  <div class="body-copy">
+    Assessing product value may develop into a higher priority, especially if regulators (e.g., EIOPA) look for more frequent or more detailed evaluations and disclosures. Currently, annual assessments are the most common, cited by 34% of our survey respondents. That significantly more EMEIA-based CROs (46%) conduct annual assessments illustrates the impact of EIOPA's Insurance Distribution Directive (IDD) and the UK's Consumer Duty. To improve these assessments, CROs will have to address their biggest challenges, including determining customer expectations (54%) and the availability of management information (35%).
+  </div>
+
+  <div class="chart-title">Figure 18: How frequently does your organization assess the value its products provide?</div>
+
+  <div class="chart-area">
+    <div class="label" style="left:0;top:15px;">Annually</div>
+    <div class="barbox" style="top:11px;">
+      <div class="fill" style="width:57px;"></div>
+      <div class="percent">34%</div>
+    </div>
+    <div class="sub" style="top:36px;">46% EMEIA | 15% Americas | 38% Asia-Pacific</div>
+
+    <div class="label" style="left:0;top:71px;">Every six months</div>
+    <div class="barbox" style="top:67px;">
+      <div class="fill" style="width:9px;"></div>
+      <div class="percent">5%</div>
+    </div>
+    <div class="sub" style="top:92px;">5% EMEIA | 4% Americas | 8% Asia-Pacific</div>
+
+    <div class="label" style="left:0;top:127px;">Quarterly</div>
+    <div class="barbox" style="top:123px;">
+      <div class="fill" style="width:35px;"></div>
+      <div class="percent">21%</div>
+    </div>
+    <div class="sub" style="top:148px;">17% EMEIA | 33% Americas | 8% Asia-Pacific</div>
+
+    <div class="label" style="left:0;top:183px;">Ad-hoc</div>
+    <div class="barbox" style="top:179px;">
+      <div class="fill" style="width:55px;"></div>
+      <div class="percent">33%</div>
+    </div>
+    <div class="sub" style="top:204px;">22% EMEIA | 44% Americas | 38% Asia-Pacific</div>
+
+    <div class="label" style="left:0;top:234px;height:28px;">N/A; we do not assess the value<br>our products provide</div>
+    <div class="barbox" style="top:232px;">
+      <div class="fill" style="width:12px;"></div>
+      <div class="percent">7%</div>
+    </div>
+    <div class="sub" style="top:257px;">10% EMEIA | 4% Americas | 8% Asia-Pacific</div>
+  </div>
+
+  <div class="jump">JUMP TO<br>CONTENTS</div>
+</div>
+</body>
+</html>

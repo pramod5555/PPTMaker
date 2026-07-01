@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Business considerations slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dbd8dc;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#dbd8dc;
+    color:#111;
+  }
+  .topnav{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1280px;
+    height:25px;
+    background:#ece9ec;
+    border-bottom:1px solid #b8b2ba;
+    font-size:12px;
+    color:#8a858c;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .tab{
+    position:absolute;
+    top:0;
+    height:25px;
+    line-height:25px;
+    padding:0 14px;
+  }
+  .tab.active-dark{
+    background:#5f1a8f;
+    color:#fff;
+  }
+  .tab.active-light{
+    color:#5f1a8f;
+    border-bottom:2px solid #8f2bdb;
+    height:23px;
+    line-height:23px;
+  }
+
+  .title{
+    position:absolute;
+    left:44px;
+    top:59px;
+    width:1180px;
+    font-size:29px;
+    line-height:0.98;
+    font-weight:700;
+    color:#000;
+  }
+  .subtitle{
+    position:absolute;
+    left:44px;
+    top:120px;
+    font-size:29px;
+    font-weight:700;
+    color:#9c1fff;
+  }
+
+  .head-industries{
+    position:absolute;
+    left:214px;
+    top:183px;
+    font-size:15px;
+    font-weight:700;
+    color:#111;
+  }
+  .head-business{
+    position:absolute;
+    left:395px;
+    top:183px;
+    font-size:15px;
+    font-weight:700;
+    color:#111;
+  }
+
+  .purple-line-top{
+    position:absolute;
+    left:204px;
+    top:204px;
+    width:1029px;
+    height:2px;
+    background:#a33cf0;
+  }
+
+  .subhead-finance{
+    position:absolute;
+    left:395px;
+    top:211px;
+    font-size:15px;
+    font-weight:700;
+    color:#111;
+  }
+  .subhead-operations{
+    position:absolute;
+    left:819px;
+    top:211px;
+    font-size:15px;
+    font-weight:700;
+    color:#111;
+  }
+  .purple-line-mid{
+    position:absolute;
+    left:387px;
+    top:233px;
+    width:846px;
+    height:2px;
+    background:#a33cf0;
+  }
+
+  .left-box{
+    position:absolute;
+    left:42px;
+    width:162px;
+    background:#000;
+    color:#fff;
+    padding:11px 10px;
+    box-sizing:border-box;
+    font-size:13px;
+    line-height:1.12;
+    font-weight:700;
+  }
+  .left-box.top{ top:235px; height:217px; }
+  .left-box.bottom{ top:451px; height:231px; }
+
+  .divider{
+    position:absolute;
+    left:43px;
+    top:450px;
+    width:1191px;
+    height:1px;
+    background:#b6b1b8;
+  }
+
+  .col{
+    position:absolute;
+    font-size:16px;
+    line-height:1.15;
+    color:#2a2a2a;
+  }
+  .industries{
+    left:212px;
+    top:239px;
+    width:160px;
+  }
+  .finance{
+    left:395px;
+    top:239px;
+    width:383px;
+  }
+  .operations{
+    left:819px;
+    top:239px;
+    width:385px;
+  }
+
+  ul.main{
+    margin:0;
+    padding-left:20px;
+  }
+  ul.main > li{
+    margin:0 0 8px 0;
+  }
+  ul.sub{z-index:1;
+    list-style:none;
+    margin:6px 0 0 0;
+    padding-left:22px;
+  }
+  ul.sub li{
+    position:relative;
+    margin:0 0 8px 0;
+  }
+  ul.sub li::before{
+    content:"–";
+    position:absolute;
+    left:-18px;
+    top:0;
+    color:#555;
+  }
+
+  .footer-left{
+    position:absolute;
+    left:40px;
+    top:729px;
+  }
+  .accent-mark{
+    position:absolute;
+    left:42px;
+    top:725px;
+    width:20px;
+    height:10px;
+    color:#a61cff;
+    font-size:34px;
+    font-weight:700;
+    line-height:10px;
+    transform:skewX(-10deg);
+  }
+  .source{
+    position:absolute;
+    left:73px;
+    top:729px;
+    font-size:11px;
+    color:#8a868b;
+  }
+  .copyright{
+    position:absolute;
+    left:1013px;
+    top:729px;
+    font-size:11px;
+    color:#6f6b70;
+  }
+  .pagenum{
+    position:absolute;
+    left:1308px;
+    top:729px;
+    font-size:11px;
+    color:#6f6b70;
+  }
+
+  /* reposition footer into viewport */
+  .accent-mark,
+  .source,
+  .copyright,
+  .pagenum{
+    top:729px;
+  }
+  .accent-mark{ top:724px; }
+  .source{ top:730px; }
+  .copyright{ top:730px; }
+  .pagenum{ top:730px; }
+
+  /* corrected for 720px canvas */
+  .accent-mark{ top:694px; }
+  .source{ top:700px; }
+  .copyright{ top:700px; }
+  .pagenum{ top:700px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="topnav">
+    <div class="tab active-dark" style="left:0px;">Top 10 trends</div>
+    <div class="tab" style="left:105px;">Multi-speed growth</div>
+    <div class="tab" style="left:247px;">Tariff impacts</div>
+    <div class="tab active-light" style="left:360px;">Financial fragility</div>
+    <div class="tab" style="left:510px;">Affordability</div>
+    <div class="tab" style="left:628px;">AI productivity</div>
+    <div class="tab" style="left:751px;">China exports</div>
+    <div class="tab" style="left:875px;">Europe struggle</div>
+    <div class="tab" style="left:1012px;">AI arms race</div>
+    <div class="tab" style="left:1138px;">Power crunch</div>
+    <div class="tab" style="left:1238px;">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">
+    Private credit now spans a broad set of industries, from manufacturing and TMT to<br>
+    cleantech and life sciences, so stress in the asset class carries economy-wide implications
+  </div>
+
+  <div class="subtitle">3. Business considerations</div>
+
+  <div class="head-industries">Industries</div>
+  <div class="head-business">Business considerations</div>
+  <div class="purple-line-top"></div>
+
+  <div class="subhead-finance">Finance</div>
+  <div class="subhead-operations">Operations</div>
+  <div class="purple-line-mid"></div>
+
+  <div class="left-box top">
+    Sectors with high<br>private credit<br>penetration
+  </div>
+  <div class="left-box bottom">
+    Industries with<br>growing private<br>credit presence
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="col industries">
+    <ul class="main">
+      <li>Manufacturing</li>
+      <li>Technology</li>
+      <li>Industrials</li>
+    </ul>
+    <div style="height:123px;"></div>
+    <ul class="main">
+      <li>Infrastructure</li>
+      <li>Cleantech</li>
+      <li>Life sciences</li>
+    </ul>
+  </div>
+
+  <div class="col finance">
+    <ul class="main">
+      <li>Stress-test covenants and refinancing under higher for-longer rate scenarios and lower valuation exit multiples</li>
+      <li>Explore equity/quasi equity (preferred, convertible, minority PE) to de-risk balance sheet where leverage was set off peak AI / tech valuations</li>
+      <li>Match tenor and structure of private-credit facilities to underlying asset cash flows (e.g., avoid short-dated bullet maturities on long-dated projects)</li>
+    </ul>
+    <div style="height:1px;"></div>
+    <ul class="main">
+      <li>Monitor build up of private credit facilities alongside traditional bank lines to avoid hidden leverage</li>
+    </ul>
+  </div>
+
+  <div class="col operations">
+    <ul class="main">
+      <li>Tighten working-capital management i.e.,.
+        <ul class="sub">
+          <li>Faster billing and collections</li>
+          <li>Smarter inventory and procurement to free up cash</li>
+        </ul>
+      </li>
+      <li>Protect and grow cash-margin, not just revenue:
+        <ul class="sub">
+          <li>Prioritise high-margin products, contracts and sites</li>
+          <li>Pause or reshape low-return initiatives</li>
+        </ul>
+      </li>
+      <li>Prepare cost-flexibility playbooks (e.g., pre-agreed levers for slowing hiring, reducing discretionary spend, and resizing capacity if volumes disappoint)</li>
+      <li>Improve data, forecasting, and dashboards to cover:
+        <ul class="sub">
+          <li>Short, frequent cash, and covenant forecasts</li>
+          <li>Shared view between finance and operations on headroom and risks</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="accent-mark">&gt;</div>
+  <div class="source">Source(s): Accenture Strategy analysis</div>
+  <div class="copyright">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="pagenum">24</div>
+</div>
+</body>
+</html>

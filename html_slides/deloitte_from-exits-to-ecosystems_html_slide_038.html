@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#ebebeb;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#ebebeb;
+    color:#555;
+  }
+  #slide > *{ position:absolute; box-sizing:border-box; }
+
+  .title-q{
+    left:46px; top:48px;
+    font-size:39px; line-height:39px; font-weight:700; color:#000;
+  }
+
+  .prompt{
+    left:53px; top:156px; width:270px;
+    font-size:19px; line-height:1.28; font-weight:400; color:#5f5f5f;
+  }
+
+  .statement{
+    left:52px; top:261px; width:305px;
+    font-size:29px; line-height:1.18; font-weight:700; color:#5a5a5a;
+  }
+
+  .footnote{
+    left:53px; top:610px; width:295px;
+    font-size:10px; line-height:1.6; font-style:italic; color:#8a8a8a;
+  }
+
+  .copyright{
+    left:49px; top:730px; width:220px;
+    font-size:10px; line-height:10px; color:#4c4c4c;
+    transform:translateY(-10px);
+  }
+
+  .page{
+    left:677px; top:730px; width:20px;
+    font-size:14px; line-height:14px; color:#333;
+    transform:translateY(-12px);
+  }
+
+  .top-market{
+    left:376px; top:22px;
+    font-size:29px; line-height:29px; font-weight:300; color:#6b6b6b;
+    transform:scale(0.62);
+    transform-origin:left top;
+  }
+
+  .legend-likely-box{
+    left:554px; top:24px; width:16px; height:16px;
+    background:#27b3b3;
+  }
+  .legend-likely{
+    left:577px; top:23px;
+    font-size:17px; line-height:17px; color:#6a6a6a;
+  }
+
+  .legend-unlikely-box{
+    left:1113px; top:23px; width:16px; height:16px;
+    background:#1a236d;
+  }
+  .legend-unlikely{
+    left:1137px; top:23px;
+    font-size:17px; line-height:17px; color:#6a6a6a;
+  }
+
+  .legend-change{
+    left:1225px; top:18px; width:86px;
+    font-size:13px; line-height:1.15; text-align:center; color:#333;
+  }
+
+  .rule-left{
+    left:370px; top:52px; width:169px; height:1px; background:#7f91a3;
+  }
+  .rule-mid{
+    left:552px; top:52px; width:644px; height:1px; background:#7f91a3;
+  }
+  .rule-right{
+    left:1207px; top:52px; width:123px; height:1px; background:#7f91a3;
+  }
+
+  .chart{
+    left:377px; top:84px; width:952px; height:585px;
+  }
+
+  .row-label{
+    position:absolute;
+    left:0;
+    width:132px;
+    text-align:right;
+    padding-right:10px;
+    font-size:12px; line-height:16px; color:#777;
+    white-space:nowrap;
+  }
+
+  .bar-likely{
+    position:absolute;
+    left:143px;
+    height:16px;
+    background:#29b3b5;
+  }
+  .bar-likely.avg{
+    background:transparent;
+    border:1px solid #31b9bd;
+  }
+
+  .bar-unlikely{
+    position:absolute;
+    height:16px;
+    background:#1a236d;
+  }
+
+  .num-likely{
+    position:absolute;
+    width:52px;
+    font-size:14px; line-height:16px; font-weight:700;
+    color:#fff;
+    text-align:left;
+    padding-left:8px;
+  }
+  .num-likely.avg{
+    color:#29b3b5;
+  }
+
+  .num-unlikely{
+    position:absolute;
+    width:52px;
+    font-size:14px; line-height:16px; font-weight:700;
+    color:#fff;
+    text-align:right;
+    padding-right:6px;
+  }
+  .num-unlikely.avg{
+    color:#1a236d;
+  }
+
+  .change-box{
+    position:absolute;
+    left:854px;
+    width:74px; height:16px;
+    background:#dcdcdf;
+    color:#4f4f4f;
+    font-size:12px; line-height:16px; text-align:center;
+  }
+
+  .highlight{
+    position:absolute;
+    left:56px; top:275px; width:895px; height:20px;
+    border:2px solid #22b36a;
+    pointer-events:none;
+  }
+
+  .logo{
+    left:1231px; top:692px; width:54px; height:49px;
+    overflow:hidden;
+  }
+  .logo .blue{
+    position:absolute; left:0; top:0; width:38px; height:49px; background:#2f4aa0;
+  }
+  .logo .green{
+    position:absolute; right:0; top:0; width:23px; height:49px; background:#00a88e;
+    transform:skewX(-8deg);
+    transform-origin:top;
+  }
+  .logo .head1,.logo .head2,.logo .body1,.logo .body2{
+    position:absolute; background:#5f5bd4; opacity:.7;
+  }
+  .logo .head1{ left:17px; top:6px; width:9px; height:9px; border-radius:50%; }
+  .logo .body1{ left:14px; top:14px; width:14px; height:18px; border-radius:8px 8px 2px 2px; }
+  .logo .head2{ left:24px; top:10px; width:8px; height:8px; border-radius:50%; background:#1f7ec6; }
+  .logo .body2{ left:22px; top:18px; width:11px; height:15px; border-radius:7px 7px 2px 2px; background:#1f7ec6; }
+  .logo span{
+    position:absolute; left:6px; bottom:7px;
+    font-size:13px; line-height:13px; font-weight:700; color:#fff;
+    letter-spacing:.1px;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="title-q">Q.</div>
+
+  <div class="prompt">For each of the following, please tell me how likely or unlikely you think they are to happen...?</div>
+
+  <div class="statement">My personal data will<br>be leaked on the<br>internet</div>
+
+  <div class="footnote">Base: 23,721 adults aged 18 years and older in India, 18-74 in Canada, Republic of Ireland, Malaysia, the Philippines, South Africa, Turkey, and the United States, 20-74 in Thailand, 21-74 in Indonesia and Singapore, and 16-74 in all other countries.<br>Friday, October 25 – Friday November 8, 2024</div>
+
+  <div class="copyright">© Ipsos Predictions 2025 Report</div>
+  <div class="page">38</div>
+
+  <div class="top-market">Market</div>
+  <div class="legend-likely-box"></div>
+  <div class="legend-likely">Likely</div>
+  <div class="legend-unlikely-box"></div>
+  <div class="legend-unlikely">Unlikely</div>
+  <div class="legend-change">Change likely<br>vs 2023</div>
+
+  <div class="rule-left"></div>
+  <div class="rule-mid"></div>
+  <div class="rule-right"></div>
+
+  <div class="chart">
+    <div class="highlight"></div>
+
+    <div class="row-label" style="top:0px;">Global Country Average</div>
+    <div class="bar-likely avg" style="top:1px; width:373px;"></div>
+    <div class="num-likely avg" style="left:143px; top:0px;">57%</div>
+    <div class="bar-unlikely avg" style="left:605px; top:1px; width:196px; background:transparent; border:1px solid #2a2f74;"></div>
+    <div class="num-unlikely avg" style="left:749px; top:0px;">30%</div>
+    <div class="change-box" style="top:0px;">2%</div>
+
+    <div class="row-label" style="top:19px;">Türkiye</div>
+    <div class="bar-likely" style="top:19px; width:508px;"></div>
+    <div class="num-likely" style="left:143px; top:19px;">77%</div>
+    <div class="bar-unlikely" style="left:694px; top:19px; width:105px;"></div>
+    <div class="num-unlikely" style="left:748px; top:19px;">16%</div>
+    <div class="change-box" style="top:19px;">9%</div>
+
+    <div class="row-label" style="top:38px;">Indonesia</div>
+    <div class="bar-likely" style="top:38px; width:468px;"></div>
+    <div class="num-likely" style="left:143px; top:38px;">71%</div>
+    <div class="bar-unlikely" style="left:640px; top:38px; width:157px;"></div>
+    <div class="num-unlikely" style="left:747px; top:38px;">24%</div>
+    <div class="change-box" style="top:38px;">5%</div>
+
+    <div class="row-label" style="top:57px;">Philippines</div>
+    <div class="bar-likely" style="top:57px; width:455px;"></div>
+    <div class="num-likely" style="left:143px; top:57px;">69%</div>
+    <div class="bar-unlikely" style="left:640px; top:57px; width:157px;"></div>
+    <div class="num-unlikely" style="left:747px; top:57px;">24%</div>
+    <div class="change-box" style="top:57px;">5%</div>
+
+    <div class="row-label" style="top:76px;">Thailand</div>
+    <div class="bar-likely" style="top:76px; width:448px;"></div>
+    <div class="num-likely" style="left:143px; top:76px;">68%</div>
+    <div class="bar-unlikely" style="left:614px; top:76px; width:190px;"></div>
+    <div class="num-unlikely" style="left:754px; top:76px;">29%</div>
+    <div class="change-box" style="top:76px;">8%</div>
+
+    <div class="row-label" style="top:95px;">Malaysia</div>
+    <div class="bar-likely" style="top:95px; width:448px;"></div>
+    <div class="num-likely" style="left:143px; top:95px;">68%</div>
+    <div class="bar-unlikely" style="left:638px; top:95px; width:164px;"></div>
+    <div class="num-unlikely" style="left:752px; top:95px;">25%</div>
+    <div class="change-box" style="top:95px;">-4%</div>
+
+    <div class="row-label" style="top:114px;">Chile</div>
+    <div class="bar-likely" style="top:114px; width:446px;"></div>
+    <div class="num-likely" style="left:143px; top:114px;">68%</div>
+    <div class="bar-unlikely" style="left:651px; top:114px; width:151px;"></div>
+    <div class="num-unlikely" style="left:752px; top:114px;">23%</div>
+    <div class="change-box" style="top:114px;">4%</div>
+
+    <div class="row-label" style="top:133px;">Colombia</div>
+    <div class="bar-likely" style="top:133px; width:430px;"></div>
+    <div class="num-likely" style="left:143px; top:133px;">66%</div>
+    <div class="bar-unlikely" style="left:644px; top:133px; width:158px;"></div>
+    <div class="num-unlikely" style="left:752px; top:133px;">24%</div>
+    <div class="change-box" style="top:133px;">7%</div>
+
+    <div class="row-label" style="top:152px;">Netherlands</div>
+    <div class="bar-likely" style="top:152px; width:414px;"></div>
+    <div class="num-likely" style="left:143px; top:152px;">63%</div>
+    <div class="bar-unlikely" style="left:622px; top:152px; width:177px;"></div>
+    <div class="num-unlikely" style="left:749px; top:152px;">27%</div>
+    <div class="change-box" style="top:152px;">12%</div>
+
+    <div class="row-label" style="top:171px;">China</div>
+    <div class="bar-likely" style="top:171px; width:395px;"></div>
+    <div class="num-likely" style="left:143px; top:171px;">60%</div>
+    <div class="bar-unlikely" style="left:567px; top:171px; width:229px;"></div>
+    <div class="num-unlikely" style="left:746px; top:171px;">35%</div>
+    <div class="change-box" style="top:171px;">-9%</div>
+
+    <div class="row-label" style="top:190px;">South Korea</div>
+    <div class="bar-likely" style="top:190px; width:391px;"></div>
+    <div class="num-likely" style="left:143px; top:190px;">60%</div>
+    <div class="bar-unlikely" style="left:596px; top:190px; width:203px;"></div>
+    <div class="num-unlikely" style="left:749px; top:190px;">31%</div>
+    <div class="change-box" style="top:190px;">-5%</div>
+
+    <div class="row-label" style="top:209px;">Spain</div>
+    <div class="bar-likely" style="top:209px; width:389px;"></div>
+    <div class="num-likely" style="left:143px; top:209px;">59%</div>
+    <div class="bar-unlikely" style="left:639px; top:209px; width:164px;"></div>
+    <div class="num-unlikely" style="left:753px; top:209px;">25%</div>
+    <div class="change-box" style="top:209px;">-1%</div>
+
+    <div class="row-label" style="top:228px;">France</div>
+    <div class="bar-likely" style="top:228px; width:388px;"></div>
+    <div class="num-likely" style="left:143px; top:228px;">59%</div>
+    <div class="bar-unlikely" style="left:620px; top:228px; width:183px;"></div>
+    <div class="num-unlikely" style="left:753px; top:228px;">28%</div>
+    <div class="change-box" style="top:228px;">8%</div>
+
+    <div class="row-label" style="top:247px;">Peru</div>
+    <div class="bar-likely" style="top:247px; width:381px;"></div>
+    <div class="num-likely" style="left:143px; top:247px;">58%</div>
+    <div class="bar-unlikely" style="left:628px; top:247px; width:176px;"></div>
+    <div class="num-unlikely" style="left:754px; top:247px;">27%</div>
+    <div class="change-box" style="top:247px;">-1%</div>
+
+    <div class="row-label" style="top:266px;">United States</div>
+    <div class="bar-likely" style="top:266px; width:380px;"></div>
+    <div class="num-likely" style="left:143px; top:266px;">58%</div>
+    <div class="bar-unlikely" style="left:620px; top:266px; width:183px;"></div>
+    <div class="num-unlikely" style="left:753px; top:266px;">28%</div>
+    <div class="change-box" style="top:266px;">4%</div>
+
+    <div class="row-label" style="top:285px;">Singapore</div>
+    <div class="bar-likely" style="top:285px; width:374px;"></div>
+    <div class="num-likely" style="left:143px; top:285px;">57%</div>
+    <div class="bar-unlikely" style="left:618px; top:285px; width:185px;"></div>
+    <div class="num-unlikely" style="left:753px; top:285px;">28%</div>
+    <div class="change-box" style="top:285px;">-2%</div>
+
+    <div class="row-label" style="top:304px;">Australia</div>
+    <div class="bar-likely" style="top:304px; width:374px;"></div>
+    <div class="num-likely" style="left:143px; top:304px;">57%</div>
+    <div class="bar-unlikely" style="left:618px; top:304px; width:185px;"></div>
+    <div class="num-unlikely" style="left:753px; top:304px;">28%</div>
+    <div class="change-box" style="top:304px;">-2%</div>
+
+    <div class="row-label" style="top:323px;">Argentina</div>
+    <div class="bar-likely" style="top:323px; width:370px;"></div>
+    <div class="num-likely" style="left:143px; top:323px;">57%</div>
+    <div class="bar-unlikely" style="left:631px; top:323px; width:170px;"></div>
+    <div class="num-unlikely" style="left:751px; top:323px;">26%</div>
+    <div class="change-box" style="top:323px;">5%</div>
+
+    <div class="row-label" style="top:342px;">India</div>
+    <div class="bar-likely" style="top:342px; width:361px;"></div>
+    <div class="num-likely" style="left:143px; top:342px;">56%</div>
+    <div class="bar-unlikely" style="left:589px; top:342px; width:208px;"></div>
+    <div class="num-unlikely" style="left:747px; top:342px;">32%</div>
+    <div class="change-box" style="top:342px;">0%</div>
+
+    <div class="row-label" style="top:361px;">Belgium</div>
+    <div class="bar-likely" style="top:361px; width:353px;"></div>
+    <div class="num-likely" style="left:143px; top:361px;">55%</div>
+    <div class="bar-unlikely" style="left:630px; top:361px; width:171px;"></div>
+    <div class="num-unlikely" style="left:751px; top:361px;">26%</div>
+    <div class="change-box" style="top:361px;">8%</div>
+
+    <div class="row-label" style="top:380px;">Mexico</div>
+    <div class="bar-likely" style="top:380px; width:351px;"></div>
+    <div class="num-likely" style="left:143px; top:380px;">55%</div>
+    <div class="bar-unlikely" style="left:587px; top:380px; width:216px;"></div>
+    <div class="num-unlikely" style="left:753px; top:380px;">33%</div>
+    <div class="change-box" style="top:380px;">-5%</div>
+
+    <div class="row-label" style="top:399px;">Sweden</div>
+    <div class="bar-likely" style="top:399px; width:346px;"></div>
+    <div class="num-likely" style="left:143px; top:399px;">54%</div>
+    <div class="bar-unlikely" style="left:597px; top:399px; width:202px;"></div>
+    <div class="num-unlikely" style="left:749px; top:399px;">31%</div>
+    <div class="change-box" style="top:399px;">3%</div>
+
+    <div class="row-label" style="top:418px;">Italy</div>
+    <div class="bar-likely" style="top:418px; width:343px;"></div>
+    <div class="num-likely" style="left:143px; top:418px;">53%</div>
+    <div class="bar-unlikely" style="left:594px; top:418px; width:208px;"></div>
+    <div class="num-unlikely" style="left:752px; top:418px;">32%</div>
+    <div class="change-box" style="top:418px;">6%</div>
+
+    <div class="row-label" style="top:437px;">Poland</div>
+    <div class="bar-likely" style="top:437px; width:329px;"></div>
+    <div class="num-likely" style="left:143px; top:437px;">51%</div>
+    <div class="bar-unlikely" style="left:588px; top:437px; width:214px;"></div>
+    <div class="num-unlikely" style="left:752px; top:437px;">33%</div>
+    <div class="change-box" style="top:437px;">1%</div>
+
+    <div class="row-label" style="top:456px;">South Africa</div>
+    <div class="bar-likely" style="top:456px; width:327px;"></div>
+    <div class="num-likely" style="left:143px; top:456px;">51%</div>
+    <div class="bar-unlikely" style="left:538px; top:456px; width:262px;"></div>
+    <div class="num-unlikely" style="left:750px; top:456px;">40%</div>
+    <div class="change-box" style="top:456px;">0%</div>
+
+    <div class="row-label" style="top:475px;">Canada</div>
+    <div class="bar-likely" style="top:475px; width:323px;"></div>
+    <div class="num-likely" style="left:143px; top:475px;">50%</div>
+    <div class="bar-unlikely" style="left:596px; top:475px; width:203px;"></div>
+    <div class="num-unlikely" style="left:749px; top:475px;">31%</div>
+    <div class="change-box" style="top:475px;">-1%</div>
+
+    <div class="row-label" style="top:494px;">Hungary</div>
+    <div class="bar-likely" style="top:494px; width:321px;"></div>
+    <div class="num-likely" style="left:143px; top:494px;">50%</div>
+    <div class="bar-unlikely" style="left:590px; top:494px; width:209px;"></div>
+    <div class="num-unlikely" style="left:749px; top:494px;">31%</div>
+    <div class="change-box" style="top:494px;">10%</div>
+
+    <div class="row-label" style="top:513px;">Great Britain</div>
+    <div class="bar-likely" style="top:513px; width:314px;"></div>
+    <div class="num-likely" style="left:143px; top:513px;">49%</div>
+    <div class="bar-unlikely" style="left:588px; top:513px; width:214px;"></div>
+    <div class="num-unlikely" style="left:752px; top:513px;">32%</div>
+    <div class="change-box" style="top:513px;">-4%</div>
+
+    <div class="row-label" style="top:532px;">Switzerland</div>
+    <div class="bar-likely" style="top:532px; width:309px;"></div>
+    <div class="num-likely" style="left:143px; top:532px;">48%</div>
+    <div class="bar-unlikely" style="left:568px; top:532px; width:229px;"></div>
+    <div class="num-unlikely" style="left:747px; top:532px;">35%</div>
+    <div class="change-box" style="top:532px;">3%</div>
+
+    <div class="row-label" style="top:551px;">Japan</div>
+    <div class="bar-likely" style="top:551px; width:303px;"></div>
+    <div class="num-likely" style="left:143px; top:551px;">47%</div>
+    <div class="bar-unlikely" style="left:579px; top:551px; width:221px;"></div>
+    <div class="num-unlikely" style="left:750px; top:551px;">34%</div>
+    <div class="change-box" style="top:551px;">4%</div>
+
+    <div class="row-label" style="top:570px;">Ireland</div>
+    <div class="bar-likely" style="top:570px; width:298px;"></div>
+    <div class="num-likely" style="left:143px; top:570px;">47%</div>
+    <div class="bar-unlikely" style="left:569px; top:570px; width:229px;"></div>
+    <div class="num-unlikely" style="left:748px; top:570px;">35%</div>
+    <div class="change-box" style="top:570px;">N/A</div>
+
+    <div class="row-label" style="top:589px;">Brazil</div>
+    <div class="bar-likely" style="top:589px; width:293px;"></div>
+    <div class="num-likely" style="left:143px; top:589px;">46%</div>
+    <div class="bar-unlikely" style="left:570px; top:589px; width:234px;"></div>
+    <div class="num-unlikely" style="left:754px; top:589px;">36%</div>
+    <div class="change-box" style="top:589px;">1%</div>
+
+    <div class="row-label" style="top:608px;">Romania</div>
+    <div class="bar-likely" style="top:608px; width:275px;"></div>
+    <div class="num-likely" style="left:143px; top:608px;">43%</div>
+    <div class="bar-unlikely" style="left:537px; top:608px; width:263px;"></div>
+    <div class="num-unlikely" style="left:750px; top:608px;">40%</div>
+    <div class="change-box" style="top:608px;">2%</div>
+
+    <div class="row-label" style="top:627px;">Germany</div>
+    <div class="bar-likely" style="top:627px; width:251px;"></div>
+    <div class="num-likely" style="left:143px; top:627px;">40%</div>
+    <div class="bar-unlikely" style="left:588px; top:627px; width:215px;"></div>
+    <div class="num-unlikely" style="left:753px; top:627px;">33%</div>
+    <div class="change-box" style="top:627px;">-1%</div>
+  </div>
+
+  <div class="logo">
+    <div class="blue"></div>
+    <div class="green"></div>
+    <div class="head1"></div>
+    <div class="body1"></div>
+    <div class="head2"></div>
+    <div class="body2"></div>
+    <span>Ipsos</span>
+  </div>
+</div>
+</body>
+</html>

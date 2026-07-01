@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>EV Owners Slide</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #222;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background:
+      linear-gradient(rgba(0,0,0,0.36), rgba(0,0,0,0.36)),
+      radial-gradient(circle at 60% 18%, rgba(255,245,210,0.18) 0 14%, transparent 15%),
+      radial-gradient(circle at 72% 16%, rgba(180,210,160,0.18) 0 10%, transparent 11%),
+      radial-gradient(circle at 86% 20%, rgba(160,190,140,0.14) 0 12%, transparent 13%),
+      linear-gradient(180deg, rgba(90,92,92,0.88) 0%, rgba(70,72,72,0.82) 36%, rgba(74,75,74,0.9) 100%);
+  }
+
+  /* soft city background */
+  .bg-block { position: absolute; filter: blur(1.2px); opacity: 0.75; }
+  .b1 { left: 0px; top: 0px; width: 220px; height: 170px; background: rgba(170,175,180,0.35); }
+  .b2 { left: 292px; top: 0px; width: 280px; height: 208px; background: rgba(170,170,170,0.28); }
+  .b3 { left: 534px; top: 0px; width: 180px; height: 160px; background: rgba(80,84,88,0.28); }
+  .b4 { left: 1060px; top: 150px; width: 130px; height: 310px; background: rgba(40,42,44,0.45); }
+  .b5 { left: 1140px; top: 0px; width: 70px; height: 720px; background: rgba(30,30,30,0.42); }
+
+  .tree {
+    position: absolute;
+    background: linear-gradient(180deg, rgba(90,70,50,0.85), rgba(105,80,55,0.75));
+    border-radius: 8px;
+    filter: blur(0.4px);
+  }
+  .tree.t1 { left: 63px; top: 0px; width: 18px; height: 236px; }
+  .tree.t2 { left: 916px; top: 0px; width: 19px; height: 225px; }
+  .tree.t3 { left: 735px; top: 0px; width: 18px; height: 188px; }
+
+  .foliage {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(8px);
+    opacity: 0.7;
+    background: rgba(126,139,79,0.55);
+  }
+  .f1 { left: 694px; top: -12px; width: 182px; height: 96px; }
+  .f2 { left: 875px; top: -8px; width: 209px; height: 103px; }
+  .f3 { left: 1030px; top: 12px; width: 180px; height: 122px; }
+
+  /* Foreground car shapes */
+  .car-front {
+    position: absolute;
+    left: -38px;
+    top: 236px;
+    width: 746px;
+    height: 478px;
+    background:
+      linear-gradient(180deg, rgba(210,210,210,0.22), rgba(30,30,35,0.2)),
+      linear-gradient(140deg, #5f6367 0%, #8e9194 18%, #4b4e54 38%, #8e9092 57%, #4a4d53 76%, #7e8083 100%);
+    clip-path: polygon(0% 30%, 8% 18%, 24% 11%, 43% 11%, 63% 7%, 81% 10%, 100% 23%, 98% 76%, 90% 91%, 18% 96%, 0% 82%);
+    border-radius: 26px;
+    box-shadow: inset 0 0 0 2px rgba(220,220,220,0.15);
+  }
+  .car-roof-line {
+    position: absolute;
+    left: 202px;
+    top: 243px;
+    width: 469px;
+    height: 232px;
+    border-top: 4px solid rgba(210,215,220,0.7);
+    border-right: 4px solid rgba(175,180,185,0.55);
+    border-radius: 220px 240px 90px 0;
+    transform: rotate(-6deg);
+    opacity: 0.9;
+  }
+  .window {
+    position: absolute;
+    background: linear-gradient(135deg, rgba(20,35,26,0.78), rgba(85,95,100,0.28) 45%, rgba(20,20,20,0.7));
+    border: 2px solid rgba(180,185,190,0.35);
+    opacity: 0.85;
+  }
+  .w1 {
+    left: 408px;
+    top: 301px;
+    width: 169px;
+    height: 119px;
+    border-radius: 86px 16px 26px 40px;
+    transform: rotate(6deg);
+  }
+  .w2 {
+    left: 573px;
+    top: 271px;
+    width: 190px;
+    height: 154px;
+    border-radius: 22px 80px 14px 22px;
+    transform: skewX(-18deg);
+    opacity: 0.3;
+  }
+  .car-line1, .car-line2, .car-line3 {
+    position: absolute;
+    border-top: 2px solid rgba(20,20,20,0.55);
+    opacity: 0.75;
+  }
+  .car-line1 { left: 0px; top: 510px; width: 484px; transform: rotate(2deg); }
+  .car-line2 { left: 286px; top: 607px; width: 286px; transform: rotate(-2deg); }
+  .car-line3 { left: 0px; top: 646px; width: 534px; }
+
+  .tail-light {
+    position: absolute;
+    left: 286px;
+    top: 543px;
+    width: 166px;
+    height: 60px;
+    border-radius: 14px 34px 14px 18px;
+    background:
+      linear-gradient(90deg, rgba(230,230,230,0.3), rgba(28,28,28,0.9) 42%, rgba(60,25,34,0.9) 75%, rgba(24,14,18,0.95));
+    box-shadow: inset 0 0 0 2px rgba(190,190,190,0.22);
+  }
+  .head-detail {
+    position: absolute;
+    left: -8px;
+    top: 571px;
+    width: 176px;
+    height: 41px;
+    border-radius: 18px;
+    background:
+      linear-gradient(90deg, rgba(238,238,238,0.6), rgba(88,88,88,0.6) 55%, rgba(240,240,240,0.28));
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18);
+  }
+
+  .wheel {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, rgba(210,210,210,0.28) 0 28%, rgba(80,80,80,0.6) 29%, rgba(35,35,35,0.9) 56%, rgba(120,120,120,0.18) 57%, transparent 66%);
+    opacity: 0.68;
+  }
+  .wheel.wf { left: 556px; top: 582px; width: 85px; height: 85px; }
+  .wheel.wb { left: 123px; top: 590px; width: 76px; height: 76px; opacity: 0.28; }
+
+  .charge-port {
+    position: absolute;
+    left: 418px;
+    top: 630px;
+    width: 33px;
+    height: 33px;
+    background: rgba(15,15,15,0.85);
+    border-radius: 50%;
+  }
+  .cable {
+    position: absolute;
+    left: 482px;
+    top: 588px;
+    width: 20px;
+    height: 161px;
+    background: linear-gradient(180deg, #a1151e, #c3373c, #741016);
+    border-radius: 12px;
+    transform: rotate(33deg);
+    transform-origin: top center;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  }
+  .plug-hand {
+    position: absolute;
+    left: 476px;
+    top: 602px;
+    width: 38px;
+    height: 15px;
+    background: #1f1f1f;
+    border-radius: 7px;
+    transform: rotate(33deg);
+  }
+
+  /* Background car */
+  .car-back {
+    position: absolute;
+    left: 748px;
+    top: 232px;
+    width: 310px;
+    height: 330px;
+    background:
+      linear-gradient(145deg, rgba(180,180,180,0.2), rgba(20,20,20,0.12)),
+      linear-gradient(135deg, #727578 0%, #a0a2a4 18%, #45484d 44%, #8f9092 72%, #2d2f33 100%);
+    clip-path: polygon(16% 15%, 46% 6%, 79% 15%, 99% 39%, 94% 76%, 82% 90%, 43% 92%, 14% 78%, 4% 45%);
+    border-radius: 28px;
+    opacity: 0.82;
+    filter: blur(0.5px);
+  }
+  .back-window {
+    position: absolute;
+    left: 880px;
+    top: 287px;
+    width: 106px;
+    height: 80px;
+    border-radius: 50% 20% 38% 28%;
+    background: linear-gradient(135deg, rgba(230,230,230,0.3), rgba(40,40,45,0.85));
+    transform: rotate(8deg);
+    opacity: 0.7;
+  }
+
+  /* Person */
+  .torso {
+    position: absolute;
+    left: 673px;
+    top: 252px;
+    width: 199px;
+    height: 208px;
+    background: linear-gradient(180deg, #141414, #060606);
+    border-radius: 52px 40px 54px 70px;
+    transform: rotate(15deg);
+  }
+  .hip {
+    position: absolute;
+    left: 785px;
+    top: 410px;
+    width: 108px;
+    height: 116px;
+    background: linear-gradient(180deg, #181818, #090909);
+    border-radius: 24px 24px 34px 34px;
+    transform: rotate(6deg);
+  }
+  .leg1 {
+    position: absolute;
+    left: 754px;
+    top: 478px;
+    width: 74px;
+    height: 242px;
+    background: linear-gradient(180deg, #171717, #030303);
+    border-radius: 38px;
+    transform: rotate(4deg);
+  }
+  .leg2 {
+    position: absolute;
+    left: 819px;
+    top: 478px;
+    width: 74px;
+    height: 246px;
+    background: linear-gradient(180deg, #191919, #040404);
+    border-radius: 38px;
+    transform: rotate(2deg);
+  }
+  .arm1 {
+    position: absolute;
+    left: 645px;
+    top: 415px;
+    width: 36px;
+    height: 239px;
+    background: linear-gradient(180deg, #b77f53, #9a653d);
+    border-radius: 22px;
+    transform: rotate(29deg);
+  }
+  .arm2 {
+    position: absolute;
+    left: 788px;
+    top: 491px;
+    width: 28px;
+    height: 92px;
+    background: linear-gradient(180deg, #af7950, #8c5d39);
+    border-radius: 18px;
+    transform: rotate(13deg);
+  }
+  .hand1 {
+    position: absolute;
+    left: 483px;
+    top: 607px;
+    width: 31px;
+    height: 22px;
+    background: #b67f54;
+    border-radius: 12px;
+    transform: rotate(18deg);
+  }
+  .hand2 {
+    position: absolute;
+    left: 784px;
+    top: 527px;
+    width: 25px;
+    height: 18px;
+    background: #a56f47;
+    border-radius: 10px;
+  }
+  .head {
+    position: absolute;
+    left: 664px;
+    top: 138px;
+    width: 79px;
+    height: 98px;
+    background: linear-gradient(180deg, #d0a07d, #b88259);
+    border-radius: 40px 36px 42px 34px;
+    transform: rotate(9deg);
+    z-index: 3;
+  }
+  .hair {
+    position: absolute;
+    left: 636px;
+    top: 120px;
+    width: 199px;
+    height: 185px;
+    background: linear-gradient(180deg, rgba(96,66,45,0.92), rgba(64,43,30,0.9));
+    clip-path: polygon(22% 8%, 42% 0%, 65% 7%, 84% 23%, 98% 55%, 100% 84%, 90% 93%, 76% 79%, 64% 52%, 42% 26%, 22% 22%, 13% 17%);
+    border-radius: 80px;
+    opacity: 0.95;
+  }
+  .glasses {
+    position: absolute;
+    left: 642px;
+    top: 168px;
+    width: 49px;
+    height: 26px;
+    z-index: 4;
+  }
+  .glasses:before, .glasses:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 19px;
+    height: 19px;
+    border: 2px solid rgba(20,20,20,0.9);
+    border-radius: 50%;
+  }
+  .glasses:before { left: 0; }
+  .glasses:after { right: 0; }
+  .glasses .bridge {
+    position: absolute;
+    left: 18px;
+    top: 8px;
+    width: 11px;
+    height: 2px;
+    background: rgba(20,20,20,0.9);
+  }
+  .earring {
+    position: absolute;
+    left: 700px;
+    top: 198px;
+    width: 3px;
+    height: 30px;
+    border: 2px solid rgba(196,196,196,0.85);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    z-index: 3;
+  }
+  .phone {
+    position: absolute;
+    left: 804px;
+    top: 530px;
+    width: 10px;
+    height: 22px;
+    background: #1a1a1a;
+    border-radius: 3px;
+    transform: rotate(18deg);
+  }
+  .bracelet {
+    position: absolute;
+    border: 2px solid rgba(190,160,120,0.8);
+    border-radius: 50%;
+    opacity: 0.8;
+  }
+  .br1 { left: 541px; top: 544px; width: 13px; height: 13px; }
+  .br2 { left: 548px; top: 548px; width: 16px; height: 16px; }
+  .br3 { left: 557px; top: 552px; width: 12px; height: 12px; }
+
+  /* Charging station */
+  .charger {
+    position: absolute;
+    left: 1177px;
+    top: 216px;
+    width: 54px;
+    height: 445px;
+    background: linear-gradient(180deg, #2b2d30, #171819);
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+  }
+  .charger-screen {
+    position: absolute;
+    left: 1191px;
+    top: 248px;
+    width: 25px;
+    height: 73px;
+    background: linear-gradient(180deg, #d3d6d6, #8a8d8d);
+    border-radius: 4px;
+  }
+  .charger-button {
+    position: absolute;
+    left: 1199px;
+    top: 289px;
+    width: 9px;
+    height: 9px;
+    background: #2f3336;
+    border-radius: 50%;
+  }
+  .charger-ring {
+    position: absolute;
+    left: 1185px;
+    top: 326px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, #222 0 34%, transparent 35%),
+      repeating-conic-gradient(#d6cf9d 0 12deg, transparent 12deg 24deg);
+    opacity: 0.9;
+  }
+  .cable-right1, .cable-right2 {
+    position: absolute;
+    background: linear-gradient(180deg, #8c101a, #cb4452, #7c141f);
+    border-radius: 14px;
+    opacity: 0.7;
+  }
+  .cable-right1 {
+    left: 1218px;
+    top: 375px;
+    width: 9px;
+    height: 233px;
+    transform: rotate(-17deg);
+    transform-origin: top center;
+  }
+  .cable-right2 {
+    left: 1188px;
+    top: 551px;
+    width: 10px;
+    height: 153px;
+    transform: rotate(83deg);
+    transform-origin: top center;
+  }
+  .small-base {
+    position: absolute;
+    left: 1241px;
+    top: 580px;
+    width: 17px;
+    height: 30px;
+    background: #8d8d8d;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .pole {
+    position: absolute;
+    left: 1233px;
+    top: 0px;
+    width: 32px;
+    height: 720px;
+    background: linear-gradient(180deg, #d4d4d4, #bfbfbf 26%, #e5e5e5 45%, #cecece 100%);
+  }
+  .pole-sign {
+    position: absolute;
+    left: 1228px;
+    top: 0px;
+    width: 50px;
+    height: 112px;
+    background: #32a162;
+    border-radius: 0 0 2px 2px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+  .pole-cap {
+    position: absolute;
+    left: 1240px;
+    top: 575px;
+    width: 18px;
+    height: 145px;
+    background: rgba(110,116,120,0.9);
+    border-radius: 9px 9px 0 0;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.12);
+  }
+
+  /* Text block */
+  .label {
+    position: absolute;
+    left: 0px;
+    top: 239px;
+    width: 444px;
+    height: 83px;
+    background: rgba(244,244,244,0.88);
+    color: #444;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 83px;
+    padding-left: 50px;
+    box-sizing: border-box;
+    letter-spacing: 0;
+  }
+  .title {
+    position: absolute;
+    left: 50px;
+    top: 327px;
+    color: #f5f5f1;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 68px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+  .underline {
+    position: absolute;
+    left: 50px;
+    top: 421px;
+    width: 47px;
+    height: 5px;
+    background: rgba(255,255,255,0.9);
+  }
+  .desc {
+    position: absolute;
+    left: 50px;
+    top: 448px;
+    width: 430px;
+    color: #f0f0f0;
+    font-size: 19px;
+    line-height: 1.28;
+    font-weight: 400;
+  }
+  .footer-left {
+    position: absolute;
+    left: 49px;
+    top: 731px;
+    transform: translateY(-100%);
+    color: rgba(255,255,255,0.9);
+    font-size: 14px;
+    line-height: 1;
+  }
+  .footer-right {
+    position: absolute;
+    right: 24px;
+    bottom: 18px;
+    color: rgba(255,255,255,0.92);
+    font-size: 18px;
+    text-align: right;
+    line-height: 1.15;
+  }
+  .footer-right .page {
+    display: block;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="bg-block b1"></div>
+    <div class="bg-block b2"></div>
+    <div class="bg-block b3"></div>
+    <div class="bg-block b4"></div>
+    <div class="bg-block b5"></div>
+
+    <div class="tree t1"></div>
+    <div class="tree t2"></div>
+    <div class="tree t3"></div>
+    <div class="foliage f1"></div>
+    <div class="foliage f2"></div>
+    <div class="foliage f3"></div>
+
+    <div class="car-front"></div>
+    <div class="car-roof-line"></div>
+    <div class="window w1"></div>
+    <div class="window w2"></div>
+    <div class="car-line1"></div>
+    <div class="car-line2"></div>
+    <div class="car-line3"></div>
+    <div class="tail-light"></div>
+    <div class="head-detail"></div>
+    <div class="wheel wb"></div>
+    <div class="wheel wf"></div>
+    <div class="charge-port"></div>
+    <div class="cable"></div>
+    <div class="plug-hand"></div>
+
+    <div class="car-back"></div>
+    <div class="back-window"></div>
+
+    <div class="hair"></div>
+    <div class="head"></div>
+    <div class="glasses"><div class="bridge"></div></div>
+    <div class="earring"></div>
+    <div class="torso"></div>
+    <div class="hip"></div>
+    <div class="leg1"></div>
+    <div class="leg2"></div>
+    <div class="arm1"></div>
+    <div class="arm2"></div>
+    <div class="hand1"></div>
+    <div class="hand2"></div>
+    <div class="phone"></div>
+    <div class="bracelet br1"></div>
+    <div class="bracelet br2"></div>
+    <div class="bracelet br3"></div>
+
+    <div class="charger"></div>
+    <div class="charger-screen"></div>
+    <div class="charger-button"></div>
+    <div class="charger-ring"></div>
+    <div class="cable-right1"></div>
+    <div class="cable-right2"></div>
+    <div class="small-base"></div>
+    <div class="pole"></div>
+    <div class="pole-sign">↯</div>
+    <div class="pole-cap"></div>
+
+    <div class="overlay"></div>
+
+    <div class="label">02. Consumer viewpoints</div>
+    <div class="title">EV Owners</div>
+    <div class="underline"></div>
+    <div class="desc">
+      Consumers that already own an Electric<br>
+      Vehicle, either plug-in hybrid or fully electric
+    </div>
+
+    <div class="footer-left">eReadiness Report 2024</div>
+    <div class="footer-right">
+      September 2024
+      <span class="page">15</span>
+    </div>
+  </div>
+</body>
+</html>

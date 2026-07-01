@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Hyperloop Network 2050</title>
+<style>
+  body{margin:0;background:#ffffff;font-family:Arial,Helvetica,'Segoe UI',sans-serif;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f4f4f4;
+  }
+  #slide > div, #slide > svg{position:absolute;}
+  .sidebar{
+    left:0px; top:0px; width:148.77px; height:720px;
+    background:#35393f; z-index:5;
+  }
+  .purple-line{
+    left:147.81px; top:0px; width:0.96px; height:720px;
+    background:#7f66b2; z-index:15;
+  }
+  .title{
+    left:220.75px; top:32.16px; width:920.00px; height:78.72px;
+    font-size:27.84px; line-height:1.06; font-weight:700; color:#222326;
+    z-index:30;
+  }
+  .subtitle{
+    left:220.75px; top:142.08px; width:700px; height:24px;
+    font-size:23.04px; line-height:1.2; font-weight:400; color:#8d9198;
+    z-index:30;
+  }
+  .sidebar-title{
+    left:12px; top:34.08px; width:120px;
+    color:#f1f1f1; font-size:22.08px; line-height:1.06; font-weight:700; z-index:30;
+  }
+  .step{
+    width:128px; z-index:30; color:#8a8f98;
+  }
+  .hex{
+    left:10px; width:71.99px; height:63.36px;
+  }
+  .step-num{
+    left:92px; width:20px; font-size:17.28px; line-height:1; font-weight:700;
+  }
+  .step-text{
+    left:92px; width:50px; font-size:14.4px; line-height:1.08; font-weight:400;
+  }
+  .step1 .step-num,.step1 .step-text{color:#686d75;}
+  .step2 .step-num,.step2 .step-text{color:#8967ca;}
+  .step3 .step-num,.step3 .step-text{color:#686d75;}
+  .icon-bottom{
+    left:36px; top:663.36px; width:76.78px; height:52.8px; z-index:30;
+    opacity:.55;
+  }
+  .map-wrap{
+    left:207px; top:188px; width:823px; height:456px; z-index:20;
+  }
+  .legend{
+    left:220.75px; top:677.76px; width:760px; height:35px; z-index:35;
+    color:#55585d; font-size:12px; line-height:1.1; font-weight:400;
+  }
+  .legend-item{position:absolute; height:14px;}
+  .legend-label{position:absolute; left:0; top:0; width:72px;}
+  .legend-line{position:absolute; left:76px; top:6px; width:95px; height:6px;}
+  .callout{
+    left:1040.10px; top:139.20px; width:239.90px; height:571.20px;
+    background:#d9d9db; z-index:20;
+  }
+  .callout-text{
+    left:1054.50px; top:152.16px; width:211px; height:540px;
+    color:#26282c; font-size:14.88px; line-height:1.15; font-weight:400; z-index:30;
+  }
+  .callout-text b{font-weight:700;}
+  .source{
+    left:220.75px; top:752px; display:none;
+  }
+  .footer-source{
+    left:220.75px; top:751px;
+  }
+  .sources-visible{
+    left:220.75px; top:751px;
+  }
+  .sources{
+    left:220.75px; top:751px;
+  }
+  .bottom-source{
+    left:220.75px; top:752px;
+  }
+  .source-line{
+    left:220.75px; top:752px;
+  }
+  .source-text{
+    left:220.75px; top:752px;
+  }
+  .footnote{
+    left:220.75px; top:751px;
+  }
+  .real-source{
+    left:220.75px; top:751px;
+  }
+  .src-bottom{
+    left:220.75px; top:751px;
+  }
+  .page{
+    left:8px; top:748px;
+  }
+  .page-num{
+    left:8.64px; top:748.32px; width:22px; height:12px;
+    color:#f2f2f2; font-size:20px; line-height:1; font-weight:400; z-index:40;
+  }
+  .rb-logo{
+    left:1216px; top:729px;
+  }
+  .bottom-left-page{
+    left:8.64px; top:748px;
+  }
+  .source-visible{
+    left:220.75px; top:752px;
+  }
+  .sources-bottom{
+    left:220.75px; top:752px;
+  }
+  .footer-left{
+    left:220.75px; top:752px;
+  }
+  .bottom-source-text{
+    left:220.75px; top:752px;
+  }
+  .actual-source{
+    left:220.75px; top:752px;
+  }
+  .sourcebar{
+    left:220.75px; top:752px;
+  }
+  .tiny-source{
+    left:220.75px; top:751px;
+  }
+  .footertext{
+    left:220.75px; top:751px;
+  }
+  .source-final{
+    left:220.75px; top:751px;
+  }
+  .bottomnote{
+    left:220.75px; top:751px;
+  }
+  .src{
+    left:220.75px; top:751px;
+  }
+  .source-display{
+    left:220.75px; top:751px;
+  }
+  .visible-source{
+    left:220.75px; top:751px;
+  }
+  .page-bottom{
+    left:8.64px; top:749px;
+  }
+  .footer-real{
+    left:220.75px; top:751px;
+  }
+  .source-caption{
+    left:220.75px; top:751px;
+  }
+  .footer-source-visible{
+    left:220.75px; top:751px;
+  }
+  .actual-footer-source{
+    left:220.75px; top:751px;
+  }
+  .sourcebox{
+    left:220.75px; top:751px;
+  }
+  .page-number{
+    left:8.64px; top:749px;
+    width:20px; height:12px; color:#f4f4f4; font-size:19.2px; line-height:1; font-weight:400; z-index:50;
+  }
+  .source-bottom-visible{
+    left:220.75px; top:751px;
+  }
+  .bottom-label{
+    left:220.75px; top:751px;
+  }
+  .footer-note{
+    left:220.75px; top:751px;
+  }
+  .source-main{
+    left:220.75px; top:751px;
+  }
+  .source-correct{
+    left:220.75px; top:751px;
+  }
+  .real-bottom-source{
+    left:220.75px; top:751px;
+  }
+  .foot{
+    left:220.75px; top:751px;
+  }
+  .footerline{
+    left:220.75px; top:751px;
+  }
+  .source-show{
+    left:220.75px; top:751px;
+  }
+  .bottom-correct{
+    left:220.75px; top:751px;
+  }
+  .source-print{
+    left:220.75px; top:751px;
+  }
+  .source-actual{
+    left:220.75px; top:751px;
+  }
+  .footercopy{
+    left:220.75px; top:751px;
+  }
+  .final-source{
+    left:220.75px; top:751px;
+  }
+  .source-visible-final{
+    left:220.75px; top:751px;
+  }
+  .bottom-source-final{
+    left:220.75px; top:751px;
+  }
+  .source-row{
+    left:220.75px; top:751px;
+  }
+  .visible-footer{
+    left:220.75px; top:751px;
+  }
+  .footer-src{
+    left:220.75px; top:751px;
+  }
+  .src-real{
+    left:220.75px; top:751px;
+  }
+  .source-final-real{
+    left:220.75px; top:751px;
+  }
+  .bottom-source-real{
+    left:220.75px; top:751px; width:330px; height:16px;
+    font-size:11.52px; line-height:1.2; color:#4e5055; font-weight:400; z-index:40;
+  }
+  .rbmark{
+    left:1215.8px; top:729px; width:58px; height:20px; z-index:50;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="purple-line"></div>
+
+  <div class="sidebar-title">Technology &amp;<br>Innovation</div>
+
+  <div class="step step1" style="left:0px; top:141.12px; height:78px;">
+    <svg class="hex" viewBox="0 0 72 64">
+      <polygon points="18,2 54,2 70,32 54,62 18,62 2,32" fill="#54585f" stroke="#7f848a" stroke-width="3"/>
+      <polygon points="22,8 50,8 63,32 50,56 22,56 9,32" fill="#6b6e73"/>
+      <path d="M13 36 L23 20 L35 28 L48 14 L57 25 L60 41 L45 49 L28 45 Z" fill="rgba(255,255,255,0.22)"/>
+      <path d="M15 18 L55 44 M18 48 L46 16 M8 31 L61 31" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+    </svg>
+    <div class="step-num" style="top:4px;">1</div>
+    <div class="step-text" style="top:27px;">Value of<br>Innovation</div>
+  </div>
+
+  <div class="step step2" style="left:0px; top:274.56px; height:82px;">
+    <svg class="hex" viewBox="0 0 72 64">
+      <polygon points="18,2 54,2 70,32 54,62 18,62 2,32" fill="#51485f" stroke="#8e73d7" stroke-width="4"/>
+      <polygon points="22,8 50,8 63,32 50,56 22,56 9,32" fill="#6d607e"/>
+      <circle cx="30" cy="28" r="9" fill="rgba(255,255,255,0.18)"/>
+      <circle cx="42" cy="24" r="7" fill="rgba(255,255,255,0.12)"/>
+      <circle cx="45" cy="38" r="10" fill="rgba(255,255,255,0.16)"/>
+      <path d="M18 40 C28 18,44 16,58 36" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" fill="none"/>
+    </svg>
+    <div class="step-num" style="top:4px;">2</div>
+    <div class="step-text" style="top:26px; width:54px; font-weight:700;">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="step step3" style="left:0px; top:409.44px; height:78px;">
+    <svg class="hex" viewBox="0 0 72 64">
+      <polygon points="18,2 54,2 70,32 54,62 18,62 2,32" fill="#7b7d81" stroke="#aeb2b6" stroke-width="3"/>
+      <polygon points="22,8 50,8 63,32 50,56 22,56 9,32" fill="#ececec"/>
+      <path d="M18 35 C24 26,28 26,33 32 L40 39 C44 43,49 43,54 36" stroke="#8e8e8e" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M17 29 L24 35 M50 37 L56 29" stroke="#8e8e8e" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <div class="step-num" style="top:4px;">3</div>
+    <div class="step-text" style="top:26px;">Humans &amp;<br>Machines</div>
+  </div>
+
+  <svg class="icon-bottom" viewBox="0 0 80 55">
+    <g stroke="#9b9da2" stroke-width="3" fill="none" stroke-linecap="round">
+      <circle cx="18" cy="36" r="11"/>
+      <path d="M18 18 L18 8 M10 20 L4 15 M26 20 L32 15 M7 29 L0 29"/>
+      <circle cx="54" cy="30" r="10"/>
+      <path d="M54 16 L54 8 M44 20 L38 15 M64 20 L70 15 M68 30 L76 30"/>
+      <path d="M18 47 C28 42,32 34,33 25 C34 15,44 12,52 19"/>
+      <path d="M43 50 L43 40 L51 40 L51 50"/>
+    </g>
+  </svg>
+
+  <div class="title">Getting from A to B like never before: Visionaries in the hyperloop sector<br>project a worldwide hyperloop network in 2050</div>
+  <div class="subtitle">A futuristic global hyperloop network transporting travelers and freight</div>
+
+  <div class="map-wrap">
+    <svg viewBox="0 0 823 456" width="823" height="456">
+      <!-- world map -->
+      <g fill="#d3d5d8" stroke="none">
+        <path d="M24,81 L49,67 L100,54 L152,56 L175,49 L206,44 L243,46 L280,37 L312,38 L358,30 L407,40 L442,29 L488,35 L530,29 L568,35 L618,27 L664,45 L713,41 L765,63 L805,76 L799,92 L773,100 L760,110 L741,111 L714,124 L688,124 L662,120 L640,128 L620,127 L598,116 L573,114 L555,121 L522,121 L498,112 L473,108 L454,111 L435,105 L408,104 L390,96 L371,98 L348,106 L326,114 L295,111 L272,114 L244,108 L222,113 L196,107 L177,113 L150,111 L126,119 L108,114 L85,121 L67,115 L48,123 L31,111 Z"/>
+        <path d="M78,128 L108,124 L132,132 L149,145 L169,156 L175,177 L172,198 L159,216 L150,239 L148,261 L154,280 L172,305 L178,326 L188,357 L204,375 L212,398 L220,418 L207,437 L184,433 L164,420 L146,397 L126,377 L110,352 L96,328 L89,300 L79,282 L72,255 L64,220 L61,188 L67,157 Z"/>
+        <path d="M353,143 L382,133 L414,130 L446,135 L476,133 L514,136 L542,148 L564,165 L582,187 L587,208 L581,226 L567,238 L553,253 L549,274 L544,291 L536,313 L531,336 L517,359 L506,388 L496,415 L475,430 L458,420 L453,395 L451,370 L439,338 L423,317 L407,292 L393,263 L383,235 L374,205 L362,182 Z"/>
+        <path d="M564,151 L592,143 L618,151 L637,165 L658,174 L678,188 L686,206 L680,223 L663,237 L654,257 L651,278 L647,303 L639,323 L624,343 L609,340 L604,315 L601,294 L590,275 L575,260 L565,240 L553,216 L552,191 Z"/>
+        <path d="M694,149 L715,145 L732,152 L747,168 L756,185 L769,201 L781,223 L792,244 L805,263 L805,299 L783,301 L760,290 L736,278 L722,258 L711,234 L704,207 L694,189 L685,170 Z"/>
+        <path d="M730,332 L747,327 L768,333 L783,349 L791,371 L785,390 L770,399 L751,396 L736,381 L728,359 Z"/>
+      </g>
+
+      <!-- network lines -->
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- North America -->
+        <g stroke="#5b438f" stroke-width="2">
+          <path d="M48,180 L73,180 L96,185 L126,186 L154,187 L176,195"/>
+          <path d="M44,179 L43,201 L51,224 L66,238 L82,238 L98,236 L123,237 L144,235 L162,228 L176,217"/>
+          <path d="M82,182 L76,201 L80,221 L96,236"/>
+          <path d="M95,184 L96,204 L97,236"/>
+          <path d="M123,186 L123,210 L123,237"/>
+          <path d="M153,187 L153,212 L144,235"/>
+          <path d="M176,195 L176,217 L171,238"/>
+          <path d="M66,238 L63,255 L70,272"/>
+          <path d="M98,236 L96,260 L104,278"/>
+          <path d="M144,235 L144,259 L148,276"/>
+          <path d="M171,238 L173,255 L177,272"/>
+          <path d="M80,221 L62,207 L44,195"/>
+          <path d="M123,210 L147,202 L176,195"/>
+          <path d="M96,204 L123,210"/>
+          <path d="M80,221 L97,236"/>
+          <path d="M97,236 L123,237"/>
+        </g>
+
+        <!-- South America -->
+        <g stroke="#8ea9cf" stroke-width="2">
+          <path d="M183,277 L194,296 L203,321 L204,349 L210,379 L219,410"/>
+          <path d="M219,410 L207,430 L189,434"/>
+          <path d="M183,277 L171,287 L160,307"/>
+          <path d="M203,321 L188,340 L175,367"/>
+          <path d="M188,340 L194,366 L202,392"/>
+        </g>
+
+        <!-- Europe -->
+        <g stroke="#2a6ca8" stroke-width="2.1">
+          <path d="M350,160 L360,149 L373,145 L383,154 L389,165 L387,176 L377,183 L366,182 L356,173 Z"/>
+          <path d="M366,182 L362,196 L355,209"/>
+          <path d="M373,145 L373,129"/>
+          <path d="M383,154 L395,145 L407,136"/>
+          <path d="M395,145 L408,154 L418,169"/>
+          <path d="M408,154 L410,141 L420,130"/>
+          <path d="M360,149 L348,145 L336,147"/>
+          <path d="M356,173 L341,175 L326,175"/>
+          <path d="M377,183 L392,187 L406,196"/>
+          <path d="M366,182 L379,196 L393,209"/>
+          <path d="M355,209 L368,217 L381,218"/>
+          <path d="M418,169 L432,170 L448,170"/>
+          <path d="M448,170 L465,173 L485,179 L505,184 L523,194"/>
+          <path d="M523,194 L543,194 L558,193"/>
+          <path d="M407,136 L425,121 L440,103"/>
+          <path d="M381,218 L400,217 L419,214"/>
+          <path d="M341,175 L336,161 L336,147"/>
+          <path d="M393,209 L401,224 L408,236"/>
+        </g>
+
+        <!-- Arabia / Africa -->
+        <g stroke="#aa97d6" stroke-width="2">
+          <path d="M408,236 L423,247 L443,252 L465,252 L486,248 L505,244"/>
+          <path d="M505,244 L514,225 L523,194"/>
+          <path d="M486,248 L495,264 L505,279 L509,300"/>
+          <path d="M443,252 L427,270 L414,289 L399,304 L386,319 L373,338 L360,357"/>
+          <path d="M360,357 L344,370 L326,370 L311,363"/>
+          <path d="M311,363 L303,349 L303,330 L314,313 L331,300 L350,291"/>
+          <path d="M350,291 L360,277 L369,261 L381,245 L408,236"/>
+          <path d="M360,357 L369,383 L377,410"/>
+        </g>
+
+        <!-- India -->
+        <g stroke="#93afcf" stroke-width="2">
+          <path d="M590,238 L583,256 L577,276 L583,296 L594,314 L606,329"/>
+          <path d="M590,238 L605,245 L620,256"/>
+          <path d="M620,256 L629,272 L635,289"/>
+          <path d="M583,296 L569,307 L554,320"/>
+          <path d="M606,329 L619,341 L631,352"/>
+          <path d="M594,314 L612,313 L628,307"/>
+        </g>
+
+        <!-- China / ASEAN / Australia -->
+        <g stroke="#6f9cd0" stroke-width="2">
+          <path d="M655,206 L681,205 L705,207 L727,218 L745,233 L758,254"/>
+          <path d="M705,207 L705,228 L702,249"/>
+          <path d="M681,205 L670,222 L657,240"/>
+          <path d="M657,240 L651,260 L651,283"/>
+          <path d="M702,249 L716,257 L731,267"/>
+          <path d="M731,267 L741,283 L748,301"/>
+          <path d="M758,254 L775,263 L792,275"/>
+          <path d="M748,301 L737,317 L725,335"/>
+          <path d="M725,335 L710,347 L696,360"/>
+          <path d="M696,360 L682,349 L671,332"/>
+          <path d="M671,332 L660,314 L651,283"/>
+          <path d="M725,335 L745,341 L764,344"/>
+          <path d="M764,344 L778,362 L789,380"/>
+        </g>
+
+        <!-- light blue east asia dense -->
+        <g stroke="#b6cbe5" stroke-width="1.8">
+          <path d="M681,205 L692,195 L706,191 L720,193 L731,201 L739,214"/>
+          <path d="M692,195 L692,213 L692,232"/>
+          <path d="M706,191 L706,207 L705,228"/>
+          <path d="M720,193 L719,209 L717,225"/>
+          <path d="M731,201 L745,208 L757,219"/>
+          <path d="M692,232 L706,244 L719,254 L731,267"/>
+          <path d="M706,244 L687,255 L670,270 L651,283"/>
+          <path d="M719,254 L739,254 L758,254"/>
+          <path d="M739,214 L754,226 L766,239"/>
+          <path d="M670,222 L681,232 L694,244"/>
+        </g>
+
+        <!-- Australia -->
+        <g stroke="#8c9199" stroke-width="2">
+          <path d="M744,385 L758,390 L774,390 L789,380"/>
+          <path d="M758,390 L769,399"/>
+        </g>
+      </g>
+
+      <!-- city nodes and labels -->
+      <g font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#4d4f53">
+        <!-- North America -->
+        <g>
+          <circle cx="44" cy="195" r="2.2" fill="#5b438f"/><text x="17" y="194">Los</text><text x="14" y="203">Angeles</text>
+          <circle cx="51" cy="181" r="2.2" fill="#5b438f"/><text x="52" y="178">Vancouver</text>
+          <circle cx="56" cy="188" r="2.2" fill="#5b438f"/><text x="56" y="191">Seattle</text>
+          <circle cx="80" cy="199" r="2.2" fill="#5b438f"/><text x="61" y="187">San</text><text x="59" y="196">Francisco</text>
+          <circle cx="96" cy="204" r="2.2" fill="#5b438f"/><text x="82" y="171">Denver</text>
+          <circle cx="123" cy="210" r="2.2" fill="#5b438f"/><text x="111" y="175">Chicago</text>
+          <circle cx="147" cy="202" r="2.2" fill="#5b438f"/><text x="140" y="182">Ottawa</text>
+          <circle cx="154" cy="218" r="2.2" fill="#5b438f"/><text x="152" y="213">New York</text>
+          <circle cx="176" cy="217" r="2.2" fill="#5b438f"/><text x="176" y="220">Washington</text>
+          <circle cx="171" cy="238" r="2.2" fill="#5b438f"/><text x="171" y="242">Miami</text>
+          <circle cx="97" cy="236" r="2.2" fill="#5b438f"/><text x="92" y="219">Dallas</text>
+          <circle cx="80" cy="221" r="2.2" fill="#5b438f"/><text x="71" y="250">Ciudad de</text><text x="74" y="259">Mexico</text>
+          <circle cx="63" cy="255" r="2.2" fill="#5b438f"/><text x="39" y="268">Ciudad de Panama</text>
+          <circle cx="184" cy="277" r="2.2" fill="#8ea9cf"/><text x="178" y="274">Caracas</text>
+        </g>
+
+        <!-- South America -->
+        <g>
+          <circle cx="160" cy="307" r="2.2" fill="#8ea9cf"/><text x="134" y="297">Lima</text>
+          <circle cx="188" cy="340" r="2.2" fill="#8ea9cf"/><text x="192" y="340">Brasilia</text>
+          <circle cx="175" cy="367" r="2.2" fill="#8ea9cf"/><text x="145" y="382">Santiago</text>
+          <circle cx="202" cy="392" r="2.2" fill="#8ea9cf"/><text x="166" y="405">Buenos Aires</text>
+        </g>
+
+        <!-- Europe -->
+        <g>
+          <circle cx="336" cy="147" r="2.2" fill="#2a6ca8"/><text x="312" y="140">London</text>
+          <circle cx="348" cy="145" r="2.2" fill="#2a6ca8"/><text x="345" y="111">Brussels</text>
+          <circle cx="366" cy="182" r="2.2" fill="#2a6ca8"/><text x="356" y="179">Bern</text>
+          <circle cx="350" cy="160" r="2.2" fill="#2a6ca8"/><text x="303" y="165">Madrid</text>
+          <circle cx="383" cy="154" r="2.2" fill="#2a6ca8"/><text x="406" y="150">Moscow</text>
+          <circle cx="448" cy="170" r="2.2" fill="#2a6ca8"/><text x="456" y="173">Istanbul</text>
+        </g>
+
+        <!-- Africa / MENA -->
+        <g>
+          <circle cx="381" cy="218" r="2.2" fill="#aa97d6"/><text x="397" y="219">Cairo</text>
+          <circle cx="350" cy="291" r="2.2" fill="#aa97d6"/><text x="301" y="285">Dakar</text>
+          <circle cx="311" cy="363" r="2.2" fill="#aa97d6"/><text x="318" y="360">Abuja</text>
+          <circle cx="360" cy="357" r="2.2" fill="#aa97d6"/><text x="362" y="352">Addis</text><text x="362" y="361">Ababa</text>
+          <circle cx="377" cy="410" r="2.2" fill="#aa97d6"/><text x="384" y="407">Pretoria</text>
+          <circle cx="505" cy="244" r="2.2" fill="#aa97d6"/><text x="513" y="240">Qatar Doha</text>
+          <circle cx="486" cy="248" r="2.2" fill="#aa97d6"/><text x="455" y="240">Riyadh</text>
+          <circle cx="523" cy="194" r="2.2" fill="#aa97d6"/><text x="519" y="178">Nur</text><text x="519" y="187">Sultan</text>
+          <circle cx="514" cy="225" r="2.2" fill="#aa97d6"/><text x="500" y="224">Kuwait</text>
+          <circle cx="509" cy="300" r="2.2" fill="#aa97d6"/><text x="509" y="305">Muscat</text>
+          <circle cx="590" cy="238" r="2.2" fill="#93afcf"/><text x="526" y="223">New</text><text x="526" y="232">Delhi</text>
+          <circle cx="583" cy="296" r="2.2" fill="#93afcf"/><text x="545" y="292">Mumbai</text>
+        </g>
+
+        <!-- India/ASEAN/China -->
+        <g>
+          <circle cx="605" cy="245" r="2.2" fill="#93afcf"/><text x="605" y="250">Kolkata</text>
+          <circle cx="620" cy="256" r="2.2" fill="#93afcf"/><text x="607" y="272">Yangon</text>
+          <circle cx="628" cy="307" r="2.2" fill="#6f9cd0"/><text x="605" y="319">Bangkok</text>
+          <circle cx="631" cy="352" r="2.2" fill="#6f9cd0"/><text x="624" y="364">Singapore</text>
+          <circle cx="651" cy="283" r="2.2" fill="#6f9cd0"/><text x="639" y="281">Chengdu</text>
+          <circle cx="687" cy="255" r="2.2" fill="#6f9cd0"/><text x="683" y="249">Wuhan</text>
+          <circle cx="705" cy="207" r="2.2" fill="#6f9cd0"/><text x="681" y="201">Beijing</text>
+          <circle cx="717" cy="225" r="2.2" fill="#6f9cd0"/><text x="724" y="232">Seoul</text>
+          <circle cx="731" cy="267" r="2.2" fill="#6f9cd0"/><text x="734" y="275">Shanghai</text>
+          <circle cx="758" cy="254" r="2.2" fill="#6f9cd0"/><text x="760" y="265">Hong Kong</text>
+          <circle cx="748" cy="301" r="2.2" fill="#6f9cd0"/><text x="754" y="305">Hanoi</text>
+          <circle cx="737" cy="317" r="2.2" fill="#6f9cd0"/><text x="742" y="325">Phnom Penh</text>
+          <circle cx="725" cy="335" r="2.2" fill="#6f9cd0"/><text x="714" y="343">Kula Lumpur</text>
+          <circle cx="764" cy="344" r="2.2" fill="#6f9cd0"/><text x="755" y="357">Singapore</text>
+        </g>
+
+        <!-- Australia -->
+        <g>
+          <circle cx="789" cy="380" r="2.2" fill="#8c9199"/><text x="790" y="382">Canberra</text

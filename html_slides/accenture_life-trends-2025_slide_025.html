@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#fdfcfd;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f7f7f7;
+  }
+
+  .left-title-small{
+    position:absolute;
+    left:60px;
+    top:112px;
+    font-size:24px;
+    line-height:1.05;
+    font-weight:300;
+    color:#7b1fe0;
+    letter-spacing:0.2px;
+  }
+  .left-title-big{
+    position:absolute;
+    left:127px;
+    top:150px;
+    font-size:57px;
+    line-height:0.96;
+    font-weight:300;
+    color:#6e14d5;
+    letter-spacing:-0.8px;
+  }
+
+  .left-body{
+    position:absolute;
+    left:60px;
+    top:246px;
+    width:380px;
+    font-size:19px;
+    line-height:1.42;
+    color:#252525;
+    font-weight:400;
+  }
+
+  .photo-col{
+    position:absolute;
+    left:563px;
+    top:0px;
+    width:415px;
+    height:720px;
+  }
+
+  .photo{
+    position:absolute;
+    left:0;
+    width:415px;
+    height:240px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 58% 16%, rgba(255,255,255,0.9) 0 2%, rgba(255,255,255,0.0) 3% 100%),
+      radial-gradient(circle at 45% 12%, rgba(255,255,255,0.8) 0 1.8%, rgba(255,255,255,0) 2.8% 100%),
+      radial-gradient(circle at 68% 8%, rgba(255,255,255,0.75) 0 1.5%, rgba(255,255,255,0) 2.6% 100%),
+      radial-gradient(circle at 56% 24%, rgba(255,255,255,0.65) 0 1.2%, rgba(255,255,255,0) 2.2% 100%),
+      radial-gradient(circle at 49% 20%, rgba(255,255,255,0.65) 0 1.1%, rgba(255,255,255,0) 2.1% 100%),
+      radial-gradient(circle at 58% 18%, rgba(73,255,233,0.85) 0 10%, rgba(0,182,140,0.0) 22%),
+      radial-gradient(circle at 70% 17%, rgba(0,255,185,0.7) 0 11%, rgba(0,0,0,0) 23%),
+      radial-gradient(circle at 46% 24%, rgba(0,244,198,0.62) 0 10%, rgba(0,0,0,0) 24%),
+      radial-gradient(circle at 32% 18%, rgba(0,90,42,0.55) 0 18%, rgba(0,0,0,0) 43%),
+      radial-gradient(circle at 18% 22%, rgba(5,45,18,0.78) 0 23%, rgba(0,0,0,0) 48%),
+      linear-gradient(180deg, #001408 0%, #0b4322 34%, #0b6139 55%, #0d2a18 100%);
+  }
+  .photo1{ top:0; }
+  .photo2{ top:240px; }
+  .photo3{ top:480px; }
+
+  .photo::before{
+    content:"";
+    position:absolute;
+    left:-35px;
+    top:132px;
+    width:350px;
+    height:10px;
+    background:linear-gradient(90deg, #ff2aa4 0%, #ff198f 10%, #ffd32e 36%, #f1281d 58%, #ff4f32 68%, #27c9b8 86%, #9deee0 100%);
+    border-radius:8px;
+    transform:rotate(-3deg);
+    box-shadow:0 0 8px rgba(255,100,120,0.4);
+  }
+  .photo::after{
+    content:"";
+    position:absolute;
+    right:-55px;
+    top:82px;
+    width:170px;
+    height:200px;
+    background:
+      radial-gradient(circle at 72% 12%, rgba(255,102,0,0.95) 0 14%, rgba(255,102,0,0) 15%),
+      conic-gradient(from 205deg at 28% 58%, #13d8cf 0 12%, #1ac3f3 12% 22%, #5cd7ff 22% 28%, #49c87f 28% 40%, #efd348 40% 52%, #ff9d21 52% 64%, #ff5c1c 64% 76%, #ff2e6d 76% 88%, #a839f1 88% 100%);
+    clip-path: polygon(18% 46%, 100% 15%, 90% 100%, 8% 73%);
+    opacity:0.92;
+    filter:saturate(1.2);
+  }
+
+  .hand{
+    position:absolute;
+    left:245px;
+    top:90px;
+    width:92px;
+    height:112px;
+    transform:rotate(-6deg);
+  }
+  .hand .arm{
+    position:absolute;
+    left:42px;
+    top:32px;
+    width:34px;
+    height:92px;
+    background:#2b3947;
+    border-radius:12px 12px 4px 4px;
+    transform:rotate(6deg);
+  }
+  .hand .palm{
+    position:absolute;
+    left:26px;
+    top:16px;
+    width:42px;
+    height:52px;
+    background:#f4d5bf;
+    border-radius:22px 18px 14px 14px;
+  }
+  .hand .thumb{
+    position:absolute;
+    left:18px;
+    top:26px;
+    width:20px;
+    height:12px;
+    background:#f2cfb6;
+    border-radius:10px;
+    transform:rotate(-34deg);
+  }
+  .hand .finger1,.hand .finger2,.hand .finger3,.hand .finger4{
+    position:absolute;
+    width:8px;
+    height:22px;
+    background:#f4d5bf;
+    border-radius:6px;
+    top:4px;
+  }
+  .hand .finger1{ left:31px; transform:rotate(-10deg); }
+  .hand .finger2{ left:40px; transform:rotate(-4deg); }
+  .hand .finger3{ left:49px; transform:rotate(4deg); }
+  .hand .finger4{ left:58px; transform:rotate(10deg); }
+
+  .head{
+    position:absolute;
+    left:143px;
+    bottom:-10px;
+    width:118px;
+    height:86px;
+    border-radius:60px 60px 35px 35px;
+    background:
+      radial-gradient(circle at 52% 38%, #cda16d 0 28%, rgba(0,0,0,0) 29%),
+      repeating-linear-gradient(20deg, #8e683b 0 6px, #b88d52 6px 12px, #a4763f 12px 18px);
+    transform:rotate(5deg);
+    opacity:0.95;
+  }
+  .mask{
+    position:absolute;
+    left:226px;
+    bottom:34px;
+    width:28px;
+    height:20px;
+    background:#ff3328;
+    border-radius:14px 4px 12px 10px;
+    transform:rotate(18deg);
+  }
+
+  .p2 .hand{ left:244px; top:111px; transform:rotate(-2deg); opacity:0.92; }
+  .p2 .head{ left:148px; bottom:-4px; }
+  .p2 .mask{ left:228px; bottom:38px; }
+  .p3 .hand{ left:267px; top:124px; transform:rotate(5deg); opacity:0.95; }
+  .p3 .head{ left:164px; bottom:-8px; }
+  .p3 .mask{ left:244px; bottom:34px; }
+
+  .right-text{
+    position:absolute;
+    left:1014px;
+    top:245px;
+    width:255px;
+    font-size:20px;
+    line-height:1.58;
+    color:#8d34ea;
+    font-weight:300;
+    letter-spacing:-0.1px;
+  }
+
+  .vert-nav{
+    position:absolute;
+    right:12px;
+    top:38px;
+    width:26px;
+    height:610px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-size:15px;
+    line-height:1;
+    color:#6f6f72;
+    font-weight:400;
+    letter-spacing:0.1px;
+  }
+  .vert-nav .active{
+    color:#8d34ea;
+    font-weight:600;
+  }
+
+  .footer{
+    position:absolute;
+    right:34px;
+    bottom:22px;
+    font-size:14px;
+    color:#808080;
+    font-weight:400;
+  }
+  .footer .purple{
+    color:#8d34ea;
+    font-weight:600;
+  }
+  .page{
+    position:absolute;
+    right:11px;
+    bottom:22px;
+    font-size:14px;
+    color:#808080;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-title-small">What’s</div>
+    <div class="left-title-big">going on</div>
+
+    <div class="left-body">
+      Finding the balance between letting children learn by experience and safeguarding them against harm has always been an underlying challenge for parents. In some situations, potential threats are obvious from a distance, giving parents time to intervene. But unlike physical hazards, many dangers of smartphones and social media for young people approach undetected, until the consequences become clear.
+    </div>
+
+    <div class="photo-col">
+      <div class="photo photo1 p1">
+        <div class="head"></div>
+        <div class="mask"></div>
+        <div class="hand">
+          <div class="arm"></div>
+          <div class="palm"></div>
+          <div class="thumb"></div>
+          <div class="finger1"></div>
+          <div class="finger2"></div>
+          <div class="finger3"></div>
+          <div class="finger4"></div>
+        </div>
+      </div>
+      <div class="photo photo2 p2">
+        <div class="head"></div>
+        <div class="mask"></div>
+        <div class="hand">
+          <div class="arm"></div>
+          <div class="palm"></div>
+          <div class="thumb"></div>
+          <div class="finger1"></div>
+          <div class="finger2"></div>
+          <div class="finger3"></div>
+          <div class="finger4"></div>
+        </div>
+      </div>
+      <div class="photo photo3 p3">
+        <div class="head"></div>
+        <div class="mask"></div>
+        <div class="hand">
+          <div class="arm"></div>
+          <div class="palm"></div>
+          <div class="thumb"></div>
+          <div class="finger1"></div>
+          <div class="finger2"></div>
+          <div class="finger3"></div>
+          <div class="finger4"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-text">
+      There are strong ties between this and other trends in this 2025 set: adults are coming to terms with the less favorable ways that digital technology has affected their lives, and they’re seeking both a cure for themselves and prevention for their children.
+    </div>
+
+    <div class="vert-nav">
+      Cost of hesitations &nbsp;/&nbsp; <span class="active">The parent trap</span> &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; Social rewiring
+    </div>
+
+    <div class="footer">Accenture Life Trends <span class="purple">2025</span></div>
+    <div class="page">25</div>
+  </div>
+</body>
+</html>

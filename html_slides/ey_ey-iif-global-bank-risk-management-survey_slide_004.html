@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>Key takeaways</title>
+<style>
+  body{
+    margin:0;
+    background:#d9d9d9;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    margin:0;
+    overflow:hidden;
+    background:#161722;
+  }
+  .slide > div, .slide > svg{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .left-panel{
+    left:0;
+    top:0;
+    width:917px;
+    height:720px;
+    background:linear-gradient(90deg,#151621 0%, #161823 58%, #171824 100%);
+    z-index:1;
+  }
+
+  .right-photo{
+    left:917px;
+    top:0;
+    width:363px;
+    height:720px;
+    background:
+      radial-gradient(circle at 80% 8%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 18%),
+      radial-gradient(circle at 63% 76%, rgba(181,98,255,0.26) 0%, rgba(181,98,255,0) 18%),
+      linear-gradient(180deg, #3a7fc6 0%, #3776bc 16%, #285aa0 42%, #15244f 72%, #0c1025 100%);
+    z-index:0;
+  }
+
+  .road{
+    left:917px;
+    top:465px;
+    width:363px;
+    height:255px;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(15,15,35,0.22) 12%, rgba(9,10,22,0.78) 56%, rgba(8,9,19,0.98) 100%);
+    z-index:2;
+  }
+
+  .road-reflections{
+    left:930px;
+    top:508px;
+    width:330px;
+    height:192px;
+    background:
+      linear-gradient(159deg, rgba(255,255,255,0) 0 38%, rgba(216,160,255,0.24) 43%, rgba(255,255,255,0) 47%) no-repeat,
+      linear-gradient(166deg, rgba(255,255,255,0) 0 50%, rgba(255,255,255,0.16) 52%, rgba(255,255,255,0) 54%) no-repeat,
+      linear-gradient(171deg, rgba(255,255,255,0) 0 63%, rgba(163,128,255,0.14) 65%, rgba(255,255,255,0) 67%) no-repeat,
+      linear-gradient(176deg, rgba(255,255,255,0) 0 74%, rgba(210,120,255,0.13) 76%, rgba(255,255,255,0) 78%) no-repeat;
+    transform:skewX(-18deg);
+    opacity:.95;
+    z-index:3;
+  }
+
+  .building-side{
+    left:914px;
+    top:80px;
+    width:60px;
+    height:414px;
+    background:
+      linear-gradient(180deg,#04112a 0%, #07152d 38%, #08152e 100%);
+    clip-path:polygon(31% 0%, 100% 11%, 100% 100%, 0% 100%, 0% 8%);
+    z-index:7;
+    box-shadow: inset -1px 0 0 rgba(255,255,255,0.05);
+  }
+
+  .building-front{
+    left:957px;
+    top:80px;
+    width:281px;
+    height:385px;
+    background:linear-gradient(180deg,#09152f 0%, #0d1731 34%, #091328 100%);
+    clip-path:polygon(0% 17%, 7% 13%, 100% 38%, 100% 100%, 0% 100%);
+    z-index:8;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.45);
+  }
+
+  .roof{
+    left:916px;
+    top:79px;
+    width:322px;
+    height:70px;
+    background:linear-gradient(180deg,#041026 0%, #071227 100%);
+    clip-path:polygon(7% 55%, 17% 42%, 53% 0%, 100% 30%, 100% 54%, 54% 28%, 9% 72%);
+    z-index:9;
+  }
+
+  .screen-frame{
+    left:1000px;
+    top:137px;
+    width:288px;
+    height:266px;
+    background:#050914;
+    box-shadow:0 0 0 1px rgba(15,15,18,0.85);
+    z-index:11;
+  }
+
+  .screen-art{
+    left:1010px;
+    top:147px;
+    width:268px;
+    height:246px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 68% 21%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 6%),
+      radial-gradient(circle at 82% 39%, rgba(186,247,255,0.9) 0%, rgba(186,247,255,0) 13%),
+      radial-gradient(circle at 33% 59%, rgba(255,171,242,0.75) 0%, rgba(255,171,242,0) 17%),
+      radial-gradient(circle at 47% 55%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 12%),
+      radial-gradient(circle at 20% 71%, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0) 9%),
+      radial-gradient(circle at 57% 48%, rgba(116,77,254,0.82) 0%, rgba(116,77,254,0) 34%),
+      radial-gradient(circle at 64% 38%, rgba(255,198,248,0.32) 0%, rgba(255,198,248,0) 28%),
+      linear-gradient(135deg,#171f59 0%, #20276c 30%, #4f34a5 50%, #7853d8 63%, #5e86de 81%, #365bb4 100%);
+    z-index:12;
+  }
+  .screen-art:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle, rgba(255,255,255,0.85) 0 0.8px, rgba(255,255,255,0) 1.7px) 0 0/18px 18px,
+      radial-gradient(circle, rgba(206,231,255,0.55) 0 0.8px, rgba(255,255,255,0) 1.9px) 7px 8px/20px 20px;
+    opacity:.45;
+  }
+  .screen-art:after{
+    content:"";
+    position:absolute;
+    left:12px;
+    top:68px;
+    width:244px;
+    height:122px;
+    background:
+      linear-gradient(164deg, rgba(255,255,255,0) 0 24%, rgba(255,229,248,.85) 36%, rgba(255,255,255,0) 43%) no-repeat,
+      linear-gradient(180deg, rgba(255,255,255,0) 0 34%, rgba(255,244,255,.94) 40%, rgba(255,255,255,0) 47%) no-repeat,
+      linear-gradient(196deg, rgba(255,255,255,0) 0 42%, rgba(255,204,235,.80) 48%, rgba(255,255,255,0) 55%) no-repeat;
+    transform:rotate(-8deg);
+    opacity:.96;
+  }
+
+  .drips{
+    left:1027px;
+    top:257px;
+    width:193px;
+    height:80px;
+    z-index:13;
+  }
+
+  .title{
+    left:48px;
+    top:46px;
+    color:#f1f1f3;
+    font-size:54px;
+    line-height:58px;
+    font-weight:300;
+    letter-spacing:-0.03em;
+    z-index:30;
+  }
+  .title .bold{font-weight:700;}
+
+  .gradient-line{
+    left:46px;
+    top:117px;
+    width:870px;
+    height:3px;
+    background:linear-gradient(90deg,#ffe600 0%, #ffdb00 21%, #dc8f50 45%, #a527ff 70%, #2e92ff 100%);
+    z-index:30;
+  }
+
+  .number-circle{
+    left:46px;
+    top:143px;
+    width:68px;
+    height:68px;
+    border-radius:50%;
+    background:
+      linear-gradient(#151621,#151621) padding-box,
+      linear-gradient(135deg,#ffe800 0%, #ffe800 36%, #8f49ff 76%, #2f8fff 100%) border-box;
+    border:2px solid transparent;
+    color:#fff;
+    font-size:48px;
+    line-height:64px;
+    font-weight:700;
+    text-align:center;
+    z-index:31;
+  }
+
+  .headline{
+    left:122px;
+    top:157px;
+    width:650px;
+    color:#f2f2f4;
+    font-size:17px;
+    line-height:24px;
+    font-weight:700;
+    z-index:31;
+  }
+
+  .vert-label{
+    left:-35px;
+    top:345px;
+    width:145px;
+    transform:rotate(-90deg);
+    transform-origin:left top;
+    color:#ffffff;
+    font-size:12px;
+    line-height:12px;
+    letter-spacing:.06em;
+    font-weight:400;
+    text-transform:uppercase;
+    opacity:.85;
+    z-index:31;
+  }
+  .vert-mark{
+    left:14px;
+    top:360px;
+    width:2px;
+    height:35px;
+    background:rgba(255,255,255,0.52);
+    z-index:31;
+  }
+  .page{
+    left:20px;
+    top:678px;
+    color:#f2f2f4;
+    font-size:12px;
+    line-height:12px;
+    z-index:31;
+  }
+
+  .col1{
+    left:46px;
+    top:240px;
+    width:224px;
+    color:#d9d9df;
+    font-size:15px;
+    line-height:18px;
+    font-weight:400;
+    z-index:30;
+  }
+  .dropcap{
+    float:left;
+    font-size:61px;
+    line-height:47px;
+    font-weight:300;
+    margin-right:8px;
+    margin-top:1px;
+    color:#f0f0f2;
+  }
+  .body{
+    color:#d9d9df;
+    font-size:15px;
+    line-height:18px;
+  }
+
+  .para2{
+    left:46px;
+    top:407px;
+    width:231px;
+    color:#d9d9df;
+    font-size:15px;
+    line-height:18px;
+    z-index:30;
+  }
+
+  .col2{
+    left:308px;
+    top:240px;
+    width:248px;
+    color:#d9d9df;
+    font-size:15px;
+    line-height:18px;
+    z-index:30;
+  }
+
+  .bullets{
+    left:308px;
+    top:353px;
+    width:250px;
+    color:#d9d9df;
+    font-size:15px;
+    line-height:18px;
+    z-index:30;
+  }
+  .bullet{
+    position:relative;
+    padding-left:12px;
+    margin-bottom:10px;
+  }
+  .bullet:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:7px;
+    width:5px;
+    height:5px;
+    background:#ffe600;
+  }
+
+  .col3{
+    left:582px;
+    top:240px;
+    width:286px;
+    color:#d9d9df;
+    font-size:15px;
+    line-height:18px;
+    z-index:30;
+  }
+
+  .callout{
+    left:1015px;
+    top:528px;
+    width:235px;
+    color:#f2f2f4;
+    font-size:20px;
+    line-height:28px;
+    font-weight:300;
+    z-index:40;
+  }
+  .callout b{font-weight:700;}
+
+  .jump{
+    left:1210px;
+    top:28px;
+    width:58px;
+    height:58px;
+    z-index:50;
+  }
+  .jump-text{
+    left:1217px;
+    top:36px;
+    width:40px;
+    color:#fff;
+    font-size:9px;
+    line-height:10px;
+    text-align:center;
+    z-index:51;
+  }
+  .yellow-dot{
+    left:1248px;
+    top:31px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#ffe600;
+    z-index:52;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-panel"></div>
+  <div class="right-photo"></div>
+  <div class="road"></div>
+  <div class="road-reflections"></div>
+  <div class="building-side"></div>
+  <div class="building-front"></div>
+  <div class="roof"></div>
+  <div class="screen-frame"></div>
+  <div class="screen-art"></div>
+
+  <svg class="drips" viewBox="0 0 193 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M2 18
+             C20 14, 33 23, 47 21
+             C67 18, 82 8, 101 10
+             C121 12, 138 25, 153 29
+             C168 33, 182 30, 191 25
+             L191 39
+             C184 40, 182 58, 178 70
+             C174 62, 173 40, 168 40
+             C164 40, 163 61, 158 74
+             C154 68, 154 48, 149 46
+             C145 45, 144 61, 140 79
+             C135 66, 135 35, 129 35
+             C124 35, 124 61, 119 74
+             C114 68, 115 34, 109 34
+             C103 34, 103 63, 97 75
+             C92 70, 92 43, 86 43
+             C81 42, 81 61, 75 78
+             C70 69, 70 35, 64 34
+             C58 33, 58 58, 52 75
+             C47 66, 48 31, 41 31
+             C34 30, 35 59, 28 76
+             C22 69, 23 31, 16 31
+             C10 31, 9 49, 4 66
+             L2 66 Z"
+          fill="#f2efff" opacity=".92"/>
+  </svg>
+
+  <div class="title"><span class="bold">Key</span> takeaways</div>
+  <div class="gradient-line"></div>
+  <div class="number-circle">1</div>
+  <div class="headline">CRO priorities and concerns continue to expand, diversify and overlap.</div>
+
+  <div class="vert-label">EXECUTIVE SUMMARY</div>
+  <div class="vert-mark"></div>
+  <div class="page">4</div>
+
+  <div class="col1">
+    <span class="dropcap">E</span>
+    <div class="body">
+      ven as cyber and technology risk (inclusive of risks associated with the design, development and deployment of digital systems and infrastructure) continue to top the immediate-term agenda, CROs have an ever-expanding range of scenarios to think about and plan for.
+    </div>
+  </div>
+
+  <div class="para2">
+    As with previous years, our 2026 survey reveals the dynamic interplay between different risk categories – both financial and nonfinancial – that comprise the overall risk radar for the industry. Credit risk and strategic risk jumped notably higher on the list of priorities compared with last year’s findings. Last year’s findings, while data risk fell, though it is embedded in multiple other risk categories. Given its prevalence, geopolitical risk was treated as its own sub-category of external risk in this year’s survey (see chapter 1).
+  </div>
+
+  <div class="col2">
+    The overlapping and blurring of risk categories make CROs’ jobs more complex and challenging – and more important to overall business performance. Among the most notable links that emerged in this year’s findings:
+  </div>
+
+  <div class="bullets">
+    <div class="bullet">CRO concerns about financial crime and digital fraud are rising in line with increasing use of AI and digital assets.</div>
+    <div class="bullet">Geopolitical risk has, in just a few years, morphed from a high-impact, immediate-term concern to a more embedded, structural concern, closely related to cyber threats and regulatory risk. Further, it is likely to have serious long-term implications for the industry, though the precise effects are currently unclear and difficult to predict.</div>
+    <div class="bullet">Many risks (e.g., cyber, technology) incorporate elements of data risk. CROs also see more effective use of data</div>
+  </div>
+
+  <div class="col3">
+    as critical to improving risk management performance in areas ranging from financial crime and third-party risk to compliance and model risk management.<br><br>
+    Such a complex matrix of risks demands comprehensive risk management strategies and diverse tools. CROs are harnessing advanced technology, particularly to combat the spike in financial crime and digital fraud. In fact, detection of criminal and fraudulent activities is the most common use of AI in risk management today, according to our results. CROs also see that stronger controls, enhanced measurement, richer data, and refreshed talent and skills are also essential to stronger risk management. As their responsibilities expand, forward-looking risk leaders will continue to accelerate the maturation of risk management capabilities on all of these dimensions.
+  </div>
+
+  <div class="callout">
+    <b>Credit risk</b> and<br>
+    <b>strategic risk</b> jumped<br>
+    notably <b>higher</b> on the<br>
+    list of <b>priorities.</b>
+  </div>
+
+  <svg class="jump" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="29" cy="29" r="20.5" fill="none" stroke="rgba(255,255,255,0.72)" stroke-width="1.2"/>
+    <path d="M29 8.5 A20.5 20.5 0 0 1 45 16" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+    <path d="M10.5 39 A20.5 20.5 0 0 0 18 46.5" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+  </svg>
+  <div class="jump-text">Jump to<br>contents</div>
+  <div class="yellow-dot"></div>
+</div>
+</body>
+</html>

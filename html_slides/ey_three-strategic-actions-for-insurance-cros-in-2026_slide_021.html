@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Replicated Slide</title>
+<style>
+  body{
+    margin:0;
+    background:#dcdcdc;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#e6e6e8;
+  }
+
+  .left-panel{
+    position:absolute;
+    left:31px;
+    top:31px;
+    width:373px;
+    height:705px;
+    background:#020304;
+    z-index:2;
+  }
+
+  .chapter-pill{
+    position:absolute;
+    left:31px;
+    top:13px;
+    width:70px;
+    height:19px;
+    background:#777985;
+    border-radius:11px 11px 0 0;
+    color:#fff;
+    font-size:9px;
+    line-height:19px;
+    text-align:center;
+    font-weight:700;
+    letter-spacing:.06em;
+    z-index:10;
+  }
+
+  .left-quote-box{
+    position:absolute;
+    left:77px;
+    top:78px;
+    width:281px;
+    height:208px;
+    z-index:5;
+  }
+  .quote-line,.quote-vline{
+    position:absolute;
+    background:#c6c8cc;
+  }
+  .quote-line{ height:1px; }
+  .quote-vline{ width:1px; }
+
+  .quote-mark{
+    position:absolute;
+    left:108px;
+    top:91px;
+    color:#f0de27;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:45px;
+    line-height:34px;
+    font-weight:700;
+    z-index:6;
+  }
+  .quote-text{
+    position:absolute;
+    left:111px;
+    top:114px;
+    width:206px;
+    color:#f3f3f3;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size:15px;
+    line-height:1.32;
+    font-weight:400;
+    z-index:6;
+  }
+
+  .orb{
+    position:absolute;
+    left:62px;
+    top:193px;
+    width:352px;
+    height:494px;
+    z-index:3;
+    opacity:.96;
+  }
+
+  .left-page-no{
+    position:absolute;
+    left:48px;
+    bottom:14px;
+    color:#fff;
+    font-size:10px;
+    line-height:10px;
+    font-weight:700;
+    z-index:8;
+  }
+
+  .left-vertical{
+    position:absolute;
+    left:8px;
+    top:332px;
+    color:#33363a;
+    font-size:14px;
+    line-height:14px;
+    font-weight:400;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    letter-spacing:.08em;
+    z-index:8;
+  }
+  .left-vertical-line{
+    position:absolute;
+    left:13px;
+    top:409px;
+    width:2px;
+    height:37px;
+    background:#707276;
+    z-index:8;
+  }
+
+  .body-copy{
+    position:absolute;
+    left:459px;
+    top:123px;
+    width:760px;
+    color:#50535a;
+    font-size:14px;
+    line-height:1.42;
+    font-weight:400;
+    z-index:4;
+  }
+  .body-copy p{ margin:0 0 11px 0; }
+
+  .figure-title{
+    position:absolute;
+    left:459px;
+    top:240px;
+    width:760px;
+    color:#32353b;
+    font-size:14px;
+    line-height:1.34;
+    font-weight:400;
+    z-index:4;
+  }
+  .figure-title b{ font-weight:700; }
+
+  .chart{
+    position:absolute;
+    left:459px;
+    top:299px;
+    width:790px;
+    height:240px;
+    z-index:4;
+  }
+  .bar-group{
+    position:absolute;
+    width:381px;
+    height:47px;
+  }
+  .label{
+    position:absolute;
+    left:0;
+    top:-1px;
+    width:170px;
+    color:#5a5d63;
+    font-size:11px;
+    line-height:1.15;
+    font-weight:400;
+    text-align:right;
+  }
+  .bar-wrap{
+    position:absolute;
+    left:181px;
+    top:0;
+    width:199px;
+    height:25px;
+  }
+  .bar-outline{
+    position:absolute;
+    left:0;
+    top:0;
+    width:199px;
+    height:25px;
+    border:1px solid #aeb2b7;
+    box-sizing:border-box;
+    background:transparent;
+  }
+  .bar-fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:25px;
+    background:#2eaead;
+  }
+  .pct{
+    position:absolute;
+    right:7px;
+    top:4px;
+    color:#5a5d63;
+    font-size:15px;
+    line-height:15px;
+    font-weight:400;
+  }
+  .sub{z-index:1;
+    position:absolute;
+    left:181px;
+    top:29px;
+    width:199px;
+    color:#6e7176;
+    font-size:7px;
+    line-height:1.1;
+    font-weight:400;
+    white-space:nowrap;
+  }
+
+  .summary{
+    position:absolute;
+    left:459px;
+    top:558px;
+    width:760px;
+    color:#50535a;
+    font-size:14px;
+    line-height:1.42;
+    font-weight:400;
+    z-index:4;
+  }
+
+  .jump{
+    position:absolute;
+    right:31px;
+    top:60px;
+    width:43px;
+    height:43px;
+    z-index:9;
+  }
+  .jump svg{
+    position:absolute;
+    left:0;
+    top:0;
+  }
+  .jump-text{
+    position:absolute;
+    left:7px;
+    top:10px;
+    width:29px;
+    color:#3f4348;
+    font-size:8px;
+    line-height:1.02;
+    text-align:center;
+    font-weight:400;
+  }
+  .jump-dot{
+    position:absolute;
+    left:30px;
+    top:4px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#e8dc3f;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="left-panel"></div>
+  <div class="chapter-pill">CHAPTER 3</div>
+
+  <div class="left-quote-box">
+    <div class="quote-line" style="left:0;top:0;width:31px;"></div>
+    <div class="quote-vline" style="left:0;top:0;height:208px;"></div>
+    <div class="quote-line" style="left:0;top:208px;width:31px;"></div>
+    <div class="quote-line" style="right:0;top:0;width:33px;"></div>
+    <div class="quote-vline" style="right:0;top:0;height:208px;"></div>
+    <div class="quote-line" style="right:0;top:208px;width:33px;"></div>
+  </div>
+
+  <div class="quote-mark">“</div>
+  <div class="quote-text">
+    What CROs say:<br><br>
+    The surge in third-party relationships and reliance on external providers has amplified the complexity of partner-related risks, making operational resilience essential for organizations to protect critical services and ensure consistent responses to disruptions.
+  </div>
+
+  <svg class="orb" viewBox="0 0 352 494" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="g1" cx="72%" cy="56%" r="58%">
+        <stop offset="0%" stop-color="#f2e8f7" stop-opacity="0.92"/>
+        <stop offset="22%" stop-color="#b7bcff" stop-opacity="0.42"/>
+        <stop offset="48%" stop-color="#18b7d5" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="blur1">
+        <feGaussianBlur stdDeviation="1.15"/>
+      </filter>
+    </defs>
+    <rect width="352" height="494" fill="transparent"/>
+    <ellipse cx="256" cy="261" rx="158" ry="156" fill="url(#g1)"/>
+    <g fill="none" stroke-linecap="round">
+      <ellipse cx="250" cy="258" rx="191" ry="118" stroke="#1ce3c1" stroke-width="2.2" opacity=".18" transform="rotate(8 250 258)"/>
+      <ellipse cx="250" cy="264" rx="176" ry="132" stroke="#10c4f7" stroke-width="2.1" opacity=".2" transform="rotate(-18 250 264)"/>
+      <ellipse cx="257" cy="258" rx="154" ry="156" stroke="#4ef3cf" stroke-width="2" opacity=".22" transform="rotate(23 257 258)"/>
+      <ellipse cx="262" cy="258" rx="138" ry="179" stroke="#8b93ff" stroke-width="1.9" opacity=".22" transform="rotate(-29 262 258)"/>
+      <ellipse cx="242" cy="270" rx="200" ry="104" stroke="#0aa8cf" stroke-width="2" opacity=".19" transform="rotate(48 242 270)"/>
+      <ellipse cx="252" cy="266" rx="110" ry="189" stroke="#67f5d3" stroke-width="2" opacity=".22" transform="rotate(-42 252 266)"/>
+      <ellipse cx="264" cy="258" rx="185" ry="91" stroke="#34d5a7" stroke-width="1.9" opacity=".17" transform="rotate(64 264 258)"/>
+      <ellipse cx="259" cy="258" rx="157" ry="72" stroke="#54ffe0" stroke-width="2" opacity=".16" transform="rotate(20 259 258)"/>
+      <ellipse cx="255" cy="259" rx="96" ry="168" stroke="#d3d0ff" stroke-width="1.6" opacity=".24" transform="rotate(16 255 259)"/>
+      <ellipse cx="255" cy="259" rx="81" ry="162" stroke="#f3f6ff" stroke-width="1.5" opacity=".22" transform="rotate(-30 255 259)"/>
+      <ellipse cx="262" cy="254" rx="62" ry="142" stroke="#67d8ff" stroke-width="1.4" opacity=".26" transform="rotate(45 262 254)"/>
+      <ellipse cx="247" cy="266" rx="156" ry="48" stroke="#2ed8e5" stroke-width="1.6" opacity=".16" transform="rotate(-8 247 266)"/>
+      <ellipse cx="261" cy="258" rx="148" ry="43" stroke="#d7c7ff" stroke-width="1.4" opacity=".15" transform="rotate(30 261 258)"/>
+      <ellipse cx="245" cy="262" rx="133" ry="59" stroke="#0fe6d3" stroke-width="1.5" opacity=".17" transform="rotate(-50 245 262)"/>
+      <ellipse cx="262" cy="267" rx="121" ry="70" stroke="#88f0ff" stroke-width="1.2" opacity=".18" transform="rotate(56 262 267)"/>
+      <ellipse cx="264" cy="255" rx="114" ry="126" stroke="#fff6fa" stroke-width="1.2" opacity=".2" transform="rotate(-3 264 255)"/>
+      <ellipse cx="255" cy="258" rx="103" ry="138" stroke="#14cff4" stroke-width="1.5" opacity=".18" transform="rotate(73 255 258)"/>
+      <ellipse cx="248" cy="257" rx="86" ry="129" stroke="#6fffdc" stroke-width="1.1" opacity=".18" transform="rotate(-64 248 257)"/>
+      <ellipse cx="255" cy="258" rx="71" ry="118" stroke="#ffffff" stroke-width="1.2" opacity=".19" transform="rotate(10 255 258)"/>
+      <ellipse cx="252" cy="258" rx="215" ry="82" stroke="#10b0d4" stroke-width="2" opacity=".11" transform="rotate(-25 252 258)"/>
+      <ellipse cx="246" cy="258" rx="224" ry="94" stroke="#32f0cd" stroke-width="2.1" opacity=".11" transform="rotate(33 246 258)"/>
+    </g>
+    <g stroke-linecap="round" fill="none" opacity=".28">
+      <path d="M102 275 C148 204, 209 177, 287 183 C327 186, 345 203, 352 229" stroke="#33ecc9" stroke-width="2"/>
+      <path d="M63 271 C111 202, 179 174, 272 178 C321 181, 344 194, 352 215" stroke="#0aaef9" stroke-width="2"/>
+      <path d="M88 348 C145 298, 219 278, 304 287 C329 290, 344 299, 352 314" stroke="#6dd9ff" stroke-width="1.7"/>
+      <path d="M41 324 C88 237, 169 195, 284 198 C327 200, 346 214, 352 239" stroke="#3de0b9" stroke-width="1.8" opacity=".45"/>
+    </g>
+    <g filter="url(#blur1)">
+      <circle cx="275" cy="238" r="3.5" fill="#dff6ff" opacity=".9"/>
+      <circle cx="238" cy="220" r="3" fill="#7df9dd" opacity=".85"/>
+      <circle cx="213" cy="284" r="3.1" fill="#4ef0dc" opacity=".82"/>
+      <circle cx="183" cy="212" r="2.8" fill="#47f7ae" opacity=".8"/>
+      <circle cx="317" cy="253" r="3.2" fill="#f7f3ff" opacity=".86"/>
+      <circle cx="299" cy="332" r="2.8" fill="#65c8ff" opacity=".76"/>
+      <circle cx="148" cy="300" r="2.6" fill="#38d4ff" opacity=".65"/>
+      <circle cx="279" cy="190" r="3" fill="#ffffff" opacity=".68"/>
+      <circle cx="172" cy="263" r="2.3" fill="#58ffd8" opacity=".72"/>
+      <circle cx="257" cy="314" r="2.9" fill="#939eff" opacity=".67"/>
+      <circle cx="333" cy="222" r="2.1" fill="#7ef4e8" opacity=".78"/>
+      <circle cx="223" cy="203" r="2.4" fill="#60f0ff" opacity=".78"/>
+      <circle cx="197" cy="170" r="2.5" fill="#49ffc8" opacity=".8"/>
+      <circle cx="240" cy="176" r="2.2" fill="#eef6ff" opacity=".74"/>
+      <circle cx="139" cy="421" r="3.2" fill="#0ae7bf" opacity=".76"/>
+      <circle cx="296" cy="270" r="2.2" fill="#c8e7ff" opacity=".7"/>
+      <circle cx="265" cy="230" r="1.8" fill="#ffffff" opacity=".78"/>
+    </g>
+  </svg>
+
+  <div class="left-page-no">21</div>
+  <div class="left-vertical">CHAPTER 3</div>
+  <div class="left-vertical-line"></div>
+
+  <div class="body-copy">
+    <p>As resilience expectations mature, the emphasis is shifting from identifying priority areas to strengthening the capabilities that make resilience repeatable and measurable, especially across vendor ecosystems and critical services.</p>
+    <p>Vulnerability management rises as a leading capability (including vendor management), underscoring the importance of proactively identifying and addressing vulnerabilities that can cascade across cyber defenses, governance and service continuity.</p>
+  </div>
+
+  <div class="figure-title"><b>Figure 11:</b> What capabilities is your organization most focused on enhancing to address the operational resilience priority areas you identified in the previous question?</div>
+
+  <div class="chart">
+    <div class="bar-group" style="left:0; top:0;">
+      <div class="label">Vulnerability management,<br>including management of vendors</div>
+      <div class="bar-wrap">
+        <div class="bar-outline"></div>
+        <div class="bar-fill" style="width:133px;"></div>
+        <div class="pct">67%</div>
+      </div>
+      <div class="sub">50% Asia-Pacific | 64% EMEA | 73% Americas</div>
+    </div>
+
+    <div class="bar-group" style="left:0; top:60px;">
+      <div class="label">Governance and oversight</div>
+      <div class="bar-wrap">
+        <div class="bar-outline"></div>
+        <div class="bar-fill" style="width:96px;"></div>
+        <div class="pct">48%</div>
+      </div>
+      <div class="sub">60% Asia-Pacific | 43% EMEA | 50% Americas</div>
+    </div>
+
+    <div class="bar-group" style="left:0; top:120px;">
+      <div class="label">Penetration, end-to-end<br>and other forms of testing</div>
+      <div class="bar-wrap">
+        <div class="bar-outline"></div>
+        <div class="bar-fill" style="width:84px;"></div>
+        <div class="pct">42%</div>
+      </div>
+      <div class="sub">30% Asia-Pacific | 55% EMEA | 35% Americas</div>
+    </div>
+
+    <div class="bar-group" style="left:0; top:180px;">
+      <div class="label">Technology enablement</div>
+      <div class="bar-wrap">
+        <div class="bar-outline"></div>
+        <div class="bar-fill" style="width:70px;"></div>
+        <div class="pct">35%</div>
+      </div>
+      <div class="sub">0% Asia-Pacific | 27% EMEA | 48% Americas</div>
+    </div>
+
+    <div class="bar-group" style="left:414px; top:0;">
+      <div class="label">Data restoration capabilities</div>
+      <div class="bar-wrap">
+        <div class="bar-outline"></div>
+        <div class="bar-fill" style="width:58px;"></div>
+        <div class="pct">29%</div>
+      </div>
+      <div class="sub">20% Asia-Pacific | 34% EMEA | 27% Americas</div>
+    </div>
+
+    <div class="bar-group" style="left:414px; top:60px;">
+      <div class="label">Measurement and<br>monitoring</div>
+      <div class="bar-wrap">
+        <div class="bar-outline"></div>
+        <div class="bar-fill" style="width:56px;"></div>
+        <div class="pct">28%</div>
+      </div>
+      <div class="sub">50% Asia-Pacific | 20% EMEA | 31% Americas</div>
+    </div>
+
+    <div class="bar-group" style="left:414px; top:120px;">
+      <div class="label">Talent and upskilling</div>
+      <div class="bar-wrap">
+        <div class="bar-outline"></div>
+        <div class="bar-fill" style="width:40px;"></div>
+        <div class="pct">20%</div>
+      </div>
+      <div class="sub">5% Asia-Pacific | 20% EMEA | 13% Americas</div>
+    </div>
+
+    <div class="bar-group" style="left:414px; top:180px;">
+      <div class="label">Tool/enabler mapping</div>
+      <div class="bar-wrap">
+        <div class="bar-outline"></div>
+        <div class="bar-fill" style="width:16px;"></div>
+        <div class="pct">8%</div>
+      </div>
+      <div class="sub">20% Asia-Pacific | 9% EMEA | 4% Americas</div>
+    </div>
+  </div>
+
+  <div class="summary">
+    Overall, the findings point to a shift from building resilience capabilities to governing resilience as an ongoing discipline – with more structured approaches that integrate cyber, critical services and third-party dependencies to sustain trust under stress.
+  </div>
+
+  <div class="jump">
+    <svg width="43" height="43" viewBox="0 0 43 43" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21.5 1.5 A20 20 0 0 1 35.8 7.1" fill="none" stroke="#4a4d52" stroke-width="1.1"/>
+      <path d="M41.5 21.5 A20 20 0 0 1 35.9 35.8" fill="none" stroke="#4a4d52" stroke-width="1.1"/>
+      <path d="M21.5 41.5 A20 20 0 0 1 7.2 35.9" fill="none" stroke="#4a4d52" stroke-width="1.1"/>
+      <path d="M1.5 21.5 A20 20 0 0 1 7.1 7.2" fill="none" stroke="#4a4d52" stroke-width="1.1"/>
+    </svg>
+    <div class="jump-dot"></div>
+    <div class="jump-text">Jump to<br>contents</div>
+  </div>
+</div>
+</body>
+</html>

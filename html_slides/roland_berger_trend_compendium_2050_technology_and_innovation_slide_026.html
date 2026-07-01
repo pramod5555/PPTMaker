@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Replicated Slide</title>
+<style>
+  body{margin:0;background:#ffffff;font-family:Arial, Helvetica, sans-serif;}
+  #slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f1f1f1;
+  }
+  #slide > div, #slide > svg{position:absolute; box-sizing:border-box;}
+  .sidebar{
+    left:0; top:0; width:180px; height:720px;
+    background:#333840;
+  }
+  .purple-line{
+    left:179px; top:0; width:2px; height:720px;
+    background:#6d52b5;
+  }
+  .nav-title{
+    left:12px; top:34px; width:150px;
+    color:#f4f4f4; font-size:22px; font-weight:700; line-height:1.06;
+  }
+  .hex{width:61px; height:71px;}
+  .nav-item{color:#7f868f;}
+  .nav-item.active{color:#7b61c5;}
+  .nav-num{font-size:20px; font-weight:700; line-height:1;}
+  .nav-label{font-size:14px; font-weight:700; line-height:1.1;}
+  .nav-label-muted{font-size:12px; font-weight:400; line-height:1.1;}
+  .title{
+    left:220px; top:30px; width:1000px;
+    color:#1f1f1f; font-size:28px; font-weight:700; line-height:1.12;
+  }
+  .subtitle-left,.subtitle-right{
+    color:#8f959d; font-size:28px; font-weight:300; line-height:1.05;
+  }
+  .subtitle-left{left:220px; top:138px; width:510px;}
+  .subtitle-right{left:780px; top:138px; width:300px;}
+  .bar-label{
+    color:#303030; font-size:17px; font-weight:400; line-height:1.12;
+  }
+  .bar-value{
+    color:#303030; font-size:17px; font-weight:400; line-height:1;
+  }
+  .vyear{
+    color:#303030; font-size:16px; font-weight:400; line-height:1;
+  }
+  .callout{
+    left:1087px; top:140px; width:193px; height:579px;
+    background:#d5d5d7;
+    padding:12px 14px 10px 14px;
+  }
+  .callout p{
+    margin:0 0 11px 0;
+    color:#222; font-size:15px; font-weight:400; line-height:1.08;
+  }
+  .callout b{font-weight:700;}
+  .source-bottom{
+    left:220px; top:752px;
+  }
+  .footnote{
+    left:220px; top:752px;
+  }
+  .source-text{
+    left:220px; top:752px;
+  }
+  .source{
+    left:220px; top:752px;
+  }
+  .footer{
+    left:220px; top:752px;
+  }
+  .actual-source{
+    left:220px; top:753px;
+  }
+  .source-bottom-visible{
+    left:220px; top:680px; width:380px;
+    color:#444; font-size:11px; font-weight:400; line-height:1;
+  }
+  .pagenum{
+    left:10px; top:752px;
+  }
+  .page-visible{
+    left:10px; top:749px; width:20px;
+    color:#ffffff; font-size:11px; font-weight:400; line-height:1;
+  }
+  .rb-logo{
+    left:1212px; top:684px; width:54px; height:30px;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="purple-line"></div>
+
+  <div class="nav-title">Technology &amp;<br>Innovation</div>
+
+  <!-- Sidebar item 1 -->
+  <svg class="hex" style="left:8px; top:141px;" viewBox="0 0 61 71">
+    <polygon points="15,2 46,2 60,35.5 46,69 15,69 1,35.5" fill="#7c63c5"/>
+    <polygon points="18,7 43,7 54,35.5 43,64 18,64 7,35.5" fill="#8bc4e6"/>
+    <defs>
+      <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0" stop-color="#1f5070"/>
+        <stop offset="1" stop-color="#1aa6d1"/>
+      </linearGradient>
+    </defs>
+    <polygon points="18,7 43,7 54,35.5 43,64 18,64 7,35.5" fill="url(#g1)" opacity="0.9"/>
+    <g stroke="#ffffff" stroke-width="0.9" opacity="0.65">
+      <line x1="12" y1="40" x2="47" y2="20"/>
+      <line x1="17" y1="46" x2="40" y2="18"/>
+      <line x1="19" y1="25" x2="44" y2="47"/>
+      <line x1="11" y1="30" x2="30" y2="50"/>
+      <circle cx="18" cy="25" r="2" fill="#fff"/>
+      <circle cx="28" cy="31" r="2" fill="#fff"/>
+      <circle cx="38" cy="21" r="2" fill="#fff"/>
+      <circle cx="42" cy="41" r="2" fill="#fff"/>
+      <circle cx="23" cy="46" r="2" fill="#fff"/>
+      <circle cx="33" cy="50" r="2" fill="#fff"/>
+    </g>
+  </svg>
+  <div class="nav-item active" style="left:93px; top:143px; width:20px;"><div class="nav-num">1</div></div>
+  <div class="nav-item active" style="left:93px; top:176px; width:76px;">
+    <div class="nav-label">Value of<br>Innovation</div>
+  </div>
+
+  <!-- Sidebar item 2 -->
+  <svg class="hex" style="left:8px; top:274px;" viewBox="0 0 61 71">
+    <polygon points="15,2 46,2 60,35.5 46,69 15,69 1,35.5" fill="#7d7f84"/>
+    <polygon points="18,7 43,7 54,35.5 43,64 18,64 7,35.5" fill="#d8d8da"/>
+    <defs>
+      <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0" stop-color="#55585d"/>
+        <stop offset="1" stop-color="#c8c9cb"/>
+      </linearGradient>
+    </defs>
+    <polygon points="18,7 43,7 54,35.5 43,64 18,64 7,35.5" fill="url(#g2)" opacity="0.92"/>
+    <g stroke="#f5f5f5" stroke-width="0.8" opacity="0.5">
+      <line x1="14" y1="28" x2="44" y2="47"/>
+      <line x1="20" y1="18" x2="33" y2="51"/>
+      <line x1="16" y1="40" x2="45" y2="22"/>
+      <circle cx="16" cy="28" r="1.8" fill="#fff"/>
+      <circle cx="25" cy="35" r="1.8" fill="#fff"/>
+      <circle cx="36" cy="24" r="1.8" fill="#fff"/>
+      <circle cx="43" cy="44" r="1.8" fill="#fff"/>
+      <circle cx="28" cy="49" r="1.8" fill="#fff"/>
+    </g>
+  </svg>
+  <div class="nav-item" style="left:93px; top:276px; width:20px;"><div class="nav-num">2</div></div>
+  <div class="nav-item" style="left:93px; top:307px; width:80px;">
+    <div class="nav-label-muted">Frontier<br>Technologies</div>
+  </div>
+
+  <!-- Sidebar item 3 -->
+  <svg class="hex" style="left:8px; top:404px;" viewBox="0 0 61 71">
+    <polygon points="15,2 46,2 60,35.5 46,69 15,69 1,35.5" fill="#7d7f84"/>
+    <polygon points="18,7 43,7 54,35.5 43,64 18,64 7,35.5" fill="#ececed"/>
+    <rect x="10" y="12" width="41" height="46" rx="3" fill="#d6d6d6"/>
+    <g stroke="#666" stroke-width="1.2" fill="none">
+      <path d="M16 39 C21 32, 23 32, 28 39"/>
+      <path d="M28 39 C33 32, 35 32, 40 39"/>
+      <line x1="19" y1="33" x2="25" y2="39"/>
+      <line x1="31" y1="39" x2="37" y2="33"/>
+    </g>
+    <g fill="#666">
+      <circle cx="21" cy="32" r="2"/>
+      <circle cx="39" cy="32" r="2"/>
+    </g>
+  </svg>
+  <div class="nav-item" style="left:93px; top:406px; width:20px;"><div class="nav-num">3</div></div>
+  <div class="nav-item" style="left:93px; top:438px; width:85px;">
+    <div class="nav-label-muted">Humans &amp;<br>Machines</div>
+  </div>
+
+  <!-- Sidebar bottom icon -->
+  <svg style="left:67px; top:662px; width:63px; height:63px;" viewBox="0 0 63 63">
+    <g fill="none" stroke="#777c82" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="38" cy="27" r="10"/>
+      <path d="M15 39c0-9 7-16 16-16"/>
+      <path d="M22 45c2 2 4 4 8 5"/>
+      <path d="M30 43v8"/>
+      <path d="M24 51h16"/>
+      <path d="M14 12v-7"/>
+      <path d="M7 18L2 14"/>
+      <path d="M4 28h-7"/>
+      <path d="M8 38l-5 4"/>
+      <path d="M46 12l4-6"/>
+      <path d="M51 26h8"/>
+      <path d="M48 40l5 4"/>
+    </g>
+    <path d="M21 20c0-6 5-11 11-11 2 0 4 .5 6 1.5" fill="none" stroke="#777c82" stroke-width="2.8" stroke-linecap="round"/>
+  </svg>
+
+  <div class="title">Companies predominantly use digital technologies that can exploit and<br>process data driving further growth of the data economy</div>
+  <div class="subtitle-left">Share of medium sized firms using selected<br>digital technologies, example Germany, 2021 [%]</div>
+  <div class="subtitle-right">Value of the data economy,<br>EU27 + UK [EUR bn]</div>
+
+  <!-- Faded center illustration -->
+  <svg style="left:474px; top:300px; width:470px; height:390px; opacity:0.33;" viewBox="0 0 470 390">
+    <defs>
+      <linearGradient id="cloudg" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#ffffff" stop-opacity="0.48"/>
+        <stop offset="1" stop-color="#ffffff" stop-opacity="0.12"/>
+      </linearGradient>
+    </defs>
+    <g>
+      <circle cx="150" cy="178" r="58" fill="url(#cloudg)"/>
+      <circle cx="235" cy="132" r="74" fill="url(#cloudg)"/>
+      <circle cx="322" cy="177" r="62" fill="url(#cloudg)"/>
+      <rect x="110" y="170" width="255" height="120" rx="55" fill="url(#cloudg)"/>
+      <text x="240" y="290" text-anchor="middle" fill="#ffffff" font-size="70" font-weight="700" font-family="Arial">DATA</text>
+      <text x="240" y="318" text-anchor="middle" fill="#ffffff" font-size="24" font-weight="700" font-family="Arial">MANAGEMENT</text>
+      <g stroke="#d8d8d8" stroke-width="3" opacity="0.75" fill="none">
+        <line x1="240" y1="97" x2="240" y2="195"/>
+        <line x1="208" y1="123" x2="272" y2="123"/>
+        <line x1="208" y1="157" x2="272" y2="157"/>
+        <line x1="209" y1="191" x2="271" y2="191"/>
+      </g>
+      <g fill="#d7d7d7" opacity="0.92">
+        <rect x="194" y="114" width="13" height="13" rx="2"/>
+        <rect x="224" y="84" width="13" height="13" rx="2"/>
+        <rect x="243" y="84" width="13" height="13" rx="2"/>
+        <rect x="272" y="114" width="13" height="13" rx="2"/>
+        <rect x="194" y="149" width="13" height="13" rx="2"/>
+        <rect x="224" y="149" width="13" height="13" rx="2"/>
+        <rect x="243" y="149" width="13" height="13" rx="2"/>
+        <rect x="272" y="149" width="13" height="13" rx="2"/>
+        <rect x="194" y="183" width="13" height="13" rx="2"/>
+        <rect x="224" y="183" width="13" height="13" rx="2"/>
+        <rect x="243" y="183" width="13" height="13" rx="2"/>
+        <rect x="272" y="183" width="13" height="13" rx="2"/>
+      </g>
+      <g stroke="#dfdfdf" stroke-width="1.1" fill="none" opacity="0.7">
+        <circle cx="72" cy="82" r="7"/><circle cx="95" cy="63" r="6"/><circle cx="108" cy="98" r="6"/>
+        <line x1="79" y1="81" x2="90" y2="67"/><line x1="96" y1="69" x2="104" y2="92"/>
+        <circle cx="35" cy="275" r="7"/><circle cx="58" cy="258" r="6"/><circle cx="74" cy="291" r="6"/>
+        <line x1="42" y1="273" x2="52" y2="262"/><line x1="59" y1="264" x2="69" y2="286"/>
+        <circle cx="372" cy="86" r="7"/><circle cx="396" cy="69" r="6"/><circle cx="409" cy="103" r="6"/>
+        <line x1="379" y1="84" x2="390" y2="72"/><line x1="397" y1="75" x2="405" y2="98"/>
+        <circle cx="383" cy="274" r="7"/><circle cx="406" cy="256" r="6"/><circle cx="421" cy="290" r="6"/>
+        <line x1="390" y1="272" x2="401" y2="260"/><line x1="407" y1="262" x2="417" y2="285"/>
+      </g>
+      <g fill="#f5f5f5" opacity="0.45">
+        <circle cx="14" cy="34" r="2"/><circle cx="30" cy="115" r="2"/><circle cx="7" cy="160" r="2"/>
+        <circle cx="23" cy="206" r="2"/><circle cx="15" cy="311" r="2"/><circle cx="70" cy="334" r="2"/>
+        <circle cx="140" cy="35" r="2"/><circle cx="350" cy="32" r="2"/><circle cx="404" cy="43" r="2"/>
+      </g>
+      <g opacity="0.28" fill="#fff">
+        <circle cx="410" cy="120" r="50"/>
+        <rect x="397" y="87" width="72" height="62" rx="10"/>
+      </g>
+      <g opacity="0.35" stroke="#fff" stroke-width="6" fill="none">
+        <path d="M372 282 q18 -40 41 -17 q22 22 9 56"/>
+        <path d="M389 323 q4 -12 13 -12 q10 1 13 11"/>
+      </g>
+    </g>
+  </svg>
+
+  <!-- Horizontal bar chart -->
+  <svg style="left:220px; top:227px; width:530px; height:493px;" viewBox="0 0 530 493">
+    <line x1="150" y1="0" x2="150" y2="492" stroke="#4f4f4f" stroke-width="2"/>
+    <rect x="150" y="13" width="347" height="30" fill="#563581"/>
+    <rect x="150" y="67" width="316" height="30" fill="#563581"/>
+    <rect x="150" y="121" width="316" height="30" fill="#563581"/>
+    <rect x="150" y="175" width="253" height="30" fill="#563581"/>
+    <rect x="150" y="229" width="191" height="30" fill="#563581"/>
+    <rect x="150" y="283" width="159" height="30" fill="#563581"/>
+    <rect x="150" y="337" width="159" height="30" fill="#563581"/>
+    <rect x="150" y="391" width="126" height="30" fill="#563581"/>
+    <rect x="150" y="445" width="126" height="30" fill="#563581"/>
+  </svg>
+
+  <div class="bar-label" style="left:223px; top:244px; width:125px;">Cloud data</div>
+  <div class="bar-label" style="left:223px; top:298px; width:140px;">Big data analytics</div>
+  <div class="bar-label" style="left:223px; top:346px; width:150px;">Advanced/<br>smart analytics</div>
+  <div class="bar-label" style="left:223px; top:406px; width:140px;">Integrated MES</div>
+  <div class="bar-label" style="left:223px; top:460px; width:125px;">Digital twinning</div>
+  <div class="bar-label" style="left:223px; top:513px; width:133px;">Predictive<br>maintenance</div>
+  <div class="bar-label" style="left:223px; top:566px; width:140px;">Connection with<br>customers</div>
+  <div class="bar-label" style="left:223px; top:620px; width:40px;">AI</div>
+  <div class="bar-label" style="left:223px; top:673px; width:128px;">Autonomous<br>systems</div>
+
+  <div class="bar-value" style="left:723px; top:247px;">44</div>
+  <div class="bar-value" style="left:692px; top:301px;">40</div>
+  <div class="bar-value" style="left:692px; top:355px;">40</div>
+  <div class="bar-value" style="left:629px; top:409px;">32</div>
+  <div class="bar-value" style="left:566px; top:463px;">24</div>
+  <div class="bar-value" style="left:534px; top:517px;">20</div>
+  <div class="bar-value" style="left:534px; top:571px;">20</div>
+  <div class="bar-value" style="left:501px; top:625px;">16</div>
+  <div class="bar-value" style="left:501px; top:679px;">16</div>
+
+  <!-- Vertical bar chart -->
+  <svg style="left:846px; top:228px; width:171px; height:461px;" viewBox="0 0 171 461">
+    <line x1="13" y1="459" x2="168" y2="459" stroke="#444" stroke-width="2"/>
+    <rect x="30" y="223" width="45" height="236" fill="#08517F"/>
+    <rect x="112" y="61" width="45" height="398" fill="#08517F"/>
+    <text x="52" y="217" text-anchor="middle" font-size="17" font-family="Arial" fill="#333">325</text>
+    <text x="134" y="55" text-anchor="middle" font-size="17" font-family="Arial" fill="#333">550</text>
+    <line x1="53" y1="16" x2="53" y2="221" stroke="#9a9a9a" stroke-width="1.5"/>
+    <line x1="53" y1="16" x2="130" y2="16" stroke="#9a9a9a" stroke-width="1.5"/>
+    <line x1="130" y1="16" x2="130" y2="31" stroke="#9a9a9a" stroke-width="1.5"/>
+    <path d="M125 30 L135 30 L130 40 Z" fill="#9a9a9a"/>
+    <ellipse cx="95" cy="14" rx="31" ry="14" fill="#f1f1f1" stroke="#8c8c8c" stroke-width="1.5"/>
+    <text x="95" y="19" text-anchor="middle" font-size="17" font-weight="700" font-family="Arial" fill="#333">+69%</text>
+  </svg>
+  <div class="vyear" style="left:877px; top:694px;">2019</div>
+  <div class="vyear" style="left:958px; top:694px;">2025</div>
+
+  <div class="callout">
+    <p>&gt; The <b>data economy com-<br>prises the generation, use<br>and re-use of data</b>. To strive<br>in and maximize the value of<br>the data economy, the<br>necessary hardware as well<br>as the right software is<br>fundamental</p>
+    <p>&gt; Firms using digital techno-<br>logies aim to <b>improve data<br>management, automation of<br>processes, efficient<br>reporting processes and<br>quality improvements</b></p>
+    <p>&gt; The <b>current value</b> of the<br><b>global data economy</b> is<br>estimated to have reached<br><b>USD 3 trillion</b></p>
+    <p>&gt; For the <b>EU27 countries +<br>UK</b>, the European<br>Commission estimates a<br><b>growth of almost 70% of the<br>data economy until 2025</b></p>
+  </div>
+
+  <div class="source-bottom-visible">Sources: WEF; European Commission; Roland Berger</div>
+
+  <svg class="rb-logo" viewBox="0 0 54 30">
+    <text x="0" y="14" font-size="10" font-family="Arial" fill="#555">Roland</text>
+    <text x="0" y="24" font-size="10" font-family="Arial" fill="#555">Berger</text>
+    <rect x="40" y="1" width="7" height="28" fill="#b8bbbe"/>
+    <path d="M47 1
+             C53 1, 54 6, 54 10
+             C54 15, 51 18, 47 19
+             C52 20, 54 23, 54 29
+             L47 29 Z" fill="#9ca0a3"/>
+  </svg>
+
+  <div class="page-visible">26</div>
+</div>
+</body>
+</html>

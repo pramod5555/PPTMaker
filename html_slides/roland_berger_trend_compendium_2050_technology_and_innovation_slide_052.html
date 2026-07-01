@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Roland Berger - Technology & Innovation</title>
+<style>
+  body { margin:0; background:#ffffff; }
+  #slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #efefef;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+    color:#222;
+  }
+  #slide > div, #slide > svg { position:absolute; box-sizing:border-box; }
+
+  .sidebar {
+    left:0; top:0; width:181px; height:720px;
+    background:#33353d;
+    z-index:5;
+  }
+  .purple-line {
+    left:179px; top:0; width:2px; height:720px;
+    background:#7e5bc7; z-index:15;
+  }
+
+  .title-side {
+    left:12px; top:34px; width:145px;
+    color:#f1f1f1; font-size:25px; line-height:29px; font-weight:700; z-index:30;
+  }
+
+  .nav-item-1 { left:8px; top:141px; width:156px; height:76px; z-index:30; }
+  .nav-item-2 { left:8px; top:273px; width:160px; height:77px; z-index:30; }
+  .nav-item-3 { left:8px; top:406px; width:160px; height:77px; z-index:30; }
+
+  .nav-num {
+    position:absolute; left:85px; top:0;
+    font-size:23px; font-weight:700; color:#7d8189; line-height:26px;
+  }
+  .nav-label {
+    position:absolute; left:85px; top:28px; width:74px;
+    font-size:14px; line-height:17px; color:#666a72; font-weight:400;
+  }
+  .active .nav-num, .active .nav-label { color:#8a6bd1; font-weight:700; }
+
+  .icon-bottom {
+    left:66px; top:662px; width:58px; height:48px; z-index:30;
+    color:#72767e;
+  }
+
+  .page {
+    left:10px; top:706px;
+    color:#ffffff; font-size:20px; line-height:12px; font-weight:400; z-index:50;
+  }
+
+  .main-title {
+    left:220px; top:27px; width:1060px;
+    font-size:31px; line-height:37px; font-weight:700; color:#1f1f22; z-index:30;
+  }
+  .sub-title {
+    left:220px; top:137px; width:760px;
+    font-size:28px; line-height:32px; font-weight:400; color:#8f959e; z-index:30;
+  }
+
+  .chart-area {
+    left:220px; top:186px; width:620px; height:500px; z-index:20;
+  }
+  .bg-glow {
+    left:42px; top:16px; width:445px; height:445px;
+    background: radial-gradient(circle at 50% 50%, rgba(220,228,238,0.85) 0%, rgba(214,223,234,0.62) 35%, rgba(229,233,240,0.34) 58%, rgba(238,240,244,0.10) 78%, rgba(238,240,244,0) 100%);
+    border-radius:50%;
+    z-index:8;
+    filter: blur(0.5px);
+  }
+  .bg-streak {
+    left:-75px; top:180px; width:330px; height:250px;
+    background:
+      radial-gradient(circle at 20% 45%, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.30) 20%, rgba(255,255,255,0) 60%),
+      linear-gradient(180deg, rgba(190,204,224,0.35), rgba(214,221,232,0.08));
+    filter: blur(2px);
+    opacity:0.95;
+    z-index:7;
+  }
+
+  .block {
+    font-size:17px; line-height:20px; color:#2a2a2a; z-index:30;
+  }
+  .block .head {
+    display:block; font-size:17px; line-height:20px; font-weight:700; margin-bottom:7px;
+  }
+  .block .body {
+    display:block; font-size:17px; line-height:20px; font-weight:400;
+  }
+
+  .b1 { left:68px; top:4px; width:255px; }
+  .b2 { left:442px; top:22px; width:218px; }
+  .b3 { left:500px; top:133px; width:228px; }
+  .b4 { left:492px; top:313px; width:225px; }
+  .b5 { left:247px; top:407px; width:300px; text-align:center; }
+  .b6 { left:35px; top:347px; width:220px; }
+  .b7 { left:0; top:164px; width:245px; }
+
+  .callout {
+    left:938px; top:185px; width:342px; height:535px;
+    background:#d4d5d8; z-index:20;
+    padding:10px 14px 10px 14px;
+  }
+  .callout p {
+    margin:0 0 8px 0;
+    font-size:17px;
+    line-height:20px;
+    color:#2d2d2d;
+    font-weight:400;
+  }
+  .callout .bold { font-weight:700; }
+  .callout .indent {
+    margin-left:14px;
+    width:300px;
+  }
+
+  .sources {
+    left:220px; top:753px; width:620px;
+    transform: translateY(-31px);
+    font-size:12px; line-height:14px; color:#4b4b4b; z-index:40;
+  }
+
+  .rb-logo {
+    left:1232px; top:683px; width:40px; height:28px; z-index:50;
+  }
+  .rb-logo .small {
+    position:absolute; left:-2px; top:2px;
+    font-size:5px; line-height:5px; color:#6f7278; font-weight:400;
+  }
+</style>
+</head>
+<body>
+<div id="slide">
+  <div class="sidebar"></div>
+  <div class="purple-line"></div>
+
+  <div class="title-side">Technology &amp;<br>Innovation</div>
+
+  <div class="nav-item-1">
+    <svg width="72" height="72" style="left:0; top:0; position:absolute;">
+      <defs>
+        <clipPath id="hex1c">
+          <polygon points="18,4 54,4 69,36 54,68 18,68 3,36"/>
+        </clipPath>
+      </defs>
+      <polygon points="18,4 54,4 69,36 54,68 18,68 3,36" fill="none" stroke="#777b82" stroke-width="3"/>
+      <g clip-path="url(#hex1c)" opacity="0.85">
+        <rect x="7" y="10" width="56" height="52" fill="#b9bcc1"/>
+        <rect x="7" y="10" width="56" height="52" fill="url(#g1)" opacity="0.4"/>
+        <line x1="10" y1="48" x2="61" y2="24" stroke="#f0f0f0" stroke-width="1"/>
+        <line x1="14" y1="22" x2="56" y2="50" stroke="#e8e8e8" stroke-width="1"/>
+        <line x1="13" y1="31" x2="57" y2="31" stroke="#e8e8e8" stroke-width="1"/>
+        <line x1="23" y1="14" x2="23" y2="56" stroke="#e8e8e8" stroke-width="1"/>
+        <line x1="44" y1="14" x2="44" y2="56" stroke="#e8e8e8" stroke-width="1"/>
+        <circle cx="24" cy="21" r="2" fill="#f4f4f4"/>
+        <circle cx="32" cy="32" r="2" fill="#f4f4f4"/>
+        <circle cx="41" cy="25" r="2" fill="#f4f4f4"/>
+        <circle cx="48" cy="40" r="2" fill="#f4f4f4"/>
+        <circle cx="23" cy="44" r="2" fill="#f4f4f4"/>
+      </g>
+    </svg>
+    <div class="nav-num">1</div>
+    <div class="nav-label">Value of<br>Innovation</div>
+  </div>
+
+  <div class="nav-item-2 active">
+    <svg width="74" height="74" style="left:0; top:0; position:absolute;">
+      <defs>
+        <clipPath id="hex2c">
+          <polygon points="19,4 55,4 71,37 55,70 19,70 3,37"/>
+        </clipPath>
+      </defs>
+      <polygon points="19,4 55,4 71,37 55,70 19,70 3,37" fill="none" stroke="#8d6ad8" stroke-width="4"/>
+      <g clip-path="url(#hex2c)">
+        <rect x="9" y="12" width="56" height="50" fill="#8d6ad8" opacity="0.18"/>
+        <circle cx="37" cy="37" r="16" fill="none" stroke="#ebe5fb" stroke-width="1.2" opacity="0.8"/>
+        <circle cx="27" cy="30" r="1.6" fill="#f5f2fd"/>
+        <circle cx="41" cy="27" r="1.6" fill="#f5f2fd"/>
+        <circle cx="49" cy="37" r="1.6" fill="#f5f2fd"/>
+        <circle cx="30" cy="44" r="1.6" fill="#f5f2fd"/>
+        <line x1="27" y1="30" x2="41" y2="27" stroke="#f5f2fd" stroke-width="1"/>
+        <line x1="41" y1="27" x2="49" y2="37" stroke="#f5f2fd" stroke-width="1"/>
+        <line x1="27" y1="30" x2="30" y2="44" stroke="#f5f2fd" stroke-width="1"/>
+        <line x1="30" y1="44" x2="49" y2="37" stroke="#f5f2fd" stroke-width="1"/>
+      </g>
+    </svg>
+    <div class="nav-num">2</div>
+    <div class="nav-label">Frontier<br>Technologies</div>
+  </div>
+
+  <div class="nav-item-3">
+    <svg width="72" height="72" style="left:0; top:0; position:absolute;">
+      <defs>
+        <clipPath id="hex3c">
+          <polygon points="18,4 54,4 69,36 54,68 18,68 3,36"/>
+        </clipPath>
+      </defs>
+      <polygon points="18,4 54,4 69,36 54,68 18,68 3,36" fill="none" stroke="#8a8d93" stroke-width="3"/>
+      <g clip-path="url(#hex3c)">
+        <rect x="10" y="12" width="52" height="48" fill="#c8cbd0" opacity="0.22"/>
+        <circle cx="27" cy="36" r="6.6" fill="#ededed"/>
+        <circle cx="44" cy="36" r="6.6" fill="#ededed"/>
+        <rect x="28" y="33" width="16" height="6" rx="3" fill="#ededed"/>
+        <line x1="24" y1="33" x2="31" y2="39" stroke="#c4c7cc" stroke-width="2"/>
+        <line x1="24" y1="39" x2="31" y2="33" stroke="#c4c7cc" stroke-width="2"/>
+        <line x1="40" y1="33" x2="47" y2="39" stroke="#c4c7cc" stroke-width="2"/>
+        <line x1="40" y1="39" x2="47" y2="33" stroke="#c4c7cc" stroke-width="2"/>
+      </g>
+    </svg>
+    <div class="nav-num">3</div>
+    <div class="nav-label">Humans &amp;<br>Machines</div>
+  </div>
+
+  <div class="icon-bottom">
+    <svg width="58" height="48">
+      <g fill="none" stroke="#737780" stroke-width="3">
+        <circle cx="38" cy="20" r="10"></circle>
+        <circle cx="51" cy="13" r="4.2" fill="#737780" stroke="none"></circle>
+        <path d="M38 8 L38 2"></path>
+        <path d="M31 10 L28 6"></path>
+        <path d="M45 10 L48 6"></path>
+        <path d="M29 17 L24 17"></path>
+        <path d="M46 24 L51 27"></path>
+        <path d="M34 31 L32 36"></path>
+        <path d="M42 31 L44 36"></path>
+        <path d="M38 20 L42 17"></path>
+        <path d="M38 20 L38 12"></path>
+        <path d="M38 20 L34 25"></path>
+      </g>
+      <g fill="none" stroke="#737780" stroke-width="3">
+        <circle cx="15" cy="28" r="10.5"></circle>
+        <circle cx="15" cy="28" r="3.3" fill="#737780" stroke="none"></circle>
+        <path d="M15 15 L15 20"></path>
+        <path d="M15 36 L15 42"></path>
+        <path d="M2 28 L7 28"></path>
+        <path d="M23 28 L28 28"></path>
+        <path d="M6 19 L10 23"></path>
+        <path d="M20 33 L24 37"></path>
+        <path d="M6 37 L10 33"></path>
+        <path d="M20 23 L24 19"></path>
+      </g>
+    </svg>
+  </div>
+
+  <div class="page">52</div>
+
+  <div class="main-title">… immersing real-world technological innovations into the metaverse they enable – Shifting the human-machine relationship into another dimension</div>
+  <div class="sub-title">Core enabling technologies and innovations of the metaverse</div>
+
+  <div class="chart-area">
+    <div class="bg-streak"></div>
+    <div class="bg-glow"></div>
+
+    <div class="block b1">
+      <span class="head">Hardware</span>
+      <span class="body">Innovations in physical<br>technologies and devices used<br>to access, interact with, or<br>develop the metaverse</span>
+    </div>
+
+    <div class="block b2">
+      <span class="head">Computer</span>
+      <span class="body">The enablement and supply of<br>computing power to support the<br>metaverse</span>
+    </div>
+
+    <div class="block b3">
+      <span class="head">Networking</span>
+      <span class="body">The innovation provisioning<br>of persistent, real-time<br>connections, high<br>bandwidth, and<br>decentralized data<br>transmission</span>
+    </div>
+
+    <div class="block b4">
+      <span class="head">Virtual platforms</span>
+      <span class="body">The development and<br>operation of immersive<br>digital and often three-<br>dimensional simulations</span>
+    </div>
+
+    <div class="block b5">
+      <span class="head">Interchange tools &amp; standards</span>
+      <span class="body">Innovating and defining de facto<br>standards for interoperability</span>
+    </div>
+
+    <div class="block b6">
+      <span class="head">Payment services</span>
+      <span class="body">Innovations support digital<br>payment processes,<br>platforms, and operations</span>
+    </div>
+
+    <div class="block b7">
+      <span class="head">Content, services &amp; assets</span>
+      <span class="body">Innovations regarding the<br>creation, sale, storage, secure<br>protection and financial<br>management of digital assets</span>
+    </div>
+
+    <svg width="620" height="500" style="left:0; top:0; z-index:25; position:absolute;">
+      <defs>
+        <filter id="softBlur">
+          <feGaussianBlur stdDeviation="0.8"/>
+        </filter>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ffffff" stop-opacity="0.5"/>
+          <stop offset="1" stop-color="#7e8188" stop-opacity="0.25"/>
+        </linearGradient>
+      </defs>
+
+      <circle cx="352" cy="257" r="150" fill="rgba(205,214,225,0.30)"></circle>
+
+      <g transform="translate(353,258) scale(1.06)">
+        <path d="M0,-96
+                 A96,96 0 0,1 87,-40
+                 Q54,-35 34,-6
+                 A52,52 0 0,0 0,-44 Z"
+              fill="#4a277f"/>
+        <path d="M88,-39
+                 A96,96 0 0,1 79,56
+                 Q58,29 20,24
+                 A52,52 0 0,0 35,-5 Z"
+              fill="#8166ba"/>
+        <path d="M78,57
+                 A96,96 0 0,1 -10,95
+                 Q6,66 -9,31
+                 A52,52 0 0,0 19,24 Z"
+              fill="#7e63bb"/>
+        <path d="M-11,95
+                 A96,96 0 0,1 -93,23
+                 Q-59,26 -34,-4
+                 A52,52 0 0,0 -10,31 Z"
+              fill="#1f77ad"/>
+        <path d="M-93,22
+                 A96,96 0 0,1 -55,-79
+                 Q-47,-45 -13,-32
+                 A52,52 0 0,0 -34,-4 Z"
+              fill="#0d5f95"/>
+        <path d="M-54,-80
+                 A96,96 0 0,1 0,-96
+                 Q-8,-63 16,-42
+                 A52,52 0 0,0 -13,-32 Z"
+              fill="#085082"/>
+      </g>
+
+      <text x="265" y="140" font-size="29" font-weight="700" fill="#4d2d86" transform="rotate(-23 265 140)">Metaverse</text>
+      <text x="219" y="492" font-size="26" font-weight="400" fill="#0b4f82" transform="rotate(8 219 492)" letter-spacing="4">User behavior</text>
+
+      <g opacity="0.28" fill="#ffffff" filter="url(#softBlur)">
+        <circle cx="90" cy="120" r="1.2"/><circle cx="104" cy="137" r="1.6"/>
+        <circle cx="117" cy="162" r="1.3"/><circle cx="82" cy="184" r="1.1"/>
+        <circle cx="137" cy="190" r="1.5"/><circle cx="154" cy="206" r="1.1"/>
+        <circle cx="171" cy="230" r="1.4"/><circle cx="70" cy="248" r="1.2"/>
+        <circle cx="90" cy="268" r="1.6"/><circle cx="115" cy="284" r="1.2"/>
+        <circle cx="140" cy="304" r="1.3"/><circle cx="158" cy="329" r="1.4"/>
+        <circle cx="186" cy="352" r="1.4"/><circle cx="220" cy="360" r="1.1"/>
+        <circle cx="236" cy="377" r="1.5"/><circle cx="266" cy="405" r="1.3"/>
+        <circle cx="295" cy="414" r="1.2"/><circle cx="323" cy="421" r="1.6"/>
+        <circle cx="360" cy="413" r="1.2"/><circle cx="390" cy="392" r="1.3"/>
+        <circle cx="419" cy="366" r="1.5"/><circle cx="436" cy="336" r="1.1"/>
+        <circle cx="447" cy="301" r="1.4"/><circle cx="454" cy="268" r="1.2"/>
+        <circle cx="443" cy="232" r="1.3"/><circle cx="431" cy="205" r="1.2"/>
+        <circle cx="412" cy="174" r="1.5"/><circle cx="385" cy="150" r="1.2"/>
+        <circle cx="351" cy="126" r="1.2"/><circle cx="313" cy="116" r="1.6"/>
+        <circle cx="276" cy="112" r="1.2"/><circle cx="228" cy="118" r="1.4"/>
+      </g>
+
+      <g opacity="0.16" stroke="#ffffff" stroke-width="1">
+        <line x1="23" y1="304" x2="192" y2="304"/>
+        <line x1="14" y1="326" x2="205" y2="326"/>
+        <line x1="-4" y1="348" x2="184" y2="348"/>
+        <line x1="8" y1="370" x2="202" y2="370"/>
+      </g>
+
+      <g opacity="0.18" fill="#b0a6d7" font-size="12">
+        <text x="502" y="357">0</text>
+        <text x="486" y="384">1</text>
+        <text x="451" y="406">0</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="callout">
+    <p>&gt; The futuristic metaverse is a place where the <span class="bold">multivariate cross-utilization of the key innovations here analyzed will come full circle</span> – existing not just in the physical world but also in an entirely virtual universe – a place they helped to create</p>
+    <p>&gt; Currently, the metaverse is mainly used in the world of <span class="bold">computer games</span>. However, it will emerge in other <span class="bold">business areas:</span></p>
+    <p class="indent">– <span class="bold">Meta Platforms</span> (formerly Facebook), strives to be seen as a metaverse company. Already one fifth of its 63,000 employees are said to be working on necessary technologies. The company postulates that this will be the <span class="bold">most important topic for the next 10-15 years</span></p>
+    <p class="indent">– According to its CEO, <span class="bold">Microsoft</span> is working on an <span class="bold">"enterprise metaverse"</span></p>
+    <p class="indent">– <span class="bold">Nvidia</span>, the computer systems design services company, is building a <span class="bold">metaverse for engineers</span></p>
+    <p class="indent">– Video game platform <span class="bold">Roblox</span> aims to give users and developers ways to create digital worlds, where <span class="bold">shopping and running a business</span> is possible</p>
+  </div>
+
+  <div class="sources">Sources: Bloomberg; Meta Platforms; Matthew Ball; Reuters; Press research; Roland Berger</div>
+
+  <div class="rb-logo">
+    <div class="small">Roland<br>Berger</div>
+    <svg width="40" height="28" style="position:absolute; left:13px; top:1px;">
+      <path d="M15,2 C22,2 27,7 27,14 C27,21 22,26 15,26 L8,26 L8,2 Z" fill="#b2b4b8"/>
+      <path d="M15,2 C19,2 23,5 23,10 C23,15 19,18 15,18 L13,18 L13,2 Z" fill="#d0d2d5"/>
+      <path d="M27,14 C33,14 37,17 37,22 C37,25 35,26 31,26 L24,26 C26,23 27,19 27,14 Z" fill="#76797f"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

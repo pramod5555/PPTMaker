@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Why this matters now</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #d7d7d7;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #dddddd;
+    color: #222;
+  }
+
+  .title {
+    position: absolute;
+    left: 64px;
+    top: 132px;
+    width: 320px;
+    font-size: 56px;
+    line-height: 1.22;
+    font-weight: 300;
+    letter-spacing: -0.8px;
+    color: #7a1fd0;
+  }
+
+  .body-copy {
+    position: absolute;
+    left: 64px;
+    top: 292px;
+    width: 360px;
+    font-size: 18px;
+    line-height: 1.37;
+    font-weight: 400;
+    color: #252525;
+  }
+
+  .photo-top {
+    position: absolute;
+    left: 936px;
+    top: 0;
+    width: 344px;
+    height: 295px;
+    background:
+      radial-gradient(circle at 28% 10%, rgba(255,255,255,0.38) 0 10%, rgba(255,255,255,0) 24%),
+      radial-gradient(circle at 62% 14%, rgba(215,230,255,0.85) 0 9%, rgba(215,230,255,0) 24%),
+      radial-gradient(circle at 78% 34%, rgba(58,121,18,0.85) 0 12%, rgba(58,121,18,0) 28%),
+      radial-gradient(circle at 18% 42%, rgba(32,43,31,0.85) 0 12%, rgba(32,43,31,0) 24%),
+      radial-gradient(circle at 48% 62%, rgba(105,136,56,0.8) 0 12%, rgba(105,136,56,0) 28%),
+      radial-gradient(circle at 88% 64%, rgba(24,83,10,0.95) 0 13%, rgba(24,83,10,0) 31%),
+      linear-gradient(180deg, #95bfd8 0%, #7aa35c 45%, #446b0d 70%, #1f2f0f 100%);
+    filter: blur(1.5px) saturate(1.1);
+  }
+
+  .photo-center {
+    position: absolute;
+    left: 569px;
+    top: 295px;
+    width: 367px;
+    height: 253px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 17% 56%, rgba(160,72,32,0.95) 0 10%, rgba(160,72,32,0) 21%),
+      radial-gradient(circle at 84% 52%, rgba(203,179,165,0.9) 0 8%, rgba(203,179,165,0) 18%),
+      radial-gradient(circle at 54% 58%, rgba(10,12,14,0.95) 0 14%, rgba(10,12,14,0.85) 14%, rgba(10,12,14,0) 22%),
+      linear-gradient(180deg, #d0b2a6 0%, #6f7d90 18%, #242830 44%, #413630 70%, #b47a55 100%);
+  }
+  .photo-center::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(105deg, rgba(255,255,255,0.15) 0 8px, rgba(255,255,255,0) 8px 24px),
+      repeating-linear-gradient(-62deg, rgba(215,227,240,0.12) 0 10px, rgba(215,227,240,0) 10px 28px);
+    opacity: 0.5;
+    filter: blur(3px);
+  }
+  .photo-center::after {
+    content: "";
+    position: absolute;
+    left: 115px;
+    top: 36px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, rgba(0,0,0,0.7) 0 19%, rgba(33,36,43,0.95) 20% 27%, rgba(74,83,96,0.85) 28% 34%, rgba(0,0,0,0) 35%),
+      repeating-radial-gradient(circle, rgba(174,190,212,0.5) 0 4px, rgba(113,130,152,0.15) 4px 9px, rgba(0,0,0,0) 9px 14px);
+    transform: rotate(-8deg);
+    filter: blur(0.8px);
+    box-shadow:
+      0 0 0 3px rgba(170,190,210,0.35) inset,
+      0 0 24px rgba(185,205,230,0.2);
+  }
+
+  .callout {
+    position: absolute;
+    left: 936px;
+    top: 295px;
+    width: 344px;
+    height: 253px;
+    background: rgba(245,245,245,0.97);
+  }
+  .callout-text {
+    position: absolute;
+    left: 31px;
+    top: 31px;
+    width: 268px;
+    font-size: 22px;
+    line-height: 1.44;
+    font-weight: 300;
+    color: #8b32db;
+  }
+
+  .photo-bottom {
+    position: absolute;
+    left: 936px;
+    top: 548px;
+    width: 344px;
+    height: 172px;
+    background:
+      radial-gradient(circle at 33% 18%, rgba(207,167,129,0.85) 0 12%, rgba(207,167,129,0) 28%),
+      radial-gradient(circle at 63% 36%, rgba(206,203,182,0.9) 0 11%, rgba(206,203,182,0) 24%),
+      radial-gradient(circle at 22% 82%, rgba(173,119,71,0.9) 0 18%, rgba(173,119,71,0) 36%),
+      radial-gradient(circle at 86% 84%, rgba(180,126,93,0.8) 0 13%, rgba(180,126,93,0) 30%),
+      linear-gradient(135deg, #8b420b 0%, #b46f31 25%, #c0b899 55%, #4a5d18 78%, #1a3a08 100%);
+    filter: blur(1.2px);
+  }
+
+  .footer-left {
+    position: absolute;
+    right: 98px;
+    bottom: 22px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 400;
+  }
+
+  .footer-page {
+    position: absolute;
+    right: 30px;
+    bottom: 22px;
+    font-size: 14px;
+    color: #6c6c6c;
+    font-weight: 400;
+  }
+
+  .side-nav {
+    position: absolute;
+    right: -143px;
+    top: 305px;
+    width: 420px;
+    transform: rotate(90deg);
+    transform-origin: top right;
+    font-size: 18px;
+    line-height: 1;
+    color: #666;
+    white-space: nowrap;
+    letter-spacing: 0;
+  }
+  .side-nav .active {
+    color: #8b32db;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="title">Why this<br>matters now</div>
+
+    <div class="body-copy">
+      People are seeking out enriching experiences in the physical world, creating opportunities for brands to create more vibrant, textural experiences that connect with customers’ lives offline. We don’t expect people to abandon digital technology, but we do believe more people will seek to adjust the balance, scaling their use of screens back in favor of real-world experiences.
+    </div>
+
+    <div class="photo-top"></div>
+    <div class="photo-center"></div>
+
+    <div class="callout">
+      <div class="callout-text">
+        This movement is happening now, and we expect to see it grow both in scope and popularity, so brands that get on board with it now will likely set themselves apart.
+      </div>
+    </div>
+
+    <div class="photo-bottom"></div>
+
+    <div class="side-nav">
+      Cost of hesitations &nbsp;/&nbsp; The parent trap &nbsp;/&nbsp; Impatience economy &nbsp;/&nbsp; The dignity of work &nbsp;/&nbsp; <span class="active">Social rewiring</span>
+    </div>
+
+    <div class="footer-left">Accenture Life Trends 2025</div>
+    <div class="footer-page">83</div>
+  </div>
+</body>
+</html>

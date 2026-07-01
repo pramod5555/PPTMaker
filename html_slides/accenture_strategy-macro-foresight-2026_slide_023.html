@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, initial-scale=1.0" />
+<title>Increasing financial fragility</title>
+<style>
+  body {
+    margin: 0;
+    background: #f0edf1;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #f0edf1;
+    color: #111;
+  }
+
+  .topnav {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 25px;
+    background: #ece9ed;
+    border-bottom: 1px solid #cfc8d5;
+    font-size: 11px;
+    color: #7d7d7d;
+    font-weight: 600;
+    line-height: 25px;
+    white-space: nowrap;
+  }
+  .tab {
+    position: absolute;
+    top: 0;
+    height: 25px;
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+  .tab.activebox {
+    background: #5b1688;
+    color: #fff;
+  }
+  .tab.activeline {
+    color: #4d177e;
+  }
+  .tab.activeline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    width: 100%;
+    height: 2px;
+    background: #7f22c8;
+  }
+
+  .title {
+    position: absolute;
+    left: 40px;
+    top: 58px;
+    width: 1188px;
+    font-size: 28px;
+    line-height: 0.95;
+    font-weight: 700;
+    color: #0b0b0b;
+    letter-spacing: -0.3px;
+  }
+  .subtitle {
+    position: absolute;
+    left: 42px;
+    top: 121px;
+    font-size: 29px;
+    line-height: 1;
+    font-weight: 700;
+    color: #9d19ff;
+  }
+
+  .section-head {
+    position: absolute;
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+  }
+  .section-line {
+    position: absolute;
+    height: 2px;
+    background: #313131;
+  }
+  .section-sub {
+    position: absolute;
+    font-size: 15px;
+    color: #9f9f9f;
+  }
+
+  /* Left chart */
+  .left-wrap { position: absolute; left: 45px; top: 173px; width: 565px; height: 480px; }
+  .legend { position: absolute; left: 89px; top: 97px; font-size: 15px; color: #2a2a2a; line-height: 23px; }
+  .legend .item { position: relative; padding-left: 36px; }
+  .legend .swatch-bar {
+    position: absolute; left: 0; top: 4px; width: 20px; height: 15px; background: #b2b2b2;
+  }
+  .legend .swatch-line1,
+  .legend .swatch-line2 {
+    position: absolute; left: 0; top: 11px; width: 20px; height: 2px;
+  }
+  .legend .swatch-line1 { background: #c99df7; }
+  .legend .swatch-line2 { background: #991cff; }
+  .legend .dot1,
+  .legend .dot2 {
+    position: absolute; left: 8px; width: 8px; height: 8px; border-radius: 50%;
+    top: 8px;
+  }
+  .legend .dot1 { background: #c99df7; }
+  .legend .dot2 { background: #991cff; }
+
+  .plot {
+    position: absolute; left: 79px; top: 157px; width: 466px; height: 383px;
+  }
+  .axis-left {
+    position: absolute; left: 2px; top: 0; width: 2px; height: 383px; background: #3d3d3d;
+  }
+  .axis-bottom {
+    position: absolute; left: 2px; bottom: 0; width: 462px; height: 2px; background: #3d3d3d;
+  }
+  .axis-right {
+    position: absolute; right: 0; top: 0; width: 2px; height: 383px; background: #3d3d3d;
+  }
+  .tick {
+    position: absolute;
+    width: 7px;
+    height: 2px;
+    background: #3d3d3d;
+    left: 0;
+  }
+  .rtick {
+    position: absolute;
+    width: 7px;
+    height: 2px;
+    background: #3d3d3d;
+    right: 0;
+  }
+  .ylabel, .rylabel, .xlabel {
+    position: absolute;
+    font-size: 17px;
+    color: #222;
+  }
+  .bars {
+    position: absolute; left: 19px; bottom: 2px; width: 410px; height: 345px;
+  }
+  .bar {
+    position: absolute; bottom: 0; width: 42px; background: #aeaeae;
+  }
+  .line {
+    position: absolute; left: 0; top: 0; width: 410px; height: 345px;
+  }
+  .seg {
+    position: absolute;
+    height: 3px;
+    transform-origin: left center;
+  }
+  .dot {
+    position: absolute; width: 9px; height: 9px; border-radius: 50%;
+    margin-left: -4px; margin-top: -4px;
+  }
+
+  .callout-left {
+    position: absolute;
+    left: 215px;
+    top: 283px;
+    width: 281px;
+    height: 114px;
+    background: #efefef;
+    color: #222;
+    font-size: 16px;
+    line-height: 1.15;
+    padding: 16px 16px;
+    box-sizing: border-box;
+  }
+  .callout-left:after {
+    content: "";
+    position: absolute;
+    right: -18px;
+    top: 58px;
+    border-width: 10px 0 10px 18px;
+    border-style: solid;
+    border-color: transparent transparent transparent #efefef;
+  }
+
+  /* Right chart */
+  .right-wrap { position: absolute; left: 711px; top: 174px; width: 535px; height: 500px; }
+  .donut {
+    position: absolute;
+    left: 74px;
+    top: 128px;
+    width: 346px;
+    height: 346px;
+    border-radius: 50%;
+    background:
+      conic-gradient(
+        #4b0073 0deg 25.2deg,
+        #d8b8fa 25.2deg 36deg,
+        #c7a1f0 36deg 75.6deg,
+        #aa76e6 75.6deg 176.4deg,
+        #a46de5 176.4deg 288deg,
+        #5b0085 288deg 342deg,
+        #4a0074 342deg 360deg
+      );
+  }
+  .donut::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 244px;
+    height: 244px;
+    margin-left: -122px;
+    margin-top: -122px;
+    border-radius: 50%;
+    background: #f0edf1;
+  }
+  .slice-sep {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 3px;
+    height: 173px;
+    background: #f0edf1;
+    transform-origin: center bottom;
+  }
+
+  .donut-label {
+    position: absolute;
+    font-size: 17px;
+    font-weight: 700;
+    color: #111;
+  }
+  .percent {
+    position: absolute;
+    font-size: 17px;
+    color: #111;
+  }
+  .percent.white { color: #fff; }
+
+  .callout-right {
+    position: absolute;
+    left: 428px;
+    top: 36px;
+    width: 189px;
+    background: #e5e5e5;
+    color: #262626;
+    font-size: 16px;
+    line-height: 1.06;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    box-shadow: 3px 3px 4px rgba(0,0,0,0.25);
+  }
+  .callout-right:before {
+    content: "";
+    position: absolute;
+    left: -27px;
+    top: 38px;
+    border-width: 24px 27px 24px 0;
+    border-style: solid;
+    border-color: transparent #e5e5e5 transparent transparent;
+  }
+  .bullet { margin-bottom: 10px; }
+  .bullet:before {
+    content: "•";
+    margin-right: 8px;
+  }
+
+  .footer-note {
+    position: absolute;
+    left: 68px;
+    top: 711px;
+    transform: translateY(-100%);
+    font-size: 13px;
+    line-height: 1.25;
+    color: #878787;
+  }
+  .copyright {
+    position: absolute;
+    right: 53px;
+    bottom: 20px;
+    font-size: 12px;
+    color: #6f6f6f;
+  }
+  .page {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    font-size: 12px;
+    color: #6f6f6f;
+  }
+  .accenture {
+    position: absolute;
+    left: 40px;
+    bottom: 26px;
+    width: 26px;
+    height: 18px;
+  }
+  .accenture:before,
+  .accenture:after {
+    content: "";
+    position: absolute;
+    background: #9d19ff;
+    height: 5px;
+    width: 24px;
+    transform-origin: left center;
+  }
+  .accenture:before {
+    left: 0;
+    top: 3px;
+    transform: rotate(22deg);
+  }
+  .accenture:after {
+    left: 0;
+    top: 10px;
+    transform: rotate(-22deg);
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <div class="topnav">
+    <div class="tab activebox" style="left:0px;width:99px;">Top 10 trends</div>
+    <div class="tab" style="left:99px;width:135px;">Multi-speed growth</div>
+    <div class="tab" style="left:234px;width:105px;">Tariff impacts</div>
+    <div class="tab activeline" style="left:339px;width:116px;">Financial fragility</div>
+    <div class="tab" style="left:476px;width:109px;">Affordability</div>
+    <div class="tab" style="left:592px;width:105px;">AI productivity</div>
+    <div class="tab" style="left:727px;width:108px;">China exports</div>
+    <div class="tab" style="left:849px;width:112px;">Europe struggle</div>
+    <div class="tab" style="left:977px;width:104px;">AI arms race</div>
+    <div class="tab" style="left:1092px;width:102px;">Power crunch</div>
+    <div class="tab" style="left:1188px;width:92px;">Geostrategic hubs</div>
+  </div>
+
+  <div class="title">
+    Structurally higher interest rates and a potential correction in AI valuations are likely to<br>
+    increase funding stress for many companies, particularly those relying on private credit
+  </div>
+
+  <div class="subtitle">3. Increasing financial fragility</div>
+
+  <div class="section-head" style="left:43px;top:169px;">AI-related US investment grade debt</div>
+  <div class="section-line" style="left:43px;top:194px;width:604px;"></div>
+  <div class="section-sub" style="left:46px;top:202px;">$bn (Left), % of index (Right)</div>
+
+  <div class="section-head" style="left:710px;top:171px;">Interest coverage ratios of private credit borrowers¹</div>
+  <div class="section-line" style="left:710px;top:194px;width:527px;"></div>
+  <div class="section-sub" style="left:710px;top:203px;">EBITDA/Interest Expense</div>
+
+  <div class="left-wrap">
+    <div class="legend">
+      <div class="item"><span class="swatch-bar"></span>AI universe index debt (left)</div>
+      <div class="item"><span class="swatch-line1"></span><span class="dot1"></span>AI as % of index (right)</div>
+      <div class="item"><span class="swatch-line2"></span><span class="dot2"></span>US banks as % of index (right)</div>
+    </div>
+
+    <div class="plot">
+      <div class="axis-left"></div>
+      <div class="axis-bottom"></div>
+      <div class="axis-right"></div>
+
+      <div class="tick" style="top:0px;"></div>
+      <div class="tick" style="top:54px;"></div>
+      <div class="tick" style="top:109px;"></div>
+      <div class="tick" style="top:164px;"></div>
+      <div class="tick" style="top:219px;"></div>
+      <div class="tick" style="top:274px;"></div>
+      <div class="tick" style="top:328px;"></div>
+      <div class="tick" style="top:381px;"></div>
+
+      <div class="rtick" style="top:0px;"></div>
+      <div class="rtick" style="top:95px;"></div>
+      <div class="rtick" style="top:191px;"></div>
+      <div class="rtick" style="top:286px;"></div>
+      <div class="rtick" style="top:381px;"></div>
+
+      <div class="ylabel" style="left:-71px;top:-10px;">$1,400</div>
+      <div class="ylabel" style="left:-61px;top:44px;">$1,200</div>
+      <div class="ylabel" style="left:-61px;top:99px;">$1,000</div>
+      <div class="ylabel" style="left:-44px;top:153px;">$800</div>
+      <div class="ylabel" style="left:-44px;top:208px;">$600</div>
+      <div class="ylabel" style="left:-44px;top:263px;">$400</div>
+      <div class="ylabel" style="left:-44px;top:318px;">$200</div>
+      <div class="ylabel" style="left:-31px;top:372px;">$0</div>
+
+      <div class="rylabel" style="right:-51px;top:-10px;">20%</div>
+      <div class="rylabel" style="right:-51px;top:86px;">15%</div>
+      <div class="rylabel" style="right:-40px;top:181px;">10%</div>
+      <div class="rylabel" style="right:-29px;top:276px;">5%</div>
+      <div class="rylabel" style="right:-40px;top:372px;">0%</div>
+
+      <div class="xlabel" style="left:18px;bottom:-27px;">2020</div>
+      <div class="xlabel" style="left:98px;bottom:-27px;">2021</div>
+      <div class="xlabel" style="left:175px;bottom:-27px;">2022</div>
+      <div class="xlabel" style="left:254px;bottom:-27px;">2023</div>
+      <div class="xlabel" style="left:333px;bottom:-27px;">2024</div>
+      <div class="xlabel" style="left:411px;bottom:-27px;">2025</div>
+
+      <div class="bars">
+        <div class="bar" style="left:0px;height:198px;"></div>
+        <div class="bar" style="left:77px;height:238px;"></div>
+        <div class="bar" style="left:154px;height:269px;"></div>
+        <div class="bar" style="left:231px;height:287px;"></div>
+        <div class="bar" style="left:308px;height:307px;"></div>
+        <div class="bar" style="left:385px;height:344px;"></div>
+      </div>
+
+      <div class="line">
+        <div class="seg" style="left:38px;top:140px;width:78px;background:#c99df7;transform:rotate(-8deg);"></div>
+        <div class="seg" style="left:116px;top:129px;width:78px;background:#c99df7;transform:rotate(-6deg);"></div>
+        <div class="seg" style="left:194px;top:121px;width:78px;background:#c99df7;transform:rotate(-3deg);"></div>
+        <div class="seg" style="left:272px;top:117px;width:78px;background:#c99df7;transform:rotate(-2deg);"></div>
+        <div class="seg" style="left:350px;top:114px;width:78px;background:#c99df7;transform:rotate(-8deg);"></div>
+
+        <div class="seg" style="left:38px;top:151px;width:78px;background:#991cff;transform:rotate(-6deg);"></div>
+        <div class="seg" style="left:116px;top:143px;width:78px;background:#991cff;transform:rotate(-5deg);"></div>
+        <div class="seg" style="left:194px;top:136px;width:78px;background:#991cff;transform:rotate(-1deg);"></div>
+        <div class="seg" style="left:272px;top:135px;width:78px;background:#991cff;transform:rotate(2deg);"></div>
+        <div class="seg" style="left:350px;top:138px;width:78px;background:#991cff;transform:rotate(0deg);"></div>
+
+        <div class="dot" style="left:38px;top:140px;background:#c99df7;"></div>
+        <div class="dot" style="left:116px;top:129px;background:#c99df7;"></div>
+        <div class="dot" style="left:194px;top:121px;background:#c99df7;"></div>
+        <div class="dot" style="left:272px;top:117px;background:#c99df7;"></div>
+        <div class="dot" style="left:350px;top:114px;background:#c99df7;"></div>
+        <div class="dot" style="left:428px;top:96px;background:#c99df7;"></div>
+
+        <div class="dot" style="left:38px;top:151px;background:#991cff;"></div>
+        <div class="dot" style="left:116px;top:143px;background:#991cff;"></div>
+        <div class="dot" style="left:194px;top:136px;background:#991cff;"></div>
+        <div class="dot" style="left:272px;top:135px;background:#991cff;"></div>
+        <div class="dot" style="left:350px;top:140px;background:#991cff;"></div>
+        <div class="dot" style="left:428px;top:140px;background:#991cff;"></div>
+      </div>
+    </div>
+
+    <div class="callout-left">
+      15% of US investment grade debt is linked to issuances funding AI capex, suggesting that an AI valuation correction could spill over into wider corporate spreads
+    </div>
+  </div>
+
+  <div class="right-wrap">
+    <div class="donut"></div>
+
+    <div class="slice-sep" style="transform:translate(-50%,-100%) rotate(25.2deg);"></div>
+    <div class="slice-sep" style="transform:translate(-50%,-100%) rotate(36deg);"></div>
+    <div class="slice-sep" style="transform:translate(-50%,-100%) rotate(75.6deg);"></div>
+    <div class="slice-sep" style="transform:translate(-50%,-100%) rotate(176.4deg);"></div>
+    <div class="slice-sep" style="transform:translate(-50%,-100%) rotate(288deg);"></div>
+    <div class="slice-sep" style="transform:translate(-50%,-100%) rotate(342deg);"></div>
+
+    <div class="donut-label" style="left:186px;top:73px;">3x+</div>
+    <div class="percent white" style="left:201px;top:102px;">7%</div>
+
+    <div class="donut-label" style="left:253px;top:71px;">0.0-0.5x</div>
+    <div class="percent" style="left:248px;top:100px;">3%</div>
+
+    <div class="donut-label" style="left:332px;top:92px;">0.5-1.0x</div>
+    <div class="percent" style="left:310px;top:121px;">11%</div>
+
+    <div class="donut-label" style="left:422px;top:287px;">1.0-1.5x</div>
+    <div class="percent" style="left:379px;top:279px;">28%</div>
+
+    <div class="donut-label" style="left:117px;top:432px;">1.5-2.0x</div>
+    <div class="percent" style="left:171px;top:404px;">31%</div>
+
+    <div class="donut-label" style="left:5px;top:210px;">2.0-2.5x</div>
+    <div class="percent white" style="left:78px;top:214px;">15%</div>
+
+    <div class="donut-label" style="left:62px;top:104px;">2.5x-3.0x</div>
+    <div class="percent white" style="left:130px;top:130px;">7%</div>
+
+    <div class="callout-right">
+      <div class="bullet">15% of private borrowers cannot cover interest payments</div>
+      <div class="bullet">Higher-for-longer long rates plus an AI valuation shake-out could intensify losses and refinancing pressures in this leveraged, opaque credit market</div>
+    </div>
+  </div>
+
+  <div class="accenture"></div>
+
+  <div class="footer-note">
+    Notes: (1) As of June 30, 2025<br>
+    Source(s): IMF, Goldman Sachs, Houlihan Lokey, Federal Reserve, Accenture Strategy analysis
+  </div>
+
+  <div class="copyright">Copyright © 2025 Accenture. All rights reserved.</div>
+  <div class="page">23</div>
+
+</div>
+</body>
+</html>

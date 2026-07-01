@@ -1,0 +1,89 @@
+{
+  "description": "Create a content slide on global population growth with a sidebar-right layout, featuring a line chart of world population from 1950 to 2100, a donut chart on 2050 population distribution, and a right-side text callout on slowing fertility-driven growth.",
+  "spec": {
+    "slide_type": "content",
+    "header": {
+      "kicker": "People & Society",
+      "headline": "The rate of population growth is decreasing due to lower fertility rates – In 2050, a vast majority of the 9.7 billion will live in less developed regions",
+      "sub": ""
+    },
+    "layout": "sidebar-right",
+    "content": {
+      "main": {
+        "type": "process-flow",
+        "direction": "vertical",
+        "steps": [
+          {
+            "icon": "1",
+            "label": "Population",
+            "sub": ""
+          },
+          {
+            "icon": "2",
+            "label": "Migration",
+            "sub": ""
+          },
+          {
+            "icon": "3",
+            "label": "Values",
+            "sub": ""
+          },
+          {
+            "icon": "4",
+            "label": "Education",
+            "sub": ""
+          }
+        ]
+      },
+      "left": {
+        "type": "line-chart",
+        "title": "Evolution of world population 1950-2100 [bn]",
+        "labels": [
+          "1950",
+          "2000",
+          "2050",
+          "2100"
+        ],
+        "series": [
+          {
+            "name": "World population",
+            "values": [
+              2.5,
+              6.1,
+              9.7,
+              10.9
+            ]
+          }
+        ],
+        "fmt": "decimal",
+        "show_points": true,
+        "area": false
+      },
+      "center": {
+        "type": "donut-chart",
+        "segments": [
+          {
+            "label": "Less developed regions",
+            "value": 84
+          },
+          {
+            "label": "More developed regions",
+            "value": 16
+          }
+        ],
+        "center_text": "9.7 bn",
+        "center_label": "Global population 2050",
+        "show_legend": true
+      },
+      "sidebar": {
+        "type": "text-block",
+        "title": "",
+        "body": "Population growth is slowing as fertility rates decline. By 2050, the vast majority of the world's 9.7 billion people will live in less developed regions."
+      }
+    },
+    "footer": {
+      "source": "",
+      "page": 6
+    }
+  }
+}

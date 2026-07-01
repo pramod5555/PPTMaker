@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<title>Roland Berger Slide Replica</title>
+<style>
+  body{
+    margin:0;
+    background:#ffffff;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  }
+  .slide{
+    position:relative;
+    width:1280px;
+    height:720px;
+    overflow:hidden;
+    background:#f3f3f3;
+    color:#111;
+  }
+  .slide *{
+    position:absolute;
+    box-sizing:border-box;
+  }
+
+  .top-kicker-box{
+    left:83px;
+    top:24px;
+    width:35px;
+    height:35px;
+    background:#8f949a;
+    color:#fff;
+    font-size:17px;
+    line-height:35px;
+    text-align:center;
+    font-weight:700;
+  }
+  .top-kicker{
+    left:127px;
+    top:25px;
+    font-size:17px;
+    line-height:34px;
+    color:#8b9096;
+    font-weight:600;
+    white-space:nowrap;
+  }
+
+  .logo{
+    right:42px;
+    top:23px;
+    width:118px;
+    height:56px;
+  }
+  .logo .rb-text1{
+    left:0;
+    top:8px;
+    width:72px;
+    font-size:20px;
+    line-height:18px;
+    text-align:right;
+    color:#111;
+    font-weight:400;
+  }
+  .logo .rb-text2{
+    left:0;
+    top:27px;
+    width:72px;
+    font-size:20px;
+    line-height:18px;
+    text-align:right;
+    color:#111;
+    font-weight:400;
+  }
+  .logo .rb-b{
+    right:0;
+    top:0;
+    width:36px;
+    height:52px;
+    border-radius:0 17px 17px 0;
+    background:linear-gradient(180deg,#d7dadd 0%, #8b9299 100%);
+  }
+  .logo .rb-b:before,
+  .logo .rb-b:after{
+    content:"";
+    position:absolute;
+    left:-14px;
+    width:22px;
+    height:23px;
+    border-radius:0 12px 12px 0;
+    background:linear-gradient(180deg,#e2e4e7 0%, #9aa1a8 100%);
+  }
+  .logo .rb-b:before{ top:0; }
+  .logo .rb-b:after{ bottom:0; }
+
+  .headline{
+    left:83px;
+    top:86px;
+    width:1115px;
+    font-size:34px;
+    line-height:43px;
+    font-weight:400;
+    color:#111;
+  }
+
+  .subhead{
+    left:83px;
+    top:190px;
+    font-size:27px;
+    line-height:33px;
+    color:#8b9096;
+    font-weight:400;
+    white-space:nowrap;
+  }
+
+  .quote{
+    left:83px;
+    top:244px;
+    width:760px;
+    font-size:23px;
+    line-height:27px;
+    color:#1e73ad;
+    font-style:italic;
+    font-weight:400;
+  }
+
+  .quote-icon{
+    left:808px;
+    top:244px;
+    width:76px;
+    height:62px;
+  }
+
+  .divider{
+    left:917px;
+    top:245px;
+    width:1px;
+    height:469px;
+    background:#b8bcc0;
+  }
+
+  .notes{
+    left:937px;
+    top:244px;
+    width:292px;
+    color:#222;
+    font-size:17px;
+    line-height:21px;
+    font-weight:400;
+  }
+  .notes .bullet1{
+    left:0;
+    top:0;
+    width:285px;
+  }
+  .notes .bullet2{
+    left:0;
+    top:124px;
+    width:275px;
+  }
+
+  .chart{
+    left:82px;
+    top:346px;
+    width:790px;
+    height:325px;
+  }
+
+  .bar{
+    bottom:43px;
+    width:80px;
+    background:#c7c9cc;
+  }
+  .bar.blue{ background:#1f74a6; }
+
+  .bar1{ left:29px; height:14px; }
+  .bar2{ left:167px; height:91px; }
+  .bar3{ left:307px; height:244px; }
+  .bar4{ left:445px; height:252px; }
+  .bar5{ left:584px; height:160px; }
+
+  .pct{
+    width:70px;
+    text-align:center;
+    font-size:18px;
+    line-height:20px;
+    color:#111;
+    font-weight:400;
+  }
+  .pct.bold{ font-weight:700; }
+
+  .pct1{ left:34px; top:258px; }
+  .pct2{ left:172px; top:180px; }
+  .pct3{ left:312px; top:27px; }
+  .pct4{ left:450px; top:19px; }
+  .pct5{ left:589px; top:121px; }
+
+  .xlabel{
+    top:282px;
+    text-align:center;
+    font-size:17px;
+    line-height:21px;
+    color:#111;
+    font-weight:400;
+  }
+  .xlabel.bold{ font-weight:700; }
+  .x1{ left:0px; width:138px; }
+  .x2{ left:137px; width:140px; }
+  .x3{ left:304px; width:87px; }
+  .x4{ left:422px; width:127px; }
+  .x5{ left:559px; width:132px; }
+
+  .bracket-svg{
+    left:430px;
+    top:0;
+    width:290px;
+    height:62px;
+  }
+  .bracket-label{
+    left:511px;
+    top:-2px;
+    width:96px;
+    text-align:center;
+    font-size:36px;
+    line-height:36px;
+    color:#1f74a6;
+    font-weight:700;
+    background:#f3f3f3;
+  }
+
+  .footnote{
+    left:83px;
+    top:686px;
+    font-size:13px;
+    line-height:16px;
+    color:#222;
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .source{
+    left:83px;
+    top:707px;
+    font-size:11px;
+    line-height:12px;
+    color:#222;
+    font-weight:400;
+    white-space:nowrap;
+  }
+
+  .footer-right{
+    right:77px;
+    top:706px;
+    font-size:12px;
+    line-height:12px;
+    color:#9ca1a7;
+    white-space:nowrap;
+  }
+  .footer-sep{
+    right:47px;
+    top:704px;
+    width:1px;
+    height:15px;
+    background:#9ca1a7;
+  }
+  .footer-page{
+    right:30px;
+    top:706px;
+    font-size:12px;
+    line-height:12px;
+    color:#9ca1a7;
+    white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-kicker-box">3</div>
+  <div class="top-kicker">Competitive dynamics and the private equity business model</div>
+
+  <div class="logo">
+    <div class="rb-text1">Roland</div>
+    <div class="rb-text2">Berger</div>
+    <div class="rb-b"></div>
+  </div>
+
+  <div class="headline">
+    Over half of PE professionals expect process uncertainty in the M&amp;A<br>
+    environment to remain a challenge in 2019
+  </div>
+
+  <div class="subhead">Importance of process uncertainty – 2019 vs. 2018 [%]</div>
+
+  <div class="quote">
+    "The M&amp;A environment for private equity companies has been<br>
+    characterized by a high degree of process uncertainty in 2018,<br>
+    which will continue in 2019. Do you agree?"
+  </div>
+
+  <svg class="quote-icon" viewBox="0 0 100 80" aria-hidden="true">
+    <circle cx="34" cy="40" r="30" fill="none" stroke="#1e73ad" stroke-width="3"/>
+    <path d="M31 54c0 3-2 6-6 6s-6-3-6-6s2-6 6-6s6 3 6 6zm-9-26c0-2 1-4 3-5c2-2 5-3 8-3c5 0 8 1 12 3v5c-3-2-6-2-10-2c-3 0-5 1-7 2c-2 2-3 4-3 8v7h-3v-8c0-3 0-5 0-7z" fill="#1e73ad"/>
+    <path d="M61 12h10c2 0 3 1 3 3v10c0 2-1 3-3 3H61c-2 0-3-1-3-3V15c0-2 1-3 3-3zm19 0h10c2 0 3 1 3 3v10c0 2-1 3-3 3H80c-2 0-3-1-3-3V15c0-2 1-3 3-3zm-18 18c0 4 2 7 7 7v4c-7 0-12-4-12-11c0-1 0-3 1-5h5c-1 1-1 3-1 5zm19 0c0 4 2 7 7 7v4c-7 0-12-4-12-11c0-1 0-3 1-5h5c-1 1-1 3-1 5z" fill="#1e73ad"/>
+  </svg>
+
+  <div class="divider"></div>
+
+  <div class="notes">
+    <div class="bullet1">
+      &gt; A larger number of<br>
+      respondents (54% up from<br>
+      39% in 2018) expect process<br>
+      uncertainty in the M&amp;A<br>
+      environment for PE companies<br>
+      to persist in 2019
+    </div>
+    <div class="bullet2">
+      &gt; Process uncertainty can lead<br>
+      to delays in processes, pulled<br>
+      processes or enlarged groups<br>
+      of bidders
+    </div>
+  </div>
+
+  <div class="chart">
+    <svg class="bracket-svg" viewBox="0 0 290 62" aria-hidden="true">
+      <path d="M0 30 V18 H92" fill="none" stroke="#1f74a6" stroke-width="3" stroke-dasharray="3 4"/>
+      <path d="M198 18 H290 V30" fill="none" stroke="#1f74a6" stroke-width="3" stroke-dasharray="3 4"/>
+    </svg>
+    <div class="bracket-label">54%</div>
+
+    <div class="pct pct1">2%</div>
+    <div class="pct pct2">12%</div>
+    <div class="pct pct3">32%</div>
+    <div class="pct pct4 bold">33%</div>
+    <div class="pct pct5 bold">21%</div>
+
+    <div class="bar bar1"></div>
+    <div class="bar bar2"></div>
+    <div class="bar bar3"></div>
+    <div class="bar bar4 blue"></div>
+    <div class="bar bar5 blue"></div>
+
+    <div class="xlabel x1">Strongly disagree</div>
+    <div class="xlabel x2">Slightly disagree</div>
+    <div class="xlabel x3">Neutral</div>
+    <div class="xlabel x4 bold">Slightly agree</div>
+    <div class="xlabel x5 bold">Strongly agree</div>
+  </div>
+
+  <div class="footnote">% of responses [only one answer possible]</div>
+  <div class="source">Source: Roland Berger</div>
+
+  <div class="footer-right">Roland_Berger_European_PE_Outlook_2019.pptx</div>
+  <div class="footer-sep"></div>
+  <div class="footer-page">26</div>
+</div>
+</body>
+</html>
