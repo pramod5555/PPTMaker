@@ -31,18 +31,17 @@ LAYERS  = 8
 BATCH   = 1
 LR      = 2e-4
 MAX_SEQ = 2048
-N_TRAIN = 711   # pairs in dsl_train.jsonl
 
 
-def steps_for_epochs(n_epochs: int) -> tuple[int, int]:
+def steps_for_epochs(n_train: int, n_epochs: int) -> tuple[int, int]:
     """Return (total_steps, warmup_steps) for given epoch count."""
-    steps_per_epoch = math.ceil(N_TRAIN / BATCH)
+    steps_per_epoch = math.ceil(n_train / BATCH)
     total  = steps_per_epoch * n_epochs
     warmup = max(1, round(total * 0.05))
     return total, warmup
 
 
-def prepare_data() -> Path:
+def prepare_data() -> tuple[Path, int]:
     """Copy dsl_train/val JSONL into mlx_data/ with names mlx_lm expects."""
     MLX_DATA.mkdir(parents=True, exist_ok=True)
     pairs = [
@@ -57,7 +56,7 @@ def prepare_data() -> Path:
     n_train = sum(1 for _ in open(MLX_DATA / "train.jsonl", encoding="utf-8"))
     n_val   = sum(1 for _ in open(MLX_DATA / "valid.jsonl", encoding="utf-8"))
     print(f"Data ready: {n_train} train | {n_val} val")
-    return MLX_DATA
+    return MLX_DATA, n_train
 
 
 def write_lora_config(data_dir: Path, total_iters: int, warmup_iters: int) -> Path:
@@ -93,9 +92,9 @@ def write_lora_config(data_dir: Path, total_iters: int, warmup_iters: int) -> Pa
     return cfg_path
 
 
-def run_training(data_dir: Path, n_epochs: int) -> None:
+def run_training(data_dir: Path, n_train: int, n_epochs: int) -> None:
     ADAPTER_DIR.mkdir(parents=True, exist_ok=True)
-    total_iters, warmup_iters = steps_for_epochs(n_epochs)
+    total_iters, warmup_iters = steps_for_epochs(n_train, n_epochs)
     cfg_path = write_lora_config(data_dir, total_iters, warmup_iters)
 
     cmd = [
@@ -104,6 +103,7 @@ def run_training(data_dir: Path, n_epochs: int) -> None:
     ]
 
     print(f"\nModel   : {MODEL}")
+    print(f"Pairs   : {n_train} train")
     print(f"Epochs  : {n_epochs}  ({total_iters} steps, batch={BATCH})")
     print(f"Adapter : {ADAPTER_DIR}")
     print(f"Warmup  : {warmup_iters} steps\n")
@@ -131,8 +131,8 @@ def main() -> None:
     args = ap.parse_args()
 
     if not args.fuse_only:
-        data_dir = prepare_data()
-        run_training(data_dir, args.epochs)
+        data_dir, n_train = prepare_data()
+        run_training(data_dir, n_train, args.epochs)
 
     fuse_model()
 
