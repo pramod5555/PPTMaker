@@ -1,0 +1,23 @@
+{
+  "model": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit",
+  "train": true,
+  "data": "/Applications/PPTMaker/PPTMaker/slide-dsl/mlx_data",
+  "iters": 2133,
+  "batch_size": 1,
+  "learning_rate": 0.0002,
+  "warmup": 107,
+  "num_layers": 8,
+  "val_batches": 20,
+  "steps_per_report": 10,
+  "steps_per_eval": 50,
+  "save_every": 100,
+  "adapter_path": "/Applications/PPTMaker/PPTMaker/ppt-dataset/finetune/mlx_adapter",
+  "max_seq_length": 2048,
+  "grad_checkpoint": true,
+  "lora_parameters": {
+    "rank": 8,
+    "scale": 2.0,
+    "dropout": 0.0
+  },
+  "resume_adapter_file": "/Applications/PPTMaker/PPTMaker/ppt-dataset/finetune/mlx_adapter/adapters.safetensors"
+}
