@@ -1,12 +1,13 @@
 """build_dsl_dataset.py — Build fine-tuning JSONL from DSL JSON extractions.
 
 Reads:
-  dsl_slides/*.json          (from converter.py)
-  ppt-dataset/quality_exclusions.json   (layout failures — exclude these)
+  dsl_slides/*.json                    (from converter.py)
+  ppt-dataset/quality_exclusions.json  (layout failures — exclude these)
+  slide-dsl/dsl_finetune/synth_*.jsonl (from synthesize.py, if present)
 
 Writes:
   slide-dsl/dsl_finetune/
-    dsl_train.jsonl
+    dsl_train.jsonl   (real + synthetic, shuffled)
     dsl_val.jsonl
     dsl_stats.json
 
@@ -20,6 +21,7 @@ Each JSONL line:
 Run:
     python slide-dsl/build_dsl_dataset.py
     python slide-dsl/build_dsl_dataset.py --dry-run
+    python slide-dsl/build_dsl_dataset.py --no-synthetic   # real data only
     python slide-dsl/build_dsl_dataset.py --split 0.85
 """
 
@@ -132,11 +134,44 @@ def build_pair(data: dict) -> dict:
     }
 
 
+def load_synthetic() -> tuple[list[dict], list[dict]]:
+    """Load pre-split synthetic pairs from synthesize.py output if present."""
+    s_train = OUT_DIR / "synth_train.jsonl"
+    s_val   = OUT_DIR / "synth_val.jsonl"
+    train, val = [], []
+    for path, bucket in [(s_train, train), (s_val, val)]:
+        if path.exists():
+            for line in path.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if line:
+                    bucket.append(json.loads(line))
+    return train, val
+
+
+def load_api_pairs() -> list[dict]:
+    """Load API-generated pairs from generate_training.py output if present."""
+    api_file = OUT_DIR / "api_train.jsonl"
+    pairs = []
+    if api_file.exists():
+        for line in api_file.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line:
+                try:
+                    pairs.append(json.loads(line))
+                except Exception:
+                    pass
+    return pairs
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--split",   type=float, default=0.9)
-    ap.add_argument("--seed",    type=int,   default=42)
-    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--split",        type=float, default=0.9)
+    ap.add_argument("--seed",         type=int,   default=42)
+    ap.add_argument("--dry-run",      action="store_true")
+    ap.add_argument("--no-synthetic", action="store_true",
+                    help="Exclude synthetic pairs even if synth_train.jsonl exists")
+    ap.add_argument("--no-api", action="store_true",
+                    help="Exclude API-generated pairs even if api_train.jsonl exists")
     args = ap.parse_args()
 
     excluded = load_exclusions()
@@ -171,7 +206,7 @@ def main():
 
         pairs.append(build_pair(data))
 
-    print(f"\nUsable pairs:       {len(pairs)}")
+    print(f"\nReal pairs:         {len(pairs)}")
     print(f"  Skipped (quality exclusion): {len(skipped_excl)}")
     print(f"  Skipped (converter failure): {len(skipped_fail)}")
     print(f"  Skipped (bad schema):        {len(skipped_bad)}")
@@ -187,12 +222,45 @@ def main():
     train   = pairs[:split_n]
     val     = pairs[split_n:]
 
+    # Merge synthetic pairs if available
+    synth_train_count = synth_val_count = 0
+    if not args.no_synthetic:
+        s_train, s_val = load_synthetic()
+        if s_train or s_val:
+            train.extend(s_train)
+            val.extend(s_val)
+            synth_train_count = len(s_train)
+            synth_val_count   = len(s_val)
+            print(f"\nSynthetic pairs:    {len(s_train)+len(s_val)}"
+                  f"  ({len(s_train)} train | {len(s_val)} val)")
+        else:
+            print("\nNo synthetic pairs found — run synthesize.py to generate them.")
+
+    # Merge API-generated pairs if available (highest quality — no validation split needed,
+    # put 90% in train / 10% in val using the same seed)
+    api_train_count = api_val_count = 0
+    if not args.no_api:
+        api_pairs = load_api_pairs()
+        if api_pairs:
+            random.shuffle(api_pairs)
+            api_cut = int(len(api_pairs) * args.split)
+            train.extend(api_pairs[:api_cut])
+            val.extend(api_pairs[api_cut:])
+            api_train_count = api_cut
+            api_val_count   = len(api_pairs) - api_cut
+            print(f"API pairs:          {len(api_pairs)}"
+                  f"  ({api_train_count} train | {api_val_count} val)")
+        else:
+            print("API pairs:          0  (run generate_training.py to add high-quality pairs)")
+
+    random.shuffle(train)
+    random.shuffle(val)
+
     print(f"\n  Train: {len(train)}  |  Val: {len(val)}")
 
     # Token estimate (rough: 1 token ≈ 4 chars)
-    total_chars = sum(
-        len(m["content"]) for p in pairs for m in p["messages"]
-    )
+    all_pairs = train + val
+    total_chars = sum(len(m["content"]) for p in all_pairs for m in p["messages"])
     print(f"  Estimated tokens: ~{total_chars // 4:,}")
 
     if args.dry_run:
@@ -212,9 +280,14 @@ def main():
     write_jsonl(OUT_DIR / "dsl_val.jsonl",   val)
 
     stats = {
-        "total_pairs": len(pairs),
+        "total_pairs": len(train) + len(val),
         "train": len(train),
         "val":   len(val),
+        "real_pairs": len(pairs),
+        "synthetic_train": synth_train_count,
+        "synthetic_val":   synth_val_count,
+        "api_train": api_train_count,
+        "api_val":   api_val_count,
         "split": args.split,
         "skipped_quality_exclusion": len(skipped_excl),
         "skipped_converter_failure": len(skipped_fail),
