@@ -102,82 +102,151 @@ def _delta(v, pos=None):
     if pos is None: pos = v >= 0
     return f"{sign}{v:.1f}%", pos
 
+# ── Coherent company/fund profiles ─────────────────────────────────────────────
+# Each profile pins all metrics to internally consistent values so the model
+# learns that fund size → IRR range, revenue growth → margin profile, etc.
+
+_FUND_PROFILES = [
+    # (aum_B, irr, moic, cos, irr_target, new_cos)
+    (4.2,  28.4, 2.6, 14, 20,  3),
+    (2.8,  22.1, 2.1, 10, 18,  2),
+    (11.3, 17.8, 1.9, 31,  16, 5),
+    (6.8,  19.3, 2.0,  8,  18, 2),
+    (18.5, 14.6, 1.7, 42,  14, 6),
+    (3.2,  31.2, 3.1, 12,  22, 2),
+    (8.5,  16.4, 1.8, 22,  15, 4),
+    (1.4,  34.8, 3.4,  6,  25, 1),
+    (24.0, 13.1, 1.6, 48,  12, 7),
+    (5.6,  24.7, 2.4, 18,  20, 3),
+    (0.9,  38.2, 3.8,  5,  28, 2),
+    (14.2, 15.8, 1.8, 36,  15, 5),
+]
+
+# (rev_M, ebitda_margin, rev_growth, prior_rev_M, market_growth, headcount)
+_COMPANY_PROFILES = [
+    (268,  29.1, 37, 196, 12, 1420),
+    (124,  18.4, 58,  78,  8,  680),
+    (840,  24.8, 14, 737, 6, 4800),
+    (312,  16.2, 68, 186, 22, 1860),
+    (1240, 32.1,  9,1138,  5, 6200),
+    ( 58,  11.3, 42,  41, 15,  320),
+    (440,  28.6, 22, 361, 9, 2100),
+    (186,  21.4, 31, 142, 11,  940),
+    (620,  19.8, 18, 525, 7, 3100),
+    ( 92,  14.7, 51,  61, 18,  480),
+]
+
+# (arr_M, nrr, growth, cac_K, gm, churn, months_payback)
+_SAAS_PROFILES = [
+    (124, 124, 58, 28,  82, 2.8, 11),
+    (312, 118, 68, 42,  79, 3.4, 14),
+    ( 48, 134, 94, 18,  86, 1.8,  8),
+    (680, 112, 42, 65,  77, 4.1, 18),
+    ( 22, 141,128, 12,  88, 1.2,  6),
+    (186, 108, 34, 84,  74, 5.2, 22),
+    ( 94, 128, 81, 22,  83, 2.1,  9),
+    (450, 105, 28, 95,  71, 6.4, 28),
+    ( 16, 138,145, 8,   91, 0.9,  4),
+    (248, 121, 52, 38,  80, 3.0, 13),
+]
+
+# (deal_ev_M, ev_ebitda, irr_target, hold_yr, leverage)
+_DEAL_PROFILES = [
+    (420,  8.4, 26, 5.0, "4.2x"),
+    (1850, 11.2, 19, 4.5, "5.1x"),
+    (280,  7.8, 31, 4.0, "3.8x"),
+    (680,  9.6, 22, 5.5, "4.6x"),
+    (3200, 13.4, 16, 5.0, "5.8x"),
+    (140,  6.2, 34, 3.5, "3.4x"),
+    (920,  10.8, 20, 4.8, "4.9x"),
+    (2400, 12.1, 17, 5.2, "5.4x"),
+]
+
+# (tam_B, cagr, pen_pct, players, pen_prior)
+_MARKET_PROFILES = [
+    (42,  18.4, 28, 12, 18),
+    (8.6, 32.1, 14,  6,  7),
+    (210, 9.2,  62, 18, 48),
+    (3.2, 44.8,  8,  4,  3),
+    (85,  14.6, 38, 22, 28),
+    (18,  28.3, 21,  8, 12),
+    (320, 7.1,  71, 31, 58),
+    (6.4, 51.2, 11,  3,  5),
+]
+
 # ── Block generators ───────────────────────────────────────────────────────────
 
 def _kpi_fund():
-    aum   = _r(2, 48)
-    irr   = _r(16, 34)
-    moic  = _r(1.8, 3.8)
-    cos   = _ri(8, 24)
-    d_irr = _r(-2, 6)
+    p = _rc(_FUND_PROFILES)
+    aum, irr, moic, cos, irr_target, new_cos = p
+    d_aum = _r(8, 22)
     return {
         "type": "kpi-grid", "columns": 2,
         "items": [
-            {"stat": _bn(aum),    "label": "Total AUM",          "delta": _delta(d_irr)[0],  "positive": _delta(d_irr)[1]},
-            {"stat": _pct(irr),   "label": "Gross IRR",          "delta": "+vs. 18% target", "positive": irr > 18},
-            {"stat": _x(moic),    "label": "Gross MOIC",         "delta": "Since inception", "positive": None},
-            {"stat": str(cos),    "label": "Portfolio Companies", "delta": f"{_ri(2,5)} new in 2024", "positive": True},
+            {"stat": _bn(aum),       "label": "Total AUM",          "delta": f"+{d_aum:.0f}% YoY", "positive": True},
+            {"stat": _pct(irr),      "label": "Gross IRR",          "delta": f"+{irr-irr_target:.1f}pp vs. {irr_target}% target", "positive": irr > irr_target},
+            {"stat": _x(moic),       "label": "Gross MOIC",         "delta": "Since inception",    "positive": None},
+            {"stat": str(cos),       "label": "Portfolio Companies", "delta": f"{new_cos} new in {_rc(YEARS[-2:])}", "positive": True},
         ]
     }
 
 def _kpi_company():
-    rev    = _r(80, 900)
-    margin = _r(12, 38)
-    growth = _r(8, 55)
-    emp    = _ri(500, 12000)
+    p = _rc(_COMPANY_PROFILES)
+    rev, margin, growth, prior_rev, mkt_growth, emp = p
+    margin_delta = _r(0.8, 4.2)
     return {
         "type": "kpi-grid", "columns": 2,
         "items": [
-            {"stat": _mn(rev),      "label": "Revenue (LTM)",   "delta": f"+{growth:.0f}% YoY", "positive": True},
-            {"stat": _pct(margin),  "label": "EBITDA Margin",   "delta": f"+{_r(1,4):.1f}pp YoY","positive": True},
-            {"stat": f"{growth:.0f}%", "label": "Revenue Growth", "delta": "vs. {:.0f}% market".format(_r(3,12)), "positive": True},
-            {"stat": f"{emp:,}",    "label": "Employees",       "delta": f"+{_ri(50,800)} YoY",  "positive": True},
+            {"stat": _mn(rev),         "label": "Revenue (LTM)",   "delta": f"+{growth}% YoY vs. ${prior_rev:.0f}M",  "positive": True},
+            {"stat": _pct(margin),     "label": "EBITDA Margin",   "delta": f"+{margin_delta:.1f}pp YoY",             "positive": True},
+            {"stat": f"{growth}%",     "label": "Revenue Growth",  "delta": f"vs. {mkt_growth}% market CAGR",         "positive": growth > mkt_growth},
+            {"stat": f"{emp:,}",       "label": "Employees",       "delta": f"+{_ri(40, max(41, int(emp*0.12)))} YoY", "positive": True},
         ]
     }
 
 def _kpi_saas():
-    arr   = _r(15, 450)
-    nrr   = _r(104, 138)
-    gr    = _r(35, 145)
-    cac   = _ri(8, 80)
-    ltv   = cac * _r(4, 9)
+    p = _rc(_SAAS_PROFILES)
+    arr, nrr, gr, cac, gm, churn, payback = p
+    ltv_cac = round((gm / 100 * arr / (arr * churn / 100 + 0.01)) / (cac * 1000 / arr / 1000), 1)
+    ltv_cac = max(2.5, min(ltv_cac, 12.0))  # realistic range
     return {
         "type": "kpi-grid", "columns": 2,
         "items": [
-            {"stat": _mn(arr),      "label": "ARR",           "delta": f"+{gr:.0f}% YoY",   "positive": True},
-            {"stat": _pct(nrr),     "label": "Net Revenue Retention","delta": ">100% = expansion","positive": nrr >= 110},
-            {"stat": f"${cac}K",    "label": "CAC",           "delta": f"{_r(1,3):.1f}mo payback","positive": None},
-            {"stat": f"{ltv/cac:.1f}x","label": "LTV:CAC",    "delta": ">3x benchmark",     "positive": ltv/cac >= 3},
+            {"stat": _mn(arr),        "label": "ARR",                    "delta": f"+{gr}% YoY",                  "positive": True},
+            {"stat": _pct(nrr),       "label": "Net Revenue Retention",  "delta": f"{'+' if nrr>=110 else ''}{nrr-100:.0f}pp above 100%", "positive": nrr >= 110},
+            {"stat": f"${cac}K",      "label": "CAC",                    "delta": f"{payback}-month payback",      "positive": payback <= 18},
+            {"stat": f"{ltv_cac:.1f}x", "label": "LTV:CAC",             "delta": f">3x benchmark",                "positive": ltv_cac >= 3},
         ]
     }
 
 def _kpi_market():
-    size  = _r(8, 420)
-    cagr  = _r(6, 28)
-    pen   = _r(4, 32)
-    players = _ri(4, 18)
+    p = _rc(_MARKET_PROFILES)
+    size, cagr, pen, players, pen_prior = p
+    horizon_start = _rc([2023, 2024, 2025])
+    horizon_end   = horizon_start + _ri(5, 8)
     return {
         "type": "kpi-grid", "columns": 2,
         "items": [
-            {"stat": _bn(size),    "label": "Total Addressable Market", "delta": f"by {_ri(2026,2030)}", "positive": None},
-            {"stat": _pct(cagr),   "label": "Market CAGR",    "delta": f"{_ri(2023,2025)}–{_ri(2028,2032)}E","positive": True},
-            {"stat": _pct(pen),    "label": "Digital Penetration","delta": f"vs. {pen-_r(5,15):.0f}% in 2021","positive": True},
-            {"stat": str(players), "label": "Active Players",  "delta": f"{_ri(1,4)} new entrants YTD","positive": False},
+            {"stat": _bn(size),    "label": "Total Addressable Market", "delta": f"{horizon_end}E projection", "positive": None},
+            {"stat": _pct(cagr),   "label": "Market CAGR",    "delta": f"{horizon_start}–{horizon_end}E",     "positive": True},
+            {"stat": _pct(pen),    "label": "Digital Penetration", "delta": f"vs. {pen_prior}% in 2021",      "positive": True},
+            {"stat": str(players), "label": "Active Players",  "delta": f"{_ri(1,3)} new entrants in {_rc(YEARS[-2:])}", "positive": False},
         ]
     }
 
 def _kpi_deal():
-    ev    = _r(200, 4500)
-    mult  = _r(7, 18)
-    irr   = _r(18, 38)
-    hold  = _r(3, 7)
+    p = _rc(_DEAL_PROFILES)
+    ev, ev_ebitda, irr, hold, lev = p
+    ebitda = round(ev / ev_ebitda)
+    comps_mult = round(ev_ebitda - _r(0.8, 2.4), 1)
+    exit_yr = 2024 + round(hold)
     return {
         "type": "kpi-grid", "columns": 2,
         "items": [
-            {"stat": _mn(ev),      "label": "Enterprise Value",  "delta": None,         "positive": None},
-            {"stat": f"{mult:.1f}x","label": "EV / EBITDA",      "delta": f"vs. {mult-_r(1,3):.1f}x comps","positive": None},
-            {"stat": _pct(irr),    "label": "Target IRR",        "delta": "Base case",  "positive": True},
-            {"stat": f"{hold:.1f}yr","label": "Hold Period",     "delta": "Exit by {:.0f}E".format(2024+hold),"positive": None},
+            {"stat": _mn(ev),         "label": "Enterprise Value",  "delta": f"EV/EBITDA {ev_ebitda:.1f}x", "positive": None},
+            {"stat": f"{ev_ebitda:.1f}x","label": "EV / EBITDA",   "delta": f"vs. {comps_mult:.1f}x comps", "positive": None},
+            {"stat": _pct(irr),       "label": "Target IRR",        "delta": "Base case",                    "positive": True},
+            {"stat": f"{hold:.1f}yr", "label": "Hold Period",       "delta": f"Exit by {exit_yr}E",          "positive": None},
         ]
     }
 

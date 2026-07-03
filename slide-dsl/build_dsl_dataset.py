@@ -148,6 +148,21 @@ def load_synthetic() -> tuple[list[dict], list[dict]]:
     return train, val
 
 
+def load_api_pairs() -> list[dict]:
+    """Load API-generated pairs from generate_training.py output if present."""
+    api_file = OUT_DIR / "api_train.jsonl"
+    pairs = []
+    if api_file.exists():
+        for line in api_file.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line:
+                try:
+                    pairs.append(json.loads(line))
+                except Exception:
+                    pass
+    return pairs
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--split",        type=float, default=0.9)
@@ -155,6 +170,8 @@ def main():
     ap.add_argument("--dry-run",      action="store_true")
     ap.add_argument("--no-synthetic", action="store_true",
                     help="Exclude synthetic pairs even if synth_train.jsonl exists")
+    ap.add_argument("--no-api", action="store_true",
+                    help="Exclude API-generated pairs even if api_train.jsonl exists")
     args = ap.parse_args()
 
     excluded = load_exclusions()
@@ -214,12 +231,30 @@ def main():
             val.extend(s_val)
             synth_train_count = len(s_train)
             synth_val_count   = len(s_val)
-            random.shuffle(train)
-            random.shuffle(val)
             print(f"\nSynthetic pairs:    {len(s_train)+len(s_val)}"
                   f"  ({len(s_train)} train | {len(s_val)} val)")
         else:
             print("\nNo synthetic pairs found — run synthesize.py to generate them.")
+
+    # Merge API-generated pairs if available (highest quality — no validation split needed,
+    # put 90% in train / 10% in val using the same seed)
+    api_train_count = api_val_count = 0
+    if not args.no_api:
+        api_pairs = load_api_pairs()
+        if api_pairs:
+            random.shuffle(api_pairs)
+            api_cut = int(len(api_pairs) * args.split)
+            train.extend(api_pairs[:api_cut])
+            val.extend(api_pairs[api_cut:])
+            api_train_count = api_cut
+            api_val_count   = len(api_pairs) - api_cut
+            print(f"API pairs:          {len(api_pairs)}"
+                  f"  ({api_train_count} train | {api_val_count} val)")
+        else:
+            print("API pairs:          0  (run generate_training.py to add high-quality pairs)")
+
+    random.shuffle(train)
+    random.shuffle(val)
 
     print(f"\n  Train: {len(train)}  |  Val: {len(val)}")
 
@@ -251,6 +286,8 @@ def main():
         "real_pairs": len(pairs),
         "synthetic_train": synth_train_count,
         "synthetic_val":   synth_val_count,
+        "api_train": api_train_count,
+        "api_val":   api_val_count,
         "split": args.split,
         "skipped_quality_exclusion": len(skipped_excl),
         "skipped_converter_failure": len(skipped_fail),
