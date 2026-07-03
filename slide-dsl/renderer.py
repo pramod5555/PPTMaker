@@ -287,9 +287,10 @@ def render_block(block: dict, x: int, y: int, w: int, h: int,
         "bullet-list":     render_bullet_list,
         "table":           render_table,
         "text-block":      render_text_block,
-        "gantt-chart":     render_gantt,
-        "waterfall-chart": render_waterfall,
-        "process-flow":    render_process_flow,
+        "gantt-chart":        render_gantt,
+        "waterfall-chart":    render_waterfall,
+        "process-flow":       render_process_flow,
+        "comparison-matrix":  render_comparison_matrix,
     }.get(btype)
     if fn:
         return fn(block, x, y, w, h, accent)
@@ -677,19 +678,19 @@ def render_donut_chart(block, x, y, w, h, accent=PETROL):
 def render_kpi_grid(block, x, y, w, h, accent=PETROL):
     """
     columns: 1-4 (default 2)
-    items: [{stat, label, delta, positive: True|False|None}]
-    Cards fill the full column height proportionally — no hard cap.
+    style: "default" | "accent" | "compact" | "borderless"
+    items: [{stat, label, delta, positive: True|False|None, icon: str}]
     """
     items  = block.get("items", [])
     n_cols = min(block.get("columns", 2), 4)
     n_rows = math.ceil(len(items) / n_cols) if items else 1
+    style  = block.get("style", "default")
 
-    gap    = 14
+    gap    = 12
     card_w = (w - gap * (n_cols - 1)) // n_cols
-    card_h = (h - gap * (n_rows - 1)) // n_rows   # fills column proportionally
+    card_h = (h - gap * (n_rows - 1)) // n_rows
 
-    # Stat font scales with card height so it always fits
-    stat_fs = min(40, max(22, card_h // 7))
+    stat_fs = min(38, max(20, card_h // 7))
 
     p = []
     for i, item in enumerate(items):
@@ -701,23 +702,69 @@ def render_kpi_grid(block, x, y, w, h, accent=PETROL):
         label = _e(str(item.get("label", "")))
         delta = item.get("delta", "")
         pos   = item.get("positive", None)
+        icon  = _e(str(item.get("icon", "")))
 
-        p.append(_d(cx2, cy2, card_w, card_h, f"background:{GREY_BG};border-radius:4px;"))
-        p.append(_d(cx2, cy2, card_w, 3, f"background:{accent};border-radius:4px 4px 0 0;"))
+        if style == "accent":
+            # Colored header band with white stat, light body
+            hdr_h = max(14, int(card_h * 0.32))
+            p.append(_d(cx2, cy2, card_w, card_h,
+                f"background:#fff;border-radius:6px;border:1px solid {GREY_RULE};overflow:hidden;"))
+            p.append(_d(cx2, cy2, card_w, hdr_h,
+                f"background:{accent};border-radius:6px 6px 0 0;"))
+            p.append(_d(cx2 + 12, cy2 + 6, card_w - 24, hdr_h - 10,
+                f"font-size:{min(stat_fs, int(hdr_h * 0.65))}px;font-weight:700;color:#fff;line-height:1;", stat))
+            body_y = cy2 + hdr_h + 10
+            p.append(_d(cx2 + 12, body_y, card_w - 24, card_h - hdr_h - 20,
+                "font-size:11px;color:#444;line-height:1.45;", label))
+            if delta:
+                dc = ("#2E7D32" if pos else "#C62828") if pos is not None else "#888"
+                p.append(_d(cx2 + 12, cy2 + card_h - 18, card_w - 24, 16,
+                    f"font-size:10px;font-weight:700;color:{dc};", _e(str(delta))))
 
-        # Proportional vertical layout: stat 10%, label 44%, delta 82% of card_h
-        stat_top  = max(12, int(card_h * 0.10))
-        label_top = max(stat_top + stat_fs + 6, int(card_h * 0.44))
-        delta_top = int(card_h * 0.82)
+        elif style == "compact":
+            # Left accent bar, no card background — just a clean row
+            p.append(_d(cx2, cy2 + 4, 3, card_h - 8, f"background:{accent};border-radius:2px;"))
+            p.append(_d(cx2 + 14, cy2, card_w - 14, int(card_h * 0.5),
+                f"font-size:{min(stat_fs, 28)}px;font-weight:700;color:{accent};line-height:1;", stat))
+            p.append(_d(cx2 + 14, cy2 + int(card_h * 0.52), card_w - 14, int(card_h * 0.3),
+                "font-size:11px;color:#555;line-height:1.4;", label))
+            if delta:
+                dc = ("#2E7D32" if pos else "#C62828") if pos is not None else "#888"
+                p.append(_d(cx2 + 14, cy2 + int(card_h * 0.82), card_w - 14, 14,
+                    f"font-size:10px;font-weight:700;color:{dc};", _e(str(delta))))
 
-        p.append(_d(cx2 + 14, cy2 + stat_top, card_w - 28, int(card_h * 0.34),
-            f"font-size:{stat_fs}px;font-weight:700;color:{accent};line-height:1;", stat))
-        p.append(_d(cx2 + 14, cy2 + label_top, card_w - 28, int(card_h * 0.28),
-            "font-size:11px;color:#666;line-height:1.4;", label))
-        if delta:
-            dc = ("#2E7D32" if pos else "#C62828") if pos is not None else "#888"
-            p.append(_d(cx2 + 14, cy2 + delta_top, card_w - 28, int(card_h * 0.14),
-                f"font-size:10px;font-weight:700;color:{dc};", _e(str(delta))))
+        elif style == "borderless":
+            # No card chrome — just stat + label floating on slide background
+            p.append(_d(cx2, cy2, card_w, int(card_h * 0.48),
+                f"font-size:{stat_fs}px;font-weight:700;color:{accent};line-height:1;", stat))
+            p.append(_d(cx2, cy2 + int(card_h * 0.50), card_w, int(card_h * 0.35),
+                "font-size:11px;color:#666;line-height:1.4;", label))
+            p.append(_d(cx2, cy2 + card_h - 2, card_w, 1, f"background:{GREY_RULE};"))
+            if delta:
+                dc = ("#2E7D32" if pos else "#C62828") if pos is not None else "#888"
+                p.append(_d(cx2, cy2 + int(card_h * 0.86), card_w, 14,
+                    f"font-size:10px;font-weight:700;color:{dc};", _e(str(delta))))
+
+        else:  # default
+            p.append(_d(cx2, cy2, card_w, card_h,
+                f"background:{GREY_BG};border-radius:6px;"))
+            p.append(_d(cx2, cy2, card_w, 3,
+                f"background:{accent};border-radius:6px 6px 0 0;"))
+            if icon:
+                p.append(_d(cx2 + card_w - 36, cy2 + 8, 28, 16,
+                    f"font-size:9px;font-weight:700;color:{accent};background:#fff;"
+                    f"border-radius:3px;text-align:center;padding:2px 4px;", icon))
+            stat_top  = max(14, int(card_h * 0.12))
+            label_top = max(stat_top + stat_fs + 8, int(card_h * 0.48))
+            delta_top = int(card_h * 0.82)
+            p.append(_d(cx2 + 14, cy2 + stat_top, card_w - 28, int(card_h * 0.36),
+                f"font-size:{stat_fs}px;font-weight:700;color:{accent};line-height:1;", stat))
+            p.append(_d(cx2 + 14, cy2 + label_top, card_w - 28, int(card_h * 0.30),
+                "font-size:11px;color:#555;line-height:1.4;", label))
+            if delta:
+                dc = ("#2E7D32" if pos else "#C62828") if pos is not None else "#888"
+                p.append(_d(cx2 + 14, cy2 + delta_top, card_w - 28, 14,
+                    f"font-size:10px;font-weight:700;color:{dc};", _e(str(delta))))
 
     return "\n".join(p)
 
@@ -823,12 +870,26 @@ def render_text_block(block, x, y, w, h, accent=PETROL):
     title: str
     body: str (paragraph text)
     size: font-size in px (default 13)
+    style: "default" | "callout" | "pull-quote"
     """
     title = block.get("title", "")
     body  = block.get("body", block.get("text", ""))
     size  = block.get("size", 13)
+    style = block.get("style", "default")
     p     = []
     oy    = y
+
+    if style == "callout":
+        # Tinted box with left accent bar
+        p.append(_d(x, y, w, h, f"background:{GREY_BG};border-radius:6px;border-left:4px solid {accent};"))
+        x, w = x + 16, w - 24
+        oy = y + 14
+
+    elif style == "pull-quote":
+        # Large opening quote mark + italic body
+        p.append(_d(x, y - 8, 32, 40,
+            f"font-size:52px;font-weight:900;color:{PETROL_LTST};line-height:1;", "“"))
+        x, oy = x + 8, y + 28
 
     if title:
         p.append(_d(x, oy, w, 22,
@@ -836,8 +897,92 @@ def render_text_block(block, x, y, w, h, accent=PETROL):
         oy += 30
 
     if body:
-        p.append(_d(x, oy, w, h - (oy - y),
-            f"font-size:{size}px;color:#333;line-height:1.65;", _e(body)))
+        fs   = size if style == "default" else size
+        clr  = "#333" if style != "pull-quote" else "#444"
+        p.append(_d(x, oy, w, h - (oy - y) - (14 if style == "callout" else 0),
+            f"font-size:{fs}px;color:{clr};line-height:1.65;", _e(body)))
+
+    return "\n".join(p)
+
+
+# ── Comparison matrix ──────────────────────────────────────────────────────────
+def render_comparison_matrix(block, x, y, w, h, accent=PETROL):
+    """
+    Side-by-side labeled comparison rows — the "2-column matrix" pattern.
+
+    Schema:
+      { "type": "comparison-matrix",
+        "columns": ["Option A", "Option B"],          # 2-4 column headers
+        "rows": [
+          { "label": "Cost",   "values": ["Low", "High"] },
+          { "label": "Speed",  "values": ["Fast", "Slow"], "highlight": 0 }
+        ],
+        "style": "default | zebra | bordered"
+      }
+    highlight: index of the winning column per row (adds accent dot)
+    """
+    cols   = block.get("columns", [])
+    rows   = block.get("rows", [])
+    style  = block.get("style", "zebra")
+    title  = block.get("title", "")
+
+    if not cols or not rows:
+        return ""
+
+    n_cols = len(cols)
+    p      = []
+    oy     = y
+
+    if title:
+        p.append(_d(x, oy, w, 20,
+            f"font-size:13px;font-weight:700;color:{accent};", _e(title)))
+        oy += 26
+
+    label_w = max(120, w // (n_cols + 2))
+    col_w   = (w - label_w) // n_cols
+    hdr_h   = 28
+    row_h   = min(44, (h - (oy - y) - hdr_h) // max(len(rows), 1))
+
+    # Column headers
+    p.append(_d(x, oy, w, hdr_h, f"background:{accent};border-radius:4px 4px 0 0;"))
+    p.append(_d(x + 10, oy + 6, label_w - 10, hdr_h - 8,
+        "font-size:10px;font-weight:700;color:rgba(255,255,255,0.7);", ""))
+    for ci, ch in enumerate(cols):
+        cx2 = x + label_w + ci * col_w
+        p.append(_d(cx2, oy + 6, col_w, hdr_h - 8,
+            "font-size:11px;font-weight:700;color:#fff;text-align:center;", _e(str(ch))))
+    oy += hdr_h
+
+    # Rows
+    for ri, row in enumerate(rows):
+        ry       = oy + ri * row_h
+        row_bg   = GREY_BG if (style == "zebra" and ri % 2 == 0) else "#fff"
+        highlight = row.get("highlight", None)
+        values    = row.get("values", [])
+
+        if style == "bordered":
+            p.append(_d(x, ry, w, row_h,
+                f"border-bottom:1px solid {GREY_RULE};"))
+        else:
+            p.append(_d(x, ry, w, row_h, f"background:{row_bg};"))
+
+        # Row label
+        p.append(_d(x + 10, ry + (row_h - 16) // 2, label_w - 10, 18,
+            "font-size:11px;font-weight:600;color:#1A1A1A;", _e(str(row.get("label", "")))))
+
+        # Values
+        for ci, val in enumerate(values[:n_cols]):
+            cx2   = x + label_w + ci * col_w
+            is_hl = (ci == highlight)
+            clr   = accent if is_hl else "#444"
+            fw    = "700" if is_hl else "400"
+            p.append(_d(cx2, ry + (row_h - 16) // 2, col_w, 18,
+                f"font-size:11px;font-weight:{fw};color:{clr};text-align:center;",
+                _e(str(val))))
+            if is_hl:
+                dot_x = cx2 + col_w // 2 - 20
+                p.append(_d(dot_x, ry + row_h - 6, 4, 4,
+                    f"background:{accent};border-radius:50%;"))
 
     return "\n".join(p)
 

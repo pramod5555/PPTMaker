@@ -36,7 +36,7 @@ QUALITY  = ROOT / "ppt-dataset" / "quality_exclusions.json"
 OUT_DIR  = Path(__file__).parent / "dsl_finetune"
 
 # ── System prompt sent at inference time ───────────────────────────────────────
-# Must match the schema in converter.py so train/inference prompts are identical.
+# Must match generate.py and converter.py so train/inference prompts are identical.
 SYSTEM_PROMPT = """\
 You are a consulting slide generator. Given a plain-English description, return a JSON spec \
 for a 1280×720 slide following the schema below. Return ONLY valid JSON — no markdown, no commentary.
@@ -51,29 +51,33 @@ SCHEMA:
 }
 
 BLOCKS:
-  bar-chart:      { "type":"bar-chart", "orientation":"vertical|horizontal",
-                    "series":[{"label":"","value":0}],
-                    "series":[{"name":"","values":[]}], "labels":[],
-                    "stacked":false, "fmt":"auto|percent|currency", "show_values":true, "title":"" }
-  line-chart:     { "type":"line-chart", "labels":[], "series":[{"name":"","values":[]}],
-                    "fmt":"auto|decimal|percent", "show_points":true, "area":false, "title":"" }
-  scatter-chart:  { "type":"scatter-chart", "points":[{"label":"","x":0,"y":0,"size":6}],
-                    "x_label":"", "y_label":"", "x_range":[0,100], "y_range":[0,100],
-                    "quadrant_labels":["TL","TR","BL","BR"], "title":"" }
-  donut-chart:    { "type":"donut-chart", "segments":[{"label":"","value":0}],
-                    "center_text":"", "center_label":"", "show_legend":true }
-  kpi-grid:       { "type":"kpi-grid", "columns":2,
-                    "items":[{"stat":"","label":"","delta":"","positive":null}] }
-  bullet-list:    { "type":"bullet-list", "title":"", "items":[{"text":"","sub":""}] }
-  table:          { "type":"table", "headers":[], "rows":[[]], "highlight_col":0 }
-  text-block:     { "type":"text-block", "title":"", "body":"" }
-  gantt-chart:    { "type":"gantt-chart", "x_labels":[], "title":"",
-                    "rows":[{"label":"","start":0.0,"end":1.0,"bar_label":""}],
-                    "milestones":[{"label":"","at":0.0}] }
-  waterfall-chart:{ "type":"waterfall-chart", "title":"", "fmt":"auto",
-                    "bars":[{"label":"","value":0,"type":"start|positive|negative|total"}] }
-  process-flow:   { "type":"process-flow", "direction":"horizontal|vertical",
-                    "steps":[{"icon":"1","label":"","sub":""}] }
+  bar-chart:          { "type":"bar-chart", "orientation":"vertical|horizontal",
+                        "series":[{"label":"","value":0}],
+                        "series":[{"name":"","values":[]}], "labels":[],
+                        "stacked":false, "fmt":"auto|percent|currency", "show_values":true, "title":"" }
+  line-chart:         { "type":"line-chart", "labels":[], "series":[{"name":"","values":[]}],
+                        "fmt":"auto|decimal|percent", "show_points":true, "area":false, "title":"" }
+  scatter-chart:      { "type":"scatter-chart", "points":[{"label":"","x":0,"y":0,"size":6}],
+                        "x_label":"", "y_label":"", "x_range":[0,100], "y_range":[0,100],
+                        "quadrant_labels":["TL","TR","BL","BR"], "title":"" }
+  donut-chart:        { "type":"donut-chart", "segments":[{"label":"","value":0}],
+                        "center_text":"", "center_label":"", "show_legend":true }
+  kpi-grid:           { "type":"kpi-grid", "columns":2, "style":"default|accent|compact|borderless",
+                        "items":[{"stat":"","label":"","delta":"","positive":null,"icon":""}] }
+  bullet-list:        { "type":"bullet-list", "title":"", "items":[{"text":"","sub":""}] }
+  table:              { "type":"table", "headers":[], "rows":[[]], "highlight_col":0 }
+  text-block:         { "type":"text-block", "title":"", "body":"", "style":"default|callout|pull-quote" }
+  comparison-matrix:  { "type":"comparison-matrix", "title":"",
+                        "columns":["Option A","Option B"],
+                        "rows":[{"label":"","values":["",""],"highlight":0}],
+                        "style":"zebra|bordered|default" }
+  gantt-chart:        { "type":"gantt-chart", "x_labels":[], "title":"",
+                        "rows":[{"label":"","start":0.0,"end":1.0,"bar_label":""}],
+                        "milestones":[{"label":"","at":0.0}] }
+  waterfall-chart:    { "type":"waterfall-chart", "title":"", "fmt":"auto",
+                        "bars":[{"label":"","value":0,"type":"start|positive|negative|total"}] }
+  process-flow:       { "type":"process-flow", "direction":"horizontal|vertical",
+                        "steps":[{"icon":"1","label":"","sub":""}] }
 
 STYLE RULES:
 - Consulting tone: precise, data-driven, no filler text.

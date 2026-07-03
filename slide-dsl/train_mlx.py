@@ -24,12 +24,13 @@ MLX_DATA    = ROOT / "slide-dsl" / "mlx_data"
 ADAPTER_DIR = ROOT / "ppt-dataset" / "finetune" / "mlx_adapter"
 FUSED_DIR   = ROOT / "ppt-dataset" / "finetune" / "mlx_fused"
 
-MODEL   = "Qwen/Qwen2.5-Coder-7B-Instruct"
-RANK    = 16
-SCALE   = 2.0   # lora_alpha / lora_rank = 32/16
-LAYERS  = 16    # apply LoRA to last 16 of 28 transformer layers
-BATCH   = 4     # M3 16GB handles batch=4 at 2048 seq_len comfortably
+MODEL   = "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit"
+RANK    = 8
+SCALE   = 2.0
+LAYERS  = 8
+BATCH   = 1
 LR      = 2e-4
+MAX_SEQ = 2048
 N_TRAIN = 711   # pairs in dsl_train.jsonl
 
 
@@ -59,27 +60,47 @@ def prepare_data() -> Path:
     return MLX_DATA
 
 
+def write_lora_config(data_dir: Path, total_iters: int, warmup_iters: int) -> Path:
+    import json
+    resume_path = ADAPTER_DIR / "adapters.safetensors"
+    config = {
+        "model": MODEL,
+        "train": True,
+        "data": str(data_dir),
+        "iters": total_iters,
+        "batch_size": BATCH,
+        "learning_rate": LR,
+        "warmup": warmup_iters,
+        "num_layers": LAYERS,
+        "val_batches": 20,
+        "steps_per_report": 10,
+        "steps_per_eval": 50,
+        "save_every": 100,
+        "adapter_path": str(ADAPTER_DIR),
+        "max_seq_length": MAX_SEQ,
+        "grad_checkpoint": True,
+        "lora_parameters": {
+            "rank": RANK,
+            "scale": SCALE,
+            "dropout": 0.0,
+        },
+    }
+    if resume_path.exists():
+        config["resume_adapter_file"] = str(resume_path)
+        print(f"Resuming from {resume_path}")
+    cfg_path = data_dir / "lora_config.json"
+    cfg_path.write_text(json.dumps(config, indent=2))
+    return cfg_path
+
+
 def run_training(data_dir: Path, n_epochs: int) -> None:
     ADAPTER_DIR.mkdir(parents=True, exist_ok=True)
     total_iters, warmup_iters = steps_for_epochs(n_epochs)
+    cfg_path = write_lora_config(data_dir, total_iters, warmup_iters)
 
     cmd = [
-        sys.executable, "-m", "mlx_lm.lora",
-        "--model",            MODEL,
-        "--data",             str(data_dir),
-        "--train",
-        "--iters",            str(total_iters),
-        "--batch-size",       str(BATCH),
-        "--learning-rate",    str(LR),
-        "--warmup",           str(warmup_iters),
-        "--lora-layers",      str(LAYERS),
-        "--lora-rank",        str(RANK),
-        "--lora-scale",       str(SCALE),
-        "--val-batches",      "20",
-        "--steps-per-report", "10",
-        "--steps-per-eval",   "50",
-        "--save-every",       "100",
-        "--adapter-path",     str(ADAPTER_DIR),
+        sys.executable, "-m", "mlx_lm", "lora",
+        "-c", str(cfg_path),
     ]
 
     print(f"\nModel   : {MODEL}")

@@ -43,36 +43,43 @@ SCHEMA:
 }
 
 BLOCKS:
-  bar-chart:      { "type":"bar-chart", "orientation":"vertical|horizontal",
-                    "series":[{"label":"","value":0}],
-                    "series":[{"name":"","values":[]}], "labels":[],
-                    "stacked":false, "fmt":"auto|percent|currency", "show_values":true, "title":"" }
-  line-chart:     { "type":"line-chart", "labels":[], "series":[{"name":"","values":[]}],
-                    "fmt":"auto|decimal|percent", "show_points":true, "area":false, "title":"" }
-  scatter-chart:  { "type":"scatter-chart", "points":[{"label":"","x":0,"y":0,"size":6}],
-                    "x_label":"", "y_label":"", "x_range":[0,100], "y_range":[0,100],
-                    "quadrant_labels":["TL","TR","BL","BR"], "title":"" }
-  donut-chart:    { "type":"donut-chart", "segments":[{"label":"","value":0}],
-                    "center_text":"", "center_label":"", "show_legend":true }
-  kpi-grid:       { "type":"kpi-grid", "columns":2,
-                    "items":[{"stat":"","label":"","delta":"","positive":null}] }
-  bullet-list:    { "type":"bullet-list", "title":"", "items":[{"text":"","sub":""}] }
-  table:          { "type":"table", "headers":[], "rows":[[]], "highlight_col":0 }
-  text-block:     { "type":"text-block", "title":"", "body":"" }
-  gantt-chart:    { "type":"gantt-chart", "x_labels":[], "title":"",
-                    "rows":[{"label":"","start":0.0,"end":1.0,"bar_label":""}],
-                    "milestones":[{"label":"","at":0.0}] }
-  waterfall-chart:{ "type":"waterfall-chart", "title":"", "fmt":"auto",
-                    "bars":[{"label":"","value":0,"type":"start|positive|negative|total"}] }
-  process-flow:   { "type":"process-flow", "direction":"horizontal|vertical",
-                    "steps":[{"icon":"1","label":"","sub":""}] }
+  bar-chart:          { "type":"bar-chart", "orientation":"vertical|horizontal",
+                        "series":[{"label":"","value":0}],
+                        "series":[{"name":"","values":[]}], "labels":[],
+                        "stacked":false, "fmt":"auto|percent|currency", "show_values":true, "title":"" }
+  line-chart:         { "type":"line-chart", "labels":[], "series":[{"name":"","values":[]}],
+                        "fmt":"auto|decimal|percent", "show_points":true, "area":false, "title":"" }
+  scatter-chart:      { "type":"scatter-chart", "points":[{"label":"","x":0,"y":0,"size":6}],
+                        "x_label":"", "y_label":"", "x_range":[0,100], "y_range":[0,100],
+                        "quadrant_labels":["TL","TR","BL","BR"], "title":"" }
+  donut-chart:        { "type":"donut-chart", "segments":[{"label":"","value":0}],
+                        "center_text":"", "center_label":"", "show_legend":true }
+  kpi-grid:           { "type":"kpi-grid", "columns":2, "style":"default|accent|compact|borderless",
+                        "items":[{"stat":"","label":"","delta":"","positive":null,"icon":""}] }
+  bullet-list:        { "type":"bullet-list", "title":"", "items":[{"text":"","sub":""}] }
+  table:              { "type":"table", "headers":[], "rows":[[]], "highlight_col":0 }
+  text-block:         { "type":"text-block", "title":"", "body":"", "style":"default|callout|pull-quote" }
+  comparison-matrix:  { "type":"comparison-matrix", "title":"",
+                        "columns":["Option A","Option B"],
+                        "rows":[{"label":"","values":["",""],"highlight":0}],
+                        "style":"zebra|bordered|default" }
+  gantt-chart:        { "type":"gantt-chart", "x_labels":[], "title":"",
+                        "rows":[{"label":"","start":0.0,"end":1.0,"bar_label":""}],
+                        "milestones":[{"label":"","at":0.0}] }
+  waterfall-chart:    { "type":"waterfall-chart", "title":"", "fmt":"auto",
+                        "bars":[{"label":"","value":0,"type":"start|positive|negative|total"}] }
+  process-flow:       { "type":"process-flow", "direction":"horizontal|vertical",
+                        "steps":[{"icon":"1","label":"","sub":""}] }
 
 STYLE RULES:
 - Consulting tone: precise, data-driven, no filler text.
 - Kicker: short uppercase label (e.g. "Section 02", "Key Insight").
 - Headline: declarative statement of the main finding.
 - Sub: one-line context or methodology note.
-- Footer source: citation in plain text."""
+- Footer source: citation in plain text.
+- For KPI grids: use "accent" style when stats are the hero; "compact" for 4+ items in a column; "borderless" for minimal look.
+- For two-column comparisons of options/scenarios: prefer comparison-matrix over two text-blocks.
+- Always populate stat fields with real numbers or percentages, never leave them empty."""
 
 
 # ── Azure API mode ─────────────────────────────────────────────────────────────
@@ -140,10 +147,11 @@ def generate_local(prompt: str, model_path: str) -> dict:
 
 
 # ── MLX mode (Mac M3) ─────────────────────────────────────────────────────────
-def generate_mlx(prompt: str, model_path: str) -> dict:
+def generate_mlx(prompt: str, model_path: str, adapter_path: str = "") -> dict:
     from mlx_lm import load, generate as mlx_generate
+    from mlx_lm.sample_utils import make_sampler, make_repetition_penalty
 
-    model, tokenizer = load(model_path)
+    model, tokenizer = load(model_path, adapter_path=adapter_path or None)
 
     messages = [
         {"role": "system", "content": SYSTEM_PROMPT},
@@ -154,11 +162,25 @@ def generate_mlx(prompt: str, model_path: str) -> dict:
     )
 
     raw = mlx_generate(model, tokenizer, prompt=chat_prompt,
-                       max_tokens=1200, temp=0.1, verbose=False)
+                       max_tokens=2000,
+                       sampler=make_sampler(temp=0.1),
+                       logits_processors=[make_repetition_penalty(1.3)],
+                       verbose=False)
 
     if "<|im_end|>" in raw:
         raw = raw[:raw.index("<|im_end|>")]
-    return json.loads(raw.strip())
+    raw = raw.strip()
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        import re
+        # Fix single-quoted keys/values the model occasionally emits
+        fixed = re.sub(r"'([^']*)'", r'"\1"', raw)
+        try:
+            return json.loads(fixed)
+        except json.JSONDecodeError as e:
+            print(f"\n[RAW OUTPUT ({len(raw)} chars)]\n{raw}\n[/RAW OUTPUT]")
+            raise
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────
@@ -170,6 +192,8 @@ def main():
                     help="api=Azure GPT-4  local=GGUF/llama.cpp  mlx=MLX fused model")
     ap.add_argument("--model", default="",
                     help="Path to GGUF file (--mode local) or fused MLX dir (--mode mlx)")
+    ap.add_argument("--adapter", default="",
+                    help="Path to LoRA adapter dir (use with --mode mlx before fusing)")
     ap.add_argument("--show-spec", action="store_true",
                     help="Print the DSL JSON spec before rendering")
     args = ap.parse_args()
@@ -180,10 +204,14 @@ def main():
         spec = generate_api(args.prompt)
     elif args.mode == "mlx":
         model_path = args.model or str(ROOT / "ppt-dataset" / "finetune" / "mlx_fused")
+        adapter_path = args.adapter or ""
         if not Path(model_path).exists():
-            sys.exit(f"MLX model not found: {model_path}\n"
-                     "Train first with: python slide-dsl/train_mlx.py")
-        spec = generate_mlx(args.prompt, model_path)
+            if adapter_path:
+                model_path = "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit"
+            else:
+                sys.exit(f"MLX model not found: {model_path}\n"
+                         "Train first with: python slide-dsl/train_mlx.py")
+        spec = generate_mlx(args.prompt, model_path, adapter_path)
     else:
         model_path = args.model or str(
             ROOT / "ppt-dataset" / "finetune" / "gguf" / "model.gguf")
