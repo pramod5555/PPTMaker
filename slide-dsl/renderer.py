@@ -99,12 +99,20 @@ def _nice_max(v, n=5):
 
 def _fmt(v, mode="auto"):
     if mode == "percent":  return f"{v:.0f}%"
-    if mode == "currency": return f"${v:,.0f}"
+    if mode == "currency":
+        a = abs(v)
+        if a == 0:        return "$0"
+        if a < 1:         return f"${v:.2f}"
+        if a < 10:        return f"${v:.1f}"
+        if a < 1_000:     return f"${v:,.0f}"
+        if a < 1_000_000: return f"${v/1_000:.1f}K"
+        if a < 1_000_000_000: return f"${v/1_000_000:.1f}M"
+        return f"${v/1_000_000_000:.1f}B"
     if mode == "decimal":  return f"{v:.1f}"
     if v >= 1_000_000:     return f"{v/1_000_000:.1f}M"
     if v >= 1_000:         return f"{v:,.0f}"
     if v == int(v):        return str(int(v))
-    return f"{v:.1f}"
+    return f"{v:.2f}"
 
 def _svg(w, h, inner, overflow="visible"):
     return (f'<svg width="{w}" height="{h}" viewBox="0 0 {w} {h}" '
@@ -234,21 +242,29 @@ def _content(spec, accent):
     p.append(_d(0, 0, SLIDE_W, 4, f"background:{accent};"))
 
     # Header zone
+    oy_hdr = 4  # start below top accent bar
     if h.get("kicker"):
-        p.append(_d(M_L, 16, CON_W, 18,
+        p.append(_d(M_L, oy_hdr + 12, CON_W, 16,
             f"font-size:10px;font-weight:700;color:{accent};text-transform:uppercase;"
             "letter-spacing:1px;overflow:hidden;white-space:nowrap;",
             _e(h["kicker"])))
+        oy_hdr += 28
+    else:
+        oy_hdr += 16
     if h.get("headline"):
-        p.append(_d(M_L, 36, CON_W, 26,
-            "font-size:20px;font-weight:700;color:#1A1A1A;overflow:hidden;white-space:nowrap;",
-            _e(h["headline"])))
-
+        hl = h["headline"]
+        # Smaller font for long headlines so they fit in 2 lines comfortably
+        fs = 20 if len(hl) <= 70 else (18 if len(hl) <= 95 else 16)
+        p.append(_d(M_L, oy_hdr, CON_W, 42,
+            f"font-size:{fs}px;font-weight:700;color:#1A1A1A;line-height:1.25;"
+            "overflow:hidden;",
+            _e(hl)))
+        oy_hdr += 46
     # Divider rule
-    p.append(_d(M_L, 66, CON_W, 1, f"background:{GREY_RULE};"))
-
+    p.append(_d(M_L, oy_hdr, CON_W, 1, f"background:{GREY_RULE};"))
+    oy_hdr += 6
     if h.get("sub"):
-        p.append(_d(M_L, 72, CON_W, 30,
+        p.append(_d(M_L, oy_hdr, CON_W, 22,
             "font-size:12px;color:#666;overflow:hidden;white-space:nowrap;",
             _e(h["sub"])))
 
@@ -572,8 +588,18 @@ def render_scatter_chart(block, x, y, w, h, accent=PETROL):
         mx, my = to_px((x_min + x_max) / 2, (y_min + y_max) / 2)
         ln.append(f'<line x1="{mx:.1f}" y1="{cy}" x2="{mx:.1f}" y2="{cy+ch}" stroke="#aaa" stroke-width="1" stroke-dasharray="4 3"/>')
         ln.append(f'<line x1="{cx}" y1="{my:.1f}" x2="{cx+cw}" y2="{my:.1f}" stroke="#aaa" stroke-width="1" stroke-dasharray="4 3"/>')
-        for ql, (qx, qy) in zip(qlabels, [(cx+4, cy+14), (mx+4, cy+14), (cx+4, my+14), (mx+4, my+14)]):
-            ln.append(_txt(qx, qy, ql, 9, 400, GREY_SUB))
+        # Place quadrant labels at the mid-top and mid-bottom of each quadrant
+        # so they stay clear of extreme-corner bubbles and the center boundary
+        tl_cx = (cx + mx) / 2
+        tr_cx = (mx + cx + cw) / 2
+        ql_positions = [
+            (tl_cx, cy + 14,      "middle"),   # TL: mid-top of top-left quadrant
+            (tr_cx, cy + 14,      "middle"),   # TR: mid-top of top-right quadrant
+            (tl_cx, cy + ch - 8,  "middle"),   # BL: mid-bottom of bottom-left quadrant
+            (tr_cx, cy + ch - 8,  "middle"),   # BR: mid-bottom of bottom-right quadrant
+        ]
+        for ql, (qx, qy, anchor) in zip(qlabels, ql_positions):
+            ln.append(_txt(qx, qy, ql, 9, 400, GREY_SUB, anchor))
 
     for p in points:
         px2, py2 = to_px(p["x"], p["y"])
@@ -690,13 +716,23 @@ def render_kpi_grid(block, x, y, w, h, accent=PETROL):
     card_w = (w - gap * (n_cols - 1)) // n_cols
     card_h = (h - gap * (n_rows - 1)) // n_rows
 
-    stat_fs = min(38, max(20, card_h // 7))
+    # Accent cards have fixed content height; cap and center vertically so they
+    # don't stretch to fill the full column with empty whitespace.
+    if style == "accent":
+        eff_card_h = min(card_h, 160)
+        total_grid_h = n_rows * eff_card_h + gap * (n_rows - 1)
+        y_start = y + max(0, (h - total_grid_h) // 2)
+    else:
+        eff_card_h = card_h
+        y_start = y
+
+    stat_fs = min(38, max(20, eff_card_h // 5))
 
     p = []
     for i, item in enumerate(items):
         col, row = i % n_cols, i // n_cols
         cx2 = x + col * (card_w + gap)
-        cy2 = y + row * (card_h + gap)
+        cy2 = y_start + row * (eff_card_h + gap)
 
         stat  = _e(str(item.get("stat", "")))
         label = _e(str(item.get("label", "")))
@@ -705,20 +741,29 @@ def render_kpi_grid(block, x, y, w, h, accent=PETROL):
         icon  = _e(str(item.get("icon", "")))
 
         if style == "accent":
-            # Colored header band with white stat, light body
-            hdr_h = max(14, int(card_h * 0.32))
-            p.append(_d(cx2, cy2, card_w, card_h,
+            # Colored stat band + tight white body; card shrinks to its content
+            hdr_h   = max(14, int(eff_card_h * 0.55))
+            label_h = 22
+            body_pad = 10  # top+bottom padding inside white section
+            vis_h = hdr_h + body_pad + label_h + (18 if delta else 0) + body_pad
+            # full card bg (white, sized to content)
+            p.append(_d(cx2, cy2, card_w, vis_h,
                 f"background:#fff;border-radius:6px;border:1px solid {GREY_RULE};overflow:hidden;"))
+            # accent header band
             p.append(_d(cx2, cy2, card_w, hdr_h,
                 f"background:{accent};border-radius:6px 6px 0 0;"))
-            p.append(_d(cx2 + 12, cy2 + 6, card_w - 24, hdr_h - 10,
-                f"font-size:{min(stat_fs, int(hdr_h * 0.65))}px;font-weight:700;color:#fff;line-height:1;", stat))
-            body_y = cy2 + hdr_h + 10
-            p.append(_d(cx2 + 12, body_y, card_w - 24, card_h - hdr_h - 20,
-                "font-size:11px;color:#444;line-height:1.45;", label))
+            # stat — vertically centered in header band
+            stat_y = cy2 + (hdr_h - stat_fs) // 2
+            p.append(_d(cx2 + 12, stat_y, card_w - 24, stat_fs + 2,
+                f"font-size:{stat_fs}px;font-weight:700;color:#fff;line-height:1;", stat))
+            # label
+            body_y = cy2 + hdr_h + body_pad
+            p.append(_d(cx2 + 12, body_y, card_w - 24, label_h,
+                "font-size:11px;color:#444;line-height:1.3;overflow:hidden;", label))
+            # delta sits immediately below label
             if delta:
                 dc = ("#2E7D32" if pos else "#C62828") if pos is not None else "#888"
-                p.append(_d(cx2 + 12, cy2 + card_h - 18, card_w - 24, 16,
+                p.append(_d(cx2 + 12, body_y + label_h + 4, card_w - 24, 14,
                     f"font-size:10px;font-weight:700;color:{dc};", _e(str(delta))))
 
         elif style == "compact":
@@ -912,19 +957,19 @@ def render_comparison_matrix(block, x, y, w, h, accent=PETROL):
 
     Schema:
       { "type": "comparison-matrix",
-        "columns": ["Option A", "Option B"],          # 2-4 column headers
+        "columns": ["Option A", "Option B"],
         "rows": [
-          { "label": "Cost",   "values": ["Low", "High"] },
-          { "label": "Speed",  "values": ["Fast", "Slow"], "highlight": 0 }
+          { "label": "Cost",  "values": ["Low", "High"] },
+          { "label": "Speed", "values": ["Fast", "Slow"], "highlight": 0 }
         ],
         "style": "default | zebra | bordered"
       }
-    highlight: index of the winning column per row (adds accent dot)
+    highlight: 0-based index of winning/preferred column per row
     """
-    cols   = block.get("columns", [])
-    rows   = block.get("rows", [])
-    style  = block.get("style", "zebra")
-    title  = block.get("title", "")
+    cols  = block.get("columns", [])
+    rows  = block.get("rows", [])
+    style = block.get("style", "zebra")
+    title = block.get("title", "")
 
     if not cols or not rows:
         return ""
@@ -938,51 +983,56 @@ def render_comparison_matrix(block, x, y, w, h, accent=PETROL):
             f"font-size:13px;font-weight:700;color:{accent};", _e(title)))
         oy += 26
 
-    label_w = max(120, w // (n_cols + 2))
+    label_w = max(130, w // (n_cols + 2))
     col_w   = (w - label_w) // n_cols
-    hdr_h   = 28
-    row_h   = min(44, (h - (oy - y) - hdr_h) // max(len(rows), 1))
+    hdr_h   = 30
+    avail_h = h - (oy - y) - hdr_h
+    # Fill height but cap rows at 90px so short-content rows don't look hollow
+    row_h   = max(36, min(90, avail_h // max(len(rows), 1)))
+    text_h  = row_h - 12
 
-    # Column headers
+    # ── Column headers ──
     p.append(_d(x, oy, w, hdr_h, f"background:{accent};border-radius:4px 4px 0 0;"))
-    p.append(_d(x + 10, oy + 6, label_w - 10, hdr_h - 8,
-        "font-size:10px;font-weight:700;color:rgba(255,255,255,0.7);", ""))
     for ci, ch in enumerate(cols):
         cx2 = x + label_w + ci * col_w
-        p.append(_d(cx2, oy + 6, col_w, hdr_h - 8,
+        p.append(_d(cx2, oy + 6, col_w - 8, hdr_h - 12,
             "font-size:11px;font-weight:700;color:#fff;text-align:center;", _e(str(ch))))
     oy += hdr_h
 
-    # Rows
+    # ── Rows ──
     for ri, row in enumerate(rows):
-        ry       = oy + ri * row_h
-        row_bg   = GREY_BG if (style == "zebra" and ri % 2 == 0) else "#fff"
+        ry        = oy + ri * row_h
         highlight = row.get("highlight", None)
         values    = row.get("values", [])
 
-        if style == "bordered":
-            p.append(_d(x, ry, w, row_h,
-                f"border-bottom:1px solid {GREY_RULE};"))
+        # Row background
+        if style == "zebra":
+            row_bg = GREY_BG if ri % 2 == 0 else "#fff"
         else:
-            p.append(_d(x, ry, w, row_h, f"background:{row_bg};"))
+            row_bg = "#fff"
+        p.append(_d(x, ry, w, row_h, f"background:{row_bg};"))
+        # Row separator
+        p.append(_d(x, ry + row_h - 1, w, 1, f"background:{GREY_RULE};"))
 
-        # Row label
-        p.append(_d(x + 10, ry + (row_h - 16) // 2, label_w - 10, 18,
-            "font-size:11px;font-weight:600;color:#1A1A1A;", _e(str(row.get("label", "")))))
+        # Row label (bold, left column)
+        p.append(_d(x + 10, ry + 6, label_w - 14, text_h,
+            "font-size:11px;font-weight:600;color:#1A1A1A;line-height:1.4;"
+            "overflow:hidden;", _e(str(row.get("label", "")))))
 
-        # Values
+        # Value cells
         for ci, val in enumerate(values[:n_cols]):
             cx2   = x + label_w + ci * col_w
             is_hl = (ci == highlight)
-            clr   = accent if is_hl else "#444"
-            fw    = "700" if is_hl else "400"
-            p.append(_d(cx2, ry + (row_h - 16) // 2, col_w, 18,
-                f"font-size:11px;font-weight:{fw};color:{clr};text-align:center;",
-                _e(str(val))))
             if is_hl:
-                dot_x = cx2 + col_w // 2 - 20
-                p.append(_d(dot_x, ry + row_h - 6, 4, 4,
-                    f"background:{accent};border-radius:50%;"))
+                # Light accent tint background + accent bold text
+                p.append(_d(cx2 + 2, ry + 1, col_w - 4, row_h - 2,
+                    f"background:{accent}18;border-radius:3px;"))
+                clr, fw = accent, "700"
+            else:
+                clr, fw = "#444", "400"
+            p.append(_d(cx2 + 8, ry + 6, col_w - 16, text_h,
+                f"font-size:10.5px;font-weight:{fw};color:{clr};"
+                f"line-height:1.4;overflow:hidden;", _e(str(val))))
 
     return "\n".join(p)
 
@@ -1006,10 +1056,11 @@ def render_gantt(block, x, y, w, h, accent=PETROL):
 
     T, B, L = (22 if title else 4), 10, 130
     hdr_h   = 22
+    ms_h    = 20 if milestones else 0   # space for milestone labels at bottom
     cx, cy  = L, T + hdr_h
     cw      = w - L - 6
-    ch      = h - T - hdr_h - B
-    row_h   = min(ch / n_row, 38)
+    ch      = h - T - hdr_h - B - ms_h
+    row_h   = ch / n_row                # fill available height — no cap
     col_w   = cw / n_col
 
     ln = []
@@ -1026,8 +1077,8 @@ def render_gantt(block, x, y, w, h, accent=PETROL):
     # Row bars
     for ri, row in enumerate(rows):
         ry   = cy + ri * row_h
-        bar_y = ry + row_h * 0.2
-        bar_h = row_h * 0.6
+        bar_y = ry + row_h * 0.22
+        bar_h = row_h * 0.56
 
         ln.append(_txt(cx - 6, ry + row_h / 2 + 4, row.get("label", ""), 9, 400, GREY_TEXT, "end"))
 
@@ -1080,9 +1131,9 @@ def render_waterfall(block, x, y, w, h, accent=PETROL):
         btype = b.get("type", "positive" if v >= 0 else "negative")
         if btype == "start":
             sy, ey = 0, v
-            running = v          # subsequent bars float on top of the start bar
+            running = v
         elif btype == "total":
-            sy, ey = 0, v        # total bar always drawn from baseline
+            sy, ey = 0, v
         else:
             sy, ey = running, running + v
             running = ey
@@ -1090,8 +1141,19 @@ def render_waterfall(block, x, y, w, h, accent=PETROL):
                          "type": btype, "sy": sy, "ey": ey})
         all_y.extend([sy, ey])
 
-    y_min = min(0, min(all_y)) if all_y else 0
     y_max = _nice_max(max(all_y)) if all_y else 10
+
+    # Smart y-axis floor: if all non-zero running values sit above 15% of y_max,
+    # zoom in so the bridge bars are visible instead of tiny slivers at the top.
+    running_vals = [b["ey"] for b in computed]
+    running_vals += [b["sy"] for b in computed if b["sy"] > 0]
+    running_min = min(running_vals) if running_vals else 0
+    if running_min > 0.15 * y_max:
+        raw_floor = running_min * 0.92
+        mag = 10 ** math.floor(math.log10(raw_floor)) if raw_floor > 0 else 1
+        y_min = math.floor(raw_floor / mag) * mag
+    else:
+        y_min = min(0, min(all_y)) if all_y else 0
 
     def vy(v): return cy + ch - (v - y_min) / (y_max - y_min) * ch
 
@@ -1109,14 +1171,20 @@ def render_waterfall(block, x, y, w, h, accent=PETROL):
         ln.append(f'<line x1="{cx}" y1="{gy:.1f}" x2="{cx+cw}" y2="{gy:.1f}" stroke="{GREY_RULE}" stroke-width="1"/>')
         ln.append(_txt(cx - 4, gy + 4, _fmt(gv, fmt), 9, 400, GREY_SUB, "end"))
 
-    ln.append(f'<line x1="{cx}" y1="{vy(0):.1f}" x2="{cx+cw}" y2="{vy(0):.1f}" stroke="#999" stroke-width="1.5"/>')
+    # Zero baseline only if 0 is visible in the y range
+    if y_min <= 0 <= y_max:
+        ln.append(f'<line x1="{cx}" y1="{vy(0):.1f}" x2="{cx+cw}" y2="{vy(0):.1f}" stroke="#999" stroke-width="1.5"/>')
+    # Always show the chart floor axis
+    ln.append(f'<line x1="{cx}" y1="{cy+ch:.1f}" x2="{cx+cw}" y2="{cy+ch:.1f}" stroke="{GREY_RULE}" stroke-width="1"/>')
 
     prev_ey = None
     for i, b in enumerate(computed):
-        bx    = cx + i * slot + (slot - bw) / 2
-        top   = vy(max(b["sy"], b["ey"]))
-        bot   = vy(min(b["sy"], b["ey"]))
-        bh    = max(bot - top, 2)
+        bx  = cx + i * slot + (slot - bw) / 2
+        # Start/total bars draw from the chart floor (y_min) when axis is zoomed
+        sy_draw = y_min if (b["type"] in ("start", "total") and y_min > 0) else b["sy"]
+        top = vy(max(sy_draw, b["ey"]))
+        bot = vy(min(sy_draw, b["ey"]))
+        bh  = max(bot - top, 2)
 
         color = (PETROL_DARK if b["type"] == "total" else
                  PETROL_MED  if b["type"] == "start"  else
@@ -1154,31 +1222,54 @@ def render_process_flow(block, x, y, w, h, accent=PETROL):
     p = []
 
     if direction == "horizontal":
-        step_w = (w - 10) // n
-        step_h = min(h, 130)
-        sy     = y + (h - step_h) // 2
+        # Timeline layout: horizontal connector line + badges + text below
+        step_w   = w // n
+        badge_r  = 20           # badge radius
+        badge_d  = badge_r * 2
+        line_y   = y + badge_r  # vertical position of the timeline line
+        text_y   = line_y + badge_r + 18  # text starts below badges
+
+        # Full-width connector line (behind badges)
+        p.append(_d(x, line_y - 1, w, 2, f"background:{accent};opacity:0.25;"))
 
         for i, step in enumerate(steps):
-            sx = x + i * step_w + 5
-            p.append(_d(sx, sy, step_w - 10, step_h,
-                f"background:{GREY_BG};border-radius:6px;border-left:3px solid {accent};"))
-            p.append(_d(sx + 10, sy + 10, 28, 28,
-                f"background:{accent};border-radius:50%;font-size:13px;font-weight:700;"
-                f"color:#fff;text-align:center;line-height:28px;",
-                _e(step.get("icon", str(i + 1)))))
-            p.append(_d(sx + 10, sy + 46, step_w - 30, 22,
-                "font-size:11px;font-weight:700;color:#1A1A1A;", _e(step.get("label", ""))))
-            if step.get("sub"):
-                p.append(_d(sx + 10, sy + 68, step_w - 30, 52,
-                    "font-size:10px;color:#666;line-height:1.4;", _e(step["sub"])))
+            cx_step = x + i * step_w + step_w // 2  # center x of this step
+            bx      = cx_step - badge_r
+            col_w2  = step_w - 16
 
+            # Connector segment — solid line from this badge to next
             if i < n - 1:
-                ax = sx + step_w - 10
-                ay = sy + step_h // 2
-                p.append(_d(ax, ay - 1, 12, 2, f"background:{accent};"))
-                p.append(_d(ax + 8, ay - 5, 0, 0,
-                    f"border-top:5px solid transparent;border-bottom:5px solid transparent;"
-                    f"border-left:7px solid {accent};width:0;height:0;"))
+                line_start = cx_step + badge_r
+                line_end   = x + (i + 1) * step_w + step_w // 2 - badge_r
+                p.append(_d(line_start, line_y - 1, line_end - line_start, 2,
+                    f"background:{accent};opacity:0.5;"))
+                # Arrowhead at midpoint
+                mid = (line_start + line_end) // 2
+                p.append(_d(mid - 5, line_y - 6, 0, 0,
+                    f"border-top:6px solid transparent;border-bottom:6px solid transparent;"
+                    f"border-left:9px solid {accent};width:0;height:0;opacity:0.6;"))
+
+            # Badge circle
+            p.append(_d(bx, line_y - badge_r, badge_d, badge_d,
+                f"background:{accent};border-radius:50%;font-size:13px;font-weight:700;"
+                f"color:#fff;text-align:center;line-height:{badge_d}px;",
+                _e(step.get("icon", str(i + 1)))))
+
+            # Label — centered under badge
+            lx = x + i * step_w + 8
+            p.append(_d(lx, text_y, col_w2, 34,
+                "font-size:12px;font-weight:700;color:#1A1A1A;line-height:1.3;"
+                "text-align:center;",
+                _e(step.get("label", ""))))
+
+            # Sub text — centered, flows for remaining space
+            if step.get("sub"):
+                sub_y = text_y + 38
+                sub_h = max(60, h - (sub_y - y) - 8)
+                p.append(_d(lx, sub_y, col_w2, sub_h,
+                    "font-size:10.5px;color:#555;line-height:1.55;overflow:hidden;"
+                    "text-align:center;",
+                    _e(step["sub"])))
     else:
         step_h = min((h - 10) // n, 110)
         for i, step in enumerate(steps):
