@@ -332,6 +332,9 @@ def main():
 
             spec = generate_api(prompt, use_search=not args.no_search)
 
+            # Inject correct page number regardless of what GPT generated
+            spec.setdefault("footer", {})["page"] = i + 1
+
             if args.show_specs:
                 print(json.dumps(spec, indent=2, ensure_ascii=False))
 

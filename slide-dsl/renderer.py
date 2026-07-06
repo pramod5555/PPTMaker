@@ -154,18 +154,27 @@ def _cover(spec, accent):
     p.append(_d(0, 0, panel_w, SLIDE_H, f"background:#fff;"))
     p.append(_d(0, 0, panel_w, 4, f"background:{accent};"))
 
+    oy = 160
     if h.get("kicker"):
-        p.append(_d(M_L, 160, panel_w - M_L - 40, 20,
+        p.append(_d(M_L, oy, panel_w - M_L - 40, 20,
             f"font-size:11px;font-weight:700;color:{accent};text-transform:uppercase;letter-spacing:1.5px;",
             _e(h["kicker"])))
+        oy += 30
     if h.get("headline"):
         text = _e(h["headline"]).replace("\n", "<br>")
-        p.append(_d(M_L, 190, panel_w - M_L - 40, 160,
-            "font-size:38px;font-weight:700;color:#1A1A1A;line-height:1.25;",
+        hl   = h["headline"]
+        fs   = 38 if len(hl) <= 55 else (30 if len(hl) <= 90 else (24 if len(hl) <= 130 else 20))
+        # lines × line-height × fs, clamp so sub still fits above footer
+        n_lines  = max(1, len(hl) // max(int((panel_w - M_L - 40) / (fs * 0.58)), 1) + 1)
+        hl_h     = min(int(n_lines * fs * 1.3) + 10, SLIDE_H - oy - 120)
+        p.append(_d(M_L, oy, panel_w - M_L - 40, hl_h,
+            f"font-size:{fs}px;font-weight:700;color:#1A1A1A;line-height:1.3;overflow:hidden;",
             text))
+        oy += hl_h + 16
     if h.get("sub"):
-        p.append(_d(M_L, 370, panel_w - M_L - 40, 50,
-            "font-size:15px;color:#666;",
+        sub_y = min(oy, SLIDE_H - 120)
+        p.append(_d(M_L, sub_y, panel_w - M_L - 40, 44,
+            "font-size:14px;color:#666;overflow:hidden;",
             _e(h["sub"])))
 
     # Right dark panel
@@ -410,7 +419,14 @@ def _bar_v(block, x, y, w, h, accent):
             bh = bot - top
             ln.append(f'<rect x="{bx:.1f}" y="{top:.1f}" width="{bw:.1f}" height="{max(bh, 1):.1f}" fill="{s["color"]}" rx="1"/>')
             if show_vals and v > 0:
-                ln.append(_txt(bx + bw / 2, top - 3, _fmt(v, fmt), 9, 400, GREY_TEXT, "middle"))
+                if stacked:
+                    # inside label when segment is tall enough; skip if too thin
+                    if bh >= 16:
+                        lbl_y = top + bh / 2 + 4
+                        lbl_c = "#fff" if si == 0 else "rgba(255,255,255,0.85)"
+                        ln.append(_txt(bx + bw / 2, lbl_y, _fmt(v, fmt), 9, 700, lbl_c, "middle"))
+                else:
+                    ln.append(_txt(bx + bw / 2, top - 3, _fmt(v, fmt), 9, 400, GREY_TEXT, "middle"))
 
     for i, lbl in enumerate(labels):
         lx = cx + i * slot + slot / 2

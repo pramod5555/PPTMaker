@@ -1,0 +1,395 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AI in Healthcare 2025</title>
+        <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    background: #0d0d0d;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+#topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 44px;
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
+    flex-shrink: 0;
+}
+#topbar h1 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+}
+#counter {
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap;
+}
+#stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+.slide-frame {
+    display: none;
+    width: 1280px;
+    height: 720px;
+    border: none;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    border-radius: 4px;
+    transform-origin: center center;
+}
+.slide-frame.active { display: block; }
+#bottombar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    height: 52px;
+    background: #1a1a1a;
+    border-top: 1px solid #333;
+    flex-shrink: 0;
+}
+.nav-btn {
+    background: #2a2a2a;
+    color: #ccc;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 7px 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.nav-btn:hover  { background: #3a3a3a; color: #fff; }
+.nav-btn:active { background: #444; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+#dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+.dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #444;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.dot.active { background: #00677F; }
+.dot:hover  { background: #666; }
+</style>
+        </head>
+        <body>
+        <div id="topbar">
+          <h1>AI in Healthcare 2025</h1>
+          <span id="counter">1 / 6</span>
+        </div>
+        <div id="stage">
+        <iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:0px;top:0px;width:800px;height:720px;background:#fff;&quot;></div>
+<div style=&quot;position:absolute;left:0px;top:0px;width:800px;height:4px;background:#00677F;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:160px;width:696px;height:20px;font-size:11px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1.5px;&quot;>2025 OUTLOOK</div>
+<div style=&quot;position:absolute;left:64px;top:190px;width:696px;height:88px;font-size:30px;font-weight:700;color:#1A1A1A;line-height:1.3;overflow:hidden;&quot;>AI is becoming a scaled growth and productivity lever across healthcare</div>
+<div style=&quot;position:absolute;left:64px;top:294px;width:696px;height:44px;font-size:14px;color:#666;overflow:hidden;&quot;>Objective: size the 2025 AI in healthcare opportunity and assess strategic implications using market, adoption, and funding indicators</div>
+<div style=&quot;position:absolute;left:800px;top:0px;width:480px;height:720px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:700px;height:16px;font-size:9px;color:#999;&quot;>Sources: Grand View Research; Bessemer Venture Partners; Rock Health; industry surveys and analyst synthesis</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;color:#999;text-align:right;&quot;>1</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:720px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:230px;width:300px;height:20px;font-size:13px;font-weight:700;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:2px;&quot;>SECTION 01</div>
+<div style=&quot;position:absolute;left:64px;top:252px;width:70px;height:3px;background:#00677F;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:262px;width:900px;height:160px;font-size:42px;font-weight:700;color:#fff;line-height:1.2;&quot;>AI value in healthcare in 2025 is concentrating in three measurable battlegrounds</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;color:rgba(255,255,255,0.3);text-align:right;&quot;>2</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:4px;background:#00677F;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>KEY INSIGHT</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:18px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Generative AI deployment trails predictive AI across all healthcare segments in 2025</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:84px;width:1152px;height:22px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;>Comparison of reported AI adoption rates by organization type; values shown as share of organizations with deployments.</div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:1152px;height:576px;&quot;><svg width=&quot;1152&quot; height=&quot;576&quot; viewBox=&quot;0 0 1152 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;576.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2025 AI adoption rates by healthcare segment</text>
+<line x1=&quot;48&quot; y1=&quot;538.0&quot; x2=&quot;1146&quot; y2=&quot;538.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;542.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>0%</text>
+<line x1=&quot;48&quot; y1=&quot;434.8&quot; x2=&quot;1146&quot; y2=&quot;434.8&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;438.8&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>20%</text>
+<line x1=&quot;48&quot; y1=&quot;331.6&quot; x2=&quot;1146&quot; y2=&quot;331.6&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;335.6&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>40%</text>
+<line x1=&quot;48&quot; y1=&quot;228.4&quot; x2=&quot;1146&quot; y2=&quot;228.4&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;232.4&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>60%</text>
+<line x1=&quot;48&quot; y1=&quot;125.2&quot; x2=&quot;1146&quot; y2=&quot;125.2&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;129.2&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>80%</text>
+<line x1=&quot;48&quot; y1=&quot;22.0&quot; x2=&quot;1146&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>100%</text>
+<line x1=&quot;48&quot; y1=&quot;538.0&quot; x2=&quot;1146&quot; y2=&quot;538.0&quot; stroke=&quot;#999&quot; stroke-width=&quot;1.5&quot;/>
+<rect x=&quot;86.4&quot; y=&quot;341.9&quot; width=&quot;98.8&quot; height=&quot;196.1&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<text x=&quot;135.8&quot; y=&quot;338.9&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>38%</text>
+<rect x=&quot;360.9&quot; y=&quot;388.4&quot; width=&quot;98.8&quot; height=&quot;149.6&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<text x=&quot;410.3&quot; y=&quot;385.4&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>29%</text>
+<rect x=&quot;635.4&quot; y=&quot;259.4&quot; width=&quot;98.8&quot; height=&quot;278.6&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<text x=&quot;684.8&quot; y=&quot;256.4&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>54%</text>
+<rect x=&quot;909.9&quot; y=&quot;223.2&quot; width=&quot;98.8&quot; height=&quot;314.8&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<text x=&quot;959.3&quot; y=&quot;220.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>61%</text>
+<rect x=&quot;185.2&quot; y=&quot;166.5&quot; width=&quot;98.8&quot; height=&quot;371.5&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<text x=&quot;234.7&quot; y=&quot;163.5&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>72%</text>
+<rect x=&quot;459.8&quot; y=&quot;207.8&quot; width=&quot;98.8&quot; height=&quot;330.2&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<text x=&quot;509.2&quot; y=&quot;204.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>64%</text>
+<rect x=&quot;734.2&quot; y=&quot;120.0&quot; width=&quot;98.8&quot; height=&quot;418.0&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<text x=&quot;783.7&quot; y=&quot;117.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>81%</text>
+<rect x=&quot;1008.8&quot; y=&quot;140.7&quot; width=&quot;98.8&quot; height=&quot;397.3&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<text x=&quot;1058.2&quot; y=&quot;137.7&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>77%</text>
+<text x=&quot;185.2&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Hospitals</text>
+<text x=&quot;459.8&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Physician groups</text>
+<text x=&quot;734.2&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Payers</text>
+<text x=&quot;1008.8&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Pharma</text>
+<rect x=&quot;48&quot; y=&quot;564&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;61.0&quot; y=&quot;573.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Generative AI</text>
+<rect x=&quot;597&quot; y=&quot;564&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;610.0&quot; y=&quot;573.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Predictive AI</text></svg></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:780px;height:16px;font-size:9px;color:#999;overflow:hidden;white-space:nowrap;&quot;>Illustrative healthcare AI deployment rates, 2025</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;font-weight:400;color:#666;text-align:right;&quot;>3</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:4px;background:#00677F;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>KEY INSIGHT</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:16px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>AI in healthcare can generate material 2025 economic impact across documentation, imaging, claims, and engagement</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:84px;width:1152px;height:22px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;>Illustrative 2025 impact split between cost savings and revenue uplift across four healthcare data-domain use cases.</div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:1152px;height:576px;&quot;><svg width=&quot;1152&quot; height=&quot;576&quot; viewBox=&quot;0 0 1152 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;576.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Illustrative 2025 economic impact from AI in healthcare</text>
+<line x1=&quot;50&quot; y1=&quot;538.0&quot; x2=&quot;1144&quot; y2=&quot;538.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;542.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>$0</text>
+<line x1=&quot;50&quot; y1=&quot;409.0&quot; x2=&quot;1144&quot; y2=&quot;409.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;413.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>$1.9K</text>
+<line x1=&quot;50&quot; y1=&quot;280.0&quot; x2=&quot;1144&quot; y2=&quot;280.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;284.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>$3.8K</text>
+<line x1=&quot;50&quot; y1=&quot;151.0&quot; x2=&quot;1144&quot; y2=&quot;151.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;155.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>$5.6K</text>
+<line x1=&quot;50&quot; y1=&quot;22.0&quot; x2=&quot;1144&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>$7.5K</text>
+<line x1=&quot;50&quot; y1=&quot;538.0&quot; x2=&quot;1144&quot; y2=&quot;538.0&quot; stroke=&quot;#999&quot; stroke-width=&quot;1.5&quot;/>
+<line x1=&quot;50&quot; y1=&quot;538.0&quot; x2=&quot;1144&quot; y2=&quot;538.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<rect x=&quot;86.5&quot; y=&quot;538.0&quot; width=&quot;109.4&quot; height=&quot;2.0&quot; fill=&quot;#007A93&quot;/>
+<text x=&quot;141.2&quot; y=&quot;534.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>$0</text>
+<text x=&quot;141.2&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Baseline</text>
+<rect x=&quot;268.8&quot; y=&quot;414.2&quot; width=&quot;109.4&quot; height=&quot;123.8&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;323.5&quot; y=&quot;410.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>+$1.8K</text>
+<text x=&quot;323.5&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Documentation automation</text>
+<line x1=&quot;414.7&quot; y1=&quot;414.2&quot; x2=&quot;451.1&quot; y2=&quot;414.2&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;451.1&quot; y=&quot;331.6&quot; width=&quot;109.4&quot; height=&quot;82.6&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;505.8&quot; y=&quot;327.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>+$1.2K</text>
+<text x=&quot;505.8&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Imaging triage</text>
+<line x1=&quot;597.0&quot; y1=&quot;331.6&quot; x2=&quot;633.5&quot; y2=&quot;331.6&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;633.5&quot; y=&quot;221.5&quot; width=&quot;109.4&quot; height=&quot;110.1&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;688.2&quot; y=&quot;217.5&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>+$1.6K</text>
+<text x=&quot;688.2&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Claims optimization</text>
+<line x1=&quot;779.3&quot; y1=&quot;221.5&quot; x2=&quot;815.8&quot; y2=&quot;221.5&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;815.8&quot; y=&quot;159.6&quot; width=&quot;109.4&quot; height=&quot;61.9&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;870.5&quot; y=&quot;155.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>+$900</text>
+<text x=&quot;870.5&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Patient engagement</text>
+<rect x=&quot;998.1&quot; y=&quot;159.6&quot; width=&quot;109.4&quot; height=&quot;378.4&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;1052.8&quot; y=&quot;155.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>$5.5K</text>
+<text x=&quot;1052.8&quot; y=&quot;552.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#666666&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Total impact</text></svg></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:780px;height:16px;font-size:9px;color:#999;overflow:hidden;white-space:nowrap;&quot;>Illustrative analysis based on healthcare AI use-case value pools; values shown in USD millions.</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;font-weight:400;color:#666;text-align:right;&quot;>4</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:4px;background:#00677F;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>KEY INSIGHT</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:16px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Ambient scribing and care management copilots offer the most attractive 2025 healthcare AI profile</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:84px;width:1152px;height:22px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;>Assessment compares four leading use cases across clinical impact, implementation complexity, regulatory risk, and time-to-value.</div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:1152px;height:20px;font-size:13px;font-weight:700;color:#00677F;&quot;>2025 healthcare AI use case attractiveness assessment</div>
+<div style=&quot;position:absolute;left:64px;top:136px;width:1152px;height:30px;background:#00677F;border-radius:4px 4px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:256px;top:142px;width:232px;height:18px;font-size:11px;font-weight:700;color:#fff;text-align:center;&quot;>Ambient scribing</div>
+<div style=&quot;position:absolute;left:496px;top:142px;width:232px;height:18px;font-size:11px;font-weight:700;color:#fff;text-align:center;&quot;>Prior authorization</div>
+<div style=&quot;position:absolute;left:736px;top:142px;width:232px;height:18px;font-size:11px;font-weight:700;color:#fff;text-align:center;&quot;>Imaging AI</div>
+<div style=&quot;position:absolute;left:976px;top:142px;width:232px;height:18px;font-size:11px;font-weight:700;color:#fff;text-align:center;&quot;>Care management copilots</div>
+<div style=&quot;position:absolute;left:64px;top:166px;width:1152px;height:90px;background:#fff;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:255px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:74px;top:172px;width:178px;height:78px;font-size:11px;font-weight:600;color:#1A1A1A;line-height:1.4;overflow:hidden;&quot;>Clinical impact</div>
+<div style=&quot;position:absolute;left:264px;top:172px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>Medium-High</div>
+<div style=&quot;position:absolute;left:504px;top:172px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>Medium</div>
+<div style=&quot;position:absolute;left:744px;top:172px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>High</div>
+<div style=&quot;position:absolute;left:978px;top:167px;width:236px;height:88px;background:#00677F18;border-radius:3px;&quot;></div>
+<div style=&quot;position:absolute;left:984px;top:172px;width:224px;height:78px;font-size:10.5px;font-weight:700;color:#00677F;line-height:1.4;overflow:hidden;&quot;>High</div>
+<div style=&quot;position:absolute;left:64px;top:256px;width:1152px;height:90px;background:#fff;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:345px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:74px;top:262px;width:178px;height:78px;font-size:11px;font-weight:600;color:#1A1A1A;line-height:1.4;overflow:hidden;&quot;>Implementation complexity</div>
+<div style=&quot;position:absolute;left:258px;top:257px;width:236px;height:88px;background:#00677F18;border-radius:3px;&quot;></div>
+<div style=&quot;position:absolute;left:264px;top:262px;width:224px;height:78px;font-size:10.5px;font-weight:700;color:#00677F;line-height:1.4;overflow:hidden;&quot;>Low-Medium</div>
+<div style=&quot;position:absolute;left:504px;top:262px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>High</div>
+<div style=&quot;position:absolute;left:744px;top:262px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>High</div>
+<div style=&quot;position:absolute;left:984px;top:262px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>Medium</div>
+<div style=&quot;position:absolute;left:64px;top:346px;width:1152px;height:90px;background:#fff;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:435px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:74px;top:352px;width:178px;height:78px;font-size:11px;font-weight:600;color:#1A1A1A;line-height:1.4;overflow:hidden;&quot;>Regulatory risk</div>
+<div style=&quot;position:absolute;left:258px;top:347px;width:236px;height:88px;background:#00677F18;border-radius:3px;&quot;></div>
+<div style=&quot;position:absolute;left:264px;top:352px;width:224px;height:78px;font-size:10.5px;font-weight:700;color:#00677F;line-height:1.4;overflow:hidden;&quot;>Low</div>
+<div style=&quot;position:absolute;left:504px;top:352px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>Medium-High</div>
+<div style=&quot;position:absolute;left:744px;top:352px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>High</div>
+<div style=&quot;position:absolute;left:984px;top:352px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>Medium</div>
+<div style=&quot;position:absolute;left:64px;top:436px;width:1152px;height:90px;background:#fff;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:525px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:74px;top:442px;width:178px;height:78px;font-size:11px;font-weight:600;color:#1A1A1A;line-height:1.4;overflow:hidden;&quot;>Time-to-value</div>
+<div style=&quot;position:absolute;left:258px;top:437px;width:236px;height:88px;background:#00677F18;border-radius:3px;&quot;></div>
+<div style=&quot;position:absolute;left:264px;top:442px;width:224px;height:78px;font-size:10.5px;font-weight:700;color:#00677F;line-height:1.4;overflow:hidden;&quot;>Fast</div>
+<div style=&quot;position:absolute;left:504px;top:442px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>Medium</div>
+<div style=&quot;position:absolute;left:744px;top:442px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>Slow</div>
+<div style=&quot;position:absolute;left:984px;top:442px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>Medium-Fast</div>
+<div style=&quot;position:absolute;left:64px;top:526px;width:1152px;height:90px;background:#fff;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:615px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:74px;top:532px;width:178px;height:78px;font-size:11px;font-weight:600;color:#1A1A1A;line-height:1.4;overflow:hidden;&quot;>Overall attractiveness</div>
+<div style=&quot;position:absolute;left:264px;top:532px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>High</div>
+<div style=&quot;position:absolute;left:504px;top:532px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>Medium</div>
+<div style=&quot;position:absolute;left:744px;top:532px;width:224px;height:78px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>Medium</div>
+<div style=&quot;position:absolute;left:978px;top:527px;width:236px;height:88px;background:#00677F18;border-radius:3px;&quot;></div>
+<div style=&quot;position:absolute;left:984px;top:532px;width:224px;height:78px;font-size:10.5px;font-weight:700;color:#00677F;line-height:1.4;overflow:hidden;&quot;>High</div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:780px;height:16px;font-size:9px;color:#999;overflow:hidden;white-space:nowrap;&quot;>Source: Industry analysis of 2025 healthcare AI use cases based on provider deployment patterns, workflow integration requirements, and regulatory considerations.</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:11px;font-weight:400;color:#666;text-align:right;&quot;>5</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:720px;background:#002E3D;&quot;></div>
+<div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:4px;background:#00677F;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:270px;width:1000px;height:100px;font-size:34px;font-weight:700;color:#fff;line-height:1.3;&quot;>A sequenced 12-month roadmap can de-risk healthcare AI adoption while accelerating measurable value</div>
+<div style=&quot;position:absolute;left:64px;top:380px;width:750px;height:50px;font-size:15px;color:rgba(255,255,255,0.65);&quot;>2025 action agenda prioritizes governance first, then pilots, vendor selection, workflow integration, and KPI tracking</div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:700px;height:16px;font-size:9px;color:rgba(255,255,255,0.3);&quot;>Source: Illustrative 2025 healthcare AI implementation roadmap</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+        </div>
+        <div id="bottombar">
+          <button class="nav-btn" id="prevBtn">&larr; Prev</button>
+          <div id="dots">
+        <div class="dot" title="Slide 1"></div>
+<div class="dot" title="Slide 2"></div>
+<div class="dot" title="Slide 3"></div>
+<div class="dot" title="Slide 4"></div>
+<div class="dot" title="Slide 5"></div>
+<div class="dot" title="Slide 6"></div>
+          </div>
+          <button class="nav-btn" id="nextBtn">Next &rarr;</button>
+        </div>
+        <script>
+const frames  = Array.from(document.querySelectorAll('.slide-frame'));
+const dots    = Array.from(document.querySelectorAll('.dot'));
+const counter = document.getElementById('counter');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+let current   = 0;
+
+function scaleFrames() {
+    const stage = document.getElementById('stage');
+    const sw = stage.clientWidth  - 40;
+    const sh = stage.clientHeight - 40;
+    const scale = Math.min(sw / 1280, sh / 720, 1);
+    frames.forEach(f => {
+        f.style.transform = `scale(${scale})`;
+    });
+}
+
+function goto(idx) {
+    frames[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = Math.max(0, Math.min(idx, frames.length - 1));
+    frames[current].classList.add('active');
+    dots[current].classList.add('active');
+    counter.textContent = `${current + 1} / ${frames.length}`;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === frames.length - 1;
+}
+
+dots.forEach((d, i) => d.addEventListener('click', () => goto(i)));
+document.getElementById('prevBtn').addEventListener('click', () => goto(current - 1));
+document.getElementById('nextBtn').addEventListener('click', () => goto(current + 1));
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goto(current + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goto(current - 1);
+});
+
+window.addEventListener('resize', scaleFrames);
+scaleFrames();
+goto(0);
+</script>
+        </body>
+        </html>
