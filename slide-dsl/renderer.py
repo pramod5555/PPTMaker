@@ -18,17 +18,24 @@ import json
 import math
 import html as _html
 
-# ── Palette ────────────────────────────────────────────────────────────────────
-PETROL      = "#00677F"
-PETROL_DARK = "#004355"
-PETROL_MED  = "#007A93"
-PETROL_LT   = "#5097AB"
-PETROL_LTR  = "#79AEBF"
-PETROL_LTST = "#A6CAD8"
-GREY_BG     = "#EFF7FA"
-GREY_RULE   = "#DCE9ED"
-GREY_TEXT   = "#1A1A1A"
-GREY_SUB    = "#666666"
+# ── Palette — Daimler Truck CI/CD brand colors ────────────────────────────────
+# Source: daimler-truck-brand skill (internal CI doc)
+PETROL      = "#00677F"   # DT primary accent
+PETROL_DARK = "#004355"   # DT Petrol +40K — headers / dark surfaces
+PETROL_MED  = "#007A93"   # DT Petrol 80%  — interactive accent
+PETROL_LT   = "#5097AB"   # DT Petrol 60%  — tinted borders
+PETROL_LTR  = "#79AEBF"   # DT Petrol 40%  — light tint
+PETROL_LTST = "#A6CAD8"   # DT Petrol 20%  — very light tint / bg
+GREY_BG     = "#EFF7FA"   # slide card background (petrol-tinted)
+GREY_RULE   = "#DCE9ED"   # grid lines / dividers
+GREY_TEXT   = "#1A1A1A"   # body text (near-black on white)
+GREY_SUB    = "#707070"   # DT Light Grey +60K — secondary / axis text
+
+# DT semantic / functional colours
+YELLOW      = "#FFFF40"   # DT max-accent — ONE element per view, never series/bg/text
+GREEN_PASS  = "#6EA046"   # DT green  — positive delta, success
+ORANGE_WARN = "#E69123"   # DT orange — warning / caution
+RED_FAIL    = "#C62828"   # DT-aligned dark red — negative delta, error (FF0000 too harsh at small sizes)
 
 SERIES_COLORS = [PETROL, PETROL_LT, PETROL_LTR, PETROL_DARK, PETROL_MED, PETROL_LTST]
 
@@ -368,10 +375,13 @@ def _bar_v(block, x, y, w, h, accent):
     if mode == "single":
         s_raw  = rest[0]
         labels = [s["label"] for s in s_raw]
+        # "highlight": true on one bar → renders that bar in YELLOW (DT max-accent rule: 1 per view)
+        hl_flags = [bool(s.get("highlight")) for s in s_raw]
         series = [{"name": "", "values": [s["value"] for s in s_raw],
-                   "color": accent}]
+                   "color": accent, "_hl": hl_flags}]
     else:
         labels, s_raw = rest
+        hl_flags = []
         series = [{"name": s.get("name", ""), "values": s["values"],
                    "color": SERIES_COLORS[i % len(SERIES_COLORS)]}
                   for i, s in enumerate(s_raw)]
@@ -389,7 +399,7 @@ def _bar_v(block, x, y, w, h, accent):
 
     slot = cw / n
     if stacked or ns == 1:
-        bw = slot * 0.72   # single-series: slightly wider bars
+        bw = slot * 0.72
         def bx_fn(i, si): return cx + i * slot + (slot - bw) / 2
     else:
         bw = slot * 0.72 / ns
@@ -407,11 +417,11 @@ def _bar_v(block, x, y, w, h, accent):
 
     ln.append(f'<line x1="{cx}" y1="{vy(0):.1f}" x2="{cx+cw}" y2="{vy(0):.1f}" stroke="#999" stroke-width="1.5"/>')
 
-    # For stacked bars with many series, show totals above bar only (inside labels crowd)
     inside_labels = stacked and ns <= 2
 
-    stack = [0] * n  # column accumulators — shared across all series
+    stack = [0] * n
     for si, s in enumerate(series):
+        _bar_hl = s.get("_hl", [])
         for i, v in enumerate(s["values"][:n]):
             bx = bx_fn(i, si)
             if stacked:
@@ -420,7 +430,8 @@ def _bar_v(block, x, y, w, h, accent):
             else:
                 bot, top = vy(0), vy(v)
             bh = bot - top
-            ln.append(f'<rect x="{bx:.1f}" y="{top:.1f}" width="{bw:.1f}" height="{max(bh, 1):.1f}" fill="{s["color"]}" rx="1"/>')
+            bar_color = YELLOW if (not stacked and _bar_hl and _bar_hl[i]) else s["color"]
+            ln.append(f'<rect x="{bx:.1f}" y="{top:.1f}" width="{bw:.1f}" height="{max(bh, 1):.1f}" fill="{bar_color}" rx="1"/>')
             if show_vals and v > 0:
                 if inside_labels:
                     if bh >= 16:
@@ -490,7 +501,7 @@ def _bar_h(block, x, y, w, h, accent):
     for i, s in enumerate(items):
         by = cy + i * slot + (slot - bh) / 2
         bw_px = s["value"] / x_max * cw
-        color = SERIES_COLORS[i % len(SERIES_COLORS)]
+        color = YELLOW if s.get("highlight") else SERIES_COLORS[i % len(SERIES_COLORS)]
 
         ln.append(f'<rect x="{cx}" y="{by:.1f}" width="{max(bw_px, 1):.1f}" height="{bh:.1f}" fill="{color}" rx="2"/>')
         ln.append(_txt(cx - 6, by + bh / 2 + 4, s["label"], 10, 400, GREY_TEXT, "end"))
@@ -631,7 +642,12 @@ def render_scatter_chart(block, x, y, w, h, accent=PETROL):
     for p in points:
         px2, py2 = to_px(p["x"], p["y"])
         r     = p.get("size", 6)
-        color = p.get("color") or accent
+        # "highlight": true → YELLOW ring + filled (DT max-accent, 1 point per view)
+        if p.get("highlight"):
+            color = YELLOW
+            ln.append(f'<circle cx="{px2:.1f}" cy="{py2:.1f}" r="{r+3}" fill="none" stroke="{YELLOW}" stroke-width="2" opacity="0.6"/>')
+        else:
+            color = p.get("color") or accent
         ln.append(f'<circle cx="{px2:.1f}" cy="{py2:.1f}" r="{r}" fill="{color}" opacity="0.85"/>')
         if p.get("label"):
             ln.append(_txt(px2 + r + 3, py2 + 4, p["label"], 9, 400, GREY_TEXT))
@@ -789,7 +805,7 @@ def render_kpi_grid(block, x, y, w, h, accent=PETROL):
                 "font-size:11px;color:#444;line-height:1.3;overflow:hidden;", label))
             # delta sits immediately below label
             if delta:
-                dc = ("#2E7D32" if pos else "#C62828") if pos is not None else "#888"
+                dc = (GREEN_PASS if pos else RED_FAIL) if pos is not None else GREY_SUB
                 p.append(_d(cx2 + 12, body_y + label_h + 4, card_w - 24, 14,
                     f"font-size:10px;font-weight:700;color:{dc};", _e(str(delta))))
 
@@ -801,7 +817,7 @@ def render_kpi_grid(block, x, y, w, h, accent=PETROL):
             p.append(_d(cx2 + 14, cy2 + int(card_h * 0.52), card_w - 14, int(card_h * 0.3),
                 "font-size:11px;color:#555;line-height:1.4;", label))
             if delta:
-                dc = ("#2E7D32" if pos else "#C62828") if pos is not None else "#888"
+                dc = (GREEN_PASS if pos else RED_FAIL) if pos is not None else GREY_SUB
                 p.append(_d(cx2 + 14, cy2 + int(card_h * 0.82), card_w - 14, 14,
                     f"font-size:10px;font-weight:700;color:{dc};", _e(str(delta))))
 
@@ -813,7 +829,7 @@ def render_kpi_grid(block, x, y, w, h, accent=PETROL):
                 "font-size:11px;color:#666;line-height:1.4;", label))
             p.append(_d(cx2, cy2 + card_h - 2, card_w, 1, f"background:{GREY_RULE};"))
             if delta:
-                dc = ("#2E7D32" if pos else "#C62828") if pos is not None else "#888"
+                dc = (GREEN_PASS if pos else RED_FAIL) if pos is not None else GREY_SUB
                 p.append(_d(cx2, cy2 + int(card_h * 0.86), card_w, 14,
                     f"font-size:10px;font-weight:700;color:{dc};", _e(str(delta))))
 
@@ -834,7 +850,7 @@ def render_kpi_grid(block, x, y, w, h, accent=PETROL):
             p.append(_d(cx2 + 14, cy2 + label_top, card_w - 28, int(card_h * 0.30),
                 "font-size:11px;color:#555;line-height:1.4;", label))
             if delta:
-                dc = ("#2E7D32" if pos else "#C62828") if pos is not None else "#888"
+                dc = (GREEN_PASS if pos else RED_FAIL) if pos is not None else GREY_SUB
                 p.append(_d(cx2 + 14, cy2 + delta_top, card_w - 28, 14,
                     f"font-size:10px;font-weight:700;color:{dc};", _e(str(delta))))
 

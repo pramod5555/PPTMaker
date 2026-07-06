@@ -257,20 +257,26 @@ ALL_PROMPTS = (
 
 
 # ── API call ───────────────────────────────────────────────────────────────────
-def call_api(prompt: str) -> dict:
+def call_api(prompt: str, deployment: str | None = None) -> dict:
     from dotenv import load_dotenv
     from openai import AzureOpenAI
 
     load_dotenv()
     load_dotenv(ROOT / "ppt-dataset" / ".env")
 
+    # Mini deployment if available and not overridden — cheaper for bulk synthesis
+    mini = os.getenv("AZURE_OPENAI_MINI_DEPLOYMENT", "")
+    use_deployment = deployment or mini or os.getenv("AZURE_OPENAI_DEPLOYMENT", "gpt-5.4")
+    api_key = (os.getenv("AZURE_OPENAI_MINI_API_KEY") or os.getenv("AZURE_OPENAI_API_KEY")) if mini and not deployment else os.getenv("AZURE_OPENAI_API_KEY")
+    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT", "https://custom-data-maya-resource.cognitiveservices.azure.com/")
+
     client = AzureOpenAI(
-        api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-        api_version="2024-12-01-preview",
-        azure_endpoint="https://custom-data-maya-resource.cognitiveservices.azure.com/",
+        api_key=api_key,
+        api_version=os.getenv("AZURE_OPENAI_API_VERSION", "2024-12-01-preview"),
+        azure_endpoint=endpoint,
     )
     resp = client.chat.completions.create(
-        model="gpt-5.4",
+        model=use_deployment,
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user",   "content": prompt},
@@ -292,10 +298,10 @@ def _make_pair(prompt: str, spec: dict) -> dict:
 
 
 # ── Worker ─────────────────────────────────────────────────────────────────────
-def process_prompt(args: tuple[int, str, bool]) -> tuple[str, dict | str]:
-    idx, prompt, validate = args
+def process_prompt(args: tuple[int, str, bool, str]) -> tuple[str, dict | str]:
+    idx, prompt, validate, deployment = args
     try:
-        spec = call_api(prompt)
+        spec = call_api(prompt, deployment or None)
         if validate:
             sys.path.insert(0, str(Path(__file__).parent))
             from renderer import render_slide
@@ -308,14 +314,16 @@ def process_prompt(args: tuple[int, str, bool]) -> tuple[str, dict | str]:
 # ── Main ───────────────────────────────────────────────────────────────────────
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--n",        type=int, default=0,
+    ap.add_argument("--n",          type=int, default=0,
                     help="Max prompts to run (default: all)")
-    ap.add_argument("--workers",  type=int, default=5,
+    ap.add_argument("--workers",    type=int, default=5,
                     help="Concurrent API calls")
-    ap.add_argument("--validate", action="store_true",
+    ap.add_argument("--validate",   action="store_true",
                     help="Render each spec through renderer before saving")
-    ap.add_argument("--resume",   action="store_true",
+    ap.add_argument("--resume",     action="store_true",
                     help="Skip prompts whose description already exists in output file")
+    ap.add_argument("--deployment", default="",
+                    help="Azure deployment name override (default: AZURE_OPENAI_MINI_DEPLOYMENT env, then gpt-5.4)")
     args = ap.parse_args()
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -342,7 +350,7 @@ def main():
     print(f"Output: {OUT_FILE}\n")
 
     ok_count = err_count = 0
-    tasks = [(i, p, args.validate) for i, p in enumerate(prompts)]
+    tasks = [(i, p, args.validate, args.deployment) for i, p in enumerate(prompts)]
 
     with open(OUT_FILE, "a", encoding="utf-8") as f:
         with ThreadPoolExecutor(max_workers=args.workers) as pool:
