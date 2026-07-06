@@ -329,6 +329,16 @@ def main():
             prompt = desc
             if stype in ("cover", "chapter", "cta"):
                 prompt = f"[{stype.upper()}] {desc}"
+            else:
+                # Push GPT to fill slides with dense, specific data
+                prompt += (
+                    " Use at least 6 data points or items. "
+                    "Every number must be specific (no round placeholders). "
+                    "For bar/line charts: 6–8 bars or time periods. "
+                    "For KPI grids: 4–6 items. "
+                    "For bullet lists: 5–7 items with sub-bullets. "
+                    "For comparison matrices: 4–6 rows."
+                )
 
             spec = generate_api(prompt, use_search=not args.no_search)
 

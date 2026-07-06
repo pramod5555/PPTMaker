@@ -407,8 +407,11 @@ def _bar_v(block, x, y, w, h, accent):
 
     ln.append(f'<line x1="{cx}" y1="{vy(0):.1f}" x2="{cx+cw}" y2="{vy(0):.1f}" stroke="#999" stroke-width="1.5"/>')
 
+    # For stacked bars with many series, show totals above bar only (inside labels crowd)
+    inside_labels = stacked and ns <= 2
+
+    stack = [0] * n  # column accumulators — shared across all series
     for si, s in enumerate(series):
-        stack = [0] * n
         for i, v in enumerate(s["values"][:n]):
             bx = bx_fn(i, si)
             if stacked:
@@ -419,14 +422,22 @@ def _bar_v(block, x, y, w, h, accent):
             bh = bot - top
             ln.append(f'<rect x="{bx:.1f}" y="{top:.1f}" width="{bw:.1f}" height="{max(bh, 1):.1f}" fill="{s["color"]}" rx="1"/>')
             if show_vals and v > 0:
-                if stacked:
-                    # inside label when segment is tall enough; skip if too thin
+                if inside_labels:
                     if bh >= 16:
                         lbl_y = top + bh / 2 + 4
                         lbl_c = "#fff" if si == 0 else "rgba(255,255,255,0.85)"
                         ln.append(_txt(bx + bw / 2, lbl_y, _fmt(v, fmt), 9, 700, lbl_c, "middle"))
-                else:
+                elif not stacked:
                     ln.append(_txt(bx + bw / 2, top - 3, _fmt(v, fmt), 9, 400, GREY_TEXT, "middle"))
+
+    # For stacked bars with 3+ series: total above each bar
+    if stacked and ns >= 3 and show_vals:
+        for i in range(n):
+            total = sum(s["values"][i] for s in series if i < len(s["values"]))
+            if total > 0:
+                bx    = bx_fn(i, 0)
+                top_y = vy(total)
+                ln.append(_txt(bx + bw / 2, top_y - 5, _fmt(total, fmt), 9, 700, GREY_TEXT, "middle"))
 
     for i, lbl in enumerate(labels):
         lx = cx + i * slot + slot / 2
@@ -842,7 +853,22 @@ def render_bullet_list(block, x, y, w, h, accent=PETROL):
     spacing = block.get("spacing", 10)
 
     p  = []
-    oy = y
+    text_w   = max(w - 16, 1)
+    cpl_main = max(1, text_w / 7.5)
+    cpl_sub  = max(1, text_w / 6.3)
+
+    # Pre-compute total content height to vertically center the list
+    title_h = 28 if title else 0
+    def _item_h(item):
+        t = item if isinstance(item, str) else item.get("text", "")
+        s = "" if isinstance(item, str) else item.get("sub", "")
+        mh = max(20, int(max(1, math.ceil(len(t) / cpl_main)) * 20)) + 2
+        sh = (max(18, int(max(1, math.ceil(len(s) / cpl_sub)) * 17)) + 4) if s else 0
+        return mh + sh + spacing
+
+    total_content_h = title_h + sum(_item_h(it) for it in items)
+    top_pad = max(0, (h - total_content_h) // 2)
+    oy = y + top_pad
 
     if title:
         p.append(_d(x, oy, w, 20,
@@ -856,15 +882,21 @@ def render_bullet_list(block, x, y, w, h, accent=PETROL):
             text = item.get("text", "")
             sub  = item.get("sub", "")
 
-        p.append(_d(x, oy + 5, 7, 7, f"background:{accent};border-radius:50%;"))
-        p.append(_d(x + 16, oy, w - 16, 20,
-            "font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.45;", _e(text)))
-        oy += 22
+        main_lines = max(1, math.ceil(len(text) / cpl_main))
+        main_h     = max(20, int(main_lines * 20))
+
+        p.append(_d(x, oy + 6, 7, 7, f"background:{accent};border-radius:50%;"))
+        p.append(_d(x + 16, oy, text_w, main_h,
+            "font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;",
+            _e(text)))
+        oy += main_h + 2
 
         if sub:
-            p.append(_d(x + 16, oy, w - 16, 32,
-                "font-size:11px;color:#666;line-height:1.45;", _e(sub)))
-            oy += 36
+            sub_lines = max(1, math.ceil(len(sub) / cpl_sub))
+            sub_h     = max(18, int(sub_lines * 17))
+            p.append(_d(x + 16, oy, text_w, sub_h,
+                "font-size:11px;color:#666;line-height:1.55;overflow:hidden;", _e(sub)))
+            oy += sub_h + 4
         oy += spacing
 
         if oy > y + h - 20:
@@ -892,18 +924,26 @@ def render_table(block, x, y, w, h, accent=PETROL):
     if col_widths:
         cws = col_widths
     else:
-        cws = [w // n_cols] * n_cols
+        # Give the first (label) column 20% of width; split rest evenly
+        label_w = max(60, int(w * 0.20))
+        data_w  = (w - label_w) // max(n_cols - 1, 1)
+        cws = [label_w] + [data_w] * (n_cols - 1)
 
-    hdr_h  = 32
-    row_h  = min(28, (h - hdr_h) // max(len(rows), 1))
+    hdr_h  = 34
+    # Fill available height — cap per-row at 52px so it doesn't look too tall
+    row_h  = min(52, max(28, (h - hdr_h) // max(len(rows), 1)))
+    # Scale font with row height
+    cell_fs = 11 if row_h <= 32 else (12 if row_h <= 42 else 13)
+    # Fewer columns → more room per header → use full label; many columns → shrink
+    hdr_fs  = max(9, 11 - max(0, n_cols - 5))
 
     p = []
     for ci, hdr in enumerate(headers):
         hx  = x + sum(cws[:ci])
         bg  = accent if ci == hl_col else PETROL_DARK
         p.append(_d(hx, y, cws[ci] - 1, hdr_h, f"background:{bg};"))
-        p.append(_d(hx + 8, y + 8, cws[ci] - 16, hdr_h - 8,
-            "font-size:11px;font-weight:700;color:#fff;overflow:hidden;white-space:nowrap;",
+        p.append(_d(hx + 4, y + (hdr_h - hdr_fs - 2) // 2, cws[ci] - 8, hdr_h - 8,
+            f"font-size:{hdr_fs}px;font-weight:700;color:#fff;overflow:hidden;white-space:nowrap;",
             _e(str(hdr))))
 
     for ri, row in enumerate(rows):
@@ -913,14 +953,15 @@ def render_table(block, x, y, w, h, accent=PETROL):
         for ci, val in enumerate(row[:n_cols]):
             cx2 = x + sum(cws[:ci])
             bg  = rbg
-            ts  = f"font-size:11px;color:#333;"
+            ts  = f"font-size:{cell_fs}px;color:#333;"
             if ci == hl_col:
                 bg = "#EFF7FA"
-                ts = f"font-size:11px;font-weight:700;color:{accent};"
+                ts = f"font-size:{cell_fs}px;font-weight:700;color:{accent};"
             p.append(_d(cx2, ry, cws[ci] - 1, row_h,
                 f"background:{bg};border-bottom:1px solid {GREY_RULE};"))
-            p.append(_d(cx2 + 8, ry + 6, cws[ci] - 16, row_h - 6,
-                ts + "overflow:hidden;white-space:nowrap;", _e(str(val))))
+            pad_t = max(4, (row_h - cell_fs * 2 - 4) // 2)
+            p.append(_d(cx2 + 6, ry + pad_t, cws[ci] - 12, row_h - pad_t,
+                ts + "overflow:hidden;line-height:1.4;", _e(str(val))))
 
     return "\n".join(p)
 
@@ -1135,7 +1176,9 @@ def render_waterfall(block, x, y, w, h, accent=PETROL):
     show_vals = block.get("show_values", True)
     title     = block.get("title", "")
 
-    T, B, L, R = (22 if title else 4), 38, 50, 8
+    n_bars = len(bars)
+    B = 80 if n_bars >= 8 else 38   # extra room for rotated labels
+    T, L, R = (22 if title else 4), 50, 8
     cw, ch = w - L - R, h - T - B
     cx, cy = L, T
 
@@ -1219,7 +1262,15 @@ def render_waterfall(block, x, y, w, h, accent=PETROL):
             sign = "+" if b["value"] > 0 and b["type"] not in ("start", "total") else ""
             ln.append(_txt(bx + bw / 2, top - 4, f"{sign}{_fmt(b['value'], fmt)}", 9, 400, GREY_TEXT, "middle"))
 
-        ln.append(_txt(bx + bw / 2, cy + ch + 14, b["label"], 9, 400, GREY_SUB, "middle"))
+        lx_lbl = bx + bw / 2
+        ly_lbl = cy + ch + 12
+        if n_bars >= 8:
+            ln.append(f'<text x="{lx_lbl:.1f}" y="{ly_lbl}" '
+                      f'transform="rotate(-40 {lx_lbl:.1f} {ly_lbl})" '
+                      f'font-size="8" fill="{GREY_SUB}" text-anchor="end">'
+                      f'{_e(b["label"])}</text>')
+        else:
+            ln.append(_txt(lx_lbl, ly_lbl + 4, b["label"], 9, 400, GREY_SUB, "middle"))
 
     return _d(x, y, w, h, "", _svg(w, h, "\n".join(ln)))
 
