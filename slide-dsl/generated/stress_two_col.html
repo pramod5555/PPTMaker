@@ -1,0 +1,1307 @@
+        <!DOCTYPE html><html lang="en"><head>
+        <meta charset="UTF-8">
+        <title>Two-Column Stress Test</title>
+        <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    background: #0d0d0d;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+#topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px; height: 44px;
+    background: #1a1a1a; border-bottom: 1px solid #333; flex-shrink: 0;
+}
+#topbar h1 { font-size: 13px; font-weight: 600; color: #fff; }
+#counter   { font-size: 12px; color: #888; }
+#stage {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+}
+.slide-frame {
+    display: none; width: 1280px; height: 720px;
+    border: none; box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    border-radius: 4px; transform-origin: center center;
+}
+.slide-frame.active { display: block; }
+#bottombar {
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    height: 52px; background: #1a1a1a; border-top: 1px solid #333; flex-shrink: 0;
+}
+.nav-btn {
+    background: #2a2a2a; color: #ccc; border: 1px solid #444;
+    border-radius: 6px; padding: 7px 20px; font-size: 13px; cursor: pointer;
+}
+.nav-btn:hover { background: #3a3a3a; color: #fff; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+#dots { display: flex; gap: 6px; align-items: center; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: #444; cursor: pointer; }
+.dot.active { background: #00677F; }
+</style>
+        </head><body>
+        <div id="topbar">
+          <h1>Two-Column Combined Layout Stress Test — 11 Scenarios</h1>
+          <span id="counter">1 / 11</span>
+        </div>
+        <div id="stage">
+        <iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>STRESS 01</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:20px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Dual Line Charts: 6-Series Bond Yield Trends vs Inflation Expectations</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Global Bond Yields 2018–2024</text>
+<line x1=&quot;48&quot; y1=&quot;516.0&quot; x2=&quot;542&quot; y2=&quot;516.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;520.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>-0.6</text>
+<line x1=&quot;48&quot; y1=&quot;417.2&quot; x2=&quot;542&quot; y2=&quot;417.2&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;421.2&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>0.5</text>
+<line x1=&quot;48&quot; y1=&quot;318.4&quot; x2=&quot;542&quot; y2=&quot;318.4&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;322.4&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>1.7</text>
+<line x1=&quot;48&quot; y1=&quot;219.6&quot; x2=&quot;542&quot; y2=&quot;219.6&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;223.6&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2.8</text>
+<line x1=&quot;48&quot; y1=&quot;120.8&quot; x2=&quot;542&quot; y2=&quot;120.8&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;124.8&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>3.9</text>
+<line x1=&quot;48&quot; y1=&quot;22.0&quot; x2=&quot;542&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>5.0</text>
+<path d=&quot;M 48.0,207.4 L 130.3,275.7 L 212.7,383.0 L 295.0,330.6 L 377.3,121.3 L 459.7,113.4 L 542.0,88.5&quot; stroke=&quot;#00677F&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<path d=&quot;M 48.0,426.4 L 130.3,482.3 L 212.7,516.0 L 295.0,481.4 L 377.3,237.5 L 459.7,238.4 L 542.0,255.3&quot; stroke=&quot;#5097AB&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<path d=&quot;M 48.0,351.9 L 130.3,392.7 L 212.7,438.8 L 295.0,379.4 L 377.3,140.0 L 459.7,139.1 L 542.0,97.4&quot; stroke=&quot;#79AEBF&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<path d=&quot;M 48.0,461.0 L 130.3,466.3 L 212.7,463.7 L 295.0,459.2 L 377.3,443.3 L 459.7,409.6 L 542.0,388.3&quot; stroke=&quot;#004355&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<path d=&quot;M 48.0,223.3 L 130.3,343.9 L 212.7,378.5 L 295.0,317.3 L 377.3,115.1 L 459.7,82.3 L 542.0,75.2&quot; stroke=&quot;#007A93&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<path d=&quot;M 48.0,257.9 L 130.3,314.7 L 212.7,405.1 L 295.0,338.6 L 377.3,173.7 L 459.7,141.7 L 542.0,130.2&quot; stroke=&quot;#A6CAD8&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<text x=&quot;48.0&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2018</text>
+<text x=&quot;130.3&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2019</text>
+<text x=&quot;212.7&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2020</text>
+<text x=&quot;295.0&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2021</text>
+<text x=&quot;377.3&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2022</text>
+<text x=&quot;459.7&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2023</text>
+<text x=&quot;542.0&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2024</text>
+<rect x=&quot;48&quot; y=&quot;544&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;73.0&quot; y=&quot;550.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>US 10Y Treasury</text>
+<rect x=&quot;184&quot; y=&quot;544&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;209.0&quot; y=&quot;550.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Eurozone 10Y Bund</text>
+<rect x=&quot;320&quot; y=&quot;544&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#79AEBF&quot;/>
+<text x=&quot;345.0&quot; y=&quot;550.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>UK 10Y Gilt</text>
+<rect x=&quot;48&quot; y=&quot;560&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;73.0&quot; y=&quot;566.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Japan 10Y JGB</text>
+<rect x=&quot;184&quot; y=&quot;560&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#007A93&quot;/>
+<text x=&quot;209.0&quot; y=&quot;566.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Australia 10Y Bond</text>
+<rect x=&quot;320&quot; y=&quot;560&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#A6CAD8&quot;/>
+<text x=&quot;345.0&quot; y=&quot;566.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Canada 10Y Bond</text></svg></div>
+<div style=&quot;position:absolute;left:666px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>5Y5Y Inflation Expectations 2018–2024</text>
+<line x1=&quot;48&quot; y1=&quot;516.0&quot; x2=&quot;542&quot; y2=&quot;516.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;520.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>0.0</text>
+<line x1=&quot;48&quot; y1=&quot;417.2&quot; x2=&quot;542&quot; y2=&quot;417.2&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;421.2&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>1.0</text>
+<line x1=&quot;48&quot; y1=&quot;318.4&quot; x2=&quot;542&quot; y2=&quot;318.4&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;322.4&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2.0</text>
+<line x1=&quot;48&quot; y1=&quot;219.6&quot; x2=&quot;542&quot; y2=&quot;219.6&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;223.6&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>3.0</text>
+<line x1=&quot;48&quot; y1=&quot;120.8&quot; x2=&quot;542&quot; y2=&quot;120.8&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;124.8&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>4.0</text>
+<line x1=&quot;48&quot; y1=&quot;22.0&quot; x2=&quot;542&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>5.0</text>
+<path d=&quot;M 48.0,300.6 L 130.3,308.5 L 212.7,293.7 L 295.0,267.0 L 377.3,256.2 L 459.7,271.0 L 542.0,280.9&quot; stroke=&quot;#00677F&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<path d=&quot;M 48.0,346.1 L 130.3,369.8 L 212.7,362.9 L 295.0,306.5 L 377.3,263.1 L 459.7,274.9 L 542.0,289.7&quot; stroke=&quot;#5097AB&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<path d=&quot;M 48.0,169.2 L 130.3,194.9 L 212.7,201.8 L 295.0,153.4 L 377.3,118.8 L 459.7,148.5 L 542.0,165.3&quot; stroke=&quot;#79AEBF&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<path d=&quot;M 48.0,501.2 L 130.3,494.3 L 212.7,498.2 L 295.0,478.5 L 377.3,432.0 L 459.7,405.3 L 542.0,383.6&quot; stroke=&quot;#004355&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<path d=&quot;M 48.0,278.9 L 130.3,298.6 L 212.7,283.8 L 295.0,251.2 L 377.3,234.4 L 459.7,246.3 L 542.0,259.1&quot; stroke=&quot;#007A93&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<path d=&quot;M 48.0,330.3 L 130.3,343.1 L 212.7,328.3 L 295.0,288.8 L 377.3,264.1 L 459.7,271.0 L 542.0,283.8&quot; stroke=&quot;#A6CAD8&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<text x=&quot;48.0&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2018</text>
+<text x=&quot;130.3&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2019</text>
+<text x=&quot;212.7&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2020</text>
+<text x=&quot;295.0&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2021</text>
+<text x=&quot;377.3&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2022</text>
+<text x=&quot;459.7&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2023</text>
+<text x=&quot;542.0&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2024</text>
+<rect x=&quot;48&quot; y=&quot;544&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;73.0&quot; y=&quot;550.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>US 5Y5Y Breakeven</text>
+<rect x=&quot;190&quot; y=&quot;544&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;215.0&quot; y=&quot;550.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Eurozone 5Y5Y Swap</text>
+<rect x=&quot;332&quot; y=&quot;544&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#79AEBF&quot;/>
+<text x=&quot;357.0&quot; y=&quot;550.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>UK 5Y5Y Swap</text>
+<rect x=&quot;48&quot; y=&quot;560&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;73.0&quot; y=&quot;566.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Japan 5Y5Y Swap</text>
+<rect x=&quot;190&quot; y=&quot;560&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#007A93&quot;/>
+<text x=&quot;215.0&quot; y=&quot;566.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Australia 5Y5Y Swap</text>
+<rect x=&quot;332&quot; y=&quot;560&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#A6CAD8&quot;/>
+<text x=&quot;357.0&quot; y=&quot;566.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Canada 5Y5Y Swap</text></svg></div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Bloomberg, ECB, Federal Reserve</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>1</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe><iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>STRESS 02</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:20px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Dual Bar Charts: PE Fundraising vs Deployment by Strategy</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Capital Raised by Strategy ($Bn) 2024</text>
+<line x1=&quot;120.0&quot; y1=&quot;22&quot; x2=&quot;120.0&quot; y2=&quot;548&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;120.0&quot; y=&quot;562.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>0</text>
+<line x1=&quot;213.8&quot; y1=&quot;22&quot; x2=&quot;213.8&quot; y2=&quot;548&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;213.8&quot; y=&quot;562.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>125</text>
+<line x1=&quot;307.5&quot; y1=&quot;22&quot; x2=&quot;307.5&quot; y2=&quot;548&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;307.5&quot; y=&quot;562.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>250</text>
+<line x1=&quot;401.2&quot; y1=&quot;22&quot; x2=&quot;401.2&quot; y2=&quot;548&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;401.2&quot; y=&quot;562.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>375</text>
+<line x1=&quot;495.0&quot; y1=&quot;22&quot; x2=&quot;495.0&quot; y2=&quot;548&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;495.0&quot; y=&quot;562.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>500</text>
+<rect x=&quot;120&quot; y=&quot;39.6&quot; width=&quot;290.2&quot; height=&quot;40.0&quot; fill=&quot;#00677F&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;63.6&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Buyout</text>
+<text x=&quot;414.2&quot; y=&quot;63.6&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>387</text>
+<rect x=&quot;120&quot; y=&quot;114.7&quot; width=&quot;159.8&quot; height=&quot;40.0&quot; fill=&quot;#5097AB&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;138.7&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Venture Capital</text>
+<text x=&quot;283.8&quot; y=&quot;138.7&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#5097AB&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>213</text>
+<rect x=&quot;120&quot; y=&quot;189.9&quot; width=&quot;117.0&quot; height=&quot;40.0&quot; fill=&quot;#79AEBF&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;213.9&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Growth Equity</text>
+<text x=&quot;241.0&quot; y=&quot;213.9&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#79AEBF&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>156</text>
+<rect x=&quot;120&quot; y=&quot;265.0&quot; width=&quot;100.5&quot; height=&quot;40.0&quot; fill=&quot;#004355&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;289.0&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Real Estate</text>
+<text x=&quot;224.5&quot; y=&quot;289.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#004355&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>134</text>
+<rect x=&quot;120&quot; y=&quot;340.1&quot; width=&quot;88.5&quot; height=&quot;40.0&quot; fill=&quot;#007A93&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;364.1&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Infrastructure</text>
+<text x=&quot;212.5&quot; y=&quot;364.1&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#007A93&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>118</text>
+<rect x=&quot;120&quot; y=&quot;415.3&quot; width=&quot;72.8&quot; height=&quot;40.0&quot; fill=&quot;#A6CAD8&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;439.3&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Credit</text>
+<text x=&quot;196.8&quot; y=&quot;439.3&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#A6CAD8&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>97</text>
+<rect x=&quot;120&quot; y=&quot;490.4&quot; width=&quot;63.0&quot; height=&quot;40.0&quot; fill=&quot;#00677F&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;514.4&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Secondaries</text>
+<text x=&quot;187.0&quot; y=&quot;514.4&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>84</text></svg></div>
+<div style=&quot;position:absolute;left:666px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Deal Count by Quarter 2022–2024</text>
+<line x1=&quot;48&quot; y1=&quot;532.0&quot; x2=&quot;544&quot; y2=&quot;532.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;536.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>0</text>
+<line x1=&quot;48&quot; y1=&quot;430.0&quot; x2=&quot;544&quot; y2=&quot;430.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;434.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>200</text>
+<line x1=&quot;48&quot; y1=&quot;328.0&quot; x2=&quot;544&quot; y2=&quot;328.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;332.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>400</text>
+<line x1=&quot;48&quot; y1=&quot;226.0&quot; x2=&quot;544&quot; y2=&quot;226.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;230.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>600</text>
+<line x1=&quot;48&quot; y1=&quot;124.0&quot; x2=&quot;544&quot; y2=&quot;124.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;128.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>800</text>
+<line x1=&quot;48&quot; y1=&quot;22.0&quot; x2=&quot;544&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>1,000</text>
+<line x1=&quot;48&quot; y1=&quot;532.0&quot; x2=&quot;544&quot; y2=&quot;532.0&quot; stroke=&quot;#999&quot; stroke-width=&quot;1.5&quot;/>
+<rect x=&quot;54.9&quot; y=&quot;372.9&quot; width=&quot;11.9&quot; height=&quot;159.1&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;104.5&quot; y=&quot;380.0&quot; width=&quot;11.9&quot; height=&quot;152.0&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;154.1&quot; y=&quot;391.8&quot; width=&quot;11.9&quot; height=&quot;140.2&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;203.7&quot; y=&quot;409.1&quot; width=&quot;11.9&quot; height=&quot;122.9&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;253.3&quot; y=&quot;416.2&quot; width=&quot;11.9&quot; height=&quot;115.8&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;302.9&quot; y=&quot;408.1&quot; width=&quot;11.9&quot; height=&quot;123.9&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;352.5&quot; y=&quot;398.9&quot; width=&quot;11.9&quot; height=&quot;133.1&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;402.1&quot; y=&quot;390.2&quot; width=&quot;11.9&quot; height=&quot;141.8&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;451.7&quot; y=&quot;384.6&quot; width=&quot;11.9&quot; height=&quot;147.4&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;501.3&quot; y=&quot;378.5&quot; width=&quot;11.9&quot; height=&quot;153.5&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;66.8&quot; y=&quot;77.6&quot; width=&quot;11.9&quot; height=&quot;454.4&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;116.4&quot; y=&quot;86.3&quot; width=&quot;11.9&quot; height=&quot;445.7&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;166.0&quot; y=&quot;117.9&quot; width=&quot;11.9&quot; height=&quot;414.1&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;215.6&quot; y=&quot;156.6&quot; width=&quot;11.9&quot; height=&quot;375.4&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;265.2&quot; y=&quot;176.0&quot; width=&quot;11.9&quot; height=&quot;356.0&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;314.8&quot; y=&quot;164.3&quot; width=&quot;11.9&quot; height=&quot;367.7&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;364.4&quot; y=&quot;147.5&quot; width=&quot;11.9&quot; height=&quot;384.5&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;414.0&quot; y=&quot;134.2&quot; width=&quot;11.9&quot; height=&quot;397.8&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;463.6&quot; y=&quot;125.0&quot; width=&quot;11.9&quot; height=&quot;407.0&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;513.2&quot; y=&quot;116.4&quot; width=&quot;11.9&quot; height=&quot;415.6&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;78.8&quot; y=&quot;436.6&quot; width=&quot;11.9&quot; height=&quot;95.4&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;128.4&quot; y=&quot;442.2&quot; width=&quot;11.9&quot; height=&quot;89.8&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;178.0&quot; y=&quot;447.9&quot; width=&quot;11.9&quot; height=&quot;84.1&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;227.6&quot; y=&quot;456.5&quot; width=&quot;11.9&quot; height=&quot;75.5&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;277.2&quot; y=&quot;461.1&quot; width=&quot;11.9&quot; height=&quot;70.9&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;326.8&quot; y=&quot;454.5&quot; width=&quot;11.9&quot; height=&quot;77.5&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;376.4&quot; y=&quot;449.9&quot; width=&quot;11.9&quot; height=&quot;82.1&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;426.0&quot; y=&quot;445.8&quot; width=&quot;11.9&quot; height=&quot;86.2&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;475.6&quot; y=&quot;441.2&quot; width=&quot;11.9&quot; height=&quot;90.8&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;525.2&quot; y=&quot;438.2&quot; width=&quot;11.9&quot; height=&quot;93.8&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<text x=&quot;72.8&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q1&amp;#x27;22</text>
+<text x=&quot;122.4&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q2&amp;#x27;22</text>
+<text x=&quot;172.0&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q3&amp;#x27;22</text>
+<text x=&quot;221.6&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q4&amp;#x27;22</text>
+<text x=&quot;271.2&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q1&amp;#x27;23</text>
+<text x=&quot;320.8&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q2&amp;#x27;23</text>
+<text x=&quot;370.4&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q3&amp;#x27;23</text>
+<text x=&quot;420.0&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q4&amp;#x27;23</text>
+<text x=&quot;469.6&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q1&amp;#x27;24</text>
+<text x=&quot;519.2&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q2&amp;#x27;24</text>
+<rect x=&quot;48&quot; y=&quot;558&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;61.0&quot; y=&quot;567.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Buyout</text>
+<rect x=&quot;128&quot; y=&quot;558&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;141.0&quot; y=&quot;567.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>VC</text>
+<rect x=&quot;208&quot; y=&quot;558&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#79AEBF&quot;/>
+<text x=&quot;221.0&quot; y=&quot;567.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Growth</text></svg></div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Preqin 2024 Global PE Report</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>2</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe><iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>STRESS 03</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:20px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Revenue Bridge vs Segment Performance Summary</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>FY2024 Revenue Bridge ($M)</text>
+<line x1=&quot;50&quot; y1=&quot;496.0&quot; x2=&quot;542&quot; y2=&quot;496.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;500.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>4,000</text>
+<line x1=&quot;50&quot; y1=&quot;377.5&quot; x2=&quot;542&quot; y2=&quot;377.5&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;381.5&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>4,875</text>
+<line x1=&quot;50&quot; y1=&quot;259.0&quot; x2=&quot;542&quot; y2=&quot;259.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;263.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>5,750</text>
+<line x1=&quot;50&quot; y1=&quot;140.5&quot; x2=&quot;542&quot; y2=&quot;140.5&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;144.5&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>6,625</text>
+<line x1=&quot;50&quot; y1=&quot;22.0&quot; x2=&quot;542&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>7,500</text>
+<line x1=&quot;50&quot; y1=&quot;496.0&quot; x2=&quot;542&quot; y2=&quot;496.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<rect x=&quot;62.3&quot; y=&quot;384.9&quot; width=&quot;36.9&quot; height=&quot;111.1&quot; fill=&quot;#007A93&quot;/>
+<text x=&quot;80.8&quot; y=&quot;380.9&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>4,820</text>
+<text x=&quot;80.8&quot; y=&quot;508&quot; transform=&quot;rotate(-40 80.8 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>FY2023 Base</text>
+<rect x=&quot;123.8&quot; y=&quot;302.1&quot; width=&quot;36.9&quot; height=&quot;82.9&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;142.2&quot; y=&quot;298.1&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>+612</text>
+<text x=&quot;142.2&quot; y=&quot;508&quot; transform=&quot;rotate(-40 142.2 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Volume Growth</text>
+<line x1=&quot;173.0&quot; y1=&quot;302.1&quot; x2=&quot;185.3&quot; y2=&quot;302.1&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;185.3&quot; y=&quot;263.6&quot; width=&quot;36.9&quot; height=&quot;38.5&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;203.8&quot; y=&quot;259.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>+284</text>
+<text x=&quot;203.8&quot; y=&quot;508&quot; transform=&quot;rotate(-40 203.8 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Pricing Impact</text>
+<line x1=&quot;234.5&quot; y1=&quot;263.6&quot; x2=&quot;246.8&quot; y2=&quot;263.6&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;246.8&quot; y=&quot;263.6&quot; width=&quot;36.9&quot; height=&quot;26.8&quot; fill=&quot;#C62828&quot;/>
+<text x=&quot;265.2&quot; y=&quot;259.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>-198</text>
+<text x=&quot;265.2&quot; y=&quot;508&quot; transform=&quot;rotate(-40 265.2 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>FX Headwind</text>
+<line x1=&quot;296.0&quot; y1=&quot;290.4&quot; x2=&quot;308.3&quot; y2=&quot;290.4&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;308.3&quot; y=&quot;290.4&quot; width=&quot;36.9&quot; height=&quot;19.4&quot; fill=&quot;#C62828&quot;/>
+<text x=&quot;326.8&quot; y=&quot;286.4&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>-143</text>
+<text x=&quot;326.8&quot; y=&quot;508&quot; transform=&quot;rotate(-40 326.8 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Portfolio Exits</text>
+<line x1=&quot;357.5&quot; y1=&quot;309.8&quot; x2=&quot;369.8&quot; y2=&quot;309.8&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;369.8&quot; y=&quot;239.2&quot; width=&quot;36.9&quot; height=&quot;70.6&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;388.2&quot; y=&quot;235.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>+521</text>
+<text x=&quot;388.2&quot; y=&quot;508&quot; transform=&quot;rotate(-40 388.2 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Acquisitions</text>
+<line x1=&quot;419.0&quot; y1=&quot;239.2&quot; x2=&quot;431.3&quot; y2=&quot;239.2&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;431.3&quot; y=&quot;239.2&quot; width=&quot;36.9&quot; height=&quot;11.8&quot; fill=&quot;#C62828&quot;/>
+<text x=&quot;449.8&quot; y=&quot;235.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>-87</text>
+<text x=&quot;449.8&quot; y=&quot;508&quot; transform=&quot;rotate(-40 449.8 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Restructuring</text>
+<rect x=&quot;492.8&quot; y=&quot;251.0&quot; width=&quot;36.9&quot; height=&quot;245.0&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;511.2&quot; y=&quot;247.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>5,809</text>
+<text x=&quot;511.2&quot; y=&quot;508&quot; transform=&quot;rotate(-40 511.2 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>FY2024 Total</text></svg></div>
+<div style=&quot;position:absolute;left:666px;top:110px;width:109px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:670px;top:114px;width:102px;height:20px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Segment</div>
+<div style=&quot;position:absolute;left:776px;top:110px;width:87px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:780px;top:114px;width:80px;height:20px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>2023 Revenue</div>
+<div style=&quot;position:absolute;left:864px;top:110px;width:87px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:868px;top:114px;width:80px;height:20px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>2024 Revenue</div>
+<div style=&quot;position:absolute;left:952px;top:110px;width:87px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:956px;top:114px;width:80px;height:20px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>YoY Growth</div>
+<div style=&quot;position:absolute;left:1040px;top:110px;width:87px;height:28px;background:#00677F;&quot;></div>
+<div style=&quot;position:absolute;left:1044px;top:114px;width:80px;height:20px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>EBITDA Margin</div>
+<div style=&quot;position:absolute;left:1128px;top:110px;width:87px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:1132px;top:114px;width:80px;height:20px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Headcount</div>
+<div style=&quot;position:absolute;left:666px;top:138px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:149px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Enterprise Software</div>
+<div style=&quot;position:absolute;left:776px;top:138px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:149px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>$1,842M</div>
+<div style=&quot;position:absolute;left:864px;top:138px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:149px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>$2,156M</div>
+<div style=&quot;position:absolute;left:952px;top:138px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:958px;top:149px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>+17.0%</div>
+<div style=&quot;position:absolute;left:1040px;top:138px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1046px;top:149px;width:76px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>34.2%</div>
+<div style=&quot;position:absolute;left:1128px;top:138px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1134px;top:149px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>8,420</div>
+<div style=&quot;position:absolute;left:666px;top:190px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:201px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Cloud Services</div>
+<div style=&quot;position:absolute;left:776px;top:190px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:201px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>$1,124M</div>
+<div style=&quot;position:absolute;left:864px;top:190px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:201px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>$1,387M</div>
+<div style=&quot;position:absolute;left:952px;top:190px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:958px;top:201px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>+23.4%</div>
+<div style=&quot;position:absolute;left:1040px;top:190px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1046px;top:201px;width:76px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>28.7%</div>
+<div style=&quot;position:absolute;left:1128px;top:190px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1134px;top:201px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>4,210</div>
+<div style=&quot;position:absolute;left:666px;top:242px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:253px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Professional Svcs</div>
+<div style=&quot;position:absolute;left:776px;top:242px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:253px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>$892M</div>
+<div style=&quot;position:absolute;left:864px;top:242px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:253px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>$1,021M</div>
+<div style=&quot;position:absolute;left:952px;top:242px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:958px;top:253px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>+14.5%</div>
+<div style=&quot;position:absolute;left:1040px;top:242px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1046px;top:253px;width:76px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>18.3%</div>
+<div style=&quot;position:absolute;left:1128px;top:242px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1134px;top:253px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>6,890</div>
+<div style=&quot;position:absolute;left:666px;top:294px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:305px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Hardware &amp;amp; OEM</div>
+<div style=&quot;position:absolute;left:776px;top:294px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:305px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>$612M</div>
+<div style=&quot;position:absolute;left:864px;top:294px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:305px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>$798M</div>
+<div style=&quot;position:absolute;left:952px;top:294px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:958px;top:305px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>+30.4%</div>
+<div style=&quot;position:absolute;left:1040px;top:294px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1046px;top:305px;width:76px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>22.1%</div>
+<div style=&quot;position:absolute;left:1128px;top:294px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1134px;top:305px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>2,340</div>
+<div style=&quot;position:absolute;left:666px;top:346px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:357px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Maintenance</div>
+<div style=&quot;position:absolute;left:776px;top:346px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:357px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>$350M</div>
+<div style=&quot;position:absolute;left:864px;top:346px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:357px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>$447M</div>
+<div style=&quot;position:absolute;left:952px;top:346px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:958px;top:357px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>+27.7%</div>
+<div style=&quot;position:absolute;left:1040px;top:346px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1046px;top:357px;width:76px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>61.4%</div>
+<div style=&quot;position:absolute;left:1128px;top:346px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1134px;top:357px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>1,120</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Company filings, internal analysis</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>3</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe><iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>STRESS 04</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:20px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Portfolio Allocation vs Strategic Rationale</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><path d=&quot;M 175.0 123.0 A 165 165 0 0 1 308.5 385.0 L 251.9 343.8 A 95 95 0 0 0 175.0 193.0 Z&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;290.8&quot; y=&quot;233.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>35%</text>
+<path d=&quot;M 308.5 385.0 A 165 165 0 0 1 114.3 441.4 L 140.0 376.3 A 95 95 0 0 0 251.9 343.8 Z&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;211.3&quot; y=&quot;416.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>21%</text>
+<path d=&quot;M 114.3 441.4 A 165 165 0 0 1 12.5 316.5 L 81.4 304.4 A 95 95 0 0 0 140.0 376.3 Z&quot; fill=&quot;#79AEBF&quot;/>
+<text x=&quot;74.2&quot; y=&quot;374.1&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>16%</text>
+<path d=&quot;M 12.5 316.5 A 165 165 0 0 1 43.1 188.9 L 99.0 230.9 A 95 95 0 0 0 81.4 304.4 Z&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;48.6&quot; y=&quot;261.7&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>13%</text>
+<path d=&quot;M 43.1 188.9 A 165 165 0 0 1 130.1 129.2 L 149.2 196.6 A 95 95 0 0 0 99.0 230.9 Z&quot; fill=&quot;#007A93&quot;/>
+<text x=&quot;101.5&quot; y=&quot;184.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>10%</text>
+<path d=&quot;M 130.1 129.2 A 165 165 0 0 1 175.0 123.0 L 175.0 193.0 A 95 95 0 0 0 149.2 196.6 Z&quot; fill=&quot;#A6CAD8&quot;/>
+<text x=&quot;175&quot; y=&quot;286&quot; text-anchor=&quot;middle&quot; font-size=&quot;20&quot; font-weight=&quot;700&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>$4.7T</text>
+<text x=&quot;175&quot; y=&quot;304&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>AUM</text>
+<rect x=&quot;360&quot; y=&quot;198&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#00677F&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;208.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>North American Buyout</text>
+<text x=&quot;376.0&quot; y=&quot;220.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>35.0%</text>
+<rect x=&quot;360&quot; y=&quot;230&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#5097AB&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;240.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>European Growth Equity</text>
+<text x=&quot;376.0&quot; y=&quot;252.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>21.0%</text>
+<rect x=&quot;360&quot; y=&quot;262&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#79AEBF&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;272.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Asia Pacific Infrastructure</text>
+<text x=&quot;376.0&quot; y=&quot;284.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>16.2%</text>
+<rect x=&quot;360&quot; y=&quot;294&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#004355&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;304.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Global Credit Opportunities</text>
+<text x=&quot;376.0&quot; y=&quot;316.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>13.0%</text>
+<rect x=&quot;360&quot; y=&quot;326&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#007A93&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;336.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Climate Transition Fund</text>
+<text x=&quot;376.0&quot; y=&quot;348.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>10.4%</text>
+<rect x=&quot;360&quot; y=&quot;358&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#A6CAD8&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;368.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Secondaries &amp;amp; Co-Invest</text>
+<text x=&quot;376.0&quot; y=&quot;380.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>4.4%</text></svg></div>
+<div style=&quot;position:absolute;left:666px;top:209px;width:550px;height:20px;font-size:13px;font-weight:700;color:#00677F;&quot;>Portfolio Construction Rationale</div>
+<div style=&quot;position:absolute;left:666px;top:243px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:237px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>North American Buyout remains anchor strategy</div>
+<div style=&quot;position:absolute;left:682px;top:259px;width:534px;height:34px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>Strong deal flow in tech-enabled services; 14 platforms added in 2024 at 8.2x avg entry EBITDA</div>
+<div style=&quot;position:absolute;left:666px;top:313px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:307px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>European Growth Equity allocation increased 12%</div>
+<div style=&quot;position:absolute;left:682px;top:329px;width:534px;height:34px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>Energy transition and B2B SaaS driving outsized deal activity; euro weakness creates entry opportunity</div>
+<div style=&quot;position:absolute;left:666px;top:383px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:377px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>Asia Pacific Infrastructure de-risked</div>
+<div style=&quot;position:absolute;left:682px;top:399px;width:534px;height:34px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>Shifted from China exposure to SE Asia data centers and Australian renewables; IRR target 13–15%</div>
+<div style=&quot;position:absolute;left:666px;top:453px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:447px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>Global Credit Opportunities buffer expanded</div>
+<div style=&quot;position:absolute;left:682px;top:469px;width:534px;height:34px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>Senior secured floating rate at 450bps spread; provides downside protection in rate volatility scenarios</div>
+<div style=&quot;position:absolute;left:666px;top:523px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:517px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>Climate Transition Fund fully committed</div>
+<div style=&quot;position:absolute;left:682px;top:539px;width:534px;height:34px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>25 investments across wind, solar and grid storage; average DPI of 0.8x ahead of 5-year plan</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Portfolio Management Team, Q4 2024 Review</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>4</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe><iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>STRESS 05</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:20px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Revenue Growth Rate vs Absolute Deal Volume</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>YoY Revenue Growth by Cohort 2019–2024</text>
+<line x1=&quot;48&quot; y1=&quot;516.0&quot; x2=&quot;542&quot; y2=&quot;516.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;520.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>-2%</text>
+<line x1=&quot;48&quot; y1=&quot;417.2&quot; x2=&quot;542&quot; y2=&quot;417.2&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;421.2&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>8%</text>
+<line x1=&quot;48&quot; y1=&quot;318.4&quot; x2=&quot;542&quot; y2=&quot;318.4&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;322.4&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>19%</text>
+<line x1=&quot;48&quot; y1=&quot;219.6&quot; x2=&quot;542&quot; y2=&quot;219.6&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;223.6&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>29%</text>
+<line x1=&quot;48&quot; y1=&quot;120.8&quot; x2=&quot;542&quot; y2=&quot;120.8&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;124.8&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>40%</text>
+<line x1=&quot;48&quot; y1=&quot;22.0&quot; x2=&quot;542&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>50%</text>
+<path d=&quot;M 48.0,418.3 L 146.8,516.0 L 245.6,378.5 L 344.4,403.2 L 443.2,428.8 L 542.0,436.4&quot; stroke=&quot;#00677F&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<circle cx=&quot;48.0&quot; cy=&quot;418.3&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;146.8&quot; cy=&quot;516.0&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;245.6&quot; cy=&quot;378.5&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;344.4&quot; cy=&quot;403.2&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;443.2&quot; cy=&quot;428.8&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;542.0&quot; cy=&quot;436.4&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<path d=&quot;M 146.8,322.6 L 245.6,167.1 L 344.4,228.7 L 443.2,312.1 L 542.0,355.8&quot; stroke=&quot;#5097AB&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<circle cx=&quot;146.8&quot; cy=&quot;322.6&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;245.6&quot; cy=&quot;167.1&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;344.4&quot; cy=&quot;228.7&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;443.2&quot; cy=&quot;312.1&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;542.0&quot; cy=&quot;355.8&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<path d=&quot;M 344.4,104.5 L 443.2,200.3 L 542.0,261.9&quot; stroke=&quot;#79AEBF&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<circle cx=&quot;344.4&quot; cy=&quot;104.5&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;443.2&quot; cy=&quot;200.3&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;542.0&quot; cy=&quot;261.9&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<path d=&quot;M 48.0,418.3 L 146.8,457.2 L 245.6,286.5 L 344.4,318.8 L 443.2,352.0 L 542.0,374.7&quot; stroke=&quot;#004355&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<circle cx=&quot;48.0&quot; cy=&quot;418.3&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;146.8&quot; cy=&quot;457.2&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;245.6&quot; cy=&quot;286.5&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;344.4&quot; cy=&quot;318.8&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;443.2&quot; cy=&quot;352.0&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;542.0&quot; cy=&quot;374.7&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<text x=&quot;48.0&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2019</text>
+<text x=&quot;146.8&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2020</text>
+<text x=&quot;245.6&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2021</text>
+<text x=&quot;344.4&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2022</text>
+<text x=&quot;443.2&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2023</text>
+<text x=&quot;542.0&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2024</text>
+<rect x=&quot;48&quot; y=&quot;544&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;73.0&quot; y=&quot;550.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Cohort 2017 (Mature)</text>
+<rect x=&quot;196&quot; y=&quot;544&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;221.0&quot; y=&quot;550.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Cohort 2019 (Growth)</text>
+<rect x=&quot;344&quot; y=&quot;544&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#79AEBF&quot;/>
+<text x=&quot;369.0&quot; y=&quot;550.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Cohort 2021 (Early)</text>
+<rect x=&quot;48&quot; y=&quot;560&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;73.0&quot; y=&quot;566.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Portfolio Average</text></svg></div>
+<div style=&quot;position:absolute;left:666px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Deal Volume by Sector ($Bn) 2024</text>
+<line x1=&quot;48&quot; y1=&quot;518.0&quot; x2=&quot;544&quot; y2=&quot;518.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;522.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>0</text>
+<line x1=&quot;48&quot; y1=&quot;418.8&quot; x2=&quot;544&quot; y2=&quot;418.8&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;422.8&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>10</text>
+<line x1=&quot;48&quot; y1=&quot;319.6&quot; x2=&quot;544&quot; y2=&quot;319.6&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;323.6&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>20</text>
+<line x1=&quot;48&quot; y1=&quot;220.4&quot; x2=&quot;544&quot; y2=&quot;220.4&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;224.4&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>30</text>
+<line x1=&quot;48&quot; y1=&quot;121.2&quot; x2=&quot;544&quot; y2=&quot;121.2&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;125.2&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>40</text>
+<line x1=&quot;48&quot; y1=&quot;22.0&quot; x2=&quot;544&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>50</text>
+<line x1=&quot;48&quot; y1=&quot;518.0&quot; x2=&quot;544&quot; y2=&quot;518.0&quot; stroke=&quot;#999&quot; stroke-width=&quot;1.5&quot;/>
+<rect x=&quot;65.4&quot; y=&quot;395.0&quot; width=&quot;89.3&quot; height=&quot;123.0&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;189.4&quot; y=&quot;362.3&quot; width=&quot;89.3&quot; height=&quot;155.7&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;313.4&quot; y=&quot;387.1&quot; width=&quot;89.3&quot; height=&quot;130.9&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;437.4&quot; y=&quot;330.5&quot; width=&quot;89.3&quot; height=&quot;187.5&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;65.4&quot; y=&quot;314.6&quot; width=&quot;89.3&quot; height=&quot;80.4&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;189.4&quot; y=&quot;270.0&quot; width=&quot;89.3&quot; height=&quot;92.3&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;313.4&quot; y=&quot;300.8&quot; width=&quot;89.3&quot; height=&quot;86.3&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;437.4&quot; y=&quot;219.4&quot; width=&quot;89.3&quot; height=&quot;111.1&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;65.4&quot; y=&quot;253.1&quot; width=&quot;89.3&quot; height=&quot;61.5&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;189.4&quot; y=&quot;199.6&quot; width=&quot;89.3&quot; height=&quot;70.4&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;313.4&quot; y=&quot;233.3&quot; width=&quot;89.3&quot; height=&quot;67.5&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;437.4&quot; y=&quot;136.1&quot; width=&quot;89.3&quot; height=&quot;83.3&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;65.4&quot; y=&quot;210.5&quot; width=&quot;89.3&quot; height=&quot;42.7&quot; fill=&quot;#004355&quot; rx=&quot;1&quot;/>
+<rect x=&quot;189.4&quot; y=&quot;148.0&quot; width=&quot;89.3&quot; height=&quot;51.6&quot; fill=&quot;#004355&quot; rx=&quot;1&quot;/>
+<rect x=&quot;313.4&quot; y=&quot;184.7&quot; width=&quot;89.3&quot; height=&quot;48.6&quot; fill=&quot;#004355&quot; rx=&quot;1&quot;/>
+<rect x=&quot;437.4&quot; y=&quot;75.6&quot; width=&quot;89.3&quot; height=&quot;60.5&quot; fill=&quot;#004355&quot; rx=&quot;1&quot;/>
+<rect x=&quot;65.4&quot; y=&quot;172.8&quot; width=&quot;89.3&quot; height=&quot;37.7&quot; fill=&quot;#007A93&quot; rx=&quot;1&quot;/>
+<rect x=&quot;189.4&quot; y=&quot;104.3&quot; width=&quot;89.3&quot; height=&quot;43.6&quot; fill=&quot;#007A93&quot; rx=&quot;1&quot;/>
+<rect x=&quot;313.4&quot; y=&quot;144.0&quot; width=&quot;89.3&quot; height=&quot;40.7&quot; fill=&quot;#007A93&quot; rx=&quot;1&quot;/>
+<rect x=&quot;437.4&quot; y=&quot;23.0&quot; width=&quot;89.3&quot; height=&quot;52.6&quot; fill=&quot;#007A93&quot; rx=&quot;1&quot;/>
+<text x=&quot;110.0&quot; y=&quot;532.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q1</text>
+<text x=&quot;234.0&quot; y=&quot;532.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q2</text>
+<text x=&quot;358.0&quot; y=&quot;532.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q3</text>
+<text x=&quot;482.0&quot; y=&quot;532.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q4</text>
+<rect x=&quot;48&quot; y=&quot;544&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;61.0&quot; y=&quot;553.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Technology</text>
+<rect x=&quot;154&quot; y=&quot;544&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;167.0&quot; y=&quot;553.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Healthcare</text>
+<rect x=&quot;260&quot; y=&quot;544&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#79AEBF&quot;/>
+<text x=&quot;273.0&quot; y=&quot;553.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Industrials</text>
+<rect x=&quot;366&quot; y=&quot;544&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;379.0&quot; y=&quot;553.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Consumer</text>
+<rect x=&quot;48&quot; y=&quot;558&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#007A93&quot;/>
+<text x=&quot;61.0&quot; y=&quot;567.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Financial Svcs</text></svg></div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Internal portfolio data, Pitchbook 2024</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>5</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe><iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>STRESS 06</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:20px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Portfolio Positioning: Risk-Return vs Strategic Priorities</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>IRR vs Risk Score by Asset</text>
+<line x1=&quot;48&quot; y1=&quot;22.0&quot; x2=&quot;542&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;48.0&quot; y1=&quot;22&quot; x2=&quot;48.0&quot; y2=&quot;540&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;48&quot; y1=&quot;151.5&quot; x2=&quot;542&quot; y2=&quot;151.5&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;171.5&quot; y1=&quot;22&quot; x2=&quot;171.5&quot; y2=&quot;540&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;48&quot; y1=&quot;281.0&quot; x2=&quot;542&quot; y2=&quot;281.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;295.0&quot; y1=&quot;22&quot; x2=&quot;295.0&quot; y2=&quot;540&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;48&quot; y1=&quot;410.5&quot; x2=&quot;542&quot; y2=&quot;410.5&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;418.5&quot; y1=&quot;22&quot; x2=&quot;418.5&quot; y2=&quot;540&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;48&quot; y1=&quot;540.0&quot; x2=&quot;542&quot; y2=&quot;540.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;542.0&quot; y1=&quot;22&quot; x2=&quot;542.0&quot; y2=&quot;540&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;295.0&quot; y1=&quot;22&quot; x2=&quot;295.0&quot; y2=&quot;540&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4 3&quot;/>
+<line x1=&quot;48&quot; y1=&quot;281.0&quot; x2=&quot;542&quot; y2=&quot;281.0&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4 3&quot;/>
+<text x=&quot;171.5&quot; y=&quot;36.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Low Risk / High Return</text>
+<text x=&quot;418.5&quot; y=&quot;36.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>High Risk / High Return</text>
+<text x=&quot;171.5&quot; y=&quot;532.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Low Risk / Low Return</text>
+<text x=&quot;418.5&quot; y=&quot;532.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>High Risk / Low Return</text>
+<circle cx=&quot;108.4&quot; cy=&quot;267.7&quot; r=&quot;8&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;119.4&quot; y=&quot;271.7&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Asset A</text>
+<circle cx=&quot;179.7&quot; cy=&quot;204.0&quot; r=&quot;10&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;192.7&quot; y=&quot;208.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Asset B</text>
+<circle cx=&quot;256.6&quot; cy=&quot;121.2&quot; r=&quot;14&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;273.6&quot; y=&quot;125.2&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Asset C</text>
+<circle cx=&quot;278.5&quot; cy=&quot;316.5&quot; r=&quot;7&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;288.5&quot; y=&quot;320.5&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Asset D</text>
+<circle cx=&quot;360.9&quot; cy=&quot;75.3&quot; r=&quot;12&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;375.9&quot; y=&quot;79.3&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Asset E</text>
+<circle cx=&quot;393.8&quot; cy=&quot;350.6&quot; r=&quot;6&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;402.8&quot; y=&quot;354.6&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Asset F</text>
+<circle cx=&quot;437.7&quot; cy=&quot;175.9&quot; r=&quot;11&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;451.7&quot; y=&quot;179.9&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Asset G</text>
+<circle cx=&quot;207.2&quot; cy=&quot;255.8&quot; r=&quot;9&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;219.2&quot; y=&quot;259.8&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Asset H</text>
+<circle cx=&quot;311.5&quot; cy=&quot;411.2&quot; r=&quot;5&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;319.5&quot; y=&quot;415.2&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Asset I</text>
+<circle cx=&quot;135.8&quot; cy=&quot;328.4&quot; r=&quot;8&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;146.8&quot; y=&quot;332.4&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Asset J</text>
+<line x1=&quot;48&quot; y1=&quot;540&quot; x2=&quot;542&quot; y2=&quot;540&quot; stroke=&quot;#999&quot; stroke-width=&quot;1.5&quot;/>
+<line x1=&quot;48&quot; y1=&quot;22&quot; x2=&quot;48&quot; y2=&quot;540&quot; stroke=&quot;#999&quot; stroke-width=&quot;1.5&quot;/>
+<text x=&quot;295.0&quot; y=&quot;568.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Risk Score (1–10)</text>
+<text x=&quot;12&quot; y=&quot;281.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; fill=&quot;#707070&quot; transform=&quot;rotate(-90,12,281.0)&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Net IRR (%)</text></svg></div>
+<div style=&quot;position:absolute;left:666px;top:209px;width:550px;height:20px;font-size:13px;font-weight:700;color:#00677F;&quot;>Key Observations</div>
+<div style=&quot;position:absolute;left:666px;top:243px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:237px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>Cluster in moderate-risk / high-return quadrant</div>
+<div style=&quot;position:absolute;left:682px;top:259px;width:534px;height:34px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>Assets B, C, H grouped at 3–5 risk score with 19–28% IRR; represents core outperformance thesis</div>
+<div style=&quot;position:absolute;left:666px;top:313px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:307px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>Two outliers in high-risk zone require monitoring</div>
+<div style=&quot;position:absolute;left:682px;top:329px;width:534px;height:34px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>Assets F and I show 6.7–8.1 risk with below-target IRR of 12.8% and 8.7% respectively</div>
+<div style=&quot;position:absolute;left:666px;top:383px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:377px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>Asset C best risk-adjusted return in portfolio</div>
+<div style=&quot;position:absolute;left:682px;top:399px;width:534px;height:34px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>28.3% IRR at 4.8 risk score; tech-enabled logistics buyout; exit process initiated Q3 2025</div>
+<div style=&quot;position:absolute;left:666px;top:453px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:447px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>Low-risk anchor positions delivering steady returns</div>
+<div style=&quot;position:absolute;left:682px;top:469px;width:534px;height:34px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>Assets A and J at sub-3 risk with 14–18% IRR; infrastructure assets providing portfolio stability</div>
+<div style=&quot;position:absolute;left:666px;top:523px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:517px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>Portfolio average IRR 20.1% vs 18% target</div>
+<div style=&quot;position:absolute;left:682px;top:539px;width:534px;height:34px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>Outperformance driven by technology sector multiples expansion; review risk model assumptions</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Portfolio Risk Team, Q4 2024</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>6</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe><iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>STRESS 07</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:20px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Fund Performance KPIs vs Peer Benchmarking</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:146px;width:269px;height:148px;background:#fff;border-radius:6px;border:1px solid #DCE9ED;overflow:hidden;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:146px;width:269px;height:88px;background:#00677F;border-radius:6px 6px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:76px;top:174px;width:245px;height:34px;font-size:32px;font-weight:700;color:#fff;line-height:1;&quot;>21.4%</div>
+<div style=&quot;position:absolute;left:76px;top:244px;width:245px;height:22px;font-size:11px;color:#444;line-height:1.3;overflow:hidden;&quot;>Net IRR (Fund IV)</div>
+<div style=&quot;position:absolute;left:76px;top:270px;width:245px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+3.2pp vs Fund III</div>
+<div style=&quot;position:absolute;left:345px;top:146px;width:269px;height:148px;background:#fff;border-radius:6px;border:1px solid #DCE9ED;overflow:hidden;&quot;></div>
+<div style=&quot;position:absolute;left:345px;top:146px;width:269px;height:88px;background:#00677F;border-radius:6px 6px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:357px;top:174px;width:245px;height:34px;font-size:32px;font-weight:700;color:#fff;line-height:1;&quot;>1.87x</div>
+<div style=&quot;position:absolute;left:357px;top:244px;width:245px;height:22px;font-size:11px;color:#444;line-height:1.3;overflow:hidden;&quot;>TVPI Multiple</div>
+<div style=&quot;position:absolute;left:357px;top:270px;width:245px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+0.14x vs vintage avg</div>
+<div style=&quot;position:absolute;left:64px;top:318px;width:269px;height:148px;background:#fff;border-radius:6px;border:1px solid #DCE9ED;overflow:hidden;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:318px;width:269px;height:88px;background:#00677F;border-radius:6px 6px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:76px;top:346px;width:245px;height:34px;font-size:32px;font-weight:700;color:#fff;line-height:1;&quot;>$4.7Bn</div>
+<div style=&quot;position:absolute;left:76px;top:416px;width:245px;height:22px;font-size:11px;color:#444;line-height:1.3;overflow:hidden;&quot;>Total Equity Value</div>
+<div style=&quot;position:absolute;left:76px;top:442px;width:245px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+$620M YoY</div>
+<div style=&quot;position:absolute;left:345px;top:318px;width:269px;height:148px;background:#fff;border-radius:6px;border:1px solid #DCE9ED;overflow:hidden;&quot;></div>
+<div style=&quot;position:absolute;left:345px;top:318px;width:269px;height:88px;background:#00677F;border-radius:6px 6px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:357px;top:346px;width:245px;height:34px;font-size:32px;font-weight:700;color:#fff;line-height:1;&quot;>0.61x</div>
+<div style=&quot;position:absolute;left:357px;top:416px;width:245px;height:22px;font-size:11px;color:#444;line-height:1.3;overflow:hidden;&quot;>DPI (Realised)</div>
+<div style=&quot;position:absolute;left:357px;top:442px;width:245px;height:14px;font-size:10px;font-weight:700;color:#707070;&quot;>On track for 0.8x target</div>
+<div style=&quot;position:absolute;left:64px;top:490px;width:269px;height:148px;background:#fff;border-radius:6px;border:1px solid #DCE9ED;overflow:hidden;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:490px;width:269px;height:88px;background:#00677F;border-radius:6px 6px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:76px;top:518px;width:245px;height:34px;font-size:32px;font-weight:700;color:#fff;line-height:1;&quot;>3.2yrs</div>
+<div style=&quot;position:absolute;left:76px;top:588px;width:245px;height:22px;font-size:11px;color:#444;line-height:1.3;overflow:hidden;&quot;>Avg Holding Period</div>
+<div style=&quot;position:absolute;left:76px;top:614px;width:245px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>Below 4yr fund avg</div>
+<div style=&quot;position:absolute;left:345px;top:490px;width:269px;height:148px;background:#fff;border-radius:6px;border:1px solid #DCE9ED;overflow:hidden;&quot;></div>
+<div style=&quot;position:absolute;left:345px;top:490px;width:269px;height:88px;background:#00677F;border-radius:6px 6px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:357px;top:518px;width:245px;height:34px;font-size:32px;font-weight:700;color:#fff;line-height:1;&quot;>94%</div>
+<div style=&quot;position:absolute;left:357px;top:588px;width:245px;height:22px;font-size:11px;color:#444;line-height:1.3;overflow:hidden;&quot;>Capital Deployed</div>
+<div style=&quot;position:absolute;left:357px;top:614px;width:245px;height:14px;font-size:10px;font-weight:700;color:#707070;&quot;>2 platforms remaining</div>
+<div style=&quot;position:absolute;left:666px;top:110px;width:109px;height:28px;background:#00677F;&quot;></div>
+<div style=&quot;position:absolute;left:670px;top:114px;width:102px;height:20px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Fund</div>
+<div style=&quot;position:absolute;left:776px;top:110px;width:87px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:780px;top:114px;width:80px;height:20px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Vintage</div>
+<div style=&quot;position:absolute;left:864px;top:110px;width:87px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:868px;top:114px;width:80px;height:20px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Net IRR</div>
+<div style=&quot;position:absolute;left:952px;top:110px;width:87px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:956px;top:114px;width:80px;height:20px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>TVPI</div>
+<div style=&quot;position:absolute;left:1040px;top:110px;width:87px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:1044px;top:114px;width:80px;height:20px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>DPI</div>
+<div style=&quot;position:absolute;left:1128px;top:110px;width:87px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:1132px;top:114px;width:80px;height:20px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Strategy</div>
+<div style=&quot;position:absolute;left:666px;top:138px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:149px;width:98px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>Fund IV (Ours)</div>
+<div style=&quot;position:absolute;left:776px;top:138px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:149px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>2021</div>
+<div style=&quot;position:absolute;left:864px;top:138px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:149px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>21.4%</div>
+<div style=&quot;position:absolute;left:952px;top:138px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:958px;top:149px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>1.87x</div>
+<div style=&quot;position:absolute;left:1040px;top:138px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1046px;top:149px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>0.61x</div>
+<div style=&quot;position:absolute;left:1128px;top:138px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1134px;top:149px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Buyout</div>
+<div style=&quot;position:absolute;left:666px;top:190px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:201px;width:98px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>Peer A Fund VI</div>
+<div style=&quot;position:absolute;left:776px;top:190px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:201px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>2021</div>
+<div style=&quot;position:absolute;left:864px;top:190px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:201px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>18.2%</div>
+<div style=&quot;position:absolute;left:952px;top:190px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:958px;top:201px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>1.71x</div>
+<div style=&quot;position:absolute;left:1040px;top:190px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1046px;top:201px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>0.54x</div>
+<div style=&quot;position:absolute;left:1128px;top:190px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1134px;top:201px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Buyout</div>
+<div style=&quot;position:absolute;left:666px;top:242px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:253px;width:98px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>Peer B Fund V</div>
+<div style=&quot;position:absolute;left:776px;top:242px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:253px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>2021</div>
+<div style=&quot;position:absolute;left:864px;top:242px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:253px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>19.7%</div>
+<div style=&quot;position:absolute;left:952px;top:242px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:958px;top:253px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>1.79x</div>
+<div style=&quot;position:absolute;left:1040px;top:242px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1046px;top:253px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>0.58x</div>
+<div style=&quot;position:absolute;left:1128px;top:242px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1134px;top:253px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Buyout</div>
+<div style=&quot;position:absolute;left:666px;top:294px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:305px;width:98px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>Peer C Growth III</div>
+<div style=&quot;position:absolute;left:776px;top:294px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:305px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>2021</div>
+<div style=&quot;position:absolute;left:864px;top:294px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:305px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>24.3%</div>
+<div style=&quot;position:absolute;left:952px;top:294px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:958px;top:305px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>2.01x</div>
+<div style=&quot;position:absolute;left:1040px;top:294px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1046px;top:305px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>0.47x</div>
+<div style=&quot;position:absolute;left:1128px;top:294px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1134px;top:305px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Growth</div>
+<div style=&quot;position:absolute;left:666px;top:346px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:357px;width:98px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>Vintage 2021 Median</div>
+<div style=&quot;position:absolute;left:776px;top:346px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:357px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>2021</div>
+<div style=&quot;position:absolute;left:864px;top:346px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:357px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>17.8%</div>
+<div style=&quot;position:absolute;left:952px;top:346px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:958px;top:357px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>1.68x</div>
+<div style=&quot;position:absolute;left:1040px;top:346px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1046px;top:357px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>0.51x</div>
+<div style=&quot;position:absolute;left:1128px;top:346px;width:87px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1134px;top:357px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Buyout</div>
+<div style=&quot;position:absolute;left:666px;top:398px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:409px;width:98px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>Top Quartile Bench.</div>
+<div style=&quot;position:absolute;left:776px;top:398px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:409px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>2021</div>
+<div style=&quot;position:absolute;left:864px;top:398px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:409px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>22.1%</div>
+<div style=&quot;position:absolute;left:952px;top:398px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:958px;top:409px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>1.92x</div>
+<div style=&quot;position:absolute;left:1040px;top:398px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1046px;top:409px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>0.65x</div>
+<div style=&quot;position:absolute;left:1128px;top:398px;width:87px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1134px;top:409px;width:76px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Buyout</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Preqin Benchmarks Q3 2024, Internal data</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>7</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe><iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>STRESS 08</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:20px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Digital Transformation Roadmap vs Progress Metrics</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>8-Quarter Transformation Roadmap</text>
+<line x1=&quot;130.0&quot; y1=&quot;44&quot; x2=&quot;130.0&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;155.9&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q1 &amp;#x27;24</text>
+<line x1=&quot;181.8&quot; y1=&quot;44&quot; x2=&quot;181.8&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;207.6&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q2 &amp;#x27;24</text>
+<line x1=&quot;233.5&quot; y1=&quot;44&quot; x2=&quot;233.5&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;259.4&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q3 &amp;#x27;24</text>
+<line x1=&quot;285.2&quot; y1=&quot;44&quot; x2=&quot;285.2&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;311.1&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q4 &amp;#x27;24</text>
+<line x1=&quot;337.0&quot; y1=&quot;44&quot; x2=&quot;337.0&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;362.9&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q1 &amp;#x27;25</text>
+<line x1=&quot;388.8&quot; y1=&quot;44&quot; x2=&quot;388.8&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;414.6&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q2 &amp;#x27;25</text>
+<line x1=&quot;440.5&quot; y1=&quot;44&quot; x2=&quot;440.5&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;466.4&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q3 &amp;#x27;25</text>
+<line x1=&quot;492.2&quot; y1=&quot;44&quot; x2=&quot;492.2&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;518.1&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q4 &amp;#x27;25</text>
+<text x=&quot;124.0&quot; y=&quot;89.8&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Core ERP Migration</text>
+<rect x=&quot;130&quot; y=&quot;44.0&quot; width=&quot;414&quot; height=&quot;83.66666666666667&quot; fill=&quot;#EFF7FA&quot;/>
+<rect x=&quot;130.0&quot; y=&quot;62.4&quot; width=&quot;157.3&quot; height=&quot;46.9&quot; fill=&quot;#00677F&quot; rx=&quot;3&quot;/>
+<text x=&quot;208.7&quot; y=&quot;89.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Phase 1</text>
+<text x=&quot;124.0&quot; y=&quot;173.5&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Data Lake Build-out</text>
+<rect x=&quot;183.8&quot; y=&quot;146.1&quot; width=&quot;178.0&quot; height=&quot;46.9&quot; fill=&quot;#5097AB&quot; rx=&quot;3&quot;/>
+<text x=&quot;272.8&quot; y=&quot;173.5&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Foundation</text>
+<text x=&quot;124.0&quot; y=&quot;257.2&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>AI/ML Platform</text>
+<rect x=&quot;130&quot; y=&quot;211.33333333333334&quot; width=&quot;414&quot; height=&quot;83.66666666666667&quot; fill=&quot;#EFF7FA&quot;/>
+<rect x=&quot;287.3&quot; y=&quot;229.7&quot; width=&quot;153.2&quot; height=&quot;46.9&quot; fill=&quot;#79AEBF&quot; rx=&quot;3&quot;/>
+<text x=&quot;363.9&quot; y=&quot;257.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Deploy</text>
+<text x=&quot;124.0&quot; y=&quot;340.8&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Workforce Reskilling</text>
+<rect x=&quot;212.8&quot; y=&quot;313.4&quot; width=&quot;281.5&quot; height=&quot;46.9&quot; fill=&quot;#004355&quot; rx=&quot;3&quot;/>
+<text x=&quot;353.6&quot; y=&quot;340.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Ongoing</text>
+<text x=&quot;124.0&quot; y=&quot;424.5&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Customer Portal v2</text>
+<rect x=&quot;130&quot; y=&quot;378.6666666666667&quot; width=&quot;414&quot; height=&quot;83.66666666666667&quot; fill=&quot;#EFF7FA&quot;/>
+<rect x=&quot;361.8&quot; y=&quot;397.1&quot; width=&quot;132.5&quot; height=&quot;46.9&quot; fill=&quot;#007A93&quot; rx=&quot;3&quot;/>
+<text x=&quot;428.1&quot; y=&quot;424.5&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Launch</text>
+<text x=&quot;124.0&quot; y=&quot;508.2&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Legacy Decommission</text>
+<rect x=&quot;440.5&quot; y=&quot;480.7&quot; width=&quot;103.5&quot; height=&quot;46.9&quot; fill=&quot;#A6CAD8&quot; rx=&quot;3&quot;/>
+<text x=&quot;492.2&quot; y=&quot;508.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Shutdown</text>
+<polygon points=&quot;287.32,40 291.32,44 287.32,48 283.32,44&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;287.3&quot; y=&quot;560.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>ERP Go-Live</text>
+<polygon points=&quot;440.5,40 444.5,44 440.5,48 436.5,44&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;440.5&quot; y=&quot;560.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>AI Launch</text>
+<polygon points=&quot;544.0,40 548.0,44 544.0,48 540.0,44&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;544.0&quot; y=&quot;560.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Full Migration</text></svg></div>
+<div style=&quot;position:absolute;left:666px;top:114px;width:3px;height:176px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:680px;top:110px;width:255px;height:92px;font-size:28px;font-weight:700;color:#00677F;line-height:1;&quot;>67%</div>
+<div style=&quot;position:absolute;left:680px;top:205px;width:255px;height:55px;font-size:11px;color:#555;line-height:1.4;&quot;>Milestones On Track</div>
+<div style=&quot;position:absolute;left:680px;top:260px;width:255px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+8pp vs last qtr</div>
+<div style=&quot;position:absolute;left:947px;top:114px;width:3px;height:176px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:961px;top:110px;width:255px;height:92px;font-size:28px;font-weight:700;color:#00677F;line-height:1;&quot;>$34M</div>
+<div style=&quot;position:absolute;left:961px;top:205px;width:255px;height:55px;font-size:11px;color:#555;line-height:1.4;&quot;>Budget Spent to Date</div>
+<div style=&quot;position:absolute;left:961px;top:260px;width:255px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>vs $38M plan</div>
+<div style=&quot;position:absolute;left:666px;top:310px;width:3px;height:176px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:680px;top:306px;width:255px;height:92px;font-size:28px;font-weight:700;color:#00677F;line-height:1;&quot;>1,240</div>
+<div style=&quot;position:absolute;left:680px;top:401px;width:255px;height:55px;font-size:11px;color:#555;line-height:1.4;&quot;>Staff Retrained</div>
+<div style=&quot;position:absolute;left:680px;top:456px;width:255px;height:14px;font-size:10px;font-weight:700;color:#707070;&quot;>of 1,800 target</div>
+<div style=&quot;position:absolute;left:947px;top:310px;width:3px;height:176px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:961px;top:306px;width:255px;height:92px;font-size:28px;font-weight:700;color:#00677F;line-height:1;&quot;>18%</div>
+<div style=&quot;position:absolute;left:961px;top:401px;width:255px;height:55px;font-size:11px;color:#555;line-height:1.4;&quot;>Process Automation</div>
+<div style=&quot;position:absolute;left:961px;top:456px;width:255px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+6pp this quarter</div>
+<div style=&quot;position:absolute;left:666px;top:506px;width:3px;height:176px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:680px;top:502px;width:255px;height:92px;font-size:28px;font-weight:700;color:#00677F;line-height:1;&quot;>4.2/5</div>
+<div style=&quot;position:absolute;left:680px;top:597px;width:255px;height:55px;font-size:11px;color:#555;line-height:1.4;&quot;>Change Readiness Score</div>
+<div style=&quot;position:absolute;left:680px;top:652px;width:255px;height:14px;font-size:10px;font-weight:700;color:#707070;&quot;>Survey n=320</div>
+<div style=&quot;position:absolute;left:947px;top:506px;width:3px;height:176px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:961px;top:502px;width:255px;height:92px;font-size:28px;font-weight:700;color:#00677F;line-height:1;&quot;>Q3 &amp;#x27;26</div>
+<div style=&quot;position:absolute;left:961px;top:597px;width:255px;height:55px;font-size:11px;color:#555;line-height:1.4;&quot;>Full Go-Live Target</div>
+<div style=&quot;position:absolute;left:961px;top:652px;width:255px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>1 qtr ahead</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Transformation PMO Dashboard, July 2025</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>8</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe><iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>STRESS 09</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:20px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Revenue Mix Shift vs Long-Term Trend by Segment</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><path d=&quot;M 175.0 123.0 A 165 165 0 0 1 254.5 432.6 L 220.8 371.2 A 95 95 0 0 0 175.0 193.0 Z&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;300.9&quot; y=&quot;259.7&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>42%</text>
+<path d=&quot;M 254.5 432.6 A 165 165 0 0 1 54.7 401.0 L 105.7 353.0 A 95 95 0 0 0 220.8 371.2 Z&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;154.7&quot; y=&quot;420.4&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>21%</text>
+<path d=&quot;M 54.7 401.0 A 165 165 0 0 1 12.9 257.1 L 81.7 270.2 A 95 95 0 0 0 105.7 353.0 Z&quot; fill=&quot;#79AEBF&quot;/>
+<text x=&quot;50.2&quot; y=&quot;328.3&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>15%</text>
+<path d=&quot;M 12.9 257.1 A 165 165 0 0 1 86.6 148.7 L 124.1 207.8 A 95 95 0 0 0 81.7 270.2 Z&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;67.5&quot; y=&quot;218.9&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>13%</text>
+<path d=&quot;M 86.6 148.7 A 165 165 0 0 1 175.0 123.0 L 175.0 193.0 A 95 95 0 0 0 124.1 207.8 Z&quot; fill=&quot;#007A93&quot;/>
+<text x=&quot;138.7&quot; y=&quot;167.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>9%</text>
+<text x=&quot;175&quot; y=&quot;286&quot; text-anchor=&quot;middle&quot; font-size=&quot;20&quot; font-weight=&quot;700&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>78%</text>
+<text x=&quot;175&quot; y=&quot;304&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Recurring</text>
+<rect x=&quot;360&quot; y=&quot;213&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#00677F&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;223.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>SaaS Subscriptions</text>
+<text x=&quot;376.0&quot; y=&quot;235.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>42.0%</text>
+<rect x=&quot;360&quot; y=&quot;245&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#5097AB&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;255.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Managed Services</text>
+<text x=&quot;376.0&quot; y=&quot;267.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>21.0%</text>
+<rect x=&quot;360&quot; y=&quot;277&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#79AEBF&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;287.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Support Contracts</text>
+<text x=&quot;376.0&quot; y=&quot;299.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>15.0%</text>
+<rect x=&quot;360&quot; y=&quot;309&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#004355&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;319.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Professional Services</text>
+<text x=&quot;376.0&quot; y=&quot;331.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>13.0%</text>
+<rect x=&quot;360&quot; y=&quot;341&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#007A93&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;351.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Hardware One-Time</text>
+<text x=&quot;376.0&quot; y=&quot;363.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>9.0%</text></svg></div>
+<div style=&quot;position:absolute;left:666px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Recurring Revenue Growth 2020–2024 (%)</text>
+<line x1=&quot;48&quot; y1=&quot;516.0&quot; x2=&quot;542&quot; y2=&quot;516.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;520.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>0%</text>
+<line x1=&quot;48&quot; y1=&quot;417.2&quot; x2=&quot;542&quot; y2=&quot;417.2&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;421.2&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>10%</text>
+<line x1=&quot;48&quot; y1=&quot;318.4&quot; x2=&quot;542&quot; y2=&quot;318.4&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;322.4&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>20%</text>
+<line x1=&quot;48&quot; y1=&quot;219.6&quot; x2=&quot;542&quot; y2=&quot;219.6&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;223.6&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>30%</text>
+<line x1=&quot;48&quot; y1=&quot;120.8&quot; x2=&quot;542&quot; y2=&quot;120.8&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;124.8&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>40%</text>
+<line x1=&quot;48&quot; y1=&quot;22.0&quot; x2=&quot;542&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>50%</text>
+<path d=&quot;M 48.0,235.4 L 171.5,108.9 L 295.0,162.3 L 418.5,226.5 L 542.0,272.0&quot; stroke=&quot;#00677F&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<circle cx=&quot;48.0&quot; cy=&quot;235.4&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;171.5&quot; cy=&quot;108.9&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;295.0&quot; cy=&quot;162.3&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;418.5&quot; cy=&quot;226.5&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;542.0&quot; cy=&quot;272.0&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<path d=&quot;M 48.0,396.5 L 171.5,331.2 L 295.0,294.7 L 418.5,320.4 L 542.0,355.9&quot; stroke=&quot;#5097AB&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<circle cx=&quot;48.0&quot; cy=&quot;396.5&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;171.5&quot; cy=&quot;331.2&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;295.0&quot; cy=&quot;294.7&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;418.5&quot; cy=&quot;320.4&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;542.0&quot; cy=&quot;355.9&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<path d=&quot;M 48.0,463.6 L 171.5,436.0 L 295.0,420.2 L 418.5,433.0 L 542.0,445.9&quot; stroke=&quot;#79AEBF&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<circle cx=&quot;48.0&quot; cy=&quot;463.6&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;171.5&quot; cy=&quot;436.0&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;295.0&quot; cy=&quot;420.2&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;418.5&quot; cy=&quot;433.0&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;542.0&quot; cy=&quot;445.9&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<path d=&quot;M 48.0,310.5 L 171.5,205.8 L 295.0,243.3 L 418.5,287.8 L 542.0,324.3&quot; stroke=&quot;#004355&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<circle cx=&quot;48.0&quot; cy=&quot;310.5&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;171.5&quot; cy=&quot;205.8&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;295.0&quot; cy=&quot;243.3&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;418.5&quot; cy=&quot;287.8&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;542.0&quot; cy=&quot;324.3&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<text x=&quot;48.0&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2020</text>
+<text x=&quot;171.5&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2021</text>
+<text x=&quot;295.0&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2022</text>
+<text x=&quot;418.5&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2023</text>
+<text x=&quot;542.0&quot; y=&quot;530.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2024</text>
+<rect x=&quot;48&quot; y=&quot;544&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;73.0&quot; y=&quot;550.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>SaaS Subscriptions</text>
+<rect x=&quot;196&quot; y=&quot;544&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;221.0&quot; y=&quot;550.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Managed Services</text>
+<rect x=&quot;344&quot; y=&quot;544&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#79AEBF&quot;/>
+<text x=&quot;369.0&quot; y=&quot;550.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Support Contracts</text>
+<rect x=&quot;48&quot; y=&quot;560&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;73.0&quot; y=&quot;566.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Total Recurring Rev.</text></svg></div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Company IR filings, Q4 2024 Earnings</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>9</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe><iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>STRESS 10</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:20px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Headcount Evolution vs Cost Bridge Impact</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Headcount by Function 2021–2024</text>
+<line x1=&quot;48&quot; y1=&quot;518.0&quot; x2=&quot;544&quot; y2=&quot;518.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;522.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>0</text>
+<line x1=&quot;48&quot; y1=&quot;418.8&quot; x2=&quot;544&quot; y2=&quot;418.8&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;422.8&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>1,500</text>
+<line x1=&quot;48&quot; y1=&quot;319.6&quot; x2=&quot;544&quot; y2=&quot;319.6&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;323.6&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>3,000</text>
+<line x1=&quot;48&quot; y1=&quot;220.4&quot; x2=&quot;544&quot; y2=&quot;220.4&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;224.4&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>4,500</text>
+<line x1=&quot;48&quot; y1=&quot;121.2&quot; x2=&quot;544&quot; y2=&quot;121.2&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;125.2&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>6,000</text>
+<line x1=&quot;48&quot; y1=&quot;22.0&quot; x2=&quot;544&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>7,500</text>
+<line x1=&quot;48&quot; y1=&quot;518.0&quot; x2=&quot;544&quot; y2=&quot;518.0&quot; stroke=&quot;#999&quot; stroke-width=&quot;1.5&quot;/>
+<rect x=&quot;65.4&quot; y=&quot;397.6&quot; width=&quot;89.3&quot; height=&quot;120.4&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;189.4&quot; y=&quot;376.5&quot; width=&quot;89.3&quot; height=&quot;141.5&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;313.4&quot; y=&quot;360.6&quot; width=&quot;89.3&quot; height=&quot;157.4&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;437.4&quot; y=&quot;345.4&quot; width=&quot;89.3&quot; height=&quot;172.6&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<rect x=&quot;65.4&quot; y=&quot;335.5&quot; width=&quot;89.3&quot; height=&quot;62.2&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;189.4&quot; y=&quot;305.1&quot; width=&quot;89.3&quot; height=&quot;71.4&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;313.4&quot; y=&quot;280.6&quot; width=&quot;89.3&quot; height=&quot;80.0&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;437.4&quot; y=&quot;256.8&quot; width=&quot;89.3&quot; height=&quot;88.6&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<rect x=&quot;65.4&quot; y=&quot;287.9&quot; width=&quot;89.3&quot; height=&quot;47.6&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;189.4&quot; y=&quot;251.5&quot; width=&quot;89.3&quot; height=&quot;53.6&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;313.4&quot; y=&quot;223.0&quot; width=&quot;89.3&quot; height=&quot;57.5&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;437.4&quot; y=&quot;194.6&quot; width=&quot;89.3&quot; height=&quot;62.2&quot; fill=&quot;#79AEBF&quot; rx=&quot;1&quot;/>
+<rect x=&quot;65.4&quot; y=&quot;262.7&quot; width=&quot;89.3&quot; height=&quot;25.1&quot; fill=&quot;#004355&quot; rx=&quot;1&quot;/>
+<rect x=&quot;189.4&quot; y=&quot;223.7&quot; width=&quot;89.3&quot; height=&quot;27.8&quot; fill=&quot;#004355&quot; rx=&quot;1&quot;/>
+<rect x=&quot;313.4&quot; y=&quot;192.6&quot; width=&quot;89.3&quot; height=&quot;30.4&quot; fill=&quot;#004355&quot; rx=&quot;1&quot;/>
+<rect x=&quot;437.4&quot; y=&quot;162.2&quot; width=&quot;89.3&quot; height=&quot;32.4&quot; fill=&quot;#004355&quot; rx=&quot;1&quot;/>
+<rect x=&quot;65.4&quot; y=&quot;244.2&quot; width=&quot;89.3&quot; height=&quot;18.5&quot; fill=&quot;#007A93&quot; rx=&quot;1&quot;/>
+<rect x=&quot;189.4&quot; y=&quot;202.5&quot; width=&quot;89.3&quot; height=&quot;21.2&quot; fill=&quot;#007A93&quot; rx=&quot;1&quot;/>
+<rect x=&quot;313.4&quot; y=&quot;168.2&quot; width=&quot;89.3&quot; height=&quot;24.5&quot; fill=&quot;#007A93&quot; rx=&quot;1&quot;/>
+<rect x=&quot;437.4&quot; y=&quot;135.1&quot; width=&quot;89.3&quot; height=&quot;27.1&quot; fill=&quot;#007A93&quot; rx=&quot;1&quot;/>
+<text x=&quot;110.0&quot; y=&quot;532.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2021</text>
+<text x=&quot;234.0&quot; y=&quot;532.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2022</text>
+<text x=&quot;358.0&quot; y=&quot;532.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2023</text>
+<text x=&quot;482.0&quot; y=&quot;532.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2024</text>
+<rect x=&quot;48&quot; y=&quot;544&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;61.0&quot; y=&quot;553.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Engineering</text>
+<rect x=&quot;172&quot; y=&quot;544&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;185.0&quot; y=&quot;553.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Sales &amp;amp; Marketing</text>
+<rect x=&quot;296&quot; y=&quot;544&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#79AEBF&quot;/>
+<text x=&quot;309.0&quot; y=&quot;553.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Operations</text>
+<rect x=&quot;420&quot; y=&quot;544&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;433.0&quot; y=&quot;553.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>G&amp;amp;A</text>
+<rect x=&quot;48&quot; y=&quot;558&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#007A93&quot;/>
+<text x=&quot;61.0&quot; y=&quot;567.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Product</text></svg></div>
+<div style=&quot;position:absolute;left:666px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>FY2024 Total Staff Cost Bridge ($M)</text>
+<line x1=&quot;50&quot; y1=&quot;496.0&quot; x2=&quot;542&quot; y2=&quot;496.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;500.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>200</text>
+<line x1=&quot;50&quot; y1=&quot;377.5&quot; x2=&quot;542&quot; y2=&quot;377.5&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;381.5&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>275</text>
+<line x1=&quot;50&quot; y1=&quot;259.0&quot; x2=&quot;542&quot; y2=&quot;259.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;263.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>350</text>
+<line x1=&quot;50&quot; y1=&quot;140.5&quot; x2=&quot;542&quot; y2=&quot;140.5&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;144.5&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>425</text>
+<line x1=&quot;50&quot; y1=&quot;22.0&quot; x2=&quot;542&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>500</text>
+<line x1=&quot;50&quot; y1=&quot;496.0&quot; x2=&quot;542&quot; y2=&quot;496.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<rect x=&quot;62.3&quot; y=&quot;319.0&quot; width=&quot;36.9&quot; height=&quot;177.0&quot; fill=&quot;#007A93&quot;/>
+<text x=&quot;80.8&quot; y=&quot;315.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>312</text>
+<text x=&quot;80.8&quot; y=&quot;508&quot; transform=&quot;rotate(-40 80.8 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>FY2023 Base</text>
+<rect x=&quot;123.8&quot; y=&quot;243.2&quot; width=&quot;36.9&quot; height=&quot;75.8&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;142.2&quot; y=&quot;239.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>+48</text>
+<text x=&quot;142.2&quot; y=&quot;508&quot; transform=&quot;rotate(-40 142.2 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Headcount Growth</text>
+<line x1=&quot;173.0&quot; y1=&quot;243.2&quot; x2=&quot;185.3&quot; y2=&quot;243.2&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;185.3&quot; y=&quot;200.5&quot; width=&quot;36.9&quot; height=&quot;42.7&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;203.8&quot; y=&quot;196.5&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>+27</text>
+<text x=&quot;203.8&quot; y=&quot;508&quot; transform=&quot;rotate(-40 203.8 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Annual Salary Raise</text>
+<line x1=&quot;234.5&quot; y1=&quot;200.5&quot; x2=&quot;246.8&quot; y2=&quot;200.5&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;246.8&quot; y=&quot;172.1&quot; width=&quot;36.9&quot; height=&quot;28.4&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;265.2&quot; y=&quot;168.1&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>+18</text>
+<text x=&quot;265.2&quot; y=&quot;508&quot; transform=&quot;rotate(-40 265.2 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Bonus Accrual</text>
+<line x1=&quot;296.0&quot; y1=&quot;172.1&quot; x2=&quot;308.3&quot; y2=&quot;172.1&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;308.3&quot; y=&quot;172.1&quot; width=&quot;36.9&quot; height=&quot;34.8&quot; fill=&quot;#C62828&quot;/>
+<text x=&quot;326.8&quot; y=&quot;168.1&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>-22</text>
+<text x=&quot;326.8&quot; y=&quot;508&quot; transform=&quot;rotate(-40 326.8 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Attrition Savings</text>
+<line x1=&quot;357.5&quot; y1=&quot;206.9&quot; x2=&quot;369.8&quot; y2=&quot;206.9&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;369.8&quot; y=&quot;206.9&quot; width=&quot;36.9&quot; height=&quot;22.1&quot; fill=&quot;#C62828&quot;/>
+<text x=&quot;388.2&quot; y=&quot;202.9&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>-14</text>
+<text x=&quot;388.2&quot; y=&quot;508&quot; transform=&quot;rotate(-40 388.2 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>AI Automation</text>
+<line x1=&quot;419.0&quot; y1=&quot;229.0&quot; x2=&quot;431.3&quot; y2=&quot;229.0&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;431.3&quot; y=&quot;211.6&quot; width=&quot;36.9&quot; height=&quot;17.4&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;449.8&quot; y=&quot;207.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>+11</text>
+<text x=&quot;449.8&quot; y=&quot;508&quot; transform=&quot;rotate(-40 449.8 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Restructuring Cost</text>
+<rect x=&quot;492.8&quot; y=&quot;211.6&quot; width=&quot;36.9&quot; height=&quot;284.4&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;511.2&quot; y=&quot;207.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>380</text>
+<text x=&quot;511.2&quot; y=&quot;508&quot; transform=&quot;rotate(-40 511.2 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>FY2024 Total</text></svg></div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>HR Analytics, Finance Q4 2024</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>10</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe><iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>STRESS 11</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:20px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Country Risk Scores vs Portfolio Geographic Mix</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:109px;height:36px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:68px;top:114px;width:102px;height:28px;font-size:9px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Country</div>
+<div style=&quot;position:absolute;left:174px;top:110px;width:61px;height:36px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:178px;top:114px;width:54px;height:28px;font-size:9px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Political Risk</div>
+<div style=&quot;position:absolute;left:236px;top:110px;width:61px;height:36px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:240px;top:114px;width:54px;height:28px;font-size:9px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Credit Rating</div>
+<div style=&quot;position:absolute;left:298px;top:110px;width:61px;height:36px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:302px;top:114px;width:54px;height:28px;font-size:9px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>FX Volatility</div>
+<div style=&quot;position:absolute;left:360px;top:110px;width:61px;height:36px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:364px;top:114px;width:54px;height:28px;font-size:9px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Inflation Rate</div>
+<div style=&quot;position:absolute;left:422px;top:110px;width:61px;height:36px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:426px;top:114px;width:54px;height:28px;font-size:9px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>GDP Growth</div>
+<div style=&quot;position:absolute;left:484px;top:110px;width:61px;height:36px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:488px;top:114px;width:54px;height:28px;font-size:9px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Market Score</div>
+<div style=&quot;position:absolute;left:546px;top:110px;width:61px;height:36px;background:#00677F;&quot;></div>
+<div style=&quot;position:absolute;left:550px;top:114px;width:54px;height:28px;font-size:9px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Allocation</div>
+<div style=&quot;position:absolute;left:64px;top:146px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:70px;top:157px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>United States</div>
+<div style=&quot;position:absolute;left:174px;top:146px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:180px;top:157px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Low</div>
+<div style=&quot;position:absolute;left:236px;top:146px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:242px;top:157px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>AAA</div>
+<div style=&quot;position:absolute;left:298px;top:146px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:304px;top:157px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Low</div>
+<div style=&quot;position:absolute;left:360px;top:146px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:366px;top:157px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>3.1%</div>
+<div style=&quot;position:absolute;left:422px;top:146px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:428px;top:157px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>+2.8%</div>
+<div style=&quot;position:absolute;left:484px;top:146px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:490px;top:157px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>9.2/10</div>
+<div style=&quot;position:absolute;left:546px;top:146px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:552px;top:157px;width:50px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>34%</div>
+<div style=&quot;position:absolute;left:64px;top:198px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:70px;top:209px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Germany</div>
+<div style=&quot;position:absolute;left:174px;top:198px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:180px;top:209px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Low</div>
+<div style=&quot;position:absolute;left:236px;top:198px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:242px;top:209px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>AAA</div>
+<div style=&quot;position:absolute;left:298px;top:198px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:304px;top:209px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Medium</div>
+<div style=&quot;position:absolute;left:360px;top:198px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:366px;top:209px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>2.4%</div>
+<div style=&quot;position:absolute;left:422px;top:198px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:428px;top:209px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>+1.2%</div>
+<div style=&quot;position:absolute;left:484px;top:198px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:490px;top:209px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>8.7/10</div>
+<div style=&quot;position:absolute;left:546px;top:198px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:552px;top:209px;width:50px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>18%</div>
+<div style=&quot;position:absolute;left:64px;top:250px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:70px;top:261px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>United Kingdom</div>
+<div style=&quot;position:absolute;left:174px;top:250px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:180px;top:261px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Medium</div>
+<div style=&quot;position:absolute;left:236px;top:250px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:242px;top:261px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>AA</div>
+<div style=&quot;position:absolute;left:298px;top:250px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:304px;top:261px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Medium</div>
+<div style=&quot;position:absolute;left:360px;top:250px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:366px;top:261px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>3.8%</div>
+<div style=&quot;position:absolute;left:422px;top:250px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:428px;top:261px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>+1.4%</div>
+<div style=&quot;position:absolute;left:484px;top:250px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:490px;top:261px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>7.9/10</div>
+<div style=&quot;position:absolute;left:546px;top:250px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:552px;top:261px;width:50px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>12%</div>
+<div style=&quot;position:absolute;left:64px;top:302px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:70px;top:313px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Japan</div>
+<div style=&quot;position:absolute;left:174px;top:302px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:180px;top:313px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Low</div>
+<div style=&quot;position:absolute;left:236px;top:302px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:242px;top:313px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>A+</div>
+<div style=&quot;position:absolute;left:298px;top:302px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:304px;top:313px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Low</div>
+<div style=&quot;position:absolute;left:360px;top:302px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:366px;top:313px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>2.9%</div>
+<div style=&quot;position:absolute;left:422px;top:302px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:428px;top:313px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>+1.1%</div>
+<div style=&quot;position:absolute;left:484px;top:302px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:490px;top:313px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>7.6/10</div>
+<div style=&quot;position:absolute;left:546px;top:302px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:552px;top:313px;width:50px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>10%</div>
+<div style=&quot;position:absolute;left:64px;top:354px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:70px;top:365px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Brazil</div>
+<div style=&quot;position:absolute;left:174px;top:354px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:180px;top:365px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>High</div>
+<div style=&quot;position:absolute;left:236px;top:354px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:242px;top:365px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>BB-</div>
+<div style=&quot;position:absolute;left:298px;top:354px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:304px;top:365px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>High</div>
+<div style=&quot;position:absolute;left:360px;top:354px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:366px;top:365px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>4.6%</div>
+<div style=&quot;position:absolute;left:422px;top:354px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:428px;top:365px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>+3.1%</div>
+<div style=&quot;position:absolute;left:484px;top:354px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:490px;top:365px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>5.4/10</div>
+<div style=&quot;position:absolute;left:546px;top:354px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:552px;top:365px;width:50px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>8%</div>
+<div style=&quot;position:absolute;left:64px;top:406px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:70px;top:417px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>India</div>
+<div style=&quot;position:absolute;left:174px;top:406px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:180px;top:417px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Medium</div>
+<div style=&quot;position:absolute;left:236px;top:406px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:242px;top:417px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>BBB-</div>
+<div style=&quot;position:absolute;left:298px;top:406px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:304px;top:417px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Medium</div>
+<div style=&quot;position:absolute;left:360px;top:406px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:366px;top:417px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>5.1%</div>
+<div style=&quot;position:absolute;left:422px;top:406px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:428px;top:417px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>+6.8%</div>
+<div style=&quot;position:absolute;left:484px;top:406px;width:61px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:490px;top:417px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>7.1/10</div>
+<div style=&quot;position:absolute;left:546px;top:406px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:552px;top:417px;width:50px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>11%</div>
+<div style=&quot;position:absolute;left:64px;top:458px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:70px;top:469px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Australia</div>
+<div style=&quot;position:absolute;left:174px;top:458px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:180px;top:469px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Low</div>
+<div style=&quot;position:absolute;left:236px;top:458px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:242px;top:469px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>AAA</div>
+<div style=&quot;position:absolute;left:298px;top:458px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:304px;top:469px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Medium</div>
+<div style=&quot;position:absolute;left:360px;top:458px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:366px;top:469px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>3.3%</div>
+<div style=&quot;position:absolute;left:422px;top:458px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:428px;top:469px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>+2.2%</div>
+<div style=&quot;position:absolute;left:484px;top:458px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:490px;top:469px;width:50px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>8.9/10</div>
+<div style=&quot;position:absolute;left:546px;top:458px;width:61px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:552px;top:469px;width:50px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>7%</div>
+<div style=&quot;position:absolute;left:666px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><path d=&quot;M 175.0 123.0 A 165 165 0 0 1 314.3 376.4 L 255.2 338.9 A 95 95 0 0 0 175.0 193.0 Z&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;288.9&quot; y=&quot;229.4&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>34%</text>
+<path d=&quot;M 314.3 376.4 A 165 165 0 0 1 154.3 451.7 L 163.1 382.3 A 95 95 0 0 0 255.2 338.9 Z&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;230.4&quot; y=&quot;409.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>18%</text>
+<path d=&quot;M 154.3 451.7 A 165 165 0 0 1 54.7 401.0 L 105.7 353.0 A 95 95 0 0 0 163.1 382.3 Z&quot; fill=&quot;#79AEBF&quot;/>
+<text x=&quot;116.0&quot; y=&quot;407.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>11%</text>
+<path d=&quot;M 54.7 401.0 A 165 165 0 0 1 10.0 288.0 L 80.0 288.0 A 95 95 0 0 0 105.7 353.0 Z&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;54.1&quot; y=&quot;339.9&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>12%</text>
+<path d=&quot;M 10.0 288.0 A 165 165 0 0 1 41.5 191.0 L 98.1 232.2 A 95 95 0 0 0 80.0 288.0 Z&quot; fill=&quot;#007A93&quot;/>
+<text x=&quot;51.4&quot; y=&quot;251.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>10%</text>
+<path d=&quot;M 41.5 191.0 A 165 165 0 0 1 104.7 138.7 L 134.6 202.0 A 95 95 0 0 0 98.1 232.2 Z&quot; fill=&quot;#A6CAD8&quot;/>
+<text x=&quot;92.1&quot; y=&quot;191.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>8%</text>
+<path d=&quot;M 104.7 138.7 A 165 165 0 0 1 175.0 123.0 L 175.0 193.0 A 95 95 0 0 0 134.6 202.0 Z&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;146.6&quot; y=&quot;165.1&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>7%</text>
+<text x=&quot;175&quot; y=&quot;286&quot; text-anchor=&quot;middle&quot; font-size=&quot;20&quot; font-weight=&quot;700&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>7</text>
+<text x=&quot;175&quot; y=&quot;304&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Markets</text>
+<rect x=&quot;360&quot; y=&quot;183&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#00677F&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;193.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>United States</text>
+<text x=&quot;376.0&quot; y=&quot;205.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>34.0%</text>
+<rect x=&quot;360&quot; y=&quot;215&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#5097AB&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;225.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Germany</text>
+<text x=&quot;376.0&quot; y=&quot;237.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>18.0%</text>
+<rect x=&quot;360&quot; y=&quot;247&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#79AEBF&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;257.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>India</text>
+<text x=&quot;376.0&quot; y=&quot;269.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>11.0%</text>
+<rect x=&quot;360&quot; y=&quot;279&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#004355&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;289.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>UK</text>
+<text x=&quot;376.0&quot; y=&quot;301.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>12.0%</text>
+<rect x=&quot;360&quot; y=&quot;311&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#007A93&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;321.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Japan</text>
+<text x=&quot;376.0&quot; y=&quot;333.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>10.0%</text>
+<rect x=&quot;360&quot; y=&quot;343&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#A6CAD8&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;353.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Brazil</text>
+<text x=&quot;376.0&quot; y=&quot;365.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>8.0%</text>
+<rect x=&quot;360&quot; y=&quot;375&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#00677F&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;385.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Australia</text>
+<text x=&quot;376.0&quot; y=&quot;397.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>7.0%</text></svg></div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Moody&amp;#x27;s, World Bank, Internal Risk Model</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>11</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+        </div>
+        <div id="bottombar">
+          <button class="nav-btn" id="prevBtn">&larr; Prev</button>
+          <div id="dots"><div class="dot" title="Slide 1"></div>
+<div class="dot" title="Slide 2"></div>
+<div class="dot" title="Slide 3"></div>
+<div class="dot" title="Slide 4"></div>
+<div class="dot" title="Slide 5"></div>
+<div class="dot" title="Slide 6"></div>
+<div class="dot" title="Slide 7"></div>
+<div class="dot" title="Slide 8"></div>
+<div class="dot" title="Slide 9"></div>
+<div class="dot" title="Slide 10"></div>
+<div class="dot" title="Slide 11"></div></div>
+          <button class="nav-btn" id="nextBtn">Next &rarr;</button>
+        </div>
+        <script>
+const frames  = Array.from(document.querySelectorAll('.slide-frame'));
+const dots    = Array.from(document.querySelectorAll('.dot'));
+const counter = document.getElementById('counter');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+let current   = 0;
+function scaleFrames() {
+    const stage = document.getElementById('stage');
+    const sw = stage.clientWidth  - 40, sh = stage.clientHeight - 40;
+    const scale = Math.min(sw / 1280, sh / 720, 1);
+    frames.forEach(f => { f.style.transform = `scale(${scale})`; });
+}
+function goto(idx) {
+    frames[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = Math.max(0, Math.min(idx, frames.length - 1));
+    frames[current].classList.add('active');
+    dots[current].classList.add('active');
+    counter.textContent = `${current + 1} / ${frames.length}`;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === frames.length - 1;
+}
+dots.forEach((d, i) => d.addEventListener('click', () => goto(i)));
+prevBtn.addEventListener('click', () => goto(current - 1));
+nextBtn.addEventListener('click', () => goto(current + 1));
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goto(current + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goto(current - 1);
+});
+window.addEventListener('resize', scaleFrames);
+scaleFrames(); goto(0);
+</script>
+        </body></html>

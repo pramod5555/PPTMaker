@@ -66,8 +66,9 @@ def generate_outline(topic: str, n_slides: int) -> list[dict]:
         f"Return a JSON array with exactly {n_slides} elements."
     )
 
+    model_id = os.getenv("AZURE_SLIDE_MODEL", "gpt-5.4")
     resp = client.chat.completions.create(
-        model="gpt-5.4",
+        model=model_id,
         messages=[
             {"role": "system", "content": OUTLINE_SYSTEM},
             {"role": "user",   "content": user_msg},

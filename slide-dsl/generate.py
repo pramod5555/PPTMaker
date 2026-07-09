@@ -108,17 +108,102 @@ def search_context(prompt: str) -> str:
     return ""
 
 
-# ── Azure API mode ─────────────────────────────────────────────────────────────
-def generate_api(prompt: str, use_search: bool = True) -> dict:
-    from dotenv import load_dotenv
-    from openai import AzureOpenAI
+# ── Backend selection ──────────────────────────────────────────────────────────
+# Set LLM_BACKEND env var to choose how DSL is generated:
+#   azure  (default) — Azure OpenAI, requires AZURE_OPENAI_API_KEY
+#   local            — any OpenAI-compatible server (Ollama, vLLM, llama.cpp)
+#                      set LOCAL_LLM_URL and LOCAL_LLM_MODEL as well
+#
+# Example .env additions for company server:
+#   LLM_BACKEND=local
+#   LOCAL_LLM_URL=http://company-server:11434/v1
+#   LOCAL_LLM_MODEL=pptmaker-dsl
 
+
+def _build_client() -> tuple:
+    """Return (client, model_id) for whichever backend is configured."""
+    from dotenv import load_dotenv
     load_dotenv()
     load_dotenv(ROOT / "ppt-dataset" / ".env")
 
-    # Fetch real data from web before generating the slide
+    backend = os.getenv("LLM_BACKEND", "azure").lower()
+
+    if backend == "local":
+        from openai import OpenAI
+        url      = os.getenv("LOCAL_LLM_URL",   "http://localhost:11434/v1")
+        model_id = os.getenv("LOCAL_LLM_MODEL", "pptmaker-dsl")
+        client   = OpenAI(base_url=url, api_key="local")
+        return client, model_id, "local"
+
+    # Default: Azure OpenAI
+    from openai import AzureOpenAI
+    client = AzureOpenAI(
+        api_key      = os.getenv("AZURE_OPENAI_API_KEY"),
+        api_version  = "2024-12-01-preview",
+        azure_endpoint = "https://custom-data-maya-resource.cognitiveservices.azure.com/",
+    )
+    model_id = os.getenv("AZURE_SLIDE_MODEL", "gpt-5.4")
+    return client, model_id, "azure"
+
+
+# ── Shared generation core ─────────────────────────────────────────────────────
+def _call_llm(
+    client,
+    model_id: str,
+    backend: str,
+    user_message: str,
+    max_retries: int = 2,
+) -> dict:
+    """Call the LLM and return parsed DSL JSON. Retries on JSON parse failure."""
+    for attempt in range(max_retries + 1):
+        kwargs: dict = dict(
+            model    = model_id,
+            messages = [
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user",   "content": user_message},
+            ],
+            temperature        = 0.1 if backend == "local" else 1,
+            max_completion_tokens = 1200,
+        )
+        # JSON mode: Azure supports response_format; most local servers do too
+        # Local Ollama: also supports {"type": "json_object"} since v0.3
+        kwargs["response_format"] = {"type": "json_object"}
+
+        resp = client.chat.completions.create(**kwargs)
+        raw  = resp.choices[0].message.content.strip()
+
+        # Strip accidental markdown fences from local models
+        if raw.startswith("```"):
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+            raw = raw.strip()
+
+        try:
+            return json.loads(raw)
+        except json.JSONDecodeError as exc:
+            if attempt < max_retries:
+                print(f"  JSON parse failed (attempt {attempt+1}), retrying… ({exc})")
+            else:
+                raise
+
+
+# ── Public API ─────────────────────────────────────────────────────────────────
+def generate_api(prompt: str, use_search: bool = True) -> dict:
+    """Generate a DSL spec from a natural-language prompt.
+
+    Routes to Azure OpenAI or a local OpenAI-compatible server depending on
+    the LLM_BACKEND environment variable ('azure' | 'local').
+    """
+    from dotenv import load_dotenv
+    load_dotenv()
+    load_dotenv(ROOT / "ppt-dataset" / ".env")
+
+    client, model_id, backend = _build_client()
+
     user_message = prompt
-    if use_search:
+    if use_search and backend == "azure":
+        # Web search only makes sense with a capable frontier model
         print("Searching for real data...")
         context = search_context(prompt)
         if context:
@@ -131,25 +216,10 @@ def generate_api(prompt: str, use_search: bool = True) -> dict:
             print(f"Search context: {len(context)} chars from {context.count('(source:')} sources")
         else:
             print("No search results — generating without web data.")
+    elif use_search and backend == "local":
+        print(f"[local backend] skipping web search — using {model_id}")
 
-    client = AzureOpenAI(
-        api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-        api_version="2024-12-01-preview",
-        azure_endpoint="https://custom-data-maya-resource.cognitiveservices.azure.com/",
-    )
-
-    resp = client.chat.completions.create(
-        model="gpt-5.4",
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user",   "content": user_message},
-        ],
-        temperature=1,
-        max_completion_tokens=1200,
-        response_format={"type": "json_object"},
-    )
-    raw = resp.choices[0].message.content.strip()
-    return json.loads(raw)
+    return _call_llm(client, model_id, backend, user_message)
 
 
 # ── Local GGUF mode (llama.cpp) ────────────────────────────────────────────────

@@ -1,0 +1,984 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>PPTMaker · Daimler Truck Showcase Deck</title>
+        <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    background: #0d0d0d;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+#topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 44px;
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
+    flex-shrink: 0;
+}
+#topbar h1 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+}
+#counter { font-size: 12px; color: #888; white-space: nowrap; }
+#stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+.slide-frame {
+    display: none;
+    width: 1280px;
+    height: 720px;
+    border: none;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    border-radius: 4px;
+    transform-origin: center center;
+}
+.slide-frame.active { display: block; }
+#bottombar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    height: 52px;
+    background: #1a1a1a;
+    border-top: 1px solid #333;
+    flex-shrink: 0;
+}
+.nav-btn {
+    background: #2a2a2a;
+    color: #ccc;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 7px 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.nav-btn:hover  { background: #3a3a3a; color: #fff; }
+.nav-btn:active { background: #444; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+#dots { display: flex; gap: 6px; align-items: center; }
+.dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #444;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.dot.active { background: #00677F; }
+.dot:hover  { background: #666; }
+</style>
+        </head>
+        <body>
+        <div id="topbar">
+          <h1>PPTMaker · Daimler Truck Showcase Deck</h1>
+          <span id="counter">1 / 14</span>
+        </div>
+        <div id="stage">
+        <iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:720px;background:radial-gradient(ellipse 47% 43% at 50% 50%,white 0%,rgba(255,255,255,.93) 16%,rgba(255,255,255,.6) 36%,transparent 58%),repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,255,255,.45) 0deg 1.5deg,transparent 1.5deg 3deg),repeating-conic-gradient(from 27deg at 48% 52%,rgba(255,255,255,.25) 0deg 2deg,transparent 2deg 4deg),conic-gradient(from 12deg at 50% 50%,#F8C6D5 0%,#C6EDD6 22%,#C0D8F4 44%,#F8EEC0 66%,#DCC6F2 88%,#F8C6D5 100%);&quot;></div>
+<div style=&quot;position:absolute;left:370px;top:180px;width:540px;height:41px;&quot;><svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 318 24&quot; width=&quot;540&quot; height=&quot;41&quot;><polygon points=&quot;198.48,0.43 198.48,3.53 204.53,3.53 204.53,23.56 208.1,23.56 208.1,3.53 214.21,3.53 214.21,0.43&quot;/><path d=&quot;M248.76,0.42v13.51c0,3.44,.14,4.41,.73,5.76c1.25,2.71,4.2,4.31,7.99,4.31c3.78,0,6.73-1.6,7.99-4.31c.59-1.32,.73-2.33,.73-5.76V0.42h-3.58v13.43c0,2.47-.07,3.26-.38,4.13c-.62,1.8-2.36,2.88-4.76,2.88c-2.18,0-3.89-.9-4.58-2.46c-.46-.97-.55-1.78-.55-4.55V0.42H248.76z&quot;/><path d=&quot;M292.3,7.22C291.82,2.59,288.95,0,284.4,0c-2.4,0-4.66,.86-6.36,2.4c-2.33,2.15-3.54,5.48-3.54,9.66c0,7.26,3.92,11.95,10.03,11.95c4.86,0,7.7-2.97,8.11-8.44l-3.25-.23c-.35,3.68-2.05,5.55-4.97,5.55c-3.82,0-6.18-3.41-6.18-8.85s2.36-8.89,6.11-8.89c2.6,0,4.24,1.46,4.79,4.31h.24L292.3,7.22z&quot;/><polygon points=&quot;313.08,0.43 305.53,9.7 304.13,9.7 304.13,0.43 300.55,0.43 300.55,23.56 304.13,23.56 304.13,12.8 305.27,12.8 313.32,23.56 318,23.56 308.26,11.25 317.27,0.43&quot;/><path d=&quot;M228.71,3.51c3.08,0,3.85,.11,4.82,.59c1.14,.55,1.8,1.7,1.8,3.15c0,1.7-.83,2.99-2.26,3.5c-.94,.35-1.7,.42-4.2,.42h-1.6V3.51H228.71z M223.72,23.56h3.58v-9.3h3.58l5.23,9.3h4.24l-5.69-9.88c2.92-1.18,4.4-3.36,4.4-6.38c0-2.67-1.32-4.88-3.5-5.93c-1.56-.73-3.01-.94-6.86-.94c-1.63,0-3.46-.04-4.96,.35v22.78H223.72z&quot;/><rect x=&quot;55.21&quot; y=&quot;0.43&quot; width=&quot;3.61&quot; height=&quot;23.12&quot;/><polygon points=&quot;107.65,0.43 107.65,23.56 121.06,23.56 121.27,20.47 111.32,20.47 111.32,0.43&quot;/><polygon points=&quot;134.7,10.04 134.7,3.51 144.83,3.51 144.61,0.43 131.12,0.43 131.12,23.56 144.89,23.56 145.1,20.47 134.7,20.47 134.7,13.12 141.01,13.12 141.01,10.04&quot;/><path d=&quot;M38.46,15.05H31.9l3.26-10.4L38.46,15.05z M33.46,0.43l-7.91,23.12h3.68l1.74-5.41h8.44l1.7,5.41h3.71l-7.9-23.12H33.46z&quot;/><polygon points=&quot;72.54,0.44 71.17,23.54 74.47,23.54 75.61,5.31 82.44,23.54 84.28,23.54 91.14,5.31 92.28,23.54 95.58,23.54 94.21,0.44 89.57,0.44 83.36,16.79 77.21,0.44&quot;/><path d=&quot;M160.28,3.51c3.08,0,3.85,.11,4.82,.59c1.14,.55,1.8,1.7,1.8,3.15c0,1.7-.83,2.99-2.26,3.5c-.94,.35-1.7,.42-4.2,.42h-1.6V3.51H160.28z M155.29,23.56h3.58v-9.3h3.58l5.23,9.3h4.24l-5.69-9.88c2.92-1.18,4.4-3.36,4.4-6.38c0-2.67-1.32-4.88-3.5-5.93c-1.56-.73-3.01-.94-6.86-.94c-1.63,0-3.46-.04-4.96,.35v22.78H155.29z&quot;/><path d=&quot;M3.58,20.47V3.44h1.01c3.78,0,4.75,.14,6.14,1.01c2.11,1.32,3.22,4.08,3.22,7.51s-1.03,6.13-2.98,7.41c-1.32,.86-2.5,1.12-5.52,1.12H3.58V20.47z M0,.78v22.78h4.2c4.82,0,6.41-.26,8.36-1.36c3.22-1.79,5.09-5.65,5.09-10.22c0-4.61-2-8.62-5.29-10.37C10.58,.66,8.6,.43,4.68,.43C3.35,.43,1.24,.44,0,.78z&quot;/></svg></div>
+<div style=&quot;position:absolute;left:460px;top:233px;width:360px;height:1px;background:rgba(0,0,0,.16);&quot;></div>
+<div style=&quot;position:absolute;left:0px;top:250px;width:1280px;height:20px;font-size:11px;font-weight:700;color:#1A1A1A;text-transform:uppercase;letter-spacing:2.5px;text-align:center;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck AG</div>
+<div style=&quot;position:absolute;left:140px;top:280px;width:1000px;height:56px;font-size:36px;font-weight:700;color:#1A1A1A;text-align:center;line-height:1.35;overflow:hidden;&quot;>PPTMaker: AI-Generated Consulting Decks at Scale</div>
+<div style=&quot;position:absolute;left:180px;top:350px;width:920px;height:40px;font-size:14px;color:#444;text-align:center;overflow:hidden;&quot;>Capability Showcase · All Chart Types · All Layouts</div>
+<div style=&quot;position:absolute;left:0px;top:650px;width:1280px;height:70px;background:rgba(255,255,255,.92);border-top:1px solid rgba(0,0,0,.05);&quot;></div>
+<div style=&quot;position:absolute;left:374px;top:671px;width:57px;height:28px;&quot;><svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 110.6 54&quot; width=&quot;57&quot; height=&quot;28&quot;><defs><clipPath id=&quot;cp_0&quot;><rect x=&quot;1.9&quot; y=&quot;16&quot; width=&quot;106.8&quot; height=&quot;22&quot; fill=&quot;none&quot;/></clipPath></defs><g clip-path=&quot;url(#cp_0)&quot;><path d=&quot;M54.1,37c41.1,0,42.8,0,46.8-1.8,2.6-1.2,4.3-3.8,4.3-6.9s-1-4.8-2.8-6.2c-2.8-2.1-6.7-3-25.2-4.2-3.8-.2-9.6-.6-16.7-.9-1.6,0-5.5-.2-6.4-.2s-4.8.1-6.4.2c-7.1.2-12.9.6-16.7.9-18.5,1.2-22.4,2.1-25.2,4.2c-1.8,1.4-2.8,3.9-2.8,6.2s1.7,5.7,4.3,6.9c4.1,1.8,5.7,1.8,46.8,1.8M54.1,18.6c11.7,0,34.8,1.6,40,2.9,3.2.8,5.4,3.4,5.4,6.6s-2.1,5.7-4.9,6.4c-3.7,1-24.7,1.1-40.4,1.1s-36.7,0-40.4-1.1c-2.8-.8-4.9-3.3-4.9-6.4s2.1-5.8,5.4-6.6c5.2-1.3,28.3-2.9,40-2.9ZM56,22.8c0-.2,0-.4-.3-.4h-1c-.2,0-.5.2-.6.4l-1.2,3.3c0,.2-.3.4-.6.4h-2.3c-.2,0-.4-.2-.3-.4l1.2-3.3c0-.2,0-.4-.3-.4h-1c-.2,0-.5.2-.6.4l-3.1,8.8c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4l1.1-3.2c0-.2.3-.4.6-.4h2.3c.2,0,.4.2.3.4l-1.1,3.2c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4l3.1-8.8ZM67.3,31.6l.2-.6c0-.2,0-.4-.3-.4h-2.5c-.2,0-.4-.2-.3-.4l2.5-7.2c0-.2,0-.4-.3-.4h-1c-.2,0-.5.2-.6.4l-3,8.6c0,.2,0,.4.3.4h4.3c.2,0,.5-.2.6-.4h0ZM85.9,30.6h-2.6c-.2,0-.4-.2-.3-.4l.6-1.5c0-.2.3-.4.6-.4h1.9c.2,0,.5-.1.6-.4l.2-.5c0-.2,0-.4-.3-.4h-1.9c-.2,0-.4-.3-.3-.5l.4-1.2c0-.2.3-.4.6-.4l2.6.2c.2,0,.5-.2.6-.4l.2-.5c0-.2,0-.4-.3-.4l-4.4-.3c-.2,0-.5.2-.6.4l-2.7,7.9c0,.2,0,.4.3.4h4.5c.2,0,.5-.2.6-.4l.2-.6c0-.2,0-.4-.3-.4h0ZM32.3,30.6h-2.6c-.2,0-.4-.2-.3-.4l.6-1.7c0-.2.3-.4.6-.4h2c.2,0,.5-.2.6-.5l.2-.5c0-.2,0-.4-.3-.4h-2c-.2,0-.4-.2-.3-.4l.5-1.4c0-.2.3-.4.6-.4h2.6c.2,0,.5-.3.6-.5l.2-.6c0-.2,0-.4-.3-.4l-4.6.2c-.2,0-.5.2-.6.4l-2.9,8.2c0,.2,0,.4.3.4h4.6c.2,0,.5-.2.6-.4l.2-.6c0-.2,0-.4-.3-.4h0ZM15.1,31.6l.9-2.7c0-.2.3-.4.6-.4h1.8c.2,0,.5-.2.6-.4l.2-.6c0-.2,0-.4-.3-.4h-1.8c-.2,0-.4-.2-.3-.4l.3-.9c0-.2.3-.4.6-.4h2.3c.3-.2.5-.3.6-.6l.2-.7c0-.2,0-.4-.3-.4l-4.1.2c-.2,0-.5.2-.6.4l-2.5,7.4c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4h0ZM59.4,24.3l-2.5,7.3c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4l2.5-7.2c0-.2.3-.4.6-.4h1.4c.2,0,.5-.2.6-.4l.2-.6c0-.2,0-.4-.3-.4h-5.8c-.2,0-.5,0-.6.3l-.2.6c0,.2,0,.4.3.4h1.8c.2,0,.4.2.3.4ZM70.2,31.6l2.9-8.4c0-.2,0-.4-.3-.4h-.9c-.2,0-.5.1-.6.4l-2.9,8.4c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4ZM35.8,31.6l3-8.5c0-.2,0-.4-.3-.4h-1c-.3,0-.5.2-.6.4l-2.9,8.5c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4ZM25.5,28.3c1,0,1.5-.8,2-2.5.6-2.1-.1-2.7-1.4-2.6l-3.5.2c-.3,0-.5.2-.6.4l-2.7,7.8c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4l1.1-3c.1-.3.2-.3.5-.3h.4c.3,0,.4,0,.4.3l.5,3c0,.2.3.4.5.4h.9c.2,0,.4-.2.3-.4l-.5-2.8c-.1-.4,0-.5.1-.5h0ZM24.6,26.8c.8,0,.9-.1,1.3-1,.4-.8.1-1-.6-1h-1.3c-.2,0-.5.3-.6.5l-.4,1.1c0,.2,0,.4.3.4h1.2,0ZM93.4,28.4c.8-.1,1.2-1.4,1.4-2.4.4-1.4-.3-2-1.5-2.1l-3-.2c-.3,0-.5.3-.6.5l-2.6,7.4c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4l1.1-2.9c.1-.3.2-.3.5-.3h.4c.3,0,.4,0,.4.3l.9,2.9c0,.2.3.4.6.4h1c.2,0,.4-.2.3-.4l-.9-2.7c-.1-.4-.1-.4.2-.5h0ZM91.6,27.1c.8,0,.9,0,1.3-.9.3-.8.1-.9-.5-.9h-.9c-.2,0-.5.1-.6.4l-.4,1c0,.2,0,.4.3.4h.8ZM76.1,26.7l1,4.8c0,.2.2.4.4.4h1c.2,0,.5-.2.6-.4l2.8-8c0-.2,0-.4-.3-.4h-.9c-.2,0-.5.1-.6.4l-1.5,4.2c-.2.5-.4.5-.5,0l-.9-4.3c0-.3-.2-.4-.5-.4h-1.1c-.2,0-.5.1-.6.4l-2.9,8.3c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4l1.7-4.9c.2-.5.4-.4.5,0h0ZM46.2,26.9c0-.2,0-.4-.3-.4h-2.7c-.2,0-.5.2-.6.4v.5c-.2.2,0,.4.2.4h.8c.2,0,.4.2.3.4l-.6,1.5c-.1.4-.6.7-1,.7h-2.1c-.4,0-.6-.3-.5-.7l1.9-5.6c0-.2.3-.4.6-.4h2.7c.2,0,.4.2.3.4s0,.4.3.4h1c.2,0,.4-.3.5-.5.3-1-.2-1.6-1.1-1.7-.5,0-.6,0-2.1,0s-1.8,0-2.3.2c-.8.2-1.2.6-1.5,1.3l-2.1,6c-.4,1.2.3,2.1,1.4,2.1h3.5c.8,0,1.6-.6,1.9-1.4l1.4-3.7h0ZM106.2,20h.4c.3,0,.6,0,.6-.4s-.3-.4-.5-.4h-.5v.8h0ZM105.8,18.9h.9c.6,0,.8.2.8.7s-.3.6-.6.7l.7,1.1h-.4l-.7-1h-.4v1h-.4v-2.4ZM106.6,21.9c1,0,1.7-.8,1.7-1.8s-.7-1.7-1.7-1.7-1.7.8-1.7,1.7.7,1.8,1.7,1.8ZM106.6,18.1c1.1,0,2.1.9,2.1,2s-.9,2.1-2.1,2.1-2.1-.9-2.1-2.1,1-2,2.1-2ZM54.1,38c-41.3,0-43.6-.2-47.5-2c-2.8-1.3-4.7-4.3-4.7-7.6s1.4-5.6,3.3-7c2.8-2.1,6.3-3,26-4.4c3.3-.2,9-.6,16.7-.8c2.3,0,5.2-.2,6.3-.2s3.9,0,6.3.2c7.7.3,13.4.6,16.7.8c19.7,1.4,23.1,2.3,26,4.4c1.8,1.3,3.3,4,3.3,7s-1.8,6.3-4.7,7.6c-3.9,1.8-6.2,2.1-47.5,2h0Z&quot; fill-rule=&quot;evenodd&quot;/></g><rect width=&quot;110.6&quot; height=&quot;54&quot; fill=&quot;none&quot;/></svg></div>
+<div style=&quot;position:absolute;left:479px;top:671px;width:56px;height:28px;&quot;><svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 107.8 54&quot; width=&quot;56&quot; height=&quot;28&quot;><defs><clipPath id=&quot;cp_1&quot;><rect x=&quot;2.3&quot; y=&quot;11.1&quot; width=&quot;103.2&quot; height=&quot;31.8&quot; fill=&quot;none&quot;/></clipPath></defs><g clip-path=&quot;url(#cp_1)&quot;><path d=&quot;M3,42.9h97.2c.2-.2.4-.2.4-.5v-2.7c0-5.7.5-5.2-2-5.2H4.3c-1.9,0-1.9-.1-1.9,1.7v5.4c0,1,0,.9.5,1.2M73.1,24.9c-.8.2-2-1.6-4.9.4-2.9,2.1-2.7,6.2.9,7.8.8.4,1.8.5,2.7.2.7-.2,1.4-1.1,1.9.2h4.7v-.7c-1.7,0-1.3-1.8-1.3-3.3v-4.7c0-1.7,0-2.6-.9-3.8-.6-.8-1.9-1.3-3.3-1.4-1.6,0-5.1.7-5.4,1.5-.3.6.3,1.3.8,1.3c.4,0,4.8-2.3,4.9,0,0,.5.1,1.9,0,2.3h0ZM40.9,20.2c-1.7.3-3,1.3-3.7,2.3-1,1.4-.8,3.3-.7,5.2,0,.9-.1,1.9.2,2.7c.3.7.8,1.4,1.2,1.7c1,.9,2.5,1.8,4.5,1.5c1.7-.2,3-1.2,3.7-2.2c1-1.5.7-3.3.7-5.3s-.2-3.5-1.4-4.6c-.9-.9-2.7-1.7-4.5-1.4h0ZM88.1,39.4c0,.8.8,1,1.4,1s1.2-.3,1.2-.8-.3-.5-.8-.6l-1-.2c-.5,0-1.3-.3-1.3-1.1s.6-1.3,1.8-1.3,1.8.3,1.8,1.3h-.6c-.1-.3-.3-.8-1.3-.8s-1,.2-1,.7,0,.5.7.6l1,.2c.4,0,1.4.2,1.4,1.1s-1,1.4-1.9,1.4-2-.3-2-1.5h.6ZM79.1,36.5h3.6v.5h-2.9v1.3h2.8v.5h-2.8v1.5h2.9v.5h-3.6v-4.4ZM70.9,39.4c0,.8.7,1,1.4,1s1.2-.3,1.2-.8-.4-.5-.9-.6l-.9-.2c-.6,0-1.3-.3-1.3-1.1s.6-1.3,1.7-1.3,1.8.3,1.9,1.3h-.7c0-.3-.2-.8-1.3-.8s-1,.2-1,.7.2.5.7.6l1.1.2c.3,0,1.3.2,1.3,1.1s-1,1.4-1.9,1.4s-2-.3-2-1.5h.7,0ZM61.3,36.5h.6v2.8c0,.7.6,1.1,1.4,1.1s1.3-.4,1.3-1.1v-2.8h.6v2.7c0,1.1-.6,1.7-1.9,1.7s-2-.6-2-1.7v-2.7h0ZM53.3,40.3v-1.5h1.8c.6,0,.8.4.8.7s-.2.8-.9.8h-1.7ZM52.6,40.8h2.6c.9,0,1.4-.6,1.4-1.2s-.3-1-.8-1.1c.3-.2.6-.4.6-.9c0-.7-.4-1.1-1.4-1.1h-2.4v4.4h0ZM53.3,38.3v-1.3h1.7c.5,0,.7.3.7.7s-.2.6-.7.6h-1.7ZM41.8,37h-1.6v-.5h4v.5h-1.6v3.8h-.7v-3.8h0ZM33.8,36.5h.6v3.8h2.6v.5h-3.2v-4.4ZM28.6,36.5h.6v4.4h-.6v-4.4ZM20,36.5h.7v2.8c0,.7.5,1.1,1.3,1.1s1.3-.4,1.3-1.1v-2.8h.7v2.7c0,1.1-.7,1.7-2,1.7s-2-.6-2-1.7v-2.7h0ZM12.5,40.3v-1.5h1.8c.6,0,.8.4.8.7s-.2.8-.9.8h-1.7ZM11.8,40.8h2.6c.9,0,1.3-.6,1.3-1.2s-.3-1-.8-1.1c.4-.2.7-.4.7-.9c0-.7-.5-1.1-1.4-1.1h-2.4v4.4h0ZM12.5,38.3v-1.3h1.7c.5,0,.7.3.7.7s-.2.6-.7.6h-1.7ZM79.9,28.6l-1.4.6,1.5,4.3h1.3c0-.3,0-.6.1-.8c.5,0,2.3.9,3.6.9c5,0,6.2-5.2,2.8-7.3c-.9-.6-2.1-1-3.1-1.5c-.9-.5-2.2-1.3-1.5-2.7c.8-1.6,2.9-1,4,1c.3.5.5,1.1.7,1.6c.4,0,1.3-.3,1.6-.5l-1.4-4.4h-1.4c0,.4,0,.6-.2.8c-.5,0-.8-1.1-3.2-1c-1.4,0-2.3.8-2.8,1.5c-1.5,1.8-1,4.5,1.1,6c1.1.8,5.3,2.1,3.4,4.3c-1.2,1.5-3.6-.2-4.6-1.9c-.1-.2-.2-.5-.4-.7h0ZM41.4,21.7c.4-.1.9.1,1.1.4c.3.3.2.8.2,1.3v6.2c0,1,.2,2.1-.7,2.3c-.5.1-.9-.1-1.1-.4c-.2-.3-.2-.9-.2-1.4v-6.2c0-1-.2-2,.8-2.3h0ZM71.2,27.2c1.2-.3,1.9.4,2,1.5c0,1.3.1,2.2-1,2.5c-.5.1-1,0-1.5-.2c-.4-.3-.5-.6-.5-1.3c0-1.3-.2-2.2,1-2.6ZM52.6,20.9c-.2-.2-.3-.3-.3-.7h-4.5c-.4,0-.4,0-.7.3c-.2.2,0,0-.2.2c.7.5,1.4.9,1.5,2.1c.1,1,0,2.5,0,3.5v5.4c0,1-.1.9-.6,1.2v.6h5.3v-.7c-1-.5-.8-.5-.8-2.4v-6.4c0-.7-.2-2,1.1-2.3c1.1-.2,1.4,1,1.4,1.8c0,2.6,0,5.6,0,8.2c0,.7-.2.7-.6,1v.6h5.1v-.7c-.8-.7-.7,0-.7-2.5v-6.5c0-.5,0-1.1.2-1.5c.5-.7,1.5-1,2-.1c.4.7.2,3.7.2,4.7v4.9c0,.8-.4.6-.6,1v.5h5.2s0-.5,0-.5c-.3-.4-.8,0-.8-1c0-.6,0-1.3,0-1.9v-7.6c-.1-1.8-3-4.1-5.7-1.6c-.4.3-.6.8-1.1.2c-.6-.7-1.3-1.2-2.6-1.2c-2.4,0-1.8,1-2.9,1h0ZM7,35.4c.6,0,80.6,0,88.1,0s1.8-.2,1.8,1.2v3c0,2.8.3,2.3-3.7,2.3H8.1c-2.1,0-1.8.4-1.8-4.3s-.3-2.2.7-2.3h0ZM103.9,42.9c-.9,0-1.6-.7-1.6-1.6s.7-1.6,1.6-1.6,1.6.7,1.6,1.6-.7,1.6-1.6,1.6ZM103.9,40c-.7,0-1.3.6-1.3,1.3s.6,1.3,1.3,1.3,1.3-.6,1.3-1.3-.6-1.3-1.3-1.3ZM104.3,42.2l-.3-.6c0,0,0-.2-.2-.2h-.2v.7h-.3v-1.7h.6c.1,0,.3,0,.4,0c.1,0,.2.2.2.4s-.1.4-.3.5h0s.4.7.4.7h-.4ZM104.2,40.8s-.1,0-.2,0h-.3v.4h.3c.2,0,.3,0,.3-.2s0-.1,0-.2ZM2.3,13.6v5.9s0,0,0,0h0c.3.5.7.4,1.5.4s1.5.2,1.7-.3c.2-.5-.1-1.2.2-1.8c.3-.5.7-.7,1.4-.7h6.1c.7,0,1.4,0,1.5.6c0,.6,0,12.2,0,14.1s-.3.9-.7,1.2v.5c0,0,5.6,0,5.6,0v-.5c-.9-.4-.8-.9-.8-1.9v-11.2c0-.7-.2-2.3.3-2.6c.4-.2,4.7-.1,5.5-.1v14.9c0,.8-.4.8-.7.9c-.3.1-.2,0-.2.3c0,.2,0,.2.5.2h5c0-.6,0-.3-.3-.5c-.2-.1-.3-.2-.4-.4c-.3-.5-.2-.9-.2-1.5v-6.7c0-.6,0-1,.3-1.4c.5-.8,1.6-.8,2.2-.2c.4.4.4.7.4,1.3c0,1,.2,7.9,0,8.4c-.3.9-.9.4-.7,1.1h5.3v-.5c-.9-.2-.9-.8-.9-1.8v-8.5c0-1.6-1.2-2.8-2.4-3.2c-1.1-.4-2.3.1-3.1.8c-.3.2-.4.6-.9.5c-.4-.2-.2-3.1-.2-3.6c.5,0,62.9,0,67.6,0c2.4,0,.6,2.6,2.1,2.8c.3,0,2.2,0,2.4,0c.6-.2.4-1.4.4-2.1c0-5.2.4-5-2.2-5H28.3c0-1.2,1.1-1.1,2.2-1l-.4-.8h-7.2l-.5.9c1.1,0,2.3-.2,2.3.9H4.5c-1.7,0-1.6-.2-2.2.6h0Z&quot; fill-rule=&quot;evenodd&quot;/></g><rect width=&quot;107.8&quot; height=&quot;54&quot; fill=&quot;none&quot;/></svg></div>
+<div style=&quot;position:absolute;left:583px;top:671px;width:48px;height:28px;&quot;><svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 91.8 54&quot; width=&quot;48&quot; height=&quot;28&quot;><defs><clipPath id=&quot;cp_2&quot;><rect x=&quot;2&quot; y=&quot;8&quot; width=&quot;87.8&quot; height=&quot;38&quot; fill=&quot;none&quot;/></clipPath></defs><g clip-path=&quot;url(#cp_2)&quot;><path d=&quot;M77.6,38.5l-3.2,7.5h1.9l.5-1.1h3.6l.5,1.1h1.9l-3.2-7.5h-2.1ZM77.5,43.4l1.1-2.5h.2l1.1,2.5h-2.3,0Z&quot; fill-rule=&quot;evenodd&quot;/><path d=&quot;M75.6,38.5h-7.2v1.6h2.7v5.8h1.8v-5.8h2.7v-1.6Z&quot; fill-rule=&quot;evenodd&quot;/><path d=&quot;M54.8,43.3l-2.8-4.8h-2.1v7.5h1.8v-4.6l2.7,4.6h2.2v-7.5h-1.8v4.8Z&quot; fill-rule=&quot;evenodd&quot;/><path d=&quot;M27.3,40.2h2.7v5.8h1.8v-5.8h2.7v-1.6h-7.2v1.6Z&quot; fill-rule=&quot;evenodd&quot;/><path d=&quot;M20.5,39.2v3.2l.7.6h3.4v1l-.3.3h-3.7v1.6h5.1l.7-.6v-3.2l-.7-.6h-3.4v-1l.3-.3h3.7v-1.6h-5.1l-.7.6Z&quot; fill-rule=&quot;evenodd&quot;/><path d=&quot;M61.7,39.2v3.2l.7.6h3.3v1l-.3.3h-3.7v1.6h5.1l.7-.6v-3.2l-.7-.6h-3.4v-1l.3-.3h3.7v-1.6h-5.1l-.7.6Z&quot; fill-rule=&quot;evenodd&quot;/><path d=&quot;M13.8,46h5.8v-1.6h-4v-1.3h2.9v-1.6h-2.9v-1.4h4v-1.6h-5.8v7.5Z&quot; fill-rule=&quot;evenodd&quot;/><path d=&quot;M35.4,46h5.8v-1.6h-4v-1.3h2.9v-1.6h-2.9v-1.4h4v-1.6h-5.8v7.5Z&quot; fill-rule=&quot;evenodd&quot;/><path d=&quot;M9.8,42.7h-.1l-1.2-3.9v-.3h-1.8v.3c-.1,0-1.3,3.9-1.3,3.9h-.1l-1.3-4.2h-1.9l2.3,7.5h2l1.2-3.8h.1l1.2,3.8h2l2.3-7.5h-1.9l-1.3,4.2Z&quot; fill-rule=&quot;evenodd&quot;/><path d=&quot;M48,43.4h0l.7-.6v-3.5l-.7-.6h-5.5v7.5h1.8v-2.6h1.4l1.3,2.6h1.9l-1.3-2.6h.4ZM46.8,41.5l-.3.3h-2.3v-1.6h2.3l.3.3v1Z&quot; fill-rule=&quot;evenodd&quot;/><path d=&quot;M88.5,43.4h.4l.6-.6v-3.5l-.6-.6h-5.3v7.5h1.7v-2.6h1.4l1.3,2.6h1.9l-1.3-2.6h0ZM87.8,41.5l-.3.3h-2.2v-1.6h2.2l.3.3v1Z&quot; fill-rule=&quot;evenodd&quot;/><path d=&quot;M74.5,8.6l-10.8,24.6c0,0-.1.1-.2.1h-13.8c0,0-.2,0-.2-.1l-3.5-7.8-3.6,7.8c0,0-.1.1-.2.1h-13.8c0,0-.2,0-.2-.1l-10.8-24.6c0,0,0-.1,0-.2c0,0,0,0,.2,0h11.4c0,0,.2,0,.2.1l5.6,12.8,2.4-5.1,1.1.8-2.6,5.5c0,0-.1.2-.2.2h-1.4c0,0-.2,0-.2-.2l-5.5-12.6c0,0-.1-.2-.2-.2h-8.6c0,0-.1,0,0,.2l9.7,22c0,0,.1.2.2.2h12c0,0,.2,0,.2-.1l3.5-7.6c0,0,.1-.2.2-.2h1.4c0,0,.2,0,.2.2l3.4,7.6c0,0,.1.2.2.2h12c0,0,.2,0,.2-.1l9.7-22c0,0,0-.2,0-.2h-8.6c0,0-.2,0-.2.2l-5.5,12.6c0,0-.1.2-.2.2h-1.4c0,0-.2,0-.2-.2l-2.6-5.5,1.1-.8,2.4,5.1,5.6-12.8c0,0,.1-.1.2-.1h11.4c0,0,.1,0,.2,0c0,0,0,.1,0,.2M40.9,8.5c0,0,.1-.1.2-.1h4.8l-.4,1.3h-3.5c0,0-.2,0-.2.1l-2.6,5.5h-1.5l3.3-6.9h0ZM50.8,8.4c0,0,.2,0,.2.1l3.3,6.9h-1.5l-2.6-5.5c0,0-.1-.2-.2-.2h-3.5l-.4-1.3h4.8ZM37.4,15.8h6.4l2-6v-.3c.1,0,.2.3.2.3l1.9,6h6.7l-5.4,3.9,2.1,6.3-5.4-3.9-5.4,3.9,2.1-6.3-4.1-3-1.1-.8h-.2c0-.1.2-.1.2-.1ZM43.5,19.4l-.2.5-1.3,4.1,3.5-2.5.5-.3.5.3,3.5,2.5-1.3-4.1-.2-.5.4-.3,3.5-2.6h-4.9l-.2-.5-1.3-4.1-1.3,4.1-.2.5h-4.9l3.5,2.6.4.3h0ZM74.8,8.2c0-.2-.3-.2-.5-.2h-11.4c-.2,0-.5.2-.6.4l-5.3,12-2.1-4.5.7-.5h-1l-3.4-7.1c0-.2-.3-.4-.6-.4h-9.7c-.2,0-.5.2-.6.4l-3.4,7.1h-1l.7.5-2.1,4.5-5.3-12c0-.2-.3-.4-.6-.4h-11.4c-.2,0-.4,0-.5.2c0,.2-.1.3,0,.5l10.8,24.6c0,.2.3.4.6.4h13.8c.2,0,.5-.2.6-.4l3.2-7,3.2,7c0,.2.3.4.6.4h13.8c.2,0,.5-.2.6-.4l10.8-24.6c0-.2,0-.4,0-.5h0Z&quot; fill-rule=&quot;evenodd&quot;/></g><rect width=&quot;91.8&quot; height=&quot;54&quot; fill=&quot;none&quot;/></svg></div>
+<div style=&quot;position:absolute;left:679px;top:671px;width:28px;height:28px;&quot;><svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 54 54&quot; width=&quot;28&quot; height=&quot;28&quot;><defs><clipPath id=&quot;cp_3&quot;><rect x=&quot;2&quot; y=&quot;2&quot; width=&quot;50&quot; height=&quot;50&quot; fill=&quot;none&quot;/></clipPath></defs><g clip-path=&quot;url(#cp_3)&quot;><path d=&quot;M48.7,14.5c-2.2-3.8-5.3-7-9.2-9.2s-8.1-3.3-12.5-3.3-8.7,1.2-12.5,3.3c-3.8,2.2-7,5.4-9.2,9.2c-2.2,3.8-3.3,8.1-3.3,12.5s1.2,8.7,3.3,12.5c2.2,3.8,5.4,7,9.2,9.2c3.8,2.2,8.1,3.3,12.5,3.3s8.7-1.2,12.5-3.3c3.8-2.2,7-5.4,9.2-9.2c2.2-3.8,3.3-8.1,3.3-12.5s-1.2-8.7-3.3-12.5M4.5,27c0-3.9,1-7.8,3-11.2c2-3.4,4.8-6.3,8.2-8.2c3.2-1.9,6.8-2.9,10.5-3l-2.9,20.4-16.3,12.7c-1.8-3.3-2.7-6.9-2.7-10.6h0ZM38.2,46.5c-3.4,2-7.3,3-11.2,3s-7.8-1-11.2-3c-3.2-1.9-5.9-4.5-7.9-7.6l19.1-7.7,19.1,7.7c-2,3.2-4.7,5.8-7.9,7.6h0ZM46.8,37.6l-16.3-12.7-2.9-20.4c3.7.1,7.3,1.1,10.6,3c3.4,2,6.3,4.8,8.2,8.2c2,3.4,3,7.3,3,11.2s-.9,7.4-2.7,10.6h0Z&quot; fill-rule=&quot;evenodd&quot;/></g><rect width=&quot;54&quot; height=&quot;54&quot; fill=&quot;none&quot;/></svg></div>
+<div style=&quot;position:absolute;left:755px;top:671px;width:47px;height:28px;&quot;><svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 91.5 54&quot; width=&quot;47&quot; height=&quot;28&quot;><defs><clipPath id=&quot;cp_4&quot;><rect x=&quot;1.6&quot; width=&quot;88.4&quot; height=&quot;54&quot; fill=&quot;none&quot;/></clipPath></defs><g clip-path=&quot;url(#cp_4)&quot;><path d=&quot;M45.8.6c11.9,0,21.6,8.5,21.6,19s-9.7,19-21.6,19-21.6-8.5-21.6-19S33.9.6,45.8.6M45.8,4.1c9.6,0,17.4,6.9,17.4,15.5s-7.8,15.5-17.4,15.5-17.4-6.9-17.4-15.5,7.8-15.5,17.4-15.5ZM45.8,3.5c10,0,18,7.2,18,16.1s-8.1,16.1-18,16.1-18-7.2-18-16.1S35.8,3.5,45.8,3.5ZM60.5,22.6h-4.5c-1.3,4.4-5.4,7.6-10.2,7.6s-8.9-3.2-10.2-7.6h-4.5c1.5,5.9,7.5,10.4,14.7,10.4s13.2-4.4,14.7-10.4ZM31.1,16.7h4.5c1.3-4.4,5.3-7.6,10.1-7.6s8.9,3.2,10.1,7.6h4.5c-1.5-5.9-7.5-10.4-14.7-10.4s-13.1,4.4-14.7,10.4ZM29.6,20.4v-.7c.3,0,1.1,0,1.4,0c.2,0,.4.1.4.3s-.3.3-.5.3c-.1,0-.3,0-.6,0h-.6ZM29.6,19.5v-.6c.3,0,1,0,1.3,0c.2,0,.3.1.3.3s-.2.2-.4.3c-.1,0-.5,0-.7,0h-.5ZM29.2,18.6v2h1.4c.3,0,.7,0,1-.1c.5-.2.6-.8-.3-.9c.2,0,.3-.1.4-.2c.2-.2.2-.3,0-.5c-.2-.2-.7-.2-1.1-.2h-1.4ZM34.9,18.6v.8h-1.9v-.8h-.5v2h.5v-.9h1.9v.9h.5v-2h-.5ZM37.2,19.2c0-.1.2-.3.2-.4c.1.3.4.7.6,1h-1.2l.4-.6ZM37.2,18.6l-1.4,2h.5l.4-.6h1.5l.4.6h.5l-1.5-2h-.5,0ZM40,18.8h1.2c.3,0,.5,0,.6,0c.2,0,.2.3,0,.4c-.2.1-.5.2-.8.2h-1v-.7h0ZM39.5,18.6v2h.5v-.9c.2,0,.7,0,.8,0c.3,0,.5.2.8.5l.5.4h.6l-.6-.5c-.2-.2-.4-.3-.7-.4c.3,0,.6,0,.8-.2c.3-.2.3-.4,0-.7c-.3-.2-.7-.2-1.1-.2h-1.6ZM44.2,19.2c0-.1.2-.3.2-.4c.1.3.4.7.6,1h-1.2l.4-.6ZM44.1,18.6l-1.4,2h.5l.4-.6h1.5l.4.6h.5l-1.5-2h-.5,0ZM45.8,18.6v.2h1.2v1.7h.5v-1.7h1.2v-.2h-2.9ZM52.8,18.6v2h2.8v-.3h-2v-.5h1.8v-.3h-1.8v-.4h2v-.3h-2.7ZM58.3,18.6v1.3l-1.5-1.3h-.7v2h.7v-1.3l1.5,1.3h.7v-2h-.7ZM59.7,18.6v.3h1.7l-1.9,1.3v.4h2.9v-.3h-2.1l2-1.3v-.3h-2.7ZM49.9,20.3v-.5h.6c.4,0,.7,0,.9.1c.2.1.1.4-.3.4c-.1,0-.4,0-.7,0h-.5,0ZM49.9,19h1c.1,0,.2,0,.3,0c.2,0,.2.3-.3.4h-1v-.4h0ZM50.6,18.6h-1.4v2c.5,0,1.7,0,2.1,0c.2,0,.4,0,.5,0c.6-.2.7-.8-.3-.9c.2,0,.3,0,.4-.2c.2-.1.2-.3,0-.5c-.3-.3-.7-.3-1.2-.3h-.2ZM64.4,54h0s0,0,0,0ZM2.9,53.4v-1.8c.8,0,3,0,3.7,0c.5,0,1,.3,1,.8s-.9.8-1.4.9c-.3,0-.9,0-1.6,0h-1.7,0ZM2.9,50.9v-1.6c.8,0,2.8,0,3.4,0c.4,0,.9.3.9.8s-.5.6-1,.7c-.4,0-1.2,0-2,0h-1.3ZM1.6,48.7v5.3h3.7c.9,0,1.9,0,2.6-.4c1.3-.5,1.6-2.1-.8-2.5c.5-.1.8-.3,1-.5c.5-.4.4-.9,0-1.3c-.7-.6-1.8-.7-2.8-.7H1.6h0ZM16.9,48.7v2.2h-5v-2.2h-1.3v5.3h1.3v-2.5h5v2.5h1.3v-5.3h-1.3ZM23,50.2c.2-.3.4-.7.5-1c.4.7,1.2,1.8,1.7,2.6h-3.3l1-1.6ZM22.8,48.7l-3.7,5.3h1.4l1.1-1.6h4l1.1,1.6h1.5l-3.9-5.3h-1.4ZM30.4,49.3h3.1c.7,0,1.2,0,1.6.3c.5.3.7.7.2,1.1c-.4.4-1.4.4-2.1.4h-2.7,0v-1.8h0ZM29.1,48.7v5.3h1.3v-2.4c.5,0,1.8,0,2.2,0c.8,0,1.4.6,2.1,1.2l1.3,1.1h1.6l-1.7-1.4c-.6-.5-1-.8-1.8-1c.9,0,1.6-.2,2.1-.5c.8-.5.9-1.2.3-1.8c-.7-.6-1.8-.7-3-.7h-4.3,0ZM41.5,50.2c.2-.3.4-.7.5-1c.4.7,1.2,1.8,1.7,2.6h-3.3l1.1-1.6ZM41.4,48.7l-3.7,5.3h1.3l1.1-1.6h4l1.1,1.6h1.5l-4-5.3h-1.4ZM46,48.7v.6h3.2v4.7h1.3v-4.7h3.2v-.6h-7.6ZM64.4,48.7v5.3h7.3v-.9h-5.4v-1.4h4.8v-.9h-4.8v-1.2h5.2v-.9h-7.2,0ZM79.2,48.7v3.6l-4-3.6h-1.9v5.3h1.8v-3.5l3.9,3.5h2v-5.3h-1.8ZM82.7,48.7v.9h4.5l-5.1,3.4v1h7.8v-.9h-5.5l5.3-3.6v-.8h-7.1ZM56.7,53.1v-1.4h1.6c1.1,0,1.9,0,2.3.3c.4.3.3,1-.8,1.1c-.3,0-1.1,0-1.8,0h-1.3ZM56.7,49.6h0s2.8,0,2.8,0c.3,0,.6,0,.7.2c.4.3.5.9-.8,1h-2.7s0-1.2,0-1.2ZM58.6,48.7h-3.9v5.3c1.4,0,4.5,0,5.6,0c.5,0,1-.1,1.3-.2c1.5-.6,1.8-2.2-.7-2.5c.4-.1.7-.3,1-.5c.5-.4.5-.9,0-1.3c-.7-.7-1.9-.7-3.1-.7h-.4,0Z&quot; fill-rule=&quot;evenodd&quot;/></g><rect width=&quot;91.5&quot; height=&quot;54&quot; fill=&quot;none&quot;/></svg></div>
+<div style=&quot;position:absolute;left:850px;top:671px;width:57px;height:28px;&quot;><svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 109.5 54&quot; width=&quot;57&quot; height=&quot;28&quot;><defs><clipPath id=&quot;cp_5&quot;><rect x=&quot;2.4&quot; y=&quot;16&quot; width=&quot;104.7&quot; height=&quot;22&quot; fill=&quot;none&quot;/></clipPath></defs><g clip-path=&quot;url(#cp_5)&quot;><path d=&quot;M28.4,29c2.4,0,2.5-1.2,2.6-1.6c0-.6-.3-1.6-2.5-1.6h-4.4v-1.1h6.6c0,0,.1,0,.1-.1v-1c0,0,0-.1-.1-.1h-8.4c-2.3,0-2.5,1.2-2.5,1.6c0,.6.3,1.6,2.5,1.6h4.4v1.1h-6.6c0,0-.1,0-.1.1v1c0,0,0,.1.1.1h8.4ZM106.4,18.5c0,.4-1.6,6.5-3.2,10.5c-.7,1.7-1.2,2.9-1.4,3.2c-.4.8-1.1,1.3-2,1.4c-11.8,1.9-63.5,3.7-88.5,3.8c-1,0-2.3,0-3.2-.5c-.8-.4-1.1-1.5-1.2-1.8l-3.8-13.9c-.4-1.5-.2-2.7.6-3.5c.9-1,1.9-1,5.4-1h95.6c.6,0,1.1.3,1.4.8c.2.3.3.7.2,1.1h0ZM104.8,17.3c.4,0,.7.2.8.4c.1.2.2.4.1.6c-.1.5-1.6,6.4-3.1,10.3c-.7,1.7-1.2,2.9-1.3,3.2c-.3.6-.8.9-1.5,1c-12.1,1.9-66,3.7-88.4,3.8c-.9,0-2.1,0-2.9-.4c-.4-.2-.7-.9-.8-1.4l-3.7-14c-.5-1.9.2-2.6.4-2.9c.7-.8,1.6-.8,5-.8h95.6,0ZM83.6,24.7c0,0,.2,0,.2.2v1.7h-2.6v-1.7c0,0,0-.2.2-.2h2.3ZM72.8,29c-.5-.5-1.3-1.2-1.6-1.5h-.1c0-.1.2-.2.2-.2c.7-.2,1.3-.9,1.3-1.8v-.3c0-1.2-1-1.9-1.9-1.9h-8.1c0,0-.1,0-.1.1v5.4c0,0,0,.1.1.1h3.6c0,0,.1,0,.1-.1v-1.4h.8l1.5,1.5h4.2,0ZM66.3,26.5h0v-1.8h2.1c.4,0,.8.3.8.8v.3c0,.5-.4.8-.8.8h-2ZM58.7,24.6v-1c0,0,0-.1-.1-.1h-10.8c0,0-.1,0-.1.1v1c0,0,0,.1.1.1h3.5v4.3c0,0,0,.1.1.1h3.6c0,0,.1,0,.1-.1v-4.2h3.5c0,0,.1,0,.1-.1h0ZM44.2,25.8h-5.3v-1.1h5.3c0,0,.1,0,.1-.1v-1c0,0,0-.1-.1-.1h-9c0,0-.1,0-.1.1v5.4c0,0,0,.1.1.1h9c0,0,.1,0,.1-.1v-1c0,0,0-.1-.1-.1h-5.3v-1.1h5.3c0,0,.1,0,.1-.1v-.8c0,0,0-.1-.1-.1h0ZM87.6,28.9v-3.6c0-1.1-.9-1.9-1.9-1.9h-6.4c-1.1,0-1.9.9-1.9,1.9v3.6c0,0,0,.1.1.1h3.6c0,0,.1,0,.1-.1v-1.4h2.6v1.4c0,0,0,.1.1.1h3.6c0,0,.1,0,.1-.1h0ZM106.8,17.1c-.4-.7-1.1-1.1-1.9-1.1H9.2c-3.5,0-4.7,0-5.9,1.2c-.6.7-1.3,1.9-.7,4.1l3.7,13.9c.1.5.5,1.7,1.5,2.2c.5.2,1.3.6,3.5.5c23.7-.1,76.6-1.9,88.6-3.8c1.1-.2,2-.8,2.5-1.7c.2-.4.7-1.6,1.4-3.3c1.6-4.1,3.1-10.2,3.2-10.6c0-.5,0-1-.3-1.5h0Z&quot; fill-rule=&quot;evenodd&quot;/></g><rect width=&quot;109.5&quot; height=&quot;54&quot; fill=&quot;none&quot;/></svg></div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:720px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:230px;width:300px;height:20px;font-size:13px;font-weight:700;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:2px;&quot;>Section 01</div>
+<div style=&quot;position:absolute;left:64px;top:252px;width:70px;height:3px;background:#00677F;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:262px;width:900px;height:160px;font-size:42px;font-weight:700;color:#fff;line-height:1.2;&quot;>Financial<br>Performance</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:rgba(255,255,255,.15);&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:rgba(255,255,255,.40);text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:rgba(255,255,255,.30);overflow:hidden;white-space:nowrap;&quot;>Daimler Truck AG Annual Report 2024</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:rgba(255,255,255,.45);text-align:right;&quot;>2</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>REVENUE TREND</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:20px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Group revenue reached €55.9B in FY2024, up 3% vs. prior year</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:84px;width:1152px;height:22px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;>Revenue in €B by segment, 2019–2024 · Source: Daimler Truck Annual Report</div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:1152px;height:576px;&quot;><svg width=&quot;1152&quot; height=&quot;576&quot; viewBox=&quot;0 0 1152 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;576.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Group Revenue by Segment (€B)</text>
+<line x1=&quot;48&quot; y1=&quot;532.0&quot; x2=&quot;1144&quot; y2=&quot;532.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;536.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>0</text>
+<line x1=&quot;48&quot; y1=&quot;430.0&quot; x2=&quot;1144&quot; y2=&quot;430.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;434.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>5</text>
+<line x1=&quot;48&quot; y1=&quot;328.0&quot; x2=&quot;1144&quot; y2=&quot;328.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;332.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>10</text>
+<line x1=&quot;48&quot; y1=&quot;226.0&quot; x2=&quot;1144&quot; y2=&quot;226.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;230.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>15</text>
+<line x1=&quot;48&quot; y1=&quot;124.0&quot; x2=&quot;1144&quot; y2=&quot;124.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;128.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>20</text>
+<line x1=&quot;48&quot; y1=&quot;22.0&quot; x2=&quot;1144&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>25</text>
+<path d=&quot;M 48.0,181.1 L 267.2,230.1 L 486.4,197.4 L 705.6,97.5 L 924.8,60.8 L 1144.0,28.1&quot; stroke=&quot;#00677F&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<circle cx=&quot;48.0&quot; cy=&quot;181.1&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;267.2&quot; cy=&quot;230.1&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;486.4&quot; cy=&quot;197.4&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;705.6&quot; cy=&quot;97.5&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;924.8&quot; cy=&quot;60.8&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;1144.0&quot; cy=&quot;28.1&quot; r=&quot;4&quot; fill=&quot;#00677F&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<path d=&quot;M 48.0,279.0 L 267.2,309.6 L 486.4,291.3 L 705.6,242.3 L 924.8,213.8 L 1144.0,203.6&quot; stroke=&quot;#5097AB&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<circle cx=&quot;48.0&quot; cy=&quot;279.0&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;267.2&quot; cy=&quot;309.6&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;486.4&quot; cy=&quot;291.3&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;705.6&quot; cy=&quot;242.3&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;924.8&quot; cy=&quot;213.8&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;1144.0&quot; cy=&quot;203.6&quot; r=&quot;4&quot; fill=&quot;#5097AB&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<path d=&quot;M 48.0,413.7 L 267.2,428.0 L 486.4,417.8 L 705.6,387.2 L 924.8,362.7 L 1144.0,350.4&quot; stroke=&quot;#79AEBF&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<circle cx=&quot;48.0&quot; cy=&quot;413.7&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;267.2&quot; cy=&quot;428.0&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;486.4&quot; cy=&quot;417.8&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;705.6&quot; cy=&quot;387.2&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;924.8&quot; cy=&quot;362.7&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;1144.0&quot; cy=&quot;350.4&quot; r=&quot;4&quot; fill=&quot;#79AEBF&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<path d=&quot;M 48.0,452.4 L 267.2,474.9 L 486.4,466.7 L 705.6,448.4 L 924.8,434.1 L 1144.0,425.9&quot; stroke=&quot;#004355&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<circle cx=&quot;48.0&quot; cy=&quot;452.4&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;267.2&quot; cy=&quot;474.9&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;486.4&quot; cy=&quot;466.7&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;705.6&quot; cy=&quot;448.4&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;924.8&quot; cy=&quot;434.1&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;1144.0&quot; cy=&quot;425.9&quot; r=&quot;4&quot; fill=&quot;#004355&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<path d=&quot;M 48.0,513.6 L 267.2,515.7 L 486.4,513.6 L 705.6,511.6 L 924.8,511.6 L 1144.0,511.6&quot; stroke=&quot;#007A93&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot;/>
+<circle cx=&quot;48.0&quot; cy=&quot;513.6&quot; r=&quot;4&quot; fill=&quot;#007A93&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;267.2&quot; cy=&quot;515.7&quot; r=&quot;4&quot; fill=&quot;#007A93&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;486.4&quot; cy=&quot;513.6&quot; r=&quot;4&quot; fill=&quot;#007A93&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;705.6&quot; cy=&quot;511.6&quot; r=&quot;4&quot; fill=&quot;#007A93&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;924.8&quot; cy=&quot;511.6&quot; r=&quot;4&quot; fill=&quot;#007A93&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<circle cx=&quot;1144.0&quot; cy=&quot;511.6&quot; r=&quot;4&quot; fill=&quot;#007A93&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot;/>
+<text x=&quot;48.0&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2019</text>
+<text x=&quot;267.2&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2020</text>
+<text x=&quot;486.4&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2021</text>
+<text x=&quot;705.6&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2022</text>
+<text x=&quot;924.8&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2023</text>
+<text x=&quot;1144.0&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2024</text>
+<rect x=&quot;48&quot; y=&quot;560&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;73.0&quot; y=&quot;566.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Trucks NA</text>
+<rect x=&quot;154&quot; y=&quot;560&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;179.0&quot; y=&quot;566.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Trucks EU</text>
+<rect x=&quot;260&quot; y=&quot;560&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#79AEBF&quot;/>
+<text x=&quot;285.0&quot; y=&quot;566.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Trucks Asia</text>
+<rect x=&quot;366&quot; y=&quot;560&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;391.0&quot; y=&quot;566.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Buses</text>
+<rect x=&quot;472&quot; y=&quot;560&quot; width=&quot;20&quot; height=&quot;3&quot; fill=&quot;#007A93&quot;/>
+<text x=&quot;497.0&quot; y=&quot;566.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Financial Svc</text></svg></div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck AG Annual Report 2024</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>3</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>FY2024 RESULTS</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:18px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>North America leads growth; group EBIT margin held at 9.1% despite headwinds</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:84px;width:1152px;height:22px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;>FY2024 vs. FY2023 comparison across key financial metrics</div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Revenue by Region (€B)</text>
+<line x1=&quot;48&quot; y1=&quot;532.0&quot; x2=&quot;544&quot; y2=&quot;532.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;536.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>0</text>
+<line x1=&quot;48&quot; y1=&quot;430.0&quot; x2=&quot;544&quot; y2=&quot;430.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;434.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>5</text>
+<line x1=&quot;48&quot; y1=&quot;328.0&quot; x2=&quot;544&quot; y2=&quot;328.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;332.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>10</text>
+<line x1=&quot;48&quot; y1=&quot;226.0&quot; x2=&quot;544&quot; y2=&quot;226.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;230.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>15</text>
+<line x1=&quot;48&quot; y1=&quot;124.0&quot; x2=&quot;544&quot; y2=&quot;124.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;128.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>20</text>
+<line x1=&quot;48&quot; y1=&quot;22.0&quot; x2=&quot;544&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;44.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>25</text>
+<line x1=&quot;48&quot; y1=&quot;532.0&quot; x2=&quot;544&quot; y2=&quot;532.0&quot; stroke=&quot;#999&quot; stroke-width=&quot;1.5&quot;/>
+<rect x=&quot;61.9&quot; y=&quot;28.1&quot; width=&quot;35.7&quot; height=&quot;503.9&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<text x=&quot;79.7&quot; y=&quot;25.1&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>24.70</text>
+<rect x=&quot;161.1&quot; y=&quot;203.6&quot; width=&quot;35.7&quot; height=&quot;328.4&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<text x=&quot;178.9&quot; y=&quot;200.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>16.10</text>
+<rect x=&quot;260.3&quot; y=&quot;350.4&quot; width=&quot;35.7&quot; height=&quot;181.6&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<text x=&quot;278.1&quot; y=&quot;347.4&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>8.90</text>
+<rect x=&quot;359.5&quot; y=&quot;448.4&quot; width=&quot;35.7&quot; height=&quot;83.6&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<text x=&quot;377.3&quot; y=&quot;445.4&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>4.10</text>
+<rect x=&quot;458.7&quot; y=&quot;489.2&quot; width=&quot;35.7&quot; height=&quot;42.8&quot; fill=&quot;#00677F&quot; rx=&quot;1&quot;/>
+<text x=&quot;476.5&quot; y=&quot;486.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2.10</text>
+<rect x=&quot;97.6&quot; y=&quot;60.8&quot; width=&quot;35.7&quot; height=&quot;471.2&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<text x=&quot;115.5&quot; y=&quot;57.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>23.10</text>
+<rect x=&quot;196.8&quot; y=&quot;213.8&quot; width=&quot;35.7&quot; height=&quot;318.2&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<text x=&quot;214.7&quot; y=&quot;210.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>15.60</text>
+<rect x=&quot;296.0&quot; y=&quot;362.7&quot; width=&quot;35.7&quot; height=&quot;169.3&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<text x=&quot;313.9&quot; y=&quot;359.7&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>8.30</text>
+<rect x=&quot;395.2&quot; y=&quot;454.5&quot; width=&quot;35.7&quot; height=&quot;77.5&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<text x=&quot;413.1&quot; y=&quot;451.5&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>3.80</text>
+<rect x=&quot;494.4&quot; y=&quot;491.2&quot; width=&quot;35.7&quot; height=&quot;40.8&quot; fill=&quot;#5097AB&quot; rx=&quot;1&quot;/>
+<text x=&quot;512.3&quot; y=&quot;488.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2</text>
+<text x=&quot;97.6&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>North America</text>
+<text x=&quot;196.8&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Europe</text>
+<text x=&quot;296.0&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Asia-Pac</text>
+<text x=&quot;395.2&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Lat Am</text>
+<text x=&quot;494.4&quot; y=&quot;546.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Other</text>
+<rect x=&quot;48&quot; y=&quot;558&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;61.0&quot; y=&quot;567.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>FY2024</text>
+<rect x=&quot;128&quot; y=&quot;558&quot; width=&quot;10&quot; height=&quot;10&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;141.0&quot; y=&quot;567.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>FY2023</text></svg></div>
+<div style=&quot;position:absolute;left:666px;top:146px;width:269px;height:148px;background:#fff;border-radius:6px;border:1px solid #DCE9ED;overflow:hidden;&quot;></div>
+<div style=&quot;position:absolute;left:666px;top:146px;width:269px;height:88px;background:#00677F;border-radius:6px 6px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:678px;top:174px;width:245px;height:34px;font-size:32px;font-weight:700;color:#fff;line-height:1;&quot;>€55.9B</div>
+<div style=&quot;position:absolute;left:678px;top:244px;width:245px;height:22px;font-size:11px;color:#444;line-height:1.3;overflow:hidden;&quot;>Group Revenue</div>
+<div style=&quot;position:absolute;left:678px;top:270px;width:245px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+3.1%</div>
+<div style=&quot;position:absolute;left:947px;top:146px;width:269px;height:148px;background:#fff;border-radius:6px;border:1px solid #DCE9ED;overflow:hidden;&quot;></div>
+<div style=&quot;position:absolute;left:947px;top:146px;width:269px;height:88px;background:#00677F;border-radius:6px 6px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:959px;top:174px;width:245px;height:34px;font-size:32px;font-weight:700;color:#fff;line-height:1;&quot;>9.1%</div>
+<div style=&quot;position:absolute;left:959px;top:244px;width:245px;height:22px;font-size:11px;color:#444;line-height:1.3;overflow:hidden;&quot;>EBIT Margin</div>
+<div style=&quot;position:absolute;left:959px;top:270px;width:245px;height:14px;font-size:10px;font-weight:700;color:#C62828;&quot;>-0.2pp</div>
+<div style=&quot;position:absolute;left:666px;top:318px;width:269px;height:148px;background:#fff;border-radius:6px;border:1px solid #DCE9ED;overflow:hidden;&quot;></div>
+<div style=&quot;position:absolute;left:666px;top:318px;width:269px;height:88px;background:#00677F;border-radius:6px 6px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:678px;top:346px;width:245px;height:34px;font-size:32px;font-weight:700;color:#fff;line-height:1;&quot;>488k</div>
+<div style=&quot;position:absolute;left:678px;top:416px;width:245px;height:22px;font-size:11px;color:#444;line-height:1.3;overflow:hidden;&quot;>Units Sold</div>
+<div style=&quot;position:absolute;left:678px;top:442px;width:245px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+1.8%</div>
+<div style=&quot;position:absolute;left:947px;top:318px;width:269px;height:148px;background:#fff;border-radius:6px;border:1px solid #DCE9ED;overflow:hidden;&quot;></div>
+<div style=&quot;position:absolute;left:947px;top:318px;width:269px;height:88px;background:#00677F;border-radius:6px 6px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:959px;top:346px;width:245px;height:34px;font-size:32px;font-weight:700;color:#fff;line-height:1;&quot;>€3.6B</div>
+<div style=&quot;position:absolute;left:959px;top:416px;width:245px;height:22px;font-size:11px;color:#444;line-height:1.3;overflow:hidden;&quot;>Net Profit</div>
+<div style=&quot;position:absolute;left:959px;top:442px;width:245px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+4.2%</div>
+<div style=&quot;position:absolute;left:666px;top:490px;width:269px;height:148px;background:#fff;border-radius:6px;border:1px solid #DCE9ED;overflow:hidden;&quot;></div>
+<div style=&quot;position:absolute;left:666px;top:490px;width:269px;height:88px;background:#00677F;border-radius:6px 6px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:678px;top:518px;width:245px;height:34px;font-size:32px;font-weight:700;color:#fff;line-height:1;&quot;>€5.1B</div>
+<div style=&quot;position:absolute;left:678px;top:588px;width:245px;height:22px;font-size:11px;color:#444;line-height:1.3;overflow:hidden;&quot;>Free Cash Flow</div>
+<div style=&quot;position:absolute;left:678px;top:614px;width:245px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+€0.3B</div>
+<div style=&quot;position:absolute;left:947px;top:490px;width:269px;height:148px;background:#fff;border-radius:6px;border:1px solid #DCE9ED;overflow:hidden;&quot;></div>
+<div style=&quot;position:absolute;left:947px;top:490px;width:269px;height:88px;background:#00677F;border-radius:6px 6px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:959px;top:518px;width:245px;height:34px;font-size:32px;font-weight:700;color:#fff;line-height:1;&quot;>103,000</div>
+<div style=&quot;position:absolute;left:959px;top:588px;width:245px;height:22px;font-size:11px;color:#444;line-height:1.3;overflow:hidden;&quot;>Employees</div>
+<div style=&quot;position:absolute;left:959px;top:614px;width:245px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+1.1%</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck AG Annual Report 2024</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>4</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>PORTFOLIO MIX</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:18px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>North America represents 44% of group revenue; Europe and Asia deliver balanced exposure</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:84px;width:1152px;height:22px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;>Revenue share by geography and key market metrics, FY2024</div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><path d=&quot;M 175.0 123.0 A 165 165 0 0 1 235.7 441.4 L 210.0 376.3 A 95 95 0 0 0 175.0 193.0 Z&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;302.7&quot; y=&quot;267.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>44%</text>
+<path d=&quot;M 235.7 441.4 A 165 165 0 0 1 11.3 308.7 L 80.7 299.9 A 95 95 0 0 0 210.0 376.3 Z&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;108.8&quot; y=&quot;403.9&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>29%</text>
+<path d=&quot;M 11.3 308.7 A 165 165 0 0 1 69.8 160.9 L 114.4 214.8 A 95 95 0 0 0 80.7 299.9 Z&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;54.1&quot; y=&quot;244.1&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>16%</text>
+<path d=&quot;M 69.8 160.9 A 165 165 0 0 1 134.0 128.2 L 151.4 196.0 A 95 95 0 0 0 114.4 214.8 Z&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;116.0&quot; y=&quot;176.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>7%</text>
+<path d=&quot;M 134.0 128.2 A 165 165 0 0 1 154.3 124.3 L 163.1 193.7 A 95 95 0 0 0 151.4 196.0 Z&quot; fill=&quot;#00677F&quot;/>
+<path d=&quot;M 154.3 124.3 A 165 165 0 0 1 175.0 123.0 L 175.0 193.0 A 95 95 0 0 0 163.1 193.7 Z&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;175&quot; y=&quot;286&quot; text-anchor=&quot;middle&quot; font-size=&quot;20&quot; font-weight=&quot;700&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>6</text>
+<text x=&quot;175&quot; y=&quot;304&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Regions</text>
+<rect x=&quot;360&quot; y=&quot;198&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#00677F&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;208.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>North America</text>
+<text x=&quot;376.0&quot; y=&quot;220.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>44.0%</text>
+<rect x=&quot;360&quot; y=&quot;230&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#5097AB&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;240.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Europe</text>
+<text x=&quot;376.0&quot; y=&quot;252.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>29.0%</text>
+<rect x=&quot;360&quot; y=&quot;262&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#00677F&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;272.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Asia-Pacific</text>
+<text x=&quot;376.0&quot; y=&quot;284.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>16.0%</text>
+<rect x=&quot;360&quot; y=&quot;294&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#5097AB&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;304.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Latin America</text>
+<text x=&quot;376.0&quot; y=&quot;316.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>7.0%</text>
+<rect x=&quot;360&quot; y=&quot;326&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#00677F&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;336.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Middle East</text>
+<text x=&quot;376.0&quot; y=&quot;348.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2.0%</text>
+<rect x=&quot;360&quot; y=&quot;358&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;#5097AB&quot; rx=&quot;2&quot;/>
+<text x=&quot;376.0&quot; y=&quot;368.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Africa</text>
+<text x=&quot;376.0&quot; y=&quot;380.0&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>2.0%</text></svg></div>
+<div style=&quot;position:absolute;left:666px;top:110px;width:109px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:670px;top:114px;width:102px;height:20px;font-size:11px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Region</div>
+<div style=&quot;position:absolute;left:776px;top:110px;width:109px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:780px;top:114px;width:102px;height:20px;font-size:11px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Revenue</div>
+<div style=&quot;position:absolute;left:886px;top:110px;width:109px;height:28px;background:#00677F;&quot;></div>
+<div style=&quot;position:absolute;left:890px;top:114px;width:102px;height:20px;font-size:11px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>YoY</div>
+<div style=&quot;position:absolute;left:996px;top:110px;width:109px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:1000px;top:114px;width:102px;height:20px;font-size:11px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Units</div>
+<div style=&quot;position:absolute;left:1106px;top:110px;width:109px;height:28px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:1110px;top:114px;width:102px;height:20px;font-size:11px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;&quot;>Margin</div>
+<div style=&quot;position:absolute;left:666px;top:138px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:149px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>North America</div>
+<div style=&quot;position:absolute;left:776px;top:138px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:149px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>€24.7B</div>
+<div style=&quot;position:absolute;left:886px;top:138px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:892px;top:149px;width:98px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>+7%</div>
+<div style=&quot;position:absolute;left:996px;top:138px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1002px;top:149px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>224k</div>
+<div style=&quot;position:absolute;left:1106px;top:138px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1112px;top:149px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>11.2%</div>
+<div style=&quot;position:absolute;left:666px;top:190px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:201px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Europe</div>
+<div style=&quot;position:absolute;left:776px;top:190px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:201px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>€16.1B</div>
+<div style=&quot;position:absolute;left:886px;top:190px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:892px;top:201px;width:98px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>+3%</div>
+<div style=&quot;position:absolute;left:996px;top:190px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1002px;top:201px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>138k</div>
+<div style=&quot;position:absolute;left:1106px;top:190px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1112px;top:201px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>8.4%</div>
+<div style=&quot;position:absolute;left:666px;top:242px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:253px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Asia-Pacific</div>
+<div style=&quot;position:absolute;left:776px;top:242px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:253px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>€8.9B</div>
+<div style=&quot;position:absolute;left:886px;top:242px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:892px;top:253px;width:98px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>+7%</div>
+<div style=&quot;position:absolute;left:996px;top:242px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1002px;top:253px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>84k</div>
+<div style=&quot;position:absolute;left:1106px;top:242px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1112px;top:253px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>7.8%</div>
+<div style=&quot;position:absolute;left:666px;top:294px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:305px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Latin America</div>
+<div style=&quot;position:absolute;left:776px;top:294px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:305px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>€4.1B</div>
+<div style=&quot;position:absolute;left:886px;top:294px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:892px;top:305px;width:98px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>+8%</div>
+<div style=&quot;position:absolute;left:996px;top:294px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1002px;top:305px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>31k</div>
+<div style=&quot;position:absolute;left:1106px;top:294px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1112px;top:305px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>6.2%</div>
+<div style=&quot;position:absolute;left:666px;top:346px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:357px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Middle East</div>
+<div style=&quot;position:absolute;left:776px;top:346px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:357px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>€1.1B</div>
+<div style=&quot;position:absolute;left:886px;top:346px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:892px;top:357px;width:98px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>+5%</div>
+<div style=&quot;position:absolute;left:996px;top:346px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1002px;top:357px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>6k</div>
+<div style=&quot;position:absolute;left:1106px;top:346px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1112px;top:357px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>5.9%</div>
+<div style=&quot;position:absolute;left:666px;top:398px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:672px;top:409px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>Africa</div>
+<div style=&quot;position:absolute;left:776px;top:398px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:782px;top:409px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>€1.0B</div>
+<div style=&quot;position:absolute;left:886px;top:398px;width:109px;height:52px;background:#EFF7FA;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:892px;top:409px;width:98px;height:41px;font-size:13px;font-weight:700;color:#00677F;overflow:hidden;line-height:1.4;&quot;>+2%</div>
+<div style=&quot;position:absolute;left:996px;top:398px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1002px;top:409px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>5k</div>
+<div style=&quot;position:absolute;left:1106px;top:398px;width:109px;height:52px;background:#fff;border-bottom:1px solid #DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:1112px;top:409px;width:98px;height:41px;font-size:13px;color:#333;overflow:hidden;line-height:1.4;&quot;>5.1%</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck AG Annual Report 2024</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>5</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:720px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:230px;width:300px;height:20px;font-size:13px;font-weight:700;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:2px;&quot;>Section 02</div>
+<div style=&quot;position:absolute;left:64px;top:252px;width:70px;height:3px;background:#00677F;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:262px;width:900px;height:160px;font-size:42px;font-weight:700;color:#fff;line-height:1.2;&quot;>Market Position<br>&amp;amp; Competitive Landscape</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:rgba(255,255,255,.15);&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:rgba(255,255,255,.40);text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:rgba(255,255,255,.30);overflow:hidden;white-space:nowrap;&quot;>Daimler Truck AG Investor Day 2024</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:rgba(255,255,255,.45);text-align:right;&quot;>6</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>EBIT BRIDGE</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:18px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Volume growth and pricing offset cost inflation to deliver €5.1B EBIT in FY2024</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:84px;width:1152px;height:22px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;>EBIT walk FY2023 → FY2024 (€B) · Source: Daimler Truck AG Annual Report 2024</div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:1152px;height:576px;&quot;><svg width=&quot;1152&quot; height=&quot;576&quot; viewBox=&quot;0 0 1152 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;576.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>EBIT Bridge FY2023 → FY2024 (€B)</text>
+<line x1=&quot;50&quot; y1=&quot;496.0&quot; x2=&quot;1144&quot; y2=&quot;496.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;500.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>4</text>
+<line x1=&quot;50&quot; y1=&quot;377.5&quot; x2=&quot;1144&quot; y2=&quot;377.5&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;381.5&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>4.88</text>
+<line x1=&quot;50&quot; y1=&quot;259.0&quot; x2=&quot;1144&quot; y2=&quot;259.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;263.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>5.75</text>
+<line x1=&quot;50&quot; y1=&quot;140.5&quot; x2=&quot;1144&quot; y2=&quot;140.5&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;144.5&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>6.62</text>
+<line x1=&quot;50&quot; y1=&quot;22.0&quot; x2=&quot;1144&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;46.0&quot; y=&quot;26.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>7.50</text>
+<line x1=&quot;50&quot; y1=&quot;496.0&quot; x2=&quot;1144&quot; y2=&quot;496.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<rect x=&quot;74.3&quot; y=&quot;401.2&quot; width=&quot;72.9&quot; height=&quot;94.8&quot; fill=&quot;#007A93&quot;/>
+<text x=&quot;110.8&quot; y=&quot;397.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>4.70</text>
+<text x=&quot;110.8&quot; y=&quot;508&quot; transform=&quot;rotate(-40 110.8 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>FY2023 EBIT</text>
+<rect x=&quot;195.9&quot; y=&quot;279.3&quot; width=&quot;72.9&quot; height=&quot;121.9&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;232.3&quot; y=&quot;275.3&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>+0.90</text>
+<text x=&quot;232.3&quot; y=&quot;508&quot; transform=&quot;rotate(-40 232.3 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Volume / Mix</text>
+<line x1=&quot;293.1&quot; y1=&quot;279.3&quot; x2=&quot;317.4&quot; y2=&quot;279.3&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;317.4&quot; y=&quot;198.1&quot; width=&quot;72.9&quot; height=&quot;81.3&quot; fill=&quot;#5097AB&quot;/>
+<text x=&quot;353.9&quot; y=&quot;194.1&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>+0.60</text>
+<text x=&quot;353.9&quot; y=&quot;508&quot; transform=&quot;rotate(-40 353.9 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Pricing</text>
+<line x1=&quot;414.7&quot; y1=&quot;198.1&quot; x2=&quot;439.0&quot; y2=&quot;198.1&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;439.0&quot; y=&quot;198.1&quot; width=&quot;72.9&quot; height=&quot;54.2&quot; fill=&quot;#C62828&quot;/>
+<text x=&quot;475.4&quot; y=&quot;194.1&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>-0.40</text>
+<text x=&quot;475.4&quot; y=&quot;508&quot; transform=&quot;rotate(-40 475.4 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Raw Material Costs</text>
+<line x1=&quot;536.2&quot; y1=&quot;252.2&quot; x2=&quot;560.5&quot; y2=&quot;252.2&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;560.5&quot; y=&quot;252.2&quot; width=&quot;72.9&quot; height=&quot;40.6&quot; fill=&quot;#C62828&quot;/>
+<text x=&quot;597.0&quot; y=&quot;248.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>-0.30</text>
+<text x=&quot;597.0&quot; y=&quot;508&quot; transform=&quot;rotate(-40 597.0 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Labour Inflation</text>
+<line x1=&quot;657.8&quot; y1=&quot;292.9&quot; x2=&quot;682.1&quot; y2=&quot;292.9&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;682.1&quot; y=&quot;292.9&quot; width=&quot;72.9&quot; height=&quot;27.1&quot; fill=&quot;#C62828&quot;/>
+<text x=&quot;718.6&quot; y=&quot;288.9&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>-0.20</text>
+<text x=&quot;718.6&quot; y=&quot;508&quot; transform=&quot;rotate(-40 718.6 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>R&amp;amp;D Investment</text>
+<line x1=&quot;779.3&quot; y1=&quot;319.9&quot; x2=&quot;803.6&quot; y2=&quot;319.9&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;803.6&quot; y=&quot;319.9&quot; width=&quot;72.9&quot; height=&quot;13.5&quot; fill=&quot;#C62828&quot;/>
+<text x=&quot;840.1&quot; y=&quot;315.9&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>-0.10</text>
+<text x=&quot;840.1&quot; y=&quot;508&quot; transform=&quot;rotate(-40 840.1 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>FX Effects</text>
+<line x1=&quot;900.9&quot; y1=&quot;333.5&quot; x2=&quot;925.2&quot; y2=&quot;333.5&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;3 2&quot;/>
+<rect x=&quot;925.2&quot; y=&quot;333.5&quot; width=&quot;72.9&quot; height=&quot;13.5&quot; fill=&quot;#C62828&quot;/>
+<text x=&quot;961.7&quot; y=&quot;329.5&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>-0.10</text>
+<text x=&quot;961.7&quot; y=&quot;508&quot; transform=&quot;rotate(-40 961.7 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>Other</text>
+<rect x=&quot;1046.8&quot; y=&quot;347.0&quot; width=&quot;72.9&quot; height=&quot;149.0&quot; fill=&quot;#004355&quot;/>
+<text x=&quot;1083.2&quot; y=&quot;343.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>5.10</text>
+<text x=&quot;1083.2&quot; y=&quot;508&quot; transform=&quot;rotate(-40 1083.2 508)&quot; font-size=&quot;8&quot; fill=&quot;#707070&quot; text-anchor=&quot;end&quot;>FY2024 EBIT</text></svg></div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck AG Annual Report 2024</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>7</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>COMPETITIVE POSITION</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:16px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Daimler Truck leads peers on margin-to-scale; key differentiators are services and electrification</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:84px;width:1152px;height:22px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;>Peer comparison: EBIT margin vs. revenue scale, FY2024</div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>EBIT Margin vs. Revenue Scale (FY2024)</text>
+<line x1=&quot;48&quot; y1=&quot;22.0&quot; x2=&quot;542&quot; y2=&quot;22.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;48.0&quot; y1=&quot;22&quot; x2=&quot;48.0&quot; y2=&quot;540&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;48&quot; y1=&quot;151.5&quot; x2=&quot;542&quot; y2=&quot;151.5&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;171.5&quot; y1=&quot;22&quot; x2=&quot;171.5&quot; y2=&quot;540&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;48&quot; y1=&quot;281.0&quot; x2=&quot;542&quot; y2=&quot;281.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;295.0&quot; y1=&quot;22&quot; x2=&quot;295.0&quot; y2=&quot;540&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;48&quot; y1=&quot;410.5&quot; x2=&quot;542&quot; y2=&quot;410.5&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;418.5&quot; y1=&quot;22&quot; x2=&quot;418.5&quot; y2=&quot;540&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;48&quot; y1=&quot;540.0&quot; x2=&quot;542&quot; y2=&quot;540.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;542.0&quot; y1=&quot;22&quot; x2=&quot;542.0&quot; y2=&quot;540&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<line x1=&quot;295.0&quot; y1=&quot;22&quot; x2=&quot;295.0&quot; y2=&quot;540&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4 3&quot;/>
+<line x1=&quot;48&quot; y1=&quot;281.0&quot; x2=&quot;542&quot; y2=&quot;281.0&quot; stroke=&quot;#aaa&quot; stroke-width=&quot;1&quot; stroke-dasharray=&quot;4 3&quot;/>
+<text x=&quot;171.5&quot; y=&quot;36.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Niche</text>
+<text x=&quot;418.5&quot; y=&quot;36.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Premium</text>
+<text x=&quot;171.5&quot; y=&quot;532.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Scale</text>
+<text x=&quot;418.5&quot; y=&quot;532.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Leader</text>
+<circle cx=&quot;442.5&quot; cy=&quot;203.3&quot; r=&quot;10&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;455.5&quot; y=&quot;207.3&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Daimler Truck</text>
+<circle cx=&quot;383.2&quot; cy=&quot;221.8&quot; r=&quot;9&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;395.2&quot; y=&quot;225.8&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Volvo Group</text>
+<circle cx=&quot;295.7&quot; cy=&quot;125.6&quot; r=&quot;8&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;306.7&quot; y=&quot;129.6&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>PACCAR</text>
+<circle cx=&quot;360.6&quot; cy=&quot;266.2&quot; r=&quot;9&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;372.6&quot; y=&quot;270.2&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Traton</text>
+<circle cx=&quot;158.1&quot; cy=&quot;362.4&quot; r=&quot;6&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;167.1&quot; y=&quot;366.4&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Iveco Group</text>
+<circle cx=&quot;208.9&quot; cy=&quot;273.6&quot; r=&quot;7&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;218.9&quot; y=&quot;277.6&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>CNH Industrial</text>
+<circle cx=&quot;112.9&quot; cy=&quot;425.3&quot; r=&quot;5&quot; fill=&quot;#00677F&quot; opacity=&quot;0.85&quot;/>
+<text x=&quot;120.9&quot; y=&quot;429.3&quot; text-anchor=&quot;start&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Hino Motors</text>
+<line x1=&quot;48&quot; y1=&quot;540&quot; x2=&quot;542&quot; y2=&quot;540&quot; stroke=&quot;#999&quot; stroke-width=&quot;1.5&quot;/>
+<line x1=&quot;48&quot; y1=&quot;22&quot; x2=&quot;48&quot; y2=&quot;540&quot; stroke=&quot;#999&quot; stroke-width=&quot;1.5&quot;/>
+<text x=&quot;295.0&quot; y=&quot;568.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Revenue (€B)</text>
+<text x=&quot;12&quot; y=&quot;281.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;10&quot; fill=&quot;#707070&quot; transform=&quot;rotate(-90,12,281.0)&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>EBIT Margin (%)</text></svg></div>
+<div style=&quot;position:absolute;left:666px;top:249px;width:550px;height:20px;font-size:13px;font-weight:700;color:#00677F;&quot;>Key Competitive Advantages</div>
+<div style=&quot;position:absolute;left:666px;top:283px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:277px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>Brand portfolio breadth</div>
+<div style=&quot;position:absolute;left:682px;top:299px;width:534px;height:18px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>7 brands covering every truck segment from heavy-duty to buses across 6 continents</div>
+<div style=&quot;position:absolute;left:666px;top:337px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:331px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>North America profitability</div>
+<div style=&quot;position:absolute;left:682px;top:353px;width:534px;height:18px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>Freightliner holds 39% US Class 8 market share; highest margin region at 11.2%</div>
+<div style=&quot;position:absolute;left:666px;top:391px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:385px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>Services &amp;amp; digital revenue</div>
+<div style=&quot;position:absolute;left:682px;top:407px;width:534px;height:18px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>Omniplus &amp;amp; Fleetboard generating €2.8B in recurring high-margin service revenue</div>
+<div style=&quot;position:absolute;left:666px;top:445px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:439px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>Electrification lead</div>
+<div style=&quot;position:absolute;left:682px;top:461px;width:534px;height:18px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>eActros, eCascadia and eCitaro — 3 production BEV models ahead of most peers</div>
+<div style=&quot;position:absolute;left:666px;top:499px;width:7px;height:7px;background:#00677F;border-radius:50%;&quot;></div>
+<div style=&quot;position:absolute;left:682px;top:493px;width:534px;height:20px;font-size:13px;color:#1A1A1A;font-weight:600;line-height:1.5;overflow:hidden;&quot;>Financial services</div>
+<div style=&quot;position:absolute;left:682px;top:515px;width:534px;height:18px;font-size:11px;color:#666;line-height:1.55;overflow:hidden;&quot;>Daimler Truck Financial Services funds 48% of new vehicle purchases in NA</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Company reports, Bloomberg, Daimler Truck Investor Day 2024</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>8</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>BRAND MARKET SHARES</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:18px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Freightliner and Mercedes-Benz Trucks anchor #1 positions in their respective core markets</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:84px;width:1152px;height:22px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;>2024 market share in primary segment by brand</div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:720px;height:576px;&quot;><svg width=&quot;720&quot; height=&quot;576&quot; viewBox=&quot;0 0 720 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;360.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Market Share in Primary Segment (%)</text>
+<line x1=&quot;120.0&quot; y1=&quot;22&quot; x2=&quot;120.0&quot; y2=&quot;548&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;120.0&quot; y=&quot;562.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>0</text>
+<line x1=&quot;256.2&quot; y1=&quot;22&quot; x2=&quot;256.2&quot; y2=&quot;548&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;256.2&quot; y=&quot;562.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>12.50</text>
+<line x1=&quot;392.5&quot; y1=&quot;22&quot; x2=&quot;392.5&quot; y2=&quot;548&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;392.5&quot; y=&quot;562.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>25</text>
+<line x1=&quot;528.8&quot; y1=&quot;22&quot; x2=&quot;528.8&quot; y2=&quot;548&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;528.8&quot; y=&quot;562.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>37.50</text>
+<line x1=&quot;665.0&quot; y1=&quot;22&quot; x2=&quot;665.0&quot; y2=&quot;548&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;665.0&quot; y=&quot;562.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#707070&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>50</text>
+<rect x=&quot;120&quot; y=&quot;39.6&quot; width=&quot;425.1&quot; height=&quot;40.0&quot; fill=&quot;#00677F&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;63.6&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;></text>
+<text x=&quot;549.1&quot; y=&quot;63.6&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>39</text>
+<rect x=&quot;120&quot; y=&quot;114.7&quot; width=&quot;305.2&quot; height=&quot;40.0&quot; fill=&quot;#5097AB&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;138.7&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;></text>
+<text x=&quot;429.2&quot; y=&quot;138.7&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#5097AB&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>28</text>
+<rect x=&quot;120&quot; y=&quot;189.9&quot; width=&quot;239.8&quot; height=&quot;40.0&quot; fill=&quot;#79AEBF&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;213.9&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;></text>
+<text x=&quot;363.8&quot; y=&quot;213.9&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#79AEBF&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>22</text>
+<rect x=&quot;120&quot; y=&quot;265.0&quot; width=&quot;196.2&quot; height=&quot;40.0&quot; fill=&quot;#004355&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;289.0&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;></text>
+<text x=&quot;320.2&quot; y=&quot;289.0&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#004355&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>18</text>
+<rect x=&quot;120&quot; y=&quot;340.1&quot; width=&quot;337.9&quot; height=&quot;40.0&quot; fill=&quot;#007A93&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;364.1&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;></text>
+<text x=&quot;461.9&quot; y=&quot;364.1&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#007A93&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>31</text>
+<rect x=&quot;120&quot; y=&quot;415.3&quot; width=&quot;490.5&quot; height=&quot;40.0&quot; fill=&quot;#A6CAD8&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;439.3&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;></text>
+<text x=&quot;614.5&quot; y=&quot;439.3&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#A6CAD8&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>45</text>
+<rect x=&quot;120&quot; y=&quot;490.4&quot; width=&quot;185.3&quot; height=&quot;40.0&quot; fill=&quot;#00677F&quot; rx=&quot;2&quot;/>
+<text x=&quot;114.0&quot; y=&quot;514.4&quot; text-anchor=&quot;end&quot; font-size=&quot;10&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;></text>
+<text x=&quot;309.3&quot; y=&quot;514.4&quot; text-anchor=&quot;start&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>17</text></svg></div>
+<div style=&quot;position:absolute;left:836px;top:110px;width:380px;height:576px;background:#EFF7FA;border-radius:6px;border-left:4px solid #00677F;&quot;></div>
+<div style=&quot;position:absolute;left:852px;top:124px;width:356px;height:22px;font-size:14px;font-weight:700;color:#00677F;&quot;>Key Insight</div>
+<div style=&quot;position:absolute;left:852px;top:154px;width:356px;height:518px;font-size:13px;color:#333;line-height:1.65;&quot;>Daimler Truck&amp;#x27;s multi-brand strategy enables premium positioning across distinct segments without cannibalisation. Thomas Built Buses commands a dominant 45% share in US school buses — a segment ignored by European competitors. The combined brand portfolio covers 94% of global commercial vehicle demand by segment.</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>IHS Markit, Daimler Truck Market Intelligence 2024</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>9</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:720px;background:#004355;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:230px;width:300px;height:20px;font-size:13px;font-weight:700;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:2px;&quot;>Section 03</div>
+<div style=&quot;position:absolute;left:64px;top:252px;width:70px;height:3px;background:#00677F;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:262px;width:900px;height:160px;font-size:42px;font-weight:700;color:#fff;line-height:1.2;&quot;>Electrification<br>&amp;amp; Strategic Roadmap</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:rgba(255,255,255,.15);&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:rgba(255,255,255,.40);text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:rgba(255,255,255,.30);overflow:hidden;white-space:nowrap;&quot;>Daimler Truck Strategy 2030</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:rgba(255,255,255,.45);text-align:right;&quot;>10</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>ELECTRIFICATION ROADMAP</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:18px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Full BEV lineup operational by 2027; hydrogen fuel cell trucks enter series production in 2028</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:84px;width:1152px;height:22px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;>Product launch timeline by segment — 2024 to 2030</div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:550px;height:576px;&quot;><svg width=&quot;550&quot; height=&quot;576&quot; viewBox=&quot;0 0 550 576&quot; style=&quot;overflow:visible;&quot;><text x=&quot;275.0&quot; y=&quot;15.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;11&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>BEV &amp;amp; FCEV Launch Timeline</text>
+<line x1=&quot;130.0&quot; y1=&quot;44&quot; x2=&quot;130.0&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;155.9&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q1&amp;#x27;25</text>
+<line x1=&quot;181.8&quot; y1=&quot;44&quot; x2=&quot;181.8&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;207.6&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q2&amp;#x27;25</text>
+<line x1=&quot;233.5&quot; y1=&quot;44&quot; x2=&quot;233.5&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;259.4&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q3&amp;#x27;25</text>
+<line x1=&quot;285.2&quot; y1=&quot;44&quot; x2=&quot;285.2&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;311.1&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q4&amp;#x27;25</text>
+<line x1=&quot;337.0&quot; y1=&quot;44&quot; x2=&quot;337.0&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;362.9&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q1&amp;#x27;26</text>
+<line x1=&quot;388.8&quot; y1=&quot;44&quot; x2=&quot;388.8&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;414.6&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q2&amp;#x27;26</text>
+<line x1=&quot;440.5&quot; y1=&quot;44&quot; x2=&quot;440.5&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;466.4&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q3&amp;#x27;26</text>
+<line x1=&quot;492.2&quot; y1=&quot;44&quot; x2=&quot;492.2&quot; y2=&quot;546.0&quot; stroke=&quot;#DCE9ED&quot; stroke-width=&quot;1&quot;/>
+<text x=&quot;518.1&quot; y=&quot;38.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Q4&amp;#x27;26</text>
+<text x=&quot;124.0&quot; y=&quot;98.2&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>eActros 600 (EU)</text>
+<rect x=&quot;130&quot; y=&quot;44.0&quot; width=&quot;414&quot; height=&quot;100.4&quot; fill=&quot;#EFF7FA&quot;/>
+<rect x=&quot;130.0&quot; y=&quot;66.1&quot; width=&quot;103.5&quot; height=&quot;56.2&quot; fill=&quot;#00677F&quot; rx=&quot;3&quot;/>
+<text x=&quot;181.8&quot; y=&quot;98.2&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Ramp-up</text>
+<text x=&quot;124.0&quot; y=&quot;198.6&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>eCascadia Gen2 (NA)</text>
+<rect x=&quot;179.7&quot; y=&quot;166.5&quot; width=&quot;157.3&quot; height=&quot;56.2&quot; fill=&quot;#5097AB&quot; rx=&quot;3&quot;/>
+<text x=&quot;258.3&quot; y=&quot;198.6&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Launch</text>
+<text x=&quot;124.0&quot; y=&quot;299.0&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>eBharatBenz (India)</text>
+<rect x=&quot;130&quot; y=&quot;244.8&quot; width=&quot;414&quot; height=&quot;100.4&quot; fill=&quot;#EFF7FA&quot;/>
+<rect x=&quot;233.5&quot; y=&quot;266.9&quot; width=&quot;153.2&quot; height=&quot;56.2&quot; fill=&quot;#79AEBF&quot; rx=&quot;3&quot;/>
+<text x=&quot;310.1&quot; y=&quot;299.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Pilot</text>
+<text x=&quot;124.0&quot; y=&quot;399.4&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>eEconic (Muni.)</text>
+<rect x=&quot;287.3&quot; y=&quot;367.3&quot; width=&quot;153.2&quot; height=&quot;56.2&quot; fill=&quot;#004355&quot; rx=&quot;3&quot;/>
+<text x=&quot;363.9&quot; y=&quot;399.4&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>Series</text>
+<text x=&quot;124.0&quot; y=&quot;499.8&quot; text-anchor=&quot;end&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#1A1A1A&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>GenH2 Truck (pilot)</text>
+<rect x=&quot;130&quot; y=&quot;445.6&quot; width=&quot;414&quot; height=&quot;100.4&quot; fill=&quot;#EFF7FA&quot;/>
+<rect x=&quot;386.7&quot; y=&quot;467.7&quot; width=&quot;157.3&quot; height=&quot;56.2&quot; fill=&quot;#007A93&quot; rx=&quot;3&quot;/>
+<text x=&quot;465.3&quot; y=&quot;499.8&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;700&quot; fill=&quot;#fff&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>SOP</text>
+<polygon points=&quot;337.0,40 341.0,44 337.0,48 333.0,44&quot; fill=&quot;#00677F&quot;/>
+<text x=&quot;337.0&quot; y=&quot;560.0&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-weight=&quot;400&quot; fill=&quot;#00677F&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot;>EU Zero-emission mandate</text></svg></div>
+<div style=&quot;position:absolute;left:666px;top:115px;width:550px;height:104px;background:#EFF7FA;border-radius:6px;border-left:4px solid #00677F;&quot;></div>
+<div style=&quot;position:absolute;left:678px;top:123px;width:28px;height:28px;background:#00677F;border-radius:50%;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:28px;&quot;>1</div>
+<div style=&quot;position:absolute;left:716px;top:123px;width:480px;height:22px;font-size:12px;font-weight:700;color:#1A1A1A;&quot;>Design &amp;amp; Engineer</div>
+<div style=&quot;position:absolute;left:716px;top:145px;width:480px;height:50px;font-size:11px;color:#666;line-height:1.4;&quot;>Platform co-development with Volvo Group (HTWO JV for H₂ components)</div>
+<div style=&quot;position:absolute;left:666px;top:225px;width:550px;height:104px;background:#EFF7FA;border-radius:6px;border-left:4px solid #00677F;&quot;></div>
+<div style=&quot;position:absolute;left:678px;top:233px;width:28px;height:28px;background:#00677F;border-radius:50%;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:28px;&quot;>2</div>
+<div style=&quot;position:absolute;left:716px;top:233px;width:480px;height:22px;font-size:12px;font-weight:700;color:#1A1A1A;&quot;>Manufacture</div>
+<div style=&quot;position:absolute;left:716px;top:255px;width:480px;height:50px;font-size:11px;color:#666;line-height:1.4;&quot;>Wörth, Portland, and Chennai plants converting to mixed BEV/ICE lines</div>
+<div style=&quot;position:absolute;left:666px;top:335px;width:550px;height:104px;background:#EFF7FA;border-radius:6px;border-left:4px solid #00677F;&quot;></div>
+<div style=&quot;position:absolute;left:678px;top:343px;width:28px;height:28px;background:#00677F;border-radius:50%;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:28px;&quot;>3</div>
+<div style=&quot;position:absolute;left:716px;top:343px;width:480px;height:22px;font-size:12px;font-weight:700;color:#1A1A1A;&quot;>Charge &amp;amp; Refuel</div>
+<div style=&quot;position:absolute;left:716px;top:365px;width:480px;height:50px;font-size:11px;color:#666;line-height:1.4;&quot;>CharIN Megawatt Charging Standard; H₂ refuelling via Shell JV</div>
+<div style=&quot;position:absolute;left:666px;top:445px;width:550px;height:104px;background:#EFF7FA;border-radius:6px;border-left:4px solid #00677F;&quot;></div>
+<div style=&quot;position:absolute;left:678px;top:453px;width:28px;height:28px;background:#00677F;border-radius:50%;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:28px;&quot;>4</div>
+<div style=&quot;position:absolute;left:716px;top:453px;width:480px;height:22px;font-size:12px;font-weight:700;color:#1A1A1A;&quot;>Operate &amp;amp; Finance</div>
+<div style=&quot;position:absolute;left:716px;top:475px;width:480px;height:50px;font-size:11px;color:#666;line-height:1.4;&quot;>Subscription model via DT Financial Services; guaranteed residuals</div>
+<div style=&quot;position:absolute;left:666px;top:555px;width:550px;height:104px;background:#EFF7FA;border-radius:6px;border-left:4px solid #00677F;&quot;></div>
+<div style=&quot;position:absolute;left:678px;top:563px;width:28px;height:28px;background:#00677F;border-radius:50%;font-size:13px;font-weight:700;color:#fff;text-align:center;line-height:28px;&quot;>5</div>
+<div style=&quot;position:absolute;left:716px;top:563px;width:480px;height:22px;font-size:12px;font-weight:700;color:#1A1A1A;&quot;>Service &amp;amp; Data</div>
+<div style=&quot;position:absolute;left:716px;top:585px;width:480px;height:50px;font-size:11px;color:#666;line-height:1.4;&quot;>Remote diagnostics via Fleetboard; predictive maintenance AI</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck Strategy 2030 / Investor Day Presentation</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>11</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>DRIVETRAIN COMPARISON</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:18px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Battery-electric leads on TCO by 2026; hydrogen offers superior range for long-haul</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:84px;width:1152px;height:22px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;>Multi-criteria comparison across drivetrain options for Class 8 long-haul trucking</div>
+<div style=&quot;position:absolute;left:64px;top:110px;width:1152px;height:20px;font-size:13px;font-weight:700;color:#00677F;&quot;>Drivetrain Comparison — Class 8 Long-Haul (2026 Outlook)</div>
+<div style=&quot;position:absolute;left:64px;top:136px;width:1152px;height:30px;background:#00677F;border-radius:4px 4px 0 0;&quot;></div>
+<div style=&quot;position:absolute;left:294px;top:142px;width:299px;height:18px;font-size:11px;font-weight:700;color:#fff;text-align:center;&quot;>Diesel ICE</div>
+<div style=&quot;position:absolute;left:601px;top:142px;width:299px;height:18px;font-size:11px;font-weight:700;color:#fff;text-align:center;&quot;>Battery Electric</div>
+<div style=&quot;position:absolute;left:908px;top:142px;width:299px;height:18px;font-size:11px;font-weight:700;color:#fff;text-align:center;&quot;>Hydrogen FCEV</div>
+<div style=&quot;position:absolute;left:64px;top:166px;width:1152px;height:74px;background:#EFF7FA;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:239px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:74px;top:172px;width:216px;height:62px;font-size:11px;font-weight:600;color:#1A1A1A;line-height:1.4;overflow:hidden;&quot;>Upfront Cost</div>
+<div style=&quot;position:absolute;left:296px;top:167px;width:303px;height:72px;background:#00677F18;border-radius:3px;&quot;></div>
+<div style=&quot;position:absolute;left:302px;top:172px;width:291px;height:62px;font-size:10.5px;font-weight:700;color:#00677F;line-height:1.4;overflow:hidden;&quot;>€130k</div>
+<div style=&quot;position:absolute;left:609px;top:172px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>€210k</div>
+<div style=&quot;position:absolute;left:916px;top:172px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>€280k</div>
+<div style=&quot;position:absolute;left:64px;top:240px;width:1152px;height:74px;background:#fff;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:313px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:74px;top:246px;width:216px;height:62px;font-size:11px;font-weight:600;color:#1A1A1A;line-height:1.4;overflow:hidden;&quot;>TCO (10yr, 150k km/yr)</div>
+<div style=&quot;position:absolute;left:302px;top:246px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>€980k</div>
+<div style=&quot;position:absolute;left:603px;top:241px;width:303px;height:72px;background:#00677F18;border-radius:3px;&quot;></div>
+<div style=&quot;position:absolute;left:609px;top:246px;width:291px;height:62px;font-size:10.5px;font-weight:700;color:#00677F;line-height:1.4;overflow:hidden;&quot;>€870k</div>
+<div style=&quot;position:absolute;left:916px;top:246px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>€940k</div>
+<div style=&quot;position:absolute;left:64px;top:314px;width:1152px;height:74px;background:#EFF7FA;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:387px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:74px;top:320px;width:216px;height:62px;font-size:11px;font-weight:600;color:#1A1A1A;line-height:1.4;overflow:hidden;&quot;>Range per Fill/Charge</div>
+<div style=&quot;position:absolute;left:296px;top:315px;width:303px;height:72px;background:#00677F18;border-radius:3px;&quot;></div>
+<div style=&quot;position:absolute;left:302px;top:320px;width:291px;height:62px;font-size:10.5px;font-weight:700;color:#00677F;line-height:1.4;overflow:hidden;&quot;>1,800 km</div>
+<div style=&quot;position:absolute;left:609px;top:320px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>500–800 km</div>
+<div style=&quot;position:absolute;left:916px;top:320px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>1,200 km</div>
+<div style=&quot;position:absolute;left:64px;top:388px;width:1152px;height:74px;background:#fff;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:461px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:74px;top:394px;width:216px;height:62px;font-size:11px;font-weight:600;color:#1A1A1A;line-height:1.4;overflow:hidden;&quot;>Refuel / Charge Time</div>
+<div style=&quot;position:absolute;left:296px;top:389px;width:303px;height:72px;background:#00677F18;border-radius:3px;&quot;></div>
+<div style=&quot;position:absolute;left:302px;top:394px;width:291px;height:62px;font-size:10.5px;font-weight:700;color:#00677F;line-height:1.4;overflow:hidden;&quot;>12 min</div>
+<div style=&quot;position:absolute;left:609px;top:394px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>45–90 min</div>
+<div style=&quot;position:absolute;left:916px;top:394px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>20 min</div>
+<div style=&quot;position:absolute;left:64px;top:462px;width:1152px;height:74px;background:#EFF7FA;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:535px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:74px;top:468px;width:216px;height:62px;font-size:11px;font-weight:600;color:#1A1A1A;line-height:1.4;overflow:hidden;&quot;>CO₂ (g/tkm, EU mix)</div>
+<div style=&quot;position:absolute;left:302px;top:468px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>95</div>
+<div style=&quot;position:absolute;left:609px;top:468px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>18</div>
+<div style=&quot;position:absolute;left:910px;top:463px;width:303px;height:72px;background:#00677F18;border-radius:3px;&quot;></div>
+<div style=&quot;position:absolute;left:916px;top:468px;width:291px;height:62px;font-size:10.5px;font-weight:700;color:#00677F;line-height:1.4;overflow:hidden;&quot;>12</div>
+<div style=&quot;position:absolute;left:64px;top:536px;width:1152px;height:74px;background:#fff;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:609px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:74px;top:542px;width:216px;height:62px;font-size:11px;font-weight:600;color:#1A1A1A;line-height:1.4;overflow:hidden;&quot;>Infrastructure Maturity</div>
+<div style=&quot;position:absolute;left:296px;top:537px;width:303px;height:72px;background:#00677F18;border-radius:3px;&quot;></div>
+<div style=&quot;position:absolute;left:302px;top:542px;width:291px;height:62px;font-size:10.5px;font-weight:700;color:#00677F;line-height:1.4;overflow:hidden;&quot;>★★★★★</div>
+<div style=&quot;position:absolute;left:609px;top:542px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>★★★☆☆</div>
+<div style=&quot;position:absolute;left:916px;top:542px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>★★☆☆☆</div>
+<div style=&quot;position:absolute;left:64px;top:610px;width:1152px;height:74px;background:#EFF7FA;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:683px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:74px;top:616px;width:216px;height:62px;font-size:11px;font-weight:600;color:#1A1A1A;line-height:1.4;overflow:hidden;&quot;>DT Series-Production</div>
+<div style=&quot;position:absolute;left:302px;top:616px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>Now</div>
+<div style=&quot;position:absolute;left:603px;top:611px;width:303px;height:72px;background:#00677F18;border-radius:3px;&quot;></div>
+<div style=&quot;position:absolute;left:609px;top:616px;width:291px;height:62px;font-size:10.5px;font-weight:700;color:#00677F;line-height:1.4;overflow:hidden;&quot;>2024–25</div>
+<div style=&quot;position:absolute;left:916px;top:616px;width:291px;height:62px;font-size:10.5px;font-weight:400;color:#444;line-height:1.4;overflow:hidden;&quot;>2027–28</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck R&amp;amp;D, IEA Hydrogen Review 2024, McKinsey TCO Model</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>12</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:64px;top:16px;width:1152px;height:16px;font-size:10px;font-weight:700;color:#00677F;text-transform:uppercase;letter-spacing:1px;overflow:hidden;white-space:nowrap;&quot;>SUSTAINABILITY SCORECARD</div>
+<div style=&quot;position:absolute;left:64px;top:32px;width:1152px;height:42px;font-size:18px;font-weight:700;color:#1A1A1A;line-height:1.25;overflow:hidden;&quot;>Carbon intensity down 38% since 2019; on track for 2030 net-zero manufacturing target</div>
+<div style=&quot;position:absolute;left:64px;top:78px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:84px;width:1152px;height:22px;font-size:12px;color:#666;overflow:hidden;white-space:nowrap;&quot;>Key ESG metrics across environmental, social, and governance pillars · FY2024</div>
+<div style=&quot;position:absolute;left:64px;top:114px;width:3px;height:127px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:78px;top:110px;width:346px;height:67px;font-size:27px;font-weight:700;color:#00677F;line-height:1;&quot;>−38%</div>
+<div style=&quot;position:absolute;left:78px;top:180px;width:346px;height:40px;font-size:11px;color:#555;line-height:1.4;&quot;>CO₂ Manufacturing Intensity vs. 2019</div>
+<div style=&quot;position:absolute;left:78px;top:220px;width:346px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>−5pp YoY</div>
+<div style=&quot;position:absolute;left:64px;top:261px;width:3px;height:127px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:78px;top:257px;width:346px;height:67px;font-size:27px;font-weight:700;color:#00677F;line-height:1;&quot;>42%</div>
+<div style=&quot;position:absolute;left:78px;top:327px;width:346px;height:40px;font-size:11px;color:#555;line-height:1.4;&quot;>Renewable Electricity in Production</div>
+<div style=&quot;position:absolute;left:78px;top:367px;width:346px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+8pp</div>
+<div style=&quot;position:absolute;left:64px;top:408px;width:3px;height:127px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:78px;top:404px;width:346px;height:67px;font-size:27px;font-weight:700;color:#00677F;line-height:1;&quot;>€1.2B</div>
+<div style=&quot;position:absolute;left:78px;top:474px;width:346px;height:40px;font-size:11px;color:#555;line-height:1.4;&quot;>Green Capex (Climate Tech)</div>
+<div style=&quot;position:absolute;left:78px;top:514px;width:346px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+22%</div>
+<div style=&quot;position:absolute;left:64px;top:555px;width:3px;height:127px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:78px;top:551px;width:346px;height:67px;font-size:27px;font-weight:700;color:#00677F;line-height:1;&quot;>Net 0</div>
+<div style=&quot;position:absolute;left:78px;top:621px;width:346px;height:40px;font-size:11px;color:#555;line-height:1.4;&quot;>Manufacturing Target Year</div>
+<div style=&quot;position:absolute;left:78px;top:661px;width:346px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>2030</div>
+<div style=&quot;position:absolute;left:460px;top:114px;width:3px;height:127px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:474px;top:110px;width:346px;height:67px;font-size:27px;font-weight:700;color:#00677F;line-height:1;&quot;>103k</div>
+<div style=&quot;position:absolute;left:474px;top:180px;width:346px;height:40px;font-size:11px;color:#555;line-height:1.4;&quot;>Total Employees Worldwide</div>
+<div style=&quot;position:absolute;left:474px;top:220px;width:346px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+1.1%</div>
+<div style=&quot;position:absolute;left:460px;top:261px;width:3px;height:127px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:474px;top:257px;width:346px;height:67px;font-size:27px;font-weight:700;color:#00677F;line-height:1;&quot;>22%</div>
+<div style=&quot;position:absolute;left:474px;top:327px;width:346px;height:40px;font-size:11px;color:#555;line-height:1.4;&quot;>Women in Leadership Roles</div>
+<div style=&quot;position:absolute;left:474px;top:367px;width:346px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+2pp</div>
+<div style=&quot;position:absolute;left:460px;top:408px;width:3px;height:127px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:474px;top:404px;width:346px;height:67px;font-size:27px;font-weight:700;color:#00677F;line-height:1;&quot;>96%</div>
+<div style=&quot;position:absolute;left:474px;top:474px;width:346px;height:40px;font-size:11px;color:#555;line-height:1.4;&quot;>Employee Engagement Score</div>
+<div style=&quot;position:absolute;left:474px;top:514px;width:346px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+1pp</div>
+<div style=&quot;position:absolute;left:460px;top:555px;width:3px;height:127px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:474px;top:551px;width:346px;height:67px;font-size:27px;font-weight:700;color:#00677F;line-height:1;&quot;>€180M</div>
+<div style=&quot;position:absolute;left:474px;top:621px;width:346px;height:40px;font-size:11px;color:#555;line-height:1.4;&quot;>Training Investment FY2024</div>
+<div style=&quot;position:absolute;left:474px;top:661px;width:346px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+12%</div>
+<div style=&quot;position:absolute;left:856px;top:114px;width:3px;height:127px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:110px;width:346px;height:67px;font-size:27px;font-weight:700;color:#00677F;line-height:1;&quot;>45%</div>
+<div style=&quot;position:absolute;left:870px;top:180px;width:346px;height:40px;font-size:11px;color:#555;line-height:1.4;&quot;>Independent Supervisory Board</div>
+<div style=&quot;position:absolute;left:870px;top:220px;width:346px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+5pp</div>
+<div style=&quot;position:absolute;left:856px;top:261px;width:3px;height:127px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:257px;width:346px;height:67px;font-size:27px;font-weight:700;color:#00677F;line-height:1;&quot;>€0</div>
+<div style=&quot;position:absolute;left:870px;top:327px;width:346px;height:40px;font-size:11px;color:#555;line-height:1.4;&quot;>Material Compliance Fines FY2024</div>
+<div style=&quot;position:absolute;left:870px;top:367px;width:346px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>Clean</div>
+<div style=&quot;position:absolute;left:856px;top:408px;width:3px;height:127px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:404px;width:346px;height:67px;font-size:27px;font-weight:700;color:#00677F;line-height:1;&quot;>86/100</div>
+<div style=&quot;position:absolute;left:870px;top:474px;width:346px;height:40px;font-size:11px;color:#555;line-height:1.4;&quot;>CDP Climate Score</div>
+<div style=&quot;position:absolute;left:870px;top:514px;width:346px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>+4pts</div>
+<div style=&quot;position:absolute;left:856px;top:555px;width:3px;height:127px;background:#00677F;border-radius:2px;&quot;></div>
+<div style=&quot;position:absolute;left:870px;top:551px;width:346px;height:67px;font-size:27px;font-weight:700;color:#00677F;line-height:1;&quot;>AAA</div>
+<div style=&quot;position:absolute;left:870px;top:621px;width:346px;height:40px;font-size:11px;color:#555;line-height:1.4;&quot;>MSCI ESG Rating</div>
+<div style=&quot;position:absolute;left:870px;top:661px;width:346px;height:14px;font-size:10px;font-weight:700;color:#6EA046;&quot;>Upgrade</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:#DCE9ED;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:#999;text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:#aaa;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck Sustainability Report 2024 / MSCI / CDP</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:#888;text-align:right;&quot;>13</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+<iframe class="slide-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1280px;height:720px;overflow:hidden;background:#fff;}
+.slide{position:relative;width:1280px;height:720px;background:#fff;
+        font-family:Arial,Helvetica,sans-serif;overflow:hidden;}
+</style>
+</head>
+<body><div class=&quot;slide&quot;>
+<div style=&quot;position:absolute;left:0px;top:0px;width:1280px;height:720px;background:#002E3D;&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:270px;width:1000px;height:91px;font-size:34px;font-weight:700;color:#fff;line-height:1.35;overflow:hidden;&quot;>Driving the future of sustainable commercial transport — together.</div>
+<div style=&quot;position:absolute;left:64px;top:381px;width:850px;height:50px;font-size:15px;color:rgba(255,255,255,0.65);overflow:hidden;&quot;>PPTMaker · AI-generated consulting decks for Daimler Truck AG</div>
+<div style=&quot;position:absolute;left:64px;top:450px;width:650px;height:24px;font-size:13px;color:rgba(255,255,255,0.8);&quot;>10+ chart types · 5 layout modes · Daimler Truck CI/CD brand compliance</div>
+<div style=&quot;position:absolute;left:64px;top:478px;width:650px;height:24px;font-size:13px;color:rgba(255,255,255,0.8);&quot;>Azure GPT-4 pipeline: brief → outline → DSL spec → HTML deck</div>
+<div style=&quot;position:absolute;left:64px;top:506px;width:650px;height:24px;font-size:13px;color:rgba(255,255,255,0.8);&quot;>Contact: ir@daimlertruck.com · daimlertruck.com</div>
+<div style=&quot;position:absolute;left:64px;top:679px;width:1152px;height:1px;background:rgba(255,255,255,.15);&quot;></div>
+<div style=&quot;position:absolute;left:64px;top:686px;width:140px;height:16px;font-size:9px;font-weight:600;letter-spacing:.7px;color:rgba(255,255,255,.40);text-transform:uppercase;overflow:hidden;white-space:nowrap;&quot;>Daimler Truck</div>
+<div style=&quot;position:absolute;left:214px;top:686px;width:942px;height:16px;font-size:9px;color:rgba(255,255,255,.30);overflow:hidden;white-space:nowrap;&quot;>PPTMaker v1 · Daimler Truck AG Internal Tool</div>
+<div style=&quot;position:absolute;left:1166px;top:686px;width:50px;height:16px;font-size:10px;color:rgba(255,255,255,.45);text-align:right;&quot;>14</div>
+</div></body></html>" sandbox="allow-same-origin"></iframe>
+        </div>
+        <div id="bottombar">
+          <button class="nav-btn" id="prevBtn">&larr; Prev</button>
+          <div id="dots"><div class="dot" title="Slide 1"></div>
+<div class="dot" title="Slide 2"></div>
+<div class="dot" title="Slide 3"></div>
+<div class="dot" title="Slide 4"></div>
+<div class="dot" title="Slide 5"></div>
+<div class="dot" title="Slide 6"></div>
+<div class="dot" title="Slide 7"></div>
+<div class="dot" title="Slide 8"></div>
+<div class="dot" title="Slide 9"></div>
+<div class="dot" title="Slide 10"></div>
+<div class="dot" title="Slide 11"></div>
+<div class="dot" title="Slide 12"></div>
+<div class="dot" title="Slide 13"></div>
+<div class="dot" title="Slide 14"></div></div>
+          <button class="nav-btn" id="nextBtn">Next &rarr;</button>
+        </div>
+        <script>
+const frames  = Array.from(document.querySelectorAll('.slide-frame'));
+const dots    = Array.from(document.querySelectorAll('.dot'));
+const counter = document.getElementById('counter');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+let current   = 0;
+
+function scaleFrames() {
+    const stage = document.getElementById('stage');
+    const sw = stage.clientWidth  - 40;
+    const sh = stage.clientHeight - 40;
+    const scale = Math.min(sw / 1280, sh / 720, 1);
+    frames.forEach(f => { f.style.transform = `scale(${scale})`; });
+}
+
+function goto(idx) {
+    frames[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = Math.max(0, Math.min(idx, frames.length - 1));
+    frames[current].classList.add('active');
+    dots[current].classList.add('active');
+    counter.textContent = `${current + 1} / ${frames.length}`;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === frames.length - 1;
+}
+
+dots.forEach((d, i) => d.addEventListener('click', () => goto(i)));
+prevBtn.addEventListener('click', () => goto(current - 1));
+nextBtn.addEventListener('click', () => goto(current + 1));
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goto(current + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goto(current - 1);
+});
+
+window.addEventListener('resize', scaleFrames);
+scaleFrames();
+goto(0);
+</script>
+        </body>
+        </html>

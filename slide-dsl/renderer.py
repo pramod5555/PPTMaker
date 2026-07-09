@@ -17,6 +17,7 @@ Block types:   bar-chart | line-chart | scatter-chart | donut-chart |
 import json
 import math
 import html as _html
+import re
 
 # ── Palette — Daimler Truck CI/CD brand colors ────────────────────────────────
 # Source: daimler-truck-brand skill (internal CI doc)
@@ -38,6 +39,296 @@ ORANGE_WARN = "#E69123"   # DT orange — warning / caution
 RED_FAIL    = "#C62828"   # DT-aligned dark red — negative delta, error (FF0000 too harsh at small sizes)
 
 SERIES_COLORS = [PETROL, PETROL_LT, PETROL_LTR, PETROL_DARK, PETROL_MED, PETROL_LTST]
+
+# ── DT brand SVG assets (fetched from daimlertruck.com, embedded inline) ──────
+_SVG_DT_WORDMARK = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 318 24" width="318" height="24">'
+    '<polygon points="198.48,0.43 198.48,3.53 204.53,3.53 204.53,23.56 208.1,23.56 208.1,3.53 214.21,3.53 214.21,0.43"/>'
+    '<path d="M248.76,0.42v13.51c0,3.44,.14,4.41,.73,5.76c1.25,2.71,4.2,4.31,7.99,4.31c3.78,0,6.73-1.6,7.99-4.31'
+    'c.59-1.32,.73-2.33,.73-5.76V0.42h-3.58v13.43c0,2.47-.07,3.26-.38,4.13c-.62,1.8-2.36,2.88-4.76,2.88'
+    'c-2.18,0-3.89-.9-4.58-2.46c-.46-.97-.55-1.78-.55-4.55V0.42H248.76z"/>'
+    '<path d="M292.3,7.22C291.82,2.59,288.95,0,284.4,0c-2.4,0-4.66,.86-6.36,2.4c-2.33,2.15-3.54,5.48-3.54,9.66'
+    'c0,7.26,3.92,11.95,10.03,11.95c4.86,0,7.7-2.97,8.11-8.44l-3.25-.23c-.35,3.68-2.05,5.55-4.97,5.55'
+    'c-3.82,0-6.18-3.41-6.18-8.85s2.36-8.89,6.11-8.89c2.6,0,4.24,1.46,4.79,4.31h.24L292.3,7.22z"/>'
+    '<polygon points="313.08,0.43 305.53,9.7 304.13,9.7 304.13,0.43 300.55,0.43 300.55,23.56 304.13,23.56 304.13,12.8 305.27,12.8 313.32,23.56 318,23.56 308.26,11.25 317.27,0.43"/>'
+    '<path d="M228.71,3.51c3.08,0,3.85,.11,4.82,.59c1.14,.55,1.8,1.7,1.8,3.15c0,1.7-.83,2.99-2.26,3.5'
+    'c-.94,.35-1.7,.42-4.2,.42h-1.6V3.51H228.71z M223.72,23.56h3.58v-9.3h3.58l5.23,9.3h4.24l-5.69-9.88'
+    'c2.92-1.18,4.4-3.36,4.4-6.38c0-2.67-1.32-4.88-3.5-5.93c-1.56-.73-3.01-.94-6.86-.94'
+    'c-1.63,0-3.46-.04-4.96,.35v22.78H223.72z"/>'
+    '<rect x="55.21" y="0.43" width="3.61" height="23.12"/>'
+    '<polygon points="107.65,0.43 107.65,23.56 121.06,23.56 121.27,20.47 111.32,20.47 111.32,0.43"/>'
+    '<polygon points="134.7,10.04 134.7,3.51 144.83,3.51 144.61,0.43 131.12,0.43 131.12,23.56 144.89,23.56 145.1,20.47 134.7,20.47 134.7,13.12 141.01,13.12 141.01,10.04"/>'
+    '<path d="M38.46,15.05H31.9l3.26-10.4L38.46,15.05z M33.46,0.43l-7.91,23.12h3.68l1.74-5.41h8.44l1.7,5.41h3.71l-7.9-23.12H33.46z"/>'
+    '<polygon points="72.54,0.44 71.17,23.54 74.47,23.54 75.61,5.31 82.44,23.54 84.28,23.54 91.14,5.31 92.28,23.54 95.58,23.54 94.21,0.44 89.57,0.44 83.36,16.79 77.21,0.44"/>'
+    '<path d="M160.28,3.51c3.08,0,3.85,.11,4.82,.59c1.14,.55,1.8,1.7,1.8,3.15c0,1.7-.83,2.99-2.26,3.5'
+    'c-.94,.35-1.7,.42-4.2,.42h-1.6V3.51H160.28z M155.29,23.56h3.58v-9.3h3.58l5.23,9.3h4.24l-5.69-9.88'
+    'c2.92-1.18,4.4-3.36,4.4-6.38c0-2.67-1.32-4.88-3.5-5.93c-1.56-.73-3.01-.94-6.86-.94'
+    'c-1.63,0-3.46-.04-4.96,.35v22.78H155.29z"/>'
+    '<path d="M3.58,20.47V3.44h1.01c3.78,0,4.75,.14,6.14,1.01c2.11,1.32,3.22,4.08,3.22,7.51'
+    's-1.03,6.13-2.98,7.41c-1.32,.86-2.5,1.12-5.52,1.12H3.58V20.47z M0,.78v22.78h4.2'
+    'c4.82,0,6.41-.26,8.36-1.36c3.22-1.79,5.09-5.65,5.09-10.22c0-4.61-2-8.62-5.29-10.37'
+    'C10.58,.66,8.6,.43,4.68,.43C3.35,.43,1.24,.44,0,.78z"/>'
+    '</svg>'
+)
+
+_SVG_FL = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110.6 54" width="110.6" height="54">'
+    '<defs><clipPath id="clippath"><rect x="1.9" y="16" width="106.8" height="22" fill="none"/></clipPath></defs>'
+    '<g clip-path="url(#clippath)">'
+    '<path d="M54.1,37c41.1,0,42.8,0,46.8-1.8,2.6-1.2,4.3-3.8,4.3-6.9s-1-4.8-2.8-6.2c-2.8-2.1-6.7-3-25.2-4.2'
+    '-3.8-.2-9.6-.6-16.7-.9-1.6,0-5.5-.2-6.4-.2s-4.8.1-6.4.2c-7.1.2-12.9.6-16.7.9-18.5,1.2-22.4,2.1-25.2,4.2'
+    'c-1.8,1.4-2.8,3.9-2.8,6.2s1.7,5.7,4.3,6.9c4.1,1.8,5.7,1.8,46.8,1.8M54.1,18.6c11.7,0,34.8,1.6,40,2.9'
+    ',3.2.8,5.4,3.4,5.4,6.6s-2.1,5.7-4.9,6.4c-3.7,1-24.7,1.1-40.4,1.1s-36.7,0-40.4-1.1c-2.8-.8-4.9-3.3-4.9-6.4'
+    's2.1-5.8,5.4-6.6c5.2-1.3,28.3-2.9,40-2.9ZM56,22.8c0-.2,0-.4-.3-.4h-1c-.2,0-.5.2-.6.4l-1.2,3.3c0,.2-.3.4-.6.4'
+    'h-2.3c-.2,0-.4-.2-.3-.4l1.2-3.3c0-.2,0-.4-.3-.4h-1c-.2,0-.5.2-.6.4l-3.1,8.8c0,.2,0,.4.3.4h1'
+    'c.2,0,.5-.2.6-.4l1.1-3.2c0-.2.3-.4.6-.4h2.3c.2,0,.4.2.3.4l-1.1,3.2c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4l3.1-8.8Z'
+    'M67.3,31.6l.2-.6c0-.2,0-.4-.3-.4h-2.5c-.2,0-.4-.2-.3-.4l2.5-7.2c0-.2,0-.4-.3-.4h-1c-.2,0-.5.2-.6.4l-3,8.6'
+    'c0,.2,0,.4.3.4h4.3c.2,0,.5-.2.6-.4h0ZM85.9,30.6h-2.6c-.2,0-.4-.2-.3-.4l.6-1.5c0-.2.3-.4.6-.4h1.9'
+    'c.2,0,.5-.1.6-.4l.2-.5c0-.2,0-.4-.3-.4h-1.9c-.2,0-.4-.3-.3-.5l.4-1.2c0-.2.3-.4.6-.4l2.6.2c.2,0,.5-.2.6-.4'
+    'l.2-.5c0-.2,0-.4-.3-.4l-4.4-.3c-.2,0-.5.2-.6.4l-2.7,7.9c0,.2,0,.4.3.4h4.5c.2,0,.5-.2.6-.4l.2-.6'
+    'c0-.2,0-.4-.3-.4h0ZM32.3,30.6h-2.6c-.2,0-.4-.2-.3-.4l.6-1.7c0-.2.3-.4.6-.4h2c.2,0,.5-.2.6-.5l.2-.5'
+    'c0-.2,0-.4-.3-.4h-2c-.2,0-.4-.2-.3-.4l.5-1.4c0-.2.3-.4.6-.4h2.6c.2,0,.5-.3.6-.5l.2-.6c0-.2,0-.4-.3-.4'
+    'l-4.6.2c-.2,0-.5.2-.6.4l-2.9,8.2c0,.2,0,.4.3.4h4.6c.2,0,.5-.2.6-.4l.2-.6c0-.2,0-.4-.3-.4h0Z'
+    'M15.1,31.6l.9-2.7c0-.2.3-.4.6-.4h1.8c.2,0,.5-.2.6-.4l.2-.6c0-.2,0-.4-.3-.4h-1.8c-.2,0-.4-.2-.3-.4l.3-.9'
+    'c0-.2.3-.4.6-.4h2.3c.3-.2.5-.3.6-.6l.2-.7c0-.2,0-.4-.3-.4l-4.1.2c-.2,0-.5.2-.6.4l-2.5,7.4c0,.2,0,.4.3.4h1'
+    'c.2,0,.5-.2.6-.4h0ZM59.4,24.3l-2.5,7.3c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4l2.5-7.2c0-.2.3-.4.6-.4h1.4'
+    'c.2,0,.5-.2.6-.4l.2-.6c0-.2,0-.4-.3-.4h-5.8c-.2,0-.5,0-.6.3l-.2.6c0,.2,0,.4.3.4h1.8c.2,0,.4.2.3.4Z'
+    'M70.2,31.6l2.9-8.4c0-.2,0-.4-.3-.4h-.9c-.2,0-.5.1-.6.4l-2.9,8.4c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4Z'
+    'M35.8,31.6l3-8.5c0-.2,0-.4-.3-.4h-1c-.3,0-.5.2-.6.4l-2.9,8.5c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4Z'
+    'M25.5,28.3c1,0,1.5-.8,2-2.5.6-2.1-.1-2.7-1.4-2.6l-3.5.2c-.3,0-.5.2-.6.4l-2.7,7.8c0,.2,0,.4.3.4h1'
+    'c.2,0,.5-.2.6-.4l1.1-3c.1-.3.2-.3.5-.3h.4c.3,0,.4,0,.4.3l.5,3c0,.2.3.4.5.4h.9c.2,0,.4-.2.3-.4l-.5-2.8'
+    'c-.1-.4,0-.5.1-.5h0ZM24.6,26.8c.8,0,.9-.1,1.3-1,.4-.8.1-1-.6-1h-1.3c-.2,0-.5.3-.6.5l-.4,1.1c0,.2,0,.4.3.4h1.2,0Z'
+    'M93.4,28.4c.8-.1,1.2-1.4,1.4-2.4.4-1.4-.3-2-1.5-2.1l-3-.2c-.3,0-.5.3-.6.5l-2.6,7.4c0,.2,0,.4.3.4h1'
+    'c.2,0,.5-.2.6-.4l1.1-2.9c.1-.3.2-.3.5-.3h.4c.3,0,.4,0,.4.3l.9,2.9c0,.2.3.4.6.4h1c.2,0,.4-.2.3-.4l-.9-2.7'
+    'c-.1-.4-.1-.4.2-.5h0ZM91.6,27.1c.8,0,.9,0,1.3-.9.3-.8.1-.9-.5-.9h-.9c-.2,0-.5.1-.6.4l-.4,1c0,.2,0,.4.3.4h.8Z'
+    'M76.1,26.7l1,4.8c0,.2.2.4.4.4h1c.2,0,.5-.2.6-.4l2.8-8c0-.2,0-.4-.3-.4h-.9c-.2,0-.5.1-.6.4l-1.5,4.2'
+    'c-.2.5-.4.5-.5,0l-.9-4.3c0-.3-.2-.4-.5-.4h-1.1c-.2,0-.5.1-.6.4l-2.9,8.3c0,.2,0,.4.3.4h1c.2,0,.5-.2.6-.4'
+    'l1.7-4.9c.2-.5.4-.4.5,0h0ZM46.2,26.9c0-.2,0-.4-.3-.4h-2.7c-.2,0-.5.2-.6.4v.5c-.2.2,0,.4.2.4h.8'
+    'c.2,0,.4.2.3.4l-.6,1.5c-.1.4-.6.7-1,.7h-2.1c-.4,0-.6-.3-.5-.7l1.9-5.6c0-.2.3-.4.6-.4h2.7c.2,0,.4.2.3.4'
+    's0,.4.3.4h1c.2,0,.4-.3.5-.5.3-1-.2-1.6-1.1-1.7-.5,0-.6,0-2.1,0s-1.8,0-2.3.2c-.8.2-1.2.6-1.5,1.3'
+    'l-2.1,6c-.4,1.2.3,2.1,1.4,2.1h3.5c.8,0,1.6-.6,1.9-1.4l1.4-3.7h0ZM106.2,20h.4c.3,0,.6,0,.6-.4s-.3-.4-.5-.4'
+    'h-.5v.8h0ZM105.8,18.9h.9c.6,0,.8.2.8.7s-.3.6-.6.7l.7,1.1h-.4l-.7-1h-.4v1h-.4v-2.4Z'
+    'M106.6,21.9c1,0,1.7-.8,1.7-1.8s-.7-1.7-1.7-1.7-1.7.8-1.7,1.7.7,1.8,1.7,1.8ZM106.6,18.1c1.1,0,2.1.9,2.1,2'
+    's-.9,2.1-2.1,2.1-2.1-.9-2.1-2.1,1-2,2.1-2ZM54.1,38c-41.3,0-43.6-.2-47.5-2c-2.8-1.3-4.7-4.3-4.7-7.6'
+    's1.4-5.6,3.3-7c2.8-2.1,6.3-3,26-4.4c3.3-.2,9-.6,16.7-.8c2.3,0,5.2-.2,6.3-.2s3.9,0,6.3.2'
+    'c7.7.3,13.4.6,16.7.8c19.7,1.4,23.1,2.3,26,4.4c1.8,1.3,3.3,4,3.3,7s-1.8,6.3-4.7,7.6c-3.9,1.8-6.2,2.1-47.5,2h0Z"'
+    ' fill-rule="evenodd"/>'
+    '</g>'
+    '<rect width="110.6" height="54" fill="none"/>'
+    '</svg>'
+)
+
+_SVG_TBB = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 107.8 54" width="107.8" height="54">'
+    '<defs><clipPath id="clippath"><rect x="2.3" y="11.1" width="103.2" height="31.8" fill="none"/></clipPath></defs>'
+    '<g clip-path="url(#clippath)">'
+    '<path d="M3,42.9h97.2c.2-.2.4-.2.4-.5v-2.7c0-5.7.5-5.2-2-5.2H4.3c-1.9,0-1.9-.1-1.9,1.7v5.4c0,1,0,.9.5,1.2'
+    'M73.1,24.9c-.8.2-2-1.6-4.9.4-2.9,2.1-2.7,6.2.9,7.8.8.4,1.8.5,2.7.2.7-.2,1.4-1.1,1.9.2h4.7v-.7'
+    'c-1.7,0-1.3-1.8-1.3-3.3v-4.7c0-1.7,0-2.6-.9-3.8-.6-.8-1.9-1.3-3.3-1.4-1.6,0-5.1.7-5.4,1.5-.3.6.3,1.3.8,1.3'
+    'c.4,0,4.8-2.3,4.9,0,0,.5.1,1.9,0,2.3h0ZM40.9,20.2c-1.7.3-3,1.3-3.7,2.3-1,1.4-.8,3.3-.7,5.2,0,.9-.1,1.9.2,2.7'
+    'c.3.7.8,1.4,1.2,1.7c1,.9,2.5,1.8,4.5,1.5c1.7-.2,3-1.2,3.7-2.2c1-1.5.7-3.3.7-5.3s-.2-3.5-1.4-4.6'
+    'c-.9-.9-2.7-1.7-4.5-1.4h0ZM88.1,39.4c0,.8.8,1,1.4,1s1.2-.3,1.2-.8-.3-.5-.8-.6l-1-.2c-.5,0-1.3-.3-1.3-1.1'
+    's.6-1.3,1.8-1.3,1.8.3,1.8,1.3h-.6c-.1-.3-.3-.8-1.3-.8s-1,.2-1,.7,0,.5.7.6l1,.2c.4,0,1.4.2,1.4,1.1'
+    's-1,1.4-1.9,1.4-2-.3-2-1.5h.6ZM79.1,36.5h3.6v.5h-2.9v1.3h2.8v.5h-2.8v1.5h2.9v.5h-3.6v-4.4Z'
+    'M70.9,39.4c0,.8.7,1,1.4,1s1.2-.3,1.2-.8-.4-.5-.9-.6l-.9-.2c-.6,0-1.3-.3-1.3-1.1s.6-1.3,1.7-1.3'
+    ',1.8.3,1.9,1.3h-.7c0-.3-.2-.8-1.3-.8s-1,.2-1,.7.2.5.7.6l1.1.2c.3,0,1.3.2,1.3,1.1s-1,1.4-1.9,1.4'
+    's-2-.3-2-1.5h.7,0ZM61.3,36.5h.6v2.8c0,.7.6,1.1,1.4,1.1s1.3-.4,1.3-1.1v-2.8h.6v2.7c0,1.1-.6,1.7-1.9,1.7'
+    's-2-.6-2-1.7v-2.7h0ZM53.3,40.3v-1.5h1.8c.6,0,.8.4.8.7s-.2.8-.9.8h-1.7ZM52.6,40.8h2.6c.9,0,1.4-.6,1.4-1.2'
+    's-.3-1-.8-1.1c.3-.2.6-.4.6-.9c0-.7-.4-1.1-1.4-1.1h-2.4v4.4h0ZM53.3,38.3v-1.3h1.7c.5,0,.7.3.7.7s-.2.6-.7.6h-1.7Z'
+    'M41.8,37h-1.6v-.5h4v.5h-1.6v3.8h-.7v-3.8h0ZM33.8,36.5h.6v3.8h2.6v.5h-3.2v-4.4ZM28.6,36.5h.6v4.4h-.6v-4.4Z'
+    'M20,36.5h.7v2.8c0,.7.5,1.1,1.3,1.1s1.3-.4,1.3-1.1v-2.8h.7v2.7c0,1.1-.7,1.7-2,1.7s-2-.6-2-1.7v-2.7h0Z'
+    'M12.5,40.3v-1.5h1.8c.6,0,.8.4.8.7s-.2.8-.9.8h-1.7ZM11.8,40.8h2.6c.9,0,1.3-.6,1.3-1.2s-.3-1-.8-1.1'
+    'c.4-.2.7-.4.7-.9c0-.7-.5-1.1-1.4-1.1h-2.4v4.4h0ZM12.5,38.3v-1.3h1.7c.5,0,.7.3.7.7s-.2.6-.7.6h-1.7Z'
+    'M79.9,28.6l-1.4.6,1.5,4.3h1.3c0-.3,0-.6.1-.8c.5,0,2.3.9,3.6.9c5,0,6.2-5.2,2.8-7.3c-.9-.6-2.1-1-3.1-1.5'
+    'c-.9-.5-2.2-1.3-1.5-2.7c.8-1.6,2.9-1,4,1c.3.5.5,1.1.7,1.6c.4,0,1.3-.3,1.6-.5l-1.4-4.4h-1.4c0,.4,0,.6-.2.8'
+    'c-.5,0-.8-1.1-3.2-1c-1.4,0-2.3.8-2.8,1.5c-1.5,1.8-1,4.5,1.1,6c1.1.8,5.3,2.1,3.4,4.3c-1.2,1.5-3.6-.2-4.6-1.9'
+    'c-.1-.2-.2-.5-.4-.7h0ZM41.4,21.7c.4-.1.9.1,1.1.4c.3.3.2.8.2,1.3v6.2c0,1,.2,2.1-.7,2.3c-.5.1-.9-.1-1.1-.4'
+    'c-.2-.3-.2-.9-.2-1.4v-6.2c0-1-.2-2,.8-2.3h0ZM71.2,27.2c1.2-.3,1.9.4,2,1.5c0,1.3.1,2.2-1,2.5c-.5.1-1,0-1.5-.2'
+    'c-.4-.3-.5-.6-.5-1.3c0-1.3-.2-2.2,1-2.6ZM52.6,20.9c-.2-.2-.3-.3-.3-.7h-4.5c-.4,0-.4,0-.7.3c-.2.2,0,0-.2.2'
+    'c.7.5,1.4.9,1.5,2.1c.1,1,0,2.5,0,3.5v5.4c0,1-.1.9-.6,1.2v.6h5.3v-.7c-1-.5-.8-.5-.8-2.4v-6.4'
+    'c0-.7-.2-2,1.1-2.3c1.1-.2,1.4,1,1.4,1.8c0,2.6,0,5.6,0,8.2c0,.7-.2.7-.6,1v.6h5.1v-.7c-.8-.7-.7,0-.7-2.5v-6.5'
+    'c0-.5,0-1.1.2-1.5c.5-.7,1.5-1,2-.1c.4.7.2,3.7.2,4.7v4.9c0,.8-.4.6-.6,1v.5h5.2s0-.5,0-.5'
+    'c-.3-.4-.8,0-.8-1c0-.6,0-1.3,0-1.9v-7.6c-.1-1.8-3-4.1-5.7-1.6c-.4.3-.6.8-1.1.2c-.6-.7-1.3-1.2-2.6-1.2'
+    'c-2.4,0-1.8,1-2.9,1h0ZM7,35.4c.6,0,80.6,0,88.1,0s1.8-.2,1.8,1.2v3c0,2.8.3,2.3-3.7,2.3H8.1'
+    'c-2.1,0-1.8.4-1.8-4.3s-.3-2.2.7-2.3h0ZM103.9,42.9c-.9,0-1.6-.7-1.6-1.6s.7-1.6,1.6-1.6,1.6.7,1.6,1.6'
+    '-.7,1.6-1.6,1.6ZM103.9,40c-.7,0-1.3.6-1.3,1.3s.6,1.3,1.3,1.3,1.3-.6,1.3-1.3-.6-1.3-1.3-1.3Z'
+    'M104.3,42.2l-.3-.6c0,0,0-.2-.2-.2h-.2v.7h-.3v-1.7h.6c.1,0,.3,0,.4,0c.1,0,.2.2.2.4s-.1.4-.3.5h0s.4.7.4.7h-.4Z'
+    'M104.2,40.8s-.1,0-.2,0h-.3v.4h.3c.2,0,.3,0,.3-.2s0-.1,0-.2Z'
+    'M2.3,13.6v5.9s0,0,0,0h0c.3.5.7.4,1.5.4s1.5.2,1.7-.3c.2-.5-.1-1.2.2-1.8c.3-.5.7-.7,1.4-.7h6.1'
+    'c.7,0,1.4,0,1.5.6c0,.6,0,12.2,0,14.1s-.3.9-.7,1.2v.5c0,0,5.6,0,5.6,0v-.5c-.9-.4-.8-.9-.8-1.9v-11.2'
+    'c0-.7-.2-2.3.3-2.6c.4-.2,4.7-.1,5.5-.1v14.9c0,.8-.4.8-.7.9c-.3.1-.2,0-.2.3c0,.2,0,.2.5.2h5'
+    'c0-.6,0-.3-.3-.5c-.2-.1-.3-.2-.4-.4c-.3-.5-.2-.9-.2-1.5v-6.7c0-.6,0-1,.3-1.4c.5-.8,1.6-.8,2.2-.2'
+    'c.4.4.4.7.4,1.3c0,1,.2,7.9,0,8.4c-.3.9-.9.4-.7,1.1h5.3v-.5c-.9-.2-.9-.8-.9-1.8v-8.5'
+    'c0-1.6-1.2-2.8-2.4-3.2c-1.1-.4-2.3.1-3.1.8c-.3.2-.4.6-.9.5c-.4-.2-.2-3.1-.2-3.6c.5,0,62.9,0,67.6,0'
+    'c2.4,0,.6,2.6,2.1,2.8c.3,0,2.2,0,2.4,0c.6-.2.4-1.4.4-2.1c0-5.2.4-5-2.2-5H28.3c0-1.2,1.1-1.1,2.2-1'
+    'l-.4-.8h-7.2l-.5.9c1.1,0,2.3-.2,2.3.9H4.5c-1.7,0-1.6-.2-2.2.6h0Z" fill-rule="evenodd"/>'
+    '</g>'
+    '<rect width="107.8" height="54" fill="none"/>'
+    '</svg>'
+)
+
+_SVG_WS = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91.8 54" width="91.8" height="54">'
+    '<defs><clipPath id="clippath"><rect x="2" y="8" width="87.8" height="38" fill="none"/></clipPath></defs>'
+    '<g clip-path="url(#clippath)">'
+    '<path d="M77.6,38.5l-3.2,7.5h1.9l.5-1.1h3.6l.5,1.1h1.9l-3.2-7.5h-2.1ZM77.5,43.4l1.1-2.5h.2l1.1,2.5h-2.3,0Z" fill-rule="evenodd"/>'
+    '<path d="M75.6,38.5h-7.2v1.6h2.7v5.8h1.8v-5.8h2.7v-1.6Z" fill-rule="evenodd"/>'
+    '<path d="M54.8,43.3l-2.8-4.8h-2.1v7.5h1.8v-4.6l2.7,4.6h2.2v-7.5h-1.8v4.8Z" fill-rule="evenodd"/>'
+    '<path d="M27.3,40.2h2.7v5.8h1.8v-5.8h2.7v-1.6h-7.2v1.6Z" fill-rule="evenodd"/>'
+    '<path d="M20.5,39.2v3.2l.7.6h3.4v1l-.3.3h-3.7v1.6h5.1l.7-.6v-3.2l-.7-.6h-3.4v-1l.3-.3h3.7v-1.6h-5.1l-.7.6Z" fill-rule="evenodd"/>'
+    '<path d="M61.7,39.2v3.2l.7.6h3.3v1l-.3.3h-3.7v1.6h5.1l.7-.6v-3.2l-.7-.6h-3.4v-1l.3-.3h3.7v-1.6h-5.1l-.7.6Z" fill-rule="evenodd"/>'
+    '<path d="M13.8,46h5.8v-1.6h-4v-1.3h2.9v-1.6h-2.9v-1.4h4v-1.6h-5.8v7.5Z" fill-rule="evenodd"/>'
+    '<path d="M35.4,46h5.8v-1.6h-4v-1.3h2.9v-1.6h-2.9v-1.4h4v-1.6h-5.8v7.5Z" fill-rule="evenodd"/>'
+    '<path d="M9.8,42.7h-.1l-1.2-3.9v-.3h-1.8v.3c-.1,0-1.3,3.9-1.3,3.9h-.1l-1.3-4.2h-1.9l2.3,7.5h2l1.2-3.8h.1l1.2,3.8h2l2.3-7.5h-1.9l-1.3,4.2Z" fill-rule="evenodd"/>'
+    '<path d="M48,43.4h0l.7-.6v-3.5l-.7-.6h-5.5v7.5h1.8v-2.6h1.4l1.3,2.6h1.9l-1.3-2.6h.4Z'
+    'M46.8,41.5l-.3.3h-2.3v-1.6h2.3l.3.3v1Z" fill-rule="evenodd"/>'
+    '<path d="M88.5,43.4h.4l.6-.6v-3.5l-.6-.6h-5.3v7.5h1.7v-2.6h1.4l1.3,2.6h1.9l-1.3-2.6h0Z'
+    'M87.8,41.5l-.3.3h-2.2v-1.6h2.2l.3.3v1Z" fill-rule="evenodd"/>'
+    '<path d="M74.5,8.6l-10.8,24.6c0,0-.1.1-.2.1h-13.8c0,0-.2,0-.2-.1l-3.5-7.8-3.6,7.8c0,0-.1.1-.2.1h-13.8'
+    'c0,0-.2,0-.2-.1l-10.8-24.6c0,0,0-.1,0-.2c0,0,0,0,.2,0h11.4c0,0,.2,0,.2.1l5.6,12.8,2.4-5.1,1.1.8-2.6,5.5'
+    'c0,0-.1.2-.2.2h-1.4c0,0-.2,0-.2-.2l-5.5-12.6c0,0-.1-.2-.2-.2h-8.6c0,0-.1,0,0,.2l9.7,22c0,0,.1.2.2.2h12'
+    'c0,0,.2,0,.2-.1l3.5-7.6c0,0,.1-.2.2-.2h1.4c0,0,.2,0,.2.2l3.4,7.6c0,0,.1.2.2.2h12c0,0,.2,0,.2-.1l9.7-22'
+    'c0,0,0-.2,0-.2h-8.6c0,0-.2,0-.2.2l-5.5,12.6c0,0-.1.2-.2.2h-1.4c0,0-.2,0-.2-.2l-2.6-5.5,1.1-.8,2.4,5.1'
+    ',5.6-12.8c0,0,.1-.1.2-.1h11.4c0,0,.1,0,.2,0c0,0,0,.1,0,.2M40.9,8.5c0,0,.1-.1.2-.1h4.8l-.4,1.3h-3.5'
+    'c0,0-.2,0-.2.1l-2.6,5.5h-1.5l3.3-6.9h0ZM50.8,8.4c0,0,.2,0,.2.1l3.3,6.9h-1.5l-2.6-5.5c0,0-.1-.2-.2-.2'
+    'h-3.5l-.4-1.3h4.8ZM37.4,15.8h6.4l2-6v-.3c.1,0,.2.3.2.3l1.9,6h6.7l-5.4,3.9,2.1,6.3-5.4-3.9-5.4,3.9'
+    ',2.1-6.3-4.1-3-1.1-.8h-.2c0-.1.2-.1.2-.1ZM43.5,19.4l-.2.5-1.3,4.1,3.5-2.5.5-.3.5.3,3.5,2.5-1.3-4.1'
+    '-.2-.5.4-.3,3.5-2.6h-4.9l-.2-.5-1.3-4.1-1.3,4.1-.2.5h-4.9l3.5,2.6.4.3h0Z'
+    'M74.8,8.2c0-.2-.3-.2-.5-.2h-11.4c-.2,0-.5.2-.6.4l-5.3,12-2.1-4.5.7-.5h-1l-3.4-7.1c0-.2-.3-.4-.6-.4h-9.7'
+    'c-.2,0-.5.2-.6.4l-3.4,7.1h-1l.7.5-2.1,4.5-5.3-12c0-.2-.3-.4-.6-.4h-11.4c-.2,0-.4,0-.5.2'
+    'c0,.2-.1.3,0,.5l10.8,24.6c0,.2.3.4.6.4h13.8c.2,0,.5-.2.6-.4l3.2-7,3.2,7c0,.2.3.4.6.4h13.8'
+    'c.2,0,.5-.2.6-.4l10.8-24.6c0-.2,0-.4,0-.5h0Z" fill-rule="evenodd"/>'
+    '</g>'
+    '<rect width="91.8" height="54" fill="none"/>'
+    '</svg>'
+)
+
+_SVG_MB = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 54" width="54" height="54">'
+    '<defs><clipPath id="clippath"><rect x="2" y="2" width="50" height="50" fill="none"/></clipPath></defs>'
+    '<g clip-path="url(#clippath)">'
+    '<path d="M48.7,14.5c-2.2-3.8-5.3-7-9.2-9.2s-8.1-3.3-12.5-3.3-8.7,1.2-12.5,3.3c-3.8,2.2-7,5.4-9.2,9.2'
+    'c-2.2,3.8-3.3,8.1-3.3,12.5s1.2,8.7,3.3,12.5c2.2,3.8,5.4,7,9.2,9.2c3.8,2.2,8.1,3.3,12.5,3.3'
+    's8.7-1.2,12.5-3.3c3.8-2.2,7-5.4,9.2-9.2c2.2-3.8,3.3-8.1,3.3-12.5s-1.2-8.7-3.3-12.5'
+    'M4.5,27c0-3.9,1-7.8,3-11.2c2-3.4,4.8-6.3,8.2-8.2c3.2-1.9,6.8-2.9,10.5-3l-2.9,20.4-16.3,12.7'
+    'c-1.8-3.3-2.7-6.9-2.7-10.6h0ZM38.2,46.5c-3.4,2-7.3,3-11.2,3s-7.8-1-11.2-3c-3.2-1.9-5.9-4.5-7.9-7.6'
+    'l19.1-7.7,19.1,7.7c-2,3.2-4.7,5.8-7.9,7.6h0ZM46.8,37.6l-16.3-12.7-2.9-20.4c3.7.1,7.3,1.1,10.6,3'
+    'c3.4,2,6.3,4.8,8.2,8.2c2,3.4,3,7.3,3,11.2s-.9,7.4-2.7,10.6h0Z" fill-rule="evenodd"/>'
+    '</g>'
+    '<rect width="54" height="54" fill="none"/>'
+    '</svg>'
+)
+
+_SVG_BB = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91.5 54" width="91.5" height="54">'
+    '<defs><clipPath id="clippath"><rect x="1.6" width="88.4" height="54" fill="none"/></clipPath></defs>'
+    '<g clip-path="url(#clippath)">'
+    '<path d="M45.8.6c11.9,0,21.6,8.5,21.6,19s-9.7,19-21.6,19-21.6-8.5-21.6-19S33.9.6,45.8.6'
+    'M45.8,4.1c9.6,0,17.4,6.9,17.4,15.5s-7.8,15.5-17.4,15.5-17.4-6.9-17.4-15.5,7.8-15.5,17.4-15.5Z'
+    'M45.8,3.5c10,0,18,7.2,18,16.1s-8.1,16.1-18,16.1-18-7.2-18-16.1S35.8,3.5,45.8,3.5Z'
+    'M60.5,22.6h-4.5c-1.3,4.4-5.4,7.6-10.2,7.6s-8.9-3.2-10.2-7.6h-4.5c1.5,5.9,7.5,10.4,14.7,10.4s13.2-4.4,14.7-10.4Z'
+    'M31.1,16.7h4.5c1.3-4.4,5.3-7.6,10.1-7.6s8.9,3.2,10.1,7.6h4.5c-1.5-5.9-7.5-10.4-14.7-10.4s-13.1,4.4-14.7,10.4Z'
+    'M29.6,20.4v-.7c.3,0,1.1,0,1.4,0c.2,0,.4.1.4.3s-.3.3-.5.3c-.1,0-.3,0-.6,0h-.6Z'
+    'M29.6,19.5v-.6c.3,0,1,0,1.3,0c.2,0,.3.1.3.3s-.2.2-.4.3c-.1,0-.5,0-.7,0h-.5Z'
+    'M29.2,18.6v2h1.4c.3,0,.7,0,1-.1c.5-.2.6-.8-.3-.9c.2,0,.3-.1.4-.2c.2-.2.2-.3,0-.5c-.2-.2-.7-.2-1.1-.2h-1.4Z'
+    'M34.9,18.6v.8h-1.9v-.8h-.5v2h.5v-.9h1.9v.9h.5v-2h-.5ZM37.2,19.2c0-.1.2-.3.2-.4c.1.3.4.7.6,1h-1.2l.4-.6Z'
+    'M37.2,18.6l-1.4,2h.5l.4-.6h1.5l.4.6h.5l-1.5-2h-.5,0ZM40,18.8h1.2c.3,0,.5,0,.6,0c.2,0,.2.3,0,.4'
+    'c-.2.1-.5.2-.8.2h-1v-.7h0ZM39.5,18.6v2h.5v-.9c.2,0,.7,0,.8,0c.3,0,.5.2.8.5l.5.4h.6l-.6-.5'
+    'c-.2-.2-.4-.3-.7-.4c.3,0,.6,0,.8-.2c.3-.2.3-.4,0-.7c-.3-.2-.7-.2-1.1-.2h-1.6Z'
+    'M44.2,19.2c0-.1.2-.3.2-.4c.1.3.4.7.6,1h-1.2l.4-.6ZM44.1,18.6l-1.4,2h.5l.4-.6h1.5l.4.6h.5l-1.5-2h-.5,0Z'
+    'M45.8,18.6v.2h1.2v1.7h.5v-1.7h1.2v-.2h-2.9ZM52.8,18.6v2h2.8v-.3h-2v-.5h1.8v-.3h-1.8v-.4h2v-.3h-2.7Z'
+    'M58.3,18.6v1.3l-1.5-1.3h-.7v2h.7v-1.3l1.5,1.3h.7v-2h-.7Z'
+    'M59.7,18.6v.3h1.7l-1.9,1.3v.4h2.9v-.3h-2.1l2-1.3v-.3h-2.7Z'
+    'M49.9,20.3v-.5h.6c.4,0,.7,0,.9.1c.2.1.1.4-.3.4c-.1,0-.4,0-.7,0h-.5,0ZM49.9,19h1c.1,0,.2,0,.3,0'
+    'c.2,0,.2.3-.3.4h-1v-.4h0ZM50.6,18.6h-1.4v2c.5,0,1.7,0,2.1,0c.2,0,.4,0,.5,0c.6-.2.7-.8-.3-.9'
+    'c.2,0,.3,0,.4-.2c.2-.1.2-.3,0-.5c-.3-.3-.7-.3-1.2-.3h-.2Z'
+    'M64.4,54h0s0,0,0,0ZM2.9,53.4v-1.8c.8,0,3,0,3.7,0c.5,0,1,.3,1,.8s-.9.8-1.4.9c-.3,0-.9,0-1.6,0h-1.7,0Z'
+    'M2.9,50.9v-1.6c.8,0,2.8,0,3.4,0c.4,0,.9.3.9.8s-.5.6-1,.7c-.4,0-1.2,0-2,0h-1.3Z'
+    'M1.6,48.7v5.3h3.7c.9,0,1.9,0,2.6-.4c1.3-.5,1.6-2.1-.8-2.5c.5-.1.8-.3,1-.5c.5-.4.4-.9,0-1.3'
+    'c-.7-.6-1.8-.7-2.8-.7H1.6h0ZM16.9,48.7v2.2h-5v-2.2h-1.3v5.3h1.3v-2.5h5v2.5h1.3v-5.3h-1.3Z'
+    'M23,50.2c.2-.3.4-.7.5-1c.4.7,1.2,1.8,1.7,2.6h-3.3l1-1.6ZM22.8,48.7l-3.7,5.3h1.4l1.1-1.6h4l1.1,1.6h1.5'
+    'l-3.9-5.3h-1.4ZM30.4,49.3h3.1c.7,0,1.2,0,1.6.3c.5.3.7.7.2,1.1c-.4.4-1.4.4-2.1.4h-2.7,0v-1.8h0Z'
+    'M29.1,48.7v5.3h1.3v-2.4c.5,0,1.8,0,2.2,0c.8,0,1.4.6,2.1,1.2l1.3,1.1h1.6l-1.7-1.4c-.6-.5-1-.8-1.8-1'
+    'c.9,0,1.6-.2,2.1-.5c.8-.5.9-1.2.3-1.8c-.7-.6-1.8-.7-3-.7h-4.3,0Z'
+    'M41.5,50.2c.2-.3.4-.7.5-1c.4.7,1.2,1.8,1.7,2.6h-3.3l1.1-1.6ZM41.4,48.7l-3.7,5.3h1.3l1.1-1.6h4l1.1,1.6h1.5'
+    'l-4-5.3h-1.4ZM46,48.7v.6h3.2v4.7h1.3v-4.7h3.2v-.6h-7.6Z'
+    'M64.4,48.7v5.3h7.3v-.9h-5.4v-1.4h4.8v-.9h-4.8v-1.2h5.2v-.9h-7.2,0Z'
+    'M79.2,48.7v3.6l-4-3.6h-1.9v5.3h1.8v-3.5l3.9,3.5h2v-5.3h-1.8Z'
+    'M82.7,48.7v.9h4.5l-5.1,3.4v1h7.8v-.9h-5.5l5.3-3.6v-.8h-7.1Z'
+    'M56.7,53.1v-1.4h1.6c1.1,0,1.9,0,2.3.3c.4.3.3,1-.8,1.1c-.3,0-1.1,0-1.8,0h-1.3Z'
+    'M56.7,49.6h0s2.8,0,2.8,0c.3,0,.6,0,.7.2c.4.3.5.9-.8,1h-2.7s0-1.2,0-1.2Z'
+    'M58.6,48.7h-3.9v5.3c1.4,0,4.5,0,5.6,0c.5,0,1-.1,1.3-.2c1.5-.6,1.8-2.2-.7-2.5c.4-.1.7-.3,1-.5'
+    'c.5-.4.5-.9,0-1.3c-.7-.7-1.9-.7-3.1-.7h-.4,0Z" fill-rule="evenodd"/>'
+    '</g>'
+    '<rect width="91.5" height="54" fill="none"/>'
+    '</svg>'
+)
+
+_SVG_SE = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 109.5 54" width="109.5" height="54">'
+    '<defs><clipPath id="clippath"><rect x="2.4" y="16" width="104.7" height="22" fill="none"/></clipPath></defs>'
+    '<g clip-path="url(#clippath)">'
+    '<path d="M28.4,29c2.4,0,2.5-1.2,2.6-1.6c0-.6-.3-1.6-2.5-1.6h-4.4v-1.1h6.6c0,0,.1,0,.1-.1v-1'
+    'c0,0,0-.1-.1-.1h-8.4c-2.3,0-2.5,1.2-2.5,1.6c0,.6.3,1.6,2.5,1.6h4.4v1.1h-6.6c0,0-.1,0-.1.1v1'
+    'c0,0,0,.1.1.1h8.4ZM106.4,18.5c0,.4-1.6,6.5-3.2,10.5c-.7,1.7-1.2,2.9-1.4,3.2c-.4.8-1.1,1.3-2,1.4'
+    'c-11.8,1.9-63.5,3.7-88.5,3.8c-1,0-2.3,0-3.2-.5c-.8-.4-1.1-1.5-1.2-1.8l-3.8-13.9c-.4-1.5-.2-2.7.6-3.5'
+    'c.9-1,1.9-1,5.4-1h95.6c.6,0,1.1.3,1.4.8c.2.3.3.7.2,1.1h0ZM104.8,17.3c.4,0,.7.2.8.4c.1.2.2.4.1.6'
+    'c-.1.5-1.6,6.4-3.1,10.3c-.7,1.7-1.2,2.9-1.3,3.2c-.3.6-.8.9-1.5,1c-12.1,1.9-66,3.7-88.4,3.8'
+    'c-.9,0-2.1,0-2.9-.4c-.4-.2-.7-.9-.8-1.4l-3.7-14c-.5-1.9.2-2.6.4-2.9c.7-.8,1.6-.8,5-.8h95.6,0Z'
+    'M83.6,24.7c0,0,.2,0,.2.2v1.7h-2.6v-1.7c0,0,0-.2.2-.2h2.3Z'
+    'M72.8,29c-.5-.5-1.3-1.2-1.6-1.5h-.1c0-.1.2-.2.2-.2c.7-.2,1.3-.9,1.3-1.8v-.3c0-1.2-1-1.9-1.9-1.9h-8.1'
+    'c0,0-.1,0-.1.1v5.4c0,0,0,.1.1.1h3.6c0,0,.1,0,.1-.1v-1.4h.8l1.5,1.5h4.2,0ZM66.3,26.5h0v-1.8h2.1'
+    'c.4,0,.8.3.8.8v.3c0,.5-.4.8-.8.8h-2Z'
+    'M58.7,24.6v-1c0,0,0-.1-.1-.1h-10.8c0,0-.1,0-.1.1v1c0,0,0,.1.1.1h3.5v4.3c0,0,0,.1.1.1h3.6'
+    'c0,0,.1,0,.1-.1v-4.2h3.5c0,0,.1,0,.1-.1h0Z'
+    'M44.2,25.8h-5.3v-1.1h5.3c0,0,.1,0,.1-.1v-1c0,0,0-.1-.1-.1h-9c0,0-.1,0-.1.1v5.4c0,0,0,.1.1.1h9'
+    'c0,0,.1,0,.1-.1v-1c0,0,0-.1-.1-.1h-5.3v-1.1h5.3c0,0,.1,0,.1-.1v-.8c0,0,0-.1-.1-.1h0Z'
+    'M87.6,28.9v-3.6c0-1.1-.9-1.9-1.9-1.9h-6.4c-1.1,0-1.9.9-1.9,1.9v3.6c0,0,0,.1.1.1h3.6'
+    'c0,0,.1,0,.1-.1v-1.4h2.6v1.4c0,0,0,.1.1.1h3.6c0,0,.1,0,.1-.1h0Z'
+    'M106.8,17.1c-.4-.7-1.1-1.1-1.9-1.1H9.2c-3.5,0-4.7,0-5.9,1.2c-.6.7-1.3,1.9-.7,4.1l3.7,13.9'
+    'c.1.5.5,1.7,1.5,2.2c.5.2,1.3.6,3.5.5c23.7-.1,76.6-1.9,88.6-3.8c1.1-.2,2-.8,2.5-1.7c.2-.4.7-1.6,1.4-3.3'
+    'c1.6-4.1,3.1-10.2,3.2-10.6c0-.5,0-1-.3-1.5h0Z" fill-rule="evenodd"/>'
+    '</g>'
+    '<rect width="109.5" height="54" fill="none"/>'
+    '</svg>'
+)
+
+# Ordered list matching the DT brand page strip
+_BRAND_LOGO_SVGS = [_SVG_FL, _SVG_TBB, _SVG_WS, _SVG_MB, _SVG_BB, _SVG_SE]
+# Scaled widths at target height 28px  (origW / 54 * 28, rounded)
+_LOGO_H  = 28
+_LOGO_WS = [57, 56, 48, 28, 47, 57]
+_LOGO_XS = [374, 479, 583, 679, 755, 850]   # centered in 1280px strip
+
+
+def _brand_logo(svg_str: str, uid: int, w: int, h: int) -> str:
+    """Fix clipPath IDs and scale a brand logo SVG for inline embedding."""
+    svg = svg_str.replace('id="clippath"', f'id="cp_{uid}"')
+    svg = svg.replace('clip-path="url(#clippath)"', f'clip-path="url(#cp_{uid})"')
+    svg = re.sub(r'\bwidth="\d+(?:\.\d+)?"', f'width="{w}"', svg, count=1)
+    svg = re.sub(r'\bheight="\d+(?:\.\d+)?"', f'height="{h}"', svg, count=1)
+    return svg
+
+
+def _dt_footer(f: dict, dark: bool = False) -> list:
+    """Standard DT footer: thin rule + 'DAIMLER TRUCK' label + source + page."""
+    sep  = "rgba(255,255,255,.15)" if dark else GREY_RULE
+    dt_c = "rgba(255,255,255,.40)" if dark else "#999"
+    src_c= "rgba(255,255,255,.30)" if dark else "#aaa"
+    pg_c = "rgba(255,255,255,.45)" if dark else "#888"
+    out  = [_d(M_L, FOOTER_Y - 7, SLIDE_W - M_L - M_R, 1, f"background:{sep};")]
+    out.append(_d(M_L, FOOTER_Y, 140, 16,
+        f"font-size:9px;font-weight:600;letter-spacing:.7px;color:{dt_c};"
+        "text-transform:uppercase;overflow:hidden;white-space:nowrap;", "Daimler Truck"))
+    if f.get("source"):
+        out.append(_d(M_L + 150, FOOTER_Y, SLIDE_W - M_L - M_R - 210, 16,
+            f"font-size:9px;color:{src_c};overflow:hidden;white-space:nowrap;",
+            _e(f["source"])))
+    if f.get("page") is not None:
+        out.append(_d(SLIDE_W - M_R - 50, FOOTER_Y, 50, 16,
+            f"font-size:10px;color:{pg_c};text-align:right;", str(f["page"])))
+    return out
+
 
 # ── Fixed slide geometry (1280x720) ────────────────────────────────────────────
 SLIDE_W  = 1280
@@ -152,52 +443,69 @@ def render_slide(spec) -> str:
 # ── Cover ──────────────────────────────────────────────────────────────────────
 def _cover(spec, accent):
     h = spec.get("header", {})
-    f = spec.get("footer", {})
-    panel_w = 800
-    right_bg = spec.get("theme", {}).get("cover_right_bg", PETROL_DARK)
     p = []
 
-    # Left white panel + top bar
-    p.append(_d(0, 0, panel_w, SLIDE_H, f"background:#fff;"))
-    p.append(_d(0, 0, panel_w, 4, f"background:{accent};"))
+    # Full-bleed iridescent swirl (pure CSS — iframe sandbox bars JS)
+    SWIRL = (
+        "radial-gradient(ellipse 47% 43% at 50% 50%,"
+        "white 0%,rgba(255,255,255,.93) 16%,rgba(255,255,255,.6) 36%,transparent 58%),"
+        "repeating-conic-gradient(from 0deg at 50% 50%,"
+        "rgba(255,255,255,.45) 0deg 1.5deg,transparent 1.5deg 3deg),"
+        "repeating-conic-gradient(from 27deg at 48% 52%,"
+        "rgba(255,255,255,.25) 0deg 2deg,transparent 2deg 4deg),"
+        "conic-gradient(from 12deg at 50% 50%,"
+        "#F8C6D5 0%,#C6EDD6 22%,#C0D8F4 44%,#F8EEC0 66%,#DCC6F2 88%,#F8C6D5 100%)"
+    )
+    p.append(_d(0, 0, SLIDE_W, SLIDE_H, f"background:{SWIRL};"))
 
-    oy = 160
+    # DT Wordmark SVG — centered, scaled to 540×41px
+    WM_W, WM_H = 540, 41
+    wm_svg = re.sub(r'\bwidth="\d+(?:\.\d+)?(?:px)?"', f'width="{WM_W}"',
+                    _SVG_DT_WORDMARK, count=1)
+    wm_svg = re.sub(r'\bheight="\d+(?:\.\d+)?(?:px)?"', f'height="{WM_H}"',
+                    wm_svg, count=1)
+    p.append(_d((SLIDE_W - WM_W) // 2, 180, WM_W, WM_H, "", wm_svg))
+
+    # Thin separator rule below wordmark
+    p.append(_d((SLIDE_W - 360) // 2, 233, 360, 1, "background:rgba(0,0,0,.16);"))
+
+    # Headline / kicker / sub — vertically stacked below rule
+    oy = 250
     if h.get("kicker"):
-        p.append(_d(M_L, oy, panel_w - M_L - 40, 20,
-            f"font-size:11px;font-weight:700;color:{accent};text-transform:uppercase;letter-spacing:1.5px;",
+        p.append(_d(0, oy, SLIDE_W, 20,
+            "font-size:11px;font-weight:700;color:#1A1A1A;text-transform:uppercase;"
+            "letter-spacing:2.5px;text-align:center;overflow:hidden;white-space:nowrap;",
             _e(h["kicker"])))
         oy += 30
+
     if h.get("headline"):
-        text = _e(h["headline"]).replace("\n", "<br>")
-        hl   = h["headline"]
-        fs   = 38 if len(hl) <= 55 else (30 if len(hl) <= 90 else (24 if len(hl) <= 130 else 20))
-        # lines × line-height × fs, clamp so sub still fits above footer
-        n_lines  = max(1, len(hl) // max(int((panel_w - M_L - 40) / (fs * 0.58)), 1) + 1)
-        hl_h     = min(int(n_lines * fs * 1.3) + 10, SLIDE_H - oy - 120)
-        p.append(_d(M_L, oy, panel_w - M_L - 40, hl_h,
-            f"font-size:{fs}px;font-weight:700;color:#1A1A1A;line-height:1.3;overflow:hidden;",
-            text))
-        oy += hl_h + 16
+        hl  = h["headline"]
+        fs  = 36 if len(hl) <= 50 else (28 if len(hl) <= 80 else 22)
+        cpl = max(1, (SLIDE_W - 280) / (fs * 0.54))
+        nln = max(1, math.ceil(len(hl) / cpl))
+        hl_h = min(max(int(nln * fs * 1.35 + 8), 44), 640 - oy - 50)
+        p.append(_d(140, oy, SLIDE_W - 280, hl_h,
+            f"font-size:{fs}px;font-weight:700;color:#1A1A1A;"
+            "text-align:center;line-height:1.35;overflow:hidden;",
+            _e(hl)))
+        oy += hl_h + 14
+
     if h.get("sub"):
-        sub_y = min(oy, SLIDE_H - 120)
-        p.append(_d(M_L, sub_y, panel_w - M_L - 40, 44,
-            "font-size:14px;color:#666;overflow:hidden;",
+        sub_y = min(oy, 618)
+        p.append(_d(180, sub_y, SLIDE_W - 360, 40,
+            "font-size:14px;color:#444;text-align:center;overflow:hidden;",
             _e(h["sub"])))
 
-    # Right dark panel
-    p.append(_d(panel_w, 0, SLIDE_W - panel_w, SLIDE_H, f"background:{right_bg};"))
-    if spec.get("right_panel_text"):
-        p.append(_d(panel_w + 30, SLIDE_H - 80, SLIDE_W - panel_w - 60, 40,
-            "font-size:12px;color:rgba(255,255,255,0.5);",
-            _e(spec["right_panel_text"])))
+    # Brand logos strip (bottom 70px, white/translucent)
+    STRIP_H = 70
+    STRIP_Y = SLIDE_H - STRIP_H  # 650
+    p.append(_d(0, STRIP_Y, SLIDE_W, STRIP_H,
+        "background:rgba(255,255,255,.92);border-top:1px solid rgba(0,0,0,.05);"))
+    LOGO_Y = STRIP_Y + (STRIP_H - _LOGO_H) // 2
+    for i, (svg_str, lw, lx) in enumerate(zip(_BRAND_LOGO_SVGS, _LOGO_WS, _LOGO_XS)):
+        p.append(_d(lx, LOGO_Y, lw, _LOGO_H, "",
+                    _brand_logo(svg_str, i, lw, _LOGO_H)))
 
-    # Footer
-    if f.get("source"):
-        p.append(_d(M_L, FOOTER_Y, 700, 16,
-            "font-size:9px;color:#999;", _e(f["source"])))
-    if f.get("page") is not None:
-        p.append(_d(SLIDE_W - M_R - 50, FOOTER_Y, 50, 16,
-            "font-size:11px;color:#999;text-align:right;", str(f["page"])))
     return "\n".join(p)
 
 
@@ -217,9 +525,7 @@ def _chapter(spec, accent):
         text = _e(h["headline"]).replace("\n", "<br>")
         p.append(_d(M_L, 262, 900, 160,
             "font-size:42px;font-weight:700;color:#fff;line-height:1.2;", text))
-    if f.get("page") is not None:
-        p.append(_d(SLIDE_W - M_R - 50, FOOTER_Y, 50, 16,
-            "font-size:11px;color:rgba(255,255,255,0.3);text-align:right;", str(f["page"])))
+    p.extend(_dt_footer(f, dark=True))
     return "\n".join(p)
 
 
@@ -230,19 +536,23 @@ def _cta(spec, accent):
     bg = spec.get("theme", {}).get("bg", "#002E3D")
     p = []
     p.append(_d(0, 0, SLIDE_W, SLIDE_H, f"background:{bg};"))
-    p.append(_d(0, 0, SLIDE_W, 4, f"background:{accent};"))
+    oy_cta = 270
     if h.get("headline"):
-        p.append(_d(M_L, 270, 1000, 100,
-            "font-size:34px;font-weight:700;color:#fff;line-height:1.3;", _e(h["headline"])))
+        hl = h["headline"]
+        cpl_cta = max(1, 1000 / (34 * 0.54))
+        n_lines_cta = max(1, math.ceil(len(hl) / cpl_cta))
+        hl_h_cta = max(80, int(n_lines_cta * 34 * 1.35))
+        p.append(_d(M_L, oy_cta, 1000, hl_h_cta,
+            "font-size:34px;font-weight:700;color:#fff;line-height:1.35;overflow:hidden;",
+            _e(hl)))
+        oy_cta += hl_h_cta + 20
     if h.get("sub"):
-        p.append(_d(M_L, 380, 750, 50,
-            "font-size:15px;color:rgba(255,255,255,0.65);", _e(h["sub"])))
+        p.append(_d(M_L, oy_cta, 850, 50,
+            "font-size:15px;color:rgba(255,255,255,0.65);overflow:hidden;", _e(h["sub"])))
     for i, item in enumerate(spec.get("content", {}).get("items", [])):
         p.append(_d(M_L, 450 + i * 28, 650, 24,
             "font-size:13px;color:rgba(255,255,255,0.8);", _e(item)))
-    if f.get("source"):
-        p.append(_d(M_L, FOOTER_Y, 700, 16,
-            "font-size:9px;color:rgba(255,255,255,0.3);", _e(f["source"])))
+    p.extend(_dt_footer(f, dark=True))
     return "\n".join(p)
 
 
@@ -254,11 +564,8 @@ def _content(spec, accent):
     content = spec.get("content", {})
     p = []
 
-    # Top accent bar
-    p.append(_d(0, 0, SLIDE_W, 4, f"background:{accent};"))
-
-    # Header zone
-    oy_hdr = 4  # start below top accent bar
+    # Header zone (no accent bar — clean DT template style)
+    oy_hdr = 4
     if h.get("kicker"):
         p.append(_d(M_L, oy_hdr + 12, CON_W, 16,
             f"font-size:10px;font-weight:700;color:{accent};text-transform:uppercase;"
@@ -294,15 +601,7 @@ def _content(spec, accent):
         bx = CON_X + col["dx"]
         p.append(render_block(block, bx, CON_Y, col["w"], CON_H, accent))
 
-    # Footer
-    if f.get("source"):
-        p.append(_d(M_L, FOOTER_Y, 780, 16,
-            "font-size:9px;color:#999;overflow:hidden;white-space:nowrap;",
-            _e(f["source"])))
-    if f.get("page") is not None:
-        p.append(_d(SLIDE_W - M_R - 50, FOOTER_Y, 50, 16,
-            "font-size:11px;font-weight:400;color:#666;text-align:right;",
-            str(f["page"])))
+    p.extend(_dt_footer(f, dark=False))
     return "\n".join(p)
 
 
@@ -367,7 +666,20 @@ def _bar_v(block, x, y, w, h, accent):
     show_vals = block.get("show_values", True)
     stacked   = block.get("stacked", False)
 
-    T, B, L, R = (22 if title else 4), 38, 48, 6
+    T = 22 if title else 4
+    L, R = 48, 6
+
+    # Pre-compute legend rows to set B before cw/ch
+    _slist = [s for s in block.get("series", []) if isinstance(s, dict) and "values" in s and s.get("name")]
+    if len(_slist) > 1:
+        _est_lbl = max((len(s["name"]) for s in _slist), default=8)
+        _est_w   = max(_est_lbl * 6 + 22, 80)
+        _est_ipr = max(1, (w - L - R) // _est_w)
+        _n_rows  = math.ceil(len(_slist) / _est_ipr)
+        B = 30 + _n_rows * 14
+    else:
+        B = 38
+
     cw, ch = w - L - R, h - T - B
     cx, cy = L, T
 
@@ -455,12 +767,18 @@ def _bar_v(block, x, y, w, h, accent):
         ln.append(_txt(lx, cy + ch + 14, lbl, 10, 400, GREY_SUB, "middle"))
 
     if ns > 1:
-        leg_y = cy + ch + 26
+        max_lbl_len = max((len(s["name"]) for s in series if s["name"]), default=8)
+        item_w      = max(max_lbl_len * 6 + 22, 80)
+        items_per_row = max(1, cw // item_w)
+        leg_y_base  = cy + ch + 26
         for si, s in enumerate(series):
             if not s["name"]: continue
-            lx = cx + si * max(cw // ns, 80)
-            ln.append(f'<rect x="{lx}" y="{leg_y}" width="10" height="10" fill="{s["color"]}"/>')
-            ln.append(_txt(lx + 13, leg_y + 9, s["name"], 9, 400, GREY_SUB))
+            row = si // items_per_row
+            col = si % items_per_row
+            lx  = cx + col * item_w
+            ly  = leg_y_base + row * 14
+            ln.append(f'<rect x="{lx}" y="{ly}" width="10" height="10" fill="{s["color"]}"/>')
+            ln.append(_txt(lx + 13, ly + 9, s["name"], 9, 400, GREY_SUB))
 
     return _d(x, y, w, h, "", _svg(w, h, "\n".join(ln)))
 
@@ -478,16 +796,16 @@ def _bar_h(block, x, y, w, h, accent):
         items = [{"label": l, "value": s_raw[0]["values"][i]}
                  for i, l in enumerate(lbls)]
 
-    T, B, L, R = (22 if title else 4), 4, 120, 55
+    T, B, L, R = (22 if title else 4), 28, 120, 55
     cw, ch = w - L - R, h - T - B
-    cx, cy = L, T
+    cx, cy = L, T  # bars start from top — no vertical centring
 
     n   = len(items)
     all_v = [s["value"] for s in items]
     x_max = _nice_max(max(all_v)) if all_v else 10
 
-    slot = ch / n
-    bh   = slot * 0.65
+    slot = ch / n               # distribute evenly across available height
+    bh   = min(slot * 0.60, 40) # cap bar height so thick columns stay slim
 
     ln = []
     if title:
@@ -529,7 +847,20 @@ def render_line_chart(block, x, y, w, h, accent=PETROL):
     title       = block.get("title", "")
     area        = block.get("area", False)
 
-    T, B, L, R = (22 if title else 8), 36, 48, 8
+    T  = 22 if title else 8
+    L, R = 48, 8
+
+    # Pre-compute legend row count to set B before cw/ch
+    ns_est = len(series_raw)
+    if ns_est > 1:
+        est_max_lbl = max((len(s.get("name", "")) for s in series_raw if s.get("name")), default=8)
+        est_item_w  = max(est_max_lbl * 6 + 28, 90)
+        est_ipr     = max(1, (w - L - R) // est_item_w)
+        n_leg_rows  = math.ceil(ns_est / est_ipr)
+        B = 28 + n_leg_rows * 16   # 28px clears x-axis labels; 16px per legend row
+    else:
+        B = 24
+
     cw, ch = w - L - R, h - T - B
     cx, cy = L, T
 
@@ -537,12 +868,12 @@ def render_line_chart(block, x, y, w, h, accent=PETROL):
                "color": SERIES_COLORS[i % len(SERIES_COLORS)]}
               for i, s in enumerate(series_raw)]
 
-    all_v = [v for s in series for v in s["values"]]
+    all_v = [v for s in series for v in s["values"] if v is not None]
     y_max = _nice_max(max(all_v)) if all_v else 10
-    y_min = 0
+    y_min = min(0, min(all_v)) if all_v else 0
     n     = max(len(labels), 1)
 
-    def px(i, v):
+    def _pt(i, v):
         px_x = cx + i * cw / (n - 1) if n > 1 else cx + cw / 2
         px_y = cy + ch - (v - y_min) / (y_max - y_min) * ch
         return px_x, px_y
@@ -558,26 +889,46 @@ def render_line_chart(block, x, y, w, h, accent=PETROL):
         ln.append(_txt(cx - 4, gy + 4, _fmt(gv, fmt), 9, 400, GREY_SUB, "end"))
 
     for s in series:
-        pts  = [px(i, v) for i, v in enumerate(s["values"][:n])]
-        path = "M " + " L ".join(f"{p[0]:.1f},{p[1]:.1f}" for p in pts)
-        if area:
-            close = f" L {pts[-1][0]:.1f},{cy+ch} L {pts[0][0]:.1f},{cy+ch} Z"
-            ln.append(f'<path d="{path}{close}" fill="{s["color"]}" opacity="0.12"/>')
-        ln.append(f'<path d="{path}" stroke="{s["color"]}" stroke-width="2.5" fill="none"/>')
+        # Build path with gaps (M/L) around None values
+        raw_pts = [(_pt(i, v) if v is not None else None)
+                   for i, v in enumerate(s["values"][:n])]
+        segs, cur = [], []
+        for pt in raw_pts:
+            if pt is None:
+                if cur: segs.append(cur); cur = []
+            else:
+                cur.append(pt)
+        if cur: segs.append(cur)
+
+        for seg in segs:
+            path = "M " + " L ".join(f"{p[0]:.1f},{p[1]:.1f}" for p in seg)
+            if area and len(seg) > 1:
+                close = f" L {seg[-1][0]:.1f},{cy+ch} L {seg[0][0]:.1f},{cy+ch} Z"
+                ln.append(f'<path d="{path}{close}" fill="{s["color"]}" opacity="0.12"/>')
+            ln.append(f'<path d="{path}" stroke="{s["color"]}" stroke-width="2.5" fill="none"/>')
+
         if show_pts:
-            for px_x, px_y in pts:
-                ln.append(f'<circle cx="{px_x:.1f}" cy="{px_y:.1f}" r="4" fill="{s["color"]}" stroke="#fff" stroke-width="1.5"/>')
+            for pt in raw_pts:
+                if pt is not None:
+                    ln.append(f'<circle cx="{pt[0]:.1f}" cy="{pt[1]:.1f}" r="4" fill="{s["color"]}" stroke="#fff" stroke-width="1.5"/>')
 
     for i, lbl in enumerate(labels):
-        lx, _ = px(i, 0)
+        lx, _ = _pt(i, 0)
         ln.append(_txt(lx, cy + ch + 14, lbl, 10, 400, GREY_SUB, "middle"))
 
     if len(series) > 1:
-        leg_y = cy + ch + 26
+        max_lbl_len = max((len(s["name"]) for s in series if s["name"]), default=8)
+        item_w      = max(max_lbl_len * 6 + 28, 90)
+        items_per_row = max(1, cw // item_w)
+        leg_y_base  = cy + ch + 28   # 28px clears x-axis label text
         for si, s in enumerate(series):
-            lx = cx + si * max(cw // len(series), 80)
-            ln.append(f'<rect x="{lx}" y="{leg_y}" width="20" height="3" fill="{s["color"]}"/>')
-            ln.append(_txt(lx + 25, leg_y + 6, s["name"], 9, 400, GREY_SUB))
+            if not s["name"]: continue
+            row = si // items_per_row
+            col = si % items_per_row
+            lx  = cx + col * item_w
+            ly  = leg_y_base + row * 16
+            ln.append(f'<rect x="{lx}" y="{ly}" width="20" height="3" fill="{s["color"]}"/>')
+            ln.append(_txt(lx + 25, ly + 6, s["name"], 9, 400, GREY_SUB))
 
     return _d(x, y, w, h, "", _svg(w, h, "\n".join(ln)))
 
@@ -682,7 +1033,7 @@ def render_donut_chart(block, x, y, w, h, accent=PETROL):
     if not segs:
         return ""
 
-    leg_w = 160 if show_leg else 0
+    leg_w = 200 if show_leg else 0
     chart_w = w - leg_w
     r_out = min(chart_w, h) // 2 - 10
     r_in  = int(r_out * 0.58)
@@ -692,12 +1043,24 @@ def render_donut_chart(block, x, y, w, h, accent=PETROL):
     total = sum(s.get("value", 0) for s in segs)
     if total == 0: return ""
 
+    # Assign colors so no two adjacent segments (including last→first wrap) share a color
+    _ext_palette = list(SERIES_COLORS) + [YELLOW]
+    _seg_colors: list = []
+    for _i, _s in enumerate(segs):
+        if _s.get("color"):
+            _seg_colors.append(_s["color"])
+        else:
+            _prev  = _seg_colors[-1] if _seg_colors else None
+            _first = _seg_colors[0]  if (_i == len(segs) - 1 and _seg_colors) else None
+            _chosen = next((c for c in _ext_palette if c != _prev and c != _first), YELLOW)
+            _seg_colors.append(_chosen)
+
     ln    = []
     start = -math.pi / 2
 
     for i, seg in enumerate(segs):
         v     = seg.get("value", 0)
-        color = seg.get("color") or SERIES_COLORS[i % len(SERIES_COLORS)]
+        color = _seg_colors[i]
         sweep = (v / total) * 2 * math.pi
         end   = start + sweep
 
@@ -729,16 +1092,35 @@ def render_donut_chart(block, x, y, w, h, accent=PETROL):
                   f'font-family="Arial,Helvetica,sans-serif">{_e(center_label)}</text>')
 
     if show_leg:
-        lx0 = chart_w + 10
+        lx0     = chart_w + 10
+        txt_w   = leg_w - 28          # available width for label text
+        cpl_leg = max(1, txt_w / 6.0) # ~10px font ≈ 6px/char
+        # Pre-compute per-item heights so we can vertically center the block
+        def _leg_item_h(seg):
+            lbl = seg.get("label", "")
+            return 44 if len(lbl) > cpl_leg else 30
+        total_leg_h = sum(_leg_item_h(s) for s in segs)
+        ly = max(h // 2 - total_leg_h // 2, 6)
+
         for i, seg in enumerate(segs):
-            ly  = max(h // 2 - len(segs) * 14, 10) + i * 30
             if ly > h - 20: break
-            color = seg.get("color") or SERIES_COLORS[i % len(SERIES_COLORS)]
+            color = _seg_colors[i]
             ln.append(f'<rect x="{lx0}" y="{ly}" width="12" height="12" fill="{color}" rx="2"/>')
-            ln.append(_txt(lx0 + 16, ly + 10, seg.get("label", ""), 10, 400, GREY_TEXT))
+            label = seg.get("label", "")
             v   = seg.get("value", 0)
             pct = f"{v / total * 100:.1f}%"
-            ln.append(_txt(lx0 + 16, ly + 22, pct, 9, 400, GREY_SUB))
+            if len(label) > cpl_leg:
+                # split at last word boundary before cpl_leg
+                sp = label.rfind(" ", 0, int(cpl_leg))
+                sp = sp if sp > 0 else int(cpl_leg)
+                ln.append(_txt(lx0 + 16, ly + 10, label[:sp],       10, 400, GREY_TEXT))
+                ln.append(_txt(lx0 + 16, ly + 22, label[sp+1:],     10, 400, GREY_TEXT))
+                ln.append(_txt(lx0 + 16, ly + 36, pct,               9, 400, GREY_SUB))
+                ly += 46
+            else:
+                ln.append(_txt(lx0 + 16, ly + 10, label, 10, 400, GREY_TEXT))
+                ln.append(_txt(lx0 + 16, ly + 22, pct,    9, 400, GREY_SUB))
+                ly += 32
 
     return _d(x, y, w, h, "", _svg(w, h, "\n".join(ln)))
 
@@ -945,21 +1327,30 @@ def render_table(block, x, y, w, h, accent=PETROL):
         data_w  = (w - label_w) // max(n_cols - 1, 1)
         cws = [label_w] + [data_w] * (n_cols - 1)
 
-    hdr_h  = 34
+    # Fewer columns → more room per header → use full label; many columns → shrink
+    hdr_fs  = max(9, 11 - max(0, n_cols - 5))
+
+    # Dynamically size hdr_h based on how many lines the longest header needs
+    max_hdr_lines = 1
+    for ci, hdr in enumerate(headers):
+        col_w = cws[ci] if ci < len(cws) else (w // max(n_cols, 1))
+        chars_per_line = max(1, (col_w - 8) / (hdr_fs * 0.55))
+        lines = max(1, math.ceil(len(str(hdr)) / chars_per_line))
+        max_hdr_lines = max(max_hdr_lines, lines)
+    hdr_h = max(28, min(62, max_hdr_lines * (hdr_fs + 5) + 8))
+
     # Fill available height — cap per-row at 52px so it doesn't look too tall
     row_h  = min(52, max(28, (h - hdr_h) // max(len(rows), 1)))
     # Scale font with row height
     cell_fs = 11 if row_h <= 32 else (12 if row_h <= 42 else 13)
-    # Fewer columns → more room per header → use full label; many columns → shrink
-    hdr_fs  = max(9, 11 - max(0, n_cols - 5))
 
     p = []
     for ci, hdr in enumerate(headers):
         hx  = x + sum(cws[:ci])
         bg  = accent if ci == hl_col else PETROL_DARK
         p.append(_d(hx, y, cws[ci] - 1, hdr_h, f"background:{bg};"))
-        p.append(_d(hx + 4, y + (hdr_h - hdr_fs - 2) // 2, cws[ci] - 8, hdr_h - 8,
-            f"font-size:{hdr_fs}px;font-weight:700;color:#fff;overflow:hidden;white-space:nowrap;",
+        p.append(_d(hx + 4, y + 4, cws[ci] - 8, hdr_h - 8,
+            f"font-size:{hdr_fs}px;font-weight:700;color:#fff;overflow:hidden;line-height:1.35;",
             _e(str(hdr))))
 
     for ri, row in enumerate(rows):
@@ -1140,16 +1531,20 @@ def render_gantt(block, x, y, w, h, accent=PETROL):
     if title:
         ln.append(_txt(w / 2, 15, title, 11, 700, GREY_TEXT, "middle"))
 
+    # Throttle x-axis labels when too many columns to avoid crowding
+    label_step = 1 if n_col <= 8 else (2 if n_col <= 14 else 3)
+
     # Column headers + vertical rules
     for i, lbl in enumerate(x_labels):
-        hx  = cx + i * col_w + col_w / 2
-        ln.append(_txt(hx, T + hdr_h - 6, lbl, 9, 700, GREY_TEXT, "middle"))
         gx = cx + i * col_w
         ln.append(f'<line x1="{gx:.1f}" y1="{cy}" x2="{gx:.1f}" y2="{cy + n_row * row_h}" stroke="{GREY_RULE}" stroke-width="1"/>')
+        if i % label_step == 0:
+            hx = cx + i * col_w + col_w / 2
+            ln.append(_txt(hx, T + hdr_h - 6, lbl, 9, 700, GREY_TEXT, "middle"))
 
-    # Row bars
+    # Row bars — start/end are 0–1 fractions of the FULL timeline width
     for ri, row in enumerate(rows):
-        ry   = cy + ri * row_h
+        ry    = cy + ri * row_h
         bar_y = ry + row_h * 0.22
         bar_h = row_h * 0.56
 
@@ -1158,21 +1553,22 @@ def render_gantt(block, x, y, w, h, accent=PETROL):
         if ri % 2 == 0:
             ln.append(f'<rect x="{cx}" y="{ry}" width="{cw}" height="{row_h}" fill="{GREY_BG}"/>')
 
-        s, e    = row.get("start", 0), row.get("end", 1)
-        color   = row.get("color") or SERIES_COLORS[ri % len(SERIES_COLORS)]
-        bx_r    = cx + s * col_w
-        bw_r    = (e - s) * col_w
+        s, e  = row.get("start", 0), row.get("end", 1)
+        color = row.get("color") or SERIES_COLORS[ri % len(SERIES_COLORS)]
+        bx_r  = cx + s * cw           # fraction of full chart width
+        bw_r  = (e - s) * cw
         ln.append(f'<rect x="{bx_r:.1f}" y="{bar_y:.1f}" width="{max(bw_r, 2):.1f}" height="{bar_h:.1f}" fill="{color}" rx="3"/>')
 
         if row.get("bar_label"):
             ln.append(_txt(bx_r + bw_r / 2, bar_y + bar_h / 2 + 4,
                            row["bar_label"], 9, 700, "#fff", "middle"))
 
-    # Milestones
+    # Milestones — small diamonds sitting on the chart top boundary
     for ms in milestones:
-        mx  = cx + ms["at"] * col_w
-        my0 = cy - 4
-        ln.append(f'<polygon points="{mx},{my0-6} {mx+5},{my0} {mx},{my0+6} {mx-5},{my0}" fill="{accent}"/>')
+        mx  = cx + ms["at"] * cw      # fraction of full chart width
+        my0 = cy
+        r   = 4           # half-size (was 5/6 — smaller so header stays clear)
+        ln.append(f'<polygon points="{mx},{my0-r} {mx+r},{my0} {mx},{my0+r} {mx-r},{my0}" fill="{accent}"/>')
         if ms.get("label"):
             ln.append(_txt(mx, cy + n_row * row_h + 14, ms["label"], 9, 400, accent, "middle"))
 
